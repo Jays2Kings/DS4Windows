@@ -62,6 +62,8 @@
             this.bnRX2 = new System.Windows.Forms.Button();
             this.bnL3 = new System.Windows.Forms.Button();
             this.bnR3 = new System.Windows.Forms.Button();
+            this.TouchTip = new System.Windows.Forms.Label();
+            this.ReapTip = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -300,7 +302,7 @@
             this.bnDown.ForeColor = System.Drawing.SystemColors.WindowText;
             this.bnDown.Location = new System.Drawing.Point(85, 184);
             this.bnDown.Name = "bnDown";
-            this.bnDown.Size = new System.Drawing.Size(19, 22);
+            this.bnDown.Size = new System.Drawing.Size(19, 29);
             this.bnDown.TabIndex = 53;
             this.bnDown.Text = "Down Button";
             this.bnDown.UseVisualStyleBackColor = false;
@@ -318,7 +320,7 @@
             this.bnRight.ForeColor = System.Drawing.SystemColors.WindowText;
             this.bnRight.Location = new System.Drawing.Point(106, 164);
             this.bnRight.Name = "bnRight";
-            this.bnRight.Size = new System.Drawing.Size(21, 18);
+            this.bnRight.Size = new System.Drawing.Size(27, 22);
             this.bnRight.TabIndex = 53;
             this.bnRight.Text = "Right Button";
             this.bnRight.UseVisualStyleBackColor = false;
@@ -336,7 +338,7 @@
             this.bnLeft.ForeColor = System.Drawing.SystemColors.WindowText;
             this.bnLeft.Location = new System.Drawing.Point(57, 163);
             this.bnLeft.Name = "bnLeft";
-            this.bnLeft.Size = new System.Drawing.Size(26, 20);
+            this.bnLeft.Size = new System.Drawing.Size(26, 23);
             this.bnLeft.TabIndex = 53;
             this.bnLeft.Text = "Left Button";
             this.bnLeft.UseVisualStyleBackColor = false;
@@ -352,9 +354,9 @@
             this.bnOptions.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.bnOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnOptions.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnOptions.Location = new System.Drawing.Point(283, 125);
+            this.bnOptions.Location = new System.Drawing.Point(286, 121);
             this.bnOptions.Name = "bnOptions";
-            this.bnOptions.Size = new System.Drawing.Size(13, 22);
+            this.bnOptions.Size = new System.Drawing.Size(19, 30);
             this.bnOptions.TabIndex = 53;
             this.bnOptions.Text = "Start";
             this.bnOptions.UseVisualStyleBackColor = false;
@@ -370,9 +372,9 @@
             this.bnShare.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.bnShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnShare.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnShare.Location = new System.Drawing.Point(131, 127);
+            this.bnShare.Location = new System.Drawing.Point(131, 124);
             this.bnShare.Name = "bnShare";
-            this.bnShare.Size = new System.Drawing.Size(12, 23);
+            this.bnShare.Size = new System.Drawing.Size(14, 29);
             this.bnShare.TabIndex = 53;
             this.bnShare.Text = "Back";
             this.bnShare.UseVisualStyleBackColor = false;
@@ -388,9 +390,9 @@
             this.bnTouchpad.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.bnTouchpad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnTouchpad.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnTouchpad.Location = new System.Drawing.Point(151, 131);
+            this.bnTouchpad.Location = new System.Drawing.Point(151, 161);
             this.bnTouchpad.Name = "bnTouchpad";
-            this.bnTouchpad.Size = new System.Drawing.Size(64, 56);
+            this.bnTouchpad.Size = new System.Drawing.Size(128, 26);
             this.bnTouchpad.TabIndex = 53;
             this.bnTouchpad.Text = "Click";
             this.bnTouchpad.UseVisualStyleBackColor = false;
@@ -426,7 +428,7 @@
             this.bnTouchUpper.ForeColor = System.Drawing.SystemColors.WindowText;
             this.bnTouchUpper.Location = new System.Drawing.Point(150, 104);
             this.bnTouchUpper.Name = "bnTouchUpper";
-            this.bnTouchUpper.Size = new System.Drawing.Size(125, 26);
+            this.bnTouchUpper.Size = new System.Drawing.Size(129, 32);
             this.bnTouchUpper.TabIndex = 53;
             this.bnTouchUpper.Text = "Middle Click";
             this.bnTouchUpper.UseVisualStyleBackColor = false;
@@ -442,9 +444,9 @@
             this.bnTouchMulti.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.bnTouchMulti.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnTouchMulti.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnTouchMulti.Location = new System.Drawing.Point(215, 131);
+            this.bnTouchMulti.Location = new System.Drawing.Point(151, 135);
             this.bnTouchMulti.Name = "bnTouchMulti";
-            this.bnTouchMulti.Size = new System.Drawing.Size(64, 56);
+            this.bnTouchMulti.Size = new System.Drawing.Size(128, 26);
             this.bnTouchMulti.TabIndex = 53;
             this.bnTouchMulti.Text = "Right Click";
             this.bnTouchMulti.UseVisualStyleBackColor = false;
@@ -471,12 +473,11 @@
             // 
             this.lbControls.FormattingEnabled = true;
             this.lbControls.Items.AddRange(new object[] {
-            "<Press a button, then a key to assign>"});
+            "<Click a button, then a key/item to assign>"});
             this.lbControls.Location = new System.Drawing.Point(418, 67);
             this.lbControls.Name = "lbControls";
             this.lbControls.Size = new System.Drawing.Size(248, 212);
             this.lbControls.TabIndex = 54;
-            this.lbControls.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // bnLY2
             // 
@@ -640,12 +641,36 @@
             this.bnR3.Text = "Right Stick";
             this.bnR3.UseVisualStyleBackColor = false;
             // 
+            // TouchTip
+            // 
+            this.TouchTip.AutoSize = true;
+            this.TouchTip.Location = new System.Drawing.Point(164, 34);
+            this.TouchTip.Name = "TouchTip";
+            this.TouchTip.Size = new System.Drawing.Size(109, 52);
+            this.TouchTip.TabIndex = 55;
+            this.TouchTip.Text = "Touchpad:\r\nTop: Upper Pad \r\nMiddle: Multi-Touch \r\nBottom: Single Touch";
+            this.TouchTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.TouchTip.Visible = false;
+            // 
+            // ReapTip
+            // 
+            this.ReapTip.AutoSize = true;
+            this.ReapTip.Location = new System.Drawing.Point(134, 59);
+            this.ReapTip.Name = "ReapTip";
+            this.ReapTip.Size = new System.Drawing.Size(169, 26);
+            this.ReapTip.TabIndex = 55;
+            this.ReapTip.Text = "Double Tap a key to toggle repeat\r\n(Excludes TouchPad)";
+            this.ReapTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ReapTip.Visible = false;
+            // 
             // CustomMapping
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(684, 310);
+            this.Controls.Add(this.ReapTip);
+            this.Controls.Add(this.TouchTip);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.lbControls);
             this.Controls.Add(this.cbScanCode);
@@ -728,5 +753,7 @@
         private System.Windows.Forms.Button bnRX2;
         private System.Windows.Forms.Button bnL3;
         private System.Windows.Forms.Button bnR3;
+        private System.Windows.Forms.Label TouchTip;
+        private System.Windows.Forms.Label ReapTip;
     }
 }

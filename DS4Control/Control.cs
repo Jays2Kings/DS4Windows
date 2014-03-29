@@ -5,7 +5,7 @@ using System.Text;
 using DS4Library;
 namespace DS4Control
 {
-    public class Control: IDisposable
+    public class Control
     {
         X360Device x360Bus;
         DS4Device[] DS4Controllers = new DS4Device[4];
@@ -38,6 +38,17 @@ namespace DS4Control
             }
         }
 
+        private void WarnExclusiveModeFailure(DS4Device device)
+        {
+            if (DS4Devices.isExclusiveMode && !device.IsExclusive)
+            {
+                String message = "Warning: Could not open DS4 " + device.MacAddress + " exclusively.  " +
+                "You must quit other applications like Steam, Uplay before activating the 'Hide DS4 Controller' option.";
+                LogDebug(message);
+                Log.LogToTray(message);
+            }
+        }
+
         public bool Start()
         {
             if (x360Bus.Open() && x360Bus.Start())
@@ -53,33 +64,29 @@ namespace DS4Control
                     int ind = 0;
                     foreach (DS4Device device in devices)
                     {
-                        LogDebug("Found Controller: " + device.MacAddress);
-                        if (device.MacAddress == "00:00:00:00:00:00")
-                        {
-                            LogDebug("WARNING: If you are seing all zeroes as controller ID");
-                            LogDebug("You might be running not fully supported BT dongle");
-                            LogDebug("Only some basic functionality is enabled");
-                        }
+                        LogDebug("Found Controller: " + device.MacAddress + " (" + device.ConnectionType + ")");
+                        WarnExclusiveModeFailure(device);
                         DS4Controllers[ind] = device;
                         device.Removal += this.On_DS4Removal;
                         TPadModeSwitcher m_switcher = new TPadModeSwitcher(device, ind);
                         m_switcher.Debug += OnDebug;
-                        m_switcher.setMode(Global.getTouchEnabled(ind) ? 1 : 0);
                         modeSwitcher[ind] = m_switcher;
                         DS4Color color = Global.loadColor(ind);
                         device.LightBarColor = color;
                         x360Bus.Plugin(ind + 1);
                         device.Report += this.On_Report;
+                        m_switcher.setMode(Global.getTouchEnabled(ind) ? 1 : 0);
                         ind++;
                         LogDebug("Controller: " + device.MacAddress + " is ready to use");
                         Log.LogToTray("Controller: " + device.MacAddress + " is ready to use");
-                        if (ind >= 4)
+                        if (ind >= 4) // out of Xinput devices!
                             break;
                     }
                 }
                 catch (Exception e)
                 {
                     LogDebug(e.Message);
+                    Log.LogToTray(e.Message);
                 }
                 running = true;
                     
@@ -106,19 +113,28 @@ namespace DS4Control
                 LogDebug("Stopping DS4 Controllers");
                 DS4Devices.stopControllers();
                 LogDebug("Stopped DS4 Tool");
+                Global.ControllerStatusChanged(this);
             }
             return true;
 
         }
 
+        private volatile bool justRemoved; // inhibits HotPlug temporarily when a device is being torn down
         public bool HotPlug()
         {
-            if(running)
+            if (running)
             {
+                if (justRemoved)
+                {
+                    justRemoved = false;
+                    System.Threading.Thread.Sleep(200);
+                }
                 DS4Devices.findControllers();
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                 foreach (DS4Device device in devices)
                 {
+                    if (device.IsDisconnecting)
+                        continue;
                     if (((Func<bool>)delegate
                     {
                         for (Int32 Index = 0; Index < DS4Controllers.Length; Index++)
@@ -131,15 +147,19 @@ namespace DS4Control
                     for (Int32 Index = 0; Index < DS4Controllers.Length; Index++)
                         if (DS4Controllers[Index] == null)
                         {
+                            LogDebug("Found Controller: " + device.MacAddress + " (" + device.ConnectionType + ")");
+                            WarnExclusiveModeFailure(device);
                             DS4Controllers[Index] = device;
                             device.Removal += this.On_DS4Removal;
                             TPadModeSwitcher m_switcher = new TPadModeSwitcher(device, Index);
                             m_switcher.Debug += OnDebug;
                             modeSwitcher[Index] = m_switcher;
-                            m_switcher.setMode(Global.getTouchEnabled(Index) ? 1 : 0);
                             device.LightBarColor = Global.loadColor(Index);
                             device.Report += this.On_Report;
                             x360Bus.Plugin(Index + 1);
+                            m_switcher.setMode(Global.getTouchEnabled(Index) ? 1 : 0);
+                            LogDebug("Controller: " + device.MacAddress + " is ready to use");
+                            Log.LogToTray("Controller: " + device.MacAddress + " is ready to use");
                             break;
                         }
                 }
@@ -152,7 +172,21 @@ namespace DS4Control
             if (DS4Controllers[index] != null)
             {
                 DS4Device d = DS4Controllers[index];
-                return d.MacAddress + ", Battery = " + d.Battery + "%," + " Touchpad = " + modeSwitcher[index].ToString() + " (" + d.ConnectionType + ")";
+                if (!d.IsAlive())
+                    return null; // awaiting the first battery charge indication
+                String battery;
+                if (d.Charging)
+                {
+                    if (d.Battery >= 100)
+                        battery = "fully-charged";
+                    else
+                        battery = "charging at ~" + d.Battery + "%";
+                }
+                else
+                {
+                    battery = "draining at ~" + d.Battery + "%";
+                }
+                return d.MacAddress + " (" + d.ConnectionType + "), Battery is " + battery + ", Touchpad in " + modeSwitcher[index].ToString();
             }
             else
                 return null;
@@ -168,11 +202,13 @@ namespace DS4Control
                     ind = i;
             if (ind != -1)
             {
+                justRemoved = true;
                 x360Bus.Unplug(ind + 1);
                 LogDebug("Controller " + device.MacAddress + " was removed or lost connection");
                 Log.LogToTray("Controller " + device.MacAddress + " was removed or lost connection");
                 DS4Controllers[ind] = null;
                 modeSwitcher[ind] = null;
+                Global.ControllerStatusChanged(this);
             }
         }
 
@@ -189,28 +225,24 @@ namespace DS4Control
 
             if (ind!=-1)
             {
-                 DS4State cState;
+                device.getExposedState(ExposedState[ind], CurrentState[ind]);
+                DS4State cState = CurrentState[ind];
+                device.getPreviousState(PreviousState[ind]);
+                DS4State pState = PreviousState[ind];
+
                 if (modeSwitcher[ind].getCurrentMode() is ButtonMouse)
                 {
-                    device.getExposedState(ExposedState[ind], CurrentState[ind]); 
-                    cState = CurrentState[ind];
                     ButtonMouse mode = (ButtonMouse)modeSwitcher[ind].getCurrentMode();
-                    if (!cState.Touch1 && !cState.Touch2 && !cState.TouchButton)
-                        mode.untouched();
-                    cState = mode.getDS4State();
+                    // XXX so disgusting, need to virtualize this again
+                    mode.getDS4State().Copy(cState);
                 }
                 else
                 {
                     device.getExposedState(ExposedState[ind], CurrentState[ind]); 
                     cState = CurrentState[ind];
                 }
-                device.getPreviousState(PreviousState[ind]);
-                DS4State pState = PreviousState[ind];
-               
 
                 CheckForHotkeys(ind, cState, pState);
-
-                DS4LightBar.updateBatteryStatus(cState.Battery, device, ind);
                 
                 if (Global.getHasCustomKeysorButtons(ind))
                 {
@@ -218,7 +250,14 @@ namespace DS4Control
                     cState = MappedState[ind];
                 }
 
+                // Update the GUI/whatever.
+                DS4LightBar.updateLightBar(device, ind);
+                if (pState.Battery != cState.Battery)
+                    Global.ControllerStatusChanged(this);
+
                 x360Bus.Parse(cState, processingData[ind].Report, ind);
+                // We push the translated Xinput state, and simultaneously we
+                // pull back any possible rumble data coming from Xinput consumers.
                 if (x360Bus.Report(processingData[ind].Report, processingData[ind].Rumble))
                 {
                     Byte Big = (Byte)(processingData[ind].Rumble[3]);
@@ -271,17 +310,6 @@ namespace DS4Control
             if (heavyBoosted > 255)
                 heavyBoosted = 255;
             DS4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
-        }
-
-        public DS4Device getDS4Controller(int deviceNum)
-        {
-            return DS4Controllers[deviceNum];
-        }
-
-        //CA1001 TypesThatOwnDisposableFieldsShouldBeDisposable
-        public void Dispose()
-        {
-            x360Bus.Dispose();
         }
     }
 }

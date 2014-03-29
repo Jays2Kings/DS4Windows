@@ -11,8 +11,7 @@
     <AssemblyName>DS4Tool</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Jonathan\Documents\Projects\DS4Builds\</PublishUrl>
+    <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -22,11 +21,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -55,18 +53,6 @@
   <PropertyGroup>
     <StartupObject>ScpServer.Program</StartupObject>
   </PropertyGroup>
-  <PropertyGroup>
-    <ManifestCertificateThumbprint>82841E533FB15D122F1D1941E6264C09CDDD60F1</ManifestCertificateThumbprint>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>DS4Tool_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignManifests>true</SignManifests>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -87,7 +73,6 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="AdvancedColorDialog.cs" />
-    <Compile Include="AdvancedComboBox.cs" />
     <Compile Include="CustomMapping.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,12 +93,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadInputForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReadInputForm.Designer.cs">
-      <DependentUpon>ReadInputForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ScpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,13 +122,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ReadInputForm.resx">
-      <DependentUpon>ReadInputForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ScpForm.resx">
       <DependentUpon>ScpForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DS4Tool_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -194,16 +169,12 @@
     <None Include="Resources\28.png" />
     <None Include="Resources\29.png" />
     <Content Include="Resources\3.png" />
-    <None Include="Resources\30.png" />
-    <None Include="Resources\31.png" />
     <Content Include="Resources\4.png" />
     <Content Include="Resources\5.png" />
     <Content Include="Resources\6.png" />
     <Content Include="Resources\7.png" />
     <Content Include="Resources\8.png" />
     <Content Include="Resources\9.png" />
-    <None Include="Resources\DS4 More Red %28small%29.png" />
-    <None Include="Resources\DS4 Control Shadows %28small%29.png" />
     <Content Include="Resources\DS4.ico" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>

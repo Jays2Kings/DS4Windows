@@ -25,6 +25,6 @@ namespace DS4Control
 
         public void touchButtonDown(object sender, TouchpadEventArgs arg) { }
 
-        public void untouched(object sender, TouchpadEventArgs nullUnused) { }
+        public void touchUnchanged(object sender, EventArgs unused) { }
     }
 }

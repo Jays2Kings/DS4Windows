@@ -9,9 +9,14 @@ namespace DS4Control
     public class MouseCursorOnly : ITouchpadBehaviour
     {
         private int deviceNum;
+        private readonly MouseCursor cursor;
+        private readonly MouseWheel wheel;
+
         public MouseCursorOnly(int deviceID)
         {
             deviceNum = deviceID;
+            cursor = new MouseCursor(deviceNum);
+            wheel = new MouseWheel(deviceNum);
         }
 
         public override string ToString()
@@ -21,16 +26,15 @@ namespace DS4Control
 
         public void touchesMoved(object sender, TouchpadEventArgs arg)
         {
-            if (arg.touches.Length == 1)
-            {
-                double sensitivity = Global.getTouchSensitivity(deviceNum) / 100.0;
-                int mouseDeltaX = (int)(sensitivity * (arg.touches[0].deltaX));
-                int mouseDeltaY = (int)(sensitivity * (arg.touches[0].deltaY));
-                InputMethods.MoveCursorBy(mouseDeltaX, mouseDeltaY);
-            }
+            cursor.touchesMoved(arg);
+            wheel.touchesMoved(arg);
         }
 
-        public void touchesBegan(object sender, TouchpadEventArgs arg) { }
+        public void touchesBegan(object sender, TouchpadEventArgs arg)
+        {
+            cursor.touchesBegan(arg);
+            wheel.touchesBegan(arg);
+        }
 
         public void touchesEnded(object sender, TouchpadEventArgs arg) { }
 
@@ -38,6 +42,6 @@ namespace DS4Control
 
         public void touchButtonDown(object sender, TouchpadEventArgs arg) { }
 
-        public void untouched(object sender, TouchpadEventArgs nullUnused) { }
+        public void touchUnchanged(object sender, EventArgs unused) { }
     }
 }

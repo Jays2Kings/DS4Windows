@@ -40,8 +40,6 @@ namespace DS4Control
             MappedState.LY = 127;
             MappedState.RX = 127;
             MappedState.RY = 127;
-            int MouseDeltaX = 0;
-            int MouseDeltaY = 0;
 
             foreach (KeyValuePair<DS4Controls, X360Controls> customButton in Global.getCustomButtons())
             {
@@ -183,34 +181,6 @@ namespace DS4Control
                         else if (PrevOn && !CurOn)
                             InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
                         break;
-                    case X360Controls.MouseUp:
-                        if (MouseDeltaY == 0)
-                        {
-                            MouseDeltaY = calculateRelativeMouseDelta(customButton.Key, cState, prevState);
-                            MouseDeltaY = -Math.Abs(MouseDeltaY);
-                        }
-                        break;
-                    case X360Controls.MouseDown:
-                        if (MouseDeltaY == 0)
-                        {
-                            MouseDeltaY = calculateRelativeMouseDelta(customButton.Key, cState, prevState);
-                            MouseDeltaY = Math.Abs(MouseDeltaY);
-                        }
-                        break;
-                    case X360Controls.MouseLeft:
-                        if (MouseDeltaX == 0)
-                        {
-                            MouseDeltaX = calculateRelativeMouseDelta(customButton.Key, cState, prevState);
-                            MouseDeltaX = -Math.Abs(MouseDeltaX);
-                        }
-                        break;
-                    case X360Controls.MouseRight:
-                        if (MouseDeltaX == 0)
-                        {
-                            MouseDeltaX = calculateRelativeMouseDelta(customButton.Key, cState, prevState);
-                            MouseDeltaX = Math.Abs(MouseDeltaX);
-                        }
-                        break;
                     case X360Controls.Unbound:
                         resetToDefaultValue(customButton.Key, MappedState);
                         break;
@@ -225,54 +195,6 @@ namespace DS4Control
                 MappedState.RX = cState.RX;
             if (!RY)
                 MappedState.RY = cState.RY;
-            InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
-        }
-
-        private static int calculateRelativeMouseDelta(DS4Controls control, DS4State cState, DS4State pState)
-        {
-            int axisVal = -1;
-            int DEAD_ZONE = 10;
-            float SPEED_MULTIPLIER = 0.000004f;
-            bool positive = false;
-            float deltaTime = cState.ReportTimeStamp.Ticks - pState.ReportTimeStamp.Ticks;
-            switch (control)
-            { 
-                case DS4Controls.LXNeg:
-                    axisVal = cState.LX;
-                    break;
-                case DS4Controls.LXPos:
-                    positive = true;
-                    axisVal = cState.LX;
-                    break;
-                case DS4Controls.RXNeg:
-                    axisVal = cState.RX;
-                    break;
-                case DS4Controls.RXPos:
-                    positive = true;
-                    axisVal = cState.RX;
-                    break;
-                case DS4Controls.LYNeg:
-                    axisVal = cState.LY;
-                    break;
-                case DS4Controls.LYPos:
-                    positive = true;
-                    axisVal = cState.LY;
-                    break;
-                case DS4Controls.RYNeg:
-                    axisVal = cState.RY;
-                    break;
-                case DS4Controls.RYPos:
-                    positive = true;
-                    axisVal = cState.RY;
-                    break;
-            }
-            axisVal = axisVal - 127;
-            int delta = 0;
-            if ( (!positive && axisVal < -DEAD_ZONE ) || (positive && axisVal > DEAD_ZONE))
-            {
-                delta = (int)(float) (axisVal * SPEED_MULTIPLIER * deltaTime);
-            }
-            return delta;
         }
 
         public static bool compare(byte b1, byte b2)

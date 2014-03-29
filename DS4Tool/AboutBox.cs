@@ -28,7 +28,7 @@ namespace ScpServer
 
         private void AboutBox_Load(object sender, EventArgs e)
         {
-            linkLabel1.Links.Add(0,35,"https://code.google.com/p/ds4-tool/");
+            linkLabel1.Links.Add(0, linkLabel1.Text.Length, "https://code.google.com/r/brianfundakowskifeldman-ds4windows/");
         }
     }
 }

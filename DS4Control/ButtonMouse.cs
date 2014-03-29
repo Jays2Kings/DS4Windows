@@ -13,10 +13,14 @@ namespace DS4Control
         private DS4State s = new DS4State();
         private bool buttonLock; // Toggled with a two-finger touchpad push, we accept and absorb button input without any fingers on a touchpad, helping with drag-and-drop.
         private DS4Device dev = null;
+        private readonly MouseCursor cursor;
+        private readonly MouseWheel wheel;
         public ButtonMouse(int deviceID, DS4Device d)
         {
             deviceNum = deviceID;
             dev = d;
+            cursor = new MouseCursor(deviceNum);
+            wheel = new MouseWheel(deviceNum);
         }
 
         public override string ToString()
@@ -26,56 +30,36 @@ namespace DS4Control
 
         public void touchesMoved(object sender, TouchpadEventArgs arg)
         {
-            if (arg.touches.Length == 1)
-            {
-                double sensitivity = Global.getTouchSensitivity(deviceNum) / 100.0;
-                int mouseDeltaX = (int)(sensitivity * (arg.touches[0].deltaX));
-                int mouseDeltaY = (int)(sensitivity * (arg.touches[0].deltaY));
-                InputMethods.MoveCursorBy(mouseDeltaX, mouseDeltaY);
-            }
-            else if (arg.touches.Length == 2)
-            {
-                Touch lastT0 = arg.touches[0].previousTouch;
-                Touch lastT1 = arg.touches[1].previousTouch;
-                Touch T0 = arg.touches[0];
-                Touch T1 = arg.touches[1];
-
-                //mouse wheel 120 == 1 wheel click according to Windows API
-                int lastMidX = (lastT0.hwX + lastT1.hwX) / 2, lastMidY = (lastT0.hwY + lastT1.hwY) / 2,
-                    currentMidX = (T0.hwX + T1.hwX) / 2, currentMidY = (T0.hwY + T1.hwY) / 2; // XXX Will controller swap touch IDs?
-                double coefficient = Global.getScrollSensitivity(deviceNum);
-                // Adjust for touch distance: "standard" distance is 960 pixels, i.e. half the width.  Scroll farther if fingers are farther apart, and vice versa, in linear proportion.
-                double touchXDistance = T1.hwX - T0.hwX, touchYDistance = T1.hwY - T0.hwY, touchDistance = Math.Sqrt(touchXDistance * touchXDistance + touchYDistance * touchYDistance);
-                coefficient *= touchDistance / 960.0;
-                InputMethods.MouseWheel((int)(coefficient * (lastMidY - currentMidY)), (int)(coefficient * (currentMidX - lastMidX)));
-            }
+            cursor.touchesMoved(arg);
+            wheel.touchesMoved(arg);
+            dev.getCurrentState(s);
             synthesizeMouseButtons(false);
         }
 
-        public void untouched()
+        public void touchUnchanged(object sender, EventArgs unused)
         {
-            if (buttonLock)
+            dev.getCurrentState(s);
+            if (buttonLock || s.Touch1 || s.Touch2)
                 synthesizeMouseButtons(false);
-            else
-                dev.getCurrentState(s);
         }
 
         public void touchesBegan(object sender, TouchpadEventArgs arg)
         {
+            cursor.touchesBegan(arg);
+            wheel.touchesBegan(arg);
+            dev.getCurrentState(s);
             synthesizeMouseButtons(false);
         }
 
         public void touchesEnded(object sender, TouchpadEventArgs arg)
         {
+            dev.getCurrentState(s);
             if (!buttonLock)
                 synthesizeMouseButtons(true);
-            else
-                dev.getCurrentState(s);
         }
 
         private void synthesizeMouseButtons(bool justRelease)
         {
-            dev.getCurrentState(s);
             bool previousLeftButton = leftButton, previousMiddleButton = middleButton, previousRightButton = rightButton;
             if (justRelease)
             {
@@ -113,17 +97,20 @@ namespace DS4Control
         {
             if (upperDown)
             {
-                mapTouchPad(DS4Controls.TouchUpper, true);
+                if (!mapTouchPad(DS4Controls.TouchUpper, true))
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
                 upperDown = false;
             }
             if (leftDown)
             {
-                mapTouchPad(DS4Controls.TouchButton, true);
+                if (!mapTouchPad(DS4Controls.TouchButton, true))
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP);
                 leftDown = false;
             }
             if (rightDown)
             {
-                mapTouchPad(DS4Controls.TouchMulti, true);
+                if (!mapTouchPad(DS4Controls.TouchMulti, true))
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
                 rightDown = false;
             }
             dev.setRumble(0, 0);
@@ -134,7 +121,8 @@ namespace DS4Control
             byte leftRumble, rightRumble;
             if (arg.touches == null) //No touches, finger on upper portion of touchpad
             {
-                mapTouchPad(DS4Controls.TouchUpper, false);
+                if (!mapTouchPad(DS4Controls.TouchUpper, false))
+                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
                 upperDown = true;
                 leftRumble = rightRumble = 127;
             }
@@ -142,23 +130,23 @@ namespace DS4Control
             {
                 if (isLeft(arg.touches[0]))
                 {
-                    mapTouchPad(DS4Controls.TouchButton, false);
+                    if (!mapTouchPad(DS4Controls.TouchButton, false))
+                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN);
                     leftDown = true;
                     leftRumble = 63;
                     rightRumble = 0;
                 }
                 else if (isRight(arg.touches[0]))
                 {
-                    mapTouchPad(DS4Controls.TouchMulti, false);
+                    if (!mapTouchPad(DS4Controls.TouchMulti, false))
+                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
                     rightDown = true;
                     leftRumble = 0;
                     rightRumble = 63;
                 }
                 else
                 {
-                    mapTouchPad(DS4Controls.TouchUpper, false); // ambiguous = same as upper
-                    upperDown = true;
-                    leftRumble = rightRumble = 127;
+                    leftRumble = rightRumble = 0; // Ignore ambiguous pushes.
                 }
             }
             else

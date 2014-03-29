@@ -35,7 +35,7 @@ namespace ScpServer
         protected void ShowNotification(object sender, DebugEventArgs args)
         {
             notifyIcon1.BalloonTipText = args.Data;
-            notifyIcon1.BalloonTipTitle = "DS4 Tool";
+            notifyIcon1.BalloonTipTitle = "DS4Windows";
             notifyIcon1.ShowBalloonTip(1);
         }
 
@@ -45,15 +45,13 @@ namespace ScpServer
             {
                 notifyIcon1.Visible = true;
                 this.Hide();
-                //hide in taskbar
                 this.ShowInTaskbar = false;
             }
             else if (FormWindowState.Normal == this.WindowState)
             {
                 notifyIcon1.Visible = false;
-                //show in taskbar
+                this.Show();
                 this.ShowInTaskbar = true;
-
             }
             //Added last message alternative
             if (this.Height > 220)
@@ -83,13 +81,11 @@ namespace ScpServer
             rootHub.Debug += On_Debug;
             Log.GuiLog += On_Debug;
             Log.TrayIconLog += ShowNotification;
-            tmrUpdate.Enabled = true;
+            // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
             Global.Load();
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
             hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
             hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
-            if (btnStartStop.Enabled)
-                btnStartStop_Click(sender, e);
 
             // New settings
             this.Width = Global.getFormWidth();
@@ -104,8 +100,10 @@ namespace ScpServer
                 Form_Resize(sender, e);
             }
             Global.loadCustomMapping(0);
-
-
+            Global.ControllerStatusChange += ControllerStatusChange;
+            ControllerStatusChanged();
+            if (btnStartStop.Enabled)
+                btnStartStop_Clicked();
         }
         protected void Form_Close(object sender, FormClosingEventArgs e)
         {
@@ -116,6 +114,10 @@ namespace ScpServer
         }
 
         protected void btnStartStop_Click(object sender, EventArgs e)
+        {
+            btnStartStop_Clicked();
+        }
+        protected void btnStartStop_Clicked()
         {
             if (btnStartStop.Text == Properties.Resources.Start
                 && rootHub.Start())
@@ -156,17 +158,23 @@ namespace ScpServer
 
             base.WndProc(ref m);
         }
-        protected void tmrUpdate_Tick(object sender, EventArgs e)
-        {
 
+        delegate void ControllerStatusChangedDelegate(object sender, EventArgs e);
+        protected void ControllerStatusChange(object sender, EventArgs e)
+        {
+            if (InvokeRequired)
+                Invoke(new ControllerStatusChangedDelegate(ControllerStatusChange), new object[] { sender, e });
+            else
+                ControllerStatusChanged();
+        }
+        protected void ControllerStatusChanged()
+        {
             // If controllers are detected, but not checked, automatically check #1
             bool checkFirst = true;
             bool optionsEnabled = false;
             for (Int32 Index = 0; Index < Pad.Length; Index++)
             {
-                string contollerInfo =  rootHub.getDS4ControllerInfo(Index);
-
-                Pad[Index].Text = contollerInfo;
+                Pad[Index].Text = rootHub.getDS4ControllerInfo(Index);
                 if (Pad[Index].Text != null && Pad[Index].Text != "")
                 {
                     Pad[Index].Enabled = true;
@@ -237,8 +245,8 @@ namespace ScpServer
                         module.Dispose();
 
             Global.setUseExclusiveMode(hideDS4CheckBox.Checked);
-            btnStartStop_Click(sender, e);
-            btnStartStop_Click(sender, e);
+            btnStartStop_Clicked();
+            btnStartStop_Clicked();
             Global.Save();
         }
         private void startMinimizedCheckBox_CheckedChanged(object sender, EventArgs e)

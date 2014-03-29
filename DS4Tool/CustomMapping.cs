@@ -16,7 +16,7 @@ namespace ScpServer
     {
         private int device;
         private bool handleNextKeyPress = false;
-        private bool MouseMoveAdded = false;
+        private bool ReapTipShown = false;
         private List<ComboBox> comboBoxes = new List<ComboBox>();
         private List<Button> buttons = new List<Button>();
         private Dictionary<string, string> defaults = new Dictionary<string, string>();
@@ -46,11 +46,10 @@ namespace ScpServer
                     // Add events here (easier for modification/addition)
                     ((Button)control).Enter += new System.EventHandler(this.EnterCommand);
                     ((Button)control).KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownCommand);
-                    ((Button)control).Enter += new System.EventHandler(this.TopofListChanged);
-                    ((Button)control).KeyDown += new System.Windows.Forms.KeyEventHandler(this.TopofListChanged);
+                    //((Button)control).Enter += new System.EventHandler(this.TopofListChanged);
+                    //((Button)control).KeyDown += new System.Windows.Forms.KeyEventHandler(this.TopofListChanged);
                     ((Button)control).KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressCommand);
                     ((Button)control).PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.PreviewKeyDownCommand);
-                    //lbControls.Items.Add(((Button)control).Text);
                     lbControls.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChangedCommand);
                 }
             }
@@ -64,13 +63,15 @@ namespace ScpServer
         {
             if (sender is Button)
             {
-            lbControls.SetSelected(0, true);
-            for (int i = 1; i < lbControls.Items.Count; i++)
-                if (lbControls.Items[i].ToString().Contains(" (default)"))
-                {
-                    lbControls.Items[i] = lbControls.Items[i].ToString().Remove(lbControls.Items[i].ToString().Length - 10);
-                }
-            //Change image to represent button            
+                ReapTip.Visible = false;
+                lbControls.SetSelected(0, true);
+                //
+                for (int i = 1; i < lbControls.Items.Count; i++)
+                    if (lbControls.Items[i].ToString().Contains(" (default)"))
+                    {
+                        lbControls.Items[i] = lbControls.Items[i].ToString().Remove(lbControls.Items[i].ToString().Length - 10);
+                    }
+                //Change image to represent button            
                 lastSelectedBn = (Button)sender;
                 switch (lastSelectedBn.Name)
                 {
@@ -160,15 +161,29 @@ namespace ScpServer
                             lbControls.Items.Insert(1, temp);
                             break;
                         }
-                    if (((Button)sender).Name.Contains("bnLX") || ((Button)sender).Name.Contains("bnLY") || ((Button)sender).Name.Contains("bnRX") || ((Button)sender).Name.Contains("bnRY"))
-                    {
-                        lbControls.Items.Insert(2, "Mouse Right");
-                        lbControls.Items.Insert(2, "Mouse Left");
-                        lbControls.Items.Insert(2, "Mouse Down");
-                        lbControls.Items.Insert(2, "Mouse Up");
-                    }
                     break;
+                }            
+            if (((Button)sender).Name.Contains("bnLX") || ((Button)sender).Name.Contains("bnLY") || ((Button)sender).Name.Contains("bnRX") || ((Button)sender).Name.Contains("bnRY"))
+            {
+                lbControls.Items.Insert(2, "Mouse Right");
+                lbControls.Items.Insert(2, "Mouse Left");
+                lbControls.Items.Insert(2, "Mouse Down");
+                lbControls.Items.Insert(2, "Mouse Up");
+            }
+
+            if (((Button)sender).Name.Contains("Touch"))
+                TouchTip.Visible = true;
+            else
+            {
+                if (ReapTipShown == false)
+                {
+                    ReapTip.Visible = true;
+                    ReapTipShown = true;
                 }
+                TouchTip.Visible = false;
+            }
+            if (((Button)sender).Text != "Save" && ((Button)sender).Text != "Load")
+                lbControls.Items[0] = ((Button)sender).Text;
         }
 
         private void PreviewKeyDownCommand(object sender, PreviewKeyDownEventArgs e)
@@ -238,20 +253,19 @@ namespace ScpServer
         }
         private void SelectedIndexChangedCommand(object sender, EventArgs e)
         {
-            if (lbControls.SelectedIndex > 0)
-            {
-                if (lastSelectedBn.Text != lbControls.Items[lbControls.SelectedIndex].ToString())
-                {
-                    if (lbControls.Items[lbControls.SelectedIndex].ToString().Contains(" (default)"))
+            if (lastSelectedBn != null)
+                if (lbControls.SelectedIndex > 0)
+                    if (lastSelectedBn.Text != lbControls.Items[lbControls.SelectedIndex].ToString())
                     {
-                        lastSelectedBn.Text = lbControls.Items[lbControls.SelectedIndex].ToString().Remove(lbControls.Items[lbControls.SelectedIndex].ToString().Length - 10);
-                        lastSelectedBn.Tag = lbControls.Items[lbControls.SelectedIndex].ToString().Remove(lbControls.Items[lbControls.SelectedIndex].ToString().Length - 10);
+                        if (lbControls.Items[lbControls.SelectedIndex].ToString().Contains(" (default)"))
+                        {
+                            lastSelectedBn.Text = lbControls.Items[lbControls.SelectedIndex].ToString().Remove(lbControls.Items[lbControls.SelectedIndex].ToString().Length - 10);
+                            lastSelectedBn.Tag = lbControls.Items[lbControls.SelectedIndex].ToString().Remove(lbControls.Items[lbControls.SelectedIndex].ToString().Length - 10);
+                        }
+                        else
+                        lastSelectedBn.Text = lbControls.Items[lbControls.SelectedIndex].ToString();
+                        lastSelectedBn.Tag = lbControls.Items[lbControls.SelectedIndex].ToString();
                     }
-                    else
-                    lastSelectedBn.Text = lbControls.Items[lbControls.SelectedIndex].ToString();
-                    lastSelectedBn.Tag = lbControls.Items[lbControls.SelectedIndex].ToString();
-                }
-            }
         }
         private void cbRepeat_CheckedChanged(object sender, EventArgs e)
         {
@@ -322,10 +336,6 @@ namespace ScpServer
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
 
     }

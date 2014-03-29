@@ -12,8 +12,7 @@ namespace DS4Control
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Repeat = 2 }; //Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
     public enum DS4Controls : byte { LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchButton, TouchUpper, TouchMulti, Share, Options };
-    public enum X360Controls : byte { LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, Unbound,
-    MouseLeft, MouseRight, MouseDown, MouseUp};
+    public enum X360Controls : byte { LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, Unbound };
 
     public class DebugEventArgs : EventArgs
     {
@@ -81,6 +80,13 @@ namespace DS4Control
     {
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
+
+        public static event EventHandler<EventArgs> ControllerStatusChange; // called when a controller is added/removed/battery or touchpad mode changes/etc.
+        public static void ControllerStatusChanged(object sender)
+        {
+            if (ControllerStatusChange != null)
+                ControllerStatusChange(sender, EventArgs.Empty);
+        }
 
         public static DS4Color loadColor(int device)
         {
@@ -327,22 +333,12 @@ namespace DS4Control
             byte bdif = (byte)(bmax - bmin);
             return (byte)(bmin + (bdif * ratio / 100));
         }
-        public static DS4Color getTransitionedColor(byte[] c1, byte[] c2, uint ratio)
-        {
-            DS4Color color = new DS4Color();
-            color.red = 255;
-            color.green = 255;
-            color.blue = 255;
-            uint r = ratio % 101;
-            if (c1.Length != 3 || c2.Length != 3 || ratio < 0)
-            {
-                return color;
-            }
-            color.red = applyRatio(c1[0], c2[0], ratio);
-            color.green = applyRatio(c1[1], c2[1], ratio);
-            color.blue = applyRatio(c1[2], c2[2], ratio);
-
-            return color;
+        public static DS4Color getTransitionedColor(DS4Color c1, DS4Color c2, uint ratio)
+        {;
+            c1.red = applyRatio(c1.red, c2.red, ratio);
+            c1.green = applyRatio(c1.green, c2.green, ratio);
+            c1.blue = applyRatio(c1.blue, c2.blue, ratio);
+            return c1;
         }
     }
 
@@ -655,10 +651,6 @@ namespace DS4Control
                 case "Click": return X360Controls.LeftMouse;
                 case "Right Click": return X360Controls.RightMouse;
                 case "Middle Click": return X360Controls.MiddleMouse;
-                case "Mouse Up": return X360Controls.MouseUp;
-                case "Mouse Down": return X360Controls.MouseDown;
-                case "Mouse Left": return X360Controls.MouseLeft;
-                case "Mouse Right": return X360Controls.MouseRight;
                 case "(Unbound)": return X360Controls.Unbound;
 
             }

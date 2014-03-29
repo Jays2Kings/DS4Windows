@@ -13,13 +13,9 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && (components != null))
             {
-                if (components != null)
-                    components.Dispose();
-                //CA2213 Disposable fields should be disposed 
-                if (rootHub != null)
-                    rootHub.Dispose();
+                components.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -93,7 +89,8 @@
             // 
             // tmrUpdate
             // 
-            this.tmrUpdate.Tick += new System.EventHandler(this.tmrUpdate_Tick);
+            this.tmrUpdate.Interval = 1;
+            this.tmrUpdate.Tick += new System.EventHandler(this.ControllerStatusChange);
             // 
             // pnlButton
             // 
@@ -330,7 +327,7 @@
             this.Controls.Add(this.pnlStatus);
             this.MinimumSize = new System.Drawing.Size(750, 192);
             this.Name = "ScpForm";
-            this.Text = "DS4 to XInput Mapper 1.3 RC4 - J2K Build";
+            this.Text = "DS4Windows 1.0 Alpha (2014-03-28.1)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Close);
             this.Load += new System.EventHandler(this.Form_Load);
             this.Resize += new System.EventHandler(this.Form_Resize);
@@ -348,6 +345,7 @@
         private System.Windows.Forms.ListView lvDebug;
         private System.Windows.Forms.ColumnHeader chTime;
         private System.Windows.Forms.ColumnHeader chData;
+        private System.Windows.Forms.Timer tmrUpdate;
         private System.Windows.Forms.Panel pnlButton;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnStartStop;
@@ -367,7 +365,6 @@
         private System.Windows.Forms.Label lbLastMessage;
         private System.Windows.Forms.LinkLabel lnkControllers;
         private System.Windows.Forms.Button AboutButton;
-        private System.Windows.Forms.Timer tmrUpdate;
     }
 }
 

@@ -8,10 +8,12 @@ using System.Threading;
 
 namespace DS4Control
 {
-    class DragMouse: Mouse, IDisposable
+    class DragMouse: Mouse
     {
         protected bool leftClick = false;
         protected Timer timer;
+        private readonly MouseCursor cursor;
+        private readonly MouseWheel wheel;
 
         public DragMouse(int deviceID):base(deviceID)
         {
@@ -21,7 +23,9 @@ namespace DS4Control
                 leftClick = false;
             }, null, 
             System.Threading.Timeout.Infinite, 
-            System.Threading.Timeout.Infinite); 
+            System.Threading.Timeout.Infinite);
+            cursor = new MouseCursor(deviceNum);
+            wheel = new MouseWheel(deviceNum);
         }
 
         public override string ToString()
@@ -29,44 +33,9 @@ namespace DS4Control
             return "Drag Mode";
         }
 
-        public override void touchesMoved(object sender, TouchpadEventArgs arg)
-        {
-            if (arg.touches.Length == 1)
-            {
-                double sensitivity = Global.getTouchSensitivity(deviceNum) / 100.0;
-                int mouseDeltaX = (int)(sensitivity * (arg.touches[0].deltaX));
-                int mouseDeltaY = (int)(sensitivity * (arg.touches[0].deltaY));
-                InputMethods.MoveCursorBy(mouseDeltaX, mouseDeltaY);
-            }
-            else if (arg.touches.Length == 2 && !leftClick)
-            {
-                Touch lastT0 = arg.touches[0].previousTouch;
-                Touch lastT1 = arg.touches[1].previousTouch;
-                Touch T0 = arg.touches[0];
-                Touch T1 = arg.touches[1];
-
-                //mouse wheel 120 == 1 wheel click according to Windows API
-                int lastMidX = (lastT0.hwX + lastT1.hwX) / 2, lastMidY = (lastT0.hwY + lastT1.hwY) / 2,
-                    currentMidX = (T0.hwX + T1.hwX) / 2, currentMidY = (T0.hwY + T1.hwY) / 2; // XXX Will controller swap touch IDs?
-                double coefficient = Global.getScrollSensitivity(deviceNum);
-                // Adjust for touch distance: "standard" distance is 960 pixels, i.e. half the width.  Scroll farther if fingers are farther apart, and vice versa, in linear proportion.
-                double touchXDistance = T1.hwX - T0.hwX, touchYDistance = T1.hwY - T0.hwY, touchDistance = Math.Sqrt(touchXDistance * touchXDistance + touchYDistance * touchYDistance);
-                coefficient *= touchDistance / 960.0;
-                InputMethods.MouseWheel((int)(coefficient * (lastMidY - currentMidY)), (int)(coefficient * (currentMidX - lastMidX)));
-            }
-            else
-            {
-                double sensitivity = Global.getTouchSensitivity(deviceNum) / 100.0;
-                int mouseDeltaX = (int)(sensitivity * (arg.touches[1].deltaX));
-                int mouseDeltaY = (int)(sensitivity * (arg.touches[1].deltaY));
-                InputMethods.MoveCursorBy(mouseDeltaX, mouseDeltaY);
-            }
-        }
-
         public override void touchesBegan(object sender, TouchpadEventArgs arg)
         {
-            pastTime = arg.timeStamp;
-            firstTouch = arg.touches[0];
+            base.touchesBegan(sender, arg);
             if (leftClick)
                 timer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
         }
@@ -138,12 +107,6 @@ namespace DS4Control
                 InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN);
                 leftClick = true;
             }
-        }
-
-        //CA1001 TypesThatOwnDisposableFieldsShouldBeDisposable
-        public void Dispose()
-        {
-            timer.Dispose();
         }
     }
 }

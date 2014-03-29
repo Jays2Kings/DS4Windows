@@ -7,27 +7,33 @@ namespace DS4Library
 {
     public class DS4State
     {
+        public DateTime ReportTimeStamp;
         public bool Square, Triangle, Circle, Cross;
         public bool DpadUp, DpadDown, DpadLeft, DpadRight;
         public bool L1, L3, R1, R3;
         public bool Share, Options, PS, Touch1, Touch2, TouchButton;
+        public byte Touch1Identifier, Touch2Identifier;
         public byte LX, RX, LY, RY, L2, R2;
-        public int Battery;
-        public DateTime ReportTimeStamp;
+        public byte FrameCounter; // 0, 1, 2...62, 63, 0....
+        public byte TouchPacketCounter; // we break these out automatically
+        public byte Battery; // 0 for charging, 10/20/30/40/50/60/70/80/90/100 for percentage of full
+
         public DS4State()
         {
-            ReportTimeStamp = DateTime.UtcNow;
             Square = Triangle = Circle = Cross = false;
             DpadUp = DpadDown = DpadLeft = DpadRight = false;
             L1 = L3 = R1 = R3 = false;
             Share = Options = PS = Touch1 = Touch2 = TouchButton = false;
             LX = RX = LY = RY = 127;
             L2 = R2 = 0;
+            FrameCounter = 255; // only actually has 6 bits, so this is a null indicator
+            TouchPacketCounter = 255; // 8 bits, no great junk value
             Battery = 0;
         }
 
         public DS4State(DS4State state)
         {
+            ReportTimeStamp = state.ReportTimeStamp;
             Square = state.Square;
             Triangle = state.Triangle;
             Circle = state.Circle;
@@ -46,14 +52,17 @@ namespace DS4Library
             Options = state.Options;
             PS = state.PS;
             Touch1 = state.Touch1;
+            Touch1Identifier = state.Touch1Identifier;
             Touch2 = state.Touch2;
+            Touch2Identifier = state.Touch2Identifier;
             TouchButton = state.TouchButton;
+            TouchPacketCounter = state.TouchPacketCounter;
             LX = state.LX;
             RX = state.RX;
             LY = state.LY;
             RY = state.RY;
+            FrameCounter = state.FrameCounter;
             Battery = state.Battery;
-            ReportTimeStamp = state.ReportTimeStamp;
         }
 
         public DS4State Clone()
@@ -63,6 +72,7 @@ namespace DS4Library
 
         public void Copy(DS4State state)
         {
+            state.ReportTimeStamp = ReportTimeStamp;
             state.Square = Square;
             state.Triangle = Triangle;
             state.Circle = Circle;
@@ -81,14 +91,17 @@ namespace DS4Library
             state.Options = Options;
             state.PS = PS;
             state.Touch1 = Touch1;
+            state.Touch1Identifier = Touch1Identifier;
             state.Touch2 = Touch2;
+            state.Touch2Identifier = Touch2Identifier;
             state.TouchButton = TouchButton;
+            state.TouchPacketCounter = TouchPacketCounter;
             state.LX = LX;
             state.RX = RX;
             state.LY = LY;
             state.RY = RY;
+            state.FrameCounter = FrameCounter;
             state.Battery = Battery;
-            state.ReportTimeStamp = ReportTimeStamp;
         }
 
     }

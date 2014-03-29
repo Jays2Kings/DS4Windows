@@ -11,11 +11,15 @@ namespace DS4Control
         protected DateTime pastTime;
         protected Touch firstTouch;
         protected int deviceNum;
+        private readonly MouseCursor cursor;
+        private readonly MouseWheel wheel;
         protected bool rightClick = false;
 
         public Mouse(int deviceID)
         {
             deviceNum = deviceID;
+            cursor = new MouseCursor(deviceNum);
+            wheel = new MouseWheel(deviceNum);
         }
 
         public override string ToString()
@@ -25,39 +29,23 @@ namespace DS4Control
 
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
-            if (arg.touches.Length == 1)
-            {
-                double sensitivity = Global.getTouchSensitivity(deviceNum) / 100.0;
-                int mouseDeltaX = (int)(sensitivity * (arg.touches[0].deltaX));
-                int mouseDeltaY = (int)(sensitivity * (arg.touches[0].deltaY));
-                InputMethods.MoveCursorBy(mouseDeltaX, mouseDeltaY);
-            }
-            else if (arg.touches.Length == 2)
-            {
-                Touch lastT0 = arg.touches[0].previousTouch;
-                Touch lastT1 = arg.touches[1].previousTouch;
-                Touch T0 = arg.touches[0];
-                Touch T1 = arg.touches[1];
-
-                //mouse wheel 120 == 1 wheel click according to Windows API
-                int lastMidX = (lastT0.hwX + lastT1.hwX) / 2, lastMidY = (lastT0.hwY + lastT1.hwY) / 2,
-                    currentMidX = (T0.hwX + T1.hwX) / 2, currentMidY = (T0.hwY + T1.hwY) / 2; // XXX Will controller swap touch IDs?
-                double coefficient = Global.getScrollSensitivity(deviceNum);
-                // Adjust for touch distance: "standard" distance is 960 pixels, i.e. half the width.  Scroll farther if fingers are farther apart, and vice versa, in linear proportion.
-                double touchXDistance = T1.hwX - T0.hwX, touchYDistance = T1.hwY - T0.hwY, touchDistance = Math.Sqrt(touchXDistance * touchXDistance + touchYDistance * touchYDistance);
-                coefficient *= touchDistance / 960.0;
-                InputMethods.MouseWheel((int)(coefficient * (lastMidY - currentMidY)), (int)(coefficient * (currentMidX - lastMidX)));
-            }
+            cursor.touchesMoved(arg);
+            wheel.touchesMoved(arg);
+            //Log.LogToGui("moved to " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
         }
 
         public virtual void touchesBegan(object sender, TouchpadEventArgs arg)
         {
+            cursor.touchesBegan(arg);
+            wheel.touchesBegan(arg);
             pastTime = arg.timeStamp;
             firstTouch = arg.touches[0];
+            //Log.LogToGui("began at " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
         }
 
         public virtual void touchesEnded(object sender, TouchpadEventArgs arg)
         {
+            //Log.LogToGui("ended at " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
             if (Global.getTapSensitivity(deviceNum) != 0)
             {
                 DateTime test = arg.timeStamp;
@@ -110,6 +98,8 @@ namespace DS4Control
                 InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN);
             }
         }
+
+        public void touchUnchanged(object sender, EventArgs unused) { }
 
         protected bool mapTouchPad(DS4Controls padControl, bool release = false)
         {

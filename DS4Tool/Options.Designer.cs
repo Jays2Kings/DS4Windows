@@ -847,6 +847,9 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.CustomMappingButton);
             this.Controls.Add(this.setButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(470, 282);
             this.Name = "Options";
             this.Text = "Options";

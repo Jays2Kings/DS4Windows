@@ -327,7 +327,7 @@
             this.Controls.Add(this.pnlStatus);
             this.MinimumSize = new System.Drawing.Size(750, 192);
             this.Name = "ScpForm";
-            this.Text = "DS4Windows 1.0 (2014-03-27.0)";
+            this.Text = "DS4Windows 1.0 Alpha 2 (2014-03-30.0)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Close);
             this.Load += new System.EventHandler(this.Form_Load);
             this.Resize += new System.EventHandler(this.Form_Resize);

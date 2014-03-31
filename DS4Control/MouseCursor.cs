@@ -16,11 +16,18 @@ namespace DS4Control
 
         // Keep track of remainders when performing moves or we lose fractional parts.
         private double horizontalRemainder = 0.0, verticalRemainder = 0.0;
+        /** Indicate x/y direction for doing jitter compensation, etc. */
+        public enum Direction { Negative, Neutral, Positive }
+        // Track direction vector separately and very trivially for now.
+        private Direction horizontalDirection = Direction.Neutral, verticalDirection = Direction.Neutral;
 
         public void touchesBegan(TouchpadEventArgs arg)
         {
             if (arg.touches.Length == 1)
+            {
                 horizontalRemainder = verticalRemainder = 0.0;
+                horizontalDirection = verticalDirection = Direction.Neutral;
+            }
         }
 
         private byte lastTouchID;
@@ -33,6 +40,7 @@ namespace DS4Control
             {
                 deltaX = deltaY = 0;
                 horizontalRemainder = verticalRemainder = 0.0;
+                horizontalDirection = verticalDirection = Direction.Neutral;
                 lastTouchID = arg.touches[0].touchID;
             }
             else if (Global.getTouchpadJitterCompensation(deviceNumber))
@@ -43,7 +51,7 @@ namespace DS4Control
                 // allow only very fine, slow motions, when changing direction
                 if (deltaX < -1)
                 {
-                    if (horizontalRemainder >= 0.0)
+                    if (horizontalDirection == Direction.Positive)
                     {
                         deltaX = -1;
                         horizontalRemainder = 0.0;
@@ -51,7 +59,7 @@ namespace DS4Control
                 }
                 else if (deltaX > 1)
                 {
-                    if (horizontalRemainder <= 0.0)
+                    if (horizontalDirection == Direction.Negative)
                     {
                         deltaX = 1;
                         horizontalRemainder = 0.0;
@@ -60,7 +68,7 @@ namespace DS4Control
 
                 if (deltaY < -1)
                 {
-                    if (verticalRemainder >= 0.0)
+                    if (verticalDirection == Direction.Positive)
                     {
                         deltaY = -1;
                         verticalRemainder = 0.0;
@@ -68,7 +76,7 @@ namespace DS4Control
                 }
                 else if (deltaY > 1)
                 {
-                    if (verticalRemainder <= 0.0)
+                    if (verticalDirection == Direction.Negative)
                     {
                         deltaY = 1;
                         verticalRemainder = 0.0;
@@ -113,6 +121,9 @@ namespace DS4Control
 
             if (yAction != 0 || xAction != 0)
                 InputMethods.MoveCursorBy(xAction, yAction);
+
+            horizontalDirection = xAction > 0.0 ? Direction.Positive : xAction < 0.0 ? Direction.Negative : Direction.Neutral;
+            verticalDirection = yAction > 0.0 ? Direction.Positive : yAction < 0.0 ? Direction.Negative : Direction.Neutral;
         }
     }
 }

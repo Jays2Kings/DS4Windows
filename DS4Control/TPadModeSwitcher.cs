@@ -79,5 +79,10 @@ namespace DS4Control
         {
             return modes.ElementAt(currentTypeInd);
         }
+
+        public int getCurrentModeInt()
+        {
+            return currentTypeInd;
+        }
     }
 }

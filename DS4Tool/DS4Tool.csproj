@@ -169,6 +169,8 @@
     <None Include="Resources\28.png" />
     <None Include="Resources\29.png" />
     <Content Include="Resources\3.png" />
+    <None Include="Resources\30.png" />
+    <None Include="Resources\31.png" />
     <Content Include="Resources\4.png" />
     <Content Include="Resources\5.png" />
     <Content Include="Resources\6.png" />

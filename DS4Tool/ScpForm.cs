@@ -266,7 +266,6 @@ namespace ScpServer
         {
             MessageBox.Show(((ListView)sender).FocusedItem.SubItems[1].Text,"Log");
         }
-
     }
 
     public class ThemeUtil

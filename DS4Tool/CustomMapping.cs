@@ -19,6 +19,7 @@ namespace ScpServer
         private bool ReapTipShown = false;
         private List<ComboBox> comboBoxes = new List<ComboBox>();
         private List<Button> buttons = new List<Button>();
+        private string currentMode;
         private Dictionary<string, string> defaults = new Dictionary<string, string>();
         private ComboBox lastSelected;
         private Button lastSelectedBn;
@@ -30,6 +31,7 @@ namespace ScpServer
         public CustomMapping(DS4Control.Control rootHub, int deviceNum)
         {
             InitializeComponent();
+            currentMode = rootHub.getDS4ControllerMode(deviceNum);
             this.rootHub = rootHub;
             device = deviceNum;
             DS4Color color = Global.loadColor(device);
@@ -51,7 +53,35 @@ namespace ScpServer
                     ((Button)control).KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressCommand);
                     ((Button)control).PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.PreviewKeyDownCommand);
                     lbControls.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChangedCommand);
+                    
                 }
+            }
+            if (currentMode == "Button Mode")
+            {
+                bnTouchpad.Location = new System.Drawing.Point(151, 135);
+                bnTouchpad.Size = new System.Drawing.Size(64, 52);
+                bnTouchMulti.Location = new System.Drawing.Point(215, 135);
+                bnTouchMulti.Size = new System.Drawing.Size(64, 52);
+                TouchTip.Text = "Touchpad (" + currentMode + "):\n Top: Upper Pad \n Left: Left Side \n Right: Right Side";
+                lbMode.Text = ("Touchpad is in " + currentMode);
+            }
+            else if (currentMode == "Disabled" || currentMode == "Cursor Mode")
+            {
+                bnTouchpad.Location = new System.Drawing.Point(151, 161);
+                bnTouchpad.Size = new System.Drawing.Size(128, 26);
+                bnTouchMulti.Location = new System.Drawing.Point(151, 135);
+                bnTouchMulti.Size = new System.Drawing.Size(128, 26);
+                TouchTip.Text = "Touchpad (" + currentMode + "):\n Controls are saved, \n but change modes \n to use touchpad";
+                lbMode.Text = ("Touchpad is currently disabled");
+            }
+            else
+            {
+                bnTouchpad.Location = new System.Drawing.Point(151, 161);
+                bnTouchpad.Size = new System.Drawing.Size(128, 26);
+                bnTouchMulti.Location = new System.Drawing.Point(151, 135);
+                bnTouchMulti.Size = new System.Drawing.Size(128, 26);
+                TouchTip.Text = "Touchpad (" + currentMode + "):\n Top: Upper Pad \n Middle: Multi-Touch \n Bottom: Single Touch";
+                lbMode.Text = ("Touchpad is in " + currentMode);
             }
             availableButtons.Sort();
             foreach (string s in availableButtons)
@@ -124,11 +154,23 @@ namespace ScpServer
                         break;
                     case "bnShare": pictureBox.Image = Properties.Resources._17;
                         break;
-                    case "bnTouchpad": pictureBox.Image = Properties.Resources._18;
+                    case "bnTouchpad":
+                        if (currentMode == "Button Mode")
+                        {
+                            pictureBox.Image = Properties.Resources._30;
+                        }
+                        else
+                            pictureBox.Image = Properties.Resources._18;
                         break;
                     case "bnTouchUpper": pictureBox.Image = Properties.Resources._20;
                         break;
-                    case "bnTouchMulti": pictureBox.Image = Properties.Resources._21;
+                    case "bnTouchMulti":
+                        if (currentMode == "Button Mode")
+                        {
+                            pictureBox.Image = Properties.Resources._31;
+                        }
+                        else
+                            pictureBox.Image = Properties.Resources._21;
                         break;
                     case "bnPS": pictureBox.Image = Properties.Resources._19;
                         break;

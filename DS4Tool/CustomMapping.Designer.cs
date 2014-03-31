@@ -64,6 +64,7 @@
             this.bnR3 = new System.Windows.Forms.Button();
             this.TouchTip = new System.Windows.Forms.Label();
             this.ReapTip = new System.Windows.Forms.Label();
+            this.lbMode = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -390,9 +391,9 @@
             this.bnTouchpad.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.bnTouchpad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnTouchpad.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnTouchpad.Location = new System.Drawing.Point(151, 161);
+            this.bnTouchpad.Location = new System.Drawing.Point(151, 135);
             this.bnTouchpad.Name = "bnTouchpad";
-            this.bnTouchpad.Size = new System.Drawing.Size(128, 26);
+            this.bnTouchpad.Size = new System.Drawing.Size(64, 52);
             this.bnTouchpad.TabIndex = 53;
             this.bnTouchpad.Text = "Click";
             this.bnTouchpad.UseVisualStyleBackColor = false;
@@ -444,9 +445,9 @@
             this.bnTouchMulti.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.bnTouchMulti.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnTouchMulti.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnTouchMulti.Location = new System.Drawing.Point(151, 135);
+            this.bnTouchMulti.Location = new System.Drawing.Point(215, 135);
             this.bnTouchMulti.Name = "bnTouchMulti";
-            this.bnTouchMulti.Size = new System.Drawing.Size(128, 26);
+            this.bnTouchMulti.Size = new System.Drawing.Size(64, 52);
             this.bnTouchMulti.TabIndex = 53;
             this.bnTouchMulti.Text = "Right Click";
             this.bnTouchMulti.UseVisualStyleBackColor = false;
@@ -644,11 +645,14 @@
             // TouchTip
             // 
             this.TouchTip.AutoSize = true;
-            this.TouchTip.Location = new System.Drawing.Point(164, 34);
+            this.TouchTip.Location = new System.Drawing.Point(141, 34);
+            this.TouchTip.MaximumSize = new System.Drawing.Size(151, 52);
+            this.TouchTip.MinimumSize = new System.Drawing.Size(151, 52);
             this.TouchTip.Name = "TouchTip";
-            this.TouchTip.Size = new System.Drawing.Size(109, 52);
+            this.TouchTip.Size = new System.Drawing.Size(151, 52);
             this.TouchTip.TabIndex = 55;
-            this.TouchTip.Text = "Touchpad:\r\nTop: Upper Pad \r\nMiddle: Multi-Touch \r\nBottom: Single Touch";
+            this.TouchTip.Text = "Touchpad (Standard Mode):\r\nTop: Upper Pad \r\nMiddle: Multi-Touch \r\nBottom: Single " +
+    "Touch";
             this.TouchTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.TouchTip.Visible = false;
             // 
@@ -663,6 +667,16 @@
             this.ReapTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.ReapTip.Visible = false;
             // 
+            // lbMode
+            // 
+            this.lbMode.AutoSize = true;
+            this.lbMode.Location = new System.Drawing.Point(418, 51);
+            this.lbMode.Name = "lbMode";
+            this.lbMode.Size = new System.Drawing.Size(51, 13);
+            this.lbMode.TabIndex = 56;
+            this.lbMode.Text = "Controller";
+            this.lbMode.Visible = false;
+            // 
             // CustomMapping
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -672,6 +686,7 @@
             this.Controls.Add(this.ReapTip);
             this.Controls.Add(this.TouchTip);
             this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.lbMode);
             this.Controls.Add(this.lbControls);
             this.Controls.Add(this.cbScanCode);
             this.Controls.Add(this.cbRepeat);
@@ -755,5 +770,6 @@
         private System.Windows.Forms.Button bnR3;
         private System.Windows.Forms.Label TouchTip;
         private System.Windows.Forms.Label ReapTip;
+        private System.Windows.Forms.Label lbMode;
     }
 }

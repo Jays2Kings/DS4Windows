@@ -97,20 +97,17 @@ namespace DS4Control
         {
             if (upperDown)
             {
-                if (!mapTouchPad(DS4Controls.TouchUpper, true))
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                mapTouchPad(DS4Controls.TouchUpper, true);
                 upperDown = false;
             }
             if (leftDown)
             {
-                if (!mapTouchPad(DS4Controls.TouchButton, true))
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP);
+                mapTouchPad(DS4Controls.TouchButton, true);
                 leftDown = false;
             }
             if (rightDown)
             {
-                if (!mapTouchPad(DS4Controls.TouchMulti, true))
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                mapTouchPad(DS4Controls.TouchMulti, true);
                 rightDown = false;
             }
             dev.setRumble(0, 0);
@@ -121,8 +118,7 @@ namespace DS4Control
             byte leftRumble, rightRumble;
             if (arg.touches == null) //No touches, finger on upper portion of touchpad
             {
-                if (!mapTouchPad(DS4Controls.TouchUpper, false))
-                    InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
+                mapTouchPad(DS4Controls.TouchUpper, false);
                 upperDown = true;
                 leftRumble = rightRumble = 127;
             }
@@ -130,16 +126,14 @@ namespace DS4Control
             {
                 if (isLeft(arg.touches[0]))
                 {
-                    if (!mapTouchPad(DS4Controls.TouchButton, false))
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN);
+                    mapTouchPad(DS4Controls.TouchButton, false);
                     leftDown = true;
                     leftRumble = 63;
                     rightRumble = 0;
                 }
                 else if (isRight(arg.touches[0]))
                 {
-                    if (!mapTouchPad(DS4Controls.TouchMulti, false))
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
+                    mapTouchPad(DS4Controls.TouchMulti, false);
                     rightDown = true;
                     leftRumble = 0;
                     rightRumble = 63;

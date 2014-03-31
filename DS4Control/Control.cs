@@ -192,6 +192,19 @@ namespace DS4Control
                 return null;
         }
 
+        public string getDS4ControllerMode(int index)
+        {
+            if (DS4Controllers[index] != null)
+            {
+                DS4Device d = DS4Controllers[index];
+                if (!d.IsAlive())
+                    return null; // awaiting the first battery charge indication
+                return modeSwitcher[index].ToString();
+            }
+            else
+                return "couldn't find";
+        }
+
         //Called when DS4 is disconnected or timed out
         protected virtual void On_DS4Removal(object sender, EventArgs e)
         {

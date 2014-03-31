@@ -94,15 +94,11 @@ namespace ScpServer
             if (sender is Button)
             {
                 ReapTip.Visible = false;
-                lbControls.SetSelected(0, true);
-                //
-                for (int i = 1; i < lbControls.Items.Count; i++)
-                    if (lbControls.Items[i].ToString().Contains(" (default)"))
-                    {
-                        lbControls.Items[i] = lbControls.Items[i].ToString().Remove(lbControls.Items[i].ToString().Length - 10);
-                    }
-                //Change image to represent button            
+                //Change image to represent button
                 lastSelectedBn = (Button)sender;
+                if (((Button)sender).Text != "Save" && ((Button)sender).Text != "Load")
+                    lbControls.Items[0] = ((Button)sender).Text;
+                lbControls.SetSelected(0, true);
                 switch (lastSelectedBn.Name)
                 {
                     #region Set pictureBox.Image to relevant Properties.Resources image
@@ -186,13 +182,13 @@ namespace ScpServer
                 else cbScanCode.Checked = false;
             }
 
-            //Show certain list item as default button
+            //Show certain list item as default acation, move to top, and resort list
             for (int i = 1; i < lbControls.Items.Count; i++)
                 if (defaults[((Button)sender).Name] == lbControls.Items[i].ToString())
                 {
-                    for (int j = lbControls.Items.Count-1; j >= 1; j--)
+                    for (int j = lbControls.Items.Count-1; j >= 1; j--) //clear all actions but first two
                         lbControls.Items.RemoveAt(j);
-                    foreach (string s in availableButtons)                        
+                    foreach (string s in availableButtons) //re-add all actions                   
                         lbControls.Items.Add(s);
                     for (int t = 1; t < lbControls.Items.Count; t++)
                         if (defaults[((Button)sender).Name] == lbControls.Items[t].ToString())
@@ -224,8 +220,6 @@ namespace ScpServer
                 }
                 TouchTip.Visible = false;
             }
-            if (((Button)sender).Text != "Save" && ((Button)sender).Text != "Load")
-                lbControls.Items[0] = ((Button)sender).Text;
         }
 
         private void PreviewKeyDownCommand(object sender, PreviewKeyDownEventArgs e)
@@ -247,42 +241,44 @@ namespace ScpServer
             if (sender is Button)
                 if (((Button)sender).Text != "Save" && ((Button)sender).Text != "Load")
                 {
-                lbControls.Items[0] = ((Button)sender).Text;
-                if (((Button)sender).Tag is int)
-                {
-                    if (e.KeyValue == (int)(((Button)sender).Tag)
-                        && !((Button)sender).Name.Contains("Touch"))
+                    if (((Button)sender).Tag is int)
                     {
-                        if (((Button)sender).ForeColor == SystemColors.WindowText)
+                        if (e.KeyValue == (int)(((Button)sender).Tag)
+                            && !((Button)sender).Name.Contains("Touch"))
                         {
-                            ((Button)sender).ForeColor = Color.Red;
-                            cbRepeat.Checked = true;
+                            if (((Button)sender).ForeColor == SystemColors.WindowText)
+                            {
+                                ((Button)sender).ForeColor = Color.Red;
+                                cbRepeat.Checked = true;
+                            }
+                            else
+                            {
+                                ((Button)sender).ForeColor = SystemColors.WindowText;
+                                cbRepeat.Checked = false;
+                            }
+                            return;
                         }
-                        else
-                        {
-                            ((Button)sender).ForeColor = SystemColors.WindowText;
-                            cbRepeat.Checked = false;
-                        }
-                        return;
                     }
+                    if (((Button)sender).Text.Length != 0)
+                        ((Button)sender).Text = string.Empty;
+                    else if (e.KeyCode == Keys.Delete)
+                    {
+                        ((Button)sender).Tag = e.KeyValue;
+                        ((Button)sender).Text= e.KeyCode.ToString();
+                        //lbControls.Items[0] = e.KeyCode.ToString();
+                        e.Handled = true;
+                        e.SuppressKeyPress = true;
+                    }
+                    if (e.KeyCode != Keys.Delete)
+                    {
+                        ((Button)sender).Tag = e.KeyValue;
+                        ((Button)sender).Text = e.KeyCode.ToString();
+                        //lbControls.Items[0] = e.KeyCode.ToString();
+                        e.Handled = true;
+                        e.SuppressKeyPress = true;
+                    }
+                    lbControls.Items[0] = ((Button)sender).Text;
                 }
-                if (((Button)sender).Text.Length != 0)
-                    ((Button)sender).Text = string.Empty;
-                else if (e.KeyCode == Keys.Delete)
-                {
-                    ((Button)sender).Tag = e.KeyValue;
-                    ((Button)sender).Text = e.KeyCode.ToString();
-                    e.Handled = true;
-                    e.SuppressKeyPress = true;
-                }
-                if (e.KeyCode != Keys.Delete)
-                {
-                    ((Button)sender).Tag = e.KeyValue;
-                    ((Button)sender).Text = e.KeyCode.ToString();
-                    e.Handled = true;
-                    e.SuppressKeyPress = true;
-                }
-            }
         }
 
         private void KeyPressCommand(object sender, KeyPressEventArgs e)
@@ -296,6 +292,7 @@ namespace ScpServer
         private void SelectedIndexChangedCommand(object sender, EventArgs e)
         {
             if (lastSelectedBn != null)
+            {                
                 if (lbControls.SelectedIndex > 0)
                     if (lastSelectedBn.Text != lbControls.Items[lbControls.SelectedIndex].ToString())
                     {
@@ -305,10 +302,22 @@ namespace ScpServer
                             lastSelectedBn.Tag = lbControls.Items[lbControls.SelectedIndex].ToString().Remove(lbControls.Items[lbControls.SelectedIndex].ToString().Length - 10);
                         }
                         else
-                        lastSelectedBn.Text = lbControls.Items[lbControls.SelectedIndex].ToString();
-                        lastSelectedBn.Tag = lbControls.Items[lbControls.SelectedIndex].ToString();
+                        {
+                            lastSelectedBn.Text = lbControls.Items[lbControls.SelectedIndex].ToString();
+                            lastSelectedBn.Tag = lbControls.Items[lbControls.SelectedIndex].ToString();
+                        }
                     }
-        }
+                if (lbControls.SelectedIndex == 0)
+                {
+                    if (lastSelectedBn.Text != lbControls.Items[0].ToString())
+                    {
+                        lastSelectedBn.Text = lbControls.Items[0].ToString();
+                        lastSelectedBn.Tag = lbControls.Items[0].ToString();
+                    }
+                }
+             }
+        }        
+
         private void cbRepeat_CheckedChanged(object sender, EventArgs e)
         {
             if (!lastSelectedBn.Name.Contains("Touch") && (lastSelectedBn.Tag is int || lastSelectedBn.Tag is UInt16))
@@ -324,7 +333,6 @@ namespace ScpServer
         private void cbScanCode_CheckedChanged(object sender, EventArgs e)
         {
             if (lastSelectedBn.Tag is int || lastSelectedBn.Tag is UInt16)
-            //if (lastSelected.Tag is int || lastSelected.Tag is UInt16)
                 if (cbScanCode.Checked)
                     lastSelectedBn.Font = new Font(lastSelectedBn.Font, FontStyle.Bold);
                 else lastSelectedBn.Font = new Font(lastSelectedBn.Font, FontStyle.Regular);
@@ -377,8 +385,5 @@ namespace ScpServer
                 Global.Save();
             }
         }
-
-
-
     }
 }

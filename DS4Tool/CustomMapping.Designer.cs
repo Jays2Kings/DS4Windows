@@ -683,8 +683,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(684, 310);
-            this.Controls.Add(this.ReapTip);
             this.Controls.Add(this.TouchTip);
+            this.Controls.Add(this.ReapTip);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.lbMode);
             this.Controls.Add(this.lbControls);

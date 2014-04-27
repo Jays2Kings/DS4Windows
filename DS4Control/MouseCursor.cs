@@ -48,35 +48,36 @@ namespace DS4Control
                 // Often the DS4's internal jitter compensation kicks in and starts hiding changes, ironically creating jitter...
                 deltaX = arg.touches[0].deltaX;
                 deltaY = arg.touches[0].deltaY;
-                // allow only very fine, slow motions, when changing direction
-                if (deltaX < -1)
+                // allow only very fine, slow motions, when changing direction, even from neutral
+                // TODO maybe just consume it completely?
+                if (deltaX <= -1)
                 {
-                    if (horizontalDirection == Direction.Positive)
+                    if (horizontalDirection != Direction.Negative)
                     {
                         deltaX = -1;
                         horizontalRemainder = 0.0;
                     }
                 }
-                else if (deltaX > 1)
+                else if (deltaX >= 1)
                 {
-                    if (horizontalDirection == Direction.Negative)
+                    if (horizontalDirection != Direction.Positive)
                     {
                         deltaX = 1;
                         horizontalRemainder = 0.0;
                     }
                 }
 
-                if (deltaY < -1)
+                if (deltaY <= -1)
                 {
-                    if (verticalDirection == Direction.Positive)
+                    if (verticalDirection != Direction.Negative)
                     {
                         deltaY = -1;
                         verticalRemainder = 0.0;
                     }
                 }
-                else if (deltaY > 1)
+                else if (deltaY >= 1)
                 {
-                    if (verticalDirection == Direction.Negative)
+                    if (verticalDirection != Direction.Positive)
                     {
                         deltaY = 1;
                         verticalRemainder = 0.0;
@@ -122,8 +123,8 @@ namespace DS4Control
             if (yAction != 0 || xAction != 0)
                 InputMethods.MoveCursorBy(xAction, yAction);
 
-            horizontalDirection = xAction > 0.0 ? Direction.Positive : xAction < 0.0 ? Direction.Negative : Direction.Neutral;
-            verticalDirection = yAction > 0.0 ? Direction.Positive : yAction < 0.0 ? Direction.Negative : Direction.Neutral;
+            horizontalDirection = xMotion > 0.0 ? Direction.Positive : xMotion < 0.0 ? Direction.Negative : Direction.Neutral;
+            verticalDirection = yMotion > 0.0 ? Direction.Positive : yMotion < 0.0 ? Direction.Negative : Direction.Neutral;
         }
     }
 }

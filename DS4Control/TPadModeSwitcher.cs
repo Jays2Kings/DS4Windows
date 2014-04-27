@@ -14,11 +14,11 @@ namespace DS4Control
         public TPadModeSwitcher(DS4Device device, int deviceID)
         {
             this.device = device;
-            modes.Add(TouchpadDisabled.singleton);
-            modes.Add(new Mouse(deviceID));
-            modes.Add(new ButtonMouse(deviceID, device));
-            modes.Add(new MouseCursorOnly(deviceID));
-            modes.Add(new DragMouse(deviceID));
+            //modes.Add(TouchpadDisabled.singleton);
+            modes.Add(new Mouse(deviceID, device));
+            //modes.Add(new ButtonMouse(deviceID, device));
+            //modes.Add(new MouseCursorOnly(deviceID));
+            //modes.Add(new DragMouse(deviceID));
         }
 
         public void switchMode(int ind)
@@ -35,7 +35,7 @@ namespace DS4Control
         
         public void setMode(int ind)
         {
-            ITouchpadBehaviour tmode = modes.ElementAt(ind);
+            ITouchpadBehaviour tmode = modes.ElementAt(ind % modes.Count);
             device.Touchpad.TouchButtonDown += tmode.touchButtonDown;
             device.Touchpad.TouchButtonUp += tmode.touchButtonUp;
             device.Touchpad.TouchesBegan += tmode.touchesBegan;
@@ -75,9 +75,14 @@ namespace DS4Control
                 Debug(this, new DebugEventArgs(data));
         }
 
-        public ITouchpadBehaviour getCurrentMode()
+        /*public ITouchpadBehaviour getCurrentMode()
         {
             return modes.ElementAt(currentTypeInd);
+        }*/
+
+        public ITouchpadBehaviour[] getAvailableModes()
+        {
+            return modes.ToArray();
         }
 
         public int getCurrentModeInt()

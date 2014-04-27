@@ -67,6 +67,7 @@ namespace DS4Library
         private byte ledFlashOn, ledFlashOff;
         private Thread ds4Input, ds4Output;
         private int battery;
+        private DateTime lastActive = DateTime.UtcNow;
         private bool charging;
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
@@ -78,6 +79,7 @@ namespace DS4Library
         public string MacAddress { get { return Mac; } }
 
         public ConnectionType ConnectionType { get { return conType; } }
+        public int IdleTimeout { get; set; } // behavior only active when > 0
 
         public int Battery { get { return battery; } }
         public bool Charging { get { return charging; } }
@@ -148,7 +150,6 @@ namespace DS4Library
         public DS4Device(HidDevice hidDevice)
         {            
             hDevice = hidDevice;
-            hDevice.MonitorDeviceEvents = true;
             conType = HidConnectionType(hDevice);
             Mac = hDevice.readSerial();
             if (conType == ConnectionType.USB)
@@ -172,7 +173,7 @@ namespace DS4Library
             if (ds4Input == null)
             {
                 Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> start");
-                sendOutputReport(true); // request the particular kind of input report we want
+                sendOutputReport(true); // initialize the output report
                 ds4Output = new Thread(performDs4Output);
                 ds4Output.Name = "DS4 Output thread: " + Mac;
                 ds4Output.Start();
@@ -233,12 +234,26 @@ namespace DS4Library
         {
             lock (outputReport)
             {
-                while (writeOutput())
+                int lastError = 0;
+                while (true)
                 {
-                    if (testRumble.IsRumbleSet()) // repeat test rumbles periodically; rumble has auto-shut-off in the DS4 firmware
-                        Monitor.Wait(outputReport, 10000); // DS4 firmware stops it after 5 seconds, so let the motors rest for that long, too.
+                    if (writeOutput())
+                    {
+                        lastError = 0;
+                        if (testRumble.IsRumbleSet()) // repeat test rumbles periodically; rumble has auto-shut-off in the DS4 firmware
+                            Monitor.Wait(outputReport, 10000); // DS4 firmware stops it after 5 seconds, so let the motors rest for that long, too.
+                        else
+                            Monitor.Wait(outputReport);
+                    }
                     else
-                        Monitor.Wait(outputReport);
+                    {
+                        int thisError = Marshal.GetLastWin32Error();
+                        if (lastError != thisError)
+                        {
+                            Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
+                            lastError = thisError;
+                        }
+                    }
                 }
             }
         }
@@ -251,29 +266,51 @@ namespace DS4Library
         private byte priorInputReport30 = 0xff;
         private void performDs4Input()
         {
+            System.Timers.Timer readTimeout = new System.Timers.Timer(); // Await 30 seconds for the initial packet, then 3 seconds thereafter.
+            readTimeout.Elapsed += delegate { HidDevice.CancelIO(); };
             while (true)
             {
+                if (readTimeout.Interval != 3000.0)
+                {
+                    if (readTimeout.Interval != 30000.0)
+                        readTimeout.Interval = 30000.0;
+                    else
+                        readTimeout.Interval = 3000.0;
+                }
+                readTimeout.Enabled = true;
                 if (conType != ConnectionType.USB)
-                    if (hDevice.ReadFile(btInputReport) == HidDevice.ReadStatus.Success)
+                {
+                    HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
+                    readTimeout.Enabled = false;
+                    if (res == HidDevice.ReadStatus.Success)
                     {
                         Array.Copy(btInputReport, 2, inputReport, 0, inputReport.Length);
                     }
                     else
                     {
-                        Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect");
+                        Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
                         sendOutputReport(true); // Kick Windows into noticing the disconnection.
                         StopOutputUpdate();
-                        if (!IsDisconnecting && Removal != null)
+                        IsDisconnecting = true;
+                        if (Removal != null)
                             Removal(this, EventArgs.Empty);
-                        return; 
-                       
+                        return;
+
                     }
-                else if (hDevice.ReadFile(inputReport) != HidDevice.ReadStatus.Success) 
+                }
+                else
                 {
-                    StopOutputUpdate();
-                    if (!IsDisconnecting && Removal != null)
-                        Removal(this, EventArgs.Empty);
-                    return; 
+                    HidDevice.ReadStatus res = hDevice.ReadFile(inputReport);
+                    readTimeout.Enabled = false;
+                    if (res != HidDevice.ReadStatus.Success)
+                    {
+                        Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
+                        StopOutputUpdate();
+                        IsDisconnecting = true;
+                        if (Removal != null)
+                            Removal(this, EventArgs.Empty);
+                        return;
+                    }
                 }
                 if (ConnectionType == ConnectionType.BT && btInputReport[0] != 0x11)
 	            {
@@ -282,8 +319,6 @@ namespace DS4Library
 	            }
                 DateTime utcNow = System.DateTime.UtcNow; // timestamp with UTC in case system time zone changes
                 resetHapticState();
-                if (cState == null)
-                    cState = new DS4State();
                 cState.ReportTimeStamp = utcNow;
                 cState.LX = inputReport[1];
                 cState.LY = inputReport[2];
@@ -355,7 +390,9 @@ namespace DS4Library
                     cState.Touch1Identifier = (byte)(inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
                     cState.Touch2 = (inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // 2 touches detected
                     cState.Touch2Identifier = (byte)(inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
-                    // Even when idling there is still a touch packet indicating no touch 1 or 2
+                    cState.TouchLeft = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) >= 1920 * 2 / 5) ? false : true;
+                    cState.TouchRight = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) < 1920 * 2 / 5) ? false : true;
+                        // Even when idling there is still a touch packet indicating no touch 1 or 2
                     touchpad.handleTouchpad(inputReport, cState, touchOffset); 
                 }
                 
@@ -368,9 +405,26 @@ namespace DS4Library
                     Console.WriteLine();
                 } */
 
-                if (conType == ConnectionType.BT && (!pState.PS || !pState.Options) && cState.PS && cState.Options)
+                if (conType == ConnectionType.BT)
                 {
-                    if (DisconnectBT())
+                    bool shouldDisconnect = false;
+                    if ((!pState.PS || !pState.Options) && cState.PS && cState.Options)
+                    {
+                        shouldDisconnect = true;
+                    }
+                    else if (IdleTimeout > 0)
+                    {
+                        if (!isNonSixaxisIdle())
+                        {
+                            lastActive = utcNow;
+                        }
+                        else
+                        {
+                            DateTime timeout = lastActive + TimeSpan.FromSeconds(IdleTimeout);
+                            shouldDisconnect = utcNow >= timeout;
+                        }
+                    }
+                    if (shouldDisconnect && DisconnectBT())
                         return; // all done
                 }
                 // XXX fix initialization ordering so the null checks all go away
@@ -378,9 +432,7 @@ namespace DS4Library
                     Report(this, EventArgs.Empty);
                 sendOutputReport(false);
 
-                if (pState == null)
-                    pState = new DS4State();
-                cState.Copy(pState);
+                cState.CopyTo(pState);
             }
         }
 
@@ -420,7 +472,8 @@ namespace DS4Library
                     outputReportBuffer.CopyTo(outputReport, 0);
                     try
                     {
-                        writeOutput();
+                        if (!writeOutput())
+                            Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered synchronous write failure: " + Marshal.GetLastWin32Error());
                     }
                     catch
                     {
@@ -445,7 +498,7 @@ namespace DS4Library
         {
             if (Mac != null)
             {
-                Console.WriteLine("Trying to disonnect BT device");
+                Console.WriteLine("Trying to disconnect BT device " + Mac);
                 IntPtr btHandle = IntPtr.Zero;
                 int IOCTL_BTH_DISCONNECT_DEVICE = 0x41000c;
 
@@ -517,19 +570,40 @@ namespace DS4Library
 
         public void getExposedState(DS4StateExposed expState, DS4State state)
         {
-            cState.Copy(state);
+            cState.CopyTo(state);
             expState.Accel = accel;
             expState.Gyro = gyro;
         }
 
         public void getCurrentState(DS4State state)
         {
-            cState.Copy(state);
+            cState.CopyTo(state);
         }
 
         public void getPreviousState(DS4State state)
         {
-            pState.Copy(state);
+            pState.CopyTo(state);
+        }
+
+        private bool isNonSixaxisIdle()
+        {
+            if (cState.Square || cState.Cross || cState.Circle || cState.Triangle)
+                return false;
+            if (cState.DpadUp || cState.DpadLeft || cState.DpadDown || cState.DpadRight)
+                return false;
+            if (cState.L3 || cState.R3 || cState.L1 || cState.R1 || cState.Share || cState.Options)
+                return false;
+            if (cState.L2 != 0 || cState.R2 != 0)
+                return false;
+            // TODO calibrate to get an accurate jitter and center-play range and centered position
+            const int slop = 64;
+            if (cState.LX <= 127 - slop || cState.LX >= 128 + slop || cState.LY <= 127 - slop || cState.LY >= 128 + slop)
+                return false;
+            if (cState.RX <= 127 - slop || cState.RX >= 128 + slop || cState.RY <= 127 - slop || cState.RY >= 128 + slop)
+                return false;
+            if (cState.Touch1 || cState.Touch2 || cState.TouchButton)
+                return false;
+            return true;
         }
 
         private DS4HapticState[] hapticState = new DS4HapticState[1];

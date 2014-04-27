@@ -9,10 +9,10 @@ using DS4Library;
 namespace DS4Control
 {
     [Flags]
-    public enum DS4KeyType : byte { None = 0, ScanCode = 1, Repeat = 2 }; //Increment by exponents of 2*, starting at 2^0
+    public enum DS4KeyType : byte { None = 0, ScanCode = 1, Repeat = 2, Unbound = 4 }; //Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
-    public enum DS4Controls : byte { LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchButton, TouchUpper, TouchMulti, Share, Options };
-    public enum X360Controls : byte { LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, Unbound };
+    public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options };
+    public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, Unbound };
 
     public class DebugEventArgs : EventArgs
     {
@@ -91,78 +91,85 @@ namespace DS4Control
         public static DS4Color loadColor(int device)
         {
             DS4Color color = new DS4Color();
-            color.red = m_Config.m_Leds[device][0];
-            color.green = m_Config.m_Leds[device][1];
-            color.blue = m_Config.m_Leds[device][2];
+            color.red = m_Config.m_Leds[0];
+            color.green = m_Config.m_Leds[1];
+            color.blue = m_Config.m_Leds[2];
             return color;
         }
         public static void saveColor(int device, byte red, byte green, byte blue)
         {
-            m_Config.m_Leds[device][0] = red;
-            m_Config.m_Leds[device][1] = green;
-            m_Config.m_Leds[device][2] = blue;
+            m_Config.m_Leds[0] = red;
+            m_Config.m_Leds[1] = green;
+            m_Config.m_Leds[2] = blue;
         }
 
         public static byte loadRumbleBoost(int device)
         {
-            return m_Config.m_Rumble[device];
+            return m_Config.m_Rumble;
         }
         public static void saveRumbleBoost(int device, byte boost)
         {
-            m_Config.m_Rumble[device] = boost;
+            m_Config.m_Rumble = boost;
 
+        }
+
+        public static bool getRumbleSwap(int device)
+        {
+            return m_Config.rumbleSwap;
+        }
+        public static void setRumbleSwap(int device, bool swap)
+        {
+            m_Config.rumbleSwap = swap;
         }
 
         public static bool getFlushHIDQueue(int device)
         {
-            return m_Config.flushHIDQueue[device];
+            return m_Config.flushHIDQueue;
         }
         public static void setFlushHIDQueue(int device, bool setting)
         {
-            m_Config.flushHIDQueue[device] = setting;
+            m_Config.flushHIDQueue = setting;
+        }
+
+        public static int getIdleDisconnectTimeout(int device)
+        {
+            return m_Config.idleDisconnectTimeout;
+        }
+        public static void setIdleDisconnectTimeout(int device, int seconds)
+        {
+            m_Config.idleDisconnectTimeout = seconds;
         }
 
         public static byte getTouchSensitivity(int device)
         {
-            return m_Config.touchSensitivity[device];
+            return m_Config.touchSensitivity;
         }
         public static void setTouchSensitivity(int device, byte sen)
         {
-            m_Config.touchSensitivity[device] = sen;
-        }
+            m_Config.touchSensitivity = sen;
+        }       
 
         public static void setFlashWhenLowBattery(int device, bool flash)
         {
-            m_Config.flashLedLowBattery[device] = flash;
+            m_Config.flashLedLowBattery = flash;
 
         }
         public static bool getFlashWhenLowBattery(int device)
         {
-            return m_Config.flashLedLowBattery[device];
+            return m_Config.flashLedLowBattery;
 
         }
 
         public static void setLedAsBatteryIndicator(int device, bool ledAsBattery)
         {
-            m_Config.ledAsBattery[device] = ledAsBattery;
+            m_Config.ledAsBattery = ledAsBattery;
 
         }
         public static bool getLedAsBatteryIndicator(int device)
         {
-            return m_Config.ledAsBattery[device];
+            return m_Config.ledAsBattery;
         }
-
-        public static void setTouchEnabled(int device, bool touchEnabled)
-        {
-            m_Config.touchEnabled[device] = touchEnabled;
-
-        }
-        public static bool getTouchEnabled(int device)
-        {
-            return m_Config.touchEnabled[device];
-
-        }
-
+        
         public static void setUseExclusiveMode(bool exclusive)
         {
             m_Config.useExclusiveMode = exclusive;
@@ -175,49 +182,56 @@ namespace DS4Control
         // New settings
         public static void saveLowColor(int device, byte red, byte green, byte blue)
         {
-            m_Config.m_LowLeds[device][0] = red;
-            m_Config.m_LowLeds[device][1] = green;
-            m_Config.m_LowLeds[device][2] = blue;
+            m_Config.m_LowLeds[0] = red;
+            m_Config.m_LowLeds[1] = green;
+            m_Config.m_LowLeds[2] = blue;
         }
         public static DS4Color loadLowColor(int device)
         {
             DS4Color color = new DS4Color();
-            color.red = m_Config.m_LowLeds[device][0];
-            color.green = m_Config.m_LowLeds[device][1];
-            color.blue = m_Config.m_LowLeds[device][2];
+            color.red = m_Config.m_LowLeds[0];
+            color.green = m_Config.m_LowLeds[1];
+            color.blue = m_Config.m_LowLeds[2];
             return color;
         }
         public static void setTapSensitivity(int device, byte sen)
         {
-            m_Config.tapSensitivity[device] = sen;
+            m_Config.tapSensitivity = sen;
         }
         public static byte getTapSensitivity(int device)
         {
-            return m_Config.tapSensitivity[device];
+            return m_Config.tapSensitivity;
+        }
+        public static bool getTap(int device)
+        {
+            if (m_Config.tapSensitivity == 0)
+                return false;
+            else
+                return true;
         }
         public static void setScrollSensitivity(int device, int sen)
         {
-            m_Config.scrollSensitivity[device] = sen;
+            m_Config.scrollSensitivity = sen;
         }
         public static int getScrollSensitivity(int device)
         {
-            return m_Config.scrollSensitivity[device];
+            return m_Config.scrollSensitivity;
         }
-        public static void setLowerRCOff(int device, bool twoFingerRC)
+        public static void setLowerRCOn(int device, bool twoFingerRC)
         {
-            m_Config.lowerRCOff[device] = twoFingerRC;
+            m_Config.lowerRCOn = twoFingerRC;
         }
-        public static bool getLowerRCOff(int device)
+        public static bool getLowerRCOn(int device)
         {
-            return m_Config.lowerRCOff[device];
+            return m_Config.lowerRCOn;
         }
         public static void setTouchpadJitterCompensation(int device, bool enabled)
         {
-            m_Config.touchpadJitterCompensation[device] = enabled;
+            m_Config.touchpadJitterCompensation = enabled;
         }
         public static bool getTouchpadJitterCompensation(int device)
         {
-            return m_Config.touchpadJitterCompensation[device];
+            return m_Config.touchpadJitterCompensation;
         }
         public static void setStartMinimized(bool startMinimized)
         {
@@ -246,68 +260,55 @@ namespace DS4Control
 
         public static double getLeftTriggerMiddle(int device)
         {
-            return m_Config.m_LeftTriggerMiddle[device];
+            return m_Config.m_LeftTriggerMiddle;
         }
         public static void setLeftTriggerMiddle(int device, double value)
         {
-            m_Config.m_LeftTriggerMiddle[device] = value;
+            m_Config.m_LeftTriggerMiddle = value;
         }
 
         public static double getRightTriggerMiddle(int device)
         {
-            return m_Config.m_RightTriggerMiddle[device];
+            return m_Config.m_RightTriggerMiddle;
         }
         public static void setRightTriggerMiddle(int device, double value)
         {
-            m_Config.m_RightTriggerMiddle[device] = value;
+            m_Config.m_RightTriggerMiddle = value;
         }
-
-        public static void setCustomMap(int device, string customMap)
+        public static void setAProfile(int device, string filepath)
         {
-            m_Config.customMapPath[device] = customMap;
+            m_Config.profilePath[device] = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filepath + ".xml";
         }
-        public static string getCustomMap(int device)
+        public static string getAProfile(int device)
         {
-            return m_Config.customMapPath[device];
+            return m_Config.profilePath[device];
         }
-        public static bool saveCustomMapping(string customMapPath, System.Windows.Forms.Control[] buttons)
+        public static X360Controls getCustomButton(int device, DS4Controls controlName)
         {
-            return m_Config.SaveCustomMapping(customMapPath, buttons);
+            return m_Config.GetCustomButton(device, controlName);
         }
-        public static bool loadCustomMapping(string customMapPath, System.Windows.Forms.Control[] buttons)
+        public static ushort getCustomKey(int device, DS4Controls controlName)
         {
-            return m_Config.LoadCustomMapping(customMapPath, buttons);
+            return m_Config.GetCustomKey(device, controlName);
         }
-        public static bool loadCustomMapping(int device)
+        public static DS4KeyType getCustomKeyType(int device, DS4Controls controlName)
         {
-            return m_Config.LoadCustomMapping(getCustomMap(device));
-        }
-        public static X360Controls getCustomButton(DS4Controls controlName)
-        {
-            return m_Config.GetCustomButton(controlName);
-        }
-        public static ushort getCustomKey(DS4Controls controlName)
-        {
-            return m_Config.GetCustomKey(controlName);
-        }
-        public static DS4KeyType getCustomKeyType(DS4Controls controlName)
-        {
-            return m_Config.GetCustomKeyType(controlName);
+            return m_Config.GetCustomKeyType(device, controlName);
         }
         public static bool getHasCustomKeysorButtons(int device)
         {
             return m_Config.customMapButtons.Count > 0
                 || m_Config.customMapKeys.Count > 0;
         }
-        public static Dictionary<DS4Controls, X360Controls> getCustomButtons()
+        public static Dictionary<DS4Controls, X360Controls> getCustomButtons(int device)
         {
             return m_Config.customMapButtons;
         }
-        public static Dictionary<DS4Controls, ushort> getCustomKeys()
+        public static Dictionary<DS4Controls, ushort> getCustomKeys(int device)
         {
             return m_Config.customMapKeys;
         }
-        public static Dictionary<DS4Controls, DS4KeyType> getCustomKeyTypes()
+        public static Dictionary<DS4Controls, DS4KeyType> getCustomKeyTypes(int device)
         {
             return m_Config.customMapKeyTypes;
         }
@@ -316,9 +317,22 @@ namespace DS4Control
         {
             m_Config.Load();
         }
+        public static void LoadProfile(int device, System.Windows.Forms.Control[] buttons)
+        {
+            m_Config.LoadProfile(device, buttons);
+        }
+        public static void LoadProfile(int device)
+        {
+            m_Config.LoadProfile(device);
+        }
         public static void Save()
         {
             m_Config.Save();
+        }
+
+        public static void SaveProfile(string propath, System.Windows.Forms.Control[] buttons)
+        {
+            m_Config.SaveProfile(propath, buttons);
         }
 
         private static byte applyRatio(byte b1, byte b2, uint r)
@@ -347,204 +361,136 @@ namespace DS4Control
     public class BackingStore
     {
         protected String m_File = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\ScpControl.xml";
+        protected String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
 
-        public Boolean[] touchpadJitterCompensation = { true, true, true, true };
-        public Boolean[] lowerRCOff = { false, false, false, false };
-        public Boolean[] ledAsBattery = { false, false, false, false };
-        public Boolean[] flashLedLowBattery = { false, false, false, false };
-        public Boolean[] touchEnabled = { false, false, false, false };
-        public double[] m_LeftTriggerMiddle = { 0.5, 0.5, 0.5, 0.5 }, m_RightTriggerMiddle = { 0.5, 0.5, 0.5, 0.5 };
-        public String[] customMapPath = { String.Empty, String.Empty, String.Empty, String.Empty };
-        public Byte[] m_Rumble = { 100, 100, 100, 100 };
-        public Byte[] touchSensitivity = { 100, 100, 100, 100 };
-        public Byte[] tapSensitivity = { 0, 0, 0, 0 };
-        public int[] scrollSensitivity = { 0, 0, 0, 0 };
-        public Byte[][] m_LowLeds = new Byte[][]
-        {
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0}
-        };
-        public Byte[][] m_Leds = new Byte[][]
-        {
-            new Byte[] {0,0,255},
-            new Byte[] {255,0,0},
-            new Byte[] {0,255,0},
-            new Byte[] {255,0,255},
-        };
-        public bool[] flushHIDQueue = { true, true, true, true };
+        public Boolean touchpadJitterCompensation = true;
+        public Boolean lowerRCOn;
+        public Boolean ledAsBattery = false;
+        public Boolean flashLedLowBattery = false;
+        public double m_LeftTriggerMiddle = 0.5, m_RightTriggerMiddle = 0.5;
+        public String customMapPath = String.Empty, buttonModeMapPath = String.Empty;
+        public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty };
+        public Byte m_Rumble = 100;
+        public Boolean rumbleSwap = false;
+        public Byte touchSensitivity = 100;
+        public Byte tapSensitivity = 0;
+        public int scrollSensitivity = 0;
+        public Byte[] m_LowLeds = new Byte[] { 0, 0, 0 };
+        public Byte[] m_Leds =  new Byte[] {0,0,255};
+        public bool flushHIDQueue = true;
+        public int idleDisconnectTimeout = 0;
 
         public Boolean useExclusiveMode = false;
         public Int32 formWidth = 782;
         public Int32 formHeight = 550;
         public Boolean startMinimized = false;
 
-        public Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
-        public Dictionary<DS4Controls, UInt16> customMapKeys = new Dictionary<DS4Controls, UInt16>();
-        public Dictionary<DS4Controls, X360Controls> customMapButtons = new Dictionary<DS4Controls, X360Controls>();
-        public X360Controls GetCustomButton(DS4Controls controlName)
+        public Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = null;
+        public Dictionary<DS4Controls, UInt16> customMapKeys = null;
+        public Dictionary<DS4Controls, X360Controls> customMapButtons = null;
+        public BackingStore()
+        {
+            //for (int i = 0; i < 4; i++)
+            {
+                //for (int j = (int)MapSelector.Standard; j <= (int)MapSelector.ButtonMode; j++)
+                {
+                    customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
+                    customMapKeys = new Dictionary<DS4Controls, UInt16>();
+                    customMapButtons = new Dictionary<DS4Controls, X360Controls>();
+                }
+            }
+        }
+
+        public X360Controls GetCustomButton(int device, DS4Controls controlName)
         {
             if (customMapButtons.ContainsKey(controlName))
                 return customMapButtons[controlName];
-            else return 0;
+            else return X360Controls.None;
         }
-        public UInt16 GetCustomKey(DS4Controls controlName)
+        public UInt16 GetCustomKey(int device, DS4Controls controlName)
         {
             if (customMapKeys.ContainsKey(controlName))
                 return customMapKeys[controlName];
             else return 0;
         }
-        public DS4KeyType GetCustomKeyType(DS4Controls controlName)
+        public DS4KeyType GetCustomKeyType(int device, DS4Controls controlName)
         {
             if (customMapKeyTypes.ContainsKey(controlName))
                 return customMapKeyTypes[controlName];
             else return 0;
         }
 
-        public Boolean LoadCustomMapping(String customMapPath)
-        {
-            Boolean Loaded = true;
-            customMapButtons.Clear();
-            customMapKeys.Clear();
-            customMapKeyTypes.Clear();
-            try
-            {
-                if (customMapPath != string.Empty && File.Exists(customMapPath))
-                {
-                    m_Xdoc.Load(customMapPath);
-                    DS4KeyType keyType;
-                    UInt16 wvk;
-                    XmlNode ParentItem = m_Xdoc.SelectSingleNode("/Control/Button");
-                    if (ParentItem != null)
-                        foreach (XmlNode Item in ParentItem.ChildNodes)
-                            customMapButtons.Add(getDS4ControlsByName(Item.Name), getX360ControlsByName(Item.InnerText));
-                    ParentItem = m_Xdoc.SelectSingleNode("/Control/Key");
-                    if (ParentItem != null)
-                        foreach (XmlNode Item in ParentItem.ChildNodes)
-                            if (UInt16.TryParse(Item.InnerText, out wvk))
-                                customMapKeys.Add(getDS4ControlsByName(Item.Name), wvk);
-                    ParentItem = m_Xdoc.SelectSingleNode("/Control/KeyType");
-                    if (ParentItem != null)
-                        foreach (XmlNode Item in ParentItem.ChildNodes)
-                            if (Item != null)
-                            {
-                                keyType = DS4KeyType.None;
-                                if (Item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
-                                    keyType |= DS4KeyType.ScanCode;
-                                if (Item.InnerText.Contains(DS4KeyType.Repeat.ToString()))
-                                    keyType |= DS4KeyType.Repeat;
-                                if (keyType != DS4KeyType.None)
-                                    customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
-                            }
-                }
-            }
-            catch (Exception)
-            {
-                Loaded = false;
-            }
-            return Loaded;
-        }
-        public Boolean LoadCustomMapping(String customMapPath, System.Windows.Forms.Control[] buttons)
-        {
-            Boolean Loaded = true;
-            customMapButtons.Clear();
-            customMapKeys.Clear();
-            customMapKeyTypes.Clear();
-            try
-            {
-                if (customMapPath != string.Empty && File.Exists(customMapPath))
-                {
-                    XmlNode Item;
-                    m_Xdoc.Load(customMapPath);
-                    DS4KeyType keyType;
-                    UInt16 wvk;
-                    foreach (var button in buttons)
-                        try
-                        {
-                            Item = m_Xdoc.SelectSingleNode(String.Format("/Control/Key/{0}", button.Name));
-                            if (Item != null)
-                            {
-                                if (UInt16.TryParse(Item.InnerText, out wvk))
-                                {
-                                    customMapKeys.Add(getDS4ControlsByName(Item.Name), wvk);
-                                    button.Tag = wvk;
-                                    button.Text = ((System.Windows.Forms.Keys)wvk).ToString();
-
-                                    Item = m_Xdoc.SelectSingleNode(String.Format("/Control/KeyType/{0}", button.Name));
-                                    if (Item != null)
-                                    {
-                                        keyType = DS4KeyType.None;
-                                        if (Item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
-                                        {
-                                            keyType |= DS4KeyType.ScanCode;
-                                            button.Font = new System.Drawing.Font(button.Font, System.Drawing.FontStyle.Bold);
-                                        }
-                                        if (Item.InnerText.Contains(DS4KeyType.Repeat.ToString()))
-                                        {
-                                            keyType |= DS4KeyType.Repeat;
-                                            button.ForeColor = System.Drawing.Color.Red;
-                                        }
-                                        if (keyType != DS4KeyType.None)
-                                            customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                Item = m_Xdoc.SelectSingleNode(String.Format("/Control/Button/{0}", button.Name));
-                                if (Item != null)
-                                {
-                                    button.Tag = Item.InnerText;
-                                    button.Text = Item.InnerText;
-                                    customMapButtons.Add(getDS4ControlsByName(button.Name), getX360ControlsByName(Item.InnerText));
-                                }
-                            }
-                        }
-                        catch
-                        {
-
-                        }
-                }
-            }
-            catch
-            {
-                Loaded = false;
-            }
-            return Loaded;
-        }
-        public Boolean SaveCustomMapping(String customMapPath, System.Windows.Forms.Control[] buttons)
+        
+        public Boolean SaveProfile(String propath, System.Windows.Forms.Control[] buttons)
         {
             Boolean Saved = true;
+            //String folderName = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+            //String pathString = System.IO.Path.Combine(folderName, "Profiles");
+            //System.IO.Directory.CreateDirectory(pathString);
+            String path = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + propath + ".xml";
             try
             {
                 XmlNode Node;
+
                 m_Xdoc.RemoveAll();
+
                 Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
                 m_Xdoc.AppendChild(Node);
-                Node = m_Xdoc.CreateComment(String.Format(" Custom Control Mapping Data. {0} ", DateTime.Now));
+
+                Node = m_Xdoc.CreateComment(String.Format(" ScpControl Configuration Data. {0} ", DateTime.Now));
                 m_Xdoc.AppendChild(Node);
+
                 Node = m_Xdoc.CreateWhitespace("\r\n");
                 m_Xdoc.AppendChild(Node);
-                Node = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
+
+                Node = m_Xdoc.CreateNode(XmlNodeType.Element, "ScpControl", null);
+
+                XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); xmlFlushHIDQueue.InnerText = flushHIDQueue.ToString(); Node.AppendChild(xmlFlushHIDQueue);
+                XmlNode xmlIdleDisconnectTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "idleDisconnectTimeout", null); xmlIdleDisconnectTimeout.InnerText = idleDisconnectTimeout.ToString(); Node.AppendChild(xmlIdleDisconnectTimeout);
+                XmlNode xmlRed = m_Xdoc.CreateNode(XmlNodeType.Element, "Red", null); xmlRed.InnerText = m_Leds[0].ToString(); Node.AppendChild(xmlRed);
+                XmlNode xmlGreen = m_Xdoc.CreateNode(XmlNodeType.Element, "Green", null); xmlGreen.InnerText = m_Leds[1].ToString(); Node.AppendChild(xmlGreen);
+                XmlNode xmlBlue = m_Xdoc.CreateNode(XmlNodeType.Element, "Blue", null); xmlBlue.InnerText = m_Leds[2].ToString(); Node.AppendChild(xmlBlue);
+                XmlNode xmlRumbleBoost = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); xmlRumbleBoost.InnerText = m_Rumble.ToString(); Node.AppendChild(xmlRumbleBoost);
+                XmlNode xmlRumbleSwap = m_Xdoc.CreateNode(XmlNodeType.Element, "rumbleSwap", null); xmlRumbleSwap.InnerText = rumbleSwap.ToString(); Node.AppendChild(xmlRumbleSwap);
+                XmlNode xmlLedAsBatteryIndicator = m_Xdoc.CreateNode(XmlNodeType.Element, "ledAsBatteryIndicator", null); xmlLedAsBatteryIndicator.InnerText = ledAsBattery.ToString(); Node.AppendChild(xmlLedAsBatteryIndicator);
+                XmlNode xmlLowBatteryFlash = m_Xdoc.CreateNode(XmlNodeType.Element, "lowBatteryFlash", null); xmlLowBatteryFlash.InnerText = flashLedLowBattery.ToString(); Node.AppendChild(xmlLowBatteryFlash);
+                XmlNode xmlTouchSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "touchSensitivity", null); xmlTouchSensitivity.InnerText = touchSensitivity.ToString(); Node.AppendChild(xmlTouchSensitivity);
+                XmlNode xmlLowRed = m_Xdoc.CreateNode(XmlNodeType.Element, "LowRed", null); xmlLowRed.InnerText = m_LowLeds[0].ToString(); Node.AppendChild(xmlLowRed);
+                XmlNode xmlLowGreen = m_Xdoc.CreateNode(XmlNodeType.Element, "LowGreen", null); xmlLowGreen.InnerText = m_LowLeds[1].ToString(); Node.AppendChild(xmlLowGreen);
+                XmlNode xmlLowBlue = m_Xdoc.CreateNode(XmlNodeType.Element, "LowBlue", null); xmlLowBlue.InnerText = m_LowLeds[2].ToString(); Node.AppendChild(xmlLowBlue);
+                XmlNode xmlTouchpadJitterCompensation = m_Xdoc.CreateNode(XmlNodeType.Element, "touchpadJitterCompensation", null); xmlTouchpadJitterCompensation.InnerText = touchpadJitterCompensation.ToString(); Node.AppendChild(xmlTouchpadJitterCompensation);
+                XmlNode xmlLowerRCOn = m_Xdoc.CreateNode(XmlNodeType.Element, "lowerRCOn", null); xmlLowerRCOn.InnerText = lowerRCOn.ToString(); Node.AppendChild(xmlLowerRCOn);
+                XmlNode xmlTapSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "tapSensitivity", null); xmlTapSensitivity.InnerText = tapSensitivity.ToString(); Node.AppendChild(xmlTapSensitivity);
+                XmlNode xmlScrollSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "scrollSensitivity", null); xmlScrollSensitivity.InnerText = scrollSensitivity.ToString(); Node.AppendChild(xmlScrollSensitivity);
+                XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = m_LeftTriggerMiddle.ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
+                XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = m_RightTriggerMiddle.ToString(); Node.AppendChild(xmlRightTriggerMiddle);
+
+               // m_Xdoc.AppendChild(Node);
+                XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
                 XmlNode KeyType = m_Xdoc.CreateNode(XmlNodeType.Element, "KeyType", null);
                 XmlNode Button = m_Xdoc.CreateNode(XmlNodeType.Element, "Button", null);
 
                 foreach (var button in buttons)
-                    try
+                   // try
                     {
                         // Save even if string (for xbox controller buttons)
                         if (button.Tag != null)
                         {
                             XmlNode buttonNode;
                             string keyType = String.Empty;
-                            if (button.ForeColor == System.Drawing.Color.Red)
-                                keyType += DS4KeyType.Repeat;
-                            if (button.Font.Bold)
-                                keyType += DS4KeyType.ScanCode;
+                            if (button.Tag is String && (String)button.Tag == "Unbound")
+                            {
+                                keyType += DS4KeyType.Unbound;
+                            }
+                            {
+                                if (button.ForeColor == System.Drawing.Color.Red)
+                                    keyType += DS4KeyType.Repeat;
+                                if (button.Font.Bold)
+                                    keyType += DS4KeyType.ScanCode;
+                            }
                             if (keyType != String.Empty)
                             {
                                 buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
@@ -558,26 +504,26 @@ namespace DS4Control
                             else Button.AppendChild(buttonNode);
                         }
                     }
-                    catch
-                    {
-                        Saved = false;
-                    }
-                m_Xdoc.AppendChild(Node);
+                    //catch
+                   // {
+                    //    NodeControl.InnerText = "";
+                    //}
+                Node.AppendChild(NodeControl);
                 if (Button.HasChildNodes)
-                    Node.AppendChild(Button);
+                    NodeControl.AppendChild(Button);
                 if (Key.HasChildNodes)
-                    Node.AppendChild(Key);
+                    NodeControl.AppendChild(Key);
                 if (KeyType.HasChildNodes)
-                    Node.AppendChild(KeyType);
-                m_Xdoc.Save(customMapPath);
+                    NodeControl.AppendChild(KeyType);
+                m_Xdoc.AppendChild(Node);
+                if (NodeControl.HasChildNodes)
+                    Node.AppendChild(NodeControl);
+                m_Xdoc.Save(path);
             }
-            catch (Exception)
-            {
-                Saved = false;
-            }
+            catch { Saved = false; }
+
             return Saved;
         }
-
         private DS4Controls getDS4ControlsByName(string key)
         {
             switch (key)
@@ -599,20 +545,22 @@ namespace DS4Control
                 case "bnSquare": return DS4Controls.Square;
 
                 case "bnPS": return DS4Controls.PS;
-                case "bnLX": return DS4Controls.LXNeg;
-                case "bnLY": return DS4Controls.LYNeg;
-                case "bnRX": return DS4Controls.RXNeg;
-                case "bnRY": return DS4Controls.RYNeg;
-                case "bnLX2": return DS4Controls.LXPos;
-                case "bnLY2": return DS4Controls.LYPos;
-                case "bnRX2": return DS4Controls.RXPos;
-                case "bnRY2": return DS4Controls.RYPos;
+                case "bnLSLeft": return DS4Controls.LXNeg;
+                case "bnLSUp": return DS4Controls.LYNeg;
+                case "bnRSLeft": return DS4Controls.RXNeg;
+                case "bnRSUp": return DS4Controls.RYNeg;
+
+                case "bnLSRight": return DS4Controls.LXPos;
+                case "bnLSDown": return DS4Controls.LYPos;
+                case "bnRSRight": return DS4Controls.RXPos;
+                case "bnRSDown": return DS4Controls.RYPos;
                 case "bnL2": return DS4Controls.L2;
                 case "bnR2": return DS4Controls.R2;
 
-                case "bnTouchpad": return DS4Controls.TouchButton;
+                case "bnTouchLeft": return DS4Controls.TouchLeft;
                 case "bnTouchMulti": return DS4Controls.TouchMulti;
                 case "bnTouchUpper": return DS4Controls.TouchUpper;
+                case "bnTouchRight": return DS4Controls.TouchRight;
             }
             return 0;
         }
@@ -648,81 +596,232 @@ namespace DS4Control
                 case "Right Y-Axis+": return X360Controls.RYPos;
                 case "Left Trigger": return X360Controls.LT;
                 case "Right Trigger": return X360Controls.RT;
-                case "Click": return X360Controls.LeftMouse;
-                case "Right Click": return X360Controls.RightMouse;
-                case "Middle Click": return X360Controls.MiddleMouse;
-                case "(Unbound)": return X360Controls.Unbound;
+
+                case "Left Mouse Button": return X360Controls.LeftMouse;
+                case "Right Mouse Button": return X360Controls.RightMouse;
+                case "Middle Mouse Button": return X360Controls.MiddleMouse;
+                case "4th Mouse Button": return X360Controls.FourthMouse;
+                case "5th Mouse Button": return X360Controls.FifthMouse;
+                case "Mouse Wheel Up": return X360Controls.WUP;
+                case "Mouse Wheel Down": return X360Controls.WDOWN;
+                case "Unbound": return X360Controls.Unbound;
 
             }
             return X360Controls.Unbound;
         }
-        public Boolean Load()
+        public Boolean LoadProfile(int device, System.Windows.Forms.Control[] buttons)
         {
             Boolean Loaded = true;
+            Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
+            Dictionary<DS4Controls, UInt16> customMapKeys = new Dictionary<DS4Controls, UInt16>();
+            Dictionary<DS4Controls, X360Controls> customMapButtons = new Dictionary<DS4Controls, X360Controls>();
             Boolean missingSetting = false;
 
             try
             {
-                if (File.Exists(m_File))
+                if (File.Exists(profilePath[device]))
                 {
                     XmlNode Item;
 
-                    m_Xdoc.Load(m_File);
+                    m_Xdoc.Load(profilePath[device]);
 
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue); }
+                    catch { missingSetting = true; }
 
-                    for (int i = 0; i < 4; i++)
-                    {
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[i]); }
-                        catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout); }
+                    catch { missingSetting = true; }
 
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/Red"); Byte.TryParse(Item.InnerText, out m_Leds[i][0]); }
-                        catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Red"); Byte.TryParse(Item.InnerText, out m_Leds[0]); }
+                    catch { missingSetting = true; }
 
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/Green"); Byte.TryParse(Item.InnerText, out m_Leds[i][1]); }
-                        catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Green"); Byte.TryParse(Item.InnerText, out m_Leds[1]); }
+                    catch { missingSetting = true; }
 
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[i][2]); }
-                        catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[2]); }
+                    catch { missingSetting = true; }
 
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble[i]); }
-                        catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble); }
+                    catch { missingSetting = true; }
 
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery[i]); }
-                        catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/rumbleSwap"); Boolean.TryParse(Item.InnerText, out rumbleSwap); }
+                    catch { missingSetting = true; }
 
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery[i]); }
-                        catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery); }
+                    catch { missingSetting = true; }
 
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity[i]); }
-                        catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery); }
+                    catch { missingSetting = true; }
 
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/touchEnabled"); Boolean.TryParse(Item.InnerText, out touchEnabled[i]); }
-                        catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity); }
+                    catch { missingSetting = true; }
 
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[i][0]); }
-                        catch { missingSetting = true; }
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[i][1]); }
-                        catch { missingSetting = true; }
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[i][2]); }
-                        catch { missingSetting = true; }
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation[i]); }
-                        catch { missingSetting = true; }
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/lowerRCOff"); Boolean.TryParse(Item.InnerText, out lowerRCOff[i]); }
-                        catch { missingSetting = true; }
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity[i]); }
-                        catch { missingSetting = true; }
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity[i]); }
-                        catch { missingSetting = true; }
-                        // XXX This sucks, let's do better at removing old values that are no longer valid....
-                        if (scrollSensitivity[i] > 10)
-                            scrollSensitivity[i] = 5;
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/customMapPath"); customMapPath[i] = Item.InnerText; }
-                        catch { missingSetting = true; }
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle[i]); }
-                        catch { missingSetting = true; }
-                        try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Controller" + (i + 1) + "/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle[i]); }
-                        catch { missingSetting = true; }
-                    }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[0]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[1]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[2]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity); }
+                    catch { missingSetting = true; }
+                    // XXX This sucks, let's do better at removing old values that are no longer valid....
+                    if (scrollSensitivity > 10)
+                        scrollSensitivity = 5;
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle); }
+                    catch { missingSetting = true; }
+
+                    DS4KeyType keyType;
+                    UInt16 wvk;
+                    foreach (var button in buttons)
+                        try
+                        {
+                            //bool foundBinding = false;
+                            Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/KeyType/{0}", button.Name));
+                            if (Item != null)
+                            {
+                                //foundBinding = true;
+                                keyType = DS4KeyType.None;
+                                if (Item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
+                                {
+                                    keyType = DS4KeyType.Unbound;
+                                    button.Tag = "Unbound";
+                                    button.Text = "Unbound";
+                                }
+                                else
+                                {
+                                    if (Item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
+                                    {
+                                        keyType |= DS4KeyType.ScanCode;
+                                        button.Font = new System.Drawing.Font(button.Font, System.Drawing.FontStyle.Bold);
+                                    }
+                                    if (Item.InnerText.Contains(DS4KeyType.Repeat.ToString()))
+                                    {
+                                        keyType |= DS4KeyType.Repeat;
+                                        button.ForeColor = System.Drawing.Color.Red;
+                                    }
+                                }
+                                if (keyType != DS4KeyType.None)
+                                    customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
+                            }
+
+                            Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/Key/{0}", button.Name));
+                            if (Item != null)
+                            {
+                                if (UInt16.TryParse(Item.InnerText, out wvk))
+                                {
+                                    //foundBinding = true;
+                                    customMapKeys.Add(getDS4ControlsByName(Item.Name), wvk);
+                                    button.Tag = wvk;
+                                    button.Text = ((System.Windows.Forms.Keys)wvk).ToString();
+                                }
+                            }
+                            else
+                            {
+                                Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/Button/{0}", button.Name));
+                                if (Item != null)
+                                {
+                                    //foundBinding = true;
+                                    button.Tag = Item.InnerText;
+                                    button.Text = Item.InnerText;
+                                    customMapButtons.Add(getDS4ControlsByName(button.Name), getX360ControlsByName(Item.InnerText));
+                                }
+                            }
+                        }
+                        catch
+                        {
+
+                        }
+                }
+            }
+            catch { Loaded = false; }
+
+            if (Loaded)
+            {
+                this.customMapButtons = customMapButtons;
+                this.customMapKeys = customMapKeys;
+                this.customMapKeyTypes = customMapKeyTypes;
+            }
+            // Only add missing settings if the actual load was graceful
+            if (missingSetting && Loaded)
+                SaveProfile(profilePath[device], buttons);
+
+            return Loaded;
+        }
+        public Boolean LoadProfile(int device)
+        {
+            Boolean Loaded = true;
+            Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
+            Dictionary<DS4Controls, UInt16> customMapKeys = new Dictionary<DS4Controls, UInt16>();
+            Dictionary<DS4Controls, X360Controls> customMapButtons = new Dictionary<DS4Controls, X360Controls>();
+            Boolean missingSetting = false;
+
+            try
+            {
+                if (File.Exists(profilePath[device]))
+                {
+                    XmlNode Item;
+
+                    m_Xdoc.Load(profilePath[device]);
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Red"); Byte.TryParse(Item.InnerText, out m_Leds[0]); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Green"); Byte.TryParse(Item.InnerText, out m_Leds[1]); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[2]); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/rumbleSwap"); Boolean.TryParse(Item.InnerText, out rumbleSwap); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[0]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[1]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[2]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity); }
+                    catch { missingSetting = true; }
+                    // XXX This sucks, let's do better at removing old values that are no longer valid....
+                    if (scrollSensitivity > 10)
+                        scrollSensitivity = 5;
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle); }
+                    catch { missingSetting = true; }
+
 
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/useExclusiveMode"); Boolean.TryParse(Item.InnerText, out useExclusiveMode); }
                     catch { missingSetting = true; }
@@ -732,74 +831,121 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/formHeight"); Int32.TryParse(Item.InnerText, out formHeight); }
                     catch { missingSetting = true; }
+                    DS4KeyType keyType;
+                    UInt16 wvk;
+                    XmlNode ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/Control/Button");
+                    if (ParentItem != null)
+                        foreach (XmlNode item in ParentItem.ChildNodes)
+                            customMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
+                    ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/Control/Key");
+                    if (ParentItem != null)
+                        foreach (XmlNode item in ParentItem.ChildNodes)
+                            if (UInt16.TryParse(item.InnerText, out wvk))
+                                customMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
+                    ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/Control/KeyType");
+                    if (ParentItem != null)
+                        foreach (XmlNode item in ParentItem.ChildNodes)
+                            if (item != null)
+                            {
+                                keyType = DS4KeyType.None;
+                                if (item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
+                                    keyType |= DS4KeyType.ScanCode;
+                                if (item.InnerText.Contains(DS4KeyType.Repeat.ToString()))
+                                    keyType |= DS4KeyType.Repeat;
+                                if (item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
+                                    keyType |= DS4KeyType.Unbound;
+                                if (keyType != DS4KeyType.None)
+                                    customMapKeyTypes.Add(getDS4ControlsByName(item.Name), keyType);
+                            }
                 }
             }
             catch { Loaded = false; }
 
+            if (Loaded)
+            {
+                this.customMapButtons = customMapButtons;
+                this.customMapKeys = customMapKeys;
+                this.customMapKeyTypes = customMapKeyTypes;
+            }
             // Only add missing settings if the actual load was graceful
             if (missingSetting && Loaded)
-                Save();
+                SaveProfile(profilePath[device], null);
 
             return Loaded;
         }
-        public Boolean Save()
+
+        public bool Load()
+        {
+            Boolean Loaded = true;
+            Boolean missingSetting = false;
+
+            try
+            {
+                if (File.Exists(m_Profile))
+                {
+                    XmlNode Item;
+
+                    m_Xdoc.Load(m_Profile);
+
+
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/useExclusiveMode"); Boolean.TryParse(Item.InnerText, out useExclusiveMode); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/startMinimized"); Boolean.TryParse(Item.InnerText, out startMinimized); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/formWidth"); Int32.TryParse(Item.InnerText, out formWidth); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/formHeight"); Int32.TryParse(Item.InnerText, out formHeight); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller1"); profilePath[0] = Item.InnerText; }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller2"); profilePath[1] = Item.InnerText; }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller3"); profilePath[2] = Item.InnerText; }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller4"); profilePath[3] = Item.InnerText; }
+                    catch { missingSetting = true; }
+                }
+            }
+            catch { }
+            if (missingSetting)
+                Save();
+            return Loaded;
+        }
+        public bool Save()
         {
             Boolean Saved = true;
 
             try
             {
-                XmlNode Node, Entry;
+                XmlNode Node;
 
                 m_Xdoc.RemoveAll();
 
                 Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
                 m_Xdoc.AppendChild(Node);
 
-                Node = m_Xdoc.CreateComment(String.Format(" ScpControl Configuration Data. {0} ", DateTime.Now));
+                Node = m_Xdoc.CreateComment(String.Format(" Profile Configuration Data. {0} ", DateTime.Now));
                 m_Xdoc.AppendChild(Node);
 
                 Node = m_Xdoc.CreateWhitespace("\r\n");
                 m_Xdoc.AppendChild(Node);
 
-                Node = m_Xdoc.CreateNode(XmlNodeType.Element, "ScpControl", null);
+                Node = m_Xdoc.CreateNode(XmlNodeType.Element, "Profile", null);
+
 
                 XmlNode xmlUseExclNode = m_Xdoc.CreateNode(XmlNodeType.Element, "useExclusiveMode", null); xmlUseExclNode.InnerText = useExclusiveMode.ToString(); Node.AppendChild(xmlUseExclNode);
                 XmlNode xmlStartMinimized = m_Xdoc.CreateNode(XmlNodeType.Element, "startMinimized", null); xmlStartMinimized.InnerText = startMinimized.ToString(); Node.AppendChild(xmlStartMinimized);
                 XmlNode xmlFormWidth = m_Xdoc.CreateNode(XmlNodeType.Element, "formWidth", null); xmlFormWidth.InnerText = formWidth.ToString(); Node.AppendChild(xmlFormWidth);
                 XmlNode xmlFormHeight = m_Xdoc.CreateNode(XmlNodeType.Element, "formHeight", null); xmlFormHeight.InnerText = formHeight.ToString(); Node.AppendChild(xmlFormHeight);
+                
+                XmlNode xmlController1 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller1", null); xmlController1.InnerText = profilePath[0]; Node.AppendChild(xmlController1);
+                XmlNode xmlController2 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller2", null); xmlController2.InnerText = profilePath[1]; Node.AppendChild(xmlController2);
+                XmlNode xmlController3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null); xmlController3.InnerText = profilePath[2]; Node.AppendChild(xmlController3);
+                XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); xmlController4.InnerText = profilePath[3]; Node.AppendChild(xmlController4);
 
-                XmlNode cNode1 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller1", null); Node.AppendChild(cNode1);
-                XmlNode cNode2 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller2", null); Node.AppendChild(cNode2);
-                XmlNode cNode3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null); Node.AppendChild(cNode3);
-                XmlNode cNode4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); Node.AppendChild(cNode4);
-
-                XmlNode[] cNodes = { cNode1, cNode2, cNode3, cNode4 };
-
-                for (int i = 0; i < 4; i++)
-                {
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); Entry.InnerText = flushHIDQueue[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "Red", null); Entry.InnerText = m_Leds[i][0].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "Green", null); Entry.InnerText = m_Leds[i][1].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "Blue", null); Entry.InnerText = m_Leds[i][2].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); Entry.InnerText = m_Rumble[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "ledAsBatteryIndicator", null); Entry.InnerText = ledAsBattery[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "lowBatteryFlash", null); Entry.InnerText = flashLedLowBattery[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "touchSensitivity", null); Entry.InnerText = touchSensitivity[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "touchEnabled", null); Entry.InnerText = touchEnabled[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "LowRed", null); Entry.InnerText = m_LowLeds[i][0].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "LowGreen", null); Entry.InnerText = m_LowLeds[i][1].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "LowBlue", null); Entry.InnerText = m_LowLeds[i][2].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "touchpadJitterCompensation", null); Entry.InnerText = touchpadJitterCompensation[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "lowerRCOff", null); Entry.InnerText = lowerRCOff[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "tapSensitivity", null); Entry.InnerText = tapSensitivity[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "scrollSensitivity", null); Entry.InnerText = scrollSensitivity[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "customMapPath", null); Entry.InnerText = customMapPath[i]; cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); Entry.InnerText = m_LeftTriggerMiddle[i].ToString(); cNodes[i].AppendChild(Entry);
-                    Entry = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); Entry.InnerText = m_RightTriggerMiddle[i].ToString(); cNodes[i].AppendChild(Entry);
-                }
                 m_Xdoc.AppendChild(Node);
 
-                m_Xdoc.Save(m_File);
+                m_Xdoc.Save(m_Profile);
             }
             catch { Saved = false; }
 

@@ -73,6 +73,21 @@ namespace DS4Control
             }
         }
 
+        public static void MouseEvent(uint mouseButton, int type)
+        {
+            lock (lockob)
+            {
+                sendInputs[0].Type = INPUT_MOUSE;
+                sendInputs[0].Data.Mouse.ExtraInfo = IntPtr.Zero;
+                sendInputs[0].Data.Mouse.Flags = mouseButton;
+                sendInputs[0].Data.Mouse.MouseData = (uint)type;
+                sendInputs[0].Data.Mouse.Time = 0;
+                sendInputs[0].Data.Mouse.X = 0;
+                sendInputs[0].Data.Mouse.Y = 0;
+                uint result = SendInput(1, sendInputs, Marshal.SizeOf(sendInputs[0]));
+            }
+        }
+
         public static void performLeftClick()
         {
             lock (lockob)
@@ -121,6 +136,21 @@ namespace DS4Control
             }
         }
 
+        public static void performFourthClick()
+        {
+            lock (lockob)
+            {
+                sendInputs[0].Type = INPUT_MOUSE;
+                sendInputs[0].Data.Mouse.ExtraInfo = IntPtr.Zero;
+                sendInputs[0].Data.Mouse.Flags = 0;
+                sendInputs[0].Data.Mouse.Flags |= MOUSEEVENTF_XBUTTONDOWN | MOUSEEVENTF_XBUTTONUP;
+                sendInputs[0].Data.Mouse.MouseData = 1;
+                sendInputs[0].Data.Mouse.Time = 0;
+                sendInputs[0].Data.Mouse.X = 0;
+                sendInputs[0].Data.Mouse.Y = 0;
+                uint result = SendInput(1, sendInputs, Marshal.SizeOf(sendInputs[0]));
+            }
+        }
         public static void performSCKeyPress(ushort key)
         {
             lock (lockob)
@@ -244,7 +274,9 @@ namespace DS4Control
             MOUSEEVENTF_LEFTDOWN = 2, MOUSEEVENTF_LEFTUP = 4,
             MOUSEEVENTF_RIGHTDOWN = 8, MOUSEEVENTF_RIGHTUP = 16,
             MOUSEEVENTF_MIDDLEDOWN = 32, MOUSEEVENTF_MIDDLEUP = 64,
+            MOUSEEVENTF_XBUTTONDOWN = 128, MOUSEEVENTF_XBUTTONUP = 256,
             KEYEVENTF_KEYUP = 2, MOUSEEVENTF_WHEEL = 0x0800, MOUSEEVENTF_HWHEEL = 0x1000,
+            MOUSEEVENTF_MIDDLEWDOWN = 0x0020, MOUSEEVENTF_MIDDLEWUP = 0x0040,
             KEYEVENTF_SCANCODE = 0x0008, MAPVK_VK_TO_VSC = 0;
 
         [DllImport("user32.dll", SetLastError = true)]

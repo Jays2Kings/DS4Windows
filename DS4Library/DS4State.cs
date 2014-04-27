@@ -11,7 +11,7 @@ namespace DS4Library
         public bool Square, Triangle, Circle, Cross;
         public bool DpadUp, DpadDown, DpadLeft, DpadRight;
         public bool L1, L3, R1, R3;
-        public bool Share, Options, PS, Touch1, Touch2, TouchButton;
+        public bool Share, Options, PS, Touch1, Touch2, TouchButton, TouchRight, TouchLeft;
         public byte Touch1Identifier, Touch2Identifier;
         public byte LX, RX, LY, RY, L2, R2;
         public byte FrameCounter; // 0, 1, 2...62, 63, 0....
@@ -23,7 +23,7 @@ namespace DS4Library
             Square = Triangle = Circle = Cross = false;
             DpadUp = DpadDown = DpadLeft = DpadRight = false;
             L1 = L3 = R1 = R3 = false;
-            Share = Options = PS = Touch1 = Touch2 = TouchButton = false;
+            Share = Options = PS = Touch1 = Touch2 = TouchButton =  TouchRight = TouchLeft = false;
             LX = RX = LY = RY = 127;
             L2 = R2 = 0;
             FrameCounter = 255; // only actually has 6 bits, so this is a null indicator
@@ -52,6 +52,8 @@ namespace DS4Library
             Options = state.Options;
             PS = state.PS;
             Touch1 = state.Touch1;
+            TouchRight = state.TouchRight;
+            TouchLeft = state.TouchLeft;
             Touch1Identifier = state.Touch1Identifier;
             Touch2 = state.Touch2;
             Touch2Identifier = state.Touch2Identifier;
@@ -70,7 +72,7 @@ namespace DS4Library
             return new DS4State(this);
         }
 
-        public void Copy(DS4State state)
+        public void CopyTo(DS4State state)
         {
             state.ReportTimeStamp = ReportTimeStamp;
             state.Square = Square;
@@ -94,6 +96,8 @@ namespace DS4Library
             state.Touch1Identifier = Touch1Identifier;
             state.Touch2 = Touch2;
             state.Touch2Identifier = Touch2Identifier;
+            state.TouchLeft = TouchLeft;
+            state.TouchRight = TouchRight;
             state.TouchButton = TouchButton;
             state.TouchPacketCounter = TouchPacketCounter;
             state.LX = LX;

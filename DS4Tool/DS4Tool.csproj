@@ -73,17 +73,17 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="AdvancedColorDialog.cs" />
-    <Compile Include="CustomMapping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CustomMapping.Designer.cs">
-      <DependentUpon>CustomMapping.cs</DependentUpon>
-    </Compile>
     <Compile Include="Hotkeys.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Hotkeys.Designer.cs">
       <DependentUpon>Hotkeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KBM360.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KBM360.Designer.cs">
+      <DependentUpon>KBM360.cs</DependentUpon>
     </Compile>
     <Compile Include="Options.cs">
       <SubType>Form</SubType>
@@ -93,6 +93,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ScpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,25 +108,20 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomMapping.resx">
-      <DependentUpon>CustomMapping.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Hotkeys.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KBM360.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="ScpForm.resx">
       <DependentUpon>ScpForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,38 +146,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\1.png" />
-    <Content Include="Resources\10.png" />
-    <Content Include="Resources\11.png" />
-    <Content Include="Resources\12.png" />
-    <Content Include="Resources\13.png" />
-    <Content Include="Resources\14.png" />
-    <Content Include="Resources\15.png" />
-    <Content Include="Resources\16.png" />
-    <Content Include="Resources\17.png" />
-    <Content Include="Resources\18.png" />
-    <Content Include="Resources\19.png" />
-    <Content Include="Resources\2.png" />
-    <Content Include="Resources\20.png" />
-    <Content Include="Resources\21.png" />
-    <Content Include="Resources\22.png" />
-    <Content Include="Resources\23.png" />
-    <None Include="Resources\24.png" />
-    <None Include="Resources\25.png" />
-    <None Include="Resources\26.png" />
-    <None Include="Resources\27.png" />
-    <None Include="Resources\28.png" />
-    <None Include="Resources\29.png" />
-    <Content Include="Resources\3.png" />
-    <None Include="Resources\30.png" />
-    <None Include="Resources\31.png" />
-    <Content Include="Resources\4.png" />
-    <Content Include="Resources\5.png" />
-    <Content Include="Resources\6.png" />
-    <Content Include="Resources\7.png" />
-    <Content Include="Resources\8.png" />
-    <Content Include="Resources\9.png" />
+    <None Include="Resources\Touch states2.png" />
+    <None Include="Resources\sticks2.png" />
+    <None Include="Resources\360 fades.png" />
+    <None Include="Resources\DS4 Controller.png" />
     <Content Include="Resources\DS4.ico" />
+    <None Include="Resources\mouse.png" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>

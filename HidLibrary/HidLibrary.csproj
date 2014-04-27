@@ -48,7 +48,6 @@
     <Compile Include="HidDevice.cs" />
     <Compile Include="HidDeviceAttributes.cs" />
     <Compile Include="HidDeviceCapabilities.cs" />
-    <Compile Include="HidDeviceEventMonitor.cs" />
     <Compile Include="HidDevices.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

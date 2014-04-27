@@ -41,14 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ButtonMouse.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="CursorOnlyMode.cs" />
-    <Compile Include="DragMouse.cs" />
     <Compile Include="MouseCursor.cs" />
     <Compile Include="MouseWheel.cs" />
-    <Compile Include="TouchpadDisabled.cs" />
-    <Compile Include="TPadModeSwitcher.cs" />
     <Compile Include="DS4LightBar.cs" />
     <Compile Include="Control.cs" />
     <Compile Include="InputMethods.cs" />

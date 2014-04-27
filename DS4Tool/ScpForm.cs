@@ -3,6 +3,9 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using DS4Control;
 using System.Threading;
+using System.IO;
+using System.Reflection;
+using System.Collections.Generic;
 namespace ScpServer
 {
     public partial class ScpForm : Form
@@ -23,7 +26,7 @@ namespace ScpServer
             }
             else
             {
-                String Posted = Time.ToString() + "." + Time.Millisecond.ToString("000");
+                String Posted = Time.ToString("O");
 
                 lvDebug.Items.Add(new ListViewItem(new String[] { Posted, Data })).EnsureVisible();
 
@@ -57,9 +60,19 @@ namespace ScpServer
             if (this.Height > 220)
                 lbLastMessage.Visible = false;
             else lbLastMessage.Visible = true;
+
+            for (int i = 0; i < 4; i++)
+                if (this.Width > 665)
+                    protexts[i].Visible = true;
+                else
+                    protexts[i].Visible = false;
         }
 
-        protected RadioButton[] Pad = new RadioButton[4];
+        protected Label[] Pads;
+        protected ComboBox[] cbs;
+        protected Button[] ebns;
+        protected Button[] dbns;
+        protected Label[] protexts;
 
         public ScpForm()
         {
@@ -67,10 +80,11 @@ namespace ScpServer
 
             ThemeUtil.SetTheme(lvDebug);
 
-            Pad[0] = rbPad_1;
-            Pad[1] = rbPad_2;
-            Pad[2] = rbPad_3;
-            Pad[3] = rbPad_4;
+            Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
+            cbs = new ComboBox[4] { cBController1, cBController2, cBController3, cBController4 };
+            ebns = new Button[4] { bnEditC1, bnEditC2, bnEditC3, bnEditC4 };
+            dbns = new Button[4] { bnDeleteC1, bnDeleteC2, bnDeleteC3, bnDeleteC4 };
+            protexts = new Label[4] { lbSelPro1, lbSelPro2, lbSelPro3, lbSelPro4 };
         }
 
         protected void Form_Load(object sender, EventArgs e)
@@ -99,11 +113,52 @@ namespace ScpServer
                 this.WindowState = FormWindowState.Minimized;
                 Form_Resize(sender, e);
             }
-            Global.loadCustomMapping(0);
+            RefreshProfiles();
+            for (int i = 0; i < 4; i++)
+            {
+                //Global.LoadProfile(i);
+                //Global.loadNEW(i, MapSelector.ButtonMode);
+            }
             Global.ControllerStatusChange += ControllerStatusChange;
             ControllerStatusChanged();
             if (btnStartStop.Enabled)
                 btnStartStop_Clicked();
+        }
+        public void RefreshProfiles()
+        {
+            try
+            {
+                string[] profiles = System.IO.Directory.GetFiles(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\");
+                int cutoff = (Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\").Length;
+                for (int i = 0; i < 4; i++)
+                {
+                    cbs[i].Items.Clear();
+                    string defaultprofile = Global.getAProfile(i);
+                    string[] profileA = defaultprofile.Split('\\');
+                    string filename = profileA[profileA.Length - 1];
+                    foreach (String s in profiles)
+                        if (s.EndsWith(".xml"))
+                            cbs[i].Items.Add(s.Substring(cutoff, s.Length - 4 - cutoff));
+                     for (int j = 0; j < cbs[i].Items.Count; j++)
+                        if (cbs[i].Items[j] + ".xml" == filename)
+                        {
+                            cbs[i].SelectedIndex = j;
+                            Profile_Changed(cbs[i], null);
+                            break;
+                        } 
+                    cbs[i].Items.Add("+New Profile");
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                System.IO.Directory.CreateDirectory(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\");
+                for (int i = 0; i < 4; i++)
+                {
+                    cbs[i].Items.Add("");
+                    cbs[i].SelectedIndex = 0;
+                    cbs[i].Items.Add("+New Profile");
+                }
+            }
         }
         protected void Form_Close(object sender, FormClosingEventArgs e)
         {
@@ -170,55 +225,86 @@ namespace ScpServer
         protected void ControllerStatusChanged()
         {
             // If controllers are detected, but not checked, automatically check #1
-            bool checkFirst = true;
-            bool optionsEnabled = false;
-            for (Int32 Index = 0; Index < Pad.Length; Index++)
+            //bool checkFirst = true;
+            String tooltip = "DS4Windows";
+            for (Int32 Index = 0; Index < Pads.Length; Index++)
             {
-                Pad[Index].Text = rootHub.getDS4ControllerInfo(Index);
-                if (Pad[Index].Text != null && Pad[Index].Text != "")
+                Pads[Index].Text = rootHub.getDS4ControllerInfo(Index);
+                if (Pads[Index].Text != String.Empty)
                 {
-                    Pad[Index].Enabled = true;
-                    optionsEnabled = true;
+                    Pads[Index].Enabled = true;
+                    cbs[Index].Enabled = true;
+                    ebns[Index].Enabled = true;
+                    dbns[Index].Enabled = true;
+                    protexts[Index].Enabled = true;
+                    Global.LoadProfile(Index);
                     // As above
-                    if (checkFirst && (Pad[Index].Checked && Index != 0))
-                        checkFirst = false;
+                    //if (checkFirst && (Pads[Index].Checked && Index != 0))
+                       // checkFirst = false;
                 }
                 else
                 {
-                    Pad[Index].Text = "Disconnected";
-                    Pad[Index].Enabled = false;
-                    Pad[Index].Checked = false;
+                    Pads[Index].Text = "Disconnected";
+                    Pads[Index].Enabled = false;
+                    cbs[Index].Enabled = false;
+                    ebns[Index].Enabled = false;
+                    dbns[Index].Enabled = false;
+                    protexts[Index].Enabled = false;
+                    if (OptionsDialog[Index] != null)
+                        OptionsDialog[Index].Close();
 
                     // As above
-                    if (Index == 0)
-                        checkFirst = false;
+                    //if (Index == 0)
+                       // checkFirst = false;
                 }
+                tooltip += "\n[" + (Index + 1) + "] " + rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
             }
             btnClear.Enabled = lvDebug.Items.Count > 0;
 
             // As above
-            if (checkFirst && btnClear.Enabled)
-                Pad[0].Checked = true;
-            optionsButton.Enabled = optionsEnabled;
+            //if (checkFirst && btnClear.Enabled)
+               // Pads[0].Checked = true;
+            notifyIcon1.Text = tooltip;
         }
         protected void On_Debug(object sender, DS4Control.DebugEventArgs e)
         {
             LogDebug(e.Time, e.Data);
         }
 
-        private void optionsButton_Click(object sender, EventArgs e)
+        private Options[] OptionsDialog = { null, null, null, null };
+        private void editButtons_Click(object sender, EventArgs e)
         {
-            for (Int32 Index = 0; Index < Pad.Length; Index++)
+            Button bn = (Button)sender;
+            int i = Int32.Parse(bn.Tag.ToString());
+            ComboBox[] cbs = { cBController1, cBController2, cBController3, cBController4 };
+            Options opt = OptionsDialog[i] = new Options(rootHub, i, cbs[i].Text, this);
+            opt.Text = "Options for Controller " + (i + 1);
+            opt.Icon = this.Icon;
+            opt.FormClosed += delegate
             {
-                if (Pad[Index].Checked)
-                {
-                    Options opt = new Options(rootHub, Index);
-                    opt.Text = "Options for Controller " + (Index + 1);
-                    opt.Icon = this.Icon;
-                    opt.ShowDialog();
-                }
+                OptionsDialog[i] = null;
+                dbns[i].Enabled = true;
+                cbs[i].Enabled = true;
+                bn.Enabled = true;
+            };
+            opt.Show();
+            cbs[i].Enabled = false;
+            dbns[i].Enabled = false;
+            bn.Enabled = false;
+        }
+        private void deleteButtons_Click(object sender, EventArgs e)
+        {
+            Button bn = (Button)sender;
+            int tdevice = Int32.Parse(bn.Tag.ToString());
+            string filename = cbs[tdevice].Items[cbs[tdevice].SelectedIndex].ToString();
+            if (MessageBox.Show("\"" + filename + "\" cannot be restored.", "Delete Profile?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.IO.File.Delete(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filename + ".xml");
+                Global.setAProfile(tdevice, null);
+                RefreshProfiles();
             }
         }
+
         private void notifyIcon_Click(object sender, EventArgs e)
         {
             this.Show();
@@ -266,6 +352,34 @@ namespace ScpServer
         {
             MessageBox.Show(((ListView)sender).FocusedItem.SubItems[1].Text,"Log");
         }
+
+        private void Profile_Changed(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;  
+            int tdevice = Int32.Parse(cb.Tag.ToString());
+            if (cb.Items[cb.Items.Count - 1].ToString() == "+New Profile")
+            {
+                if (cb.SelectedIndex < cb.Items.Count - 1)
+                {
+                    Global.setAProfile(tdevice, cb.Items[cb.SelectedIndex].ToString());
+                    Global.Save();
+                    Global.LoadProfile(tdevice);
+                }
+                else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
+                        {
+                            Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
+                            opt.Text = "Options for Controller " + (tdevice + 1);
+                            opt.Icon = this.Icon;
+                            int i = tdevice;
+                            opt.FormClosed += delegate { OptionsDialog[i] = null; };
+                            opt.Show();
+                        }
+            }
+            if (cb.Text == "")
+                ebns[tdevice].Text = "New";
+            else
+                ebns[tdevice].Text = "Edit";
+        }
     }
 
     public class ThemeUtil
@@ -292,3 +406,4 @@ namespace ScpServer
         }
     }
 }
+

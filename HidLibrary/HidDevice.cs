@@ -8,14 +8,6 @@ namespace HidLibrary
 {
     public class HidDevice : IDisposable
     {
-        public event InsertedEventHandler Inserted;
-        public event RemovedEventHandler Removed;
-
-        public event EventHandler<EventArgs> Remove;
-
-        public delegate void InsertedEventHandler();
-        public delegate void RemovedEventHandler();
-
         public enum ReadStatus
         {
             Success = 0,
@@ -31,15 +23,10 @@ namespace HidLibrary
         private readonly HidDeviceAttributes _deviceAttributes;
 
         private readonly HidDeviceCapabilities _deviceCapabilities;
-        private readonly HidDeviceEventMonitor _deviceEventMonitor;
-        private byte idleTicks = 0;
         private bool _monitorDeviceEvents;
         private string serial = null;
         internal HidDevice(string devicePath, string description = null)
         {
-            _deviceEventMonitor = new HidDeviceEventMonitor(this);
-            _deviceEventMonitor.Removed += DeviceEventMonitorRemoved;
-
             _devicePath = devicePath;
             _description = description;
 
@@ -64,21 +51,10 @@ namespace HidLibrary
         public bool IsOpen { get; private set; }
         public bool IsExclusive { get; private set; }
         public bool IsConnected { get { return HidDevices.IsConnected(_devicePath); } }
-        public bool IsTimedOut { get { return idleTicks > 5; } }
         public string Description { get { return _description; } }
         public HidDeviceCapabilities Capabilities { get { return _deviceCapabilities; } }
         public HidDeviceAttributes Attributes { get { return _deviceAttributes; } }
         public string DevicePath { get { return _devicePath; } }
-
-        public bool MonitorDeviceEvents
-        {
-            get { return _monitorDeviceEvents; }
-            set
-            {
-                if (value & _monitorDeviceEvents == false) _deviceEventMonitor.Init();
-                _monitorDeviceEvents = value;
-            }
-        }
 
         public override string ToString()
         {
@@ -113,6 +89,18 @@ namespace HidLibrary
             closeFileStreamIO();
 
             IsOpen = false;
+        }
+
+        public void Dispose()
+        {
+            CancelIO();
+            CloseDevice();
+        }
+
+        public void CancelIO()
+        {
+            if (IsOpen)
+                NativeMethods.CancelIoEx(safeReadHandle.DangerousGetHandle(), IntPtr.Zero);
         }
 
         public bool ReadInputReport(byte[] data)
@@ -159,44 +147,6 @@ namespace HidLibrary
             safeReadHandle = null;
         }
 
-        private void DeviceEventMonitorInserted()
-        {
-            if (IsOpen) OpenDevice(false);
-            if (Inserted != null) Inserted();
-        }
-
-        private void DeviceEventMonitorRemoved()
-        {
-            if (IsOpen)
-            {
-                lock (this)
-                {
-                    idleTicks = 100;
-                }
-                MonitorDeviceEvents = false;
-                Console.WriteLine("Cancelling IO");
-                NativeMethods.CancelIoEx(safeReadHandle.DangerousGetHandle(), IntPtr.Zero);
-                Console.WriteLine("Cancelled IO");
-                CloseDevice();
-                Console.WriteLine("Device is closed.");
-            }
-            if (Removed != null) Removed();
-            if (Remove != null) Remove(this, new EventArgs());
-        }
-
-        public void Tick()
-        {
-            lock (this)
-            {
-                idleTicks++;
-            }
-        }
-
-        public void Dispose()
-        {
-            if (MonitorDeviceEvents) MonitorDeviceEvents = false;
-            if (IsOpen) CloseDevice();
-        }
         public void flush_Queue()
         {
             if (safeReadHandle != null)
@@ -230,10 +180,6 @@ namespace HidLibrary
             try
             {
                 uint bytesRead;
-                lock (this)
-                {
-                    idleTicks = 0;
-                }
                 if (NativeMethods.ReadFile(safeReadHandle.DangerousGetHandle(), inputBuffer, (uint)inputBuffer.Length, out bytesRead, IntPtr.Zero))
                 {
                     return ReadStatus.Success;

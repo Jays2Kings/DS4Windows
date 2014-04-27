@@ -178,6 +178,7 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button35 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabKBM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -229,6 +230,7 @@
             this.tabKBM.Controls.Add(this.btnF10);
             this.tabKBM.Controls.Add(this.btnF12);
             this.tabKBM.Controls.Add(this.btnBREAK);
+            this.tabKBM.Controls.Add(this.button35);
             this.tabKBM.Controls.Add(this.button39);
             this.tabKBM.Controls.Add(this.button38);
             this.tabKBM.Controls.Add(this.bnPREVTRACK);
@@ -1841,6 +1843,16 @@
             this.pictureBox1.TabIndex = 107;
             this.pictureBox1.TabStop = false;
             // 
+            // button35
+            // 
+            this.button35.Location = new System.Drawing.Point(697, 62);
+            this.button35.Name = "button35";
+            this.button35.Size = new System.Drawing.Size(40, 24);
+            this.button35.TabIndex = 122;
+            this.button35.Tag = "173";
+            this.button35.Text = "ØVolume Mute";
+            this.button35.UseVisualStyleBackColor = true;
+            // 
             // KBM360
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2016,5 +2028,6 @@
         private System.Windows.Forms.Button bnSTOP;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button34;
+        private System.Windows.Forms.Button button35;
     }
 }

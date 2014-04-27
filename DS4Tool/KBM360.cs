@@ -45,7 +45,7 @@ namespace ScpServer
             if (sender is Button)
             {
                 string keyname;
-                if (((Button)sender).Text.Contains('↑') || ((Button)sender).Text.Contains('↓') || ((Button)sender).Text.Contains('→') || ((Button)sender).Text.Contains('↑'))
+                if (((Button)sender).Text.Contains('↑') || ((Button)sender).Text.Contains('↓') || ((Button)sender).Text.Contains('→') || ((Button)sender).Text.Contains('↑') || ((Button)sender).Text.Contains('Ø'))
                     keyname = ((Button)sender).Text.Substring(1);
                 else if (((Button)sender).Font.Name == "Webdings")
                 {

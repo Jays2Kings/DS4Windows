@@ -781,7 +781,7 @@ namespace ScpServer
                 if (lBAnalogSticks.SelectedIndex == 5) Show_ControlsBn(bnLSRight, e);
                 if (lBAnalogSticks.SelectedIndex == 6) Show_ControlsBn(bnRSUp, e);
                 if (lBAnalogSticks.SelectedIndex == 7) Show_ControlsBn(bnRSDown, e);
-                if (lBAnalogSticks.SelectedIndex == 8) Show_ControlsBn(bnCircle, e);
+                if (lBAnalogSticks.SelectedIndex == 8) Show_ControlsBn(bnRSLeft, e);
                 if (lBAnalogSticks.SelectedIndex == 9) Show_ControlsBn(bnRSRight, e);
             }
             else if (tabOptions.SelectedTab == tabTouchPad)

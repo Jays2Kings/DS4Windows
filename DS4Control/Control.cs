@@ -351,26 +351,32 @@ namespace DS4Control
             Mapping.GetMouses(ref touchPad);
         }
         bool touchreleased = true;
+        byte oldtouchvalue;
         protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
         {
             DS4Device d = DS4Controllers[deviceID];
             if (cState.Touch1 && !pState.Share && !pState.Options)
             {
-                if (cState.Share)
+                /*if (cState.Share)
                     Global.setTouchSensitivity(deviceID, 0);
                 else if (cState.Options)
-                    Global.setTouchSensitivity(deviceID, 100);
+                    Global.setTouchSensitivity(deviceID, 100); */
             }
             if (cState.Touch1 && pState.PS)
             {
                 if (Global.getTouchSensitivity(deviceID) > 0 && touchreleased)
                 {
+                    oldtouchvalue = Global.getTouchSensitivity(deviceID);
                     Global.setTouchSensitivity(deviceID, 0);
+                    LogDebug("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
+                    Log.LogToTray("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
                     touchreleased = false;
                 }
                 else if (touchreleased)
                 {
-                    Global.setTouchSensitivity(deviceID, 100);
+                    Global.setTouchSensitivity(deviceID, oldtouchvalue);
+                    LogDebug("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
+                    Log.LogToTray("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
                     touchreleased = false;
                 }
             }

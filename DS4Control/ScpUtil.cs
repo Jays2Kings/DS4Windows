@@ -883,7 +883,7 @@ namespace DS4Control
         public bool Load()
         {
             Boolean Loaded = true;
-            /*Boolean missingSetting = false;
+            Boolean missingSetting = false;
 
             try
             {
@@ -914,7 +914,7 @@ namespace DS4Control
             }
             catch { }
             if (missingSetting)
-                Save(); */
+                Save();
             return Loaded; 
         }
         public bool Save()

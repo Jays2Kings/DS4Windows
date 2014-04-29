@@ -156,7 +156,6 @@ namespace ScpServer
                             cbs[i].SelectedIndex = j;
                             ((ToolStripMenuItem)shortcuts[i].DropDownItems[j]).Checked = true;
                             Global.setAProfile(i, cbs[i].Text);
-                            Global.LoadProfile(i);
                             break;
                         }
                     cbs[i].Items.Add("+New Profile");

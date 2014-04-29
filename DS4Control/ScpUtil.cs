@@ -12,7 +12,7 @@ namespace DS4Control
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Repeat = 2, Unbound = 4 }; //Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
     public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options };
-    public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, Unbound };
+    public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
     public class DebugEventArgs : EventArgs
     {
@@ -87,7 +87,14 @@ namespace DS4Control
             if (ControllerStatusChange != null)
                 ControllerStatusChange(sender, EventArgs.Empty);
         }
-
+        public static void setButtonMouseSensitivity(int device, int data)
+        {
+            m_Config.buttonMouseSensitivity[device] = data;
+        }
+        public static int getButtonMouseSensitivity(int device)
+        {
+            return m_Config.buttonMouseSensitivity[device];
+        }
         public static DS4Color loadColor(int device)
         {
             DS4Color color = new DS4Color();
@@ -370,6 +377,8 @@ namespace DS4Control
         protected String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
 
+        public int[] buttonMouseSensitivity = { 50, 50, 50, 50 };
+
         public Boolean[] touchpadJitterCompensation = {true, true, true, true};
         public Boolean[] lowerRCOn = { false, false, false, false };
         public Boolean[] ledAsBattery = { false, false, false, false };
@@ -483,6 +492,7 @@ namespace DS4Control
                 XmlNode xmlScrollSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "scrollSensitivity", null); xmlScrollSensitivity.InnerText = scrollSensitivity[device].ToString(); Node.AppendChild(xmlScrollSensitivity);
                 XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = m_LeftTriggerMiddle[device].ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
                 XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = m_RightTriggerMiddle[device].ToString(); Node.AppendChild(xmlRightTriggerMiddle);
+                XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
@@ -621,6 +631,10 @@ namespace DS4Control
                 case "5th Mouse Button": return X360Controls.FifthMouse;
                 case "Mouse Wheel Up": return X360Controls.WUP;
                 case "Mouse Wheel Down": return X360Controls.WDOWN;
+                case "Mouse Up": return X360Controls.MouseUp;
+                case "Mouse Down": return X360Controls.MouseDown;
+                case "Mouse Left": return X360Controls.MouseLeft;
+                case "Mouse Right": return X360Controls.MouseRight;
                 case "Unbound": return X360Controls.Unbound;
 
             }
@@ -691,6 +705,8 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                     catch { missingSetting = true; }
 
                     DS4KeyType keyType;
@@ -835,6 +851,8 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                     catch { missingSetting = true; }
 
                     DS4KeyType keyType;

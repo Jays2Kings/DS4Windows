@@ -304,7 +304,7 @@ namespace DS4Control
         }
 
         /** Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons. */
-        public static void MapCustom(int device, DS4State cState, DS4State MappedState)
+        public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4State pState = null)
         {
             cState.CopyTo(MappedState);
             SyntheticState deviceState = Mapping.deviceState[device];
@@ -331,6 +331,8 @@ namespace DS4Control
             MappedState.LY = 127;
             MappedState.RX = 127;
             MappedState.RY = 127;
+            int MouseDeltaX = 0;
+            int MouseDeltaY = 0;
 
             Dictionary<DS4Controls, X360Controls> customButtons = Global.getCustomButtons(device);
             foreach (KeyValuePair<DS4Controls, X360Controls> customButton in customButtons)
@@ -349,19 +351,19 @@ namespace DS4Control
                         break;
                     case X360Controls.B:
                         if (!MappedState.Circle)
-                        MappedState.Circle = getBoolMapping(customButton.Key, cState);
+                            MappedState.Circle = getBoolMapping(customButton.Key, cState);
                         break;
                     case X360Controls.X:
                         if (!MappedState.Square)
-                        MappedState.Square = getBoolMapping(customButton.Key, cState);
+                            MappedState.Square = getBoolMapping(customButton.Key, cState);
                         break;
                     case X360Controls.Y:
                         if (!MappedState.Triangle)
-                        MappedState.Triangle = getBoolMapping(customButton.Key, cState);
+                            MappedState.Triangle = getBoolMapping(customButton.Key, cState);
                         break;
                     case X360Controls.LB:
                         if (!MappedState.L1)
-                        MappedState.L1 = getBoolMapping(customButton.Key, cState);
+                            MappedState.L1 = getBoolMapping(customButton.Key, cState);
                         break;
                     case X360Controls.LS:
                         if (!MappedState.L3)
@@ -477,7 +479,7 @@ namespace DS4Control
                         if (getBoolMapping(customButton.Key, cState))
                             deviceState.currentClicks.middleCount++;
                         break;
-                   case X360Controls.FourthMouse:
+                    case X360Controls.FourthMouse:
                         if (getBoolMapping(customButton.Key, cState))
                             deviceState.currentClicks.fourthCount++;
                         break;
@@ -487,12 +489,47 @@ namespace DS4Control
                         break;
                     case X360Controls.WUP:
                         if (getBoolMapping(customButton.Key, cState))
-                        deviceState.currentClicks.wUpCount++;
+                            deviceState.currentClicks.wUpCount++;
                         break;
                     case X360Controls.WDOWN:
                         if (getBoolMapping(customButton.Key, cState))
-                        deviceState.currentClicks.wDownCount++;
+                            deviceState.currentClicks.wDownCount++;
                         break;
+                }
+                if (pState != null)
+                {
+                    switch (customButton.Value)
+                    {
+
+                        case X360Controls.MouseUp:
+                            if (MouseDeltaY == 0)
+                            {
+                                MouseDeltaY = calculateRelativeMouseDelta(device, customButton.Key, cState, pState);
+                                MouseDeltaY = -Math.Abs(MouseDeltaY);
+                            }
+                            break;
+                        case X360Controls.MouseDown:
+                            if (MouseDeltaY == 0)
+                            {
+                                MouseDeltaY = calculateRelativeMouseDelta(device, customButton.Key, cState, pState);
+                                MouseDeltaY = Math.Abs(MouseDeltaY);
+                            }
+                            break;
+                        case X360Controls.MouseLeft:
+                            if (MouseDeltaX == 0)
+                            {
+                                MouseDeltaX = calculateRelativeMouseDelta(device, customButton.Key, cState, pState);
+                                MouseDeltaX = -Math.Abs(MouseDeltaX);
+                            }
+                            break;
+                        case X360Controls.MouseRight:
+                            if (MouseDeltaX == 0)
+                            {
+                                MouseDeltaX = calculateRelativeMouseDelta(device, customButton.Key, cState, pState);
+                                MouseDeltaX = Math.Abs(MouseDeltaX);
+                            }
+                            break;
+                    }
                 }
             }
 
@@ -504,12 +541,73 @@ namespace DS4Control
                 MappedState.RX = cState.RX;
             if (!RY)
                 MappedState.RY = cState.RY;
+            InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
         }
-        static Mouse[] mouses;
-        public static void GetMouses(ref Mouse[] mouss)
+
+        private static int calculateRelativeMouseDelta(int device, DS4Controls control, DS4State cState, DS4State pState)
         {
-            mouses = mouss;
+            int axisVal = -1;
+            int DEAD_ZONE = 10;
+            float SPEED_MULTIPLIER = 0.000004f;
+            bool positive = false;
+            float deltaTime = cState.ReportTimeStamp.Ticks - pState.ReportTimeStamp.Ticks;
+            switch (control)
+            {
+                case DS4Controls.LXNeg:
+                    axisVal = cState.LX;
+                    break;
+                case DS4Controls.LXPos:
+                    positive = true;
+                    axisVal = cState.LX;
+                    break;
+                case DS4Controls.RXNeg:
+                    axisVal = cState.RX;
+                    break;
+                case DS4Controls.RXPos:
+                    positive = true;
+                    axisVal = cState.RX;
+                    break;
+                case DS4Controls.LYNeg:
+                    axisVal = cState.LY;
+                    break;
+                case DS4Controls.LYPos:
+                    positive = true;
+                    axisVal = cState.LY;
+                    break;
+                case DS4Controls.RYNeg:
+                    axisVal = cState.RY;
+                    break;
+                case DS4Controls.RYPos:
+                    positive = true;
+                    axisVal = cState.RY;
+                    break;
+                case DS4Controls.Share: axisVal = (byte)(cState.Share ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.Options: axisVal = (byte)(cState.Options ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.L1: axisVal = (byte)(cState.L1 ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.R1: axisVal = (byte)(cState.R1 ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.L3: axisVal = (byte)(cState.L3 ? 117 - Global.getButtonMouseSensitivity(device) : -1); break;
+                case DS4Controls.R3: axisVal = (byte)(cState.R3 ? 117 - Global.getButtonMouseSensitivity(device) : -1); break;
+                case DS4Controls.DpadUp: axisVal = (byte)(cState.DpadUp ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.DpadDown: axisVal = (byte)(cState.DpadDown ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.DpadLeft: axisVal = (byte)(cState.DpadLeft ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.DpadRight: axisVal = (byte)(cState.DpadRight ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.PS: axisVal = (byte)(cState.PS ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.Cross: axisVal = (byte)(cState.Cross ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.Square: axisVal = (byte)(cState.Square ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.Triangle: axisVal = (byte)(cState.Triangle ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.Circle: axisVal = (byte)(cState.Circle ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
+                case DS4Controls.L2: positive = true; axisVal = cState.L2; break;
+                case DS4Controls.R2: positive = true; axisVal = cState.R2; break;
+            }
+            axisVal = axisVal - 127;
+            int delta = 0;
+            if ((!positive && axisVal < -DEAD_ZONE) || (positive && axisVal > DEAD_ZONE))
+            {
+                delta = (int)(float)(axisVal * SPEED_MULTIPLIER * deltaTime);
+            }
+            return delta;
         }
+
         public static bool compare(byte b1, byte b2)
         {
             if (Math.Abs(b1 - b2) > 10)

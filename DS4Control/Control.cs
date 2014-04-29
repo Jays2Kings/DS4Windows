@@ -295,7 +295,7 @@ namespace DS4Control
                 
                 if (Global.getHasCustomKeysorButtons(ind))
                 {
-                    Mapping.MapCustom(ind, cState, MappedState[ind]);
+                    Mapping.MapCustom(ind, cState, MappedState[ind], pState);
                     cState = MappedState[ind];
                 }
 

@@ -604,6 +604,7 @@
             this.Text = "DS4Windows 1.0 Beta J2K Build";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Close);
             this.Load += new System.EventHandler(this.Form_Load);
+            this.Move += new System.EventHandler(this.ScpForm_Move);
             this.Resize += new System.EventHandler(this.Form_Resize);
             this.pnlButton.ResumeLayout(false);
             this.pnlButton.PerformLayout();

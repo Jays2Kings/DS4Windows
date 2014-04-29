@@ -483,6 +483,12 @@ namespace ScpServer
             this.Show();
             WindowState = FormWindowState.Normal;
         }
+
+
+        private void ScpForm_Move(object sender, EventArgs e)
+        {
+            
+        }
     }
 
     public class ThemeUtil

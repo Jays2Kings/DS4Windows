@@ -116,6 +116,7 @@
             this.numUDTap = new System.Windows.Forms.NumericUpDown();
             this.numUDScroll = new System.Windows.Forms.NumericUpDown();
             this.numUDTouch = new System.Windows.Forms.NumericUpDown();
+            this.cBDoubleTap = new System.Windows.Forms.CheckBox();
             this.bnTouchUpper = new System.Windows.Forms.Button();
             this.bnTouchMulti = new System.Windows.Forms.Button();
             this.bnTouchRight = new System.Windows.Forms.Button();
@@ -129,8 +130,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.cBDoubleTap = new System.Windows.Forms.CheckBox();
+            this.tBMouseSens = new System.Windows.Forms.TrackBar();
+            this.lBMouseSens = new System.Windows.Forms.Label();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
+            this.lBButtonMouseSens = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.blueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.redBar)).BeginInit();
@@ -153,6 +156,7 @@
             this.tabRumble.SuspendLayout();
             this.tabOther.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).BeginInit();
             this.SuspendLayout();
             // 
             // BlueLabel
@@ -1497,6 +1501,21 @@
             0});
             this.numUDTouch.ValueChanged += new System.EventHandler(this.numUDTouch_ValueChanged);
             // 
+            // cBDoubleTap
+            // 
+            this.cBDoubleTap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cBDoubleTap.AutoSize = true;
+            this.cBDoubleTap.Checked = true;
+            this.cBDoubleTap.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBDoubleTap.Location = new System.Drawing.Point(344, 121);
+            this.cBDoubleTap.Name = "cBDoubleTap";
+            this.cBDoubleTap.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cBDoubleTap.Size = new System.Drawing.Size(82, 17);
+            this.cBDoubleTap.TabIndex = 39;
+            this.cBDoubleTap.Text = "Double Tap";
+            this.cBDoubleTap.UseVisualStyleBackColor = true;
+            this.cBDoubleTap.CheckedChanged += new System.EventHandler(this.cBDoubleTap_CheckedChanged);
+            // 
             // bnTouchUpper
             // 
             this.bnTouchUpper.BackColor = System.Drawing.Color.Transparent;
@@ -1635,6 +1654,8 @@
             // 
             // tabOther
             // 
+            this.tabOther.Controls.Add(this.lBButtonMouseSens);
+            this.tabOther.Controls.Add(this.lBMouseSens);
             this.tabOther.Controls.Add(this.idleDisconnectTimeout);
             this.tabOther.Controls.Add(this.label3);
             this.tabOther.Controls.Add(this.label2);
@@ -1645,6 +1666,7 @@
             this.tabOther.Controls.Add(this.label9);
             this.tabOther.Controls.Add(this.rightTriggerMiddlePoint);
             this.tabOther.Controls.Add(this.leftTriggerMiddlePoint);
+            this.tabOther.Controls.Add(this.tBMouseSens);
             this.tabOther.Location = new System.Drawing.Point(4, 22);
             this.tabOther.Name = "tabOther";
             this.tabOther.Size = new System.Drawing.Size(425, 170);
@@ -1705,26 +1727,41 @@
             this.label4.TabIndex = 84;
             this.label4.Text = "Profile Name:";
             // 
-            // cBDoubleTap
+            // tBMouseSens
             // 
-            this.cBDoubleTap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cBDoubleTap.AutoSize = true;
-            this.cBDoubleTap.Checked = true;
-            this.cBDoubleTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBDoubleTap.Location = new System.Drawing.Point(344, 121);
-            this.cBDoubleTap.Name = "cBDoubleTap";
-            this.cBDoubleTap.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cBDoubleTap.Size = new System.Drawing.Size(82, 17);
-            this.cBDoubleTap.TabIndex = 39;
-            this.cBDoubleTap.Text = "Double Tap";
-            this.cBDoubleTap.UseVisualStyleBackColor = true;
-            this.cBDoubleTap.CheckedChanged += new System.EventHandler(this.cBDoubleTap_CheckedChanged);
+            this.tBMouseSens.BackColor = System.Drawing.Color.White;
+            this.tBMouseSens.Location = new System.Drawing.Point(292, 8);
+            this.tBMouseSens.Maximum = 117;
+            this.tBMouseSens.Name = "tBMouseSens";
+            this.tBMouseSens.Size = new System.Drawing.Size(104, 45);
+            this.tBMouseSens.TabIndex = 85;
+            this.tBMouseSens.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBMouseSens.Value = 50;
+            this.tBMouseSens.Scroll += new System.EventHandler(this.tBMouseSens_Scroll);
+            // 
+            // lBMouseSens
+            // 
+            this.lBMouseSens.Location = new System.Drawing.Point(392, 13);
+            this.lBMouseSens.Name = "lBMouseSens";
+            this.lBMouseSens.Size = new System.Drawing.Size(30, 13);
+            this.lBMouseSens.TabIndex = 86;
+            this.lBMouseSens.Text = "50";
+            this.lBMouseSens.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
             this.advColorDialog.Color = System.Drawing.Color.Blue;
             this.advColorDialog.FullOpen = true;
+            // 
+            // lBButtonMouseSens
+            // 
+            this.lBButtonMouseSens.AutoSize = true;
+            this.lBButtonMouseSens.Location = new System.Drawing.Point(158, 11);
+            this.lBButtonMouseSens.Name = "lBButtonMouseSens";
+            this.lBButtonMouseSens.Size = new System.Drawing.Size(134, 13);
+            this.lBButtonMouseSens.TabIndex = 87;
+            this.lBButtonMouseSens.Text = "Mouse Sensitivity (Buttons)";
             // 
             // Options
             // 
@@ -1772,6 +1809,7 @@
             this.tabOther.ResumeLayout(false);
             this.tabOther.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1884,6 +1922,9 @@
         private System.Windows.Forms.NumericUpDown numUDTap;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox cBDoubleTap;
+        private System.Windows.Forms.Label lBMouseSens;
+        private System.Windows.Forms.TrackBar tBMouseSens;
+        private System.Windows.Forms.Label lBButtonMouseSens;
     }
 }
 

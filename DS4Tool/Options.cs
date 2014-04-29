@@ -55,6 +55,8 @@ namespace ScpServer
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
                 flushHIDQueue.Checked = Global.getFlushHIDQueue(device);
                 idleDisconnectTimeout.Value = Global.getIdleDisconnectTimeout(device);
+                tBMouseSens.Value = Global.getButtonMouseSensitivity(device);
+                lBMouseSens.Text = tBMouseSens.Value.ToString();
                 // Force update of color choosers    
                 alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
                 reg = Color.FromArgb(color.red, color.green, color.blue);
@@ -91,6 +93,7 @@ namespace ScpServer
                 Global.setDoubleTap(device, cBDoubleTap.Checked);
                 Global.setScrollSensitivity(device, (byte)numUDScroll.Value);
                 Global.setIdleDisconnectTimeout(device, (int)idleDisconnectTimeout.Value);
+                Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
             }
             #region watch sixaxis data
             // Control Positioning
@@ -338,6 +341,7 @@ namespace ScpServer
             if (int.TryParse(idleDisconnectTimeout.Text, out disconnectTimeout))
                 Global.setIdleDisconnectTimeout(device, disconnectTimeout);
             Global.setDoubleTap(device, cBDoubleTap.Checked);
+            Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
 
             if (tBProfile.Text != null && tBProfile.Text != "" && !tBProfile.Text.Contains("\\") && !tBProfile.Text.Contains("/") && !tBProfile.Text.Contains(":") && !tBProfile.Text.Contains("*") && !tBProfile.Text.Contains("?") && !tBProfile.Text.Contains("\"") && !tBProfile.Text.Contains("<") && !tBProfile.Text.Contains(">") && !tBProfile.Text.Contains("|"))
             {
@@ -815,6 +819,12 @@ namespace ScpServer
         {
             if (e.KeyValue == 13)
                 Show_ControlsList(sender, e);
+        }
+
+        private void tBMouseSens_Scroll(object sender, EventArgs e)
+        {
+            Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
+            lBMouseSens.Text = tBMouseSens.Value.ToString();
         }
     }
 }

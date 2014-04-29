@@ -33,6 +33,13 @@ namespace ScpServer
             foreach (System.Windows.Forms.Control control in tab360.Controls)
                 if (control is Button)
                     ((Button)control).Click += new System.EventHandler(anybtn_Click360);
+            if (button.Name.Contains("Touch"))
+            {
+                bnMOUSEDOWN.Visible = false;
+                bnMOUSELEFT.Visible = false;
+                bnMOUSERIGHT.Visible = false;
+                bnMOUSEUP.Visible = false;                    
+            }
             if (tabStart < 2)
                 tabControl1.SelectedIndex = tabStart;
             else
@@ -45,7 +52,7 @@ namespace ScpServer
             if (sender is Button)
             {
                 string keyname;
-                if (((Button)sender).Text.Contains('↑') || ((Button)sender).Text.Contains('↓') || ((Button)sender).Text.Contains('→') || ((Button)sender).Text.Contains('↑') || ((Button)sender).Text.Contains('Ø'))
+                if (((Button)sender).Text.Contains('↑') || ((Button)sender).Text.Contains('↓') || ((Button)sender).Text.Contains('→') || ((Button)sender).Text.Contains('←') || ((Button)sender).Text.Contains('Ø'))
                     keyname = ((Button)sender).Text.Substring(1);
                 else if (((Button)sender).Font.Name == "Webdings")
                 {

@@ -202,6 +202,14 @@ namespace DS4Control
         {
             return m_Config.tapSensitivity;
         }
+        public static void setDoubleTap(int device, bool on)
+        {
+            m_Config.doubleTap = on;
+        }
+        public static bool getDoubleTap(int device)
+        {
+            return m_Config.doubleTap;
+        }
         public static bool getTap(int device)
         {
             if (m_Config.tapSensitivity == 0)
@@ -389,6 +397,7 @@ namespace DS4Control
         public Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = null;
         public Dictionary<DS4Controls, UInt16> customMapKeys = null;
         public Dictionary<DS4Controls, X360Controls> customMapButtons = null;
+        public bool doubleTap = false;
         public BackingStore()
         {
             //for (int i = 0; i < 4; i++)
@@ -462,11 +471,11 @@ namespace DS4Control
                 XmlNode xmlTouchpadJitterCompensation = m_Xdoc.CreateNode(XmlNodeType.Element, "touchpadJitterCompensation", null); xmlTouchpadJitterCompensation.InnerText = touchpadJitterCompensation.ToString(); Node.AppendChild(xmlTouchpadJitterCompensation);
                 XmlNode xmlLowerRCOn = m_Xdoc.CreateNode(XmlNodeType.Element, "lowerRCOn", null); xmlLowerRCOn.InnerText = lowerRCOn.ToString(); Node.AppendChild(xmlLowerRCOn);
                 XmlNode xmlTapSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "tapSensitivity", null); xmlTapSensitivity.InnerText = tapSensitivity.ToString(); Node.AppendChild(xmlTapSensitivity);
+                XmlNode xmlDouble = m_Xdoc.CreateNode(XmlNodeType.Element, "doubleTap", null); xmlDouble.InnerText = doubleTap.ToString(); Node.AppendChild(xmlDouble);
                 XmlNode xmlScrollSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "scrollSensitivity", null); xmlScrollSensitivity.InnerText = scrollSensitivity.ToString(); Node.AppendChild(xmlScrollSensitivity);
                 XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = m_LeftTriggerMiddle.ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
                 XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = m_RightTriggerMiddle.ToString(); Node.AppendChild(xmlRightTriggerMiddle);
 
-               // m_Xdoc.AppendChild(Node);
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -667,6 +676,8 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/doubleTap"); Boolean.TryParse(Item.InnerText, out doubleTap); }
+                    catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity); }
                     catch { missingSetting = true; }
                     // XXX This sucks, let's do better at removing old values that are no longer valid....
@@ -811,6 +822,8 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/doubleTap"); Boolean.TryParse(Item.InnerText, out doubleTap); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity); }
                     catch { missingSetting = true; }

@@ -68,10 +68,20 @@
             this.cBController1 = new System.Windows.Forms.ComboBox();
             this.lbLastMessage = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cMTaskbar = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editProfileForController1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editProfileForController2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editProfileForController3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editProfileForController4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.pnlButton.SuspendLayout();
             this.pnlDebug.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             this.gpPads.SuspendLayout();
+            this.cMTaskbar.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvDebug
@@ -86,7 +96,7 @@
             this.lvDebug.FullRowSelect = true;
             this.lvDebug.Location = new System.Drawing.Point(0, 0);
             this.lvDebug.Name = "lvDebug";
-            this.lvDebug.Size = new System.Drawing.Size(794, 353);
+            this.lvDebug.Size = new System.Drawing.Size(797, 353);
             this.lvDebug.TabIndex = 0;
             this.lvDebug.UseCompatibleStateImageBehavior = false;
             this.lvDebug.View = System.Windows.Forms.View.Details;
@@ -116,9 +126,9 @@
             this.pnlButton.Controls.Add(this.hotkeysButton);
             this.pnlButton.Controls.Add(this.lnkControllers);
             this.pnlButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButton.Location = new System.Drawing.Point(3, 477);
+            this.pnlButton.Location = new System.Drawing.Point(0, 477);
             this.pnlButton.Name = "pnlButton";
-            this.pnlButton.Size = new System.Drawing.Size(791, 35);
+            this.pnlButton.Size = new System.Drawing.Size(794, 35);
             this.pnlButton.TabIndex = 10;
             // 
             // AboutButton
@@ -134,7 +144,7 @@
             // btnStartStop
             // 
             this.btnStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartStop.Location = new System.Drawing.Point(663, 5);
+            this.btnStartStop.Location = new System.Drawing.Point(666, 5);
             this.btnStartStop.Name = "btnStartStop";
             this.btnStartStop.Size = new System.Drawing.Size(119, 23);
             this.btnStartStop.TabIndex = 1;
@@ -146,7 +156,7 @@
             // 
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClear.Enabled = false;
-            this.btnClear.Location = new System.Drawing.Point(560, 6);
+            this.btnClear.Location = new System.Drawing.Point(563, 6);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(97, 23);
             this.btnClear.TabIndex = 9;
@@ -158,7 +168,7 @@
             // 
             this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStop.Enabled = false;
-            this.btnStop.Location = new System.Drawing.Point(707, 6);
+            this.btnStop.Location = new System.Drawing.Point(710, 6);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 2;
@@ -192,7 +202,7 @@
             // 
             this.hideDS4CheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.hideDS4CheckBox.AutoSize = true;
-            this.hideDS4CheckBox.Location = new System.Drawing.Point(672, 109);
+            this.hideDS4CheckBox.Location = new System.Drawing.Point(675, 109);
             this.hideDS4CheckBox.Name = "hideDS4CheckBox";
             this.hideDS4CheckBox.Size = new System.Drawing.Size(119, 17);
             this.hideDS4CheckBox.TabIndex = 13;
@@ -204,7 +214,7 @@
             // 
             this.startMinimizedCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.startMinimizedCheckBox.AutoSize = true;
-            this.startMinimizedCheckBox.Location = new System.Drawing.Point(569, 109);
+            this.startMinimizedCheckBox.Location = new System.Drawing.Point(572, 109);
             this.startMinimizedCheckBox.Name = "startMinimizedCheckBox";
             this.startMinimizedCheckBox.Size = new System.Drawing.Size(97, 17);
             this.startMinimizedCheckBox.TabIndex = 40;
@@ -216,18 +226,18 @@
             // 
             this.pnlDebug.Controls.Add(this.lvDebug);
             this.pnlDebug.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDebug.Location = new System.Drawing.Point(3, 124);
+            this.pnlDebug.Location = new System.Drawing.Point(0, 124);
             this.pnlDebug.Name = "pnlDebug";
-            this.pnlDebug.Size = new System.Drawing.Size(791, 353);
+            this.pnlDebug.Size = new System.Drawing.Size(794, 353);
             this.pnlDebug.TabIndex = 11;
             // 
             // pnlStatus
             // 
             this.pnlStatus.Controls.Add(this.gpPads);
             this.pnlStatus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlStatus.Location = new System.Drawing.Point(3, 0);
+            this.pnlStatus.Location = new System.Drawing.Point(0, 0);
             this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(791, 124);
+            this.pnlStatus.Size = new System.Drawing.Size(794, 124);
             this.pnlStatus.TabIndex = 9;
             // 
             // gpPads
@@ -259,7 +269,7 @@
             this.gpPads.Controls.Add(this.lbLastMessage);
             this.gpPads.Location = new System.Drawing.Point(-6, -9);
             this.gpPads.Name = "gpPads";
-            this.gpPads.Size = new System.Drawing.Size(800, 129);
+            this.gpPads.Size = new System.Drawing.Size(803, 129);
             this.gpPads.TabIndex = 1;
             this.gpPads.TabStop = false;
             // 
@@ -268,7 +278,7 @@
             this.lbSelPro4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSelPro4.AutoSize = true;
             this.lbSelPro4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSelPro4.Location = new System.Drawing.Point(467, 86);
+            this.lbSelPro4.Location = new System.Drawing.Point(470, 86);
             this.lbSelPro4.Name = "lbSelPro4";
             this.lbSelPro4.Size = new System.Drawing.Size(96, 15);
             this.lbSelPro4.TabIndex = 45;
@@ -279,7 +289,7 @@
             this.lbSelPro3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSelPro3.AutoSize = true;
             this.lbSelPro3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSelPro3.Location = new System.Drawing.Point(467, 62);
+            this.lbSelPro3.Location = new System.Drawing.Point(470, 62);
             this.lbSelPro3.Name = "lbSelPro3";
             this.lbSelPro3.Size = new System.Drawing.Size(96, 15);
             this.lbSelPro3.TabIndex = 45;
@@ -290,7 +300,7 @@
             this.lbSelPro2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSelPro2.AutoSize = true;
             this.lbSelPro2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSelPro2.Location = new System.Drawing.Point(467, 40);
+            this.lbSelPro2.Location = new System.Drawing.Point(470, 40);
             this.lbSelPro2.Name = "lbSelPro2";
             this.lbSelPro2.Size = new System.Drawing.Size(96, 15);
             this.lbSelPro2.TabIndex = 45;
@@ -301,7 +311,7 @@
             this.lbSelPro1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSelPro1.AutoSize = true;
             this.lbSelPro1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSelPro1.Location = new System.Drawing.Point(467, 17);
+            this.lbSelPro1.Location = new System.Drawing.Point(470, 17);
             this.lbSelPro1.Name = "lbSelPro1";
             this.lbSelPro1.Size = new System.Drawing.Size(96, 15);
             this.lbSelPro1.TabIndex = 45;
@@ -350,7 +360,7 @@
             // bnEditC4
             // 
             this.bnEditC4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnEditC4.Location = new System.Drawing.Point(695, 83);
+            this.bnEditC4.Location = new System.Drawing.Point(698, 83);
             this.bnEditC4.Name = "bnEditC4";
             this.bnEditC4.Size = new System.Drawing.Size(40, 23);
             this.bnEditC4.TabIndex = 43;
@@ -362,7 +372,7 @@
             // bnEditC3
             // 
             this.bnEditC3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnEditC3.Location = new System.Drawing.Point(695, 60);
+            this.bnEditC3.Location = new System.Drawing.Point(698, 60);
             this.bnEditC3.Name = "bnEditC3";
             this.bnEditC3.Size = new System.Drawing.Size(40, 23);
             this.bnEditC3.TabIndex = 43;
@@ -374,7 +384,7 @@
             // bnEditC2
             // 
             this.bnEditC2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnEditC2.Location = new System.Drawing.Point(695, 37);
+            this.bnEditC2.Location = new System.Drawing.Point(698, 37);
             this.bnEditC2.Name = "bnEditC2";
             this.bnEditC2.Size = new System.Drawing.Size(40, 23);
             this.bnEditC2.TabIndex = 43;
@@ -386,7 +396,7 @@
             // bnDeleteC4
             // 
             this.bnDeleteC4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnDeleteC4.Location = new System.Drawing.Point(741, 83);
+            this.bnDeleteC4.Location = new System.Drawing.Point(744, 83);
             this.bnDeleteC4.Name = "bnDeleteC4";
             this.bnDeleteC4.Size = new System.Drawing.Size(47, 23);
             this.bnDeleteC4.TabIndex = 43;
@@ -398,7 +408,7 @@
             // bnDeleteC3
             // 
             this.bnDeleteC3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnDeleteC3.Location = new System.Drawing.Point(741, 60);
+            this.bnDeleteC3.Location = new System.Drawing.Point(744, 60);
             this.bnDeleteC3.Name = "bnDeleteC3";
             this.bnDeleteC3.Size = new System.Drawing.Size(47, 23);
             this.bnDeleteC3.TabIndex = 43;
@@ -410,7 +420,7 @@
             // bnDeleteC2
             // 
             this.bnDeleteC2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnDeleteC2.Location = new System.Drawing.Point(741, 37);
+            this.bnDeleteC2.Location = new System.Drawing.Point(744, 37);
             this.bnDeleteC2.Name = "bnDeleteC2";
             this.bnDeleteC2.Size = new System.Drawing.Size(47, 23);
             this.bnDeleteC2.TabIndex = 43;
@@ -422,7 +432,7 @@
             // bnDeleteC1
             // 
             this.bnDeleteC1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnDeleteC1.Location = new System.Drawing.Point(741, 13);
+            this.bnDeleteC1.Location = new System.Drawing.Point(744, 13);
             this.bnDeleteC1.Name = "bnDeleteC1";
             this.bnDeleteC1.Size = new System.Drawing.Size(47, 23);
             this.bnDeleteC1.TabIndex = 43;
@@ -434,7 +444,7 @@
             // bnEditC1
             // 
             this.bnEditC1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnEditC1.Location = new System.Drawing.Point(695, 13);
+            this.bnEditC1.Location = new System.Drawing.Point(698, 13);
             this.bnEditC1.Name = "bnEditC1";
             this.bnEditC1.Size = new System.Drawing.Size(40, 23);
             this.bnEditC1.TabIndex = 43;
@@ -448,7 +458,7 @@
             this.cBController4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cBController4.Enabled = false;
             this.cBController4.FormattingEnabled = true;
-            this.cBController4.Location = new System.Drawing.Point(568, 84);
+            this.cBController4.Location = new System.Drawing.Point(571, 84);
             this.cBController4.Name = "cBController4";
             this.cBController4.Size = new System.Drawing.Size(121, 21);
             this.cBController4.TabIndex = 42;
@@ -460,7 +470,7 @@
             this.cBController3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cBController3.Enabled = false;
             this.cBController3.FormattingEnabled = true;
-            this.cBController3.Location = new System.Drawing.Point(568, 61);
+            this.cBController3.Location = new System.Drawing.Point(571, 61);
             this.cBController3.Name = "cBController3";
             this.cBController3.Size = new System.Drawing.Size(121, 21);
             this.cBController3.TabIndex = 42;
@@ -472,7 +482,7 @@
             this.cBController2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cBController2.Enabled = false;
             this.cBController2.FormattingEnabled = true;
-            this.cBController2.Location = new System.Drawing.Point(568, 38);
+            this.cBController2.Location = new System.Drawing.Point(571, 38);
             this.cBController2.Name = "cBController2";
             this.cBController2.Size = new System.Drawing.Size(121, 21);
             this.cBController2.TabIndex = 42;
@@ -484,7 +494,7 @@
             this.cBController1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cBController1.Enabled = false;
             this.cBController1.FormattingEnabled = true;
-            this.cBController1.Location = new System.Drawing.Point(568, 15);
+            this.cBController1.Location = new System.Drawing.Point(571, 15);
             this.cBController1.Name = "cBController1";
             this.cBController1.Size = new System.Drawing.Size(121, 21);
             this.cBController1.TabIndex = 42;
@@ -497,7 +507,7 @@
             this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
             this.lbLastMessage.Location = new System.Drawing.Point(15, 107);
             this.lbLastMessage.Name = "lbLastMessage";
-            this.lbLastMessage.Size = new System.Drawing.Size(548, 20);
+            this.lbLastMessage.Size = new System.Drawing.Size(551, 20);
             this.lbLastMessage.TabIndex = 41;
             this.lbLastMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbLastMessage.Visible = false;
@@ -506,9 +516,80 @@
             // 
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon1.BalloonTipTitle = "Scp server";
+            this.notifyIcon1.ContextMenuStrip = this.cMTaskbar;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "DS4 Xinput Tool";
-            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon_Click);
+            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon_Click);
+            // 
+            // cMTaskbar
+            // 
+            this.cMTaskbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editProfileForController1ToolStripMenuItem,
+            this.editProfileForController2ToolStripMenuItem,
+            this.editProfileForController3ToolStripMenuItem,
+            this.editProfileForController4ToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.cMTaskbar.Name = "cMTaskbar";
+            this.cMTaskbar.Size = new System.Drawing.Size(215, 142);
+            this.cMTaskbar.Tag = "25";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
+            // 
+            // editProfileForController1ToolStripMenuItem
+            // 
+            this.editProfileForController1ToolStripMenuItem.Name = "editProfileForController1ToolStripMenuItem";
+            this.editProfileForController1ToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.editProfileForController1ToolStripMenuItem.Tag = "0";
+            this.editProfileForController1ToolStripMenuItem.Text = "Edit Profile for Controller 1";
+            this.editProfileForController1ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
+            // 
+            // editProfileForController2ToolStripMenuItem
+            // 
+            this.editProfileForController2ToolStripMenuItem.Name = "editProfileForController2ToolStripMenuItem";
+            this.editProfileForController2ToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.editProfileForController2ToolStripMenuItem.Tag = "1";
+            this.editProfileForController2ToolStripMenuItem.Text = "Edit Profile for Controller 2";
+            this.editProfileForController2ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
+            // 
+            // editProfileForController3ToolStripMenuItem
+            // 
+            this.editProfileForController3ToolStripMenuItem.Name = "editProfileForController3ToolStripMenuItem";
+            this.editProfileForController3ToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.editProfileForController3ToolStripMenuItem.Tag = "2";
+            this.editProfileForController3ToolStripMenuItem.Text = "Edit Profile for Controller 3";
+            this.editProfileForController3ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
+            // 
+            // editProfileForController4ToolStripMenuItem
+            // 
+            this.editProfileForController4ToolStripMenuItem.Name = "editProfileForController4ToolStripMenuItem";
+            this.editProfileForController4ToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.editProfileForController4ToolStripMenuItem.Tag = "4";
+            this.editProfileForController4ToolStripMenuItem.Text = "Edit Profile for Controller 4";
+            this.editProfileForController4ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(211, 6);
             // 
             // ScpForm
             // 
@@ -530,6 +611,7 @@
             this.pnlStatus.ResumeLayout(false);
             this.gpPads.ResumeLayout(false);
             this.gpPads.PerformLayout();
+            this.cMTaskbar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -574,6 +656,16 @@
         private System.Windows.Forms.Label lbSelPro4;
         private System.Windows.Forms.Label lbSelPro3;
         private System.Windows.Forms.Label lbSelPro2;
+        private System.Windows.Forms.ContextMenuStrip cMTaskbar;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editProfileForController1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editProfileForController2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editProfileForController4ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editProfileForController3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

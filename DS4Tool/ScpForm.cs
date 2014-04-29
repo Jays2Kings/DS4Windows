@@ -73,7 +73,7 @@ namespace ScpServer
         protected Button[] ebns;
         protected Button[] dbns;
         protected Label[] protexts;
-
+        protected ToolStripMenuItem[] shortcuts;
         public ScpForm()
         {
             InitializeComponent();
@@ -85,6 +85,14 @@ namespace ScpServer
             ebns = new Button[4] { bnEditC1, bnEditC2, bnEditC3, bnEditC4 };
             dbns = new Button[4] { bnDeleteC1, bnDeleteC2, bnDeleteC3, bnDeleteC4 };
             protexts = new Label[4] { lbSelPro1, lbSelPro2, lbSelPro3, lbSelPro4 };
+
+            shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[4],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[5] };
+            foreach (ToolStripMenuItem t in shortcuts)
+                t.DropDownItemClicked += Profile_Changed_Menu;
+
         }
 
         protected void Form_Load(object sender, EventArgs e)
@@ -117,7 +125,6 @@ namespace ScpServer
             for (int i = 0; i < 4; i++)
             {
                 //Global.LoadProfile(i);
-                //Global.loadNEW(i, MapSelector.ButtonMode);
             }
             Global.ControllerStatusChange += ControllerStatusChange;
             ControllerStatusChanged();
@@ -130,23 +137,31 @@ namespace ScpServer
             {
                 string[] profiles = System.IO.Directory.GetFiles(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\");
                 int cutoff = (Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\").Length;
+                List<string> profilenames = new List<string>();
+                foreach (String s in profiles)
+                    if (s.EndsWith(".xml"))
+                        profilenames.Add(s.Substring(cutoff, s.Length - 4 - cutoff));
                 for (int i = 0; i < 4; i++)
                 {
                     cbs[i].Items.Clear();
-                    string defaultprofile = Global.getAProfile(i);
-                    string[] profileA = defaultprofile.Split('\\');
+                    shortcuts[i].DropDownItems.Clear();
+                    string[] profileA = Global.getAProfile(i).Split('\\');
                     string filename = profileA[profileA.Length - 1];
-                    foreach (String s in profiles)
-                        if (s.EndsWith(".xml"))
-                            cbs[i].Items.Add(s.Substring(cutoff, s.Length - 4 - cutoff));
-                     for (int j = 0; j < cbs[i].Items.Count; j++)
+                    cbs[i].Items.AddRange(profilenames.ToArray());
+                    foreach (string s in profilenames)
+                        shortcuts[i].DropDownItems.Add(s);
+                    for (int j = 0; j < cbs[i].Items.Count; j++)
                         if (cbs[i].Items[j] + ".xml" == filename)
                         {
                             cbs[i].SelectedIndex = j;
                             Profile_Changed(cbs[i], null);
+                            ((ToolStripMenuItem)shortcuts[i].DropDownItems[j]).Checked = true;
+                            Global.setAProfile(i, cbs[i].Text);
+                            Global.LoadProfile(i);
                             break;
-                        } 
+                        }
                     cbs[i].Items.Add("+New Profile");
+                    shortcuts[i].DropDownItems.Add("+New Profile");
                 }
             }
             catch (DirectoryNotFoundException)
@@ -236,7 +251,8 @@ namespace ScpServer
                     cbs[Index].Enabled = true;
                     ebns[Index].Enabled = true;
                     dbns[Index].Enabled = true;
-                    protexts[Index].Enabled = true;
+                    protexts[Index].Enabled = true; 
+                    shortcuts[Index].Enabled = true;
                     Global.LoadProfile(Index);
                     // As above
                     //if (checkFirst && (Pads[Index].Checked && Index != 0))
@@ -252,7 +268,7 @@ namespace ScpServer
                     protexts[Index].Enabled = false;
                     if (OptionsDialog[Index] != null)
                         OptionsDialog[Index].Close();
-
+                    shortcuts[Index].Enabled = false;
                     // As above
                     //if (Index == 0)
                        // checkFirst = false;
@@ -276,21 +292,44 @@ namespace ScpServer
         {
             Button bn = (Button)sender;
             int i = Int32.Parse(bn.Tag.ToString());
-            ComboBox[] cbs = { cBController1, cBController2, cBController3, cBController4 };
             Options opt = OptionsDialog[i] = new Options(rootHub, i, cbs[i].Text, this);
             opt.Text = "Options for Controller " + (i + 1);
             opt.Icon = this.Icon;
             opt.FormClosed += delegate
             {
                 OptionsDialog[i] = null;
-                dbns[i].Enabled = true;
-                cbs[i].Enabled = true;
-                bn.Enabled = true;
+                Enable_Controls(i, true);
             };
             opt.Show();
-            cbs[i].Enabled = false;
-            dbns[i].Enabled = false;
-            bn.Enabled = false;
+            Enable_Controls(i, false);
+
+        }
+        private void editMenu_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem em = (ToolStripMenuItem)sender;
+            int i = Int32.Parse(em.Tag.ToString());
+            foreach (ToolStripDropDownItem t in em.DropDownItems)
+                if (((ToolStripMenuItem)t).Checked)
+                {
+                    Options opt = OptionsDialog[i] = new Options(rootHub, i, ((ToolStripMenuItem)t).Text, this);
+                    opt.Text = "Options for Controller " + (i + 1);
+                    opt.Icon = this.Icon;
+                    opt.FormClosed += delegate
+                    {
+                        OptionsDialog[i] = null;
+                        Enable_Controls(i, true);
+                    };
+                    opt.Show();
+                    Enable_Controls(i, false);
+                    break;
+                }
+        }
+        private void Enable_Controls(int device, bool on)
+        {
+            ebns[device].Enabled = on;
+            dbns[device].Enabled = on;
+            cbs[device].Enabled = on;
+            shortcuts[device].Enabled = on;
         }
         private void deleteButtons_Click(object sender, EventArgs e)
         {
@@ -305,11 +344,6 @@ namespace ScpServer
             }
         }
 
-        private void notifyIcon_Click(object sender, EventArgs e)
-        {
-            this.Show();
-            WindowState = FormWindowState.Normal;
-        }
         private void hotkeysButton_Click(object sender, EventArgs e)
         {
             Hotkeys hotkeysForm = new Hotkeys();
@@ -355,30 +389,84 @@ namespace ScpServer
 
         private void Profile_Changed(object sender, EventArgs e)
         {
-            ComboBox cb = (ComboBox)sender;  
+            ComboBox cb = (ComboBox)sender;
             int tdevice = Int32.Parse(cb.Tag.ToString());
             if (cb.Items[cb.Items.Count - 1].ToString() == "+New Profile")
             {
                 if (cb.SelectedIndex < cb.Items.Count - 1)
                 {
+                    for (int i = 0; i < shortcuts[tdevice].DropDownItems.Count; i++)
+                        ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[i]).Checked = false;
+                    ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[cb.SelectedIndex]).Checked = true;
                     Global.setAProfile(tdevice, cb.Items[cb.SelectedIndex].ToString());
                     Global.Save();
                     Global.LoadProfile(tdevice);
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
-                        {
-                            Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
-                            opt.Text = "Options for Controller " + (tdevice + 1);
-                            opt.Icon = this.Icon;
-                            int i = tdevice;
-                            opt.FormClosed += delegate { OptionsDialog[i] = null; };
-                            opt.Show();
-                        }
+                {
+                    Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
+                    opt.Text = "Options for Controller " + (tdevice + 1);
+                    opt.Icon = this.Icon;
+                    int i = tdevice;
+                    opt.FormClosed += delegate
+                    {
+                        OptionsDialog[i] = null;
+                        Enable_Controls(i, true);
+                    };
+                    opt.Show();
+                    Enable_Controls(i, false);
+                }
+                if (cb.Text == "")
+                    ebns[tdevice].Text = "New";
+                else
+                    ebns[tdevice].Text = "Edit";
             }
-            if (cb.Text == "")
-                ebns[tdevice].Text = "New";
-            else
-                ebns[tdevice].Text = "Edit";
+        }
+
+        private void Profile_Changed_Menu(object sender, ToolStripItemClickedEventArgs e)
+        {
+            ToolStripMenuItem tS = (ToolStripMenuItem)sender;
+            int tdevice = Int32.Parse(tS.Tag.ToString());
+                if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1])
+                {
+                    for (int i = 0; i < tS.DropDownItems.Count; i++)
+                        ((ToolStripMenuItem)tS.DropDownItems[i]).Checked = false;
+                    ((ToolStripMenuItem)e.ClickedItem).Checked = true;
+                    cbs[tdevice].SelectedIndex = tS.DropDownItems.IndexOf(e.ClickedItem);
+                    Global.setAProfile(tdevice, e.ClickedItem.Text);
+                    Global.Save();
+                    Global.LoadProfile(tdevice);
+                }
+                else if (e.ClickedItem.Text == "+New Profile") //if +New Profile selected
+                {
+                    Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
+                    opt.Text = "Options for Controller " + (tdevice + 1);
+                    opt.Icon = this.Icon;
+                    int i = tdevice;
+                    opt.FormClosed += delegate
+                    {
+                        OptionsDialog[i] = null;
+                        Enable_Controls(i, true);
+                    };
+                    opt.Show();
+                    Enable_Controls(i, false);
+                }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            notifyIcon_Click(sender,e);
+        }
+
+        private void notifyIcon_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            WindowState = FormWindowState.Normal;
         }
     }
 

@@ -8,13 +8,14 @@ namespace DS4Control
 {
     public class Mouse : ITouchpadBehaviour
     {
-        protected DateTime pastTime;
+        protected DateTime pastTime, firstTap, TimeofEnd;
         protected Touch firstTouch;
         private DS4State s = new DS4State();
         protected int deviceNum;
         private DS4Device dev = null;
         private readonly MouseCursor cursor;
         private readonly MouseWheel wheel;
+        private bool tappedOnce = false, secondtouchbegin = false;
 
         public Mouse(int deviceID, DS4Device d)
         {
@@ -29,57 +30,63 @@ namespace DS4Control
             return "Standard Mode";
         }
 
-        protected virtual void MapClicks()
-        {
-            if (pushed != DS4Controls.None)
-                Mapping.MapTouchpadButton(deviceNum, pushed, clicked);
-        }
-
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
             cursor.touchesMoved(arg);
             wheel.touchesMoved(arg);
-            //MapClicks();
             dev.getCurrentState(s);
             synthesizeMouseButtons();
             //Console.WriteLine(arg.timeStamp.ToString("O") + " " + "moved to " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
         }
-
         public virtual void touchesBegan(object sender, TouchpadEventArgs arg)
         {
             cursor.touchesBegan(arg);
             wheel.touchesBegan(arg);
             pastTime = arg.timeStamp;
             firstTouch = arg.touches[0];
+            if (Global.getDoubleTap(deviceNum))
+            {
+                DateTime test = arg.timeStamp;
+                if (test <= (firstTap + TimeSpan.FromMilliseconds((double)Global.getTapSensitivity(deviceNum) * 1.5)) && !arg.touchButtonPressed)
+                    secondtouchbegin = true;
+            }
             dev.getCurrentState(s);
-            synthesizeMouseButtons();
-            //MapClicks();
+            synthesizeMouseButtons(); 
             //Console.WriteLine(arg.timeStamp.ToString("O") + " " + "began at " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
         }
-
         public virtual void touchesEnded(object sender, TouchpadEventArgs arg)
         {
             //Console.WriteLine(arg.timeStamp.ToString("O") + " " + "ended at " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
             if (Global.getTapSensitivity(deviceNum) != 0)
             {
-                DateTime test = arg.timeStamp;
-                if (test <= (pastTime + TimeSpan.FromMilliseconds((double)Global.getTapSensitivity(deviceNum) * 2)) && !arg.touchButtonPressed)
+
+                if (secondtouchbegin)
                 {
-                    if (Math.Abs(firstTouch.hwX - arg.touches[0].hwX) < 10 && Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 10)
-                       Mapping.MapClick(deviceNum, Mapping.Click.Left);
+                    tappedOnce = false;
+                    secondtouchbegin = false;
                 }
+                DateTime test = arg.timeStamp;
+                if (test <= (pastTime + TimeSpan.FromMilliseconds((double)Global.getTapSensitivity(deviceNum) * 2)) && !arg.touchButtonPressed && !tappedOnce)
+                    if (Math.Abs(firstTouch.hwX - arg.touches[0].hwX) < 10 && Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 10)
+                    if (Global.getDoubleTap(deviceNum))
+                    {
+                        tappedOnce = true; 
+                        firstTap = arg.timeStamp;
+                        TimeofEnd = DateTime.Now; //since arg can't be used in synthesizeMouseButtons
+                    }
+                    else
+                        Mapping.MapClick(deviceNum, Mapping.Click.Left); //this way no delay if disabled
             }
             dev.getCurrentState(s);
             //if (buttonLock)
             synthesizeMouseButtons();
-            //MapClicks();
         }
 
         protected DS4Controls pushed = DS4Controls.None;
         protected Mapping.Click clicked = Mapping.Click.None;
 
         // touch area stuff
-        public bool leftDown, rightDown, upperDown, multiDown, lowerRDown;
+        public bool leftDown, rightDown, upperDown, multiDown;
         private bool isLeft(Touch t)
         {
             return t.hwX < 1920 * 2 / 5;
@@ -92,16 +99,15 @@ namespace DS4Control
 
         public virtual void touchUnchanged(object sender, EventArgs unused)
         {
-            //MapClicks();
             dev.getCurrentState(s);
-            if (s.Touch1 || s.Touch2 || s.TouchButton)
+            //if (s.Touch1 || s.Touch2 || s.TouchButton)
                 synthesizeMouseButtons();
         }
 
         private DS4State remapped = new DS4State();
         private void synthesizeMouseButtons()
         {
-            //Mapping.MapCustom(deviceNum, s, remapped);
+            Mapping.MapCustom(deviceNum, s, remapped);
             if (leftDown)
                 Mapping.MapTouchpadButton(deviceNum, DS4Controls.TouchLeft, Mapping.Click.Left, remapped);
             if (upperDown)
@@ -110,8 +116,18 @@ namespace DS4Control
                 Mapping.MapTouchpadButton(deviceNum, DS4Controls.TouchRight, Mapping.Click.Left, remapped);
             if (multiDown)
                 Mapping.MapTouchpadButton(deviceNum, DS4Controls.TouchMulti, Mapping.Click.Right, remapped);
-            if (lowerRDown)
-                Mapping.MapClick(deviceNum, Mapping.Click.Right);
+            if (tappedOnce)
+            {
+                DateTime tester = DateTime.Now;
+                if (tester > (TimeofEnd + TimeSpan.FromMilliseconds((double)(Global.getTapSensitivity(deviceNum)) * 1.5)))
+                    {
+                        Mapping.MapClick(deviceNum, Mapping.Click.Left); 
+                        tappedOnce = false;
+                    }
+                //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
+            }
+            if (secondtouchbegin) //if tap and hold (also works as double tap)
+               Mapping.MapClick(deviceNum, Mapping.Click.Left);
             s = remapped;
             //remapped.CopyTo(s);
         }

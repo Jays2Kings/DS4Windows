@@ -47,6 +47,7 @@ namespace ScpServer
                 numUDScroll.Value = Global.getScrollSensitivity(device);
                 numUDTap.Value = Global.getTapSensitivity(device);
                 cBTap.Checked = Global.getTap(device);
+                cBDoubleTap.Checked = Global.getDoubleTap(device);
                 leftTriggerMiddlePoint.Text = Global.getLeftTriggerMiddle(device).ToString();
                 rightTriggerMiddlePoint.Text = Global.getRightTriggerMiddle(device).ToString();
                 DS4Color lowColor = Global.loadLowColor(device);
@@ -87,6 +88,7 @@ namespace ScpServer
                 Global.setTouchpadJitterCompensation(device, touchpadJitterCompensation.Checked);
                 Global.setLowerRCOn(device, cBlowerRCOn.Checked);
                 Global.setTapSensitivity(device, (byte)numUDTap.Value);
+                Global.setDoubleTap(device, cBDoubleTap.Checked);
                 Global.setScrollSensitivity(device, (byte)numUDScroll.Value);
                 Global.setIdleDisconnectTimeout(device, (int)idleDisconnectTimeout.Value);
             }
@@ -188,6 +190,7 @@ namespace ScpServer
                 Global.LoadProfile(device, buttons.ToArray());
             ToolTip tp = new ToolTip();
             tp.SetToolTip(cBlowerRCOn, "Best used with right side as mouse");
+            tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with one tap");
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
@@ -334,6 +337,7 @@ namespace ScpServer
             int disconnectTimeout;
             if (int.TryParse(idleDisconnectTimeout.Text, out disconnectTimeout))
                 Global.setIdleDisconnectTimeout(device, disconnectTimeout);
+            Global.setDoubleTap(device, cBDoubleTap.Checked);
 
             if (tBProfile.Text != null && tBProfile.Text != "" && !tBProfile.Text.Contains("\\") && !tBProfile.Text.Contains("/") && !tBProfile.Text.Contains(":") && !tBProfile.Text.Contains("*") && !tBProfile.Text.Contains("?") && !tBProfile.Text.Contains("\"") && !tBProfile.Text.Contains("<") && !tBProfile.Text.Contains(">") && !tBProfile.Text.Contains("|"))
             {
@@ -480,6 +484,10 @@ namespace ScpServer
         private void numUDTap_ValueChanged(object sender, EventArgs e)
         {
             Global.setTapSensitivity(device, (byte)numUDTap.Value);
+            if (numUDTap.Value == 0)
+                cBDoubleTap.Enabled = false;
+            else
+                cBDoubleTap.Enabled = true;
         }
 
         private void numUDScroll_ValueChanged(object sender, EventArgs e)
@@ -695,6 +703,11 @@ namespace ScpServer
             else
                 numUDTap.Value = 0;
             numUDTap.Enabled = cBTap.Checked;
+        }
+
+        private void cBDoubleTap_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setDoubleTap(device, cBDoubleTap.Checked);
         }
 
         private void tbProfile_EnterDown(object sender, KeyEventArgs e)

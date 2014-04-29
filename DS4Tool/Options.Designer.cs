@@ -129,6 +129,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.cBDoubleTap = new System.Windows.Forms.CheckBox();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.blueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenBar)).BeginInit();
@@ -414,12 +415,12 @@
             this.cBlowerRCOn.AutoSize = true;
             this.cBlowerRCOn.Checked = true;
             this.cBlowerRCOn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBlowerRCOn.Location = new System.Drawing.Point(240, 120);
+            this.cBlowerRCOn.Location = new System.Drawing.Point(165, 120);
             this.cBlowerRCOn.Name = "cBlowerRCOn";
             this.cBlowerRCOn.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cBlowerRCOn.Size = new System.Drawing.Size(109, 17);
+            this.cBlowerRCOn.Size = new System.Drawing.Size(126, 17);
             this.cBlowerRCOn.TabIndex = 39;
-            this.cBlowerRCOn.Text = "Lower Right Click";
+            this.cBlowerRCOn.Text = "Lower Right (R-Click)";
             this.cBlowerRCOn.UseVisualStyleBackColor = true;
             // 
             // lowRedValLabel
@@ -606,7 +607,7 @@
             // 
             this.touchpadJitterCompensation.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.touchpadJitterCompensation.AutoSize = true;
-            this.touchpadJitterCompensation.Location = new System.Drawing.Point(71, 120);
+            this.touchpadJitterCompensation.Location = new System.Drawing.Point(3, 120);
             this.touchpadJitterCompensation.Name = "touchpadJitterCompensation";
             this.touchpadJitterCompensation.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.touchpadJitterCompensation.Size = new System.Drawing.Size(118, 17);
@@ -1350,6 +1351,7 @@
             this.tabTouchPad.Controls.Add(this.numUDTap);
             this.tabTouchPad.Controls.Add(this.numUDScroll);
             this.tabTouchPad.Controls.Add(this.numUDTouch);
+            this.tabTouchPad.Controls.Add(this.cBDoubleTap);
             this.tabTouchPad.Controls.Add(this.cBlowerRCOn);
             this.tabTouchPad.Controls.Add(this.touchpadJitterCompensation);
             this.tabTouchPad.Controls.Add(this.bnTouchUpper);
@@ -1703,6 +1705,21 @@
             this.label4.TabIndex = 84;
             this.label4.Text = "Profile Name:";
             // 
+            // cBDoubleTap
+            // 
+            this.cBDoubleTap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cBDoubleTap.AutoSize = true;
+            this.cBDoubleTap.Checked = true;
+            this.cBDoubleTap.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBDoubleTap.Location = new System.Drawing.Point(344, 121);
+            this.cBDoubleTap.Name = "cBDoubleTap";
+            this.cBDoubleTap.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cBDoubleTap.Size = new System.Drawing.Size(82, 17);
+            this.cBDoubleTap.TabIndex = 39;
+            this.cBDoubleTap.Text = "Double Tap";
+            this.cBDoubleTap.UseVisualStyleBackColor = true;
+            this.cBDoubleTap.CheckedChanged += new System.EventHandler(this.cBDoubleTap_CheckedChanged);
+            // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
@@ -1866,6 +1883,7 @@
         private System.Windows.Forms.CheckBox cBSlide;
         private System.Windows.Forms.NumericUpDown numUDTap;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox cBDoubleTap;
     }
 }
 

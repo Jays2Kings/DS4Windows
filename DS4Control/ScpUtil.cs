@@ -91,83 +91,83 @@ namespace DS4Control
         public static DS4Color loadColor(int device)
         {
             DS4Color color = new DS4Color();
-            color.red = m_Config.m_Leds[0];
-            color.green = m_Config.m_Leds[1];
-            color.blue = m_Config.m_Leds[2];
+            color.red = m_Config.m_Leds[device][0];
+            color.green = m_Config.m_Leds[device][1];
+            color.blue = m_Config.m_Leds[device][2];
             return color;
         }
         public static void saveColor(int device, byte red, byte green, byte blue)
         {
-            m_Config.m_Leds[0] = red;
-            m_Config.m_Leds[1] = green;
-            m_Config.m_Leds[2] = blue;
+            m_Config.m_Leds[device][0] = red;
+            m_Config.m_Leds[device][1] = green;
+            m_Config.m_Leds[device][2] = blue;
         }
 
         public static byte loadRumbleBoost(int device)
         {
-            return m_Config.m_Rumble;
+            return m_Config.m_Rumble[device];
         }
         public static void saveRumbleBoost(int device, byte boost)
         {
-            m_Config.m_Rumble = boost;
+            m_Config.m_Rumble[device] = boost;
 
         }
 
         public static bool getRumbleSwap(int device)
         {
-            return m_Config.rumbleSwap;
+            return m_Config.rumbleSwap[device];
         }
         public static void setRumbleSwap(int device, bool swap)
         {
-            m_Config.rumbleSwap = swap;
+            m_Config.rumbleSwap[device] = swap;
         }
 
         public static bool getFlushHIDQueue(int device)
         {
-            return m_Config.flushHIDQueue;
+            return m_Config.flushHIDQueue[device];
         }
         public static void setFlushHIDQueue(int device, bool setting)
         {
-            m_Config.flushHIDQueue = setting;
+            m_Config.flushHIDQueue[device] = setting;
         }
 
         public static int getIdleDisconnectTimeout(int device)
         {
-            return m_Config.idleDisconnectTimeout;
+            return m_Config.idleDisconnectTimeout[device];
         }
         public static void setIdleDisconnectTimeout(int device, int seconds)
         {
-            m_Config.idleDisconnectTimeout = seconds;
+            m_Config.idleDisconnectTimeout[device] = seconds;
         }
 
         public static byte getTouchSensitivity(int device)
         {
-            return m_Config.touchSensitivity;
+            return m_Config.touchSensitivity[device];
         }
         public static void setTouchSensitivity(int device, byte sen)
         {
-            m_Config.touchSensitivity = sen;
+            m_Config.touchSensitivity[device] = sen;
         }       
 
         public static void setFlashWhenLowBattery(int device, bool flash)
         {
-            m_Config.flashLedLowBattery = flash;
+            m_Config.flashLedLowBattery[device] = flash;
 
         }
         public static bool getFlashWhenLowBattery(int device)
         {
-            return m_Config.flashLedLowBattery;
+            return m_Config.flashLedLowBattery[device];
 
         }
 
         public static void setLedAsBatteryIndicator(int device, bool ledAsBattery)
         {
-            m_Config.ledAsBattery = ledAsBattery;
+            m_Config.ledAsBattery[device] = ledAsBattery;
 
         }
         public static bool getLedAsBatteryIndicator(int device)
         {
-            return m_Config.ledAsBattery;
+            return m_Config.ledAsBattery[device];
         }
         
         public static void setUseExclusiveMode(bool exclusive)
@@ -182,64 +182,64 @@ namespace DS4Control
         // New settings
         public static void saveLowColor(int device, byte red, byte green, byte blue)
         {
-            m_Config.m_LowLeds[0] = red;
-            m_Config.m_LowLeds[1] = green;
-            m_Config.m_LowLeds[2] = blue;
+            m_Config.m_LowLeds[device][0] = red;
+            m_Config.m_LowLeds[device][1] = green;
+            m_Config.m_LowLeds[device][2] = blue;
         }
         public static DS4Color loadLowColor(int device)
         {
             DS4Color color = new DS4Color();
-            color.red = m_Config.m_LowLeds[0];
-            color.green = m_Config.m_LowLeds[1];
-            color.blue = m_Config.m_LowLeds[2];
+            color.red = m_Config.m_LowLeds[device][0];
+            color.green = m_Config.m_LowLeds[device][1];
+            color.blue = m_Config.m_LowLeds[device][2];
             return color;
         }
         public static void setTapSensitivity(int device, byte sen)
         {
-            m_Config.tapSensitivity = sen;
+            m_Config.tapSensitivity[device] = sen;
         }
         public static byte getTapSensitivity(int device)
         {
-            return m_Config.tapSensitivity;
+            return m_Config.tapSensitivity[device];
         }
         public static void setDoubleTap(int device, bool on)
         {
-            m_Config.doubleTap = on;
+            m_Config.doubleTap[device] = on;
         }
         public static bool getDoubleTap(int device)
         {
-            return m_Config.doubleTap;
+            return m_Config.doubleTap[device];
         }
         public static bool getTap(int device)
         {
-            if (m_Config.tapSensitivity == 0)
+            if (m_Config.tapSensitivity[device] == 0)
                 return false;
             else
                 return true;
         }
         public static void setScrollSensitivity(int device, int sen)
         {
-            m_Config.scrollSensitivity = sen;
+            m_Config.scrollSensitivity[device] = sen;
         }
         public static int getScrollSensitivity(int device)
         {
-            return m_Config.scrollSensitivity;
+            return m_Config.scrollSensitivity[device];
         }
         public static void setLowerRCOn(int device, bool twoFingerRC)
         {
-            m_Config.lowerRCOn = twoFingerRC;
+            m_Config.lowerRCOn[device] = twoFingerRC;
         }
         public static bool getLowerRCOn(int device)
         {
-            return m_Config.lowerRCOn;
+            return m_Config.lowerRCOn[device];
         }
         public static void setTouchpadJitterCompensation(int device, bool enabled)
         {
-            m_Config.touchpadJitterCompensation = enabled;
+            m_Config.touchpadJitterCompensation[device] = enabled;
         }
         public static bool getTouchpadJitterCompensation(int device)
         {
-            return m_Config.touchpadJitterCompensation;
+            return m_Config.touchpadJitterCompensation[device];
         }
         public static void setStartMinimized(bool startMinimized)
         {
@@ -268,20 +268,20 @@ namespace DS4Control
 
         public static double getLeftTriggerMiddle(int device)
         {
-            return m_Config.m_LeftTriggerMiddle;
+            return m_Config.m_LeftTriggerMiddle[device];
         }
         public static void setLeftTriggerMiddle(int device, double value)
         {
-            m_Config.m_LeftTriggerMiddle = value;
+            m_Config.m_LeftTriggerMiddle[device] = value;
         }
 
         public static double getRightTriggerMiddle(int device)
         {
-            return m_Config.m_RightTriggerMiddle;
+            return m_Config.m_RightTriggerMiddle[device];
         }
         public static void setRightTriggerMiddle(int device, double value)
         {
-            m_Config.m_RightTriggerMiddle = value;
+            m_Config.m_RightTriggerMiddle[device] = value;
         }
         public static void setAProfile(int device, string filepath)
         {
@@ -368,26 +368,37 @@ namespace DS4Control
 
     public class BackingStore
     {
-        protected String m_File = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\ScpControl.xml";
         protected String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
 
-        public Boolean touchpadJitterCompensation = true;
-        public Boolean lowerRCOn;
-        public Boolean ledAsBattery = false;
-        public Boolean flashLedLowBattery = false;
-        public double m_LeftTriggerMiddle = 0.5, m_RightTriggerMiddle = 0.5;
-        public String customMapPath = String.Empty, buttonModeMapPath = String.Empty;
+        public Boolean[] touchpadJitterCompensation = {true, true, true, true};
+        public Boolean[] lowerRCOn = { false, false, false, false };
+        public Boolean[] ledAsBattery = { false, false, false, false };
+        public Boolean[] flashLedLowBattery = { false, false, false, false };
+        public double[] m_LeftTriggerMiddle = { 0.5, 0.5, 0.5, 0.5 }, m_RightTriggerMiddle = { 0.5, 0.5, 0.5, 0.5 };
         public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty };
-        public Byte m_Rumble = 100;
-        public Boolean rumbleSwap = false;
-        public Byte touchSensitivity = 100;
-        public Byte tapSensitivity = 0;
-        public int scrollSensitivity = 0;
-        public Byte[] m_LowLeds = new Byte[] { 0, 0, 0 };
-        public Byte[] m_Leds =  new Byte[] {0,0,255};
-        public bool flushHIDQueue = true;
-        public int idleDisconnectTimeout = 0;
+        public Byte[] m_Rumble = { 100, 100, 100, 100 };
+        public Boolean[] rumbleSwap = { false, false, false, false };
+        public Byte[] touchSensitivity = { 100, 100, 100, 100 };
+        public Byte[] tapSensitivity = {0, 0, 0, 0};
+        public bool[] doubleTap = { false, false, false, false };
+        public int[] scrollSensitivity = { 0, 0, 0, 0 };
+        public Byte[][] m_LowLeds = new Byte[][]
+        {
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0}
+        };
+        public Byte[][] m_Leds = new Byte[][]
+        {
+            new Byte[] {0,0,255},
+            new Byte[] {255,0,0},
+            new Byte[] {0,255,0},
+            new Byte[] {255,0,255},
+        };
+        public bool[] flushHIDQueue = { true, true, true, true };
+        public int[] idleDisconnectTimeout = { 0, 0, 0, 0 };
 
         public Boolean useExclusiveMode = false;
         public Int32 formWidth = 782;
@@ -397,7 +408,6 @@ namespace DS4Control
         public Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = null;
         public Dictionary<DS4Controls, UInt16> customMapKeys = null;
         public Dictionary<DS4Controls, X360Controls> customMapButtons = null;
-        public bool doubleTap = false;
         public BackingStore()
         {
             //for (int i = 0; i < 4; i++)
@@ -634,58 +644,55 @@ namespace DS4Control
 
                     m_Xdoc.Load(profilePath[device]);
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Red"); Byte.TryParse(Item.InnerText, out m_Leds[0]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Red"); Byte.TryParse(Item.InnerText, out m_Leds[device][0]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Green"); Byte.TryParse(Item.InnerText, out m_Leds[1]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Green"); Byte.TryParse(Item.InnerText, out m_Leds[device][1]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[2]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[device][2]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/rumbleSwap"); Boolean.TryParse(Item.InnerText, out rumbleSwap); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/rumbleSwap"); Boolean.TryParse(Item.InnerText, out rumbleSwap[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[0]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][0]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[1]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][1]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[2]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][2]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/doubleTap"); Boolean.TryParse(Item.InnerText, out doubleTap); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/doubleTap"); Boolean.TryParse(Item.InnerText, out doubleTap[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity[device]); }
                     catch { missingSetting = true; }
-                    // XXX This sucks, let's do better at removing old values that are no longer valid....
-                    if (scrollSensitivity > 10)
-                        scrollSensitivity = 5;
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
                     catch { missingSetting = true; }
 
                     DS4KeyType keyType;
@@ -781,69 +788,57 @@ namespace DS4Control
 
                     m_Xdoc.Load(profilePath[device]);
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Red"); Byte.TryParse(Item.InnerText, out m_Leds[0]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Red"); Byte.TryParse(Item.InnerText, out m_Leds[device][0]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Green"); Byte.TryParse(Item.InnerText, out m_Leds[1]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Green"); Byte.TryParse(Item.InnerText, out m_Leds[device][1]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[2]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[device][2]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/rumbleSwap"); Boolean.TryParse(Item.InnerText, out rumbleSwap); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/rumbleSwap"); Boolean.TryParse(Item.InnerText, out rumbleSwap[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[0]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][0]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[1]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][1]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[2]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][2]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/doubleTap"); Boolean.TryParse(Item.InnerText, out doubleTap); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/doubleTap"); Boolean.TryParse(Item.InnerText, out doubleTap[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity[device]); }
                     catch { missingSetting = true; }
-                    // XXX This sucks, let's do better at removing old values that are no longer valid....
-                    if (scrollSensitivity > 10)
-                        scrollSensitivity = 5;
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
                     catch { missingSetting = true; }
 
-
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/useExclusiveMode"); Boolean.TryParse(Item.InnerText, out useExclusiveMode); }
-                    catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/startMinimized"); Boolean.TryParse(Item.InnerText, out startMinimized); }
-                    catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/formWidth"); Int32.TryParse(Item.InnerText, out formWidth); }
-                    catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/formHeight"); Int32.TryParse(Item.InnerText, out formHeight); }
-                    catch { missingSetting = true; }
                     DS4KeyType keyType;
                     UInt16 wvk;
                     XmlNode ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/Control/Button");

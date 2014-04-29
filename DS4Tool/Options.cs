@@ -342,7 +342,7 @@ namespace ScpServer
             if (tBProfile.Text != null && tBProfile.Text != "" && !tBProfile.Text.Contains("\\") && !tBProfile.Text.Contains("/") && !tBProfile.Text.Contains(":") && !tBProfile.Text.Contains("*") && !tBProfile.Text.Contains("?") && !tBProfile.Text.Contains("\"") && !tBProfile.Text.Contains("<") && !tBProfile.Text.Contains(">") && !tBProfile.Text.Contains("|"))
             {
                 Global.setAProfile(device, tBProfile.Text);
-                Global.SaveProfile(tBProfile.Text, buttons.ToArray());
+                Global.SaveProfile(device, tBProfile.Text, buttons.ToArray());
                 Global.Save();
                 this.Close();
             }

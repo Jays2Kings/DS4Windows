@@ -427,19 +427,10 @@ namespace ScpServer
         {
             ToolStripMenuItem tS = (ToolStripMenuItem)sender;
             int tdevice = Int32.Parse(tS.Tag.ToString());
-                if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1])
+            if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1])
+                if (((ToolStripMenuItem)e.ClickedItem).Checked)
                 {
-                    for (int i = 0; i < tS.DropDownItems.Count; i++)
-                        ((ToolStripMenuItem)tS.DropDownItems[i]).Checked = false;
-                    ((ToolStripMenuItem)e.ClickedItem).Checked = true;
-                    cbs[tdevice].SelectedIndex = tS.DropDownItems.IndexOf(e.ClickedItem);
-                    Global.setAProfile(tdevice, e.ClickedItem.Text);
-                    Global.Save();
-                    Global.LoadProfile(tdevice);
-                }
-                else if (e.ClickedItem.Text == "+New Profile") //if +New Profile selected
-                {
-                    Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
+                    Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, e.ClickedItem.Text, this);
                     opt.Text = "Options for Controller " + (tdevice + 1);
                     opt.Icon = this.Icon;
                     int i = tdevice;
@@ -451,6 +442,30 @@ namespace ScpServer
                     opt.Show();
                     Enable_Controls(i, false);
                 }
+                else
+                {
+                    for (int i = 0; i < tS.DropDownItems.Count; i++)
+                        ((ToolStripMenuItem)tS.DropDownItems[i]).Checked = false;
+                    ((ToolStripMenuItem)e.ClickedItem).Checked = true;
+                    cbs[tdevice].SelectedIndex = tS.DropDownItems.IndexOf(e.ClickedItem);
+                    Global.setAProfile(tdevice, e.ClickedItem.Text);
+                    Global.Save();
+                    Global.LoadProfile(tdevice);
+                }
+            else if (e.ClickedItem.Text == "+New Profile") //if +New Profile selected
+            {
+                Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
+                opt.Text = "Options for Controller " + (tdevice + 1);
+                opt.Icon = this.Icon;
+                int i = tdevice;
+                opt.FormClosed += delegate
+                {
+                    OptionsDialog[i] = null;
+                    Enable_Controls(i, true);
+                };
+                opt.Show();
+                Enable_Controls(i, false);
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

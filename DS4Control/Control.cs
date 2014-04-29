@@ -37,7 +37,6 @@ namespace DS4Control
                 PreviousState[i] = new DS4State();
                 ExposedState[i] = new DS4StateExposed(CurrentState[i]);
             }
-            GiveMouses();
         }
 
         private void WarnExclusiveModeFailure(DS4Device device)
@@ -242,28 +241,6 @@ namespace DS4Control
                 return "None";
         }
 
-        /* public string[] getAvailableControllerModes(int index)
-        {
-            List<string> modes = new List<String>();
-            if (DS4Controllers[index] != null)
-                foreach (ITouchpadBehaviour mode in modeSwitcher[index].getAvailableModes())
-                    modes.Add(mode.ToString());
-            return modes.ToArray();
-        } 
-
-        public string getDS4ControllerMode(int index)
-        {
-            if (DS4Controllers[index] != null)
-            {
-                DS4Device d = DS4Controllers[index];
-                if (!d.IsAlive())
-                    return null; // awaiting the first battery charge indication
-                return modeSwitcher[index].ToString();
-            }
-            else
-                return "couldn't find";
-        } */
-
         private int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         //Called when DS4 is disconnected or timed out
         protected virtual void On_DS4Removal(object sender, EventArgs e)
@@ -346,12 +323,8 @@ namespace DS4Control
             }
         }
 
-        public void GiveMouses()
-        {
-            Mapping.GetMouses(ref touchPad);
-        }
         bool touchreleased = true;
-        byte oldtouchvalue;
+        byte oldtouchvalue = 0;
         protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
         {
             DS4Device d = DS4Controllers[deviceID];

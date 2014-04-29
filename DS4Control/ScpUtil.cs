@@ -305,25 +305,24 @@ namespace DS4Control
         }
         public static bool getHasCustomKeysorButtons(int device)
         {
-            return m_Config.customMapButtons.Count > 0
-                || m_Config.customMapKeys.Count > 0;
+            return m_Config.customMapButtons[device].Count > 0
+                || m_Config.customMapKeys[device].Count > 0;
         }
         public static Dictionary<DS4Controls, X360Controls> getCustomButtons(int device)
         {
-            return m_Config.customMapButtons;
+            return m_Config.customMapButtons[device];
         }
         public static Dictionary<DS4Controls, ushort> getCustomKeys(int device)
         {
-            return m_Config.customMapKeys;
+            return m_Config.customMapKeys[device];
         }
         public static Dictionary<DS4Controls, DS4KeyType> getCustomKeyTypes(int device)
         {
-            return m_Config.customMapKeyTypes;
+            return m_Config.customMapKeyTypes[device];
         }
-
-        public static void Load()
+        public static bool Load()
         {
-            m_Config.Load();
+            return m_Config.Load();
         }
         public static void LoadProfile(int device, System.Windows.Forms.Control[] buttons)
         {
@@ -405,38 +404,37 @@ namespace DS4Control
         public Int32 formHeight = 550;
         public Boolean startMinimized = false;
 
-        public Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = null;
-        public Dictionary<DS4Controls, UInt16> customMapKeys = null;
-        public Dictionary<DS4Controls, X360Controls> customMapButtons = null;
+        public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = {null, null, null, null};
+        public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null };
+        public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null };
         public BackingStore()
         {
-            //for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
-                //for (int j = (int)MapSelector.Standard; j <= (int)MapSelector.ButtonMode; j++)
                 {
-                    customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
-                    customMapKeys = new Dictionary<DS4Controls, UInt16>();
-                    customMapButtons = new Dictionary<DS4Controls, X360Controls>();
+                    customMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
+                    customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
+                    customMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
                 }
             }
         }
 
         public X360Controls GetCustomButton(int device, DS4Controls controlName)
         {
-            if (customMapButtons.ContainsKey(controlName))
-                return customMapButtons[controlName];
+            if (customMapButtons[device].ContainsKey(controlName))
+                return customMapButtons[device][controlName];
             else return X360Controls.None;
         }
         public UInt16 GetCustomKey(int device, DS4Controls controlName)
         {
-            if (customMapKeys.ContainsKey(controlName))
-                return customMapKeys[controlName];
+            if (customMapKeys[device].ContainsKey(controlName))
+                return customMapKeys[device][controlName];
             else return 0;
         }
         public DS4KeyType GetCustomKeyType(int device, DS4Controls controlName)
         {
-            if (customMapKeyTypes.ContainsKey(controlName))
-                return customMapKeyTypes[controlName];
+            if (customMapKeyTypes[device].ContainsKey(controlName))
+                return customMapKeyTypes[device][controlName];
             else return 0;
         }
 
@@ -762,9 +760,9 @@ namespace DS4Control
 
             if (Loaded)
             {
-                this.customMapButtons = customMapButtons;
-                this.customMapKeys = customMapKeys;
-                this.customMapKeyTypes = customMapKeyTypes;
+                this.customMapButtons[device] = customMapButtons;
+                this.customMapKeys[device] = customMapKeys;
+                this.customMapKeyTypes[device] = customMapKeyTypes;
             }
             // Only add missing settings if the actual load was graceful
             if (missingSetting && Loaded)
@@ -871,9 +869,9 @@ namespace DS4Control
 
             if (Loaded)
             {
-                this.customMapButtons = customMapButtons;
-                this.customMapKeys = customMapKeys;
-                this.customMapKeyTypes = customMapKeyTypes;
+                this.customMapButtons[device] = customMapButtons;
+                this.customMapKeys[device] = customMapKeys;
+                this.customMapKeyTypes[device] = customMapKeyTypes;
             }
             // Only add missing settings if the actual load was graceful
             if (missingSetting && Loaded)
@@ -885,7 +883,7 @@ namespace DS4Control
         public bool Load()
         {
             Boolean Loaded = true;
-            Boolean missingSetting = false;
+            /*Boolean missingSetting = false;
 
             try
             {
@@ -916,8 +914,8 @@ namespace DS4Control
             }
             catch { }
             if (missingSetting)
-                Save();
-            return Loaded;
+                Save(); */
+            return Loaded; 
         }
         public bool Save()
         {

@@ -33,6 +33,7 @@ namespace DS4Control
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
             cursor.touchesMoved(arg);
+            if (Math.Abs(firstTouch.hwX - arg.touches[0].hwX) > 5 && Math.Abs(firstTouch.hwY - arg.touches[0].hwY) > 5)
             wheel.touchesMoved(arg);
             dev.getCurrentState(s);
             synthesizeMouseButtons();

@@ -57,7 +57,6 @@
             this.lowBlueValLabel = new System.Windows.Forms.Label();
             this.fullColorLabel = new System.Windows.Forms.Label();
             this.lowColorLabel = new System.Windows.Forms.Label();
-            this.lowLedCheckBox = new System.Windows.Forms.CheckBox();
             this.lowLedPanel = new System.Windows.Forms.Panel();
             this.lowColorChooserButton = new System.Windows.Forms.Button();
             this.fullLedPanel = new System.Windows.Forms.Panel();
@@ -122,18 +121,24 @@
             this.bnTouchRight = new System.Windows.Forms.Button();
             this.bnTouchLeft = new System.Windows.Forms.Button();
             this.tabLightBar = new System.Windows.Forms.TabPage();
+            this.numUDRainbow = new System.Windows.Forms.NumericUpDown();
+            this.pBRainbow = new System.Windows.Forms.PictureBox();
+            this.lBspc = new System.Windows.Forms.Label();
             this.tabRumble = new System.Windows.Forms.TabPage();
             this.rumbleSwap = new System.Windows.Forms.CheckBox();
             this.tabOther = new System.Windows.Forms.TabPage();
+            this.lBButtonMouseSens = new System.Windows.Forms.Label();
+            this.lBMouseSens = new System.Windows.Forms.Label();
             this.idleDisconnectTimeout = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.tBMouseSens = new System.Windows.Forms.TrackBar();
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tBMouseSens = new System.Windows.Forms.TrackBar();
-            this.lBMouseSens = new System.Windows.Forms.Label();
+            this.lowRedBar = new System.Windows.Forms.TrackBar();
+            this.lowGreenBar = new System.Windows.Forms.TrackBar();
+            this.lowBlueBar = new System.Windows.Forms.TrackBar();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
-            this.lBButtonMouseSens = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.blueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.redBar)).BeginInit();
@@ -153,10 +158,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDScroll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDTouch)).BeginInit();
             this.tabLightBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDRainbow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).BeginInit();
             this.tabRumble.SuspendLayout();
             this.tabOther.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).BeginInit();
             this.SuspendLayout();
             // 
             // BlueLabel
@@ -191,10 +201,10 @@
             this.blueBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.blueBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.blueBar.Location = new System.Drawing.Point(63, 100);
+            this.blueBar.Location = new System.Drawing.Point(0, 95);
             this.blueBar.Maximum = 255;
             this.blueBar.Name = "blueBar";
-            this.blueBar.Size = new System.Drawing.Size(288, 45);
+            this.blueBar.Size = new System.Drawing.Size(321, 45);
             this.blueBar.TabIndex = 12;
             this.blueBar.TickFrequency = 25;
             this.blueBar.TickStyle = System.Windows.Forms.TickStyle.None;
@@ -206,10 +216,10 @@
             this.greenBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.greenBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.greenBar.Location = new System.Drawing.Point(63, 70);
+            this.greenBar.Location = new System.Drawing.Point(0, 65);
             this.greenBar.Maximum = 255;
             this.greenBar.Name = "greenBar";
-            this.greenBar.Size = new System.Drawing.Size(288, 45);
+            this.greenBar.Size = new System.Drawing.Size(321, 45);
             this.greenBar.TabIndex = 11;
             this.greenBar.TickFrequency = 25;
             this.greenBar.TickStyle = System.Windows.Forms.TickStyle.None;
@@ -221,10 +231,10 @@
             this.redBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.redBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.redBar.Location = new System.Drawing.Point(63, 40);
+            this.redBar.Location = new System.Drawing.Point(0, 35);
             this.redBar.Maximum = 255;
             this.redBar.Name = "redBar";
-            this.redBar.Size = new System.Drawing.Size(288, 45);
+            this.redBar.Size = new System.Drawing.Size(321, 45);
             this.redBar.TabIndex = 10;
             this.redBar.TickFrequency = 25;
             this.redBar.TickStyle = System.Windows.Forms.TickStyle.None;
@@ -233,7 +243,8 @@
             // 
             // blueValLabel
             // 
-            this.blueValLabel.Location = new System.Drawing.Point(2, 59);
+            this.blueValLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.blueValLabel.Location = new System.Drawing.Point(321, 95);
             this.blueValLabel.Name = "blueValLabel";
             this.blueValLabel.Size = new System.Drawing.Size(30, 13);
             this.blueValLabel.TabIndex = 16;
@@ -242,7 +253,8 @@
             // 
             // greenValLabel
             // 
-            this.greenValLabel.Location = new System.Drawing.Point(2, 30);
+            this.greenValLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.greenValLabel.Location = new System.Drawing.Point(321, 66);
             this.greenValLabel.Name = "greenValLabel";
             this.greenValLabel.Size = new System.Drawing.Size(30, 13);
             this.greenValLabel.TabIndex = 17;
@@ -251,7 +263,8 @@
             // 
             // redValLabel
             // 
-            this.redValLabel.Location = new System.Drawing.Point(2, 1);
+            this.redValLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.redValLabel.Location = new System.Drawing.Point(321, 37);
             this.redValLabel.Name = "redValLabel";
             this.redValLabel.Size = new System.Drawing.Size(30, 13);
             this.redValLabel.TabIndex = 18;
@@ -372,7 +385,7 @@
             // 
             this.colorLabel.AutoSize = true;
             this.colorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colorLabel.Location = new System.Drawing.Point(16, 20);
+            this.colorLabel.Location = new System.Drawing.Point(16, 13);
             this.colorLabel.Name = "colorLabel";
             this.colorLabel.Size = new System.Drawing.Size(36, 13);
             this.colorLabel.TabIndex = 29;
@@ -393,7 +406,7 @@
             // 
             this.batteryLed.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.batteryLed.AutoSize = true;
-            this.batteryLed.Location = new System.Drawing.Point(149, 136);
+            this.batteryLed.Location = new System.Drawing.Point(307, 140);
             this.batteryLed.Name = "batteryLed";
             this.batteryLed.Size = new System.Drawing.Size(115, 17);
             this.batteryLed.TabIndex = 33;
@@ -405,8 +418,9 @@
             // 
             this.flashLed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.flashLed.AutoSize = true;
-            this.flashLed.Location = new System.Drawing.Point(9, 136);
+            this.flashLed.Location = new System.Drawing.Point(9, 139);
             this.flashLed.Name = "flashLed";
+            this.flashLed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.flashLed.Size = new System.Drawing.Size(116, 17);
             this.flashLed.TabIndex = 34;
             this.flashLed.Text = "Battery Level Flash";
@@ -429,7 +443,7 @@
             // 
             // lowRedValLabel
             // 
-            this.lowRedValLabel.Location = new System.Drawing.Point(36, 43);
+            this.lowRedValLabel.Location = new System.Drawing.Point(144, 39);
             this.lowRedValLabel.Name = "lowRedValLabel";
             this.lowRedValLabel.Size = new System.Drawing.Size(30, 13);
             this.lowRedValLabel.TabIndex = 40;
@@ -438,7 +452,7 @@
             // 
             // lowGreenValLabel
             // 
-            this.lowGreenValLabel.Location = new System.Drawing.Point(36, 72);
+            this.lowGreenValLabel.Location = new System.Drawing.Point(144, 68);
             this.lowGreenValLabel.Name = "lowGreenValLabel";
             this.lowGreenValLabel.Size = new System.Drawing.Size(30, 13);
             this.lowGreenValLabel.TabIndex = 41;
@@ -447,7 +461,7 @@
             // 
             // lowBlueValLabel
             // 
-            this.lowBlueValLabel.Location = new System.Drawing.Point(36, 101);
+            this.lowBlueValLabel.Location = new System.Drawing.Point(144, 97);
             this.lowBlueValLabel.Name = "lowBlueValLabel";
             this.lowBlueValLabel.Size = new System.Drawing.Size(30, 13);
             this.lowBlueValLabel.TabIndex = 42;
@@ -456,47 +470,39 @@
             // 
             // fullColorLabel
             // 
+            this.fullColorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fullColorLabel.AutoSize = true;
-            this.fullColorLabel.Location = new System.Drawing.Point(3, 20);
+            this.fullColorLabel.Location = new System.Drawing.Point(216, 4);
             this.fullColorLabel.Name = "fullColorLabel";
-            this.fullColorLabel.Size = new System.Drawing.Size(23, 13);
+            this.fullColorLabel.Size = new System.Drawing.Size(55, 13);
             this.fullColorLabel.TabIndex = 43;
-            this.fullColorLabel.Text = "Full";
+            this.fullColorLabel.Text = "When Full";
+            this.fullColorLabel.Visible = false;
+            this.fullColorLabel.Click += new System.EventHandler(this.fullColorLabel_Click);
             // 
             // lowColorLabel
             // 
             this.lowColorLabel.AutoSize = true;
-            this.lowColorLabel.Location = new System.Drawing.Point(36, 20);
+            this.lowColorLabel.Location = new System.Drawing.Point(40, 4);
             this.lowColorLabel.Name = "lowColorLabel";
-            this.lowColorLabel.Size = new System.Drawing.Size(27, 13);
+            this.lowColorLabel.Size = new System.Drawing.Size(68, 13);
             this.lowColorLabel.TabIndex = 44;
-            this.lowColorLabel.Text = "Low";
-            // 
-            // lowLedCheckBox
-            // 
-            this.lowLedCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lowLedCheckBox.AutoSize = true;
-            this.lowLedCheckBox.Location = new System.Drawing.Point(284, 136);
-            this.lowLedCheckBox.Name = "lowLedCheckBox";
-            this.lowLedCheckBox.Size = new System.Drawing.Size(128, 17);
-            this.lowLedCheckBox.TabIndex = 45;
-            this.lowLedCheckBox.Text = "Set Low-Battery Color";
-            this.lowLedCheckBox.UseVisualStyleBackColor = true;
-            this.lowLedCheckBox.Visible = false;
-            this.lowLedCheckBox.CheckedChanged += new System.EventHandler(this.lowBatteryLed_CheckedChanged);
+            this.lowColorLabel.Text = "When Empty";
             // 
             // lowLedPanel
             // 
             this.lowLedPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lowLedPanel.Controls.Add(this.lowBlueBar);
             this.lowLedPanel.Controls.Add(this.lowColorChooserButton);
-            this.lowLedPanel.Controls.Add(this.fullColorLabel);
             this.lowLedPanel.Controls.Add(this.lowRedValLabel);
             this.lowLedPanel.Controls.Add(this.lowColorLabel);
             this.lowLedPanel.Controls.Add(this.lowGreenValLabel);
             this.lowLedPanel.Controls.Add(this.lowBlueValLabel);
-            this.lowLedPanel.Location = new System.Drawing.Point(356, 4);
+            this.lowLedPanel.Controls.Add(this.lowGreenBar);
+            this.lowLedPanel.Controls.Add(this.lowRedBar);
+            this.lowLedPanel.Location = new System.Drawing.Point(240, 3);
             this.lowLedPanel.Name = "lowLedPanel";
-            this.lowLedPanel.Size = new System.Drawing.Size(63, 129);
+            this.lowLedPanel.Size = new System.Drawing.Size(174, 127);
             this.lowLedPanel.TabIndex = 46;
             this.lowLedPanel.Visible = false;
             // 
@@ -504,7 +510,7 @@
             // 
             this.lowColorChooserButton.BackColor = System.Drawing.Color.White;
             this.lowColorChooserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lowColorChooserButton.Location = new System.Drawing.Point(42, 3);
+            this.lowColorChooserButton.Location = new System.Drawing.Point(150, 3);
             this.lowColorChooserButton.Name = "lowColorChooserButton";
             this.lowColorChooserButton.Size = new System.Drawing.Size(13, 13);
             this.lowColorChooserButton.TabIndex = 49;
@@ -515,11 +521,16 @@
             // 
             this.fullLedPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fullLedPanel.Controls.Add(this.redValLabel);
+            this.fullLedPanel.Controls.Add(this.fullColorLabel);
             this.fullLedPanel.Controls.Add(this.blueValLabel);
             this.fullLedPanel.Controls.Add(this.greenValLabel);
-            this.fullLedPanel.Location = new System.Drawing.Point(355, 46);
+            this.fullLedPanel.Controls.Add(this.colorChooserButton);
+            this.fullLedPanel.Controls.Add(this.blueBar);
+            this.fullLedPanel.Controls.Add(this.greenBar);
+            this.fullLedPanel.Controls.Add(this.redBar);
+            this.fullLedPanel.Location = new System.Drawing.Point(63, 3);
             this.fullLedPanel.Name = "fullLedPanel";
-            this.fullLedPanel.Size = new System.Drawing.Size(28, 83);
+            this.fullLedPanel.Size = new System.Drawing.Size(351, 127);
             this.fullLedPanel.TabIndex = 47;
             // 
             // colorChooserButton
@@ -527,7 +538,7 @@
             this.colorChooserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.colorChooserButton.BackColor = System.Drawing.Color.White;
             this.colorChooserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.colorChooserButton.Location = new System.Drawing.Point(364, 7);
+            this.colorChooserButton.Location = new System.Drawing.Point(329, 4);
             this.colorChooserButton.Name = "colorChooserButton";
             this.colorChooserButton.Size = new System.Drawing.Size(13, 13);
             this.colorChooserButton.TabIndex = 48;
@@ -1598,18 +1609,16 @@
             // 
             // tabLightBar
             // 
+            this.tabLightBar.Controls.Add(this.numUDRainbow);
+            this.tabLightBar.Controls.Add(this.pBRainbow);
             this.tabLightBar.Controls.Add(this.flashLed);
-            this.tabLightBar.Controls.Add(this.lowLedCheckBox);
             this.tabLightBar.Controls.Add(this.batteryLed);
-            this.tabLightBar.Controls.Add(this.colorChooserButton);
-            this.tabLightBar.Controls.Add(this.fullLedPanel);
-            this.tabLightBar.Controls.Add(this.blueBar);
-            this.tabLightBar.Controls.Add(this.greenBar);
             this.tabLightBar.Controls.Add(this.colorLabel);
+            this.tabLightBar.Controls.Add(this.lBspc);
             this.tabLightBar.Controls.Add(this.RedLabel);
-            this.tabLightBar.Controls.Add(this.redBar);
             this.tabLightBar.Controls.Add(this.GreenLabel);
             this.tabLightBar.Controls.Add(this.BlueLabel);
+            this.tabLightBar.Controls.Add(this.fullLedPanel);
             this.tabLightBar.Controls.Add(this.lowLedPanel);
             this.tabLightBar.Location = new System.Drawing.Point(4, 22);
             this.tabLightBar.Name = "tabLightBar";
@@ -1618,6 +1627,42 @@
             this.tabLightBar.TabIndex = 0;
             this.tabLightBar.Text = "Light Bar";
             this.tabLightBar.UseVisualStyleBackColor = true;
+            this.tabLightBar.Click += new System.EventHandler(this.tabLightBar_Click);
+            // 
+            // numUDRainbow
+            // 
+            this.numUDRainbow.Location = new System.Drawing.Point(159, 137);
+            this.numUDRainbow.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numUDRainbow.Name = "numUDRainbow";
+            this.numUDRainbow.Size = new System.Drawing.Size(51, 20);
+            this.numUDRainbow.TabIndex = 50;
+            this.numUDRainbow.Visible = false;
+            this.numUDRainbow.ValueChanged += new System.EventHandler(this.numUDRainbow_ValueChanged);
+            // 
+            // pBRainbow
+            // 
+            this.pBRainbow.Image = global::ScpServer.Properties.Resources.rainbow;
+            this.pBRainbow.Location = new System.Drawing.Point(215, 139);
+            this.pBRainbow.Name = "pBRainbow";
+            this.pBRainbow.Size = new System.Drawing.Size(16, 16);
+            this.pBRainbow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pBRainbow.TabIndex = 49;
+            this.pBRainbow.TabStop = false;
+            this.pBRainbow.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // lBspc
+            // 
+            this.lBspc.AutoSize = true;
+            this.lBspc.Location = new System.Drawing.Point(212, 140);
+            this.lBspc.Name = "lBspc";
+            this.lBspc.Size = new System.Drawing.Size(93, 13);
+            this.lBspc.TabIndex = 13;
+            this.lBspc.Text = "seconds per cycle";
+            this.lBspc.Visible = false;
             // 
             // tabRumble
             // 
@@ -1674,6 +1719,24 @@
             this.tabOther.Text = "Other";
             this.tabOther.UseVisualStyleBackColor = true;
             // 
+            // lBButtonMouseSens
+            // 
+            this.lBButtonMouseSens.AutoSize = true;
+            this.lBButtonMouseSens.Location = new System.Drawing.Point(158, 11);
+            this.lBButtonMouseSens.Name = "lBButtonMouseSens";
+            this.lBButtonMouseSens.Size = new System.Drawing.Size(134, 13);
+            this.lBButtonMouseSens.TabIndex = 87;
+            this.lBButtonMouseSens.Text = "Mouse Sensitivity (Buttons)";
+            // 
+            // lBMouseSens
+            // 
+            this.lBMouseSens.Location = new System.Drawing.Point(392, 13);
+            this.lBMouseSens.Name = "lBMouseSens";
+            this.lBMouseSens.Size = new System.Drawing.Size(30, 13);
+            this.lBMouseSens.TabIndex = 86;
+            this.lBMouseSens.Text = "50";
+            this.lBMouseSens.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // idleDisconnectTimeout
             // 
             this.idleDisconnectTimeout.Location = new System.Drawing.Point(6, 107);
@@ -1705,6 +1768,18 @@
             this.label2.TabIndex = 81;
             this.label2.Text = "Idle disconnection timeout";
             // 
+            // tBMouseSens
+            // 
+            this.tBMouseSens.BackColor = System.Drawing.Color.White;
+            this.tBMouseSens.Location = new System.Drawing.Point(292, 8);
+            this.tBMouseSens.Maximum = 117;
+            this.tBMouseSens.Name = "tBMouseSens";
+            this.tBMouseSens.Size = new System.Drawing.Size(104, 45);
+            this.tBMouseSens.TabIndex = 85;
+            this.tBMouseSens.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBMouseSens.Value = 50;
+            this.tBMouseSens.Scroll += new System.EventHandler(this.tBMouseSens_Scroll);
+            // 
             // tBProfile
             // 
             this.tBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
@@ -1727,41 +1802,56 @@
             this.label4.TabIndex = 84;
             this.label4.Text = "Profile Name:";
             // 
-            // tBMouseSens
+            // lowRedBar
             // 
-            this.tBMouseSens.BackColor = System.Drawing.Color.White;
-            this.tBMouseSens.Location = new System.Drawing.Point(292, 8);
-            this.tBMouseSens.Maximum = 117;
-            this.tBMouseSens.Name = "tBMouseSens";
-            this.tBMouseSens.Size = new System.Drawing.Size(104, 45);
-            this.tBMouseSens.TabIndex = 85;
-            this.tBMouseSens.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tBMouseSens.Value = 50;
-            this.tBMouseSens.Scroll += new System.EventHandler(this.tBMouseSens_Scroll);
+            this.lowRedBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lowRedBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lowRedBar.Location = new System.Drawing.Point(0, 34);
+            this.lowRedBar.Maximum = 255;
+            this.lowRedBar.Name = "lowRedBar";
+            this.lowRedBar.Size = new System.Drawing.Size(144, 45);
+            this.lowRedBar.TabIndex = 10;
+            this.lowRedBar.TickFrequency = 25;
+            this.lowRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.lowRedBar.Value = 255;
+            this.lowRedBar.ValueChanged += new System.EventHandler(this.lowRedBar_ValueChanged);
             // 
-            // lBMouseSens
+            // lowGreenBar
             // 
-            this.lBMouseSens.Location = new System.Drawing.Point(392, 13);
-            this.lBMouseSens.Name = "lBMouseSens";
-            this.lBMouseSens.Size = new System.Drawing.Size(30, 13);
-            this.lBMouseSens.TabIndex = 86;
-            this.lBMouseSens.Text = "50";
-            this.lBMouseSens.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lowGreenBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lowGreenBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lowGreenBar.Location = new System.Drawing.Point(0, 64);
+            this.lowGreenBar.Maximum = 255;
+            this.lowGreenBar.Name = "lowGreenBar";
+            this.lowGreenBar.Size = new System.Drawing.Size(144, 45);
+            this.lowGreenBar.TabIndex = 11;
+            this.lowGreenBar.TickFrequency = 25;
+            this.lowGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.lowGreenBar.Value = 255;
+            this.lowGreenBar.ValueChanged += new System.EventHandler(this.lowGreenBar_ValueChanged);
+            // 
+            // lowBlueBar
+            // 
+            this.lowBlueBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lowBlueBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lowBlueBar.Location = new System.Drawing.Point(0, 94);
+            this.lowBlueBar.Maximum = 255;
+            this.lowBlueBar.Name = "lowBlueBar";
+            this.lowBlueBar.Size = new System.Drawing.Size(144, 45);
+            this.lowBlueBar.TabIndex = 12;
+            this.lowBlueBar.TickFrequency = 25;
+            this.lowBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.lowBlueBar.Value = 255;
+            this.lowBlueBar.ValueChanged += new System.EventHandler(this.lowBlueBar_ValueChanged);
             // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
             this.advColorDialog.Color = System.Drawing.Color.Blue;
             this.advColorDialog.FullOpen = true;
-            // 
-            // lBButtonMouseSens
-            // 
-            this.lBButtonMouseSens.AutoSize = true;
-            this.lBButtonMouseSens.Location = new System.Drawing.Point(158, 11);
-            this.lBButtonMouseSens.Name = "lBButtonMouseSens";
-            this.lBButtonMouseSens.Size = new System.Drawing.Size(134, 13);
-            this.lBButtonMouseSens.TabIndex = 87;
-            this.lBButtonMouseSens.Text = "Mouse Sensitivity (Buttons)";
             // 
             // Options
             // 
@@ -1789,6 +1879,7 @@
             this.lowLedPanel.ResumeLayout(false);
             this.lowLedPanel.PerformLayout();
             this.fullLedPanel.ResumeLayout(false);
+            this.fullLedPanel.PerformLayout();
             this.tabOptions.ResumeLayout(false);
             this.tabControls.ResumeLayout(false);
             this.tabControls.PerformLayout();
@@ -1804,12 +1895,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDTouch)).EndInit();
             this.tabLightBar.ResumeLayout(false);
             this.tabLightBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDRainbow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).EndInit();
             this.tabRumble.ResumeLayout(false);
             this.tabRumble.PerformLayout();
             this.tabOther.ResumeLayout(false);
             this.tabOther.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1847,7 +1943,6 @@
         private System.Windows.Forms.Label lowBlueValLabel;
         private System.Windows.Forms.Label fullColorLabel;
         private System.Windows.Forms.Label lowColorLabel;
-        private System.Windows.Forms.CheckBox lowLedCheckBox;
         private System.Windows.Forms.Panel lowLedPanel;
         private System.Windows.Forms.Panel fullLedPanel;
         private System.Windows.Forms.Button colorChooserButton;
@@ -1925,6 +2020,12 @@
         private System.Windows.Forms.Label lBMouseSens;
         private System.Windows.Forms.TrackBar tBMouseSens;
         private System.Windows.Forms.Label lBButtonMouseSens;
+        private System.Windows.Forms.NumericUpDown numUDRainbow;
+        private System.Windows.Forms.PictureBox pBRainbow;
+        private System.Windows.Forms.Label lBspc;
+        private System.Windows.Forms.TrackBar lowBlueBar;
+        private System.Windows.Forms.TrackBar lowGreenBar;
+        private System.Windows.Forms.TrackBar lowRedBar;
     }
 }
 

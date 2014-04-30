@@ -20,12 +20,26 @@ namespace DS4Control
             { 224, 56}, // on 80% of the time at 80, etc.
             { 252, 28 } // on 90% of the time at 90
         };
-        static double[] counters = new double[4];
+        static double[] counters = new double[4] {0,0,0,0};
 
+        static DateTime oldnow = DateTime.Now;
         public static void updateLightBar(DS4Device device, int deviceNum)
         {
             DS4Color color;
-            if (Global.getLedAsBatteryIndicator(deviceNum))
+            if (Global.getRainbow(deviceNum) > 0)
+            {// Display rainbow
+                DateTime now = DateTime.Now;
+                if (now >= oldnow + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
+                {
+                    oldnow = now;
+                    counters[deviceNum] += 1.5*3 / Global.getRainbow(deviceNum);
+                }
+                if (Global.getLedAsBatteryIndicator(deviceNum) && (device.Charging == false || device.Battery >= 100))// when charged, don't show the charging animation
+                    color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(2.55 * device.Battery));
+                else
+                    color = HuetoRGB((float)counters[deviceNum] % 360, 255);
+            }
+            else if (Global.getLedAsBatteryIndicator(deviceNum))
             {
                 if (device.Charging == false || device.Battery >= 100) // when charged, don't show the charging animation
                 {
@@ -48,15 +62,8 @@ namespace DS4Control
                 }
                 else // Display rainbow when charging.
                 {
-                    counters[deviceNum]++;
-                    double theta = Math.PI * 2.0 * counters[deviceNum] / 1800.0;
-                    const double brightness = Math.PI; // small brightness numbers (far from max 128.0) mean less light steps and slower output reports; also, the lower the brightness the faster you can charge
-                    color = new DS4Color
-                    {
-                        red = (byte)(brightness * Math.Sin(theta) + brightness - 0.5),
-                        green = (byte)(brightness * Math.Sin(theta + (Math.PI * 2.0) / 3.0) + brightness - 0.5),
-                        blue = (byte)(brightness * Math.Sin(theta + 2.0 * (Math.PI * 2.0) / 3.0) + brightness - 0.5)
-                    };
+                    counters[deviceNum]+= .167;
+                    color = HuetoRGB((float)counters[deviceNum] % 360, 255);
                 }
             }
             else
@@ -90,5 +97,24 @@ namespace DS4Control
             device.pushHapticState(haptics);
         }
 
+        public static DS4Color HuetoRGB(float hue, byte sat)
+        {
+            byte C = sat;
+            int X = (int)((C * (float)(1 - Math.Abs((hue / 60) % 2 - 1))));
+            if (0 <= hue && hue < 60)
+                return new DS4Color { red = C, green = (byte)X, blue = 0 };
+            else if (60 <= hue && hue < 120)
+                return new DS4Color { red = (byte)X, green = C, blue = 0 };
+            else if (120 <= hue && hue < 180)
+                return new DS4Color { red = 0, green = C, blue = (byte)X };
+            else if (180 <= hue && hue < 240)
+                return new DS4Color { red = 0, green = (byte)X, blue = C };
+            else if (240 <= hue && hue < 300)
+                return new DS4Color { red = (byte)X, green = 0, blue = C };
+            else if (300 <= hue && hue < 360)
+                return new DS4Color { red = C, green = 0, blue = (byte)X };
+            else
+                return new DS4Color { red = 255, green = 0, blue = 0 };
+        }
     }
 }

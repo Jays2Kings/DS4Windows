@@ -228,13 +228,13 @@ namespace DS4Control
                     if (d.Battery >= 100)
                         battery = "Full";
                     else
-                        battery = ">" + d.Battery + '%';
+                        battery = d.Battery + "%+";
                 }
                 else
                 {
                     battery = d.Battery + "%";
                 }
-                return battery + ' ' + d.ConnectionType;
+                return d.ConnectionType + " " + battery;
             }
             else
                 return "None";

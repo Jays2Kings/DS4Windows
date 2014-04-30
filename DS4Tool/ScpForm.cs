@@ -271,7 +271,8 @@ namespace ScpServer
                     //if (Index == 0)
                     // checkFirst = false;
                 }
-                tooltip += "\n[" + (Index + 1) + "] " + rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
+                if (rootHub.getShortDS4ControllerInfo(Index) != "None")
+                    tooltip += "\n" + (Index + 1) + ": " + rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
             }
             btnClear.Enabled = lvDebug.Items.Count > 0;
 

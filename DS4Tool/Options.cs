@@ -21,9 +21,9 @@ namespace ScpServer
         private List<Button> buttons = new List<Button>();
         //private Dictionary<string, string> defaults = new Dictionary<string, string>();
         private Button lastSelected;
-        int alphacolor;
-        Color reg;
-        Color full;
+        private int alphacolor;
+        private Color reg, full;
+        private Image colored, greyscale;
 
         public Options(DS4Control.Control bus_device, int deviceNum, string name, ScpForm mainWindow)
         {
@@ -32,16 +32,24 @@ namespace ScpServer
             scpDevice = bus_device;
             filename = name;
             mainWin = mainWindow;
-            if (filename != "" && filename != "+New Profile")
+            colored = pBRainbow.Image;
+            greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
+            if (filename != "")
             {
                 tBProfile.Text = filename;
                 DS4Color color = Global.loadColor(device);
                 redBar.Value = color.red;
                 greenBar.Value = color.green;
                 blueBar.Value = color.blue;
+                
+                batteryLed.Checked = DS4Control.Global.getLedAsBatteryIndicator(device);
+                DS4Color lowColor = Global.loadLowColor(device);
+                lowRedBar.Value = lowColor.red;
+                lowGreenBar.Value = lowColor.green;
+                lowBlueBar.Value = lowColor.blue;
+
                 rumbleBoostBar.Value = DS4Control.Global.loadRumbleBoost(device);
                 rumbleSwap.Checked = Global.getRumbleSwap(device);
-                batteryLed.Checked = DS4Control.Global.getLedAsBatteryIndicator(device);
                 flashLed.Checked = DS4Control.Global.getFlashWhenLowBattery(device);
                 numUDTouch.Value = Global.getTouchSensitivity(device);
                 numUDScroll.Value = Global.getScrollSensitivity(device);
@@ -50,7 +58,6 @@ namespace ScpServer
                 cBDoubleTap.Checked = Global.getDoubleTap(device);
                 leftTriggerMiddlePoint.Text = Global.getLeftTriggerMiddle(device).ToString();
                 rightTriggerMiddlePoint.Text = Global.getRightTriggerMiddle(device).ToString();
-                DS4Color lowColor = Global.loadLowColor(device);
                 touchpadJitterCompensation.Checked = Global.getTouchpadJitterCompensation(device);
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
                 flushHIDQueue.Checked = Global.getFlushHIDQueue(device);
@@ -63,38 +70,29 @@ namespace ScpServer
                 full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
                 colorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
                 pBController.BackColor = colorChooserButton.BackColor;
-                lowColorChooserButton.BackColor = Color.FromArgb(lowColor.red, lowColor.green, lowColor.blue);
+
+                alphacolor = Math.Max(lowRedBar.Value, Math.Max(greenBar.Value, blueBar.Value));
+                reg = Color.FromArgb(lowColor.red, lowColor.green, lowColor.blue);
+                full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
+                lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
                 lowRedValLabel.Text = lowColor.red.ToString();
                 lowGreenValLabel.Text = lowColor.green.ToString();
                 lowBlueValLabel.Text = lowColor.blue.ToString();
+                numUDRainbow.Value = (decimal)Global.getRainbow(device);
+                if (Global.getRainbow(device) == 0)
+                {
+                    pBRainbow.Image = greyscale;
+                    ToggleRainbow(false);
+                }
+                else
+                {
+                    pBRainbow.Image = colored;
+                    ToggleRainbow(true);
+                }
+
             }
             else
-            {
-                Global.saveColor(device, 
-                    (byte)redBar.Value,
-                    (byte)greenBar.Value,
-                    (byte)blueBar.Value);
-                Global.saveLowColor(device,
-                    (byte)redBar.Value,
-                    (byte)greenBar.Value,
-                    (byte)blueBar.Value);
-                double middle;
-                if (Double.TryParse(leftTriggerMiddlePoint.Text, out middle))
-                    Global.setLeftTriggerMiddle(device, middle);
-                if (Double.TryParse(rightTriggerMiddlePoint.Text, out middle))
-                    Global.setRightTriggerMiddle(device, middle);
-                Global.saveRumbleBoost(device, (byte)rumbleBoostBar.Value);
-                scpDevice.setRumble((byte)leftMotorBar.Value, (byte)rightMotorBar.Value, device);
-                Global.setRumbleSwap(device, rumbleSwap.Checked);
-                Global.setTouchSensitivity(device, (byte)numUDTouch.Value);
-                Global.setTouchpadJitterCompensation(device, touchpadJitterCompensation.Checked);
-                Global.setLowerRCOn(device, cBlowerRCOn.Checked);
-                Global.setTapSensitivity(device, (byte)numUDTap.Value);
-                Global.setDoubleTap(device, cBDoubleTap.Checked);
-                Global.setScrollSensitivity(device, (byte)numUDScroll.Value);
-                Global.setIdleDisconnectTimeout(device, (int)idleDisconnectTimeout.Value);
-                Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
-            }
+                Set();
             #region watch sixaxis data
             // Control Positioning
             int horizontalOffset = cbSixaxis.Location.X,
@@ -309,22 +307,13 @@ namespace ScpServer
         }
         private void btnLightbar_Click(object sender, EventArgs e)
         {
-            //tabOptions.SelectTab(3);
-            if (lowLedCheckBox.Checked)
-                lowColorChooserButton_Click(sender, e);
-            else colorChooserButton_Click(sender, e);
+
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void Set()
         {
-            Global.saveColor(device, 
-                (byte)redBar.Value,
-                    (byte)greenBar.Value,
-                    (byte)blueBar.Value);
-            Global.saveLowColor(device,
-                lowColorChooserButton.BackColor.R,
-                lowColorChooserButton.BackColor.G,
-                lowColorChooserButton.BackColor.B);
+            Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
+            Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
             double middle;
             if (Double.TryParse(leftTriggerMiddlePoint.Text, out middle))
                 Global.setLeftTriggerMiddle(device, middle);
@@ -337,11 +326,21 @@ namespace ScpServer
             Global.setTouchpadJitterCompensation(device, touchpadJitterCompensation.Checked);
             Global.setLowerRCOn(device, cBlowerRCOn.Checked);
             Global.setScrollSensitivity(device, (byte)numUDScroll.Value);
-            int disconnectTimeout;
-            if (int.TryParse(idleDisconnectTimeout.Text, out disconnectTimeout))
-                Global.setIdleDisconnectTimeout(device, disconnectTimeout);
             Global.setDoubleTap(device, cBDoubleTap.Checked);
             Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
+            Global.setTapSensitivity(device, (byte)numUDTap.Value);
+            Global.setIdleDisconnectTimeout(device, (int)idleDisconnectTimeout.Value);
+            Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
+            Global.setRainbow(device, (int)numUDRainbow.Value);
+            if (numUDRainbow.Value == 0)
+                pBRainbow.Image = greyscale;
+            else
+                pBRainbow.Image = colored;
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            Set();
 
             if (tBProfile.Text != null && tBProfile.Text != "" && !tBProfile.Text.Contains("\\") && !tBProfile.Text.Contains("/") && !tBProfile.Text.Contains(":") && !tBProfile.Text.Contains("*") && !tBProfile.Text.Contains("?") && !tBProfile.Text.Contains("\"") && !tBProfile.Text.Contains("<") && !tBProfile.Text.Contains(">") && !tBProfile.Text.Contains("|"))
             {
@@ -357,91 +356,72 @@ namespace ScpServer
 
         private void redBar_ValueChanged(object sender, EventArgs e)
         {
-            // New settings
-            if (lowLedCheckBox.Checked)
-            {
-                //lowRedValLabel.Text = redBar.Value.ToString();
-                lowColorChooserButton.BackColor = Color.FromArgb(
-                    redBar.Value,
-                    lowColorChooserButton.BackColor.G,
-                    lowColorChooserButton.BackColor.B);
-                Global.saveLowColor(device, (byte)redBar.Value, lowColorChooserButton.BackColor.G, lowColorChooserButton.BackColor.B);
-            }
-            else
-            {
-                alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
-                reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
-                full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
-                colorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor +50)), full);
-                Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
-                pBController.BackColor = colorChooserButton.BackColor;
-                // Previous implementation
-                redValLabel.Text = redBar.Value.ToString();
-                //redValLabel.Text = (colorChooserButton.BackColor.GetBrightness() * 255 * 2).ToString();
-            }
+            alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
+            reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
+            full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
+            colorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
+
+            pBController.BackColor = colorChooserButton.BackColor;
+            redValLabel.Text = redBar.Value.ToString();
         }
         private void greenBar_ValueChanged(object sender, EventArgs e)
         {
-            // New settings
-            if (lowLedCheckBox.Checked)
-            {
-                lowGreenValLabel.Text = greenBar.Value.ToString();
-                lowColorChooserButton.BackColor = Color.FromArgb(
-                    lowColorChooserButton.BackColor.R,
-                    greenBar.Value,
-                    lowColorChooserButton.BackColor.B);
-                Global.saveLowColor(device, lowColorChooserButton.BackColor.R, (byte)greenBar.Value, lowColorChooserButton.BackColor.B);
-            }
-            else
-            {
-                alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
-                reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
-                full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
-                colorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-                Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
+            alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
+            reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
+            full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
+            colorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
 
-                pBController.BackColor = colorChooserButton.BackColor;
-                // Previous implementation
-                greenValLabel.Text = greenBar.Value.ToString();
-            }
+            pBController.BackColor = colorChooserButton.BackColor;
+            greenValLabel.Text = greenBar.Value.ToString();
         }
         private void blueBar_ValueChanged(object sender, EventArgs e)
         {
-            // New settings
-            if (lowLedCheckBox.Checked)
-            {
-                lowBlueValLabel.Text = blueBar.Value.ToString();
-                lowColorChooserButton.BackColor = Color.FromArgb(
-                    lowColorChooserButton.BackColor.R,
-                    lowColorChooserButton.BackColor.G,
-                    blueBar.Value);
-                //if (realTimeChangesCheckBox.Checked)
-                Global.saveLowColor(device,
-                    lowColorChooserButton.BackColor.R,
-                    lowColorChooserButton.BackColor.G,
-                    (byte)blueBar.Value);
-            }
-            else
-            {
-                alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
-                reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
-                full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
-                colorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-                //if (realTimeChangesCheckBox.Checked)
-                Global.saveColor(device, (byte)redBar.Value,
-                    (byte)greenBar.Value,
-                    (byte)blueBar.Value);
+            alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
+            reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
+            full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
+            colorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
 
-                pBController.BackColor = colorChooserButton.BackColor;
-                // Previous implementation
-                blueValLabel.Text = blueBar.Value.ToString();
-            }
+            pBController.BackColor = colorChooserButton.BackColor;
+            blueValLabel.Text = blueBar.Value.ToString();
+        }
+
+        private void lowRedBar_ValueChanged(object sender, EventArgs e)
+        {
+            alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
+            reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
+            full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
+            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
+            lowRedValLabel.Text = lowRedBar.Value.ToString();
+        }
+
+        private void lowGreenBar_ValueChanged(object sender, EventArgs e)
+        {
+            alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
+            reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
+            full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
+            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
+            lowGreenValLabel.Text = lowGreenBar.Value.ToString();
+        }
+
+        private void lowBlueBar_ValueChanged(object sender, EventArgs e)
+        {
+            alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
+            reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
+            full = HuetoRGB(reg.GetHue(), reg.GetSaturation());
+            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
+            lowBlueValLabel.Text = lowBlueBar.Value.ToString();
         }
 
         public Color HuetoRGB(float hue, float sat)
         {
-            int C = (int)(sat*255);
-            int X = (int)((sat * (float)(1 - Math.Abs((hue / 60) % 2 - 1)))*255);
+            int C = (int)(sat * 255);
+            int X = (int)((sat * (float)(1 - Math.Abs((hue / 60) % 2 - 1))) * 255);
             if (sat == 0)
                 return Color.FromName("White");
             else if (0 <= hue && hue < 60)
@@ -501,30 +481,6 @@ namespace ScpServer
 
         private void lowBatteryLed_CheckedChanged(object sender, EventArgs e)
         {
-            if (lowLedCheckBox.Checked)
-            {
-                fullLedPanel.Enabled = false;
-                redBar.Value = int.Parse(lowRedValLabel.Text);
-                greenBar.Value = int.Parse(lowGreenValLabel.Text);
-                blueBar.Value = int.Parse(lowBlueValLabel.Text);
-
-                Global.saveLowColor(device,
-                    lowColorChooserButton.BackColor.R,
-                    lowColorChooserButton.BackColor.G,
-                    lowColorChooserButton.BackColor.B);
-            }
-            else
-            {
-                fullLedPanel.Enabled = true;
-                redBar.Value = int.Parse(redValLabel.Text);
-                greenBar.Value = int.Parse(greenValLabel.Text);
-                blueBar.Value = int.Parse(blueValLabel.Text);
-
-                Global.saveColor(device,
-                    colorChooserButton.BackColor.R,
-                    colorChooserButton.BackColor.G,
-                    colorChooserButton.BackColor.B);
-            }
         }
         private void ledAsBatteryIndicator_CheckedChanged(object sender, EventArgs e)
         {
@@ -534,14 +490,19 @@ namespace ScpServer
             if (batteryLed.Checked)
             {
                 lowLedPanel.Visible = true;
-                lowLedCheckBox.Visible = true;
+                //lowLedCheckBox.Visible = true;
+                fullLedPanel.Size = new Size(174, 127);
+                fullColorLabel.Visible = true;
+
 
                 Global.setLedAsBatteryIndicator(device, true);
             }
             else
             {
                 lowLedPanel.Visible = false;
-                lowLedCheckBox.Visible = false;
+                //lowLedCheckBox.Visible = false;
+                fullLedPanel.Size = new Size(351, 127);
+                fullColorLabel.Visible = false;
 
                 Global.setLedAsBatteryIndicator(device, false);
             }
@@ -563,9 +524,7 @@ namespace ScpServer
 
         private void pictureBox_Click(object sender, EventArgs e)
         {
-            if (lowLedCheckBox.Checked)
-                lowColorChooserButton_Click(sender, e);
-            else colorChooserButton_Click(sender, e);
+            colorChooserButton_Click(sender, e);
         }
         private void colorChooserButton_Click(object sender, EventArgs e)
         {
@@ -577,15 +536,12 @@ namespace ScpServer
                 greenValLabel.Text = advColorDialog.Color.G.ToString();
                 blueValLabel.Text = advColorDialog.Color.B.ToString();
                 colorChooserButton.BackColor = advColorDialog.Color;
-                if (!lowLedCheckBox.Checked)
-                {
-                    redBar.Value = advColorDialog.Color.R;
-                    greenBar.Value = advColorDialog.Color.G;
-                    blueBar.Value = advColorDialog.Color.B;
-                }
+                redBar.Value = advColorDialog.Color.R;
+                greenBar.Value = advColorDialog.Color.G;
+                blueBar.Value = advColorDialog.Color.B;
             }
             else Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
-            Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
+            //Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
             oldLedColor = null;
             oldLowLedColor = null;
         }
@@ -599,12 +555,9 @@ namespace ScpServer
                 lowGreenValLabel.Text = advColorDialog.Color.G.ToString();
                 lowBlueValLabel.Text = advColorDialog.Color.B.ToString();
                 lowColorChooserButton.BackColor = advColorDialog.Color;
-                if (lowLedCheckBox.Checked)
-                {
-                    redBar.Value = advColorDialog.Color.R;
-                    greenBar.Value = advColorDialog.Color.G;
-                    blueBar.Value = advColorDialog.Color.B;
-                }
+                    lowRedBar.Value = advColorDialog.Color.R;
+                    lowGreenBar.Value = advColorDialog.Color.G;
+                    lowBlueBar.Value = advColorDialog.Color.B;
             }
             else Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
             Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
@@ -826,6 +779,74 @@ namespace ScpServer
         {
             Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
             lBMouseSens.Text = tBMouseSens.Value.ToString();
+        }
+
+        private void numUDRainbow_ValueChanged(object sender, EventArgs e)
+        {
+            Global.setRainbow(device, (double)numUDRainbow.Value);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (pBRainbow.Image == greyscale)
+            {
+                pBRainbow.Image = colored;
+                ToggleRainbow(true);
+                numUDRainbow.Value = 5;
+            }
+            else
+            {
+                pBRainbow.Image = greyscale;
+                ToggleRainbow(false);
+                numUDRainbow.Value = 0;
+            }
+        }
+
+        private void ToggleRainbow(bool on)
+        {
+            numUDRainbow.Visible = on;
+            if (on)
+            {
+                pBRainbow.Location = new Point(137, 139);
+                batteryLed.Text = "Battery Level Dim";
+            }
+            else
+            {
+                pBRainbow.Location = new Point(215, 139);
+                batteryLed.Text = "Battery Level Color";
+            }
+            lBspc.Visible = on;
+            fullLedPanel.Enabled = !on;
+            lowLedPanel.Enabled = !on;
+            flashLed.Enabled = !on;
+        }
+
+        private Bitmap GreyscaleImage(Bitmap image)
+        {
+            Bitmap c = (Bitmap)image;
+            Bitmap d = new Bitmap(c.Width, c.Height);
+
+            for (int i = 0; i < c.Width; i++)
+            {
+                for (int x = 0; x < c.Height; x++)
+                {
+                    Color oc = c.GetPixel(i, x);
+                    int grayScale = (int)((oc.R * 0.3) + (oc.G * 0.59) + (oc.B * 0.11));
+                    Color nc = Color.FromArgb(oc.A, grayScale, grayScale, grayScale);
+                    d.SetPixel(i, x, nc);
+                }
+            }
+            return d;
+        }
+
+        private void fullColorLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabLightBar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

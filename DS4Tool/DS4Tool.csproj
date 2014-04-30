@@ -152,6 +152,7 @@
     <None Include="Resources\DS4 Controller.png" />
     <Content Include="Resources\DS4.ico" />
     <None Include="Resources\mouse.png" />
+    <None Include="Resources\rainbow.png" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>

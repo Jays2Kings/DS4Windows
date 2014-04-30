@@ -128,7 +128,14 @@ namespace DS4Control
         {
             m_Config.rumbleSwap[device] = swap;
         }
-
+        public static double getRainbow(int device)
+        {
+            return m_Config.rainbow[device];
+        }
+        public static void setRainbow(int device, double speed)
+        {
+            m_Config.rainbow[device] = speed;
+        }
         public static bool getFlushHIDQueue(int device)
         {
             return m_Config.flushHIDQueue[device];
@@ -391,6 +398,7 @@ namespace DS4Control
         public Byte[] tapSensitivity = {0, 0, 0, 0};
         public bool[] doubleTap = { false, false, false, false };
         public int[] scrollSensitivity = { 0, 0, 0, 0 };
+        public double[] rainbow = { 0, 0, 0, 0 };
         public Byte[][] m_LowLeds = new Byte[][]
         {
             new Byte[] {0,0,0},
@@ -493,6 +501,7 @@ namespace DS4Control
                 XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = m_LeftTriggerMiddle[device].ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
                 XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = m_RightTriggerMiddle[device].ToString(); Node.AppendChild(xmlRightTriggerMiddle);
                 XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
+                XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
@@ -708,6 +717,8 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Rainbow"); Double.TryParse(Item.InnerText, out rainbow[device]); }
+                    catch { missingSetting = true; }
 
                     DS4KeyType keyType;
                     UInt16 wvk;
@@ -853,6 +864,8 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Rainbow"); Double.TryParse(Item.InnerText, out rainbow[device]); }
                     catch { missingSetting = true; }
 
                     DS4KeyType keyType;

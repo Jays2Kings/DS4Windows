@@ -656,7 +656,8 @@ namespace ScpServer
 
         private void Options_Closed(object sender, FormClosedEventArgs e)
         {
-            Global.LoadProfile(device);
+            for (int i = 0; i < 4; i++)
+                Global.LoadProfile(i); //Refreshes all profiles in case other controllers are using the same profile
             mainWin.RefreshProfiles();
         }
 

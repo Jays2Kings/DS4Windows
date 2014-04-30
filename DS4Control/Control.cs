@@ -77,7 +77,7 @@ namespace DS4Control
                         touchPad[ind] = new Mouse(ind, device);
                         DS4Color color = Global.loadColor(ind);
                         device.LightBarColor = color;
-                        x360Bus.Plugin(ind + 1);
+                        x360Bus.Plugin(ind);
                         device.Report += this.On_Report;
                         //m_switcher.setMode(Global.getInitialMode(ind));
                         TouchPadOn(ind, device);
@@ -111,10 +111,9 @@ namespace DS4Control
                     if (DS4Controllers[i] != null)
                     {
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
-                        x360Bus.Unplug(i + 1);
+                        x360Bus.Unplug(i);
                         anyUnplugged = true;
                         DS4Controllers[i] = null;
-                        //modeSwitcher[i] = null;
                         touchPad[i] = null;
                     }
                 }
@@ -164,7 +163,7 @@ namespace DS4Control
                             touchPad[Index] = new Mouse(Index, device); 
                             device.LightBarColor = Global.loadColor(Index);
                             device.Report += this.On_Report;
-                            x360Bus.Plugin(Index + 1);
+                            x360Bus.Plugin(Index);
                             //m_switcher.setMode(Global.getInitialMode(Index));
                             TouchPadOn(Index, device);
                             LogDebug("Controller: " + device.MacAddress + " is ready to use");
@@ -253,7 +252,7 @@ namespace DS4Control
             if (ind != -1)
             {
                 CurrentState[ind].Battery = PreviousState[ind].Battery = 0; // Reset for the next connection's initial status change.
-                x360Bus.Unplug(ind + 1);
+                x360Bus.Unplug(ind);
                 LogDebug("Controller " + device.MacAddress + " was removed or lost connection");
                 Log.LogToTray("Controller " + device.MacAddress + " was removed or lost connection");
                 System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);

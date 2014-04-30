@@ -86,10 +86,10 @@ namespace ScpServer
             dbns = new Button[4] { bnDeleteC1, bnDeleteC2, bnDeleteC3, bnDeleteC4 };
             protexts = new Label[4] { lbSelPro1, lbSelPro2, lbSelPro3, lbSelPro4 };
 
-            shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
-                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3],
-                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[4],
-                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[5] };
+            shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[0],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
 

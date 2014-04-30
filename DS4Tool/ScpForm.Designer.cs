@@ -524,15 +524,15 @@
             // cMTaskbar
             // 
             this.cMTaskbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.toolStripSeparator1,
             this.editProfileForController1ToolStripMenuItem,
             this.editProfileForController2ToolStripMenuItem,
             this.editProfileForController3ToolStripMenuItem,
             this.editProfileForController4ToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.openToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.cMTaskbar.Name = "cMTaskbar";
-            this.cMTaskbar.Size = new System.Drawing.Size(215, 142);
+            this.cMTaskbar.Size = new System.Drawing.Size(215, 164);
             this.cMTaskbar.Tag = "25";
             // 
             // openToolStripMenuItem

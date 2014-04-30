@@ -10,9 +10,18 @@ namespace DS4Control
 {
     public partial class X360Device : ScpDevice
     {
-        public const String DS3_BUS_CLASS_GUID = "{F679F562-3164-42CE-A4DB-E7DDBE723909}";
+        private const String DS3_BUS_CLASS_GUID = "{F679F562-3164-42CE-A4DB-E7DDBE723909}";
+        private const int CONTROLLER_OFFSET = 1 + 10; // Device 0 is the virtual USB hub itself, and we leave devices 1-10 available for other software (like the Scarlet.Crush DualShock driver itself)
 
-        protected virtual Int32 Scale(Int32 Value, Boolean Flip)
+        private int firstController = 1 + 10;
+        // Device 0 is the virtual USB hub itself, and we can leave more available for other software (like the Scarlet.Crush DualShock driver)
+        public int FirstController
+        {
+            get { return firstController; }
+            set { firstController = value > 0 ? value : 1; }
+        }
+
+        protected Int32 Scale(Int32 Value, Boolean Flip)
         {
             Value -= 0x80;
 
@@ -38,14 +47,14 @@ namespace DS4Control
         }
 
 
-        public override Boolean Open(int Instance = 0)
+        /* public override Boolean Open(int Instance = 0)
         {
             if (base.Open(Instance))
             {
             }
 
             return true;
-        }
+        } */
 
         public override Boolean Open(String DevicePath)
         {
@@ -90,10 +99,10 @@ namespace DS4Control
         }
 
 
-        public virtual void Parse(DS4State state, Byte[] Output, int device)
+        public void Parse(DS4State state, Byte[] Output, int device)
         {
             Output[0] = 0x1C;
-            Output[4] = (Byte)(device + 1);
+            Output[4] = (Byte)(device + firstController);
             Output[9] = 0x14;
 
             for (int i = 10; i < Output.Length; i++)
@@ -141,7 +150,7 @@ namespace DS4Control
             Output[21] = (Byte)((ThumbRY >> 8) & 0xFF);
         }
 
-        public virtual Boolean Plugin(Int32 Serial)
+        public Boolean Plugin(Int32 Serial)
         {
             if (IsActive)
             {
@@ -153,6 +162,7 @@ namespace DS4Control
                 Buffer[2] = 0x00;
                 Buffer[3] = 0x00;
 
+                Serial += firstController;
                 Buffer[4] = (Byte)((Serial >> 0) & 0xFF);
                 Buffer[5] = (Byte)((Serial >> 8) & 0xFF);
                 Buffer[6] = (Byte)((Serial >> 16) & 0xFF);
@@ -164,7 +174,7 @@ namespace DS4Control
             return false;
         }
 
-        public virtual Boolean Unplug(Int32 Serial)
+        public Boolean Unplug(Int32 Serial)
         {
             if (IsActive)
             {
@@ -176,6 +186,7 @@ namespace DS4Control
                 Buffer[2] = 0x00;
                 Buffer[3] = 0x00;
 
+                Serial += firstController;
                 Buffer[4] = (Byte)((Serial >> 0) & 0xFF);
                 Buffer[5] = (Byte)((Serial >> 8) & 0xFF);
                 Buffer[6] = (Byte)((Serial >> 16) & 0xFF);
@@ -187,8 +198,26 @@ namespace DS4Control
             return false;
         }
 
+        public Boolean UnplugAll() //not yet implemented, not sure if will
+        {
+            if (IsActive)
+            {
+                Int32 Transfered = 0;
+                Byte[] Buffer = new Byte[16];
 
-        public virtual Boolean Report(Byte[] Input, Byte[] Output)
+                Buffer[0] = 0x10;
+                Buffer[1] = 0x00;
+                Buffer[2] = 0x00;
+                Buffer[3] = 0x00;
+
+                return DeviceIoControl(m_FileHandle, 0x2A4004, Buffer, Buffer.Length, null, 0, ref Transfered, IntPtr.Zero);
+            }
+
+            return false;
+        }
+
+
+        public Boolean Report(Byte[] Input, Byte[] Output)
         {
             if (IsActive)
             {

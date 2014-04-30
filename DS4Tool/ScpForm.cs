@@ -250,11 +250,11 @@ namespace ScpServer
                     cbs[Index].Enabled = true;
                     ebns[Index].Enabled = true;
                     dbns[Index].Enabled = true;
-                    protexts[Index].Enabled = true; 
+                    protexts[Index].Enabled = true;
                     shortcuts[Index].Enabled = true;
                     // As above
                     //if (checkFirst && (Pads[Index].Checked && Index != 0))
-                       // checkFirst = false;
+                    // checkFirst = false;
                 }
                 else
                 {
@@ -269,7 +269,7 @@ namespace ScpServer
                     shortcuts[Index].Enabled = false;
                     // As above
                     //if (Index == 0)
-                       // checkFirst = false;
+                    // checkFirst = false;
                 }
                 tooltip += "\n[" + (Index + 1) + "] " + rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
             }
@@ -277,7 +277,7 @@ namespace ScpServer
 
             // As above
             //if (checkFirst && btnClear.Enabled)
-               // Pads[0].Checked = true;
+            // Pads[0].Checked = true;
             notifyIcon1.Text = tooltip;
         }
         protected void On_Debug(object sender, DS4Control.DebugEventArgs e)
@@ -382,7 +382,7 @@ namespace ScpServer
 
         private void lvDebug_ItemActivate(object sender, EventArgs e)
         {
-            MessageBox.Show(((ListView)sender).FocusedItem.SubItems[1].Text,"Log");
+            MessageBox.Show(((ListView)sender).FocusedItem.SubItems[1].Text, "Log");
         }
 
         private void Profile_Changed(object sender, EventArgs e)
@@ -395,7 +395,7 @@ namespace ScpServer
                 {
                     for (int i = 0; i < shortcuts[tdevice].DropDownItems.Count; i++)
                         if (!(shortcuts[tdevice].DropDownItems[i] is ToolStripSeparator))
-                        ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[i]).Checked = false;
+                            ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[i]).Checked = false;
                     ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[cb.SelectedIndex]).Checked = true;
                     Global.setAProfile(tdevice, cb.Items[cb.SelectedIndex].ToString());
                     Global.Save();
@@ -445,7 +445,8 @@ namespace ScpServer
                     else
                     {
                         for (int i = 0; i < tS.DropDownItems.Count; i++)
-                            ((ToolStripMenuItem)tS.DropDownItems[i]).Checked = false;
+                            if (!(shortcuts[tdevice].DropDownItems[i] is ToolStripSeparator))
+                                ((ToolStripMenuItem)tS.DropDownItems[i]).Checked = false;
                         ((ToolStripMenuItem)e.ClickedItem).Checked = true;
                         cbs[tdevice].SelectedIndex = tS.DropDownItems.IndexOf(e.ClickedItem);
                         Global.setAProfile(tdevice, e.ClickedItem.Text);
@@ -475,7 +476,7 @@ namespace ScpServer
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            notifyIcon_Click(sender,e);
+            notifyIcon_Click(sender, e);
         }
 
         private void notifyIcon_Click(object sender, EventArgs e)
@@ -487,7 +488,7 @@ namespace ScpServer
 
         private void ScpForm_Move(object sender, EventArgs e)
         {
-            
+
         }
     }
 
@@ -515,4 +516,3 @@ namespace ScpServer
         }
     }
 }
-

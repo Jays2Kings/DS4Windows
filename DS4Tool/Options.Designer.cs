@@ -58,7 +58,10 @@
             this.fullColorLabel = new System.Windows.Forms.Label();
             this.lowColorLabel = new System.Windows.Forms.Label();
             this.lowLedPanel = new System.Windows.Forms.Panel();
+            this.lowBlueBar = new System.Windows.Forms.TrackBar();
             this.lowColorChooserButton = new System.Windows.Forms.Button();
+            this.lowGreenBar = new System.Windows.Forms.TrackBar();
+            this.lowRedBar = new System.Windows.Forms.TrackBar();
             this.fullLedPanel = new System.Windows.Forms.Panel();
             this.colorChooserButton = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -135,9 +138,6 @@
             this.tBMouseSens = new System.Windows.Forms.TrackBar();
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.lowRedBar = new System.Windows.Forms.TrackBar();
-            this.lowGreenBar = new System.Windows.Forms.TrackBar();
-            this.lowBlueBar = new System.Windows.Forms.TrackBar();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.blueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenBar)).BeginInit();
@@ -146,6 +146,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.leftMotorBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).BeginInit();
             this.lowLedPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).BeginInit();
             this.fullLedPanel.SuspendLayout();
             this.tabOptions.SuspendLayout();
             this.tabControls.SuspendLayout();
@@ -164,9 +167,6 @@
             this.tabOther.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).BeginInit();
             this.SuspendLayout();
             // 
             // BlueLabel
@@ -385,7 +385,7 @@
             // 
             this.colorLabel.AutoSize = true;
             this.colorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colorLabel.Location = new System.Drawing.Point(16, 13);
+            this.colorLabel.Location = new System.Drawing.Point(16, 7);
             this.colorLabel.Name = "colorLabel";
             this.colorLabel.Size = new System.Drawing.Size(36, 13);
             this.colorLabel.TabIndex = 29;
@@ -478,7 +478,6 @@
             this.fullColorLabel.TabIndex = 43;
             this.fullColorLabel.Text = "When Full";
             this.fullColorLabel.Visible = false;
-            this.fullColorLabel.Click += new System.EventHandler(this.fullColorLabel_Click);
             // 
             // lowColorLabel
             // 
@@ -506,6 +505,21 @@
             this.lowLedPanel.TabIndex = 46;
             this.lowLedPanel.Visible = false;
             // 
+            // lowBlueBar
+            // 
+            this.lowBlueBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lowBlueBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lowBlueBar.Location = new System.Drawing.Point(0, 94);
+            this.lowBlueBar.Maximum = 255;
+            this.lowBlueBar.Name = "lowBlueBar";
+            this.lowBlueBar.Size = new System.Drawing.Size(144, 45);
+            this.lowBlueBar.TabIndex = 12;
+            this.lowBlueBar.TickFrequency = 25;
+            this.lowBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.lowBlueBar.Value = 255;
+            this.lowBlueBar.ValueChanged += new System.EventHandler(this.lowBlueBar_ValueChanged);
+            // 
             // lowColorChooserButton
             // 
             this.lowColorChooserButton.BackColor = System.Drawing.Color.White;
@@ -516,6 +530,36 @@
             this.lowColorChooserButton.TabIndex = 49;
             this.lowColorChooserButton.UseVisualStyleBackColor = false;
             this.lowColorChooserButton.Click += new System.EventHandler(this.lowColorChooserButton_Click);
+            // 
+            // lowGreenBar
+            // 
+            this.lowGreenBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lowGreenBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lowGreenBar.Location = new System.Drawing.Point(0, 64);
+            this.lowGreenBar.Maximum = 255;
+            this.lowGreenBar.Name = "lowGreenBar";
+            this.lowGreenBar.Size = new System.Drawing.Size(144, 45);
+            this.lowGreenBar.TabIndex = 11;
+            this.lowGreenBar.TickFrequency = 25;
+            this.lowGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.lowGreenBar.Value = 255;
+            this.lowGreenBar.ValueChanged += new System.EventHandler(this.lowGreenBar_ValueChanged);
+            // 
+            // lowRedBar
+            // 
+            this.lowRedBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lowRedBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lowRedBar.Location = new System.Drawing.Point(0, 34);
+            this.lowRedBar.Maximum = 255;
+            this.lowRedBar.Name = "lowRedBar";
+            this.lowRedBar.Size = new System.Drawing.Size(144, 45);
+            this.lowRedBar.TabIndex = 10;
+            this.lowRedBar.TickFrequency = 25;
+            this.lowRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.lowRedBar.Value = 255;
+            this.lowRedBar.ValueChanged += new System.EventHandler(this.lowRedBar_ValueChanged);
             // 
             // fullLedPanel
             // 
@@ -735,6 +779,7 @@
             this.btnLightbar.TabIndex = 91;
             this.btnLightbar.Text = "Lightbar";
             this.btnLightbar.UseVisualStyleBackColor = false;
+            this.btnLightbar.Click += new System.EventHandler(this.btnLightbar_Click);
             // 
             // btnTouchtab
             // 
@@ -1627,7 +1672,6 @@
             this.tabLightBar.TabIndex = 0;
             this.tabLightBar.Text = "Light Bar";
             this.tabLightBar.UseVisualStyleBackColor = true;
-            this.tabLightBar.Click += new System.EventHandler(this.tabLightBar_Click);
             // 
             // numUDRainbow
             // 
@@ -1802,51 +1846,6 @@
             this.label4.TabIndex = 84;
             this.label4.Text = "Profile Name:";
             // 
-            // lowRedBar
-            // 
-            this.lowRedBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lowRedBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lowRedBar.Location = new System.Drawing.Point(0, 34);
-            this.lowRedBar.Maximum = 255;
-            this.lowRedBar.Name = "lowRedBar";
-            this.lowRedBar.Size = new System.Drawing.Size(144, 45);
-            this.lowRedBar.TabIndex = 10;
-            this.lowRedBar.TickFrequency = 25;
-            this.lowRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.lowRedBar.Value = 255;
-            this.lowRedBar.ValueChanged += new System.EventHandler(this.lowRedBar_ValueChanged);
-            // 
-            // lowGreenBar
-            // 
-            this.lowGreenBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lowGreenBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lowGreenBar.Location = new System.Drawing.Point(0, 64);
-            this.lowGreenBar.Maximum = 255;
-            this.lowGreenBar.Name = "lowGreenBar";
-            this.lowGreenBar.Size = new System.Drawing.Size(144, 45);
-            this.lowGreenBar.TabIndex = 11;
-            this.lowGreenBar.TickFrequency = 25;
-            this.lowGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.lowGreenBar.Value = 255;
-            this.lowGreenBar.ValueChanged += new System.EventHandler(this.lowGreenBar_ValueChanged);
-            // 
-            // lowBlueBar
-            // 
-            this.lowBlueBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lowBlueBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lowBlueBar.Location = new System.Drawing.Point(0, 94);
-            this.lowBlueBar.Maximum = 255;
-            this.lowBlueBar.Name = "lowBlueBar";
-            this.lowBlueBar.Size = new System.Drawing.Size(144, 45);
-            this.lowBlueBar.TabIndex = 12;
-            this.lowBlueBar.TickFrequency = 25;
-            this.lowBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.lowBlueBar.Value = 255;
-            this.lowBlueBar.ValueChanged += new System.EventHandler(this.lowBlueBar_ValueChanged);
-            // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
@@ -1878,6 +1877,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).EndInit();
             this.lowLedPanel.ResumeLayout(false);
             this.lowLedPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).EndInit();
             this.fullLedPanel.ResumeLayout(false);
             this.fullLedPanel.PerformLayout();
             this.tabOptions.ResumeLayout(false);
@@ -1903,9 +1905,6 @@
             this.tabOther.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

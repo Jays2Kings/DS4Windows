@@ -196,7 +196,6 @@ namespace ScpServer
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
             btnTouchtab.Enter += btnTouchtab_Enter;
-            btnLightbar.Click += btnLightbar_Click;
             UpdateLists();
         }
 
@@ -307,7 +306,7 @@ namespace ScpServer
         }
         private void btnLightbar_Click(object sender, EventArgs e)
         {
-
+            tabOptions.SelectTab(3);
         }
 
         private void Set()
@@ -478,10 +477,6 @@ namespace ScpServer
         {
             Global.setScrollSensitivity(device, (byte)numUDScroll.Value);
         }
-
-        private void lowBatteryLed_CheckedChanged(object sender, EventArgs e)
-        {
-        }
         private void ledAsBatteryIndicator_CheckedChanged(object sender, EventArgs e)
         {
             Global.setLedAsBatteryIndicator(device, batteryLed.Checked);
@@ -520,11 +515,6 @@ namespace ScpServer
         {
 
             Global.setTouchpadJitterCompensation(device, touchpadJitterCompensation.Checked);
-        }
-
-        private void pictureBox_Click(object sender, EventArgs e)
-        {
-            colorChooserButton_Click(sender, e);
         }
         private void colorChooserButton_Click(object sender, EventArgs e)
         {
@@ -674,11 +664,6 @@ namespace ScpServer
                 saveButton_Click(sender, e);
         }
 
-        private void lBControls_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         public void UpdateLists()
         {
             lBControls.Items[0] = "Cross : " + bnCross.Text;
@@ -784,6 +769,12 @@ namespace ScpServer
         private void numUDRainbow_ValueChanged(object sender, EventArgs e)
         {
             Global.setRainbow(device, (double)numUDRainbow.Value);
+            if ((double)numUDRainbow.Value <= 0.5)
+            {
+                pBRainbow.Image = greyscale;
+                ToggleRainbow(false);
+                numUDRainbow.Value = 0;
+            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -808,11 +799,13 @@ namespace ScpServer
             if (on)
             {
                 pBRainbow.Location = new Point(137, 139);
+                pBController.BackgroundImage = Properties.Resources.rainbowC;
                 batteryLed.Text = "Battery Level Dim";
             }
             else
             {
                 pBRainbow.Location = new Point(215, 139);
+                pBController.BackgroundImage = null;
                 batteryLed.Text = "Battery Level Color";
             }
             lBspc.Visible = on;
@@ -837,16 +830,6 @@ namespace ScpServer
                 }
             }
             return d;
-        }
-
-        private void fullColorLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabLightBar_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

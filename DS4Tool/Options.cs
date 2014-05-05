@@ -15,11 +15,8 @@ namespace ScpServer
         private string filename;
         private ScpForm mainWin;
         Byte[] oldLedColor, oldLowLedColor;
-        TrackBar tBsixaxisGyroX, tBsixaxisGyroY, tBsixaxisGyroZ,
-            tBsixaxisAccelX, tBsixaxisAccelY, tBsixaxisAccelZ;
         Timer sixaxisTimer = new Timer();
         private List<Button> buttons = new List<Button>();
-        //private Dictionary<string, string> defaults = new Dictionary<string, string>();
         private Button lastSelected;
         private int alphacolor;
         private Color reg, full;
@@ -49,15 +46,14 @@ namespace ScpServer
                 lowBlueBar.Value = lowColor.blue;
 
                 rumbleBoostBar.Value = DS4Control.Global.loadRumbleBoost(device);
-                rumbleSwap.Checked = Global.getRumbleSwap(device);
                 flashLed.Checked = DS4Control.Global.getFlashWhenLowBattery(device);
                 numUDTouch.Value = Global.getTouchSensitivity(device);
                 numUDScroll.Value = Global.getScrollSensitivity(device);
                 numUDTap.Value = Global.getTapSensitivity(device);
                 cBTap.Checked = Global.getTap(device);
                 cBDoubleTap.Checked = Global.getDoubleTap(device);
-                leftTriggerMiddlePoint.Text = Global.getLeftTriggerMiddle(device).ToString();
-                rightTriggerMiddlePoint.Text = Global.getRightTriggerMiddle(device).ToString();
+                numUDL2.Value = (decimal)Global.getLeftTriggerMiddle(device);
+                numUDL2.Value = (decimal)Global.getRightTriggerMiddle(device);
                 touchpadJitterCompensation.Checked = Global.getTouchpadJitterCompensation(device);
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
                 flushHIDQueue.Checked = Global.getFlushHIDQueue(device);
@@ -93,88 +89,24 @@ namespace ScpServer
             }
             else
                 Set();
+            sixaxisTimer.Start();
             #region watch sixaxis data
-            // Control Positioning
-            int horizontalOffset = cbSixaxis.Location.X,
-                verticalOffset = cbSixaxis.Location.Y + cbSixaxis.Height + 5,
-                tWidth = 100, tHeight = 19,
-                horizontalMargin = 10 + tWidth,
-                verticalMargin = 1 + tHeight;
 
             sixaxisTimer.Tick +=
             (delegate
                 {
-                    if (tBsixaxisGyroX == null)
-                    {
-                        tBsixaxisGyroX = new TrackBar();
-                        tBsixaxisGyroY = new TrackBar();
-                        tBsixaxisGyroZ = new TrackBar();
-                        tBsixaxisAccelX = new TrackBar();
-                        tBsixaxisAccelY = new TrackBar();
-                        tBsixaxisAccelZ = new TrackBar();
-                        TrackBar[] allSixAxes = { tBsixaxisGyroX, tBsixaxisGyroY, tBsixaxisGyroZ,
-                                                tBsixaxisAccelX, tBsixaxisAccelY, tBsixaxisAccelZ};
-                        foreach (TrackBar t in allSixAxes)
-                        {
-                            ((System.ComponentModel.ISupportInitialize)(t)).BeginInit();
-                            t.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                            t.BackColor = SystemColors.ControlLightLight;
-                            t.AutoSize = false;
-                            t.Enabled = false;
-                            t.Minimum = -0x8000;
-                            t.Maximum = 0x7fff;
-                            t.Size = new Size(tWidth, tHeight);
-                            t.TickFrequency = 0x2000; // calibrated to ~1G
-                        }
-                        // tBsixaxisGyroX
-                        tBsixaxisGyroX.Location = new Point(horizontalOffset, verticalOffset);
-                        tBsixaxisGyroX.Name = "tBsixaxisGyroX";
-                        // tBsixaxisGyroY
-                        tBsixaxisGyroY.Location = new Point(horizontalOffset, verticalOffset + verticalMargin);
-                        tBsixaxisGyroY.Name = "tBsixaxisGyroY";
-                        // tBsixaxisGyroZ
-                        tBsixaxisGyroZ.Location = new Point(horizontalOffset, verticalOffset + verticalMargin * 2);
-                        tBsixaxisGyroZ.Name = "tBsixaxisGyroZ";
-                        // tBsixaxisAccelX
-                        tBsixaxisAccelX.Location = new Point(horizontalOffset + horizontalMargin, verticalOffset);
-                        tBsixaxisAccelX.Name = "tBsixaxisAccelX";
-                        // tBsixaxisAccelY
-                        tBsixaxisAccelY.Location = new Point(horizontalOffset + horizontalMargin, verticalOffset + verticalMargin);
-                        tBsixaxisAccelY.Name = "tBsixaxisAccelY";
-                        // tBsixaxisAccelZ
-                        tBsixaxisAccelZ.Location = new Point(horizontalOffset + horizontalMargin, verticalOffset + verticalMargin * 2);
-                        tBsixaxisAccelZ.Name = "tBsixaxisAccelZ";
-                        foreach (TrackBar t in allSixAxes)
-                        {
-                            tabOther.Controls.Add(t);
-                            ((System.ComponentModel.ISupportInitialize)(t)).EndInit();
-                        }
-                    }
-                    //byte[] inputData = null;// scpDevice.GetInputData(device);
-                    //if (inputData != null)
-                    {
-                        // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
-                        // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
-                        // We should try to indicate setpoints of the calibration when exposing this measurement....
-                        SetDynamicTrackBarValue(tBsixaxisGyroX, (scpDevice.ExposedState[device].GyroX + tBsixaxisGyroX.Value * 2) / 3);
-                        SetDynamicTrackBarValue(tBsixaxisGyroY, (scpDevice.ExposedState[device].GyroY + tBsixaxisGyroY.Value * 2) / 3);
-                        SetDynamicTrackBarValue(tBsixaxisGyroZ, (scpDevice.ExposedState[device].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
-                        SetDynamicTrackBarValue(tBsixaxisAccelX, (scpDevice.ExposedState[device].AccelX + tBsixaxisAccelX.Value * 2) / 3);
-                        SetDynamicTrackBarValue(tBsixaxisAccelY, (scpDevice.ExposedState[device].AccelY + tBsixaxisAccelY.Value * 2) / 3);
-                        SetDynamicTrackBarValue(tBsixaxisAccelZ, (scpDevice.ExposedState[device].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
-                    }
+                    // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
+                    // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
+                    // We should try to indicate setpoints of the calibration when exposing this measurement....
+                    SetDynamicTrackBarValue(tBsixaxisGyroX, (scpDevice.ExposedState[device].GyroX + tBsixaxisGyroX.Value * 2) / 3);
+                    SetDynamicTrackBarValue(tBsixaxisGyroY, (scpDevice.ExposedState[device].GyroY + tBsixaxisGyroY.Value * 2) / 3);
+                    SetDynamicTrackBarValue(tBsixaxisGyroZ, (scpDevice.ExposedState[device].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
+                    SetDynamicTrackBarValue(tBsixaxisAccelX, (scpDevice.ExposedState[device].AccelX + tBsixaxisAccelX.Value * 2) / 3);
+                    SetDynamicTrackBarValue(tBsixaxisAccelY, (scpDevice.ExposedState[device].AccelY + tBsixaxisAccelY.Value * 2) / 3);
+                    SetDynamicTrackBarValue(tBsixaxisAccelZ, (scpDevice.ExposedState[device].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
+
                 });
             sixaxisTimer.Interval = 1000 / 60;
-            this.FormClosing += delegate
-            {
-                if (sixaxisTimer.Enabled)
-                    sixaxisTimer.Stop();
-                //foreach (CustomMapping cmf in customMappingForms)
-                //   if (cmf != null)
-                //     cmf.Close();
-            };
-            if (cbSixaxis.Checked)
-                sixaxisTimer.Start();
             #endregion
 
             foreach (System.Windows.Forms.Control control in tabControls.Controls)
@@ -198,33 +130,7 @@ namespace ScpServer
             btnTouchtab.Enter += btnTouchtab_Enter;
             UpdateLists();
         }
-
-        private void cbSixaxis_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbSixaxis.Checked)
-            {
-                sixaxisTimer.Start();
-                if (tBsixaxisGyroX != null)
-                {
-                    tBsixaxisGyroX.Visible = true;
-                    tBsixaxisGyroY.Visible = true;
-                    tBsixaxisGyroZ.Visible = true;
-                    tBsixaxisAccelX.Visible = true;
-                    tBsixaxisAccelY.Visible = true;
-                    tBsixaxisAccelZ.Visible = true;
-                }
-            }
-            else
-            {
-                sixaxisTimer.Stop();
-                tBsixaxisGyroX.Visible = false;
-                tBsixaxisGyroY.Visible = false;
-                tBsixaxisGyroZ.Visible = false;
-                tBsixaxisAccelX.Visible = false;
-                tBsixaxisAccelY.Visible = false;
-                tBsixaxisAccelZ.Visible = false;
-            }
-        }
+       
 
         private void SetDynamicTrackBarValue(TrackBar trackBar, int value)
         {
@@ -280,7 +186,6 @@ namespace ScpServer
                 else lastSelected.ForeColor = SystemColors.WindowText;
             else
             {
-                //cbRepeat.Checked = false;
                 lastSelected.ForeColor = SystemColors.WindowText;
             }
         }
@@ -292,7 +197,6 @@ namespace ScpServer
                 else lastSelected.Font = new Font(lastSelected.Font, FontStyle.Regular);
             else
             {
-                //cbScanCode.Checked = false;
                 lastSelected.Font = new Font(lastSelected.Font, FontStyle.Regular);
             }
         }
@@ -313,14 +217,9 @@ namespace ScpServer
         {
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
-            double middle;
-            if (Double.TryParse(leftTriggerMiddlePoint.Text, out middle))
-                Global.setLeftTriggerMiddle(device, middle);
-            if (Double.TryParse(rightTriggerMiddlePoint.Text, out middle))
-                Global.setRightTriggerMiddle(device, middle);
+            Global.setLeftTriggerMiddle(device, (double)numUDL2.Value);
+            Global.setRightTriggerMiddle(device, (double)numUDR2.Value);
             Global.saveRumbleBoost(device, (byte)rumbleBoostBar.Value);
-            scpDevice.setRumble((byte)leftMotorBar.Value, (byte)rightMotorBar.Value, device);
-            Global.setRumbleSwap(device, rumbleSwap.Checked);
             Global.setTouchSensitivity(device, (byte)numUDTouch.Value);
             Global.setTouchpadJitterCompensation(device, touchpadJitterCompensation.Checked);
             Global.setLowerRCOn(device, cBlowerRCOn.Checked);
@@ -331,10 +230,8 @@ namespace ScpServer
             Global.setIdleDisconnectTimeout(device, (int)idleDisconnectTimeout.Value);
             Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
             Global.setRainbow(device, (int)numUDRainbow.Value);
-            if (numUDRainbow.Value == 0)
-                pBRainbow.Image = greyscale;
-            else
-                pBRainbow.Image = colored;
+            if (numUDRainbow.Value == 0) pBRainbow.Image = greyscale;
+            else pBRainbow.Image = colored;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -441,22 +338,23 @@ namespace ScpServer
 
         private void rumbleBoostBar_ValueChanged(object sender, EventArgs e)
         {
-            rumbleBoostMotorValLabel.Text = rumbleBoostBar.Value.ToString();
             Global.saveRumbleBoost(device, (byte)rumbleBoostBar.Value);
-            scpDevice.setRumble((byte)leftMotorBar.Value, (byte)rightMotorBar.Value, device);
+            scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, device);
 
         }
 
-        private void leftMotorBar_ValueChanged(object sender, EventArgs e)
+        private void btnRumbleTest_Click(object sender, EventArgs e)
         {
-            leftMotorValLabel.Text = leftMotorBar.Value.ToString();
-            scpDevice.setRumble((byte)leftMotorBar.Value, (byte)rightMotorBar.Value, device);
-        }
-
-        private void rightMotorBar_ValueChanged(object sender, EventArgs e)
-        {
-            rightMotorValLabel.Text = rightMotorBar.Value.ToString();
-            scpDevice.setRumble((byte)leftMotorBar.Value, (byte)rightMotorBar.Value, device);
+            if (((Button)sender).Text == "Test")
+            {
+                scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, device);
+                ((Button)sender).Text = "Stop";
+            }
+            else
+            {
+                scpDevice.setRumble(0, 0, device);
+                ((Button)sender).Text = "Test";
+            }                
         }
 
         private void numUDTouch_ValueChanged(object sender, EventArgs e)
@@ -578,27 +476,13 @@ namespace ScpServer
 
         private void idleDisconnectTimeout_ValueChanged(object sender, EventArgs e)
         {
-            if (idleDisconnectTimeout.Value <= 29 && idleDisconnectTimeout.Value > 15)
-            {
-                idleDisconnectTimeout.Value = 0;
-                Global.setIdleDisconnectTimeout(device, (int)idleDisconnectTimeout.Value);
-            }
-            else if (idleDisconnectTimeout.Value > 0 && idleDisconnectTimeout.Value <= 15)
-            {
-                idleDisconnectTimeout.Value = 30;
-                Global.setIdleDisconnectTimeout(device, (int)idleDisconnectTimeout.Value);
-            }
-            else
-                Global.setIdleDisconnectTimeout(device, (int)idleDisconnectTimeout.Value);
-        }
-
-        private void rumbleSwap_CheckedChanged(object sender, EventArgs e)
-        {
-            Global.setRumbleSwap(device, rumbleSwap.Checked);
+            Global.setIdleDisconnectTimeout(device, (int)(idleDisconnectTimeout.Value * 60));
         }
 
         private void Options_Closed(object sender, FormClosedEventArgs e)
         {
+            if (sixaxisTimer.Enabled)
+                sixaxisTimer.Stop();
             for (int i = 0; i < 4; i++)
                 Global.LoadProfile(i); //Refreshes all profiles in case other controllers are using the same profile
             mainWin.RefreshProfiles();
@@ -830,6 +714,16 @@ namespace ScpServer
                 }
             }
             return d;
+        }
+
+        private void numUDL2_ValueChanged(object sender, EventArgs e)
+        {
+            Global.setLeftTriggerMiddle(device, (double)numUDL2.Value);
+        }
+
+        private void numUDR2_ValueChanged(object sender, EventArgs e)
+        {
+            Global.setRightTriggerMiddle(device, (double)numUDR2.Value);
         }
     }
 }

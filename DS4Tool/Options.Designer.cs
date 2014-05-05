@@ -37,16 +37,6 @@
             this.blueValLabel = new System.Windows.Forms.Label();
             this.greenValLabel = new System.Windows.Forms.Label();
             this.redValLabel = new System.Windows.Forms.Label();
-            this.rumbleBoostMotorValLabel = new System.Windows.Forms.Label();
-            this.leftMotorValLabel = new System.Windows.Forms.Label();
-            this.rightMotorValLabel = new System.Windows.Forms.Label();
-            this.rightMotorLabel = new System.Windows.Forms.Label();
-            this.leftMotorLabel = new System.Windows.Forms.Label();
-            this.rumbleBoostLabel = new System.Windows.Forms.Label();
-            this.rightMotorBar = new System.Windows.Forms.TrackBar();
-            this.leftMotorBar = new System.Windows.Forms.TrackBar();
-            this.rumbleBoostBar = new System.Windows.Forms.TrackBar();
-            this.rumbleLabel = new System.Windows.Forms.Label();
             this.colorLabel = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.batteryLed = new System.Windows.Forms.CheckBox();
@@ -66,10 +56,7 @@
             this.colorChooserButton = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.rightTriggerMiddlePoint = new System.Windows.Forms.TextBox();
-            this.leftTriggerMiddlePoint = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.cbSixaxis = new System.Windows.Forms.CheckBox();
             this.flushHIDQueue = new System.Windows.Forms.CheckBox();
             this.touchpadJitterCompensation = new System.Windows.Forms.CheckBox();
             this.tabOptions = new System.Windows.Forms.TabControl();
@@ -127,24 +114,37 @@
             this.numUDRainbow = new System.Windows.Forms.NumericUpDown();
             this.pBRainbow = new System.Windows.Forms.PictureBox();
             this.lBspc = new System.Windows.Forms.Label();
-            this.tabRumble = new System.Windows.Forms.TabPage();
-            this.rumbleSwap = new System.Windows.Forms.CheckBox();
             this.tabOther = new System.Windows.Forms.TabPage();
             this.lBButtonMouseSens = new System.Windows.Forms.Label();
             this.lBMouseSens = new System.Windows.Forms.Label();
             this.idleDisconnectTimeout = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tBMouseSens = new System.Windows.Forms.TrackBar();
+            this.lBControllerOff = new System.Windows.Forms.Label();
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.numUDR2 = new System.Windows.Forms.NumericUpDown();
+            this.numUDL2 = new System.Windows.Forms.NumericUpDown();
+            this.rumbleLabel = new System.Windows.Forms.Label();
+            this.rumbleBoostLabel = new System.Windows.Forms.Label();
+            this.leftMotorLabel = new System.Windows.Forms.Label();
+            this.rightMotorLabel = new System.Windows.Forms.Label();
+            this.rumbleBoostBar = new System.Windows.Forms.NumericUpDown();
+            this.numUDHeavyRumble = new System.Windows.Forms.NumericUpDown();
+            this.numUDLightRumble = new System.Windows.Forms.NumericUpDown();
+            this.btnRumbleTest = new System.Windows.Forms.Button();
+            this.tBMouseSens = new System.Windows.Forms.TrackBar();
+            this.tBsixaxisAccelZ = new System.Windows.Forms.TrackBar();
+            this.tBsixaxisAccelY = new System.Windows.Forms.TrackBar();
+            this.tBsixaxisAccelX = new System.Windows.Forms.TrackBar();
+            this.tBsixaxisGyroZ = new System.Windows.Forms.TrackBar();
+            this.tBsixaxisGyroY = new System.Windows.Forms.TrackBar();
+            this.tBsixaxisGyroX = new System.Windows.Forms.TrackBar();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.blueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.redBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rightMotorBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.leftMotorBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).BeginInit();
             this.lowLedPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).BeginInit();
@@ -163,10 +163,20 @@
             this.tabLightBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).BeginInit();
-            this.tabRumble.SuspendLayout();
             this.tabOther.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDR2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDHeavyRumble)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDLightRumble)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroX)).BeginInit();
             this.SuspendLayout();
             // 
             // BlueLabel
@@ -270,116 +280,6 @@
             this.redValLabel.TabIndex = 18;
             this.redValLabel.Text = "255";
             this.redValLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // rumbleBoostMotorValLabel
-            // 
-            this.rumbleBoostMotorValLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.rumbleBoostMotorValLabel.Location = new System.Drawing.Point(354, 43);
-            this.rumbleBoostMotorValLabel.Name = "rumbleBoostMotorValLabel";
-            this.rumbleBoostMotorValLabel.Size = new System.Drawing.Size(30, 13);
-            this.rumbleBoostMotorValLabel.TabIndex = 27;
-            this.rumbleBoostMotorValLabel.Text = "100";
-            this.rumbleBoostMotorValLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // leftMotorValLabel
-            // 
-            this.leftMotorValLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.leftMotorValLabel.Location = new System.Drawing.Point(354, 72);
-            this.leftMotorValLabel.Name = "leftMotorValLabel";
-            this.leftMotorValLabel.Size = new System.Drawing.Size(30, 13);
-            this.leftMotorValLabel.TabIndex = 26;
-            this.leftMotorValLabel.Text = "0";
-            this.leftMotorValLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // rightMotorValLabel
-            // 
-            this.rightMotorValLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.rightMotorValLabel.Location = new System.Drawing.Point(354, 103);
-            this.rightMotorValLabel.Name = "rightMotorValLabel";
-            this.rightMotorValLabel.Size = new System.Drawing.Size(30, 13);
-            this.rightMotorValLabel.TabIndex = 25;
-            this.rightMotorValLabel.Text = "0";
-            this.rightMotorValLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // rightMotorLabel
-            // 
-            this.rightMotorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.rightMotorLabel.AutoSize = true;
-            this.rightMotorLabel.Location = new System.Drawing.Point(9, 108);
-            this.rightMotorLabel.Name = "rightMotorLabel";
-            this.rightMotorLabel.Size = new System.Drawing.Size(30, 13);
-            this.rightMotorLabel.TabIndex = 24;
-            this.rightMotorLabel.Text = "Light";
-            // 
-            // leftMotorLabel
-            // 
-            this.leftMotorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.leftMotorLabel.AutoSize = true;
-            this.leftMotorLabel.Location = new System.Drawing.Point(5, 77);
-            this.leftMotorLabel.Name = "leftMotorLabel";
-            this.leftMotorLabel.Size = new System.Drawing.Size(38, 13);
-            this.leftMotorLabel.TabIndex = 23;
-            this.leftMotorLabel.Text = "Heavy";
-            // 
-            // rumbleBoostLabel
-            // 
-            this.rumbleBoostLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.rumbleBoostLabel.AutoSize = true;
-            this.rumbleBoostLabel.Location = new System.Drawing.Point(7, 48);
-            this.rumbleBoostLabel.Name = "rumbleBoostLabel";
-            this.rumbleBoostLabel.Size = new System.Drawing.Size(34, 13);
-            this.rumbleBoostLabel.TabIndex = 22;
-            this.rumbleBoostLabel.Text = "Boost";
-            // 
-            // rightMotorBar
-            // 
-            this.rightMotorBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.rightMotorBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.rightMotorBar.Location = new System.Drawing.Point(63, 100);
-            this.rightMotorBar.Maximum = 255;
-            this.rightMotorBar.Name = "rightMotorBar";
-            this.rightMotorBar.Size = new System.Drawing.Size(288, 45);
-            this.rightMotorBar.TabIndex = 21;
-            this.rightMotorBar.TickFrequency = 25;
-            this.rightMotorBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.rightMotorBar.ValueChanged += new System.EventHandler(this.rightMotorBar_ValueChanged);
-            // 
-            // leftMotorBar
-            // 
-            this.leftMotorBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.leftMotorBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.leftMotorBar.Location = new System.Drawing.Point(63, 70);
-            this.leftMotorBar.Maximum = 255;
-            this.leftMotorBar.Name = "leftMotorBar";
-            this.leftMotorBar.Size = new System.Drawing.Size(288, 45);
-            this.leftMotorBar.TabIndex = 20;
-            this.leftMotorBar.TickFrequency = 25;
-            this.leftMotorBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.leftMotorBar.ValueChanged += new System.EventHandler(this.leftMotorBar_ValueChanged);
-            // 
-            // rumbleBoostBar
-            // 
-            this.rumbleBoostBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.rumbleBoostBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.rumbleBoostBar.Location = new System.Drawing.Point(63, 40);
-            this.rumbleBoostBar.Maximum = 200;
-            this.rumbleBoostBar.Name = "rumbleBoostBar";
-            this.rumbleBoostBar.Size = new System.Drawing.Size(288, 45);
-            this.rumbleBoostBar.TabIndex = 19;
-            this.rumbleBoostBar.TickFrequency = 25;
-            this.rumbleBoostBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.rumbleBoostBar.Value = 100;
-            this.rumbleBoostBar.ValueChanged += new System.EventHandler(this.rumbleBoostBar_ValueChanged);
-            // 
-            // rumbleLabel
-            // 
-            this.rumbleLabel.AutoSize = true;
-            this.rumbleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rumbleLabel.Location = new System.Drawing.Point(3, 23);
-            this.rumbleLabel.Name = "rumbleLabel";
-            this.rumbleLabel.Size = new System.Drawing.Size(44, 13);
-            this.rumbleLabel.TabIndex = 28;
-            this.rumbleLabel.Text = "Levels";
             // 
             // colorLabel
             // 
@@ -592,7 +492,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(93, 41);
+            this.label11.Location = new System.Drawing.Point(165, 77);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(21, 13);
             this.label11.TabIndex = 78;
@@ -601,52 +501,21 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(37, 41);
+            this.label10.Location = new System.Drawing.Point(67, 77);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(19, 13);
             this.label10.TabIndex = 77;
             this.label10.Text = "L2";
             // 
-            // rightTriggerMiddlePoint
-            // 
-            this.rightTriggerMiddlePoint.Location = new System.Drawing.Point(77, 56);
-            this.rightTriggerMiddlePoint.Margin = new System.Windows.Forms.Padding(2);
-            this.rightTriggerMiddlePoint.MaxLength = 20;
-            this.rightTriggerMiddlePoint.Name = "rightTriggerMiddlePoint";
-            this.rightTriggerMiddlePoint.Size = new System.Drawing.Size(52, 20);
-            this.rightTriggerMiddlePoint.TabIndex = 76;
-            this.rightTriggerMiddlePoint.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // leftTriggerMiddlePoint
-            // 
-            this.leftTriggerMiddlePoint.Location = new System.Drawing.Point(21, 56);
-            this.leftTriggerMiddlePoint.Margin = new System.Windows.Forms.Padding(2);
-            this.leftTriggerMiddlePoint.MaxLength = 20;
-            this.leftTriggerMiddlePoint.Name = "leftTriggerMiddlePoint";
-            this.leftTriggerMiddlePoint.Size = new System.Drawing.Size(52, 20);
-            this.leftTriggerMiddlePoint.TabIndex = 75;
-            this.leftTriggerMiddlePoint.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(34, 13);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(4, 77);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 13);
+            this.label9.Size = new System.Drawing.Size(57, 13);
             this.label9.TabIndex = 74;
-            this.label9.Text = "Trigger Threshold";
-            // 
-            // cbSixaxis
-            // 
-            this.cbSixaxis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbSixaxis.AutoSize = true;
-            this.cbSixaxis.Location = new System.Drawing.Point(177, 59);
-            this.cbSixaxis.Name = "cbSixaxis";
-            this.cbSixaxis.Size = new System.Drawing.Size(141, 17);
-            this.cbSixaxis.TabIndex = 79;
-            this.cbSixaxis.Text = "Sixaxis Gyro/Accel Data";
-            this.cbSixaxis.CheckedChanged += new System.EventHandler(this.cbSixaxis_CheckedChanged);
+            this.label9.Text = "Threshold:";
             // 
             // flushHIDQueue
             // 
@@ -654,11 +523,12 @@
             this.flushHIDQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.flushHIDQueue.AutoSize = true;
             this.flushHIDQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.flushHIDQueue.Location = new System.Drawing.Point(177, 36);
+            this.flushHIDQueue.Location = new System.Drawing.Point(311, 12);
             this.flushHIDQueue.Name = "flushHIDQueue";
-            this.flushHIDQueue.Size = new System.Drawing.Size(195, 17);
+            this.flushHIDQueue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.flushHIDQueue.Size = new System.Drawing.Size(106, 17);
             this.flushHIDQueue.TabIndex = 80;
-            this.flushHIDQueue.Text = "Flush HID queue after each reading";
+            this.flushHIDQueue.Text = "Flush HID queue";
             this.flushHIDQueue.UseVisualStyleBackColor = true;
             this.flushHIDQueue.CheckedChanged += new System.EventHandler(this.flushHIDQueue_CheckedChanged);
             // 
@@ -684,7 +554,6 @@
             this.tabOptions.Controls.Add(this.tabAnalogSticks);
             this.tabOptions.Controls.Add(this.tabTouchPad);
             this.tabOptions.Controls.Add(this.tabLightBar);
-            this.tabOptions.Controls.Add(this.tabRumble);
             this.tabOptions.Controls.Add(this.tabOther);
             this.tabOptions.Location = new System.Drawing.Point(12, 12);
             this.tabOptions.Name = "tabOptions";
@@ -1708,53 +1577,35 @@
             this.lBspc.Text = "seconds per cycle";
             this.lBspc.Visible = false;
             // 
-            // tabRumble
-            // 
-            this.tabRumble.Controls.Add(this.rumbleSwap);
-            this.tabRumble.Controls.Add(this.rightMotorBar);
-            this.tabRumble.Controls.Add(this.leftMotorBar);
-            this.tabRumble.Controls.Add(this.rumbleLabel);
-            this.tabRumble.Controls.Add(this.rumbleBoostBar);
-            this.tabRumble.Controls.Add(this.rumbleBoostLabel);
-            this.tabRumble.Controls.Add(this.leftMotorLabel);
-            this.tabRumble.Controls.Add(this.rightMotorLabel);
-            this.tabRumble.Controls.Add(this.rightMotorValLabel);
-            this.tabRumble.Controls.Add(this.leftMotorValLabel);
-            this.tabRumble.Controls.Add(this.rumbleBoostMotorValLabel);
-            this.tabRumble.Location = new System.Drawing.Point(4, 22);
-            this.tabRumble.Name = "tabRumble";
-            this.tabRumble.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRumble.Size = new System.Drawing.Size(425, 170);
-            this.tabRumble.TabIndex = 1;
-            this.tabRumble.Text = "Rumble";
-            this.tabRumble.UseVisualStyleBackColor = true;
-            // 
-            // rumbleSwap
-            // 
-            this.rumbleSwap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rumbleSwap.AutoSize = true;
-            this.rumbleSwap.Location = new System.Drawing.Point(6, 137);
-            this.rumbleSwap.Name = "rumbleSwap";
-            this.rumbleSwap.Size = new System.Drawing.Size(349, 17);
-            this.rumbleSwap.TabIndex = 36;
-            this.rumbleSwap.Text = "Swap rumble input (matches left/right instead of heavy/light aspects)";
-            this.rumbleSwap.UseVisualStyleBackColor = true;
-            this.rumbleSwap.CheckedChanged += new System.EventHandler(this.rumbleSwap_CheckedChanged);
-            // 
             // tabOther
             // 
+            this.tabOther.Controls.Add(this.tBsixaxisAccelZ);
+            this.tabOther.Controls.Add(this.tBsixaxisAccelY);
+            this.tabOther.Controls.Add(this.tBsixaxisAccelX);
+            this.tabOther.Controls.Add(this.tBsixaxisGyroZ);
+            this.tabOther.Controls.Add(this.tBsixaxisGyroY);
+            this.tabOther.Controls.Add(this.tBsixaxisGyroX);
+            this.tabOther.Controls.Add(this.label6);
+            this.tabOther.Controls.Add(this.label5);
+            this.tabOther.Controls.Add(this.btnRumbleTest);
+            this.tabOther.Controls.Add(this.numUDLightRumble);
+            this.tabOther.Controls.Add(this.numUDHeavyRumble);
+            this.tabOther.Controls.Add(this.rumbleBoostBar);
+            this.tabOther.Controls.Add(this.rumbleLabel);
+            this.tabOther.Controls.Add(this.rumbleBoostLabel);
+            this.tabOther.Controls.Add(this.leftMotorLabel);
+            this.tabOther.Controls.Add(this.rightMotorLabel);
             this.tabOther.Controls.Add(this.lBButtonMouseSens);
             this.tabOther.Controls.Add(this.lBMouseSens);
+            this.tabOther.Controls.Add(this.numUDL2);
+            this.tabOther.Controls.Add(this.numUDR2);
             this.tabOther.Controls.Add(this.idleDisconnectTimeout);
             this.tabOther.Controls.Add(this.label3);
-            this.tabOther.Controls.Add(this.label2);
-            this.tabOther.Controls.Add(this.cbSixaxis);
+            this.tabOther.Controls.Add(this.lBControllerOff);
             this.tabOther.Controls.Add(this.label11);
             this.tabOther.Controls.Add(this.flushHIDQueue);
             this.tabOther.Controls.Add(this.label10);
             this.tabOther.Controls.Add(this.label9);
-            this.tabOther.Controls.Add(this.rightTriggerMiddlePoint);
-            this.tabOther.Controls.Add(this.leftTriggerMiddlePoint);
             this.tabOther.Controls.Add(this.tBMouseSens);
             this.tabOther.Location = new System.Drawing.Point(4, 22);
             this.tabOther.Name = "tabOther";
@@ -1766,15 +1617,17 @@
             // lBButtonMouseSens
             // 
             this.lBButtonMouseSens.AutoSize = true;
-            this.lBButtonMouseSens.Location = new System.Drawing.Point(158, 11);
+            this.lBButtonMouseSens.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBButtonMouseSens.Location = new System.Drawing.Point(7, 13);
             this.lBButtonMouseSens.Name = "lBButtonMouseSens";
-            this.lBButtonMouseSens.Size = new System.Drawing.Size(134, 13);
+            this.lBButtonMouseSens.Size = new System.Drawing.Size(137, 13);
             this.lBButtonMouseSens.TabIndex = 87;
-            this.lBButtonMouseSens.Text = "Mouse Sensitivity (Buttons)";
+            this.lBButtonMouseSens.Text = "Mouse Sensitivity (Buttons):";
+            this.lBButtonMouseSens.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lBMouseSens
             // 
-            this.lBMouseSens.Location = new System.Drawing.Point(392, 13);
+            this.lBMouseSens.Location = new System.Drawing.Point(275, 13);
             this.lBMouseSens.Name = "lBMouseSens";
             this.lBMouseSens.Size = new System.Drawing.Size(30, 13);
             this.lBMouseSens.TabIndex = 86;
@@ -1783,7 +1636,7 @@
             // 
             // idleDisconnectTimeout
             // 
-            this.idleDisconnectTimeout.Location = new System.Drawing.Point(6, 107);
+            this.idleDisconnectTimeout.Location = new System.Drawing.Point(107, 43);
             this.idleDisconnectTimeout.Maximum = new decimal(new int[] {
             3600,
             0,
@@ -1797,32 +1650,21 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(63, 109);
+            this.label3.Location = new System.Drawing.Point(165, 45);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 13);
+            this.label3.Size = new System.Drawing.Size(106, 13);
             this.label3.TabIndex = 83;
-            this.label3.Text = "seconds (0 to disable)";
+            this.label3.Text = "minutes (0 to disable)";
             // 
-            // label2
+            // lBControllerOff
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 91);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 13);
-            this.label2.TabIndex = 81;
-            this.label2.Text = "Idle disconnection timeout";
-            // 
-            // tBMouseSens
-            // 
-            this.tBMouseSens.BackColor = System.Drawing.Color.White;
-            this.tBMouseSens.Location = new System.Drawing.Point(292, 8);
-            this.tBMouseSens.Maximum = 117;
-            this.tBMouseSens.Name = "tBMouseSens";
-            this.tBMouseSens.Size = new System.Drawing.Size(104, 45);
-            this.tBMouseSens.TabIndex = 85;
-            this.tBMouseSens.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tBMouseSens.Value = 50;
-            this.tBMouseSens.Scroll += new System.EventHandler(this.tBMouseSens_Scroll);
+            this.lBControllerOff.AutoSize = true;
+            this.lBControllerOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBControllerOff.Location = new System.Drawing.Point(4, 45);
+            this.lBControllerOff.Name = "lBControllerOff";
+            this.lBControllerOff.Size = new System.Drawing.Size(96, 13);
+            this.lBControllerOff.TabIndex = 81;
+            this.lBControllerOff.Text = "Controller Auto-Off:";
             // 
             // tBProfile
             // 
@@ -1845,6 +1687,246 @@
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 84;
             this.label4.Text = "Profile Name:";
+            // 
+            // numUDR2
+            // 
+            this.numUDR2.DecimalPlaces = 1;
+            this.numUDR2.Location = new System.Drawing.Point(203, 75);
+            this.numUDR2.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numUDR2.Name = "numUDR2";
+            this.numUDR2.Size = new System.Drawing.Size(52, 20);
+            this.numUDR2.TabIndex = 84;
+            this.numUDR2.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numUDR2.ValueChanged += new System.EventHandler(this.numUDR2_ValueChanged);
+            // 
+            // numUDL2
+            // 
+            this.numUDL2.DecimalPlaces = 1;
+            this.numUDL2.Location = new System.Drawing.Point(107, 75);
+            this.numUDL2.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numUDL2.Name = "numUDL2";
+            this.numUDL2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.numUDL2.Size = new System.Drawing.Size(52, 20);
+            this.numUDL2.TabIndex = 84;
+            this.numUDL2.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numUDL2.ValueChanged += new System.EventHandler(this.numUDL2_ValueChanged);
+            // 
+            // rumbleLabel
+            // 
+            this.rumbleLabel.AutoSize = true;
+            this.rumbleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rumbleLabel.Location = new System.Drawing.Point(4, 109);
+            this.rumbleLabel.Name = "rumbleLabel";
+            this.rumbleLabel.Size = new System.Drawing.Size(46, 13);
+            this.rumbleLabel.TabIndex = 98;
+            this.rumbleLabel.Text = "Rumble:";
+            // 
+            // rumbleBoostLabel
+            // 
+            this.rumbleBoostLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.rumbleBoostLabel.AutoSize = true;
+            this.rumbleBoostLabel.Location = new System.Drawing.Point(67, 109);
+            this.rumbleBoostLabel.Name = "rumbleBoostLabel";
+            this.rumbleBoostLabel.Size = new System.Drawing.Size(34, 13);
+            this.rumbleBoostLabel.TabIndex = 92;
+            this.rumbleBoostLabel.Text = "Boost";
+            // 
+            // leftMotorLabel
+            // 
+            this.leftMotorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.leftMotorLabel.AutoSize = true;
+            this.leftMotorLabel.Location = new System.Drawing.Point(264, 109);
+            this.leftMotorLabel.Name = "leftMotorLabel";
+            this.leftMotorLabel.Size = new System.Drawing.Size(38, 13);
+            this.leftMotorLabel.TabIndex = 93;
+            this.leftMotorLabel.Text = "Heavy";
+            // 
+            // rightMotorLabel
+            // 
+            this.rightMotorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.rightMotorLabel.AutoSize = true;
+            this.rightMotorLabel.Location = new System.Drawing.Point(165, 109);
+            this.rightMotorLabel.Name = "rightMotorLabel";
+            this.rightMotorLabel.Size = new System.Drawing.Size(30, 13);
+            this.rightMotorLabel.TabIndex = 94;
+            this.rightMotorLabel.Text = "Light";
+            // 
+            // rumbleBoostBar
+            // 
+            this.rumbleBoostBar.Location = new System.Drawing.Point(107, 107);
+            this.rumbleBoostBar.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.rumbleBoostBar.Name = "rumbleBoostBar";
+            this.rumbleBoostBar.Size = new System.Drawing.Size(52, 20);
+            this.rumbleBoostBar.TabIndex = 99;
+            this.rumbleBoostBar.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // numUDHeavyRumble
+            // 
+            this.numUDHeavyRumble.Location = new System.Drawing.Point(308, 107);
+            this.numUDHeavyRumble.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numUDHeavyRumble.Name = "numUDHeavyRumble";
+            this.numUDHeavyRumble.Size = new System.Drawing.Size(52, 20);
+            this.numUDHeavyRumble.TabIndex = 99;
+            // 
+            // numUDLightRumble
+            // 
+            this.numUDLightRumble.Location = new System.Drawing.Point(203, 107);
+            this.numUDLightRumble.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numUDLightRumble.Name = "numUDLightRumble";
+            this.numUDLightRumble.Size = new System.Drawing.Size(52, 20);
+            this.numUDLightRumble.TabIndex = 99;
+            // 
+            // btnRumbleTest
+            // 
+            this.btnRumbleTest.Location = new System.Drawing.Point(368, 105);
+            this.btnRumbleTest.Name = "btnRumbleTest";
+            this.btnRumbleTest.Size = new System.Drawing.Size(53, 23);
+            this.btnRumbleTest.TabIndex = 100;
+            this.btnRumbleTest.Text = "Test";
+            this.btnRumbleTest.UseVisualStyleBackColor = true;
+            this.btnRumbleTest.Click += new System.EventHandler(this.btnRumbleTest_Click);
+            // 
+            // tBMouseSens
+            // 
+            this.tBMouseSens.BackColor = System.Drawing.Color.White;
+            this.tBMouseSens.Location = new System.Drawing.Point(144, 10);
+            this.tBMouseSens.Maximum = 117;
+            this.tBMouseSens.Name = "tBMouseSens";
+            this.tBMouseSens.Size = new System.Drawing.Size(131, 45);
+            this.tBMouseSens.TabIndex = 85;
+            this.tBMouseSens.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBMouseSens.Value = 50;
+            this.tBMouseSens.Scroll += new System.EventHandler(this.tBMouseSens_Scroll);
+            // 
+            // tBsixaxisAccelZ
+            // 
+            this.tBsixaxisAccelZ.AutoSize = false;
+            this.tBsixaxisAccelZ.BackColor = System.Drawing.SystemColors.Window;
+            this.tBsixaxisAccelZ.Enabled = false;
+            this.tBsixaxisAccelZ.Location = new System.Drawing.Point(374, 146);
+            this.tBsixaxisAccelZ.Maximum = 32767;
+            this.tBsixaxisAccelZ.Minimum = -32768;
+            this.tBsixaxisAccelZ.Name = "tBsixaxisAccelZ";
+            this.tBsixaxisAccelZ.Size = new System.Drawing.Size(50, 19);
+            this.tBsixaxisAccelZ.TabIndex = 103;
+            this.tBsixaxisAccelZ.TickFrequency = 16384;
+            // 
+            // tBsixaxisAccelY
+            // 
+            this.tBsixaxisAccelY.AutoSize = false;
+            this.tBsixaxisAccelY.BackColor = System.Drawing.SystemColors.Window;
+            this.tBsixaxisAccelY.Enabled = false;
+            this.tBsixaxisAccelY.Location = new System.Drawing.Point(327, 146);
+            this.tBsixaxisAccelY.Maximum = 32767;
+            this.tBsixaxisAccelY.Minimum = -32768;
+            this.tBsixaxisAccelY.Name = "tBsixaxisAccelY";
+            this.tBsixaxisAccelY.Size = new System.Drawing.Size(50, 19);
+            this.tBsixaxisAccelY.TabIndex = 104;
+            this.tBsixaxisAccelY.TickFrequency = 16384;
+            // 
+            // tBsixaxisAccelX
+            // 
+            this.tBsixaxisAccelX.AutoSize = false;
+            this.tBsixaxisAccelX.BackColor = System.Drawing.SystemColors.Window;
+            this.tBsixaxisAccelX.Enabled = false;
+            this.tBsixaxisAccelX.Location = new System.Drawing.Point(281, 146);
+            this.tBsixaxisAccelX.Maximum = 32767;
+            this.tBsixaxisAccelX.Minimum = -32768;
+            this.tBsixaxisAccelX.Name = "tBsixaxisAccelX";
+            this.tBsixaxisAccelX.Size = new System.Drawing.Size(50, 19);
+            this.tBsixaxisAccelX.TabIndex = 105;
+            this.tBsixaxisAccelX.TickFrequency = 16384;
+            // 
+            // tBsixaxisGyroZ
+            // 
+            this.tBsixaxisGyroZ.AutoSize = false;
+            this.tBsixaxisGyroZ.BackColor = System.Drawing.SystemColors.Window;
+            this.tBsixaxisGyroZ.Enabled = false;
+            this.tBsixaxisGyroZ.Location = new System.Drawing.Point(162, 146);
+            this.tBsixaxisGyroZ.Maximum = 32767;
+            this.tBsixaxisGyroZ.Minimum = -32768;
+            this.tBsixaxisGyroZ.Name = "tBsixaxisGyroZ";
+            this.tBsixaxisGyroZ.Size = new System.Drawing.Size(50, 19);
+            this.tBsixaxisGyroZ.TabIndex = 106;
+            this.tBsixaxisGyroZ.TickFrequency = 16384;
+            // 
+            // tBsixaxisGyroY
+            // 
+            this.tBsixaxisGyroY.AutoSize = false;
+            this.tBsixaxisGyroY.BackColor = System.Drawing.SystemColors.Window;
+            this.tBsixaxisGyroY.Enabled = false;
+            this.tBsixaxisGyroY.Location = new System.Drawing.Point(115, 146);
+            this.tBsixaxisGyroY.Maximum = 32767;
+            this.tBsixaxisGyroY.Minimum = -32768;
+            this.tBsixaxisGyroY.Name = "tBsixaxisGyroY";
+            this.tBsixaxisGyroY.Size = new System.Drawing.Size(50, 19);
+            this.tBsixaxisGyroY.TabIndex = 107;
+            this.tBsixaxisGyroY.TickFrequency = 16384;
+            // 
+            // tBsixaxisGyroX
+            // 
+            this.tBsixaxisGyroX.AutoSize = false;
+            this.tBsixaxisGyroX.BackColor = System.Drawing.SystemColors.Window;
+            this.tBsixaxisGyroX.Enabled = false;
+            this.tBsixaxisGyroX.Location = new System.Drawing.Point(68, 146);
+            this.tBsixaxisGyroX.Maximum = 32767;
+            this.tBsixaxisGyroX.Minimum = -32768;
+            this.tBsixaxisGyroX.Name = "tBsixaxisGyroX";
+            this.tBsixaxisGyroX.Size = new System.Drawing.Size(50, 19);
+            this.tBsixaxisGyroX.TabIndex = 108;
+            this.tBsixaxisGyroX.TickFrequency = 16384;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(212, 146);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 13);
+            this.label6.TabIndex = 101;
+            this.label6.Text = "Sixaxis Accel:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(4, 146);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.TabIndex = 102;
+            this.label5.Text = "Sixaxis Gyro:";
             // 
             // advColorDialog
             // 
@@ -1872,9 +1954,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.blueBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.redBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rightMotorBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.leftMotorBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).EndInit();
             this.lowLedPanel.ResumeLayout(false);
             this.lowLedPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).EndInit();
@@ -1899,12 +1978,21 @@
             this.tabLightBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUDRainbow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).EndInit();
-            this.tabRumble.ResumeLayout(false);
-            this.tabRumble.PerformLayout();
             this.tabOther.ResumeLayout(false);
             this.tabOther.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDR2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDHeavyRumble)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDLightRumble)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1920,16 +2008,6 @@
         private System.Windows.Forms.Label blueValLabel;
         private System.Windows.Forms.Label greenValLabel;
         private System.Windows.Forms.Label redValLabel;
-        private System.Windows.Forms.Label rumbleBoostMotorValLabel;
-        private System.Windows.Forms.Label leftMotorValLabel;
-        private System.Windows.Forms.Label rightMotorValLabel;
-        private System.Windows.Forms.Label rightMotorLabel;
-        private System.Windows.Forms.Label leftMotorLabel;
-        private System.Windows.Forms.Label rumbleBoostLabel;
-        private System.Windows.Forms.TrackBar rightMotorBar;
-        private System.Windows.Forms.TrackBar leftMotorBar;
-        private System.Windows.Forms.TrackBar rumbleBoostBar;
-        private System.Windows.Forms.Label rumbleLabel;
         private System.Windows.Forms.Label colorLabel;
         private System.Windows.Forms.TrackBar redBar;
         private System.Windows.Forms.Button saveButton;
@@ -1950,20 +2028,15 @@
         //private System.Windows.Forms.TrackBar tBsixaxisGyroY;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox rightTriggerMiddlePoint;
-        private System.Windows.Forms.TextBox leftTriggerMiddlePoint;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox cbSixaxis;
         private System.Windows.Forms.CheckBox flushHIDQueue;
         private System.Windows.Forms.CheckBox touchpadJitterCompensation;
         private System.Windows.Forms.TabControl tabOptions;
         private System.Windows.Forms.TabPage tabLightBar;
-        private System.Windows.Forms.TabPage tabRumble;
         private System.Windows.Forms.TabPage tabTouchPad;
         private System.Windows.Forms.TabPage tabOther;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox rumbleSwap;
+        private System.Windows.Forms.Label lBControllerOff;
         private System.Windows.Forms.TabPage tabControls;
         private System.Windows.Forms.TabPage tabAnalogSticks;
         private System.Windows.Forms.NumericUpDown numUDScroll;
@@ -2017,7 +2090,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox cBDoubleTap;
         private System.Windows.Forms.Label lBMouseSens;
-        private System.Windows.Forms.TrackBar tBMouseSens;
         private System.Windows.Forms.Label lBButtonMouseSens;
         private System.Windows.Forms.NumericUpDown numUDRainbow;
         private System.Windows.Forms.PictureBox pBRainbow;
@@ -2025,6 +2097,25 @@
         private System.Windows.Forms.TrackBar lowBlueBar;
         private System.Windows.Forms.TrackBar lowGreenBar;
         private System.Windows.Forms.TrackBar lowRedBar;
+        private System.Windows.Forms.NumericUpDown numUDL2;
+        private System.Windows.Forms.NumericUpDown numUDR2;
+        private System.Windows.Forms.Label rumbleLabel;
+        private System.Windows.Forms.Label rumbleBoostLabel;
+        private System.Windows.Forms.Label leftMotorLabel;
+        private System.Windows.Forms.Label rightMotorLabel;
+        private System.Windows.Forms.NumericUpDown numUDLightRumble;
+        private System.Windows.Forms.NumericUpDown numUDHeavyRumble;
+        private System.Windows.Forms.NumericUpDown rumbleBoostBar;
+        private System.Windows.Forms.Button btnRumbleTest;
+        private System.Windows.Forms.TrackBar tBsixaxisAccelZ;
+        private System.Windows.Forms.TrackBar tBsixaxisAccelY;
+        private System.Windows.Forms.TrackBar tBsixaxisAccelX;
+        private System.Windows.Forms.TrackBar tBsixaxisGyroZ;
+        private System.Windows.Forms.TrackBar tBsixaxisGyroY;
+        private System.Windows.Forms.TrackBar tBsixaxisGyroX;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TrackBar tBMouseSens;
     }
 }
 

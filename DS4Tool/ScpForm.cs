@@ -291,37 +291,42 @@ namespace ScpServer
         {
             Button bn = (Button)sender;
             int i = Int32.Parse(bn.Tag.ToString());
-            Options opt = OptionsDialog[i] = new Options(rootHub, i, cbs[i].Text, this);
-            opt.Text = "Options for Controller " + (i + 1);
-            opt.Icon = this.Icon;
-            opt.FormClosed += delegate
+            if (OptionsDialog[i] == null)
             {
-                OptionsDialog[i] = null;
-                Enable_Controls(i, true);
-            };
-            opt.Show();
-            Enable_Controls(i, false);
+                Options opt = OptionsDialog[i] = new Options(rootHub, i, cbs[i].Text, this);
+                opt.Text = "Options for Controller " + (i + 1);
+                opt.Icon = this.Icon;
+                opt.FormClosed += delegate
+                {
+                    OptionsDialog[i] = null;
+                };
+                opt.Show();
+            }
 
         }
         private void editMenu_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
             int i = Int32.Parse(em.Tag.ToString());
-            foreach (ToolStripDropDownItem t in em.DropDownItems)
-                if (((ToolStripMenuItem)t).Checked)
-                {
-                    Options opt = OptionsDialog[i] = new Options(rootHub, i, ((ToolStripMenuItem)t).Text, this);
-                    opt.Text = "Options for Controller " + (i + 1);
-                    opt.Icon = this.Icon;
-                    opt.FormClosed += delegate
+            if (OptionsDialog[i] == null)
+            {
+                foreach (ToolStripMenuItem t in em.DropDownItems)
+                    //if (!(t is ToolStripSeparator)
+                    if (((ToolStripMenuItem)t).Checked)
                     {
-                        OptionsDialog[i] = null;
-                        Enable_Controls(i, true);
-                    };
-                    opt.Show();
-                    Enable_Controls(i, false);
-                    break;
-                }
+                        Options opt = OptionsDialog[i] = new Options(rootHub, i, ((ToolStripMenuItem)t).Text, this);
+                        opt.Text = "Options for Controller " + (i + 1);
+                        opt.Icon = this.Icon;
+                        opt.FormClosed += delegate
+                        {
+                            OptionsDialog[i] = null;
+                        };
+                        opt.Show();
+                        break;
+                    }
+            }
+            //else
+                //OptionsDialog[i].Focus();
         }
         private void Enable_Controls(int device, bool on)
         {
@@ -404,17 +409,18 @@ namespace ScpServer
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
                 {
-                    Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
-                    opt.Text = "Options for Controller " + (tdevice + 1);
-                    opt.Icon = this.Icon;
-                    int i = tdevice;
-                    opt.FormClosed += delegate
+                    if (OptionsDialog[tdevice] == null)
                     {
-                        OptionsDialog[i] = null;
-                        Enable_Controls(i, true);
-                    };
-                    opt.Show();
-                    Enable_Controls(i, false);
+                        Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
+                        opt.Text = "Options for Controller " + (tdevice + 1);
+                        opt.Icon = this.Icon;
+                        int i = tdevice;
+                        opt.FormClosed += delegate
+                        {
+                            OptionsDialog[i] = null;
+                        };
+                        opt.Show();
+                    }
                 }
                 if (cb.Text == "")
                     ebns[tdevice].Text = "New";
@@ -428,8 +434,8 @@ namespace ScpServer
             ToolStripMenuItem tS = (ToolStripMenuItem)sender;
             int tdevice = Int32.Parse(tS.Tag.ToString());
             if (!(e.ClickedItem is ToolStripSeparator))
-                if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1])
-                    if (((ToolStripMenuItem)e.ClickedItem).Checked)
+                if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1]) //if +New Profile not selected
+                    if (((ToolStripMenuItem)e.ClickedItem).Checked && OptionsDialog[tdevice] == null)
                     {
                         Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, e.ClickedItem.Text, this);
                         opt.Text = "Options for Controller " + (tdevice + 1);
@@ -438,10 +444,8 @@ namespace ScpServer
                         opt.FormClosed += delegate
                         {
                             OptionsDialog[i] = null;
-                            Enable_Controls(i, true);
                         };
                         opt.Show();
-                        Enable_Controls(i, false);
                     }
                     else
                     {
@@ -454,7 +458,7 @@ namespace ScpServer
                         Global.Save();
                         Global.LoadProfile(tdevice);
                     }
-                else// if (e.ClickedItem.Text == "+New Profile") //if +New Profile selected
+                else if (OptionsDialog[tdevice] == null) //if +New Profile selected
                 {
                     Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
                     opt.Text = "Options for Controller " + (tdevice + 1);
@@ -463,10 +467,8 @@ namespace ScpServer
                     opt.FormClosed += delegate
                     {
                         OptionsDialog[i] = null;
-                        Enable_Controls(i, true);
                     };
                     opt.Show();
-                    Enable_Controls(i, false);
                 }
         }
 

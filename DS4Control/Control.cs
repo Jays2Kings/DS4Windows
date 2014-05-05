@@ -57,7 +57,7 @@ namespace DS4Control
                 LogDebug("Starting...");
                 DS4Devices.isExclusiveMode = Global.getUseExclusiveMode();
                 LogDebug("Searching for controllers....");
-                LogDebug("Using " + (DS4Devices.isExclusiveMode ? "Exclusive Mode": "Shared Mode"));
+                LogDebug("Using " + (DS4Devices.isExclusiveMode ? "Exclusive Mode" : "Shared Mode"));
                 try
                 {
                     DS4Devices.findControllers();
@@ -94,7 +94,7 @@ namespace DS4Control
                     Log.LogToTray(e.Message);
                 }
                 running = true;
-                    
+
             }
             return true;
         }
@@ -160,7 +160,7 @@ namespace DS4Control
                             //TPadModeSwitcher m_switcher = new TPadModeSwitcher(device, Index);
                             //m_switcher.Debug += OnDebug;
                             //modeSwitcher[Index] = m_switcher;
-                            touchPad[Index] = new Mouse(Index, device); 
+                            touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = Global.loadColor(Index);
                             device.Report += this.On_Report;
                             x360Bus.Plugin(Index);
@@ -269,12 +269,12 @@ namespace DS4Control
 
             DS4Device device = (DS4Device)sender;
 
-            int ind=-1;
-            for (int i=0; i<DS4Controllers.Length; i++)
-                if(device == DS4Controllers[i])
+            int ind = -1;
+            for (int i = 0; i < DS4Controllers.Length; i++)
+                if (device == DS4Controllers[i])
                     ind = i;
 
-            if (ind!=-1)
+            if (ind != -1)
             {
                 device.getExposedState(ExposedState[ind], CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
@@ -289,9 +289,9 @@ namespace DS4Control
                 {
                     //ButtonMouse mode = (ButtonMouse)modeSwitcher[ind].getCurrentMode();
                     // XXX so disgusting, need to virtualize this again
-                   // mode.getDS4State().CopyTo(cState);
+                    // mode.getDS4State().CopyTo(cState);
                 }
-                
+
                 if (Global.getHasCustomKeysorButtons(ind))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], pState);
@@ -382,10 +382,7 @@ namespace DS4Control
             uint heavyBoosted = ((uint)heavyMotor * (uint)boost) / 100;
             if (heavyBoosted > 255)
                 heavyBoosted = 255;
-            if (Global.getRumbleSwap(deviceNum))
-                DS4Controllers[deviceNum].setRumble((byte)heavyBoosted, (byte)lightBoosted);
-            else
-                DS4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
+            DS4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
         }
     }
 }

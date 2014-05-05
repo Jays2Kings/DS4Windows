@@ -119,15 +119,6 @@ namespace DS4Control
             m_Config.m_Rumble[device] = boost;
 
         }
-
-        public static bool getRumbleSwap(int device)
-        {
-            return m_Config.rumbleSwap[device];
-        }
-        public static void setRumbleSwap(int device, bool swap)
-        {
-            m_Config.rumbleSwap[device] = swap;
-        }
         public static double getRainbow(int device)
         {
             return m_Config.rainbow[device];
@@ -393,7 +384,6 @@ namespace DS4Control
         public double[] m_LeftTriggerMiddle = { 0.5, 0.5, 0.5, 0.5 }, m_RightTriggerMiddle = { 0.5, 0.5, 0.5, 0.5 };
         public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty };
         public Byte[] m_Rumble = { 100, 100, 100, 100 };
-        public Boolean[] rumbleSwap = { false, false, false, false };
         public Byte[] touchSensitivity = { 100, 100, 100, 100 };
         public Byte[] tapSensitivity = {0, 0, 0, 0};
         public bool[] doubleTap = { false, false, false, false };
@@ -486,7 +476,6 @@ namespace DS4Control
                 XmlNode xmlGreen = m_Xdoc.CreateNode(XmlNodeType.Element, "Green", null); xmlGreen.InnerText = m_Leds[device][1].ToString(); Node.AppendChild(xmlGreen);
                 XmlNode xmlBlue = m_Xdoc.CreateNode(XmlNodeType.Element, "Blue", null); xmlBlue.InnerText = m_Leds[device][2].ToString(); Node.AppendChild(xmlBlue);
                 XmlNode xmlRumbleBoost = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); xmlRumbleBoost.InnerText = m_Rumble[device].ToString(); Node.AppendChild(xmlRumbleBoost);
-                XmlNode xmlRumbleSwap = m_Xdoc.CreateNode(XmlNodeType.Element, "rumbleSwap", null); xmlRumbleSwap.InnerText = rumbleSwap[device].ToString(); Node.AppendChild(xmlRumbleSwap);
                 XmlNode xmlLedAsBatteryIndicator = m_Xdoc.CreateNode(XmlNodeType.Element, "ledAsBatteryIndicator", null); xmlLedAsBatteryIndicator.InnerText = ledAsBattery[device].ToString(); Node.AppendChild(xmlLedAsBatteryIndicator);
                 XmlNode xmlLowBatteryFlash = m_Xdoc.CreateNode(XmlNodeType.Element, "lowBatteryFlash", null); xmlLowBatteryFlash.InnerText = flashLedLowBattery[device].ToString(); Node.AppendChild(xmlLowBatteryFlash);
                 XmlNode xmlTouchSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "touchSensitivity", null); xmlTouchSensitivity.InnerText = touchSensitivity[device].ToString(); Node.AppendChild(xmlTouchSensitivity);
@@ -683,9 +672,6 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble[device]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/rumbleSwap"); Boolean.TryParse(Item.InnerText, out rumbleSwap[device]); }
-                    catch { missingSetting = true; }
-
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery[device]); }
                     catch { missingSetting = true; }
 
@@ -829,9 +815,6 @@ namespace DS4Control
                     catch { missingSetting = true; }
 
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble[device]); }
-                    catch { missingSetting = true; }
-
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/rumbleSwap"); Boolean.TryParse(Item.InnerText, out rumbleSwap[device]); }
                     catch { missingSetting = true; }
 
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery[device]); }

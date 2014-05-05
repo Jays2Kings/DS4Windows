@@ -182,6 +182,7 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button36 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabKBM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -283,6 +284,7 @@
             this.tabKBM.Controls.Add(this.btnX);
             this.tabKBM.Controls.Add(this.btnZ);
             this.tabKBM.Controls.Add(this.btnRALT);
+            this.tabKBM.Controls.Add(this.button36);
             this.tabKBM.Controls.Add(this.btnWINDOWS);
             this.tabKBM.Controls.Add(this.btnLALT);
             this.tabKBM.Controls.Add(this.btnRCTRL);
@@ -1013,9 +1015,9 @@
             // 
             // btnSPACE
             // 
-            this.btnSPACE.Location = new System.Drawing.Point(137, 152);
+            this.btnSPACE.Location = new System.Drawing.Point(155, 152);
             this.btnSPACE.Name = "btnSPACE";
-            this.btnSPACE.Size = new System.Drawing.Size(174, 24);
+            this.btnSPACE.Size = new System.Drawing.Size(138, 24);
             this.btnSPACE.TabIndex = 103;
             this.btnSPACE.Tag = "32";
             this.btnSPACE.Text = "Space";
@@ -1027,8 +1029,8 @@
             this.btnLSHIFT.Name = "btnLSHIFT";
             this.btnLSHIFT.Size = new System.Drawing.Size(66, 24);
             this.btnLSHIFT.TabIndex = 102;
-            this.btnLSHIFT.Tag = "16";
-            this.btnLSHIFT.Text = "Shift";
+            this.btnLSHIFT.Tag = "160";
+            this.btnLSHIFT.Text = "LShift";
             this.btnLSHIFT.UseVisualStyleBackColor = true;
             // 
             // btnRSHIFT
@@ -1037,8 +1039,8 @@
             this.btnRSHIFT.Name = "btnRSHIFT";
             this.btnRSHIFT.Size = new System.Drawing.Size(66, 24);
             this.btnRSHIFT.TabIndex = 101;
-            this.btnRSHIFT.Tag = "16";
-            this.btnRSHIFT.Text = "Shift";
+            this.btnRSHIFT.Tag = "161";
+            this.btnRSHIFT.Text = "RShift";
             this.btnRSHIFT.UseVisualStyleBackColor = true;
             // 
             // btnSLASH
@@ -1142,42 +1144,42 @@
             // 
             // btnRALT
             // 
-            this.btnRALT.Location = new System.Drawing.Point(317, 152);
+            this.btnRALT.Location = new System.Drawing.Point(347, 152);
             this.btnRALT.Name = "btnRALT";
-            this.btnRALT.Size = new System.Drawing.Size(54, 24);
+            this.btnRALT.Size = new System.Drawing.Size(39, 24);
             this.btnRALT.TabIndex = 85;
-            this.btnRALT.Tag = "18";
-            this.btnRALT.Text = "Alt";
+            this.btnRALT.Tag = "165";
+            this.btnRALT.Text = "RAlt";
             this.btnRALT.UseVisualStyleBackColor = true;
             // 
             // btnWINDOWS
             // 
-            this.btnWINDOWS.Location = new System.Drawing.Point(95, 152);
+            this.btnWINDOWS.Location = new System.Drawing.Point(107, 152);
             this.btnWINDOWS.Name = "btnWINDOWS";
-            this.btnWINDOWS.Size = new System.Drawing.Size(36, 24);
+            this.btnWINDOWS.Size = new System.Drawing.Size(42, 24);
             this.btnWINDOWS.TabIndex = 86;
             this.btnWINDOWS.Tag = "91";
-            this.btnWINDOWS.Text = "Windows";
+            this.btnWINDOWS.Text = "LWin";
             this.btnWINDOWS.UseVisualStyleBackColor = true;
             // 
             // btnLALT
             // 
             this.btnLALT.Location = new System.Drawing.Point(62, 152);
             this.btnLALT.Name = "btnLALT";
-            this.btnLALT.Size = new System.Drawing.Size(27, 24);
+            this.btnLALT.Size = new System.Drawing.Size(39, 24);
             this.btnLALT.TabIndex = 86;
-            this.btnLALT.Tag = "18";
-            this.btnLALT.Text = "Alt";
+            this.btnLALT.Tag = "164";
+            this.btnLALT.Text = "LAlt";
             this.btnLALT.UseVisualStyleBackColor = true;
             // 
             // btnRCTRL
             // 
-            this.btnRCTRL.Location = new System.Drawing.Point(377, 152);
+            this.btnRCTRL.Location = new System.Drawing.Point(392, 152);
             this.btnRCTRL.Name = "btnRCTRL";
-            this.btnRCTRL.Size = new System.Drawing.Size(66, 24);
+            this.btnRCTRL.Size = new System.Drawing.Size(51, 24);
             this.btnRCTRL.TabIndex = 90;
-            this.btnRCTRL.Tag = "17";
-            this.btnRCTRL.Text = "Ctrl";
+            this.btnRCTRL.Tag = "163";
+            this.btnRCTRL.Text = "RCtrl";
             this.btnRCTRL.UseVisualStyleBackColor = true;
             // 
             // btnLCTRL
@@ -1186,8 +1188,8 @@
             this.btnLCTRL.Name = "btnLCTRL";
             this.btnLCTRL.Size = new System.Drawing.Size(51, 24);
             this.btnLCTRL.TabIndex = 88;
-            this.btnLCTRL.Tag = "17";
-            this.btnLCTRL.Text = "Ctrl";
+            this.btnLCTRL.Tag = "162";
+            this.btnLCTRL.Text = "LCtrl";
             this.btnLCTRL.UseVisualStyleBackColor = true;
             // 
             // btnCAPS
@@ -1888,6 +1890,16 @@
             this.pictureBox1.TabIndex = 107;
             this.pictureBox1.TabStop = false;
             // 
+            // button36
+            // 
+            this.button36.Location = new System.Drawing.Point(299, 152);
+            this.button36.Name = "button36";
+            this.button36.Size = new System.Drawing.Size(42, 24);
+            this.button36.TabIndex = 86;
+            this.button36.Tag = "92";
+            this.button36.Text = "RWin";
+            this.button36.UseVisualStyleBackColor = true;
+            // 
             // KBM360
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2067,5 +2079,6 @@
         private System.Windows.Forms.Button bnMOUSELEFT;
         private System.Windows.Forms.Button bnMOUSEDOWN;
         private System.Windows.Forms.Button bnMOUSEUP;
+        private System.Windows.Forms.Button button36;
     }
 }

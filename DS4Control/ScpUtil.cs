@@ -718,7 +718,7 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Rainbow"); Double.TryParse(Item.InnerText, out rainbow[device]); }
-                    catch { missingSetting = true; }
+                    catch { rainbow[device] = 0; missingSetting = true; }
 
                     DS4KeyType keyType;
                     UInt16 wvk;
@@ -866,7 +866,7 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Rainbow"); Double.TryParse(Item.InnerText, out rainbow[device]); }
-                    catch { missingSetting = true; }
+                    catch { rainbow[device] = 0; missingSetting = true; }
 
                     DS4KeyType keyType;
                     UInt16 wvk;

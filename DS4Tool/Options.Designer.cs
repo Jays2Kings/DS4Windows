@@ -115,24 +115,6 @@
             this.pBRainbow = new System.Windows.Forms.PictureBox();
             this.lBspc = new System.Windows.Forms.Label();
             this.tabOther = new System.Windows.Forms.TabPage();
-            this.lBButtonMouseSens = new System.Windows.Forms.Label();
-            this.lBMouseSens = new System.Windows.Forms.Label();
-            this.idleDisconnectTimeout = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lBControllerOff = new System.Windows.Forms.Label();
-            this.tBProfile = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numUDR2 = new System.Windows.Forms.NumericUpDown();
-            this.numUDL2 = new System.Windows.Forms.NumericUpDown();
-            this.rumbleLabel = new System.Windows.Forms.Label();
-            this.rumbleBoostLabel = new System.Windows.Forms.Label();
-            this.leftMotorLabel = new System.Windows.Forms.Label();
-            this.rightMotorLabel = new System.Windows.Forms.Label();
-            this.rumbleBoostBar = new System.Windows.Forms.NumericUpDown();
-            this.numUDHeavyRumble = new System.Windows.Forms.NumericUpDown();
-            this.numUDLightRumble = new System.Windows.Forms.NumericUpDown();
-            this.btnRumbleTest = new System.Windows.Forms.Button();
-            this.tBMouseSens = new System.Windows.Forms.TrackBar();
             this.tBsixaxisAccelZ = new System.Windows.Forms.TrackBar();
             this.tBsixaxisAccelY = new System.Windows.Forms.TrackBar();
             this.tBsixaxisAccelX = new System.Windows.Forms.TrackBar();
@@ -141,6 +123,24 @@
             this.tBsixaxisGyroX = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnRumbleTest = new System.Windows.Forms.Button();
+            this.numUDLightRumble = new System.Windows.Forms.NumericUpDown();
+            this.numUDHeavyRumble = new System.Windows.Forms.NumericUpDown();
+            this.rumbleBoostBar = new System.Windows.Forms.NumericUpDown();
+            this.rumbleLabel = new System.Windows.Forms.Label();
+            this.rumbleBoostLabel = new System.Windows.Forms.Label();
+            this.leftMotorLabel = new System.Windows.Forms.Label();
+            this.rightMotorLabel = new System.Windows.Forms.Label();
+            this.lBButtonMouseSens = new System.Windows.Forms.Label();
+            this.lBMouseSens = new System.Windows.Forms.Label();
+            this.numUDL2 = new System.Windows.Forms.NumericUpDown();
+            this.numUDR2 = new System.Windows.Forms.NumericUpDown();
+            this.idleDisconnectTimeout = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lBControllerOff = new System.Windows.Forms.Label();
+            this.tBMouseSens = new System.Windows.Forms.TrackBar();
+            this.tBProfile = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.blueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenBar)).BeginInit();
@@ -164,19 +164,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).BeginInit();
             this.tabOther.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDR2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDHeavyRumble)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDLightRumble)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDLightRumble)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDHeavyRumble)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDR2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).BeginInit();
             this.SuspendLayout();
             // 
             // BlueLabel
@@ -1614,222 +1614,6 @@
             this.tabOther.Text = "Other";
             this.tabOther.UseVisualStyleBackColor = true;
             // 
-            // lBButtonMouseSens
-            // 
-            this.lBButtonMouseSens.AutoSize = true;
-            this.lBButtonMouseSens.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBButtonMouseSens.Location = new System.Drawing.Point(7, 13);
-            this.lBButtonMouseSens.Name = "lBButtonMouseSens";
-            this.lBButtonMouseSens.Size = new System.Drawing.Size(137, 13);
-            this.lBButtonMouseSens.TabIndex = 87;
-            this.lBButtonMouseSens.Text = "Mouse Sensitivity (Buttons):";
-            this.lBButtonMouseSens.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lBMouseSens
-            // 
-            this.lBMouseSens.Location = new System.Drawing.Point(275, 13);
-            this.lBMouseSens.Name = "lBMouseSens";
-            this.lBMouseSens.Size = new System.Drawing.Size(30, 13);
-            this.lBMouseSens.TabIndex = 86;
-            this.lBMouseSens.Text = "50";
-            this.lBMouseSens.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // idleDisconnectTimeout
-            // 
-            this.idleDisconnectTimeout.Location = new System.Drawing.Point(107, 43);
-            this.idleDisconnectTimeout.Maximum = new decimal(new int[] {
-            3600,
-            0,
-            0,
-            0});
-            this.idleDisconnectTimeout.Name = "idleDisconnectTimeout";
-            this.idleDisconnectTimeout.Size = new System.Drawing.Size(52, 20);
-            this.idleDisconnectTimeout.TabIndex = 84;
-            this.idleDisconnectTimeout.ValueChanged += new System.EventHandler(this.idleDisconnectTimeout_ValueChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(165, 45);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 13);
-            this.label3.TabIndex = 83;
-            this.label3.Text = "minutes (0 to disable)";
-            // 
-            // lBControllerOff
-            // 
-            this.lBControllerOff.AutoSize = true;
-            this.lBControllerOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBControllerOff.Location = new System.Drawing.Point(4, 45);
-            this.lBControllerOff.Name = "lBControllerOff";
-            this.lBControllerOff.Size = new System.Drawing.Size(96, 13);
-            this.lBControllerOff.TabIndex = 81;
-            this.lBControllerOff.Text = "Controller Auto-Off:";
-            // 
-            // tBProfile
-            // 
-            this.tBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.tBProfile.Location = new System.Drawing.Point(103, 216);
-            this.tBProfile.Name = "tBProfile";
-            this.tBProfile.Size = new System.Drawing.Size(255, 20);
-            this.tBProfile.TabIndex = 83;
-            this.tBProfile.Text = "<type profile name here>";
-            this.tBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
-            this.tBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
-            this.tBProfile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbProfile_EnterDown);
-            this.tBProfile.Leave += new System.EventHandler(this.tBProfile_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 219);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 13);
-            this.label4.TabIndex = 84;
-            this.label4.Text = "Profile Name:";
-            // 
-            // numUDR2
-            // 
-            this.numUDR2.DecimalPlaces = 1;
-            this.numUDR2.Location = new System.Drawing.Point(203, 75);
-            this.numUDR2.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numUDR2.Name = "numUDR2";
-            this.numUDR2.Size = new System.Drawing.Size(52, 20);
-            this.numUDR2.TabIndex = 84;
-            this.numUDR2.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.numUDR2.ValueChanged += new System.EventHandler(this.numUDR2_ValueChanged);
-            // 
-            // numUDL2
-            // 
-            this.numUDL2.DecimalPlaces = 1;
-            this.numUDL2.Location = new System.Drawing.Point(107, 75);
-            this.numUDL2.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numUDL2.Name = "numUDL2";
-            this.numUDL2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.numUDL2.Size = new System.Drawing.Size(52, 20);
-            this.numUDL2.TabIndex = 84;
-            this.numUDL2.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.numUDL2.ValueChanged += new System.EventHandler(this.numUDL2_ValueChanged);
-            // 
-            // rumbleLabel
-            // 
-            this.rumbleLabel.AutoSize = true;
-            this.rumbleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rumbleLabel.Location = new System.Drawing.Point(4, 109);
-            this.rumbleLabel.Name = "rumbleLabel";
-            this.rumbleLabel.Size = new System.Drawing.Size(46, 13);
-            this.rumbleLabel.TabIndex = 98;
-            this.rumbleLabel.Text = "Rumble:";
-            // 
-            // rumbleBoostLabel
-            // 
-            this.rumbleBoostLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.rumbleBoostLabel.AutoSize = true;
-            this.rumbleBoostLabel.Location = new System.Drawing.Point(67, 109);
-            this.rumbleBoostLabel.Name = "rumbleBoostLabel";
-            this.rumbleBoostLabel.Size = new System.Drawing.Size(34, 13);
-            this.rumbleBoostLabel.TabIndex = 92;
-            this.rumbleBoostLabel.Text = "Boost";
-            // 
-            // leftMotorLabel
-            // 
-            this.leftMotorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.leftMotorLabel.AutoSize = true;
-            this.leftMotorLabel.Location = new System.Drawing.Point(264, 109);
-            this.leftMotorLabel.Name = "leftMotorLabel";
-            this.leftMotorLabel.Size = new System.Drawing.Size(38, 13);
-            this.leftMotorLabel.TabIndex = 93;
-            this.leftMotorLabel.Text = "Heavy";
-            // 
-            // rightMotorLabel
-            // 
-            this.rightMotorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.rightMotorLabel.AutoSize = true;
-            this.rightMotorLabel.Location = new System.Drawing.Point(165, 109);
-            this.rightMotorLabel.Name = "rightMotorLabel";
-            this.rightMotorLabel.Size = new System.Drawing.Size(30, 13);
-            this.rightMotorLabel.TabIndex = 94;
-            this.rightMotorLabel.Text = "Light";
-            // 
-            // rumbleBoostBar
-            // 
-            this.rumbleBoostBar.Location = new System.Drawing.Point(107, 107);
-            this.rumbleBoostBar.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.rumbleBoostBar.Name = "rumbleBoostBar";
-            this.rumbleBoostBar.Size = new System.Drawing.Size(52, 20);
-            this.rumbleBoostBar.TabIndex = 99;
-            this.rumbleBoostBar.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // numUDHeavyRumble
-            // 
-            this.numUDHeavyRumble.Location = new System.Drawing.Point(308, 107);
-            this.numUDHeavyRumble.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numUDHeavyRumble.Name = "numUDHeavyRumble";
-            this.numUDHeavyRumble.Size = new System.Drawing.Size(52, 20);
-            this.numUDHeavyRumble.TabIndex = 99;
-            // 
-            // numUDLightRumble
-            // 
-            this.numUDLightRumble.Location = new System.Drawing.Point(203, 107);
-            this.numUDLightRumble.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numUDLightRumble.Name = "numUDLightRumble";
-            this.numUDLightRumble.Size = new System.Drawing.Size(52, 20);
-            this.numUDLightRumble.TabIndex = 99;
-            // 
-            // btnRumbleTest
-            // 
-            this.btnRumbleTest.Location = new System.Drawing.Point(368, 105);
-            this.btnRumbleTest.Name = "btnRumbleTest";
-            this.btnRumbleTest.Size = new System.Drawing.Size(53, 23);
-            this.btnRumbleTest.TabIndex = 100;
-            this.btnRumbleTest.Text = "Test";
-            this.btnRumbleTest.UseVisualStyleBackColor = true;
-            this.btnRumbleTest.Click += new System.EventHandler(this.btnRumbleTest_Click);
-            // 
-            // tBMouseSens
-            // 
-            this.tBMouseSens.BackColor = System.Drawing.Color.White;
-            this.tBMouseSens.Location = new System.Drawing.Point(144, 10);
-            this.tBMouseSens.Maximum = 117;
-            this.tBMouseSens.Name = "tBMouseSens";
-            this.tBMouseSens.Size = new System.Drawing.Size(131, 45);
-            this.tBMouseSens.TabIndex = 85;
-            this.tBMouseSens.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tBMouseSens.Value = 50;
-            this.tBMouseSens.Scroll += new System.EventHandler(this.tBMouseSens_Scroll);
-            // 
             // tBsixaxisAccelZ
             // 
             this.tBsixaxisAccelZ.AutoSize = false;
@@ -1928,6 +1712,224 @@
             this.label5.TabIndex = 102;
             this.label5.Text = "Sixaxis Gyro:";
             // 
+            // btnRumbleTest
+            // 
+            this.btnRumbleTest.Location = new System.Drawing.Point(368, 105);
+            this.btnRumbleTest.Name = "btnRumbleTest";
+            this.btnRumbleTest.Size = new System.Drawing.Size(53, 23);
+            this.btnRumbleTest.TabIndex = 100;
+            this.btnRumbleTest.Text = "Test";
+            this.btnRumbleTest.UseVisualStyleBackColor = true;
+            this.btnRumbleTest.Click += new System.EventHandler(this.btnRumbleTest_Click);
+            // 
+            // numUDLightRumble
+            // 
+            this.numUDLightRumble.Location = new System.Drawing.Point(203, 107);
+            this.numUDLightRumble.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numUDLightRumble.Name = "numUDLightRumble";
+            this.numUDLightRumble.Size = new System.Drawing.Size(52, 20);
+            this.numUDLightRumble.TabIndex = 99;
+            this.numUDLightRumble.ValueChanged += new System.EventHandler(this.numUDLightRumble_ValueChanged);
+            // 
+            // numUDHeavyRumble
+            // 
+            this.numUDHeavyRumble.Location = new System.Drawing.Point(308, 107);
+            this.numUDHeavyRumble.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numUDHeavyRumble.Name = "numUDHeavyRumble";
+            this.numUDHeavyRumble.Size = new System.Drawing.Size(52, 20);
+            this.numUDHeavyRumble.TabIndex = 99;
+            this.numUDHeavyRumble.ValueChanged += new System.EventHandler(this.numUDHeavyRumble_ValueChanged);
+            // 
+            // rumbleBoostBar
+            // 
+            this.rumbleBoostBar.Location = new System.Drawing.Point(107, 107);
+            this.rumbleBoostBar.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.rumbleBoostBar.Name = "rumbleBoostBar";
+            this.rumbleBoostBar.Size = new System.Drawing.Size(52, 20);
+            this.rumbleBoostBar.TabIndex = 99;
+            this.rumbleBoostBar.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // rumbleLabel
+            // 
+            this.rumbleLabel.AutoSize = true;
+            this.rumbleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rumbleLabel.Location = new System.Drawing.Point(4, 109);
+            this.rumbleLabel.Name = "rumbleLabel";
+            this.rumbleLabel.Size = new System.Drawing.Size(46, 13);
+            this.rumbleLabel.TabIndex = 98;
+            this.rumbleLabel.Text = "Rumble:";
+            // 
+            // rumbleBoostLabel
+            // 
+            this.rumbleBoostLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.rumbleBoostLabel.AutoSize = true;
+            this.rumbleBoostLabel.Location = new System.Drawing.Point(67, 109);
+            this.rumbleBoostLabel.Name = "rumbleBoostLabel";
+            this.rumbleBoostLabel.Size = new System.Drawing.Size(34, 13);
+            this.rumbleBoostLabel.TabIndex = 92;
+            this.rumbleBoostLabel.Text = "Boost";
+            // 
+            // leftMotorLabel
+            // 
+            this.leftMotorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.leftMotorLabel.AutoSize = true;
+            this.leftMotorLabel.Location = new System.Drawing.Point(264, 109);
+            this.leftMotorLabel.Name = "leftMotorLabel";
+            this.leftMotorLabel.Size = new System.Drawing.Size(38, 13);
+            this.leftMotorLabel.TabIndex = 93;
+            this.leftMotorLabel.Text = "Heavy";
+            // 
+            // rightMotorLabel
+            // 
+            this.rightMotorLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.rightMotorLabel.AutoSize = true;
+            this.rightMotorLabel.Location = new System.Drawing.Point(165, 109);
+            this.rightMotorLabel.Name = "rightMotorLabel";
+            this.rightMotorLabel.Size = new System.Drawing.Size(30, 13);
+            this.rightMotorLabel.TabIndex = 94;
+            this.rightMotorLabel.Text = "Light";
+            // 
+            // lBButtonMouseSens
+            // 
+            this.lBButtonMouseSens.AutoSize = true;
+            this.lBButtonMouseSens.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBButtonMouseSens.Location = new System.Drawing.Point(7, 13);
+            this.lBButtonMouseSens.Name = "lBButtonMouseSens";
+            this.lBButtonMouseSens.Size = new System.Drawing.Size(137, 13);
+            this.lBButtonMouseSens.TabIndex = 87;
+            this.lBButtonMouseSens.Text = "Mouse Sensitivity (Buttons):";
+            this.lBButtonMouseSens.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lBMouseSens
+            // 
+            this.lBMouseSens.Location = new System.Drawing.Point(275, 13);
+            this.lBMouseSens.Name = "lBMouseSens";
+            this.lBMouseSens.Size = new System.Drawing.Size(30, 13);
+            this.lBMouseSens.TabIndex = 86;
+            this.lBMouseSens.Text = "50";
+            this.lBMouseSens.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // numUDL2
+            // 
+            this.numUDL2.DecimalPlaces = 1;
+            this.numUDL2.Location = new System.Drawing.Point(107, 75);
+            this.numUDL2.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numUDL2.Name = "numUDL2";
+            this.numUDL2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.numUDL2.Size = new System.Drawing.Size(52, 20);
+            this.numUDL2.TabIndex = 84;
+            this.numUDL2.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numUDL2.ValueChanged += new System.EventHandler(this.numUDL2_ValueChanged);
+            // 
+            // numUDR2
+            // 
+            this.numUDR2.DecimalPlaces = 1;
+            this.numUDR2.Location = new System.Drawing.Point(203, 75);
+            this.numUDR2.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numUDR2.Name = "numUDR2";
+            this.numUDR2.Size = new System.Drawing.Size(52, 20);
+            this.numUDR2.TabIndex = 84;
+            this.numUDR2.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numUDR2.ValueChanged += new System.EventHandler(this.numUDR2_ValueChanged);
+            // 
+            // idleDisconnectTimeout
+            // 
+            this.idleDisconnectTimeout.Location = new System.Drawing.Point(107, 43);
+            this.idleDisconnectTimeout.Maximum = new decimal(new int[] {
+            3600,
+            0,
+            0,
+            0});
+            this.idleDisconnectTimeout.Name = "idleDisconnectTimeout";
+            this.idleDisconnectTimeout.Size = new System.Drawing.Size(52, 20);
+            this.idleDisconnectTimeout.TabIndex = 84;
+            this.idleDisconnectTimeout.ValueChanged += new System.EventHandler(this.idleDisconnectTimeout_ValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(165, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(106, 13);
+            this.label3.TabIndex = 83;
+            this.label3.Text = "minutes (0 to disable)";
+            // 
+            // lBControllerOff
+            // 
+            this.lBControllerOff.AutoSize = true;
+            this.lBControllerOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBControllerOff.Location = new System.Drawing.Point(4, 45);
+            this.lBControllerOff.Name = "lBControllerOff";
+            this.lBControllerOff.Size = new System.Drawing.Size(96, 13);
+            this.lBControllerOff.TabIndex = 81;
+            this.lBControllerOff.Text = "Controller Auto-Off:";
+            // 
+            // tBMouseSens
+            // 
+            this.tBMouseSens.BackColor = System.Drawing.Color.White;
+            this.tBMouseSens.Location = new System.Drawing.Point(144, 10);
+            this.tBMouseSens.Maximum = 117;
+            this.tBMouseSens.Name = "tBMouseSens";
+            this.tBMouseSens.Size = new System.Drawing.Size(131, 45);
+            this.tBMouseSens.TabIndex = 85;
+            this.tBMouseSens.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBMouseSens.Value = 50;
+            this.tBMouseSens.Scroll += new System.EventHandler(this.tBMouseSens_Scroll);
+            // 
+            // tBProfile
+            // 
+            this.tBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.tBProfile.Location = new System.Drawing.Point(103, 216);
+            this.tBProfile.Name = "tBProfile";
+            this.tBProfile.Size = new System.Drawing.Size(255, 20);
+            this.tBProfile.TabIndex = 83;
+            this.tBProfile.Text = "<type profile name here>";
+            this.tBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
+            this.tBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
+            this.tBProfile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbProfile_EnterDown);
+            this.tBProfile.Leave += new System.EventHandler(this.tBProfile_Leave);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(23, 219);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 13);
+            this.label4.TabIndex = 84;
+            this.label4.Text = "Profile Name:";
+            // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
@@ -1980,19 +1982,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).EndInit();
             this.tabOther.ResumeLayout(false);
             this.tabOther.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDR2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDHeavyRumble)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDLightRumble)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDLightRumble)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDHeavyRumble)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDR2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -342,6 +342,18 @@ namespace ScpServer
             scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, device);
 
         }
+                
+        private void numUDLightRumble_ValueChanged(object sender, EventArgs e)
+        {
+            if (btnRumbleTest.Text == "Stop")
+                scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, device);
+        }
+
+        private void numUDHeavyRumble_ValueChanged(object sender, EventArgs e)
+        {
+            if (btnRumbleTest.Text == "Stop")
+                scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, device);
+        }
 
         private void btnRumbleTest_Click(object sender, EventArgs e)
         {

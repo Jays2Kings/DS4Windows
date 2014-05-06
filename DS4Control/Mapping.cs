@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DS4Library;
-using System.Threading;
 namespace DS4Control
 {
     public class Mapping
@@ -161,13 +160,21 @@ namespace DS4Control
                             }
                             if (pressagain && gkp.current.scanCodeCount != 0)
                             {
-                                InputMethods.performSCKeyPress(kvp.Key);
-                                Thread.Sleep(25);
+                                now = DateTime.Now;
+                                if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
+                                {
+                                    oldnow = now;
+                                    InputMethods.performSCKeyPress(kvp.Key);
+                                }                                
                             }
                             else if (pressagain)
                             {
-                                InputMethods.performKeyPress(kvp.Key);
-                                Thread.Sleep(25);
+                                now = DateTime.Now;
+                                if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
+                                {
+                                    oldnow = now;
+                                    InputMethods.performKeyPress(kvp.Key);
+                                }
                             }
                         }
 

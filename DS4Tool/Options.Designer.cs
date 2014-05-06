@@ -523,12 +523,12 @@
             this.flushHIDQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.flushHIDQueue.AutoSize = true;
             this.flushHIDQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.flushHIDQueue.Location = new System.Drawing.Point(311, 12);
+            this.flushHIDQueue.Location = new System.Drawing.Point(311, 5);
             this.flushHIDQueue.Name = "flushHIDQueue";
             this.flushHIDQueue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flushHIDQueue.Size = new System.Drawing.Size(106, 17);
+            this.flushHIDQueue.Size = new System.Drawing.Size(112, 30);
             this.flushHIDQueue.TabIndex = 80;
-            this.flushHIDQueue.Text = "Flush HID queue";
+            this.flushHIDQueue.Text = "Flush HID queue\r\nafter each reading\r\n";
             this.flushHIDQueue.UseVisualStyleBackColor = true;
             this.flushHIDQueue.CheckedChanged += new System.EventHandler(this.flushHIDQueue_CheckedChanged);
             // 
@@ -717,7 +717,7 @@
             this.bnR2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
             this.bnR2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnR2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnR2.Location = new System.Drawing.Point(176, 1);
+            this.bnR2.Location = new System.Drawing.Point(177, 3);
             this.bnR2.Name = "bnR2";
             this.bnR2.Size = new System.Drawing.Size(40, 13);
             this.bnR2.TabIndex = 89;
@@ -1791,9 +1791,9 @@
             this.leftMotorLabel.AutoSize = true;
             this.leftMotorLabel.Location = new System.Drawing.Point(264, 109);
             this.leftMotorLabel.Name = "leftMotorLabel";
-            this.leftMotorLabel.Size = new System.Drawing.Size(38, 13);
+            this.leftMotorLabel.Size = new System.Drawing.Size(32, 13);
             this.leftMotorLabel.TabIndex = 93;
-            this.leftMotorLabel.Text = "Heavy";
+            this.leftMotorLabel.Text = "Right";
             // 
             // rightMotorLabel
             // 
@@ -1801,15 +1801,15 @@
             this.rightMotorLabel.AutoSize = true;
             this.rightMotorLabel.Location = new System.Drawing.Point(165, 109);
             this.rightMotorLabel.Name = "rightMotorLabel";
-            this.rightMotorLabel.Size = new System.Drawing.Size(30, 13);
+            this.rightMotorLabel.Size = new System.Drawing.Size(25, 13);
             this.rightMotorLabel.TabIndex = 94;
-            this.rightMotorLabel.Text = "Light";
+            this.rightMotorLabel.Text = "Left";
             // 
             // lBButtonMouseSens
             // 
             this.lBButtonMouseSens.AutoSize = true;
             this.lBButtonMouseSens.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBButtonMouseSens.Location = new System.Drawing.Point(7, 13);
+            this.lBButtonMouseSens.Location = new System.Drawing.Point(4, 13);
             this.lBButtonMouseSens.Name = "lBButtonMouseSens";
             this.lBButtonMouseSens.Size = new System.Drawing.Size(137, 13);
             this.lBButtonMouseSens.TabIndex = 87;
@@ -1892,9 +1892,9 @@
             this.lBControllerOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBControllerOff.Location = new System.Drawing.Point(4, 45);
             this.lBControllerOff.Name = "lBControllerOff";
-            this.lBControllerOff.Size = new System.Drawing.Size(96, 13);
+            this.lBControllerOff.Size = new System.Drawing.Size(84, 13);
             this.lBControllerOff.TabIndex = 81;
-            this.lBControllerOff.Text = "Controller Auto-Off:";
+            this.lBControllerOff.Text = "Idle Disconnect:";
             // 
             // tBMouseSens
             // 
@@ -1916,6 +1916,7 @@
             this.tBProfile.Size = new System.Drawing.Size(255, 20);
             this.tBProfile.TabIndex = 83;
             this.tBProfile.Text = "<type profile name here>";
+            this.tBProfile.Click += new System.EventHandler(this.tBProfile_Click);
             this.tBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
             this.tBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
             this.tBProfile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbProfile_EnterDown);

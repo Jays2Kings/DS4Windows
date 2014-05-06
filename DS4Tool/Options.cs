@@ -340,7 +340,6 @@ namespace ScpServer
         {
             Global.saveRumbleBoost(device, (byte)rumbleBoostBar.Value);
             scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, device);
-
         }
                 
         private void numUDLightRumble_ValueChanged(object sender, EventArgs e)
@@ -736,6 +735,11 @@ namespace ScpServer
         private void numUDR2_ValueChanged(object sender, EventArgs e)
         {
             Global.setRightTriggerMiddle(device, (double)numUDR2.Value);
+        }
+
+        private void tBProfile_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

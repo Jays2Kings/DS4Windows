@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DS4Library;
+using System.Threading;
 namespace DS4Control
 {
     public class Mapping
@@ -44,6 +45,9 @@ namespace DS4Control
         private static SyntheticState[] deviceState = { new SyntheticState(), new SyntheticState(), new SyntheticState(), new SyntheticState() };
 
         // TODO When we disconnect, process a null/dead state to release any keys or buttons.
+        public static DateTime oldnow = DateTime.Now;
+        private static bool pressagain = false;
+        private static int wheel = 0, keyshelddown = 0;
         public static void Commit(int device)
         {
             SyntheticState state = deviceState[device];
@@ -81,11 +85,33 @@ namespace DS4Control
 
                 globalState.currentClicks.wUpCount += state.currentClicks.wUpCount - state.previousClicks.wUpCount;
                 if (globalState.currentClicks.wUpCount != 0 && globalState.previousClicks.wUpCount == 0)
+                {
                     InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, 100);
+                    oldnow = DateTime.Now;
+                    wheel = 100;
+                }
+                else if (globalState.currentClicks.wUpCount == 0 && globalState.previousClicks.wUpCount != 0)
+                    wheel = 0;
                 
                 globalState.currentClicks.wDownCount += state.currentClicks.wDownCount - state.previousClicks.wDownCount;
                 if (globalState.currentClicks.wDownCount != 0 && globalState.previousClicks.wDownCount == 0)
+                {
                     InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, -100);
+                    oldnow = DateTime.Now;
+                    wheel = -100;
+                }
+                if (globalState.currentClicks.wDownCount == 0 && globalState.previousClicks.wDownCount != 0)
+                    wheel = 0;
+
+                if (wheel != 0) //Continue mouse wheel movement
+                {
+                    DateTime now = DateTime.Now;
+                    if (now >= oldnow + TimeSpan.FromMilliseconds(100) && !pressagain)
+                    {
+                        oldnow = now;
+                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, wheel);
+                    }
+                }
 
                 // Merge and synthesize all key presses/releases that are present in this device's mapping.
                 // TODO what about the rest?  e.g. repeat keys really ought to be on some set schedule
@@ -108,29 +134,56 @@ namespace DS4Control
                     if (gkp.current.vkCount + gkp.current.scanCodeCount != 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount == 0)
                     {
                         if (gkp.current.scanCodeCount != 0)
+                        {
+                            oldnow = DateTime.Now;
                             InputMethods.performSCKeyPress(kvp.Key);
+                            pressagain = false;
+                            keyshelddown = kvp.Key;
+                        }
                         else
+                        {
+                            oldnow = DateTime.Now;
                             InputMethods.performKeyPress(kvp.Key);
+                            pressagain = false;
+                            keyshelddown = kvp.Key;
+                        }
                     }
                     else if (gkp.current.repeatCount != 0 || // repeat or SC/VK transition
                         ((gkp.previous.scanCodeCount == 0) != (gkp.current.scanCodeCount == 0)))
                     {
-                        if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
-                            InputMethods.performSCKeyRelease(kvp.Key);
-                        else
-                            InputMethods.performKeyRelease(kvp.Key);
+                        if (keyshelddown == kvp.Key)
+                        {
+                            DateTime now = DateTime.Now;
+                            if (now >= oldnow + TimeSpan.FromMilliseconds(500) && !pressagain)
+                            {
+                                oldnow = now;
+                                pressagain = true;
+                            }
+                            if (pressagain && gkp.current.scanCodeCount != 0)
+                            {
+                                InputMethods.performSCKeyPress(kvp.Key);
+                                Thread.Sleep(25);
+                            }
+                            else if (pressagain)
+                            {
+                                InputMethods.performKeyPress(kvp.Key);
+                                Thread.Sleep(25);
+                            }
+                        }
 
-                        if (gkp.current.scanCodeCount != 0)
-                            InputMethods.performSCKeyPress(kvp.Key);
-                        else
-                            InputMethods.performKeyPress(kvp.Key);
                     }
                     else if (gkp.current.vkCount + gkp.current.scanCodeCount == 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount != 0)
                     {
                         if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
+                        {
                             InputMethods.performSCKeyRelease(kvp.Key);
+                            pressagain = false;
+                        }
                         else
+                        {
                             InputMethods.performKeyRelease(kvp.Key);
+                            pressagain = false;
+                        }
                     }
                 }
                 globalState.SavePrevious(false);
@@ -321,7 +374,7 @@ namespace DS4Control
                         kp.current.scanCodeCount++;
                     else
                         kp.current.vkCount++;
-                    if (keyType.HasFlag(DS4KeyType.Repeat))
+                    //if (keyType.HasFlag(DS4KeyType.Repeat))
                         kp.current.repeatCount++;
                 }
             }

@@ -158,7 +158,7 @@ namespace DS4Control
                 sendInputs[0].Type = INPUT_KEYBOARD;
                 sendInputs[0].Data.Keyboard.ExtraInfo = IntPtr.Zero;
                 sendInputs[0].Data.Keyboard.Flags = KEYEVENTF_SCANCODE;
-                sendInputs[0].Data.Keyboard.Scan = MapVirtualKey(key, MAPVK_VK_TO_VSC); ;
+                sendInputs[0].Data.Keyboard.Scan = MapVirtualKey(key, MAPVK_VK_TO_VSC);
                 sendInputs[0].Data.Keyboard.Time = 0;
                 sendInputs[0].Data.Keyboard.Vk = key;
                 uint result = SendInput(1, sendInputs, Marshal.SizeOf(sendInputs[0]));
@@ -171,7 +171,7 @@ namespace DS4Control
             {
                 sendInputs[0].Type = INPUT_KEYBOARD;
                 sendInputs[0].Data.Keyboard.ExtraInfo = IntPtr.Zero;
-                sendInputs[0].Data.Keyboard.Flags = 0;
+                sendInputs[0].Data.Keyboard.Flags = 1;
                 sendInputs[0].Data.Keyboard.Scan = 0;
                 sendInputs[0].Data.Keyboard.Time = 0;
                 sendInputs[0].Data.Keyboard.Vk = key;
@@ -199,7 +199,7 @@ namespace DS4Control
             {
                 sendInputs[0].Type = INPUT_KEYBOARD;
                 sendInputs[0].Data.Keyboard.ExtraInfo = IntPtr.Zero;
-                sendInputs[0].Data.Keyboard.Flags = KEYEVENTF_KEYUP;
+                sendInputs[0].Data.Keyboard.Flags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
                 sendInputs[0].Data.Keyboard.Scan = 0;
                 sendInputs[0].Data.Keyboard.Time = 0;
                 sendInputs[0].Data.Keyboard.Vk = key;
@@ -275,13 +275,31 @@ namespace DS4Control
             MOUSEEVENTF_RIGHTDOWN = 8, MOUSEEVENTF_RIGHTUP = 16,
             MOUSEEVENTF_MIDDLEDOWN = 32, MOUSEEVENTF_MIDDLEUP = 64,
             MOUSEEVENTF_XBUTTONDOWN = 128, MOUSEEVENTF_XBUTTONUP = 256,
-            KEYEVENTF_KEYUP = 2, MOUSEEVENTF_WHEEL = 0x0800, MOUSEEVENTF_HWHEEL = 0x1000,
+            KEYEVENTF_EXTENDEDKEY = 1, KEYEVENTF_KEYUP = 2, MOUSEEVENTF_WHEEL = 0x0800, MOUSEEVENTF_HWHEEL = 0x1000,
             MOUSEEVENTF_MIDDLEWDOWN = 0x0020, MOUSEEVENTF_MIDDLEWUP = 0x0040,
-            KEYEVENTF_SCANCODE = 0x0008, MAPVK_VK_TO_VSC = 0;
+            KEYEVENTF_SCANCODE = 0x0008, MAPVK_VK_TO_VSC = 0, KEYEVENTF_UNICODE = 0x0004;
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern uint SendInput(uint numberOfInputs, INPUT[] inputs, int sizeOfInputs);
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern ushort MapVirtualKey(uint uCode, uint uMapType);
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        //Not used, just here
+        public static void DownKeys(ushort key)
+        {
+            keybd_event((byte)key, 0, (int)0, 0);
+        }
+
+        public static void PressKeys(ushort key)
+        {
+            keybd_event((byte)key, 0, (int)KEYEVENTF_EXTENDEDKEY, 0);
+        }
+
+        public static void ReleaseKeys(ushort key)
+        {
+            keybd_event((byte)key, 0, (int)KEYEVENTF_KEYUP, 0);
+        }
     }
+
 }

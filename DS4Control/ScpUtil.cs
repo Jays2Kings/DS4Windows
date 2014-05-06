@@ -511,8 +511,8 @@ namespace DS4Control
                                 keyType += DS4KeyType.Unbound;
                             }
                             {
-                                if (button.ForeColor == System.Drawing.Color.Red)
-                                    keyType += DS4KeyType.Repeat;
+                                /*if (button.ForeColor == System.Drawing.Color.Red)
+                                    keyType += DS4KeyType.Repeat;*/
                                 if (button.Font.Bold)
                                     keyType += DS4KeyType.ScanCode;
                             }
@@ -730,11 +730,11 @@ namespace DS4Control
                                         keyType |= DS4KeyType.ScanCode;
                                         button.Font = new System.Drawing.Font(button.Font, System.Drawing.FontStyle.Bold);
                                     }
-                                    if (Item.InnerText.Contains(DS4KeyType.Repeat.ToString()))
+                                    /*if (Item.InnerText.Contains(DS4KeyType.Repeat.ToString()))
                                     {
                                         keyType |= DS4KeyType.Repeat;
                                         button.ForeColor = System.Drawing.Color.Red;
-                                    }
+                                    }*/
                                 }
                                 if (keyType != DS4KeyType.None)
                                     customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
@@ -870,8 +870,8 @@ namespace DS4Control
                                 keyType = DS4KeyType.None;
                                 if (item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
                                     keyType |= DS4KeyType.ScanCode;
-                                if (item.InnerText.Contains(DS4KeyType.Repeat.ToString()))
-                                    keyType |= DS4KeyType.Repeat;
+                                //if (item.InnerText.Contains(DS4KeyType.Repeat.ToString()))
+                                    //keyType |= DS4KeyType.Repeat;
                                 if (item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
                                     keyType |= DS4KeyType.Unbound;
                                 if (keyType != DS4KeyType.None)

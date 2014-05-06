@@ -156,7 +156,15 @@ namespace ScpServer
                             cbs[i].SelectedIndex = j;
                             ((ToolStripMenuItem)shortcuts[i].DropDownItems[j]).Checked = true;
                             Global.setAProfile(i, cbs[i].Text);
+                            shortcuts[i].Text = "Edit Profile for Controller " + (i + 1);
+                            ebns[i].Text = "Edit";
                             break;
+                        }
+                        else
+                        {
+                            cbs[i].Text = "(No Profile Found)";
+                            shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
+                            ebns[i].Text = "New";
                         }
                     cbs[i].Items.Add("+New Profile");
                     shortcuts[i].DropDownItems.Add("-");
@@ -293,7 +301,11 @@ namespace ScpServer
             int i = Int32.Parse(bn.Tag.ToString());
             if (OptionsDialog[i] == null)
             {
-                Options opt = OptionsDialog[i] = new Options(rootHub, i, cbs[i].Text, this);
+                Options opt;
+                if (cbs[i].Text == "(No Profile Found)")
+                    opt = OptionsDialog[i] = new Options(rootHub, i, "", this);
+                else
+                    opt = OptionsDialog[i] = new Options(rootHub, i, cbs[i].Text, this);
                 opt.Text = "Options for Controller " + (i + 1);
                 opt.Icon = this.Icon;
                 opt.FormClosed += delegate
@@ -302,7 +314,6 @@ namespace ScpServer
                 };
                 opt.Show();
             }
-
         }
         private void editMenu_Click(object sender, EventArgs e)
         {
@@ -310,23 +321,32 @@ namespace ScpServer
             int i = Int32.Parse(em.Tag.ToString());
             if (OptionsDialog[i] == null)
             {
-                foreach (ToolStripMenuItem t in em.DropDownItems)
-                    //if (!(t is ToolStripSeparator)
-                    if (((ToolStripMenuItem)t).Checked)
+                if (em.Text == "Make Profile for Controller " + (i + 1))
+                {
+                    Options opt = OptionsDialog[i] = new Options(rootHub, i, "", this);
+                    opt.Text = "Options for Controller " + (i + 1);
+                    opt.Icon = this.Icon;
+                    opt.FormClosed += delegate
                     {
-                        Options opt = OptionsDialog[i] = new Options(rootHub, i, ((ToolStripMenuItem)t).Text, this);
-                        opt.Text = "Options for Controller " + (i + 1);
-                        opt.Icon = this.Icon;
-                        opt.FormClosed += delegate
+                        OptionsDialog[i] = null;
+                    };
+                    opt.Show();
+                }
+                else
+                    foreach (ToolStripMenuItem t in em.DropDownItems)
+                        if (((ToolStripMenuItem)t).Checked)
                         {
-                            OptionsDialog[i] = null;
-                        };
-                        opt.Show();
-                        break;
-                    }
+                            Options opt = OptionsDialog[i] = new Options(rootHub, i, ((ToolStripMenuItem)t).Text, this);
+                            opt.Text = "Options for Controller " + (i + 1);
+                            opt.Icon = this.Icon;
+                            opt.FormClosed += delegate
+                            {
+                                OptionsDialog[i] = null;
+                            };
+                            opt.Show();
+                            break;
+                        }
             }
-            //else
-                //OptionsDialog[i].Focus();
         }
         private void Enable_Controls(int device, bool on)
         {
@@ -403,6 +423,7 @@ namespace ScpServer
                         if (!(shortcuts[tdevice].DropDownItems[i] is ToolStripSeparator))
                             ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[i]).Checked = false;
                     ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[cb.SelectedIndex]).Checked = true;
+                    shortcuts[tdevice].Text = "Edit Profile for Controller " + (tdevice + 1);
                     Global.setAProfile(tdevice, cb.Items[cb.SelectedIndex].ToString());
                     Global.Save();
                     Global.LoadProfile(tdevice);
@@ -422,7 +443,7 @@ namespace ScpServer
                         opt.Show();
                     }
                 }
-                if (cb.Text == "")
+                if (cb.Text == "(No Profile Found)")
                     ebns[tdevice].Text = "New";
                 else
                     ebns[tdevice].Text = "Edit";
@@ -453,6 +474,7 @@ namespace ScpServer
                             if (!(shortcuts[tdevice].DropDownItems[i] is ToolStripSeparator))
                                 ((ToolStripMenuItem)tS.DropDownItems[i]).Checked = false;
                         ((ToolStripMenuItem)e.ClickedItem).Checked = true;
+                        shortcuts[tdevice].Text = "Edit Profile for Controller " + (tdevice + 1);
                         cbs[tdevice].SelectedIndex = tS.DropDownItems.IndexOf(e.ClickedItem);
                         Global.setAProfile(tdevice, e.ClickedItem.Text);
                         Global.Save();

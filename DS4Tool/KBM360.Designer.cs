@@ -111,6 +111,7 @@
             this.btnX = new System.Windows.Forms.Button();
             this.btnZ = new System.Windows.Forms.Button();
             this.btnRALT = new System.Windows.Forms.Button();
+            this.button36 = new System.Windows.Forms.Button();
             this.btnWINDOWS = new System.Windows.Forms.Button();
             this.btnLALT = new System.Windows.Forms.Button();
             this.btnRCTRL = new System.Windows.Forms.Button();
@@ -182,7 +183,6 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button36 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabKBM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -205,7 +205,6 @@
             // 
             this.tabKBM.Controls.Add(this.label2);
             this.tabKBM.Controls.Add(this.cbScanCode);
-            this.tabKBM.Controls.Add(this.cbRepeat);
             this.tabKBM.Controls.Add(this.button7);
             this.tabKBM.Controls.Add(this.button5);
             this.tabKBM.Controls.Add(this.button4);
@@ -328,6 +327,7 @@
             this.tabKBM.Controls.Add(this.btnLEFTMOUSE);
             this.tabKBM.Controls.Add(this.btnQ);
             this.tabKBM.Controls.Add(this.pictureBox2);
+            this.tabKBM.Controls.Add(this.cbRepeat);
             this.tabKBM.Location = new System.Drawing.Point(4, 22);
             this.tabKBM.Name = "tabKBM";
             this.tabKBM.Padding = new System.Windows.Forms.Padding(3);
@@ -350,24 +350,25 @@
             // cbScanCode
             // 
             this.cbScanCode.AutoSize = true;
-            this.cbScanCode.Location = new System.Drawing.Point(762, 155);
+            this.cbScanCode.Location = new System.Drawing.Point(692, 149);
             this.cbScanCode.Name = "cbScanCode";
             this.cbScanCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbScanCode.Size = new System.Drawing.Size(79, 17);
+            this.cbScanCode.Size = new System.Drawing.Size(54, 30);
             this.cbScanCode.TabIndex = 163;
-            this.cbScanCode.Text = "Scan Code";
+            this.cbScanCode.Text = "Scan \r\nCode";
             this.cbScanCode.UseVisualStyleBackColor = true;
             // 
             // cbRepeat
             // 
             this.cbRepeat.AutoSize = true;
-            this.cbRepeat.Location = new System.Drawing.Point(695, 155);
+            this.cbRepeat.Location = new System.Drawing.Point(786, 5);
             this.cbRepeat.Name = "cbRepeat";
             this.cbRepeat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cbRepeat.Size = new System.Drawing.Size(61, 17);
             this.cbRepeat.TabIndex = 163;
             this.cbRepeat.Text = "Repeat";
             this.cbRepeat.UseVisualStyleBackColor = true;
+            this.cbRepeat.Visible = false;
             // 
             // button7
             // 
@@ -1152,6 +1153,16 @@
             this.btnRALT.Text = "RAlt";
             this.btnRALT.UseVisualStyleBackColor = true;
             // 
+            // button36
+            // 
+            this.button36.Location = new System.Drawing.Point(299, 152);
+            this.button36.Name = "button36";
+            this.button36.Size = new System.Drawing.Size(42, 24);
+            this.button36.TabIndex = 86;
+            this.button36.Tag = "92";
+            this.button36.Text = "RWin";
+            this.button36.UseVisualStyleBackColor = true;
+            // 
             // btnWINDOWS
             // 
             this.btnWINDOWS.Location = new System.Drawing.Point(107, 152);
@@ -1434,7 +1445,7 @@
             // 
             // bTNRIGHTMOUSE
             // 
-            this.bTNRIGHTMOUSE.Location = new System.Drawing.Point(809, 49);
+            this.bTNRIGHTMOUSE.Location = new System.Drawing.Point(809, 62);
             this.bTNRIGHTMOUSE.Name = "bTNRIGHTMOUSE";
             this.bTNRIGHTMOUSE.Size = new System.Drawing.Size(24, 24);
             this.bTNRIGHTMOUSE.TabIndex = 61;
@@ -1454,7 +1465,7 @@
             // 
             // button32
             // 
-            this.button32.Location = new System.Drawing.Point(779, 74);
+            this.button32.Location = new System.Drawing.Point(779, 87);
             this.button32.Name = "button32";
             this.button32.Size = new System.Drawing.Size(24, 21);
             this.button32.TabIndex = 59;
@@ -1464,7 +1475,7 @@
             // 
             // button31
             // 
-            this.button31.Location = new System.Drawing.Point(779, 26);
+            this.button31.Location = new System.Drawing.Point(779, 39);
             this.button31.Name = "button31";
             this.button31.Size = new System.Drawing.Size(24, 22);
             this.button31.TabIndex = 59;
@@ -1474,7 +1485,7 @@
             // 
             // btnMIDDLEMOUSE
             // 
-            this.btnMIDDLEMOUSE.Location = new System.Drawing.Point(779, 49);
+            this.btnMIDDLEMOUSE.Location = new System.Drawing.Point(779, 62);
             this.btnMIDDLEMOUSE.Name = "btnMIDDLEMOUSE";
             this.btnMIDDLEMOUSE.Size = new System.Drawing.Size(24, 24);
             this.btnMIDDLEMOUSE.TabIndex = 59;
@@ -1494,7 +1505,7 @@
             // 
             // button33
             // 
-            this.button33.Location = new System.Drawing.Point(814, 114);
+            this.button33.Location = new System.Drawing.Point(814, 127);
             this.button33.Name = "button33";
             this.button33.Size = new System.Drawing.Size(19, 24);
             this.button33.TabIndex = 58;
@@ -1504,7 +1515,7 @@
             // 
             // button30
             // 
-            this.button30.Location = new System.Drawing.Point(749, 113);
+            this.button30.Location = new System.Drawing.Point(749, 126);
             this.button30.Name = "button30";
             this.button30.Size = new System.Drawing.Size(19, 24);
             this.button30.TabIndex = 58;
@@ -1514,7 +1525,7 @@
             // 
             // bnMOUSERIGHT
             // 
-            this.bnMOUSERIGHT.Location = new System.Drawing.Point(823, 87);
+            this.bnMOUSERIGHT.Location = new System.Drawing.Point(823, 97);
             this.bnMOUSERIGHT.Name = "bnMOUSERIGHT";
             this.bnMOUSERIGHT.Size = new System.Drawing.Size(24, 24);
             this.bnMOUSERIGHT.TabIndex = 58;
@@ -1524,7 +1535,7 @@
             // 
             // bnMOUSELEFT
             // 
-            this.bnMOUSELEFT.Location = new System.Drawing.Point(732, 87);
+            this.bnMOUSELEFT.Location = new System.Drawing.Point(732, 98);
             this.bnMOUSELEFT.Name = "bnMOUSELEFT";
             this.bnMOUSELEFT.Size = new System.Drawing.Size(24, 24);
             this.bnMOUSELEFT.TabIndex = 58;
@@ -1534,7 +1545,7 @@
             // 
             // bnMOUSEDOWN
             // 
-            this.bnMOUSEDOWN.Location = new System.Drawing.Point(779, 129);
+            this.bnMOUSEDOWN.Location = new System.Drawing.Point(779, 147);
             this.bnMOUSEDOWN.Name = "bnMOUSEDOWN";
             this.bnMOUSEDOWN.Size = new System.Drawing.Size(24, 24);
             this.bnMOUSEDOWN.TabIndex = 58;
@@ -1544,7 +1555,7 @@
             // 
             // bnMOUSEUP
             // 
-            this.bnMOUSEUP.Location = new System.Drawing.Point(779, 0);
+            this.bnMOUSEUP.Location = new System.Drawing.Point(779, 5);
             this.bnMOUSEUP.Name = "bnMOUSEUP";
             this.bnMOUSEUP.Size = new System.Drawing.Size(24, 24);
             this.bnMOUSEUP.TabIndex = 58;
@@ -1554,7 +1565,7 @@
             // 
             // btnLEFTMOUSE
             // 
-            this.btnLEFTMOUSE.Location = new System.Drawing.Point(749, 49);
+            this.btnLEFTMOUSE.Location = new System.Drawing.Point(749, 62);
             this.btnLEFTMOUSE.Name = "btnLEFTMOUSE";
             this.btnLEFTMOUSE.Size = new System.Drawing.Size(24, 24);
             this.btnLEFTMOUSE.TabIndex = 58;
@@ -1575,7 +1586,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::ScpServer.Properties.Resources.mouse;
-            this.pictureBox2.Location = new System.Drawing.Point(743, 8);
+            this.pictureBox2.Location = new System.Drawing.Point(743, 21);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(97, 140);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -1889,16 +1900,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 107;
             this.pictureBox1.TabStop = false;
-            // 
-            // button36
-            // 
-            this.button36.Location = new System.Drawing.Point(299, 152);
-            this.button36.Name = "button36";
-            this.button36.Size = new System.Drawing.Size(42, 24);
-            this.button36.TabIndex = 86;
-            this.button36.Tag = "92";
-            this.button36.Text = "RWin";
-            this.button36.UseVisualStyleBackColor = true;
             // 
             // KBM360
             // 

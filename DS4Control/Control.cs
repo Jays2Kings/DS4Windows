@@ -87,13 +87,13 @@ namespace DS4Control
                         ind++;
                         if (System.IO.File.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filename))
                         {
-                            LogDebug("Controller: " + device.MacAddress + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
-                            Log.LogToTray("Controller: " + device.MacAddress + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                            LogDebug("Controller " + ind + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                            Log.LogToTray("Controller " + ind + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
                         }
                         else
                         {
-                            LogDebug("Controller: " + device.MacAddress + " is using a profile not found");
-                            Log.LogToTray("Controller: " + device.MacAddress + " is using a profile not found");
+                            LogDebug("Controller " + ind + " is using a profile not found");
+                            Log.LogToTray("Controller " + ind + " is using a profile not found");
                         } 
                         if (ind >= 4) // out of Xinput devices!
                             break;
@@ -181,13 +181,13 @@ namespace DS4Control
                             string filename = profileA[profileA.Length - 1];
                             if (System.IO.File.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filename))
                             {
-                                LogDebug("Controller: " + device.MacAddress + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
-                                Log.LogToTray("Controller: " + device.MacAddress + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                                LogDebug("Controller " + (Index+1) + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                                Log.LogToTray("Controller " + (Index + 1) + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
                             }
                             else
                             {
-                                LogDebug("Controller: " + device.MacAddress + " is using a profile not found");
-                                Log.LogToTray("Controller: " + device.MacAddress + " is using a profile not found");
+                                LogDebug("Controller " + (Index + 1) + " is using a profile not found");
+                                Log.LogToTray("Controller " + (Index + 1) + " is using a profile not found");
                             }
                         
                             break;

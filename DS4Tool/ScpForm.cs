@@ -423,6 +423,7 @@ namespace ScpServer
                         if (!(shortcuts[tdevice].DropDownItems[i] is ToolStripSeparator))
                             ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[i]).Checked = false;
                     ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[cb.SelectedIndex]).Checked = true;
+                    LogDebug(DateTime.Now, "Controller " + (tdevice + 1) + " is now using Profile \"" + cb.Text + "\"");
                     shortcuts[tdevice].Text = "Edit Profile for Controller " + (tdevice + 1);
                     Global.setAProfile(tdevice, cb.Items[cb.SelectedIndex].ToString());
                     Global.Save();

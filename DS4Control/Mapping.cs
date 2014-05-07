@@ -148,7 +148,7 @@ namespace DS4Control
                         }
                     }
                     else if (gkp.current.repeatCount != 0 || // repeat or SC/VK transition
-                        ((gkp.previous.scanCodeCount == 0) != (gkp.current.scanCodeCount == 0)))
+                        ((gkp.previous.scanCodeCount == 0) != (gkp.current.scanCodeCount == 0))) //repeat keystroke after 500ms
                     {
                         if (keyshelddown == kvp.Key)
                         {
@@ -565,28 +565,28 @@ namespace DS4Control
                             if (MouseDeltaY == 0)
                             {
                                 MouseDeltaY = calculateRelativeMouseDelta(device, customButton.Key, cState, pState);
-                                MouseDeltaY = -Math.Abs(MouseDeltaY);
+                                MouseDeltaY = -Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
                             }
                             break;
                         case X360Controls.MouseDown:
                             if (MouseDeltaY == 0)
                             {
                                 MouseDeltaY = calculateRelativeMouseDelta(device, customButton.Key, cState, pState);
-                                MouseDeltaY = Math.Abs(MouseDeltaY);
+                                MouseDeltaY = Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
                             }
                             break;
                         case X360Controls.MouseLeft:
                             if (MouseDeltaX == 0)
                             {
                                 MouseDeltaX = calculateRelativeMouseDelta(device, customButton.Key, cState, pState);
-                                MouseDeltaX = -Math.Abs(MouseDeltaX);
+                                MouseDeltaX = -Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
                             }
                             break;
                         case X360Controls.MouseRight:
                             if (MouseDeltaX == 0)
                             {
                                 MouseDeltaX = calculateRelativeMouseDelta(device, customButton.Key, cState, pState);
-                                MouseDeltaX = Math.Abs(MouseDeltaX);
+                                MouseDeltaX = Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
                             }
                             break;
                     }

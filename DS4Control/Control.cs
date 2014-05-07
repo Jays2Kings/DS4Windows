@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DS4Library;
+using System.IO;
+using System.Reflection;
 namespace DS4Control
 {
     public class Control
@@ -48,8 +50,7 @@ namespace DS4Control
                 LogDebug(message);
                 Log.LogToTray(message);
             }
-        }
-
+        }        
         public bool Start()
         {
             if (x360Bus.Open() && x360Bus.Start())
@@ -81,9 +82,19 @@ namespace DS4Control
                         device.Report += this.On_Report;
                         //m_switcher.setMode(Global.getInitialMode(ind));
                         TouchPadOn(ind, device);
+                        string[] profileA = Global.getAProfile(ind).Split('\\');
+                        string filename = profileA[profileA.Length - 1];
                         ind++;
-                        LogDebug("Controller: " + device.MacAddress + " is ready to use");
-                        Log.LogToTray("Controller: " + device.MacAddress + " is ready to use");
+                        if (System.IO.File.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filename))
+                        {
+                            LogDebug("Controller: " + device.MacAddress + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                            Log.LogToTray("Controller: " + device.MacAddress + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                        }
+                        else
+                        {
+                            LogDebug("Controller: " + device.MacAddress + " is using a profile not found");
+                            Log.LogToTray("Controller: " + device.MacAddress + " is using a profile not found");
+                        } 
                         if (ind >= 4) // out of Xinput devices!
                             break;
                     }
@@ -166,8 +177,19 @@ namespace DS4Control
                             x360Bus.Plugin(Index);
                             //m_switcher.setMode(Global.getInitialMode(Index));
                             TouchPadOn(Index, device);
-                            LogDebug("Controller: " + device.MacAddress + " is ready to use");
-                            Log.LogToTray("Controller: " + device.MacAddress + " is ready to use");
+                            string[] profileA = Global.getAProfile(Index).Split('\\');
+                            string filename = profileA[profileA.Length - 1];
+                            if (System.IO.File.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filename))
+                            {
+                                LogDebug("Controller: " + device.MacAddress + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                                Log.LogToTray("Controller: " + device.MacAddress + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                            }
+                            else
+                            {
+                                LogDebug("Controller: " + device.MacAddress + " is using a profile not found");
+                                Log.LogToTray("Controller: " + device.MacAddress + " is using a profile not found");
+                            }
+                        
                             break;
                         }
                 }

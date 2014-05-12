@@ -93,9 +93,29 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap LeftTouch {
+            get {
+                object obj = ResourceManager.GetObject("LeftTouch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap mouse {
             get {
                 object obj = ResourceManager.GetObject("mouse", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap MultiTouch {
+            get {
+                object obj = ResourceManager.GetObject("MultiTouch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -121,11 +141,31 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap RightTouch {
+            get {
+                object obj = ResourceManager.GetObject("RightTouch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         public static string Start {
             get {
                 return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap sticks {
+            get {
+                object obj = ResourceManager.GetObject("sticks", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -151,9 +191,29 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Touch {
+            get {
+                object obj = ResourceManager.GetObject("Touch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Touch_states2 {
             get {
                 object obj = ResourceManager.GetObject("Touch_states2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap UpperTouch {
+            get {
+                object obj = ResourceManager.GetObject("UpperTouch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

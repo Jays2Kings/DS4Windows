@@ -69,12 +69,12 @@
             this.lbLastMessage = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.cMTaskbar = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.editProfileForController1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.pnlButton.SuspendLayout();
@@ -456,7 +456,6 @@
             // cBController4
             // 
             this.cBController4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cBController4.Enabled = false;
             this.cBController4.FormattingEnabled = true;
             this.cBController4.Location = new System.Drawing.Point(571, 84);
             this.cBController4.Name = "cBController4";
@@ -468,7 +467,6 @@
             // cBController3
             // 
             this.cBController3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cBController3.Enabled = false;
             this.cBController3.FormattingEnabled = true;
             this.cBController3.Location = new System.Drawing.Point(571, 61);
             this.cBController3.Name = "cBController3";
@@ -480,7 +478,6 @@
             // cBController2
             // 
             this.cBController2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cBController2.Enabled = false;
             this.cBController2.FormattingEnabled = true;
             this.cBController2.Location = new System.Drawing.Point(571, 38);
             this.cBController2.Name = "cBController2";
@@ -492,7 +489,6 @@
             // cBController1
             // 
             this.cBController1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cBController1.Enabled = false;
             this.cBController1.FormattingEnabled = true;
             this.cBController1.Location = new System.Drawing.Point(571, 15);
             this.cBController1.Name = "cBController1";
@@ -532,20 +528,8 @@
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.cMTaskbar.Name = "cMTaskbar";
-            this.cMTaskbar.Size = new System.Drawing.Size(215, 164);
+            this.cMTaskbar.Size = new System.Drawing.Size(215, 142);
             this.cMTaskbar.Tag = "25";
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
             // 
             // editProfileForController1ToolStripMenuItem
             // 
@@ -578,6 +562,18 @@
             this.editProfileForController4ToolStripMenuItem.Tag = "4";
             this.editProfileForController4ToolStripMenuItem.Text = "Edit Profile for Controller 4";
             this.editProfileForController4ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 

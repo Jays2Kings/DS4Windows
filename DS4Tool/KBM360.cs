@@ -15,7 +15,7 @@ namespace ScpServer
         private int device;
         private Button button;
         private Options ops;
-        public KBM360(DS4Control.Control bus_device, int deviceNum, Options ooo, Button buton, int tabStart)
+        public KBM360(DS4Control.Control bus_device, int deviceNum, Options ooo, Button buton)
         {
             InitializeComponent();
             device = deviceNum;
@@ -27,12 +27,9 @@ namespace ScpServer
             if (button.Font.Bold)
                 cbScanCode.Checked = true;
             Text = "Select an action for " + button.Name.Substring(2);
-            foreach (System.Windows.Forms.Control control in tabKBM.Controls)
+            foreach (System.Windows.Forms.Control control in this.Controls)
                 if (control is Button)
                     ((Button)control).Click += new System.EventHandler(anybtn_Click);
-            foreach (System.Windows.Forms.Control control in tab360.Controls)
-                if (control is Button)
-                    ((Button)control).Click += new System.EventHandler(anybtn_Click360);
             if (button.Name.Contains("Touch"))
             {
                 bnMOUSEDOWN.Visible = false;
@@ -40,11 +37,6 @@ namespace ScpServer
                 bnMOUSERIGHT.Visible = false;
                 bnMOUSEUP.Visible = false;                    
             }
-            if (tabStart < 2)
-                tabControl1.SelectedIndex = tabStart;
-            else
-                tabControl1.SelectedIndex = 0;
-            ReFocus();
         }
 
         public void anybtn_Click(object sender, EventArgs e)
@@ -69,23 +61,12 @@ namespace ScpServer
                 }
                 else
                     keyname = ((Button)sender).Text;
-                object keytag = ((Button)sender).Tag;
+                object keytag;
+                if (((Button)sender).Tag == "X360")
+                    keytag = ((Button)sender).Text;
+                else
+                    keytag = ((Button)sender).Tag;
                 ops.ChangeButtonText(keyname, keytag);
-                this.Close();
-            }
-        }
-
-        private void ReFocus()
-        {
-            if (ops.Focused)
-                this.Enabled = false;
-        }
-        public void anybtn_Click360(object sender, EventArgs e)
-        {
-            if (sender is Button)
-            {
-                string keyname = ((Button)sender).Text;
-                ops.ChangeButtonText(keyname);
                 this.Close();
             }
         }

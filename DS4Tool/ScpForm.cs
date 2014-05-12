@@ -295,58 +295,37 @@ namespace ScpServer
         }
 
         private Options[] OptionsDialog = { null, null, null, null };
+        private void ShowOptions(int devID, string profile)
+        {
+            if (OptionsDialog[devID] == null)
+            {
+                Options opt;
+                opt = OptionsDialog[devID] = new Options(rootHub, devID, profile);
+                opt.Text = "Options for Controller " + (devID + 1);
+                opt.Icon = this.Icon;
+                opt.FormClosed += delegate { OptionsDialog[devID] = null; RefreshProfiles(); };
+                opt.Show();
+            }
+        }
         private void editButtons_Click(object sender, EventArgs e)
         {
             Button bn = (Button)sender;
             int i = Int32.Parse(bn.Tag.ToString());
-            if (OptionsDialog[i] == null)
-            {
-                Options opt;
                 if (cbs[i].Text == "(No Profile Found)")
-                    opt = OptionsDialog[i] = new Options(rootHub, i, "", this);
+                    ShowOptions(i, "");
                 else
-                    opt = OptionsDialog[i] = new Options(rootHub, i, cbs[i].Text, this);
-                opt.Text = "Options for Controller " + (i + 1);
-                opt.Icon = this.Icon;
-                opt.FormClosed += delegate
-                {
-                    OptionsDialog[i] = null;
-                };
-                opt.Show();
-            }
+                    ShowOptions(i, cbs[i].Text);
         }
         private void editMenu_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
             int i = Int32.Parse(em.Tag.ToString());
-            if (OptionsDialog[i] == null)
-            {
                 if (em.Text == "Make Profile for Controller " + (i + 1))
-                {
-                    Options opt = OptionsDialog[i] = new Options(rootHub, i, "", this);
-                    opt.Text = "Options for Controller " + (i + 1);
-                    opt.Icon = this.Icon;
-                    opt.FormClosed += delegate
-                    {
-                        OptionsDialog[i] = null;
-                    };
-                    opt.Show();
-                }
+                    ShowOptions(i, "");
                 else
-                    foreach (ToolStripMenuItem t in em.DropDownItems)
-                        if (((ToolStripMenuItem)t).Checked)
-                        {
-                            Options opt = OptionsDialog[i] = new Options(rootHub, i, ((ToolStripMenuItem)t).Text, this);
-                            opt.Text = "Options for Controller " + (i + 1);
-                            opt.Icon = this.Icon;
-                            opt.FormClosed += delegate
-                            {
-                                OptionsDialog[i] = null;
-                            };
-                            opt.Show();
-                            break;
-                        }
-            }
+                    for (int t=0; t < em.DropDownItems.Count-2; t++)
+                        if (((ToolStripMenuItem)em.DropDownItems[t]).Checked)
+                            ShowOptions(i, ((ToolStripMenuItem)em.DropDownItems[t]).Text);
         }
         private void Enable_Controls(int device, bool on)
         {
@@ -430,20 +409,7 @@ namespace ScpServer
                     Global.LoadProfile(tdevice);
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
-                {
-                    if (OptionsDialog[tdevice] == null)
-                    {
-                        Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
-                        opt.Text = "Options for Controller " + (tdevice + 1);
-                        opt.Icon = this.Icon;
-                        int i = tdevice;
-                        opt.FormClosed += delegate
-                        {
-                            OptionsDialog[i] = null;
-                        };
-                        opt.Show();
-                    }
-                }
+                    ShowOptions(tdevice, "");
                 if (cb.Text == "(No Profile Found)")
                     ebns[tdevice].Text = "New";
                 else
@@ -456,19 +422,9 @@ namespace ScpServer
             ToolStripMenuItem tS = (ToolStripMenuItem)sender;
             int tdevice = Int32.Parse(tS.Tag.ToString());
             if (!(e.ClickedItem is ToolStripSeparator))
-                if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1]) //if +New Profile not selected
-                    if (((ToolStripMenuItem)e.ClickedItem).Checked && OptionsDialog[tdevice] == null)
-                    {
-                        Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, e.ClickedItem.Text, this);
-                        opt.Text = "Options for Controller " + (tdevice + 1);
-                        opt.Icon = this.Icon;
-                        int i = tdevice;
-                        opt.FormClosed += delegate
-                        {
-                            OptionsDialog[i] = null;
-                        };
-                        opt.Show();
-                    }
+                if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1]) //if +New Profile not selected 
+                    if (((ToolStripMenuItem)e.ClickedItem).Checked)
+                        ShowOptions(tdevice, e.ClickedItem.Text);
                     else
                     {
                         for (int i = 0; i < tS.DropDownItems.Count; i++)
@@ -481,18 +437,8 @@ namespace ScpServer
                         Global.Save();
                         Global.LoadProfile(tdevice);
                     }
-                else if (OptionsDialog[tdevice] == null) //if +New Profile selected
-                {
-                    Options opt = OptionsDialog[tdevice] = new Options(rootHub, tdevice, "", this);
-                    opt.Text = "Options for Controller " + (tdevice + 1);
-                    opt.Icon = this.Icon;
-                    int i = tdevice;
-                    opt.FormClosed += delegate
-                    {
-                        OptionsDialog[i] = null;
-                    };
-                    opt.Show();
-                }
+                else //if +New Profile selected
+                    ShowOptions(tdevice, "");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

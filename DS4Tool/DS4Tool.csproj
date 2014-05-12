@@ -146,6 +146,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\UpperTouch.png" />
+    <None Include="Resources\sticks.png" />
+    <None Include="Resources\Touch.png" />
     <None Include="Resources\Touch states2.png" />
     <None Include="Resources\sticks2.png" />
     <None Include="Resources\360 fades.png" />
@@ -154,6 +157,9 @@
     <None Include="Resources\mouse.png" />
     <None Include="Resources\rainbow.png" />
     <None Include="Resources\rainbowC.png" />
+    <None Include="Resources\LeftTouch.png" />
+    <None Include="Resources\MultiTouch.png" />
+    <None Include="Resources\RightTouch.png" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>

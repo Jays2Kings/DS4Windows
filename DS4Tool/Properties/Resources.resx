@@ -129,14 +129,8 @@
     <value>Stop</value>
     <comment>To be localized.</comment>
   </data>
-  <data name="sticks2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sticks2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_360_fades" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\360 fades.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DS4_Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4 Controller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Touch_states2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Touch states2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -149,5 +143,29 @@
   </data>
   <data name="rainbowC" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rainbowC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DS4_Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DS4 Controller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LeftTouch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LeftTouch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MultiTouch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MultiTouch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RightTouch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RightTouch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sticks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sticks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sticks2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sticks2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Touch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Touch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UpperTouch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UpperTouch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

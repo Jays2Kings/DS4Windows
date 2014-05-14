@@ -110,6 +110,8 @@ namespace ScpServer
                 if (control is Button)
                     if (!((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
+            foreach (Button b in buttons)
+                b.MouseHover += button_MouseHover;
             if (filename != "" && filename != "New Profile")
                 Global.LoadProfile(device, buttons.ToArray());
             ToolTip tp = new ToolTip();
@@ -120,6 +122,44 @@ namespace ScpServer
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
             UpdateLists();
+        }
+
+        private void button_MouseHover(object sender, EventArgs e)
+        {
+            switch (((Button)sender).Name)
+            {
+                    #region
+                case ("bnCross"): lBControls.SelectedIndex = 0; break;
+                case ("bnCircle"): lBControls.SelectedIndex = 1; break;
+                case ("bnSquare"): lBControls.SelectedIndex = 2; break;
+                case ("bnTriangle"): lBControls.SelectedIndex = 3; break;
+                case ("bnOptions"): lBControls.SelectedIndex = 4; break;
+                case ("bnShare"): lBControls.SelectedIndex = 5; break;
+                case ("bnUp"): lBControls.SelectedIndex = 6; break;
+                case ("bnDown"): lBControls.SelectedIndex = 7; break;
+                case ("bnLeft"): lBControls.SelectedIndex = 8; break;
+                case ("bnRight"): lBControls.SelectedIndex = 9; break;
+                case ("bnPS"): lBControls.SelectedIndex = 10; break;
+                case ("bnL1"): lBControls.SelectedIndex = 11; break;
+                case ("bnR1"): lBControls.SelectedIndex = 12; break;
+                case ("bnL2"): lBControls.SelectedIndex = 13; break;
+                case ("bnR2"): lBControls.SelectedIndex = 14; break;
+                case ("bnL3"): lBControls.SelectedIndex = 15; break;
+                case ("bnR3"): lBControls.SelectedIndex = 16; break;
+                case ("bnTouchLeft"): lBControls.SelectedIndex = 17; break;
+                case ("bnTouchRight"): lBControls.SelectedIndex = 18; break;
+                case ("bnTouchMulti"): lBControls.SelectedIndex = 19; break;
+                case ("bnTouchUpper"): lBControls.SelectedIndex = 20; break;
+                case ("bnLSUp"): lBControls.SelectedIndex = 21; break;
+                case ("bnLSDown"): lBControls.SelectedIndex = 22; break;
+                case ("bnLSLeft"): lBControls.SelectedIndex = 23; break;
+                case ("bnLSRight"): lBControls.SelectedIndex = 24; break;
+                case ("bnRSUp"): lBControls.SelectedIndex = 25; break;
+                case ("bnRSDown"): lBControls.SelectedIndex = 26; break;
+                case ("bnRSLeft"): lBControls.SelectedIndex = 27; break;
+                case ("bnRSRight"): lBControls.SelectedIndex = 28; break;
+                    #endregion
+            }
         }
 
         private void SetDynamicTrackBarValue(TrackBar trackBar, int value)

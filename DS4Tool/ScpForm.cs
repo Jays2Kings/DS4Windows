@@ -6,6 +6,7 @@ using System.Threading;
 using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Net;
 namespace ScpServer
 {
     public partial class ScpForm : Form
@@ -74,6 +75,7 @@ namespace ScpServer
         protected Button[] dbns;
         protected Label[] protexts;
         protected ToolStripMenuItem[] shortcuts;
+        WebClient wc = new WebClient();
         public ScpForm()
         {
             InitializeComponent();
@@ -92,7 +94,30 @@ namespace ScpServer
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
+            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
+            wc.DownloadFileAsync(url, "version.txt");
+            wc.DownloadFileCompleted += Check_Version;
+        }
 
+        double version = 6.5;
+        private void Check_Version(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            double newversion;
+            if(double.TryParse(File.ReadAllText("version.txt"), out newversion))
+            {
+                if (newversion > version)
+                    if (MessageBox.Show("Download now?", "New Version Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start("Updater.exe");
+                        this.Close();
+                    }
+                    else
+                        File.Delete("version.txt");
+                else
+                    File.Delete("version.txt");
+            }
+            else
+                File.Delete("version.txt");
         }
 
         protected void Form_Load(object sender, EventArgs e)

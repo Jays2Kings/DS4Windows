@@ -35,11 +35,9 @@
             this.chData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.pnlButton = new System.Windows.Forms.Panel();
-            this.AboutButton = new System.Windows.Forms.Button();
             this.btnStartStop = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.hotkeysButton = new System.Windows.Forms.Button();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
             this.hideDS4CheckBox = new System.Windows.Forms.CheckBox();
             this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
@@ -77,6 +75,9 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.openProfiles = new System.Windows.Forms.OpenFileDialog();
+            this.llbHelp = new System.Windows.Forms.LinkLabel();
+            this.btnImportProfiles = new System.Windows.Forms.Button();
             this.pnlButton.SuspendLayout();
             this.pnlDebug.SuspendLayout();
             this.pnlStatus.SuspendLayout();
@@ -119,11 +120,11 @@
             // 
             // pnlButton
             // 
-            this.pnlButton.Controls.Add(this.AboutButton);
+            this.pnlButton.Controls.Add(this.btnImportProfiles);
+            this.pnlButton.Controls.Add(this.llbHelp);
             this.pnlButton.Controls.Add(this.btnStartStop);
             this.pnlButton.Controls.Add(this.btnClear);
             this.pnlButton.Controls.Add(this.btnStop);
-            this.pnlButton.Controls.Add(this.hotkeysButton);
             this.pnlButton.Controls.Add(this.lnkControllers);
             this.pnlButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlButton.Location = new System.Drawing.Point(0, 477);
@@ -131,20 +132,10 @@
             this.pnlButton.Size = new System.Drawing.Size(794, 35);
             this.pnlButton.TabIndex = 10;
             // 
-            // AboutButton
-            // 
-            this.AboutButton.Location = new System.Drawing.Point(9, 5);
-            this.AboutButton.Name = "AboutButton";
-            this.AboutButton.Size = new System.Drawing.Size(75, 23);
-            this.AboutButton.TabIndex = 11;
-            this.AboutButton.Text = "About";
-            this.AboutButton.UseVisualStyleBackColor = true;
-            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
-            // 
             // btnStartStop
             // 
             this.btnStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartStop.Location = new System.Drawing.Point(666, 5);
+            this.btnStartStop.Location = new System.Drawing.Point(666, 6);
             this.btnStartStop.Name = "btnStartStop";
             this.btnStartStop.Size = new System.Drawing.Size(119, 23);
             this.btnStartStop.TabIndex = 1;
@@ -177,20 +168,10 @@
             this.btnStop.Visible = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // hotkeysButton
-            // 
-            this.hotkeysButton.Location = new System.Drawing.Point(90, 5);
-            this.hotkeysButton.Name = "hotkeysButton";
-            this.hotkeysButton.Size = new System.Drawing.Size(75, 23);
-            this.hotkeysButton.TabIndex = 12;
-            this.hotkeysButton.Text = "Hotkeys";
-            this.hotkeysButton.UseVisualStyleBackColor = true;
-            this.hotkeysButton.Click += new System.EventHandler(this.hotkeysButton_Click);
-            // 
             // lnkControllers
             // 
             this.lnkControllers.AutoSize = true;
-            this.lnkControllers.Location = new System.Drawing.Point(171, 10);
+            this.lnkControllers.Location = new System.Drawing.Point(170, 11);
             this.lnkControllers.Name = "lnkControllers";
             this.lnkControllers.Size = new System.Drawing.Size(56, 13);
             this.lnkControllers.TabIndex = 11;
@@ -269,7 +250,7 @@
             this.gpPads.Controls.Add(this.lbLastMessage);
             this.gpPads.Location = new System.Drawing.Point(-6, -9);
             this.gpPads.Name = "gpPads";
-            this.gpPads.Size = new System.Drawing.Size(803, 129);
+            this.gpPads.Size = new System.Drawing.Size(803, 182);
             this.gpPads.TabIndex = 1;
             this.gpPads.TabStop = false;
             // 
@@ -501,7 +482,7 @@
             // 
             this.lbLastMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbLastMessage.Location = new System.Drawing.Point(15, 107);
+            this.lbLastMessage.Location = new System.Drawing.Point(15, 133);
             this.lbLastMessage.Name = "lbLastMessage";
             this.lbLastMessage.Size = new System.Drawing.Size(551, 20);
             this.lbLastMessage.TabIndex = 41;
@@ -587,6 +568,33 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(211, 6);
             // 
+            // openProfiles
+            // 
+            this.openProfiles.Filter = "XML Files (*.xml)|*.xml";
+            this.openProfiles.Multiselect = true;
+            this.openProfiles.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // llbHelp
+            // 
+            this.llbHelp.AutoSize = true;
+            this.llbHelp.Location = new System.Drawing.Point(102, 11);
+            this.llbHelp.Name = "llbHelp";
+            this.llbHelp.Size = new System.Drawing.Size(62, 13);
+            this.llbHelp.TabIndex = 13;
+            this.llbHelp.TabStop = true;
+            this.llbHelp.Text = "Help/About";
+            this.llbHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbHelp_LinkClicked);
+            // 
+            // btnImportProfiles
+            // 
+            this.btnImportProfiles.Location = new System.Drawing.Point(9, 6);
+            this.btnImportProfiles.Name = "btnImportProfiles";
+            this.btnImportProfiles.Size = new System.Drawing.Size(87, 23);
+            this.btnImportProfiles.TabIndex = 14;
+            this.btnImportProfiles.Text = "Import Profile(s)";
+            this.btnImportProfiles.UseVisualStyleBackColor = true;
+            this.btnImportProfiles.Click += new System.EventHandler(this.btnImportProfiles_Click);
+            // 
             // ScpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -627,12 +635,10 @@
         private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.GroupBox gpPads;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.Button hotkeysButton;
         private System.Windows.Forms.CheckBox hideDS4CheckBox;
         private System.Windows.Forms.CheckBox startMinimizedCheckBox;
         private System.Windows.Forms.Label lbLastMessage;
         private System.Windows.Forms.LinkLabel lnkControllers;
-        private System.Windows.Forms.Button AboutButton;
         private System.Windows.Forms.ComboBox cBController4;
         private System.Windows.Forms.ComboBox cBController3;
         private System.Windows.Forms.ComboBox cBController2;
@@ -662,6 +668,9 @@
         private System.Windows.Forms.ToolStripMenuItem editProfileForController3ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.OpenFileDialog openProfiles;
+        private System.Windows.Forms.LinkLabel llbHelp;
+        private System.Windows.Forms.Button btnImportProfiles;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

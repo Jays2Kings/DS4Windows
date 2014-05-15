@@ -80,7 +80,7 @@ namespace DS4Control
     {
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
-
+        public static string appdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
         public static event EventHandler<EventArgs> ControllerStatusChange; // called when a controller is added/removed/battery or touchpad mode changes/etc.
         public static void ControllerStatusChanged(object sender)
         {
@@ -290,7 +290,7 @@ namespace DS4Control
         }
         public static void setAProfile(int device, string filepath)
         {
-            m_Config.profilePath[device] = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filepath + ".xml";
+            m_Config.profilePath[device] = Global.appdatapath + @"\Profiles\" + filepath + ".xml";
         }
         public static string getAProfile(int device)
         {
@@ -372,7 +372,7 @@ namespace DS4Control
 
     public class BackingStore
     {
-        protected String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles.xml";
+        protected String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
 
         public int[] buttonMouseSensitivity = { 50, 50, 50, 50 };
@@ -449,10 +449,7 @@ namespace DS4Control
         public Boolean SaveProfile(int device, String propath, System.Windows.Forms.Control[] buttons)
         {
             Boolean Saved = true;
-            //String folderName = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
-            //String pathString = System.IO.Path.Combine(folderName, "Profiles");
-            //System.IO.Directory.CreateDirectory(pathString);
-            String path = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + propath + ".xml";
+            String path = Global.appdatapath + @"\Profiles\" + propath + ".xml";
             try
             {
                 XmlNode Node;

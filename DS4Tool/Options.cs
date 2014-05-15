@@ -198,7 +198,7 @@ namespace ScpServer
 
             if (tBProfile.Text != null && tBProfile.Text != "" && !tBProfile.Text.Contains("\\") && !tBProfile.Text.Contains("/") && !tBProfile.Text.Contains(":") && !tBProfile.Text.Contains("*") && !tBProfile.Text.Contains("?") && !tBProfile.Text.Contains("\"") && !tBProfile.Text.Contains("<") && !tBProfile.Text.Contains(">") && !tBProfile.Text.Contains("|"))
             {
-                System.IO.File.Delete(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filename + ".xml");
+                System.IO.File.Delete(Global.appdatapath + @"\Profiles\" + filename + ".xml");
                 Global.setAProfile(device, tBProfile.Text);
                 Global.SaveProfile(device, tBProfile.Text, buttons.ToArray());
                 Global.Save();
@@ -518,7 +518,6 @@ namespace ScpServer
                 tBProfile.ForeColor = System.Drawing.SystemColors.WindowText;            
             else
                 tBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
-            //if (System.IO.File.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + tBProfile.Text + ".xml"))
         }
 
         private void tBProfile_Enter(object sender, EventArgs e)

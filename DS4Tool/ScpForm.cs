@@ -13,6 +13,7 @@ namespace ScpServer
     {
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
+        double version = 6.8;
 
         protected void LogDebug(DateTime Time, String Data)
         {
@@ -95,29 +96,38 @@ namespace ScpServer
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
             Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
-            wc.DownloadFileAsync(url, "version.txt");
+            Directory.CreateDirectory(Global.appdatapath);
+            wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
             wc.DownloadFileCompleted += Check_Version;
+           // if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\"))
+                //File.C
         }
-
-        double version = 6.5;
+        
         private void Check_Version(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             double newversion;
-            if(double.TryParse(File.ReadAllText("version.txt"), out newversion))
+            try
             {
-                if (newversion > version)
-                    if (MessageBox.Show("Download now?", "New Version Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        System.Diagnostics.Process.Start("Updater.exe");
-                        this.Close();
-                    }
+                if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), out newversion))
+                {
+                    if (newversion > version)
+                        if (MessageBox.Show("Download now?", "New Version Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start("Updater.exe");
+                            this.Close();
+                        }
+                        else
+                            File.Delete(Global.appdatapath + "\\version.txt");
                     else
-                        File.Delete("version.txt");
+                        File.Delete(Global.appdatapath + "\\version.txt");
+                }
                 else
-                    File.Delete("version.txt");
+                    File.Delete(Global.appdatapath + "\\version.txt");
             }
-            else
-                File.Delete("version.txt");
+            catch
+            {
+
+            }
         }
 
         protected void Form_Load(object sender, EventArgs e)
@@ -160,8 +170,8 @@ namespace ScpServer
         {
             try
             {
-                string[] profiles = System.IO.Directory.GetFiles(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\");
-                int cutoff = (Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\").Length;
+                string[] profiles = System.IO.Directory.GetFiles(Global.appdatapath + @"\Profiles\");
+                int cutoff = (Global.appdatapath + @"\Profiles\").Length;
                 List<string> profilenames = new List<string>();
                 foreach (String s in profiles)
                     if (s.EndsWith(".xml"))
@@ -198,12 +208,17 @@ namespace ScpServer
             }
             catch (DirectoryNotFoundException)
             {
-                System.IO.Directory.CreateDirectory(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\");
+                if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\"))
+                    MessageBox.Show("Please import or make a profile", "Profile Folder Moved");
+                Directory.CreateDirectory(Global.appdatapath + @"\Profiles\");
                 for (int i = 0; i < 4; i++)
                 {
-                    cbs[i].Items.Add("");
-                    cbs[i].SelectedIndex = 0;
+                    cbs[i].Text = "(No Profile Found)";
+                    shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
+                    ebns[i].Text = "New";
                     cbs[i].Items.Add("+New Profile");
+                    shortcuts[i].DropDownItems.Add("-");
+                    shortcuts[i].DropDownItems.Add("+New Profile");
                 }
             }
         }
@@ -366,7 +381,7 @@ namespace ScpServer
             string filename = cbs[tdevice].Items[cbs[tdevice].SelectedIndex].ToString();
             if (MessageBox.Show("\"" + filename + "\" cannot be restored.", "Delete Profile?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
-                System.IO.File.Delete(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filename + ".xml");
+                System.IO.File.Delete(Global.appdatapath + filename + ".xml");
                 Global.setAProfile(tdevice, null);
                 RefreshProfiles();
             }
@@ -401,13 +416,6 @@ namespace ScpServer
         {
             Global.setStartMinimized(startMinimizedCheckBox.Checked);
             Global.Save();
-        }
-
-        private void AboutButton_Click(object sender, EventArgs e)
-        {
-            AboutBox box = new AboutBox();
-            box.Icon = this.Icon;
-            box.ShowDialog();
         }
 
         private void lvDebug_ItemActivate(object sender, EventArgs e)
@@ -486,6 +494,49 @@ namespace ScpServer
         private void ScpForm_Move(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkProfiles_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            openProfiles.InitialDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\";
+            if (openProfiles.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string[] files = openProfiles .FileNames;
+                for (int i = 0; i < files.Length; i++)
+                {
+                    string[] temp = files[i].Split('\\');
+                    files[i] = temp[temp.Length-1];
+                    File.Copy(openProfiles.FileNames[i], Global.appdatapath + "\\Profiles\\" + files[i], true);
+                }
+                RefreshProfiles();
+            }
+        }
+
+        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+        }
+
+        private void llbHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Hotkeys hotkeysForm = new Hotkeys();
+            hotkeysForm.Icon = this.Icon;
+            hotkeysForm.ShowDialog();
+        }
+
+        private void btnImportProfiles_Click(object sender, EventArgs e)
+        {
+            openProfiles.InitialDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\";
+            if (openProfiles.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string[] files = openProfiles.FileNames;
+                for (int i = 0; i < files.Length; i++)
+                {
+                    string[] temp = files[i].Split('\\');
+                    files[i] = temp[temp.Length - 1];
+                    File.Copy(openProfiles.FileNames[i], Global.appdatapath + "\\Profiles\\" + files[i], true);
+                }
+                RefreshProfiles();
+            }
         }
     }
 

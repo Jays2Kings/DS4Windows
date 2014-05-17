@@ -184,6 +184,16 @@ namespace DS4Control
             return m_Config.useExclusiveMode;
         }
 
+        public static void setVersion(double data)
+        {
+            m_Config.version = data;
+        }
+
+        public static double getVersion()
+        {
+            return m_Config.version;
+        }
+
         // New settings
         public static void saveLowColor(int device, byte red, byte green, byte blue)
         {
@@ -410,7 +420,7 @@ namespace DS4Control
         public Int32 formWidth = 782;
         public Int32 formHeight = 550;
         public Boolean startMinimized = false;
-
+        public double version;
         public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = {null, null, null, null};
         public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null };
         public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null };
@@ -921,6 +931,8 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller4"); profilePath[3] = Item.InnerText; }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/DS4Version"); Double.TryParse(Item.InnerText, out version); }
+                    catch { missingSetting = true; }
                 }
             }
             catch { }
@@ -960,6 +972,7 @@ namespace DS4Control
                 XmlNode xmlController3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null); xmlController3.InnerText = profilePath[2]; Node.AppendChild(xmlController3);
                 XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); xmlController4.InnerText = profilePath[3]; Node.AppendChild(xmlController4);
 
+                XmlNode xmlVersion = m_Xdoc.CreateNode(XmlNodeType.Element, "DS4Version", null); xmlVersion.InnerText = version.ToString(); Node.AppendChild(xmlVersion);
                 m_Xdoc.AppendChild(Node);
 
                 m_Xdoc.Save(m_Profile);

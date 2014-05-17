@@ -15,6 +15,7 @@ namespace ScpServer
         public Hotkeys()
         {
             InitializeComponent();
+            lbAbout.Text += Global.getVersion().ToString() + ")";
         }
 
         private void button1_Click(object sender, EventArgs e)

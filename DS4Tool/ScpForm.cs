@@ -13,7 +13,7 @@ namespace ScpServer
     {
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
-        double version = 6.8;
+        double version = 6.9;
 
         protected void LogDebug(DateTime Time, String Data)
         {
@@ -88,7 +88,7 @@ namespace ScpServer
             ebns = new Button[4] { bnEditC1, bnEditC2, bnEditC3, bnEditC4 };
             dbns = new Button[4] { bnDeleteC1, bnDeleteC2, bnDeleteC3, bnDeleteC4 };
             protexts = new Label[4] { lbSelPro1, lbSelPro2, lbSelPro3, lbSelPro4 };
-
+            
             shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[0],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
@@ -99,8 +99,6 @@ namespace ScpServer
             Directory.CreateDirectory(Global.appdatapath);
             wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
             wc.DownloadFileCompleted += Check_Version;
-           // if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\"))
-                //File.C
         }
         
         private void Check_Version(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
@@ -140,6 +138,8 @@ namespace ScpServer
             Log.TrayIconLog += ShowNotification;
             // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
             Global.Load();
+            Global.setVersion(version);
+            Global.Save();
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
             hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
             hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;

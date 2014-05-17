@@ -206,9 +206,9 @@
             this.lbAbout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbAbout.Location = new System.Drawing.Point(26, 9);
             this.lbAbout.Name = "lbAbout";
-            this.lbAbout.Size = new System.Drawing.Size(229, 13);
+            this.lbAbout.Size = new System.Drawing.Size(201, 13);
             this.lbAbout.TabIndex = 0;
-            this.lbAbout.Text = "DS4Windows is Open Source software!";
+            this.lbAbout.Text = "DS4Windows - J2K Build (Version ";
             // 
             // Hotkeys
             // 

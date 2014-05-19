@@ -14,7 +14,7 @@ namespace ScpServer
         private int device;
         private string filename;
         Byte[] oldLedColor, oldLowLedColor;
-        Timer sixaxisTimer = new Timer();
+        Timer inputtimer = new Timer(), sixaxisTimer = new Timer();
         private List<Button> buttons = new List<Button>();
         private Button lastSelected;
         private int alphacolor;
@@ -55,7 +55,7 @@ namespace ScpServer
                 touchpadJitterCompensation.Checked = Global.getTouchpadJitterCompensation(device);
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
                 flushHIDQueue.Checked = Global.getFlushHIDQueue(device);
-                idleDisconnectTimeout.Value = Global.getIdleDisconnectTimeout(device);
+                idleDisconnectTimeout.Value = (int)(Global.getIdleDisconnectTimeout(device)/60);
                 tBMouseSens.Value = Global.getButtonMouseSensitivity(device);
                 lBMouseSens.Text = tBMouseSens.Value.ToString();
                 // Force update of color choosers    
@@ -98,7 +98,6 @@ namespace ScpServer
                     SetDynamicTrackBarValue(tBsixaxisAccelX, (scpDevice.ExposedState[device].AccelX + tBsixaxisAccelX.Value * 2) / 3);
                     SetDynamicTrackBarValue(tBsixaxisAccelY, (scpDevice.ExposedState[device].AccelY + tBsixaxisAccelY.Value * 2) / 3);
                     SetDynamicTrackBarValue(tBsixaxisAccelZ, (scpDevice.ExposedState[device].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
-
                 });
             sixaxisTimer.Interval = 1000 / 60;
             #endregion
@@ -117,18 +116,58 @@ namespace ScpServer
             ToolTip tp = new ToolTip();
             tp.SetToolTip(cBlowerRCOn, "Use lower right Touchpad as right mouse");
             tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with one tap");
-            tp.SetToolTip(btnLightbar, "Click to change color");            
+            tp.SetToolTip(btnLightbar, "Click to change color");
+            tp.SetToolTip(lBControlTip, "You can also use your controller to change controls");            
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
             UpdateLists();
+            inputtimer.Start();
+            inputtimer.Tick += InputDS4;
         }
-
+        private void InputDS4(object sender, EventArgs e)
+        {
+            #region DS4Input
+            if (Form.ActiveForm == this)
+                switch (scpDevice.GetInputkeys(device))
+                {
+                    case ("Cross"): Show_ControlsBn(bnCross, e); break;
+                    case ("Circle"): Show_ControlsBn(bnCircle, e); break;
+                    case ("Square"): Show_ControlsBn(bnSquare, e); break;
+                    case ("Triangle"): Show_ControlsBn(bnTriangle, e); break;
+                    case ("Options"): Show_ControlsBn(bnOptions, e); break;
+                    case ("Share"): Show_ControlsBn(bnShare, e); break;
+                    case ("Up"): Show_ControlsBn(bnUp, e); break;
+                    case ("Down"): Show_ControlsBn(bnDown, e); break;
+                    case ("Left"): Show_ControlsBn(bnLeft, e); break;
+                    case ("Right"): Show_ControlsBn(bnRight, e); break;
+                    case ("PS"): Show_ControlsBn(bnPS, e); break;
+                    case ("L1"): Show_ControlsBn(bnL1, e); break;
+                    case ("R1"): Show_ControlsBn(bnR1, e); break;
+                    case ("L2"): Show_ControlsBn(bnL2, e); break;
+                    case ("R2"): Show_ControlsBn(bnR2, e); break;
+                    case ("L3"): Show_ControlsBn(bnL3, e); break;
+                    case ("R3"): Show_ControlsBn(bnR3, e); break;
+                    case ("Touch Left"): Show_ControlsBn(bnTouchLeft, e); break;
+                    case ("Touch Right"): Show_ControlsBn(bnTouchRight, e); break;
+                    case ("Touch Multi"): Show_ControlsBn(bnTouchMulti, e); break;
+                    case ("Touch Upper"): Show_ControlsBn(bnTouchUpper, e); break;
+                    case ("LS Up"): Show_ControlsBn(bnLSUp, e); break;
+                    case ("LS Down"): Show_ControlsBn(bnLSDown, e); break;
+                    case ("LS Left"): Show_ControlsBn(bnLSLeft, e); break;
+                    case ("LS Right"): Show_ControlsBn(bnLSRight, e); break;
+                    case ("RS Up"): Show_ControlsBn(bnRSUp, e); break;
+                    case ("RS Down"): Show_ControlsBn(bnRSDown, e); break;
+                    case ("RS Left"): Show_ControlsBn(bnRSLeft, e); break;
+                    case ("RS Right"): Show_ControlsBn(bnRSRight, e); break;
+                }
+            #endregion
+        }
         private void button_MouseHover(object sender, EventArgs e)
         {
             switch (((Button)sender).Name)
             {
-                    #region
+                #region
                 case ("bnCross"): lBControls.SelectedIndex = 0; break;
                 case ("bnCircle"): lBControls.SelectedIndex = 1; break;
                 case ("bnSquare"): lBControls.SelectedIndex = 2; break;
@@ -158,7 +197,7 @@ namespace ScpServer
                 case ("bnRSDown"): lBControls.SelectedIndex = 26; break;
                 case ("bnRSLeft"): lBControls.SelectedIndex = 27; break;
                 case ("bnRSRight"): lBControls.SelectedIndex = 28; break;
-                    #endregion
+                #endregion
             }
         }
 
@@ -185,7 +224,7 @@ namespace ScpServer
             Global.setDoubleTap(device, cBDoubleTap.Checked);
             Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
             Global.setTapSensitivity(device, (byte)numUDTap.Value);
-            Global.setIdleDisconnectTimeout(device, (int)idleDisconnectTimeout.Value);
+            Global.setIdleDisconnectTimeout(device, (int)(idleDisconnectTimeout.Value * 60));            
             Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
             Global.setRainbow(device, (int)numUDRainbow.Value);
             if (numUDRainbow.Value == 0) pBRainbow.Image = greyscale;
@@ -501,7 +540,7 @@ namespace ScpServer
 
         private void idleDisconnectTimeout_ValueChanged(object sender, EventArgs e)
         {
-
+            Global.setIdleDisconnectTimeout(device, (int)(idleDisconnectTimeout.Value * 60));
         }
 
         private void Options_Closed(object sender, FormClosedEventArgs e)

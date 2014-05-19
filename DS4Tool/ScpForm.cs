@@ -13,62 +13,7 @@ namespace ScpServer
     {
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
-        double version = 6.9;
-
-        protected void LogDebug(DateTime Time, String Data)
-        {
-            if (lvDebug.InvokeRequired)
-            {
-                LogDebugDelegate d = new LogDebugDelegate(LogDebug);
-                try
-                {
-                    this.Invoke(d, new Object[] { Time, Data });
-                }
-                catch { }
-            }
-            else
-            {
-                String Posted = Time.ToString("O");
-
-                lvDebug.Items.Add(new ListViewItem(new String[] { Posted, Data })).EnsureVisible();
-
-                //Added alternative
-                lbLastMessage.Text = Data;
-            }
-        }
-
-        protected void ShowNotification(object sender, DebugEventArgs args)
-        {
-            notifyIcon1.BalloonTipText = args.Data;
-            notifyIcon1.BalloonTipTitle = "DS4Windows";
-            notifyIcon1.ShowBalloonTip(1);
-        }
-
-        protected void Form_Resize(object sender, EventArgs e)
-        {
-            if (FormWindowState.Minimized == this.WindowState)
-            {
-                notifyIcon1.Visible = true;
-                this.Hide();
-                this.ShowInTaskbar = false;
-            }
-            else if (FormWindowState.Normal == this.WindowState)
-            {
-                notifyIcon1.Visible = false;
-                this.Show();
-                this.ShowInTaskbar = true;
-            }
-            //Added last message alternative
-            if (this.Height > 220)
-                lbLastMessage.Visible = false;
-            else lbLastMessage.Visible = true;
-
-            for (int i = 0; i < 4; i++)
-                if (this.Width > 665)
-                    protexts[i].Visible = true;
-                else
-                    protexts[i].Visible = false;
-        }
+        double version = 6.95;
 
         protected Label[] Pads;
         protected ComboBox[] cbs;
@@ -99,6 +44,7 @@ namespace ScpServer
             Directory.CreateDirectory(Global.appdatapath);
             wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
             wc.DownloadFileCompleted += Check_Version;
+            
         }
         
         private void Check_Version(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
@@ -197,7 +143,7 @@ namespace ScpServer
                         }
                         else
                         {
-                            cbs[i].Text = "(No Profile Found)";
+                            cbs[i].Text = "(No Profile Loaded)";
                             shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
                             ebns[i].Text = "New";
                         }
@@ -213,7 +159,7 @@ namespace ScpServer
                 Directory.CreateDirectory(Global.appdatapath + @"\Profiles\");
                 for (int i = 0; i < 4; i++)
                 {
-                    cbs[i].Text = "(No Profile Found)";
+                    cbs[i].Text = "(No Profile Loaded)";
                     shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
                     ebns[i].Text = "New";
                     cbs[i].Items.Add("+New Profile");
@@ -222,12 +168,60 @@ namespace ScpServer
                 }
             }
         }
-        protected void Form_Close(object sender, FormClosingEventArgs e)
+
+        protected void LogDebug(DateTime Time, String Data)
         {
-            Global.setFormWidth(this.Width);
-            Global.setFormHeight(this.Height);
-            Global.Save();
-            rootHub.Stop();
+            if (lvDebug.InvokeRequired)
+            {
+                LogDebugDelegate d = new LogDebugDelegate(LogDebug);
+                try
+                {
+                    this.Invoke(d, new Object[] { Time, Data });
+                }
+                catch { }
+            }
+            else
+            {
+                String Posted = Time.ToString("O");
+
+                lvDebug.Items.Add(new ListViewItem(new String[] { Posted, Data })).EnsureVisible();
+
+                //Added alternative
+                lbLastMessage.Text = Data;
+            }
+        }
+
+        protected void ShowNotification(object sender, DebugEventArgs args)
+        {
+            notifyIcon1.BalloonTipText = args.Data;
+            notifyIcon1.BalloonTipTitle = "DS4Windows";
+            notifyIcon1.ShowBalloonTip(1);
+        }
+
+        protected void Form_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                notifyIcon1.Visible = true;
+                this.Hide();
+                this.ShowInTaskbar = false;
+            }
+            else if (FormWindowState.Normal == this.WindowState)
+            {
+                notifyIcon1.Visible = false;
+                this.Show();
+                this.ShowInTaskbar = true;
+            }
+            //Added last message alternative
+            if (this.Height > 220)
+                lbLastMessage.Visible = false;
+            else lbLastMessage.Visible = true;
+
+            for (int i = 0; i < 4; i++)
+                if (this.Width > 665)
+                    protexts[i].Visible = true;
+                else
+                    protexts[i].Visible = false;
         }
 
         protected void btnStartStop_Click(object sender, EventArgs e)
@@ -351,7 +345,7 @@ namespace ScpServer
         {
             Button bn = (Button)sender;
             int i = Int32.Parse(bn.Tag.ToString());
-                if (cbs[i].Text == "(No Profile Found)")
+            if (cbs[i].Text == "(No Profile Loaded)")
                     ShowOptions(i, "");
                 else
                     ShowOptions(i, cbs[i].Text);
@@ -443,7 +437,7 @@ namespace ScpServer
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
                     ShowOptions(tdevice, "");
-                if (cb.Text == "(No Profile Found)")
+                if (cb.Text == "(No Profile Loaded)")
                     ebns[tdevice].Text = "New";
                 else
                     ebns[tdevice].Text = "Edit";
@@ -490,12 +484,6 @@ namespace ScpServer
             WindowState = FormWindowState.Normal;
         }
 
-
-        private void ScpForm_Move(object sender, EventArgs e)
-        {
-
-        }
-
         private void linkProfiles_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             openProfiles.InitialDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\";
@@ -510,10 +498,6 @@ namespace ScpServer
                 }
                 RefreshProfiles();
             }
-        }
-
-        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-        {
         }
 
         private void llbHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -538,6 +522,27 @@ namespace ScpServer
                 RefreshProfiles();
             }
         }
+
+        protected void Form_Close(object sender, FormClosingEventArgs e)
+        {
+            Global.setFormWidth(this.Width);
+            Global.setFormHeight(this.Height);
+            Global.Save();
+            rootHub.Stop();
+        }
+
+        private void ScpForm_Deactivate(object sender, EventArgs e)
+        {
+            try { notifyIcon1.Visible = true; }
+            catch { }
+        }
+
+        private void ScpForm_Activated(object sender, EventArgs e)
+        {
+            notifyIcon1.Visible = false;
+
+        }
+
     }
 
     public class ThemeUtil

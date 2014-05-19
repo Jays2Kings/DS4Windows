@@ -35,6 +35,8 @@
             this.chData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.pnlButton = new System.Windows.Forms.Panel();
+            this.btnImportProfiles = new System.Windows.Forms.Button();
+            this.llbHelp = new System.Windows.Forms.LinkLabel();
             this.btnStartStop = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
@@ -76,8 +78,6 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.openProfiles = new System.Windows.Forms.OpenFileDialog();
-            this.llbHelp = new System.Windows.Forms.LinkLabel();
-            this.btnImportProfiles = new System.Windows.Forms.Button();
             this.pnlButton.SuspendLayout();
             this.pnlDebug.SuspendLayout();
             this.pnlStatus.SuspendLayout();
@@ -131,6 +131,27 @@
             this.pnlButton.Name = "pnlButton";
             this.pnlButton.Size = new System.Drawing.Size(794, 35);
             this.pnlButton.TabIndex = 10;
+            // 
+            // btnImportProfiles
+            // 
+            this.btnImportProfiles.Location = new System.Drawing.Point(9, 6);
+            this.btnImportProfiles.Name = "btnImportProfiles";
+            this.btnImportProfiles.Size = new System.Drawing.Size(87, 23);
+            this.btnImportProfiles.TabIndex = 14;
+            this.btnImportProfiles.Text = "Import Profile(s)";
+            this.btnImportProfiles.UseVisualStyleBackColor = true;
+            this.btnImportProfiles.Click += new System.EventHandler(this.btnImportProfiles_Click);
+            // 
+            // llbHelp
+            // 
+            this.llbHelp.AutoSize = true;
+            this.llbHelp.Location = new System.Drawing.Point(102, 11);
+            this.llbHelp.Name = "llbHelp";
+            this.llbHelp.Size = new System.Drawing.Size(62, 13);
+            this.llbHelp.TabIndex = 13;
+            this.llbHelp.TabStop = true;
+            this.llbHelp.Text = "Help/About";
+            this.llbHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbHelp_LinkClicked);
             // 
             // btnStartStop
             // 
@@ -482,7 +503,7 @@
             // 
             this.lbLastMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbLastMessage.Location = new System.Drawing.Point(15, 133);
+            this.lbLastMessage.Location = new System.Drawing.Point(12, 106);
             this.lbLastMessage.Name = "lbLastMessage";
             this.lbLastMessage.Size = new System.Drawing.Size(551, 20);
             this.lbLastMessage.TabIndex = 41;
@@ -572,28 +593,6 @@
             // 
             this.openProfiles.Filter = "XML Files (*.xml)|*.xml";
             this.openProfiles.Multiselect = true;
-            this.openProfiles.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // llbHelp
-            // 
-            this.llbHelp.AutoSize = true;
-            this.llbHelp.Location = new System.Drawing.Point(102, 11);
-            this.llbHelp.Name = "llbHelp";
-            this.llbHelp.Size = new System.Drawing.Size(62, 13);
-            this.llbHelp.TabIndex = 13;
-            this.llbHelp.TabStop = true;
-            this.llbHelp.Text = "Help/About";
-            this.llbHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbHelp_LinkClicked);
-            // 
-            // btnImportProfiles
-            // 
-            this.btnImportProfiles.Location = new System.Drawing.Point(9, 6);
-            this.btnImportProfiles.Name = "btnImportProfiles";
-            this.btnImportProfiles.Size = new System.Drawing.Size(87, 23);
-            this.btnImportProfiles.TabIndex = 14;
-            this.btnImportProfiles.Text = "Import Profile(s)";
-            this.btnImportProfiles.UseVisualStyleBackColor = true;
-            this.btnImportProfiles.Click += new System.EventHandler(this.btnImportProfiles_Click);
             // 
             // ScpForm
             // 
@@ -606,9 +605,10 @@
             this.MinimumSize = new System.Drawing.Size(560, 192);
             this.Name = "ScpForm";
             this.Text = "DS4Windows 1.0 Beta J2K Build";
+            this.Activated += new System.EventHandler(this.ScpForm_Activated);
+            this.Deactivate += new System.EventHandler(this.ScpForm_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Close);
             this.Load += new System.EventHandler(this.Form_Load);
-            this.Move += new System.EventHandler(this.ScpForm_Move);
             this.Resize += new System.EventHandler(this.Form_Resize);
             this.pnlButton.ResumeLayout(false);
             this.pnlButton.PerformLayout();

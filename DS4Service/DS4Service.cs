@@ -11,7 +11,7 @@ namespace DS4Service
     {
         private Control rootHub;
         StreamWriter logWriter;
-        string logFile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\DS4Service.log";
+        string logFile = Global.appdatapath + @"\DS4Service.log";
         public DS4Service()
         {
             InitializeComponent();

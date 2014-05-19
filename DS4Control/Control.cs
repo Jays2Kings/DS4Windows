@@ -10,7 +10,7 @@ namespace DS4Control
     public class Control
     {
         X360Device x360Bus;
-        DS4Device[] DS4Controllers = new DS4Device[4];
+        public DS4Device[] DS4Controllers = new DS4Device[4];
         //TPadModeSwitcher[] modeSwitcher = new TPadModeSwitcher[4];
         Mouse[] touchPad = new Mouse[4];
         private bool running = false;
@@ -85,7 +85,7 @@ namespace DS4Control
                         string[] profileA = Global.getAProfile(ind).Split('\\');
                         string filename = profileA[profileA.Length - 1];
                         ind++;
-                        if (System.IO.File.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filename))
+                        if (System.IO.File.Exists(Global.appdatapath + "\\Profiles\\" + filename))
                         {
                             LogDebug("Controller " + ind + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
                             Log.LogToTray("Controller " + ind + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
@@ -168,18 +168,14 @@ namespace DS4Control
                             device.Removal -= DS4Devices.On_Removal;
                             device.Removal += this.On_DS4Removal;
                             device.Removal += DS4Devices.On_Removal;
-                            //TPadModeSwitcher m_switcher = new TPadModeSwitcher(device, Index);
-                            //m_switcher.Debug += OnDebug;
-                            //modeSwitcher[Index] = m_switcher;
                             touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = Global.loadColor(Index);
                             device.Report += this.On_Report;
                             x360Bus.Plugin(Index);
-                            //m_switcher.setMode(Global.getInitialMode(Index));
                             TouchPadOn(Index, device);
                             string[] profileA = Global.getAProfile(Index).Split('\\');
                             string filename = profileA[profileA.Length - 1];
-                            if (System.IO.File.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\" + filename))
+                            if (System.IO.File.Exists(Global.appdatapath + "\\Profiles\\" + filename))
                             {
                                 LogDebug("Controller " + (Index+1) + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
                                 Log.LogToTray("Controller " + (Index + 1) + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
@@ -304,15 +300,8 @@ namespace DS4Control
                 DS4State pState = PreviousState[ind];
                 if (pState.Battery != cState.Battery)
                     Global.ControllerStatusChanged(this);
-
-                //bool wasButtonMouse = modeSwitcher[ind].getCurrentMode() is ButtonMouse;
                 CheckForHotkeys(ind, cState, pState);
-                //if (wasButtonMouse && modeSwitcher[ind].getCurrentMode() is ButtonMouse)
-                {
-                    //ButtonMouse mode = (ButtonMouse)modeSwitcher[ind].getCurrentMode();
-                    // XXX so disgusting, need to virtualize this again
-                    // mode.getDS4State().CopyTo(cState);
-                }
+                GetInputkeys(ind);
 
                 if (Global.getHasCustomKeysorButtons(ind))
                 {
@@ -342,6 +331,41 @@ namespace DS4Control
                 // Pull settings updates.
                 device.IdleTimeout = Global.getIdleDisconnectTimeout(ind);
             }
+        }
+
+        public string GetInputkeys(int ind)
+        {
+            DS4State cState = CurrentState[ind];
+            if (Mapping.getBoolMapping(DS4Controls.Cross, cState)) return "Cross";
+            else if (Mapping.getBoolMapping(DS4Controls.Circle, cState)) return "Circle";
+            else if (Mapping.getBoolMapping(DS4Controls.Triangle, cState)) return "Triangle";
+            else if (Mapping.getBoolMapping(DS4Controls.Square, cState)) return "Square";
+            else if (Mapping.getBoolMapping(DS4Controls.L1, cState)) return "L1";
+            else if (Mapping.getBoolMapping(DS4Controls.R1, cState)) return "R1";
+            else if (Mapping.getBoolMapping(DS4Controls.L2, cState)) return "L2";
+            else if (Mapping.getBoolMapping(DS4Controls.R2, cState)) return "R2";
+            else if (Mapping.getBoolMapping(DS4Controls.L3, cState)) return "L3";
+            else if (Mapping.getBoolMapping(DS4Controls.R3, cState)) return "R3";
+            else if (Mapping.getBoolMapping(DS4Controls.DpadUp, cState)) return "Up";
+            else if (Mapping.getBoolMapping(DS4Controls.DpadDown, cState)) return "Down";
+            else if (Mapping.getBoolMapping(DS4Controls.DpadLeft, cState)) return "Left";
+            else if (Mapping.getBoolMapping(DS4Controls.DpadRight, cState)) return "Right";
+            else if (Mapping.getBoolMapping(DS4Controls.Share, cState)) return "Share";
+            else if (Mapping.getBoolMapping(DS4Controls.Options, cState)) return "Options";
+            else if (Mapping.getBoolMapping(DS4Controls.PS, cState)) return "PS";
+            else if (Mapping.getBoolMapping(DS4Controls.LXPos, cState)) return "LS Right";
+            else if (Mapping.getBoolMapping(DS4Controls.LXNeg, cState)) return "LS Left";
+            else if (Mapping.getBoolMapping(DS4Controls.LYPos, cState)) return "LS Down";
+            else if (Mapping.getBoolMapping(DS4Controls.LYNeg, cState)) return "LS Up";
+            else if (Mapping.getBoolMapping(DS4Controls.RXPos, cState)) return "RS Right";
+            else if (Mapping.getBoolMapping(DS4Controls.RXNeg, cState)) return "RS Left";
+            else if (Mapping.getBoolMapping(DS4Controls.RYPos, cState)) return "RS Down";
+            else if (Mapping.getBoolMapping(DS4Controls.RYNeg, cState)) return "RS Up";
+            else if (Mapping.getBoolMapping(DS4Controls.TouchLeft, cState)) return "Touch Left";
+            else if (Mapping.getBoolMapping(DS4Controls.TouchRight, cState)) return "Touch Right";
+            else if (Mapping.getBoolMapping(DS4Controls.TouchMulti, cState)) return "Touch Multi";
+            else if (Mapping.getBoolMapping(DS4Controls.TouchUpper, cState)) return "Touch Upper";
+            else return "nothing";
         }
 
         bool touchreleased = true;

@@ -62,7 +62,7 @@ namespace ScpServer
                 else
                     keyname = ((Button)sender).Text;
                 object keytag;
-                if (((Button)sender).Tag == "X360")
+                if (((Button)sender).Tag.ToString() == "X360")
                     keytag = ((Button)sender).Text;
                 else
                     keytag = ((Button)sender).Tag;
@@ -75,7 +75,7 @@ namespace ScpServer
         {
            ops.Toggle_Repeat(cbRepeat.Checked);
            ops.Toggle_ScanCode(cbScanCode.Checked);
-           ops.UpdateLists(); 
+           ops.UpdateLists();
         }
 
         private void Key_Down_Action(object sender, KeyEventArgs e)

@@ -133,8 +133,8 @@
             this.lBProfileTip = new System.Windows.Forms.Label();
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.btnSaveProfile = new System.Windows.Forms.Button();
-            this.advColorDialog = new ScpServer.AdvancedColorDialog();
             this.lBSeperator = new System.Windows.Forms.Label();
+            this.advColorDialog = new ScpServer.AdvancedColorDialog();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
             this.SticksPanel.SuspendLayout();
@@ -1531,11 +1531,12 @@
             // 
             // tBMouseSens
             // 
+            this.tBMouseSens.AutoSize = false;
             this.tBMouseSens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.tBMouseSens.Location = new System.Drawing.Point(151, 215);
             this.tBMouseSens.Maximum = 117;
             this.tBMouseSens.Name = "tBMouseSens";
-            this.tBMouseSens.Size = new System.Drawing.Size(131, 45);
+            this.tBMouseSens.Size = new System.Drawing.Size(131, 26);
             this.tBMouseSens.TabIndex = 204;
             this.tBMouseSens.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tBMouseSens.Value = 50;
@@ -1720,12 +1721,6 @@
             this.btnSaveProfile.UseVisualStyleBackColor = true;
             this.btnSaveProfile.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // advColorDialog
-            // 
-            this.advColorDialog.AnyColor = true;
-            this.advColorDialog.Color = System.Drawing.Color.Blue;
-            this.advColorDialog.FullOpen = true;
-            // 
             // lBSeperator
             // 
             this.lBSeperator.AutoSize = true;
@@ -1736,6 +1731,12 @@
             this.lBSeperator.Size = new System.Drawing.Size(433, 13);
             this.lBSeperator.TabIndex = 240;
             this.lBSeperator.Text = "_______________________________________________________________________";
+            // 
+            // advColorDialog
+            // 
+            this.advColorDialog.AnyColor = true;
+            this.advColorDialog.Color = System.Drawing.Color.Blue;
+            this.advColorDialog.FullOpen = true;
             // 
             // Options
             // 
@@ -1878,7 +1879,6 @@
         private System.Windows.Forms.Button bnLSDown;
         private System.Windows.Forms.Button bnR3;
         private System.Windows.Forms.Button btnFullView;
-        private System.Windows.Forms.Label lBControlTip;
         public System.Windows.Forms.ListBox lBControls;
         private System.Windows.Forms.NumericUpDown numUDRainbow;
         private System.Windows.Forms.PictureBox pBRainbow;
@@ -1946,6 +1946,7 @@
         private System.Windows.Forms.TextBox tBProfile;
         private System.Windows.Forms.Button btnSaveProfile;
         private System.Windows.Forms.Label lBSeperator;
+        private System.Windows.Forms.Label lBControlTip;
     }
 }
 

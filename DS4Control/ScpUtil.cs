@@ -194,6 +194,15 @@ namespace DS4Control
             return m_Config.version;
         }
 
+        public static void setLastChecked(DateTime data)
+        {
+            m_Config.lastChecked = data;
+        }
+
+        public static DateTime getLastChecked()
+        {
+            return m_Config.lastChecked;
+        }
         // New settings
         public static void saveLowColor(int device, byte red, byte green, byte blue)
         {
@@ -421,6 +430,7 @@ namespace DS4Control
         public Int32 formHeight = 550;
         public Boolean startMinimized = false;
         public double version;
+        public DateTime lastChecked;
         public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = {null, null, null, null};
         public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null };
         public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null };
@@ -933,6 +943,8 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/DS4Version"); Double.TryParse(Item.InnerText, out version); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/LastChecked"); DateTime.TryParse(Item.InnerText, out lastChecked); }
+                    catch { missingSetting = true; }
                 }
             }
             catch { }
@@ -973,6 +985,7 @@ namespace DS4Control
                 XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); xmlController4.InnerText = profilePath[3]; Node.AppendChild(xmlController4);
 
                 XmlNode xmlVersion = m_Xdoc.CreateNode(XmlNodeType.Element, "DS4Version", null); xmlVersion.InnerText = version.ToString(); Node.AppendChild(xmlVersion);
+                XmlNode xmlLastChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastChecked", null); xmlLastChecked.InnerText = lastChecked.ToString(); Node.AppendChild(xmlLastChecked);
                 m_Xdoc.AppendChild(Node);
 
                 m_Xdoc.Save(m_Profile);

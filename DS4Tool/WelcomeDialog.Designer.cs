@@ -138,7 +138,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(315, 22);
             this.label2.TabIndex = 3;
-            this.label2.Text = "You do not have to do this if you have before";
+            this.label2.Text = "If you\'ve used a 360 Controller on this PC, you can skip this";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // WelcomeDialog

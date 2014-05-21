@@ -24,12 +24,6 @@ namespace ScpServer
         {
             InitializeComponent();
             this.Icon = Properties.Resources.DS4;
-            if (!File.Exists("Updater.exe"))
-            {
-                Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/Updater.exe");
-                WebClient wc2 = new WebClient();
-                wc2.DownloadFileAsync(url2, "Updater.exe");
-            }
         }
 
         private void bnFinish_Click(object sender, EventArgs e)

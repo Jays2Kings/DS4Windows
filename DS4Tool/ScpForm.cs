@@ -8,13 +8,14 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Net;
 using System.Management;
+using Microsoft.Win32;
 namespace ScpServer
 {
     public partial class ScpForm : Form
     {
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
-        double version = 7.011;
+        double version = 7.1;
 
         protected Label[] Pads;
         protected ComboBox[] cbs;
@@ -42,17 +43,6 @@ namespace ScpServer
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
             CheckDrivers();
-            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
-            Directory.CreateDirectory(Global.appdatapath);
-            wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
-            wc.DownloadFileCompleted += Check_Version;
-
-            if (!File.Exists("Updater.exe"))
-            {
-                Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/Updater.exe");
-                WebClient wc2 = new WebClient();
-                wc2.DownloadFileAsync(url2, "Updater.exe");
-            }
         }
 
         private void CheckDrivers()
@@ -88,6 +78,12 @@ namespace ScpServer
                     if (newversion > version)
                         if (MessageBox.Show("Download now?", "New Version Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
+                            if (!File.Exists("Updater.exe"))
+                            {
+                                Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/Updater.exe");
+                                WebClient wc2 = new WebClient();
+                                wc2.DownloadFile(url2, "Updater.exe");
+                            }
                             System.Diagnostics.Process.Start("Updater.exe");
                             this.Close();
                         }
@@ -99,10 +95,7 @@ namespace ScpServer
                 else
                     File.Delete(Global.appdatapath + "\\version.txt");
             }
-            catch
-            {
-
-            }
+            catch { };
         }
 
         protected void Form_Load(object sender, EventArgs e)
@@ -128,6 +121,9 @@ namespace ScpServer
             startMinimizedCheckBox.Checked = Global.getStartMinimized();
             startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
 
+            RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", false);
+            StartWindowsCheckBox.Checked = (KeyLoc.GetValue("DS4Tool") != null);
+
             if (startMinimizedCheckBox.Checked)
             {
                 this.WindowState = FormWindowState.Minimized;
@@ -135,13 +131,19 @@ namespace ScpServer
             }
             RefreshProfiles();
             for (int i = 0; i < 4; i++)
-            {
                 Global.LoadProfile(i);
-            }
             Global.ControllerStatusChange += ControllerStatusChange;
             ControllerStatusChanged();
             if (btnStartStop.Enabled)
                 btnStartStop_Clicked();
+            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
+            Directory.CreateDirectory(Global.appdatapath);
+            if (DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(1))
+            {
+                wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
+                wc.DownloadFileCompleted += Check_Version;
+                Global.setLastChecked(DateTime.Now);
+            }
         }
         public void RefreshProfiles()
         {
@@ -253,6 +255,7 @@ namespace ScpServer
                         protexts[i].Visible = true;
                     else
                         protexts[i].Visible = false;
+            StartWindowsCheckBox.Visible = (this.Width > 665);
         }
 
         protected void btnStartStop_Click(object sender, EventArgs e)
@@ -572,6 +575,15 @@ namespace ScpServer
         {
             notifyIcon1.Visible = false;
 
+        }
+
+        private void StartWindowsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (StartWindowsCheckBox.Checked)
+                KeyLoc.SetValue("DS4Tool", "\"" + Application.ExecutablePath.ToString() + "\"");
+            else
+                KeyLoc.DeleteValue("DS4Tool", false);
         }
 
     }

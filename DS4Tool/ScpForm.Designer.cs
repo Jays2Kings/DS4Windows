@@ -57,6 +57,7 @@
             this.bnEditC4 = new System.Windows.Forms.Button();
             this.bnEditC3 = new System.Windows.Forms.Button();
             this.bnEditC2 = new System.Windows.Forms.Button();
+            this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
             this.bnDeleteC4 = new System.Windows.Forms.Button();
             this.bnDeleteC3 = new System.Windows.Forms.Button();
             this.bnDeleteC2 = new System.Windows.Forms.Button();
@@ -258,6 +259,7 @@
             this.gpPads.Controls.Add(this.bnEditC3);
             this.gpPads.Controls.Add(this.hideDS4CheckBox);
             this.gpPads.Controls.Add(this.bnEditC2);
+            this.gpPads.Controls.Add(this.StartWindowsCheckBox);
             this.gpPads.Controls.Add(this.startMinimizedCheckBox);
             this.gpPads.Controls.Add(this.bnDeleteC4);
             this.gpPads.Controls.Add(this.bnDeleteC3);
@@ -394,6 +396,18 @@
             this.bnEditC2.Text = "Edit";
             this.bnEditC2.UseVisualStyleBackColor = true;
             this.bnEditC2.Click += new System.EventHandler(this.editButtons_Click);
+            // 
+            // StartWindowsCheckBox
+            // 
+            this.StartWindowsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.StartWindowsCheckBox.AutoSize = true;
+            this.StartWindowsCheckBox.Location = new System.Drawing.Point(452, 109);
+            this.StartWindowsCheckBox.Name = "StartWindowsCheckBox";
+            this.StartWindowsCheckBox.Size = new System.Drawing.Size(117, 17);
+            this.StartWindowsCheckBox.TabIndex = 40;
+            this.StartWindowsCheckBox.Text = "Start with Windows";
+            this.StartWindowsCheckBox.UseVisualStyleBackColor = true;
+            this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
             // 
             // bnDeleteC4
             // 
@@ -671,6 +685,7 @@
         private System.Windows.Forms.OpenFileDialog openProfiles;
         private System.Windows.Forms.LinkLabel llbHelp;
         private System.Windows.Forms.Button btnImportProfiles;
+        private System.Windows.Forms.CheckBox StartWindowsCheckBox;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

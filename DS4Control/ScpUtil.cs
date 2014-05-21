@@ -294,18 +294,33 @@ namespace DS4Control
         {
             return m_Config.m_LeftTriggerMiddle[device];
         }
-        public static void setLeftTriggerMiddle(int device, double value)
+        public static void setLeftTriggerMiddle(int device, byte value)
         {
             m_Config.m_LeftTriggerMiddle[device] = value;
         }
-
         public static double getRightTriggerMiddle(int device)
         {
             return m_Config.m_RightTriggerMiddle[device];
         }
-        public static void setRightTriggerMiddle(int device, double value)
+        public static void setRightTriggerMiddle(int device, byte value)
         {
             m_Config.m_RightTriggerMiddle[device] = value;
+        }
+        public static byte getLSDeadzone(int device)
+        {
+            return m_Config.LSDeadzone[device];
+        }
+        public static void setLSDeadzone(int device, byte value)
+        {
+            m_Config.LSDeadzone[device] = value;
+        }
+        public static byte getRSDeadzone(int device)
+        {
+            return m_Config.RSDeadzone[device];
+        }
+        public static void setRSDeadzone(int device, byte value)
+        {
+            m_Config.RSDeadzone[device] = value;
         }
         public static void setAProfile(int device, string filepath)
         {
@@ -400,11 +415,12 @@ namespace DS4Control
         public Boolean[] lowerRCOn = { false, false, false, false };
         public Boolean[] ledAsBattery = { false, false, false, false };
         public Boolean[] flashLedLowBattery = { false, false, false, false };
-        public double[] m_LeftTriggerMiddle = { 0.5, 0.5, 0.5, 0.5 }, m_RightTriggerMiddle = { 0.5, 0.5, 0.5, 0.5 };
+        public Byte[] m_LeftTriggerMiddle = { 0, 0, 0, 0 }, m_RightTriggerMiddle = { 0, 0, 0, 0 };
         public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty };
         public Byte[] m_Rumble = { 100, 100, 100, 100 };
         public Byte[] touchSensitivity = { 100, 100, 100, 100 };
-        public Byte[] tapSensitivity = {0, 0, 0, 0};
+        public Byte[] LSDeadzone = { 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0 };
+        public Byte[] tapSensitivity = { 0, 0, 0, 0 };
         public bool[] doubleTap = { false, false, false, false };
         public int[] scrollSensitivity = { 0, 0, 0, 0 };
         public double[] rainbow = { 0, 0, 0, 0 };
@@ -438,11 +454,9 @@ namespace DS4Control
         {
             for (int i = 0; i < 4; i++)
             {
-                {
-                    customMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
-                    customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
-                    customMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
-                }
+                customMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
+                customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
+                customMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
             }
         }
 
@@ -508,6 +522,8 @@ namespace DS4Control
                 XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = m_RightTriggerMiddle[device].ToString(); Node.AppendChild(xmlRightTriggerMiddle);
                 XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
                 XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
+                XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = LSDeadzone[device].ToString(); Node.AppendChild(xmlLSD);
+                XmlNode xmlRSD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZone", null); xmlRSD.InnerText = RSDeadzone[device].ToString(); Node.AppendChild(xmlRSD);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
@@ -714,14 +730,18 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Byte.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Byte.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Rainbow"); Double.TryParse(Item.InnerText, out rainbow[device]); }
                     catch { rainbow[device] = 0; missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LSDeadZone"); Byte.TryParse(Item.InnerText, out LSDeadzone[device]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RSDeadZone"); Byte.TryParse(Item.InnerText, out RSDeadzone[device]); }
+                    catch { missingSetting = true; }
 
                     DS4KeyType keyType;
                     UInt16 wvk;
@@ -859,14 +879,18 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Double.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Byte.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Double.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Byte.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Rainbow"); Double.TryParse(Item.InnerText, out rainbow[device]); }
                     catch { rainbow[device] = 0; missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LSDeadZone"); Byte.TryParse(Item.InnerText, out LSDeadzone[device]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RSDeadZone"); Byte.TryParse(Item.InnerText, out RSDeadzone[device]); }
+                    catch { missingSetting = true; }
 
                     DS4KeyType keyType;
                     UInt16 wvk;

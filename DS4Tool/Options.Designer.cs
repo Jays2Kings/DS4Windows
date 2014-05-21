@@ -134,6 +134,10 @@
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.btnSaveProfile = new System.Windows.Forms.Button();
             this.lBSeperator = new System.Windows.Forms.Label();
+            this.numUDLS = new System.Windows.Forms.NumericUpDown();
+            this.lbRS = new System.Windows.Forms.Label();
+            this.lbLS = new System.Windows.Forms.Label();
+            this.numUDRS = new System.Windows.Forms.NumericUpDown();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
@@ -167,6 +171,8 @@
             this.lowBatteryPanel.SuspendLayout();
             this.LightbarPanel.SuspendLayout();
             this.SixaxisPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDLS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDRS)).BeginInit();
             this.SuspendLayout();
             // 
             // bnTouchUpper
@@ -912,7 +918,7 @@
             "Right Stick Right :"});
             this.lBControls.Location = new System.Drawing.Point(258, 42);
             this.lBControls.Name = "lBControls";
-            this.lBControls.Size = new System.Drawing.Size(169, 173);
+            this.lBControls.Size = new System.Drawing.Size(169, 160);
             this.lBControls.TabIndex = 180;
             this.lBControls.DoubleClick += new System.EventHandler(this.Show_ControlsList);
             this.lBControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
@@ -963,7 +969,7 @@
             this.flashLed.TabIndex = 163;
             this.flashLed.Text = "Battery Level Flash";
             this.flashLed.UseVisualStyleBackColor = true;
-            this.flashLed.CheckedChanged += new System.EventHandler(this.flashLed_CheckedChanged);
+            this.flashLed.CheckedChanged += new System.EventHandler(this.flashWhenLowBattery_CheckedChanged);
             // 
             // blueBar
             // 
@@ -991,7 +997,6 @@
             this.greenBar.TickFrequency = 25;
             this.greenBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.greenBar.Value = 255;
-            this.greenBar.Scroll += new System.EventHandler(this.greenBar_Scroll);
             this.greenBar.ValueChanged += new System.EventHandler(this.greenBar_ValueChanged);
             // 
             // redBar
@@ -1086,14 +1091,14 @@
             // 
             // numUDTap
             // 
-            this.numUDTap.Location = new System.Drawing.Point(322, 346);
+            this.numUDTap.Location = new System.Drawing.Point(328, 345);
             this.numUDTap.Maximum = new decimal(new int[] {
             200,
             0,
             0,
             0});
             this.numUDTap.Name = "numUDTap";
-            this.numUDTap.Size = new System.Drawing.Size(45, 20);
+            this.numUDTap.Size = new System.Drawing.Size(38, 20);
             this.numUDTap.TabIndex = 227;
             this.numUDTap.Value = new decimal(new int[] {
             100,
@@ -1165,14 +1170,14 @@
             // 
             // numUDTouch
             // 
-            this.numUDTouch.Location = new System.Drawing.Point(127, 345);
+            this.numUDTouch.Location = new System.Drawing.Point(126, 345);
             this.numUDTouch.Maximum = new decimal(new int[] {
             150,
             0,
             0,
             0});
             this.numUDTouch.Name = "numUDTouch";
-            this.numUDTouch.Size = new System.Drawing.Size(39, 20);
+            this.numUDTouch.Size = new System.Drawing.Size(38, 20);
             this.numUDTouch.TabIndex = 229;
             this.numUDTouch.Value = new decimal(new int[] {
             100,
@@ -1197,7 +1202,7 @@
             this.cBlowerRCOn.AutoSize = true;
             this.cBlowerRCOn.Checked = true;
             this.cBlowerRCOn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBlowerRCOn.Location = new System.Drawing.Point(312, 288);
+            this.cBlowerRCOn.Location = new System.Drawing.Point(312, 210);
             this.cBlowerRCOn.Name = "cBlowerRCOn";
             this.cBlowerRCOn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cBlowerRCOn.Size = new System.Drawing.Size(116, 17);
@@ -1209,12 +1214,12 @@
             // touchpadJitterCompensation
             // 
             this.touchpadJitterCompensation.AutoSize = true;
-            this.touchpadJitterCompensation.Location = new System.Drawing.Point(328, 255);
+            this.touchpadJitterCompensation.Location = new System.Drawing.Point(310, 256);
             this.touchpadJitterCompensation.Name = "touchpadJitterCompensation";
             this.touchpadJitterCompensation.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.touchpadJitterCompensation.Size = new System.Drawing.Size(100, 30);
+            this.touchpadJitterCompensation.Size = new System.Drawing.Size(118, 17);
             this.touchpadJitterCompensation.TabIndex = 224;
-            this.touchpadJitterCompensation.Text = "Touchpad Jitter\r\nCompensation";
+            this.touchpadJitterCompensation.Text = "Jitter Compensation";
             this.touchpadJitterCompensation.UseVisualStyleBackColor = true;
             this.touchpadJitterCompensation.CheckedChanged += new System.EventHandler(this.touchpadJitterCompensation_CheckedChanged);
             // 
@@ -1224,9 +1229,9 @@
             this.lbThreshold.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbThreshold.Location = new System.Drawing.Point(11, 281);
             this.lbThreshold.Name = "lbThreshold";
-            this.lbThreshold.Size = new System.Drawing.Size(57, 13);
+            this.lbThreshold.Size = new System.Drawing.Size(59, 13);
             this.lbThreshold.TabIndex = 195;
-            this.lbThreshold.Text = "Threshold:";
+            this.lbThreshold.Text = "Deadzone:";
             // 
             // lBL2
             // 
@@ -1269,52 +1274,52 @@
             // 
             this.idleDisconnectTimeout.Location = new System.Drawing.Point(114, 247);
             this.idleDisconnectTimeout.Maximum = new decimal(new int[] {
-            3600,
+            60,
             0,
             0,
             0});
             this.idleDisconnectTimeout.Name = "idleDisconnectTimeout";
-            this.idleDisconnectTimeout.Size = new System.Drawing.Size(52, 20);
+            this.idleDisconnectTimeout.Size = new System.Drawing.Size(50, 20);
             this.idleDisconnectTimeout.TabIndex = 201;
             this.idleDisconnectTimeout.ValueChanged += new System.EventHandler(this.idleDisconnectTimeout_ValueChanged);
             // 
             // numUDR2
             // 
-            this.numUDR2.DecimalPlaces = 1;
+            this.numUDR2.DecimalPlaces = 2;
+            this.numUDR2.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numUDR2.Location = new System.Drawing.Point(210, 279);
             this.numUDR2.Maximum = new decimal(new int[] {
-            255,
+            1,
             0,
             0,
             0});
             this.numUDR2.Name = "numUDR2";
-            this.numUDR2.Size = new System.Drawing.Size(52, 20);
+            this.numUDR2.Size = new System.Drawing.Size(50, 20);
             this.numUDR2.TabIndex = 202;
-            this.numUDR2.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
             this.numUDR2.ValueChanged += new System.EventHandler(this.numUDR2_ValueChanged);
             // 
             // numUDL2
             // 
-            this.numUDL2.DecimalPlaces = 1;
+            this.numUDL2.DecimalPlaces = 2;
+            this.numUDL2.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numUDL2.Location = new System.Drawing.Point(114, 279);
             this.numUDL2.Maximum = new decimal(new int[] {
-            255,
+            1,
             0,
             0,
             0});
             this.numUDL2.Name = "numUDL2";
             this.numUDL2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.numUDL2.Size = new System.Drawing.Size(52, 20);
+            this.numUDL2.Size = new System.Drawing.Size(50, 20);
             this.numUDL2.TabIndex = 203;
-            this.numUDL2.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
             this.numUDL2.ValueChanged += new System.EventHandler(this.numUDL2_ValueChanged);
             // 
             // tBsixaxisAccelZ
@@ -1344,12 +1349,12 @@
             this.flushHIDQueue.AccessibleName = "flushHIDQueue";
             this.flushHIDQueue.AutoSize = true;
             this.flushHIDQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.flushHIDQueue.Location = new System.Drawing.Point(316, 219);
+            this.flushHIDQueue.Location = new System.Drawing.Point(322, 233);
             this.flushHIDQueue.Name = "flushHIDQueue";
             this.flushHIDQueue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flushHIDQueue.Size = new System.Drawing.Size(112, 30);
+            this.flushHIDQueue.Size = new System.Drawing.Size(106, 17);
             this.flushHIDQueue.TabIndex = 198;
-            this.flushHIDQueue.Text = "Flush HID queue\r\nafter each reading\r\n";
+            this.flushHIDQueue.Text = "Flush HID queue";
             this.flushHIDQueue.UseVisualStyleBackColor = true;
             this.flushHIDQueue.CheckedChanged += new System.EventHandler(this.flushHIDQueue_CheckedChanged);
             // 
@@ -1464,7 +1469,7 @@
             0,
             0});
             this.rumbleBoostBar.Name = "rumbleBoostBar";
-            this.rumbleBoostBar.Size = new System.Drawing.Size(52, 20);
+            this.rumbleBoostBar.Size = new System.Drawing.Size(50, 20);
             this.rumbleBoostBar.TabIndex = 211;
             this.rumbleBoostBar.Value = new decimal(new int[] {
             100,
@@ -1605,7 +1610,6 @@
             this.lowGreenBar.TickFrequency = 25;
             this.lowGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.lowGreenBar.Value = 255;
-            this.lowGreenBar.Scroll += new System.EventHandler(this.greenBar_Scroll);
             this.lowGreenBar.ValueChanged += new System.EventHandler(this.lowGreenBar_ValueChanged);
             // 
             // lowBlueBar
@@ -1706,7 +1710,6 @@
             this.tBProfile.Size = new System.Drawing.Size(269, 20);
             this.tBProfile.TabIndex = 238;
             this.tBProfile.Text = "<type profile name here>";
-            this.tBProfile.Click += new System.EventHandler(this.tBProfile_Click);
             this.tBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
             this.tBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
             this.tBProfile.Leave += new System.EventHandler(this.tBProfile_Leave);
@@ -1731,6 +1734,64 @@
             this.lBSeperator.Size = new System.Drawing.Size(433, 13);
             this.lBSeperator.TabIndex = 240;
             this.lBSeperator.Text = "_______________________________________________________________________";
+            // 
+            // numUDLS
+            // 
+            this.numUDLS.DecimalPlaces = 2;
+            this.numUDLS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numUDLS.Location = new System.Drawing.Point(297, 279);
+            this.numUDLS.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numUDLS.Name = "numUDLS";
+            this.numUDLS.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.numUDLS.Size = new System.Drawing.Size(50, 20);
+            this.numUDLS.TabIndex = 203;
+            this.numUDLS.ValueChanged += new System.EventHandler(this.numUDLS_ValueChanged);
+            // 
+            // lbRS
+            // 
+            this.lbRS.AutoSize = true;
+            this.lbRS.Location = new System.Drawing.Point(349, 281);
+            this.lbRS.Name = "lbRS";
+            this.lbRS.Size = new System.Drawing.Size(22, 13);
+            this.lbRS.TabIndex = 197;
+            this.lbRS.Text = "RS";
+            // 
+            // lbLS
+            // 
+            this.lbLS.AutoSize = true;
+            this.lbLS.Location = new System.Drawing.Point(271, 281);
+            this.lbLS.Name = "lbLS";
+            this.lbLS.Size = new System.Drawing.Size(20, 13);
+            this.lbLS.TabIndex = 196;
+            this.lbLS.Text = "LS";
+            // 
+            // numUDRS
+            // 
+            this.numUDRS.DecimalPlaces = 2;
+            this.numUDRS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numUDRS.Location = new System.Drawing.Point(378, 279);
+            this.numUDRS.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numUDRS.Name = "numUDRS";
+            this.numUDRS.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.numUDRS.Size = new System.Drawing.Size(50, 20);
+            this.numUDRS.TabIndex = 203;
+            this.numUDRS.ValueChanged += new System.EventHandler(this.numUDRS_ValueChanged);
             // 
             // advColorDialog
             // 
@@ -1761,11 +1822,15 @@
             this.Controls.Add(this.cBlowerRCOn);
             this.Controls.Add(this.touchpadJitterCompensation);
             this.Controls.Add(this.lbThreshold);
+            this.Controls.Add(this.lbLS);
             this.Controls.Add(this.lBL2);
+            this.Controls.Add(this.lbRS);
             this.Controls.Add(this.lBR2);
             this.Controls.Add(this.lBControllerOff);
             this.Controls.Add(this.lBIdleMinutes);
             this.Controls.Add(this.idleDisconnectTimeout);
+            this.Controls.Add(this.numUDRS);
+            this.Controls.Add(this.numUDLS);
             this.Controls.Add(this.numUDR2);
             this.Controls.Add(this.numUDL2);
             this.Controls.Add(this.lBMouseSens);
@@ -1793,7 +1858,6 @@
             this.Name = "Options";
             this.Text = "Options";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Options_Closed);
-            this.Resize += new System.EventHandler(this.Options_Resize);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).EndInit();
@@ -1832,6 +1896,8 @@
             this.LightbarPanel.PerformLayout();
             this.SixaxisPanel.ResumeLayout(false);
             this.SixaxisPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDLS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDRS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1947,6 +2013,10 @@
         private System.Windows.Forms.Button btnSaveProfile;
         private System.Windows.Forms.Label lBSeperator;
         private System.Windows.Forms.Label lBControlTip;
+        private System.Windows.Forms.NumericUpDown numUDLS;
+        private System.Windows.Forms.Label lbRS;
+        private System.Windows.Forms.Label lbLS;
+        private System.Windows.Forms.NumericUpDown numUDRS;
     }
 }
 

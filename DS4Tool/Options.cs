@@ -50,8 +50,8 @@ namespace ScpServer
                 numUDTap.Value = Global.getTapSensitivity(device);
                 cBTap.Checked = Global.getTap(device);
                 cBDoubleTap.Checked = Global.getDoubleTap(device);
-                numUDL2.Value = (decimal)Global.getLeftTriggerMiddle(device);
-                numUDL2.Value = (decimal)Global.getRightTriggerMiddle(device);
+                numUDL2.Value = (decimal)Global.getLeftTriggerMiddle(device)/255;
+                numUDR2.Value = (decimal)Global.getRightTriggerMiddle(device)/255;
                 touchpadJitterCompensation.Checked = Global.getTouchpadJitterCompensation(device);
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
                 flushHIDQueue.Checked = Global.getFlushHIDQueue(device);
@@ -79,7 +79,8 @@ namespace ScpServer
                     pBRainbow.Image = colored;
                     ToggleRainbow(true);
                 }
-
+                numUDLS.Value = (decimal)Global.getLSDeadzone(device) / 127;
+                numUDRS.Value = (decimal)Global.getRSDeadzone(device) / 127;
             }
             else
                 Set();
@@ -117,7 +118,8 @@ namespace ScpServer
             tp.SetToolTip(cBlowerRCOn, "Use lower right Touchpad as right mouse");
             tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with one tap");
             tp.SetToolTip(btnLightbar, "Click to change color");
-            tp.SetToolTip(lBControlTip, "You can also use your controller to change controls");            
+            tp.SetToolTip(lBControlTip, "You can also use your controller to change controls");
+            tp.SetToolTip(touchpadJitterCompensation, "Use Sixaxis to help calulate touchpad movement");            
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
@@ -214,9 +216,10 @@ namespace ScpServer
         {
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
-            Global.setLeftTriggerMiddle(device, (double)numUDL2.Value);
-            Global.setRightTriggerMiddle(device, (double)numUDR2.Value);
+            Global.setLeftTriggerMiddle(device, (byte)(numUDL2.Value * 255));
+            Global.setRightTriggerMiddle(device, (byte)(numUDR2.Value * 255));
             Global.saveRumbleBoost(device, (byte)rumbleBoostBar.Value);
+            Global.setFlashWhenLowBattery(device, flashLed.Checked);
             Global.setTouchSensitivity(device, (byte)numUDTouch.Value);
             Global.setTouchpadJitterCompensation(device, touchpadJitterCompensation.Checked);
             Global.setLowerRCOn(device, cBlowerRCOn.Checked);
@@ -227,6 +230,8 @@ namespace ScpServer
             Global.setIdleDisconnectTimeout(device, (int)(idleDisconnectTimeout.Value * 60));            
             Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
             Global.setRainbow(device, (int)numUDRainbow.Value);
+            Global.setRSDeadzone(device, (byte)(numUDRS.Value * 127));
+            Global.setLSDeadzone(device, (byte)(numUDLS.Value * 127));
             if (numUDRainbow.Value == 0) pBRainbow.Image = greyscale;
             else pBRainbow.Image = colored;
         }
@@ -763,42 +768,12 @@ namespace ScpServer
 
         private void numUDL2_ValueChanged(object sender, EventArgs e)
         {
-            Global.setLeftTriggerMiddle(device, (double)numUDL2.Value);
+            Global.setLeftTriggerMiddle(device, (byte)(numUDL2.Value * 255));
         }
 
         private void numUDR2_ValueChanged(object sender, EventArgs e)
         {
-            Global.setRightTriggerMiddle(device, (double)numUDR2.Value);
-        }
-
-        private void tBProfile_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void leftMotorLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rightMotorLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rumbleBoostLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Options_Resize(object sender, EventArgs e)
-        {
-
-        }
-
-        private void greenBar_Scroll(object sender, EventArgs e)
-        {
-
+            Global.setRightTriggerMiddle(device, (byte)(numUDR2.Value * 255));
         }
 
         private void flashLed_CheckedChanged(object sender, EventArgs e)
@@ -831,6 +806,16 @@ namespace ScpServer
         private void Toucpad_Leave(object sender, EventArgs e)
         {
             pBController.Image = Properties.Resources.DS4_Controller;
+        }
+
+        private void numUDRS_ValueChanged(object sender, EventArgs e)
+        {
+            Global.setRSDeadzone(device, (byte)(numUDRS.Value * 127));
+        }
+
+        private void numUDLS_ValueChanged(object sender, EventArgs e)
+        {
+            Global.setLSDeadzone(device, (byte)(numUDLS.Value * 127));
         }
 
     }

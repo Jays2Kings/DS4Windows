@@ -468,56 +468,56 @@ namespace DS4Control
                     case X360Controls.LXNeg:
                         if (LXChanged)
                         {
-                            MappedState.LX = getXYAxisMapping(customButton.Key, cState);
+                            MappedState.LX = getXYAxisMapping(customButton.Key, cState, device);
                             LX = true;
                         }
                         break;
                     case X360Controls.LYNeg:
                         if (LYChanged)
                         {
-                            MappedState.LY = getXYAxisMapping(customButton.Key, cState);
+                            MappedState.LY = getXYAxisMapping(customButton.Key, cState, device);
                             LY = true;
                         }
                         break;
                     case X360Controls.RXNeg:
                         if (RXChanged)
                         {
-                            MappedState.RX = getXYAxisMapping(customButton.Key, cState);
+                            MappedState.RX = getXYAxisMapping(customButton.Key, cState, device);
                             RX = true;
                         }
                         break;
                     case X360Controls.RYNeg:
                         if (RYChanged)
                         {
-                            MappedState.RY = getXYAxisMapping(customButton.Key, cState);
+                            MappedState.RY = getXYAxisMapping(customButton.Key, cState, device);
                             RY = true;
                         }
                         break;
                     case X360Controls.LXPos:
                         if (LXChanged)
                         {
-                            MappedState.LX = getXYAxisMapping(customButton.Key, cState, true);
+                            MappedState.LX = getXYAxisMapping(customButton.Key, cState, device, true);
                             LX = true;
                         }
                         break;
                     case X360Controls.LYPos:
                         if (LYChanged)
                         {
-                            MappedState.LY = getXYAxisMapping(customButton.Key, cState, true);
+                            MappedState.LY = getXYAxisMapping(customButton.Key, cState, device, true);
                             LY = true;
                         }
                         break;
                     case X360Controls.RXPos:
                         if (RXChanged)
                         {
-                            MappedState.RX = getXYAxisMapping(customButton.Key, cState, true);
+                            MappedState.RX = getXYAxisMapping(customButton.Key, cState, device, true);
                             RX = true;
                         }
                         break;
                     case X360Controls.RYPos:
                         if (RYChanged)
                         {
-                            MappedState.RY = getXYAxisMapping(customButton.Key, cState, true);
+                            MappedState.RY = getXYAxisMapping(customButton.Key, cState, device, true);
                             RY = true;
                         }
                         break;
@@ -614,32 +614,32 @@ namespace DS4Control
             switch (control)
             {
                 case DS4Controls.LXNeg:
-                    axisVal = cState.LX;
+                    axisVal = (byte)cState.LX;
                     break;
                 case DS4Controls.LXPos:
                     positive = true;
-                    axisVal = cState.LX;
+                    axisVal = (byte)cState.LX;
                     break;
                 case DS4Controls.RXNeg:
-                    axisVal = cState.RX;
+                    axisVal = (byte)cState.RX;
                     break;
                 case DS4Controls.RXPos:
                     positive = true;
-                    axisVal = cState.RX;
+                    axisVal = (byte)cState.RX;
                     break;
                 case DS4Controls.LYNeg:
-                    axisVal = cState.LY;
+                    axisVal = (byte)cState.LY;
                     break;
                 case DS4Controls.LYPos:
                     positive = true;
-                    axisVal = cState.LY;
+                    axisVal = (byte)cState.LY;
                     break;
                 case DS4Controls.RYNeg:
-                    axisVal = cState.RY;
+                    axisVal = (byte)cState.RY;
                     break;
                 case DS4Controls.RYPos:
                     positive = true;
-                    axisVal = cState.RY;
+                    axisVal = (byte)cState.RY;
                     break;
                 case DS4Controls.Share: axisVal = (byte)(cState.Share ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
                 case DS4Controls.Options: axisVal = (byte)(cState.Options ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
@@ -656,8 +656,8 @@ namespace DS4Control
                 case DS4Controls.Square: axisVal = (byte)(cState.Square ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
                 case DS4Controls.Triangle: axisVal = (byte)(cState.Triangle ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
                 case DS4Controls.Circle: axisVal = (byte)(cState.Circle ? -Global.getButtonMouseSensitivity(device) + 117 : -1); break;
-                case DS4Controls.L2: positive = true; axisVal = cState.L2; break;
-                case DS4Controls.R2: positive = true; axisVal = cState.R2; break;
+                case DS4Controls.L2: positive = true; axisVal = (byte)cState.L2; break;
+                case DS4Controls.R2: positive = true; axisVal = (byte)cState.R2; break;
             }
             axisVal = axisVal - 127;
             int delta = 0;
@@ -678,6 +678,7 @@ namespace DS4Control
         }
 
         static bool[] touchArea = { true, true, true, true };
+
         public static byte getByteMapping(DS4Controls control, DS4State cState)
         {
             if (!cState.TouchButton)
@@ -711,16 +712,16 @@ namespace DS4Control
                 case DS4Controls.Square: return (byte)(cState.Square ? 255 : 0);
                 case DS4Controls.Triangle: return (byte)(cState.Triangle ? 255 : 0);
                 case DS4Controls.Circle: return (byte)(cState.Circle ? 255 : 0);
-                case DS4Controls.LXNeg: return cState.LX;
-                case DS4Controls.LYNeg: return cState.LY;
-                case DS4Controls.RXNeg: return cState.RX;
-                case DS4Controls.RYNeg: return cState.RY;
+                case DS4Controls.LXNeg: return (byte)cState.LX;
+                case DS4Controls.LYNeg: return (byte)cState.LY;
+                case DS4Controls.RXNeg: return (byte)cState.RX;
+                case DS4Controls.RYNeg: return (byte)cState.RY;
                 case DS4Controls.LXPos: return (byte)(cState.LX - 127 < 0 ? 0 : (cState.LX - 127));
                 case DS4Controls.LYPos: return (byte)(cState.LY - 123 < 0 ? 0 : (cState.LY - 123));
-                case DS4Controls.RXPos: return (byte)(cState.RX - 125 < 0 ? 0 : (cState.RX - 125));
-                case DS4Controls.RYPos: return (byte)(cState.RY - 127 < 0 ? 0 : (cState.RY - 127));
-                case DS4Controls.L2: return cState.L2;
-                case DS4Controls.R2: return cState.R2;
+                case DS4Controls.RXPos: return (byte)(cState.RX - 129 < 0 ? 0 : (cState.RX - 125));
+                case DS4Controls.RYPos: return (byte)(cState.RY - 125 < 0 ? 0 : (cState.RY - 127));
+                case DS4Controls.L2: return (byte)cState.L2;
+                case DS4Controls.R2: return (byte)cState.R2;
             }
             if (cState.TouchButton)
             {
@@ -772,14 +773,14 @@ namespace DS4Control
                 case DS4Controls.Square: return cState.Square;
                 case DS4Controls.Triangle: return cState.Triangle;
                 case DS4Controls.Circle: return cState.Circle;
-                case DS4Controls.LXNeg: return cState.LX < 55;
-                case DS4Controls.LYNeg: return cState.LY < 55;
-                case DS4Controls.RXNeg: return cState.RX < 55;
-                case DS4Controls.RYNeg: return cState.RY < 55;
-                case DS4Controls.LXPos: return cState.LX > 200;
-                case DS4Controls.LYPos: return cState.LY > 200;
-                case DS4Controls.RXPos: return cState.RX > 200;
-                case DS4Controls.RYPos: return cState.RY > 200;
+                case DS4Controls.LXNeg: return cState.LX < 127 - 55;
+                case DS4Controls.LYNeg: return cState.LY < 127 - 55;
+                case DS4Controls.RXNeg: return cState.RX < 127 - 55;
+                case DS4Controls.RYNeg: return cState.RY < 127 - 55;
+                case DS4Controls.LXPos: return cState.LX > 127 + 55;
+                case DS4Controls.LYPos: return cState.LY > 127 + 55;
+                case DS4Controls.RXPos: return cState.RX > 127 + 55;
+                case DS4Controls.RYPos: return cState.RY > 127 + 55;
                 case DS4Controls.L2: return cState.L2 > 100;
                 case DS4Controls.R2: return cState.R2 > 100;
                
@@ -802,7 +803,7 @@ namespace DS4Control
             return false;
         }
 
-        public static byte getXYAxisMapping(DS4Controls control, DS4State cState, bool alt = false)
+        public static byte getXYAxisMapping(DS4Controls control, DS4State cState, int ind, bool alt = false)
         {
             byte trueVal = 0;
             byte falseVal = 127;
@@ -853,9 +854,13 @@ namespace DS4Control
                     case DS4Controls.LYNeg: return cState.LY;
                     case DS4Controls.RXNeg: return cState.RX;
                     case DS4Controls.RYNeg: return cState.RY;
+                    //case DS4Controls.LXPos: return (byte)(cState.LX - 127 < Global.getLSDeadzone(ind) ? 0 : (255 - cState.LX));
+                    //case DS4Controls.LYPos: return (byte)(cState.LY - 127 < Global.getLSDeadzone(ind) ? 0 : (255 - cState.LY));
+                    case DS4Controls.RXPos: return (byte)(cState.RX - 127 < 55 ? 0 : (255 - cState.RX));
+                    //case DS4Controls.RYPos: return (byte)(cState.RY - 127 < Global.getRSDeadzone(ind) ? 0 : (255 - cState.RY));
                     case DS4Controls.LXPos: return (byte)(255 - cState.LX);
                     case DS4Controls.LYPos: return (byte)(255 - cState.LY);
-                    case DS4Controls.RXPos: return (byte)(255 - cState.RX);
+                    //case DS4Controls.RXPos: return (byte)(255 - cState.RX);
                     case DS4Controls.RYPos: return (byte)(255 - cState.RY);
                 }
             }
@@ -865,7 +870,7 @@ namespace DS4Control
                 {
                     case DS4Controls.LXNeg: return (byte)(255 - cState.LX);
                     case DS4Controls.LYNeg: return (byte)(255 - cState.LY);
-                    case DS4Controls.RXNeg: return (byte)(255 - cState.RX);
+                    case DS4Controls.RXNeg: return (byte)(cState.RX > 55 ? 0 : (255 - cState.RX));
                     case DS4Controls.RYNeg: return (byte)(255 - cState.RY);
                     case DS4Controls.LXPos: return cState.LX;
                     case DS4Controls.LYPos: return cState.LY;

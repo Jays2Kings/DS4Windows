@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using DS4Control;
-using System.Threading;
 using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace ScpServer
     {
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
-        double version = 7.1;
+        double version = 7.3;
 
         protected Label[] Pads;
         protected ComboBox[] cbs;
@@ -42,7 +41,7 @@ namespace ScpServer
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
-            CheckDrivers();
+            CheckDrivers(); 
         }
 
         private void CheckDrivers()

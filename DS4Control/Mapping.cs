@@ -399,10 +399,10 @@ namespace DS4Control
                 resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
             foreach (KeyValuePair<DS4Controls, X360Controls> customButton in customButtons)
             {
-                bool LXChanged = MappedState.LX == 127;
-                bool LYChanged = MappedState.LY == 127;
-                bool RXChanged = MappedState.RX == 127;
-                bool RYChanged = MappedState.RY == 127;
+                bool LXChanged = (Math.Abs(127 - MappedState.LX) < 5);
+                bool LYChanged = (Math.Abs(127 - MappedState.LY) < 5);
+                bool RXChanged = (Math.Abs(127 - MappedState.RX) < 5);
+                bool RYChanged = (Math.Abs(127 - MappedState.RY) < 5);
                 switch (customButton.Value)
                 {
                     case X360Controls.A:
@@ -468,64 +468,66 @@ namespace DS4Control
                     case X360Controls.LXNeg:
                         if (LXChanged)
                         {
-                            MappedState.LX = getXYAxisMapping(customButton.Key, cState, device);
+                            MappedState.LX = getXYAxisMapping(customButton.Key, cState);
                             LX = true;
                         }
                         break;
                     case X360Controls.LYNeg:
                         if (LYChanged)
                         {
-                            MappedState.LY = getXYAxisMapping(customButton.Key, cState, device);
+                            MappedState.LY = getXYAxisMapping(customButton.Key, cState);
                             LY = true;
                         }
                         break;
                     case X360Controls.RXNeg:
                         if (RXChanged)
                         {
-                            MappedState.RX = getXYAxisMapping(customButton.Key, cState, device);
+                            MappedState.RX = getXYAxisMapping(customButton.Key, cState);
                             RX = true;
                         }
                         break;
                     case X360Controls.RYNeg:
                         if (RYChanged)
                         {
-                            MappedState.RY = getXYAxisMapping(customButton.Key, cState, device);
+                            MappedState.RY = getXYAxisMapping(customButton.Key, cState);
                             RY = true;
                         }
                         break;
                     case X360Controls.LXPos:
                         if (LXChanged)
                         {
-                            MappedState.LX = getXYAxisMapping(customButton.Key, cState, device, true);
+                            MappedState.LX = getXYAxisMapping(customButton.Key, cState, true);
                             LX = true;
                         }
                         break;
                     case X360Controls.LYPos:
                         if (LYChanged)
                         {
-                            MappedState.LY = getXYAxisMapping(customButton.Key, cState, device, true);
+                            MappedState.LY = getXYAxisMapping(customButton.Key, cState, true);
                             LY = true;
                         }
                         break;
                     case X360Controls.RXPos:
                         if (RXChanged)
                         {
-                            MappedState.RX = getXYAxisMapping(customButton.Key, cState, device, true);
+                            MappedState.RX = getXYAxisMapping(customButton.Key, cState, true);
                             RX = true;
                         }
                         break;
                     case X360Controls.RYPos:
                         if (RYChanged)
                         {
-                            MappedState.RY = getXYAxisMapping(customButton.Key, cState, device, true);
+                            MappedState.RY = getXYAxisMapping(customButton.Key, cState, true);
                             RY = true;
                         }
                         break;
                     case X360Controls.LT:
-                        MappedState.L2 = getByteMapping(customButton.Key, cState);
+                        if (MappedState.L2 == 0)
+                            MappedState.L2 = getByteMapping(customButton.Key, cState);
                         break;
                     case X360Controls.RT:
-                        MappedState.R2 = getByteMapping(customButton.Key, cState);
+                        if (MappedState.R2 == 0)
+                            MappedState.R2 = getByteMapping(customButton.Key, cState);
                         break;
                     case X360Controls.LeftMouse:
                         if (getBoolMapping(customButton.Key, cState))
@@ -803,7 +805,7 @@ namespace DS4Control
             return false;
         }
 
-        public static byte getXYAxisMapping(DS4Controls control, DS4State cState, int ind, bool alt = false)
+        public static byte getXYAxisMapping(DS4Controls control, DS4State cState, bool alt = false)
         {
             byte trueVal = 0;
             byte falseVal = 127;
@@ -854,13 +856,9 @@ namespace DS4Control
                     case DS4Controls.LYNeg: return cState.LY;
                     case DS4Controls.RXNeg: return cState.RX;
                     case DS4Controls.RYNeg: return cState.RY;
-                    //case DS4Controls.LXPos: return (byte)(cState.LX - 127 < Global.getLSDeadzone(ind) ? 0 : (255 - cState.LX));
-                    //case DS4Controls.LYPos: return (byte)(cState.LY - 127 < Global.getLSDeadzone(ind) ? 0 : (255 - cState.LY));
-                    case DS4Controls.RXPos: return (byte)(cState.RX - 127 < 55 ? 0 : (255 - cState.RX));
-                    //case DS4Controls.RYPos: return (byte)(cState.RY - 127 < Global.getRSDeadzone(ind) ? 0 : (255 - cState.RY));
                     case DS4Controls.LXPos: return (byte)(255 - cState.LX);
                     case DS4Controls.LYPos: return (byte)(255 - cState.LY);
-                    //case DS4Controls.RXPos: return (byte)(255 - cState.RX);
+                    case DS4Controls.RXPos: return (byte)(255 - cState.RX);
                     case DS4Controls.RYPos: return (byte)(255 - cState.RY);
                 }
             }
@@ -870,7 +868,7 @@ namespace DS4Control
                 {
                     case DS4Controls.LXNeg: return (byte)(255 - cState.LX);
                     case DS4Controls.LYNeg: return (byte)(255 - cState.LY);
-                    case DS4Controls.RXNeg: return (byte)(cState.RX > 55 ? 0 : (255 - cState.RX));
+                    case DS4Controls.RXNeg: return (byte)(255 - cState.RX);
                     case DS4Controls.RYNeg: return (byte)(255 - cState.RY);
                     case DS4Controls.LXPos: return cState.LX;
                     case DS4Controls.LYPos: return cState.LY;

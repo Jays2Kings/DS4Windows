@@ -14,7 +14,7 @@ namespace ScpServer
     {
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
-        double version = 7.3;
+        double version = 7.31;
 
         protected Label[] Pads;
         protected ComboBox[] cbs;

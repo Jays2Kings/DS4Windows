@@ -82,8 +82,7 @@ namespace DS4Control
                         device.Report += this.On_Report;
                         //m_switcher.setMode(Global.getInitialMode(ind));
                         TouchPadOn(ind, device);
-                        string[] profileA = Global.getAProfile(ind).Split('\\');
-                        string filename = profileA[profileA.Length - 1];
+                        string filename = Path.GetFileName(Global.getAProfile(ind));
                         ind++;
                         if (System.IO.File.Exists(Global.appdatapath + "\\Profiles\\" + filename))
                         {
@@ -92,8 +91,8 @@ namespace DS4Control
                         }
                         else
                         {
-                            LogDebug("Controller " + ind + " is using a profile not found");
-                            Log.LogToTray("Controller " + ind + " is using a profile not found");
+                            LogDebug("Controller " + ind + " is not using a profile");
+                            Log.LogToTray("Controller " + ind + " is not using a profile");
                         } 
                         if (ind >= 4) // out of Xinput devices!
                             break;
@@ -173,17 +172,16 @@ namespace DS4Control
                             device.Report += this.On_Report;
                             x360Bus.Plugin(Index);
                             TouchPadOn(Index, device);
-                            string[] profileA = Global.getAProfile(Index).Split('\\');
-                            string filename = profileA[profileA.Length - 1];
+                            string filename = Path.GetFileName(Global.getAProfile(Index));
                             if (System.IO.File.Exists(Global.appdatapath + "\\Profiles\\" + filename))
                             {
-                                LogDebug("Controller " + (Index+1) + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                                LogDebug("Controller " + (Index + 1) + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
                                 Log.LogToTray("Controller " + (Index + 1) + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
                             }
                             else
                             {
-                                LogDebug("Controller " + (Index + 1) + " is using a profile not found");
-                                Log.LogToTray("Controller " + (Index + 1) + " is using a profile not found");
+                                LogDebug("Controller " + (Index + 1) + " is not using a profile");
+                                Log.LogToTray("Controller " + (Index + 1) + " is not using a profile");
                             }
                         
                             break;
@@ -404,7 +402,7 @@ namespace DS4Control
 
         public virtual void LogDebug(String Data)
         {
-            Console.WriteLine(System.DateTime.UtcNow.ToString("o") + "> " + Data);
+            Console.WriteLine(System.DateTime.Now.ToString("G") + "> " + Data);
             if (Debug != null)
             {
                 DebugEventArgs args = new DebugEventArgs(Data);

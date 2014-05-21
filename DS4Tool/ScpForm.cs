@@ -7,13 +7,14 @@ using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Net;
+using System.Management;
 namespace ScpServer
 {
     public partial class ScpForm : Form
     {
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
-        double version = 6.95;
+        double version = 7.011;
 
         protected Label[] Pads;
         protected ComboBox[] cbs;
@@ -40,11 +41,41 @@ namespace ScpServer
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
+            CheckDrivers();
             Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
             Directory.CreateDirectory(Global.appdatapath);
             wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
             wc.DownloadFileCompleted += Check_Version;
-            
+
+            if (!File.Exists("Updater.exe"))
+            {
+                Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/Updater.exe");
+                WebClient wc2 = new WebClient();
+                wc2.DownloadFileAsync(url2, "Updater.exe");
+            }
+        }
+
+        private void CheckDrivers()
+        {
+            bool deriverinstalled = false;
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPSignedDriver");
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                try
+                {
+                    if (obj.GetPropertyValue("DeviceName").ToString() == "Scp Virtual Bus Driver")
+                    {
+                        deriverinstalled = true;
+                        break;
+                    }
+                }
+                catch { }
+            }
+            if (!deriverinstalled)
+            {
+                WelcomeDialog wd = new WelcomeDialog();
+                wd.ShowDialog();
+            }
         }
         
         private void Check_Version(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
@@ -116,23 +147,20 @@ namespace ScpServer
         {
             try
             {
-                string[] profiles = System.IO.Directory.GetFiles(Global.appdatapath + @"\Profiles\");
-                int cutoff = (Global.appdatapath + @"\Profiles\").Length;
+                string[] profiles = Directory.GetFiles(Global.appdatapath + @"\Profiles\");
                 List<string> profilenames = new List<string>();
                 foreach (String s in profiles)
                     if (s.EndsWith(".xml"))
-                        profilenames.Add(s.Substring(cutoff, s.Length - 4 - cutoff));
+                        profilenames.Add(Path.GetFileNameWithoutExtension(s));
                 for (int i = 0; i < 4; i++)
                 {
                     cbs[i].Items.Clear();
                     shortcuts[i].DropDownItems.Clear();
-                    string[] profileA = Global.getAProfile(i).Split('\\');
-                    string filename = profileA[profileA.Length - 1];
                     cbs[i].Items.AddRange(profilenames.ToArray());
                     foreach (string s in profilenames)
-                        shortcuts[i].DropDownItems.Add(s);
+                        shortcuts[i].DropDownItems.Add(Path.GetFileNameWithoutExtension(s));
                     for (int j = 0; j < cbs[i].Items.Count; j++)
-                        if (cbs[i].Items[j] + ".xml" == filename)
+                        if (cbs[i].Items[j].ToString() == Path.GetFileNameWithoutExtension(Global.getAProfile(i)))
                         {
                             cbs[i].SelectedIndex = j;
                             ((ToolStripMenuItem)shortcuts[i].DropDownItems[j]).Checked = true;
@@ -182,7 +210,7 @@ namespace ScpServer
             }
             else
             {
-                String Posted = Time.ToString("O");
+                String Posted = Time.ToString("G");
 
                 lvDebug.Items.Add(new ListViewItem(new String[] { Posted, Data })).EnsureVisible();
 
@@ -206,22 +234,25 @@ namespace ScpServer
                 this.Hide();
                 this.ShowInTaskbar = false;
             }
+
             else if (FormWindowState.Normal == this.WindowState)
             {
                 notifyIcon1.Visible = false;
                 this.Show();
                 this.ShowInTaskbar = true;
             }
+
             //Added last message alternative
+
             if (this.Height > 220)
                 lbLastMessage.Visible = false;
             else lbLastMessage.Visible = true;
-
-            for (int i = 0; i < 4; i++)
-                if (this.Width > 665)
-                    protexts[i].Visible = true;
-                else
-                    protexts[i].Visible = false;
+            if (protexts != null)
+                for (int i = 0; i < 4; i++)
+                    if (this.Width > 665)
+                        protexts[i].Visible = true;
+                    else
+                        protexts[i].Visible = false;
         }
 
         protected void btnStartStop_Click(object sender, EventArgs e)

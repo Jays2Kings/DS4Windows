@@ -25,19 +25,20 @@ namespace DS4Control
         static DateTime oldnow = DateTime.Now;
         public static void updateLightBar(DS4Device device, int deviceNum)
         {
-            DS4Color color;
+            DS4Color color;            
             if (Global.getRainbow(deviceNum) > 0)
             {// Display rainbow
                 DateTime now = DateTime.Now;
                 if (now >= oldnow + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
                 {
                     oldnow = now;
-                    counters[deviceNum] += 1.5*3 / Global.getRainbow(deviceNum);
+                    counters[deviceNum] += 1.5 * 3 / Global.getRainbow(deviceNum);
                 }
                 if (Global.getLedAsBatteryIndicator(deviceNum) && (device.Charging == false || device.Battery >= 100))// when charged, don't show the charging animation
                     color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(2.55 * device.Battery));
                 else
                     color = HuetoRGB((float)counters[deviceNum] % 360, 255);
+                
             }
             else if (Global.getLedAsBatteryIndicator(deviceNum))
             {
@@ -62,7 +63,7 @@ namespace DS4Control
                 }
                 else // Display rainbow when charging.
                 {
-                    counters[deviceNum]+= .167;
+                    counters[deviceNum] += .167;
                     color = HuetoRGB((float)counters[deviceNum] % 360, 255);
                 }
             }
@@ -71,6 +72,14 @@ namespace DS4Control
                 color = Global.loadColor(deviceNum);
             }
 
+            if (Global.getIdleDisconnectTimeout(deviceNum) > 0)
+            {//Fade lightbar by idle time
+                TimeSpan timeratio = new TimeSpan(DateTime.Now.Ticks - device.lastActive.Ticks) + new TimeSpan(4, 0, 0); //The nows are off by 4 hours, not sure why...
+                double botratio = timeratio.TotalMilliseconds;
+                double topratio = TimeSpan.FromSeconds(Global.getIdleDisconnectTimeout(deviceNum)).TotalMilliseconds;
+                double ratio = ((botratio / topratio) * 100);
+                color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, (uint)ratio);
+            }
             DS4HapticState haptics = new DS4HapticState
             {
                 LightBarColor = color

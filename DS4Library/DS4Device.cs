@@ -67,7 +67,7 @@ namespace DS4Library
         private byte ledFlashOn, ledFlashOff;
         private Thread ds4Input, ds4Output;
         private int battery;
-        private DateTime lastActive = DateTime.UtcNow;
+        public DateTime lastActive = DateTime.UtcNow;
         private bool charging;
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;

@@ -1272,6 +1272,7 @@
             // 
             // idleDisconnectTimeout
             // 
+            this.idleDisconnectTimeout.DecimalPlaces = 1;
             this.idleDisconnectTimeout.Location = new System.Drawing.Point(114, 247);
             this.idleDisconnectTimeout.Maximum = new decimal(new int[] {
             60,

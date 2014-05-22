@@ -55,7 +55,7 @@ namespace ScpServer
                 touchpadJitterCompensation.Checked = Global.getTouchpadJitterCompensation(device);
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
                 flushHIDQueue.Checked = Global.getFlushHIDQueue(device);
-                idleDisconnectTimeout.Value = (int)(Global.getIdleDisconnectTimeout(device)/60);
+                idleDisconnectTimeout.Value = Math.Round((decimal)(Global.getIdleDisconnectTimeout(device) / 60d), 1);
                 tBMouseSens.Value = Global.getButtonMouseSensitivity(device);
                 lBMouseSens.Text = tBMouseSens.Value.ToString();
                 // Force update of color choosers    
@@ -79,8 +79,8 @@ namespace ScpServer
                     pBRainbow.Image = colored;
                     ToggleRainbow(true);
                 }
-                numUDLS.Value = (decimal)Global.getLSDeadzone(device) / 127;
-                numUDRS.Value = (decimal)Global.getRSDeadzone(device) / 127;
+                numUDLS.Value = Math.Round((decimal)(Global.getLSDeadzone(device) / 127d ), 3);
+                numUDRS.Value = Math.Round((decimal)(Global.getRSDeadzone(device) / 127d ), 3);
             }
             else
                 Set();
@@ -216,8 +216,8 @@ namespace ScpServer
         {
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
-            Global.setLeftTriggerMiddle(device, (byte)(numUDL2.Value * 255));
-            Global.setRightTriggerMiddle(device, (byte)(numUDR2.Value * 255));
+            Global.setLeftTriggerMiddle(device, (byte)Math.Round((numUDL2.Value * 255), 0));
+            Global.setRightTriggerMiddle(device, (byte)Math.Round((numUDR2.Value * 255), 0));
             Global.saveRumbleBoost(device, (byte)rumbleBoostBar.Value);
             Global.setFlashWhenLowBattery(device, flashLed.Checked);
             Global.setTouchSensitivity(device, (byte)numUDTouch.Value);
@@ -227,11 +227,11 @@ namespace ScpServer
             Global.setDoubleTap(device, cBDoubleTap.Checked);
             Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
             Global.setTapSensitivity(device, (byte)numUDTap.Value);
-            Global.setIdleDisconnectTimeout(device, (int)(idleDisconnectTimeout.Value * 60));            
+            Global.setIdleDisconnectTimeout(device, (int)(idleDisconnectTimeout.Value * 60));
             Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
             Global.setRainbow(device, (int)numUDRainbow.Value);
-            Global.setRSDeadzone(device, (byte)(numUDRS.Value * 127));
-            Global.setLSDeadzone(device, (byte)(numUDLS.Value * 127));
+            Global.setRSDeadzone(device, (byte)Math.Round((numUDRS.Value * 127), 0));
+            Global.setLSDeadzone(device, (byte)Math.Round((numUDLS.Value * 127), 0));
             if (numUDRainbow.Value == 0) pBRainbow.Image = greyscale;
             else pBRainbow.Image = colored;
         }
@@ -810,12 +810,12 @@ namespace ScpServer
 
         private void numUDRS_ValueChanged(object sender, EventArgs e)
         {
-            Global.setRSDeadzone(device, (byte)(numUDRS.Value * 127));
+            Global.setRSDeadzone(device, (byte)Math.Round((numUDRS.Value * 127),0));
         }
 
         private void numUDLS_ValueChanged(object sender, EventArgs e)
         {
-            Global.setLSDeadzone(device, (byte)(numUDLS.Value * 127));
+            Global.setLSDeadzone(device, (byte)Math.Round((numUDLS.Value * 127),0));
         }
 
     }

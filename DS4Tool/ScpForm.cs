@@ -14,7 +14,7 @@ namespace ScpServer
     {
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
-        double version = 7.31;
+        double version = 7.4;
 
         protected Label[] Pads;
         protected ComboBox[] cbs;
@@ -408,7 +408,7 @@ namespace ScpServer
             string filename = cbs[tdevice].Items[cbs[tdevice].SelectedIndex].ToString();
             if (MessageBox.Show("\"" + filename + "\" cannot be restored.", "Delete Profile?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
-                System.IO.File.Delete(Global.appdatapath + filename + ".xml");
+                System.IO.File.Delete(Global.appdatapath + "\\Profiles\\" +filename + ".xml");
                 Global.setAProfile(tdevice, null);
                 RefreshProfiles();
             }

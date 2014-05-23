@@ -14,7 +14,7 @@ namespace ScpServer
     {
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
-        double version = 7.4;
+        double version = 7.412;
 
         protected Label[] Pads;
         protected ComboBox[] cbs;
@@ -123,6 +123,16 @@ namespace ScpServer
             RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", false);
             StartWindowsCheckBox.Checked = (KeyLoc.GetValue("DS4Tool") != null);
 
+            Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
+            cbs = new ComboBox[4] { cBController1, cBController2, cBController3, cBController4 };
+            ebns = new Button[4] { bnEditC1, bnEditC2, bnEditC3, bnEditC4 };
+            dbns = new Button[4] { bnDeleteC1, bnDeleteC2, bnDeleteC3, bnDeleteC4 };
+            protexts = new Label[4] { lbSelPro1, lbSelPro2, lbSelPro3, lbSelPro4 };
+
+            shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[0],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
             if (startMinimizedCheckBox.Checked)
             {
                 this.WindowState = FormWindowState.Minimized;

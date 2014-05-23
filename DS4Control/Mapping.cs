@@ -44,7 +44,7 @@ namespace DS4Control
         private static SyntheticState[] deviceState = { new SyntheticState(), new SyntheticState(), new SyntheticState(), new SyntheticState() };
 
         // TODO When we disconnect, process a null/dead state to release any keys or buttons.
-        public static DateTime oldnow = DateTime.Now;
+        public static DateTime oldnow = DateTime.UtcNow;
         private static bool pressagain = false;
         private static int wheel = 0, keyshelddown = 0;
         public static void Commit(int device)
@@ -86,7 +86,7 @@ namespace DS4Control
                 if (globalState.currentClicks.wUpCount != 0 && globalState.previousClicks.wUpCount == 0)
                 {
                     InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, 100);
-                    oldnow = DateTime.Now;
+                    oldnow = DateTime.UtcNow;
                     wheel = 100;
                 }
                 else if (globalState.currentClicks.wUpCount == 0 && globalState.previousClicks.wUpCount != 0)
@@ -96,7 +96,7 @@ namespace DS4Control
                 if (globalState.currentClicks.wDownCount != 0 && globalState.previousClicks.wDownCount == 0)
                 {
                     InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, -100);
-                    oldnow = DateTime.Now;
+                    oldnow = DateTime.UtcNow;
                     wheel = -100;
                 }
                 if (globalState.currentClicks.wDownCount == 0 && globalState.previousClicks.wDownCount != 0)
@@ -104,7 +104,7 @@ namespace DS4Control
 
                 if (wheel != 0) //Continue mouse wheel movement
                 {
-                    DateTime now = DateTime.Now;
+                    DateTime now = DateTime.UtcNow;
                     if (now >= oldnow + TimeSpan.FromMilliseconds(100) && !pressagain)
                     {
                         oldnow = now;
@@ -134,14 +134,14 @@ namespace DS4Control
                     {
                         if (gkp.current.scanCodeCount != 0)
                         {
-                            oldnow = DateTime.Now;
+                            oldnow = DateTime.UtcNow;
                             InputMethods.performSCKeyPress(kvp.Key);
                             pressagain = false;
                             keyshelddown = kvp.Key;
                         }
                         else
                         {
-                            oldnow = DateTime.Now;
+                            oldnow = DateTime.UtcNow;
                             InputMethods.performKeyPress(kvp.Key);
                             pressagain = false;
                             keyshelddown = kvp.Key;
@@ -152,7 +152,7 @@ namespace DS4Control
                     {
                         if (keyshelddown == kvp.Key)
                         {
-                            DateTime now = DateTime.Now;
+                            DateTime now = DateTime.UtcNow;
                             if (now >= oldnow + TimeSpan.FromMilliseconds(500) && !pressagain)
                             {
                                 oldnow = now;
@@ -160,7 +160,7 @@ namespace DS4Control
                             }
                             if (pressagain && gkp.current.scanCodeCount != 0)
                             {
-                                now = DateTime.Now;
+                                now = DateTime.UtcNow;
                                 if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                                 {
                                     oldnow = now;
@@ -169,7 +169,7 @@ namespace DS4Control
                             }
                             else if (pressagain)
                             {
-                                now = DateTime.Now;
+                                now = DateTime.UtcNow;
                                 if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                                 {
                                     oldnow = now;

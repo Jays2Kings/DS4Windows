@@ -22,13 +22,13 @@ namespace DS4Control
         };
         static double[] counters = new double[4] {0,0,0,0};
 
-        static DateTime oldnow = DateTime.Now;
+        static DateTime oldnow = DateTime.UtcNow;
         public static void updateLightBar(DS4Device device, int deviceNum)
         {
             DS4Color color;            
             if (Global.getRainbow(deviceNum) > 0)
             {// Display rainbow
-                DateTime now = DateTime.Now;
+                DateTime now = DateTime.UtcNow;
                 if (now >= oldnow + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
                 {
                     oldnow = now;
@@ -74,7 +74,7 @@ namespace DS4Control
 
             if (Global.getIdleDisconnectTimeout(deviceNum) > 0)
             {//Fade lightbar by idle time
-                TimeSpan timeratio = new TimeSpan(DateTime.Now.Ticks - device.lastActive.Ticks) + new TimeSpan(4, 0, 0); //The nows are off by 4 hours, not sure why...
+                TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
                 double botratio = timeratio.TotalMilliseconds;
                 double topratio = TimeSpan.FromSeconds(Global.getIdleDisconnectTimeout(deviceNum)).TotalMilliseconds;
                 double ratio = ((botratio / topratio) * 100);

@@ -39,7 +39,6 @@
             this.llbHelp = new System.Windows.Forms.LinkLabel();
             this.btnStartStop = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
             this.hideDS4CheckBox = new System.Windows.Forms.CheckBox();
             this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
@@ -125,7 +124,6 @@
             this.pnlButton.Controls.Add(this.llbHelp);
             this.pnlButton.Controls.Add(this.btnStartStop);
             this.pnlButton.Controls.Add(this.btnClear);
-            this.pnlButton.Controls.Add(this.btnStop);
             this.pnlButton.Controls.Add(this.lnkControllers);
             this.pnlButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlButton.Location = new System.Drawing.Point(0, 477);
@@ -176,19 +174,6 @@
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // btnStop
-            // 
-            this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStop.Enabled = false;
-            this.btnStop.Location = new System.Drawing.Point(710, 6);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 2;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Visible = false;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // lnkControllers
             // 
@@ -517,11 +502,10 @@
             // 
             this.lbLastMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbLastMessage.Location = new System.Drawing.Point(12, 106);
+            this.lbLastMessage.Location = new System.Drawing.Point(12, 110);
             this.lbLastMessage.Name = "lbLastMessage";
-            this.lbLastMessage.Size = new System.Drawing.Size(551, 20);
+            this.lbLastMessage.Size = new System.Drawing.Size(434, 17);
             this.lbLastMessage.TabIndex = 41;
-            this.lbLastMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbLastMessage.Visible = false;
             // 
             // notifyIcon1
@@ -642,7 +626,6 @@
         private System.Windows.Forms.ColumnHeader chData;
         private System.Windows.Forms.Timer tmrUpdate;
         private System.Windows.Forms.Panel pnlButton;
-        private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnStartStop;
         private System.Windows.Forms.Panel pnlDebug;
         private System.Windows.Forms.Button btnClear;

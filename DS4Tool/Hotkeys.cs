@@ -54,7 +54,9 @@ namespace ScpServer
 
         private void linkUninstall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(Global.appdatapath + "\\Virtual Bus Driver\\ScpDriver.exe");
+            if (System.IO.File.Exists(Global.appdatapath + "\\Virtual Bus Driver\\ScpDriver.exe"))
+                try { System.Diagnostics.Process.Start(Global.appdatapath + "\\Virtual Bus Driver\\ScpDriver.exe"); }
+                catch { System.Diagnostics.Process.Start(Global.appdatapath + "\\Virtual Bus Driver"); }
         }
     }
 }

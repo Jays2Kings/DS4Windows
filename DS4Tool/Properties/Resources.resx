@@ -121,14 +121,6 @@
   <data name="DS4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DS4.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Start" xml:space="preserve">
-    <value>Start</value>
-    <comment>To be localized.</comment>
-  </data>
-  <data name="Stop" xml:space="preserve">
-    <value>Stop</value>
-    <comment>To be localized.</comment>
-  </data>
   <data name="_360_fades" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\360 fades.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

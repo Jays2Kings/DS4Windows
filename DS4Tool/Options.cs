@@ -119,7 +119,8 @@ namespace ScpServer
             tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with one tap");
             tp.SetToolTip(btnLightbar, "Click to change color");
             tp.SetToolTip(lBControlTip, "You can also use your controller to change controls");
-            tp.SetToolTip(touchpadJitterCompensation, "Use Sixaxis to help calulate touchpad movement");            
+            tp.SetToolTip(touchpadJitterCompensation, "Use Sixaxis to help calulate touchpad movement");
+            tp.SetToolTip(pBRainbow, "Always on Rainbow Mode");            
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;

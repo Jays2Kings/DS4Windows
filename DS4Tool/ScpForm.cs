@@ -14,7 +14,7 @@ namespace ScpServer
     {
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
-        double version = 7.412;
+        double version = 7.42;
 
         protected Label[] Pads;
         protected ComboBox[] cbs;
@@ -260,11 +260,7 @@ namespace ScpServer
             else lbLastMessage.Visible = true;
             if (protexts != null)
                 for (int i = 0; i < 4; i++)
-                    if (this.Width > 665)
-                        protexts[i].Visible = true;
-                    else
-                        protexts[i].Visible = false;
-            StartWindowsCheckBox.Visible = (this.Width > 665);
+                    protexts[i].Visible = (this.Width > 665);
         }
 
         protected void btnStartStop_Click(object sender, EventArgs e)
@@ -273,21 +269,27 @@ namespace ScpServer
         }
         protected void btnStartStop_Clicked()
         {
-            if (btnStartStop.Text == Properties.Resources.Start
-                && rootHub.Start())
-                btnStartStop.Text = Properties.Resources.Stop;
-            else if (btnStartStop.Text == Properties.Resources.Stop
-                && rootHub.Stop())
-                btnStartStop.Text = Properties.Resources.Start;
-        }
-        protected void btnStop_Click(object sender, EventArgs e)
-        {
-            if (rootHub.Stop())
+            if (btnStartStop.Text == "Start")
             {
-                btnStartStop.Enabled = true;
-                btnStop.Enabled = false;
+                for (int i = 0; i < 4; i++)
+                    Global.LoadProfile(i);
+                rootHub.Start();
+                btnStartStop.Text = "Stop";
+            }
+
+            else if (btnStartStop.Text == "Stop")
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    Global.setRainbow(i, 0);
+                    Global.setLedAsBatteryIndicator(i, false);
+                    Global.saveColor(i, 128, 255, 255);
+                }
+                rootHub.Stop();
+                btnStartStop.Text = "Start";
             }
         }
+
         protected void btnClear_Click(object sender, EventArgs e)
         {
             lvDebug.Items.Clear();
@@ -571,6 +573,12 @@ namespace ScpServer
             Global.setFormWidth(this.Width);
             Global.setFormHeight(this.Height);
             Global.Save();
+            for (int i = 0; i < 4; i++)
+            {
+                Global.setRainbow(i, 0);
+                Global.setLedAsBatteryIndicator(i, false);
+                Global.saveColor(i, 128, 255, 255);
+            }
             rootHub.Stop();
         }
 

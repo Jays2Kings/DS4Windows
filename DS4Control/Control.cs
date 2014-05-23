@@ -205,13 +205,45 @@ namespace DS4Control
             Global.ControllerStatusChanged(this);
         }
 
+        public static void TimeoutConnection(DS4Device d)
+        {
+            try
+            {
+                System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+                sw.Start();
+                while (!d.IsAlive())
+                {
+                    if (sw.ElapsedMilliseconds < 1000)
+                        System.Threading.Thread.SpinWait(500); 
+                        //If weve been waiting less than 1 second let the thread keep its processing chunk
+                    else
+                        System.Threading.Thread.Sleep(500); 
+                    //If weve been waiting more than 1 second give up some resources
+
+                    if (sw.ElapsedMilliseconds > 5000) throw new TimeoutException(); //Weve waited long enough
+                }
+                sw.Reset();
+            }
+            catch (TimeoutException e)
+            {
+                d.DisconnectBT();
+            }
+        }
+
         public string getDS4ControllerInfo(int index)
         {
             if (DS4Controllers[index] != null)
             {
                 DS4Device d = DS4Controllers[index];
                 if (!d.IsAlive())
-                    return "Connecting..."; // awaiting the first battery charge indication
+                    //return "Connecting..."; // awaiting the first battery charge indication
+                {
+                    var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
+                    TimeoutThread.IsBackground = true;
+                    TimeoutThread.Name = "TimeoutFor" + d.MacAddress.ToString();
+                    TimeoutThread.Start();
+                    return "Connecting...";
+                }
                 String battery;
                 if (d.Charging)
                 {

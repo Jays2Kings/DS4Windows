@@ -12,7 +12,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 7.6;
+        double version = 7.7;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -283,7 +283,7 @@ namespace ScpServer
                 {
                     Global.setRainbow(i, 0);
                     Global.setLedAsBatteryIndicator(i, false);
-                    Global.saveColor(i, 128, 255, 255);
+                    Global.saveColor(i, 64, 128, 128);
                 }
                 rootHub.Stop();
                 btnStartStop.Text = "Start";
@@ -577,7 +577,7 @@ namespace ScpServer
             {
                 Global.setRainbow(i, 0);
                 Global.setLedAsBatteryIndicator(i, false);
-                Global.saveColor(i, 128, 255, 255);
+                Global.saveColor(i, 64, 128, 128);
             }
             rootHub.Stop();
         }

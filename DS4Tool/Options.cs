@@ -20,7 +20,7 @@ namespace ScpServer
         private int alphacolor;
         private Color reg, full;
         private Image colored, greyscale;
-
+        ToolTip tp = new ToolTip();
         public Options(DS4Control.Control bus_device, int deviceNum, string name)
         {
             InitializeComponent();
@@ -117,12 +117,11 @@ namespace ScpServer
                 b.MouseHover += button_MouseHover;
             if (filename != "" && filename != "New Profile")
                 Global.LoadProfile(device, buttons.ToArray());
-            ToolTip tp = new ToolTip();
             tp.SetToolTip(cBlowerRCOn, "Best used with right side as a mouse function");
             tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with single taps");
             tp.SetToolTip(lBControlTip, "You can also use your controller to change controls");
             tp.SetToolTip(touchpadJitterCompensation, "Use Sixaxis to help calulate touchpad movement");
-            tp.SetToolTip(pBRainbow, "Always on Rainbow Mode");            
+            tp.SetToolTip(pBRainbow, "Always on Rainbow Mode");
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
@@ -360,6 +359,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
         }
         private void greenBar_ValueChanged(object sender, EventArgs e)
         {
@@ -372,6 +372,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
         }
         private void blueBar_ValueChanged(object sender, EventArgs e)
         {
@@ -384,6 +385,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
         }
 
         private void lowRedBar_ValueChanged(object sender, EventArgs e)
@@ -397,6 +399,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
         }
 
         private void lowGreenBar_ValueChanged(object sender, EventArgs e)
@@ -410,6 +413,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
         }
 
         private void lowBlueBar_ValueChanged(object sender, EventArgs e)
@@ -423,6 +427,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
         }
 
         public Color HuetoRGB(float hue, float light, Color rgb)
@@ -814,6 +819,25 @@ namespace ScpServer
         private void Options_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void LightbarValue_MouseHover(object sender, EventArgs e)
+        {
+            //tp.SetToolTip(((TrackBar)sender), ((TrackBar)sender).Value.ToString());
+        }
+
+        private void Lightbar_MouseLeave(object sender, EventArgs e)
+        {
+        }
+
+        private void LightBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0);
+        }
+
+        private void Lightbar_MouseUp(object sender, MouseEventArgs e)
+        {
+            tp.Hide(((TrackBar)sender));
         }
     }
 }

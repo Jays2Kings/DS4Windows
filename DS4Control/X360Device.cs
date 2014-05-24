@@ -154,7 +154,7 @@ namespace DS4Control
                 Output[18] = (Byte)((ThumbRX >> 0) & 0xFF); // RX
                 Output[19] = (Byte)((ThumbRX >> 8) & 0xFF);
             } 
-            if (state.LY > 127 + Global.getLSDeadzone(device) || state.RY < 127 - Global.getRSDeadzone(device))
+            if (state.RY > 127 + Global.getRSDeadzone(device) || state.RY < 127 - Global.getRSDeadzone(device))
             {
                 Output[20] = (Byte)((ThumbRY >> 0) & 0xFF); // RY
                 Output[21] = (Byte)((ThumbRY >> 8) & 0xFF);

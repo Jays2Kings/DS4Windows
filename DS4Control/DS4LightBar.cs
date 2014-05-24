@@ -78,7 +78,8 @@ namespace DS4Control
                 double botratio = timeratio.TotalMilliseconds;
                 double topratio = TimeSpan.FromSeconds(Global.getIdleDisconnectTimeout(deviceNum)).TotalMilliseconds;
                 double ratio = ((botratio / topratio) * 100);
-                color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, (uint)ratio);
+                if (ratio >= 50)
+                    color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, (uint)((ratio-50)*2));
             }
             DS4HapticState haptics = new DS4HapticState
             {

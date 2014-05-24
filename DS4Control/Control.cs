@@ -51,14 +51,18 @@ namespace DS4Control
                 Log.LogToTray(message);
             }
         }        
-        public bool Start()
+        public bool Start(bool showlog = true)
         {
             if (x360Bus.Open() && x360Bus.Start())
             {
+                if (showlog)
                 LogDebug("Starting...");
                 DS4Devices.isExclusiveMode = Global.getUseExclusiveMode();
-                LogDebug("Searching for controllers....");
-                LogDebug("Using " + (DS4Devices.isExclusiveMode ? "Exclusive Mode" : "Shared Mode"));
+                if (showlog)
+                {
+                    LogDebug("Searching for controllers....");
+                    LogDebug("Using " + (DS4Devices.isExclusiveMode ? "Exclusive Mode" : "Shared Mode"));
+                }
                 try
                 {
                     DS4Devices.findControllers();
@@ -66,7 +70,8 @@ namespace DS4Control
                     int ind = 0;
                     foreach (DS4Device device in devices)
                     {
-                        LogDebug("Found Controller: " + device.MacAddress + " (" + device.ConnectionType + ")");
+                        if (showlog)
+                            LogDebug("Found Controller: " + device.MacAddress + " (" + device.ConnectionType + ")");
                         WarnExclusiveModeFailure(device);
                         DS4Controllers[ind] = device;
                         device.Removal -= DS4Devices.On_Removal;
@@ -84,16 +89,17 @@ namespace DS4Control
                         TouchPadOn(ind, device);
                         string filename = Path.GetFileName(Global.getAProfile(ind));
                         ind++;
-                        if (System.IO.File.Exists(Global.appdatapath + "\\Profiles\\" + filename))
-                        {
-                            LogDebug("Controller " + ind + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
-                            Log.LogToTray("Controller " + ind + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
-                        }
-                        else
-                        {
-                            LogDebug("Controller " + ind + " is not using a profile");
-                            Log.LogToTray("Controller " + ind + " is not using a profile");
-                        } 
+                        if (showlog)
+                            if (System.IO.File.Exists(Global.appdatapath + "\\Profiles\\" + filename))
+                            {
+                                LogDebug("Controller " + ind + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                                Log.LogToTray("Controller " + ind + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                            }
+                            else
+                            {
+                                LogDebug("Controller " + ind + " is not using a profile");
+                                Log.LogToTray("Controller " + ind + " is not using a profile");
+                            }
                         if (ind >= 4) // out of Xinput devices!
                             break;
                     }
@@ -109,17 +115,21 @@ namespace DS4Control
             return true;
         }
 
-        public bool Stop()
+        public bool Stop(bool showlog = true)
         {
             if (running)
             {
                 running = false;
+                if (showlog)
                 LogDebug("Stopping X360 Controllers");
                 bool anyUnplugged = false;
                 for (int i = 0; i < DS4Controllers.Length; i++)
                 {
                     if (DS4Controllers[i] != null)
                     {
+                        Global.setRainbow(i, 0);
+                        Global.setLedAsBatteryIndicator(i, false);
+                        Global.saveColor(i, 64, 128, 128);
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
                         x360Bus.Unplug(i);
                         anyUnplugged = true;
@@ -130,8 +140,10 @@ namespace DS4Control
                 if (anyUnplugged)
                     System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 x360Bus.Stop();
+                if (showlog)
                 LogDebug("Stopping DS4 Controllers");
                 DS4Devices.stopControllers();
+                if (showlog)
                 LogDebug("Stopped DS4 Tool");
                 Global.ControllerStatusChanged(this);
             }
@@ -145,6 +157,8 @@ namespace DS4Control
             {
                 DS4Devices.findControllers();
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
+                //Stop(false);
+                //Start(false);
                 foreach (DS4Device device in devices)
                 {
                     if (device.IsDisconnecting)
@@ -152,8 +166,7 @@ namespace DS4Control
                     if (((Func<bool>)delegate
                     {
                         for (Int32 Index = 0; Index < DS4Controllers.Length; Index++)
-                            if (DS4Controllers[Index] != null &&
-                                DS4Controllers[Index].MacAddress == device.MacAddress)
+                            if (DS4Controllers[Index] != null && DS4Controllers[Index].MacAddress == device.MacAddress)
                                 return true;
                         return false;
                     })())
@@ -205,7 +218,7 @@ namespace DS4Control
             Global.ControllerStatusChanged(this);
         }
 
-        public static void TimeoutConnection(DS4Device d)
+        public void TimeoutConnection(DS4Device d)
         {
             try
             {
@@ -224,9 +237,14 @@ namespace DS4Control
                 }
                 sw.Reset();
             }
-            catch (TimeoutException e)
+            catch (TimeoutException)
             {
-                d.DisconnectBT();
+                //Global.setUseExclusiveMode(!Global.getUseExclusiveMode());
+                Stop(false);
+                Start(false);
+                //Global.setUseExclusiveMode(!Global.getUseExclusiveMode());
+                //Stop(false);
+                //Start(false);
             }
         }
 

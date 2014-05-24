@@ -989,6 +989,10 @@
             this.blueBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.blueBar.Value = 255;
             this.blueBar.ValueChanged += new System.EventHandler(this.blueBar_ValueChanged);
+            this.blueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.blueBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
+            this.blueBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
+            this.blueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // greenBar
             // 
@@ -1003,6 +1007,10 @@
             this.greenBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.greenBar.Value = 255;
             this.greenBar.ValueChanged += new System.EventHandler(this.greenBar_ValueChanged);
+            this.greenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.greenBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
+            this.greenBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
+            this.greenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // redBar
             // 
@@ -1017,6 +1025,10 @@
             this.redBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.redBar.Value = 255;
             this.redBar.ValueChanged += new System.EventHandler(this.redBar_ValueChanged);
+            this.redBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.redBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
+            this.redBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
+            this.redBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // batteryLed
             // 
@@ -1533,6 +1545,10 @@
             this.lowRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.lowRedBar.Value = 255;
             this.lowRedBar.ValueChanged += new System.EventHandler(this.lowRedBar_ValueChanged);
+            this.lowRedBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.lowRedBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
+            this.lowRedBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
+            this.lowRedBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // lowGreenBar
             // 
@@ -1547,6 +1563,10 @@
             this.lowGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.lowGreenBar.Value = 255;
             this.lowGreenBar.ValueChanged += new System.EventHandler(this.lowGreenBar_ValueChanged);
+            this.lowGreenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.lowGreenBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
+            this.lowGreenBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
+            this.lowGreenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // lowBlueBar
             // 
@@ -1561,6 +1581,10 @@
             this.lowBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.lowBlueBar.Value = 255;
             this.lowBlueBar.ValueChanged += new System.EventHandler(this.lowBlueBar_ValueChanged);
+            this.lowBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.lowBlueBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
+            this.lowBlueBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
+            this.lowBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // lBEmpty
             // 
@@ -1784,7 +1808,7 @@
             this.gBOther.Controls.Add(this.lBControllerOff);
             this.gBOther.Location = new System.Drawing.Point(6, 221);
             this.gBOther.Name = "gBOther";
-            this.gBOther.Size = new System.Drawing.Size(419, 70);
+            this.gBOther.Size = new System.Drawing.Size(421, 70);
             this.gBOther.TabIndex = 247;
             this.gBOther.TabStop = false;
             this.gBOther.Text = "Other";

@@ -73,7 +73,6 @@ namespace ScpServer
 
         private void finalMeasure(object sender, FormClosedEventArgs e)
         {
-           ops.Toggle_Repeat(cbRepeat.Checked);
            ops.Toggle_ScanCode(cbScanCode.Checked);
            ops.UpdateLists();
         }

@@ -38,6 +38,10 @@ namespace ScpServer
                 blueBar.Value = color.blue;
                 
                 batteryLed.Checked = DS4Control.Global.getLedAsBatteryIndicator(device);
+                lowBatteryPanel.Visible = batteryLed.Checked;
+                lbFull.Text = (batteryLed.Checked ? "Full:" : "Color:");
+                FullPanel.Location = (batteryLed.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
+
                 DS4Color lowColor = Global.loadLowColor(device);
                 lowRedBar.Value = lowColor.red;
                 lowGreenBar.Value = lowColor.green;
@@ -56,8 +60,7 @@ namespace ScpServer
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
                 flushHIDQueue.Checked = Global.getFlushHIDQueue(device);
                 idleDisconnectTimeout.Value = Math.Round((decimal)(Global.getIdleDisconnectTimeout(device) / 60d), 1);
-                tBMouseSens.Value = Global.getButtonMouseSensitivity(device);
-                lBMouseSens.Text = tBMouseSens.Value.ToString();
+                numUDMouseSens.Value = Global.getButtonMouseSensitivity(device);
                 // Force update of color choosers    
                 alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
                 reg = Color.FromArgb(color.red, color.green, color.blue);
@@ -115,9 +118,8 @@ namespace ScpServer
             if (filename != "" && filename != "New Profile")
                 Global.LoadProfile(device, buttons.ToArray());
             ToolTip tp = new ToolTip();
-            tp.SetToolTip(cBlowerRCOn, "Use lower right Touchpad as right mouse");
-            tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with one tap");
-            tp.SetToolTip(btnLightbar, "Click to change color");
+            tp.SetToolTip(cBlowerRCOn, "Best used with right side as a mouse function");
+            tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with single taps");
             tp.SetToolTip(lBControlTip, "You can also use your controller to change controls");
             tp.SetToolTip(touchpadJitterCompensation, "Use Sixaxis to help calulate touchpad movement");
             tp.SetToolTip(pBRainbow, "Always on Rainbow Mode");            
@@ -226,13 +228,12 @@ namespace ScpServer
             Global.setLowerRCOn(device, cBlowerRCOn.Checked);
             Global.setScrollSensitivity(device, (byte)numUDScroll.Value);
             Global.setDoubleTap(device, cBDoubleTap.Checked);
-            Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
             Global.setTapSensitivity(device, (byte)numUDTap.Value);
             Global.setIdleDisconnectTimeout(device, (int)(idleDisconnectTimeout.Value * 60));
-            Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
             Global.setRainbow(device, (int)numUDRainbow.Value);
             Global.setRSDeadzone(device, (byte)Math.Round((numUDRS.Value * 127), 0));
             Global.setLSDeadzone(device, (byte)Math.Round((numUDLS.Value * 127), 0));
+            Global.setButtonMouseSensitivity(device, (int)numUDMouseSens.Value);
             if (numUDRainbow.Value == 0) pBRainbow.Image = greyscale;
             else pBRainbow.Image = colored;
         }
@@ -276,17 +277,6 @@ namespace ScpServer
         {
             lastSelected.Text = controlname;
             lastSelected.Tag = controlname;
-        }
-        public void Toggle_Repeat(bool Checked)
-        {
-            if (lastSelected.Tag is int || lastSelected.Tag is UInt16)
-                if (Checked)
-                    lastSelected.ForeColor = Color.Red;
-                else lastSelected.ForeColor = SystemColors.WindowText;
-            else
-            {
-                lastSelected.ForeColor = SystemColors.WindowText;
-            }
         }
         public void Toggle_ScanCode(bool Checked)
         {
@@ -501,30 +491,11 @@ namespace ScpServer
         private void ledAsBatteryIndicator_CheckedChanged(object sender, EventArgs e)
         {
             Global.setLedAsBatteryIndicator(device, batteryLed.Checked);
-
-            // New settings
-            if (batteryLed.Checked)
-            {                
-                while (this.Size.Height < 530)
-                    this.Size += new Size(0, 1);
-                lowBatteryPanel.Visible = true;
-                batteryOpsPanel.Location = new Point(batteryOpsPanel.Location.X, 430);
-                SixaxisPanel.Location = new Point(SixaxisPanel.Location.X, 460);
-                lbLightbar.Text = "Full:";
-
-                Global.setLedAsBatteryIndicator(device, true);
-            }
-            else
-            {
-                while (this.Size.Height > 500)
-                    this.Size -= new Size(0, 1);
-                lowBatteryPanel.Visible = false;
-                batteryOpsPanel.Location = new Point(batteryOpsPanel.Location.X, 400);
-                SixaxisPanel.Location = new Point(SixaxisPanel.Location.X, 430);
-                lbLightbar.Text = "Light Bar:";
-                Global.setLedAsBatteryIndicator(device, false);
-            }
+            lowBatteryPanel.Visible = batteryLed.Checked;
+            FullPanel.Location = (batteryLed.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
+            lbFull.Text = (batteryLed.Checked ? "Full:" : "Color:");
         }
+
         private void flashWhenLowBattery_CheckedChanged(object sender, EventArgs e)
         {
             Global.setFlashWhenLowBattery(device, flashLed.Checked);
@@ -695,12 +666,6 @@ namespace ScpServer
                 Show_ControlsList(sender, e);
         }
 
-        private void tBMouseSens_Scroll(object sender, EventArgs e)
-        {
-            Global.setButtonMouseSensitivity(device, tBMouseSens.Value);
-            lBMouseSens.Text = tBMouseSens.Value.ToString();
-        }
-
         private void numUDRainbow_ValueChanged(object sender, EventArgs e)
         {
             Global.setRainbow(device, (double)numUDRainbow.Value);
@@ -733,19 +698,20 @@ namespace ScpServer
             numUDRainbow.Visible = on;
             if (on)
             {
-                pBRainbow.Location = new Point(207 - 78, pBRainbow.Location.Y);
+                pBRainbow.Location = new Point(216 - 78, pBRainbow.Location.Y);
                 pBController.BackgroundImage = Properties.Resources.rainbowC;
                 batteryLed.Text = "Battery Level Dim";
             }
             else
             {
-                pBRainbow.Location = new Point(207, pBRainbow.Location.Y);
+                lowBatteryPanel.Enabled = batteryLed.Checked;
+                pBRainbow.Location = new Point(216, pBRainbow.Location.Y);
                 pBController.BackgroundImage = null;
                 batteryLed.Text = "Battery Level Color";
             }
             lBspc.Visible = on;
-            LightbarPanel.Enabled = !on;
             lowBatteryPanel.Enabled = !on;
+            FullPanel.Enabled = !on;
             flashLed.Enabled = !on;
         }
 
@@ -787,7 +753,8 @@ namespace ScpServer
         Image U = Properties.Resources.UpperTouch;
         private void bnTouchLeft_MouseHover(object sender, EventArgs e)
         {
-            pBController.Image = L;        }
+            pBController.Image = L;       
+        }
 
         private void bnTouchMulti_MouseHover(object sender, EventArgs e)
         {
@@ -819,5 +786,34 @@ namespace ScpServer
             Global.setLSDeadzone(device, (byte)Math.Round((numUDLS.Value * 127),0));
         }
 
+        private void numUDMouseSens_ValueChanged(object sender, EventArgs e)
+        {
+            Global.setButtonMouseSensitivity(device, (int)numUDMouseSens.Value);
+        }
+
+        private void lbLS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lBL2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbRS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lBR2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Options_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

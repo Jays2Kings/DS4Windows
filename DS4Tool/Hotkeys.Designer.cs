@@ -136,11 +136,11 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(26, 171);
+            this.label13.Location = new System.Drawing.Point(24, 171);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(361, 13);
+            this.label13.Size = new System.Drawing.Size(362, 13);
             this.label13.TabIndex = 14;
-            this.label13.Text = "Note: Scan Code Keys may be needed to make which certain games work.";
+            this.label13.Text = "When mapping as keyboard, Scan Code may be needed for certain games.";
             // 
             // label14
             // 

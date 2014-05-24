@@ -12,9 +12,9 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
+        double version = 7.6;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
-        double version = 7.42;
 
         protected Label[] Pads;
         protected ComboBox[] cbs;

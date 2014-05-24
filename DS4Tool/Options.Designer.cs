@@ -84,23 +84,19 @@
             this.cBTap = new System.Windows.Forms.CheckBox();
             this.numUDTap = new System.Windows.Forms.NumericUpDown();
             this.cBScroll = new System.Windows.Forms.CheckBox();
-            this.lbTouchpad = new System.Windows.Forms.Label();
             this.cBSlide = new System.Windows.Forms.CheckBox();
             this.numUDScroll = new System.Windows.Forms.NumericUpDown();
             this.numUDTouch = new System.Windows.Forms.NumericUpDown();
             this.lBButtonMouseSens = new System.Windows.Forms.Label();
             this.cBlowerRCOn = new System.Windows.Forms.CheckBox();
             this.touchpadJitterCompensation = new System.Windows.Forms.CheckBox();
-            this.lbThreshold = new System.Windows.Forms.Label();
             this.lBL2 = new System.Windows.Forms.Label();
             this.lBR2 = new System.Windows.Forms.Label();
             this.lBControllerOff = new System.Windows.Forms.Label();
             this.lBIdleMinutes = new System.Windows.Forms.Label();
             this.idleDisconnectTimeout = new System.Windows.Forms.NumericUpDown();
             this.numUDR2 = new System.Windows.Forms.NumericUpDown();
-            this.numUDL2 = new System.Windows.Forms.NumericUpDown();
             this.tBsixaxisAccelZ = new System.Windows.Forms.TrackBar();
-            this.lBMouseSens = new System.Windows.Forms.Label();
             this.flushHIDQueue = new System.Windows.Forms.CheckBox();
             this.tBsixaxisAccelY = new System.Windows.Forms.TrackBar();
             this.leftMotorLabel = new System.Windows.Forms.Label();
@@ -109,7 +105,6 @@
             this.tBsixaxisGyroZ = new System.Windows.Forms.TrackBar();
             this.rumbleBoostLabel = new System.Windows.Forms.Label();
             this.tBsixaxisGyroY = new System.Windows.Forms.TrackBar();
-            this.lbRumble = new System.Windows.Forms.Label();
             this.tBsixaxisGyroX = new System.Windows.Forms.TrackBar();
             this.rumbleBoostBar = new System.Windows.Forms.NumericUpDown();
             this.lB6Accel = new System.Windows.Forms.Label();
@@ -117,8 +112,7 @@
             this.lB6Gryo = new System.Windows.Forms.Label();
             this.numUDLightRumble = new System.Windows.Forms.NumericUpDown();
             this.btnRumbleTest = new System.Windows.Forms.Button();
-            this.tBMouseSens = new System.Windows.Forms.TrackBar();
-            this.lbLightbar = new System.Windows.Forms.Label();
+            this.lbFull = new System.Windows.Forms.Label();
             this.lBLowRed = new System.Windows.Forms.Label();
             this.lBLowGreen = new System.Windows.Forms.Label();
             this.lBLowBlue = new System.Windows.Forms.Label();
@@ -126,18 +120,24 @@
             this.lowGreenBar = new System.Windows.Forms.TrackBar();
             this.lowBlueBar = new System.Windows.Forms.TrackBar();
             this.lBEmpty = new System.Windows.Forms.Label();
-            this.batteryOpsPanel = new System.Windows.Forms.Panel();
+            this.FullPanel = new System.Windows.Forms.Panel();
             this.lowBatteryPanel = new System.Windows.Forms.Panel();
-            this.LightbarPanel = new System.Windows.Forms.Panel();
             this.SixaxisPanel = new System.Windows.Forms.Panel();
             this.lBProfileTip = new System.Windows.Forms.Label();
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.btnSaveProfile = new System.Windows.Forms.Button();
             this.lBSeperator = new System.Windows.Forms.Label();
-            this.numUDLS = new System.Windows.Forms.NumericUpDown();
             this.lbRS = new System.Windows.Forms.Label();
             this.lbLS = new System.Windows.Forms.Label();
             this.numUDRS = new System.Windows.Forms.NumericUpDown();
+            this.numUDMouseSens = new System.Windows.Forms.NumericUpDown();
+            this.numUDLS = new System.Windows.Forms.NumericUpDown();
+            this.numUDL2 = new System.Windows.Forms.NumericUpDown();
+            this.gBTouchpad = new System.Windows.Forms.GroupBox();
+            this.gBOther = new System.Windows.Forms.GroupBox();
+            this.gBLightbar = new System.Windows.Forms.GroupBox();
+            this.gBRumble = new System.Windows.Forms.GroupBox();
+            this.gBDeadzone = new System.Windows.Forms.GroupBox();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
@@ -153,7 +153,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDTouch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDR2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelX)).BeginInit();
@@ -163,16 +162,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDHeavyRumble)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDLightRumble)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).BeginInit();
-            this.batteryOpsPanel.SuspendLayout();
+            this.FullPanel.SuspendLayout();
             this.lowBatteryPanel.SuspendLayout();
-            this.LightbarPanel.SuspendLayout();
             this.SixaxisPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDLS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDRS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDMouseSens)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDLS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).BeginInit();
+            this.gBTouchpad.SuspendLayout();
+            this.gBOther.SuspendLayout();
+            this.gBLightbar.SuspendLayout();
+            this.gBRumble.SuspendLayout();
+            this.gBDeadzone.SuspendLayout();
             this.SuspendLayout();
             // 
             // bnTouchUpper
@@ -284,7 +288,7 @@
             this.MainPanel.Controls.Add(this.bnOptions);
             this.MainPanel.Controls.Add(this.bnPS);
             this.MainPanel.Controls.Add(this.bnShare);
-            this.MainPanel.Location = new System.Drawing.Point(7, 68);
+            this.MainPanel.Location = new System.Drawing.Point(7, 77);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(249, 140);
             this.MainPanel.TabIndex = 185;
@@ -656,7 +660,7 @@
             this.SticksPanel.Controls.Add(this.bnRSLeft);
             this.SticksPanel.Controls.Add(this.bnLSDown);
             this.SticksPanel.Controls.Add(this.bnR3);
-            this.SticksPanel.Location = new System.Drawing.Point(7, 68);
+            this.SticksPanel.Location = new System.Drawing.Point(7, 77);
             this.SticksPanel.Name = "SticksPanel";
             this.SticksPanel.Size = new System.Drawing.Size(249, 146);
             this.SticksPanel.TabIndex = 187;
@@ -876,11 +880,12 @@
             // lBControlTip
             // 
             this.lBControlTip.AutoSize = true;
-            this.lBControlTip.Location = new System.Drawing.Point(21, 46);
+            this.lBControlTip.Location = new System.Drawing.Point(25, 42);
             this.lBControlTip.Name = "lBControlTip";
-            this.lBControlTip.Size = new System.Drawing.Size(219, 13);
+            this.lBControlTip.Size = new System.Drawing.Size(219, 26);
             this.lBControlTip.TabIndex = 181;
-            this.lBControlTip.Text = "Click a part of the controller to change action\r\n";
+            this.lBControlTip.Text = "Click a part of the controller to change action\r\nClick the lightbar for color pic" +
+    "ker";
             this.lBControlTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lBControls
@@ -918,7 +923,7 @@
             "Right Stick Right :"});
             this.lBControls.Location = new System.Drawing.Point(258, 42);
             this.lBControls.Name = "lBControls";
-            this.lBControls.Size = new System.Drawing.Size(169, 160);
+            this.lBControls.Size = new System.Drawing.Size(169, 173);
             this.lBControls.TabIndex = 180;
             this.lBControls.DoubleClick += new System.EventHandler(this.Show_ControlsList);
             this.lBControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
@@ -936,7 +941,7 @@
             // 
             // numUDRainbow
             // 
-            this.numUDRainbow.Location = new System.Drawing.Point(147, 4);
+            this.numUDRainbow.Location = new System.Drawing.Point(160, 15);
             this.numUDRainbow.Maximum = new decimal(new int[] {
             60,
             0,
@@ -951,7 +956,7 @@
             // pBRainbow
             // 
             this.pBRainbow.Image = global::ScpServer.Properties.Resources.rainbow;
-            this.pBRainbow.Location = new System.Drawing.Point(203, 6);
+            this.pBRainbow.Location = new System.Drawing.Point(216, 17);
             this.pBRainbow.Name = "pBRainbow";
             this.pBRainbow.Size = new System.Drawing.Size(16, 16);
             this.pBRainbow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -962,7 +967,7 @@
             // flashLed
             // 
             this.flashLed.AutoSize = true;
-            this.flashLed.Location = new System.Drawing.Point(4, 7);
+            this.flashLed.Location = new System.Drawing.Point(8, 17);
             this.flashLed.Name = "flashLed";
             this.flashLed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.flashLed.Size = new System.Drawing.Size(116, 17);
@@ -975,7 +980,7 @@
             // 
             this.blueBar.AutoSize = false;
             this.blueBar.BackColor = System.Drawing.Color.Blue;
-            this.blueBar.Location = new System.Drawing.Point(324, 3);
+            this.blueBar.Location = new System.Drawing.Point(325, 4);
             this.blueBar.Maximum = 255;
             this.blueBar.Name = "blueBar";
             this.blueBar.Size = new System.Drawing.Size(100, 20);
@@ -989,7 +994,7 @@
             // 
             this.greenBar.AutoSize = false;
             this.greenBar.BackColor = System.Drawing.Color.Green;
-            this.greenBar.Location = new System.Drawing.Point(194, 3);
+            this.greenBar.Location = new System.Drawing.Point(196, 4);
             this.greenBar.Maximum = 255;
             this.greenBar.Name = "greenBar";
             this.greenBar.Size = new System.Drawing.Size(100, 20);
@@ -1003,7 +1008,7 @@
             // 
             this.redBar.AutoSize = false;
             this.redBar.BackColor = System.Drawing.Color.Red;
-            this.redBar.Location = new System.Drawing.Point(71, 3);
+            this.redBar.Location = new System.Drawing.Point(73, 4);
             this.redBar.Maximum = 255;
             this.redBar.Name = "redBar";
             this.redBar.Size = new System.Drawing.Size(100, 20);
@@ -1016,7 +1021,7 @@
             // batteryLed
             // 
             this.batteryLed.AutoSize = true;
-            this.batteryLed.Location = new System.Drawing.Point(309, 7);
+            this.batteryLed.Location = new System.Drawing.Point(320, 17);
             this.batteryLed.Name = "batteryLed";
             this.batteryLed.Size = new System.Drawing.Size(115, 17);
             this.batteryLed.TabIndex = 162;
@@ -1036,7 +1041,7 @@
             // lBGreen
             // 
             this.lBGreen.AutoSize = true;
-            this.lBGreen.Location = new System.Drawing.Point(178, 7);
+            this.lBGreen.Location = new System.Drawing.Point(180, 7);
             this.lBGreen.Name = "lBGreen";
             this.lBGreen.Size = new System.Drawing.Size(15, 13);
             this.lBGreen.TabIndex = 159;
@@ -1045,7 +1050,7 @@
             // lBspc
             // 
             this.lBspc.AutoSize = true;
-            this.lBspc.Location = new System.Drawing.Point(200, 7);
+            this.lBspc.Location = new System.Drawing.Point(213, 18);
             this.lBspc.Name = "lBspc";
             this.lBspc.Size = new System.Drawing.Size(93, 13);
             this.lBspc.TabIndex = 157;
@@ -1055,7 +1060,7 @@
             // lBRed
             // 
             this.lBRed.AutoSize = true;
-            this.lBRed.Location = new System.Drawing.Point(56, 7);
+            this.lBRed.Location = new System.Drawing.Point(58, 7);
             this.lBRed.Name = "lBRed";
             this.lBRed.Size = new System.Drawing.Size(15, 13);
             this.lBRed.TabIndex = 158;
@@ -1066,12 +1071,12 @@
             this.cBDoubleTap.AutoSize = true;
             this.cBDoubleTap.Checked = true;
             this.cBDoubleTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBDoubleTap.Location = new System.Drawing.Point(369, 347);
+            this.cBDoubleTap.Location = new System.Drawing.Point(360, 12);
             this.cBDoubleTap.Name = "cBDoubleTap";
-            this.cBDoubleTap.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBDoubleTap.Size = new System.Drawing.Size(59, 17);
+            this.cBDoubleTap.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cBDoubleTap.Size = new System.Drawing.Size(60, 30);
             this.cBDoubleTap.TabIndex = 226;
-            this.cBDoubleTap.Text = "Tap x2";
+            this.cBDoubleTap.Text = "Double\r\nTap";
             this.cBDoubleTap.UseVisualStyleBackColor = true;
             this.cBDoubleTap.CheckedChanged += new System.EventHandler(this.cBDoubleTap_CheckedChanged);
             // 
@@ -1080,7 +1085,7 @@
             this.cBTap.AutoSize = true;
             this.cBTap.Checked = true;
             this.cBTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBTap.Location = new System.Drawing.Point(269, 347);
+            this.cBTap.Location = new System.Drawing.Point(329, 47);
             this.cBTap.Name = "cBTap";
             this.cBTap.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cBTap.Size = new System.Drawing.Size(45, 17);
@@ -1091,14 +1096,14 @@
             // 
             // numUDTap
             // 
-            this.numUDTap.Location = new System.Drawing.Point(328, 345);
+            this.numUDTap.Location = new System.Drawing.Point(380, 46);
             this.numUDTap.Maximum = new decimal(new int[] {
             200,
             0,
             0,
             0});
             this.numUDTap.Name = "numUDTap";
-            this.numUDTap.Size = new System.Drawing.Size(38, 20);
+            this.numUDTap.Size = new System.Drawing.Size(40, 20);
             this.numUDTap.TabIndex = 227;
             this.numUDTap.Value = new decimal(new int[] {
             100,
@@ -1112,7 +1117,7 @@
             this.cBScroll.AutoSize = true;
             this.cBScroll.Checked = true;
             this.cBScroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBScroll.Location = new System.Drawing.Point(170, 347);
+            this.cBScroll.Location = new System.Drawing.Point(180, 48);
             this.cBScroll.Name = "cBScroll";
             this.cBScroll.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cBScroll.Size = new System.Drawing.Size(52, 17);
@@ -1121,22 +1126,12 @@
             this.cBScroll.UseVisualStyleBackColor = true;
             this.cBScroll.CheckedChanged += new System.EventHandler(this.cBScroll_CheckedChanged);
             // 
-            // lbTouchpad
-            // 
-            this.lbTouchpad.AutoSize = true;
-            this.lbTouchpad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTouchpad.Location = new System.Drawing.Point(11, 347);
-            this.lbTouchpad.Name = "lbTouchpad";
-            this.lbTouchpad.Size = new System.Drawing.Size(59, 13);
-            this.lbTouchpad.TabIndex = 225;
-            this.lbTouchpad.Text = "Touchpad:";
-            // 
             // cBSlide
             // 
             this.cBSlide.AutoSize = true;
             this.cBSlide.Checked = true;
             this.cBSlide.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSlide.Location = new System.Drawing.Point(72, 346);
+            this.cBSlide.Location = new System.Drawing.Point(7, 48);
             this.cBSlide.Name = "cBSlide";
             this.cBSlide.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cBSlide.Size = new System.Drawing.Size(49, 17);
@@ -1147,7 +1142,7 @@
             // 
             // numUDScroll
             // 
-            this.numUDScroll.Location = new System.Drawing.Point(224, 345);
+            this.numUDScroll.Location = new System.Drawing.Point(234, 46);
             this.numUDScroll.Maximum = new decimal(new int[] {
             10,
             0,
@@ -1159,7 +1154,7 @@
             0,
             -2147483648});
             this.numUDScroll.Name = "numUDScroll";
-            this.numUDScroll.Size = new System.Drawing.Size(38, 20);
+            this.numUDScroll.Size = new System.Drawing.Size(40, 20);
             this.numUDScroll.TabIndex = 228;
             this.numUDScroll.Value = new decimal(new int[] {
             5,
@@ -1170,14 +1165,14 @@
             // 
             // numUDTouch
             // 
-            this.numUDTouch.Location = new System.Drawing.Point(126, 345);
+            this.numUDTouch.Location = new System.Drawing.Point(62, 46);
             this.numUDTouch.Maximum = new decimal(new int[] {
             150,
             0,
             0,
             0});
             this.numUDTouch.Name = "numUDTouch";
-            this.numUDTouch.Size = new System.Drawing.Size(38, 20);
+            this.numUDTouch.Size = new System.Drawing.Size(40, 20);
             this.numUDTouch.TabIndex = 229;
             this.numUDTouch.Value = new decimal(new int[] {
             100,
@@ -1190,11 +1185,11 @@
             // 
             this.lBButtonMouseSens.AutoSize = true;
             this.lBButtonMouseSens.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBButtonMouseSens.Location = new System.Drawing.Point(11, 217);
+            this.lBButtonMouseSens.Location = new System.Drawing.Point(11, 16);
             this.lBButtonMouseSens.Name = "lBButtonMouseSens";
-            this.lBButtonMouseSens.Size = new System.Drawing.Size(137, 13);
+            this.lBButtonMouseSens.Size = new System.Drawing.Size(121, 13);
             this.lBButtonMouseSens.TabIndex = 206;
-            this.lBButtonMouseSens.Text = "Mouse Sensitivity (Buttons):";
+            this.lBButtonMouseSens.Text = "Mouse Speed (Buttons):";
             this.lBButtonMouseSens.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // cBlowerRCOn
@@ -1202,60 +1197,52 @@
             this.cBlowerRCOn.AutoSize = true;
             this.cBlowerRCOn.Checked = true;
             this.cBlowerRCOn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBlowerRCOn.Location = new System.Drawing.Point(312, 210);
+            this.cBlowerRCOn.Location = new System.Drawing.Point(218, 12);
             this.cBlowerRCOn.Name = "cBlowerRCOn";
-            this.cBlowerRCOn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBlowerRCOn.Size = new System.Drawing.Size(116, 17);
+            this.cBlowerRCOn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cBlowerRCOn.Size = new System.Drawing.Size(100, 30);
             this.cBlowerRCOn.TabIndex = 223;
-            this.cBlowerRCOn.Text = "Lower Right (RMB)";
+            this.cBlowerRCOn.Text = "Lower Right as \r\nRight Mouse";
             this.cBlowerRCOn.UseVisualStyleBackColor = true;
             this.cBlowerRCOn.CheckedChanged += new System.EventHandler(this.lowerRCOffCheckBox_CheckedChanged);
             // 
             // touchpadJitterCompensation
             // 
             this.touchpadJitterCompensation.AutoSize = true;
-            this.touchpadJitterCompensation.Location = new System.Drawing.Point(310, 256);
+            this.touchpadJitterCompensation.Location = new System.Drawing.Point(42, 12);
             this.touchpadJitterCompensation.Name = "touchpadJitterCompensation";
-            this.touchpadJitterCompensation.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.touchpadJitterCompensation.Size = new System.Drawing.Size(118, 17);
+            this.touchpadJitterCompensation.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.touchpadJitterCompensation.Size = new System.Drawing.Size(93, 30);
             this.touchpadJitterCompensation.TabIndex = 224;
-            this.touchpadJitterCompensation.Text = "Jitter Compensation";
+            this.touchpadJitterCompensation.Text = "Jitter\r\nCompensation";
             this.touchpadJitterCompensation.UseVisualStyleBackColor = true;
             this.touchpadJitterCompensation.CheckedChanged += new System.EventHandler(this.touchpadJitterCompensation_CheckedChanged);
-            // 
-            // lbThreshold
-            // 
-            this.lbThreshold.AutoSize = true;
-            this.lbThreshold.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbThreshold.Location = new System.Drawing.Point(11, 281);
-            this.lbThreshold.Name = "lbThreshold";
-            this.lbThreshold.Size = new System.Drawing.Size(59, 13);
-            this.lbThreshold.TabIndex = 195;
-            this.lbThreshold.Text = "Deadzone:";
             // 
             // lBL2
             // 
             this.lBL2.AutoSize = true;
-            this.lBL2.Location = new System.Drawing.Point(74, 281);
+            this.lBL2.Location = new System.Drawing.Point(7, 17);
             this.lBL2.Name = "lBL2";
             this.lBL2.Size = new System.Drawing.Size(19, 13);
             this.lBL2.TabIndex = 196;
             this.lBL2.Text = "L2";
+            this.lBL2.Click += new System.EventHandler(this.lBL2_Click);
             // 
             // lBR2
             // 
             this.lBR2.AutoSize = true;
-            this.lBR2.Location = new System.Drawing.Point(172, 281);
+            this.lBR2.Location = new System.Drawing.Point(109, 17);
             this.lBR2.Name = "lBR2";
             this.lBR2.Size = new System.Drawing.Size(21, 13);
             this.lBR2.TabIndex = 197;
             this.lBR2.Text = "R2";
+            this.lBR2.Click += new System.EventHandler(this.lBR2_Click);
             // 
             // lBControllerOff
             // 
             this.lBControllerOff.AutoSize = true;
             this.lBControllerOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBControllerOff.Location = new System.Drawing.Point(11, 249);
+            this.lBControllerOff.Location = new System.Drawing.Point(11, 44);
             this.lBControllerOff.Name = "lBControllerOff";
             this.lBControllerOff.Size = new System.Drawing.Size(84, 13);
             this.lBControllerOff.TabIndex = 199;
@@ -1264,7 +1251,7 @@
             // lBIdleMinutes
             // 
             this.lBIdleMinutes.AutoSize = true;
-            this.lBIdleMinutes.Location = new System.Drawing.Point(172, 249);
+            this.lBIdleMinutes.Location = new System.Drawing.Point(148, 44);
             this.lBIdleMinutes.Name = "lBIdleMinutes";
             this.lBIdleMinutes.Size = new System.Drawing.Size(106, 13);
             this.lBIdleMinutes.TabIndex = 200;
@@ -1273,7 +1260,7 @@
             // idleDisconnectTimeout
             // 
             this.idleDisconnectTimeout.DecimalPlaces = 1;
-            this.idleDisconnectTimeout.Location = new System.Drawing.Point(114, 247);
+            this.idleDisconnectTimeout.Location = new System.Drawing.Point(95, 42);
             this.idleDisconnectTimeout.Maximum = new decimal(new int[] {
             60,
             0,
@@ -1292,7 +1279,7 @@
             0,
             0,
             65536});
-            this.numUDR2.Location = new System.Drawing.Point(210, 279);
+            this.numUDR2.Location = new System.Drawing.Point(133, 15);
             this.numUDR2.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1303,32 +1290,12 @@
             this.numUDR2.TabIndex = 202;
             this.numUDR2.ValueChanged += new System.EventHandler(this.numUDR2_ValueChanged);
             // 
-            // numUDL2
-            // 
-            this.numUDL2.DecimalPlaces = 2;
-            this.numUDL2.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numUDL2.Location = new System.Drawing.Point(114, 279);
-            this.numUDL2.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numUDL2.Name = "numUDL2";
-            this.numUDL2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.numUDL2.Size = new System.Drawing.Size(50, 20);
-            this.numUDL2.TabIndex = 203;
-            this.numUDL2.ValueChanged += new System.EventHandler(this.numUDL2_ValueChanged);
-            // 
             // tBsixaxisAccelZ
             // 
             this.tBsixaxisAccelZ.AutoSize = false;
             this.tBsixaxisAccelZ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.tBsixaxisAccelZ.Enabled = false;
-            this.tBsixaxisAccelZ.Location = new System.Drawing.Point(375, 6);
+            this.tBsixaxisAccelZ.Location = new System.Drawing.Point(394, 6);
             this.tBsixaxisAccelZ.Maximum = 32767;
             this.tBsixaxisAccelZ.Minimum = -32768;
             this.tBsixaxisAccelZ.Name = "tBsixaxisAccelZ";
@@ -1336,26 +1303,17 @@
             this.tBsixaxisAccelZ.TabIndex = 217;
             this.tBsixaxisAccelZ.TickFrequency = 16384;
             // 
-            // lBMouseSens
-            // 
-            this.lBMouseSens.Location = new System.Drawing.Point(282, 217);
-            this.lBMouseSens.Name = "lBMouseSens";
-            this.lBMouseSens.Size = new System.Drawing.Size(30, 13);
-            this.lBMouseSens.TabIndex = 205;
-            this.lBMouseSens.Text = "50";
-            this.lBMouseSens.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // flushHIDQueue
             // 
             this.flushHIDQueue.AccessibleName = "flushHIDQueue";
             this.flushHIDQueue.AutoSize = true;
             this.flushHIDQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.flushHIDQueue.Location = new System.Drawing.Point(322, 233);
+            this.flushHIDQueue.Location = new System.Drawing.Point(214, 15);
             this.flushHIDQueue.Name = "flushHIDQueue";
             this.flushHIDQueue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flushHIDQueue.Size = new System.Drawing.Size(106, 17);
+            this.flushHIDQueue.Size = new System.Drawing.Size(195, 17);
             this.flushHIDQueue.TabIndex = 198;
-            this.flushHIDQueue.Text = "Flush HID queue";
+            this.flushHIDQueue.Text = "Flush HID queue after each reading";
             this.flushHIDQueue.UseVisualStyleBackColor = true;
             this.flushHIDQueue.CheckedChanged += new System.EventHandler(this.flushHIDQueue_CheckedChanged);
             // 
@@ -1364,7 +1322,7 @@
             this.tBsixaxisAccelY.AutoSize = false;
             this.tBsixaxisAccelY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.tBsixaxisAccelY.Enabled = false;
-            this.tBsixaxisAccelY.Location = new System.Drawing.Point(328, 6);
+            this.tBsixaxisAccelY.Location = new System.Drawing.Point(347, 6);
             this.tBsixaxisAccelY.Maximum = 32767;
             this.tBsixaxisAccelY.Minimum = -32768;
             this.tBsixaxisAccelY.Name = "tBsixaxisAccelY";
@@ -1375,7 +1333,7 @@
             // leftMotorLabel
             // 
             this.leftMotorLabel.AutoSize = true;
-            this.leftMotorLabel.Location = new System.Drawing.Point(172, 314);
+            this.leftMotorLabel.Location = new System.Drawing.Point(8, 45);
             this.leftMotorLabel.Name = "leftMotorLabel";
             this.leftMotorLabel.Size = new System.Drawing.Size(25, 13);
             this.leftMotorLabel.TabIndex = 209;
@@ -1386,7 +1344,7 @@
             this.tBsixaxisAccelX.AutoSize = false;
             this.tBsixaxisAccelX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.tBsixaxisAccelX.Enabled = false;
-            this.tBsixaxisAccelX.Location = new System.Drawing.Point(282, 6);
+            this.tBsixaxisAccelX.Location = new System.Drawing.Point(301, 6);
             this.tBsixaxisAccelX.Maximum = 32767;
             this.tBsixaxisAccelX.Minimum = -32768;
             this.tBsixaxisAccelX.Name = "tBsixaxisAccelX";
@@ -1397,7 +1355,7 @@
             // rightMotorLabel
             // 
             this.rightMotorLabel.AutoSize = true;
-            this.rightMotorLabel.Location = new System.Drawing.Point(271, 314);
+            this.rightMotorLabel.Location = new System.Drawing.Point(111, 45);
             this.rightMotorLabel.Name = "rightMotorLabel";
             this.rightMotorLabel.Size = new System.Drawing.Size(32, 13);
             this.rightMotorLabel.TabIndex = 208;
@@ -1419,7 +1377,7 @@
             // rumbleBoostLabel
             // 
             this.rumbleBoostLabel.AutoSize = true;
-            this.rumbleBoostLabel.Location = new System.Drawing.Point(74, 314);
+            this.rumbleBoostLabel.Location = new System.Drawing.Point(8, 17);
             this.rumbleBoostLabel.Name = "rumbleBoostLabel";
             this.rumbleBoostLabel.Size = new System.Drawing.Size(34, 13);
             this.rumbleBoostLabel.TabIndex = 207;
@@ -1438,16 +1396,6 @@
             this.tBsixaxisGyroY.TabIndex = 221;
             this.tBsixaxisGyroY.TickFrequency = 16384;
             // 
-            // lbRumble
-            // 
-            this.lbRumble.AutoSize = true;
-            this.lbRumble.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRumble.Location = new System.Drawing.Point(11, 313);
-            this.lbRumble.Name = "lbRumble";
-            this.lbRumble.Size = new System.Drawing.Size(46, 13);
-            this.lbRumble.TabIndex = 210;
-            this.lbRumble.Text = "Rumble:";
-            // 
             // tBsixaxisGyroX
             // 
             this.tBsixaxisGyroX.AutoSize = false;
@@ -1463,14 +1411,14 @@
             // 
             // rumbleBoostBar
             // 
-            this.rumbleBoostBar.Location = new System.Drawing.Point(114, 311);
+            this.rumbleBoostBar.Location = new System.Drawing.Point(46, 14);
             this.rumbleBoostBar.Maximum = new decimal(new int[] {
             200,
             0,
             0,
             0});
             this.rumbleBoostBar.Name = "rumbleBoostBar";
-            this.rumbleBoostBar.Size = new System.Drawing.Size(50, 20);
+            this.rumbleBoostBar.Size = new System.Drawing.Size(52, 20);
             this.rumbleBoostBar.TabIndex = 211;
             this.rumbleBoostBar.Value = new decimal(new int[] {
             100,
@@ -1483,7 +1431,7 @@
             // 
             this.lB6Accel.AutoSize = true;
             this.lB6Accel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lB6Accel.Location = new System.Drawing.Point(213, 6);
+            this.lB6Accel.Location = new System.Drawing.Point(232, 6);
             this.lB6Accel.Name = "lB6Accel";
             this.lB6Accel.Size = new System.Drawing.Size(72, 13);
             this.lB6Accel.TabIndex = 215;
@@ -1491,7 +1439,7 @@
             // 
             // numUDHeavyRumble
             // 
-            this.numUDHeavyRumble.Location = new System.Drawing.Point(315, 311);
+            this.numUDHeavyRumble.Location = new System.Drawing.Point(149, 43);
             this.numUDHeavyRumble.Maximum = new decimal(new int[] {
             255,
             0,
@@ -1514,7 +1462,7 @@
             // 
             // numUDLightRumble
             // 
-            this.numUDLightRumble.Location = new System.Drawing.Point(210, 311);
+            this.numUDLightRumble.Location = new System.Drawing.Point(46, 43);
             this.numUDLightRumble.Maximum = new decimal(new int[] {
             255,
             0,
@@ -1527,7 +1475,7 @@
             // 
             // btnRumbleTest
             // 
-            this.btnRumbleTest.Location = new System.Drawing.Point(375, 309);
+            this.btnRumbleTest.Location = new System.Drawing.Point(149, 11);
             this.btnRumbleTest.Name = "btnRumbleTest";
             this.btnRumbleTest.Size = new System.Drawing.Size(53, 23);
             this.btnRumbleTest.TabIndex = 214;
@@ -1535,33 +1483,20 @@
             this.btnRumbleTest.UseVisualStyleBackColor = true;
             this.btnRumbleTest.Click += new System.EventHandler(this.btnRumbleTest_Click);
             // 
-            // tBMouseSens
+            // lbFull
             // 
-            this.tBMouseSens.AutoSize = false;
-            this.tBMouseSens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.tBMouseSens.Location = new System.Drawing.Point(151, 215);
-            this.tBMouseSens.Maximum = 117;
-            this.tBMouseSens.Name = "tBMouseSens";
-            this.tBMouseSens.Size = new System.Drawing.Size(131, 26);
-            this.tBMouseSens.TabIndex = 204;
-            this.tBMouseSens.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tBMouseSens.Value = 50;
-            this.tBMouseSens.ValueChanged += new System.EventHandler(this.tBMouseSens_Scroll);
-            // 
-            // lbLightbar
-            // 
-            this.lbLightbar.AutoSize = true;
-            this.lbLightbar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLightbar.Location = new System.Drawing.Point(7, 7);
-            this.lbLightbar.Name = "lbLightbar";
-            this.lbLightbar.Size = new System.Drawing.Size(52, 13);
-            this.lbLightbar.TabIndex = 225;
-            this.lbLightbar.Text = "Light Bar:";
+            this.lbFull.AutoSize = true;
+            this.lbFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFull.Location = new System.Drawing.Point(7, 7);
+            this.lbFull.Name = "lbFull";
+            this.lbFull.Size = new System.Drawing.Size(26, 13);
+            this.lbFull.TabIndex = 225;
+            this.lbFull.Text = "Full:";
             // 
             // lBLowRed
             // 
             this.lBLowRed.AutoSize = true;
-            this.lBLowRed.Location = new System.Drawing.Point(56, 9);
+            this.lBLowRed.Location = new System.Drawing.Point(58, 9);
             this.lBLowRed.Name = "lBLowRed";
             this.lBLowRed.Size = new System.Drawing.Size(15, 13);
             this.lBLowRed.TabIndex = 158;
@@ -1570,7 +1505,7 @@
             // lBLowGreen
             // 
             this.lBLowGreen.AutoSize = true;
-            this.lBLowGreen.Location = new System.Drawing.Point(178, 9);
+            this.lBLowGreen.Location = new System.Drawing.Point(180, 9);
             this.lBLowGreen.Name = "lBLowGreen";
             this.lBLowGreen.Size = new System.Drawing.Size(15, 13);
             this.lBLowGreen.TabIndex = 159;
@@ -1589,7 +1524,7 @@
             // 
             this.lowRedBar.AutoSize = false;
             this.lowRedBar.BackColor = System.Drawing.Color.Red;
-            this.lowRedBar.Location = new System.Drawing.Point(71, 5);
+            this.lowRedBar.Location = new System.Drawing.Point(73, 5);
             this.lowRedBar.Maximum = 255;
             this.lowRedBar.Name = "lowRedBar";
             this.lowRedBar.Size = new System.Drawing.Size(100, 20);
@@ -1603,7 +1538,7 @@
             // 
             this.lowGreenBar.AutoSize = false;
             this.lowGreenBar.BackColor = System.Drawing.Color.Green;
-            this.lowGreenBar.Location = new System.Drawing.Point(194, 5);
+            this.lowGreenBar.Location = new System.Drawing.Point(196, 5);
             this.lowGreenBar.Maximum = 255;
             this.lowGreenBar.Name = "lowGreenBar";
             this.lowGreenBar.Size = new System.Drawing.Size(100, 20);
@@ -1617,7 +1552,7 @@
             // 
             this.lowBlueBar.AutoSize = false;
             this.lowBlueBar.BackColor = System.Drawing.Color.Blue;
-            this.lowBlueBar.Location = new System.Drawing.Point(323, 5);
+            this.lowBlueBar.Location = new System.Drawing.Point(325, 5);
             this.lowBlueBar.Maximum = 255;
             this.lowBlueBar.Name = "lowBlueBar";
             this.lowBlueBar.Size = new System.Drawing.Size(100, 20);
@@ -1631,23 +1566,25 @@
             // 
             this.lBEmpty.AutoSize = true;
             this.lBEmpty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBEmpty.Location = new System.Drawing.Point(5, 9);
+            this.lBEmpty.Location = new System.Drawing.Point(7, 9);
             this.lBEmpty.Name = "lBEmpty";
             this.lBEmpty.Size = new System.Drawing.Size(39, 13);
             this.lBEmpty.TabIndex = 225;
             this.lBEmpty.Text = "Empty:";
             // 
-            // batteryOpsPanel
+            // FullPanel
             // 
-            this.batteryOpsPanel.Controls.Add(this.pBRainbow);
-            this.batteryOpsPanel.Controls.Add(this.flashLed);
-            this.batteryOpsPanel.Controls.Add(this.numUDRainbow);
-            this.batteryOpsPanel.Controls.Add(this.lBspc);
-            this.batteryOpsPanel.Controls.Add(this.batteryLed);
-            this.batteryOpsPanel.Location = new System.Drawing.Point(6, 400);
-            this.batteryOpsPanel.Name = "batteryOpsPanel";
-            this.batteryOpsPanel.Size = new System.Drawing.Size(431, 30);
-            this.batteryOpsPanel.TabIndex = 233;
+            this.FullPanel.Controls.Add(this.lbFull);
+            this.FullPanel.Controls.Add(this.lBRed);
+            this.FullPanel.Controls.Add(this.lBGreen);
+            this.FullPanel.Controls.Add(this.lBBlue);
+            this.FullPanel.Controls.Add(this.redBar);
+            this.FullPanel.Controls.Add(this.greenBar);
+            this.FullPanel.Controls.Add(this.blueBar);
+            this.FullPanel.Location = new System.Drawing.Point(2, 42);
+            this.FullPanel.Name = "FullPanel";
+            this.FullPanel.Size = new System.Drawing.Size(435, 29);
+            this.FullPanel.TabIndex = 235;
             // 
             // lowBatteryPanel
             // 
@@ -1659,25 +1596,10 @@
             this.lowBatteryPanel.Controls.Add(this.lowGreenBar);
             this.lowBatteryPanel.Controls.Add(this.lowBlueBar);
             this.lowBatteryPanel.Controls.Add(this.lBEmpty);
-            this.lowBatteryPanel.Location = new System.Drawing.Point(5, 400);
+            this.lowBatteryPanel.Location = new System.Drawing.Point(2, 72);
             this.lowBatteryPanel.Name = "lowBatteryPanel";
-            this.lowBatteryPanel.Size = new System.Drawing.Size(437, 29);
+            this.lowBatteryPanel.Size = new System.Drawing.Size(435, 29);
             this.lowBatteryPanel.TabIndex = 234;
-            this.lowBatteryPanel.Visible = false;
-            // 
-            // LightbarPanel
-            // 
-            this.LightbarPanel.Controls.Add(this.lbLightbar);
-            this.LightbarPanel.Controls.Add(this.lBRed);
-            this.LightbarPanel.Controls.Add(this.lBGreen);
-            this.LightbarPanel.Controls.Add(this.lBBlue);
-            this.LightbarPanel.Controls.Add(this.redBar);
-            this.LightbarPanel.Controls.Add(this.greenBar);
-            this.LightbarPanel.Controls.Add(this.blueBar);
-            this.LightbarPanel.Location = new System.Drawing.Point(5, 370);
-            this.LightbarPanel.Name = "LightbarPanel";
-            this.LightbarPanel.Size = new System.Drawing.Size(435, 29);
-            this.LightbarPanel.TabIndex = 235;
             // 
             // SixaxisPanel
             // 
@@ -1689,9 +1611,9 @@
             this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroZ);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelY);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelZ);
-            this.SixaxisPanel.Location = new System.Drawing.Point(5, 430);
+            this.SixaxisPanel.Location = new System.Drawing.Point(442, 5);
             this.SixaxisPanel.Name = "SixaxisPanel";
-            this.SixaxisPanel.Size = new System.Drawing.Size(435, 29);
+            this.SixaxisPanel.Size = new System.Drawing.Size(441, 29);
             this.SixaxisPanel.TabIndex = 236;
             // 
             // lBProfileTip
@@ -1729,12 +1651,70 @@
             // 
             this.lBSeperator.AutoSize = true;
             this.lBSeperator.BackColor = System.Drawing.Color.Transparent;
-            this.lBSeperator.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lBSeperator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.lBSeperator.Location = new System.Drawing.Point(3, 23);
             this.lBSeperator.Name = "lBSeperator";
             this.lBSeperator.Size = new System.Drawing.Size(433, 13);
             this.lBSeperator.TabIndex = 240;
             this.lBSeperator.Text = "_______________________________________________________________________";
+            // 
+            // lbRS
+            // 
+            this.lbRS.AutoSize = true;
+            this.lbRS.Location = new System.Drawing.Point(110, 46);
+            this.lbRS.Name = "lbRS";
+            this.lbRS.Size = new System.Drawing.Size(22, 13);
+            this.lbRS.TabIndex = 197;
+            this.lbRS.Text = "RS";
+            this.lbRS.Click += new System.EventHandler(this.lbRS_Click);
+            // 
+            // lbLS
+            // 
+            this.lbLS.AutoSize = true;
+            this.lbLS.Location = new System.Drawing.Point(6, 46);
+            this.lbLS.Name = "lbLS";
+            this.lbLS.Size = new System.Drawing.Size(20, 13);
+            this.lbLS.TabIndex = 196;
+            this.lbLS.Text = "LS";
+            this.lbLS.Click += new System.EventHandler(this.lbLS_Click);
+            // 
+            // numUDRS
+            // 
+            this.numUDRS.DecimalPlaces = 2;
+            this.numUDRS.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numUDRS.Location = new System.Drawing.Point(133, 43);
+            this.numUDRS.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numUDRS.Name = "numUDRS";
+            this.numUDRS.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.numUDRS.Size = new System.Drawing.Size(50, 20);
+            this.numUDRS.TabIndex = 203;
+            this.numUDRS.ValueChanged += new System.EventHandler(this.numUDRS_ValueChanged);
+            // 
+            // numUDMouseSens
+            // 
+            this.numUDMouseSens.Location = new System.Drawing.Point(138, 14);
+            this.numUDMouseSens.Maximum = new decimal(new int[] {
+            117,
+            0,
+            0,
+            0});
+            this.numUDMouseSens.Name = "numUDMouseSens";
+            this.numUDMouseSens.Size = new System.Drawing.Size(50, 20);
+            this.numUDMouseSens.TabIndex = 241;
+            this.numUDMouseSens.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numUDMouseSens.ValueChanged += new System.EventHandler(this.numUDMouseSens_ValueChanged);
             // 
             // numUDLS
             // 
@@ -1744,7 +1724,7 @@
             0,
             0,
             65536});
-            this.numUDLS.Location = new System.Drawing.Point(297, 279);
+            this.numUDLS.Location = new System.Drawing.Point(31, 44);
             this.numUDLS.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1756,43 +1736,107 @@
             this.numUDLS.TabIndex = 203;
             this.numUDLS.ValueChanged += new System.EventHandler(this.numUDLS_ValueChanged);
             // 
-            // lbRS
+            // numUDL2
             // 
-            this.lbRS.AutoSize = true;
-            this.lbRS.Location = new System.Drawing.Point(349, 281);
-            this.lbRS.Name = "lbRS";
-            this.lbRS.Size = new System.Drawing.Size(22, 13);
-            this.lbRS.TabIndex = 197;
-            this.lbRS.Text = "RS";
-            // 
-            // lbLS
-            // 
-            this.lbLS.AutoSize = true;
-            this.lbLS.Location = new System.Drawing.Point(271, 281);
-            this.lbLS.Name = "lbLS";
-            this.lbLS.Size = new System.Drawing.Size(20, 13);
-            this.lbLS.TabIndex = 196;
-            this.lbLS.Text = "LS";
-            // 
-            // numUDRS
-            // 
-            this.numUDRS.DecimalPlaces = 2;
-            this.numUDRS.Increment = new decimal(new int[] {
+            this.numUDL2.DecimalPlaces = 2;
+            this.numUDL2.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numUDRS.Location = new System.Drawing.Point(378, 279);
-            this.numUDRS.Maximum = new decimal(new int[] {
+            this.numUDL2.Location = new System.Drawing.Point(31, 15);
+            this.numUDL2.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numUDRS.Name = "numUDRS";
-            this.numUDRS.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.numUDRS.Size = new System.Drawing.Size(50, 20);
-            this.numUDRS.TabIndex = 203;
-            this.numUDRS.ValueChanged += new System.EventHandler(this.numUDRS_ValueChanged);
+            this.numUDL2.Name = "numUDL2";
+            this.numUDL2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.numUDL2.Size = new System.Drawing.Size(50, 20);
+            this.numUDL2.TabIndex = 203;
+            this.numUDL2.ValueChanged += new System.EventHandler(this.numUDL2_ValueChanged);
+            // 
+            // gBTouchpad
+            // 
+            this.gBTouchpad.Controls.Add(this.touchpadJitterCompensation);
+            this.gBTouchpad.Controls.Add(this.cBDoubleTap);
+            this.gBTouchpad.Controls.Add(this.cBlowerRCOn);
+            this.gBTouchpad.Controls.Add(this.cBSlide);
+            this.gBTouchpad.Controls.Add(this.numUDTouch);
+            this.gBTouchpad.Controls.Add(this.cBTap);
+            this.gBTouchpad.Controls.Add(this.numUDScroll);
+            this.gBTouchpad.Controls.Add(this.numUDTap);
+            this.gBTouchpad.Controls.Add(this.cBScroll);
+            this.gBTouchpad.Location = new System.Drawing.Point(442, 221);
+            this.gBTouchpad.Name = "gBTouchpad";
+            this.gBTouchpad.Size = new System.Drawing.Size(438, 70);
+            this.gBTouchpad.TabIndex = 246;
+            this.gBTouchpad.TabStop = false;
+            this.gBTouchpad.Text = "Touchpad";
+            // 
+            // gBOther
+            // 
+            this.gBOther.Controls.Add(this.idleDisconnectTimeout);
+            this.gBOther.Controls.Add(this.lBButtonMouseSens);
+            this.gBOther.Controls.Add(this.numUDMouseSens);
+            this.gBOther.Controls.Add(this.flushHIDQueue);
+            this.gBOther.Controls.Add(this.lBIdleMinutes);
+            this.gBOther.Controls.Add(this.lBControllerOff);
+            this.gBOther.Location = new System.Drawing.Point(6, 221);
+            this.gBOther.Name = "gBOther";
+            this.gBOther.Size = new System.Drawing.Size(419, 70);
+            this.gBOther.TabIndex = 247;
+            this.gBOther.TabStop = false;
+            this.gBOther.Text = "Other";
+            // 
+            // gBLightbar
+            // 
+            this.gBLightbar.Controls.Add(this.pBRainbow);
+            this.gBLightbar.Controls.Add(this.flashLed);
+            this.gBLightbar.Controls.Add(this.lowBatteryPanel);
+            this.gBLightbar.Controls.Add(this.numUDRainbow);
+            this.gBLightbar.Controls.Add(this.FullPanel);
+            this.gBLightbar.Controls.Add(this.lBspc);
+            this.gBLightbar.Controls.Add(this.batteryLed);
+            this.gBLightbar.Location = new System.Drawing.Point(442, 113);
+            this.gBLightbar.Name = "gBLightbar";
+            this.gBLightbar.Size = new System.Drawing.Size(438, 102);
+            this.gBLightbar.TabIndex = 247;
+            this.gBLightbar.TabStop = false;
+            this.gBLightbar.Text = "Lightbar";
+            // 
+            // gBRumble
+            // 
+            this.gBRumble.Controls.Add(this.rumbleBoostLabel);
+            this.gBRumble.Controls.Add(this.numUDHeavyRumble);
+            this.gBRumble.Controls.Add(this.btnRumbleTest);
+            this.gBRumble.Controls.Add(this.leftMotorLabel);
+            this.gBRumble.Controls.Add(this.numUDLightRumble);
+            this.gBRumble.Controls.Add(this.rightMotorLabel);
+            this.gBRumble.Controls.Add(this.rumbleBoostBar);
+            this.gBRumble.Location = new System.Drawing.Point(444, 40);
+            this.gBRumble.Name = "gBRumble";
+            this.gBRumble.Size = new System.Drawing.Size(213, 67);
+            this.gBRumble.TabIndex = 247;
+            this.gBRumble.TabStop = false;
+            this.gBRumble.Text = "Rumble";
+            // 
+            // gBDeadzone
+            // 
+            this.gBDeadzone.Controls.Add(this.lBL2);
+            this.gBDeadzone.Controls.Add(this.numUDL2);
+            this.gBDeadzone.Controls.Add(this.lBR2);
+            this.gBDeadzone.Controls.Add(this.lbRS);
+            this.gBDeadzone.Controls.Add(this.lbLS);
+            this.gBDeadzone.Controls.Add(this.numUDRS);
+            this.gBDeadzone.Controls.Add(this.numUDR2);
+            this.gBDeadzone.Controls.Add(this.numUDLS);
+            this.gBDeadzone.Location = new System.Drawing.Point(686, 40);
+            this.gBDeadzone.Name = "gBDeadzone";
+            this.gBDeadzone.Size = new System.Drawing.Size(194, 67);
+            this.gBDeadzone.TabIndex = 248;
+            this.gBDeadzone.TabStop = false;
+            this.gBDeadzone.Text = "Deadzone";
             // 
             // advColorDialog
             // 
@@ -1805,52 +1849,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(439, 461);
+            this.ClientSize = new System.Drawing.Size(885, 297);
+            this.Controls.Add(this.gBDeadzone);
+            this.Controls.Add(this.gBRumble);
+            this.Controls.Add(this.gBLightbar);
+            this.Controls.Add(this.gBOther);
+            this.Controls.Add(this.gBTouchpad);
+            this.Controls.Add(this.SixaxisPanel);
             this.Controls.Add(this.lBProfileTip);
             this.Controls.Add(this.tBProfile);
             this.Controls.Add(this.btnSaveProfile);
-            this.Controls.Add(this.SixaxisPanel);
-            this.Controls.Add(this.LightbarPanel);
-            this.Controls.Add(this.cBDoubleTap);
-            this.Controls.Add(this.cBTap);
-            this.Controls.Add(this.numUDTap);
-            this.Controls.Add(this.cBScroll);
-            this.Controls.Add(this.lbTouchpad);
-            this.Controls.Add(this.cBSlide);
-            this.Controls.Add(this.numUDScroll);
-            this.Controls.Add(this.numUDTouch);
-            this.Controls.Add(this.lBButtonMouseSens);
-            this.Controls.Add(this.cBlowerRCOn);
-            this.Controls.Add(this.touchpadJitterCompensation);
-            this.Controls.Add(this.lbThreshold);
-            this.Controls.Add(this.lbLS);
-            this.Controls.Add(this.lBL2);
-            this.Controls.Add(this.lbRS);
-            this.Controls.Add(this.lBR2);
-            this.Controls.Add(this.lBControllerOff);
-            this.Controls.Add(this.lBIdleMinutes);
-            this.Controls.Add(this.idleDisconnectTimeout);
-            this.Controls.Add(this.numUDRS);
-            this.Controls.Add(this.numUDLS);
-            this.Controls.Add(this.numUDR2);
-            this.Controls.Add(this.numUDL2);
-            this.Controls.Add(this.lBMouseSens);
-            this.Controls.Add(this.flushHIDQueue);
-            this.Controls.Add(this.leftMotorLabel);
-            this.Controls.Add(this.rightMotorLabel);
-            this.Controls.Add(this.rumbleBoostLabel);
-            this.Controls.Add(this.lbRumble);
-            this.Controls.Add(this.rumbleBoostBar);
-            this.Controls.Add(this.numUDHeavyRumble);
-            this.Controls.Add(this.numUDLightRumble);
-            this.Controls.Add(this.btnRumbleTest);
-            this.Controls.Add(this.tBMouseSens);
             this.Controls.Add(this.lBControlTip);
             this.Controls.Add(this.lBControls);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.SticksPanel);
-            this.Controls.Add(this.batteryOpsPanel);
-            this.Controls.Add(this.lowBatteryPanel);
             this.Controls.Add(this.lBSeperator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -1859,6 +1871,7 @@
             this.Name = "Options";
             this.Text = "Options";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Options_Closed);
+            this.Load += new System.EventHandler(this.Options_Load);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).EndInit();
@@ -1875,7 +1888,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDTouch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.idleDisconnectTimeout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDR2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisAccelX)).EndInit();
@@ -1885,20 +1897,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.rumbleBoostBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDHeavyRumble)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDLightRumble)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBMouseSens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).EndInit();
-            this.batteryOpsPanel.ResumeLayout(false);
-            this.batteryOpsPanel.PerformLayout();
+            this.FullPanel.ResumeLayout(false);
+            this.FullPanel.PerformLayout();
             this.lowBatteryPanel.ResumeLayout(false);
             this.lowBatteryPanel.PerformLayout();
-            this.LightbarPanel.ResumeLayout(false);
-            this.LightbarPanel.PerformLayout();
             this.SixaxisPanel.ResumeLayout(false);
             this.SixaxisPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDLS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDRS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDMouseSens)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDLS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).EndInit();
+            this.gBTouchpad.ResumeLayout(false);
+            this.gBTouchpad.PerformLayout();
+            this.gBOther.ResumeLayout(false);
+            this.gBOther.PerformLayout();
+            this.gBLightbar.ResumeLayout(false);
+            this.gBLightbar.PerformLayout();
+            this.gBRumble.ResumeLayout(false);
+            this.gBRumble.PerformLayout();
+            this.gBDeadzone.ResumeLayout(false);
+            this.gBDeadzone.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1963,23 +1984,19 @@
         private System.Windows.Forms.CheckBox cBTap;
         private System.Windows.Forms.NumericUpDown numUDTap;
         private System.Windows.Forms.CheckBox cBScroll;
-        private System.Windows.Forms.Label lbTouchpad;
         private System.Windows.Forms.CheckBox cBSlide;
         private System.Windows.Forms.NumericUpDown numUDScroll;
         private System.Windows.Forms.NumericUpDown numUDTouch;
         private System.Windows.Forms.Label lBButtonMouseSens;
         private System.Windows.Forms.CheckBox cBlowerRCOn;
         private System.Windows.Forms.CheckBox touchpadJitterCompensation;
-        private System.Windows.Forms.Label lbThreshold;
         private System.Windows.Forms.Label lBL2;
         private System.Windows.Forms.Label lBR2;
         private System.Windows.Forms.Label lBControllerOff;
         private System.Windows.Forms.Label lBIdleMinutes;
         private System.Windows.Forms.NumericUpDown idleDisconnectTimeout;
         private System.Windows.Forms.NumericUpDown numUDR2;
-        private System.Windows.Forms.NumericUpDown numUDL2;
         private System.Windows.Forms.TrackBar tBsixaxisAccelZ;
-        private System.Windows.Forms.Label lBMouseSens;
         private System.Windows.Forms.CheckBox flushHIDQueue;
         private System.Windows.Forms.TrackBar tBsixaxisAccelY;
         private System.Windows.Forms.Label leftMotorLabel;
@@ -1988,7 +2005,6 @@
         private System.Windows.Forms.TrackBar tBsixaxisGyroZ;
         private System.Windows.Forms.Label rumbleBoostLabel;
         private System.Windows.Forms.TrackBar tBsixaxisGyroY;
-        private System.Windows.Forms.Label lbRumble;
         private System.Windows.Forms.TrackBar tBsixaxisGyroX;
         private System.Windows.Forms.NumericUpDown rumbleBoostBar;
         private System.Windows.Forms.Label lB6Accel;
@@ -1996,8 +2012,7 @@
         private System.Windows.Forms.Label lB6Gryo;
         private System.Windows.Forms.NumericUpDown numUDLightRumble;
         private System.Windows.Forms.Button btnRumbleTest;
-        private System.Windows.Forms.TrackBar tBMouseSens;
-        private System.Windows.Forms.Label lbLightbar;
+        private System.Windows.Forms.Label lbFull;
         private System.Windows.Forms.Label lBLowRed;
         private System.Windows.Forms.Label lBLowGreen;
         private System.Windows.Forms.Label lBLowBlue;
@@ -2005,19 +2020,25 @@
         private System.Windows.Forms.TrackBar lowGreenBar;
         private System.Windows.Forms.TrackBar lowBlueBar;
         private System.Windows.Forms.Label lBEmpty;
-        private System.Windows.Forms.Panel batteryOpsPanel;
         private System.Windows.Forms.Panel lowBatteryPanel;
-        private System.Windows.Forms.Panel LightbarPanel;
+        private System.Windows.Forms.Panel FullPanel;
         private System.Windows.Forms.Panel SixaxisPanel;
         private System.Windows.Forms.Label lBProfileTip;
         private System.Windows.Forms.TextBox tBProfile;
         private System.Windows.Forms.Button btnSaveProfile;
         private System.Windows.Forms.Label lBSeperator;
         private System.Windows.Forms.Label lBControlTip;
-        private System.Windows.Forms.NumericUpDown numUDLS;
         private System.Windows.Forms.Label lbRS;
         private System.Windows.Forms.Label lbLS;
         private System.Windows.Forms.NumericUpDown numUDRS;
+        private System.Windows.Forms.NumericUpDown numUDMouseSens;
+        private System.Windows.Forms.NumericUpDown numUDL2;
+        private System.Windows.Forms.NumericUpDown numUDLS;
+        private System.Windows.Forms.GroupBox gBTouchpad;
+        private System.Windows.Forms.GroupBox gBOther;
+        private System.Windows.Forms.GroupBox gBLightbar;
+        private System.Windows.Forms.GroupBox gBRumble;
+        private System.Windows.Forms.GroupBox gBDeadzone;
     }
 }
 

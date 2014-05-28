@@ -8,11 +8,12 @@ using System.Collections.Generic;
 using System.Net;
 using System.Management;
 using Microsoft.Win32;
+using System.Diagnostics;
 namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 8.01;
+        double version = 8.2;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -42,16 +43,23 @@ namespace ScpServer
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
             CheckDrivers();
-            Timer te = new Timer();
-            //te.Start();
-            te.Tick += test_Tick;
+            Timer test = new Timer(), processcheck = new Timer();
+            //test.Start();
+            processcheck.Start();
+            processcheck.Tick += processcheck_Tick;
+            test.Tick += test_Tick;           
+        }
+
+        void processcheck_Tick(object sender, EventArgs e)
+        {
+            Process pc = new Process();
         }
 
         private void test_Tick(object sender, EventArgs e)
         {
             label1.Visible = true;
             int speed = Global.getButtonMouseSensitivity(0);
-            label1.Text = (((rootHub.getDS4State(0).RX - 127) / 127d) * speed).ToString();
+            label1.Text = (((rootHub.getDS4State(0).RX - 127) / 127d) * speed).ToString() + "and " + Mapping.mvalue;
             /*label1.Text = Mapping.globalState.currentClicks.toggle.ToString() + " Left is " + 
                 Mapping.getBoolMapping(DS4Controls.DpadLeft, rootHub.getDS4State(0)) + 
                 " Toggle is " + Mapping.pressedonce[256] +
@@ -166,12 +174,13 @@ namespace ScpServer
                 Global.setLastChecked(DateTime.Now);
             }
         }
+        List<string> profilenames = new List<string>();
         public void RefreshProfiles()
         {
             try
             {
-                string[] profiles = Directory.GetFiles(Global.appdatapath + @"\Profiles\");
-                List<string> profilenames = new List<string>();
+                profilenames.Clear();
+                string[] profiles = Directory.GetFiles(Global.appdatapath + @"\Profiles\");                
                 foreach (String s in profiles)
                     if (s.EndsWith(".xml"))
                         profilenames.Add(Path.GetFileNameWithoutExtension(s));
@@ -587,6 +596,12 @@ namespace ScpServer
                 KeyLoc.SetValue("DS4Tool", "\"" + Application.ExecutablePath.ToString() + "\"");
             else
                 KeyLoc.DeleteValue("DS4Tool", false);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            WinProgs WP = new WinProgs(profilenames.ToArray());
+            WP.ShowDialog();
         }
 
     }

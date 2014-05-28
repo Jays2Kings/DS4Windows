@@ -35,6 +35,7 @@
             this.chData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.pnlButton = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnImportProfiles = new System.Windows.Forms.Button();
             this.llbHelp = new System.Windows.Forms.LinkLabel();
             this.btnStartStop = new System.Windows.Forms.Button();
@@ -121,6 +122,7 @@
             // 
             // pnlButton
             // 
+            this.pnlButton.Controls.Add(this.linkLabel1);
             this.pnlButton.Controls.Add(this.btnImportProfiles);
             this.pnlButton.Controls.Add(this.llbHelp);
             this.pnlButton.Controls.Add(this.btnStartStop);
@@ -131,6 +133,17 @@
             this.pnlButton.Name = "pnlButton";
             this.pnlButton.Size = new System.Drawing.Size(794, 35);
             this.pnlButton.TabIndex = 10;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(232, 11);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(51, 13);
+            this.linkLabel1.TabIndex = 15;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Programs";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // btnImportProfiles
             // 
@@ -681,6 +694,7 @@
         private System.Windows.Forms.Button btnImportProfiles;
         private System.Windows.Forms.CheckBox StartWindowsCheckBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

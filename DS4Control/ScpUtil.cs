@@ -404,10 +404,64 @@ namespace DS4Control
         }
         public static DS4Color getTransitionedColor(DS4Color c1, DS4Color c2, uint ratio)
         {;
+        Color cs = Color.FromArgb(c1.red, c1.green, c1.blue);
             c1.red = applyRatio(c1.red, c2.red, ratio);
             c1.green = applyRatio(c1.green, c2.green, ratio);
             c1.blue = applyRatio(c1.blue, c2.blue, ratio);
             return c1;
+        }
+
+        /*public static DS4Color getTransitionedColor(DS4Color lowcolor, DS4Color maxcolor, uint ratio)
+        {
+            Color cs = Color.FromArgb(lowcolor.red, lowcolor.green, lowcolor.blue);
+            Color cs2 = Color.FromArgb(maxcolor.red, maxcolor.green, maxcolor.blue);
+            Color csR = applyRatio(cs, cs2, ratio);
+            DS4Color dr = new DS4Color { red = csR.R, green = csR.G, blue = csR.B };
+            return dr;
+        }*/
+        private static Color applyRatio(Color c1, Color c2, uint r)
+        {
+            float ratio = r / 100f;
+            float hue1 = c1.GetHue();
+            float hue2 = c2.GetHue();
+            float bri1 = c1.GetBrightness();
+            float bri2 = c2.GetBrightness();
+            float sat1 = c1.GetSaturation();
+            float sat2 = c2.GetSaturation();
+            float hr = hue2 - hue1;
+            float br = bri2 - bri1;
+            float sr = sat2 - sat1;
+            Color csR;
+            if (bri1 == 0)
+                csR = HuetoRGB(hue2,sat2,bri2 - br*ratio);
+            else
+                csR = HuetoRGB(hue2 - hr * ratio, sat2 - sr * ratio, bri2 - br * ratio);
+            return csR;
+        }
+
+        public static Color HuetoRGB(float hue, float sat, float bri)
+        {
+            float C = (1-Math.Abs(2*bri)-1)* sat;
+            float X = C * (1 - Math.Abs((hue / 60) % 2 - 1));
+            float m = bri - C / 2;
+            float R, G, B;
+            if (0 <= hue && hue < 60)
+            {   R = C; G = X; B = 0;}
+            else if (60 <= hue && hue < 120)
+            {R = X; G = C; B = 0; }
+            else if (120 <= hue && hue < 180)
+            { R = 0; G = C; B = X; }
+            else if (180 <= hue && hue < 240)
+            { R = 0; G = X; B = C; }
+            else if (240 <= hue && hue < 300)
+                { R = X; G = 0; B = C; }
+            else if (300 <= hue && hue < 360)
+                { R = C; G = 0; B = X; }
+            else
+                { R = 255; G = 0; B = 0; }
+            R += m; G += m; B += m;
+            R *= 255; G *= 255; B *= 255;
+            return Color.FromArgb((int)R, (int)G, (int)B);
         }
     }
 

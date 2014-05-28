@@ -1714,6 +1714,11 @@
             // numUDMouseSens
             // 
             this.numUDMouseSens.Location = new System.Drawing.Point(109, 14);
+            this.numUDMouseSens.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.numUDMouseSens.Name = "numUDMouseSens";
             this.numUDMouseSens.Size = new System.Drawing.Size(50, 20);
             this.numUDMouseSens.TabIndex = 241;

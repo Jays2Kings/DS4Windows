@@ -437,14 +437,17 @@ namespace DS4Control
             }
             if ((!pState.PS || !pState.Options) && cState.PS && cState.Options)
             {
-                d.DisconnectBT();
-                InputMethods.performKeyRelease(Global.getCustomKey(0, DS4Controls.PS));
-                string[] skeys = Global.getCustomMacro(0, DS4Controls.PS).Split('/');
-                ushort[] keys = new ushort[skeys.Length];
-                for (int i = 0; i < keys.Length; i++)
+                if (!d.Charging)
                 {
-                    keys[i] = ushort.Parse(skeys[i]);
-                    InputMethods.performKeyRelease(keys[i]);
+                    d.DisconnectBT();
+                    InputMethods.performKeyRelease(Global.getCustomKey(0, DS4Controls.PS));
+                    string[] skeys = Global.getCustomMacro(0, DS4Controls.PS).Split('/');
+                    ushort[] keys = new ushort[skeys.Length];
+                    for (int i = 0; i < keys.Length; i++)
+                    {
+                        keys[i] = ushort.Parse(skeys[i]);
+                        InputMethods.performKeyRelease(keys[i]);
+                    }
                 }
             }
             if (cState.Touch1 && pState.PS)

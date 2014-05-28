@@ -743,65 +743,88 @@ namespace DS4Control
                 MappedState.RY = cState.RY;
             InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
         }
-
+        public static DateTime mousenow = DateTime.UtcNow;
+        public static double mvalue = 0;
         private static int getMouseMapping(int device, DS4Controls control, DS4State cState, DS4State pState)
         {
-            double value = 0;
+
             int deadzone = 10;
+            double value = 0;
             int speed = Global.getButtonMouseSensitivity(device);
+            DateTime now = mousenow;
             switch (control)
             {
                 case DS4Controls.LXNeg:
                     if (cState.LX < 127 - deadzone)
-                        value = ((cState.LX - 127) / 127d) * speed;
+                        value = Math.Pow(1.01 + speed / 10000d, -(cState.LX - 127)) - 1;
                     break;
                 case DS4Controls.LXPos:
                     if (cState.LX > 127 + deadzone)
-                        value = ((cState.LX - 127) / 127d) * speed;
+                        value = Math.Pow(1.01 + speed / 10000d, (cState.LX - 127)) -1;
                     break;
                 case DS4Controls.RXNeg:
                     if (cState.RX < 127 - deadzone)
-                        value = -((cState.RX-127) / 127d) * speed;
+                        value = Math.Pow(1.01 + speed / 10000d, -(cState.RX - 127)) - 1;                        
                     break;
                 case DS4Controls.RXPos:
                     if (cState.RX > 127 + deadzone)
-                        value = ((cState.RX-127) / 127d) * speed;
+                        value = Math.Pow(1.01 + speed / 10000d, (cState.RX - 127)) - 1;
                     break;
                 case DS4Controls.LYNeg:
                     if (cState.LY < 127 - deadzone)
-                        value = -((cState.LY - 127)/127d) * speed;
+                        value = Math.Pow(1.01 + speed / 10000d, -(cState.LY - 127)) - 1;
                     break;
                 case DS4Controls.LYPos:
                     if (cState.LY > 127 + deadzone)
-                        value = ((cState.LY - 127) / 127d) * speed;
+                        value = Math.Pow(1.01 + speed / 10000d,(cState.LY - 127))  - 1;
                     break;
                 case DS4Controls.RYNeg:
                     if (cState.RY < 127 - deadzone)
-                        value = -((cState.RY - 127) / 127d) * speed;
+                        value = Math.Pow(1.01 + speed / 10000d,-(cState.RY - 127)) - 1;
                     break;
                 case DS4Controls.RYPos:
                     if (cState.RY > 127 + deadzone)
-                        value = ((cState.RY - 127) / 127d) * speed;
+                        value = Math.Pow(1.01 + speed / 10000d, (cState.RY - 127))  - 1;
                     break;
-                case DS4Controls.Share: value = (cState.Share ? speed / 2 : 0); break;
-                case DS4Controls.Options: value = (cState.Options ? speed / 2 : 0); break;
-                case DS4Controls.L1: value = (cState.L1 ? speed / 2 : 0); break;
-                case DS4Controls.R1: value = (cState.R1 ? speed / 2 : 0); break;
-                case DS4Controls.L3: value = (cState.L3 ? speed / 2 : 0); break;
-                case DS4Controls.R3: value = (cState.R3 ? speed / 2 : 0); break;
-                case DS4Controls.DpadUp: value = (cState.DpadUp ? speed / 2 : 0); break;
-                case DS4Controls.DpadDown: value = (cState.DpadDown ? speed / 2 : 0); break;
-                case DS4Controls.DpadLeft: value = (cState.DpadLeft ? speed / 2 : 0); break;
-                case DS4Controls.DpadRight: value = (cState.DpadRight ? speed / 2 : 0); break;
-                case DS4Controls.PS: value = (cState.PS ? speed / 2 : 0); break;
-                case DS4Controls.Cross: value = (cState.Cross ? speed / 2 : 0); break;
-                case DS4Controls.Square: value = (cState.Square ? speed / 2 : 0); break;
-                case DS4Controls.Triangle: value = (cState.Triangle ? speed / 2 : 0); break;
-                case DS4Controls.Circle: value = (cState.Circle ? speed / 2 : 0); break;
-                case DS4Controls.L2: value = ((cState.L2 / 2d) / 127d) * speed; break;
-                case DS4Controls.R2: value = ((cState.R2 / 2d) / 127d) * speed; break;
+                case DS4Controls.Share: value = (cState.Share ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.Options: value = (cState.Options ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.L1: value = (cState.L1 ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.R1: value = (cState.R1 ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.L3: value = (cState.L3 ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.R3: value = (cState.R3 ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.DpadUp: value = (cState.DpadUp ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.DpadDown: value = (cState.DpadDown ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.DpadLeft: value = (cState.DpadLeft ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.DpadRight: value = (cState.DpadRight ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.PS: value = (cState.PS ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.Cross: value = (cState.Cross ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.Square: value = (cState.Square ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.Triangle: value = (cState.Triangle ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.Circle: value = (cState.Circle ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
+                case DS4Controls.L2: value = ((cState.L2 / 2d) / 127d) * Math.Pow(1.01 + speed / 10000d, 100) - 1; break;
+                case DS4Controls.R2: value = ((cState.R2 / 2d) / 127d) * Math.Pow(1.01 + speed / 10000d, 100) - 1; break;
             }
-            return (int)Math.Round(value,0);
+            if (value != 0)
+            mvalue = value;
+
+            bool LXChanged = (Math.Abs(127 - cState.LX) < deadzone);
+            bool LYChanged = (Math.Abs(127 - cState.LY) < deadzone);
+            bool RXChanged = (Math.Abs(127 - cState.RX) < deadzone);
+            bool RYChanged = (Math.Abs(127 - cState.RY) < deadzone);
+            if (LXChanged || LYChanged || RXChanged || RYChanged)
+                now = DateTime.UtcNow;
+            if (value <= 1)
+            {
+                if (now >= mousenow + TimeSpan.FromMilliseconds((1 - value)*250))
+                {
+                    mousenow = now;
+                    return 1;
+                }
+                else
+                    return 0;
+            }
+            else
+                return (int)Math.Round(value, 0);
         }
 
         public static bool compare(byte b1, byte b2)

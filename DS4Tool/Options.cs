@@ -50,9 +50,11 @@ namespace ScpServer
                 rumbleBoostBar.Value = DS4Control.Global.loadRumbleBoost(device);
                 flashLed.Checked = DS4Control.Global.getFlashWhenLowBattery(device);
                 numUDTouch.Value = Global.getTouchSensitivity(device);
+                cBSlide.Checked = Global.getTouchSensitivity(device) > 0;
                 numUDScroll.Value = Global.getScrollSensitivity(device);
+                cBScroll.Checked = Global.getScrollSensitivity(device) >0;
                 numUDTap.Value = Global.getTapSensitivity(device);
-                cBTap.Checked = Global.getTap(device);
+                cBTap.Checked = Global.getTapSensitivity(device) > 0;
                 cBDoubleTap.Checked = Global.getDoubleTap(device);
                 numUDL2.Value = (decimal)Global.getLeftTriggerMiddle(device)/255;
                 numUDR2.Value = (decimal)Global.getRightTriggerMiddle(device)/255;
@@ -132,7 +134,7 @@ namespace ScpServer
         private void InputDS4(object sender, EventArgs e)
         {
             #region DS4Input
-            if (Form.ActiveForm == this)
+            if (Form.ActiveForm == this && cBControllerInput.Checked)
                 switch (scpDevice.GetInputkeys(device))
                 {
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
@@ -216,6 +218,9 @@ namespace ScpServer
 
         private void Set()
         {
+            lowBatteryPanel.Visible = batteryLed.Checked;
+            lbFull.Text = (batteryLed.Checked ? "Full:" : "Color:");
+            FullPanel.Location = (batteryLed.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
             Global.setLeftTriggerMiddle(device, (byte)Math.Round((numUDL2.Value * 255), 0));
@@ -269,6 +274,8 @@ namespace ScpServer
             int value;
             if (Int32.TryParse(tag.ToString(), out value))
                 lastSelected.Tag = value;
+            else if (tag is Int32[])
+                lastSelected.Tag = tag;
             else
                 lastSelected.Tag = tag.ToString();
         }
@@ -277,16 +284,16 @@ namespace ScpServer
             lastSelected.Text = controlname;
             lastSelected.Tag = controlname;
         }
-        public void Toggle_ScanCode(bool Checked)
+        public void Toggle_Bn(bool SC, bool TG, bool MC)
         {
-            if (lastSelected.Tag is int || lastSelected.Tag is UInt16)
-                if (Checked)
-                    lastSelected.Font = new Font(lastSelected.Font, FontStyle.Bold);
-                else lastSelected.Font = new Font(lastSelected.Font, FontStyle.Regular);
+            if (lastSelected.Tag is int || lastSelected.Tag is UInt16 || lastSelected.Tag is int[])
+                lastSelected.Font = new Font(lastSelected.Font, (SC ? FontStyle.Bold : FontStyle.Regular) | 
+                    (TG ? FontStyle.Italic : FontStyle.Regular) | (MC ? FontStyle.Underline : FontStyle.Regular));
+            else if (lastSelected.Tag is string)
+                if (lastSelected.Tag.ToString().Contains("Mouse Button"))
+                    lastSelected.Font = new Font(lastSelected.Font, TG ? FontStyle.Italic : FontStyle.Regular);
             else
-            {
                 lastSelected.Font = new Font(lastSelected.Font, FontStyle.Regular);
-            }
         }
         private void btnSticks_Enter(object sender, EventArgs e)
         {
@@ -821,14 +828,6 @@ namespace ScpServer
 
         }
 
-        private void LightbarValue_MouseHover(object sender, EventArgs e)
-        {
-            //tp.SetToolTip(((TrackBar)sender), ((TrackBar)sender).Value.ToString());
-        }
-
-        private void Lightbar_MouseLeave(object sender, EventArgs e)
-        {
-        }
 
         private void LightBar_MouseDown(object sender, MouseEventArgs e)
         {

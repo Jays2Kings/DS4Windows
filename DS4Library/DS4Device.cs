@@ -264,6 +264,12 @@ namespace DS4Library
             return priorInputReport30 != 0xff;
         }
         private byte priorInputReport30 = 0xff;
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        public void ReleaseKeys(ushort key)
+        {
+            keybd_event((byte)key, 0, 2, 0);
+        }
         private void performDs4Input()
         {
             System.Timers.Timer readTimeout = new System.Timers.Timer(); // Await 30 seconds for the initial packet, then 3 seconds thereafter.
@@ -404,24 +410,24 @@ namespace DS4Library
                         Console.Write(" " + inputReport[i].ToString("x2"));
                     Console.WriteLine();
                 } */
-
+                if (!isNonSixaxisIdle())
+                    lastActive = utcNow;
                 if (conType == ConnectionType.BT)
                 {
                     bool shouldDisconnect = false;
-                    if ((!pState.PS || !pState.Options) && cState.PS && cState.Options)
+                    /*if ((!pState.PS || !pState.Options) && cState.PS && cState.Options)
                     {
                         shouldDisconnect = true;
-                    }
-                    else if (IdleTimeout > 0)
+                        for (int i = 0; i < 255; i++)
+                            ReleaseKeys(i);
+                    }*/
+                    if (IdleTimeout > 0)
                     {
-                        if (!isNonSixaxisIdle())
-                        {
-                            lastActive = utcNow;
-                        }
-                        else
+                        if (isNonSixaxisIdle())
                         {
                             DateTime timeout = lastActive + TimeSpan.FromSeconds(IdleTimeout);
-                            shouldDisconnect = utcNow >= timeout;
+                            if (!Charging)
+                                shouldDisconnect = utcNow >= timeout;
                         }
                     }
                     if (shouldDisconnect && DisconnectBT())

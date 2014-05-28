@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Hotkeys));
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -107,7 +108,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(163, 275);
+            this.button1.Location = new System.Drawing.Point(163, 332);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
@@ -135,12 +136,12 @@
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(24, 171);
+            this.label13.Location = new System.Drawing.Point(2, 171);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(362, 13);
+            this.label13.Size = new System.Drawing.Size(397, 57);
             this.label13.TabIndex = 14;
-            this.label13.Text = "When mapping as keyboard, Scan Code may be needed for certain games.";
+            this.label13.Text = resources.GetString("label13.Text");
+            this.label13.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label14
             // 
@@ -164,7 +165,7 @@
             // 
             this.linkProfiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkProfiles.AutoSize = true;
-            this.linkProfiles.Location = new System.Drawing.Point(292, 280);
+            this.linkProfiles.Location = new System.Drawing.Point(292, 337);
             this.linkProfiles.Name = "linkProfiles";
             this.linkProfiles.Size = new System.Drawing.Size(94, 13);
             this.linkProfiles.TabIndex = 17;
@@ -174,19 +175,21 @@
             // 
             // linkElectro
             // 
+            this.linkElectro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkElectro.AutoSize = true;
-            this.linkElectro.Location = new System.Drawing.Point(215, 216);
+            this.linkElectro.Location = new System.Drawing.Point(215, 273);
             this.linkElectro.Name = "linkElectro";
-            this.linkElectro.Size = new System.Drawing.Size(143, 13);
+            this.linkElectro.Size = new System.Drawing.Size(149, 13);
             this.linkElectro.TabIndex = 18;
             this.linkElectro.TabStop = true;
-            this.linkElectro.Text = "elctrobrains (Branched off of)";
+            this.linkElectro.Text = "electrobrains (Branched off of)";
             this.linkElectro.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // linkJays2Kings
             // 
+            this.linkJays2Kings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkJays2Kings.AutoSize = true;
-            this.linkJays2Kings.Location = new System.Drawing.Point(95, 216);
+            this.linkJays2Kings.Location = new System.Drawing.Point(95, 273);
             this.linkJays2Kings.Name = "linkJays2Kings";
             this.linkJays2Kings.Size = new System.Drawing.Size(60, 13);
             this.linkJays2Kings.TabIndex = 18;
@@ -196,8 +199,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(146, 194);
+            this.label2.Location = new System.Drawing.Point(146, 251);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 13);
             this.label2.TabIndex = 13;
@@ -215,8 +219,9 @@
             // 
             // linkInhexSTER
             // 
+            this.linkInhexSTER.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkInhexSTER.AutoSize = true;
-            this.linkInhexSTER.Location = new System.Drawing.Point(38, 243);
+            this.linkInhexSTER.Location = new System.Drawing.Point(38, 300);
             this.linkInhexSTER.Name = "linkInhexSTER";
             this.linkInhexSTER.Size = new System.Drawing.Size(159, 13);
             this.linkInhexSTER.TabIndex = 18;
@@ -226,8 +231,9 @@
             // 
             // linkJhebbel
             // 
+            this.linkJhebbel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkJhebbel.AutoSize = true;
-            this.linkJhebbel.Location = new System.Drawing.Point(268, 243);
+            this.linkJhebbel.Location = new System.Drawing.Point(268, 300);
             this.linkJhebbel.Name = "linkJhebbel";
             this.linkJhebbel.Size = new System.Drawing.Size(41, 13);
             this.linkJhebbel.TabIndex = 18;
@@ -239,7 +245,7 @@
             // 
             this.linkUninstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkUninstall.AutoSize = true;
-            this.linkUninstall.Location = new System.Drawing.Point(12, 280);
+            this.linkUninstall.Location = new System.Drawing.Point(12, 337);
             this.linkUninstall.Name = "linkUninstall";
             this.linkUninstall.Size = new System.Drawing.Size(106, 13);
             this.linkUninstall.TabIndex = 17;
@@ -251,7 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 302);
+            this.ClientSize = new System.Drawing.Size(399, 359);
             this.Controls.Add(this.linkJhebbel);
             this.Controls.Add(this.linkInhexSTER);
             this.Controls.Add(this.linkJays2Kings);

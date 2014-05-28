@@ -5,11 +5,12 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 using System.Xml;
+using System.Drawing;
 using DS4Library;
 namespace DS4Control
 {
     [Flags]
-    public enum DS4KeyType : byte { None = 0, ScanCode = 1, Repeat = 2, Unbound = 4 }; //Increment by exponents of 2*, starting at 2^0
+    public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8 }; //Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
     public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
@@ -338,6 +339,10 @@ namespace DS4Control
         {
             return m_Config.GetCustomKey(device, controlName);
         }
+        public static string getCustomMacro(int device, DS4Controls controlName)
+        {
+            return m_Config.GetCustomMacro(device, controlName);
+        }
         public static DS4KeyType getCustomKeyType(int device, DS4Controls controlName)
         {
             return m_Config.GetCustomKeyType(device, controlName);
@@ -354,6 +359,10 @@ namespace DS4Control
         public static Dictionary<DS4Controls, ushort> getCustomKeys(int device)
         {
             return m_Config.customMapKeys[device];
+        }
+        public static Dictionary<DS4Controls, string> getCustomMacros(int device)
+        {
+            return m_Config.customMapMacros[device];
         }
         public static Dictionary<DS4Controls, DS4KeyType> getCustomKeyTypes(int device)
         {
@@ -409,7 +418,7 @@ namespace DS4Control
         protected String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
 
-        public int[] buttonMouseSensitivity = { 50, 50, 50, 50 };
+        public int[] buttonMouseSensitivity = { 25, 25, 25, 25 };
 
         public Boolean[] touchpadJitterCompensation = {true, true, true, true};
         public Boolean[] lowerRCOn = { false, false, false, false };
@@ -449,6 +458,7 @@ namespace DS4Control
         public DateTime lastChecked;
         public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = {null, null, null, null};
         public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null };
+        public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null };
         public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null };
         public BackingStore()
         {
@@ -456,6 +466,7 @@ namespace DS4Control
             {
                 customMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
                 customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
+                customMapMacros[i] = new Dictionary<DS4Controls, String>();
                 customMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
             }
         }
@@ -471,6 +482,12 @@ namespace DS4Control
             if (customMapKeys[device].ContainsKey(controlName))
                 return customMapKeys[device][controlName];
             else return 0;
+        }
+        public string GetCustomMacro(int device, DS4Controls controlName)
+        {
+            if (customMapMacros[device].ContainsKey(controlName))
+                return customMapMacros[device][controlName];
+            else return "0";
         }
         public DS4KeyType GetCustomKeyType(int device, DS4Controls controlName)
         {
@@ -528,6 +545,7 @@ namespace DS4Control
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
+                XmlNode Macro = m_Xdoc.CreateNode(XmlNodeType.Element, "Macro", null);
                 XmlNode KeyType = m_Xdoc.CreateNode(XmlNodeType.Element, "KeyType", null);
                 XmlNode Button = m_Xdoc.CreateNode(XmlNodeType.Element, "Button", null);
 
@@ -544,8 +562,10 @@ namespace DS4Control
                                 keyType += DS4KeyType.Unbound;
                             }
                             {
-                                /*if (button.ForeColor == System.Drawing.Color.Red)
-                                    keyType += DS4KeyType.Repeat;*/
+                                if (button.Font.Underline)
+                                    keyType += DS4KeyType.Macro;
+                                if (button.Font.Italic)
+                                    keyType += DS4KeyType.Toggle;
                                 if (button.Font.Bold)
                                     keyType += DS4KeyType.ScanCode;
                             }
@@ -557,7 +577,12 @@ namespace DS4Control
                             }
                             buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
                             buttonNode.InnerText = button.Tag.ToString();
-                            if (button.Tag is Int32 || button.Tag is UInt16)
+                            if (button.Tag is IEnumerable<int> || button.Tag is Int32[] || button.Tag is UInt16[])
+                            {
+                                buttonNode.InnerText = string.Join("/", (int[])button.Tag);
+                                Macro.AppendChild(buttonNode);
+                            }
+                            else if (button.Tag is Int32 || button.Tag is UInt16)
                                 Key.AppendChild(buttonNode);
                             else Button.AppendChild(buttonNode);
                         }
@@ -569,6 +594,8 @@ namespace DS4Control
                 Node.AppendChild(NodeControl);
                 if (Button.HasChildNodes)
                     NodeControl.AppendChild(Button);
+                if (Macro.HasChildNodes)
+                    NodeControl.AppendChild(Macro);
                 if (Key.HasChildNodes)
                     NodeControl.AppendChild(Key);
                 if (KeyType.HasChildNodes)
@@ -677,6 +704,7 @@ namespace DS4Control
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
             Dictionary<DS4Controls, UInt16> customMapKeys = new Dictionary<DS4Controls, UInt16>();
             Dictionary<DS4Controls, X360Controls> customMapButtons = new Dictionary<DS4Controls, X360Controls>();
+            Dictionary<DS4Controls, String> customMapMacros = new Dictionary<DS4Controls, String>();
             Boolean missingSetting = false;
 
             try
@@ -762,24 +790,44 @@ namespace DS4Control
                                 }
                                 else
                                 {
+                                    bool SC = Item.InnerText.Contains(DS4KeyType.ScanCode.ToString());
+                                    bool TG = Item.InnerText.Contains(DS4KeyType.Toggle.ToString());
+                                    bool MC = Item.InnerText.Contains(DS4KeyType.Macro.ToString());
+                                    button.Font = new Font(button.Font, (SC ? FontStyle.Bold : FontStyle.Regular) | 
+                                        (TG ? FontStyle.Italic : FontStyle.Regular) | (MC ? FontStyle.Underline : FontStyle.Regular));
                                     if (Item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
-                                    {
                                         keyType |= DS4KeyType.ScanCode;
-                                        button.Font = new System.Drawing.Font(button.Font, System.Drawing.FontStyle.Bold);
-                                    }
-                                    /*if (Item.InnerText.Contains(DS4KeyType.Repeat.ToString()))
-                                    {
-                                        keyType |= DS4KeyType.Repeat;
-                                        button.ForeColor = System.Drawing.Color.Red;
-                                    }*/
+                                    if (Item.InnerText.Contains(DS4KeyType.Toggle.ToString()))
+                                        keyType |= DS4KeyType.Toggle;
+                                    if (Item.InnerText.Contains(DS4KeyType.Macro.ToString()))
+                                        keyType |= DS4KeyType.Macro;
                                 }
                                 if (keyType != DS4KeyType.None)
                                     customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
                             }
 
-                            Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/Key/{0}", button.Name));
+                            Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/Macro/{0}", button.Name));
                             if (Item != null)
                             {
+                                string[] splitter = Item.InnerText.Split('/');
+                                int[] keys = new int[splitter.Length];
+                                for (int i = 0; i < keys.Length; i++)
+                                {
+                                    keys[i] = int.Parse(splitter[i]);
+                                    if (keys[i] < 255) splitter[i] = ((System.Windows.Forms.Keys)keys[i]).ToString();
+                                    else if (keys[i] == 256) splitter[i] = "Left Mouse Button";
+                                    else if (keys[i] == 257) splitter[i] = "Right Mouse Button";
+                                    else if (keys[i] == 258) splitter[i] = "Middle Mouse Button";
+                                    else if (keys[i] == 259) splitter[i] = "4th Mouse Button";
+                                    else if (keys[i] == 260) splitter[i] = "5th Mouse Button";
+                                }
+                                button.Text = string.Join(", ", splitter);                                
+                                button.Tag = keys;
+                                customMapMacros.Add(getDS4ControlsByName(button.Name), Item.InnerText);
+                            }
+                            else if (m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/Key/{0}", button.Name)) != null)
+                            {
+                                Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/Key/{0}", button.Name));
                                 if (UInt16.TryParse(Item.InnerText, out wvk))
                                 {
                                     //foundBinding = true;
@@ -813,6 +861,7 @@ namespace DS4Control
                 this.customMapButtons[device] = customMapButtons;
                 this.customMapKeys[device] = customMapKeys;
                 this.customMapKeyTypes[device] = customMapKeyTypes;
+                this.customMapMacros[device] = customMapMacros;
             }
             // Only add missing settings if the actual load was graceful
             if (missingSetting && Loaded)
@@ -826,6 +875,7 @@ namespace DS4Control
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
             Dictionary<DS4Controls, UInt16> customMapKeys = new Dictionary<DS4Controls, UInt16>();
             Dictionary<DS4Controls, X360Controls> customMapButtons = new Dictionary<DS4Controls, X360Controls>();
+            Dictionary<DS4Controls, String> customMapMacros = new Dictionary<DS4Controls, String>();
             Boolean missingSetting = false;
 
             try
@@ -898,6 +948,10 @@ namespace DS4Control
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
                             customMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
+                    ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/Control/Macro");
+                    if (ParentItem != null)
+                        foreach (XmlNode item in ParentItem.ChildNodes)
+                                customMapMacros.Add(getDS4ControlsByName(item.Name), item.InnerText);
                     ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/Control/Key");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
@@ -911,8 +965,10 @@ namespace DS4Control
                                 keyType = DS4KeyType.None;
                                 if (item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
                                     keyType |= DS4KeyType.ScanCode;
-                                //if (item.InnerText.Contains(DS4KeyType.Repeat.ToString()))
-                                    //keyType |= DS4KeyType.Repeat;
+                                if (item.InnerText.Contains(DS4KeyType.Toggle.ToString()))
+                                    keyType |= DS4KeyType.Toggle;
+                                if (item.InnerText.Contains(DS4KeyType.Macro.ToString()))
+                                    keyType |= DS4KeyType.Macro;
                                 if (item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
                                     keyType |= DS4KeyType.Unbound;
                                 if (keyType != DS4KeyType.None)
@@ -927,6 +983,7 @@ namespace DS4Control
                 this.customMapButtons[device] = customMapButtons;
                 this.customMapKeys[device] = customMapKeys;
                 this.customMapKeyTypes[device] = customMapKeyTypes;
+                this.customMapMacros[device] = customMapMacros;
             }
             // Only add missing settings if the actual load was graceful
             if (missingSetting && Loaded)

@@ -32,9 +32,14 @@ namespace DS4Control
                 if (now >= oldnow + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
                 {
                     oldnow = now;
-                    counters[deviceNum] += 1.5 * 3 / Global.getRainbow(deviceNum);
+                    if (device.Charging)
+                        counters[deviceNum] -= 1.5 * 3 / Global.getRainbow(deviceNum);
+                    else
+                        counters[deviceNum] += 1.5 * 3 / Global.getRainbow(deviceNum);
                 }
-                if (Global.getLedAsBatteryIndicator(deviceNum) && (device.Charging == false || device.Battery >= 100))// when charged, don't show the charging animation
+                if (counters[deviceNum] < 0)
+                    counters[deviceNum] = 180000;
+                if (Global.getLedAsBatteryIndicator(deviceNum))
                     color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(2.55 * device.Battery));
                 else
                     color = HuetoRGB((float)counters[deviceNum] % 360, 255);
@@ -72,14 +77,16 @@ namespace DS4Control
                 color = Global.loadColor(deviceNum);
             }
 
-            if (Global.getIdleDisconnectTimeout(deviceNum) > 0 && !device.Charging)
+            if (Global.getIdleDisconnectTimeout(deviceNum) > 0 && (!device.Charging || device.Battery >= 100))
             {//Fade lightbar by idle time
                 TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
                 double botratio = timeratio.TotalMilliseconds;
                 double topratio = TimeSpan.FromSeconds(Global.getIdleDisconnectTimeout(deviceNum)).TotalMilliseconds;
                 double ratio = ((botratio / topratio) * 100);
-                if (ratio >= 50)
+                if (ratio >= 50 && ratio <= 100)
                     color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, (uint)((ratio-50)*2));
+                else if (ratio >= 100)
+                    color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, 100);
             }
             DS4HapticState haptics = new DS4HapticState
             {

@@ -117,10 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label13.Text" xml:space="preserve">
-    <value>When mapping as keyboard and mouse:
-Toggle - The key will remain in a "held down" state until pressed again
-Macro - Assign multiple keys to one input
-Scan Code - keys are interperted differently. May be needed for certain games.</value>
+  <data name="Disconnected" xml:space="preserve">
+    <value>Desconectado</value>
   </data>
 </root>

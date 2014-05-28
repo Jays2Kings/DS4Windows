@@ -121,34 +121,43 @@ namespace DS4Control
             {
                 running = false;
                 if (showlog)
-                LogDebug("Stopping X360 Controllers");
-                bool anyUnplugged = false;
+                    LogDebug("Stopping X360 Controllers");
+                bool anyUnplugged = false;                
                 for (int i = 0; i < DS4Controllers.Length; i++)
                 {
                     if (DS4Controllers[i] != null)
                     {
-                        Global.setRainbow(i, 0);
-                        Global.setLedAsBatteryIndicator(i, false);
-                        Global.saveColor(i, 64, 128, 128);
+                        double oldrainbow = Global.getRainbow(i);
+                        bool oldbatt = Global.getLedAsBatteryIndicator(i);
+                        DS4Color oldcolor = Global.loadColor(i);
+                        while (Global.loadColor(i).red != 32 || Global.loadColor(i).green != 64 || Global.loadColor(i).blue != 64 || Global.getRainbow(i) != 0 || Global.getLedAsBatteryIndicator(i) != false)
+                        {
+                            Global.setRainbow(i, 0);
+                            Global.setLedAsBatteryIndicator(i, false);
+                            Global.saveColor(i, 32, 64, 64); //Make Lightbar light blue like default bluetooth color
+                            System.Threading.Thread.Sleep(5);
+                        }
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
                         x360Bus.Unplug(i);
                         anyUnplugged = true;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
+                        Global.setRainbow(i, oldrainbow); //Set back settings once ds4windows stops, so when reconnecting it shows right colors
+                        Global.setLedAsBatteryIndicator(i, oldbatt);
+                        Global.saveColor(i, oldcolor.red, oldcolor.green, oldcolor.blue);
                     }
                 }
                 if (anyUnplugged)
                     System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 x360Bus.Stop();
                 if (showlog)
-                LogDebug("Stopping DS4 Controllers");
+                    LogDebug("Stopping DS4 Controllers");
                 DS4Devices.stopControllers();
                 if (showlog)
-                LogDebug("Stopped DS4 Tool");
-                Global.ControllerStatusChanged(this);
+                    LogDebug("Stopped DS4 Tool");
+                Global.ControllerStatusChanged(this);                
             }
             return true;
-
         }
 
         public bool HotPlug()
@@ -157,8 +166,6 @@ namespace DS4Control
             {
                 DS4Devices.findControllers();
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
-                //Stop(false);
-                //Start(false);
                 foreach (DS4Device device in devices)
                 {
                     if (device.IsDisconnecting)
@@ -417,7 +424,7 @@ namespace DS4Control
         }
 
         bool touchreleased = true;
-        byte oldtouchvalue = 0;
+        byte[] oldtouchvalue = { 0, 0, 0, 0 };
         protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
         {
             DS4Device d = DS4Controllers[deviceID];
@@ -428,11 +435,23 @@ namespace DS4Control
                 else if (cState.Options)
                     Global.setTouchSensitivity(deviceID, 100); */
             }
+            if ((!pState.PS || !pState.Options) && cState.PS && cState.Options)
+            {
+                d.DisconnectBT();
+                InputMethods.performKeyRelease(Global.getCustomKey(0, DS4Controls.PS));
+                string[] skeys = Global.getCustomMacro(0, DS4Controls.PS).Split('/');
+                ushort[] keys = new ushort[skeys.Length];
+                for (int i = 0; i < keys.Length; i++)
+                {
+                    keys[i] = ushort.Parse(skeys[i]);
+                    InputMethods.performKeyRelease(keys[i]);
+                }
+            }
             if (cState.Touch1 && pState.PS)
             {
                 if (Global.getTouchSensitivity(deviceID) > 0 && touchreleased)
                 {
-                    oldtouchvalue = Global.getTouchSensitivity(deviceID);
+                    oldtouchvalue[deviceID] = Global.getTouchSensitivity(deviceID);
                     Global.setTouchSensitivity(deviceID, 0);
                     LogDebug("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
                     Log.LogToTray("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
@@ -440,7 +459,7 @@ namespace DS4Control
                 }
                 else if (touchreleased)
                 {
-                    Global.setTouchSensitivity(deviceID, oldtouchvalue);
+                    Global.setTouchSensitivity(deviceID, oldtouchvalue[deviceID]);
                     LogDebug("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
                     Log.LogToTray("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
                     touchreleased = false;
@@ -477,6 +496,11 @@ namespace DS4Control
             if (heavyBoosted > 255)
                 heavyBoosted = 255;
             DS4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
+        }
+
+        public DS4State getDS4State(int ind)
+        {
+            return CurrentState[ind];
         }
     }
 }

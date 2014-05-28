@@ -45,6 +45,7 @@
             this.pnlDebug = new System.Windows.Forms.Panel();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.gpPads = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbSelPro4 = new System.Windows.Forms.Label();
             this.lbSelPro3 = new System.Windows.Forms.Label();
             this.lbSelPro2 = new System.Windows.Forms.Label();
@@ -232,6 +233,7 @@
             // 
             this.gpPads.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpPads.Controls.Add(this.label1);
             this.gpPads.Controls.Add(this.lbSelPro4);
             this.gpPads.Controls.Add(this.lbSelPro3);
             this.gpPads.Controls.Add(this.lbSelPro2);
@@ -261,6 +263,16 @@
             this.gpPads.Size = new System.Drawing.Size(803, 182);
             this.gpPads.TabIndex = 1;
             this.gpPads.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 117);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "label1";
+            this.label1.Visible = false;
             // 
             // lbSelPro4
             // 
@@ -515,6 +527,7 @@
             this.notifyIcon1.ContextMenuStrip = this.cMTaskbar;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "DS4 Xinput Tool";
+            this.notifyIcon1.Visible = true;
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon_Click);
             // 
             // cMTaskbar
@@ -603,8 +616,6 @@
             this.MinimumSize = new System.Drawing.Size(560, 192);
             this.Name = "ScpForm";
             this.Text = "DS4Windows 1.0 Beta J2K Build";
-            this.Activated += new System.EventHandler(this.ScpForm_Activated);
-            this.Deactivate += new System.EventHandler(this.ScpForm_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Close);
             this.Load += new System.EventHandler(this.Form_Load);
             this.Resize += new System.EventHandler(this.Form_Resize);
@@ -669,6 +680,7 @@
         private System.Windows.Forms.LinkLabel llbHelp;
         private System.Windows.Forms.Button btnImportProfiles;
         private System.Windows.Forms.CheckBox StartWindowsCheckBox;
+        private System.Windows.Forms.Label label1;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

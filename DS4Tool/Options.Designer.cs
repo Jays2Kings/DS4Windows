@@ -135,6 +135,7 @@
             this.numUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.gBOther = new System.Windows.Forms.GroupBox();
+            this.cBControllerInput = new System.Windows.Forms.CheckBox();
             this.gBLightbar = new System.Windows.Forms.GroupBox();
             this.gBRumble = new System.Windows.Forms.GroupBox();
             this.gBDeadzone = new System.Windows.Forms.GroupBox();
@@ -290,7 +291,7 @@
             this.MainPanel.Controls.Add(this.bnShare);
             this.MainPanel.Location = new System.Drawing.Point(7, 77);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(249, 140);
+            this.MainPanel.Size = new System.Drawing.Size(249, 137);
             this.MainPanel.TabIndex = 185;
             // 
             // pBController
@@ -662,7 +663,7 @@
             this.SticksPanel.Controls.Add(this.bnR3);
             this.SticksPanel.Location = new System.Drawing.Point(7, 77);
             this.SticksPanel.Name = "SticksPanel";
-            this.SticksPanel.Size = new System.Drawing.Size(249, 146);
+            this.SticksPanel.Size = new System.Drawing.Size(249, 142);
             this.SticksPanel.TabIndex = 187;
             this.SticksPanel.Visible = false;
             // 
@@ -990,8 +991,6 @@
             this.blueBar.Value = 255;
             this.blueBar.ValueChanged += new System.EventHandler(this.blueBar_ValueChanged);
             this.blueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.blueBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
-            this.blueBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
             this.blueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // greenBar
@@ -1008,8 +1007,6 @@
             this.greenBar.Value = 255;
             this.greenBar.ValueChanged += new System.EventHandler(this.greenBar_ValueChanged);
             this.greenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.greenBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
-            this.greenBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
             this.greenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // redBar
@@ -1026,8 +1023,6 @@
             this.redBar.Value = 255;
             this.redBar.ValueChanged += new System.EventHandler(this.redBar_ValueChanged);
             this.redBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.redBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
-            this.redBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
             this.redBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // batteryLed
@@ -1199,16 +1194,14 @@
             this.lBButtonMouseSens.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBButtonMouseSens.Location = new System.Drawing.Point(11, 16);
             this.lBButtonMouseSens.Name = "lBButtonMouseSens";
-            this.lBButtonMouseSens.Size = new System.Drawing.Size(121, 13);
+            this.lBButtonMouseSens.Size = new System.Drawing.Size(92, 13);
             this.lBButtonMouseSens.TabIndex = 206;
-            this.lBButtonMouseSens.Text = "Mouse Speed (Buttons):";
+            this.lBButtonMouseSens.Text = "Mouse Sensitivity:";
             this.lBButtonMouseSens.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // cBlowerRCOn
             // 
             this.cBlowerRCOn.AutoSize = true;
-            this.cBlowerRCOn.Checked = true;
-            this.cBlowerRCOn.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBlowerRCOn.Location = new System.Drawing.Point(218, 12);
             this.cBlowerRCOn.Name = "cBlowerRCOn";
             this.cBlowerRCOn.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -1221,6 +1214,8 @@
             // touchpadJitterCompensation
             // 
             this.touchpadJitterCompensation.AutoSize = true;
+            this.touchpadJitterCompensation.Checked = true;
+            this.touchpadJitterCompensation.CheckState = System.Windows.Forms.CheckState.Checked;
             this.touchpadJitterCompensation.Location = new System.Drawing.Point(42, 12);
             this.touchpadJitterCompensation.Name = "touchpadJitterCompensation";
             this.touchpadJitterCompensation.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -1263,7 +1258,7 @@
             // lBIdleMinutes
             // 
             this.lBIdleMinutes.AutoSize = true;
-            this.lBIdleMinutes.Location = new System.Drawing.Point(148, 44);
+            this.lBIdleMinutes.Location = new System.Drawing.Point(165, 46);
             this.lBIdleMinutes.Name = "lBIdleMinutes";
             this.lBIdleMinutes.Size = new System.Drawing.Size(106, 13);
             this.lBIdleMinutes.TabIndex = 200;
@@ -1272,7 +1267,7 @@
             // idleDisconnectTimeout
             // 
             this.idleDisconnectTimeout.DecimalPlaces = 1;
-            this.idleDisconnectTimeout.Location = new System.Drawing.Point(95, 42);
+            this.idleDisconnectTimeout.Location = new System.Drawing.Point(109, 44);
             this.idleDisconnectTimeout.Maximum = new decimal(new int[] {
             60,
             0,
@@ -1546,8 +1541,6 @@
             this.lowRedBar.Value = 255;
             this.lowRedBar.ValueChanged += new System.EventHandler(this.lowRedBar_ValueChanged);
             this.lowRedBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.lowRedBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
-            this.lowRedBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
             this.lowRedBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // lowGreenBar
@@ -1564,8 +1557,6 @@
             this.lowGreenBar.Value = 255;
             this.lowGreenBar.ValueChanged += new System.EventHandler(this.lowGreenBar_ValueChanged);
             this.lowGreenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.lowGreenBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
-            this.lowGreenBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
             this.lowGreenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // lowBlueBar
@@ -1582,8 +1573,6 @@
             this.lowBlueBar.Value = 255;
             this.lowBlueBar.ValueChanged += new System.EventHandler(this.lowBlueBar_ValueChanged);
             this.lowBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.lowBlueBar.MouseLeave += new System.EventHandler(this.Lightbar_MouseLeave);
-            this.lowBlueBar.MouseHover += new System.EventHandler(this.LightbarValue_MouseHover);
             this.lowBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // lBEmpty
@@ -1635,7 +1624,7 @@
             this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroZ);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelY);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelZ);
-            this.SixaxisPanel.Location = new System.Drawing.Point(442, 5);
+            this.SixaxisPanel.Location = new System.Drawing.Point(442, 6);
             this.SixaxisPanel.Name = "SixaxisPanel";
             this.SixaxisPanel.Size = new System.Drawing.Size(441, 29);
             this.SixaxisPanel.TabIndex = 236;
@@ -1724,17 +1713,12 @@
             // 
             // numUDMouseSens
             // 
-            this.numUDMouseSens.Location = new System.Drawing.Point(138, 14);
-            this.numUDMouseSens.Maximum = new decimal(new int[] {
-            117,
-            0,
-            0,
-            0});
+            this.numUDMouseSens.Location = new System.Drawing.Point(109, 14);
             this.numUDMouseSens.Name = "numUDMouseSens";
             this.numUDMouseSens.Size = new System.Drawing.Size(50, 20);
             this.numUDMouseSens.TabIndex = 241;
             this.numUDMouseSens.Value = new decimal(new int[] {
-            50,
+            25,
             0,
             0,
             0});
@@ -1800,6 +1784,7 @@
             // 
             // gBOther
             // 
+            this.gBOther.Controls.Add(this.cBControllerInput);
             this.gBOther.Controls.Add(this.idleDisconnectTimeout);
             this.gBOther.Controls.Add(this.lBButtonMouseSens);
             this.gBOther.Controls.Add(this.numUDMouseSens);
@@ -1812,6 +1797,19 @@
             this.gBOther.TabIndex = 247;
             this.gBOther.TabStop = false;
             this.gBOther.Text = "Other";
+            // 
+            // cBControllerInput
+            // 
+            this.cBControllerInput.AutoSize = true;
+            this.cBControllerInput.Checked = true;
+            this.cBControllerInput.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBControllerInput.Location = new System.Drawing.Point(303, 38);
+            this.cBControllerInput.Name = "cBControllerInput";
+            this.cBControllerInput.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cBControllerInput.Size = new System.Drawing.Size(106, 30);
+            this.cBControllerInput.TabIndex = 242;
+            this.cBControllerInput.Text = "Use controller to \r\nchange mapping";
+            this.cBControllerInput.UseVisualStyleBackColor = true;
             // 
             // gBLightbar
             // 
@@ -2063,6 +2061,7 @@
         private System.Windows.Forms.GroupBox gBLightbar;
         private System.Windows.Forms.GroupBox gBRumble;
         private System.Windows.Forms.GroupBox gBDeadzone;
+        private System.Windows.Forms.CheckBox cBControllerInput;
     }
 }
 

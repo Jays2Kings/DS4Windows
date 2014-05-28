@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
+            this.lBTip = new System.Windows.Forms.Label();
             this.cbScanCode = new System.Windows.Forms.CheckBox();
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -139,8 +139,8 @@
             this.btnR = new System.Windows.Forms.Button();
             this.bTNRIGHTMOUSE = new System.Windows.Forms.Button();
             this.btnE = new System.Windows.Forms.Button();
-            this.button32 = new System.Windows.Forms.Button();
-            this.button31 = new System.Windows.Forms.Button();
+            this.bnWHEELDOWN = new System.Windows.Forms.Button();
+            this.bnWHEELUP = new System.Windows.Forms.Button();
             this.btnMIDDLEMOUSE = new System.Windows.Forms.Button();
             this.btnW = new System.Windows.Forms.Button();
             this.button33 = new System.Windows.Forms.Button();
@@ -152,7 +152,7 @@
             this.btnLEFTMOUSE = new System.Windows.Forms.Button();
             this.btnQ = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.cbRepeat = new System.Windows.Forms.CheckBox();
+            this.cbToggle = new System.Windows.Forms.CheckBox();
             this.btnUNBOUND2 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -182,30 +182,32 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.X360Label = new System.Windows.Forms.Label();
             this.KBMlabel = new System.Windows.Forms.Label();
+            this.cBMacro = new System.Windows.Forms.CheckBox();
+            this.lBMacroOrder = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label2
+            // lBTip
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label2.Location = new System.Drawing.Point(465, 110);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 26);
-            this.label2.TabIndex = 289;
-            this.label2.Text = "You can also select \r\na key by typing it";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lBTip.AutoSize = true;
+            this.lBTip.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lBTip.Location = new System.Drawing.Point(465, 110);
+            this.lBTip.Name = "lBTip";
+            this.lBTip.Size = new System.Drawing.Size(103, 26);
+            this.lBTip.TabIndex = 289;
+            this.lBTip.Text = "You can also select \r\na key by typing it";
+            this.lBTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // cbScanCode
             // 
             this.cbScanCode.AutoSize = true;
-            this.cbScanCode.Location = new System.Drawing.Point(696, 169);
+            this.cbScanCode.Location = new System.Drawing.Point(706, 5);
             this.cbScanCode.Name = "cbScanCode";
             this.cbScanCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbScanCode.Size = new System.Drawing.Size(54, 30);
+            this.cbScanCode.Size = new System.Drawing.Size(79, 17);
             this.cbScanCode.TabIndex = 288;
-            this.cbScanCode.Text = "Scan \r\nCode";
+            this.cbScanCode.Text = "Scan Code";
             this.cbScanCode.UseVisualStyleBackColor = true;
             // 
             // button7
@@ -285,7 +287,7 @@
             this.btnNUM0.Size = new System.Drawing.Size(54, 24);
             this.btnNUM0.TabIndex = 280;
             this.btnNUM0.Tag = "96";
-            this.btnNUM0.Text = "0";
+            this.btnNUM0.Text = "Num0";
             this.btnNUM0.UseVisualStyleBackColor = true;
             // 
             // btnNUM6
@@ -1301,25 +1303,25 @@
             this.btnE.Text = "E";
             this.btnE.UseVisualStyleBackColor = true;
             // 
-            // button32
+            // bnWHEELDOWN
             // 
-            this.button32.Location = new System.Drawing.Point(783, 107);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(24, 21);
-            this.button32.TabIndex = 175;
-            this.button32.Tag = "Mouse Wheel Down";
-            this.button32.Text = "↓Mouse Wheel Down";
-            this.button32.UseVisualStyleBackColor = true;
+            this.bnWHEELDOWN.Location = new System.Drawing.Point(783, 107);
+            this.bnWHEELDOWN.Name = "bnWHEELDOWN";
+            this.bnWHEELDOWN.Size = new System.Drawing.Size(24, 21);
+            this.bnWHEELDOWN.TabIndex = 175;
+            this.bnWHEELDOWN.Tag = "Mouse Wheel Down";
+            this.bnWHEELDOWN.Text = "↓Mouse Wheel Down";
+            this.bnWHEELDOWN.UseVisualStyleBackColor = true;
             // 
-            // button31
+            // bnWHEELUP
             // 
-            this.button31.Location = new System.Drawing.Point(783, 59);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(24, 22);
-            this.button31.TabIndex = 174;
-            this.button31.Tag = "Mouse Wheel Up";
-            this.button31.Text = "↑Mouse Wheel Up";
-            this.button31.UseVisualStyleBackColor = true;
+            this.bnWHEELUP.Location = new System.Drawing.Point(783, 59);
+            this.bnWHEELUP.Name = "bnWHEELUP";
+            this.bnWHEELUP.Size = new System.Drawing.Size(24, 22);
+            this.bnWHEELUP.TabIndex = 174;
+            this.bnWHEELUP.Tag = "Mouse Wheel Up";
+            this.bnWHEELUP.Text = "↑Mouse Wheel Up";
+            this.bnWHEELUP.UseVisualStyleBackColor = true;
             // 
             // btnMIDDLEMOUSE
             // 
@@ -1432,17 +1434,17 @@
             this.pictureBox2.TabIndex = 290;
             this.pictureBox2.TabStop = false;
             // 
-            // cbRepeat
+            // cbToggle
             // 
-            this.cbRepeat.AutoSize = true;
-            this.cbRepeat.Location = new System.Drawing.Point(790, 25);
-            this.cbRepeat.Name = "cbRepeat";
-            this.cbRepeat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbRepeat.Size = new System.Drawing.Size(61, 17);
-            this.cbRepeat.TabIndex = 287;
-            this.cbRepeat.Text = "Repeat";
-            this.cbRepeat.UseVisualStyleBackColor = true;
-            this.cbRepeat.Visible = false;
+            this.cbToggle.AutoSize = true;
+            this.cbToggle.Location = new System.Drawing.Point(641, 5);
+            this.cbToggle.Name = "cbToggle";
+            this.cbToggle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cbToggle.Size = new System.Drawing.Size(59, 17);
+            this.cbToggle.TabIndex = 287;
+            this.cbToggle.Text = "Toggle";
+            this.cbToggle.UseVisualStyleBackColor = true;
+            this.cbToggle.CheckedChanged += new System.EventHandler(this.cbToggle_CheckedChanged);
             // 
             // btnUNBOUND2
             // 
@@ -1733,11 +1735,34 @@
             this.KBMlabel.TabIndex = 318;
             this.KBMlabel.Text = "Keyboard and Mouse";
             // 
+            // cBMacro
+            // 
+            this.cBMacro.AutoSize = true;
+            this.cBMacro.Location = new System.Drawing.Point(791, 5);
+            this.cBMacro.Name = "cBMacro";
+            this.cBMacro.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cBMacro.Size = new System.Drawing.Size(56, 17);
+            this.cBMacro.TabIndex = 287;
+            this.cBMacro.Text = "Macro";
+            this.cBMacro.UseVisualStyleBackColor = true;
+            this.cBMacro.CheckedChanged += new System.EventHandler(this.cBMacro_CheckedChanged);
+            // 
+            // lBMacroOrder
+            // 
+            this.lBMacroOrder.AutoSize = true;
+            this.lBMacroOrder.Location = new System.Drawing.Point(12, 6);
+            this.lBMacroOrder.Name = "lBMacroOrder";
+            this.lBMacroOrder.Size = new System.Drawing.Size(72, 13);
+            this.lBMacroOrder.TabIndex = 319;
+            this.lBMacroOrder.Text = "Macro Order: ";
+            this.lBMacroOrder.Visible = false;
+            // 
             // KBM360
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(854, 403);
+            this.Controls.Add(this.lBMacroOrder);
             this.Controls.Add(this.KBMlabel);
             this.Controls.Add(this.X360Label);
             this.Controls.Add(this.btnUNBOUND2);
@@ -1767,7 +1792,7 @@
             this.Controls.Add(this.button21);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lBTip);
             this.Controls.Add(this.cbScanCode);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button5);
@@ -1878,8 +1903,8 @@
             this.Controls.Add(this.btnR);
             this.Controls.Add(this.bTNRIGHTMOUSE);
             this.Controls.Add(this.btnE);
-            this.Controls.Add(this.button32);
-            this.Controls.Add(this.button31);
+            this.Controls.Add(this.bnWHEELDOWN);
+            this.Controls.Add(this.bnWHEELUP);
             this.Controls.Add(this.btnMIDDLEMOUSE);
             this.Controls.Add(this.btnW);
             this.Controls.Add(this.button33);
@@ -1891,7 +1916,8 @@
             this.Controls.Add(this.btnLEFTMOUSE);
             this.Controls.Add(this.btnQ);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.cbRepeat);
+            this.Controls.Add(this.cBMacro);
+            this.Controls.Add(this.cbToggle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -1909,7 +1935,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lBTip;
         private System.Windows.Forms.CheckBox cbScanCode;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button5;
@@ -2020,8 +2046,8 @@
         private System.Windows.Forms.Button btnR;
         private System.Windows.Forms.Button bTNRIGHTMOUSE;
         private System.Windows.Forms.Button btnE;
-        private System.Windows.Forms.Button button32;
-        private System.Windows.Forms.Button button31;
+        private System.Windows.Forms.Button bnWHEELDOWN;
+        private System.Windows.Forms.Button bnWHEELUP;
         private System.Windows.Forms.Button btnMIDDLEMOUSE;
         private System.Windows.Forms.Button btnW;
         private System.Windows.Forms.Button button33;
@@ -2033,7 +2059,7 @@
         private System.Windows.Forms.Button btnLEFTMOUSE;
         private System.Windows.Forms.Button btnQ;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.CheckBox cbRepeat;
+        private System.Windows.Forms.CheckBox cbToggle;
         private System.Windows.Forms.Button btnUNBOUND2;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button2;
@@ -2063,6 +2089,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label X360Label;
         private System.Windows.Forms.Label KBMlabel;
+        private System.Windows.Forms.CheckBox cBMacro;
+        private System.Windows.Forms.Label lBMacroOrder;
 
     }
 }

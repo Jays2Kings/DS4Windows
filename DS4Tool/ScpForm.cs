@@ -12,7 +12,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 7.7;
+        double version = 8.01;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -41,7 +41,21 @@ namespace ScpServer
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
-            CheckDrivers(); 
+            CheckDrivers();
+            Timer te = new Timer();
+            //te.Start();
+            te.Tick += test_Tick;
+        }
+
+        private void test_Tick(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            int speed = Global.getButtonMouseSensitivity(0);
+            label1.Text = (((rootHub.getDS4State(0).RX - 127) / 127d) * speed).ToString();
+            /*label1.Text = Mapping.globalState.currentClicks.toggle.ToString() + " Left is " + 
+                Mapping.getBoolMapping(DS4Controls.DpadLeft, rootHub.getDS4State(0)) + 
+                " Toggle is " + Mapping.pressedonce[256] +
+                Mapping.test;*/
         }
 
         private void CheckDrivers()
@@ -73,7 +87,6 @@ namespace ScpServer
             try
             {
                 if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), out newversion))
-                {
                     if (newversion > version)
                         if (MessageBox.Show("Download now?", "New Version Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
@@ -89,8 +102,7 @@ namespace ScpServer
                         else
                             File.Delete(Global.appdatapath + "\\version.txt");
                     else
-                        File.Delete(Global.appdatapath + "\\version.txt");
-                }
+                        File.Delete(Global.appdatapath + "\\version.txt");                
                 else
                     File.Delete(Global.appdatapath + "\\version.txt");
             }
@@ -232,23 +244,24 @@ namespace ScpServer
 
         protected void ShowNotification(object sender, DebugEventArgs args)
         {
-            notifyIcon1.BalloonTipText = args.Data;
-            notifyIcon1.BalloonTipTitle = "DS4Windows";
-            notifyIcon1.ShowBalloonTip(1);
+            if (Form.ActiveForm != this)
+            {
+                this.notifyIcon1.BalloonTipText = args.Data;
+                notifyIcon1.BalloonTipTitle = "DS4Windows";
+                notifyIcon1.ShowBalloonTip(1); 
+            }
         }
 
         protected void Form_Resize(object sender, EventArgs e)
         {
             if (FormWindowState.Minimized == this.WindowState)
             {
-                notifyIcon1.Visible = true;
                 this.Hide();
                 this.ShowInTaskbar = false;
             }
 
             else if (FormWindowState.Normal == this.WindowState)
             {
-                notifyIcon1.Visible = false;
                 this.Show();
                 this.ShowInTaskbar = true;
             }
@@ -271,20 +284,12 @@ namespace ScpServer
         {
             if (btnStartStop.Text == "Start")
             {
-                for (int i = 0; i < 4; i++)
-                    Global.LoadProfile(i);
                 rootHub.Start();
                 btnStartStop.Text = "Stop";
             }
 
             else if (btnStartStop.Text == "Stop")
             {
-                for (int i = 0; i < 4; i++)
-                {
-                    Global.setRainbow(i, 0);
-                    Global.setLedAsBatteryIndicator(i, false);
-                    Global.saveColor(i, 64, 128, 128);
-                }
                 rootHub.Stop();
                 btnStartStop.Text = "Start";
             }
@@ -334,11 +339,14 @@ namespace ScpServer
                 if (Pads[Index].Text != String.Empty)
                 {
                     Pads[Index].Enabled = true;
-                    cbs[Index].Enabled = true;
-                    ebns[Index].Enabled = true;
-                    dbns[Index].Enabled = true;
-                    protexts[Index].Enabled = true;
-                    shortcuts[Index].Enabled = true;
+                    if (Pads[Index].Text != "Connecting...")
+                    {
+                        cbs[Index].Enabled = true;
+                        ebns[Index].Enabled = true;
+                        dbns[Index].Enabled = true;
+                        protexts[Index].Enabled = true;
+                        shortcuts[Index].Enabled = true;
+                    }
                     // As above
                     //if (checkFirst && (Pads[Index].Checked && Index != 0))
                     // checkFirst = false;
@@ -559,11 +567,7 @@ namespace ScpServer
             {
                 string[] files = openProfiles.FileNames;
                 for (int i = 0; i < files.Length; i++)
-                {
-                    string[] temp = files[i].Split('\\');
-                    files[i] = temp[temp.Length - 1];
-                    File.Copy(openProfiles.FileNames[i], Global.appdatapath + "\\Profiles\\" + files[i], true);
-                }
+                    File.Copy(openProfiles.FileNames[i], Global.appdatapath + "\\Profiles\\" + Path.GetFileName(files[i]), true);
                 RefreshProfiles();
             }
         }
@@ -573,25 +577,7 @@ namespace ScpServer
             Global.setFormWidth(this.Width);
             Global.setFormHeight(this.Height);
             Global.Save();
-            for (int i = 0; i < 4; i++)
-            {
-                Global.setRainbow(i, 0);
-                Global.setLedAsBatteryIndicator(i, false);
-                Global.saveColor(i, 64, 128, 128);
-            }
             rootHub.Stop();
-        }
-
-        private void ScpForm_Deactivate(object sender, EventArgs e)
-        {
-            try { notifyIcon1.Visible = true; }
-            catch { }
-        }
-
-        private void ScpForm_Activated(object sender, EventArgs e)
-        {
-            notifyIcon1.Visible = false;
-
         }
 
         private void StartWindowsCheckBox_CheckedChanged(object sender, EventArgs e)

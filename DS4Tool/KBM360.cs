@@ -22,10 +22,11 @@ namespace ScpServer
             scpDevice = bus_device;
             ops = ooo;
             button = buton;
-            if (button.ForeColor == Color.Red)
-                cbRepeat.Checked = true;
-            if (button.Font.Bold)
-                cbScanCode.Checked = true;
+            cbToggle.Checked = button.Font.Italic;
+            cbScanCode.Checked = button.Font.Bold;
+            cBMacro.Checked = button.Font.Underline;
+            if (cBMacro.Checked)
+                lBMacroOrder.Text += button.Text;
             Text = "Select an action for " + button.Name.Substring(2);
             foreach (System.Windows.Forms.Control control in this.Controls)
                 if (control is Button)
@@ -35,14 +36,18 @@ namespace ScpServer
                 bnMOUSEDOWN.Visible = false;
                 bnMOUSELEFT.Visible = false;
                 bnMOUSERIGHT.Visible = false;
-                bnMOUSEUP.Visible = false;                    
+                bnMOUSEUP.Visible = false;
             }
+            ToolTip tp = new ToolTip();
+            tp.SetToolTip(cBMacro, "Max 5 actions");
         }
-
+        List<string> macros = new List<string>();
+        List<int> macrostag = new List<int>();
         public void anybtn_Click(object sender, EventArgs e)
         {
             if (sender is Button)
             {
+                Button bn = ((Button)sender);
                 string keyname;
                 if (((Button)sender).Text.Contains('↑') || ((Button)sender).Text.Contains('↓') || ((Button)sender).Text.Contains('→') || ((Button)sender).Text.Contains('←') || ((Button)sender).Text.Contains('Ø'))
                     keyname = ((Button)sender).Text.Substring(1);
@@ -61,26 +66,84 @@ namespace ScpServer
                 }
                 else
                     keyname = ((Button)sender).Text;
-                object keytag;
-                if (((Button)sender).Tag.ToString() == "X360")
-                    keytag = ((Button)sender).Text;
+
+                if (!cBMacro.Checked)
+                {
+                    object keytag;
+                    if (((Button)sender).Tag.ToString() == "X360")
+                        keytag = ((Button)sender).Text;
+                    else
+                        keytag = ((Button)sender).Tag;
+                    ops.ChangeButtonText(keyname, keytag);
+                    this.Close();
+                }
                 else
-                    keytag = ((Button)sender).Tag;
-                ops.ChangeButtonText(keyname, keytag);
-                this.Close();
+                {
+                    if (!bn.Font.Bold && bn.Tag.ToString() != "X360" && macrostag.Count < 5 && (bn.Text.Contains("Mouse") ^ !bn.Text.Contains("Button"))) //end is xor to remove mouse movement and wheel from macro
+                    {
+                        bn.Font = new Font(bn.Font, FontStyle.Bold);
+                        macros.Add(keyname);
+                        int value;
+                        if (int.TryParse(bn.Tag.ToString(), out value))
+                            macrostag.Add(value);
+                        else
+                        {
+                            if (bn.Text == "Left Mouse Button") macrostag.Add(256);
+                            if (bn.Text == "Right Mouse Button") macrostag.Add(257);
+                            if (bn.Text == "Middle Mouse Button") macrostag.Add(258);
+                            if (bn.Text == "4th Mouse Button") macrostag.Add(259);
+                            if (bn.Text == "5th Mouse Button") macrostag.Add(260);
+                        }
+                    }
+                    else if (bn.Tag.ToString() != "X360")
+                    {
+                        bn.Font = new Font(bn.Font, FontStyle.Regular);
+                        macros.Remove(keyname);
+                        int value;
+                        if (int.TryParse(bn.Tag.ToString(), out value))
+                            macrostag.Remove(value);
+                        else
+                        {
+                            if (bn.Text == "Left Mouse Button") macrostag.Remove(256);
+                            if (bn.Text == "Right Mouse Button") macrostag.Remove(257);
+                            if (bn.Text == "Middle Mouse Button") macrostag.Remove(258);
+                            if (bn.Text == "4th Mouse Button") macrostag.Remove(259);
+                            if (bn.Text == "5th Mouse Button") macrostag.Remove(260);
+                        }
+                    }
+                    string macro = string.Join(", ", macros.ToArray());
+                    lBMacroOrder.Text = "Macro Order: " + macro;
+                }
             }
         }
 
         private void finalMeasure(object sender, FormClosedEventArgs e)
         {
-           ops.Toggle_ScanCode(cbScanCode.Checked);
-           ops.UpdateLists();
+            if (cBMacro.Checked && macrostag.Count > 0)
+            {
+                ops.ChangeButtonText(string.Join(", ", macros), macrostag.ToArray());
+            }
+            ops.Toggle_Bn(cbScanCode.Checked, cbToggle.Checked, cBMacro.Checked);
+            ops.UpdateLists();
         }
 
         private void Key_Down_Action(object sender, KeyEventArgs e)
         {
             ops.ChangeButtonText(e.KeyCode.ToString(), e.KeyValue);
             this.Close();
+        }
+
+        private void cBMacro_CheckedChanged(object sender, EventArgs e)
+        {
+            lBMacroOrder.Visible = cBMacro.Checked;
+            if (cBMacro.Checked)
+                cbToggle.Checked = false;
+        }
+
+        private void cbToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbToggle.Checked)
+                cBMacro.Checked = false;
         }
 
     }

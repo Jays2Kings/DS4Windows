@@ -471,24 +471,25 @@ namespace DS4Control
     {
         protected String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
-
-        public int[] buttonMouseSensitivity = { 25, 25, 25, 25 };
-
-        public Boolean[] touchpadJitterCompensation = {true, true, true, true};
-        public Boolean[] lowerRCOn = { false, false, false, false };
-        public Boolean[] ledAsBattery = { false, false, false, false };
-        public Boolean[] flashLedLowBattery = { false, false, false, false };
-        public Byte[] m_LeftTriggerMiddle = { 0, 0, 0, 0 }, m_RightTriggerMiddle = { 0, 0, 0, 0 };
-        public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty };
-        public Byte[] m_Rumble = { 100, 100, 100, 100 };
-        public Byte[] touchSensitivity = { 100, 100, 100, 100 };
-        public Byte[] LSDeadzone = { 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0 };
-        public Byte[] tapSensitivity = { 0, 0, 0, 0 };
-        public bool[] doubleTap = { false, false, false, false };
-        public int[] scrollSensitivity = { 0, 0, 0, 0 };
-        public double[] rainbow = { 0, 0, 0, 0 };
+        //fifth value used to for options, not fifth controller
+        public int[] buttonMouseSensitivity = { 25, 25, 25, 25, 25 };
+        
+        public Boolean[] touchpadJitterCompensation = {true, true, true, true, true};
+        public Boolean[] lowerRCOn = { false, false, false, false, false };
+        public Boolean[] ledAsBattery = { false, false, false, false, false };
+        public Boolean[] flashLedLowBattery = { false, false, false, false, false };
+        public Byte[] m_LeftTriggerMiddle = { 0, 0, 0, 0, 0}, m_RightTriggerMiddle = { 0, 0, 0, 0, 0};
+        public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty, String.Empty };
+        public Byte[] m_Rumble = { 100, 100, 100, 100, 100 };
+        public Byte[] touchSensitivity = { 100, 100, 100, 100, 100 };
+        public Byte[] LSDeadzone = { 0, 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0, 0};
+        public Byte[] tapSensitivity = { 0, 0, 0, 0, 0 };
+        public bool[] doubleTap = { false, false, false, false, false };
+        public int[] scrollSensitivity = { 0, 0, 0, 0, 0 };
+        public double[] rainbow = { 0, 0, 0, 0, 0 };
         public Byte[][] m_LowLeds = new Byte[][]
         {
+            new Byte[] {0,0,0},
             new Byte[] {0,0,0},
             new Byte[] {0,0,0},
             new Byte[] {0,0,0},
@@ -500,9 +501,10 @@ namespace DS4Control
             new Byte[] {255,0,0},
             new Byte[] {0,255,0},
             new Byte[] {255,0,255},
+            new Byte[] {255,255,255}
         };
-        public bool[] flushHIDQueue = { true, true, true, true };
-        public int[] idleDisconnectTimeout = { 0, 0, 0, 0 };
+        public bool[] flushHIDQueue = { true, true, true, true, true };
+        public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
 
         public Boolean useExclusiveMode = false;
         public Int32 formWidth = 782;
@@ -510,13 +512,13 @@ namespace DS4Control
         public Boolean startMinimized = false;
         public double version;
         public DateTime lastChecked;
-        public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = {null, null, null, null};
-        public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null };
-        public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null };
-        public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null };
+        public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = {null, null, null, null, null};
+        public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null, null };
+        public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null, null };
+        public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null, null };
         public BackingStore()
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
                 customMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
                 customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();

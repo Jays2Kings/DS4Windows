@@ -288,6 +288,26 @@ namespace DS4Control
                 return String.Empty;
         }
 
+        public string getDS4MacAddress(int index)
+        {
+            if (DS4Controllers[index] != null)
+            {
+                DS4Device d = DS4Controllers[index];
+                if (!d.IsAlive())
+                //return "Connecting..."; // awaiting the first battery charge indication
+                {
+                    var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
+                    TimeoutThread.IsBackground = true;
+                    TimeoutThread.Name = "TimeoutFor" + d.MacAddress.ToString();
+                    TimeoutThread.Start();
+                    return "Connecting...";
+                }
+                return d.MacAddress;
+            }
+            else
+                return String.Empty;
+        }
+
         public string getShortDS4ControllerInfo(int index)
         {
             if (DS4Controllers[index] != null)
@@ -307,7 +327,43 @@ namespace DS4Control
                 {
                     battery = d.Battery + "%";
                 }
-                return d.ConnectionType + " " + battery;
+                return d.ConnectionType + " " + battery + " (" + System.IO.Path.GetFileNameWithoutExtension(Global.getAProfile(index)) + ")";
+            }
+            else
+                return "None";
+        }
+
+        public string getDS4Battery(int index)
+        {
+            if (DS4Controllers[index] != null)
+            {
+                DS4Device d = DS4Controllers[index];
+                String battery;
+                if (!d.IsAlive())
+                    battery = "...";
+                if (d.Charging)
+                {
+                    if (d.Battery >= 100)
+                        battery = "Full";
+                    else
+                        battery = d.Battery + "%+";
+                }
+                else
+                {
+                    battery = d.Battery + "%";
+                }
+                return battery;
+            }
+            else
+                return "N/A";
+        }
+
+        public string getDS4Status(int index)
+        {
+            if (DS4Controllers[index] != null)
+            {
+                DS4Device d = DS4Controllers[index];
+                return d.ConnectionType+"";
             }
             else
                 return "None";
@@ -391,39 +447,41 @@ namespace DS4Control
         public string GetInputkeys(int ind)
         {
             DS4State cState = CurrentState[ind];
-            if (Mapping.getBoolMapping(DS4Controls.Cross, cState)) return "Cross";
-            else if (Mapping.getBoolMapping(DS4Controls.Circle, cState)) return "Circle";
-            else if (Mapping.getBoolMapping(DS4Controls.Triangle, cState)) return "Triangle";
-            else if (Mapping.getBoolMapping(DS4Controls.Square, cState)) return "Square";
-            else if (Mapping.getBoolMapping(DS4Controls.L1, cState)) return "L1";
-            else if (Mapping.getBoolMapping(DS4Controls.R1, cState)) return "R1";
-            else if (Mapping.getBoolMapping(DS4Controls.L2, cState)) return "L2";
-            else if (Mapping.getBoolMapping(DS4Controls.R2, cState)) return "R2";
-            else if (Mapping.getBoolMapping(DS4Controls.L3, cState)) return "L3";
-            else if (Mapping.getBoolMapping(DS4Controls.R3, cState)) return "R3";
-            else if (Mapping.getBoolMapping(DS4Controls.DpadUp, cState)) return "Up";
-            else if (Mapping.getBoolMapping(DS4Controls.DpadDown, cState)) return "Down";
-            else if (Mapping.getBoolMapping(DS4Controls.DpadLeft, cState)) return "Left";
-            else if (Mapping.getBoolMapping(DS4Controls.DpadRight, cState)) return "Right";
-            else if (Mapping.getBoolMapping(DS4Controls.Share, cState)) return "Share";
-            else if (Mapping.getBoolMapping(DS4Controls.Options, cState)) return "Options";
-            else if (Mapping.getBoolMapping(DS4Controls.PS, cState)) return "PS";
-            else if (Mapping.getBoolMapping(DS4Controls.LXPos, cState)) return "LS Right";
-            else if (Mapping.getBoolMapping(DS4Controls.LXNeg, cState)) return "LS Left";
-            else if (Mapping.getBoolMapping(DS4Controls.LYPos, cState)) return "LS Down";
-            else if (Mapping.getBoolMapping(DS4Controls.LYNeg, cState)) return "LS Up";
-            else if (Mapping.getBoolMapping(DS4Controls.RXPos, cState)) return "RS Right";
-            else if (Mapping.getBoolMapping(DS4Controls.RXNeg, cState)) return "RS Left";
-            else if (Mapping.getBoolMapping(DS4Controls.RYPos, cState)) return "RS Down";
-            else if (Mapping.getBoolMapping(DS4Controls.RYNeg, cState)) return "RS Up";
-            else if (Mapping.getBoolMapping(DS4Controls.TouchLeft, cState)) return "Touch Left";
-            else if (Mapping.getBoolMapping(DS4Controls.TouchRight, cState)) return "Touch Right";
-            else if (Mapping.getBoolMapping(DS4Controls.TouchMulti, cState)) return "Touch Multi";
-            else if (Mapping.getBoolMapping(DS4Controls.TouchUpper, cState)) return "Touch Upper";
+            if (DS4Controllers[ind] != null)
+                if (Mapping.getBoolMapping(DS4Controls.Cross, cState)) return "Cross";
+                else if (Mapping.getBoolMapping(DS4Controls.Circle, cState)) return "Circle";
+                else if (Mapping.getBoolMapping(DS4Controls.Triangle, cState)) return "Triangle";
+                else if (Mapping.getBoolMapping(DS4Controls.Square, cState)) return "Square";
+                else if (Mapping.getBoolMapping(DS4Controls.L1, cState)) return "L1";
+                else if (Mapping.getBoolMapping(DS4Controls.R1, cState)) return "R1";
+                else if (Mapping.getBoolMapping(DS4Controls.L2, cState)) return "L2";
+                else if (Mapping.getBoolMapping(DS4Controls.R2, cState)) return "R2";
+                else if (Mapping.getBoolMapping(DS4Controls.L3, cState)) return "L3";
+                else if (Mapping.getBoolMapping(DS4Controls.R3, cState)) return "R3";
+                else if (Mapping.getBoolMapping(DS4Controls.DpadUp, cState)) return "Up";
+                else if (Mapping.getBoolMapping(DS4Controls.DpadDown, cState)) return "Down";
+                else if (Mapping.getBoolMapping(DS4Controls.DpadLeft, cState)) return "Left";
+                else if (Mapping.getBoolMapping(DS4Controls.DpadRight, cState)) return "Right";
+                else if (Mapping.getBoolMapping(DS4Controls.Share, cState)) return "Share";
+                else if (Mapping.getBoolMapping(DS4Controls.Options, cState)) return "Options";
+                else if (Mapping.getBoolMapping(DS4Controls.PS, cState)) return "PS";
+                else if (Mapping.getBoolMapping(DS4Controls.LXPos, cState)) return "LS Right";
+                else if (Mapping.getBoolMapping(DS4Controls.LXNeg, cState)) return "LS Left";
+                else if (Mapping.getBoolMapping(DS4Controls.LYPos, cState)) return "LS Down";
+                else if (Mapping.getBoolMapping(DS4Controls.LYNeg, cState)) return "LS Up";
+                else if (Mapping.getBoolMapping(DS4Controls.RXPos, cState)) return "RS Right";
+                else if (Mapping.getBoolMapping(DS4Controls.RXNeg, cState)) return "RS Left";
+                else if (Mapping.getBoolMapping(DS4Controls.RYPos, cState)) return "RS Down";
+                else if (Mapping.getBoolMapping(DS4Controls.RYNeg, cState)) return "RS Up";
+                else if (Mapping.getBoolMapping(DS4Controls.TouchLeft, cState)) return "Touch Left";
+                else if (Mapping.getBoolMapping(DS4Controls.TouchRight, cState)) return "Touch Right";
+                else if (Mapping.getBoolMapping(DS4Controls.TouchMulti, cState)) return "Touch Multi";
+                else if (Mapping.getBoolMapping(DS4Controls.TouchUpper, cState)) return "Touch Upper";
+                else return "nothing";
             else return "nothing";
         }
 
-        bool touchreleased = true;
+        bool touchreleased = true, touchslid = false;
         byte[] oldtouchvalue = { 0, 0, 0, 0 };
         protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
         {
@@ -450,7 +508,7 @@ namespace DS4Control
                     }
                 }
             }
-            if (cState.Touch1 && pState.PS)
+            if (cState.TouchButton && pState.PS)
             {
                 if (Global.getTouchSensitivity(deviceID) > 0 && touchreleased)
                 {
@@ -469,9 +527,31 @@ namespace DS4Control
                 }
             }
             else
-                touchreleased = true;
+                touchreleased = true;            
         }
 
+        public virtual string TouchpadSlide(int ind)
+        {
+            DS4State cState = CurrentState[ind];
+            string slidedir = "none";
+            if (cState.L1 && cState.R1)
+                if (touchPad[ind].slideright && !touchslid)
+                {
+                    slidedir = "right";
+                    touchslid = true;
+                }
+                else if (touchPad[ind].slideleft && !touchslid)
+                {
+                    slidedir = "left";
+                    touchslid = true;
+                }
+                else if (!touchPad[ind].slideleft && !touchPad[ind].slideright)
+                {
+                    slidedir = "";
+                    touchslid = false;
+                }
+            return slidedir;
+        }
         public virtual void LogDebug(String Data)
         {
             Console.WriteLine(System.DateTime.Now.ToString("G") + "> " + Data);
@@ -498,7 +578,9 @@ namespace DS4Control
             uint heavyBoosted = ((uint)heavyMotor * (uint)boost) / 100;
             if (heavyBoosted > 255)
                 heavyBoosted = 255;
-            DS4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
+            if (deviceNum < 4)
+                if (DS4Controllers[deviceNum] != null)
+                    DS4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
         }
 
         public DS4State getDS4State(int ind)

@@ -705,28 +705,28 @@ namespace DS4Control
                     case X360Controls.MouseUp:
                         if (MouseDeltaY == 0)
                         {
-                            MouseDeltaY = getMouseMapping(device, customButton.Key, cState, pState);
+                            MouseDeltaY = getMouseMapping(device, customButton.Key, cState, pState, 0);
                             MouseDeltaY = -Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
                         }
                         break;
                     case X360Controls.MouseDown:
                         if (MouseDeltaY == 0)
                         {
-                            MouseDeltaY = getMouseMapping(device, customButton.Key, cState, pState);
+                            MouseDeltaY = getMouseMapping(device, customButton.Key, cState, pState, 1);
                             MouseDeltaY = Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
                         }
                         break;
                     case X360Controls.MouseLeft:
                         if (MouseDeltaX == 0)
                         {
-                            MouseDeltaX = getMouseMapping(device, customButton.Key, cState, pState);
+                            MouseDeltaX = getMouseMapping(device, customButton.Key, cState, pState, 2);
                             MouseDeltaX = -Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
                         }
                         break;
                     case X360Controls.MouseRight:
                         if (MouseDeltaX == 0)
                         {
-                            MouseDeltaX = getMouseMapping(device, customButton.Key, cState, pState);
+                            MouseDeltaX = getMouseMapping(device, customButton.Key, cState, pState, 3);
                             MouseDeltaX = Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
                         }
                         break;
@@ -743,15 +743,15 @@ namespace DS4Control
                 MappedState.RY = cState.RY;
             InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
         }
-        public static DateTime mousenow = DateTime.UtcNow;
+        public static DateTime[] mousenow = { DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow };
         public static double mvalue = 0;
-        private static int getMouseMapping(int device, DS4Controls control, DS4State cState, DS4State pState)
+        private static int getMouseMapping(int device, DS4Controls control, DS4State cState, DS4State pState, int mnum)
         {
 
             int deadzone = 10;
             double value = 0;
             int speed = Global.getButtonMouseSensitivity(device);
-            DateTime now = mousenow;
+            DateTime now = mousenow[mnum];
             switch (control)
             {
                 case DS4Controls.LXNeg:
@@ -801,11 +801,11 @@ namespace DS4Control
                 case DS4Controls.Square: value = (cState.Square ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
                 case DS4Controls.Triangle: value = (cState.Triangle ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
                 case DS4Controls.Circle: value = (cState.Circle ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.L2: value = ((cState.L2 / 2d) / 127d) * Math.Pow(1.01 + speed / 10000d, 100) - 1; break;
-                case DS4Controls.R2: value = ((cState.R2 / 2d) / 127d) * Math.Pow(1.01 + speed / 10000d, 100) - 1; break;
+                case DS4Controls.L2: value = Math.Pow(1.01 + speed / 10000d, cState.L2 / 2d) - 1; break;
+                case DS4Controls.R2: value = Math.Pow(1.01 + speed / 10000d, cState.R2 / 2d) - 1; break;
             }
-            if (value != 0)
-            mvalue = value;
+            //if (value != 0)
+            //mvalue = value;
 
             bool LXChanged = (Math.Abs(127 - cState.LX) < deadzone);
             bool LYChanged = (Math.Abs(127 - cState.LY) < deadzone);
@@ -815,9 +815,9 @@ namespace DS4Control
                 now = DateTime.UtcNow;
             if (value <= 1)
             {
-                if (now >= mousenow + TimeSpan.FromMilliseconds((1 - value)*250))
+                if (now >= mousenow[mnum] + TimeSpan.FromMilliseconds((1 - value) * 250))
                 {
-                    mousenow = now;
+                    mousenow[mnum] = now;
                     return 1;
                 }
                 else

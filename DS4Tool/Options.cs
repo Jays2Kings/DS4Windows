@@ -11,7 +11,7 @@ namespace ScpServer
     public partial class Options : Form
     {
         private DS4Control.Control scpDevice;
-        private int device;
+        public int device;
         private string filename;
         Byte[] oldLedColor, oldLowLedColor;
         Timer inputtimer = new Timer(), sixaxisTimer = new Timer();
@@ -21,16 +21,22 @@ namespace ScpServer
         private Color reg, full;
         private Image colored, greyscale;
         ToolTip tp = new ToolTip();
-        public Options(DS4Control.Control bus_device, int deviceNum, string name)
+        ScpForm root;
+        public Options(DS4Control.Control bus_device, int deviceNum, string name, ScpForm rt)
         {
             InitializeComponent();
             device = deviceNum;
             scpDevice = bus_device;
             filename = name;
             colored = pBRainbow.Image;
+            root = rt;
             greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
+            if (deviceNum < 4)
+            nUDSixaxis.Value = deviceNum + 1;
             if (filename != "")
             {
+                Global.setAProfile(4, name);
+                Global.LoadProfile(deviceNum);
                 tBProfile.Text = filename;
                 DS4Color color = Global.loadColor(device);
                 redBar.Value = color.red;
@@ -92,19 +98,8 @@ namespace ScpServer
             sixaxisTimer.Start();
             #region watch sixaxis data
 
-            sixaxisTimer.Tick +=
-            (delegate
-                {
-                    // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
-                    // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
-                    // We should try to indicate setpoints of the calibration when exposing this measurement....
-                    SetDynamicTrackBarValue(tBsixaxisGyroX, (scpDevice.ExposedState[device].GyroX + tBsixaxisGyroX.Value * 2) / 3);
-                    SetDynamicTrackBarValue(tBsixaxisGyroY, (scpDevice.ExposedState[device].GyroY + tBsixaxisGyroY.Value * 2) / 3);
-                    SetDynamicTrackBarValue(tBsixaxisGyroZ, (scpDevice.ExposedState[device].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
-                    SetDynamicTrackBarValue(tBsixaxisAccelX, (scpDevice.ExposedState[device].AccelX + tBsixaxisAccelX.Value * 2) / 3);
-                    SetDynamicTrackBarValue(tBsixaxisAccelY, (scpDevice.ExposedState[device].AccelY + tBsixaxisAccelY.Value * 2) / 3);
-                    SetDynamicTrackBarValue(tBsixaxisAccelZ, (scpDevice.ExposedState[device].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
-                });
+            sixaxisTimer.Tick += sixaxisTimer_Tick;
+            
             sixaxisTimer.Interval = 1000 / 60;
             #endregion
             foreach (System.Windows.Forms.Control control in this.MainPanel.Controls)
@@ -131,11 +126,24 @@ namespace ScpServer
             inputtimer.Start();
             inputtimer.Tick += InputDS4;
         }
+
+        void sixaxisTimer_Tick(object sender, EventArgs e)
+        {
+            // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
+            // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
+            // We should try to indicate setpoints of the calibration when exposing this measurement....
+            SetDynamicTrackBarValue(tBsixaxisGyroX, (scpDevice.ExposedState[(int)nUDSixaxis.Value -1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
+            SetDynamicTrackBarValue(tBsixaxisGyroY, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroY + tBsixaxisGyroY.Value * 2) / 3);
+            SetDynamicTrackBarValue(tBsixaxisGyroZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
+            SetDynamicTrackBarValue(tBsixaxisAccelX, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
+            SetDynamicTrackBarValue(tBsixaxisAccelY, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelY + tBsixaxisAccelY.Value * 2) / 3);
+            SetDynamicTrackBarValue(tBsixaxisAccelZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
+        }
         private void InputDS4(object sender, EventArgs e)
         {
             #region DS4Input
-            if (Form.ActiveForm == this && cBControllerInput.Checked)
-                switch (scpDevice.GetInputkeys(device))
+            if (Form.ActiveForm == root && cBControllerInput.Checked)
+            switch (scpDevice.GetInputkeys((int)nUDSixaxis.Value - 1))
                 {
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
                     case ("Circle"): Show_ControlsBn(bnCircle, e); break;
@@ -358,8 +366,8 @@ namespace ScpServer
         private void redBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 244 - (value < 244 ? value : 244);
-            int som = 244 + 11 * (int)(value * 0.0039215);
+            int sat = 255 - (value < 255 ? value : 255);
+            int som = 255 + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
             alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
             reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
@@ -371,8 +379,8 @@ namespace ScpServer
         private void greenBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 244 - (value < 244 ? value : 244);
-            int som = 244 + 11 * (int)(value * 0.0039215);
+            int sat = 255 - (value < 255 ? value : 255);
+            int som = 255 + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
             alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
             reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
@@ -384,8 +392,8 @@ namespace ScpServer
         private void blueBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 244 - (value < 244 ? value : 244);
-            int som = 244 + 11 * (int)(value * 0.0039215);
+            int sat = 255 - (value < 255 ? value : 255);
+            int som = 255 + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
             alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
             reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
@@ -398,8 +406,8 @@ namespace ScpServer
         private void lowRedBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 244 - (value < 244 ? value : 244);
-            int som = 244 + 11 * (int)(value * 0.0039215);
+            int sat = 255 - (value < 255 ? value : 255);
+            int som = 255 + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
             alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
             reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
@@ -412,8 +420,8 @@ namespace ScpServer
         private void lowGreenBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 244 - (value < 244 ? value : 244);
-            int som = 244 + 11 * (int)(value * 0.0039215);
+            int sat = 255 - (value < 255 ? value : 255);
+            int som = 255 + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
             alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
             reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
@@ -426,8 +434,8 @@ namespace ScpServer
         private void lowBlueBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 244 - (value < 244 ? value : 244);
-            int som = 244 + 11 * (int)(value * 0.0039215);
+            int sat = 255 - (value < 255 ? value : 255);
+            int som = 255 + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
             alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
             reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
@@ -476,12 +484,12 @@ namespace ScpServer
         {
             if (((Button)sender).Text == "Test")
             {
-                scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, device);
+                scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, (int)nUDSixaxis.Value - 1);
                 ((Button)sender).Text = "Stop";
             }
             else
             {
-                scpDevice.setRumble(0, 0, device);
+                scpDevice.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
                 ((Button)sender).Text = "Test";
             }                
         }
@@ -538,6 +546,8 @@ namespace ScpServer
                 sixaxisTimer.Stop();
             for (int i = 0; i < 4; i++)
                 Global.LoadProfile(i); //Refreshes all profiles in case other controllers are using the same profile
+            inputtimer.Stop();
+            sixaxisTimer.Stop();
         }
 
         private void tBProfile_TextChanged(object sender, EventArgs e)
@@ -837,6 +847,11 @@ namespace ScpServer
         private void Lightbar_MouseUp(object sender, MouseEventArgs e)
         {
             tp.Hide(((TrackBar)sender));
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

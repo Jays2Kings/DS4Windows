@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
             this.bnTouchUpper = new System.Windows.Forms.Button();
             this.bnTouchMulti = new System.Windows.Forms.Button();
             this.bnTouchRight = new System.Windows.Forms.Button();
@@ -135,10 +134,12 @@
             this.numUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.gBOther = new System.Windows.Forms.GroupBox();
+            this.nUDSixaxis = new System.Windows.Forms.NumericUpDown();
             this.cBControllerInput = new System.Windows.Forms.CheckBox();
             this.gBLightbar = new System.Windows.Forms.GroupBox();
             this.gBRumble = new System.Windows.Forms.GroupBox();
             this.gBDeadzone = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
@@ -175,6 +176,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDL2)).BeginInit();
             this.gBTouchpad.SuspendLayout();
             this.gBOther.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
             this.gBLightbar.SuspendLayout();
             this.gBRumble.SuspendLayout();
             this.gBDeadzone.SuspendLayout();
@@ -297,7 +299,7 @@
             // pBController
             // 
             this.pBController.Enabled = false;
-            this.pBController.Image = ((System.Drawing.Image)(resources.GetObject("pBController.Image")));
+            this.pBController.Image = global::ScpServer.Properties.Resources.DS4_Controller;
             this.pBController.Location = new System.Drawing.Point(0, 0);
             this.pBController.Name = "pBController";
             this.pBController.Size = new System.Drawing.Size(245, 132);
@@ -1300,7 +1302,7 @@
             // tBsixaxisAccelZ
             // 
             this.tBsixaxisAccelZ.AutoSize = false;
-            this.tBsixaxisAccelZ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tBsixaxisAccelZ.BackColor = System.Drawing.Color.White;
             this.tBsixaxisAccelZ.Enabled = false;
             this.tBsixaxisAccelZ.Location = new System.Drawing.Point(394, 6);
             this.tBsixaxisAccelZ.Maximum = 32767;
@@ -1315,19 +1317,19 @@
             this.flushHIDQueue.AccessibleName = "flushHIDQueue";
             this.flushHIDQueue.AutoSize = true;
             this.flushHIDQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.flushHIDQueue.Location = new System.Drawing.Point(214, 15);
+            this.flushHIDQueue.Location = new System.Drawing.Point(302, 39);
             this.flushHIDQueue.Name = "flushHIDQueue";
             this.flushHIDQueue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flushHIDQueue.Size = new System.Drawing.Size(195, 17);
+            this.flushHIDQueue.Size = new System.Drawing.Size(112, 30);
             this.flushHIDQueue.TabIndex = 198;
-            this.flushHIDQueue.Text = "Flush HID queue after each reading";
+            this.flushHIDQueue.Text = "Flush HID queue \r\nafter each reading";
             this.flushHIDQueue.UseVisualStyleBackColor = true;
             this.flushHIDQueue.CheckedChanged += new System.EventHandler(this.flushHIDQueue_CheckedChanged);
             // 
             // tBsixaxisAccelY
             // 
             this.tBsixaxisAccelY.AutoSize = false;
-            this.tBsixaxisAccelY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tBsixaxisAccelY.BackColor = System.Drawing.Color.White;
             this.tBsixaxisAccelY.Enabled = false;
             this.tBsixaxisAccelY.Location = new System.Drawing.Point(347, 6);
             this.tBsixaxisAccelY.Maximum = 32767;
@@ -1349,7 +1351,7 @@
             // tBsixaxisAccelX
             // 
             this.tBsixaxisAccelX.AutoSize = false;
-            this.tBsixaxisAccelX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tBsixaxisAccelX.BackColor = System.Drawing.Color.White;
             this.tBsixaxisAccelX.Enabled = false;
             this.tBsixaxisAccelX.Location = new System.Drawing.Point(301, 6);
             this.tBsixaxisAccelX.Maximum = 32767;
@@ -1371,7 +1373,7 @@
             // tBsixaxisGyroZ
             // 
             this.tBsixaxisGyroZ.AutoSize = false;
-            this.tBsixaxisGyroZ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tBsixaxisGyroZ.BackColor = System.Drawing.Color.White;
             this.tBsixaxisGyroZ.Enabled = false;
             this.tBsixaxisGyroZ.Location = new System.Drawing.Point(163, 6);
             this.tBsixaxisGyroZ.Maximum = 32767;
@@ -1393,7 +1395,7 @@
             // tBsixaxisGyroY
             // 
             this.tBsixaxisGyroY.AutoSize = false;
-            this.tBsixaxisGyroY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tBsixaxisGyroY.BackColor = System.Drawing.Color.White;
             this.tBsixaxisGyroY.Enabled = false;
             this.tBsixaxisGyroY.Location = new System.Drawing.Point(116, 6);
             this.tBsixaxisGyroY.Maximum = 32767;
@@ -1406,7 +1408,7 @@
             // tBsixaxisGyroX
             // 
             this.tBsixaxisGyroX.AutoSize = false;
-            this.tBsixaxisGyroX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tBsixaxisGyroX.BackColor = System.Drawing.Color.White;
             this.tBsixaxisGyroX.Enabled = false;
             this.tBsixaxisGyroX.Location = new System.Drawing.Point(69, 6);
             this.tBsixaxisGyroX.Maximum = 32767;
@@ -1482,9 +1484,9 @@
             // 
             // btnRumbleTest
             // 
-            this.btnRumbleTest.Location = new System.Drawing.Point(149, 11);
+            this.btnRumbleTest.Location = new System.Drawing.Point(161, 11);
             this.btnRumbleTest.Name = "btnRumbleTest";
-            this.btnRumbleTest.Size = new System.Drawing.Size(53, 23);
+            this.btnRumbleTest.Size = new System.Drawing.Size(41, 23);
             this.btnRumbleTest.TabIndex = 214;
             this.btnRumbleTest.Text = "Test";
             this.btnRumbleTest.UseVisualStyleBackColor = true;
@@ -1643,7 +1645,7 @@
             this.tBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
             this.tBProfile.Location = new System.Drawing.Point(77, 9);
             this.tBProfile.Name = "tBProfile";
-            this.tBProfile.Size = new System.Drawing.Size(269, 20);
+            this.tBProfile.Size = new System.Drawing.Size(185, 20);
             this.tBProfile.TabIndex = 238;
             this.tBProfile.Text = "<type profile name here>";
             this.tBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
@@ -1652,7 +1654,7 @@
             // 
             // btnSaveProfile
             // 
-            this.btnSaveProfile.Location = new System.Drawing.Point(352, 7);
+            this.btnSaveProfile.Location = new System.Drawing.Point(268, 7);
             this.btnSaveProfile.Name = "btnSaveProfile";
             this.btnSaveProfile.Size = new System.Drawing.Size(78, 23);
             this.btnSaveProfile.TabIndex = 237;
@@ -1789,6 +1791,7 @@
             // 
             // gBOther
             // 
+            this.gBOther.Controls.Add(this.nUDSixaxis);
             this.gBOther.Controls.Add(this.cBControllerInput);
             this.gBOther.Controls.Add(this.idleDisconnectTimeout);
             this.gBOther.Controls.Add(this.lBButtonMouseSens);
@@ -1803,17 +1806,39 @@
             this.gBOther.TabStop = false;
             this.gBOther.Text = "Other";
             // 
+            // nUDSixaxis
+            // 
+            this.nUDSixaxis.Location = new System.Drawing.Point(386, 16);
+            this.nUDSixaxis.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.nUDSixaxis.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixaxis.Name = "nUDSixaxis";
+            this.nUDSixaxis.Size = new System.Drawing.Size(29, 20);
+            this.nUDSixaxis.TabIndex = 250;
+            this.nUDSixaxis.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // cBControllerInput
             // 
             this.cBControllerInput.AutoSize = true;
             this.cBControllerInput.Checked = true;
             this.cBControllerInput.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBControllerInput.Location = new System.Drawing.Point(303, 38);
+            this.cBControllerInput.Location = new System.Drawing.Point(187, 17);
             this.cBControllerInput.Name = "cBControllerInput";
             this.cBControllerInput.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBControllerInput.Size = new System.Drawing.Size(106, 30);
+            this.cBControllerInput.Size = new System.Drawing.Size(194, 17);
             this.cBControllerInput.TabIndex = 242;
-            this.cBControllerInput.Text = "Use controller to \r\nchange mapping";
+            this.cBControllerInput.Text = "Use a controller to change mapping";
             this.cBControllerInput.UseVisualStyleBackColor = true;
             // 
             // gBLightbar
@@ -1865,6 +1890,16 @@
             this.gBDeadzone.TabStop = false;
             this.gBDeadzone.Text = "Deadzone";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(352, 7);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 249;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
@@ -1875,8 +1910,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(885, 297);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(889, 297);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.gBDeadzone);
             this.Controls.Add(this.gBRumble);
             this.Controls.Add(this.gBLightbar);
@@ -1941,6 +1977,7 @@
             this.gBTouchpad.PerformLayout();
             this.gBOther.ResumeLayout(false);
             this.gBOther.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).EndInit();
             this.gBLightbar.ResumeLayout(false);
             this.gBLightbar.PerformLayout();
             this.gBRumble.ResumeLayout(false);
@@ -2067,6 +2104,8 @@
         private System.Windows.Forms.GroupBox gBRumble;
         private System.Windows.Forms.GroupBox gBDeadzone;
         private System.Windows.Forms.CheckBox cBControllerInput;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.NumericUpDown nUDSixaxis;
     }
 }
 

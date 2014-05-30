@@ -19,22 +19,23 @@ namespace ScpServer
     public partial class WinProgs : Form
     {
         ToolTip tp = new ToolTip();
+        ComboBox[] cbs;
         public WinProgs(string[] oc)
         {
             InitializeComponent();
-            comboBox1.Text = "(none)";
-            comboBox2.Text = "(none)";
-            comboBox3.Text = "(none)";
-            comboBox4.Text = "(none)";
-            comboBox1.Items.AddRange(oc);
-            comboBox2.Items.AddRange(oc);
-            comboBox3.Items.AddRange(oc);
-            comboBox4.Items.AddRange(oc);
-            foreach (string o in oc)
-                lBProfiles.Items.Add(o);
-            string[] lods = Directory.GetDirectories(@"C:\Program Files (x86)\Steam\SteamApps\common");
-            foreach (string s in lods)
-                listBox1.Items.Add(Path.GetFileName(s));
+            cbs = new ComboBox[4] { comboBox1, comboBox2, comboBox3, comboBox4 };
+            for (int i = 0; i < 4; i++)
+            {
+                cbs[i].Text = "(none)";
+                cbs[i].Items.AddRange(oc);
+            }
+            try
+            {
+                string[] lods = Directory.GetDirectories(@"C:\Program Files (x86)\Steam\steamapps\common");
+                foreach (string s in lods)
+                    listBox1.Items.Add(Path.GetFileName(s));
+            }
+            catch { }
             if (!File.Exists(Global.appdatapath + @"\Auto Profiles.xml"))
                 Create();
             //foreach (ListBox.ObjectCollection s in listBox1.Items)
@@ -47,21 +48,6 @@ namespace ScpServer
 
         }
 
-        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            string s = listBox1.SelectedItem.ToString();
-            string[] lods = Directory.GetFiles(@"C:\Program Files (x86)\Steam\SteamApps\common\" + s, "*.exe", SearchOption.AllDirectories);
-            listBox2.Items.Clear();
-            foreach (string st in lods)
-                if (!st.Contains("setup") && !st.Contains("dotnet") && !st.Contains("SETUP") && !st.Contains("vcredist"))
-                listBox2.Items.Add(Path.GetFileNameWithoutExtension(st));
-        }
-
-        private void listBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == 13)
-                listBox1_MouseDoubleClick(sender, null);
-        }
         List<string> lods = new List<string>();
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -79,35 +65,15 @@ namespace ScpServer
                     listBox2.Items.Add(Path.GetFileNameWithoutExtension(st));
         }
 
-        private void listBox2_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            
-        }
-
-        private void listBox2_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == 13)
-                listBox2_MouseDoubleClick(sender, null);
-        }
-
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox2.SelectedIndex >= 0)
-            label1.Text = lods[listBox2.SelectedIndex];
+            {
+                label1.Text = lods[listBox2.SelectedIndex];
+                LoadP();
+            }
         }
 
-        private void Controller_CheckedChanged(object sender, EventArgs e)
-        {
-            /*if (cBC1.Checked)
-                Global.setAProfile(0, lBProfiles.SelectedItem.ToString());
-            if (cBC2.Checked)
-                Global.setAProfile(1, lBProfiles.SelectedItem.ToString());
-            if (cBC3.Checked)
-                Global.setAProfile(2, lBProfiles.SelectedItem.ToString());
-            if (cBC4.Checked)
-                Global.setAProfile(3, lBProfiles.SelectedItem.ToString());*/
-            Save();
-        }
         protected String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
 
@@ -143,13 +109,11 @@ namespace ScpServer
             //try
             {
                 XmlNode Node;
-                Node = m_Xdoc.SelectSingleNode("Programs");
-                //Node = m_Xdoc.CreateComment(String.Format(" Auto-Profile Configuration Data. {0} ", DateTime.Now));
-                //m_Xdoc.AppendChild(Node);               
+                Node = m_Xdoc.SelectSingleNode("Programs");       
 
                 string programname = listBox2.SelectedItem.ToString();
                 //if (programname.Contains(" "))
-                    programname.Replace(' ', ',');
+                programname = programname.Replace(' ', '_');
                 XmlNode xmlprogram = m_Xdoc.CreateNode(XmlNodeType.Element, programname, null);
 
                 XmlNode xmlController1 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller1", null);
@@ -178,6 +142,42 @@ namespace ScpServer
             //catch { Saved = false; }
 
             return Saved;
+        }
+
+        public void LoadP()
+        {
+            //try
+            {
+                if (File.Exists(m_Profile))
+                {
+                    XmlNode Item;
+                    m_Xdoc.Load(m_Profile);
+                    string programname = listBox2.SelectedItem.ToString();
+                    programname = programname.Replace(' ', '_');
+                    string[] profiles = new string[4];
+                    for (int i = 0; i < 4; i++)
+                    {
+                        try
+                        {
+                            Item = m_Xdoc.SelectSingleNode("/Programs/" + programname + "/Controller" + (i + 1));
+                            profiles[i] = Item.InnerText;
+                            for (int j = 0; j < cbs[i].Items.Count; j++)
+                                if (cbs[i].Items[j].ToString() == profiles[i])
+                                {
+                                    cbs[i].SelectedIndex = j;
+                                    break;
+                                }
+                                //else
+                                    //cbs[i].Text = "(none)";
+                        }
+                        catch { cbs[i].Text = "(none)"; } 
+                    }
+                }
+            }
+            //catch { missingSetting = true; }
+            //return missingSetting;
+            //if (missingSetting)
+                //label1.Content = "Current version not found, please re-run DS4Tool";
         }
 
         private void CBProfile_IndexChanged(object sender, EventArgs e)

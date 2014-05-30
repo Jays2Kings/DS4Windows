@@ -102,6 +102,12 @@
     <Compile Include="KBM360.Designer.cs">
       <DependentUpon>KBM360.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageTextBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageTextBox.Designer.cs">
+      <DependentUpon>MessageTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Options.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.es.resx</DependentUpon>
     </Compile>
     <Compile Include="ScpForm.cs">
       <SubType>Form</SubType>
@@ -140,6 +151,9 @@
     <EmbeddedResource Include="KBM360.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MessageTextBox.resx">
+      <DependentUpon>MessageTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,7 +162,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resource.es.resx" />
+    <EmbeddedResource Include="Resource.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScpForm.resx">
       <DependentUpon>ScpForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,21 +198,30 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\USB.png" />
     <None Include="Resources\UpperTouch.png" />
+    <None Include="Resources\shell32_copy.png" />
+    <None Include="Resources\shell32_new.png" />
+    <None Include="Resources\shell32 delete.png" />
     <None Include="Resources\sticks.png" />
     <None Include="Resources\Touch.png" />
     <None Include="Resources\Touch states2.png" />
     <None Include="Resources\sticks2.png" />
     <None Include="Resources\360 fades.png" />
+    <None Include="Resources\1401402547_menu-24.png" />
     <None Include="Resources\DS4 Controller.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\BT.png" />
     <Content Include="Resources\DS4.ico" />
     <None Include="Resources\mouse.png" />
     <None Include="Resources\rainbow.png" />
     <None Include="Resources\rainbowC.png" />
+    <None Include="Resources\Pairmode.png" />
     <None Include="Resources\LeftTouch.png" />
     <None Include="Resources\MultiTouch.png" />
     <None Include="Resources\RightTouch.png" />
-    <None Include="Resources\Pairmode.png" />
+    <None Include="Resources\imageres_new.png" />
+    <None Include="Resources\none.png" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>

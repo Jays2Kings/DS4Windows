@@ -32,7 +32,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lBProfiles = new System.Windows.Forms.ListBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -42,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBox1
@@ -52,8 +52,6 @@
             this.listBox1.Size = new System.Drawing.Size(279, 199);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown);
-            this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
             // 
             // button2
             // 
@@ -72,8 +70,6 @@
             this.listBox2.Size = new System.Drawing.Size(220, 199);
             this.listBox2.TabIndex = 0;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
-            this.listBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox2_KeyDown);
-            this.listBox2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox2_MouseDoubleClick);
             // 
             // label1
             // 
@@ -81,15 +77,6 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(717, 19);
             this.label1.TabIndex = 3;
-            // 
-            // lBProfiles
-            // 
-            this.lBProfiles.FormattingEnabled = true;
-            this.lBProfiles.Location = new System.Drawing.Point(516, 136);
-            this.lBProfiles.Name = "lBProfiles";
-            this.lBProfiles.Size = new System.Drawing.Size(196, 30);
-            this.lBProfiles.TabIndex = 4;
-            this.lBProfiles.Visible = false;
             // 
             // comboBox1
             // 
@@ -173,11 +160,24 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Controller 4";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(530, 129);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(182, 24);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Not yet ready for use";
+            // 
             // WinProgs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(736, 230);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -186,7 +186,6 @@
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.lBProfiles);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bnSave);
             this.Controls.Add(this.button2);
@@ -205,7 +204,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lBProfiles;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox3;
@@ -215,5 +213,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

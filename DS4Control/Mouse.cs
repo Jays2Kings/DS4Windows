@@ -29,12 +29,16 @@ namespace DS4Control
         {
             return "Standard Mode";
         }
-
+        public bool slideleft, slideright;
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
             cursor.touchesMoved(arg);
             if (Math.Abs(firstTouch.hwX - arg.touches[0].hwX) > 5 && Math.Abs(firstTouch.hwY - arg.touches[0].hwY) > 5)
             wheel.touchesMoved(arg);
+            if (arg.touches[0].hwX - firstTouch.hwX > 300 && !slideleft)
+                slideright = true;
+            else if (firstTouch.hwX - arg.touches[0].hwX > 300 && !slideright)
+                slideleft = true;
             dev.getCurrentState(s);
             synthesizeMouseButtons();
             //Console.WriteLine(arg.timeStamp.ToString("O") + " " + "moved to " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
@@ -58,6 +62,7 @@ namespace DS4Control
         public virtual void touchesEnded(object sender, TouchpadEventArgs arg)
         {
             //Console.WriteLine(arg.timeStamp.ToString("O") + " " + "ended at " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
+            slideright = slideleft = false;
             if (Global.getTapSensitivity(deviceNum) != 0)
             {
 

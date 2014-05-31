@@ -63,15 +63,19 @@ namespace ScpServer
             foreach (string st in lods)
                 //if (!st.Contains("etup") && !st.Contains("dotnet") && !st.Contains("SETUP") && !st.Contains("edist") && !st.Contains("nstall"))
                     listBox2.Items.Add(Path.GetFileNameWithoutExtension(st));
+            if (listBox2.Items.Count == 1 && listBox2.SelectedIndex != 0)
+                listBox2.SelectedIndex = 0;
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox2.SelectedIndex >= 0)
+           if (listBox2.SelectedIndex >= 0)
             {
                 label1.Text = lods[listBox2.SelectedIndex];
                 LoadP();
             }
+            else
+                label1.Text = "";
         }
 
         protected String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml";
@@ -167,8 +171,8 @@ namespace ScpServer
                                     cbs[i].SelectedIndex = j;
                                     break;
                                 }
-                                //else
-                                    //cbs[i].Text = "(none)";
+                            //else
+                            //cbs[i].Text = "(none)";
                         }
                         catch { cbs[i].Text = "(none)"; } 
                     }

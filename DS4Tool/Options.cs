@@ -43,7 +43,8 @@ namespace ScpServer
                 greenBar.Value = color.green;
                 blueBar.Value = color.blue;
                 
-                batteryLed.Checked = DS4Control.Global.getLedAsBatteryIndicator(device);
+                batteryLed.Checked = Global.getLedAsBatteryIndicator(device);
+                nUDflashLED.Value = Global.getFlashAt(device);
                 lowBatteryPanel.Visible = batteryLed.Checked;
                 lbFull.Text = (batteryLed.Checked ? "Full:" : "Color:");
                 FullPanel.Location = (batteryLed.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
@@ -53,8 +54,8 @@ namespace ScpServer
                 lowGreenBar.Value = lowColor.green;
                 lowBlueBar.Value = lowColor.blue;
 
-                rumbleBoostBar.Value = DS4Control.Global.loadRumbleBoost(device);
-                flashLed.Checked = DS4Control.Global.getFlashWhenLowBattery(device);
+                rumbleBoostBar.Value = Global.loadRumbleBoost(device);
+                flashLed.Checked = Global.getFlashWhenLowBattery(device);
                 numUDTouch.Value = Global.getTouchSensitivity(device);
                 cBSlide.Checked = Global.getTouchSensitivity(device) > 0;
                 numUDScroll.Value = Global.getScrollSensitivity(device);
@@ -246,6 +247,7 @@ namespace ScpServer
             Global.setRSDeadzone(device, (byte)Math.Round((numUDRS.Value * 127), 0));
             Global.setLSDeadzone(device, (byte)Math.Round((numUDLS.Value * 127), 0));
             Global.setButtonMouseSensitivity(device, (int)numUDMouseSens.Value);
+            Global.setFlashAt(device, (int)nUDflashLED.Value);
             if (numUDRainbow.Value == 0) pBRainbow.Image = greyscale;
             else pBRainbow.Image = colored;
         }
@@ -362,12 +364,12 @@ namespace ScpServer
                 Global.saveLowColor(device, color.R, color.G, color.B);
             }
         }
-
+        int bgc = 255; //Color of the form background, If greyscale color
         private void redBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 255 - (value < 255 ? value : 255);
-            int som = 255 + 11 * (int)(value * 0.0039215);
+            int sat = bgc - (value < bgc ? value : bgc);
+            int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
             alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
             reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
@@ -379,8 +381,8 @@ namespace ScpServer
         private void greenBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 255 - (value < 255 ? value : 255);
-            int som = 255 + 11 * (int)(value * 0.0039215);
+            int sat = bgc - (value < bgc ? value : bgc);
+            int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
             alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
             reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
@@ -392,8 +394,8 @@ namespace ScpServer
         private void blueBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 255 - (value < 255 ? value : 255);
-            int som = 255 + 11 * (int)(value * 0.0039215);
+            int sat = bgc - (value < bgc ? value : bgc);
+            int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
             alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
             reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
@@ -406,8 +408,8 @@ namespace ScpServer
         private void lowRedBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 255 - (value < 255 ? value : 255);
-            int som = 255 + 11 * (int)(value * 0.0039215);
+            int sat = bgc - (value < bgc ? value : bgc);
+            int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
             alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
             reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
@@ -420,8 +422,8 @@ namespace ScpServer
         private void lowGreenBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 255 - (value < 255 ? value : 255);
-            int som = 255 + 11 * (int)(value * 0.0039215);
+            int sat = bgc - (value < bgc ? value : bgc);
+            int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
             alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
             reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
@@ -434,8 +436,8 @@ namespace ScpServer
         private void lowBlueBar_ValueChanged(object sender, EventArgs e)
         {
             int value = ((TrackBar)sender).Value;
-            int sat = 255 - (value < 255 ? value : 255);
-            int som = 255 + 11 * (int)(value * 0.0039215);
+            int sat = bgc - (value < bgc ? value : bgc);
+            int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
             alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
             reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
@@ -717,24 +719,23 @@ namespace ScpServer
 
         private void ToggleRainbow(bool on)
         {
-            numUDRainbow.Visible = on;
+            numUDRainbow.Enabled = on;
             if (on)
             {
-                pBRainbow.Location = new Point(216 - 78, pBRainbow.Location.Y);
+                //pBRainbow.Location = new Point(216 - 78, pBRainbow.Location.Y);
                 pBController.BackgroundImage = Properties.Resources.rainbowC;
                 batteryLed.Text = "Battery Level Dim";
             }
             else
             {
                 lowBatteryPanel.Enabled = batteryLed.Checked;
-                pBRainbow.Location = new Point(216, pBRainbow.Location.Y);
+                //pBRainbow.Location = new Point(216, pBRainbow.Location.Y);
                 pBController.BackgroundImage = null;
                 batteryLed.Text = "Battery Level Color";
             }
-            lBspc.Visible = on;
+            lBspc.Enabled = on;
             lowBatteryPanel.Enabled = !on;
             FullPanel.Enabled = !on;
-            flashLed.Enabled = !on;
         }
 
         private Bitmap GreyscaleImage(Bitmap image)
@@ -813,32 +814,6 @@ namespace ScpServer
             Global.setButtonMouseSensitivity(device, (int)numUDMouseSens.Value);
         }
 
-        private void lbLS_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lBL2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbRS_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lBR2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Options_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void LightBar_MouseDown(object sender, MouseEventArgs e)
         {
             tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0);
@@ -852,6 +827,13 @@ namespace ScpServer
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void nUDflashLED_ValueChanged(object sender, EventArgs e)
+        {
+            if (nUDflashLED.Value % 10 != 0)
+                nUDflashLED.Value = Math.Round(nUDflashLED.Value / 10, 0) * 10;
+            Global.setFlashAt(device, (int)nUDflashLED.Value);
         }
     }
 }

@@ -166,6 +166,17 @@ namespace DS4Control
 
         }
 
+        public static void setFlashAt(int device, int when)
+        {
+            m_Config.flashAt[device] = when;
+
+        }
+        public static int getFlashAt(int device)
+        {
+            return m_Config.flashAt[device];
+
+        }
+
         public static void setLedAsBatteryIndicator(int device, bool ledAsBattery)
         {
             m_Config.ledAsBattery[device] = ledAsBattery;
@@ -487,6 +498,7 @@ namespace DS4Control
         public bool[] doubleTap = { false, false, false, false, false };
         public int[] scrollSensitivity = { 0, 0, 0, 0, 0 };
         public double[] rainbow = { 0, 0, 0, 0, 0 };
+        public int[] flashAt = { 30, 30, 30, 30, 30 };
         public Byte[][] m_LowLeds = new Byte[][]
         {
             new Byte[] {0,0,0},
@@ -582,6 +594,7 @@ namespace DS4Control
                 XmlNode xmlRumbleBoost = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); xmlRumbleBoost.InnerText = m_Rumble[device].ToString(); Node.AppendChild(xmlRumbleBoost);
                 XmlNode xmlLedAsBatteryIndicator = m_Xdoc.CreateNode(XmlNodeType.Element, "ledAsBatteryIndicator", null); xmlLedAsBatteryIndicator.InnerText = ledAsBattery[device].ToString(); Node.AppendChild(xmlLedAsBatteryIndicator);
                 XmlNode xmlLowBatteryFlash = m_Xdoc.CreateNode(XmlNodeType.Element, "lowBatteryFlash", null); xmlLowBatteryFlash.InnerText = flashLedLowBattery[device].ToString(); Node.AppendChild(xmlLowBatteryFlash);
+                XmlNode xmlFlashBatterAt = m_Xdoc.CreateNode(XmlNodeType.Element, "flashBatteryAt", null); xmlFlashBatterAt.InnerText = flashAt[device].ToString(); Node.AppendChild(xmlFlashBatterAt);
                 XmlNode xmlTouchSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "touchSensitivity", null); xmlTouchSensitivity.InnerText = touchSensitivity[device].ToString(); Node.AppendChild(xmlTouchSensitivity);
                 XmlNode xmlLowRed = m_Xdoc.CreateNode(XmlNodeType.Element, "LowRed", null); xmlLowRed.InnerText = m_LowLeds[device][0].ToString(); Node.AppendChild(xmlLowRed);
                 XmlNode xmlLowGreen = m_Xdoc.CreateNode(XmlNodeType.Element, "LowGreen", null); xmlLowGreen.InnerText = m_LowLeds[device][1].ToString(); Node.AppendChild(xmlLowGreen);
@@ -795,6 +808,9 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery[device]); }
                     catch { missingSetting = true; }
 
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flashBatteryAt"); Int32.TryParse(Item.InnerText, out flashAt[device]); }
+                    catch { missingSetting = true; }
+
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity[device]); }
                     catch { missingSetting = true; }
 
@@ -964,6 +980,9 @@ namespace DS4Control
                     catch { missingSetting = true; }
 
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery[device]); }
+                    catch { missingSetting = true; }
+
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flashBatteryAt"); Int32.TryParse(Item.InnerText, out flashAt[device]); }
                     catch { missingSetting = true; }
 
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity[device]); }

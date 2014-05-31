@@ -94,7 +94,7 @@ namespace DS4Control
             };
             if (haptics.IsLightBarSet())
             {
-                if (Global.getFlashWhenLowBattery(deviceNum))
+                if (device.Battery <= Global.getFlashAt(deviceNum))
                 {
                     int level = device.Battery / 10;
                     if (level >= 10)

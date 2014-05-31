@@ -479,7 +479,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(451, 9);
+            this.label23.Location = new System.Drawing.Point(458, 9);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(58, 13);
             this.label23.TabIndex = 3;
@@ -489,7 +489,7 @@
             // 
             this.lLBUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lLBUpdate.AutoSize = true;
-            this.lLBUpdate.Location = new System.Drawing.Point(-2, 9);
+            this.lLBUpdate.Location = new System.Drawing.Point(6, 9);
             this.lLBUpdate.Name = "lLBUpdate";
             this.lLBUpdate.Size = new System.Drawing.Size(96, 13);
             this.lLBUpdate.TabIndex = 48;

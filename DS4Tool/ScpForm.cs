@@ -15,7 +15,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 9;
+        double version = 9.111;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -104,11 +104,67 @@ namespace ScpServer
             SetupArrays();
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
-            CheckDrivers();
+            CheckDrivers();                 
+        }
+
+        protected void Form_Load(object sender, EventArgs e)
+        {
+            Icon = Properties.Resources.DS4;
+            notifyIcon1.Icon = Properties.Resources.DS4;
+            rootHub = new DS4Control.Control();
+            rootHub.Debug += On_Debug;
+            Log.GuiLog += On_Debug;
+            Log.TrayIconLog += ShowNotification;
+            // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
+            Global.Load();
+            Global.setVersion(version);
+            Global.Save();
+            hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
+            hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
+            hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
+
+            // New settings
+            this.Width = Global.getFormWidth();
+            this.Height = Global.getFormHeight();
+            startMinimizedCheckBox.CheckedChanged -= startMinimizedCheckBox_CheckedChanged;
+            startMinimizedCheckBox.Checked = Global.getStartMinimized();
+            startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
+
+            RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", false);
+            StartWindowsCheckBox.Checked = (KeyLoc.GetValue("DS4Tool") != null);
+
+            SetupArrays();
+            if (startMinimizedCheckBox.Checked)
+            {
+                this.WindowState = FormWindowState.Minimized;
+                Form_Resize(sender, e);
+            }
+            RefreshProfiles();
+            for (int i = 0; i < 4; i++)
+                Global.LoadProfile(i);
+            Global.ControllerStatusChange += ControllerStatusChange;
+            ControllerStatusChanged();
+            if (btnStartStop.Enabled)
+                btnStartStop_Clicked();
+            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
+            Directory.CreateDirectory(Global.appdatapath);
+            if (DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(1))
+            {
+                wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
+                wc.DownloadFileCompleted += Check_Version;
+                Global.setLastChecked(DateTime.Now);
+            }
+            WinProgs WP = new WinProgs(profilenames.ToArray());
+            WP.TopLevel = false;
+            WP.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            WP.Visible = true;
+            WP.Dock = DockStyle.Fill;
+            WP.Enabled = false;
+            tabAutoProfiles.Controls.Add(WP);
             //test.Start();
             //processcheck.Start();
             processcheck.Tick += processcheck_Tick;
-            test.Tick += test_Tick;         
+            test.Tick += test_Tick;    
         }
 
         void processcheck_Tick(object sender, EventArgs e)
@@ -211,62 +267,7 @@ namespace ScpServer
             }
             catch { };
         }
-
-        protected void Form_Load(object sender, EventArgs e)
-        {
-            Icon = Properties.Resources.DS4;
-            notifyIcon1.Icon = Properties.Resources.DS4;
-            rootHub = new DS4Control.Control();
-            rootHub.Debug += On_Debug;
-            Log.GuiLog += On_Debug;
-            Log.TrayIconLog += ShowNotification;
-            // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
-            Global.Load();
-            Global.setVersion(version);
-            Global.Save();
-            hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
-            hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
-            hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
-
-            // New settings
-            this.Width = Global.getFormWidth();
-            this.Height = Global.getFormHeight();
-            startMinimizedCheckBox.CheckedChanged -= startMinimizedCheckBox_CheckedChanged;
-            startMinimizedCheckBox.Checked = Global.getStartMinimized();
-            startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
-
-            RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", false);
-            StartWindowsCheckBox.Checked = (KeyLoc.GetValue("DS4Tool") != null);
-
-            SetupArrays();
-            if (startMinimizedCheckBox.Checked)
-            {
-                this.WindowState = FormWindowState.Minimized;
-                Form_Resize(sender, e);
-            }
-            RefreshProfiles();
-            for (int i = 0; i < 4; i++)
-                Global.LoadProfile(i);
-            Global.ControllerStatusChange += ControllerStatusChange;
-            ControllerStatusChanged();
-            if (btnStartStop.Enabled)
-                btnStartStop_Clicked();
-            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
-            Directory.CreateDirectory(Global.appdatapath);
-            if (DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(1))
-            {
-                wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
-                wc.DownloadFileCompleted += Check_Version;
-                Global.setLastChecked(DateTime.Now);
-            }
-            WinProgs WP = new WinProgs(profilenames.ToArray());
-            WP.TopLevel = false;
-            WP.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            WP.Visible = true;
-            WP.Dock = DockStyle.Fill;
-            WP.Enabled = false;
-            tabAutoProfiles.Controls.Add(WP);
-        }
+        
         List<string> profilenames = new List<string>();
         public void RefreshProfiles()
         {
@@ -441,8 +442,6 @@ namespace ScpServer
         }
         protected void ControllerStatusChanged()
         {
-            // If controllers are detected, but not checked, automatically check #1
-            //bool checkFirst = true;
             String tooltip = "DS4Windows v" + version;
             for (Int32 Index = 0; Index < Pads.Length; Index++)
             {
@@ -459,45 +458,37 @@ namespace ScpServer
                     Pads[Index].Enabled = true;
                     if (Pads[Index].Text != "Connecting...")
                     {
-                        cbs[Index].Enabled = true;
-                        ebns[Index].Enabled = true;
-                        shortcuts[Index].Enabled = true;
-                        Batteries[Index].Enabled = true;
-                        MinimumSize = new Size(MinimumSize.Width, 190 + 29 * Index);
+                        Enable_Controls(Index, true);
+                        MinimumSize = new Size(MinimumSize.Width, 161 + 29 * Index);
                         rootHub.DS4Controllers[Index].Report += ScpForm_Report;
                     }
-                    // As above
-                    //if (checkFirst && (Pads[Index].Checked && Index != 0))
-                    // checkFirst = false;
                 }
                 else
                 {
                     Pads[Index].Text = "Disconnected";
-                    Pads[Index].Enabled = false;
-                    cbs[Index].Enabled = false;
-                    ebns[Index].Enabled = false;
-                    Batteries[Index].Enabled = false;
+                    Enable_Controls(Index, false);
                     if (opt != null && opt.device == Index)
                     {
                         opt.Close();
                         opt = null;
                     }
                     shortcuts[Index].Enabled = false;
-                    // As above
-                    //if (Index == 0)
-                    // checkFirst = false;
                 }
                 if (rootHub.getShortDS4ControllerInfo(Index) != "None")
                     tooltip += "\n" + (Index + 1) + ": " + rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
             }
             btnClear.Enabled = lvDebug.Items.Count > 0;
-
-            // As above
-            //if (checkFirst && btnClear.Enabled)
-            // Pads[0].Checked = true;
             notifyIcon1.Text = tooltip;
         }
 
+
+        private void Enable_Controls(int device, bool on)
+        {
+            ebns[device].Enabled = on;
+            cbs[device].Enabled = on;
+            shortcuts[device].Enabled = on;
+            Batteries[device].Enabled = on;
+        }
         delegate void HotKeysDelegate(object sender, EventArgs e);
         void ScpForm_Report(object sender, EventArgs e)
         {
@@ -515,7 +506,7 @@ namespace ScpServer
                 string slide = rootHub.TouchpadSlide(0);
                 if (slide == "left")
                 {
-                    if (cbs[i].SelectedIndex == 0)
+                    if (cbs[i].SelectedIndex <= 0)
                         cbs[i].SelectedIndex = cbs[0].Items.Count - 2;
                     else
                         cbs[i].SelectedIndex--;
@@ -547,6 +538,20 @@ namespace ScpServer
             ShowOptions(4, lBProfiles.SelectedItem.ToString());
         }
 
+
+        private void lBProfiles_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (lBProfiles.SelectedIndex >= 0 && opt == null)
+            {
+                if (e.KeyValue == 13)
+                    ShowOptions(4, lBProfiles.SelectedItem.ToString());
+                if (e.KeyValue == 46)
+                    tsBDeleteProfle_Click(this, e);
+                if (e.KeyValue == 67 && e.Modifiers == Keys.Control)
+                    tSBDupProfile_Click(this, e);
+            }
+
+        }
 
         private void tsBNewProfile_Click(object sender, EventArgs e)
         {
@@ -593,7 +598,37 @@ namespace ScpServer
                 MTB.FormClosed += delegate { toolStrip1.Enabled = true; lBProfiles.Enabled = true; };
             }
         }
-        //private Options[] OptionsDialog = { null, null, null, null };
+
+
+
+        private void tSBImportProfile_Click(object sender, EventArgs e)
+        {
+            openProfiles.InitialDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\";
+            if (openProfiles.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string[] files = openProfiles.FileNames;
+                for (int i = 0; i < files.Length; i++)
+                    File.Copy(openProfiles.FileNames[i], Global.appdatapath + "\\Profiles\\" + Path.GetFileName(files[i]), true);
+                RefreshProfiles();
+            }
+        }
+
+        private void tSBExportProfile_Click(object sender, EventArgs e)
+        {
+            if (lBProfiles.SelectedIndex >= 0)
+            {
+                Stream stream;
+                Stream profile = new StreamReader(Global.appdatapath + "\\Profiles\\" + lBProfiles.SelectedItem.ToString() + ".xml").BaseStream;
+                if (saveProfiles.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    if ((stream = saveProfiles.OpenFile()) != null)
+                    {
+                        profile.CopyTo(stream);
+                        profile.Close();
+                        stream.Close();
+                    }
+            }
+        }
+
         Options opt;
         private System.Drawing.Size oldsize;
         private void ShowOptions(int devID, string profile)
@@ -625,8 +660,8 @@ namespace ScpServer
                     toolStrip1.Enabled = true;
                 };
                 oldsize = this.Size;
-                if (this.Size.Height < 470)
-                    this.Size = new System.Drawing.Size(this.Size.Width, 470);
+                if (this.Size.Height < 442)
+                    this.Size = new System.Drawing.Size(this.Size.Width, 442);
                 if (this.Size.Width < 910)
                     this.Size = new System.Drawing.Size(910, this.Size.Height);
                 tabMain.SelectedIndex = 1;
@@ -652,19 +687,7 @@ namespace ScpServer
                         if (((ToolStripMenuItem)em.DropDownItems[t]).Checked)
                             ShowOptions(i, ((ToolStripMenuItem)em.DropDownItems[t]).Text);
         }
-        private void Enable_Controls(int device, bool on)
-        {
-            ebns[device].Enabled = on;
-            cbs[device].Enabled = on;
-            shortcuts[device].Enabled = on;
-        }
         
-        private void hotkeysButton_Click(object sender, EventArgs e)
-        {
-            Hotkeys hotkeysForm = new Hotkeys();
-            hotkeysForm.Icon = this.Icon;
-            hotkeysForm.ShowDialog();
-        }
         private void lnkControllers_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("control", "joy.cpl");
@@ -776,37 +799,9 @@ namespace ScpServer
 
         private void llbHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Hotkeys hotkeysForm = new Hotkeys();
+            Hotkeys hotkeysForm = new Hotkeys(this);
             hotkeysForm.Icon = this.Icon;
             hotkeysForm.ShowDialog();
-        }
-
-        private void btnImportProfiles_Click(object sender, EventArgs e)
-        {
-            openProfiles.InitialDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\";
-            if (openProfiles.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string[] files = openProfiles.FileNames;
-                for (int i = 0; i < files.Length; i++)
-                    File.Copy(openProfiles.FileNames[i], Global.appdatapath + "\\Profiles\\" + Path.GetFileName(files[i]), true);
-                RefreshProfiles();
-            }
-        }
-
-        protected void Form_Close(object sender, FormClosingEventArgs e)
-        {
-            if (oldsize == new System.Drawing.Size(0, 0))
-            {
-                Global.setFormWidth(this.Width);
-                Global.setFormHeight(this.Height);
-            }
-            else
-            {
-                Global.setFormWidth(oldsize.Width);
-                Global.setFormHeight(oldsize.Height);
-            }
-            Global.Save();
-            rootHub.Stop();
         }
 
         private void StartWindowsCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -824,15 +819,15 @@ namespace ScpServer
             WP.ShowDialog();
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbLastMessage.Visible = tabMain.SelectedIndex != 2;
             if (tabMain.SelectedIndex == 3 && opt == null)
             {
-                if (this.Size.Width < 755 || this.Size.Height < 355)
+                if (this.Size.Width < 755 || this.Size.Height < 340)
                     oldsize = Size;
-                if (this.Size.Height < 355)
-                    this.Size = new System.Drawing.Size(this.Size.Width, 355);
+                if (this.Size.Height < 340)
+                    this.Size = new System.Drawing.Size(this.Size.Width, 340);
                 if (this.Size.Width < 755)
                     this.Size = new System.Drawing.Size(755, this.Size.Height);
                 
@@ -845,8 +840,21 @@ namespace ScpServer
 
         }
 
-        
-
+        protected void Form_Close(object sender, FormClosingEventArgs e)
+        {
+            if (oldsize == new System.Drawing.Size(0, 0))
+            {
+                Global.setFormWidth(this.Width);
+                Global.setFormHeight(this.Height);
+            }
+            else
+            {
+                Global.setFormWidth(oldsize.Width);
+                Global.setFormHeight(oldsize.Height);
+            }
+            Global.Save();
+            rootHub.Stop();
+        } 
     }
 
     public class ThemeUtil

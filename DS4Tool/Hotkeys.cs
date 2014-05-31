@@ -14,8 +14,10 @@ namespace ScpServer
 {
     public partial class Hotkeys : Form
     {
-        public Hotkeys()
+        ScpForm form;
+        public Hotkeys(ScpForm main)
         {
+            form = main;
             InitializeComponent();
             lbAbout.Text += Global.getVersion().ToString() + ")";
             ToolTip tt = new ToolTip();
@@ -86,7 +88,7 @@ namespace ScpServer
                                 wc2.DownloadFile(url2, "Updater.exe");
                             }
                             System.Diagnostics.Process.Start("Updater.exe");
-                            this.Close();
+                            form.Close();
                         }
                         else
                             File.Delete(Global.appdatapath + "\\version.txt");

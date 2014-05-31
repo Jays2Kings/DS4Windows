@@ -140,6 +140,9 @@
             this.gBRumble = new System.Windows.Forms.GroupBox();
             this.gBDeadzone = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
+            this.lBFlashAt = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
@@ -180,6 +183,7 @@
             this.gBLightbar.SuspendLayout();
             this.gBRumble.SuspendLayout();
             this.gBDeadzone.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.SuspendLayout();
             // 
             // bnTouchUpper
@@ -445,6 +449,7 @@
             this.bnUp.BackColor = System.Drawing.Color.Transparent;
             this.bnUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnUp.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bnUp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bnUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnUp.FlatAppearance.BorderSize = 0;
             this.bnUp.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
@@ -944,22 +949,21 @@
             // 
             // numUDRainbow
             // 
-            this.numUDRainbow.Location = new System.Drawing.Point(160, 15);
+            this.numUDRainbow.Location = new System.Drawing.Point(180, 16);
             this.numUDRainbow.Maximum = new decimal(new int[] {
             60,
             0,
             0,
             0});
             this.numUDRainbow.Name = "numUDRainbow";
-            this.numUDRainbow.Size = new System.Drawing.Size(51, 20);
+            this.numUDRainbow.Size = new System.Drawing.Size(39, 20);
             this.numUDRainbow.TabIndex = 167;
-            this.numUDRainbow.Visible = false;
             this.numUDRainbow.ValueChanged += new System.EventHandler(this.numUDRainbow_ValueChanged);
             // 
             // pBRainbow
             // 
             this.pBRainbow.Image = global::ScpServer.Properties.Resources.rainbow;
-            this.pBRainbow.Location = new System.Drawing.Point(216, 17);
+            this.pBRainbow.Location = new System.Drawing.Point(161, 18);
             this.pBRainbow.Name = "pBRainbow";
             this.pBRainbow.Size = new System.Drawing.Size(16, 16);
             this.pBRainbow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -970,13 +974,14 @@
             // flashLed
             // 
             this.flashLed.AutoSize = true;
-            this.flashLed.Location = new System.Drawing.Point(8, 17);
+            this.flashLed.Location = new System.Drawing.Point(433, 103);
             this.flashLed.Name = "flashLed";
             this.flashLed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flashLed.Size = new System.Drawing.Size(116, 17);
+            this.flashLed.Size = new System.Drawing.Size(103, 17);
             this.flashLed.TabIndex = 163;
-            this.flashLed.Text = "Battery Level Flash";
+            this.flashLed.Text = "Flash when Low";
             this.flashLed.UseVisualStyleBackColor = true;
+            this.flashLed.Visible = false;
             this.flashLed.CheckedChanged += new System.EventHandler(this.flashWhenLowBattery_CheckedChanged);
             // 
             // blueBar
@@ -1059,12 +1064,11 @@
             // lBspc
             // 
             this.lBspc.AutoSize = true;
-            this.lBspc.Location = new System.Drawing.Point(213, 18);
+            this.lBspc.Location = new System.Drawing.Point(225, 18);
             this.lBspc.Name = "lBspc";
-            this.lBspc.Size = new System.Drawing.Size(93, 13);
+            this.lBspc.Size = new System.Drawing.Size(59, 13);
             this.lBspc.TabIndex = 157;
-            this.lBspc.Text = "seconds per cycle";
-            this.lBspc.Visible = false;
+            this.lBspc.Text = "secs/cycle";
             // 
             // lBRed
             // 
@@ -1235,7 +1239,6 @@
             this.lBL2.Size = new System.Drawing.Size(19, 13);
             this.lBL2.TabIndex = 196;
             this.lBL2.Text = "L2";
-            this.lBL2.Click += new System.EventHandler(this.lBL2_Click);
             // 
             // lBR2
             // 
@@ -1245,7 +1248,6 @@
             this.lBR2.Size = new System.Drawing.Size(21, 13);
             this.lBR2.TabIndex = 197;
             this.lBR2.Text = "R2";
-            this.lBR2.Click += new System.EventHandler(this.lBR2_Click);
             // 
             // lBControllerOff
             // 
@@ -1681,7 +1683,6 @@
             this.lbRS.Size = new System.Drawing.Size(22, 13);
             this.lbRS.TabIndex = 197;
             this.lbRS.Text = "RS";
-            this.lbRS.Click += new System.EventHandler(this.lbRS_Click);
             // 
             // lbLS
             // 
@@ -1691,7 +1692,6 @@
             this.lbLS.Size = new System.Drawing.Size(20, 13);
             this.lbLS.TabIndex = 196;
             this.lbLS.Text = "LS";
-            this.lbLS.Click += new System.EventHandler(this.lbLS_Click);
             // 
             // numUDRS
             // 
@@ -1843,9 +1843,11 @@
             // 
             // gBLightbar
             // 
+            this.gBLightbar.Controls.Add(this.label1);
+            this.gBLightbar.Controls.Add(this.lBFlashAt);
             this.gBLightbar.Controls.Add(this.pBRainbow);
-            this.gBLightbar.Controls.Add(this.flashLed);
             this.gBLightbar.Controls.Add(this.lowBatteryPanel);
+            this.gBLightbar.Controls.Add(this.nUDflashLED);
             this.gBLightbar.Controls.Add(this.numUDRainbow);
             this.gBLightbar.Controls.Add(this.FullPanel);
             this.gBLightbar.Controls.Add(this.lBspc);
@@ -1892,6 +1894,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(352, 7);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -1899,6 +1902,37 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // nUDflashLED
+            // 
+            this.nUDflashLED.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDflashLED.Location = new System.Drawing.Point(60, 16);
+            this.nUDflashLED.Name = "nUDflashLED";
+            this.nUDflashLED.Size = new System.Drawing.Size(43, 20);
+            this.nUDflashLED.TabIndex = 167;
+            this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
+            // 
+            // lBFlashAt
+            // 
+            this.lBFlashAt.AutoSize = true;
+            this.lBFlashAt.Location = new System.Drawing.Point(15, 18);
+            this.lBFlashAt.Name = "lBFlashAt";
+            this.lBFlashAt.Size = new System.Drawing.Size(44, 13);
+            this.lBFlashAt.TabIndex = 207;
+            this.lBFlashAt.Text = "Flash at";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(104, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(15, 13);
+            this.label1.TabIndex = 207;
+            this.label1.Text = "%";
             // 
             // advColorDialog
             // 
@@ -1911,8 +1945,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(889, 297);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(888, 297);
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.flashLed);
             this.Controls.Add(this.gBDeadzone);
             this.Controls.Add(this.gBRumble);
             this.Controls.Add(this.gBLightbar);
@@ -1934,7 +1970,6 @@
             this.Name = "Options";
             this.Text = "Options";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Options_Closed);
-            this.Load += new System.EventHandler(this.Options_Load);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).EndInit();
@@ -1984,6 +2019,7 @@
             this.gBRumble.PerformLayout();
             this.gBDeadzone.ResumeLayout(false);
             this.gBDeadzone.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2106,6 +2142,9 @@
         private System.Windows.Forms.CheckBox cBControllerInput;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.NumericUpDown nUDSixaxis;
+        private System.Windows.Forms.NumericUpDown nUDflashLED;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lBFlashAt;
     }
 }
 

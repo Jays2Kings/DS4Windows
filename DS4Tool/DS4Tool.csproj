@@ -198,6 +198,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\shell32_export.png" />
     <None Include="Resources\USB.png" />
     <None Include="Resources\UpperTouch.png" />
     <None Include="Resources\shell32_copy.png" />
@@ -222,6 +223,8 @@
     <None Include="Resources\RightTouch.png" />
     <None Include="Resources\imageres_new.png" />
     <None Include="Resources\none.png" />
+    <None Include="Resources\export.png" />
+    <None Include="Resources\imageres_import.png" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>

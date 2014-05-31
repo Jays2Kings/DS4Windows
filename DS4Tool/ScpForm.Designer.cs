@@ -91,6 +91,17 @@
             this.tSBImportProfile = new System.Windows.Forms.ToolStripButton();
             this.tSBExportProfile = new System.Windows.Forms.ToolStripButton();
             this.lBProfiles = new System.Windows.Forms.ListBox();
+            this.cMProfile = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.newProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assignToController1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assignToController2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assignToController3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assignToController4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.tabAutoProfiles = new System.Windows.Forms.TabPage();
             this.saveProfiles = new System.Windows.Forms.SaveFileDialog();
@@ -105,6 +116,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBStatus4)).BeginInit();
             this.tabProfiles.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.cMProfile.SuspendLayout();
             this.tabLog.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -378,7 +390,7 @@
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.34039F));
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.31077F));
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
-            this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tLPControllers.Controls.Add(this.pBStatus1, 1, 1);
             this.tLPControllers.Controls.Add(this.lbPad1, 0, 1);
             this.tLPControllers.Controls.Add(this.lbPad2, 0, 2);
@@ -452,7 +464,7 @@
             // bnEditC3
             // 
             this.bnEditC3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC3.Location = new System.Drawing.Point(743, 76);
+            this.bnEditC3.Location = new System.Drawing.Point(742, 76);
             this.bnEditC3.Name = "bnEditC3";
             this.bnEditC3.Size = new System.Drawing.Size(40, 23);
             this.bnEditC3.TabIndex = 43;
@@ -464,7 +476,7 @@
             // bnEditC4
             // 
             this.bnEditC4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC4.Location = new System.Drawing.Point(743, 105);
+            this.bnEditC4.Location = new System.Drawing.Point(742, 105);
             this.bnEditC4.Name = "bnEditC4";
             this.bnEditC4.Size = new System.Drawing.Size(40, 23);
             this.bnEditC4.TabIndex = 43;
@@ -499,7 +511,7 @@
             // 
             this.cBController1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController1.FormattingEnabled = true;
-            this.cBController1.Location = new System.Drawing.Point(626, 19);
+            this.cBController1.Location = new System.Drawing.Point(625, 19);
             this.cBController1.Name = "cBController1";
             this.cBController1.Size = new System.Drawing.Size(111, 21);
             this.cBController1.TabIndex = 42;
@@ -509,7 +521,7 @@
             // bnEditC2
             // 
             this.bnEditC2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC2.Location = new System.Drawing.Point(743, 47);
+            this.bnEditC2.Location = new System.Drawing.Point(742, 47);
             this.bnEditC2.Name = "bnEditC2";
             this.bnEditC2.Size = new System.Drawing.Size(40, 23);
             this.bnEditC2.TabIndex = 43;
@@ -522,7 +534,7 @@
             // 
             this.cBController2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController2.FormattingEnabled = true;
-            this.cBController2.Location = new System.Drawing.Point(626, 48);
+            this.cBController2.Location = new System.Drawing.Point(625, 48);
             this.cBController2.Name = "cBController2";
             this.cBController2.Size = new System.Drawing.Size(111, 21);
             this.cBController2.TabIndex = 42;
@@ -533,7 +545,7 @@
             // 
             this.cBController3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController3.FormattingEnabled = true;
-            this.cBController3.Location = new System.Drawing.Point(626, 77);
+            this.cBController3.Location = new System.Drawing.Point(625, 77);
             this.cBController3.Name = "cBController3";
             this.cBController3.Size = new System.Drawing.Size(111, 21);
             this.cBController3.TabIndex = 42;
@@ -543,7 +555,7 @@
             // bnEditC1
             // 
             this.bnEditC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC1.Location = new System.Drawing.Point(743, 18);
+            this.bnEditC1.Location = new System.Drawing.Point(742, 18);
             this.bnEditC1.Name = "bnEditC1";
             this.bnEditC1.Size = new System.Drawing.Size(40, 23);
             this.bnEditC1.TabIndex = 43;
@@ -556,7 +568,7 @@
             // 
             this.cBController4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController4.FormattingEnabled = true;
-            this.cBController4.Location = new System.Drawing.Point(626, 106);
+            this.cBController4.Location = new System.Drawing.Point(625, 106);
             this.cBController4.Name = "cBController4";
             this.cBController4.Size = new System.Drawing.Size(111, 21);
             this.cBController4.TabIndex = 42;
@@ -568,7 +580,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(627, 0);
+            this.label2.Location = new System.Drawing.Point(626, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 15);
             this.label2.TabIndex = 45;
@@ -784,6 +796,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lBProfiles.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lBProfiles.ContextMenuStrip = this.cMProfile;
             this.lBProfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBProfiles.FormattingEnabled = true;
             this.lBProfiles.ItemHeight = 16;
@@ -792,8 +805,98 @@
             this.lBProfiles.Name = "lBProfiles";
             this.lBProfiles.Size = new System.Drawing.Size(780, 272);
             this.lBProfiles.TabIndex = 0;
+            this.lBProfiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseClick);
             this.lBProfiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lBProfiles_KeyDown);
             this.lBProfiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseDoubleClick);
+            this.lBProfiles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseDown);
+            // 
+            // cMProfile
+            // 
+            this.cMProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newProfileToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.assignToController1ToolStripMenuItem,
+            this.assignToController2ToolStripMenuItem,
+            this.assignToController3ToolStripMenuItem,
+            this.assignToController4ToolStripMenuItem,
+            this.deleteToolStripMenuItem,
+            this.duplicateToolStripMenuItem,
+            this.importToolStripMenuItem,
+            this.exportToolStripMenuItem});
+            this.cMProfile.Name = "cMProfile";
+            this.cMProfile.ShowImageMargin = false;
+            this.cMProfile.Size = new System.Drawing.Size(164, 246);
+            // 
+            // newProfileToolStripMenuItem
+            // 
+            this.newProfileToolStripMenuItem.Name = "newProfileToolStripMenuItem";
+            this.newProfileToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.newProfileToolStripMenuItem.Text = "New Profile";
+            this.newProfileToolStripMenuItem.Click += new System.EventHandler(this.tsBNewProfile_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.tsBNEditProfile_Click);
+            // 
+            // assignToController1ToolStripMenuItem
+            // 
+            this.assignToController1ToolStripMenuItem.Name = "assignToController1ToolStripMenuItem";
+            this.assignToController1ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.assignToController1ToolStripMenuItem.Text = "Assign to Controller 1";
+            this.assignToController1ToolStripMenuItem.Click += new System.EventHandler(this.assignToController1ToolStripMenuItem_Click);
+            // 
+            // assignToController2ToolStripMenuItem
+            // 
+            this.assignToController2ToolStripMenuItem.Name = "assignToController2ToolStripMenuItem";
+            this.assignToController2ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.assignToController2ToolStripMenuItem.Text = "Assign to Controller 2";
+            this.assignToController2ToolStripMenuItem.Click += new System.EventHandler(this.assignToController2ToolStripMenuItem_Click);
+            // 
+            // assignToController3ToolStripMenuItem
+            // 
+            this.assignToController3ToolStripMenuItem.Name = "assignToController3ToolStripMenuItem";
+            this.assignToController3ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.assignToController3ToolStripMenuItem.Text = "Assign to Controller 3";
+            this.assignToController3ToolStripMenuItem.Click += new System.EventHandler(this.assignToController3ToolStripMenuItem_Click);
+            // 
+            // assignToController4ToolStripMenuItem
+            // 
+            this.assignToController4ToolStripMenuItem.Name = "assignToController4ToolStripMenuItem";
+            this.assignToController4ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.assignToController4ToolStripMenuItem.Text = "Assign to Controller 4";
+            this.assignToController4ToolStripMenuItem.Click += new System.EventHandler(this.assignToController4ToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.deleteToolStripMenuItem.Text = "Delete (Del)";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.tsBDeleteProfle_Click);
+            // 
+            // duplicateToolStripMenuItem
+            // 
+            this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
+            this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.duplicateToolStripMenuItem.Text = "Duplicate (Ctrl+C)";
+            this.duplicateToolStripMenuItem.Click += new System.EventHandler(this.tsBDeleteProfle_Click);
+            // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.importToolStripMenuItem.Text = "Import";
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.tSBImportProfile_Click);
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.exportToolStripMenuItem.Text = "Export";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.tSBExportProfile_Click);
             // 
             // tabLog
             // 
@@ -849,6 +952,7 @@
             this.tabProfiles.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.cMProfile.ResumeLayout(false);
             this.tabLog.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -920,6 +1024,17 @@
         private System.Windows.Forms.ToolStripButton tSBImportProfile;
         private System.Windows.Forms.ToolStripButton tSBExportProfile;
         private System.Windows.Forms.SaveFileDialog saveProfiles;
+        private System.Windows.Forms.ContextMenuStrip cMProfile;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assignToController1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assignToController2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assignToController3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assignToController4ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newProfileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

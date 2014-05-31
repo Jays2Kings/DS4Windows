@@ -180,10 +180,8 @@ namespace DS4Control
                 }
                 else
                 {
-                    //leftRumble = rightRumble = 0; // Ignore ambiguous pushes.
                 }
             }
-            //dev.setRumble(rightRumble, leftRumble); // sustain while pressed
             dev.getCurrentState(s);
             synthesizeMouseButtons();
         }

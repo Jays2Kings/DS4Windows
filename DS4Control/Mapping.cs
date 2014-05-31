@@ -285,8 +285,8 @@ namespace DS4Control
         {
             SyntheticState deviceState = Mapping.deviceState[device];
             string macro = Global.getCustomMacro(device, what);
-            if (!string.IsNullOrEmpty(macro))
-            {
+            if (macro != "0")
+            {                
                 DS4KeyType keyType = Global.getCustomKeyType(device, what);
                 SyntheticState.KeyPresses kp;
                 string[] skeys = macro.Split('/');

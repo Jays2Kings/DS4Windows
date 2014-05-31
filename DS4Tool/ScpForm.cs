@@ -15,7 +15,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 9.111;
+        double version = 9.15;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -467,11 +467,11 @@ namespace ScpServer
                 {
                     Pads[Index].Text = "Disconnected";
                     Enable_Controls(Index, false);
-                    if (opt != null && opt.device == Index)
+                    /*if (opt != null && opt.device == Index)
                     {
                         opt.Close();
                         opt = null;
-                    }
+                    }*/
                     shortcuts[Index].Enabled = false;
                 }
                 if (rootHub.getShortDS4ControllerInfo(Index) != "None")
@@ -484,6 +484,7 @@ namespace ScpServer
 
         private void Enable_Controls(int device, bool on)
         {
+            Pads[device].Enabled = on;
             ebns[device].Enabled = on;
             cbs[device].Enabled = on;
             shortcuts[device].Enabled = on;
@@ -505,24 +506,17 @@ namespace ScpServer
             {
                 string slide = rootHub.TouchpadSlide(0);
                 if (slide == "left")
-                {
                     if (cbs[i].SelectedIndex <= 0)
                         cbs[i].SelectedIndex = cbs[0].Items.Count - 2;
                     else
                         cbs[i].SelectedIndex--;
-                }
                 else if (slide == "right")
-                {
                     if (cbs[i].SelectedIndex == cbs[0].Items.Count - 2)
                         cbs[i].SelectedIndex = 0;
                     else
                         cbs[i].SelectedIndex++;
-                }
                 if (slide.Contains("t"))
-                {
-                    LogDebug(DateTime.Now, "Controller " + (i + 1) + " is now using Profile \"" + cbs[i].Text + "\"");
                     ShowNotification(this, "Controller " + (i + 1) + " is now using Profile \"" + cbs[i].Text + "\"");
-                }
             }
         }
 
@@ -553,7 +547,27 @@ namespace ScpServer
 
         }
 
-        private void tsBNewProfile_Click(object sender, EventArgs e)
+        private void assignToController1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cbs[0].SelectedIndex = lBProfiles.SelectedIndex;
+        }
+
+        private void assignToController2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cbs[1].SelectedIndex = lBProfiles.SelectedIndex;
+        }
+
+        private void assignToController3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cbs[2].SelectedIndex = lBProfiles.SelectedIndex;
+        }
+
+        private void assignToController4ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cbs[3].SelectedIndex = lBProfiles.SelectedIndex;
+        }
+
+        private void tsBNewProfile_Click(object sender, EventArgs e) //Also used for context menu
         {
             ShowOptions(4, "");
         }
@@ -633,7 +647,6 @@ namespace ScpServer
         private System.Drawing.Size oldsize;
         private void ShowOptions(int devID, string profile)
         {
-            //if (OptionsDialog[devID] == null)
             if (opt == null)
             {
                 this.Show();
@@ -854,7 +867,46 @@ namespace ScpServer
             }
             Global.Save();
             rootHub.Stop();
-        } 
+        }
+
+        private void lBProfiles_MouseClick(object sender, MouseEventArgs e)
+        {
+            //lBProfiles.SelectedIndex = lBProfiles.IndexFromPoint(e.X, e.Y);
+            //if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                //
+            }
+        }
+
+        private void lBProfiles_MouseDown(object sender, MouseEventArgs e)
+        {
+            lBProfiles.SelectedIndex = lBProfiles.IndexFromPoint(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                if (lBProfiles.SelectedIndex < 0)
+                {
+                    assignToController1ToolStripMenuItem.Visible = false;
+                    assignToController2ToolStripMenuItem.Visible = false;
+                    assignToController3ToolStripMenuItem.Visible = false;
+                    assignToController4ToolStripMenuItem.Visible = false;
+                    deleteToolStripMenuItem.Visible = false;
+                    editToolStripMenuItem.Visible = false;
+                    duplicateToolStripMenuItem.Visible = false;
+                    exportToolStripMenuItem.Visible = false;
+                }
+                else
+                {
+                    assignToController1ToolStripMenuItem.Visible = true;
+                    assignToController2ToolStripMenuItem.Visible = true;
+                    assignToController3ToolStripMenuItem.Visible = true;
+                    assignToController4ToolStripMenuItem.Visible = true;
+                    deleteToolStripMenuItem.Visible = true;
+                    editToolStripMenuItem.Visible = true;
+                    duplicateToolStripMenuItem.Visible = true;
+                    exportToolStripMenuItem.Visible = true;                
+                }
+            }
+        }
     }
 
     public class ThemeUtil

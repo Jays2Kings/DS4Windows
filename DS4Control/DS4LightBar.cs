@@ -5,7 +5,7 @@ using System.Text;
 using DS4Library;
 namespace DS4Control
 {
-    class DS4LightBar
+    public class DS4LightBar
     {
         private readonly static byte[/* Light On duration */, /* Light Off duration */] BatteryIndicatorDurations =
         {
@@ -25,69 +25,74 @@ namespace DS4Control
         static DateTime oldnow = DateTime.UtcNow;
         public static void updateLightBar(DS4Device device, int deviceNum)
         {
-            DS4Color color;            
-            if (Global.getRainbow(deviceNum) > 0)
-            {// Display rainbow
-                DateTime now = DateTime.UtcNow;
-                if (now >= oldnow + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
-                {
-                    oldnow = now;
-                    if (device.Charging)
-                        counters[deviceNum] -= 1.5 * 3 / Global.getRainbow(deviceNum);
-                    else
-                        counters[deviceNum] += 1.5 * 3 / Global.getRainbow(deviceNum);
-                }
-                if (counters[deviceNum] < 0)
-                    counters[deviceNum] = 180000;
-                if (Global.getLedAsBatteryIndicator(deviceNum))
-                    color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(2.55 * device.Battery));
-                else
-                    color = HuetoRGB((float)counters[deviceNum] % 360, 255);
-                
-            }
-            else if (Global.getLedAsBatteryIndicator(deviceNum))
+            DS4Color color;
+            if (!defualtLight)
             {
-                if (device.Charging == false || device.Battery >= 100) // when charged, don't show the charging animation
-                {
-                    DS4Color fullColor = new DS4Color
+                if (Global.getRainbow(deviceNum) > 0)
+                {// Display rainbow
+                    DateTime now = DateTime.UtcNow;
+                    if (now >= oldnow + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
                     {
-                        red = Global.loadColor(deviceNum).red,
-                        green = Global.loadColor(deviceNum).green,
-                        blue = Global.loadColor(deviceNum).blue
-                    };
+                        oldnow = now;
+                        if (device.Charging)
+                            counters[deviceNum] -= 1.5 * 3 / Global.getRainbow(deviceNum);
+                        else
+                            counters[deviceNum] += 1.5 * 3 / Global.getRainbow(deviceNum);
+                    }
+                    if (counters[deviceNum] < 0)
+                        counters[deviceNum] = 180000;
+                    if (Global.getLedAsBatteryIndicator(deviceNum))
+                        color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(2.55 * device.Battery));
+                    else
+                        color = HuetoRGB((float)counters[deviceNum] % 360, 255);
 
-                    color = Global.loadLowColor(deviceNum);
-                    DS4Color lowColor = new DS4Color
-                    {
-                        red = color.red,
-                        green = color.green,
-                        blue = color.blue
-                    };
-
-                    color = Global.getTransitionedColor(lowColor, fullColor, (uint)device.Battery);
                 }
-                else // Display rainbow when charging.
+                else if (Global.getLedAsBatteryIndicator(deviceNum))
                 {
-                    counters[deviceNum] += .167;
-                    color = HuetoRGB((float)counters[deviceNum] % 360, 255);
+                    if (device.Charging == false || device.Battery >= 100) // when charged, don't show the charging animation
+                    {
+                        DS4Color fullColor = new DS4Color
+                        {
+                            red = Global.loadColor(deviceNum).red,
+                            green = Global.loadColor(deviceNum).green,
+                            blue = Global.loadColor(deviceNum).blue
+                        };
+
+                        color = Global.loadLowColor(deviceNum);
+                        DS4Color lowColor = new DS4Color
+                        {
+                            red = color.red,
+                            green = color.green,
+                            blue = color.blue
+                        };
+
+                        color = Global.getTransitionedColor(lowColor, fullColor, (uint)device.Battery);
+                    }
+                    else // Display rainbow when charging.
+                    {
+                        counters[deviceNum] += .167;
+                        color = HuetoRGB((float)counters[deviceNum] % 360, 255);
+                    }
+                }
+                else
+                {
+                    color = Global.loadColor(deviceNum);
+                }
+
+                if (Global.getIdleDisconnectTimeout(deviceNum) > 0 && (!device.Charging || device.Battery >= 100))
+                {//Fade lightbar by idle time
+                    TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
+                    double botratio = timeratio.TotalMilliseconds;
+                    double topratio = TimeSpan.FromSeconds(Global.getIdleDisconnectTimeout(deviceNum)).TotalMilliseconds;
+                    double ratio = ((botratio / topratio) * 100);
+                    if (ratio >= 50 && ratio <= 100)
+                        color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, (uint)((ratio - 50) * 2));
+                    else if (ratio >= 100)
+                        color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, 100);
                 }
             }
             else
-            {
-                color = Global.loadColor(deviceNum);
-            }
-
-            if (Global.getIdleDisconnectTimeout(deviceNum) > 0 && (!device.Charging || device.Battery >= 100))
-            {//Fade lightbar by idle time
-                TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
-                double botratio = timeratio.TotalMilliseconds;
-                double topratio = TimeSpan.FromSeconds(Global.getIdleDisconnectTimeout(deviceNum)).TotalMilliseconds;
-                double ratio = ((botratio / topratio) * 100);
-                if (ratio >= 50 && ratio <= 100)
-                    color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, (uint)((ratio-50)*2));
-                else if (ratio >= 100)
-                    color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, 100);
-            }
+                color = new DS4Color { red = 32, green = 64, blue = 64 };
             DS4HapticState haptics = new DS4HapticState
             {
                 LightBarColor = color
@@ -105,6 +110,7 @@ namespace DS4Control
                 else
                 {
                     haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 0;
+                    haptics.LightBarExplicitlyOff = true;
                 }
             }
             else
@@ -112,7 +118,9 @@ namespace DS4Control
                 haptics.LightBarExplicitlyOff = true;
             }
             device.pushHapticState(haptics);
+
         }
+        public static bool defualtLight = false;
 
         public static DS4Color HuetoRGB(float hue, byte sat)
         {

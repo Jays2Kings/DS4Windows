@@ -15,7 +15,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 9.15;
+        double version = 9.2;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -25,7 +25,7 @@ namespace ScpServer
         protected PictureBox[] statPB;
         protected ToolStripMenuItem[] shortcuts;
         WebClient wc = new WebClient();
-        Timer test = new Timer(), processcheck = new Timer();
+        Timer test = new Timer(), hotkeystimer = new Timer();
         #region Aero
         /*[StructLayout(LayoutKind.Sequential)]
         public struct MARGINS
@@ -102,8 +102,6 @@ namespace ScpServer
             ThemeUtil.SetTheme(lvDebug);
 
             SetupArrays();
-            foreach (ToolStripMenuItem t in shortcuts)
-                t.DropDownItemClicked += Profile_Changed_Menu;
             CheckDrivers();                 
         }
 
@@ -119,6 +117,9 @@ namespace ScpServer
             Global.Load();
             Global.setVersion(version);
             Global.Save();
+
+            foreach (ToolStripMenuItem t in shortcuts)
+                t.DropDownItemClicked += Profile_Changed_Menu;
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
             hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
             hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
@@ -162,14 +163,30 @@ namespace ScpServer
             WP.Enabled = false;
             tabAutoProfiles.Controls.Add(WP);
             //test.Start();
-            //processcheck.Start();
-            processcheck.Tick += processcheck_Tick;
+            hotkeystimer.Start();
+            hotkeystimer.Tick += Hotkeys;
             test.Tick += test_Tick;    
         }
 
-        void processcheck_Tick(object sender, EventArgs e)
+
+        void Hotkeys(object sender, EventArgs e)
         {
-            //Process[] processes = Process.GetProcessesByName("");
+            for (int i = 0; i < 4; i++)
+            {
+                string slide = rootHub.TouchpadSlide(i);
+                if (slide == "left")
+                    if (cbs[i].SelectedIndex <= 0)
+                        cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
+                    else
+                        cbs[i].SelectedIndex--;
+                else if (slide == "right")
+                    if (cbs[i].SelectedIndex == cbs[i].Items.Count - 2)
+                        cbs[i].SelectedIndex = 0;
+                    else
+                        cbs[i].SelectedIndex++;
+                if (slide.Contains("t"))
+                    ShowNotification(this, "Controller " + (i + 1) + " is now using Profile \"" + cbs[i].Text + "\"");
+            }
         }
 
         private void test_Tick(object sender, EventArgs e)
@@ -303,9 +320,6 @@ namespace ScpServer
                             shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
                             ebns[i].Text = "New";
                         }
-                    cbs[i].Items.Add("+New Profile");
-                    shortcuts[i].DropDownItems.Add("-");
-                    shortcuts[i].DropDownItems.Add("+New Profile");
                 }
             }
             catch (DirectoryNotFoundException)
@@ -318,6 +332,12 @@ namespace ScpServer
                     cbs[i].Text = "(No Profile Loaded)";
                     shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
                     ebns[i].Text = "New";
+                }
+            }
+            finally
+            {
+                for (int i = 0; i < 4; i++)
+                {
                     cbs[i].Items.Add("+New Profile");
                     shortcuts[i].DropDownItems.Add("-");
                     shortcuts[i].DropDownItems.Add("+New Profile");
@@ -401,7 +421,7 @@ namespace ScpServer
             }
 
             else if (btnStartStop.Text == "Stop")
-            {
+            {                
                 rootHub.Stop();
                 btnStartStop.Text = "Start";
             }
@@ -460,18 +480,12 @@ namespace ScpServer
                     {
                         Enable_Controls(Index, true);
                         MinimumSize = new Size(MinimumSize.Width, 161 + 29 * Index);
-                        rootHub.DS4Controllers[Index].Report += ScpForm_Report;
                     }
                 }
                 else
                 {
                     Pads[Index].Text = "Disconnected";
                     Enable_Controls(Index, false);
-                    /*if (opt != null && opt.device == Index)
-                    {
-                        opt.Close();
-                        opt = null;
-                    }*/
                     shortcuts[Index].Enabled = false;
                 }
                 if (rootHub.getShortDS4ControllerInfo(Index) != "None")
@@ -497,27 +511,6 @@ namespace ScpServer
                 Invoke(new HotKeysDelegate(Hotkeys), new object[] { sender, e });
             else
                 Hotkeys(sender, e);
-        }
-
-        void Hotkeys(object sender, EventArgs e)
-        {
-            //DS4Device device = (DS4Device)sender;
-            for (int i = 0; i < 4; i++)
-            {
-                string slide = rootHub.TouchpadSlide(0);
-                if (slide == "left")
-                    if (cbs[i].SelectedIndex <= 0)
-                        cbs[i].SelectedIndex = cbs[0].Items.Count - 2;
-                    else
-                        cbs[i].SelectedIndex--;
-                else if (slide == "right")
-                    if (cbs[i].SelectedIndex == cbs[0].Items.Count - 2)
-                        cbs[i].SelectedIndex = 0;
-                    else
-                        cbs[i].SelectedIndex++;
-                if (slide.Contains("t"))
-                    ShowNotification(this, "Controller " + (i + 1) + " is now using Profile \"" + cbs[i].Text + "\"");
-            }
         }
 
         protected void On_Debug(object sender, DS4Control.DebugEventArgs e)
@@ -731,7 +724,7 @@ namespace ScpServer
             MessageBox.Show(((ListView)sender).FocusedItem.SubItems[1].Text, "Log");
         }
 
-        private void Profile_Changed(object sender, EventArgs e)
+        private void Profile_Changed(object sender, EventArgs e) //cbs[i] changed
         {
             ComboBox cb = (ComboBox)sender;
             int tdevice = Int32.Parse(cb.Tag.ToString());
@@ -756,7 +749,7 @@ namespace ScpServer
                 else
                     ebns[tdevice].Text = "Edit";
             }
-            ControllerStatusChanged();
+            ControllerStatusChanged(); //to update profile name in notify icon
         }
 
         private void Profile_Changed_Menu(object sender, ToolStripItemClickedEventArgs e)
@@ -765,20 +758,7 @@ namespace ScpServer
             int tdevice = Int32.Parse(tS.Tag.ToString());
             if (!(e.ClickedItem is ToolStripSeparator))
                 if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1]) //if +New Profile not selected 
-                    if (((ToolStripMenuItem)e.ClickedItem).Checked)
-                        ShowOptions(tdevice, e.ClickedItem.Text);
-                    else
-                    {
-                        for (int i = 0; i < tS.DropDownItems.Count; i++)
-                            if (!(shortcuts[tdevice].DropDownItems[i] is ToolStripSeparator))
-                                ((ToolStripMenuItem)tS.DropDownItems[i]).Checked = false;
-                        ((ToolStripMenuItem)e.ClickedItem).Checked = true;
-                        shortcuts[tdevice].Text = "Edit Profile for Controller " + (tdevice + 1);
-                        cbs[tdevice].SelectedIndex = tS.DropDownItems.IndexOf(e.ClickedItem);
-                        Global.setAProfile(tdevice, e.ClickedItem.Text);
-                        Global.Save();
-                        Global.LoadProfile(tdevice);
-                    }
+                    cbs[tdevice].SelectedIndex = tS.DropDownItems.IndexOf(e.ClickedItem);
                 else //if +New Profile selected
                     ShowOptions(tdevice, "");
         }
@@ -826,12 +806,6 @@ namespace ScpServer
                 KeyLoc.DeleteValue("DS4Tool", false);
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            WinProgs WP = new WinProgs(profilenames.ToArray());
-            WP.ShowDialog();
-        }
-
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbLastMessage.Visible = tabMain.SelectedIndex != 2;
@@ -853,6 +827,71 @@ namespace ScpServer
 
         }
 
+        private void lBProfiles_MouseDown(object sender, MouseEventArgs e)
+        {
+            lBProfiles.SelectedIndex = lBProfiles.IndexFromPoint(e.X, e.Y);
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                if (lBProfiles.SelectedIndex < 0)
+                {
+                    cMProfile.ShowImageMargin = false;
+                    assignToController1ToolStripMenuItem.Visible = false;
+                    assignToController2ToolStripMenuItem.Visible = false;
+                    assignToController3ToolStripMenuItem.Visible = false;
+                    assignToController4ToolStripMenuItem.Visible = false;
+                    deleteToolStripMenuItem.Visible = false;
+                    editToolStripMenuItem.Visible = false;
+                    duplicateToolStripMenuItem.Visible = false;
+                    exportToolStripMenuItem.Visible = false;
+                }
+                else
+                {
+                    cMProfile.ShowImageMargin = true;
+                    assignToController1ToolStripMenuItem.Visible = true;
+                    assignToController2ToolStripMenuItem.Visible = true;
+                    assignToController3ToolStripMenuItem.Visible = true;
+                    assignToController4ToolStripMenuItem.Visible = true;
+                    ToolStripMenuItem[] assigns = { assignToController1ToolStripMenuItem, 
+                                                      assignToController2ToolStripMenuItem,
+                                                      assignToController3ToolStripMenuItem, 
+                                                      assignToController4ToolStripMenuItem };
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (lBProfiles.SelectedIndex == cbs[i].SelectedIndex)
+                            assigns[i].Checked = true;
+                        else
+                            assigns[i].Checked = false;
+                    }
+                    deleteToolStripMenuItem.Visible = true;
+                    editToolStripMenuItem.Visible = true;
+                    duplicateToolStripMenuItem.Visible = true;
+                    exportToolStripMenuItem.Visible = true;                
+                }
+            }
+        }
+
+        private void ScpForm_DragDrop(object sender, DragEventArgs e)
+        {
+            bool therewasanxml = false;
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            for (int i = 0; i < files.Length; i++)
+                if (files[i].EndsWith(".xml"))
+                {
+                    File.Copy(files[i], Global.appdatapath + "\\Profiles\\" + Path.GetFileName(files[i]), true);
+                    therewasanxml = true;
+                }
+            if (therewasanxml)
+                RefreshProfiles();
+        }
+
+        private void ScpForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy; // Okay
+            else
+                e.Effect = DragDropEffects.None; // Unknown data, ignore it
+        }
+
         protected void Form_Close(object sender, FormClosingEventArgs e)
         {
             if (oldsize == new System.Drawing.Size(0, 0))
@@ -867,45 +906,6 @@ namespace ScpServer
             }
             Global.Save();
             rootHub.Stop();
-        }
-
-        private void lBProfiles_MouseClick(object sender, MouseEventArgs e)
-        {
-            //lBProfiles.SelectedIndex = lBProfiles.IndexFromPoint(e.X, e.Y);
-            //if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                //
-            }
-        }
-
-        private void lBProfiles_MouseDown(object sender, MouseEventArgs e)
-        {
-            lBProfiles.SelectedIndex = lBProfiles.IndexFromPoint(e.X, e.Y);
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                if (lBProfiles.SelectedIndex < 0)
-                {
-                    assignToController1ToolStripMenuItem.Visible = false;
-                    assignToController2ToolStripMenuItem.Visible = false;
-                    assignToController3ToolStripMenuItem.Visible = false;
-                    assignToController4ToolStripMenuItem.Visible = false;
-                    deleteToolStripMenuItem.Visible = false;
-                    editToolStripMenuItem.Visible = false;
-                    duplicateToolStripMenuItem.Visible = false;
-                    exportToolStripMenuItem.Visible = false;
-                }
-                else
-                {
-                    assignToController1ToolStripMenuItem.Visible = true;
-                    assignToController2ToolStripMenuItem.Visible = true;
-                    assignToController3ToolStripMenuItem.Visible = true;
-                    assignToController4ToolStripMenuItem.Visible = true;
-                    deleteToolStripMenuItem.Visible = true;
-                    editToolStripMenuItem.Visible = true;
-                    duplicateToolStripMenuItem.Visible = true;
-                    exportToolStripMenuItem.Visible = true;                
-                }
-            }
         }
     }
 

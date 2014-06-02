@@ -68,6 +68,7 @@ namespace DS4Control
                     DS4Devices.findControllers();
                     IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                     int ind = 0;
+                    DS4LightBar.defualtLight = false;
                     foreach (DS4Device device in devices)
                     {
                         if (showlog)
@@ -126,25 +127,15 @@ namespace DS4Control
                 for (int i = 0; i < DS4Controllers.Length; i++)
                 {
                     if (DS4Controllers[i] != null)
-                    {
-                        double oldrainbow = Global.getRainbow(i);
-                        bool oldbatt = Global.getLedAsBatteryIndicator(i);
-                        DS4Color oldcolor = Global.loadColor(i);
-                        while (Global.loadColor(i).red != 32 || Global.loadColor(i).green != 64 || Global.loadColor(i).blue != 64 || Global.getRainbow(i) != 0 || Global.getLedAsBatteryIndicator(i) != false)
-                        {
-                            Global.setRainbow(i, 0);
-                            Global.setLedAsBatteryIndicator(i, false);
-                            Global.saveColor(i, 32, 64, 64); //Make Lightbar light blue like default bluetooth color
-                            System.Threading.Thread.Sleep(5);
-                        }
+                    {                        
+                        DS4LightBar.defualtLight = true;
+                        DS4LightBar.updateLightBar(DS4Controllers[i], i);
+                        System.Threading.Thread.Sleep(50);
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
                         x360Bus.Unplug(i);
                         anyUnplugged = true;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
-                        Global.setRainbow(i, oldrainbow); //Set back settings once ds4windows stops, so when reconnecting it shows right colors
-                        Global.setLedAsBatteryIndicator(i, oldbatt);
-                        Global.saveColor(i, oldcolor.red, oldcolor.green, oldcolor.blue);
                     }
                 }
                 if (anyUnplugged)
@@ -246,12 +237,8 @@ namespace DS4Control
             }
             catch (TimeoutException)
             {
-                //Global.setUseExclusiveMode(!Global.getUseExclusiveMode());
                 Stop(false);
                 Start(false);
-                //Global.setUseExclusiveMode(!Global.getUseExclusiveMode());
-                //Stop(false);
-                //Start(false);
             }
         }
 
@@ -422,6 +409,7 @@ namespace DS4Control
 
                 // Update the GUI/whatever.
                 DS4LightBar.updateLightBar(device, ind);
+                //DS4LightBar.defualtLight(device, ind);
 
                 x360Bus.Parse(cState, processingData[ind].Report, ind);
                 // We push the translated Xinput state, and simultaneously we

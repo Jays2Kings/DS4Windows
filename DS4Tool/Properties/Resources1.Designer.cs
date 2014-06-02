@@ -243,6 +243,16 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap saveprofile {
+            get {
+                object obj = ResourceManager.GetObject("saveprofile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap sticks {
             get {
                 object obj = ResourceManager.GetObject("sticks", resourceCulture);

@@ -156,12 +156,12 @@
             // 
             this.linkJhebbel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkJhebbel.AutoSize = true;
-            this.linkJhebbel.Location = new System.Drawing.Point(450, 361);
+            this.linkJhebbel.Location = new System.Drawing.Point(429, 361);
             this.linkJhebbel.Name = "linkJhebbel";
-            this.linkJhebbel.Size = new System.Drawing.Size(41, 13);
+            this.linkJhebbel.Size = new System.Drawing.Size(87, 13);
             this.linkJhebbel.TabIndex = 18;
             this.linkJhebbel.TabStop = true;
-            this.linkJhebbel.Text = "jhebbel";
+            this.linkJhebbel.Text = "jhebbel (DSDCS)";
             this.linkJhebbel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkJhebbel_LinkClicked);
             // 
             // linkUninstall
@@ -435,7 +435,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(172, 13);
             this.label20.TabIndex = 14;
-            this.label20.Text = "L1+R1+Touchpad Slide left or right";
+            this.label20.Text = "2 finger touchpad swipe left or right";
             // 
             // label24
             // 

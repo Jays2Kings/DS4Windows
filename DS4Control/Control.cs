@@ -469,18 +469,11 @@ namespace DS4Control
             else return "nothing";
         }
 
-        bool touchreleased = true, touchslid = false;
+        bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };
         byte[] oldtouchvalue = { 0, 0, 0, 0 };
         protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
         {
             DS4Device d = DS4Controllers[deviceID];
-            if (cState.Touch1 && !pState.Share && !pState.Options)
-            {
-                /*if (cState.Share)
-                    Global.setTouchSensitivity(deviceID, 0);
-                else if (cState.Options)
-                    Global.setTouchSensitivity(deviceID, 100); */
-            }
             if ((!pState.PS || !pState.Options) && cState.PS && cState.Options)
             {
                 if (!d.Charging)
@@ -498,46 +491,47 @@ namespace DS4Control
             }
             if (cState.TouchButton && pState.PS)
             {
-                if (Global.getTouchSensitivity(deviceID) > 0 && touchreleased)
+                if (Global.getTouchSensitivity(deviceID) > 0 && touchreleased[deviceID])
                 {
                     oldtouchvalue[deviceID] = Global.getTouchSensitivity(deviceID);
                     Global.setTouchSensitivity(deviceID, 0);
                     LogDebug("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
                     Log.LogToTray("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
-                    touchreleased = false;
+                    touchreleased[deviceID] = false;
                 }
-                else if (touchreleased)
+                else if (touchreleased[deviceID])
                 {
                     Global.setTouchSensitivity(deviceID, oldtouchvalue[deviceID]);
                     LogDebug("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
                     Log.LogToTray("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
-                    touchreleased = false;
+                    touchreleased[deviceID] = false;
                 }
             }
             else
-                touchreleased = true;            
+                touchreleased[deviceID] = true;            
         }
 
         public virtual string TouchpadSlide(int ind)
         {
             DS4State cState = CurrentState[ind];
             string slidedir = "none";
-            if (cState.L1 && cState.R1)
-                if (touchPad[ind].slideright && !touchslid)
-                {
-                    slidedir = "right";
-                    touchslid = true;
-                }
-                else if (touchPad[ind].slideleft && !touchslid)
-                {
-                    slidedir = "left";
-                    touchslid = true;
-                }
-                else if (!touchPad[ind].slideleft && !touchPad[ind].slideright)
-                {
-                    slidedir = "";
-                    touchslid = false;
-                }
+            if (cState.Touch2)
+                if (DS4Controllers[ind] != null)
+                    if (touchPad[ind].slideright && !touchslid[ind])
+                    {
+                        slidedir = "right";
+                        touchslid[ind] = true;
+                    }
+                    else if (touchPad[ind].slideleft && !touchslid[ind])
+                    {
+                        slidedir = "left";
+                        touchslid[ind] = true;
+                    }
+                    else if (!touchPad[ind].slideleft && !touchPad[ind].slideright)
+                    {
+                        slidedir = "";
+                        touchslid[ind] = false;
+                    }
             return slidedir;
         }
         public virtual void LogDebug(String Data)

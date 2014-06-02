@@ -9,7 +9,7 @@ namespace DS4Control
     public class Mouse : ITouchpadBehaviour
     {
         protected DateTime pastTime, firstTap, TimeofEnd;
-        protected Touch firstTouch;
+        protected Touch firstTouch, secondTouch;
         private DS4State s = new DS4State();
         protected int deviceNum;
         private DS4Device dev = null;
@@ -33,12 +33,14 @@ namespace DS4Control
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
             cursor.touchesMoved(arg);
-            if (Math.Abs(firstTouch.hwX - arg.touches[0].hwX) > 5 && Math.Abs(firstTouch.hwY - arg.touches[0].hwY) > 5)
-            wheel.touchesMoved(arg);
-            if (arg.touches[0].hwX - firstTouch.hwX > 300 && !slideleft)
-                slideright = true;
-            else if (firstTouch.hwX - arg.touches[0].hwX > 300 && !slideright)
-                slideleft = true;
+            if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) > 5)
+                wheel.touchesMoved(arg);
+            if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 50)
+                if (arg.touches.Length == 2)
+                    if (arg.touches[0].hwX - firstTouch.hwX > 200 && !slideleft)
+                        slideright = true;
+                    else if (firstTouch.hwX - arg.touches[0].hwX > 200 && !slideright)
+                        slideleft = true;
             dev.getCurrentState(s);
             synthesizeMouseButtons();
             //Console.WriteLine(arg.timeStamp.ToString("O") + " " + "moved to " + arg.touches[0].hwX + "," + arg.touches[0].hwY);

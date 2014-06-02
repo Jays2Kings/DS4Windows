@@ -225,6 +225,7 @@
     <None Include="Resources\none.png" />
     <None Include="Resources\export.png" />
     <None Include="Resources\imageres_import.png" />
+    <None Include="Resources\saveprofile.png" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>

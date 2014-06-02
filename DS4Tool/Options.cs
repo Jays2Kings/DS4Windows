@@ -12,10 +12,10 @@ namespace ScpServer
     {
         private DS4Control.Control scpDevice;
         public int device;
-        private string filename;
-        Byte[] oldLedColor, oldLowLedColor;
+        public string filename;
+        Byte[] oldLedColor, oldLowLedColor, oldChargingColor;
         Timer inputtimer = new Timer(), sixaxisTimer = new Timer();
-        private List<Button> buttons = new List<Button>();
+        public List<Button> buttons = new List<Button>();
         private Button lastSelected;
         private int alphacolor;
         private Color reg, full;
@@ -54,8 +54,9 @@ namespace ScpServer
                 lowGreenBar.Value = lowColor.green;
                 lowBlueBar.Value = lowColor.blue;
 
+                DS4Color cColor = Global.loadChargingColor(device);
+                btnChargingColor.BackColor = Color.FromArgb(cColor.red, cColor.green, cColor.blue);
                 rumbleBoostBar.Value = Global.loadRumbleBoost(device);
-                flashLed.Checked = Global.getFlashWhenLowBattery(device);
                 numUDTouch.Value = Global.getTouchSensitivity(device);
                 cBSlide.Checked = Global.getTouchSensitivity(device) > 0;
                 numUDScroll.Value = Global.getScrollSensitivity(device);
@@ -81,6 +82,13 @@ namespace ScpServer
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
                 numUDRainbow.Value = (decimal)Global.getRainbow(device);
+                switch (Global.getChargingType(deviceNum))
+                {
+                    case 1: rBFade.Checked = true; break;
+                    case 2: rBRainbow.Checked = true; break;
+                    case 3: rBColor.Checked = true; break;
+                    default: rBNormal.Checked = true; break;
+                }
                 if (Global.getRainbow(device) == 0)
                 {
                     pBRainbow.Image = greyscale;
@@ -225,7 +233,7 @@ namespace ScpServer
             trackBar.Value = value;
         }
 
-        private void Set()
+        public void Set()
         {
             lowBatteryPanel.Visible = batteryLed.Checked;
             lbFull.Text = (batteryLed.Checked ? "Full:" : "Color:");
@@ -235,7 +243,6 @@ namespace ScpServer
             Global.setLeftTriggerMiddle(device, (byte)Math.Round((numUDL2.Value * 255), 0));
             Global.setRightTriggerMiddle(device, (byte)Math.Round((numUDR2.Value * 255), 0));
             Global.saveRumbleBoost(device, (byte)rumbleBoostBar.Value);
-            Global.setFlashWhenLowBattery(device, flashLed.Checked);
             Global.setTouchSensitivity(device, (byte)numUDTouch.Value);
             Global.setTouchpadJitterCompensation(device, touchpadJitterCompensation.Checked);
             Global.setLowerRCOn(device, cBlowerRCOn.Checked);
@@ -328,7 +335,9 @@ namespace ScpServer
                 blueBar.Value = advColorDialog.Color.B;
             }
             else Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
-            //Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
+            Global.saveChargingColor(device, oldChargingColor[0], oldChargingColor[1], oldChargingColor[2]);
+            Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
+            oldChargingColor = null;
             oldLedColor = null;
             oldLowLedColor = null;
         }
@@ -344,24 +353,46 @@ namespace ScpServer
                 lowBlueBar.Value = advColorDialog.Color.B;
             }
             else Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
+            Global.saveChargingColor(device, oldChargingColor[0], oldChargingColor[1], oldChargingColor[2]);
             Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
+            oldChargingColor = null;
+            oldLedColor = null;
+            oldLowLedColor = null;
+        }
+
+
+        private void btnChargingColor_Click(object sender, EventArgs e)
+        {
+            advColorDialog.Color = btnChargingColor.BackColor;
+            advColorDialog_OnUpdateColor(btnChargingColor.BackColor, e);
+            if (advColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                btnChargingColor.BackColor = advColorDialog.Color;
+            }
+            else Global.saveChargingColor(device, oldChargingColor[0], oldChargingColor[1], oldChargingColor[2]);
+            Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
+            Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
+            oldChargingColor = null;
             oldLedColor = null;
             oldLowLedColor = null;
         }
         private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
         {
-            if (oldLedColor == null || oldLowLedColor == null)
+            if (oldLedColor == null || oldLowLedColor == null || oldChargingColor == null)
             {
                 DS4Color color = Global.loadColor(device);
                 oldLedColor = new Byte[] { color.red, color.green, color.blue };
                 color = Global.loadLowColor(device);
                 oldLowLedColor = new Byte[] { color.red, color.green, color.blue };
+                color = Global.loadChargingColor(device);
+                oldChargingColor = new Byte[] { color.red, color.green, color.blue };
             }
             if (sender is Color)
             {
                 Color color = (Color)sender;
                 Global.saveColor(device, color.R, color.G, color.B);
                 Global.saveLowColor(device, color.R, color.G, color.B);
+                Global.saveChargingColor(device, color.R, color.G, color.B);
             }
         }
         int bgc = 255; //Color of the form background, If greyscale color
@@ -518,10 +549,6 @@ namespace ScpServer
             lbFull.Text = (batteryLed.Checked ? "Full:" : "Color:");
         }
 
-        private void flashWhenLowBattery_CheckedChanged(object sender, EventArgs e)
-        {
-            Global.setFlashWhenLowBattery(device, flashLed.Checked);
-        }
         private void lowerRCOffCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Global.setLowerRCOn(device, cBlowerRCOn.Checked);
@@ -724,14 +751,14 @@ namespace ScpServer
             {
                 //pBRainbow.Location = new Point(216 - 78, pBRainbow.Location.Y);
                 pBController.BackgroundImage = Properties.Resources.rainbowC;
-                batteryLed.Text = "Battery Level Dim";
+                batteryLed.Text = "Dim by Battery %";
             }
             else
             {
                 lowBatteryPanel.Enabled = batteryLed.Checked;
                 //pBRainbow.Location = new Point(216, pBRainbow.Location.Y);
                 pBController.BackgroundImage = null;
-                batteryLed.Text = "Battery Level Color";
+                batteryLed.Text = "Color by Battery %";
             }
             lBspc.Enabled = on;
             lowBatteryPanel.Enabled = !on;
@@ -835,5 +862,31 @@ namespace ScpServer
                 nUDflashLED.Value = Math.Round(nUDflashLED.Value / 10, 0) * 10;
             Global.setFlashAt(device, (int)nUDflashLED.Value);
         }
+
+        private void rBNormal_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setChargingType(device, 0);
+            btnChargingColor.Visible = false;
+        }
+
+        private void rBFade_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setChargingType(device, 1);
+            btnChargingColor.Visible = false;
+        }
+
+        private void rBRainbow_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setChargingType(device, 2);
+            btnChargingColor.Visible = false;
+        }
+
+        private void rBColor_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setChargingType(device, 3);
+            btnChargingColor.Visible = true;
+        }
+
+
     }
 }

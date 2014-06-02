@@ -186,7 +186,18 @@ namespace DS4Control
         {
             return m_Config.ledAsBattery[device];
         }
-        
+
+        public static void setChargingType(int device, int type)
+        {
+            m_Config.chargingType[device] = type;
+
+        }
+        public static int getChargingType(int device)
+        {
+            return m_Config.chargingType[device];
+
+        }
+
         public static void setUseExclusiveMode(bool exclusive)
         {
             m_Config.useExclusiveMode = exclusive;
@@ -228,6 +239,20 @@ namespace DS4Control
             color.red = m_Config.m_LowLeds[device][0];
             color.green = m_Config.m_LowLeds[device][1];
             color.blue = m_Config.m_LowLeds[device][2];
+            return color;
+        }
+        public static void saveChargingColor(int device, byte red, byte green, byte blue)
+        {
+            m_Config.m_ChargingLeds[device][0] = red;
+            m_Config.m_ChargingLeds[device][1] = green;
+            m_Config.m_ChargingLeds[device][2] = blue;
+        }
+        public static DS4Color loadChargingColor(int device)
+        {
+            DS4Color color = new DS4Color();
+            color.red = m_Config.m_ChargingLeds[device][0];
+            color.green = m_Config.m_ChargingLeds[device][1];
+            color.blue = m_Config.m_ChargingLeds[device][2];
             return color;
         }
         public static void setTapSensitivity(int device, byte sen)
@@ -401,19 +426,23 @@ namespace DS4Control
             m_Config.SaveProfile(device, propath, buttons);
         }
 
-        private static byte applyRatio(byte b1, byte b2, uint r)
+        private static byte applyRatio(byte b1, byte b2, double r)
         {
-            uint ratio = r;
+            if (r > 100)
+                r = 100;
+            else if (r < 0)
+                r = 0;
+            uint ratio = (uint)r;
             if (b1 > b2)
             {
-                ratio = 100 - r;
+                ratio = 100 - (uint)r;
             }
             byte bmax = Math.Max(b1, b2);
             byte bmin = Math.Min(b1, b2);
             byte bdif = (byte)(bmax - bmin);
             return (byte)(bmin + (bdif * ratio / 100));
         }
-        public static DS4Color getTransitionedColor(DS4Color c1, DS4Color c2, uint ratio)
+        public static DS4Color getTransitionedColor(DS4Color c1, DS4Color c2, double ratio)
         {;
         Color cs = Color.FromArgb(c1.red, c1.green, c1.blue);
             c1.red = applyRatio(c1.red, c2.red, ratio);
@@ -515,6 +544,15 @@ namespace DS4Control
             new Byte[] {255,0,255},
             new Byte[] {255,255,255}
         };
+        public Byte[][] m_ChargingLeds = new Byte[][]
+        {
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0}
+        };
+        public int[] chargingType = { 0, 0, 0, 0, 0 };
         public bool[] flushHIDQueue = { true, true, true, true, true };
         public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
 
@@ -599,6 +637,9 @@ namespace DS4Control
                 XmlNode xmlLowRed = m_Xdoc.CreateNode(XmlNodeType.Element, "LowRed", null); xmlLowRed.InnerText = m_LowLeds[device][0].ToString(); Node.AppendChild(xmlLowRed);
                 XmlNode xmlLowGreen = m_Xdoc.CreateNode(XmlNodeType.Element, "LowGreen", null); xmlLowGreen.InnerText = m_LowLeds[device][1].ToString(); Node.AppendChild(xmlLowGreen);
                 XmlNode xmlLowBlue = m_Xdoc.CreateNode(XmlNodeType.Element, "LowBlue", null); xmlLowBlue.InnerText = m_LowLeds[device][2].ToString(); Node.AppendChild(xmlLowBlue);
+                XmlNode xmlChargingRed = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingRed", null); xmlChargingRed.InnerText = m_ChargingLeds[device][0].ToString(); Node.AppendChild(xmlChargingRed);
+                XmlNode xmlChargingGreen = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingGreen", null); xmlChargingGreen.InnerText = m_ChargingLeds[device][1].ToString(); Node.AppendChild(xmlChargingGreen);
+                XmlNode xmlChargingBlue = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingBlue", null); xmlChargingBlue.InnerText = m_ChargingLeds[device][2].ToString(); Node.AppendChild(xmlChargingBlue);
                 XmlNode xmlTouchpadJitterCompensation = m_Xdoc.CreateNode(XmlNodeType.Element, "touchpadJitterCompensation", null); xmlTouchpadJitterCompensation.InnerText = touchpadJitterCompensation[device].ToString(); Node.AppendChild(xmlTouchpadJitterCompensation);
                 XmlNode xmlLowerRCOn = m_Xdoc.CreateNode(XmlNodeType.Element, "lowerRCOn", null); xmlLowerRCOn.InnerText = lowerRCOn[device].ToString(); Node.AppendChild(xmlLowerRCOn);
                 XmlNode xmlTapSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "tapSensitivity", null); xmlTapSensitivity.InnerText = tapSensitivity[device].ToString(); Node.AppendChild(xmlTapSensitivity);
@@ -610,7 +651,7 @@ namespace DS4Control
                 XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
                 XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = LSDeadzone[device].ToString(); Node.AppendChild(xmlLSD);
                 XmlNode xmlRSD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZone", null); xmlRSD.InnerText = RSDeadzone[device].ToString(); Node.AppendChild(xmlRSD);
-
+                XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null); xmlChargingType.InnerText = chargingType[device].ToString(); Node.AppendChild(xmlChargingType);
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -820,6 +861,12 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][2]); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingRed"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][0]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingGreen"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][1]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingBlue"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][2]); }
+                    catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn[device]); }
@@ -841,6 +888,8 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LSDeadZone"); Byte.TryParse(Item.InnerText, out LSDeadzone[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RSDeadZone"); Byte.TryParse(Item.InnerText, out RSDeadzone[device]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingType"); Int32.TryParse(Item.InnerText, out chargingType[device]); }
                     catch { missingSetting = true; }
 
                     DS4KeyType keyType;
@@ -994,6 +1043,12 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][2]); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingRed"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][0]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingGreen"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][1]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingBlue"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][2]); }
+                    catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn[device]); }
@@ -1015,6 +1070,8 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LSDeadZone"); Byte.TryParse(Item.InnerText, out LSDeadzone[device]); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RSDeadZone"); Byte.TryParse(Item.InnerText, out RSDeadzone[device]); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingType"); Int32.TryParse(Item.InnerText, out chargingType[device]); }
                     catch { missingSetting = true; }
 
                     DS4KeyType keyType;

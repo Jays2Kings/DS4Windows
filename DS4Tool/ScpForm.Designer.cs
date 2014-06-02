@@ -83,6 +83,11 @@
             this.pBStatus3 = new System.Windows.Forms.PictureBox();
             this.pBStatus4 = new System.Windows.Forms.PictureBox();
             this.tabProfiles = new System.Windows.Forms.TabPage();
+            this.tSOptions = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tSTBProfile = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tSBCancel = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsBNewProfle = new System.Windows.Forms.ToolStripButton();
             this.tsBEditProfile = new System.Windows.Forms.ToolStripButton();
@@ -115,6 +120,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBStatus3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBStatus4)).BeginInit();
             this.tabProfiles.SuspendLayout();
+            this.tSOptions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.cMProfile.SuspendLayout();
             this.tabLog.SuspendLayout();
@@ -390,7 +396,7 @@
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.34039F));
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.31077F));
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
-            this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tLPControllers.Controls.Add(this.pBStatus1, 1, 1);
             this.tLPControllers.Controls.Add(this.lbPad1, 0, 1);
             this.tLPControllers.Controls.Add(this.lbPad2, 0, 2);
@@ -432,7 +438,7 @@
             this.pBStatus1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus1.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus1.Image")));
             this.pBStatus1.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus1.Location = new System.Drawing.Point(370, 19);
+            this.pBStatus1.Location = new System.Drawing.Point(373, 19);
             this.pBStatus1.Name = "pBStatus1";
             this.pBStatus1.Size = new System.Drawing.Size(39, 20);
             this.pBStatus1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -464,7 +470,7 @@
             // bnEditC3
             // 
             this.bnEditC3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC3.Location = new System.Drawing.Point(739, 76);
+            this.bnEditC3.Location = new System.Drawing.Point(742, 76);
             this.bnEditC3.Name = "bnEditC3";
             this.bnEditC3.Size = new System.Drawing.Size(40, 23);
             this.bnEditC3.TabIndex = 43;
@@ -476,7 +482,7 @@
             // bnEditC4
             // 
             this.bnEditC4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC4.Location = new System.Drawing.Point(739, 105);
+            this.bnEditC4.Location = new System.Drawing.Point(742, 105);
             this.bnEditC4.Name = "bnEditC4";
             this.bnEditC4.Size = new System.Drawing.Size(40, 23);
             this.bnEditC4.TabIndex = 43;
@@ -511,7 +517,7 @@
             // 
             this.cBController1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController1.FormattingEnabled = true;
-            this.cBController1.Location = new System.Drawing.Point(622, 19);
+            this.cBController1.Location = new System.Drawing.Point(625, 19);
             this.cBController1.Name = "cBController1";
             this.cBController1.Size = new System.Drawing.Size(111, 21);
             this.cBController1.TabIndex = 42;
@@ -521,7 +527,7 @@
             // bnEditC2
             // 
             this.bnEditC2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC2.Location = new System.Drawing.Point(739, 47);
+            this.bnEditC2.Location = new System.Drawing.Point(742, 47);
             this.bnEditC2.Name = "bnEditC2";
             this.bnEditC2.Size = new System.Drawing.Size(40, 23);
             this.bnEditC2.TabIndex = 43;
@@ -534,7 +540,7 @@
             // 
             this.cBController2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController2.FormattingEnabled = true;
-            this.cBController2.Location = new System.Drawing.Point(622, 48);
+            this.cBController2.Location = new System.Drawing.Point(625, 48);
             this.cBController2.Name = "cBController2";
             this.cBController2.Size = new System.Drawing.Size(111, 21);
             this.cBController2.TabIndex = 42;
@@ -545,7 +551,7 @@
             // 
             this.cBController3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController3.FormattingEnabled = true;
-            this.cBController3.Location = new System.Drawing.Point(622, 77);
+            this.cBController3.Location = new System.Drawing.Point(625, 77);
             this.cBController3.Name = "cBController3";
             this.cBController3.Size = new System.Drawing.Size(111, 21);
             this.cBController3.TabIndex = 42;
@@ -555,7 +561,7 @@
             // bnEditC1
             // 
             this.bnEditC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC1.Location = new System.Drawing.Point(739, 18);
+            this.bnEditC1.Location = new System.Drawing.Point(742, 18);
             this.bnEditC1.Name = "bnEditC1";
             this.bnEditC1.Size = new System.Drawing.Size(40, 23);
             this.bnEditC1.TabIndex = 43;
@@ -568,7 +574,7 @@
             // 
             this.cBController4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController4.FormattingEnabled = true;
-            this.cBController4.Location = new System.Drawing.Point(622, 106);
+            this.cBController4.Location = new System.Drawing.Point(625, 106);
             this.cBController4.Name = "cBController4";
             this.cBController4.Size = new System.Drawing.Size(111, 21);
             this.cBController4.TabIndex = 42;
@@ -580,7 +586,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(623, 0);
+            this.label2.Location = new System.Drawing.Point(626, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 15);
             this.label2.TabIndex = 45;
@@ -602,7 +608,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(366, 0);
+            this.label4.Location = new System.Drawing.Point(369, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 15);
             this.label4.TabIndex = 45;
@@ -613,7 +619,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(515, 0);
+            this.label5.Location = new System.Drawing.Point(518, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 15);
             this.label5.TabIndex = 45;
@@ -624,7 +630,7 @@
             this.lBBatt1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt1.AutoSize = true;
             this.lBBatt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt1.Location = new System.Drawing.Point(521, 22);
+            this.lBBatt1.Location = new System.Drawing.Point(524, 22);
             this.lBBatt1.Name = "lBBatt1";
             this.lBBatt1.Size = new System.Drawing.Size(39, 15);
             this.lBBatt1.TabIndex = 44;
@@ -635,7 +641,7 @@
             this.lBBatt2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt2.AutoSize = true;
             this.lBBatt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt2.Location = new System.Drawing.Point(521, 51);
+            this.lBBatt2.Location = new System.Drawing.Point(524, 51);
             this.lBBatt2.Name = "lBBatt2";
             this.lBBatt2.Size = new System.Drawing.Size(39, 15);
             this.lBBatt2.TabIndex = 44;
@@ -646,7 +652,7 @@
             this.lBBatt3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt3.AutoSize = true;
             this.lBBatt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt3.Location = new System.Drawing.Point(521, 80);
+            this.lBBatt3.Location = new System.Drawing.Point(524, 80);
             this.lBBatt3.Name = "lBBatt3";
             this.lBBatt3.Size = new System.Drawing.Size(39, 15);
             this.lBBatt3.TabIndex = 44;
@@ -657,7 +663,7 @@
             this.lBBatt4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt4.AutoSize = true;
             this.lBBatt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt4.Location = new System.Drawing.Point(521, 109);
+            this.lBBatt4.Location = new System.Drawing.Point(524, 109);
             this.lBBatt4.Name = "lBBatt4";
             this.lBBatt4.Size = new System.Drawing.Size(39, 15);
             this.lBBatt4.TabIndex = 44;
@@ -668,7 +674,7 @@
             this.pBStatus2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus2.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus2.Image")));
             this.pBStatus2.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus2.Location = new System.Drawing.Point(370, 48);
+            this.pBStatus2.Location = new System.Drawing.Point(373, 48);
             this.pBStatus2.Name = "pBStatus2";
             this.pBStatus2.Size = new System.Drawing.Size(39, 20);
             this.pBStatus2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -680,7 +686,7 @@
             this.pBStatus3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus3.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus3.Image")));
             this.pBStatus3.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus3.Location = new System.Drawing.Point(370, 77);
+            this.pBStatus3.Location = new System.Drawing.Point(373, 77);
             this.pBStatus3.Name = "pBStatus3";
             this.pBStatus3.Size = new System.Drawing.Size(39, 20);
             this.pBStatus3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -692,7 +698,7 @@
             this.pBStatus4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus4.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus4.Image")));
             this.pBStatus4.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus4.Location = new System.Drawing.Point(370, 106);
+            this.pBStatus4.Location = new System.Drawing.Point(373, 106);
             this.pBStatus4.Name = "pBStatus4";
             this.pBStatus4.Size = new System.Drawing.Size(39, 20);
             this.pBStatus4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -701,6 +707,7 @@
             // 
             // tabProfiles
             // 
+            this.tabProfiles.Controls.Add(this.tSOptions);
             this.tabProfiles.Controls.Add(this.toolStrip1);
             this.tabProfiles.Controls.Add(this.lBProfiles);
             this.tabProfiles.Location = new System.Drawing.Point(4, 22);
@@ -710,6 +717,56 @@
             this.tabProfiles.TabIndex = 0;
             this.tabProfiles.Text = "Profiles";
             this.tabProfiles.UseVisualStyleBackColor = true;
+            // 
+            // tSOptions
+            // 
+            this.tSOptions.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tSOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.tSTBProfile,
+            this.toolStripButton1,
+            this.tSBCancel});
+            this.tSOptions.Location = new System.Drawing.Point(3, 28);
+            this.tSOptions.Name = "tSOptions";
+            this.tSOptions.Size = new System.Drawing.Size(780, 25);
+            this.tSOptions.TabIndex = 2;
+            this.tSOptions.Text = "toolStrip2";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(82, 22);
+            this.toolStripLabel1.Text = "Profile Name: ";
+            // 
+            // tSTBProfile
+            // 
+            this.tSTBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.tSTBProfile.Name = "tSTBProfile";
+            this.tSTBProfile.Size = new System.Drawing.Size(185, 25);
+            this.tSTBProfile.Text = "<type profile name here>";
+            this.tSTBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
+            this.tSTBProfile.Leave += new System.EventHandler(this.tBProfile_Leave);
+            this.tSTBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.AutoToolTip = false;
+            this.toolStripButton1.Image = global::ScpServer.Properties.Resources.saveprofile;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(88, 22);
+            this.toolStripButton1.Text = "Save Profile";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // tSBCancel
+            // 
+            this.tSBCancel.AutoToolTip = false;
+            this.tSBCancel.Image = global::ScpServer.Properties.Resources.delete;
+            this.tSBCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tSBCancel.Name = "tSBCancel";
+            this.tSBCancel.Size = new System.Drawing.Size(63, 22);
+            this.tSBCancel.Text = "Cancel";
+            this.tSBCancel.Click += new System.EventHandler(this.tSBCancel_Click);
             // 
             // toolStrip1
             // 
@@ -824,7 +881,7 @@
             this.importToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.cMProfile.Name = "cMProfile";
-            this.cMProfile.Size = new System.Drawing.Size(189, 246);
+            this.cMProfile.Size = new System.Drawing.Size(189, 224);
             // 
             // editToolStripMenuItem
             // 
@@ -952,6 +1009,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBStatus4)).EndInit();
             this.tabProfiles.ResumeLayout(false);
             this.tabProfiles.PerformLayout();
+            this.tSOptions.ResumeLayout(false);
+            this.tSOptions.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.cMProfile.ResumeLayout(false);
@@ -1037,6 +1096,11 @@
         private System.Windows.Forms.ToolStripMenuItem newProfileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip tSOptions;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox tSTBProfile;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton tSBCancel;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

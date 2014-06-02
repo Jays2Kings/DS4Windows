@@ -15,7 +15,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 9.2;
+        double version = 9.3;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -100,11 +100,11 @@ namespace ScpServer
             InitializeComponent();
 
             ThemeUtil.SetTheme(lvDebug);
-
             SetupArrays();
-            CheckDrivers();                 
+            CheckDrivers();
+            tSOptions.Visible = false;
         }
-
+        
         protected void Form_Load(object sender, EventArgs e)
         {
             Icon = Properties.Resources.DS4;
@@ -168,6 +168,11 @@ namespace ScpServer
             test.Tick += test_Tick;    
         }
 
+        private void test_Tick(object sender, EventArgs e)
+        {
+            label1.Visible = true;
+            label1.Text = DS4LightBar.fadetimer[0].ToString();
+        }
 
         void Hotkeys(object sender, EventArgs e)
         {
@@ -187,17 +192,6 @@ namespace ScpServer
                 if (slide.Contains("t"))
                     ShowNotification(this, "Controller " + (i + 1) + " is now using Profile \"" + cbs[i].Text + "\"");
             }
-        }
-
-        private void test_Tick(object sender, EventArgs e)
-        {
-            label1.Visible = true;
-            int speed = Global.getButtonMouseSensitivity(0);
-            label1.Text = (((rootHub.getDS4State(0).RX - 127) / 127d) * speed).ToString() + "and " + Mapping.mvalue;
-            /*label1.Text = Mapping.globalState.currentClicks.toggle.ToString() + " Left is " + 
-                Mapping.getBoolMapping(DS4Controls.DpadLeft, rootHub.getDS4State(0)) + 
-                " Toggle is " + Mapping.pressedonce[256] +
-                Mapping.test;*/
         }
 
         private void CheckDrivers()
@@ -434,6 +428,8 @@ namespace ScpServer
             lbLastMessage.Text = string.Empty;
         }
 
+        private static int WM_QUERYENDSESSION = 0x11;
+        private static bool systemShutdown = false;
         protected override void WndProc(ref Message m)
         {
             try
@@ -448,7 +444,11 @@ namespace ScpServer
                 }
             }
             catch { }
+            if (m.Msg == WM_QUERYENDSESSION)
+                systemShutdown = true;
 
+            // If this is WM_QUERYENDSESSION, the closing event should be
+            // raised in the base WndProc.
             base.WndProc(ref m);
         }
 
@@ -645,6 +645,10 @@ namespace ScpServer
                 this.Show();
                 WindowState = FormWindowState.Normal;
                 toolStrip1.Enabled = false;
+                tSOptions.Visible = true;
+                toolStrip1.Visible = false;
+                if (profile != "")
+                tSTBProfile.Text = profile;
                 opt = new Options(rootHub, devID, profile, this);
                 opt.Text = "Options for Controller " + (devID + 1);
                 opt.Icon = this.Icon;
@@ -655,6 +659,7 @@ namespace ScpServer
                 tabProfiles.Controls.Add(opt);
                 lBProfiles.SendToBack();
                 toolStrip1.SendToBack();
+                tSOptions.SendToBack();
                 FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
                 opt.FormClosed += delegate 
                 { 
@@ -663,6 +668,8 @@ namespace ScpServer
                     FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                     this.Size = oldsize;
                     oldsize = new System.Drawing.Size(0, 0);
+                    tSOptions.Visible = false;
+                    toolStrip1.Visible = true;
                     toolStrip1.Enabled = true;
                 };
                 oldsize = this.Size;
@@ -894,6 +901,13 @@ namespace ScpServer
 
         protected void Form_Close(object sender, FormClosingEventArgs e)
         {
+            if (systemShutdown)
+            // Reset the variable because the user might cancel the 
+            // shutdown.
+            {
+                systemShutdown = false;
+                DS4LightBar.shuttingdown = true;
+            }
             if (oldsize == new System.Drawing.Size(0, 0))
             {
                 Global.setFormWidth(this.Width);
@@ -906,6 +920,51 @@ namespace ScpServer
             }
             Global.Save();
             rootHub.Stop();
+        }
+
+        private void tBProfile_TextChanged(object sender, EventArgs e)
+        {
+            if (tSTBProfile.Text != null && tSTBProfile.Text != "" && !tSTBProfile.Text.Contains("\\") && !tSTBProfile.Text.Contains("/") && !tSTBProfile.Text.Contains(":") && !tSTBProfile.Text.Contains("*") && !tSTBProfile.Text.Contains("?") && !tSTBProfile.Text.Contains("\"") && !tSTBProfile.Text.Contains("<") && !tSTBProfile.Text.Contains(">") && !tSTBProfile.Text.Contains("|"))
+                tSTBProfile.ForeColor = System.Drawing.SystemColors.WindowText;
+            else
+                tSTBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
+        }
+
+        private void tBProfile_Enter(object sender, EventArgs e)
+        {
+            if (tSTBProfile.Text == "<type profile name here>")
+                tSTBProfile.Text = "";
+        }
+
+        private void tBProfile_Leave(object sender, EventArgs e)
+        {
+            if (tSTBProfile.Text == "")
+                tSTBProfile.Text = "<type profile name here>";
+        }
+
+        private void tSBCancel_Click(object sender, EventArgs e)
+        {
+            if (opt != null)
+                opt.Close();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (opt != null)
+            {
+                opt.Set();
+
+                if (tSTBProfile.Text != null && tSTBProfile.Text != "" && !tSTBProfile.Text.Contains("\\") && !tSTBProfile.Text.Contains("/") && !tSTBProfile.Text.Contains(":") && !tSTBProfile.Text.Contains("*") && !tSTBProfile.Text.Contains("?") && !tSTBProfile.Text.Contains("\"") && !tSTBProfile.Text.Contains("<") && !tSTBProfile.Text.Contains(">") && !tSTBProfile.Text.Contains("|"))
+                {
+                    System.IO.File.Delete(Global.appdatapath + @"\Profiles\" + opt.filename + ".xml");
+                    Global.setAProfile(opt.device, tSTBProfile.Text);
+                    Global.SaveProfile(opt.device, tSTBProfile.Text, opt.buttons.ToArray());
+                    Global.Save();
+                    opt.Close();
+                }
+                else
+                    MessageBox.Show("Please enter a valid name", "Not valid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 

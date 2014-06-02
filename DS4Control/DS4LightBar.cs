@@ -20,8 +20,9 @@ namespace DS4Control
             { 224, 56}, // on 80% of the time at 80, etc.
             { 252, 28 } // on 90% of the time at 90
         };
-        static double[] counters = new double[4] {0,0,0,0};
-
+        static double[] counters = new double[4] { 0, 0, 0, 0 };
+        public static double[] fadetimer = new double[4] { 0, 0, 0, 0 };
+        static bool[] fadedirection = new bool[4] { false, false, false, false };
         static DateTime oldnow = DateTime.UtcNow;
         public static void updateLightBar(DS4Device device, int deviceNum)
         {
@@ -49,7 +50,7 @@ namespace DS4Control
                 }
                 else if (Global.getLedAsBatteryIndicator(deviceNum))
                 {
-                    if (device.Charging == false || device.Battery >= 100) // when charged, don't show the charging animation
+                    //if (device.Charging == false || device.Battery >= 100) // when charged, don't show the charging animation
                     {
                         DS4Color fullColor = new DS4Color
                         {
@@ -68,11 +69,6 @@ namespace DS4Control
 
                         color = Global.getTransitionedColor(lowColor, fullColor, (uint)device.Battery);
                     }
-                    else // Display rainbow when charging.
-                    {
-                        counters[deviceNum] += .167;
-                        color = HuetoRGB((float)counters[deviceNum] % 360, 255);
-                    }
                 }
                 else
                 {
@@ -90,7 +86,33 @@ namespace DS4Control
                     else if (ratio >= 100)
                         color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, 100);
                 }
+                if (device.Charging && device.Battery < 100)
+                    switch (Global.getChargingType(deviceNum))
+                    {
+                        case 1:
+                            if (fadetimer[deviceNum] <= 0)
+                                fadedirection[deviceNum] = true;
+                            else if (fadetimer[deviceNum] >= 105)
+                                fadedirection[deviceNum] = false;
+                            if (fadedirection[deviceNum])
+                                fadetimer[deviceNum]+= .1;
+                            else
+                                fadetimer[deviceNum] -= .1;
+                            color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, fadetimer[deviceNum]);
+                            break;
+                        case 2:
+                            counters[deviceNum] += .167;
+                            color = HuetoRGB((float)counters[deviceNum] % 360, 255);
+                            break;
+                        case 3:
+                            color = Global.loadChargingColor(deviceNum);
+                            break;
+                        default:
+                            break;
+                    }
             }
+            else if (shuttingdown)
+                color = new DS4Color { red = 0, green = 0, blue = 0};
             else
                 color = new DS4Color { red = 32, green = 64, blue = 64 };
             DS4HapticState haptics = new DS4HapticState
@@ -120,7 +142,7 @@ namespace DS4Control
             device.pushHapticState(haptics);
 
         }
-        public static bool defualtLight = false;
+        public static bool defualtLight = false, shuttingdown = false;
 
         public static DS4Color HuetoRGB(float hue, byte sat)
         {

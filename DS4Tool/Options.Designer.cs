@@ -70,7 +70,6 @@
             this.lowColorChooserButton = new System.Windows.Forms.Button();
             this.numUDRainbow = new System.Windows.Forms.NumericUpDown();
             this.pBRainbow = new System.Windows.Forms.PictureBox();
-            this.flashLed = new System.Windows.Forms.CheckBox();
             this.blueBar = new System.Windows.Forms.TrackBar();
             this.greenBar = new System.Windows.Forms.TrackBar();
             this.redBar = new System.Windows.Forms.TrackBar();
@@ -125,7 +124,6 @@
             this.lBProfileTip = new System.Windows.Forms.Label();
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.btnSaveProfile = new System.Windows.Forms.Button();
-            this.lBSeperator = new System.Windows.Forms.Label();
             this.lbRS = new System.Windows.Forms.Label();
             this.lbLS = new System.Windows.Forms.Label();
             this.numUDRS = new System.Windows.Forms.NumericUpDown();
@@ -137,12 +135,18 @@
             this.nUDSixaxis = new System.Windows.Forms.NumericUpDown();
             this.cBControllerInput = new System.Windows.Forms.CheckBox();
             this.gBLightbar = new System.Windows.Forms.GroupBox();
+            this.btnChargingColor = new System.Windows.Forms.Button();
+            this.rBColor = new System.Windows.Forms.RadioButton();
+            this.rBFade = new System.Windows.Forms.RadioButton();
+            this.rBNormal = new System.Windows.Forms.RadioButton();
+            this.rBRainbow = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lBFlashAt = new System.Windows.Forms.Label();
+            this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
             this.gBRumble = new System.Windows.Forms.GroupBox();
             this.gBDeadzone = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
-            this.lBFlashAt = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
@@ -181,9 +185,9 @@
             this.gBOther.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
             this.gBLightbar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.gBRumble.SuspendLayout();
             this.gBDeadzone.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.SuspendLayout();
             // 
             // bnTouchUpper
@@ -295,7 +299,7 @@
             this.MainPanel.Controls.Add(this.bnOptions);
             this.MainPanel.Controls.Add(this.bnPS);
             this.MainPanel.Controls.Add(this.bnShare);
-            this.MainPanel.Location = new System.Drawing.Point(7, 77);
+            this.MainPanel.Location = new System.Drawing.Point(7, 44);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(249, 137);
             this.MainPanel.TabIndex = 185;
@@ -668,7 +672,7 @@
             this.SticksPanel.Controls.Add(this.bnRSLeft);
             this.SticksPanel.Controls.Add(this.bnLSDown);
             this.SticksPanel.Controls.Add(this.bnR3);
-            this.SticksPanel.Location = new System.Drawing.Point(7, 77);
+            this.SticksPanel.Location = new System.Drawing.Point(7, 44);
             this.SticksPanel.Name = "SticksPanel";
             this.SticksPanel.Size = new System.Drawing.Size(249, 142);
             this.SticksPanel.TabIndex = 187;
@@ -888,7 +892,7 @@
             // lBControlTip
             // 
             this.lBControlTip.AutoSize = true;
-            this.lBControlTip.Location = new System.Drawing.Point(25, 42);
+            this.lBControlTip.Location = new System.Drawing.Point(25, 9);
             this.lBControlTip.Name = "lBControlTip";
             this.lBControlTip.Size = new System.Drawing.Size(219, 26);
             this.lBControlTip.TabIndex = 181;
@@ -929,7 +933,7 @@
             "Right Stick Down :",
             "Right Stick Left :",
             "Right Stick Right :"});
-            this.lBControls.Location = new System.Drawing.Point(258, 42);
+            this.lBControls.Location = new System.Drawing.Point(258, 9);
             this.lBControls.Name = "lBControls";
             this.lBControls.Size = new System.Drawing.Size(169, 173);
             this.lBControls.TabIndex = 180;
@@ -949,7 +953,7 @@
             // 
             // numUDRainbow
             // 
-            this.numUDRainbow.Location = new System.Drawing.Point(180, 16);
+            this.numUDRainbow.Location = new System.Drawing.Point(181, 16);
             this.numUDRainbow.Maximum = new decimal(new int[] {
             60,
             0,
@@ -963,26 +967,13 @@
             // pBRainbow
             // 
             this.pBRainbow.Image = global::ScpServer.Properties.Resources.rainbow;
-            this.pBRainbow.Location = new System.Drawing.Point(161, 18);
+            this.pBRainbow.Location = new System.Drawing.Point(159, 18);
             this.pBRainbow.Name = "pBRainbow";
             this.pBRainbow.Size = new System.Drawing.Size(16, 16);
             this.pBRainbow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pBRainbow.TabIndex = 166;
             this.pBRainbow.TabStop = false;
             this.pBRainbow.Click += new System.EventHandler(this.pbRainbow_Click);
-            // 
-            // flashLed
-            // 
-            this.flashLed.AutoSize = true;
-            this.flashLed.Location = new System.Drawing.Point(433, 103);
-            this.flashLed.Name = "flashLed";
-            this.flashLed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flashLed.Size = new System.Drawing.Size(103, 17);
-            this.flashLed.TabIndex = 163;
-            this.flashLed.Text = "Flash when Low";
-            this.flashLed.UseVisualStyleBackColor = true;
-            this.flashLed.Visible = false;
-            this.flashLed.CheckedChanged += new System.EventHandler(this.flashWhenLowBattery_CheckedChanged);
             // 
             // blueBar
             // 
@@ -1035,11 +1026,11 @@
             // batteryLed
             // 
             this.batteryLed.AutoSize = true;
-            this.batteryLed.Location = new System.Drawing.Point(320, 17);
+            this.batteryLed.Location = new System.Drawing.Point(316, 17);
             this.batteryLed.Name = "batteryLed";
-            this.batteryLed.Size = new System.Drawing.Size(115, 17);
+            this.batteryLed.Size = new System.Drawing.Size(111, 17);
             this.batteryLed.TabIndex = 162;
-            this.batteryLed.Text = "Battery Level Color";
+            this.batteryLed.Text = "Color by Battery %";
             this.batteryLed.UseVisualStyleBackColor = true;
             this.batteryLed.CheckedChanged += new System.EventHandler(this.ledAsBatteryIndicator_CheckedChanged);
             // 
@@ -1064,7 +1055,7 @@
             // lBspc
             // 
             this.lBspc.AutoSize = true;
-            this.lBspc.Location = new System.Drawing.Point(225, 18);
+            this.lBspc.Location = new System.Drawing.Point(223, 19);
             this.lBspc.Name = "lBspc";
             this.lBspc.Size = new System.Drawing.Size(59, 13);
             this.lBspc.TabIndex = 157;
@@ -1306,7 +1297,7 @@
             this.tBsixaxisAccelZ.AutoSize = false;
             this.tBsixaxisAccelZ.BackColor = System.Drawing.Color.White;
             this.tBsixaxisAccelZ.Enabled = false;
-            this.tBsixaxisAccelZ.Location = new System.Drawing.Point(394, 6);
+            this.tBsixaxisAccelZ.Location = new System.Drawing.Point(382, 6);
             this.tBsixaxisAccelZ.Maximum = 32767;
             this.tBsixaxisAccelZ.Minimum = -32768;
             this.tBsixaxisAccelZ.Name = "tBsixaxisAccelZ";
@@ -1333,7 +1324,7 @@
             this.tBsixaxisAccelY.AutoSize = false;
             this.tBsixaxisAccelY.BackColor = System.Drawing.Color.White;
             this.tBsixaxisAccelY.Enabled = false;
-            this.tBsixaxisAccelY.Location = new System.Drawing.Point(347, 6);
+            this.tBsixaxisAccelY.Location = new System.Drawing.Point(335, 6);
             this.tBsixaxisAccelY.Maximum = 32767;
             this.tBsixaxisAccelY.Minimum = -32768;
             this.tBsixaxisAccelY.Name = "tBsixaxisAccelY";
@@ -1355,7 +1346,7 @@
             this.tBsixaxisAccelX.AutoSize = false;
             this.tBsixaxisAccelX.BackColor = System.Drawing.Color.White;
             this.tBsixaxisAccelX.Enabled = false;
-            this.tBsixaxisAccelX.Location = new System.Drawing.Point(301, 6);
+            this.tBsixaxisAccelX.Location = new System.Drawing.Point(289, 6);
             this.tBsixaxisAccelX.Maximum = 32767;
             this.tBsixaxisAccelX.Minimum = -32768;
             this.tBsixaxisAccelX.Name = "tBsixaxisAccelX";
@@ -1442,7 +1433,7 @@
             // 
             this.lB6Accel.AutoSize = true;
             this.lB6Accel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lB6Accel.Location = new System.Drawing.Point(232, 6);
+            this.lB6Accel.Location = new System.Drawing.Point(220, 6);
             this.lB6Accel.Name = "lB6Accel";
             this.lB6Accel.Size = new System.Drawing.Size(72, 13);
             this.lB6Accel.TabIndex = 215;
@@ -1628,52 +1619,44 @@
             this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroZ);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelY);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelZ);
-            this.SixaxisPanel.Location = new System.Drawing.Point(442, 6);
+            this.SixaxisPanel.Location = new System.Drawing.Point(1, 193);
             this.SixaxisPanel.Name = "SixaxisPanel";
-            this.SixaxisPanel.Size = new System.Drawing.Size(441, 29);
+            this.SixaxisPanel.Size = new System.Drawing.Size(435, 27);
             this.SixaxisPanel.TabIndex = 236;
             // 
             // lBProfileTip
             // 
             this.lBProfileTip.AutoSize = true;
-            this.lBProfileTip.Location = new System.Drawing.Point(5, 12);
+            this.lBProfileTip.Location = new System.Drawing.Point(13, 302);
             this.lBProfileTip.Name = "lBProfileTip";
             this.lBProfileTip.Size = new System.Drawing.Size(70, 13);
             this.lBProfileTip.TabIndex = 239;
             this.lBProfileTip.Text = "Profile Name:";
+            this.lBProfileTip.Visible = false;
             // 
             // tBProfile
             // 
             this.tBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.tBProfile.Location = new System.Drawing.Point(77, 9);
+            this.tBProfile.Location = new System.Drawing.Point(85, 299);
             this.tBProfile.Name = "tBProfile";
             this.tBProfile.Size = new System.Drawing.Size(185, 20);
             this.tBProfile.TabIndex = 238;
             this.tBProfile.Text = "<type profile name here>";
+            this.tBProfile.Visible = false;
             this.tBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
             this.tBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
             this.tBProfile.Leave += new System.EventHandler(this.tBProfile_Leave);
             // 
             // btnSaveProfile
             // 
-            this.btnSaveProfile.Location = new System.Drawing.Point(268, 7);
+            this.btnSaveProfile.Location = new System.Drawing.Point(276, 297);
             this.btnSaveProfile.Name = "btnSaveProfile";
             this.btnSaveProfile.Size = new System.Drawing.Size(78, 23);
             this.btnSaveProfile.TabIndex = 237;
             this.btnSaveProfile.Text = "Save Profile";
             this.btnSaveProfile.UseVisualStyleBackColor = true;
+            this.btnSaveProfile.Visible = false;
             this.btnSaveProfile.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // lBSeperator
-            // 
-            this.lBSeperator.AutoSize = true;
-            this.lBSeperator.BackColor = System.Drawing.Color.Transparent;
-            this.lBSeperator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.lBSeperator.Location = new System.Drawing.Point(3, 23);
-            this.lBSeperator.Name = "lBSeperator";
-            this.lBSeperator.Size = new System.Drawing.Size(433, 13);
-            this.lBSeperator.TabIndex = 240;
-            this.lBSeperator.Text = "_______________________________________________________________________";
             // 
             // lbRS
             // 
@@ -1782,7 +1765,7 @@
             this.gBTouchpad.Controls.Add(this.numUDScroll);
             this.gBTouchpad.Controls.Add(this.numUDTap);
             this.gBTouchpad.Controls.Add(this.cBScroll);
-            this.gBTouchpad.Location = new System.Drawing.Point(442, 221);
+            this.gBTouchpad.Location = new System.Drawing.Point(440, 220);
             this.gBTouchpad.Name = "gBTouchpad";
             this.gBTouchpad.Size = new System.Drawing.Size(438, 70);
             this.gBTouchpad.TabIndex = 246;
@@ -1799,7 +1782,7 @@
             this.gBOther.Controls.Add(this.flushHIDQueue);
             this.gBOther.Controls.Add(this.lBIdleMinutes);
             this.gBOther.Controls.Add(this.lBControllerOff);
-            this.gBOther.Location = new System.Drawing.Point(6, 221);
+            this.gBOther.Location = new System.Drawing.Point(7, 220);
             this.gBOther.Name = "gBOther";
             this.gBOther.Size = new System.Drawing.Size(421, 70);
             this.gBOther.TabIndex = 247;
@@ -1843,6 +1826,12 @@
             // 
             // gBLightbar
             // 
+            this.gBLightbar.Controls.Add(this.btnChargingColor);
+            this.gBLightbar.Controls.Add(this.rBColor);
+            this.gBLightbar.Controls.Add(this.rBFade);
+            this.gBLightbar.Controls.Add(this.rBNormal);
+            this.gBLightbar.Controls.Add(this.rBRainbow);
+            this.gBLightbar.Controls.Add(this.label2);
             this.gBLightbar.Controls.Add(this.label1);
             this.gBLightbar.Controls.Add(this.lBFlashAt);
             this.gBLightbar.Controls.Add(this.pBRainbow);
@@ -1852,12 +1841,111 @@
             this.gBLightbar.Controls.Add(this.FullPanel);
             this.gBLightbar.Controls.Add(this.lBspc);
             this.gBLightbar.Controls.Add(this.batteryLed);
-            this.gBLightbar.Location = new System.Drawing.Point(442, 113);
+            this.gBLightbar.Location = new System.Drawing.Point(440, 76);
             this.gBLightbar.Name = "gBLightbar";
-            this.gBLightbar.Size = new System.Drawing.Size(438, 102);
+            this.gBLightbar.Size = new System.Drawing.Size(438, 129);
             this.gBLightbar.TabIndex = 247;
             this.gBLightbar.TabStop = false;
             this.gBLightbar.Text = "Lightbar";
+            // 
+            // btnChargingColor
+            // 
+            this.btnChargingColor.BackColor = System.Drawing.Color.White;
+            this.btnChargingColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChargingColor.Location = new System.Drawing.Point(391, 108);
+            this.btnChargingColor.Name = "btnChargingColor";
+            this.btnChargingColor.Size = new System.Drawing.Size(13, 13);
+            this.btnChargingColor.TabIndex = 49;
+            this.btnChargingColor.UseVisualStyleBackColor = false;
+            this.btnChargingColor.Visible = false;
+            this.btnChargingColor.Click += new System.EventHandler(this.btnChargingColor_Click);
+            // 
+            // rBColor
+            // 
+            this.rBColor.AutoSize = true;
+            this.rBColor.Location = new System.Drawing.Point(336, 106);
+            this.rBColor.Name = "rBColor";
+            this.rBColor.Size = new System.Drawing.Size(49, 17);
+            this.rBColor.TabIndex = 238;
+            this.rBColor.TabStop = true;
+            this.rBColor.Text = "Color";
+            this.rBColor.UseVisualStyleBackColor = true;
+            this.rBColor.CheckedChanged += new System.EventHandler(this.rBColor_CheckedChanged);
+            // 
+            // rBFade
+            // 
+            this.rBFade.AutoSize = true;
+            this.rBFade.Location = new System.Drawing.Point(158, 106);
+            this.rBFade.Name = "rBFade";
+            this.rBFade.Size = new System.Drawing.Size(99, 17);
+            this.rBFade.TabIndex = 237;
+            this.rBFade.Text = "Fade in and out";
+            this.rBFade.UseVisualStyleBackColor = true;
+            this.rBFade.CheckedChanged += new System.EventHandler(this.rBFade_CheckedChanged);
+            // 
+            // rBNormal
+            // 
+            this.rBNormal.AutoSize = true;
+            this.rBNormal.Checked = true;
+            this.rBNormal.Location = new System.Drawing.Point(97, 106);
+            this.rBNormal.Name = "rBNormal";
+            this.rBNormal.Size = new System.Drawing.Size(58, 17);
+            this.rBNormal.TabIndex = 237;
+            this.rBNormal.TabStop = true;
+            this.rBNormal.Text = "Normal";
+            this.rBNormal.UseVisualStyleBackColor = true;
+            this.rBNormal.CheckedChanged += new System.EventHandler(this.rBNormal_CheckedChanged);
+            // 
+            // rBRainbow
+            // 
+            this.rBRainbow.AutoSize = true;
+            this.rBRainbow.Location = new System.Drawing.Point(263, 106);
+            this.rBRainbow.Name = "rBRainbow";
+            this.rBRainbow.Size = new System.Drawing.Size(67, 17);
+            this.rBRainbow.TabIndex = 237;
+            this.rBRainbow.Text = "Rainbow";
+            this.rBRainbow.UseVisualStyleBackColor = true;
+            this.rBRainbow.CheckedChanged += new System.EventHandler(this.rBRainbow_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 108);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 13);
+            this.label2.TabIndex = 236;
+            this.label2.Text = "While Charging:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(98, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(15, 13);
+            this.label1.TabIndex = 207;
+            this.label1.Text = "%";
+            // 
+            // lBFlashAt
+            // 
+            this.lBFlashAt.AutoSize = true;
+            this.lBFlashAt.Location = new System.Drawing.Point(9, 18);
+            this.lBFlashAt.Name = "lBFlashAt";
+            this.lBFlashAt.Size = new System.Drawing.Size(44, 13);
+            this.lBFlashAt.TabIndex = 207;
+            this.lBFlashAt.Text = "Flash at";
+            // 
+            // nUDflashLED
+            // 
+            this.nUDflashLED.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDflashLED.Location = new System.Drawing.Point(54, 16);
+            this.nUDflashLED.Name = "nUDflashLED";
+            this.nUDflashLED.Size = new System.Drawing.Size(43, 20);
+            this.nUDflashLED.TabIndex = 167;
+            this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
             // 
             // gBRumble
             // 
@@ -1868,7 +1956,7 @@
             this.gBRumble.Controls.Add(this.numUDLightRumble);
             this.gBRumble.Controls.Add(this.rightMotorLabel);
             this.gBRumble.Controls.Add(this.rumbleBoostBar);
-            this.gBRumble.Location = new System.Drawing.Point(444, 40);
+            this.gBRumble.Location = new System.Drawing.Point(442, 3);
             this.gBRumble.Name = "gBRumble";
             this.gBRumble.Size = new System.Drawing.Size(213, 67);
             this.gBRumble.TabIndex = 247;
@@ -1885,7 +1973,7 @@
             this.gBDeadzone.Controls.Add(this.numUDRS);
             this.gBDeadzone.Controls.Add(this.numUDR2);
             this.gBDeadzone.Controls.Add(this.numUDLS);
-            this.gBDeadzone.Location = new System.Drawing.Point(686, 40);
+            this.gBDeadzone.Location = new System.Drawing.Point(684, 3);
             this.gBDeadzone.Name = "gBDeadzone";
             this.gBDeadzone.Size = new System.Drawing.Size(194, 67);
             this.gBDeadzone.TabIndex = 248;
@@ -1895,44 +1983,14 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(352, 7);
+            this.btnCancel.Location = new System.Drawing.Point(360, 297);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 249;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // nUDflashLED
-            // 
-            this.nUDflashLED.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDflashLED.Location = new System.Drawing.Point(60, 16);
-            this.nUDflashLED.Name = "nUDflashLED";
-            this.nUDflashLED.Size = new System.Drawing.Size(43, 20);
-            this.nUDflashLED.TabIndex = 167;
-            this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
-            // 
-            // lBFlashAt
-            // 
-            this.lBFlashAt.AutoSize = true;
-            this.lBFlashAt.Location = new System.Drawing.Point(15, 18);
-            this.lBFlashAt.Name = "lBFlashAt";
-            this.lBFlashAt.Size = new System.Drawing.Size(44, 13);
-            this.lBFlashAt.TabIndex = 207;
-            this.lBFlashAt.Text = "Flash at";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(104, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(15, 13);
-            this.label1.TabIndex = 207;
-            this.label1.Text = "%";
             // 
             // advColorDialog
             // 
@@ -1946,13 +2004,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(888, 297);
+            this.ClientSize = new System.Drawing.Size(888, 295);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.flashLed);
             this.Controls.Add(this.gBDeadzone);
             this.Controls.Add(this.gBRumble);
             this.Controls.Add(this.gBLightbar);
-            this.Controls.Add(this.gBOther);
             this.Controls.Add(this.gBTouchpad);
             this.Controls.Add(this.SixaxisPanel);
             this.Controls.Add(this.lBProfileTip);
@@ -1962,7 +2018,7 @@
             this.Controls.Add(this.lBControls);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.SticksPanel);
-            this.Controls.Add(this.lBSeperator);
+            this.Controls.Add(this.gBOther);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -2015,11 +2071,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).EndInit();
             this.gBLightbar.ResumeLayout(false);
             this.gBLightbar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
             this.gBRumble.ResumeLayout(false);
             this.gBRumble.PerformLayout();
             this.gBDeadzone.ResumeLayout(false);
             this.gBDeadzone.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2071,7 +2127,6 @@
         private System.Windows.Forms.NumericUpDown numUDRainbow;
         private System.Windows.Forms.PictureBox pBRainbow;
         private System.Windows.Forms.Button lowColorChooserButton;
-        private System.Windows.Forms.CheckBox flashLed;
         private System.Windows.Forms.TrackBar blueBar;
         private System.Windows.Forms.TrackBar greenBar;
         private System.Windows.Forms.TrackBar redBar;
@@ -2126,7 +2181,6 @@
         private System.Windows.Forms.Label lBProfileTip;
         private System.Windows.Forms.TextBox tBProfile;
         private System.Windows.Forms.Button btnSaveProfile;
-        private System.Windows.Forms.Label lBSeperator;
         private System.Windows.Forms.Label lBControlTip;
         private System.Windows.Forms.Label lbRS;
         private System.Windows.Forms.Label lbLS;
@@ -2145,6 +2199,12 @@
         private System.Windows.Forms.NumericUpDown nUDflashLED;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lBFlashAt;
+        private System.Windows.Forms.RadioButton rBFade;
+        private System.Windows.Forms.RadioButton rBNormal;
+        private System.Windows.Forms.RadioButton rBRainbow;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnChargingColor;
+        private System.Windows.Forms.RadioButton rBColor;
     }
 }
 

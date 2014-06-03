@@ -306,12 +306,13 @@
             // 
             // pBController
             // 
+            this.pBController.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pBController.Enabled = false;
             this.pBController.Image = global::ScpServer.Properties.Resources.DS4_Controller;
             this.pBController.Location = new System.Drawing.Point(0, 0);
             this.pBController.Name = "pBController";
             this.pBController.Size = new System.Drawing.Size(245, 132);
-            this.pBController.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pBController.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBController.TabIndex = 1;
             this.pBController.TabStop = false;
             // 
@@ -695,7 +696,7 @@
             this.pBSticks.Location = new System.Drawing.Point(0, 1);
             this.pBSticks.Name = "pBSticks";
             this.pBSticks.Size = new System.Drawing.Size(245, 132);
-            this.pBSticks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pBSticks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pBSticks.TabIndex = 161;
             this.pBSticks.TabStop = false;
             // 
@@ -970,7 +971,7 @@
             this.pBRainbow.Location = new System.Drawing.Point(159, 18);
             this.pBRainbow.Name = "pBRainbow";
             this.pBRainbow.Size = new System.Drawing.Size(16, 16);
-            this.pBRainbow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pBRainbow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBRainbow.TabIndex = 166;
             this.pBRainbow.TabStop = false;
             this.pBRainbow.Click += new System.EventHandler(this.pbRainbow_Click);
@@ -1188,7 +1189,6 @@
             // lBButtonMouseSens
             // 
             this.lBButtonMouseSens.AutoSize = true;
-            this.lBButtonMouseSens.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBButtonMouseSens.Location = new System.Drawing.Point(11, 16);
             this.lBButtonMouseSens.Name = "lBButtonMouseSens";
             this.lBButtonMouseSens.Size = new System.Drawing.Size(92, 13);
@@ -1243,7 +1243,6 @@
             // lBControllerOff
             // 
             this.lBControllerOff.AutoSize = true;
-            this.lBControllerOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBControllerOff.Location = new System.Drawing.Point(11, 44);
             this.lBControllerOff.Name = "lBControllerOff";
             this.lBControllerOff.Size = new System.Drawing.Size(84, 13);
@@ -1309,7 +1308,6 @@
             // 
             this.flushHIDQueue.AccessibleName = "flushHIDQueue";
             this.flushHIDQueue.AutoSize = true;
-            this.flushHIDQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.flushHIDQueue.Location = new System.Drawing.Point(302, 39);
             this.flushHIDQueue.Name = "flushHIDQueue";
             this.flushHIDQueue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -1432,7 +1430,6 @@
             // lB6Accel
             // 
             this.lB6Accel.AutoSize = true;
-            this.lB6Accel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lB6Accel.Location = new System.Drawing.Point(220, 6);
             this.lB6Accel.Name = "lB6Accel";
             this.lB6Accel.Size = new System.Drawing.Size(72, 13);
@@ -1455,7 +1452,6 @@
             // lB6Gryo
             // 
             this.lB6Gryo.AutoSize = true;
-            this.lB6Gryo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lB6Gryo.Location = new System.Drawing.Point(5, 6);
             this.lB6Gryo.Name = "lB6Gryo";
             this.lB6Gryo.Size = new System.Drawing.Size(67, 13);
@@ -1488,7 +1484,6 @@
             // lbFull
             // 
             this.lbFull.AutoSize = true;
-            this.lbFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFull.Location = new System.Drawing.Point(7, 7);
             this.lbFull.Name = "lbFull";
             this.lbFull.Size = new System.Drawing.Size(26, 13);
@@ -1573,7 +1568,6 @@
             // lBEmpty
             // 
             this.lBEmpty.AutoSize = true;
-            this.lBEmpty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBEmpty.Location = new System.Drawing.Point(7, 9);
             this.lBEmpty.Name = "lBEmpty";
             this.lBEmpty.Size = new System.Drawing.Size(39, 13);
@@ -2000,8 +1994,9 @@
             // 
             // Options
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(888, 295);
@@ -2027,10 +2022,8 @@
             this.Text = "Options";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Options_Closed);
             this.MainPanel.ResumeLayout(false);
-            this.MainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).EndInit();
             this.SticksPanel.ResumeLayout(false);
-            this.SticksPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBSticks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDRainbow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).EndInit();

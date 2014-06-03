@@ -189,7 +189,7 @@
             // 
             this.llbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.llbHelp.AutoSize = true;
-            this.llbHelp.Location = new System.Drawing.Point(642, 5);
+            this.llbHelp.Location = new System.Drawing.Point(649, 5);
             this.llbHelp.Name = "llbHelp";
             this.llbHelp.Size = new System.Drawing.Size(79, 13);
             this.llbHelp.TabIndex = 13;
@@ -212,7 +212,7 @@
             // 
             this.lnkControllers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkControllers.AutoSize = true;
-            this.lnkControllers.Location = new System.Drawing.Point(727, 5);
+            this.lnkControllers.Location = new System.Drawing.Point(734, 5);
             this.lnkControllers.Name = "lnkControllers";
             this.lnkControllers.Size = new System.Drawing.Size(56, 13);
             this.lnkControllers.TabIndex = 11;
@@ -239,7 +239,7 @@
             this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
             this.lbLastMessage.Location = new System.Drawing.Point(8, 5);
             this.lbLastMessage.Name = "lbLastMessage";
-            this.lbLastMessage.Size = new System.Drawing.Size(628, 17);
+            this.lbLastMessage.Size = new System.Drawing.Size(635, 18);
             this.lbLastMessage.TabIndex = 41;
             // 
             // startMinimizedCheckBox
@@ -396,7 +396,7 @@
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.34039F));
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.31077F));
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
-            this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tLPControllers.Controls.Add(this.pBStatus1, 1, 1);
             this.tLPControllers.Controls.Add(this.lbPad1, 0, 1);
             this.tLPControllers.Controls.Add(this.lbPad2, 0, 2);
@@ -438,7 +438,7 @@
             this.pBStatus1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus1.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus1.Image")));
             this.pBStatus1.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus1.Location = new System.Drawing.Point(373, 19);
+            this.pBStatus1.Location = new System.Drawing.Point(370, 19);
             this.pBStatus1.Name = "pBStatus1";
             this.pBStatus1.Size = new System.Drawing.Size(39, 20);
             this.pBStatus1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -470,7 +470,7 @@
             // bnEditC3
             // 
             this.bnEditC3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC3.Location = new System.Drawing.Point(742, 76);
+            this.bnEditC3.Location = new System.Drawing.Point(739, 76);
             this.bnEditC3.Name = "bnEditC3";
             this.bnEditC3.Size = new System.Drawing.Size(40, 23);
             this.bnEditC3.TabIndex = 43;
@@ -482,7 +482,7 @@
             // bnEditC4
             // 
             this.bnEditC4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC4.Location = new System.Drawing.Point(742, 105);
+            this.bnEditC4.Location = new System.Drawing.Point(739, 105);
             this.bnEditC4.Name = "bnEditC4";
             this.bnEditC4.Size = new System.Drawing.Size(40, 23);
             this.bnEditC4.TabIndex = 43;
@@ -517,7 +517,7 @@
             // 
             this.cBController1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController1.FormattingEnabled = true;
-            this.cBController1.Location = new System.Drawing.Point(625, 19);
+            this.cBController1.Location = new System.Drawing.Point(622, 19);
             this.cBController1.Name = "cBController1";
             this.cBController1.Size = new System.Drawing.Size(111, 21);
             this.cBController1.TabIndex = 42;
@@ -527,7 +527,7 @@
             // bnEditC2
             // 
             this.bnEditC2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC2.Location = new System.Drawing.Point(742, 47);
+            this.bnEditC2.Location = new System.Drawing.Point(739, 47);
             this.bnEditC2.Name = "bnEditC2";
             this.bnEditC2.Size = new System.Drawing.Size(40, 23);
             this.bnEditC2.TabIndex = 43;
@@ -540,7 +540,7 @@
             // 
             this.cBController2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController2.FormattingEnabled = true;
-            this.cBController2.Location = new System.Drawing.Point(625, 48);
+            this.cBController2.Location = new System.Drawing.Point(622, 48);
             this.cBController2.Name = "cBController2";
             this.cBController2.Size = new System.Drawing.Size(111, 21);
             this.cBController2.TabIndex = 42;
@@ -551,7 +551,7 @@
             // 
             this.cBController3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController3.FormattingEnabled = true;
-            this.cBController3.Location = new System.Drawing.Point(625, 77);
+            this.cBController3.Location = new System.Drawing.Point(622, 77);
             this.cBController3.Name = "cBController3";
             this.cBController3.Size = new System.Drawing.Size(111, 21);
             this.cBController3.TabIndex = 42;
@@ -561,7 +561,7 @@
             // bnEditC1
             // 
             this.bnEditC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC1.Location = new System.Drawing.Point(742, 18);
+            this.bnEditC1.Location = new System.Drawing.Point(739, 18);
             this.bnEditC1.Name = "bnEditC1";
             this.bnEditC1.Size = new System.Drawing.Size(40, 23);
             this.bnEditC1.TabIndex = 43;
@@ -574,7 +574,7 @@
             // 
             this.cBController4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController4.FormattingEnabled = true;
-            this.cBController4.Location = new System.Drawing.Point(625, 106);
+            this.cBController4.Location = new System.Drawing.Point(622, 106);
             this.cBController4.Name = "cBController4";
             this.cBController4.Size = new System.Drawing.Size(111, 21);
             this.cBController4.TabIndex = 42;
@@ -586,7 +586,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(626, 0);
+            this.label2.Location = new System.Drawing.Point(623, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 15);
             this.label2.TabIndex = 45;
@@ -608,7 +608,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(369, 0);
+            this.label4.Location = new System.Drawing.Point(366, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 15);
             this.label4.TabIndex = 45;
@@ -619,7 +619,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(518, 0);
+            this.label5.Location = new System.Drawing.Point(515, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 15);
             this.label5.TabIndex = 45;
@@ -630,7 +630,7 @@
             this.lBBatt1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt1.AutoSize = true;
             this.lBBatt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt1.Location = new System.Drawing.Point(524, 22);
+            this.lBBatt1.Location = new System.Drawing.Point(521, 22);
             this.lBBatt1.Name = "lBBatt1";
             this.lBBatt1.Size = new System.Drawing.Size(39, 15);
             this.lBBatt1.TabIndex = 44;
@@ -641,7 +641,7 @@
             this.lBBatt2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt2.AutoSize = true;
             this.lBBatt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt2.Location = new System.Drawing.Point(524, 51);
+            this.lBBatt2.Location = new System.Drawing.Point(521, 51);
             this.lBBatt2.Name = "lBBatt2";
             this.lBBatt2.Size = new System.Drawing.Size(39, 15);
             this.lBBatt2.TabIndex = 44;
@@ -652,7 +652,7 @@
             this.lBBatt3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt3.AutoSize = true;
             this.lBBatt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt3.Location = new System.Drawing.Point(524, 80);
+            this.lBBatt3.Location = new System.Drawing.Point(521, 80);
             this.lBBatt3.Name = "lBBatt3";
             this.lBBatt3.Size = new System.Drawing.Size(39, 15);
             this.lBBatt3.TabIndex = 44;
@@ -663,7 +663,7 @@
             this.lBBatt4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt4.AutoSize = true;
             this.lBBatt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt4.Location = new System.Drawing.Point(524, 109);
+            this.lBBatt4.Location = new System.Drawing.Point(521, 109);
             this.lBBatt4.Name = "lBBatt4";
             this.lBBatt4.Size = new System.Drawing.Size(39, 15);
             this.lBBatt4.TabIndex = 44;
@@ -674,7 +674,7 @@
             this.pBStatus2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus2.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus2.Image")));
             this.pBStatus2.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus2.Location = new System.Drawing.Point(373, 48);
+            this.pBStatus2.Location = new System.Drawing.Point(370, 48);
             this.pBStatus2.Name = "pBStatus2";
             this.pBStatus2.Size = new System.Drawing.Size(39, 20);
             this.pBStatus2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -686,7 +686,7 @@
             this.pBStatus3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus3.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus3.Image")));
             this.pBStatus3.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus3.Location = new System.Drawing.Point(373, 77);
+            this.pBStatus3.Location = new System.Drawing.Point(370, 77);
             this.pBStatus3.Name = "pBStatus3";
             this.pBStatus3.Size = new System.Drawing.Size(39, 20);
             this.pBStatus3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -698,7 +698,7 @@
             this.pBStatus4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus4.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus4.Image")));
             this.pBStatus4.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus4.Location = new System.Drawing.Point(373, 106);
+            this.pBStatus4.Location = new System.Drawing.Point(370, 106);
             this.pBStatus4.Name = "pBStatus4";
             this.pBStatus4.Size = new System.Drawing.Size(39, 20);
             this.pBStatus4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -982,8 +982,8 @@
             // ScpForm
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(794, 393);
             this.Controls.Add(this.tabMain);

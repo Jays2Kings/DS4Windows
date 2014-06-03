@@ -15,7 +15,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 9.3;
+        double version = 9.33;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -104,9 +104,22 @@ namespace ScpServer
             CheckDrivers();
             tSOptions.Visible = false;
         }
+        float dpix, dpiy;
         
         protected void Form_Load(object sender, EventArgs e)
         {
+            SetupArrays();
+
+            Graphics g = this.CreateGraphics();
+            try
+            {
+                dpix = g.DpiX;
+                dpiy = g.DpiY;
+            }
+            finally
+            {
+                g.Dispose();
+            }
             Icon = Properties.Resources.DS4;
             notifyIcon1.Icon = Properties.Resources.DS4;
             rootHub = new DS4Control.Control();
@@ -132,14 +145,13 @@ namespace ScpServer
             startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
 
             RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", false);
-            StartWindowsCheckBox.Checked = (KeyLoc.GetValue("DS4Tool") != null);
-
-            SetupArrays();
+            StartWindowsCheckBox.Checked = (KeyLoc.GetValue("DS4Tool") != null);            
             if (startMinimizedCheckBox.Checked)
             {
                 this.WindowState = FormWindowState.Minimized;
-                Form_Resize(sender, e);
+                //Form_Resize(sender, e);
             }
+            Form_Resize(sender, e);
             RefreshProfiles();
             for (int i = 0; i < 4; i++)
                 Global.LoadProfile(i);
@@ -171,7 +183,7 @@ namespace ScpServer
         private void test_Tick(object sender, EventArgs e)
         {
             label1.Visible = true;
-            label1.Text = DS4LightBar.fadetimer[0].ToString();
+            label1.Text = dpix + " " + dpiy;
         }
 
         void Hotkeys(object sender, EventArgs e)
@@ -648,7 +660,9 @@ namespace ScpServer
                 tSOptions.Visible = true;
                 toolStrip1.Visible = false;
                 if (profile != "")
-                tSTBProfile.Text = profile;
+                    tSTBProfile.Text = profile;
+                else
+                    tSTBProfile.Text = "<type profile name here>";
                 opt = new Options(rootHub, devID, profile, this);
                 opt.Text = "Options for Controller " + (devID + 1);
                 opt.Icon = this.Icon;
@@ -673,10 +687,20 @@ namespace ScpServer
                     toolStrip1.Enabled = true;
                 };
                 oldsize = this.Size;
-                if (this.Size.Height < 442)
-                    this.Size = new System.Drawing.Size(this.Size.Width, 442);
-                if (this.Size.Width < 910)
-                    this.Size = new System.Drawing.Size(910, this.Size.Height);
+                if (dpix == 120)
+                {
+                    if (this.Size.Height < 560)
+                        this.Size = new System.Drawing.Size(this.Size.Width, 560);
+                    if (this.Size.Width < 1125)
+                        this.Size = new System.Drawing.Size(1125, this.Size.Height);
+                }
+                else
+                {
+                    if (this.Size.Height < 442)
+                        this.Size = new System.Drawing.Size(this.Size.Width, 442);
+                    if (this.Size.Width < 910)
+                        this.Size = new System.Drawing.Size(910, this.Size.Height);
+                }
                 tabMain.SelectedIndex = 1;
             }
         }
@@ -818,12 +842,24 @@ namespace ScpServer
             lbLastMessage.Visible = tabMain.SelectedIndex != 2;
             if (tabMain.SelectedIndex == 3 && opt == null)
             {
-                if (this.Size.Width < 755 || this.Size.Height < 340)
-                    oldsize = Size;
-                if (this.Size.Height < 340)
-                    this.Size = new System.Drawing.Size(this.Size.Width, 340);
-                if (this.Size.Width < 755)
-                    this.Size = new System.Drawing.Size(755, this.Size.Height);
+                if (dpix == 120)
+                {
+                    if (this.Size.Width < 930 || this.Size.Height < 415)
+                        oldsize = Size;
+                    if (this.Size.Height < 415)
+                        this.Size = new System.Drawing.Size(this.Size.Width, 415);
+                    if (this.Size.Width < 930)
+                        this.Size = new System.Drawing.Size(930, this.Size.Height);
+                }
+                else
+                {
+                    if (this.Size.Width < 755 || this.Size.Height < 340)
+                        oldsize = Size;
+                    if (this.Size.Height < 340)
+                        this.Size = new System.Drawing.Size(this.Size.Width, 340);
+                    if (this.Size.Width < 755)
+                        this.Size = new System.Drawing.Size(755, this.Size.Height);
+                }
                 
             }
             else if (oldsize != new System.Drawing.Size(0, 0) && opt == null)

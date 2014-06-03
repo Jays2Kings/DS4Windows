@@ -198,34 +198,34 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\sticks.png" />
+    <None Include="Resources\UpperTouch.png" />
     <None Include="Resources\shell32_export.png" />
     <None Include="Resources\USB.png" />
-    <None Include="Resources\UpperTouch.png" />
     <None Include="Resources\shell32_copy.png" />
     <None Include="Resources\shell32_new.png" />
     <None Include="Resources\shell32 delete.png" />
-    <None Include="Resources\sticks.png" />
     <None Include="Resources\Touch.png" />
     <None Include="Resources\Touch states2.png" />
     <None Include="Resources\sticks2.png" />
     <None Include="Resources\360 fades.png" />
     <None Include="Resources\1401402547_menu-24.png" />
-    <None Include="Resources\DS4 Controller.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\BT.png" />
+    <None Include="Resources\DS4 Controller.png" />
     <Content Include="Resources\DS4.ico" />
     <None Include="Resources\mouse.png" />
     <None Include="Resources\rainbow.png" />
     <None Include="Resources\rainbowC.png" />
-    <None Include="Resources\Pairmode.png" />
-    <None Include="Resources\LeftTouch.png" />
-    <None Include="Resources\MultiTouch.png" />
-    <None Include="Resources\RightTouch.png" />
     <None Include="Resources\imageres_new.png" />
     <None Include="Resources\none.png" />
     <None Include="Resources\export.png" />
     <None Include="Resources\imageres_import.png" />
     <None Include="Resources\saveprofile.png" />
+    <None Include="Resources\LeftTouch.png" />
+    <None Include="Resources\MultiTouch.png" />
+    <None Include="Resources\RightTouch.png" />
+    <None Include="Resources\Pairmode.png" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>

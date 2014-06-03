@@ -597,9 +597,13 @@ namespace DS4Control
         }
         public DS4KeyType GetCustomKeyType(int device, DS4Controls controlName)
         {
-            if (customMapKeyTypes[device].ContainsKey(controlName))
-                return customMapKeyTypes[device][controlName];
-            else return 0;
+            try
+            {
+                if (customMapKeyTypes[device].ContainsKey(controlName))
+                    return customMapKeyTypes[device][controlName];
+                else return 0;
+            }
+            catch { return 0; }
         }
 
 

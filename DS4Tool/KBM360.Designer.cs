@@ -1430,7 +1430,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(747, 41);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(97, 140);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 290;
             this.pictureBox2.TabStop = false;
             // 
@@ -1713,7 +1713,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(2, 226);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(851, 177);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 316;
             this.pictureBox1.TabStop = false;
             // 
@@ -1759,8 +1759,8 @@
             // 
             // KBM360
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(854, 403);
             this.Controls.Add(this.lBMacroOrder);
             this.Controls.Add(this.KBMlabel);

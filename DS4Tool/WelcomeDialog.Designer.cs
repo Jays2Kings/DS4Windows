@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bnFinish = new System.Windows.Forms.Button();
             this.bnStep1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -38,18 +37,9 @@
             this.linkBluetoothSettings = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.bnFinish = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bnFinish
-            // 
-            this.bnFinish.Location = new System.Drawing.Point(123, 388);
-            this.bnFinish.Name = "bnFinish";
-            this.bnFinish.Size = new System.Drawing.Size(75, 23);
-            this.bnFinish.TabIndex = 0;
-            this.bnFinish.Text = "Finish";
-            this.bnFinish.UseVisualStyleBackColor = true;
-            this.bnFinish.Click += new System.EventHandler(this.bnFinish_Click);
             // 
             // bnStep1
             // 
@@ -141,6 +131,16 @@
             this.label2.Text = "If you\'ve used a 360 Controller on this PC, you can skip this";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // bnFinish
+            // 
+            this.bnFinish.Location = new System.Drawing.Point(123, 388);
+            this.bnFinish.Name = "bnFinish";
+            this.bnFinish.Size = new System.Drawing.Size(75, 23);
+            this.bnFinish.TabIndex = 0;
+            this.bnFinish.Text = "Finish";
+            this.bnFinish.UseVisualStyleBackColor = true;
+            this.bnFinish.Click += new System.EventHandler(this.bnFinish_Click);
+            // 
             // WelcomeDialog
             // 
             this.AcceptButton = this.bnFinish;
@@ -167,7 +167,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button bnFinish;
         private System.Windows.Forms.Button bnStep1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -177,5 +176,6 @@
         private System.Windows.Forms.LinkLabel linkBluetoothSettings;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button bnFinish;
     }
 }

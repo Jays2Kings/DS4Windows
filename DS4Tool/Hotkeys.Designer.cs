@@ -29,16 +29,13 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.linkElectro = new System.Windows.Forms.LinkLabel();
             this.linkJays2Kings = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.lbAbout = new System.Windows.Forms.Label();
             this.linkInhexSTER = new System.Windows.Forms.LinkLabel();
             this.linkJhebbel = new System.Windows.Forms.LinkLabel();
-            this.linkUninstall = new System.Windows.Forms.LinkLabel();
             this.label23 = new System.Windows.Forms.Label();
-            this.lLBUpdate = new System.Windows.Forms.LinkLabel();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -83,18 +80,6 @@
             this.button1.Text = "Done";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // linkProfiles
-            // 
-            this.linkProfiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.linkProfiles.AutoSize = true;
-            this.linkProfiles.Location = new System.Drawing.Point(378, 391);
-            this.linkProfiles.Name = "linkProfiles";
-            this.linkProfiles.Size = new System.Drawing.Size(94, 13);
-            this.linkProfiles.TabIndex = 17;
-            this.linkProfiles.TabStop = true;
-            this.linkProfiles.Text = "Open Profile folder";
-            this.linkProfiles.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkProfiles_LinkClicked);
             // 
             // linkElectro
             // 
@@ -164,18 +149,6 @@
             this.linkJhebbel.Text = "jhebbel (DSDCS)";
             this.linkJhebbel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkJhebbel_LinkClicked);
             // 
-            // linkUninstall
-            // 
-            this.linkUninstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.linkUninstall.AutoSize = true;
-            this.linkUninstall.Location = new System.Drawing.Point(35, 391);
-            this.linkUninstall.Name = "linkUninstall";
-            this.linkUninstall.Size = new System.Drawing.Size(106, 13);
-            this.linkUninstall.TabIndex = 17;
-            this.linkUninstall.TabStop = true;
-            this.linkUninstall.Text = "Uninstall VBus Driver";
-            this.linkUninstall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkUninstall_LinkClicked);
-            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -184,17 +157,6 @@
             this.label23.Size = new System.Drawing.Size(58, 13);
             this.label23.TabIndex = 3;
             this.label23.Text = "*If enabled";
-            // 
-            // lLBUpdate
-            // 
-            this.lLBUpdate.AutoSize = true;
-            this.lLBUpdate.Location = new System.Drawing.Point(6, 9);
-            this.lLBUpdate.Name = "lLBUpdate";
-            this.lLBUpdate.Size = new System.Drawing.Size(96, 13);
-            this.lLBUpdate.TabIndex = 48;
-            this.lLBUpdate.TabStop = true;
-            this.lLBUpdate.Text = "Check for Updates";
-            this.lLBUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLBUpdate_LinkClicked);
             // 
             // label26
             // 
@@ -518,10 +480,10 @@
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(193, 3);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(292, 26);
+            this.label31.Size = new System.Drawing.Size(324, 26);
             this.label31.TabIndex = 14;
-            this.label31.Text = "Hides the DS4\'s regular input (Dinput) from other progrmas\r\nIf you are getting do" +
-    "uble input in Steam or games, check this";
+            this.label31.Text = "Hides the DS4\'s regular input (Dinput) from other progrmas\r\ncheck if you are gett" +
+    "ing double input in games or R2 pauses games";
             // 
             // Hotkeys
             // 
@@ -530,14 +492,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(520, 413);
-            this.Controls.Add(this.lLBUpdate);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.linkJhebbel);
             this.Controls.Add(this.linkInhexSTER);
             this.Controls.Add(this.linkJays2Kings);
             this.Controls.Add(this.linkElectro);
-            this.Controls.Add(this.linkUninstall);
-            this.Controls.Add(this.linkProfiles);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -557,16 +516,13 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.LinkLabel linkProfiles;
         private System.Windows.Forms.LinkLabel linkElectro;
         private System.Windows.Forms.LinkLabel linkJays2Kings;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbAbout;
         private System.Windows.Forms.LinkLabel linkInhexSTER;
         private System.Windows.Forms.LinkLabel linkJhebbel;
-        private System.Windows.Forms.LinkLabel linkUninstall;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.LinkLabel lLBUpdate;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label25;

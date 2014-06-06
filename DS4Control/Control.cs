@@ -515,23 +515,24 @@ namespace DS4Control
         {
             DS4State cState = CurrentState[ind];
             string slidedir = "none";
-            if (cState.Touch2)
-                if (DS4Controllers[ind] != null)
-                    if (touchPad[ind].slideright && !touchslid[ind])
-                    {
-                        slidedir = "right";
-                        touchslid[ind] = true;
-                    }
-                    else if (touchPad[ind].slideleft && !touchslid[ind])
-                    {
-                        slidedir = "left";
-                        touchslid[ind] = true;
-                    }
-                    else if (!touchPad[ind].slideleft && !touchPad[ind].slideright)
-                    {
-                        slidedir = "";
-                        touchslid[ind] = false;
-                    }
+            if (DS4Controllers[ind] != null)
+                if (cState.Touch2)
+                    if (DS4Controllers[ind] != null)
+                        if (touchPad[ind].slideright && !touchslid[ind])
+                        {
+                            slidedir = "right";
+                            touchslid[ind] = true;
+                        }
+                        else if (touchPad[ind].slideleft && !touchslid[ind])
+                        {
+                            slidedir = "left";
+                            touchslid[ind] = true;
+                        }
+                        else if (!touchPad[ind].slideleft && !touchPad[ind].slideright)
+                        {
+                            slidedir = "";
+                            touchslid[ind] = false;
+                        }
             return slidedir;
         }
         public virtual void LogDebug(String Data)

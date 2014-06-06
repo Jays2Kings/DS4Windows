@@ -43,7 +43,8 @@ namespace DS4Control
                         slideleft = true;
             dev.getCurrentState(s);
             synthesizeMouseButtons();
-            //Console.WriteLine(arg.timeStamp.ToString("O") + " " + "moved to " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
+            //if (arg.touches.Length == 2)
+           // Console.WriteLine("Left " + slideleft + " Right " + slideright);
         }
         public virtual void touchesBegan(object sender, TouchpadEventArgs arg)
         {

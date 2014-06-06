@@ -28,95 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.components = new System.ComponentModel.Container();
+            this.bnAddPrograms = new System.Windows.Forms.Button();
+            this.lBProgramPath = new System.Windows.Forms.Label();
+            this.cBProfile1 = new System.Windows.Forms.ComboBox();
+            this.cBProfile2 = new System.Windows.Forms.ComboBox();
+            this.cBProfile3 = new System.Windows.Forms.ComboBox();
+            this.cBProfile4 = new System.Windows.Forms.ComboBox();
             this.bnSave = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lBController1 = new System.Windows.Forms.Label();
+            this.lBController2 = new System.Windows.Forms.Label();
+            this.lBController3 = new System.Windows.Forms.Label();
+            this.lBController4 = new System.Windows.Forms.Label();
+            this.lBBeta = new System.Windows.Forms.Label();
+            this.openProgram = new System.Windows.Forms.OpenFileDialog();
+            this.bnDelete = new System.Windows.Forms.Button();
+            this.iLIcons = new System.Windows.Forms.ImageList(this.components);
+            this.bnLoadSteam = new System.Windows.Forms.Button();
+            this.lVPrograms = new System.Windows.Forms.ListView();
+            this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PathHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lBTip = new System.Windows.Forms.Label();
+            this.pBProfilesTip = new System.Windows.Forms.Label();
+            this.bnHideUnchecked = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBox1
+            // bnAddPrograms
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(5, 4);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(279, 199);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.bnAddPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bnAddPrograms.Location = new System.Drawing.Point(516, 195);
+            this.bnAddPrograms.Name = "bnAddPrograms";
+            this.bnAddPrograms.Size = new System.Drawing.Size(114, 23);
+            this.bnAddPrograms.TabIndex = 2;
+            this.bnAddPrograms.Text = "Add more programs";
+            this.bnAddPrograms.UseVisualStyleBackColor = true;
+            this.bnAddPrograms.Click += new System.EventHandler(this.bnAddPrograms_Click);
             // 
-            // button2
+            // lBProgramPath
             // 
-            this.button2.Location = new System.Drawing.Point(516, 180);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(114, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Browse More";
-            this.button2.UseVisualStyleBackColor = true;
+            this.lBProgramPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lBProgramPath.Location = new System.Drawing.Point(602, 131);
+            this.lBProgramPath.Name = "lBProgramPath";
+            this.lBProgramPath.Size = new System.Drawing.Size(47, 18);
+            this.lBProgramPath.TabIndex = 3;
+            this.lBProgramPath.Visible = false;
+            this.lBProgramPath.TextChanged += new System.EventHandler(this.lBProgramPath_TextChanged);
             // 
-            // listBox2
+            // cBProfile1
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(290, 4);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(220, 199);
-            this.listBox2.TabIndex = 0;
-            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            this.cBProfile1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cBProfile1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBProfile1.FormattingEnabled = true;
+            this.cBProfile1.Location = new System.Drawing.Point(609, 18);
+            this.cBProfile1.Name = "cBProfile1";
+            this.cBProfile1.Size = new System.Drawing.Size(121, 21);
+            this.cBProfile1.TabIndex = 6;
+            this.cBProfile1.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
             // 
-            // label1
+            // cBProfile2
             // 
-            this.label1.Location = new System.Drawing.Point(5, 206);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(717, 19);
-            this.label1.TabIndex = 3;
+            this.cBProfile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cBProfile2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBProfile2.FormattingEnabled = true;
+            this.cBProfile2.Location = new System.Drawing.Point(609, 45);
+            this.cBProfile2.Name = "cBProfile2";
+            this.cBProfile2.Size = new System.Drawing.Size(121, 21);
+            this.cBProfile2.TabIndex = 6;
+            this.cBProfile2.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
             // 
-            // comboBox1
+            // cBProfile3
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(601, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 6;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
+            this.cBProfile3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cBProfile3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBProfile3.FormattingEnabled = true;
+            this.cBProfile3.Location = new System.Drawing.Point(609, 72);
+            this.cBProfile3.Name = "cBProfile3";
+            this.cBProfile3.Size = new System.Drawing.Size(121, 21);
+            this.cBProfile3.TabIndex = 6;
+            this.cBProfile3.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
             // 
-            // comboBox2
+            // cBProfile4
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(601, 33);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 6;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(601, 60);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 6;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(601, 87);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 6;
-            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
+            this.cBProfile4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cBProfile4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBProfile4.FormattingEnabled = true;
+            this.cBProfile4.Location = new System.Drawing.Point(609, 99);
+            this.cBProfile4.Name = "cBProfile4";
+            this.cBProfile4.Size = new System.Drawing.Size(121, 21);
+            this.cBProfile4.TabIndex = 6;
+            this.cBProfile4.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
             // 
             // bnSave
             // 
-            this.bnSave.Location = new System.Drawing.Point(655, 180);
+            this.bnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bnSave.Enabled = false;
+            this.bnSave.Location = new System.Drawing.Point(663, 126);
             this.bnSave.Name = "bnSave";
             this.bnSave.Size = new System.Drawing.Size(67, 23);
             this.bnSave.TabIndex = 2;
@@ -124,73 +130,186 @@
             this.bnSave.UseVisualStyleBackColor = true;
             this.bnSave.Click += new System.EventHandler(this.bnSave_Click);
             // 
-            // label2
+            // lBController1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(516, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Controller 1";
+            this.lBController1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lBController1.AutoSize = true;
+            this.lBController1.Location = new System.Drawing.Point(516, 21);
+            this.lBController1.Name = "lBController1";
+            this.lBController1.Size = new System.Drawing.Size(60, 13);
+            this.lBController1.TabIndex = 7;
+            this.lBController1.Text = "Controller 1";
             // 
-            // label3
+            // lBController2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(516, 36);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Controller 2";
+            this.lBController2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lBController2.AutoSize = true;
+            this.lBController2.Location = new System.Drawing.Point(516, 48);
+            this.lBController2.Name = "lBController2";
+            this.lBController2.Size = new System.Drawing.Size(60, 13);
+            this.lBController2.TabIndex = 7;
+            this.lBController2.Text = "Controller 2";
             // 
-            // label4
+            // lBController3
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(516, 63);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Controller 3";
+            this.lBController3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lBController3.AutoSize = true;
+            this.lBController3.Location = new System.Drawing.Point(516, 75);
+            this.lBController3.Name = "lBController3";
+            this.lBController3.Size = new System.Drawing.Size(60, 13);
+            this.lBController3.TabIndex = 7;
+            this.lBController3.Text = "Controller 3";
             // 
-            // label5
+            // lBController4
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(516, 90);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Controller 4";
+            this.lBController4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lBController4.AutoSize = true;
+            this.lBController4.Location = new System.Drawing.Point(516, 102);
+            this.lBController4.Name = "lBController4";
+            this.lBController4.Size = new System.Drawing.Size(60, 13);
+            this.lBController4.TabIndex = 7;
+            this.lBController4.Text = "Controller 4";
             // 
-            // label6
+            // lBBeta
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(530, 129);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(182, 24);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Not yet ready for use";
+            this.lBBeta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lBBeta.AutoSize = true;
+            this.lBBeta.BackColor = System.Drawing.Color.Transparent;
+            this.lBBeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBBeta.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lBBeta.Location = new System.Drawing.Point(606, 175);
+            this.lBBeta.Name = "lBBeta";
+            this.lBBeta.Size = new System.Drawing.Size(38, 18);
+            this.lBBeta.TabIndex = 8;
+            this.lBBeta.Text = "Beta";
+            this.lBBeta.Visible = false;
+            // 
+            // openProgram
+            // 
+            this.openProgram.FileName = "openFileDialog1";
+            this.openProgram.Filter = "Programs|*.exe|Shortcuts|*.lnk";
+            // 
+            // bnDelete
+            // 
+            this.bnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bnDelete.Location = new System.Drawing.Point(519, 126);
+            this.bnDelete.Name = "bnDelete";
+            this.bnDelete.Size = new System.Drawing.Size(67, 23);
+            this.bnDelete.TabIndex = 2;
+            this.bnDelete.Text = "Remove";
+            this.bnDelete.UseVisualStyleBackColor = true;
+            this.bnDelete.Click += new System.EventHandler(this.bnDelete_Click);
+            // 
+            // iLIcons
+            // 
+            this.iLIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.iLIcons.ImageSize = new System.Drawing.Size(16, 16);
+            this.iLIcons.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // bnLoadSteam
+            // 
+            this.bnLoadSteam.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bnLoadSteam.Location = new System.Drawing.Point(5, 195);
+            this.bnLoadSteam.Name = "bnLoadSteam";
+            this.bnLoadSteam.Size = new System.Drawing.Size(505, 23);
+            this.bnLoadSteam.TabIndex = 11;
+            this.bnLoadSteam.Text = "Load Steam Games";
+            this.bnLoadSteam.UseVisualStyleBackColor = true;
+            this.bnLoadSteam.Click += new System.EventHandler(this.bnLoadSteam_Click);
+            // 
+            // lVPrograms
+            // 
+            this.lVPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lVPrograms.CheckBoxes = true;
+            this.lVPrograms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameHeader,
+            this.PathHeader});
+            this.lVPrograms.FullRowSelect = true;
+            this.lVPrograms.LargeImageList = this.iLIcons;
+            this.lVPrograms.Location = new System.Drawing.Point(5, 6);
+            this.lVPrograms.MultiSelect = false;
+            this.lVPrograms.Name = "lVPrograms";
+            this.lVPrograms.Size = new System.Drawing.Size(505, 187);
+            this.lVPrograms.SmallImageList = this.iLIcons;
+            this.lVPrograms.TabIndex = 12;
+            this.lVPrograms.UseCompatibleStateImageBehavior = false;
+            this.lVPrograms.View = System.Windows.Forms.View.Details;
+            this.lVPrograms.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listView1_ItemCheck);
+            this.lVPrograms.SelectedIndexChanged += new System.EventHandler(this.lBProgramPath_SelectedIndexChanged);
+            // 
+            // nameHeader
+            // 
+            this.nameHeader.Text = "Name";
+            this.nameHeader.Width = 140;
+            // 
+            // PathHeader
+            // 
+            this.PathHeader.Text = "Path";
+            this.PathHeader.Width = 358;
+            // 
+            // lBTip
+            // 
+            this.lBTip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lBTip.AutoSize = true;
+            this.lBTip.BackColor = System.Drawing.Color.Transparent;
+            this.lBTip.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lBTip.Location = new System.Drawing.Point(529, 152);
+            this.lBTip.Name = "lBTip";
+            this.lBTip.Size = new System.Drawing.Size(191, 13);
+            this.lBTip.TabIndex = 8;
+            this.lBTip.Text = "Pick a program, then profiles, and save";
+            this.lBTip.Visible = false;
+            // 
+            // pBProfilesTip
+            // 
+            this.pBProfilesTip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pBProfilesTip.AutoSize = true;
+            this.pBProfilesTip.BackColor = System.Drawing.Color.Transparent;
+            this.pBProfilesTip.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.pBProfilesTip.Location = new System.Drawing.Point(620, 2);
+            this.pBProfilesTip.Name = "pBProfilesTip";
+            this.pBProfilesTip.Size = new System.Drawing.Size(89, 13);
+            this.pBProfilesTip.TabIndex = 8;
+            this.pBProfilesTip.Text = "Pick Profiles here";
+            // 
+            // bnHideUnchecked
+            // 
+            this.bnHideUnchecked.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bnHideUnchecked.Location = new System.Drawing.Point(636, 195);
+            this.bnHideUnchecked.Name = "bnHideUnchecked";
+            this.bnHideUnchecked.Size = new System.Drawing.Size(94, 23);
+            this.bnHideUnchecked.TabIndex = 2;
+            this.bnHideUnchecked.Text = "Hide unchecked";
+            this.bnHideUnchecked.UseVisualStyleBackColor = true;
+            this.bnHideUnchecked.Click += new System.EventHandler(this.bnHideUnchecked_Click);
             // 
             // WinProgs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(736, 230);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(736, 222);
+            this.Controls.Add(this.lVPrograms);
+            this.Controls.Add(this.bnLoadSteam);
+            this.Controls.Add(this.lBController4);
+            this.Controls.Add(this.lBController3);
+            this.Controls.Add(this.lBController2);
+            this.Controls.Add(this.lBController1);
+            this.Controls.Add(this.cBProfile4);
+            this.Controls.Add(this.cBProfile3);
+            this.Controls.Add(this.cBProfile2);
+            this.Controls.Add(this.cBProfile1);
+            this.Controls.Add(this.lBProgramPath);
+            this.Controls.Add(this.bnDelete);
             this.Controls.Add(this.bnSave);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.bnHideUnchecked);
+            this.Controls.Add(this.bnAddPrograms);
+            this.Controls.Add(this.pBProfilesTip);
+            this.Controls.Add(this.lBTip);
+            this.Controls.Add(this.lBBeta);
             this.Name = "WinProgs";
             this.Text = "Auto-Profiles";
             this.ResumeLayout(false);
@@ -200,19 +319,27 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Button bnAddPrograms;
+        private System.Windows.Forms.Label lBProgramPath;
+        private System.Windows.Forms.ComboBox cBProfile1;
+        private System.Windows.Forms.ComboBox cBProfile2;
+        private System.Windows.Forms.ComboBox cBProfile3;
+        private System.Windows.Forms.ComboBox cBProfile4;
         private System.Windows.Forms.Button bnSave;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lBController1;
+        private System.Windows.Forms.Label lBController2;
+        private System.Windows.Forms.Label lBController3;
+        private System.Windows.Forms.Label lBController4;
+        private System.Windows.Forms.Label lBBeta;
+        private System.Windows.Forms.OpenFileDialog openProgram;
+        private System.Windows.Forms.Button bnDelete;
+        private System.Windows.Forms.ImageList iLIcons;
+        private System.Windows.Forms.Button bnLoadSteam;
+        private System.Windows.Forms.ListView lVPrograms;
+        private System.Windows.Forms.ColumnHeader nameHeader;
+        private System.Windows.Forms.ColumnHeader PathHeader;
+        private System.Windows.Forms.Label lBTip;
+        private System.Windows.Forms.Label pBProfilesTip;
+        private System.Windows.Forms.Button bnHideUnchecked;
     }
 }

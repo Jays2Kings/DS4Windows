@@ -226,6 +226,26 @@ namespace DS4Control
         {
             return m_Config.lastChecked;
         }
+
+        public static void setCheckWhen(int data)
+        {
+            m_Config.CheckWhen = data;
+        }
+
+        public static int getCheckWhen()
+        {
+            return m_Config.CheckWhen;
+        }
+
+        public static void setNotifications(bool data)
+        {
+            m_Config.notifications = data;
+        }
+
+        public static bool getNotifications()
+        {
+            return m_Config.notifications;
+        }
         // New settings
         public static void saveLowColor(int device, byte red, byte green, byte blue)
         {
@@ -361,7 +381,7 @@ namespace DS4Control
         }
         public static void setAProfile(int device, string filepath)
         {
-            m_Config.profilePath[device] = Global.appdatapath + @"\Profiles\" + filepath + ".xml";
+            m_Config.profilePath[device] = appdatapath + @"\Profiles\" + filepath + ".xml";
         }
         public static string getAProfile(int device)
         {
@@ -415,6 +435,10 @@ namespace DS4Control
         public static void LoadProfile(int device)
         {
             m_Config.LoadProfile(device);
+        }
+        public static void LoadTempProfile(int device, string name)
+        {
+            m_Config.LoadProfile(device, appdatapath + @"\Profiles\" + name + ".xml");
         }
         public static void Save()
         {
@@ -562,7 +586,9 @@ namespace DS4Control
         public Boolean startMinimized = false;
         public double version;
         public DateTime lastChecked;
-        public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = {null, null, null, null, null};
+        public int CheckWhen = 1;
+        public bool notifications = true;
+        public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = { null, null, null, null, null };
         public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null, null };
         public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null, null };
@@ -994,7 +1020,7 @@ namespace DS4Control
 
             return Loaded;
         }
-        public Boolean LoadProfile(int device)
+        public Boolean LoadProfile(int device, string propath = "")
         {
             Boolean Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
@@ -1002,14 +1028,18 @@ namespace DS4Control
             Dictionary<DS4Controls, X360Controls> customMapButtons = new Dictionary<DS4Controls, X360Controls>();
             Dictionary<DS4Controls, String> customMapMacros = new Dictionary<DS4Controls, String>();
             Boolean missingSetting = false;
-
+            string profilepath;
+            if (propath == "")
+                profilepath = profilePath[device];
+            else
+                profilepath = propath;
             try
             {
-                if (File.Exists(profilePath[device]))
+                if (File.Exists(profilepath))
                 {
                     XmlNode Item;
 
-                    m_Xdoc.Load(profilePath[device]);
+                    m_Xdoc.Load(profilepath);
 
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
                     catch { missingSetting = true; }
@@ -1123,7 +1153,7 @@ namespace DS4Control
             }
             // Only add missing settings if the actual load was graceful
             if (missingSetting && Loaded)
-                SaveProfile(device, profilePath[device], null);
+                SaveProfile(device, profilepath, null);
 
             return Loaded;
         }
@@ -1161,6 +1191,10 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/DS4Version"); Double.TryParse(Item.InnerText, out version); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/LastChecked"); DateTime.TryParse(Item.InnerText, out lastChecked); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/CheckWhen"); Int32.TryParse(Item.InnerText, out CheckWhen); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Notifications"); Boolean.TryParse(Item.InnerText, out notifications); }
                     catch { missingSetting = true; }
                 }
             }
@@ -1203,6 +1237,8 @@ namespace DS4Control
 
                 XmlNode xmlVersion = m_Xdoc.CreateNode(XmlNodeType.Element, "DS4Version", null); xmlVersion.InnerText = version.ToString(); Node.AppendChild(xmlVersion);
                 XmlNode xmlLastChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastChecked", null); xmlLastChecked.InnerText = lastChecked.ToString(); Node.AppendChild(xmlLastChecked);
+                XmlNode xmlCheckWhen = m_Xdoc.CreateNode(XmlNodeType.Element, "CheckWhen", null); xmlCheckWhen.InnerText = CheckWhen.ToString(); Node.AppendChild(xmlCheckWhen);
+                XmlNode xmlNotifications = m_Xdoc.CreateNode(XmlNodeType.Element, "Notifications", null); xmlNotifications.InnerText = notifications.ToString(); Node.AppendChild(xmlNotifications);
                 m_Xdoc.AppendChild(Node);
 
                 m_Xdoc.Save(m_Profile);

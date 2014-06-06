@@ -20,66 +20,39 @@ namespace ScpServer
     {
         ToolTip tp = new ToolTip();
         ComboBox[] cbs;
-        public WinProgs(string[] oc)
-        {
-            InitializeComponent();
-            cbs = new ComboBox[4] { comboBox1, comboBox2, comboBox3, comboBox4 };
-            for (int i = 0; i < 4; i++)
-            {
-                cbs[i].Text = "(none)";
-                cbs[i].Items.AddRange(oc);
-            }
-            try
-            {
-                string[] lods = Directory.GetDirectories(@"C:\Program Files (x86)\Steam\steamapps\common");
-                foreach (string s in lods)
-                    listBox1.Items.Add(Path.GetFileName(s));
-            }
-            catch { }
-            if (!File.Exists(Global.appdatapath + @"\Auto Profiles.xml"))
-                Create();
-            //foreach (ListBox.ObjectCollection s in listBox1.Items)
-              //  tp.SetToolTip((Control)s, @"C:\Program Files (x86)\Steam\SteamApps\common" + s.ToString());
-        }
-
-        
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        List<string> lods = new List<string>();
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string s = listBox1.SelectedItem.ToString();
-            lods.Clear();
-            lods.AddRange(Directory.GetFiles(@"C:\Program Files (x86)\Steam\SteamApps\common\" + s, "*.exe", SearchOption.AllDirectories));
-            for (int i = lods.Count-1; i >= 0; i--)
-            if (lods[i].Contains("etup") || lods[i].Contains("dotnet") || lods[i].Contains("SETUP") 
-                || lods[i].Contains("edist") || lods[i].Contains("nstall"))
-                lods.RemoveAt(i);
-
-            listBox2.Items.Clear();
-            foreach (string st in lods)
-                //if (!st.Contains("etup") && !st.Contains("dotnet") && !st.Contains("SETUP") && !st.Contains("edist") && !st.Contains("nstall"))
-                    listBox2.Items.Add(Path.GetFileNameWithoutExtension(st));
-            if (listBox2.Items.Count == 1 && listBox2.SelectedIndex != 0)
-                listBox2.SelectedIndex = 0;
-        }
-
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           if (listBox2.SelectedIndex >= 0)
-            {
-                label1.Text = lods[listBox2.SelectedIndex];
-                LoadP();
-            }
-            else
-                label1.Text = "";
-        }
-
+        ScpForm form;
+        string steamgamesdir;
         protected String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
+        List<string> programpaths = new List<string>();
+        List<string> lodsf = new List<string>();
+        bool appsloaded = false;
+
+        public WinProgs(string[] oc, ScpForm main)
+        {
+            InitializeComponent();
+            
+            form = main;
+            cbs = new ComboBox[4] { cBProfile1, cBProfile2, cBProfile3, cBProfile4 };
+            for (int i = 0; i < 4; i++)
+            {
+                cbs[i].Items.AddRange(oc);
+                cbs[i].Items.Add("(none)");
+                cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+            }
+            if (!File.Exists(Global.appdatapath + @"\Auto Profiles.xml"))
+                Create();
+            LoadP();
+            RegistryKey regKey = Registry.CurrentUser;
+            regKey = regKey.OpenSubKey(@"Software\Valve\Steam");
+            if (regKey != null)
+                steamgamesdir = Path.GetDirectoryName(regKey.GetValue("SourceModInstallPath").ToString()) + @"\common";
+            if (!Directory.Exists(steamgamesdir))
+            {
+                bnLoadSteam.Visible = false;
+                lVPrograms.Size = new Size(lVPrograms.Size.Width, lVPrograms.Size.Height + 25);
+            }
+        }        
 
         public bool Create()
         {
@@ -98,7 +71,7 @@ namespace ScpServer
                 Node = m_Xdoc.CreateWhitespace("\r\n");
                 m_Xdoc.AppendChild(Node);
 
-                Node = m_Xdoc.CreateNode(XmlNodeType.Element, "Programs", null);
+                Node = m_Xdoc.CreateNode(XmlNodeType.Element, "Programs", "");
                 m_Xdoc.AppendChild(Node);
                 m_Xdoc.Save(m_Profile);
             }
@@ -106,92 +79,229 @@ namespace ScpServer
 
             return Saved;
         }
-        public bool Save()
-        {
-            Boolean Saved = true;
-            m_Xdoc.Load(m_Profile);
-            //try
-            {
-                XmlNode Node;
-                Node = m_Xdoc.SelectSingleNode("Programs");       
-
-                string programname = listBox2.SelectedItem.ToString();
-                //if (programname.Contains(" "))
-                programname = programname.Replace(' ', '_');
-                XmlNode xmlprogram = m_Xdoc.CreateNode(XmlNodeType.Element, programname, null);
-
-                XmlNode xmlController1 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller1", null);
-                xmlController1.InnerText = comboBox1.Text;
-                xmlprogram.AppendChild(xmlController1);
-                XmlNode xmlController2 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller2", null);
-                xmlController2.InnerText = comboBox2.Text;
-                xmlprogram.AppendChild(xmlController2);
-                XmlNode xmlController3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null);
-                xmlController3.InnerText = comboBox3.Text;
-                xmlprogram.AppendChild(xmlController3);
-                XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null);
-                xmlController4.InnerText = comboBox4.Text;
-                xmlprogram.AppendChild(xmlController4);
-
-                try 
-                {
-                    XmlNode oldxmlprocess = m_Xdoc.SelectSingleNode("/Programs/" + listBox2.SelectedItem.ToString());
-                    Node.ReplaceChild(xmlprogram, oldxmlprocess); 
-                }
-                catch { Node.AppendChild(xmlprogram); }
-                //Node.AppendChild(oldxmlprocess);
-                m_Xdoc.AppendChild(Node);
-                m_Xdoc.Save(m_Profile);
-            }
-            //catch { Saved = false; }
-
-            return Saved;
-        }
 
         public void LoadP()
         {
-            //try
+            XmlDocument doc = new XmlDocument();
+            programpaths.Clear();
+            if (!File.Exists(Global.appdatapath + "\\Auto Profiles.xml"))
+                return;
+            doc.Load(Global.appdatapath + "\\Auto Profiles.xml");
+            XmlNodeList programslist = doc.SelectNodes("Programs/Program");
+            foreach (XmlNode x in programslist)
+                programpaths.Add(x.Attributes["path"].Value);
+            foreach (string st in programpaths)
             {
-                if (File.Exists(m_Profile))
+                int index = programpaths.IndexOf(st);
+                if (string.Empty != st)
                 {
-                    XmlNode Item;
-                    m_Xdoc.Load(m_Profile);
-                    string programname = listBox2.SelectedItem.ToString();
-                    programname = programname.Replace(' ', '_');
-                    string[] profiles = new string[4];
-                    for (int i = 0; i < 4; i++)
-                    {
-                        try
-                        {
-                            Item = m_Xdoc.SelectSingleNode("/Programs/" + programname + "/Controller" + (i + 1));
-                            profiles[i] = Item.InnerText;
-                            for (int j = 0; j < cbs[i].Items.Count; j++)
-                                if (cbs[i].Items[j].ToString() == profiles[i])
-                                {
-                                    cbs[i].SelectedIndex = j;
-                                    break;
-                                }
-                            //else
-                            //cbs[i].Text = "(none)";
-                        }
-                        catch { cbs[i].Text = "(none)"; } 
-                    }
+                    iLIcons.Images.Add(Icon.ExtractAssociatedIcon(st));
+                    ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(st), index);
+                    lvi.SubItems.Add(st);
+                    lvi.Checked = true;
+                    lVPrograms.Items.Add(lvi);
                 }
             }
-            //catch { missingSetting = true; }
-            //return missingSetting;
-            //if (missingSetting)
-                //label1.Content = "Current version not found, please re-run DS4Tool";
         }
+
+
+        private void bnLoadSteam_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var AppCollectionThread = new System.Threading.Thread(() => GetApps());
+                AppCollectionThread.IsBackground = true;
+                AppCollectionThread.Start();
+            }
+            catch { }
+            bnLoadSteam.Text = "Loading...";
+            bnLoadSteam.Enabled = false;
+            Timer appstimer = new Timer();
+            appstimer.Start();
+            appstimer.Tick += appstimer_Tick;
+        }
+
+        
+        private void GetApps()
+        {
+            lodsf.AddRange(Directory.GetFiles(steamgamesdir, "*.exe", SearchOption.AllDirectories));
+            appsloaded = true;
+        }        
+
+        void appstimer_Tick(object sender, EventArgs e)
+        {
+            if (appsloaded)
+            {
+                bnLoadSteam.Text = "Adding to list...";
+                for (int i = lodsf.Count - 1; i >= 0; i--)
+                    if (lodsf[i].Contains("etup") || lodsf[i].Contains("dotnet") || lodsf[i].Contains("SETUP")
+                        || lodsf[i].Contains("edist") || lodsf[i].Contains("nstall"))
+                        lodsf.RemoveAt(i);
+                for (int i = lodsf.Count - 1; i >= 0; i--)
+                    for (int j = programpaths.Count - 1; j >= 0; j--)
+                        if (lodsf[i] == programpaths[j])
+                            lodsf.RemoveAt(i);
+                foreach (string st in lodsf)
+                {
+                    int index = programpaths.IndexOf(st);
+                    iLIcons.Images.Add(Icon.ExtractAssociatedIcon(st));
+                    ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(st), iLIcons.Images.Count + index);
+                    lvi.SubItems.Add(st);
+                    lVPrograms.Items.Add(lvi);
+                }
+                bnLoadSteam.Visible = false;
+                lVPrograms.Size = new Size(lVPrograms.Size.Width, lVPrograms.Size.Height + 25);
+                appsloaded = false;
+                ((Timer)sender).Stop();
+            }
+        }
+
+        
+        public void Save(string name)
+        {
+            m_Xdoc.Load(m_Profile);
+            XmlNode Node;
+
+            Node = m_Xdoc.CreateComment(String.Format(" Auto-Profile Configuration Data. {0} ", DateTime.Now));
+            foreach (XmlNode node in m_Xdoc.SelectNodes("//comment()"))
+                node.ParentNode.ReplaceChild(Node, node);
+
+            Node = m_Xdoc.SelectSingleNode("Programs");
+            string programname;
+            programname = Path.GetFileNameWithoutExtension(name);
+            XmlElement el = m_Xdoc.CreateElement("Program");
+            el.SetAttribute("path", name);
+            el.AppendChild(m_Xdoc.CreateElement("Controller1")).InnerText = cBProfile1.Text;
+            el.AppendChild(m_Xdoc.CreateElement("Controller2")).InnerText = cBProfile2.Text;
+            el.AppendChild(m_Xdoc.CreateElement("Controller3")).InnerText = cBProfile3.Text;
+            el.AppendChild(m_Xdoc.CreateElement("Controller4")).InnerText = cBProfile4.Text;
+            try
+            {
+                XmlNode oldxmlprocess = m_Xdoc.SelectSingleNode("/Programs/Program[@path=\"" + lBProgramPath.Text + "\"]");
+                Node.ReplaceChild(el, oldxmlprocess);
+            }
+            catch { Node.AppendChild(el); }
+            m_Xdoc.AppendChild(Node);
+            m_Xdoc.Save(m_Profile);
+            if (lVPrograms.SelectedItems.Count > 0)
+                lVPrograms.SelectedItems[0].Checked = true;
+            form.LoadP();
+        }    
+
+        public void LoadP(string name)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(m_Profile);
+            XmlNodeList programs = doc.SelectNodes("Programs/Program");
+            XmlNode Item = doc.SelectSingleNode("/Programs/Program[@path=\"" + name + "\"]");
+            if (Item != null)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    Item = doc.SelectSingleNode("/Programs/Program[@path=\"" + name + "\"]" + "/Controller" + (i + 1));
+                    for (int j = 0; j < cbs[i].Items.Count; j++)
+                        if (cbs[i].Items[j].ToString() == Item.InnerText)
+                        {
+                            cbs[i].SelectedIndex = j;
+                            bnSave.Enabled = false;
+                            break;
+                        }
+                        else
+                            cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                    cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+                bnSave.Enabled = false;
+            }
+        }
+
+        public void RemoveP(string name, bool uncheck)
+        {
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(m_Profile);
+            XmlNode Node = doc.SelectSingleNode("Programs");
+            XmlNode Item = doc.SelectSingleNode("/Programs/Program[@path=\"" + name + "\"]");
+            if (Item != null)
+                Node.RemoveChild(Item);
+            doc.AppendChild(Node);
+            doc.Save(m_Profile);            
+            if (lVPrograms.SelectedItems.Count > 0 && uncheck)
+                lVPrograms.SelectedItems[0].Checked = false;
+            for (int i = 0; i < 4; i++)
+                cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+            bnSave.Enabled = false;
+            form.LoadP();
+        }        
 
         private void CBProfile_IndexChanged(object sender, EventArgs e)
         {
-
+            int last = cbs[0].Items.Count - 1;
+            if (lBProgramPath.Text != string.Empty)
+                bnSave.Enabled = true;
+            if (cbs[0].SelectedIndex == last && cbs[1].SelectedIndex == last &&
+                cbs[2].SelectedIndex == last && cbs[3].SelectedIndex == last)
+                bnSave.Enabled = false;
         }
 
         private void bnSave_Click(object sender, EventArgs e)
         {
-            Save();
+            if (lBProgramPath.Text != "")
+                Save(lBProgramPath.Text);            
+            bnSave.Enabled = false;
         }
+
+        private void bnAddPrograms_Click(object sender, EventArgs e)
+        {
+            if (openProgram.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string file = openProgram.FileName;
+                lBProgramPath.Text = file;
+                iLIcons.Images.Add(Icon.ExtractAssociatedIcon(file));
+                ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(file), lVPrograms.Items.Count);
+                lvi.SubItems.Add(file);
+                lVPrograms.Items.Insert(0, lvi);
+            }
+        }
+
+        private void lBProgramPath_TextChanged(object sender, EventArgs e)
+        {
+            if (lBProgramPath.Text != "")
+                LoadP(lBProgramPath.Text);
+            else
+                for (int i = 0; i < 4; i++)
+                    cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+        }
+
+        private void bnDelete_Click(object sender, EventArgs e)
+        {
+            RemoveP(lBProgramPath.Text, true);
+        }
+
+        private void lBProgramPath_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lVPrograms.SelectedItems.Count > 0)
+            {
+                if (lVPrograms.SelectedIndices[0] > -1)
+                    lBProgramPath.Text = lVPrograms.SelectedItems[0].SubItems[1].Text;
+            }
+            else
+                lBProgramPath.Text = "";
+        }
+
+        private void listView1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (lVPrograms.Items[e.Index].Checked)
+                RemoveP(lVPrograms.Items[e.Index].SubItems[1].Text, false);
+        }
+
+        private void bnHideUnchecked_Click(object sender, EventArgs e)
+        {
+            form.RefreshAutoProfilesPage();
+        }
+
     }
 }

@@ -11,11 +11,12 @@ using System.Management;
 using System.Drawing;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.Xml;
 namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 9.33;
+        double version = 9.9;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -26,62 +27,20 @@ namespace ScpServer
         protected ToolStripMenuItem[] shortcuts;
         WebClient wc = new WebClient();
         Timer test = new Timer(), hotkeystimer = new Timer();
-        #region Aero
-        /*[StructLayout(LayoutKind.Sequential)]
-        public struct MARGINS
-        {
-            public int Left;
-            public int Right;
-            public int Top;
-            public int Bottom;
-        }
-
-        [DllImport("dwmapi.dll")]
-        public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMargins);
-        /// <summary>
-        /// Determins whether the Desktop Windows Manager is enabled
-        /// and can therefore display Aero 
-        /// </summary>
-        [DllImport("dwmapi.dll", PreserveSig = false)]
-        public static extern bool DwmIsCompositionEnabled();
-
-              
-        /// <summary>
-        /// Override the OnPaintBackground method, to draw the desired
-        /// Glass regions black and display as Glass
-        /// </summary>
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            if (DwmIsCompositionEnabled())
-            {
-                e.Graphics.Clear(Color.Black);
-                // put back the original form background for non-glass area
-                Rectangle clientArea = new Rectangle(
-                marg.Left,
-                marg.Top,
-                this.ClientRectangle.Width - marg.Left - marg.Right,
-                this.ClientRectangle.Height - marg.Top - marg.Bottom);
-                Brush b = new SolidBrush(this.BackColor);
-                e.Graphics.FillRectangle(b, clientArea);
-            }
-        }
-
-        MARGINS marg = new MARGINS() { Left = 0, Right = 0, Top = 0, Bottom = 0 };
-        /// <summary>
-        /// Use the form padding values to define a Glass margin
-        /// </summary>
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            this.Padding = new Padding(this.trackBar1.Value);
-            int value = (int)trackBar1.Value;
-            marg = new MARGINS() { Left = value, Right = value, Top = value, Bottom = value };
-            DwmExtendFrameIntoClientArea(this.Handle, ref marg);
-            //SetGlassRegion();
-            //Invalidate();
-        }*/
-        #endregion
-
+        string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+        float dpix, dpiy;
+        string filename;
+        DateTime oldnow = DateTime.UtcNow;
+        string tempprofile = "null";
+        List<string> profilenames = new List<string>();
+        List<string> programpaths = new List<string>();
+        List<string>[] proprofiles;
+        private static int WM_QUERYENDSESSION = 0x11;
+        private static bool systemShutdown = false;
+        delegate void ControllerStatusChangedDelegate(object sender, EventArgs e);
+        delegate void HotKeysDelegate(object sender, EventArgs e);
+        Options opt;
+        private System.Drawing.Size oldsize;
         protected void SetupArrays()
         {
             Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
@@ -102,10 +61,30 @@ namespace ScpServer
             ThemeUtil.SetTheme(lvDebug);
             SetupArrays();
             CheckDrivers();
+            SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
+            LoadP(); 
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(linkUninstall, "To fully remove DS4Windows, You can delete the profiles by the link to the other side");
+            if (!System.IO.Directory.Exists(Global.appdatapath + "\\Virtual Bus Driver"))
+                linkUninstall.Visible = false;
         }
-        float dpix, dpiy;
-        
+
+        private void OnPowerChange(object s, PowerModeChangedEventArgs e)
+        {
+            switch (e.Mode)
+            {
+                case PowerModes.Resume:
+                    if (btnStartStop.Text == "Start")
+                        btnStartStop_Clicked();
+                    break;
+                case PowerModes.Suspend:
+                    if (btnStartStop.Text == "Stop")
+                        btnStartStop_Clicked();
+                    break;
+            }
+        }
+
         protected void Form_Load(object sender, EventArgs e)
         {
             SetupArrays();
@@ -159,33 +138,44 @@ namespace ScpServer
             ControllerStatusChanged();
             if (btnStartStop.Enabled)
                 btnStartStop_Clicked();
+            cBNotifications.Checked = Global.getNotifications();
+            int checkwhen = Global.getCheckWhen();
+            cBUpdate.Checked = checkwhen > 0;
+            if (checkwhen > 23)
+            {
+                cBUpdateTime.SelectedIndex = 1;
+                nUDUpdateTime.Value = checkwhen / 24;
+            }
+            else
+            {
+                cBUpdateTime.SelectedIndex = 0;
+                nUDUpdateTime.Value = checkwhen;
+            }
             Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
             Directory.CreateDirectory(Global.appdatapath);
-            if (DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(1))
+            if (checkwhen > 0 && DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(checkwhen))
             {
                 wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
                 wc.DownloadFileCompleted += Check_Version;
                 Global.setLastChecked(DateTime.Now);
             }
-            WinProgs WP = new WinProgs(profilenames.ToArray());
-            WP.TopLevel = false;
-            WP.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            WP.Visible = true;
-            WP.Dock = DockStyle.Fill;
-            WP.Enabled = false;
-            tabAutoProfiles.Controls.Add(WP);
+
+            if (File.Exists("Updater.exe"))
+            {
+                System.Threading.Thread.Sleep(2000);
+                File.Delete("Updater.exe");
+            }
             //test.Start();
             hotkeystimer.Start();
             hotkeystimer.Tick += Hotkeys;
-            test.Tick += test_Tick;    
+            test.Tick += test_Tick;
         }
-
+        
         private void test_Tick(object sender, EventArgs e)
         {
-            label1.Visible = true;
-            label1.Text = dpix + " " + dpiy;
+            lBTest.Visible = true;
+            lBTest.Text = filename;
         }
-
         void Hotkeys(object sender, EventArgs e)
         {
             for (int i = 0; i < 4; i++)
@@ -204,6 +194,62 @@ namespace ScpServer
                 if (slide.Contains("t"))
                     ShowNotification(this, "Controller " + (i + 1) + " is now using Profile \"" + cbs[i].Text + "\"");
             }
+
+            //Check for process for auto profiles
+            DateTime now = DateTime.UtcNow;
+            if (now >= oldnow + TimeSpan.FromSeconds(2)) 
+            {
+                oldnow = now;
+                if (tempprofile == "null")
+                {
+                    for (int i = 0; i < programpaths.Count; i++)
+                    {
+                        string name = Path.GetFileNameWithoutExtension(programpaths[i]);
+                        if (Process.GetProcessesByName(name).Length > 0)
+                        {
+                            if (programpaths[i].ToLower() == Process.GetProcessesByName(name)[0].Modules[0].FileName.ToLower())
+                            {
+                                for (int j = 0; j < 4; j++)
+                                    if (proprofiles[j][i] != "(none)")
+                                        Global.LoadTempProfile(j, proprofiles[j][i]); //j is filename, i is controller index
+                                tempprofile = name;
+                                filename = Process.GetProcessesByName(name)[0].Modules[0].FileName;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (Process.GetProcessesByName(tempprofile).Length <= 0)
+                {
+                    for (int j = 0; j < 4; j++)
+                        Global.LoadProfile(j);
+                    tempprofile = "null";
+                }                 
+                PerformanceCounter.CloseSharedResources();
+            }
+            else
+                PerformanceCounter.CloseSharedResources();
+            GC.Collect();
+        }
+        
+        public void LoadP()
+        {
+            XmlDocument doc = new XmlDocument();
+            proprofiles = new List<string>[4] { new List<string>(), new List<string>(),
+                new List<string>(), new List<string>() };
+            programpaths.Clear();
+            if (!File.Exists(Global.appdatapath + "\\Auto Profiles.xml"))
+                return;
+            doc.Load(Global.appdatapath + "\\Auto Profiles.xml");
+            XmlNodeList programslist = doc.SelectNodes("Programs/Program");
+            foreach (XmlNode x in programslist)
+                    programpaths.Add(x.Attributes["path"].Value);
+            foreach (string s in programpaths)
+                for (int i = 0; i < 4; i++)
+                {
+                    proprofiles[i].Add(doc.SelectSingleNode("/Programs/Program[@path=\"" + s + "\"]"
+                        + "/Controller" + (i + 1)).InnerText);
+                }
         }
 
         private void CheckDrivers()
@@ -229,40 +275,6 @@ namespace ScpServer
             }
         }
 
-        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
-            wc.DownloadFile(url, Global.appdatapath + "\\version.txt");
-            Global.setLastChecked(DateTime.Now);
-            double newversion;
-            try
-            {
-                if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), out newversion))
-                    if (newversion > version)
-                        if (MessageBox.Show("Download now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                        {
-                            if (!File.Exists("Updater.exe"))
-                            {
-                                Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/Updater.exe");
-                                WebClient wc2 = new WebClient();
-                                wc2.DownloadFile(url2, "Updater.exe");
-                            }
-                            System.Diagnostics.Process.Start("Updater.exe");
-                            this.Close();
-                        }
-                        else
-                            File.Delete(Global.appdatapath + "\\version.txt");
-                    else
-                    {
-                        File.Delete(Global.appdatapath + "\\version.txt");
-                        MessageBox.Show("No new version", "You're up to date");
-                    }
-                else
-                    File.Delete(Global.appdatapath + "\\version.txt");
-            }
-            catch { };
-        }
-
         private void Check_Version(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             double newversion;
@@ -270,15 +282,19 @@ namespace ScpServer
             {
                 if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), out newversion))
                     if (newversion > version)
-                        if (MessageBox.Show("Download now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                        if (MessageBox.Show("Download Version " + newversion + " now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
-                            if (!File.Exists("Updater.exe"))
+                            if (!File.Exists("DS4Updater.exe"))
                             {
-                                Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/Updater.exe");
+                                Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/DS4Updater.exe");
                                 WebClient wc2 = new WebClient();
-                                wc2.DownloadFile(url2, "Updater.exe");
+                                wc2.DownloadFile(url2, "DS4Updater.exe");
                             }
-                            System.Diagnostics.Process.Start("Updater.exe");
+                            Process p = new Process();
+                            p.StartInfo.FileName = "DS4Updater.exe";
+                            if (!exepath.StartsWith("C:\\Program Files") && !exepath.StartsWith("C:\\Windows"))
+                                p.StartInfo.Verb = "runas";
+                            p.Start();
                             this.Close();
                         }
                         else
@@ -291,7 +307,6 @@ namespace ScpServer
             catch { };
         }
         
-        List<string> profilenames = new List<string>();
         public void RefreshProfiles()
         {
             try
@@ -349,8 +364,25 @@ namespace ScpServer
                     shortcuts[i].DropDownItems.Add("+New Profile");
                 }
             }
+            tabAutoProfiles.Controls.Clear();
+            WinProgs WP = new WinProgs(profilenames.ToArray(), this);
+            WP.TopLevel = false;
+            WP.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            WP.Visible = true;
+            WP.Dock = DockStyle.Fill;
+            tabAutoProfiles.Controls.Add(WP);
         }
 
+        public void RefreshAutoProfilesPage()
+        {
+            tabAutoProfiles.Controls.Clear();
+            WinProgs WP = new WinProgs(profilenames.ToArray(), this);
+            WP.TopLevel = false;
+            WP.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            WP.Visible = true;
+            WP.Dock = DockStyle.Fill;
+            tabAutoProfiles.Controls.Add(WP);
+        }
         protected void LogDebug(DateTime Time, String Data)
         {
             if (lvDebug.InvokeRequired)
@@ -375,7 +407,7 @@ namespace ScpServer
 
         protected void ShowNotification(object sender, DebugEventArgs args)
         {
-            if (Form.ActiveForm != this)
+            if (Form.ActiveForm != this && cBNotifications.Checked)
             {
                 this.notifyIcon1.BalloonTipText = args.Data;
                 notifyIcon1.BalloonTipTitle = "DS4Windows";
@@ -385,7 +417,7 @@ namespace ScpServer
 
         protected void ShowNotification(object sender, string text)
         {
-            if (Form.ActiveForm != this)
+            if (Form.ActiveForm != this && cBNotifications.Checked)
             {
                 this.notifyIcon1.BalloonTipText = text;
                 notifyIcon1.BalloonTipTitle = "DS4Windows";
@@ -423,16 +455,17 @@ namespace ScpServer
             if (btnStartStop.Text == "Start")
             {
                 rootHub.Start();
+                hotkeystimer.Start();
                 btnStartStop.Text = "Stop";
             }
 
             else if (btnStartStop.Text == "Stop")
             {                
                 rootHub.Stop();
+                hotkeystimer.Stop();
                 btnStartStop.Text = "Start";
             }
         }
-
         protected void btnClear_Click(object sender, EventArgs e)
         {
             lvDebug.Items.Clear();
@@ -440,8 +473,8 @@ namespace ScpServer
             lbLastMessage.Text = string.Empty;
         }
 
-        private static int WM_QUERYENDSESSION = 0x11;
-        private static bool systemShutdown = false;
+
+
         protected override void WndProc(ref Message m)
         {
             try
@@ -463,8 +496,7 @@ namespace ScpServer
             // raised in the base WndProc.
             base.WndProc(ref m);
         }
-
-        delegate void ControllerStatusChangedDelegate(object sender, EventArgs e);
+        
         protected void ControllerStatusChange(object sender, EventArgs e)
         {
             if (InvokeRequired)
@@ -491,7 +523,7 @@ namespace ScpServer
                     if (Pads[Index].Text != "Connecting...")
                     {
                         Enable_Controls(Index, true);
-                        MinimumSize = new Size(MinimumSize.Width, 161 + 29 * Index);
+                        MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
                     }
                 }
                 else
@@ -516,7 +548,7 @@ namespace ScpServer
             shortcuts[device].Enabled = on;
             Batteries[device].Enabled = on;
         }
-        delegate void HotKeysDelegate(object sender, EventArgs e);
+        
         void ScpForm_Report(object sender, EventArgs e)
         {
             if (InvokeRequired)
@@ -596,7 +628,6 @@ namespace ScpServer
                 }
             }
         }
-
         
         private void tSBDupProfile_Click(object sender, EventArgs e)
         {
@@ -647,9 +678,7 @@ namespace ScpServer
                     }
             }
         }
-
-        Options opt;
-        private System.Drawing.Size oldsize;
+        
         private void ShowOptions(int devID, string profile)
         {
             if (opt == null)
@@ -689,21 +718,22 @@ namespace ScpServer
                 oldsize = this.Size;
                 if (dpix == 120)
                 {
-                    if (this.Size.Height < 560)
-                        this.Size = new System.Drawing.Size(this.Size.Width, 560);
+                    if (this.Size.Height < 518)
+                        this.Size = new System.Drawing.Size(this.Size.Width, 518);
                     if (this.Size.Width < 1125)
                         this.Size = new System.Drawing.Size(1125, this.Size.Height);
                 }
                 else
                 {
-                    if (this.Size.Height < 442)
-                        this.Size = new System.Drawing.Size(this.Size.Width, 442);
+                    if (this.Size.Height < 418)
+                        this.Size = new System.Drawing.Size(this.Size.Width, 418);
                     if (this.Size.Width < 910)
                         this.Size = new System.Drawing.Size(910, this.Size.Height);
                 }
                 tabMain.SelectedIndex = 1;
             }
         }
+
         private void editButtons_Click(object sender, EventArgs e)
         {
             Button bn = (Button)sender;
@@ -713,6 +743,7 @@ namespace ScpServer
                 else
                     ShowOptions(i, cbs[i].Text);
         }
+
         private void editMenu_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
@@ -744,6 +775,7 @@ namespace ScpServer
             btnStartStop_Clicked();
             Global.Save();
         }
+
         private void startMinimizedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Global.setStartMinimized(startMinimizedCheckBox.Checked);
@@ -844,19 +876,19 @@ namespace ScpServer
             {
                 if (dpix == 120)
                 {
-                    if (this.Size.Width < 930 || this.Size.Height < 415)
+                    if (this.Size.Width < 930 || this.Size.Height < 392)
                         oldsize = Size;
                     if (this.Size.Height < 415)
-                        this.Size = new System.Drawing.Size(this.Size.Width, 415);
+                        this.Size = new System.Drawing.Size(this.Size.Width, 392);
                     if (this.Size.Width < 930)
                         this.Size = new System.Drawing.Size(930, this.Size.Height);
                 }
                 else
                 {
-                    if (this.Size.Width < 755 || this.Size.Height < 340)
+                    if (this.Size.Width < 755 || this.Size.Height < 316)
                         oldsize = Size;
-                    if (this.Size.Height < 340)
-                        this.Size = new System.Drawing.Size(this.Size.Width, 340);
+                    if (this.Size.Height < 316)
+                        this.Size = new System.Drawing.Size(this.Size.Width, 316);
                     if (this.Size.Width < 755)
                         this.Size = new System.Drawing.Size(755, this.Size.Height);
                 }
@@ -1001,6 +1033,100 @@ namespace ScpServer
                 else
                     MessageBox.Show("Please enter a valid name", "Not valid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void cBUpdate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!cBUpdate.Checked)
+            {
+                nUDUpdateTime.Value = 0;
+                pNUpdate.Enabled = false;
+            }
+            else
+            {
+                nUDUpdateTime.Value = 1;
+                cBUpdateTime.SelectedIndex = 0;
+                pNUpdate.Enabled = true;
+            }
+        }
+
+        private void nUDUpdateTime_ValueChanged(object sender, EventArgs e)
+        {
+            if (cBUpdateTime.SelectedIndex == 0)
+                Global.setCheckWhen((int)nUDUpdateTime.Value);
+            else if (cBUpdateTime.SelectedIndex == 1)
+                Global.setCheckWhen((int)nUDUpdateTime.Value * 24);
+            if (nUDUpdateTime.Value < 1)
+                cBUpdate.Checked = false;
+        }
+
+        private void cBUpdateTime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cBUpdateTime.SelectedIndex == 0)
+                Global.setCheckWhen((int)nUDUpdateTime.Value);
+            else if (cBUpdateTime.SelectedIndex == 1)
+                Global.setCheckWhen((int)nUDUpdateTime.Value * 24);
+        }
+
+        private void lLBUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
+            WebClient wct = new WebClient();
+            wct.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
+            wct.DownloadFileCompleted += wct_DownloadFileCompleted;
+        }
+
+        void wct_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            Global.setLastChecked(DateTime.Now);
+            double newversion;
+            try
+            {
+                if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), out newversion))
+                    if (newversion > Global.getVersion())
+                        if (MessageBox.Show("Download Version " + newversion + " now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            if (!File.Exists("DS4Updater.exe"))
+                            {
+                                Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/DS4Updater.exe");
+                                WebClient wc2 = new WebClient();
+                                wc2.DownloadFile(url2, "DS4Updater.exe");
+                            }
+                            Process p = new Process();
+                            p.StartInfo.FileName = "DS4Updater.exe";
+                            if (!exepath.StartsWith("C:\\Program Files") && !exepath.StartsWith("C:\\Windows"))
+                                p.StartInfo.Verb = "runas";
+                            p.Start();
+                            Close();
+                        }
+                        else
+                            File.Delete(Global.appdatapath + "\\version.txt");
+                    else
+                    {
+                        File.Delete(Global.appdatapath + "\\version.txt");
+                        MessageBox.Show("You are up to date", "DS4 Updater");
+                    }
+                else
+                    File.Delete(Global.appdatapath + "\\version.txt");
+            }
+            catch { };
+        }
+
+        private void linkProfiles_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Global.appdatapath + "\\Profiles");
+        }
+
+        private void linkUninstall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (System.IO.File.Exists(Global.appdatapath + "\\Virtual Bus Driver\\ScpDriver.exe"))
+                try { System.Diagnostics.Process.Start(Global.appdatapath + "\\Virtual Bus Driver\\ScpDriver.exe"); }
+                catch { System.Diagnostics.Process.Start(Global.appdatapath + "\\Virtual Bus Driver"); }
+        }
+
+        private void cBNotifications_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setNotifications(cBNotifications.Checked);
         }
     }
 

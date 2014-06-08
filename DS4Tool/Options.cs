@@ -58,20 +58,21 @@ namespace ScpServer
 
                 DS4Color cColor = Global.loadChargingColor(device);
                 btnChargingColor.BackColor = Color.FromArgb(cColor.red, cColor.green, cColor.blue);
-                rumbleBoostBar.Value = Global.loadRumbleBoost(device);
-                numUDTouch.Value = Global.getTouchSensitivity(device);
+                nUDRumbleBoost.Value = Global.loadRumbleBoost(device);
+                nUDTouch.Value = Global.getTouchSensitivity(device);
                 cBSlide.Checked = Global.getTouchSensitivity(device) > 0;
-                numUDScroll.Value = Global.getScrollSensitivity(device);
+                nUDScroll.Value = Global.getScrollSensitivity(device);
                 cBScroll.Checked = Global.getScrollSensitivity(device) >0;
-                numUDTap.Value = Global.getTapSensitivity(device);
+                nUDTap.Value = Global.getTapSensitivity(device);
                 cBTap.Checked = Global.getTapSensitivity(device) > 0;
                 cBDoubleTap.Checked = Global.getDoubleTap(device);
-                numUDL2.Value = (decimal)Global.getLeftTriggerMiddle(device)/255;
-                numUDR2.Value = (decimal)Global.getRightTriggerMiddle(device)/255;
+                nUDL2.Value = (decimal)Global.getLeftTriggerMiddle(device)/255;
+                nUDR2.Value = (decimal)Global.getRightTriggerMiddle(device)/255;
                 touchpadJitterCompensation.Checked = Global.getTouchpadJitterCompensation(device);
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
                 flushHIDQueue.Checked = Global.getFlushHIDQueue(device);
-                idleDisconnectTimeout.Value = Math.Round((decimal)(Global.getIdleDisconnectTimeout(device) / 60d), 1);
+                nUDIdleDisconnect.Value = Math.Round((decimal)(Global.getIdleDisconnectTimeout(device) / 60d), 1);
+                cBIdleDisconnect.Checked = Global.getIdleDisconnectTimeout(device) > 0;
                 numUDMouseSens.Value = Global.getButtonMouseSensitivity(device);
                 // Force update of color choosers    
                 alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
@@ -83,7 +84,7 @@ namespace ScpServer
                 reg = Color.FromArgb(lowColor.red, lowColor.green, lowColor.blue);
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-                numUDRainbow.Value = (decimal)Global.getRainbow(device);
+                nUDRainbow.Value = (decimal)Global.getRainbow(device);
                 switch (Global.getChargingType(deviceNum))
                 {
                     case 1: rBFade.Checked = true; break;
@@ -101,8 +102,8 @@ namespace ScpServer
                     pBRainbow.Image = colored;
                     ToggleRainbow(true);
                 }
-                numUDLS.Value = Math.Round((decimal)(Global.getLSDeadzone(device) / 127d ), 3);
-                numUDRS.Value = Math.Round((decimal)(Global.getRSDeadzone(device) / 127d ), 3);
+                nUDLS.Value = Math.Round((decimal)(Global.getLSDeadzone(device) / 127d ), 3);
+                nUDRS.Value = Math.Round((decimal)(Global.getRSDeadzone(device) / 127d ), 3);
             }
             else
                 Set();
@@ -242,22 +243,22 @@ namespace ScpServer
             FullPanel.Location = (batteryLed.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
-            Global.setLeftTriggerMiddle(device, (byte)Math.Round((numUDL2.Value * 255), 0));
-            Global.setRightTriggerMiddle(device, (byte)Math.Round((numUDR2.Value * 255), 0));
-            Global.saveRumbleBoost(device, (byte)rumbleBoostBar.Value);
-            Global.setTouchSensitivity(device, (byte)numUDTouch.Value);
+            Global.setLeftTriggerMiddle(device, (byte)Math.Round((nUDL2.Value * 255), 0));
+            Global.setRightTriggerMiddle(device, (byte)Math.Round((nUDR2.Value * 255), 0));
+            Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
+            Global.setTouchSensitivity(device, (byte)nUDTouch.Value);
             Global.setTouchpadJitterCompensation(device, touchpadJitterCompensation.Checked);
             Global.setLowerRCOn(device, cBlowerRCOn.Checked);
-            Global.setScrollSensitivity(device, (byte)numUDScroll.Value);
+            Global.setScrollSensitivity(device, (byte)nUDScroll.Value);
             Global.setDoubleTap(device, cBDoubleTap.Checked);
-            Global.setTapSensitivity(device, (byte)numUDTap.Value);
-            Global.setIdleDisconnectTimeout(device, (int)(idleDisconnectTimeout.Value * 60));
-            Global.setRainbow(device, (int)numUDRainbow.Value);
-            Global.setRSDeadzone(device, (byte)Math.Round((numUDRS.Value * 127), 0));
-            Global.setLSDeadzone(device, (byte)Math.Round((numUDLS.Value * 127), 0));
+            Global.setTapSensitivity(device, (byte)nUDTap.Value);
+            Global.setIdleDisconnectTimeout(device, (int)(nUDIdleDisconnect.Value * 60));
+            Global.setRainbow(device, (int)nUDRainbow.Value);
+            Global.setRSDeadzone(device, (byte)Math.Round((nUDRS.Value * 127), 0));
+            Global.setLSDeadzone(device, (byte)Math.Round((nUDLS.Value * 127), 0));
             Global.setButtonMouseSensitivity(device, (int)numUDMouseSens.Value);
             Global.setFlashAt(device, (int)nUDflashLED.Value);
-            if (numUDRainbow.Value == 0) pBRainbow.Image = greyscale;
+            if (nUDRainbow.Value == 0) pBRainbow.Image = greyscale;
             else pBRainbow.Image = colored;
         }
 
@@ -517,27 +518,27 @@ namespace ScpServer
         }
         private void rumbleBoostBar_ValueChanged(object sender, EventArgs e)
         {
-            Global.saveRumbleBoost(device, (byte)rumbleBoostBar.Value);
-            scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, device);
+            Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
+            scpDevice.setRumble((byte)nUDHeavyRumble.Value, (byte)nUDLightRumble.Value, device);
         }
                 
         private void numUDLightRumble_ValueChanged(object sender, EventArgs e)
         {
             if (btnRumbleTest.Text == "Stop")
-                scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, device);
+                scpDevice.setRumble((byte)nUDHeavyRumble.Value, (byte)nUDLightRumble.Value, device);
         }
 
         private void numUDHeavyRumble_ValueChanged(object sender, EventArgs e)
         {
             if (btnRumbleTest.Text == "Stop")
-                scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, device);
+                scpDevice.setRumble((byte)nUDHeavyRumble.Value, (byte)nUDLightRumble.Value, device);
         }
 
         private void btnRumbleTest_Click(object sender, EventArgs e)
         {
             if (((Button)sender).Text == "Test")
             {
-                scpDevice.setRumble((byte)numUDHeavyRumble.Value, (byte)numUDLightRumble.Value, (int)nUDSixaxis.Value - 1);
+                scpDevice.setRumble((byte)nUDHeavyRumble.Value, (byte)nUDLightRumble.Value, (int)nUDSixaxis.Value - 1);
                 ((Button)sender).Text = "Stop";
             }
             else
@@ -549,17 +550,17 @@ namespace ScpServer
 
         private void numUDTouch_ValueChanged(object sender, EventArgs e)
         {
-            Global.setTouchSensitivity(device, (byte)numUDTouch.Value);
+            Global.setTouchSensitivity(device, (byte)nUDTouch.Value);
         }
 
         private void numUDTap_ValueChanged(object sender, EventArgs e)
         {
-            Global.setTapSensitivity(device, (byte)numUDTap.Value);
+            Global.setTapSensitivity(device, (byte)nUDTap.Value);
         }
 
         private void numUDScroll_ValueChanged(object sender, EventArgs e)
         {
-            Global.setScrollSensitivity(device, (int)numUDScroll.Value);
+            Global.setScrollSensitivity(device, (int)nUDScroll.Value);
         }
         private void ledAsBatteryIndicator_CheckedChanged(object sender, EventArgs e)
         {
@@ -584,9 +585,20 @@ namespace ScpServer
             Global.setFlushHIDQueue(device, flushHIDQueue.Checked);
         }
 
-        private void idleDisconnectTimeout_ValueChanged(object sender, EventArgs e)
+        private void nUDIdleDisconnect_ValueChanged(object sender, EventArgs e)
         {
-            Global.setIdleDisconnectTimeout(device, (int)(idleDisconnectTimeout.Value * 60));
+            Global.setIdleDisconnectTimeout(device, (int)(nUDIdleDisconnect.Value * 60));
+            //if (nUDIdleDisconnect.Value == 0)
+                //cBIdleDisconnect.Checked = false;
+        }
+
+        private void cBIdleDisconnect_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cBIdleDisconnect.Checked)
+                nUDIdleDisconnect.Value = 5;
+            else
+                nUDIdleDisconnect.Value = 0;
+            nUDIdleDisconnect.Enabled = cBIdleDisconnect.Checked;
         }
 
         private void Options_Closed(object sender, FormClosedEventArgs e)
@@ -622,28 +634,28 @@ namespace ScpServer
         private void cBSlide_CheckedChanged(object sender, EventArgs e)
         {
             if (cBSlide.Checked)
-                numUDTouch.Value = 100;
+                nUDTouch.Value = 100;
             else
-                numUDTouch.Value = 0;
-            numUDTouch.Enabled = cBSlide.Checked;
+                nUDTouch.Value = 0;
+            nUDTouch.Enabled = cBSlide.Checked;
         }
 
         private void cBScroll_CheckedChanged(object sender, EventArgs e)
         {
             if (cBScroll.Checked)
-                numUDScroll.Value = 5;
+                nUDScroll.Value = 5;
             else
-                numUDScroll.Value = 0;
-            numUDScroll.Enabled = cBScroll.Checked;
+                nUDScroll.Value = 0;
+            nUDScroll.Enabled = cBScroll.Checked;
         }
 
         private void cBTap_CheckedChanged(object sender, EventArgs e)
         {
             if (cBTap.Checked)
-                numUDTap.Value = 100;
+                nUDTap.Value = 100;
             else
-                numUDTap.Value = 0;
-            numUDTap.Enabled = cBTap.Checked;
+                nUDTap.Value = 0;
+            nUDTap.Enabled = cBTap.Checked;
             cBDoubleTap.Enabled = cBTap.Checked;
         }
 
@@ -739,12 +751,12 @@ namespace ScpServer
 
         private void numUDRainbow_ValueChanged(object sender, EventArgs e)
         {
-            Global.setRainbow(device, (double)numUDRainbow.Value);
-            if ((double)numUDRainbow.Value <= 0.5)
+            Global.setRainbow(device, (double)nUDRainbow.Value);
+            if ((double)nUDRainbow.Value <= 0.5)
             {
                 pBRainbow.Image = greyscale;
                 ToggleRainbow(false);
-                numUDRainbow.Value = 0;
+                nUDRainbow.Value = 0;
             }
         }
 
@@ -754,19 +766,19 @@ namespace ScpServer
             {
                 pBRainbow.Image = colored;
                 ToggleRainbow(true);
-                numUDRainbow.Value = 5;
+                nUDRainbow.Value = 5;
             }
             else
             {
                 pBRainbow.Image = greyscale;
                 ToggleRainbow(false);
-                numUDRainbow.Value = 0;
+                nUDRainbow.Value = 0;
             }
         }
 
         private void ToggleRainbow(bool on)
         {
-            numUDRainbow.Enabled = on;
+            nUDRainbow.Enabled = on;
             if (on)
             {
                 //pBRainbow.Location = new Point(216 - 78, pBRainbow.Location.Y);
@@ -805,12 +817,12 @@ namespace ScpServer
 
         private void numUDL2_ValueChanged(object sender, EventArgs e)
         {
-            Global.setLeftTriggerMiddle(device, (byte)(numUDL2.Value * 255));
+            Global.setLeftTriggerMiddle(device, (byte)(nUDL2.Value * 255));
         }
 
         private void numUDR2_ValueChanged(object sender, EventArgs e)
         {
-            Global.setRightTriggerMiddle(device, (byte)(numUDR2.Value * 255));
+            Global.setRightTriggerMiddle(device, (byte)(nUDR2.Value * 255));
         }
 
         private void flashLed_CheckedChanged(object sender, EventArgs e)
@@ -848,12 +860,12 @@ namespace ScpServer
 
         private void numUDRS_ValueChanged(object sender, EventArgs e)
         {
-            Global.setRSDeadzone(device, (byte)Math.Round((numUDRS.Value * 127),0));
+            Global.setRSDeadzone(device, (byte)Math.Round((nUDRS.Value * 127),0));
         }
 
         private void numUDLS_ValueChanged(object sender, EventArgs e)
         {
-            Global.setLSDeadzone(device, (byte)Math.Round((numUDLS.Value * 127),0));
+            Global.setLSDeadzone(device, (byte)Math.Round((nUDLS.Value * 127),0));
         }
 
         private void numUDMouseSens_ValueChanged(object sender, EventArgs e)
@@ -909,6 +921,7 @@ namespace ScpServer
             Global.setChargingType(device, 3);
             btnChargingColor.Visible = true;
         }
+
 
 
     }

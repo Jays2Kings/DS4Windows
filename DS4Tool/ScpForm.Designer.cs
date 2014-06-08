@@ -36,10 +36,10 @@
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.pnlButton = new System.Windows.Forms.Panel();
             this.lBTest = new System.Windows.Forms.Label();
-            this.llbHelp = new System.Windows.Forms.LinkLabel();
             this.btnStartStop = new System.Windows.Forms.Button();
-            this.lnkControllers = new System.Windows.Forms.LinkLabel();
             this.lbLastMessage = new System.Windows.Forms.Label();
+            this.llbHelp = new System.Windows.Forms.LinkLabel();
+            this.lnkControllers = new System.Windows.Forms.LinkLabel();
             this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
             this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
             this.hideDS4CheckBox = new System.Windows.Forms.CheckBox();
@@ -111,16 +111,17 @@
             this.tabAutoProfiles = new System.Windows.Forms.TabPage();
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.cBNotifications = new System.Windows.Forms.CheckBox();
             this.cBUpdate = new System.Windows.Forms.CheckBox();
-            this.saveProfiles = new System.Windows.Forms.SaveFileDialog();
-            this.nUDUpdateTime = new System.Windows.Forms.NumericUpDown();
             this.pNUpdate = new System.Windows.Forms.Panel();
-            this.lBCheckEvery = new System.Windows.Forms.Label();
             this.cBUpdateTime = new System.Windows.Forms.ComboBox();
+            this.lBCheckEvery = new System.Windows.Forms.Label();
+            this.nUDUpdateTime = new System.Windows.Forms.NumericUpDown();
+            this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
             this.linkUninstall = new System.Windows.Forms.LinkLabel();
-            this.linkProfiles = new System.Windows.Forms.LinkLabel();
-            this.cBNotifications = new System.Windows.Forms.CheckBox();
+            this.saveProfiles = new System.Windows.Forms.SaveFileDialog();
+            this.lLSetup = new System.Windows.Forms.LinkLabel();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -137,8 +138,8 @@
             this.tabLog.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).BeginInit();
             this.pNUpdate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).BeginInit();
             this.SuspendLayout();
             // 
             // lvDebug
@@ -195,6 +196,27 @@
             this.lBTest.Text = "Used to test values";
             this.lBTest.Visible = false;
             // 
+            // btnStartStop
+            // 
+            this.btnStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStartStop.Location = new System.Drawing.Point(729, 4);
+            this.btnStartStop.Name = "btnStartStop";
+            this.btnStartStop.Size = new System.Drawing.Size(58, 23);
+            this.btnStartStop.TabIndex = 1;
+            this.btnStartStop.Text = "Start";
+            this.btnStartStop.UseVisualStyleBackColor = true;
+            this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
+            // 
+            // lbLastMessage
+            // 
+            this.lbLastMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lbLastMessage.Location = new System.Drawing.Point(4, 9);
+            this.lbLastMessage.Name = "lbLastMessage";
+            this.lbLastMessage.Size = new System.Drawing.Size(724, 18);
+            this.lbLastMessage.TabIndex = 41;
+            // 
             // llbHelp
             // 
             this.llbHelp.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -207,17 +229,6 @@
             this.llbHelp.Text = "Hotkeys/About";
             this.llbHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbHelp_LinkClicked);
             // 
-            // btnStartStop
-            // 
-            this.btnStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartStop.Location = new System.Drawing.Point(729, 4);
-            this.btnStartStop.Name = "btnStartStop";
-            this.btnStartStop.Size = new System.Drawing.Size(58, 23);
-            this.btnStartStop.TabIndex = 1;
-            this.btnStartStop.Text = "Start";
-            this.btnStartStop.UseVisualStyleBackColor = true;
-            this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
-            // 
             // lnkControllers
             // 
             this.lnkControllers.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -229,16 +240,6 @@
             this.lnkControllers.TabStop = true;
             this.lnkControllers.Text = "Control Panel Controllers";
             this.lnkControllers.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkControllers_LinkClicked);
-            // 
-            // lbLastMessage
-            // 
-            this.lbLastMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbLastMessage.Location = new System.Drawing.Point(4, 9);
-            this.lbLastMessage.Name = "lbLastMessage";
-            this.lbLastMessage.Size = new System.Drawing.Size(724, 18);
-            this.lbLastMessage.TabIndex = 41;
             // 
             // StartWindowsCheckBox
             // 
@@ -407,7 +408,7 @@
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.34039F));
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.31077F));
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
-            this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tLPControllers.Controls.Add(this.pBStatus1, 1, 1);
             this.tLPControllers.Controls.Add(this.lbPad1, 0, 1);
             this.tLPControllers.Controls.Add(this.lbPad2, 0, 2);
@@ -449,7 +450,7 @@
             this.pBStatus1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus1.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus1.Image")));
             this.pBStatus1.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus1.Location = new System.Drawing.Point(369, 19);
+            this.pBStatus1.Location = new System.Drawing.Point(372, 19);
             this.pBStatus1.Name = "pBStatus1";
             this.pBStatus1.Size = new System.Drawing.Size(39, 20);
             this.pBStatus1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -481,7 +482,7 @@
             // bnEditC3
             // 
             this.bnEditC3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC3.Location = new System.Drawing.Point(737, 76);
+            this.bnEditC3.Location = new System.Drawing.Point(741, 76);
             this.bnEditC3.Name = "bnEditC3";
             this.bnEditC3.Size = new System.Drawing.Size(40, 23);
             this.bnEditC3.TabIndex = 43;
@@ -493,7 +494,7 @@
             // bnEditC4
             // 
             this.bnEditC4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC4.Location = new System.Drawing.Point(737, 105);
+            this.bnEditC4.Location = new System.Drawing.Point(741, 105);
             this.bnEditC4.Name = "bnEditC4";
             this.bnEditC4.Size = new System.Drawing.Size(40, 23);
             this.bnEditC4.TabIndex = 43;
@@ -529,7 +530,7 @@
             this.cBController1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBController1.FormattingEnabled = true;
-            this.cBController1.Location = new System.Drawing.Point(620, 19);
+            this.cBController1.Location = new System.Drawing.Point(624, 19);
             this.cBController1.Name = "cBController1";
             this.cBController1.Size = new System.Drawing.Size(111, 21);
             this.cBController1.TabIndex = 42;
@@ -539,7 +540,7 @@
             // bnEditC2
             // 
             this.bnEditC2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC2.Location = new System.Drawing.Point(737, 47);
+            this.bnEditC2.Location = new System.Drawing.Point(741, 47);
             this.bnEditC2.Name = "bnEditC2";
             this.bnEditC2.Size = new System.Drawing.Size(40, 23);
             this.bnEditC2.TabIndex = 43;
@@ -553,7 +554,7 @@
             this.cBController2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBController2.FormattingEnabled = true;
-            this.cBController2.Location = new System.Drawing.Point(620, 48);
+            this.cBController2.Location = new System.Drawing.Point(624, 48);
             this.cBController2.Name = "cBController2";
             this.cBController2.Size = new System.Drawing.Size(111, 21);
             this.cBController2.TabIndex = 42;
@@ -565,7 +566,7 @@
             this.cBController3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBController3.FormattingEnabled = true;
-            this.cBController3.Location = new System.Drawing.Point(620, 77);
+            this.cBController3.Location = new System.Drawing.Point(624, 77);
             this.cBController3.Name = "cBController3";
             this.cBController3.Size = new System.Drawing.Size(111, 21);
             this.cBController3.TabIndex = 42;
@@ -575,7 +576,7 @@
             // bnEditC1
             // 
             this.bnEditC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC1.Location = new System.Drawing.Point(737, 18);
+            this.bnEditC1.Location = new System.Drawing.Point(741, 18);
             this.bnEditC1.Name = "bnEditC1";
             this.bnEditC1.Size = new System.Drawing.Size(40, 23);
             this.bnEditC1.TabIndex = 43;
@@ -589,7 +590,7 @@
             this.cBController4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBController4.FormattingEnabled = true;
-            this.cBController4.Location = new System.Drawing.Point(620, 106);
+            this.cBController4.Location = new System.Drawing.Point(624, 106);
             this.cBController4.Name = "cBController4";
             this.cBController4.Size = new System.Drawing.Size(111, 21);
             this.cBController4.TabIndex = 42;
@@ -601,7 +602,7 @@
             this.lBSelectedProfile.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBSelectedProfile.AutoSize = true;
             this.lBSelectedProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBSelectedProfile.Location = new System.Drawing.Point(621, 0);
+            this.lBSelectedProfile.Location = new System.Drawing.Point(625, 0);
             this.lBSelectedProfile.Name = "lBSelectedProfile";
             this.lBSelectedProfile.Size = new System.Drawing.Size(109, 15);
             this.lBSelectedProfile.TabIndex = 45;
@@ -623,7 +624,7 @@
             this.lBStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBStatus.AutoSize = true;
             this.lBStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBStatus.Location = new System.Drawing.Point(365, 0);
+            this.lBStatus.Location = new System.Drawing.Point(368, 0);
             this.lBStatus.Name = "lBStatus";
             this.lBStatus.Size = new System.Drawing.Size(47, 15);
             this.lBStatus.TabIndex = 45;
@@ -634,7 +635,7 @@
             this.lBBattery.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBattery.AutoSize = true;
             this.lBBattery.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBattery.Location = new System.Drawing.Point(513, 0);
+            this.lBBattery.Location = new System.Drawing.Point(517, 0);
             this.lBBattery.Name = "lBBattery";
             this.lBBattery.Size = new System.Drawing.Size(51, 15);
             this.lBBattery.TabIndex = 45;
@@ -645,7 +646,7 @@
             this.lBBatt1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt1.AutoSize = true;
             this.lBBatt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt1.Location = new System.Drawing.Point(519, 22);
+            this.lBBatt1.Location = new System.Drawing.Point(523, 22);
             this.lBBatt1.Name = "lBBatt1";
             this.lBBatt1.Size = new System.Drawing.Size(39, 15);
             this.lBBatt1.TabIndex = 44;
@@ -656,7 +657,7 @@
             this.lBBatt2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt2.AutoSize = true;
             this.lBBatt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt2.Location = new System.Drawing.Point(519, 51);
+            this.lBBatt2.Location = new System.Drawing.Point(523, 51);
             this.lBBatt2.Name = "lBBatt2";
             this.lBBatt2.Size = new System.Drawing.Size(39, 15);
             this.lBBatt2.TabIndex = 44;
@@ -667,7 +668,7 @@
             this.lBBatt3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt3.AutoSize = true;
             this.lBBatt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt3.Location = new System.Drawing.Point(519, 80);
+            this.lBBatt3.Location = new System.Drawing.Point(523, 80);
             this.lBBatt3.Name = "lBBatt3";
             this.lBBatt3.Size = new System.Drawing.Size(39, 15);
             this.lBBatt3.TabIndex = 44;
@@ -678,7 +679,7 @@
             this.lBBatt4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt4.AutoSize = true;
             this.lBBatt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt4.Location = new System.Drawing.Point(519, 109);
+            this.lBBatt4.Location = new System.Drawing.Point(523, 109);
             this.lBBatt4.Name = "lBBatt4";
             this.lBBatt4.Size = new System.Drawing.Size(39, 15);
             this.lBBatt4.TabIndex = 44;
@@ -689,7 +690,7 @@
             this.pBStatus2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus2.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus2.Image")));
             this.pBStatus2.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus2.Location = new System.Drawing.Point(369, 48);
+            this.pBStatus2.Location = new System.Drawing.Point(372, 48);
             this.pBStatus2.Name = "pBStatus2";
             this.pBStatus2.Size = new System.Drawing.Size(39, 20);
             this.pBStatus2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -701,7 +702,7 @@
             this.pBStatus3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus3.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus3.Image")));
             this.pBStatus3.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus3.Location = new System.Drawing.Point(369, 77);
+            this.pBStatus3.Location = new System.Drawing.Point(372, 77);
             this.pBStatus3.Name = "pBStatus3";
             this.pBStatus3.Size = new System.Drawing.Size(39, 20);
             this.pBStatus3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -713,7 +714,7 @@
             this.pBStatus4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus4.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus4.Image")));
             this.pBStatus4.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus4.Location = new System.Drawing.Point(369, 106);
+            this.pBStatus4.Location = new System.Drawing.Point(372, 106);
             this.pBStatus4.Name = "pBStatus4";
             this.pBStatus4.Size = new System.Drawing.Size(39, 20);
             this.pBStatus4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -987,7 +988,7 @@
             this.tabAutoProfiles.Name = "tabAutoProfiles";
             this.tabAutoProfiles.Size = new System.Drawing.Size(786, 313);
             this.tabAutoProfiles.TabIndex = 2;
-            this.tabAutoProfiles.Text = "Auto Profiles (Beta)";
+            this.tabAutoProfiles.Text = "Auto Profiles";
             this.tabAutoProfiles.UseVisualStyleBackColor = true;
             // 
             // tabSettings
@@ -1015,11 +1016,23 @@
             this.flowLayoutPanel1.Controls.Add(this.lnkControllers);
             this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
             this.flowLayoutPanel1.Controls.Add(this.linkUninstall);
+            this.flowLayoutPanel1.Controls.Add(this.lLSetup);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(780, 307);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // cBNotifications
+            // 
+            this.cBNotifications.AutoSize = true;
+            this.cBNotifications.Location = new System.Drawing.Point(332, 3);
+            this.cBNotifications.Name = "cBNotifications";
+            this.cBNotifications.Size = new System.Drawing.Size(114, 17);
+            this.cBNotifications.TabIndex = 51;
+            this.cBNotifications.Text = "Show Notifications";
+            this.cBNotifications.UseVisualStyleBackColor = true;
+            this.cBNotifications.CheckedChanged += new System.EventHandler(this.cBNotifications_CheckedChanged);
             // 
             // cBUpdate
             // 
@@ -1033,9 +1046,39 @@
             this.cBUpdate.UseVisualStyleBackColor = true;
             this.cBUpdate.CheckedChanged += new System.EventHandler(this.cBUpdate_CheckedChanged);
             // 
-            // saveProfiles
+            // pNUpdate
             // 
-            this.saveProfiles.Filter = "XML Files (*.xml)|*.xml";
+            this.pNUpdate.Controls.Add(this.cBUpdateTime);
+            this.pNUpdate.Controls.Add(this.lBCheckEvery);
+            this.pNUpdate.Controls.Add(this.nUDUpdateTime);
+            this.pNUpdate.Enabled = false;
+            this.pNUpdate.Location = new System.Drawing.Point(3, 26);
+            this.pNUpdate.Name = "pNUpdate";
+            this.pNUpdate.Size = new System.Drawing.Size(189, 22);
+            this.pNUpdate.TabIndex = 43;
+            // 
+            // cBUpdateTime
+            // 
+            this.cBUpdateTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBUpdateTime.FormattingEnabled = true;
+            this.cBUpdateTime.Items.AddRange(new object[] {
+            "hours",
+            "days"});
+            this.cBUpdateTime.Location = new System.Drawing.Point(126, 0);
+            this.cBUpdateTime.Name = "cBUpdateTime";
+            this.cBUpdateTime.Size = new System.Drawing.Size(60, 21);
+            this.cBUpdateTime.TabIndex = 43;
+            this.cBUpdateTime.SelectedIndexChanged += new System.EventHandler(this.cBUpdateTime_SelectedIndexChanged);
+            // 
+            // lBCheckEvery
+            // 
+            this.lBCheckEvery.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lBCheckEvery.AutoSize = true;
+            this.lBCheckEvery.Location = new System.Drawing.Point(3, 3);
+            this.lBCheckEvery.Name = "lBCheckEvery";
+            this.lBCheckEvery.Size = new System.Drawing.Size(67, 13);
+            this.lBCheckEvery.TabIndex = 0;
+            this.lBCheckEvery.Text = "Check every";
             // 
             // nUDUpdateTime
             // 
@@ -1051,39 +1094,17 @@
             this.nUDUpdateTime.TabIndex = 42;
             this.nUDUpdateTime.ValueChanged += new System.EventHandler(this.nUDUpdateTime_ValueChanged);
             // 
-            // pNUpdate
+            // linkProfiles
             // 
-            this.pNUpdate.Controls.Add(this.cBUpdateTime);
-            this.pNUpdate.Controls.Add(this.lBCheckEvery);
-            this.pNUpdate.Controls.Add(this.nUDUpdateTime);
-            this.pNUpdate.Enabled = false;
-            this.pNUpdate.Location = new System.Drawing.Point(3, 26);
-            this.pNUpdate.Name = "pNUpdate";
-            this.pNUpdate.Size = new System.Drawing.Size(189, 22);
-            this.pNUpdate.TabIndex = 43;
-            // 
-            // lBCheckEvery
-            // 
-            this.lBCheckEvery.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lBCheckEvery.AutoSize = true;
-            this.lBCheckEvery.Location = new System.Drawing.Point(3, 3);
-            this.lBCheckEvery.Name = "lBCheckEvery";
-            this.lBCheckEvery.Size = new System.Drawing.Size(67, 13);
-            this.lBCheckEvery.TabIndex = 0;
-            this.lBCheckEvery.Text = "Check every";
-            // 
-            // cBUpdateTime
-            // 
-            this.cBUpdateTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBUpdateTime.FormattingEnabled = true;
-            this.cBUpdateTime.Items.AddRange(new object[] {
-            "hours",
-            "days"});
-            this.cBUpdateTime.Location = new System.Drawing.Point(126, 0);
-            this.cBUpdateTime.Name = "cBUpdateTime";
-            this.cBUpdateTime.Size = new System.Drawing.Size(60, 21);
-            this.cBUpdateTime.TabIndex = 43;
-            this.cBUpdateTime.SelectedIndexChanged += new System.EventHandler(this.cBUpdateTime_SelectedIndexChanged);
+            this.linkProfiles.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.linkProfiles.AutoSize = true;
+            this.linkProfiles.Location = new System.Drawing.Point(283, 30);
+            this.linkProfiles.Name = "linkProfiles";
+            this.linkProfiles.Size = new System.Drawing.Size(94, 13);
+            this.linkProfiles.TabIndex = 50;
+            this.linkProfiles.TabStop = true;
+            this.linkProfiles.Text = "Open Profile folder";
+            this.linkProfiles.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkProfiles_LinkClicked);
             // 
             // lLBUpdate
             // 
@@ -1109,28 +1130,21 @@
             this.linkUninstall.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkUninstall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkUninstall_LinkClicked);
             // 
-            // linkProfiles
+            // saveProfiles
             // 
-            this.linkProfiles.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.linkProfiles.AutoSize = true;
-            this.linkProfiles.Location = new System.Drawing.Point(283, 30);
-            this.linkProfiles.Name = "linkProfiles";
-            this.linkProfiles.Size = new System.Drawing.Size(94, 13);
-            this.linkProfiles.TabIndex = 50;
-            this.linkProfiles.TabStop = true;
-            this.linkProfiles.Text = "Open Profile folder";
-            this.linkProfiles.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkProfiles_LinkClicked);
+            this.saveProfiles.Filter = "XML Files (*.xml)|*.xml";
             // 
-            // cBNotifications
+            // lLSetup
             // 
-            this.cBNotifications.AutoSize = true;
-            this.cBNotifications.Location = new System.Drawing.Point(332, 3);
-            this.cBNotifications.Name = "cBNotifications";
-            this.cBNotifications.Size = new System.Drawing.Size(114, 17);
-            this.cBNotifications.TabIndex = 51;
-            this.cBNotifications.Text = "Show Notifications";
-            this.cBNotifications.UseVisualStyleBackColor = true;
-            this.cBNotifications.CheckedChanged += new System.EventHandler(this.cBNotifications_CheckedChanged);
+            this.lLSetup.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lLSetup.AutoSize = true;
+            this.lLSetup.Location = new System.Drawing.Point(3, 51);
+            this.lLSetup.Name = "lLSetup";
+            this.lLSetup.Size = new System.Drawing.Size(82, 13);
+            this.lLSetup.TabIndex = 52;
+            this.lLSetup.TabStop = true;
+            this.lLSetup.Text = "Controller Setup";
+            this.lLSetup.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLSetup_LinkClicked);
             // 
             // ScpForm
             // 
@@ -1171,9 +1185,9 @@
             this.tabSettings.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).EndInit();
             this.pNUpdate.ResumeLayout(false);
             this.pNUpdate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1271,6 +1285,7 @@
         private System.Windows.Forms.LinkLabel linkUninstall;
         private System.Windows.Forms.LinkLabel linkProfiles;
         private System.Windows.Forms.CheckBox cBNotifications;
+        private System.Windows.Forms.LinkLabel lLSetup;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

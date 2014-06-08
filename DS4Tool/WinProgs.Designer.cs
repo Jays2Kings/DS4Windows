@@ -44,13 +44,18 @@
             this.openProgram = new System.Windows.Forms.OpenFileDialog();
             this.bnDelete = new System.Windows.Forms.Button();
             this.iLIcons = new System.Windows.Forms.ImageList(this.components);
-            this.bnLoadSteam = new System.Windows.Forms.Button();
             this.lVPrograms = new System.Windows.Forms.ListView();
             this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PathHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lBTip = new System.Windows.Forms.Label();
             this.pBProfilesTip = new System.Windows.Forms.Label();
             this.bnHideUnchecked = new System.Windows.Forms.Button();
+            this.cMSPrograms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addProgramsFromStartMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addSteamGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addOriginGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.browseForOtherProgramsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cMSPrograms.SuspendLayout();
             this.SuspendLayout();
             // 
             // bnAddPrograms
@@ -60,7 +65,7 @@
             this.bnAddPrograms.Name = "bnAddPrograms";
             this.bnAddPrograms.Size = new System.Drawing.Size(114, 23);
             this.bnAddPrograms.TabIndex = 2;
-            this.bnAddPrograms.Text = "Add more programs";
+            this.bnAddPrograms.Text = "Add programs";
             this.bnAddPrograms.UseVisualStyleBackColor = true;
             this.bnAddPrograms.Click += new System.EventHandler(this.bnAddPrograms_Click);
             // 
@@ -206,18 +211,6 @@
             this.iLIcons.ImageSize = new System.Drawing.Size(16, 16);
             this.iLIcons.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // bnLoadSteam
-            // 
-            this.bnLoadSteam.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnLoadSteam.Location = new System.Drawing.Point(5, 195);
-            this.bnLoadSteam.Name = "bnLoadSteam";
-            this.bnLoadSteam.Size = new System.Drawing.Size(505, 23);
-            this.bnLoadSteam.TabIndex = 11;
-            this.bnLoadSteam.Text = "Load Steam Games";
-            this.bnLoadSteam.UseVisualStyleBackColor = true;
-            this.bnLoadSteam.Click += new System.EventHandler(this.bnLoadSteam_Click);
-            // 
             // lVPrograms
             // 
             this.lVPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -232,7 +225,7 @@
             this.lVPrograms.Location = new System.Drawing.Point(5, 6);
             this.lVPrograms.MultiSelect = false;
             this.lVPrograms.Name = "lVPrograms";
-            this.lVPrograms.Size = new System.Drawing.Size(505, 187);
+            this.lVPrograms.Size = new System.Drawing.Size(505, 212);
             this.lVPrograms.SmallImageList = this.iLIcons;
             this.lVPrograms.TabIndex = 12;
             this.lVPrograms.UseCompatibleStateImageBehavior = false;
@@ -286,14 +279,54 @@
             this.bnHideUnchecked.UseVisualStyleBackColor = true;
             this.bnHideUnchecked.Click += new System.EventHandler(this.bnHideUnchecked_Click);
             // 
+            // cMSPrograms
+            // 
+            this.cMSPrograms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addProgramsFromStartMenuToolStripMenuItem,
+            this.addSteamGamesToolStripMenuItem,
+            this.addOriginGamesToolStripMenuItem,
+            this.browseForOtherProgramsToolStripMenuItem});
+            this.cMSPrograms.Name = "contextMenuStrip1";
+            this.cMSPrograms.ShowImageMargin = false;
+            this.cMSPrograms.Size = new System.Drawing.Size(193, 92);
+            // 
+            // addProgramsFromStartMenuToolStripMenuItem
+            // 
+            this.addProgramsFromStartMenuToolStripMenuItem.Name = "addProgramsFromStartMenuToolStripMenuItem";
+            this.addProgramsFromStartMenuToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.addProgramsFromStartMenuToolStripMenuItem.Text = "Add Start Menu Programs";
+            this.addProgramsFromStartMenuToolStripMenuItem.Click += new System.EventHandler(this.addProgramsFromStartMenuToolStripMenuItem_Click);
+            // 
+            // addSteamGamesToolStripMenuItem
+            // 
+            this.addSteamGamesToolStripMenuItem.Name = "addSteamGamesToolStripMenuItem";
+            this.addSteamGamesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.addSteamGamesToolStripMenuItem.Text = "Add Steam Games";
+            this.addSteamGamesToolStripMenuItem.Click += new System.EventHandler(this.addSteamGamesToolStripMenuItem_Click);
+            // 
+            // addOriginGamesToolStripMenuItem
+            // 
+            this.addOriginGamesToolStripMenuItem.Name = "addOriginGamesToolStripMenuItem";
+            this.addOriginGamesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.addOriginGamesToolStripMenuItem.Text = "Add Origin Games";
+            this.addOriginGamesToolStripMenuItem.Click += new System.EventHandler(this.addOriginGamesToolStripMenuItem_Click);
+            // 
+            // browseForOtherProgramsToolStripMenuItem
+            // 
+            this.browseForOtherProgramsToolStripMenuItem.Name = "browseForOtherProgramsToolStripMenuItem";
+            this.browseForOtherProgramsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.browseForOtherProgramsToolStripMenuItem.Text = "Browse for Other Programs";
+            this.browseForOtherProgramsToolStripMenuItem.Click += new System.EventHandler(this.browseForOtherProgramsToolStripMenuItem_Click);
+            // 
             // WinProgs
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(736, 222);
+            this.Controls.Add(this.bnHideUnchecked);
+            this.Controls.Add(this.bnAddPrograms);
             this.Controls.Add(this.lVPrograms);
-            this.Controls.Add(this.bnLoadSteam);
             this.Controls.Add(this.lBController4);
             this.Controls.Add(this.lBController3);
             this.Controls.Add(this.lBController2);
@@ -305,13 +338,12 @@
             this.Controls.Add(this.lBProgramPath);
             this.Controls.Add(this.bnDelete);
             this.Controls.Add(this.bnSave);
-            this.Controls.Add(this.bnHideUnchecked);
-            this.Controls.Add(this.bnAddPrograms);
             this.Controls.Add(this.pBProfilesTip);
             this.Controls.Add(this.lBTip);
             this.Controls.Add(this.lBBeta);
             this.Name = "WinProgs";
             this.Text = "Auto-Profiles";
+            this.cMSPrograms.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,12 +366,16 @@
         private System.Windows.Forms.OpenFileDialog openProgram;
         private System.Windows.Forms.Button bnDelete;
         private System.Windows.Forms.ImageList iLIcons;
-        private System.Windows.Forms.Button bnLoadSteam;
         private System.Windows.Forms.ListView lVPrograms;
         private System.Windows.Forms.ColumnHeader nameHeader;
         private System.Windows.Forms.ColumnHeader PathHeader;
         private System.Windows.Forms.Label lBTip;
         private System.Windows.Forms.Label pBProfilesTip;
         private System.Windows.Forms.Button bnHideUnchecked;
+        private System.Windows.Forms.ContextMenuStrip cMSPrograms;
+        private System.Windows.Forms.ToolStripMenuItem addProgramsFromStartMenuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addSteamGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addOriginGamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem browseForOtherProgramsToolStripMenuItem;
     }
 }

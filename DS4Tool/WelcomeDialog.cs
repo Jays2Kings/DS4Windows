@@ -72,7 +72,9 @@ namespace ScpServer
                 try { ZipFile.ExtractToDirectory(Global.appdatapath + "\\VBus.zip", exepath); }
                 //Made here as starting the scpdriver.exe via process.start, the program looks for file from where it was called, not where the exe is
                 catch { }
-                Process.Start(exepath + "\\ScpDriver.exe");                
+                if (File.Exists(exepath + "\\ScpDriver.exe"))
+                    try { Process.Start(exepath + "\\ScpDriver.exe"); }
+                    catch { Process.Start(Global.appdatapath + "\\Virtual Bus Driver"); }          
                 Timer timer = new Timer();
                 timer.Start();
                 timer.Tick += timer_Tick;

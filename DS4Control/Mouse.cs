@@ -33,8 +33,7 @@ namespace DS4Control
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
             cursor.touchesMoved(arg);
-            if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) > 5)
-                wheel.touchesMoved(arg);
+            wheel.touchesMoved(arg);
             if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 50)
                 if (arg.touches.Length == 2)
                     if (arg.touches[0].hwX - firstTouch.hwX > 200 && !slideleft)

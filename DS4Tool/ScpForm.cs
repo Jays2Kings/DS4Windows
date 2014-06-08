@@ -12,11 +12,12 @@ using System.Drawing;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Xml;
+using System.Text;
 namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 9.9;
+        double version = 10;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -32,7 +33,7 @@ namespace ScpServer
         string filename;
         DateTime oldnow = DateTime.UtcNow;
         string tempprofile = "null";
-        List<string> profilenames = new List<string>();
+        List<string> profilenames= new List<string>();
         List<string> programpaths = new List<string>();
         List<string>[] proprofiles;
         private static int WM_QUERYENDSESSION = 0x11;
@@ -41,6 +42,8 @@ namespace ScpServer
         delegate void HotKeysDelegate(object sender, EventArgs e);
         Options opt;
         private System.Drawing.Size oldsize;
+        WinProgs WP;
+
         protected void SetupArrays()
         {
             Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
@@ -54,13 +57,49 @@ namespace ScpServer
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
         }
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
+        //HANDLE WINAPI OpenProcess(
+        //  __in  DWORD dwDesiredAccess,
+        //  __in  BOOL bInheritHandle,
+        //  __in  DWORD dwProcessId
+        //);
+        [DllImport("kernel32.dll")]
+        private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
+
+        [DllImport("kernel32.dll")]
+        private static extern bool CloseHandle(IntPtr handle);
+
+        //  DWORD WINAPI GetModuleBaseName(
+        //      __in      HANDLE hProcess,
+        //      __in_opt  HMODULE hModule,
+        //      __out     LPTSTR lpBaseName,
+        //      __in      DWORD nSize
+        //  );
+        [DllImport("psapi.dll")]
+        private static extern uint GetModuleBaseName(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
+
+        //  DWORD WINAPI GetModuleFileNameEx(
+        //      __in      HANDLE hProcess,
+        //      __in_opt  HMODULE hModule,
+        //      __out     LPTSTR lpFilename,
+        //      __in      DWORD nSize
+        //  );
+        [DllImport("psapi.dll")]
+        private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
+
         public ScpForm()
         {
             InitializeComponent();
 
             ThemeUtil.SetTheme(lvDebug);
             SetupArrays();
-            CheckDrivers();
+            //CheckDrivers();
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
             LoadP(); 
@@ -68,6 +107,23 @@ namespace ScpServer
             tt.SetToolTip(linkUninstall, "To fully remove DS4Windows, You can delete the profiles by the link to the other side");
             if (!System.IO.Directory.Exists(Global.appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
+            //MessageBox.Show(Path.GetFileNameWithoutExtension(GetTopWindowName()));
+        }
+
+        public static string GetTopWindowName()
+        {
+            IntPtr hWnd = GetForegroundWindow();
+            uint lpdwProcessId;
+            GetWindowThreadProcessId(hWnd, out lpdwProcessId);
+
+            IntPtr hProcess = OpenProcess(0x0410, false, lpdwProcessId);
+
+            StringBuilder text = new StringBuilder(1000);
+            GetModuleFileNameEx(hProcess, IntPtr.Zero, text, text.Capacity);
+
+            CloseHandle(hProcess);
+
+            return text.ToString();
         }
 
         private void OnPowerChange(object s, PowerModeChangedEventArgs e)
@@ -152,6 +208,11 @@ namespace ScpServer
                 nUDUpdateTime.Value = checkwhen;
             }
             Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
+            if (!Directory.Exists(Global.appdatapath))
+            {
+                WelcomeDialog wd = new WelcomeDialog();
+                wd.ShowDialog();
+            }
             Directory.CreateDirectory(Global.appdatapath);
             if (checkwhen > 0 && DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(checkwhen))
             {
@@ -196,8 +257,30 @@ namespace ScpServer
             }
 
             //Check for process for auto profiles
-            DateTime now = DateTime.UtcNow;
-            if (now >= oldnow + TimeSpan.FromSeconds(2)) 
+            if (tempprofile == "null")
+                for (int i = 0; i < programpaths.Count; i++)
+                {
+                    string name = Path.GetFileNameWithoutExtension(programpaths[i]);
+                    if (programpaths[i].ToLower() == GetTopWindowName().ToLower())
+                    {
+                        for (int j = 0; j < 4; j++)
+                            if (proprofiles[j][i] != "(none)")
+                                Global.LoadTempProfile(j, proprofiles[j][i]); //j is controller index, i is filename
+                        tempprofile = programpaths[i].ToLower();
+                    }
+                }
+            else
+            {
+                if (tempprofile != GetTopWindowName().ToLower())
+                {
+                    tempprofile = "null";
+                    for (int j = 0; j < 4; j++)
+                        Global.LoadProfile(j);
+                }
+            }
+            #region Old Process check
+            /*DateTime now = DateTime.UtcNow;
+            if (now >= oldnow + TimeSpan.FromSeconds(2))
             {
                 oldnow = now;
                 if (tempprofile == "null")
@@ -228,7 +311,8 @@ namespace ScpServer
                 PerformanceCounter.CloseSharedResources();
             }
             else
-                PerformanceCounter.CloseSharedResources();
+                PerformanceCounter.CloseSharedResources();*/
+            #endregion
             GC.Collect();
         }
         
@@ -306,13 +390,13 @@ namespace ScpServer
             }
             catch { };
         }
-        
+
         public void RefreshProfiles()
         {
             try
             {
                 profilenames.Clear();
-                string[] profiles = Directory.GetFiles(Global.appdatapath + @"\Profiles\");                
+                string[] profiles = Directory.GetFiles(Global.appdatapath + @"\Profiles\");
                 foreach (String s in profiles)
                     if (s.EndsWith(".xml"))
                         profilenames.Add(Path.GetFileNameWithoutExtension(s));
@@ -363,20 +447,15 @@ namespace ScpServer
                     shortcuts[i].DropDownItems.Add("-");
                     shortcuts[i].DropDownItems.Add("+New Profile");
                 }
-            }
-            tabAutoProfiles.Controls.Clear();
-            WinProgs WP = new WinProgs(profilenames.ToArray(), this);
-            WP.TopLevel = false;
-            WP.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            WP.Visible = true;
-            WP.Dock = DockStyle.Fill;
-            tabAutoProfiles.Controls.Add(WP);
+                RefreshAutoProfilesPage();
+            }            
         }
+
 
         public void RefreshAutoProfilesPage()
         {
             tabAutoProfiles.Controls.Clear();
-            WinProgs WP = new WinProgs(profilenames.ToArray(), this);
+            WP = new WinProgs(profilenames.ToArray(), this);
             WP.TopLevel = false;
             WP.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             WP.Visible = true;
@@ -1127,6 +1206,12 @@ namespace ScpServer
         private void cBNotifications_CheckedChanged(object sender, EventArgs e)
         {
             Global.setNotifications(cBNotifications.Checked);
+        }
+
+        private void lLSetup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            WelcomeDialog wd = new WelcomeDialog();
+            wd.ShowDialog();
         }
     }
 

@@ -13,6 +13,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using DS4Control;
 using System.Xml;
+using System.Runtime.InteropServices;
 
 namespace ScpServer
 {
@@ -21,8 +22,9 @@ namespace ScpServer
         ToolTip tp = new ToolTip();
         ComboBox[] cbs;
         ScpForm form;
-        string steamgamesdir;
-        protected String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml";
+        //C:\ProgramData\Microsoft\Windows\Start Menu\Programs
+        string steamgamesdir, origingamesdir;
+        protected String m_Profile = Global.appdatapath + "\\Auto Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
         List<string> programpaths = new List<string>();
         List<string> lodsf = new List<string>();
@@ -31,7 +33,7 @@ namespace ScpServer
         public WinProgs(string[] oc, ScpForm main)
         {
             InitializeComponent();
-            
+
             form = main;
             cbs = new ComboBox[4] { cBProfile1, cBProfile2, cBProfile3, cBProfile4 };
             for (int i = 0; i < 4; i++)
@@ -43,16 +45,21 @@ namespace ScpServer
             if (!File.Exists(Global.appdatapath + @"\Auto Profiles.xml"))
                 Create();
             LoadP();
+
             RegistryKey regKey = Registry.CurrentUser;
             regKey = regKey.OpenSubKey(@"Software\Valve\Steam");
             if (regKey != null)
-                steamgamesdir = Path.GetDirectoryName(regKey.GetValue("SourceModInstallPath").ToString()) + @"\common";
-            if (!Directory.Exists(steamgamesdir))
-            {
-                bnLoadSteam.Visible = false;
-                lVPrograms.Size = new Size(lVPrograms.Size.Width, lVPrograms.Size.Height + 25);
-            }
-        }        
+                steamgamesdir = regKey.GetValue("SteamPath").ToString() + @"\steamapps\common";
+            else
+                cMSPrograms.Items.Remove(addSteamGamesToolStripMenuItem);
+
+            if (Directory.Exists(@"C:\Program Files (x86)\Origin Games"))
+                origingamesdir = @"C:\Program Files (x86)\Origin Games";
+            else if (Directory.Exists(@"C:\Program Files\Origin Games"))
+                origingamesdir = @"C:\Program Files\Origin Games";
+            else
+                cMSPrograms.Items.Remove(addOriginGamesToolStripMenuItem);
+        }
 
         public bool Create()
         {
@@ -107,35 +114,35 @@ namespace ScpServer
 
         private void bnLoadSteam_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var AppCollectionThread = new System.Threading.Thread(() => GetApps());
-                AppCollectionThread.IsBackground = true;
-                AppCollectionThread.Start();
-            }
-            catch { }
-            bnLoadSteam.Text = "Loading...";
-            bnLoadSteam.Enabled = false;
-            Timer appstimer = new Timer();
-            appstimer.Start();
-            appstimer.Tick += appstimer_Tick;
+
         }
 
-        
-        private void GetApps()
+
+        private void GetApps(string path)
         {
-            lodsf.AddRange(Directory.GetFiles(steamgamesdir, "*.exe", SearchOption.AllDirectories));
+            lodsf.Clear();
+            lodsf.AddRange(Directory.GetFiles(path, "*.exe", SearchOption.AllDirectories));
             appsloaded = true;
-        }        
+        }
+
+        private void GetShortcuts(string path)
+        {
+            lodsf.Clear();
+            lodsf.AddRange(Directory.GetFiles(path, "*.lnk", SearchOption.AllDirectories));
+            lodsf.AddRange(Directory.GetFiles(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs", "*.lnk", SearchOption.AllDirectories));
+            for (int i = 0; i < lodsf.Count; i++)
+                lodsf[i] = GetTargetPath(lodsf[i]);
+            appsloaded = true;
+        }
 
         void appstimer_Tick(object sender, EventArgs e)
         {
             if (appsloaded)
             {
-                bnLoadSteam.Text = "Adding to list...";
+                bnAddPrograms.Text = "Adding to list...";
                 for (int i = lodsf.Count - 1; i >= 0; i--)
                     if (lodsf[i].Contains("etup") || lodsf[i].Contains("dotnet") || lodsf[i].Contains("SETUP")
-                        || lodsf[i].Contains("edist") || lodsf[i].Contains("nstall"))
+                        || lodsf[i].Contains("edist") || lodsf[i].Contains("nstall") || String.IsNullOrEmpty(lodsf[i]))
                         lodsf.RemoveAt(i);
                 for (int i = lodsf.Count - 1; i >= 0; i--)
                     for (int j = programpaths.Count - 1; j >= 0; j--)
@@ -143,20 +150,23 @@ namespace ScpServer
                             lodsf.RemoveAt(i);
                 foreach (string st in lodsf)
                 {
-                    int index = programpaths.IndexOf(st);
-                    iLIcons.Images.Add(Icon.ExtractAssociatedIcon(st));
-                    ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(st), iLIcons.Images.Count + index);
-                    lvi.SubItems.Add(st);
-                    lVPrograms.Items.Add(lvi);
+                    if (File.Exists(st))
+                    {
+                        int index = programpaths.IndexOf(st);
+                        iLIcons.Images.Add(Icon.ExtractAssociatedIcon(st));
+                        ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(st), iLIcons.Images.Count + index);
+                        lvi.SubItems.Add(st);
+                        lVPrograms.Items.Add(lvi);
+                    }
                 }
-                bnLoadSteam.Visible = false;
-                lVPrograms.Size = new Size(lVPrograms.Size.Width, lVPrograms.Size.Height + 25);
+                bnAddPrograms.Text = "Add programs";
+                bnAddPrograms.Enabled = true;
                 appsloaded = false;
                 ((Timer)sender).Stop();
             }
         }
 
-        
+
         public void Save(string name)
         {
             m_Xdoc.Load(m_Profile);
@@ -186,7 +196,7 @@ namespace ScpServer
             if (lVPrograms.SelectedItems.Count > 0)
                 lVPrograms.SelectedItems[0].Checked = true;
             form.LoadP();
-        }    
+        }
 
         public void LoadP(string name)
         {
@@ -228,14 +238,14 @@ namespace ScpServer
             if (Item != null)
                 Node.RemoveChild(Item);
             doc.AppendChild(Node);
-            doc.Save(m_Profile);            
+            doc.Save(m_Profile);
             if (lVPrograms.SelectedItems.Count > 0 && uncheck)
                 lVPrograms.SelectedItems[0].Checked = false;
             for (int i = 0; i < 4; i++)
                 cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
             bnSave.Enabled = false;
             form.LoadP();
-        }        
+        }
 
         private void CBProfile_IndexChanged(object sender, EventArgs e)
         {
@@ -250,21 +260,13 @@ namespace ScpServer
         private void bnSave_Click(object sender, EventArgs e)
         {
             if (lBProgramPath.Text != "")
-                Save(lBProgramPath.Text);            
+                Save(lBProgramPath.Text);
             bnSave.Enabled = false;
         }
 
         private void bnAddPrograms_Click(object sender, EventArgs e)
         {
-            if (openProgram.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string file = openProgram.FileName;
-                lBProgramPath.Text = file;
-                iLIcons.Images.Add(Icon.ExtractAssociatedIcon(file));
-                ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(file), lVPrograms.Items.Count);
-                lvi.SubItems.Add(file);
-                lVPrograms.Items.Insert(0, lvi);
-            }
+            cMSPrograms.Show(bnAddPrograms, new Point(0, bnAddPrograms.Height));
         }
 
         private void lBProgramPath_TextChanged(object sender, EventArgs e)
@@ -303,5 +305,178 @@ namespace ScpServer
             form.RefreshAutoProfilesPage();
         }
 
+
+        private void addSteamGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var AppCollectionThread = new System.Threading.Thread(() => GetApps(steamgamesdir));
+                AppCollectionThread.IsBackground = true;
+                AppCollectionThread.Start();
+            }
+            catch { }
+            bnAddPrograms.Text = "Loading...";
+            bnAddPrograms.Enabled = false;
+            cMSPrograms.Items.Remove(addSteamGamesToolStripMenuItem);
+            Timer appstimer = new Timer();
+            appstimer.Start();
+            appstimer.Tick += appstimer_Tick;
+        }
+
+        private void browseForOtherProgramsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openProgram.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string file = openProgram.FileName;
+                if (file.EndsWith(".lnk"))
+                {
+                    file = GetTargetPath(file);
+                }
+                lBProgramPath.Text = file;
+                iLIcons.Images.Add(Icon.ExtractAssociatedIcon(file));
+                ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(file), lVPrograms.Items.Count);
+                lvi.SubItems.Add(file);
+                lVPrograms.Items.Insert(0, lvi);
+            }
+        }
+
+        private void addOriginGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var AppCollectionThread = new System.Threading.Thread(() => GetApps(origingamesdir));
+                AppCollectionThread.IsBackground = true;
+                AppCollectionThread.Start();
+            }
+            catch { }
+            bnAddPrograms.Text = "Loading...";
+            bnAddPrograms.Enabled = false;
+            cMSPrograms.Items.Remove(addOriginGamesToolStripMenuItem);
+            Timer appstimer = new Timer();
+            appstimer.Start();
+            appstimer.Tick += appstimer_Tick;
+        }
+
+        private void addProgramsFromStartMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs");
+            try
+            {
+                var AppCollectionThread = new System.Threading.Thread(() => GetShortcuts(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs"));
+                AppCollectionThread.IsBackground = true;
+                AppCollectionThread.Start();
+            }
+            catch { }
+            bnAddPrograms.Text = "Loading...";
+            bnAddPrograms.Enabled = false;
+            cMSPrograms.Items.Remove(addProgramsFromStartMenuToolStripMenuItem);
+            Timer appstimer = new Timer();
+            appstimer.Start();
+            appstimer.Tick += appstimer_Tick;
+        }
+
+        public static string GetTargetPath(string filePath)
+        {
+            string targetPath = ResolveMsiShortcut(filePath);
+            if (targetPath == null)
+            {
+                targetPath = ResolveShortcut(filePath);
+            }
+
+            return targetPath;
+        }
+
+        public static string GetInternetShortcut(string filePath)
+        {
+            string url = "";
+
+            using (TextReader reader = new StreamReader(filePath))
+            {
+                string line = "";
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (line.StartsWith("URL="))
+                    {
+                        string[] splitLine = line.Split('=');
+                        if (splitLine.Length > 0)
+                        {
+                            url = splitLine[1];
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return url;
+        }
+
+        static string ResolveShortcut(string filePath)
+        {
+            // IWshRuntimeLibrary is in the COM library "Windows Script Host Object Model"
+            IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShell();
+
+            try
+            {
+                IWshRuntimeLibrary.IWshShortcut shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(filePath);
+                return shortcut.TargetPath;
+            }
+            catch (COMException)
+            {
+                // A COMException is thrown if the file is not a valid shortcut (.lnk) file 
+                return null;
+            }
+        }
+
+        static string ResolveMsiShortcut(string file)
+        {
+            StringBuilder product = new StringBuilder(NativeMethods.MaxGuidLength + 1);
+            StringBuilder feature = new StringBuilder(NativeMethods.MaxFeatureLength + 1);
+            StringBuilder component = new StringBuilder(NativeMethods.MaxGuidLength + 1);
+
+            NativeMethods.MsiGetShortcutTarget(file, product, feature, component);
+
+            int pathLength = NativeMethods.MaxPathLength;
+            StringBuilder path = new StringBuilder(pathLength);
+
+            NativeMethods.InstallState installState = NativeMethods.MsiGetComponentPath(product.ToString(), component.ToString(), path, ref pathLength);
+            if (installState == NativeMethods.InstallState.Local)
+            {
+                return path.ToString();
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
+    class NativeMethods
+    {
+        [DllImport("msi.dll", CharSet = CharSet.Auto)]
+        public static extern uint MsiGetShortcutTarget(string targetFile, StringBuilder productCode, StringBuilder featureID, StringBuilder componentCode);
+
+        [DllImport("msi.dll", CharSet = CharSet.Auto)]
+        public static extern InstallState MsiGetComponentPath(string productCode, string componentCode, StringBuilder componentPath, ref int componentPathBufferSize);
+
+        public const int MaxFeatureLength = 38;
+        public const int MaxGuidLength = 38;
+        public const int MaxPathLength = 1024;
+
+        public enum InstallState
+        {
+            NotUsed = -7,
+            BadConfig = -6,
+            Incomplete = -5,
+            SourceAbsent = -4,
+            MoreData = -3,
+            InvalidArg = -2,
+            Unknown = -1,
+            Broken = 0,
+            Advertised = 1,
+            Removed = 1,
+            Absent = 2,
+            Local = 3,
+            Source = 4,
+            Default = 5
+        }
     }
 }

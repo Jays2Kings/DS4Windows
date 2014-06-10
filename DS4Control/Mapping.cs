@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DS4Library;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 namespace DS4Control
 {
     public class Mapping
@@ -286,8 +288,8 @@ namespace DS4Control
             SyntheticState deviceState = Mapping.deviceState[device];
             string macro = Global.getCustomMacro(device, what);
             if (macro != "0")
-            {                
-                DS4KeyType keyType = Global.getCustomKeyType(device, what);
+            { 
+                /*DS4KeyType keyType = Global.getCustomKeyType(device, what);
                 SyntheticState.KeyPresses kp;
                 string[] skeys = macro.Split('/');
                 ushort[] keys = new ushort[skeys.Length];
@@ -306,7 +308,7 @@ namespace DS4Control
                     else
                         kp.current.vkCount++;
                     kp.current.repeatCount++;
-                }
+                }*/
             }                  
             else if (Global.getCustomKey(device, what) != 0)
             {
@@ -439,39 +441,135 @@ namespace DS4Control
                 }
             }
         }
-        public static bool[] pressedonce = new bool[261];
+
+        public static int DS4ControltoInt(DS4Controls ctrl)
+        {
+            switch (ctrl)
+            {
+                case DS4Controls.Share: return 1;
+                case DS4Controls.Options: return 2;
+                case DS4Controls.L1: return 3;
+                case DS4Controls.R1: return 4;
+                case DS4Controls.L3: return 5;
+                case DS4Controls.R3: return 6;
+                case DS4Controls.DpadUp: return 7;
+                case DS4Controls.DpadDown: return 8;
+                case DS4Controls.DpadLeft: return 9;
+                case DS4Controls.DpadRight: return 10;
+                case DS4Controls.PS: return 11;
+                case DS4Controls.Cross: return 12;
+                case DS4Controls.Square: return 13;
+                case DS4Controls.Triangle: return 14;
+                case DS4Controls.Circle: return 15;
+                case DS4Controls.LXNeg: return 16;
+                case DS4Controls.LYNeg: return 17;
+                case DS4Controls.RXNeg: return 18;
+                case DS4Controls.RYNeg: return 19;
+                case DS4Controls.LXPos: return 20;
+                case DS4Controls.LYPos: return 21;
+                case DS4Controls.RXPos: return 22;
+                case DS4Controls.RYPos: return 23;
+                case DS4Controls.L2: return 24;
+                case DS4Controls.R2: return 25;
+                case DS4Controls.TouchMulti: return 26;
+                case DS4Controls.TouchLeft: return 27;
+                case DS4Controls.TouchRight: return 28;
+                case DS4Controls.TouchUpper: return 29;
+            }
+            return 0; 
+        }
+        public static bool[] pressedonce = new bool[261], macrodone = new bool[30];
         public static int test = 0;
         /** Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons. */
-        public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4State pState = null)
+        public static async void MapCustom(int device, DS4State cState, DS4State MappedState)
         {
             cState.CopyTo(MappedState);
             SyntheticState deviceState = Mapping.deviceState[device];
-            foreach (KeyValuePair<DS4Controls, string> customKey in Global.getCustomMacros(device))
+            foreach (KeyValuePair<DS4Controls, string> customKey in Global.getCustomMacros(device)) //with delays
             {
                 DS4KeyType keyType = Global.getCustomKeyType(device, customKey.Key);
                 if (getBoolMapping(customKey.Key, cState))
                 {
+
                     resetToDefaultValue(customKey.Key, MappedState);
                     string[] skeys = customKey.Value.Split('/');
                     ushort[] keys = new ushort[skeys.Length];
                     for (int i = 0; i < keys.Length; i++)
-                    {
                         keys[i] = ushort.Parse(skeys[i]);
-                        if (keys[i] == 256) deviceState.currentClicks.leftCount++; //anything above 255 is not a keyvalue
-                        if (keys[i] == 257) deviceState.currentClicks.rightCount++;
-                        if (keys[i] == 258) deviceState.currentClicks.middleCount++;
-                        if (keys[i] == 259) deviceState.currentClicks.fourthCount++;
-                        if (keys[i] == 260) deviceState.currentClicks.fifthCount++;
-                        SyntheticState.KeyPresses kp;
-                        if (!deviceState.keyPresses.TryGetValue(keys[i], out kp))
-                            deviceState.keyPresses[keys[i]] = kp = new SyntheticState.KeyPresses();
-                        if (keyType.HasFlag(DS4KeyType.ScanCode))
-                            kp.current.scanCodeCount++;
-                        else
-                            kp.current.vkCount++;
-                        kp.current.repeatCount++;
+                    bool timedmacro = false;
+                    for (int i = 0; i < keys.Length; i++)
+                        if (keys[i] > 300)
+                        {
+                            timedmacro = true;
+                            break;
+                        }
+                    if (timedmacro && !macrodone[DS4ControltoInt(customKey.Key)])
+                    {
+                        macrodone[DS4ControltoInt(customKey.Key)] = true;
+                        for (int i = 0; i < keys.Length; i++)
+                        {
+                            if (keys[i] > 300) //ints over 300 used to delay
+                                await Task.Delay(keys[i] - 300);
+                            else if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
+                            else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
+                            else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
+                            else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
+                            else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                            else
+                                InputMethods.performKeyPress(keys[i]);
+                        }
+                        for (int i = keys.Length - 1; i >= 0; i--)
+                        {
+                            if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
+                            else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                            else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                            else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                            else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                            else if (keys[i] < 300)
+                                InputMethods.performKeyRelease(keys[i]);
+                        }
+                    }
+                    else if (!timedmacro)
+                    {
+                        for (int i = 0; i < keys.Length; i++)
+                        {
+                            if (i > 0 && keys[i - 1] > 300)
+                            {
+                                if (keys[i] == 256) deviceState.currentClicks.leftCount++; //anything above 255 is not a keyvalue
+                                if (keys[i] == 257) deviceState.currentClicks.rightCount++;
+                                if (keys[i] == 258) deviceState.currentClicks.middleCount++;
+                                if (keys[i] == 259) deviceState.currentClicks.fourthCount++;
+                                if (keys[i] == 260) deviceState.currentClicks.fifthCount++;
+                                SyntheticState.KeyPresses kp;
+                                if (!deviceState.keyPresses.TryGetValue(keys[i], out kp))
+                                    deviceState.keyPresses[keys[i]] = kp = new SyntheticState.KeyPresses();
+                                if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    kp.current.scanCodeCount++;
+                                else
+                                    kp.current.vkCount++;
+                                kp.current.repeatCount++;
+                            }
+                            else if (keys[i] < 261)
+                            {
+                                if (keys[i] == 256) deviceState.currentClicks.leftCount++; //anything above 255 is not a keyvalue
+                                if (keys[i] == 257) deviceState.currentClicks.rightCount++;
+                                if (keys[i] == 258) deviceState.currentClicks.middleCount++;
+                                if (keys[i] == 259) deviceState.currentClicks.fourthCount++;
+                                if (keys[i] == 260) deviceState.currentClicks.fifthCount++;
+                                SyntheticState.KeyPresses kp;
+                                if (!deviceState.keyPresses.TryGetValue(keys[i], out kp))
+                                    deviceState.keyPresses[keys[i]] = kp = new SyntheticState.KeyPresses();
+                                if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    kp.current.scanCodeCount++;
+                                else
+                                    kp.current.vkCount++;
+                                kp.current.repeatCount++;
+                            }
+                        }
                     }
                 }
+                else if (!getBoolMapping(customKey.Key, cState))
+                    macrodone[DS4ControltoInt(customKey.Key)] = false;
             }
             foreach (KeyValuePair<DS4Controls, ushort> customKey in Global.getCustomKeys(device))
             {
@@ -502,7 +600,7 @@ namespace DS4Control
             }
 
 
-            bool LX = false, LY = false, RX = false, RY = false;
+            bool LX = false, LY = false, RX = false, RY = false, L2 = false, R2 = false;
             MappedState.LX = 127;
             MappedState.LY = 127;
             MappedState.RX = 127;
@@ -668,11 +766,19 @@ namespace DS4Control
                         break;
                     case X360Controls.LT:
                         if (MappedState.L2 == 0)
+                        {
                             MappedState.L2 = getByteMapping(customButton.Key, cState);
+                            L2 = true;
+                        }
                         break;
                     case X360Controls.RT:
-                        if (MappedState.R2 == 0)
+                        if (MappedState.L2 == 0 && MappedState.R2 == 0)
+                        {
                             MappedState.R2 = getByteMapping(customButton.Key, cState);
+                            //if (MappedState.R2 == 255)
+                               //MessageBox.Show("225"); 
+                            R2 = true;
+                        }
                         break;
                     case X360Controls.LeftMouse:
                         if (getBoolMapping(customButton.Key, cState))
@@ -705,28 +811,28 @@ namespace DS4Control
                     case X360Controls.MouseUp:
                         if (MouseDeltaY == 0)
                         {
-                            MouseDeltaY = getMouseMapping(device, customButton.Key, cState, pState, 0);
+                            MouseDeltaY = getMouseMapping(device, customButton.Key, cState, 0);
                             MouseDeltaY = -Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
                         }
                         break;
                     case X360Controls.MouseDown:
                         if (MouseDeltaY == 0)
                         {
-                            MouseDeltaY = getMouseMapping(device, customButton.Key, cState, pState, 1);
+                            MouseDeltaY = getMouseMapping(device, customButton.Key, cState, 1);
                             MouseDeltaY = Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
                         }
                         break;
                     case X360Controls.MouseLeft:
                         if (MouseDeltaX == 0)
                         {
-                            MouseDeltaX = getMouseMapping(device, customButton.Key, cState, pState, 2);
+                            MouseDeltaX = getMouseMapping(device, customButton.Key, cState, 2);
                             MouseDeltaX = -Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
                         }
                         break;
                     case X360Controls.MouseRight:
                         if (MouseDeltaX == 0)
                         {
-                            MouseDeltaX = getMouseMapping(device, customButton.Key, cState, pState, 3);
+                            MouseDeltaX = getMouseMapping(device, customButton.Key, cState, 3);
                             MouseDeltaX = Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
                         }
                         break;
@@ -741,11 +847,15 @@ namespace DS4Control
                 MappedState.RX = cState.RX;
             if (!RY)
                 MappedState.RY = cState.RY;
+            /*if (!L2)
+                MappedState.L2 = cState.L2;
+            if (!R2)
+                MappedState.R2 = cState.R2;//*/
             InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
         }
         public static DateTime[] mousenow = { DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow };
         public static double mvalue = 0;
-        private static int getMouseMapping(int device, DS4Controls control, DS4State cState, DS4State pState, int mnum)
+        private static int getMouseMapping(int device, DS4Controls control, DS4State cState, int mnum)
         {
 
             int deadzone = 10;

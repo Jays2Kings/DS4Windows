@@ -81,8 +81,17 @@ namespace DS4Control
     {
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
-        //public static string appdatapath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
-        public static string appdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
+        static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+        public static string appdatapath;
+
+        public static void SaveWhere()
+        {
+            if (!exepath.StartsWith("C:\\Program Files") && !exepath.StartsWith("C:\\Windows"))
+                appdatapath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+            else
+                appdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
+            m_Config.m_Profile = appdatapath + "\\Profiles.xml";
+        }
         public static event EventHandler<EventArgs> ControllerStatusChange; // called when a controller is added/removed/battery or touchpad mode changes/etc.
         public static void ControllerStatusChanged(object sender)
         {
@@ -534,7 +543,8 @@ namespace DS4Control
 
     public class BackingStore
     {
-        protected String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + "\\Profiles.xml";
+        //public String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + "\\Profiles.xml";
+        public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
         //fifth value used to for options, not fifth controller
         public int[] buttonMouseSensitivity = { 25, 25, 25, 25, 25 };
@@ -972,6 +982,7 @@ namespace DS4Control
                                     else if (keys[i] == 258) splitter[i] = "Middle Mouse Button";
                                     else if (keys[i] == 259) splitter[i] = "4th Mouse Button";
                                     else if (keys[i] == 260) splitter[i] = "5th Mouse Button";
+                                    else if (keys[i] > 300) splitter[i] = "Wait " + (keys[i] - 300) + "ms";
                                 }
                                 button.Text = string.Join(", ", splitter);                                
                                 button.Tag = keys;

@@ -40,14 +40,12 @@
             this.lBController2 = new System.Windows.Forms.Label();
             this.lBController3 = new System.Windows.Forms.Label();
             this.lBController4 = new System.Windows.Forms.Label();
-            this.lBBeta = new System.Windows.Forms.Label();
             this.openProgram = new System.Windows.Forms.OpenFileDialog();
             this.bnDelete = new System.Windows.Forms.Button();
             this.iLIcons = new System.Windows.Forms.ImageList(this.components);
             this.lVPrograms = new System.Windows.Forms.ListView();
             this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PathHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lBTip = new System.Windows.Forms.Label();
             this.pBProfilesTip = new System.Windows.Forms.Label();
             this.bnHideUnchecked = new System.Windows.Forms.Button();
             this.cMSPrograms = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -60,10 +58,9 @@
             // 
             // bnAddPrograms
             // 
-            this.bnAddPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnAddPrograms.Location = new System.Drawing.Point(516, 195);
+            this.bnAddPrograms.Location = new System.Drawing.Point(5, 2);
             this.bnAddPrograms.Name = "bnAddPrograms";
-            this.bnAddPrograms.Size = new System.Drawing.Size(114, 23);
+            this.bnAddPrograms.Size = new System.Drawing.Size(88, 23);
             this.bnAddPrograms.TabIndex = 2;
             this.bnAddPrograms.Text = "Add programs";
             this.bnAddPrograms.UseVisualStyleBackColor = true;
@@ -72,9 +69,9 @@
             // lBProgramPath
             // 
             this.lBProgramPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lBProgramPath.Location = new System.Drawing.Point(602, 131);
+            this.lBProgramPath.Location = new System.Drawing.Point(519, 195);
             this.lBProgramPath.Name = "lBProgramPath";
-            this.lBProgramPath.Size = new System.Drawing.Size(47, 18);
+            this.lBProgramPath.Size = new System.Drawing.Size(205, 18);
             this.lBProgramPath.TabIndex = 3;
             this.lBProgramPath.Visible = false;
             this.lBProgramPath.TextChanged += new System.EventHandler(this.lBProgramPath_TextChanged);
@@ -84,7 +81,7 @@
             this.cBProfile1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cBProfile1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBProfile1.FormattingEnabled = true;
-            this.cBProfile1.Location = new System.Drawing.Point(609, 18);
+            this.cBProfile1.Location = new System.Drawing.Point(609, 28);
             this.cBProfile1.Name = "cBProfile1";
             this.cBProfile1.Size = new System.Drawing.Size(121, 21);
             this.cBProfile1.TabIndex = 6;
@@ -95,7 +92,7 @@
             this.cBProfile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cBProfile2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBProfile2.FormattingEnabled = true;
-            this.cBProfile2.Location = new System.Drawing.Point(609, 45);
+            this.cBProfile2.Location = new System.Drawing.Point(609, 55);
             this.cBProfile2.Name = "cBProfile2";
             this.cBProfile2.Size = new System.Drawing.Size(121, 21);
             this.cBProfile2.TabIndex = 6;
@@ -106,7 +103,7 @@
             this.cBProfile3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cBProfile3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBProfile3.FormattingEnabled = true;
-            this.cBProfile3.Location = new System.Drawing.Point(609, 72);
+            this.cBProfile3.Location = new System.Drawing.Point(609, 82);
             this.cBProfile3.Name = "cBProfile3";
             this.cBProfile3.Size = new System.Drawing.Size(121, 21);
             this.cBProfile3.TabIndex = 6;
@@ -117,7 +114,7 @@
             this.cBProfile4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cBProfile4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBProfile4.FormattingEnabled = true;
-            this.cBProfile4.Location = new System.Drawing.Point(609, 99);
+            this.cBProfile4.Location = new System.Drawing.Point(609, 109);
             this.cBProfile4.Name = "cBProfile4";
             this.cBProfile4.Size = new System.Drawing.Size(121, 21);
             this.cBProfile4.TabIndex = 6;
@@ -127,7 +124,7 @@
             // 
             this.bnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bnSave.Enabled = false;
-            this.bnSave.Location = new System.Drawing.Point(663, 126);
+            this.bnSave.Location = new System.Drawing.Point(663, 2);
             this.bnSave.Name = "bnSave";
             this.bnSave.Size = new System.Drawing.Size(67, 23);
             this.bnSave.TabIndex = 2;
@@ -139,7 +136,7 @@
             // 
             this.lBController1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lBController1.AutoSize = true;
-            this.lBController1.Location = new System.Drawing.Point(516, 21);
+            this.lBController1.Location = new System.Drawing.Point(516, 31);
             this.lBController1.Name = "lBController1";
             this.lBController1.Size = new System.Drawing.Size(60, 13);
             this.lBController1.TabIndex = 7;
@@ -149,7 +146,7 @@
             // 
             this.lBController2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lBController2.AutoSize = true;
-            this.lBController2.Location = new System.Drawing.Point(516, 48);
+            this.lBController2.Location = new System.Drawing.Point(516, 58);
             this.lBController2.Name = "lBController2";
             this.lBController2.Size = new System.Drawing.Size(60, 13);
             this.lBController2.TabIndex = 7;
@@ -159,7 +156,7 @@
             // 
             this.lBController3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lBController3.AutoSize = true;
-            this.lBController3.Location = new System.Drawing.Point(516, 75);
+            this.lBController3.Location = new System.Drawing.Point(516, 85);
             this.lBController3.Name = "lBController3";
             this.lBController3.Size = new System.Drawing.Size(60, 13);
             this.lBController3.TabIndex = 7;
@@ -169,25 +166,11 @@
             // 
             this.lBController4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lBController4.AutoSize = true;
-            this.lBController4.Location = new System.Drawing.Point(516, 102);
+            this.lBController4.Location = new System.Drawing.Point(516, 112);
             this.lBController4.Name = "lBController4";
             this.lBController4.Size = new System.Drawing.Size(60, 13);
             this.lBController4.TabIndex = 7;
             this.lBController4.Text = "Controller 4";
-            // 
-            // lBBeta
-            // 
-            this.lBBeta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lBBeta.AutoSize = true;
-            this.lBBeta.BackColor = System.Drawing.Color.Transparent;
-            this.lBBeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBeta.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lBBeta.Location = new System.Drawing.Point(606, 175);
-            this.lBBeta.Name = "lBBeta";
-            this.lBBeta.Size = new System.Drawing.Size(38, 18);
-            this.lBBeta.TabIndex = 8;
-            this.lBBeta.Text = "Beta";
-            this.lBBeta.Visible = false;
             // 
             // openProgram
             // 
@@ -197,7 +180,7 @@
             // bnDelete
             // 
             this.bnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnDelete.Location = new System.Drawing.Point(519, 126);
+            this.bnDelete.Location = new System.Drawing.Point(590, 2);
             this.bnDelete.Name = "bnDelete";
             this.bnDelete.Size = new System.Drawing.Size(67, 23);
             this.bnDelete.TabIndex = 2;
@@ -222,10 +205,11 @@
             this.PathHeader});
             this.lVPrograms.FullRowSelect = true;
             this.lVPrograms.LargeImageList = this.iLIcons;
-            this.lVPrograms.Location = new System.Drawing.Point(5, 6);
+            this.lVPrograms.Location = new System.Drawing.Point(5, 28);
             this.lVPrograms.MultiSelect = false;
             this.lVPrograms.Name = "lVPrograms";
-            this.lVPrograms.Size = new System.Drawing.Size(505, 212);
+            this.lVPrograms.ShowItemToolTips = true;
+            this.lVPrograms.Size = new System.Drawing.Size(505, 190);
             this.lVPrograms.SmallImageList = this.iLIcons;
             this.lVPrograms.TabIndex = 12;
             this.lVPrograms.UseCompatibleStateImageBehavior = false;
@@ -243,26 +227,13 @@
             this.PathHeader.Text = "Path";
             this.PathHeader.Width = 358;
             // 
-            // lBTip
-            // 
-            this.lBTip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lBTip.AutoSize = true;
-            this.lBTip.BackColor = System.Drawing.Color.Transparent;
-            this.lBTip.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lBTip.Location = new System.Drawing.Point(529, 152);
-            this.lBTip.Name = "lBTip";
-            this.lBTip.Size = new System.Drawing.Size(191, 13);
-            this.lBTip.TabIndex = 8;
-            this.lBTip.Text = "Pick a program, then profiles, and save";
-            this.lBTip.Visible = false;
-            // 
             // pBProfilesTip
             // 
             this.pBProfilesTip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pBProfilesTip.AutoSize = true;
             this.pBProfilesTip.BackColor = System.Drawing.Color.Transparent;
             this.pBProfilesTip.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.pBProfilesTip.Location = new System.Drawing.Point(620, 2);
+            this.pBProfilesTip.Location = new System.Drawing.Point(622, 136);
             this.pBProfilesTip.Name = "pBProfilesTip";
             this.pBProfilesTip.Size = new System.Drawing.Size(89, 13);
             this.pBProfilesTip.TabIndex = 8;
@@ -270,8 +241,7 @@
             // 
             // bnHideUnchecked
             // 
-            this.bnHideUnchecked.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnHideUnchecked.Location = new System.Drawing.Point(636, 195);
+            this.bnHideUnchecked.Location = new System.Drawing.Point(99, 2);
             this.bnHideUnchecked.Name = "bnHideUnchecked";
             this.bnHideUnchecked.Size = new System.Drawing.Size(94, 23);
             this.bnHideUnchecked.TabIndex = 2;
@@ -324,6 +294,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(736, 222);
+            this.Controls.Add(this.pBProfilesTip);
             this.Controls.Add(this.bnHideUnchecked);
             this.Controls.Add(this.bnAddPrograms);
             this.Controls.Add(this.lVPrograms);
@@ -338,9 +309,6 @@
             this.Controls.Add(this.lBProgramPath);
             this.Controls.Add(this.bnDelete);
             this.Controls.Add(this.bnSave);
-            this.Controls.Add(this.pBProfilesTip);
-            this.Controls.Add(this.lBTip);
-            this.Controls.Add(this.lBBeta);
             this.Name = "WinProgs";
             this.Text = "Auto-Profiles";
             this.cMSPrograms.ResumeLayout(false);
@@ -362,14 +330,12 @@
         private System.Windows.Forms.Label lBController2;
         private System.Windows.Forms.Label lBController3;
         private System.Windows.Forms.Label lBController4;
-        private System.Windows.Forms.Label lBBeta;
         private System.Windows.Forms.OpenFileDialog openProgram;
         private System.Windows.Forms.Button bnDelete;
         private System.Windows.Forms.ImageList iLIcons;
         private System.Windows.Forms.ListView lVPrograms;
         private System.Windows.Forms.ColumnHeader nameHeader;
         private System.Windows.Forms.ColumnHeader PathHeader;
-        private System.Windows.Forms.Label lBTip;
         private System.Windows.Forms.Label pBProfilesTip;
         private System.Windows.Forms.Button bnHideUnchecked;
         private System.Windows.Forms.ContextMenuStrip cMSPrograms;

@@ -17,7 +17,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 10;
+        double version = 10.2;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -30,7 +30,6 @@ namespace ScpServer
         Timer test = new Timer(), hotkeystimer = new Timer();
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         float dpix, dpiy;
-        string filename;
         DateTime oldnow = DateTime.UtcNow;
         string tempprofile = "null";
         List<string> profilenames= new List<string>();
@@ -64,32 +63,15 @@ namespace ScpServer
         [DllImport("user32.dll")]
         private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
-        //HANDLE WINAPI OpenProcess(
-        //  __in  DWORD dwDesiredAccess,
-        //  __in  BOOL bInheritHandle,
-        //  __in  DWORD dwProcessId
-        //);
         [DllImport("kernel32.dll")]
         private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
 
         [DllImport("kernel32.dll")]
         private static extern bool CloseHandle(IntPtr handle);
 
-        //  DWORD WINAPI GetModuleBaseName(
-        //      __in      HANDLE hProcess,
-        //      __in_opt  HMODULE hModule,
-        //      __out     LPTSTR lpBaseName,
-        //      __in      DWORD nSize
-        //  );
         [DllImport("psapi.dll")]
         private static extern uint GetModuleBaseName(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
 
-        //  DWORD WINAPI GetModuleFileNameEx(
-        //      __in      HANDLE hProcess,
-        //      __in_opt  HMODULE hModule,
-        //      __out     LPTSTR lpFilename,
-        //      __in      DWORD nSize
-        //  );
         [DllImport("psapi.dll")]
         private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
 
@@ -105,9 +87,7 @@ namespace ScpServer
             LoadP(); 
             ToolTip tt = new ToolTip();
             tt.SetToolTip(linkUninstall, "To fully remove DS4Windows, You can delete the profiles by the link to the other side");
-            if (!System.IO.Directory.Exists(Global.appdatapath + "\\Virtual Bus Driver"))
-                linkUninstall.Visible = false;
-            //MessageBox.Show(Path.GetFileNameWithoutExtension(GetTopWindowName()));
+            tt.SetToolTip(lLAppDataDelete, @"Delete Appdata\DS4Tool folder as it's no longer in use");
         }
 
         public static string GetTopWindowName()
@@ -144,6 +124,17 @@ namespace ScpServer
         protected void Form_Load(object sender, EventArgs e)
         {
             SetupArrays();
+            if (!exepath.StartsWith("C:\\Program Files") && !exepath.StartsWith("C:\\Windows"))
+            {
+                if (!File.Exists("Profiles.xml") &&
+                    File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DS4Tool\Profiles.xml"))
+                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DS4Tool\Profiles.xml",
+                         "Profiles.xml", false);
+                if (!File.Exists("Auto Profiles.xml") &&
+                    File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DS4Tool\Auto Profiles.xml"))
+                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DS4Tool\Auto Profiles.xml",
+                        "Auto Profiles.xml", false);
+            }
 
             Graphics g = this.CreateGraphics();
             try
@@ -162,10 +153,16 @@ namespace ScpServer
             Log.GuiLog += On_Debug;
             Log.TrayIconLog += ShowNotification;
             // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
+            Global.SaveWhere();
+            if (!File.Exists(Global.appdatapath + @"\Profiles.xml"))
+            {
+                WelcomeDialog wd = new WelcomeDialog();
+                wd.ShowDialog();
+            }
+            Directory.CreateDirectory(Global.appdatapath);
             Global.Load();
             Global.setVersion(version);
             Global.Save();
-
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
@@ -190,6 +187,7 @@ namespace ScpServer
             RefreshProfiles();
             for (int i = 0; i < 4; i++)
                 Global.LoadProfile(i);
+
             Global.ControllerStatusChange += ControllerStatusChange;
             ControllerStatusChanged();
             if (btnStartStop.Enabled)
@@ -208,12 +206,8 @@ namespace ScpServer
                 nUDUpdateTime.Value = checkwhen;
             }
             Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
-            if (!Directory.Exists(Global.appdatapath))
-            {
-                WelcomeDialog wd = new WelcomeDialog();
-                wd.ShowDialog();
-            }
-            Directory.CreateDirectory(Global.appdatapath);
+            
+            
             if (checkwhen > 0 && DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(checkwhen))
             {
                 wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
@@ -230,12 +224,18 @@ namespace ScpServer
             hotkeystimer.Start();
             hotkeystimer.Tick += Hotkeys;
             test.Tick += test_Tick;
+            if (Global.appdatapath == Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName
+                    && Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool"))
+                lLAppDataDelete.Visible = true;
+            if (!System.IO.Directory.Exists(Global.appdatapath + "\\Virtual Bus Driver"))
+                linkUninstall.Visible = false;
         }
         
         private void test_Tick(object sender, EventArgs e)
         {
             lBTest.Visible = true;
-            lBTest.Text = filename;
+            lBTest.Text = Mapping.getByteMapping(DS4Controls.R1, rootHub.getDS4State(0)).ToString() + " " + rootHub.getDS4StateMapped(0).R2.ToString();
+            //lBTest.Text = rootHub.getDS4StateMapped(0).L2.ToString();
         }
         void Hotkeys(object sender, EventArgs e)
         {
@@ -260,23 +260,30 @@ namespace ScpServer
             if (tempprofile == "null")
                 for (int i = 0; i < programpaths.Count; i++)
                 {
-                    string name = Path.GetFileNameWithoutExtension(programpaths[i]);
-                    if (programpaths[i].ToLower() == GetTopWindowName().ToLower())
+                    string name = programpaths[i].ToLower().Replace('/', '\\');
+                    if (name == GetTopWindowName().ToLower().Replace('/', '\\'))
                     {
                         for (int j = 0; j < 4; j++)
                             if (proprofiles[j][i] != "(none)")
                                 Global.LoadTempProfile(j, proprofiles[j][i]); //j is controller index, i is filename
-                        tempprofile = programpaths[i].ToLower();
+                        tempprofile = name;
                     }
                 }
             else
             {
-                if (tempprofile != GetTopWindowName().ToLower())
+                if (tempprofile != GetTopWindowName().ToLower().Replace('/', '\\'))
                 {
                     tempprofile = "null";
                     for (int j = 0; j < 4; j++)
                         Global.LoadProfile(j);
                 }
+            }
+            if (Process.GetProcessesByName("DS4Tool").Length + Process.GetProcessesByName("DS4Windows").Length > 1) 
+            {//The second process closes and this one comes in focus
+                Show();
+                WindowState = FormWindowState.Normal;
+                ShowInTaskbar = true;
+                Focus();
             }
             #region Old Process check
             /*DateTime now = DateTime.UtcNow;
@@ -429,14 +436,29 @@ namespace ScpServer
             }
             catch (DirectoryNotFoundException)
             {
-                if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\"))
-                    MessageBox.Show("Please import or make a profile", "Profile Folder Moved");
-                Directory.CreateDirectory(Global.appdatapath + @"\Profiles\");
-                for (int i = 0; i < 4; i++)
+                if (Global.appdatapath == Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName)
                 {
-                    cbs[i].Text = "(No Profile Loaded)";
-                    shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
-                    ebns[i].Text = "New";
+                    if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + @"\Profiles\"))
+                        MessageBox.Show("Please import or make a profile", "Profile Folder Moved to program folder");
+                    Directory.CreateDirectory(Global.appdatapath + @"\Profiles\");
+                    for (int i = 0; i < 4; i++)
+                    {
+                        cbs[i].Text = "(No Profile Loaded)";
+                        shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
+                        ebns[i].Text = "New";
+                    }
+                }
+                else
+                {
+                    if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\"))
+                        MessageBox.Show("Please import or make a profile", "Profile Folder Moved");
+                    Directory.CreateDirectory(Global.appdatapath + @"\Profiles\");
+                    for (int i = 0; i < 4; i++)
+                    {
+                        cbs[i].Text = "(No Profile Loaded)";
+                        shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
+                        ebns[i].Text = "New";
+                    }
                 }
             }
             finally
@@ -517,7 +539,6 @@ namespace ScpServer
                 this.Show();
                 this.ShowInTaskbar = true;
             }
-
             //Added last message alternative
 
             if (this.Height > 220)
@@ -602,7 +623,7 @@ namespace ScpServer
                     if (Pads[Index].Text != "Connecting...")
                     {
                         Enable_Controls(Index, true);
-                        MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
+                        //MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
                     }
                 }
                 else
@@ -732,7 +753,10 @@ namespace ScpServer
 
         private void tSBImportProfile_Click(object sender, EventArgs e)
         {
-            openProfiles.InitialDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\";
+            if (Global.appdatapath == Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName)
+                openProfiles.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + @"\Profiles\";
+            else
+                openProfiles.InitialDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\";
             if (openProfiles.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string[] files = openProfiles.FileNames;
@@ -951,34 +975,6 @@ namespace ScpServer
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbLastMessage.Visible = tabMain.SelectedIndex != 2;
-            if (tabMain.SelectedIndex == 3 && opt == null)
-            {
-                if (dpix == 120)
-                {
-                    if (this.Size.Width < 930 || this.Size.Height < 392)
-                        oldsize = Size;
-                    if (this.Size.Height < 415)
-                        this.Size = new System.Drawing.Size(this.Size.Width, 392);
-                    if (this.Size.Width < 930)
-                        this.Size = new System.Drawing.Size(930, this.Size.Height);
-                }
-                else
-                {
-                    if (this.Size.Width < 755 || this.Size.Height < 316)
-                        oldsize = Size;
-                    if (this.Size.Height < 316)
-                        this.Size = new System.Drawing.Size(this.Size.Width, 316);
-                    if (this.Size.Width < 755)
-                        this.Size = new System.Drawing.Size(755, this.Size.Height);
-                }
-                
-            }
-            else if (oldsize != new System.Drawing.Size(0, 0) && opt == null)
-            {
-                Size = oldsize;
-                oldsize = new System.Drawing.Size(0, 0);
-            }
-
         }
 
         private void lBProfiles_MouseDown(object sender, MouseEventArgs e)
@@ -1137,6 +1133,22 @@ namespace ScpServer
                 Global.setCheckWhen((int)nUDUpdateTime.Value * 24);
             if (nUDUpdateTime.Value < 1)
                 cBUpdate.Checked = false;
+            if (nUDUpdateTime.Value == 1)
+            {
+                int index = cBUpdateTime.SelectedIndex;
+                cBUpdateTime.Items.Clear();
+                cBUpdateTime.Items.Add("hour");
+                cBUpdateTime.Items.Add("day");
+                cBUpdateTime.SelectedIndex = index;
+            }
+            else if (cBUpdateTime.Items[0].ToString() == "hour")
+            {
+                int index = cBUpdateTime.SelectedIndex;
+                cBUpdateTime.Items.Clear();
+                cBUpdateTime.Items.Add("hours");
+                cBUpdateTime.Items.Add("days");
+                cBUpdateTime.SelectedIndex = index;
+            }
         }
 
         private void cBUpdateTime_SelectedIndexChanged(object sender, EventArgs e)
@@ -1212,6 +1224,26 @@ namespace ScpServer
         {
             WelcomeDialog wd = new WelcomeDialog();
             wd.ShowDialog();
+        }
+
+        private void ScpForm_Activated(object sender, EventArgs e)
+        {
+            if (!this.ShowInTaskbar)
+            {
+                this.Show();
+                this.ShowInTaskbar = true;
+            }
+        }
+
+        private void lLAppDataDelete_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try { Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool", true); }
+            catch{}
+            finally 
+            { 
+                MessageBox.Show("Old Settings Deleted");
+                lLAppDataDelete.Visible = false; 
+            }
         }
     }
 

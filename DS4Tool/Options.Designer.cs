@@ -700,7 +700,7 @@
             this.pBSticks.Location = new System.Drawing.Point(0, 1);
             this.pBSticks.Name = "pBSticks";
             this.pBSticks.Size = new System.Drawing.Size(245, 132);
-            this.pBSticks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pBSticks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBSticks.TabIndex = 161;
             this.pBSticks.TabStop = false;
             // 

@@ -356,6 +356,7 @@ namespace DS4Control
                 return "None";
         }
 
+
         private int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         //Called when DS4 is disconnected or timed out
         protected virtual void On_DS4Removal(object sender, EventArgs e)
@@ -403,7 +404,7 @@ namespace DS4Control
 
                 if (Global.getHasCustomKeysorButtons(ind))
                 {
-                    Mapping.MapCustom(ind, cState, MappedState[ind], pState);
+                    Mapping.MapCustom(ind, cState, MappedState[ind]);
                     cState = MappedState[ind];
                 }
 
@@ -411,7 +412,7 @@ namespace DS4Control
                 DS4LightBar.updateLightBar(device, ind);
                 //DS4LightBar.defualtLight(device, ind);
 
-                x360Bus.Parse(cState, processingData[ind].Report, ind);
+                x360Bus.Parse(MappedState[ind], processingData[ind].Report, ind);
                 // We push the translated Xinput state, and simultaneously we
                 // pull back any possible rumble data coming from Xinput consumers.
                 if (x360Bus.Report(processingData[ind].Report, processingData[ind].Rumble))
@@ -570,5 +571,10 @@ namespace DS4Control
         {
             return CurrentState[ind];
         }
+        public DS4State getDS4StateMapped(int ind)
+        {
+            return MappedState[ind];
+        }
+        
     }
 }

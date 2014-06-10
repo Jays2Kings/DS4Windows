@@ -82,6 +82,11 @@ namespace ScpServer
                     if (!bn.Font.Bold && bn.Tag.ToString() != "X360" && macrostag.Count < 5 && (bn.Text.Contains("Mouse") ^ !bn.Text.Contains("Button"))) //end is xor to remove mouse movement and wheel from macro
                     {
                         bn.Font = new Font(bn.Font, FontStyle.Bold);
+                        if (nUDDelay.Value >= 1)
+                        {
+                            macros.Add("Wait " + (int)nUDDelay.Value + "ms");
+                            macrostag.Add(300 + (int)nUDDelay.Value);
+                        }
                         macros.Add(keyname);
                         int value;
                         if (int.TryParse(bn.Tag.ToString(), out value))
@@ -98,10 +103,18 @@ namespace ScpServer
                     else if (bn.Tag.ToString() != "X360")
                     {
                         bn.Font = new Font(bn.Font, FontStyle.Regular);
-                        macros.Remove(keyname);
                         int value;
                         if (int.TryParse(bn.Tag.ToString(), out value))
+                        {
+                            int previ = macrostag.IndexOf(value) - 1;
+                            if (previ > -1 && macrostag[previ] > 300)
+                            {
+                                macros.RemoveAt(previ);
+                                macrostag.RemoveAt(previ);
+                            }
                             macrostag.Remove(value);
+                            macros.Remove(keyname);
+                        }
                         else
                         {
                             if (bn.Text == "Left Mouse Button") macrostag.Remove(256);
@@ -111,6 +124,11 @@ namespace ScpServer
                             if (bn.Text == "5th Mouse Button") macrostag.Remove(260);
                         }
                     }
+                    nUDDelay.Value = 0;
+                    if (macrostag.Count >= 4)
+                        pnLDelay.Enabled = false;
+                    else
+                        pnLDelay.Enabled = true;
                     string macro = string.Join(", ", macros.ToArray());
                     lBMacroOrder.Text = "Macro Order: " + macro;
                 }
@@ -129,13 +147,17 @@ namespace ScpServer
 
         private void Key_Down_Action(object sender, KeyEventArgs e)
         {
-            ops.ChangeButtonText(e.KeyCode.ToString(), e.KeyValue);
-            this.Close();
+            if (!cBMacro.Checked)
+            {
+                ops.ChangeButtonText(e.KeyCode.ToString(), e.KeyValue);
+                this.Close();
+            }
         }
 
         private void cBMacro_CheckedChanged(object sender, EventArgs e)
         {
             lBMacroOrder.Visible = cBMacro.Checked;
+            pnLDelay.Visible = cBMacro.Checked;
             if (cBMacro.Checked)
                 cbToggle.Checked = false;
         }
@@ -144,6 +166,11 @@ namespace ScpServer
         {
             if (cbToggle.Checked)
                 cBMacro.Checked = false;
+        }
+
+        private void nUDDelay_ValueChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

@@ -111,6 +111,7 @@ namespace ScpServer
                     }
                     catch { }
                     File.Delete(Global.appdatapath + "\\VBus.zip");
+                    ((Timer)sender).Stop();
                 }
             }
             else
@@ -122,6 +123,7 @@ namespace ScpServer
                     {
                         bnStep1.Text = "Install Complete";
                         File.Delete(Global.appdatapath + "\\VBus.zip");
+                        ((Timer)sender).Stop();
                     }
             }
         }

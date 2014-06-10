@@ -184,8 +184,14 @@
             this.KBMlabel = new System.Windows.Forms.Label();
             this.cBMacro = new System.Windows.Forms.CheckBox();
             this.lBMacroOrder = new System.Windows.Forms.Label();
+            this.pnLDelay = new System.Windows.Forms.Panel();
+            this.lBDelay = new System.Windows.Forms.Label();
+            this.nUDDelay = new System.Windows.Forms.NumericUpDown();
+            this.lBms = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pnLDelay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // lBTip
@@ -1720,7 +1726,7 @@
             // X360Label
             // 
             this.X360Label.AutoSize = true;
-            this.X360Label.Location = new System.Drawing.Point(394, 210);
+            this.X360Label.Location = new System.Drawing.Point(393, 202);
             this.X360Label.Name = "X360Label";
             this.X360Label.Size = new System.Drawing.Size(73, 13);
             this.X360Label.TabIndex = 318;
@@ -1757,11 +1763,54 @@
             this.lBMacroOrder.Text = "Macro Order: ";
             this.lBMacroOrder.Visible = false;
             // 
+            // pnLDelay
+            // 
+            this.pnLDelay.Controls.Add(this.nUDDelay);
+            this.pnLDelay.Controls.Add(this.lBms);
+            this.pnLDelay.Controls.Add(this.lBDelay);
+            this.pnLDelay.Location = new System.Drawing.Point(12, 200);
+            this.pnLDelay.Name = "pnLDelay";
+            this.pnLDelay.Size = new System.Drawing.Size(183, 23);
+            this.pnLDelay.TabIndex = 320;
+            this.pnLDelay.Visible = false;
+            // 
+            // lBDelay
+            // 
+            this.lBDelay.AutoSize = true;
+            this.lBDelay.Location = new System.Drawing.Point(3, 2);
+            this.lBDelay.Name = "lBDelay";
+            this.lBDelay.Size = new System.Drawing.Size(56, 13);
+            this.lBDelay.TabIndex = 0;
+            this.lBDelay.Text = "Add Delay";
+            // 
+            // nUDDelay
+            // 
+            this.nUDDelay.Location = new System.Drawing.Point(65, 0);
+            this.nUDDelay.Maximum = new decimal(new int[] {
+            60000,
+            0,
+            0,
+            0});
+            this.nUDDelay.Name = "nUDDelay";
+            this.nUDDelay.Size = new System.Drawing.Size(77, 20);
+            this.nUDDelay.TabIndex = 1;
+            this.nUDDelay.ValueChanged += new System.EventHandler(this.nUDDelay_ValueChanged);
+            // 
+            // lBms
+            // 
+            this.lBms.AutoSize = true;
+            this.lBms.Location = new System.Drawing.Point(148, 2);
+            this.lBms.Name = "lBms";
+            this.lBms.Size = new System.Drawing.Size(20, 13);
+            this.lBms.TabIndex = 0;
+            this.lBms.Text = "ms";
+            // 
             // KBM360
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(854, 403);
+            this.Controls.Add(this.pnLDelay);
             this.Controls.Add(this.lBMacroOrder);
             this.Controls.Add(this.KBMlabel);
             this.Controls.Add(this.X360Label);
@@ -1928,6 +1977,9 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down_Action);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.pnLDelay.ResumeLayout(false);
+            this.pnLDelay.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2091,6 +2143,10 @@
         private System.Windows.Forms.Label KBMlabel;
         private System.Windows.Forms.CheckBox cBMacro;
         private System.Windows.Forms.Label lBMacroOrder;
+        private System.Windows.Forms.Panel pnLDelay;
+        private System.Windows.Forms.NumericUpDown nUDDelay;
+        private System.Windows.Forms.Label lBms;
+        private System.Windows.Forms.Label lBDelay;
 
     }
 }

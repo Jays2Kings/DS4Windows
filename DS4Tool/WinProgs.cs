@@ -46,10 +46,14 @@ namespace ScpServer
                 Create();
             LoadP();
 
-            RegistryKey regKey = Registry.CurrentUser;
+            /*RegistryKey regKey = Registry.CurrentUser;
             regKey = regKey.OpenSubKey(@"Software\Valve\Steam");
-            if (regKey != null)
-                steamgamesdir = regKey.GetValue("SteamPath").ToString() + @"\steamapps\common";
+
+            if (regKey != null)*/
+            if (Directory.Exists(@"C:\Program Files (x86)\Steam\steamapps\common"))
+                steamgamesdir =  @"C:\Program Files (x86)\Steam\steamapps\common";
+            else if (Directory.Exists(@"C:\Program Files\Steam\steamapps\common"))
+                steamgamesdir = @"C:\Program Files\Steam\steamapps\common";
             else
                 cMSPrograms.Items.Remove(addSteamGamesToolStripMenuItem);
 
@@ -106,6 +110,7 @@ namespace ScpServer
                     ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(st), index);
                     lvi.SubItems.Add(st);
                     lvi.Checked = true;
+                    lvi.ToolTipText = st;
                     lVPrograms.Items.Add(lvi);
                 }
             }
@@ -156,6 +161,7 @@ namespace ScpServer
                         iLIcons.Images.Add(Icon.ExtractAssociatedIcon(st));
                         ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(st), iLIcons.Images.Count + index);
                         lvi.SubItems.Add(st);
+                        lvi.ToolTipText = st;
                         lVPrograms.Items.Add(lvi);
                     }
                 }

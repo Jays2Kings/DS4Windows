@@ -17,7 +17,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 10.2;
+        double version = 10.3;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -84,9 +84,10 @@ namespace ScpServer
             //CheckDrivers();
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
-            LoadP(); 
+            LoadP();
             ToolTip tt = new ToolTip();
-            tt.SetToolTip(linkUninstall, "To fully remove DS4Windows, You can delete the profiles by the link to the other side");
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Profiles.xml"))
+                tt.SetToolTip(linkUninstall, "If removing DS4Windows, You can delete the settings following the profile folder link");
             tt.SetToolTip(lLAppDataDelete, @"Delete Appdata\DS4Tool folder as it's no longer in use");
         }
 
@@ -124,18 +125,23 @@ namespace ScpServer
         protected void Form_Load(object sender, EventArgs e)
         {
             SetupArrays();
-            if (!exepath.StartsWith("C:\\Program Files") && !exepath.StartsWith("C:\\Windows"))
+            if (!File.Exists("Profiles.xml") && !File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DS4Tool\Profiles.xml"))
             {
-                if (!File.Exists("Profiles.xml") &&
-                    File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DS4Tool\Profiles.xml"))
-                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DS4Tool\Profiles.xml",
-                         "Profiles.xml", false);
-                if (!File.Exists("Auto Profiles.xml") &&
-                    File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DS4Tool\Auto Profiles.xml"))
-                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DS4Tool\Auto Profiles.xml",
-                        "Auto Profiles.xml", false);
+                new WelcomeDialog().ShowDialog();
+                new SaveWhere(false).ShowDialog();
             }
+            else if (File.Exists("Profiles.xml") && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Profiles.xml"))
+                new SaveWhere(true).ShowDialog();
+            else if (File.Exists("Profiles.xml"))
+                Global.SaveWhere(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName);
+            else if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Profiles.xml"))
+                Global.SaveWhere(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool");
 
+            if (String.IsNullOrEmpty(Global.appdatapath))
+            {
+                Close();
+                return;
+            }
             Graphics g = this.CreateGraphics();
             try
             {
@@ -153,16 +159,43 @@ namespace ScpServer
             Log.GuiLog += On_Debug;
             Log.TrayIconLog += ShowNotification;
             // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
-            Global.SaveWhere();
-            if (!File.Exists(Global.appdatapath + @"\Profiles.xml"))
-            {
-                WelcomeDialog wd = new WelcomeDialog();
-                wd.ShowDialog();
-            }
+            
             Directory.CreateDirectory(Global.appdatapath);
             Global.Load();
             Global.setVersion(version);
-            Global.Save();
+            if (!Global.Save()) //if can't write to file
+                if (MessageBox.Show("Cannot write at current locataion\nCopy Settings to appdata?", "DS4Windows", 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    try 
+                    {
+                        Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+                          + "\\DS4Tool");
+                        File.Copy("Profiles.xml", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+                            + "\\DS4Tool\\Profiles.xml");
+                        File.Copy("Auto Profiles.xml", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+                            + "\\DS4Tool\\Auto Profiles.xml");
+                        Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+                            + "\\DS4Tool\\Profiles");
+                        foreach (string s in Directory.GetFiles("Profiles"))
+                        {
+                            File.Copy(s, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+                            + "\\DS4Tool\\Profiles\\" + Path.GetFileName(s));
+                        }
+                    }
+                    catch { }
+                    MessageBox.Show("Copy complete, please relaunch DS4Windows and remove settings from Program Directory", "DS4Windows");
+                    Global.appdatapath = null;
+                    Close();
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("DS4Windows cannot edit settings here, This will now close", "DS4Windows");
+                    Global.appdatapath = null;
+                    Close();
+                    return;
+                }
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
@@ -179,15 +212,11 @@ namespace ScpServer
             RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", false);
             StartWindowsCheckBox.Checked = (KeyLoc.GetValue("DS4Tool") != null);            
             if (startMinimizedCheckBox.Checked)
-            {
                 this.WindowState = FormWindowState.Minimized;
-                //Form_Resize(sender, e);
-            }
             Form_Resize(sender, e);
             RefreshProfiles();
             for (int i = 0; i < 4; i++)
                 Global.LoadProfile(i);
-
             Global.ControllerStatusChange += ControllerStatusChange;
             ControllerStatusChanged();
             if (btnStartStop.Enabled)
@@ -383,7 +412,7 @@ namespace ScpServer
                             }
                             Process p = new Process();
                             p.StartInfo.FileName = "DS4Updater.exe";
-                            if (!exepath.StartsWith("C:\\Program Files") && !exepath.StartsWith("C:\\Windows"))
+                            if (!Global.AdminNeeded())
                                 p.StartInfo.Verb = "runas";
                             p.Start();
                             this.Close();
@@ -1042,28 +1071,7 @@ namespace ScpServer
                 e.Effect = DragDropEffects.None; // Unknown data, ignore it
         }
 
-        protected void Form_Close(object sender, FormClosingEventArgs e)
-        {
-            if (systemShutdown)
-            // Reset the variable because the user might cancel the 
-            // shutdown.
-            {
-                systemShutdown = false;
-                DS4LightBar.shuttingdown = true;
-            }
-            if (oldsize == new System.Drawing.Size(0, 0))
-            {
-                Global.setFormWidth(this.Width);
-                Global.setFormHeight(this.Height);
-            }
-            else
-            {
-                Global.setFormWidth(oldsize.Width);
-                Global.setFormHeight(oldsize.Height);
-            }
-            Global.Save();
-            rootHub.Stop();
-        }
+        
 
         private void tBProfile_TextChanged(object sender, EventArgs e)
         {
@@ -1185,7 +1193,7 @@ namespace ScpServer
                             }
                             Process p = new Process();
                             p.StartInfo.FileName = "DS4Updater.exe";
-                            if (!exepath.StartsWith("C:\\Program Files") && !exepath.StartsWith("C:\\Windows"))
+                            if (Global.AdminNeeded())
                                 p.StartInfo.Verb = "runas";
                             p.Start();
                             Close();
@@ -1243,6 +1251,32 @@ namespace ScpServer
             { 
                 MessageBox.Show("Old Settings Deleted");
                 lLAppDataDelete.Visible = false; 
+            }
+        }
+
+        protected void Form_Close(object sender, FormClosingEventArgs e)
+        {
+            if (systemShutdown)
+            // Reset the variable because the user might cancel the 
+            // shutdown.
+            {
+                systemShutdown = false;
+                DS4LightBar.shuttingdown = true;
+            }
+            if (oldsize == new System.Drawing.Size(0, 0))
+            {
+                Global.setFormWidth(this.Width);
+                Global.setFormHeight(this.Height);
+            }
+            else
+            {
+                Global.setFormWidth(oldsize.Width);
+                Global.setFormHeight(oldsize.Height);
+            }
+            if (!String.IsNullOrEmpty(Global.appdatapath))
+            {
+                Global.Save();
+                rootHub.Stop();
             }
         }
     }

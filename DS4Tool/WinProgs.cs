@@ -46,10 +46,6 @@ namespace ScpServer
                 Create();
             LoadP();
 
-            /*RegistryKey regKey = Registry.CurrentUser;
-            regKey = regKey.OpenSubKey(@"Software\Valve\Steam");
-
-            if (regKey != null)*/
             if (Directory.Exists(@"C:\Program Files (x86)\Steam\steamapps\common"))
                 steamgamesdir =  @"C:\Program Files (x86)\Steam\steamapps\common";
             else if (Directory.Exists(@"C:\Program Files\Steam\steamapps\common"))

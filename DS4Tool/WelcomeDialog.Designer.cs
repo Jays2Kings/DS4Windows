@@ -99,7 +99,7 @@
             this.labelBluetooth2.Size = new System.Drawing.Size(312, 64);
             this.labelBluetooth2.TabIndex = 3;
             this.labelBluetooth2.Text = "Once flashing go to your Bluetooth Settings\r\nand Connect to \"Wireless Controller\"" +
-    "\r\n\r\nOnce paired, you\'re good to go. Have fun!";
+    "\r\n\r\nAfter paired, you\'re ready. Have fun!";
             this.labelBluetooth2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // linkBluetoothSettings
@@ -133,7 +133,7 @@
             // 
             // bnFinish
             // 
-            this.bnFinish.Location = new System.Drawing.Point(123, 388);
+            this.bnFinish.Location = new System.Drawing.Point(117, 394);
             this.bnFinish.Name = "bnFinish";
             this.bnFinish.Size = new System.Drawing.Size(75, 23);
             this.bnFinish.TabIndex = 0;
@@ -146,7 +146,7 @@
             this.AcceptButton = this.bnFinish;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(315, 422);
+            this.ClientSize = new System.Drawing.Size(315, 421);
             this.Controls.Add(this.linkBluetoothSettings);
             this.Controls.Add(this.labelBluetooth);
             this.Controls.Add(this.pictureBox1);

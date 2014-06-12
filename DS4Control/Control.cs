@@ -412,7 +412,7 @@ namespace DS4Control
                 DS4LightBar.updateLightBar(device, ind);
                 //DS4LightBar.defualtLight(device, ind);
 
-                x360Bus.Parse(MappedState[ind], processingData[ind].Report, ind);
+                x360Bus.Parse(cState, processingData[ind].Report, ind);
                 // We push the translated Xinput state, and simultaneously we
                 // pull back any possible rumble data coming from Xinput consumers.
                 if (x360Bus.Report(processingData[ind].Report, processingData[ind].Rumble))
@@ -490,7 +490,7 @@ namespace DS4Control
                     }
                 }
             }
-            if (cState.TouchButton && pState.PS)
+            if (cState.Touch1 && pState.PS)
             {
                 if (Global.getTouchSensitivity(deviceID) > 0 && touchreleased[deviceID])
                 {

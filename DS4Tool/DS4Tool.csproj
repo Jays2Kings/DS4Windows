@@ -132,6 +132,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.es.resx</DependentUpon>
     </Compile>
+    <Compile Include="SaveWhere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveWhere.Designer.cs">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </Compile>
     <Compile Include="ScpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     <EmbeddedResource Include="Resource.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveWhere.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScpForm.resx">
       <DependentUpon>ScpForm.cs</DependentUpon>

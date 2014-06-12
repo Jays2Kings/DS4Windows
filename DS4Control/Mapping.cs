@@ -766,19 +766,11 @@ namespace DS4Control
                         break;
                     case X360Controls.LT:
                         if (MappedState.L2 == 0)
-                        {
                             MappedState.L2 = getByteMapping(customButton.Key, cState);
-                            L2 = true;
-                        }
                         break;
                     case X360Controls.RT:
-                        if (MappedState.L2 == 0 && MappedState.R2 == 0)
-                        {
+                        if (MappedState.R2 == 0)
                             MappedState.R2 = getByteMapping(customButton.Key, cState);
-                            //if (MappedState.R2 == 255)
-                               //MessageBox.Show("225"); 
-                            R2 = true;
-                        }
                         break;
                     case X360Controls.LeftMouse:
                         if (getBoolMapping(customButton.Key, cState))

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Xml;
 using System.Drawing;
 using DS4Library;
+using System.Security.Principal;
 namespace DS4Control
 {
     [Flags]
@@ -84,14 +85,36 @@ namespace DS4Control
         static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         public static string appdatapath;
 
-        public static void SaveWhere()
+        public static void SaveWhere(string path)
         {
-            if (!exepath.StartsWith("C:\\Program Files") && !exepath.StartsWith("C:\\Windows"))
-                appdatapath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
-            else
-                appdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
+            appdatapath = path;
             m_Config.m_Profile = appdatapath + "\\Profiles.xml";
         }
+        /// <summary>
+        /// Check if Admin Rights are needed to write in Appliplation Directory
+        /// </summary>
+        /// <returns></returns>
+        public static bool AdminNeeded()
+        {
+            try
+            {
+                File.WriteAllText("test.txt", "test");
+                File.Delete("test.txt");
+                return false;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return true;
+            }
+        }
+
+        public static bool IsAdministrator()
+        {
+            var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
         public static event EventHandler<EventArgs> ControllerStatusChange; // called when a controller is added/removed/battery or touchpad mode changes/etc.
         public static void ControllerStatusChanged(object sender)
         {
@@ -450,9 +473,9 @@ namespace DS4Control
         {
             m_Config.LoadProfile(device, appdatapath + @"\Profiles\" + name + ".xml");
         }
-        public static void Save()
+        public static bool Save()
         {
-            m_Config.Save();
+            return m_Config.Save();
         }
 
         public static void SaveProfile(int device, string propath, System.Windows.Forms.Control[] buttons)
@@ -1219,7 +1242,7 @@ namespace DS4Control
         {
             Boolean Saved = true;
 
-            try
+            //try
             {
                 XmlNode Node;
 
@@ -1253,9 +1276,10 @@ namespace DS4Control
                 XmlNode xmlNotifications = m_Xdoc.CreateNode(XmlNodeType.Element, "Notifications", null); xmlNotifications.InnerText = notifications.ToString(); Node.AppendChild(xmlNotifications);
                 m_Xdoc.AppendChild(Node);
 
-                m_Xdoc.Save(m_Profile);
+                try { m_Xdoc.Save(m_Profile); }
+                catch (UnauthorizedAccessException) { Saved = false; }
             }
-            catch { Saved = false; }
+            //catch { Saved = false; }
 
             return Saved;
         }

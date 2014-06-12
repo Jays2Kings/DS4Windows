@@ -24,6 +24,7 @@ namespace ScpServer
         {
             InitializeComponent();
             this.Icon = Properties.Resources.DS4;
+            
         }
 
         private void bnFinish_Click(object sender, EventArgs e)
@@ -55,7 +56,7 @@ namespace ScpServer
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         private void wb_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            if (!exepath.StartsWith("C:\\Program Files") && !exepath.StartsWith("C:\\Windows"))
+            if (!Global.AdminNeeded())
             {
                 bnStep1.Text = "Opening Installer";
                 try
@@ -96,7 +97,7 @@ namespace ScpServer
         private void timer_Tick(object sender, EventArgs e)
         {
             Process[] processes = Process.GetProcessesByName("ScpDriver");
-            if (!exepath.StartsWith("C:\\Program Files") && !exepath.StartsWith("C:\\Windows"))
+            if (!Global.AdminNeeded())
             {
                 if (processes.Length < 1)
                 {

@@ -147,7 +147,7 @@ namespace ScpServer
                         lodsf.RemoveAt(i);
                 for (int i = lodsf.Count - 1; i >= 0; i--)
                     for (int j = programpaths.Count - 1; j >= 0; j--)
-                        if (lodsf[i] == programpaths[j])
+                        if (lodsf[i].ToLower().Replace('/', '\\') == programpaths[j].ToLower().Replace('/', '\\'))
                             lodsf.RemoveAt(i);
                 foreach (string st in lodsf)
                 {

@@ -17,6 +17,7 @@ namespace ScpServer
     public partial class SaveWhere : Form
     {
         private bool multisaves;
+        string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         public SaveWhere(bool multisavespots)
         {
             InitializeComponent();
@@ -49,9 +50,9 @@ namespace ScpServer
             if (multisaves && !cBDeleteOther.Checked)
                 try
                 {
-                    Directory.Delete("Profiles", true);
-                    File.Delete("Profiles.xml");
-                    File.Delete("Auto Profiles.xml");
+                    Directory.Delete(exepath + "\\Profiles", true);
+                    File.Delete(exepath + "\\Profiles.xml");
+                    File.Delete(exepath + "\\Auto Profiles.xml");
                 }
                 catch (UnauthorizedAccessException) { MessageBox.Show("Cannot Delete old settings, please manaully delete", "DS4Windows"); }
             else if (!multisaves)

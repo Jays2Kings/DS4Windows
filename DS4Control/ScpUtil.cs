@@ -98,8 +98,8 @@ namespace DS4Control
         {
             try
             {
-                File.WriteAllText("test.txt", "test");
-                File.Delete("test.txt");
+                File.WriteAllText(exepath + "\\test.txt", "test");
+                File.Delete(exepath + "\\test.txt");
                 return false;
             }
             catch (UnauthorizedAccessException)
@@ -508,14 +508,6 @@ namespace DS4Control
             return c1;
         }
 
-        /*public static DS4Color getTransitionedColor(DS4Color lowcolor, DS4Color maxcolor, uint ratio)
-        {
-            Color cs = Color.FromArgb(lowcolor.red, lowcolor.green, lowcolor.blue);
-            Color cs2 = Color.FromArgb(maxcolor.red, maxcolor.green, maxcolor.blue);
-            Color csR = applyRatio(cs, cs2, ratio);
-            DS4Color dr = new DS4Color { red = csR.R, green = csR.G, blue = csR.B };
-            return dr;
-        }*/
         private static Color applyRatio(Color c1, Color c2, uint r)
         {
             float ratio = r / 100f;

@@ -409,7 +409,7 @@
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.34039F));
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.31077F));
             this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
-            this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tLPControllers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tLPControllers.Controls.Add(this.pBStatus1, 1, 1);
             this.tLPControllers.Controls.Add(this.lbPad1, 0, 1);
             this.tLPControllers.Controls.Add(this.lbPad2, 0, 2);
@@ -451,7 +451,7 @@
             this.pBStatus1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus1.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus1.Image")));
             this.pBStatus1.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus1.Location = new System.Drawing.Point(370, 19);
+            this.pBStatus1.Location = new System.Drawing.Point(369, 19);
             this.pBStatus1.Name = "pBStatus1";
             this.pBStatus1.Size = new System.Drawing.Size(39, 20);
             this.pBStatus1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -483,7 +483,7 @@
             // bnEditC3
             // 
             this.bnEditC3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC3.Location = new System.Drawing.Point(739, 76);
+            this.bnEditC3.Location = new System.Drawing.Point(737, 76);
             this.bnEditC3.Name = "bnEditC3";
             this.bnEditC3.Size = new System.Drawing.Size(40, 23);
             this.bnEditC3.TabIndex = 43;
@@ -495,7 +495,7 @@
             // bnEditC4
             // 
             this.bnEditC4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC4.Location = new System.Drawing.Point(739, 105);
+            this.bnEditC4.Location = new System.Drawing.Point(737, 105);
             this.bnEditC4.Name = "bnEditC4";
             this.bnEditC4.Size = new System.Drawing.Size(40, 23);
             this.bnEditC4.TabIndex = 43;
@@ -531,7 +531,7 @@
             this.cBController1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBController1.FormattingEnabled = true;
-            this.cBController1.Location = new System.Drawing.Point(622, 19);
+            this.cBController1.Location = new System.Drawing.Point(620, 19);
             this.cBController1.Name = "cBController1";
             this.cBController1.Size = new System.Drawing.Size(111, 21);
             this.cBController1.TabIndex = 42;
@@ -541,7 +541,7 @@
             // bnEditC2
             // 
             this.bnEditC2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC2.Location = new System.Drawing.Point(739, 47);
+            this.bnEditC2.Location = new System.Drawing.Point(737, 47);
             this.bnEditC2.Name = "bnEditC2";
             this.bnEditC2.Size = new System.Drawing.Size(40, 23);
             this.bnEditC2.TabIndex = 43;
@@ -555,7 +555,7 @@
             this.cBController2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBController2.FormattingEnabled = true;
-            this.cBController2.Location = new System.Drawing.Point(622, 48);
+            this.cBController2.Location = new System.Drawing.Point(620, 48);
             this.cBController2.Name = "cBController2";
             this.cBController2.Size = new System.Drawing.Size(111, 21);
             this.cBController2.TabIndex = 42;
@@ -567,7 +567,7 @@
             this.cBController3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBController3.FormattingEnabled = true;
-            this.cBController3.Location = new System.Drawing.Point(622, 77);
+            this.cBController3.Location = new System.Drawing.Point(620, 77);
             this.cBController3.Name = "cBController3";
             this.cBController3.Size = new System.Drawing.Size(111, 21);
             this.cBController3.TabIndex = 42;
@@ -577,7 +577,7 @@
             // bnEditC1
             // 
             this.bnEditC1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.bnEditC1.Location = new System.Drawing.Point(739, 18);
+            this.bnEditC1.Location = new System.Drawing.Point(737, 18);
             this.bnEditC1.Name = "bnEditC1";
             this.bnEditC1.Size = new System.Drawing.Size(40, 23);
             this.bnEditC1.TabIndex = 43;
@@ -591,7 +591,7 @@
             this.cBController4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cBController4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBController4.FormattingEnabled = true;
-            this.cBController4.Location = new System.Drawing.Point(622, 106);
+            this.cBController4.Location = new System.Drawing.Point(620, 106);
             this.cBController4.Name = "cBController4";
             this.cBController4.Size = new System.Drawing.Size(111, 21);
             this.cBController4.TabIndex = 42;
@@ -603,7 +603,7 @@
             this.lBSelectedProfile.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBSelectedProfile.AutoSize = true;
             this.lBSelectedProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBSelectedProfile.Location = new System.Drawing.Point(623, 0);
+            this.lBSelectedProfile.Location = new System.Drawing.Point(621, 0);
             this.lBSelectedProfile.Name = "lBSelectedProfile";
             this.lBSelectedProfile.Size = new System.Drawing.Size(109, 15);
             this.lBSelectedProfile.TabIndex = 45;
@@ -625,7 +625,7 @@
             this.lBStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBStatus.AutoSize = true;
             this.lBStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBStatus.Location = new System.Drawing.Point(366, 0);
+            this.lBStatus.Location = new System.Drawing.Point(365, 0);
             this.lBStatus.Name = "lBStatus";
             this.lBStatus.Size = new System.Drawing.Size(47, 15);
             this.lBStatus.TabIndex = 45;
@@ -636,7 +636,7 @@
             this.lBBattery.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBattery.AutoSize = true;
             this.lBBattery.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBattery.Location = new System.Drawing.Point(515, 0);
+            this.lBBattery.Location = new System.Drawing.Point(513, 0);
             this.lBBattery.Name = "lBBattery";
             this.lBBattery.Size = new System.Drawing.Size(51, 15);
             this.lBBattery.TabIndex = 45;
@@ -647,7 +647,7 @@
             this.lBBatt1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt1.AutoSize = true;
             this.lBBatt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt1.Location = new System.Drawing.Point(521, 22);
+            this.lBBatt1.Location = new System.Drawing.Point(519, 22);
             this.lBBatt1.Name = "lBBatt1";
             this.lBBatt1.Size = new System.Drawing.Size(39, 15);
             this.lBBatt1.TabIndex = 44;
@@ -658,7 +658,7 @@
             this.lBBatt2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt2.AutoSize = true;
             this.lBBatt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt2.Location = new System.Drawing.Point(521, 51);
+            this.lBBatt2.Location = new System.Drawing.Point(519, 51);
             this.lBBatt2.Name = "lBBatt2";
             this.lBBatt2.Size = new System.Drawing.Size(39, 15);
             this.lBBatt2.TabIndex = 44;
@@ -669,7 +669,7 @@
             this.lBBatt3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt3.AutoSize = true;
             this.lBBatt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt3.Location = new System.Drawing.Point(521, 80);
+            this.lBBatt3.Location = new System.Drawing.Point(519, 80);
             this.lBBatt3.Name = "lBBatt3";
             this.lBBatt3.Size = new System.Drawing.Size(39, 15);
             this.lBBatt3.TabIndex = 44;
@@ -680,7 +680,7 @@
             this.lBBatt4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lBBatt4.AutoSize = true;
             this.lBBatt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lBBatt4.Location = new System.Drawing.Point(521, 109);
+            this.lBBatt4.Location = new System.Drawing.Point(519, 109);
             this.lBBatt4.Name = "lBBatt4";
             this.lBBatt4.Size = new System.Drawing.Size(39, 15);
             this.lBBatt4.TabIndex = 44;
@@ -691,7 +691,7 @@
             this.pBStatus2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus2.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus2.Image")));
             this.pBStatus2.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus2.Location = new System.Drawing.Point(370, 48);
+            this.pBStatus2.Location = new System.Drawing.Point(369, 48);
             this.pBStatus2.Name = "pBStatus2";
             this.pBStatus2.Size = new System.Drawing.Size(39, 20);
             this.pBStatus2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -703,7 +703,7 @@
             this.pBStatus3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus3.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus3.Image")));
             this.pBStatus3.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus3.Location = new System.Drawing.Point(370, 77);
+            this.pBStatus3.Location = new System.Drawing.Point(369, 77);
             this.pBStatus3.Name = "pBStatus3";
             this.pBStatus3.Size = new System.Drawing.Size(39, 20);
             this.pBStatus3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -715,7 +715,7 @@
             this.pBStatus4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBStatus4.Image = ((System.Drawing.Image)(resources.GetObject("pBStatus4.Image")));
             this.pBStatus4.InitialImage = global::ScpServer.Properties.Resources.BT;
-            this.pBStatus4.Location = new System.Drawing.Point(370, 106);
+            this.pBStatus4.Location = new System.Drawing.Point(369, 106);
             this.pBStatus4.Name = "pBStatus4";
             this.pBStatus4.Size = new System.Drawing.Size(39, 20);
             this.pBStatus4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -1158,7 +1158,6 @@
             this.MinimumSize = new System.Drawing.Size(420, 231);
             this.Name = "ScpForm";
             this.Text = "DS4Windows";
-            this.Activated += new System.EventHandler(this.ScpForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScpForm_Closing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragDrop);

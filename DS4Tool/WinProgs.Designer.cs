@@ -204,6 +204,7 @@
             this.nameHeader,
             this.PathHeader});
             this.lVPrograms.FullRowSelect = true;
+            this.lVPrograms.HideSelection = false;
             this.lVPrograms.LargeImageList = this.iLIcons;
             this.lVPrograms.Location = new System.Drawing.Point(5, 28);
             this.lVPrograms.MultiSelect = false;

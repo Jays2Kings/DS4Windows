@@ -11,7 +11,7 @@ using System.Security.Principal;
 namespace DS4Control
 {
     [Flags]
-    public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8 }; //Increment by exponents of 2*, starting at 2^0
+    public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; //Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
     public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
@@ -728,6 +728,8 @@ namespace DS4Control
                                 keyType += DS4KeyType.Unbound;
                             }
                             {
+                                if (button.Font.Strikeout)
+                                    keyType += DS4KeyType.HoldMacro;
                                 if (button.Font.Underline)
                                     keyType += DS4KeyType.Macro;
                                 if (button.Font.Italic)
@@ -970,8 +972,10 @@ namespace DS4Control
                                     bool SC = Item.InnerText.Contains(DS4KeyType.ScanCode.ToString());
                                     bool TG = Item.InnerText.Contains(DS4KeyType.Toggle.ToString());
                                     bool MC = Item.InnerText.Contains(DS4KeyType.Macro.ToString());
-                                    button.Font = new Font(button.Font, (SC ? FontStyle.Bold : FontStyle.Regular) | 
-                                        (TG ? FontStyle.Italic : FontStyle.Regular) | (MC ? FontStyle.Underline : FontStyle.Regular));
+                                    bool MR = Item.InnerText.Contains(DS4KeyType.HoldMacro.ToString());
+                                    button.Font = new Font(button.Font, 
+                                        (SC ? FontStyle.Bold : FontStyle.Regular) |  (TG ? FontStyle.Italic : FontStyle.Regular) |
+                                        (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
                                     if (Item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
                                         keyType |= DS4KeyType.ScanCode;
                                     if (Item.InnerText.Contains(DS4KeyType.Toggle.ToString()))
@@ -999,7 +1003,7 @@ namespace DS4Control
                                     else if (keys[i] == 260) splitter[i] = "5th Mouse Button";
                                     else if (keys[i] > 300) splitter[i] = "Wait " + (keys[i] - 300) + "ms";
                                 }
-                                button.Text = string.Join(", ", splitter);                                
+                                button.Text = "Macro";                                
                                 button.Tag = keys;
                                 customMapMacros.Add(getDS4ControlsByName(button.Name), Item.InnerText);
                             }
@@ -1162,6 +1166,8 @@ namespace DS4Control
                                     keyType |= DS4KeyType.Toggle;
                                 if (item.InnerText.Contains(DS4KeyType.Macro.ToString()))
                                     keyType |= DS4KeyType.Macro;
+                                if (item.InnerText.Contains(DS4KeyType.HoldMacro.ToString()))
+                                    keyType |= DS4KeyType.HoldMacro;
                                 if (item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
                                     keyType |= DS4KeyType.Unbound;
                                 if (keyType != DS4KeyType.None)

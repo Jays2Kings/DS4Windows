@@ -182,16 +182,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.X360Label = new System.Windows.Forms.Label();
             this.KBMlabel = new System.Windows.Forms.Label();
-            this.cBMacro = new System.Windows.Forms.CheckBox();
-            this.lBMacroOrder = new System.Windows.Forms.Label();
-            this.pnLDelay = new System.Windows.Forms.Panel();
-            this.nUDDelay = new System.Windows.Forms.NumericUpDown();
-            this.lBms = new System.Windows.Forms.Label();
-            this.lBDelay = new System.Windows.Forms.Label();
+            this.lBMacroOn = new System.Windows.Forms.Label();
+            this.btnMacro = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pnLDelay.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // lBTip
@@ -208,7 +202,7 @@
             // cbScanCode
             // 
             this.cbScanCode.AutoSize = true;
-            this.cbScanCode.Location = new System.Drawing.Point(706, 5);
+            this.cbScanCode.Location = new System.Drawing.Point(677, 5);
             this.cbScanCode.Name = "cbScanCode";
             this.cbScanCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cbScanCode.Size = new System.Drawing.Size(79, 17);
@@ -965,6 +959,7 @@
             this.btnSLASH.Size = new System.Drawing.Size(24, 24);
             this.btnSLASH.TabIndex = 219;
             this.btnSLASH.TabStop = false;
+            this.btnSLASH.Tag = "191";
             this.btnSLASH.Text = "/";
             this.btnSLASH.UseVisualStyleBackColor = true;
             // 
@@ -1399,7 +1394,7 @@
             // 
             // bTNRIGHTMOUSE
             // 
-            this.bTNRIGHTMOUSE.Location = new System.Drawing.Point(813, 82);
+            this.bTNRIGHTMOUSE.Location = new System.Drawing.Point(824, 82);
             this.bTNRIGHTMOUSE.Name = "bTNRIGHTMOUSE";
             this.bTNRIGHTMOUSE.Size = new System.Drawing.Size(24, 24);
             this.bTNRIGHTMOUSE.TabIndex = 178;
@@ -1421,7 +1416,7 @@
             // 
             // bnWHEELDOWN
             // 
-            this.bnWHEELDOWN.Location = new System.Drawing.Point(783, 107);
+            this.bnWHEELDOWN.Location = new System.Drawing.Point(794, 107);
             this.bnWHEELDOWN.Name = "bnWHEELDOWN";
             this.bnWHEELDOWN.Size = new System.Drawing.Size(24, 21);
             this.bnWHEELDOWN.TabIndex = 175;
@@ -1432,7 +1427,7 @@
             // 
             // bnWHEELUP
             // 
-            this.bnWHEELUP.Location = new System.Drawing.Point(783, 59);
+            this.bnWHEELUP.Location = new System.Drawing.Point(794, 59);
             this.bnWHEELUP.Name = "bnWHEELUP";
             this.bnWHEELUP.Size = new System.Drawing.Size(24, 22);
             this.bnWHEELUP.TabIndex = 174;
@@ -1443,7 +1438,7 @@
             // 
             // btnMIDDLEMOUSE
             // 
-            this.btnMIDDLEMOUSE.Location = new System.Drawing.Point(783, 82);
+            this.btnMIDDLEMOUSE.Location = new System.Drawing.Point(794, 82);
             this.btnMIDDLEMOUSE.Name = "btnMIDDLEMOUSE";
             this.btnMIDDLEMOUSE.Size = new System.Drawing.Size(24, 24);
             this.btnMIDDLEMOUSE.TabIndex = 176;
@@ -1465,7 +1460,7 @@
             // 
             // button33
             // 
-            this.button33.Location = new System.Drawing.Point(818, 147);
+            this.button33.Location = new System.Drawing.Point(829, 147);
             this.button33.Name = "button33";
             this.button33.Size = new System.Drawing.Size(19, 24);
             this.button33.TabIndex = 169;
@@ -1476,7 +1471,7 @@
             // 
             // button30
             // 
-            this.button30.Location = new System.Drawing.Point(753, 146);
+            this.button30.Location = new System.Drawing.Point(764, 146);
             this.button30.Name = "button30";
             this.button30.Size = new System.Drawing.Size(19, 24);
             this.button30.TabIndex = 173;
@@ -1487,7 +1482,7 @@
             // 
             // bnMOUSERIGHT
             // 
-            this.bnMOUSERIGHT.Location = new System.Drawing.Point(827, 117);
+            this.bnMOUSERIGHT.Location = new System.Drawing.Point(841, 117);
             this.bnMOUSERIGHT.Name = "bnMOUSERIGHT";
             this.bnMOUSERIGHT.Size = new System.Drawing.Size(24, 24);
             this.bnMOUSERIGHT.TabIndex = 171;
@@ -1498,7 +1493,7 @@
             // 
             // bnMOUSELEFT
             // 
-            this.bnMOUSELEFT.Location = new System.Drawing.Point(736, 118);
+            this.bnMOUSELEFT.Location = new System.Drawing.Point(743, 118);
             this.bnMOUSELEFT.Name = "bnMOUSELEFT";
             this.bnMOUSELEFT.Size = new System.Drawing.Size(24, 24);
             this.bnMOUSELEFT.TabIndex = 172;
@@ -1509,7 +1504,7 @@
             // 
             // bnMOUSEDOWN
             // 
-            this.bnMOUSEDOWN.Location = new System.Drawing.Point(783, 167);
+            this.bnMOUSEDOWN.Location = new System.Drawing.Point(794, 167);
             this.bnMOUSEDOWN.Name = "bnMOUSEDOWN";
             this.bnMOUSEDOWN.Size = new System.Drawing.Size(24, 24);
             this.bnMOUSEDOWN.TabIndex = 170;
@@ -1520,7 +1515,7 @@
             // 
             // bnMOUSEUP
             // 
-            this.bnMOUSEUP.Location = new System.Drawing.Point(783, 25);
+            this.bnMOUSEUP.Location = new System.Drawing.Point(794, 25);
             this.bnMOUSEUP.Name = "bnMOUSEUP";
             this.bnMOUSEUP.Size = new System.Drawing.Size(24, 24);
             this.bnMOUSEUP.TabIndex = 167;
@@ -1531,7 +1526,7 @@
             // 
             // btnLEFTMOUSE
             // 
-            this.btnLEFTMOUSE.Location = new System.Drawing.Point(753, 82);
+            this.btnLEFTMOUSE.Location = new System.Drawing.Point(764, 82);
             this.btnLEFTMOUSE.Name = "btnLEFTMOUSE";
             this.btnLEFTMOUSE.Size = new System.Drawing.Size(24, 24);
             this.btnLEFTMOUSE.TabIndex = 168;
@@ -1555,7 +1550,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::ScpServer.Properties.Resources.mouse;
-            this.pictureBox2.Location = new System.Drawing.Point(747, 41);
+            this.pictureBox2.Location = new System.Drawing.Point(758, 41);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(97, 140);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1565,7 +1560,7 @@
             // cbToggle
             // 
             this.cbToggle.AutoSize = true;
-            this.cbToggle.Location = new System.Drawing.Point(641, 5);
+            this.cbToggle.Location = new System.Drawing.Point(604, 5);
             this.cbToggle.Name = "cbToggle";
             this.cbToggle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cbToggle.Size = new System.Drawing.Size(59, 17);
@@ -1875,7 +1870,7 @@
             // X360Label
             // 
             this.X360Label.AutoSize = true;
-            this.X360Label.Location = new System.Drawing.Point(393, 202);
+            this.X360Label.Location = new System.Drawing.Point(393, 210);
             this.X360Label.Name = "X360Label";
             this.X360Label.Size = new System.Drawing.Size(73, 13);
             this.X360Label.TabIndex = 318;
@@ -1890,79 +1885,34 @@
             this.KBMlabel.TabIndex = 318;
             this.KBMlabel.Text = "Keyboard and Mouse";
             // 
-            // cBMacro
+            // lBMacroOn
             // 
-            this.cBMacro.AutoSize = true;
-            this.cBMacro.Location = new System.Drawing.Point(791, 5);
-            this.cBMacro.Name = "cBMacro";
-            this.cBMacro.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBMacro.Size = new System.Drawing.Size(56, 17);
-            this.cBMacro.TabIndex = 287;
-            this.cBMacro.TabStop = false;
-            this.cBMacro.Text = "Macro";
-            this.cBMacro.UseVisualStyleBackColor = true;
-            this.cBMacro.CheckedChanged += new System.EventHandler(this.cBMacro_CheckedChanged);
+            this.lBMacroOn.AutoSize = true;
+            this.lBMacroOn.Location = new System.Drawing.Point(10, 6);
+            this.lBMacroOn.Name = "lBMacroOn";
+            this.lBMacroOn.Size = new System.Drawing.Size(173, 13);
+            this.lBMacroOn.TabIndex = 319;
+            this.lBMacroOn.Text = "Macro On, Choose a key to disable";
+            this.lBMacroOn.Visible = false;
             // 
-            // lBMacroOrder
+            // btnMacro
             // 
-            this.lBMacroOrder.AutoSize = true;
-            this.lBMacroOrder.Location = new System.Drawing.Point(12, 6);
-            this.lBMacroOrder.Name = "lBMacroOrder";
-            this.lBMacroOrder.Size = new System.Drawing.Size(72, 13);
-            this.lBMacroOrder.TabIndex = 319;
-            this.lBMacroOrder.Text = "Macro Order: ";
-            this.lBMacroOrder.Visible = false;
-            // 
-            // pnLDelay
-            // 
-            this.pnLDelay.Controls.Add(this.nUDDelay);
-            this.pnLDelay.Controls.Add(this.lBms);
-            this.pnLDelay.Controls.Add(this.lBDelay);
-            this.pnLDelay.Location = new System.Drawing.Point(12, 200);
-            this.pnLDelay.Name = "pnLDelay";
-            this.pnLDelay.Size = new System.Drawing.Size(183, 23);
-            this.pnLDelay.TabIndex = 320;
-            this.pnLDelay.Visible = false;
-            // 
-            // nUDDelay
-            // 
-            this.nUDDelay.Location = new System.Drawing.Point(65, 0);
-            this.nUDDelay.Maximum = new decimal(new int[] {
-            60000,
-            0,
-            0,
-            0});
-            this.nUDDelay.Name = "nUDDelay";
-            this.nUDDelay.Size = new System.Drawing.Size(77, 20);
-            this.nUDDelay.TabIndex = 1;
-            this.nUDDelay.TabStop = false;
-            this.nUDDelay.ValueChanged += new System.EventHandler(this.nUDDelay_ValueChanged);
-            // 
-            // lBms
-            // 
-            this.lBms.AutoSize = true;
-            this.lBms.Location = new System.Drawing.Point(148, 2);
-            this.lBms.Name = "lBms";
-            this.lBms.Size = new System.Drawing.Size(20, 13);
-            this.lBms.TabIndex = 0;
-            this.lBms.Text = "ms";
-            // 
-            // lBDelay
-            // 
-            this.lBDelay.AutoSize = true;
-            this.lBDelay.Location = new System.Drawing.Point(3, 2);
-            this.lBDelay.Name = "lBDelay";
-            this.lBDelay.Size = new System.Drawing.Size(56, 13);
-            this.lBDelay.TabIndex = 0;
-            this.lBDelay.Text = "Add Delay";
+            this.btnMacro.Location = new System.Drawing.Point(761, 1);
+            this.btnMacro.Name = "btnMacro";
+            this.btnMacro.Size = new System.Drawing.Size(104, 23);
+            this.btnMacro.TabIndex = 321;
+            this.btnMacro.TabStop = false;
+            this.btnMacro.Text = "Record a Macro";
+            this.btnMacro.UseVisualStyleBackColor = true;
+            this.btnMacro.Click += new System.EventHandler(this.btnMacro_Click);
             // 
             // KBM360
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(854, 403);
-            this.Controls.Add(this.pnLDelay);
-            this.Controls.Add(this.lBMacroOrder);
+            this.ClientSize = new System.Drawing.Size(868, 403);
+            this.Controls.Add(this.btnMacro);
+            this.Controls.Add(this.lBMacroOn);
             this.Controls.Add(this.KBMlabel);
             this.Controls.Add(this.X360Label);
             this.Controls.Add(this.btnUNBOUND2);
@@ -2116,7 +2066,6 @@
             this.Controls.Add(this.btnLEFTMOUSE);
             this.Controls.Add(this.btnQ);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.cBMacro);
             this.Controls.Add(this.cbToggle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
@@ -2126,11 +2075,9 @@
             this.Text = "Keybaord";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finalMeasure);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down_Action);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Key_Up_Action);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pnLDelay.ResumeLayout(false);
-            this.pnLDelay.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2292,12 +2239,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label X360Label;
         private System.Windows.Forms.Label KBMlabel;
-        private System.Windows.Forms.CheckBox cBMacro;
-        private System.Windows.Forms.Label lBMacroOrder;
-        private System.Windows.Forms.Panel pnLDelay;
-        private System.Windows.Forms.NumericUpDown nUDDelay;
-        private System.Windows.Forms.Label lBms;
-        private System.Windows.Forms.Label lBDelay;
+        private System.Windows.Forms.Button btnMacro;
+        public System.Windows.Forms.Label lBMacroOn;
 
     }
 }

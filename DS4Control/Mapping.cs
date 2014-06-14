@@ -240,6 +240,7 @@ namespace DS4Control
                         if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
                         {
                             InputMethods.performSCKeyRelease(kvp.Key);
+                            InputMethods.performKeyRelease(kvp.Key);
                             pressagain = false;
                         }
                         else
@@ -289,26 +290,6 @@ namespace DS4Control
             string macro = Global.getCustomMacro(device, what);
             if (macro != "0")
             { 
-                /*DS4KeyType keyType = Global.getCustomKeyType(device, what);
-                SyntheticState.KeyPresses kp;
-                string[] skeys = macro.Split('/');
-                ushort[] keys = new ushort[skeys.Length];
-                for (int i = 0; i < keys.Length; i++)
-                {
-                    keys[i] = ushort.Parse(skeys[i]);
-                    if (keys[i] == 256) deviceState.currentClicks.leftCount++; //anything above 255 is not a keyvalue
-                    if (keys[i] == 257) deviceState.currentClicks.rightCount++;
-                    if (keys[i] == 258) deviceState.currentClicks.middleCount++;
-                    if (keys[i] == 259) deviceState.currentClicks.fourthCount++;
-                    if (keys[i] == 260) deviceState.currentClicks.fifthCount++;
-                    if (!deviceState.keyPresses.TryGetValue(keys[i], out kp))
-                        deviceState.keyPresses[keys[i]] = kp = new SyntheticState.KeyPresses();
-                    if (keyType.HasFlag(DS4KeyType.ScanCode))
-                        kp.current.scanCodeCount++;
-                    else
-                        kp.current.vkCount++;
-                    kp.current.repeatCount++;
-                }*/
             }                  
             else if (Global.getCustomKey(device, what) != 0)
             {
@@ -492,79 +473,67 @@ namespace DS4Control
                 {
 
                     resetToDefaultValue(customKey.Key, MappedState);
-                    string[] skeys = customKey.Value.Split('/');
-                    ushort[] keys = new ushort[skeys.Length];
+                    string[] skeys;
+                    int[] keys;
+                    if (!string.IsNullOrEmpty(customKey.Value))
+                    {
+                        skeys = customKey.Value.Split('/');
+                        keys = new int[skeys.Length];
+                    }
+                    else
+                    {
+                        skeys = new string[0];
+                        keys = new int[0];
+                    }
                     for (int i = 0; i < keys.Length; i++)
                         keys[i] = ushort.Parse(skeys[i]);
-                    bool timedmacro = false;
-                    for (int i = 0; i < keys.Length; i++)
-                        if (keys[i] > 300)
-                        {
-                            timedmacro = true;
-                            break;
-                        }
-                    if (timedmacro && !macrodone[DS4ControltoInt(customKey.Key)])
+                    bool[] keydown = new bool[261];
+                    if (!macrodone[DS4ControltoInt(customKey.Key)])
                     {
                         macrodone[DS4ControltoInt(customKey.Key)] = true;
                         for (int i = 0; i < keys.Length; i++)
                         {
-                            if (keys[i] > 300) //ints over 300 used to delay
+                            if (keys[i] >= 300) //ints over 300 used to delay
                                 await Task.Delay(keys[i] - 300);
-                            else if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
-                            else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
-                            else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
-                            else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
-                            else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                            else if (!keydown[keys[i]])
+                            {
+                                if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
+                                else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
+                                else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
+                                else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
+                                else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                                else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    InputMethods.performSCKeyPress((ushort)keys[i]);
+                                else
+                                    InputMethods.performKeyPress((ushort)keys[i]);
+                                keydown[keys[i]] = true;
+                            }
                             else
-                                InputMethods.performKeyPress(keys[i]);
-                        }
-                        for (int i = keys.Length - 1; i >= 0; i--)
-                        {
-                            if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
-                            else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
-                            else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
-                            else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
-                            else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
-                            else if (keys[i] < 300)
-                                InputMethods.performKeyRelease(keys[i]);
-                        }
-                    }
-                    else if (!timedmacro)
-                    {
-                        for (int i = 0; i < keys.Length; i++)
-                        {
-                            if (i > 0 && keys[i - 1] > 300)
                             {
-                                if (keys[i] == 256) deviceState.currentClicks.leftCount++; //anything above 255 is not a keyvalue
-                                if (keys[i] == 257) deviceState.currentClicks.rightCount++;
-                                if (keys[i] == 258) deviceState.currentClicks.middleCount++;
-                                if (keys[i] == 259) deviceState.currentClicks.fourthCount++;
-                                if (keys[i] == 260) deviceState.currentClicks.fifthCount++;
-                                SyntheticState.KeyPresses kp;
-                                if (!deviceState.keyPresses.TryGetValue(keys[i], out kp))
-                                    deviceState.keyPresses[keys[i]] = kp = new SyntheticState.KeyPresses();
-                                if (keyType.HasFlag(DS4KeyType.ScanCode))
-                                    kp.current.scanCodeCount++;
+                                if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
+                                else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                                else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                                else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                                else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                                else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    InputMethods.performSCKeyRelease((ushort)keys[i]);
                                 else
-                                    kp.current.vkCount++;
-                                kp.current.repeatCount++;
+                                    InputMethods.performKeyRelease((ushort)keys[i]);
+                                keydown[keys[i]] = false;
                             }
-                            else if (keys[i] < 261)
-                            {
-                                if (keys[i] == 256) deviceState.currentClicks.leftCount++; //anything above 255 is not a keyvalue
-                                if (keys[i] == 257) deviceState.currentClicks.rightCount++;
-                                if (keys[i] == 258) deviceState.currentClicks.middleCount++;
-                                if (keys[i] == 259) deviceState.currentClicks.fourthCount++;
-                                if (keys[i] == 260) deviceState.currentClicks.fifthCount++;
-                                SyntheticState.KeyPresses kp;
-                                if (!deviceState.keyPresses.TryGetValue(keys[i], out kp))
-                                    deviceState.keyPresses[keys[i]] = kp = new SyntheticState.KeyPresses();
+                        }
+                        for (ushort i = 0; i < keydown.Length; i++)
+                        {
+                            if (keydown[i])
                                 if (keyType.HasFlag(DS4KeyType.ScanCode))
-                                    kp.current.scanCodeCount++;
+                                    InputMethods.performSCKeyRelease(i);
                                 else
-                                    kp.current.vkCount++;
-                                kp.current.repeatCount++;
-                            }
+                                    InputMethods.performKeyRelease(i);
+                        }
+                        if (keyType.HasFlag(DS4KeyType.HoldMacro))
+                        {
+                            await Task.Delay(50);
+                            macrodone[DS4ControltoInt(customKey.Key)] = false;
                         }
                     }
                 }
@@ -600,7 +569,7 @@ namespace DS4Control
             }
 
 
-            bool LX = false, LY = false, RX = false, RY = false, L2 = false, R2 = false;
+            bool LX = false, LY = false, RX = false, RY = false;
             MappedState.LX = 127;
             MappedState.LY = 127;
             MappedState.RX = 127;
@@ -853,58 +822,60 @@ namespace DS4Control
             int deadzone = 10;
             double value = 0;
             int speed = Global.getButtonMouseSensitivity(device);
+            double root = 1.002;
+            double divide = 10000d;
             DateTime now = mousenow[mnum];
             switch (control)
             {
                 case DS4Controls.LXNeg:
                     if (cState.LX < 127 - deadzone)
-                        value = Math.Pow(1.01 + speed / 10000d, -(cState.LX - 127)) - 1;
+                        value = Math.Pow(root + speed / divide, -(cState.LX - 127)) - 1;
                     break;
                 case DS4Controls.LXPos:
                     if (cState.LX > 127 + deadzone)
-                        value = Math.Pow(1.01 + speed / 10000d, (cState.LX - 127)) -1;
+                        value = Math.Pow(root + speed / divide, (cState.LX - 127)) -1;
                     break;
                 case DS4Controls.RXNeg:
                     if (cState.RX < 127 - deadzone)
-                        value = Math.Pow(1.01 + speed / 10000d, -(cState.RX - 127)) - 1;                        
+                        value = Math.Pow(root + speed / divide, -(cState.RX - 127)) - 1;                        
                     break;
                 case DS4Controls.RXPos:
                     if (cState.RX > 127 + deadzone)
-                        value = Math.Pow(1.01 + speed / 10000d, (cState.RX - 127)) - 1;
+                        value = Math.Pow(root + speed / divide, (cState.RX - 127)) - 1;
                     break;
                 case DS4Controls.LYNeg:
                     if (cState.LY < 127 - deadzone)
-                        value = Math.Pow(1.01 + speed / 10000d, -(cState.LY - 127)) - 1;
+                        value = Math.Pow(root + speed / divide, -(cState.LY - 127)) - 1;
                     break;
                 case DS4Controls.LYPos:
                     if (cState.LY > 127 + deadzone)
-                        value = Math.Pow(1.01 + speed / 10000d,(cState.LY - 127))  - 1;
+                        value = Math.Pow(root + speed / divide,(cState.LY - 127))  - 1;
                     break;
                 case DS4Controls.RYNeg:
                     if (cState.RY < 127 - deadzone)
-                        value = Math.Pow(1.01 + speed / 10000d,-(cState.RY - 127)) - 1;
+                        value = Math.Pow(root + speed / divide,-(cState.RY - 127)) - 1;
                     break;
                 case DS4Controls.RYPos:
                     if (cState.RY > 127 + deadzone)
-                        value = Math.Pow(1.01 + speed / 10000d, (cState.RY - 127))  - 1;
+                        value = Math.Pow(root + speed / divide, (cState.RY - 127))  - 1;
                     break;
-                case DS4Controls.Share: value = (cState.Share ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.Options: value = (cState.Options ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.L1: value = (cState.L1 ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.R1: value = (cState.R1 ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.L3: value = (cState.L3 ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.R3: value = (cState.R3 ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.DpadUp: value = (cState.DpadUp ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.DpadDown: value = (cState.DpadDown ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.DpadLeft: value = (cState.DpadLeft ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.DpadRight: value = (cState.DpadRight ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.PS: value = (cState.PS ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.Cross: value = (cState.Cross ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.Square: value = (cState.Square ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.Triangle: value = (cState.Triangle ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.Circle: value = (cState.Circle ? Math.Pow(1.01 + speed / 10000d, 100) - 1 : 0); break;
-                case DS4Controls.L2: value = Math.Pow(1.01 + speed / 10000d, cState.L2 / 2d) - 1; break;
-                case DS4Controls.R2: value = Math.Pow(1.01 + speed / 10000d, cState.R2 / 2d) - 1; break;
+                case DS4Controls.Share: value = (cState.Share ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.Options: value = (cState.Options ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.L1: value = (cState.L1 ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.R1: value = (cState.R1 ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.L3: value = (cState.L3 ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.R3: value = (cState.R3 ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.DpadUp: value = (cState.DpadUp ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.DpadDown: value = (cState.DpadDown ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.DpadLeft: value = (cState.DpadLeft ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.DpadRight: value = (cState.DpadRight ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.PS: value = (cState.PS ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.Cross: value = (cState.Cross ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.Square: value = (cState.Square ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.Triangle: value = (cState.Triangle ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.Circle: value = (cState.Circle ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case DS4Controls.L2: value = Math.Pow(root + speed / divide, cState.L2 / 2d) - 1; break;
+                case DS4Controls.R2: value = Math.Pow(root + speed / divide, cState.R2 / 2d) - 1; break;
             }
             //if (value != 0)
             //mvalue = value;
@@ -917,7 +888,7 @@ namespace DS4Control
                 now = DateTime.UtcNow;
             if (value <= 1)
             {
-                if (now >= mousenow[mnum] + TimeSpan.FromMilliseconds((1 - value) * 250))
+                if (now >= mousenow[mnum] + TimeSpan.FromMilliseconds((1 - value) * 500))
                 {
                     mousenow[mnum] = now;
                     return 1;
@@ -926,7 +897,7 @@ namespace DS4Control
                     return 0;
             }
             else
-                return (int)Math.Round(value, 0);
+                return (int)value;
         }
 
         public static bool compare(byte b1, byte b2)

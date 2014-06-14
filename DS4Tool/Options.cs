@@ -304,11 +304,12 @@ namespace ScpServer
             lastSelected.Text = controlname;
             lastSelected.Tag = controlname;
         }
-        public void Toggle_Bn(bool SC, bool TG, bool MC)
+        public void Toggle_Bn(bool SC, bool TG, bool MC,  bool MR)
         {
             if (lastSelected.Tag is int || lastSelected.Tag is UInt16 || lastSelected.Tag is int[])
-                lastSelected.Font = new Font(lastSelected.Font, (SC ? FontStyle.Bold : FontStyle.Regular) | 
-                    (TG ? FontStyle.Italic : FontStyle.Regular) | (MC ? FontStyle.Underline : FontStyle.Regular));
+                lastSelected.Font = new Font(lastSelected.Font, 
+                    (SC ? FontStyle.Bold : FontStyle.Regular) | (TG ? FontStyle.Italic : FontStyle.Regular) | 
+                    (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
             else if (lastSelected.Tag is string)
                 if (lastSelected.Tag.ToString().Contains("Mouse Button"))
                     lastSelected.Font = new Font(lastSelected.Font, TG ? FontStyle.Italic : FontStyle.Regular);

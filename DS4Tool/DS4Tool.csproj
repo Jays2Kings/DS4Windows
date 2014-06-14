@@ -127,6 +127,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RecordBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecordBox.Designer.cs">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resource.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -176,6 +182,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordBox.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -231,6 +240,7 @@
     <None Include="Resources\delete.png" />
     <None Include="Resources\BT.png" />
     <None Include="Resources\DS4 Controller.png" />
+    <None Include="Resources\Clock.png" />
     <Content Include="Resources\DS4.ico" />
     <None Include="Resources\mouse.png" />
     <None Include="Resources\rainbow.png" />

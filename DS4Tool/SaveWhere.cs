@@ -40,7 +40,7 @@ namespace ScpServer
                 catch { }
             }
             else if (!multisaves)
-                Save(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "Profiles.xml");
+                Save(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml");
             Close();
         }
 

@@ -99,15 +99,22 @@ namespace ScpServer
                 programpaths.Add(x.Attributes["path"].Value);
             foreach (string st in programpaths)
             {
-                int index = programpaths.IndexOf(st);
-                if (string.Empty != st)
+                if (File.Exists(st))
                 {
-                    iLIcons.Images.Add(Icon.ExtractAssociatedIcon(st));
-                    ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(st), index);
-                    lvi.SubItems.Add(st);
-                    lvi.Checked = true;
-                    lvi.ToolTipText = st;
-                    lVPrograms.Items.Add(lvi);
+                    int index = programpaths.IndexOf(st);
+                    if (string.Empty != st)
+                    {
+                        iLIcons.Images.Add(Icon.ExtractAssociatedIcon(st));
+                        ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(st), index);
+                        lvi.SubItems.Add(st);
+                        lvi.Checked = true;
+                        lvi.ToolTipText = st;
+                        lVPrograms.Items.Add(lvi);
+                    }
+                }
+                else
+                {
+                    RemoveP(st, false, false);
                 }
             }
         }
@@ -230,7 +237,7 @@ namespace ScpServer
             }
         }
 
-        public void RemoveP(string name, bool uncheck)
+        public void RemoveP(string name, bool uncheck, bool reload = true)
         {
 
             XmlDocument doc = new XmlDocument();
@@ -246,6 +253,7 @@ namespace ScpServer
             for (int i = 0; i < 4; i++)
                 cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
             bnSave.Enabled = false;
+            if (reload)
             form.LoadP();
         }
 

@@ -17,7 +17,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 10.35;
+        double version = 10.4;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -85,7 +85,6 @@ namespace ScpServer
             //CheckDrivers();
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
-            LoadP();
             ToolTip tt = new ToolTip();
             if (File.Exists(appdatapath + "\\Profiles.xml"))
                 tt.SetToolTip(linkUninstall, "If removing DS4Windows, You can delete the settings following the profile folder link");
@@ -198,21 +197,20 @@ namespace ScpServer
                 t.DropDownItemClicked += Profile_Changed_Menu;
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
             hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
-            hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
-
+            hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;            
             // New settings
             this.Width = Global.getFormWidth();
             this.Height = Global.getFormHeight();
             startMinimizedCheckBox.CheckedChanged -= startMinimizedCheckBox_CheckedChanged;
             startMinimizedCheckBox.Checked = Global.getStartMinimized();
             startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
-            StartWindowsCheckBox.Checked = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");            
             if (startMinimizedCheckBox.Checked)
                 this.WindowState = FormWindowState.Minimized;
             Form_Resize(sender, e);
             RefreshProfiles();
             for (int i = 0; i < 4; i++)
                 Global.LoadProfile(i);
+            LoadP();
             Global.ControllerStatusChange += ControllerStatusChange;
             ControllerStatusChanged();
             if (btnStartStop.Enabled)
@@ -251,6 +249,7 @@ namespace ScpServer
             test.Tick += test_Tick;
             if (!System.IO.Directory.Exists(Global.appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
+            StartWindowsCheckBox.Checked = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
         }
         
         private void test_Tick(object sender, EventArgs e)
@@ -572,9 +571,9 @@ namespace ScpServer
             }
             //Added last message alternative
 
-            if (this.Height > 220)
+            /*if (this.Height > 220)
                 lbLastMessage.Visible = tabMain.SelectedIndex != 2;
-            else lbLastMessage.Visible = true;
+            else lbLastMessage.Visible = true;*/
         }
 
         protected void btnStartStop_Click(object sender, EventArgs e)
@@ -997,9 +996,9 @@ namespace ScpServer
         private void StartWindowsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            if (StartWindowsCheckBox.Checked)
+            if (StartWindowsCheckBox.Checked && !File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk"))
                 appShortcutToStartup();
-            else
+            else if (!StartWindowsCheckBox.Checked)
                 File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
             KeyLoc.DeleteValue("DS4Tool", false);
         }
@@ -1269,15 +1268,6 @@ namespace ScpServer
         {
             WelcomeDialog wd = new WelcomeDialog();
             wd.ShowDialog();
-        }
-
-        private void ScpForm_Activated(object sender, EventArgs e)
-        {
-            if (!this.ShowInTaskbar)
-            {
-                this.Show();
-                this.ShowInTaskbar = true;
-            }
         }
 
         protected void ScpForm_Closing(object sender, FormClosingEventArgs e)

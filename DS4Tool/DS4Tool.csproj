@@ -225,6 +225,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\xbox_360_controller.png" />
+    <None Include="Resources\Y.png" />
+    <None Include="Resources\X.png" />
+    <None Include="Resources\UP.png" />
+    <None Include="Resources\START.png" />
+    <None Include="Resources\x360test.png" />
     <None Include="Resources\sticks.png" />
     <None Include="Resources\UpperTouch.png" />
     <None Include="Resources\shell32_export.png" />
@@ -235,12 +241,18 @@
     <None Include="Resources\Touch.png" />
     <None Include="Resources\Touch states2.png" />
     <None Include="Resources\sticks2.png" />
-    <None Include="Resources\360 fades.png" />
     <None Include="Resources\1401402547_menu-24.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\BT.png" />
     <None Include="Resources\DS4 Controller.png" />
     <None Include="Resources\Clock.png" />
+    <None Include="Resources\360LS.png" />
+    <None Include="Resources\360RS.png" />
+    <None Include="Resources\A.PNG" />
+    <None Include="Resources\B.png" />
+    <None Include="Resources\BACK.png" />
+    <None Include="Resources\DOWN.png" />
+    <None Include="Resources\360 fades.png" />
     <Content Include="Resources\DS4.ico" />
     <None Include="Resources\mouse.png" />
     <None Include="Resources\rainbow.png" />
@@ -254,6 +266,22 @@
     <None Include="Resources\MultiTouch.png" />
     <None Include="Resources\RightTouch.png" />
     <None Include="Resources\Pairmode.png" />
+    <None Include="Resources\LB.png" />
+    <None Include="Resources\LEFT.png" />
+    <None Include="Resources\LS.png" />
+    <None Include="Resources\LSD.png" />
+    <None Include="Resources\LSL.png" />
+    <None Include="Resources\LSR.png" />
+    <None Include="Resources\LSU.png" />
+    <None Include="Resources\LT.png" />
+    <None Include="Resources\RB.png" />
+    <None Include="Resources\RIGHT.png" />
+    <None Include="Resources\RS.png" />
+    <None Include="Resources\RSD.png" />
+    <None Include="Resources\RSL.png" />
+    <None Include="Resources\RSR.png" />
+    <None Include="Resources\RSU.png" />
+    <None Include="Resources\RT.png" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>

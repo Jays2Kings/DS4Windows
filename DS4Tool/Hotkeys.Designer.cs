@@ -66,6 +66,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
+            this.lLChangelog = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -172,7 +173,7 @@
             // 
             this.label27.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(193, 282);
+            this.label27.Location = new System.Drawing.Point(193, 244);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(296, 13);
             this.label27.TabIndex = 14;
@@ -192,7 +193,7 @@
             // 
             this.label29.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(193, 244);
+            this.label29.Location = new System.Drawing.Point(193, 282);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(313, 13);
             this.label29.TabIndex = 14;
@@ -437,12 +438,12 @@
             this.tableLayoutPanel1.Controls.Add(this.label8, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.label14, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label28, 1, 13);
-            this.tableLayoutPanel1.Controls.Add(this.label29, 1, 12);
             this.tableLayoutPanel1.Controls.Add(this.label25, 0, 13);
-            this.tableLayoutPanel1.Controls.Add(this.label27, 1, 14);
             this.tableLayoutPanel1.Controls.Add(this.label26, 0, 14);
             this.tableLayoutPanel1.Controls.Add(this.label30, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label31, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label27, 1, 12);
+            this.tableLayoutPanel1.Controls.Add(this.label29, 1, 14);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 31);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 15;
@@ -485,6 +486,17 @@
             this.label31.Text = "Hides the DS4\'s regular input (Dinput) from other progrmas\r\ncheck if you are gett" +
     "ing double input in games or R2 pauses games";
             // 
+            // lLChangelog
+            // 
+            this.lLChangelog.AutoSize = true;
+            this.lLChangelog.Location = new System.Drawing.Point(8, 9);
+            this.lLChangelog.Name = "lLChangelog";
+            this.lLChangelog.Size = new System.Drawing.Size(58, 13);
+            this.lLChangelog.TabIndex = 20;
+            this.lLChangelog.TabStop = true;
+            this.lLChangelog.Text = "Changelog";
+            this.lLChangelog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLChangelog_LinkClicked);
+            // 
             // Hotkeys
             // 
             this.AcceptButton = this.button1;
@@ -492,6 +504,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(520, 413);
+            this.Controls.Add(this.lLChangelog);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.linkJhebbel);
             this.Controls.Add(this.linkInhexSTER);
@@ -553,5 +566,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.LinkLabel lLChangelog;
     }
 }

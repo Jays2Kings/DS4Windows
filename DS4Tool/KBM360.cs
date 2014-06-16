@@ -64,12 +64,14 @@ namespace ScpServer
                     else
                         keyname = "How did you get here?";
                 }
+                else if (((Button)sender).Tag.ToString().Contains("X360"))
+                    keyname = ((Button)sender).Tag.ToString().Substring(4);
                 else
                     keyname = ((Button)sender).Text;
 
                 object keytag;
-                if (((Button)sender).Tag.ToString() == "X360")
-                    keytag = ((Button)sender).Text;
+                if (((Button)sender).Tag.ToString().Contains("X360"))
+                    keytag = ((Button)sender).Tag.ToString().Substring(4);
                 else
                     keytag = ((Button)sender).Tag;
                 lBMacroOn.Visible = false;

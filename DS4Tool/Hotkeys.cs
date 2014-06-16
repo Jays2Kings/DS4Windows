@@ -47,5 +47,10 @@ namespace ScpServer
             System.Diagnostics.Process.Start("https://code.google.com/r/jhebbel-ds4tool/source/browse/");
         }
 
+        private void lLChangelog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://docs.google.com/document/d/1l4xcgVQkGUskc5CQ0p069yW22Cd5WAH_yE3Fz2hXo0E/edit?usp=sharing");
+        }
+
     }
 }

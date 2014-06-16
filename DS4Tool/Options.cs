@@ -131,6 +131,7 @@ namespace ScpServer
             tp.SetToolTip(lBControlTip, "You can also use your controller to change controls");
             tp.SetToolTip(touchpadJitterCompensation, "Use Sixaxis to help calulate touchpad movement");
             tp.SetToolTip(pBRainbow, "Always on Rainbow Mode");
+            tp.SetToolTip(flushHIDQueue, "Flush HID Queue after each reading");
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;

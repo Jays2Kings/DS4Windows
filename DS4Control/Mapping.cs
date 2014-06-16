@@ -471,8 +471,11 @@ namespace DS4Control
                 DS4KeyType keyType = Global.getCustomKeyType(device, customKey.Key);
                 if (getBoolMapping(customKey.Key, cState))
                 {
-
                     resetToDefaultValue(customKey.Key, MappedState);
+                    bool LXChanged = (Math.Abs(127 - MappedState.LX) < 5);
+                    bool LYChanged = (Math.Abs(127 - MappedState.LY) < 5);
+                    bool RXChanged = (Math.Abs(127 - MappedState.RX) < 5);
+                    bool RYChanged = (Math.Abs(127 - MappedState.RY) < 5);
                     string[] skeys;
                     int[] keys;
                     if (!string.IsNullOrEmpty(customKey.Value))
@@ -488,6 +491,34 @@ namespace DS4Control
                     for (int i = 0; i < keys.Length; i++)
                         keys[i] = ushort.Parse(skeys[i]);
                     bool[] keydown = new bool[261];
+                    if (keys[0] > 260 && keys[0] < 300)
+                    {
+                        if (keys[0] == 261 && !MappedState.Cross) MappedState.Cross = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 262 && !MappedState.Circle) MappedState.Circle = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 263 && !MappedState.Square) MappedState.Square = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 264 && !MappedState.Triangle) MappedState.Triangle = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 265 && !MappedState.DpadUp) MappedState.DpadUp = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 266 && !MappedState.DpadDown) MappedState.DpadDown = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 267 && !MappedState.DpadLeft) MappedState.DpadLeft = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 268 && !MappedState.DpadRight) MappedState.DpadRight = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 269 && !MappedState.Options) MappedState.Options = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 270 && !MappedState.Share) MappedState.Share = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 271 && !MappedState.PS) MappedState.PS = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 272 && !MappedState.L1) MappedState.L1 = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 273 && !MappedState.R1) MappedState.R1 = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 274 && MappedState.L2 == 0) MappedState.L2 = getByteMapping(customKey.Key, cState);
+                        if (keys[0] == 275 && MappedState.R2 == 0) MappedState.R2 = getByteMapping(customKey.Key, cState);
+                        if (keys[0] == 276 && !MappedState.L3) MappedState.L3 = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 277 && !MappedState.R3) MappedState.R3 = getBoolMapping(customKey.Key, cState);
+                        if (keys[0] == 278 && LYChanged) MappedState.LY = getXYAxisMapping(customKey.Key, cState);
+                        if (keys[0] == 279 && LYChanged) MappedState.LY = getXYAxisMapping(customKey.Key, cState, true);
+                        if (keys[0] == 280 && LXChanged) MappedState.LX = getXYAxisMapping(customKey.Key, cState);
+                        if (keys[0] == 281 && LXChanged) MappedState.LX = getXYAxisMapping(customKey.Key, cState, true);
+                        if (keys[0] == 282 && RYChanged) MappedState.RY = getXYAxisMapping(customKey.Key, cState);
+                        if (keys[0] == 283 && RYChanged) MappedState.RY = getXYAxisMapping(customKey.Key, cState, true);
+                        if (keys[0] == 284 && RXChanged) MappedState.RX = getXYAxisMapping(customKey.Key, cState);
+                        if (keys[0] == 285 && RXChanged) MappedState.RX = getXYAxisMapping(customKey.Key, cState, true);
+                    }
                     if (!macrodone[DS4ControltoInt(customKey.Key)])
                     {
                         macrodone[DS4ControltoInt(customKey.Key)] = true;
@@ -495,7 +526,7 @@ namespace DS4Control
                         {
                             if (keys[i] >= 300) //ints over 300 used to delay
                                 await Task.Delay(keys[i] - 300);
-                            else if (!keydown[keys[i]])
+                            else if (keys[i] < 261 && !keydown[keys[i]])
                             {
                                 if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
                                 else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
@@ -508,7 +539,7 @@ namespace DS4Control
                                     InputMethods.performKeyPress((ushort)keys[i]);
                                 keydown[keys[i]] = true;
                             }
-                            else
+                            else if (keys[i] < 261)
                             {
                                 if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
                                 else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);

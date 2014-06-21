@@ -57,7 +57,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(259, 23);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Step 2: If on Windows 7 or below, Install 360 Drvier";
+            this.button2.Text = "Step 2: If on Windows 7 or below, Install 360 Driver";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -89,7 +89,7 @@
             this.labelUSB.Size = new System.Drawing.Size(313, 39);
             this.labelUSB.TabIndex = 3;
             this.labelUSB.Text = "Step 3: Connecting the DualShock 4 controller\r\nTo set up wired/usb:\r\nSimply plug " +
-    "a mirco usb into your PC and DualShock 4";
+    "a micro usb into your PC and DualShock 4";
             this.labelUSB.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // labelBluetooth2
@@ -99,7 +99,7 @@
             this.labelBluetooth2.Size = new System.Drawing.Size(312, 64);
             this.labelBluetooth2.TabIndex = 3;
             this.labelBluetooth2.Text = "Once flashing go to your Bluetooth Settings\r\nand Connect to \"Wireless Controller\"" +
-    "\r\n\r\nAfter paired, you\'re ready. Have fun!";
+    "\r\n\r\nOnce paired, you\'re ready. Have fun!";
             this.labelBluetooth2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // linkBluetoothSettings

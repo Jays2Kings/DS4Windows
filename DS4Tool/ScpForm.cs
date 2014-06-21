@@ -17,7 +17,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 10.45;
+        double version = 10.55;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -88,6 +88,7 @@ namespace ScpServer
             ToolTip tt = new ToolTip();
             if (File.Exists(appdatapath + "\\Profiles.xml"))
                 tt.SetToolTip(linkUninstall, "If removing DS4Windows, You can delete the settings following the profile folder link");
+            tt.SetToolTip(cBSwipeProfiles, "2 finger swipe touchpad left or right to change profiles");
         }
 
         public static string GetTopWindowName()
@@ -216,6 +217,7 @@ namespace ScpServer
             if (btnStartStop.Enabled)
                 btnStartStop_Clicked();
             cBNotifications.Checked = Global.getNotifications();
+            cBSwipeProfiles.Checked = Global.getSwipeProfiles();
             int checkwhen = Global.getCheckWhen();
             cBUpdate.Checked = checkwhen > 0;
             if (checkwhen > 23)
@@ -256,26 +258,26 @@ namespace ScpServer
         {
             lBTest.Visible = true;
             lBTest.Text = Mapping.getByteMapping(DS4Controls.R1, rootHub.getDS4State(0)).ToString() + " " + rootHub.getDS4StateMapped(0).R2.ToString();
-            //lBTest.Text = rootHub.getDS4StateMapped(0).L2.ToString();
         }
         void Hotkeys(object sender, EventArgs e)
         {
-            for (int i = 0; i < 4; i++)
-            {
-                string slide = rootHub.TouchpadSlide(i);
-                if (slide == "left")
-                    if (cbs[i].SelectedIndex <= 0)
-                        cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
-                    else
-                        cbs[i].SelectedIndex--;
-                else if (slide == "right")
-                    if (cbs[i].SelectedIndex == cbs[i].Items.Count - 2)
-                        cbs[i].SelectedIndex = 0;
-                    else
-                        cbs[i].SelectedIndex++;
-                if (slide.Contains("t"))
-                    ShowNotification(this, "Controller " + (i + 1) + " is now using Profile \"" + cbs[i].Text + "\"");
-            }
+            if (Global.getSwipeProfiles())
+                for (int i = 0; i < 4; i++)
+                {
+                    string slide = rootHub.TouchpadSlide(i);
+                    if (slide == "left")
+                        if (cbs[i].SelectedIndex <= 0)
+                            cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
+                        else
+                            cbs[i].SelectedIndex--;
+                    else if (slide == "right")
+                        if (cbs[i].SelectedIndex == cbs[i].Items.Count - 2)
+                            cbs[i].SelectedIndex = 0;
+                        else
+                            cbs[i].SelectedIndex++;
+                    if (slide.Contains("t"))
+                        ShowNotification(this, "Controller " + (i + 1) + " is now using Profile \"" + cbs[i].Text + "\"");
+                }
 
             //Check for process for auto profiles
             if (tempprofile == "null")
@@ -299,7 +301,7 @@ namespace ScpServer
                         Global.LoadProfile(j);
                 }
             }
-            if (Process.GetProcessesByName("DS4Tool").Length + Process.GetProcessesByName("DS4Windows").Length > 1) 
+            if (Process.GetProcessesByName("DS4Tool").Length + Process.GetProcessesByName("DS4Windows").Length > 1)
             {//The second process closes and this one comes in focus
                 Show();
                 WindowState = FormWindowState.Normal;
@@ -582,18 +584,18 @@ namespace ScpServer
         }
         protected void btnStartStop_Clicked()
         {
-            if (btnStartStop.Text == "Start")
+            if (btnStartStop.Text == Properties.Resources.StartText)
             {
                 rootHub.Start();
                 hotkeystimer.Start();
-                btnStartStop.Text = "Stop";
+                btnStartStop.Text = Properties.Resources.StopText;
             }
 
-            else if (btnStartStop.Text == "Stop")
+            else if (btnStartStop.Text == Properties.Resources.StopText)
             {                
                 rootHub.Stop();
                 hotkeystimer.Stop();
-                btnStartStop.Text = "Start";
+                btnStartStop.Text = Properties.Resources.StartText;
             }
         }
         protected void btnClear_Click(object sender, EventArgs e)
@@ -658,7 +660,7 @@ namespace ScpServer
                 }
                 else
                 {
-                    Pads[Index].Text = "Disconnected";
+                    Pads[Index].Text = Properties.Resources.Disconnected;
                     Enable_Controls(Index, false);
                     shortcuts[Index].Enabled = false;
                 }
@@ -811,60 +813,59 @@ namespace ScpServer
                     }
             }
         }
-        
+
         private void ShowOptions(int devID, string profile)
         {
-            if (opt == null)
+            if (opt != null)
+                opt.Close();
+            Show();
+            WindowState = FormWindowState.Normal;
+            toolStrip1.Enabled = false;
+            tSOptions.Visible = true;
+            toolStrip1.Visible = false;
+            if (profile != "")
+                tSTBProfile.Text = profile;
+            else
+                tSTBProfile.Text = "<type profile name here>";
+            opt = new Options(rootHub, devID, profile, this);
+            opt.Text = "Options for Controller " + (devID + 1);
+            opt.Icon = this.Icon;
+            opt.TopLevel = false;
+            opt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            opt.Visible = true;
+            opt.Dock = DockStyle.Fill;
+            tabProfiles.Controls.Add(opt);
+            lBProfiles.SendToBack();
+            toolStrip1.SendToBack();
+            tSOptions.SendToBack();
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            opt.FormClosed += delegate
             {
-                this.Show();
-                WindowState = FormWindowState.Normal;
-                toolStrip1.Enabled = false;
-                tSOptions.Visible = true;
-                toolStrip1.Visible = false;
-                if (profile != "")
-                    tSTBProfile.Text = profile;
-                else
-                    tSTBProfile.Text = "<type profile name here>";
-                opt = new Options(rootHub, devID, profile, this);
-                opt.Text = "Options for Controller " + (devID + 1);
-                opt.Icon = this.Icon;
-                opt.TopLevel = false;
-                opt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                opt.Visible = true;
-                opt.Dock = DockStyle.Fill;
-                tabProfiles.Controls.Add(opt);
-                lBProfiles.SendToBack();
-                toolStrip1.SendToBack();
-                tSOptions.SendToBack();
-                FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-                opt.FormClosed += delegate 
-                { 
-                    opt = null;
-                    RefreshProfiles();
-                    FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
-                    this.Size = oldsize;
-                    oldsize = new System.Drawing.Size(0, 0);
-                    tSOptions.Visible = false;
-                    toolStrip1.Visible = true;
-                    toolStrip1.Enabled = true;
-                };
-                oldsize = this.Size;
-                if (dpix == 120)
-                {
-                    if (this.Size.Height < 518)
-                        this.Size = new System.Drawing.Size(this.Size.Width, 518);
-                    if (this.Size.Width < 1125)
-                        this.Size = new System.Drawing.Size(1125, this.Size.Height);
-                }
-                else
-                {
-                    if (this.Size.Height < 418)
-                        this.Size = new System.Drawing.Size(this.Size.Width, 418);
-                    if (this.Size.Width < 910)
-                        this.Size = new System.Drawing.Size(910, this.Size.Height);
-                }
-                tabMain.SelectedIndex = 1;
+                opt = null;
+                RefreshProfiles();
+                FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+                this.Size = oldsize;
+                oldsize = new System.Drawing.Size(0, 0);
+                tSOptions.Visible = false;
+                toolStrip1.Visible = true;
+                toolStrip1.Enabled = true;
+            };
+            oldsize = this.Size;
+            if (dpix == 120)
+            {
+                if (this.Size.Height < 518)
+                    this.Size = new System.Drawing.Size(this.Size.Width, 518);
+                if (this.Size.Width < 1125)
+                    this.Size = new System.Drawing.Size(1125, this.Size.Height);
             }
+            else
+            {
+                if (this.Size.Height < 418)
+                    this.Size = new System.Drawing.Size(this.Size.Width, 418);
+                if (this.Size.Width < 910)
+                    this.Size = new System.Drawing.Size(910, this.Size.Height);
+            }
+            tabMain.SelectedIndex = 1;
         }
 
         private void editButtons_Click(object sender, EventArgs e)
@@ -1031,6 +1032,11 @@ namespace ScpServer
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbLastMessage.Visible = tabMain.SelectedIndex != 2;
+            if (opt != null)
+                if (tabMain.SelectedIndex != 1)
+                    opt.inputtimer.Stop();
+                else
+                    opt.inputtimer.Start();
         }
 
         private void lBProfiles_MouseDown(object sender, MouseEventArgs e)
@@ -1202,6 +1208,11 @@ namespace ScpServer
             wct.DownloadFileCompleted += wct_DownloadFileCompleted;
         }
 
+        private void cBDisconnectBT_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setDCBTatStop(cBDisconnectBT.Checked);
+        }
+
         void wct_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             Global.setLastChecked(DateTime.Now);
@@ -1300,6 +1311,11 @@ namespace ScpServer
                 Global.Save();
                 rootHub.Stop();
             }
+        }
+
+        private void cBSwipeProfiles_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setSwipeProfiles(cBSwipeProfiles.Checked);
         }
     }
 

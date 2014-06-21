@@ -200,6 +200,7 @@ namespace DS4Control
                         {
                             oldnow = DateTime.UtcNow;
                             InputMethods.performKeyPress(kvp.Key);
+                            Console.WriteLine(((System.Windows.Forms.Keys)kvp.Key).ToString());
                             pressagain = false;
                             keyshelddown = kvp.Key;
                         }
@@ -240,7 +241,7 @@ namespace DS4Control
                         if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
                         {
                             InputMethods.performSCKeyRelease(kvp.Key);
-                            InputMethods.performKeyRelease(kvp.Key);
+                            //InputMethods.performKeyRelease(kvp.Key);
                             pressagain = false;
                         }
                         else

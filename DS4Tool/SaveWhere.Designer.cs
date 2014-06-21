@@ -45,7 +45,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(177, 39);
             this.label4.TabIndex = 9;
-            this.label4.Text = "For those who prefer a regular install\r\nSettings saved at \r\n%appdata%/ds4tool";
+            this.label4.Text = "For those who prefer a regular install\r\nSettings saved at\r\n%appdata%/ds4tool";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label3
@@ -56,8 +56,8 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(195, 39);
             this.label3.TabIndex = 10;
-            this.label3.Text = "For those who prefer a portable program\r\nNote: this option does not\r\n work if in " +
-    "an admin folder w/o UAC";
+            this.label3.Text = "For those who prefer a portable program\r\nNote: this option does not\r\nwork if in a" +
+    "n admin folder w/o UAC";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // bnAppdataFolder

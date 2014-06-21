@@ -22,7 +22,7 @@ namespace ScpServer.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ScpServer.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScpServer.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace ScpServer.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap _360_fades {
+        internal static System.Drawing.Bitmap _360_fades {
             get {
                 object obj = ResourceManager.GetObject("_360_fades", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap A {
+        internal static System.Drawing.Bitmap A {
             get {
                 object obj = ResourceManager.GetObject("A", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap B {
+        internal static System.Drawing.Bitmap B {
             get {
                 object obj = ResourceManager.GetObject("B", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap BACK {
+        internal static System.Drawing.Bitmap BACK {
             get {
                 object obj = ResourceManager.GetObject("BACK", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap BT {
+        internal static System.Drawing.Bitmap BT {
             get {
                 object obj = ResourceManager.GetObject("BT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap copy {
+        internal static System.Drawing.Bitmap copy {
             get {
                 object obj = ResourceManager.GetObject("copy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap delete {
+        internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -131,9 +131,18 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disconnected.
+        /// </summary>
+        internal static string Disconnected {
+            get {
+                return ResourceManager.GetString("Disconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap DOWN {
+        internal static System.Drawing.Bitmap DOWN {
             get {
                 object obj = ResourceManager.GetObject("DOWN", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +152,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        public static System.Drawing.Icon DS4 {
+        internal static System.Drawing.Icon DS4 {
             get {
                 object obj = ResourceManager.GetObject("DS4", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -153,7 +162,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap DS4_Controller {
+        internal static System.Drawing.Bitmap DS4_Controller {
             get {
                 object obj = ResourceManager.GetObject("DS4_Controller", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +172,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap edit {
+        internal static System.Drawing.Bitmap edit {
             get {
                 object obj = ResourceManager.GetObject("edit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +182,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap export {
+        internal static System.Drawing.Bitmap export {
             get {
                 object obj = ResourceManager.GetObject("export", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +192,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap import {
+        internal static System.Drawing.Bitmap import {
             get {
                 object obj = ResourceManager.GetObject("import", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +202,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap LB {
+        internal static System.Drawing.Bitmap LB {
             get {
                 object obj = ResourceManager.GetObject("LB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +212,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap LEFT {
+        internal static System.Drawing.Bitmap LEFT {
             get {
                 object obj = ResourceManager.GetObject("LEFT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +222,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap LeftTouch {
+        internal static System.Drawing.Bitmap LeftTouch {
             get {
                 object obj = ResourceManager.GetObject("LeftTouch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +232,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap LS {
+        internal static System.Drawing.Bitmap LS {
             get {
                 object obj = ResourceManager.GetObject("LS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +242,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap LSD {
+        internal static System.Drawing.Bitmap LSD {
             get {
                 object obj = ResourceManager.GetObject("LSD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,7 +252,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap LSL {
+        internal static System.Drawing.Bitmap LSL {
             get {
                 object obj = ResourceManager.GetObject("LSL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -253,7 +262,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap LSR {
+        internal static System.Drawing.Bitmap LSR {
             get {
                 object obj = ResourceManager.GetObject("LSR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -263,7 +272,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap LSU {
+        internal static System.Drawing.Bitmap LSU {
             get {
                 object obj = ResourceManager.GetObject("LSU", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -273,7 +282,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap LT {
+        internal static System.Drawing.Bitmap LT {
             get {
                 object obj = ResourceManager.GetObject("LT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -283,7 +292,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap mouse {
+        internal static System.Drawing.Bitmap mouse {
             get {
                 object obj = ResourceManager.GetObject("mouse", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -293,7 +302,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap MultiTouch {
+        internal static System.Drawing.Bitmap MultiTouch {
             get {
                 object obj = ResourceManager.GetObject("MultiTouch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -303,7 +312,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap newprofile {
+        internal static System.Drawing.Bitmap newprofile {
             get {
                 object obj = ResourceManager.GetObject("newprofile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -313,7 +322,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap none {
+        internal static System.Drawing.Bitmap none {
             get {
                 object obj = ResourceManager.GetObject("none", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -323,7 +332,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Pairmode {
+        internal static System.Drawing.Bitmap Pairmode {
             get {
                 object obj = ResourceManager.GetObject("Pairmode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -333,7 +342,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap rainbow {
+        internal static System.Drawing.Bitmap rainbow {
             get {
                 object obj = ResourceManager.GetObject("rainbow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -343,7 +352,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap rainbowC {
+        internal static System.Drawing.Bitmap rainbowC {
             get {
                 object obj = ResourceManager.GetObject("rainbowC", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -353,7 +362,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RB {
+        internal static System.Drawing.Bitmap RB {
             get {
                 object obj = ResourceManager.GetObject("RB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -363,7 +372,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RIGHT {
+        internal static System.Drawing.Bitmap RIGHT {
             get {
                 object obj = ResourceManager.GetObject("RIGHT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -373,7 +382,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RightTouch {
+        internal static System.Drawing.Bitmap RightTouch {
             get {
                 object obj = ResourceManager.GetObject("RightTouch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -383,7 +392,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RS {
+        internal static System.Drawing.Bitmap RS {
             get {
                 object obj = ResourceManager.GetObject("RS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -393,7 +402,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RSD {
+        internal static System.Drawing.Bitmap RSD {
             get {
                 object obj = ResourceManager.GetObject("RSD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -403,7 +412,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RSL {
+        internal static System.Drawing.Bitmap RSL {
             get {
                 object obj = ResourceManager.GetObject("RSL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -413,7 +422,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RSR {
+        internal static System.Drawing.Bitmap RSR {
             get {
                 object obj = ResourceManager.GetObject("RSR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -423,7 +432,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RSU {
+        internal static System.Drawing.Bitmap RSU {
             get {
                 object obj = ResourceManager.GetObject("RSU", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -433,7 +442,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap RT {
+        internal static System.Drawing.Bitmap RT {
             get {
                 object obj = ResourceManager.GetObject("RT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -443,7 +452,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap saveprofile {
+        internal static System.Drawing.Bitmap saveprofile {
             get {
                 object obj = ResourceManager.GetObject("saveprofile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -453,7 +462,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap START {
+        internal static System.Drawing.Bitmap START {
             get {
                 object obj = ResourceManager.GetObject("START", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -461,9 +470,18 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string StartText {
+            get {
+                return ResourceManager.GetString("StartText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap sticks {
+        internal static System.Drawing.Bitmap sticks {
             get {
                 object obj = ResourceManager.GetObject("sticks", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -471,9 +489,18 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stop.
+        /// </summary>
+        internal static string StopText {
+            get {
+                return ResourceManager.GetString("StopText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap UP {
+        internal static System.Drawing.Bitmap UP {
             get {
                 object obj = ResourceManager.GetObject("UP", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -483,7 +510,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap UpperTouch {
+        internal static System.Drawing.Bitmap UpperTouch {
             get {
                 object obj = ResourceManager.GetObject("UpperTouch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -493,7 +520,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap USB {
+        internal static System.Drawing.Bitmap USB {
             get {
                 object obj = ResourceManager.GetObject("USB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -503,7 +530,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap X {
+        internal static System.Drawing.Bitmap X {
             get {
                 object obj = ResourceManager.GetObject("X", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -513,7 +540,7 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Y {
+        internal static System.Drawing.Bitmap Y {
             get {
                 object obj = ResourceManager.GetObject("Y", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

@@ -197,7 +197,7 @@
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(313, 13);
             this.label29.TabIndex = 14;
-            this.label29.Text = "Keys are interperted differently. May be needed for certain games";
+            this.label29.Text = "Keys are interpreted differently. May be needed for certain games";
             // 
             // label28
             // 
@@ -360,9 +360,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(193, 127);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(231, 13);
+            this.label5.Size = new System.Drawing.Size(237, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Turn off touchpad movment (clicking still works)";
+            this.label5.Text = "Turn off touchpad movement (clicking still works)";
             // 
             // label17
             // 
@@ -483,7 +483,7 @@
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(324, 26);
             this.label31.TabIndex = 14;
-            this.label31.Text = "Hides the DS4\'s regular input (Dinput) from other progrmas\r\ncheck if you are gett" +
+            this.label31.Text = "Hides the DS4\'s regular input (Dinput) from other programs\r\ncheck if you are gett" +
     "ing double input in games or R2 pauses games";
             // 
             // lLChangelog

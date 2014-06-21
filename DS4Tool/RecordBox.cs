@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,6 +22,7 @@ namespace ScpServer
         {
             kbm = op;
             InitializeComponent();
+            if (op != null)
             if (kbm.macrorepeat)
                 cBStyle.SelectedIndex = 1;
             else
@@ -61,20 +63,24 @@ namespace ScpServer
             pnlMouseButtons.Visible = !on;
         }
 
+        [DllImport("user32.dll")]
+        private static extern short GetAsyncKeyState(Keys key);
+
         private void anyKeyDown(object sender, KeyEventArgs e)
         {
             if (btnRecord.Text == "Stop")
             {
+                int value = WhichKey(e, 0);
                 int count = 0;
                 foreach (int i in macros)
                 {
-                    if (i == e.KeyValue)
+                    if (i == value)
                         count++;
                 }
                 if (macros.Count == 0)
                 {
-                    macros.Add(e.KeyValue);
-                    lVMacros.Items.Add(e.KeyCode.ToString(), 0);
+                    macros.Add(value);
+                    lVMacros.Items.Add(((Keys)value).ToString(), 0);
                     if (cBRecordDelays.Checked)
                     {
                         sw.Reset();
@@ -90,35 +96,86 @@ namespace ScpServer
                         sw.Reset();
                         sw.Start();
                     }
-                    macros.Add(e.KeyValue);
-                    lVMacros.Items.Add(e.KeyCode.ToString(), 0);
+                    macros.Add(value);
+                    lVMacros.Items.Add(((Keys)value).ToString(), 0);
                 }
                 lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
             }
-            else
+            else if (e.KeyValue == 27)
+                Close();
+        }
+
+        private int WhichKey(KeyEventArgs e, int keystate)
+        {
+            if (keystate == 1)
             {
-                if (e.KeyValue == 27)
-                    Close();
+                if (e.KeyCode == Keys.ShiftKey)
+                {
+                    for (int i = macros.Count - 1; i >= 0; i--)
+                        if (macros[i] == 160)
+                            return 160;
+                        else if (macros[i] == 161)
+                            return 161;
+                }
+                else if (e.KeyCode == Keys.ControlKey)
+                {
+                    for (int i = macros.Count - 1; i >= 0; i--)
+                        if (macros[i] == 162)
+                            return 162;
+                        else if (macros[i] == 163)
+                            return 163;
+                }
+                else if (e.KeyCode == Keys.Menu)
+                {
+                    for (int i = macros.Count - 1; i >= 0; i--)
+                        if (macros[i] == 164)
+                            return 164;
+                        else if (macros[i] == 165)
+                            return 165;
+                }
+                return e.KeyValue;
             }
+            else
+                if (e.KeyCode == Keys.ShiftKey)
+                {
+                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.LShiftKey)))
+                        return 160;
+                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.RShiftKey)))
+                        return 161;
+                }
+                else if (e.KeyCode == Keys.ControlKey)
+                {
+                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.LControlKey)))
+                        return 162;
+                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.RControlKey)))
+                        return 163;
+                }
+                else if (e.KeyCode == Keys.Menu)
+                {
+                    e.Handled = true;
+                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.LMenu)))
+                        return 164;
+                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.RMenu)))
+                        return 165;
+
+                }
+            return e.KeyValue;
         }
 
         private void anyKeyUp(object sender, KeyEventArgs e)
         {
-            if (btnRecord.Text == "Stop" && macros.Count != 0 && !e.KeyCode.ToString().Contains("Media"))
+            if (btnRecord.Text == "Stop" && macros.Count != 0)
             {
+                int value = WhichKey(e, 1);
                 if (cBRecordDelays.Checked)
                 {
                     macros.Add((int)sw.ElapsedMilliseconds + 300);
                     lVMacros.Items.Add("Wait " + sw.ElapsedMilliseconds + "ms", 2);
-                    macros.Add(e.KeyValue);
                     sw.Reset();
                     sw.Start();
                 }
-                else
-                {
-                    macros.Add(e.KeyValue);
-                }
-                lVMacros.Items.Add(e.KeyCode.ToString(), 1);
+                macros.Add(value);
+                lVMacros.Items.Add(((Keys)value).ToString(), 1);
                 lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
             }
         }
@@ -248,11 +305,19 @@ namespace ScpServer
                 case Keys.Left:
                 case Keys.Up:
                 case Keys.Down:
+                case Keys.Tab:
+                case Keys.MediaPlayPause:
+                case Keys.MediaPreviousTrack:
+                case Keys.MediaNextTrack:
                     return true;
                 case Keys.Shift | Keys.Right:
                 case Keys.Shift | Keys.Left:
                 case Keys.Shift | Keys.Up:
                 case Keys.Shift | Keys.Down:
+                case Keys.Shift | Keys.Tab:
+                case Keys.Shift | Keys.MediaPlayPause:
+                case Keys.Shift | Keys.MediaPreviousTrack:
+                case Keys.Shift | Keys.MediaNextTrack:
                     return true;
             }
             return base.IsInputKey(keyData);
@@ -266,6 +331,10 @@ namespace ScpServer
                 case Keys.Right:
                 case Keys.Up:
                 case Keys.Down:
+                case Keys.Tab:
+                case Keys.MediaPlayPause:
+                case Keys.MediaPreviousTrack:
+                case Keys.MediaNextTrack:
                     if (e.Shift)
                     {
 

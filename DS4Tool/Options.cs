@@ -14,7 +14,7 @@ namespace ScpServer
         public int device;
         public string filename;
         Byte[] oldLedColor, oldLowLedColor, oldChargingColor;
-        Timer inputtimer = new Timer(), sixaxisTimer = new Timer();
+        public Timer inputtimer = new Timer(), sixaxisTimer = new Timer();
         public List<Button> buttons = new List<Button>();
         private Button lastSelected;
         private int alphacolor;
@@ -45,11 +45,11 @@ namespace ScpServer
                 greenBar.Value = color.green;
                 blueBar.Value = color.blue;
                 
-                batteryLed.Checked = Global.getLedAsBatteryIndicator(device);
+                cBLightbyBattery.Checked = Global.getLedAsBatteryIndicator(device);
                 nUDflashLED.Value = Global.getFlashAt(device);
-                lowBatteryPanel.Visible = batteryLed.Checked;
-                lbFull.Text = (batteryLed.Checked ? "Full:" : "Color:");
-                FullPanel.Location = (batteryLed.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
+                lowBatteryPanel.Visible = cBLightbyBattery.Checked;
+                lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
+                FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
 
                 DS4Color lowColor = Global.loadLowColor(device);
                 lowRedBar.Value = lowColor.red;
@@ -68,9 +68,9 @@ namespace ScpServer
                 cBDoubleTap.Checked = Global.getDoubleTap(device);
                 nUDL2.Value = (decimal)Global.getLeftTriggerMiddle(device)/255;
                 nUDR2.Value = (decimal)Global.getRightTriggerMiddle(device)/255;
-                touchpadJitterCompensation.Checked = Global.getTouchpadJitterCompensation(device);
+                cBTouchpadJitterCompensation.Checked = Global.getTouchpadJitterCompensation(device);
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
-                flushHIDQueue.Checked = Global.getFlushHIDQueue(device);
+                cBFlushHIDQueue.Checked = Global.getFlushHIDQueue(device);
                 nUDIdleDisconnect.Value = Math.Round((decimal)(Global.getIdleDisconnectTimeout(device) / 60d), 1);
                 cBIdleDisconnect.Checked = Global.getIdleDisconnectTimeout(device) > 0;
                 numUDMouseSens.Value = Global.getButtonMouseSensitivity(device);
@@ -129,9 +129,10 @@ namespace ScpServer
             tp.SetToolTip(cBlowerRCOn, "Best used with right side as a mouse function");
             tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with single taps");
             tp.SetToolTip(lBControlTip, "You can also use your controller to change controls");
-            tp.SetToolTip(touchpadJitterCompensation, "Use Sixaxis to help calulate touchpad movement");
+            tp.SetToolTip(cBTouchpadJitterCompensation, "Use Sixaxis to help calculate touchpad movement");
             tp.SetToolTip(pBRainbow, "Always on Rainbow Mode");
-            tp.SetToolTip(flushHIDQueue, "Flush HID Queue after each reading");
+            tp.SetToolTip(cBFlushHIDQueue, "Flush HID Queue after each reading");
+            tp.SetToolTip(cBLightbyBattery, "Also dim light by idle timeout if on");
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
@@ -239,16 +240,16 @@ namespace ScpServer
 
         public void Set()
         {
-            lowBatteryPanel.Visible = batteryLed.Checked;
-            lbFull.Text = (batteryLed.Checked ? "Full:" : "Color:");
-            FullPanel.Location = (batteryLed.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
+            lowBatteryPanel.Visible = cBLightbyBattery.Checked;
+            lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
+            FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
             Global.setLeftTriggerMiddle(device, (byte)Math.Round((nUDL2.Value * 255), 0));
             Global.setRightTriggerMiddle(device, (byte)Math.Round((nUDR2.Value * 255), 0));
             Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
             Global.setTouchSensitivity(device, (byte)nUDTouch.Value);
-            Global.setTouchpadJitterCompensation(device, touchpadJitterCompensation.Checked);
+            Global.setTouchpadJitterCompensation(device, cBTouchpadJitterCompensation.Checked);
             Global.setLowerRCOn(device, cBlowerRCOn.Checked);
             Global.setScrollSensitivity(device, (byte)nUDScroll.Value);
             Global.setDoubleTap(device, cBDoubleTap.Checked);
@@ -566,10 +567,10 @@ namespace ScpServer
         }
         private void ledAsBatteryIndicator_CheckedChanged(object sender, EventArgs e)
         {
-            Global.setLedAsBatteryIndicator(device, batteryLed.Checked);
-            lowBatteryPanel.Visible = batteryLed.Checked;
-            FullPanel.Location = (batteryLed.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
-            lbFull.Text = (batteryLed.Checked ? "Full:" : "Color:");
+            Global.setLedAsBatteryIndicator(device, cBLightbyBattery.Checked);
+            lowBatteryPanel.Visible = cBLightbyBattery.Checked;
+            FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
+            lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
         }
 
         private void lowerRCOffCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -579,12 +580,12 @@ namespace ScpServer
 
         private void touchpadJitterCompensation_CheckedChanged(object sender, EventArgs e)
         {
-            Global.setTouchpadJitterCompensation(device, touchpadJitterCompensation.Checked);
+            Global.setTouchpadJitterCompensation(device, cBTouchpadJitterCompensation.Checked);
         }
         
         private void flushHIDQueue_CheckedChanged(object sender, EventArgs e)
         {
-            Global.setFlushHIDQueue(device, flushHIDQueue.Checked);
+            Global.setFlushHIDQueue(device, cBFlushHIDQueue.Checked);
         }
 
         private void nUDIdleDisconnect_ValueChanged(object sender, EventArgs e)
@@ -785,14 +786,14 @@ namespace ScpServer
             {
                 //pBRainbow.Location = new Point(216 - 78, pBRainbow.Location.Y);
                 pBController.BackgroundImage = Properties.Resources.rainbowC;
-                batteryLed.Text = "Dim by Battery %";
+                cBLightbyBattery.Text = "Dim by Battery %";
             }
             else
             {
-                lowBatteryPanel.Enabled = batteryLed.Checked;
+                lowBatteryPanel.Enabled = cBLightbyBattery.Checked;
                 //pBRainbow.Location = new Point(216, pBRainbow.Location.Y);
                 pBController.BackgroundImage = null;
-                batteryLed.Text = "Color by Battery %";
+                cBLightbyBattery.Text = "Color by Battery %";
             }
             lBspc.Enabled = on;
             lowBatteryPanel.Enabled = !on;

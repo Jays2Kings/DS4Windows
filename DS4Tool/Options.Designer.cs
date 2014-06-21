@@ -73,7 +73,7 @@
             this.blueBar = new System.Windows.Forms.TrackBar();
             this.greenBar = new System.Windows.Forms.TrackBar();
             this.redBar = new System.Windows.Forms.TrackBar();
-            this.batteryLed = new System.Windows.Forms.CheckBox();
+            this.cBLightbyBattery = new System.Windows.Forms.CheckBox();
             this.lBBlue = new System.Windows.Forms.Label();
             this.lBGreen = new System.Windows.Forms.Label();
             this.lBspc = new System.Windows.Forms.Label();
@@ -87,14 +87,14 @@
             this.nUDTouch = new System.Windows.Forms.NumericUpDown();
             this.lBButtonMouseSens = new System.Windows.Forms.Label();
             this.cBlowerRCOn = new System.Windows.Forms.CheckBox();
-            this.touchpadJitterCompensation = new System.Windows.Forms.CheckBox();
+            this.cBTouchpadJitterCompensation = new System.Windows.Forms.CheckBox();
             this.lBL2 = new System.Windows.Forms.Label();
             this.lBR2 = new System.Windows.Forms.Label();
             this.lBIdleMinutes = new System.Windows.Forms.Label();
             this.nUDIdleDisconnect = new System.Windows.Forms.NumericUpDown();
             this.nUDR2 = new System.Windows.Forms.NumericUpDown();
             this.tBsixaxisAccelZ = new System.Windows.Forms.TrackBar();
-            this.flushHIDQueue = new System.Windows.Forms.CheckBox();
+            this.cBFlushHIDQueue = new System.Windows.Forms.CheckBox();
             this.tBsixaxisAccelY = new System.Windows.Forms.TrackBar();
             this.leftMotorLabel = new System.Windows.Forms.Label();
             this.tBsixaxisAccelX = new System.Windows.Forms.TrackBar();
@@ -133,17 +133,14 @@
             this.gBOther = new System.Windows.Forms.GroupBox();
             this.nUDSixaxis = new System.Windows.Forms.NumericUpDown();
             this.cBControllerInput = new System.Windows.Forms.CheckBox();
-            this.nUDHideMouse = new System.Windows.Forms.NumericUpDown();
-            this.cBHideCursor = new System.Windows.Forms.CheckBox();
             this.cBIdleDisconnect = new System.Windows.Forms.CheckBox();
-            this.lBMouseMins = new System.Windows.Forms.Label();
             this.gBLightbar = new System.Windows.Forms.GroupBox();
             this.btnChargingColor = new System.Windows.Forms.Button();
             this.rBColor = new System.Windows.Forms.RadioButton();
             this.rBFade = new System.Windows.Forms.RadioButton();
             this.rBNormal = new System.Windows.Forms.RadioButton();
             this.rBRainbow = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbWhileCharging = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lBFlashAt = new System.Windows.Forms.Label();
             this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
@@ -187,7 +184,6 @@
             this.gBTouchpad.SuspendLayout();
             this.gBOther.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHideMouse)).BeginInit();
             this.gBLightbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.gBRumble.SuspendLayout();
@@ -1028,16 +1024,16 @@
             this.redBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
             this.redBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
-            // batteryLed
+            // cBLightbyBattery
             // 
-            this.batteryLed.AutoSize = true;
-            this.batteryLed.Location = new System.Drawing.Point(316, 17);
-            this.batteryLed.Name = "batteryLed";
-            this.batteryLed.Size = new System.Drawing.Size(111, 17);
-            this.batteryLed.TabIndex = 162;
-            this.batteryLed.Text = "Color by Battery %";
-            this.batteryLed.UseVisualStyleBackColor = true;
-            this.batteryLed.CheckedChanged += new System.EventHandler(this.ledAsBatteryIndicator_CheckedChanged);
+            this.cBLightbyBattery.AutoSize = true;
+            this.cBLightbyBattery.Location = new System.Drawing.Point(316, 17);
+            this.cBLightbyBattery.Name = "cBLightbyBattery";
+            this.cBLightbyBattery.Size = new System.Drawing.Size(111, 17);
+            this.cBLightbyBattery.TabIndex = 162;
+            this.cBLightbyBattery.Text = "Color by Battery %";
+            this.cBLightbyBattery.UseVisualStyleBackColor = true;
+            this.cBLightbyBattery.CheckedChanged += new System.EventHandler(this.ledAsBatteryIndicator_CheckedChanged);
             // 
             // lBBlue
             // 
@@ -1212,19 +1208,19 @@
             this.cBlowerRCOn.UseVisualStyleBackColor = true;
             this.cBlowerRCOn.CheckedChanged += new System.EventHandler(this.lowerRCOffCheckBox_CheckedChanged);
             // 
-            // touchpadJitterCompensation
+            // cBTouchpadJitterCompensation
             // 
-            this.touchpadJitterCompensation.AutoSize = true;
-            this.touchpadJitterCompensation.Checked = true;
-            this.touchpadJitterCompensation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.touchpadJitterCompensation.Location = new System.Drawing.Point(42, 17);
-            this.touchpadJitterCompensation.Name = "touchpadJitterCompensation";
-            this.touchpadJitterCompensation.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.touchpadJitterCompensation.Size = new System.Drawing.Size(118, 17);
-            this.touchpadJitterCompensation.TabIndex = 224;
-            this.touchpadJitterCompensation.Text = "Jitter Compensation";
-            this.touchpadJitterCompensation.UseVisualStyleBackColor = true;
-            this.touchpadJitterCompensation.CheckedChanged += new System.EventHandler(this.touchpadJitterCompensation_CheckedChanged);
+            this.cBTouchpadJitterCompensation.AutoSize = true;
+            this.cBTouchpadJitterCompensation.Checked = true;
+            this.cBTouchpadJitterCompensation.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBTouchpadJitterCompensation.Location = new System.Drawing.Point(42, 17);
+            this.cBTouchpadJitterCompensation.Name = "cBTouchpadJitterCompensation";
+            this.cBTouchpadJitterCompensation.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cBTouchpadJitterCompensation.Size = new System.Drawing.Size(118, 17);
+            this.cBTouchpadJitterCompensation.TabIndex = 224;
+            this.cBTouchpadJitterCompensation.Text = "Jitter Compensation";
+            this.cBTouchpadJitterCompensation.UseVisualStyleBackColor = true;
+            this.cBTouchpadJitterCompensation.CheckedChanged += new System.EventHandler(this.touchpadJitterCompensation_CheckedChanged);
             // 
             // lBL2
             // 
@@ -1299,18 +1295,18 @@
             this.tBsixaxisAccelZ.TabIndex = 217;
             this.tBsixaxisAccelZ.TickFrequency = 16384;
             // 
-            // flushHIDQueue
+            // cBFlushHIDQueue
             // 
-            this.flushHIDQueue.AccessibleName = "flushHIDQueue";
-            this.flushHIDQueue.AutoSize = true;
-            this.flushHIDQueue.Location = new System.Drawing.Point(306, 45);
-            this.flushHIDQueue.Name = "flushHIDQueue";
-            this.flushHIDQueue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flushHIDQueue.Size = new System.Drawing.Size(73, 17);
-            this.flushHIDQueue.TabIndex = 198;
-            this.flushHIDQueue.Text = "Flush HID\r\n";
-            this.flushHIDQueue.UseVisualStyleBackColor = true;
-            this.flushHIDQueue.CheckedChanged += new System.EventHandler(this.flushHIDQueue_CheckedChanged);
+            this.cBFlushHIDQueue.AccessibleName = "flushHIDQueue";
+            this.cBFlushHIDQueue.AutoSize = true;
+            this.cBFlushHIDQueue.Location = new System.Drawing.Point(306, 48);
+            this.cBFlushHIDQueue.Name = "cBFlushHIDQueue";
+            this.cBFlushHIDQueue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cBFlushHIDQueue.Size = new System.Drawing.Size(73, 17);
+            this.cBFlushHIDQueue.TabIndex = 198;
+            this.cBFlushHIDQueue.Text = "Flush HID\r\n";
+            this.cBFlushHIDQueue.UseVisualStyleBackColor = true;
+            this.cBFlushHIDQueue.CheckedChanged += new System.EventHandler(this.flushHIDQueue_CheckedChanged);
             // 
             // tBsixaxisAccelY
             // 
@@ -1745,7 +1741,7 @@
             // 
             // gBTouchpad
             // 
-            this.gBTouchpad.Controls.Add(this.touchpadJitterCompensation);
+            this.gBTouchpad.Controls.Add(this.cBTouchpadJitterCompensation);
             this.gBTouchpad.Controls.Add(this.cBDoubleTap);
             this.gBTouchpad.Controls.Add(this.cBlowerRCOn);
             this.gBTouchpad.Controls.Add(this.cBSlide);
@@ -1765,14 +1761,11 @@
             // 
             this.gBOther.Controls.Add(this.nUDSixaxis);
             this.gBOther.Controls.Add(this.cBControllerInput);
-            this.gBOther.Controls.Add(this.nUDHideMouse);
             this.gBOther.Controls.Add(this.nUDIdleDisconnect);
-            this.gBOther.Controls.Add(this.cBHideCursor);
             this.gBOther.Controls.Add(this.cBIdleDisconnect);
             this.gBOther.Controls.Add(this.lBButtonMouseSens);
             this.gBOther.Controls.Add(this.numUDMouseSens);
-            this.gBOther.Controls.Add(this.lBMouseMins);
-            this.gBOther.Controls.Add(this.flushHIDQueue);
+            this.gBOther.Controls.Add(this.cBFlushHIDQueue);
             this.gBOther.Controls.Add(this.lBIdleMinutes);
             this.gBOther.Location = new System.Drawing.Point(7, 220);
             this.gBOther.Name = "gBOther";
@@ -1816,34 +1809,6 @@
             this.cBControllerInput.Text = "Use a DS4 to map";
             this.cBControllerInput.UseVisualStyleBackColor = true;
             // 
-            // nUDHideMouse
-            // 
-            this.nUDHideMouse.DecimalPlaces = 1;
-            this.nUDHideMouse.Location = new System.Drawing.Point(182, 14);
-            this.nUDHideMouse.Maximum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.nUDHideMouse.Name = "nUDHideMouse";
-            this.nUDHideMouse.Size = new System.Drawing.Size(50, 20);
-            this.nUDHideMouse.TabIndex = 201;
-            this.nUDHideMouse.Visible = false;
-            // 
-            // cBHideCursor
-            // 
-            this.cBHideCursor.AutoSize = true;
-            this.cBHideCursor.Checked = true;
-            this.cBHideCursor.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBHideCursor.Location = new System.Drawing.Point(167, 14);
-            this.cBHideCursor.Name = "cBHideCursor";
-            this.cBHideCursor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBHideCursor.Size = new System.Drawing.Size(105, 17);
-            this.cBHideCursor.TabIndex = 232;
-            this.cBHideCursor.Text = "Hide Cursor after";
-            this.cBHideCursor.UseVisualStyleBackColor = true;
-            this.cBHideCursor.Visible = false;
-            // 
             // cBIdleDisconnect
             // 
             this.cBIdleDisconnect.AutoSize = true;
@@ -1858,16 +1823,6 @@
             this.cBIdleDisconnect.UseVisualStyleBackColor = true;
             this.cBIdleDisconnect.CheckedChanged += new System.EventHandler(this.cBIdleDisconnect_CheckedChanged);
             // 
-            // lBMouseMins
-            // 
-            this.lBMouseMins.AutoSize = true;
-            this.lBMouseMins.Location = new System.Drawing.Point(205, 21);
-            this.lBMouseMins.Name = "lBMouseMins";
-            this.lBMouseMins.Size = new System.Drawing.Size(28, 13);
-            this.lBMouseMins.TabIndex = 200;
-            this.lBMouseMins.Text = "mins";
-            this.lBMouseMins.Visible = false;
-            // 
             // gBLightbar
             // 
             this.gBLightbar.Controls.Add(this.btnChargingColor);
@@ -1875,7 +1830,7 @@
             this.gBLightbar.Controls.Add(this.rBFade);
             this.gBLightbar.Controls.Add(this.rBNormal);
             this.gBLightbar.Controls.Add(this.rBRainbow);
-            this.gBLightbar.Controls.Add(this.label2);
+            this.gBLightbar.Controls.Add(this.lbWhileCharging);
             this.gBLightbar.Controls.Add(this.label1);
             this.gBLightbar.Controls.Add(this.lBFlashAt);
             this.gBLightbar.Controls.Add(this.pBRainbow);
@@ -1884,7 +1839,7 @@
             this.gBLightbar.Controls.Add(this.nUDRainbow);
             this.gBLightbar.Controls.Add(this.FullPanel);
             this.gBLightbar.Controls.Add(this.lBspc);
-            this.gBLightbar.Controls.Add(this.batteryLed);
+            this.gBLightbar.Controls.Add(this.cBLightbyBattery);
             this.gBLightbar.Location = new System.Drawing.Point(440, 76);
             this.gBLightbar.Name = "gBLightbar";
             this.gBLightbar.Size = new System.Drawing.Size(438, 129);
@@ -1951,14 +1906,14 @@
             this.rBRainbow.UseVisualStyleBackColor = true;
             this.rBRainbow.CheckedChanged += new System.EventHandler(this.rBRainbow_CheckedChanged);
             // 
-            // label2
+            // lbWhileCharging
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 108);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 13);
-            this.label2.TabIndex = 236;
-            this.label2.Text = "While Charging:";
+            this.lbWhileCharging.AutoSize = true;
+            this.lbWhileCharging.Location = new System.Drawing.Point(9, 108);
+            this.lbWhileCharging.Name = "lbWhileCharging";
+            this.lbWhileCharging.Size = new System.Drawing.Size(82, 13);
+            this.lbWhileCharging.TabIndex = 236;
+            this.lbWhileCharging.Text = "While Charging:";
             // 
             // label1
             // 
@@ -2112,7 +2067,6 @@
             this.gBOther.ResumeLayout(false);
             this.gBOther.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHideMouse)).EndInit();
             this.gBLightbar.ResumeLayout(false);
             this.gBLightbar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
@@ -2174,7 +2128,7 @@
         private System.Windows.Forms.TrackBar blueBar;
         private System.Windows.Forms.TrackBar greenBar;
         private System.Windows.Forms.TrackBar redBar;
-        private System.Windows.Forms.CheckBox batteryLed;
+        private System.Windows.Forms.CheckBox cBLightbyBattery;
         private System.Windows.Forms.Label lBBlue;
         private System.Windows.Forms.Label lBGreen;
         private System.Windows.Forms.Label lBspc;
@@ -2188,14 +2142,14 @@
         private System.Windows.Forms.NumericUpDown nUDTouch;
         private System.Windows.Forms.Label lBButtonMouseSens;
         private System.Windows.Forms.CheckBox cBlowerRCOn;
-        private System.Windows.Forms.CheckBox touchpadJitterCompensation;
+        private System.Windows.Forms.CheckBox cBTouchpadJitterCompensation;
         private System.Windows.Forms.Label lBL2;
         private System.Windows.Forms.Label lBR2;
         private System.Windows.Forms.Label lBIdleMinutes;
         private System.Windows.Forms.NumericUpDown nUDIdleDisconnect;
         private System.Windows.Forms.NumericUpDown nUDR2;
         private System.Windows.Forms.TrackBar tBsixaxisAccelZ;
-        private System.Windows.Forms.CheckBox flushHIDQueue;
+        private System.Windows.Forms.CheckBox cBFlushHIDQueue;
         private System.Windows.Forms.TrackBar tBsixaxisAccelY;
         private System.Windows.Forms.Label leftMotorLabel;
         private System.Windows.Forms.TrackBar tBsixaxisAccelX;
@@ -2245,13 +2199,10 @@
         private System.Windows.Forms.RadioButton rBFade;
         private System.Windows.Forms.RadioButton rBNormal;
         private System.Windows.Forms.RadioButton rBRainbow;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbWhileCharging;
         private System.Windows.Forms.Button btnChargingColor;
         private System.Windows.Forms.RadioButton rBColor;
         private System.Windows.Forms.CheckBox cBIdleDisconnect;
-        private System.Windows.Forms.NumericUpDown nUDHideMouse;
-        private System.Windows.Forms.CheckBox cBHideCursor;
-        private System.Windows.Forms.Label lBMouseMins;
     }
 }
 

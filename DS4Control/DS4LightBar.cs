@@ -75,7 +75,7 @@ namespace DS4Control
                     color = Global.loadColor(deviceNum);
                 }
 
-                if (Global.getIdleDisconnectTimeout(deviceNum) > 0 && (!device.Charging || device.Battery >= 100))
+                if (Global.getIdleDisconnectTimeout(deviceNum) > 0 && Global.getLedAsBatteryIndicator(deviceNum) && (!device.Charging || device.Battery >= 100))
                 {//Fade lightbar by idle time
                     TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
                     double botratio = timeratio.TotalMilliseconds;

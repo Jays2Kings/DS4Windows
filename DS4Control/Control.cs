@@ -127,10 +127,15 @@ namespace DS4Control
                 for (int i = 0; i < DS4Controllers.Length; i++)
                 {
                     if (DS4Controllers[i] != null)
-                    {                        
-                        DS4LightBar.defualtLight = true;
-                        DS4LightBar.updateLightBar(DS4Controllers[i], i);
-                        System.Threading.Thread.Sleep(50);
+                    {
+                        if (Global.getDCBTatStop() && !DS4Controllers[i].Charging && showlog)
+                            DS4Controllers[i].DisconnectBT();
+                        else
+                        {
+                            DS4LightBar.defualtLight = true;
+                            DS4LightBar.updateLightBar(DS4Controllers[i], i);
+                            System.Threading.Thread.Sleep(50);
+                        }
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
                         x360Bus.Unplug(i);
                         anyUnplugged = true;
@@ -574,7 +579,6 @@ namespace DS4Control
         public DS4State getDS4StateMapped(int ind)
         {
             return MappedState[ind];
-        }
-        
+        }        
     }
 }

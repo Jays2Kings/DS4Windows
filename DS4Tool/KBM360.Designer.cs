@@ -2000,9 +2000,9 @@
             this.lBMacroOn.AutoSize = true;
             this.lBMacroOn.Location = new System.Drawing.Point(10, 6);
             this.lBMacroOn.Name = "lBMacroOn";
-            this.lBMacroOn.Size = new System.Drawing.Size(173, 13);
+            this.lBMacroOn.Size = new System.Drawing.Size(322, 13);
             this.lBMacroOn.TabIndex = 319;
-            this.lBMacroOn.Text = "Macro On, Choose a key to disable";
+            this.lBMacroOn.Text = "Macro On, Choose a key to disable, else close this window to save";
             this.lBMacroOn.Visible = false;
             // 
             // btnMacro

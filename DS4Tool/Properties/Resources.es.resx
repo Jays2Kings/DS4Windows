@@ -120,4 +120,10 @@
   <data name="Disconnected" xml:space="preserve">
     <value>Desconectado</value>
   </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Empiezo</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>Deténgase</value>
+  </data>
 </root>

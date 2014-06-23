@@ -115,7 +115,7 @@ namespace DS4Control
         private DS4State remapped = new DS4State();
         private void synthesizeMouseButtons()
         {
-            Mapping.MapCustom(deviceNum, s, remapped);
+            Mapping.MapCustom(deviceNum, s, remapped, null);
             if (leftDown)
                 Mapping.MapTouchpadButton(deviceNum, DS4Controls.TouchLeft, Mapping.Click.Left, remapped);
             if (upperDown)

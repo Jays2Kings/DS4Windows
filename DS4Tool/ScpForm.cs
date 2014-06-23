@@ -17,7 +17,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 10.55;
+        double version = 10.6;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -257,7 +257,7 @@ namespace ScpServer
         private void test_Tick(object sender, EventArgs e)
         {
             lBTest.Visible = true;
-            lBTest.Text = Mapping.getByteMapping(DS4Controls.R1, rootHub.getDS4State(0)).ToString() + " " + rootHub.getDS4StateMapped(0).R2.ToString();
+            lBTest.Text = rootHub.getDS4StateMapped(0).LY.ToString();
         }
         void Hotkeys(object sender, EventArgs e)
         {
@@ -838,12 +838,10 @@ namespace ScpServer
             lBProfiles.SendToBack();
             toolStrip1.SendToBack();
             tSOptions.SendToBack();
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             opt.FormClosed += delegate
             {
                 opt = null;
                 RefreshProfiles();
-                FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                 this.Size = oldsize;
                 oldsize = new System.Drawing.Size(0, 0);
                 tSOptions.Visible = false;

@@ -107,18 +107,15 @@ namespace ScpServer
             }
             else
                 Set();
-            sixaxisTimer.Start();
-            #region watch sixaxis data
-
-            sixaxisTimer.Tick += sixaxisTimer_Tick;
-            
-            sixaxisTimer.Interval = 1000 / 60;
-            #endregion
-            foreach (System.Windows.Forms.Control control in this.MainPanel.Controls)
+            foreach (System.Windows.Forms.Control control in MainPanel.Controls)
                 if (control is Button)
                     if (!((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in this.SticksPanel.Controls)
+            foreach (System.Windows.Forms.Control control in SticksPanel.Controls)
+                if (control is Button)
+                    if (!((Button)control).Name.Contains("btn"))
+                        buttons.Add((Button)control);
+            foreach (System.Windows.Forms.Control control in fLPTiltControls.Controls)
                 if (control is Button)
                     if (!((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
@@ -133,12 +130,21 @@ namespace ScpServer
             tp.SetToolTip(pBRainbow, "Always on Rainbow Mode");
             tp.SetToolTip(cBFlushHIDQueue, "Flush HID Queue after each reading");
             tp.SetToolTip(cBLightbyBattery, "Also dim light by idle timeout if on");
+            tp.SetToolTip(lB6Gryo, "Click to see readout of Sixaxis Gyro");
+            tp.SetToolTip(tBsixaxisGyroX, "GyroX, Left and Right Tilt");
+            tp.SetToolTip(tBsixaxisGyroY, "GyroY, Forward and Back Tilt");
+            tp.SetToolTip(tBsixaxisGyroZ, "GyroZ, Up and Down Tilt");
+            tp.SetToolTip(tBsixaxisAccelX, "AccelX");
+            tp.SetToolTip(tBsixaxisAccelY, "AccelY");
+            tp.SetToolTip(tBsixaxisAccelZ, "AccelZ");
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
             UpdateLists();
             inputtimer.Start();
             inputtimer.Tick += InputDS4;
+            sixaxisTimer.Tick += sixaxisTimer_Tick;
+            sixaxisTimer.Interval = 1000 / 60;
         }
 
         void sixaxisTimer_Tick(object sender, EventArgs e)
@@ -146,7 +152,7 @@ namespace ScpServer
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
             // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
             // We should try to indicate setpoints of the calibration when exposing this measurement....
-            SetDynamicTrackBarValue(tBsixaxisGyroX, (scpDevice.ExposedState[(int)nUDSixaxis.Value -1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
+            SetDynamicTrackBarValue(tBsixaxisGyroX, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
             SetDynamicTrackBarValue(tBsixaxisGyroY, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroY + tBsixaxisGyroY.Value * 2) / 3);
             SetDynamicTrackBarValue(tBsixaxisGyroZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
             SetDynamicTrackBarValue(tBsixaxisAccelX, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
@@ -188,6 +194,10 @@ namespace ScpServer
                     case ("RS Down"): Show_ControlsBn(bnRSDown, e); break;
                     case ("RS Left"): Show_ControlsBn(bnRSLeft, e); break;
                     case ("RS Right"): Show_ControlsBn(bnRSRight, e); break;
+                    case ("GyroXP"): Show_ControlsBn(bnGyroXP, e); break;
+                    case ("GyroXN"): Show_ControlsBn(bnGyroXN, e); break;
+                    case ("GyroZP"): Show_ControlsBn(bnGyroZP, e); break;
+                    case ("GyroZN"): Show_ControlsBn(bnGyroZN, e); break;
                 }
             #endregion
         }
@@ -225,6 +235,11 @@ namespace ScpServer
                 case ("bnRSDown"): lBControls.SelectedIndex = 26; break;
                 case ("bnRSLeft"): lBControls.SelectedIndex = 27; break;
                 case ("bnRSRight"): lBControls.SelectedIndex = 28; break;
+                case ("bnGyroZN"): lBControls.SelectedIndex = 29; break;
+                case ("bnGyroZP"): lBControls.SelectedIndex = 30; break;
+                case ("bnGyroXP"): lBControls.SelectedIndex = 31; break;
+                case ("bnGyroXN"): lBControls.SelectedIndex = 32; break;
+
                 #endregion
             }
         }
@@ -704,8 +719,29 @@ namespace ScpServer
             lBControls.Items[26] = "RS Down : " + bnRSDown.Text;
             lBControls.Items[27] = "RS Left : " + bnRSLeft.Text;
             lBControls.Items[28] = "RS Right : " + bnRSRight.Text;
+            lBControls.Items[29] = "Tilt Up : " + UpdateGyroList(bnGyroZN);
+            lBControls.Items[30] = "Tilt Down : " + UpdateGyroList(bnGyroZP);
+            lBControls.Items[31] = "Tilt Left : " + UpdateGyroList(bnGyroXP);
+            lBControls.Items[32] = "Tilt Right : " + UpdateGyroList(bnGyroXN);
+            bnGyroZN.Text = "Tilt Up";
+            bnGyroZP.Text = "Tilt Down";
+            bnGyroXP.Text = "Tilt Left";
+            bnGyroXN.Text = "Tilt Right";
         }
 
+        private string UpdateGyroList(Button button)
+        {
+            if (button.Tag is String && (String)button.Tag == "Unbound")
+                return "Unbound";
+            else if (button.Tag is IEnumerable<int> || button.Tag is Int32[] || button.Tag is UInt16[])
+                return "Macro";
+            else if (button.Tag is Int32 || button.Tag is UInt16)
+                return ((Keys)(ushort)button.Tag).ToString();
+            else if (button.Tag is string)
+                return button.Tag.ToString();
+            else
+                return string.Empty;
+        }
         private void Show_ControlsList(object sender, EventArgs e)
         {
             if (lBControls.SelectedIndex == 0) Show_ControlsBn(bnCross, e);
@@ -739,6 +775,11 @@ namespace ScpServer
             if (lBControls.SelectedIndex == 26) Show_ControlsBn(bnRSDown, e);
             if (lBControls.SelectedIndex == 27) Show_ControlsBn(bnRSLeft, e);
             if (lBControls.SelectedIndex == 28) Show_ControlsBn(bnRSRight, e);
+
+            if (lBControls.SelectedIndex == 29) Show_ControlsBn(bnGyroZN, e);
+            if (lBControls.SelectedIndex == 30) Show_ControlsBn(bnGyroZP, e);
+            if (lBControls.SelectedIndex == 31) Show_ControlsBn(bnGyroXP, e);
+            if (lBControls.SelectedIndex == 32) Show_ControlsBn(bnGyroXN, e);
         }
 
         private void List_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -828,10 +869,6 @@ namespace ScpServer
             Global.setRightTriggerMiddle(device, (byte)(nUDR2.Value * 255));
         }
 
-        private void flashLed_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
         Image L = Properties.Resources.LeftTouch;
         Image R = Properties.Resources.RightTouch;
         Image M = Properties.Resources.MultiTouch;
@@ -925,7 +962,14 @@ namespace ScpServer
             btnChargingColor.Visible = true;
         }
 
-
-
+        private void lB6Gryo_MouseClick(object sender, MouseEventArgs e)
+        {
+            fLPTiltControls.Visible = !fLPTiltControls.Visible;
+            SixaxisPanel.Visible = !SixaxisPanel.Visible;
+            if (SixaxisPanel.Visible)
+                sixaxisTimer.Start();
+            else
+                sixaxisTimer.Stop();
+        }
     }
 }

@@ -120,6 +120,7 @@
             this.FullPanel = new System.Windows.Forms.Panel();
             this.lowBatteryPanel = new System.Windows.Forms.Panel();
             this.SixaxisPanel = new System.Windows.Forms.Panel();
+            this.bnGyroZP = new System.Windows.Forms.Button();
             this.lBProfileTip = new System.Windows.Forms.Label();
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.btnSaveProfile = new System.Windows.Forms.Button();
@@ -147,6 +148,10 @@
             this.gBRumble = new System.Windows.Forms.GroupBox();
             this.gBDeadzone = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.bnGyroXP = new System.Windows.Forms.Button();
+            this.bnGyroXN = new System.Windows.Forms.Button();
+            this.bnGyroZN = new System.Windows.Forms.Button();
+            this.fLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
@@ -188,6 +193,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.gBRumble.SuspendLayout();
             this.gBDeadzone.SuspendLayout();
+            this.fLPTiltControls.SuspendLayout();
             this.SuspendLayout();
             // 
             // bnTouchUpper
@@ -893,7 +899,7 @@
             // lBControlTip
             // 
             this.lBControlTip.AutoSize = true;
-            this.lBControlTip.Location = new System.Drawing.Point(25, 9);
+            this.lBControlTip.Location = new System.Drawing.Point(25, 3);
             this.lBControlTip.Name = "lBControlTip";
             this.lBControlTip.Size = new System.Drawing.Size(219, 26);
             this.lBControlTip.TabIndex = 181;
@@ -933,7 +939,11 @@
             "Right Stick Up :",
             "Right Stick Down :",
             "Right Stick Left :",
-            "Right Stick Right :"});
+            "Right Stick Right :",
+            "Sixaxis Up :",
+            "Sixaxis Down :",
+            "Sixaxis Left :",
+            "Sixaxis Right :"});
             this.lBControls.Location = new System.Drawing.Point(258, 9);
             this.lBControls.Name = "lBControls";
             this.lBControls.Size = new System.Drawing.Size(169, 173);
@@ -1252,7 +1262,7 @@
             // nUDIdleDisconnect
             // 
             this.nUDIdleDisconnect.DecimalPlaces = 1;
-            this.nUDIdleDisconnect.Location = new System.Drawing.Point(108, 46);
+            this.nUDIdleDisconnect.Location = new System.Drawing.Point(109, 46);
             this.nUDIdleDisconnect.Maximum = new decimal(new int[] {
             60,
             0,
@@ -1286,8 +1296,7 @@
             // 
             this.tBsixaxisAccelZ.AutoSize = false;
             this.tBsixaxisAccelZ.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisAccelZ.Enabled = false;
-            this.tBsixaxisAccelZ.Location = new System.Drawing.Point(382, 6);
+            this.tBsixaxisAccelZ.Location = new System.Drawing.Point(315, 3);
             this.tBsixaxisAccelZ.Maximum = 32767;
             this.tBsixaxisAccelZ.Minimum = -32768;
             this.tBsixaxisAccelZ.Name = "tBsixaxisAccelZ";
@@ -1312,8 +1321,7 @@
             // 
             this.tBsixaxisAccelY.AutoSize = false;
             this.tBsixaxisAccelY.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisAccelY.Enabled = false;
-            this.tBsixaxisAccelY.Location = new System.Drawing.Point(335, 6);
+            this.tBsixaxisAccelY.Location = new System.Drawing.Point(268, 3);
             this.tBsixaxisAccelY.Maximum = 32767;
             this.tBsixaxisAccelY.Minimum = -32768;
             this.tBsixaxisAccelY.Name = "tBsixaxisAccelY";
@@ -1334,8 +1342,7 @@
             // 
             this.tBsixaxisAccelX.AutoSize = false;
             this.tBsixaxisAccelX.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisAccelX.Enabled = false;
-            this.tBsixaxisAccelX.Location = new System.Drawing.Point(289, 6);
+            this.tBsixaxisAccelX.Location = new System.Drawing.Point(222, 3);
             this.tBsixaxisAccelX.Maximum = 32767;
             this.tBsixaxisAccelX.Minimum = -32768;
             this.tBsixaxisAccelX.Name = "tBsixaxisAccelX";
@@ -1356,8 +1363,7 @@
             // 
             this.tBsixaxisGyroZ.AutoSize = false;
             this.tBsixaxisGyroZ.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisGyroZ.Enabled = false;
-            this.tBsixaxisGyroZ.Location = new System.Drawing.Point(163, 6);
+            this.tBsixaxisGyroZ.Location = new System.Drawing.Point(96, 3);
             this.tBsixaxisGyroZ.Maximum = 32767;
             this.tBsixaxisGyroZ.Minimum = -32768;
             this.tBsixaxisGyroZ.Name = "tBsixaxisGyroZ";
@@ -1378,8 +1384,7 @@
             // 
             this.tBsixaxisGyroY.AutoSize = false;
             this.tBsixaxisGyroY.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisGyroY.Enabled = false;
-            this.tBsixaxisGyroY.Location = new System.Drawing.Point(116, 6);
+            this.tBsixaxisGyroY.Location = new System.Drawing.Point(49, 3);
             this.tBsixaxisGyroY.Maximum = 32767;
             this.tBsixaxisGyroY.Minimum = -32768;
             this.tBsixaxisGyroY.Name = "tBsixaxisGyroY";
@@ -1391,8 +1396,7 @@
             // 
             this.tBsixaxisGyroX.AutoSize = false;
             this.tBsixaxisGyroX.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisGyroX.Enabled = false;
-            this.tBsixaxisGyroX.Location = new System.Drawing.Point(69, 6);
+            this.tBsixaxisGyroX.Location = new System.Drawing.Point(2, 3);
             this.tBsixaxisGyroX.Maximum = 32767;
             this.tBsixaxisGyroX.Minimum = -32768;
             this.tBsixaxisGyroX.Name = "tBsixaxisGyroX";
@@ -1421,7 +1425,7 @@
             // lB6Accel
             // 
             this.lB6Accel.AutoSize = true;
-            this.lB6Accel.Location = new System.Drawing.Point(220, 6);
+            this.lB6Accel.Location = new System.Drawing.Point(153, 3);
             this.lB6Accel.Name = "lB6Accel";
             this.lB6Accel.Size = new System.Drawing.Size(72, 13);
             this.lB6Accel.TabIndex = 215;
@@ -1443,11 +1447,12 @@
             // lB6Gryo
             // 
             this.lB6Gryo.AutoSize = true;
-            this.lB6Gryo.Location = new System.Drawing.Point(5, 6);
+            this.lB6Gryo.Location = new System.Drawing.Point(4, 197);
             this.lB6Gryo.Name = "lB6Gryo";
             this.lB6Gryo.Size = new System.Drawing.Size(67, 13);
             this.lB6Gryo.TabIndex = 216;
             this.lB6Gryo.Text = "Sixaxis Gyro:";
+            this.lB6Gryo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lB6Gryo_MouseClick);
             // 
             // nUDLightRumble
             // 
@@ -1597,17 +1602,27 @@
             // SixaxisPanel
             // 
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelX);
-            this.SixaxisPanel.Controls.Add(this.lB6Gryo);
             this.SixaxisPanel.Controls.Add(this.lB6Accel);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroX);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroY);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroZ);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelY);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelZ);
-            this.SixaxisPanel.Location = new System.Drawing.Point(1, 193);
+            this.SixaxisPanel.Location = new System.Drawing.Point(70, 195);
             this.SixaxisPanel.Name = "SixaxisPanel";
-            this.SixaxisPanel.Size = new System.Drawing.Size(435, 27);
+            this.SixaxisPanel.Size = new System.Drawing.Size(371, 28);
             this.SixaxisPanel.TabIndex = 236;
+            this.SixaxisPanel.Visible = false;
+            // 
+            // bnGyroZP
+            // 
+            this.bnGyroZP.Location = new System.Drawing.Point(89, 3);
+            this.bnGyroZP.Name = "bnGyroZP";
+            this.bnGyroZP.Size = new System.Drawing.Size(80, 23);
+            this.bnGyroZP.TabIndex = 250;
+            this.bnGyroZP.Text = "Tilt Down";
+            this.bnGyroZP.UseVisualStyleBackColor = true;
+            this.bnGyroZP.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // lBProfileTip
             // 
@@ -1991,6 +2006,47 @@
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // bnGyroXP
+            // 
+            this.bnGyroXP.Location = new System.Drawing.Point(175, 3);
+            this.bnGyroXP.Name = "bnGyroXP";
+            this.bnGyroXP.Size = new System.Drawing.Size(80, 23);
+            this.bnGyroXP.TabIndex = 250;
+            this.bnGyroXP.Text = "Tilt Left";
+            this.bnGyroXP.UseVisualStyleBackColor = true;
+            this.bnGyroXP.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // bnGyroXN
+            // 
+            this.bnGyroXN.Location = new System.Drawing.Point(261, 3);
+            this.bnGyroXN.Name = "bnGyroXN";
+            this.bnGyroXN.Size = new System.Drawing.Size(80, 23);
+            this.bnGyroXN.TabIndex = 250;
+            this.bnGyroXN.Text = "Tilt Right";
+            this.bnGyroXN.UseVisualStyleBackColor = true;
+            this.bnGyroXN.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // bnGyroZN
+            // 
+            this.bnGyroZN.Location = new System.Drawing.Point(3, 3);
+            this.bnGyroZN.Name = "bnGyroZN";
+            this.bnGyroZN.Size = new System.Drawing.Size(80, 23);
+            this.bnGyroZN.TabIndex = 250;
+            this.bnGyroZN.Text = "Tilt Up";
+            this.bnGyroZN.UseVisualStyleBackColor = true;
+            this.bnGyroZN.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // fLPTiltControls
+            // 
+            this.fLPTiltControls.Controls.Add(this.bnGyroZN);
+            this.fLPTiltControls.Controls.Add(this.bnGyroZP);
+            this.fLPTiltControls.Controls.Add(this.bnGyroXP);
+            this.fLPTiltControls.Controls.Add(this.bnGyroXN);
+            this.fLPTiltControls.Location = new System.Drawing.Point(84, 190);
+            this.fLPTiltControls.Name = "fLPTiltControls";
+            this.fLPTiltControls.Size = new System.Drawing.Size(350, 31);
+            this.fLPTiltControls.TabIndex = 252;
+            // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
@@ -2006,11 +2062,11 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(888, 295);
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.lB6Gryo);
             this.Controls.Add(this.gBDeadzone);
             this.Controls.Add(this.gBRumble);
             this.Controls.Add(this.gBLightbar);
             this.Controls.Add(this.gBTouchpad);
-            this.Controls.Add(this.SixaxisPanel);
             this.Controls.Add(this.lBProfileTip);
             this.Controls.Add(this.tBProfile);
             this.Controls.Add(this.btnSaveProfile);
@@ -2019,6 +2075,8 @@
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.SticksPanel);
             this.Controls.Add(this.gBOther);
+            this.Controls.Add(this.fLPTiltControls);
+            this.Controls.Add(this.SixaxisPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -2074,6 +2132,7 @@
             this.gBRumble.PerformLayout();
             this.gBDeadzone.ResumeLayout(false);
             this.gBDeadzone.PerformLayout();
+            this.fLPTiltControls.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2203,6 +2262,11 @@
         private System.Windows.Forms.Button btnChargingColor;
         private System.Windows.Forms.RadioButton rBColor;
         private System.Windows.Forms.CheckBox cBIdleDisconnect;
+        private System.Windows.Forms.Button bnGyroXP;
+        private System.Windows.Forms.Button bnGyroXN;
+        private System.Windows.Forms.Button bnGyroZP;
+        private System.Windows.Forms.Button bnGyroZN;
+        private System.Windows.Forms.FlowLayoutPanel fLPTiltControls;
     }
 }
 

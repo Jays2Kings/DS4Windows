@@ -67,6 +67,7 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.lLChangelog = new System.Windows.Forms.LinkLabel();
+            this.linkDonate = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,7 +154,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(458, 9);
+            this.label23.Location = new System.Drawing.Point(6, 333);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(58, 13);
             this.label23.TabIndex = 3;
@@ -497,6 +498,17 @@
             this.lLChangelog.Text = "Changelog";
             this.lLChangelog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLChangelog_LinkClicked);
             // 
+            // linkDonate
+            // 
+            this.linkDonate.AutoSize = true;
+            this.linkDonate.Location = new System.Drawing.Point(422, 9);
+            this.linkDonate.Name = "linkDonate";
+            this.linkDonate.Size = new System.Drawing.Size(94, 13);
+            this.linkDonate.TabIndex = 21;
+            this.linkDonate.TabStop = true;
+            this.linkDonate.Text = "Donate via Paypal";
+            this.linkDonate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkDonate_LinkClicked);
+            // 
             // Hotkeys
             // 
             this.AcceptButton = this.button1;
@@ -504,6 +516,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(520, 413);
+            this.Controls.Add(this.linkDonate);
             this.Controls.Add(this.lLChangelog);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.linkJhebbel);
@@ -567,5 +580,6 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.LinkLabel lLChangelog;
+        private System.Windows.Forms.LinkLabel linkDonate;
     }
 }

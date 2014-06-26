@@ -456,10 +456,14 @@ namespace DS4Control
                 case DS4Controls.TouchLeft: return 27;
                 case DS4Controls.TouchRight: return 28;
                 case DS4Controls.TouchUpper: return 29;
+                case DS4Controls.GyroXNeg: return 30;
+                case DS4Controls.GyroXPos: return 31;
+                case DS4Controls.GyroZNeg: return 32;
+                case DS4Controls.GyroZPos: return 33;
             }
             return 0; 
         }
-        public static bool[] pressedonce = new bool[261], macrodone = new bool[30];
+        public static bool[] pressedonce = new bool[261], macrodone = new bool[34];
         public static int test = 0;
         /** Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons. */
         public static async void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState)
@@ -506,18 +510,18 @@ namespace DS4Control
                         if (keys[0] == 271 && !MappedState.PS) MappedState.PS = getBoolMapping(customKey.Key, cState, eState);
                         if (keys[0] == 272 && !MappedState.L1) MappedState.L1 = getBoolMapping(customKey.Key, cState, eState);
                         if (keys[0] == 273 && !MappedState.R1) MappedState.R1 = getBoolMapping(customKey.Key, cState, eState);
-                        if (keys[0] == 274 && MappedState.L2 == 0) MappedState.L2 = getByteMapping(customKey.Key, cState, eState);
-                        if (keys[0] == 275 && MappedState.R2 == 0) MappedState.R2 = getByteMapping(customKey.Key, cState, eState);
+                        if (keys[0] == 274 && MappedState.L2 == 0) MappedState.L2 = getByteMapping(device, customKey.Key, cState, eState);
+                        if (keys[0] == 275 && MappedState.R2 == 0) MappedState.R2 = getByteMapping(device, customKey.Key, cState, eState);
                         if (keys[0] == 276 && !MappedState.L3) MappedState.L3 = getBoolMapping(customKey.Key, cState, eState);
                         if (keys[0] == 277 && !MappedState.R3) MappedState.R3 = getBoolMapping(customKey.Key, cState, eState);
-                        if (keys[0] == 278 && LYChanged) MappedState.LY = getXYAxisMapping(customKey.Key, cState, eState);
-                        if (keys[0] == 279 && LYChanged) MappedState.LY = getXYAxisMapping(customKey.Key, cState, eState, true);
-                        if (keys[0] == 280 && LXChanged) MappedState.LX = getXYAxisMapping(customKey.Key, cState, eState);
-                        if (keys[0] == 281 && LXChanged) MappedState.LX = getXYAxisMapping(customKey.Key, cState, eState, true);
-                        if (keys[0] == 282 && RYChanged) MappedState.RY = getXYAxisMapping(customKey.Key, cState, eState);
-                        if (keys[0] == 283 && RYChanged) MappedState.RY = getXYAxisMapping(customKey.Key, cState, eState, true);
-                        if (keys[0] == 284 && RXChanged) MappedState.RX = getXYAxisMapping(customKey.Key, cState, eState);
-                        if (keys[0] == 285 && RXChanged) MappedState.RX = getXYAxisMapping(customKey.Key, cState, eState, true);
+                        if (keys[0] == 278 && LYChanged) MappedState.LY = getXYAxisMapping(device, customKey.Key, cState, eState);
+                        if (keys[0] == 279 && LYChanged) MappedState.LY = getXYAxisMapping(device, customKey.Key, cState, eState, true);
+                        if (keys[0] == 280 && LXChanged) MappedState.LX = getXYAxisMapping(device, customKey.Key, cState, eState);
+                        if (keys[0] == 281 && LXChanged) MappedState.LX = getXYAxisMapping(device, customKey.Key, cState, eState, true);
+                        if (keys[0] == 282 && RYChanged) MappedState.RY = getXYAxisMapping(device, customKey.Key, cState, eState);
+                        if (keys[0] == 283 && RYChanged) MappedState.RY = getXYAxisMapping(device, customKey.Key, cState, eState, true);
+                        if (keys[0] == 284 && RXChanged) MappedState.RX = getXYAxisMapping(device, customKey.Key, cState, eState);
+                        if (keys[0] == 285 && RXChanged) MappedState.RX = getXYAxisMapping(device, customKey.Key, cState, eState, true);
                     }
                     if (!macrodone[DS4ControltoInt(customKey.Key)])
                     {
@@ -599,8 +603,6 @@ namespace DS4Control
                     pressedonce[customKey.Value] = false;
             }
 
-
-            bool LX = false, LY = false, RX = false, RY = false;
             MappedState.LX = 127;
             MappedState.LY = 127;
             MappedState.RX = 127;
@@ -713,70 +715,43 @@ namespace DS4Control
                         break;
                     case X360Controls.LXNeg:
                         if (LXChanged)
-                        {
-                            MappedState.LX = getXYAxisMapping(customButton.Key, cState, eState);
-                                LX = true;
-                        }
+                            MappedState.LX = getXYAxisMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.LYNeg:
                         if (LYChanged)
-                        {
-                            MappedState.LY = getXYAxisMapping(customButton.Key, cState, eState);
-                                LY = true;
-                        }
+                            MappedState.LY = getXYAxisMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.RXNeg:
                         if (RXChanged)
-                        {
-                            MappedState.RX = getXYAxisMapping(customButton.Key, cState, eState);
-                            if (MappedState.RX != 127)
-                                RX = true;
-                        }
+                            MappedState.RX = getXYAxisMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.RYNeg:
                         if (RYChanged)
-                        {
-                            MappedState.RY = getXYAxisMapping(customButton.Key, cState, eState);
-                                RY = true;
-                        }
+                            MappedState.RY = getXYAxisMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.LXPos:
                         if (LXChanged)
-                        {
-                            MappedState.LX = getXYAxisMapping(customButton.Key, cState, eState, true);
-                            //Console.WriteLine(MappedState.LX + "");
-                                LX = true;
-                        }
+                            MappedState.LX = getXYAxisMapping(device, customButton.Key, cState, eState, true);
                         break;
                     case X360Controls.LYPos:
                         if (LYChanged)
-                        {
-                            MappedState.LY = getXYAxisMapping(customButton.Key, cState, eState, true);
-                            //Console.WriteLine(MappedState.LY + "");
-                                LY = true;
-                        }
+                            MappedState.LY = getXYAxisMapping(device, customButton.Key, cState, eState, true);
                         break;
                     case X360Controls.RXPos:
                         if (RXChanged)
-                        {
-                            MappedState.RX = getXYAxisMapping(customButton.Key, cState, eState, true);
-                                RX = true;
-                        }
+                            MappedState.RX = getXYAxisMapping(device, customButton.Key, cState, eState, true);
                         break;
                     case X360Controls.RYPos:
                         if (RYChanged)
-                        {
-                            MappedState.RY = getXYAxisMapping(customButton.Key, cState, eState, true);
-                                RY = true;
-                        }
+                            MappedState.RY = getXYAxisMapping(device, customButton.Key, cState, eState, true);
                         break;
                     case X360Controls.LT:
                         if (MappedState.L2 == 0)
-                            MappedState.L2 = getByteMapping(customButton.Key, cState, eState);
+                            MappedState.L2 = getByteMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.RT:
                         if (MappedState.R2 == 0)
-                            MappedState.R2 = getByteMapping(customButton.Key, cState, eState);
+                            MappedState.R2 = getByteMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.LeftMouse:
                         if (getBoolMapping(customButton.Key, cState, eState))
@@ -850,9 +825,13 @@ namespace DS4Control
         }
         public static DateTime[] mousenow = { DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow };
         public static double mvalue = 0;
+        public static int[] mouseaccel = new int[34];
+        public static bool[] mousedoublecheck = new bool[34];
         private static int getMouseMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, int mnum)
         {
-
+            int controlnum = DS4ControltoInt(control);
+            double SXD = Global.getSXDeadzone(device);
+            double SZD = Global.getSZDeadzone(device);
             int deadzone = 10;
             double value = 0;
             int speed = Global.getButtonMouseSensitivity(device);
@@ -914,13 +893,13 @@ namespace DS4Control
             if (eState != null)
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: return (byte)(eState.GyroX > 1800 ? 
+                    case DS4Controls.GyroXPos: return (byte)(eState.GyroX > SXD * 7500 ? 
                         Math.Pow(root + speed / divide, eState.GyroX / 48) : 0);
-                    case DS4Controls.GyroXNeg: return (byte)(eState.GyroX < -1800 ? 
+                    case DS4Controls.GyroXNeg: return (byte)(eState.GyroX < -SXD * 7500 ? 
                         Math.Pow(root + speed / divide, -eState.GyroX / 48) : 0);
-                    case DS4Controls.GyroZPos: return (byte)(eState.GyroZ > 1800 ? 
+                    case DS4Controls.GyroZPos: return (byte)(eState.GyroZ > SZD * 7500 ? 
                         Math.Pow(root + speed / divide, eState.GyroZ / 48) : 0);
-                    case DS4Controls.GyroZNeg: return (byte)(eState.GyroZ < -1800 ?
+                    case DS4Controls.GyroZNeg: return (byte)(eState.GyroZ < -SZD * 7500 ?
                         Math.Pow(root + speed / divide, -eState.GyroZ / 48) : 0);
                 }
             bool LXChanged = (Math.Abs(127 - cState.LX) < deadzone);
@@ -929,6 +908,16 @@ namespace DS4Control
             bool RYChanged = (Math.Abs(127 - cState.RY) < deadzone);
             if (LXChanged || LYChanged || RXChanged || RYChanged)
                 now = DateTime.UtcNow;
+            if (Global.getMouseAccel(device))
+            {
+                if (value > 0)
+                    mouseaccel[controlnum]++;
+                else if (!mousedoublecheck[controlnum])
+                    mouseaccel[controlnum] = 0;
+                mousedoublecheck[controlnum] = value != 0;
+                if (mouseaccel[controlnum] > 1000)
+                    value *= (double)Math.Min(2000, (mouseaccel[controlnum])) / 1000d;
+            }
             if (value <= 1)
             {
                 if (now >= mousenow[mnum] + TimeSpan.FromMilliseconds((1 - value) * 500))
@@ -954,8 +943,10 @@ namespace DS4Control
 
         static bool[] touchArea = { true, true, true, true };
 
-        public static byte getByteMapping(DS4Controls control, DS4State cState, DS4StateExposed eState)
+        public static byte getByteMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState)
         {
+            double SXD = Global.getSXDeadzone(device);
+            double SZD = Global.getSZDeadzone(device);
             if (!cState.TouchButton)
                 for (int i = 0; i < 4; i++)
                     touchArea[i] = false;
@@ -1001,10 +992,10 @@ namespace DS4Control
             if (eState != null)
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: return (byte)(eState.GyroX > 1800 ? Math.Min(255, eState.GyroX / 24) : 0);
-                    case DS4Controls.GyroXNeg: return (byte)(eState.GyroX < -1800 ? Math.Min(255,-eState.GyroX / 24) : 0);
-                    case DS4Controls.GyroZPos: return (byte)(eState.GyroZ > 1800 ? Math.Min(255, eState.GyroZ / 24) : 0);
-                    case DS4Controls.GyroZNeg: return (byte)(eState.GyroZ < -1800 ? Math.Min(255, -eState.GyroZ / 24) : 0);
+                    case DS4Controls.GyroXPos: return (byte)(eState.GyroX > SXD * 7500 ? Math.Min(255, eState.GyroX / 24) : 0);
+                    case DS4Controls.GyroXNeg: return (byte)(eState.GyroX < -SXD * 7500 ? Math.Min(255, -eState.GyroX / 24) : 0);
+                    case DS4Controls.GyroZPos: return (byte)(eState.GyroZ > SZD * 7500 ? Math.Min(255, eState.GyroZ / 24) : 0);
+                    case DS4Controls.GyroZNeg: return (byte)(eState.GyroZ < -SZD * 7500 ? Math.Min(255, -eState.GyroZ / 24) : 0);
                 }
             if (cState.TouchButton)
             {
@@ -1093,10 +1084,12 @@ namespace DS4Control
             return false;
         }
 
-        public static byte getXYAxisMapping(DS4Controls control, DS4State cState, DS4StateExposed eState, bool alt = false)
+        public static byte getXYAxisMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, bool alt = false)
         {
             byte trueVal = 0;
             byte falseVal = 127;
+            double SXD = Global.getSXDeadzone(device);
+            double SZD = Global.getSZDeadzone(device);
             if (alt)
                 trueVal = 255;
             if (!cState.TouchButton)
@@ -1137,16 +1130,16 @@ namespace DS4Control
             {
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: if (eState.GyroX > 1800)
+                    case DS4Controls.GyroXPos: if (eState.GyroX > SXD * 7500)
                             if (alt) return (byte)Math.Min(255, 127 + eState.GyroX / 48); else return (byte)Math.Max(0, 127 - eState.GyroX / 48);
                         else return falseVal;
-                    case DS4Controls.GyroXNeg: if (eState.GyroX < -1800)
+                    case DS4Controls.GyroXNeg: if (eState.GyroX < -SXD * 7500)
                             if (alt) return (byte)Math.Min(255, 127 + -eState.GyroX / 48); else return (byte)Math.Max(0, 127 - -eState.GyroX / 48);
                         else return falseVal;
-                    case DS4Controls.GyroZPos: if (eState.GyroZ > 1800)
+                    case DS4Controls.GyroZPos: if (eState.GyroZ > SZD * 7500)
                             if (alt) return (byte)Math.Min(255, 127 + eState.GyroZ / 48); else return (byte)Math.Max(0, 127 - eState.GyroZ / 48);
                         else return falseVal;
-                    case DS4Controls.GyroZNeg: if (eState.GyroZ < -1800)
+                    case DS4Controls.GyroZNeg: if (eState.GyroZ < -SZD * 7500)
                             if (alt) return (byte)Math.Min(255, 127 + -eState.GyroZ / 48); else return (byte)Math.Max(0, 127 - -eState.GyroZ / 48);
                         else return falseVal;
                 }

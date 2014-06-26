@@ -13,11 +13,12 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using System.Xml;
 using System.Text;
+using System.Globalization;
 namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 10.6;
+        double version = 10.65;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -125,18 +126,18 @@ namespace ScpServer
         protected void Form_Load(object sender, EventArgs e)
         {
             SetupArrays();
-            if (File.Exists(exepath + "\\Profiles.xml") 
-                && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Profiles.xml"))
+            if (File.Exists(exepath + "\\Auto Profiles.xml")
+                && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml"))
                 new SaveWhere(true).ShowDialog();
-            else if (File.Exists(exepath + "\\Profiles.xml"))
+            else if (File.Exists(exepath + "\\Auto Profiles.xml"))
                 Global.SaveWhere(exepath);
-            else if (File.Exists(appdatapath + "\\Profiles.xml"))
+            else if (File.Exists(appdatapath + "\\Auto Profiles.xml"))
                 Global.SaveWhere(appdatapath);
-            else if (!File.Exists(exepath + "\\Profiles.xml")
-                && !File.Exists(appdatapath + "\\Profiles.xml"))
+            else if (!File.Exists(exepath + "\\Auto Profiles.xml")
+                && !File.Exists(appdatapath + "\\Auto Profiles.xml"))
             {
-                new WelcomeDialog().ShowDialog();
                 new SaveWhere(false).ShowDialog();
+                MessageBox.Show("If you haven't installed the Virtual Bus driver, go to Settings and \"Controller Setup\"", "Welcome to DS4Windows");
             }
            
 
@@ -257,7 +258,7 @@ namespace ScpServer
         private void test_Tick(object sender, EventArgs e)
         {
             lBTest.Visible = true;
-            lBTest.Text = rootHub.getDS4StateMapped(0).LY.ToString();
+            lBTest.Text = Mapping.mouseaccel[18]+"";
         }
         void Hotkeys(object sender, EventArgs e)
         {
@@ -394,7 +395,7 @@ namespace ScpServer
             double newversion;
             try
             {
-                if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), out newversion))
+                if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), NumberStyles.Any, CultureInfo.InvariantCulture, out newversion))
                     if (newversion > version)
                         if (MessageBox.Show("Download Version " + newversion + " now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
@@ -571,11 +572,6 @@ namespace ScpServer
                 this.Show();
                 this.ShowInTaskbar = true;
             }
-            //Added last message alternative
-
-            /*if (this.Height > 220)
-                lbLastMessage.Visible = tabMain.SelectedIndex != 2;
-            else lbLastMessage.Visible = true;*/
         }
 
         protected void btnStartStop_Click(object sender, EventArgs e)
@@ -1029,7 +1025,7 @@ namespace ScpServer
 
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lbLastMessage.Visible = tabMain.SelectedIndex != 2;
+            lbLastMessage.Visible = tabMain.SelectedIndex != 4;
             if (opt != null)
                 if (tabMain.SelectedIndex != 1)
                     opt.inputtimer.Stop();
@@ -1217,7 +1213,7 @@ namespace ScpServer
             double newversion;
             try
             {
-                if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), out newversion))
+                if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), NumberStyles.Any, CultureInfo.InvariantCulture, out newversion))
                     if (newversion > Global.getVersion())
                         if (MessageBox.Show("Download Version " + newversion + " now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {

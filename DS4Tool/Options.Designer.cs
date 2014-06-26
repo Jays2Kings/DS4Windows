@@ -121,9 +121,6 @@
             this.lowBatteryPanel = new System.Windows.Forms.Panel();
             this.SixaxisPanel = new System.Windows.Forms.Panel();
             this.bnGyroZP = new System.Windows.Forms.Button();
-            this.lBProfileTip = new System.Windows.Forms.Label();
-            this.tBProfile = new System.Windows.Forms.TextBox();
-            this.btnSaveProfile = new System.Windows.Forms.Button();
             this.lbRS = new System.Windows.Forms.Label();
             this.lbLS = new System.Windows.Forms.Label();
             this.nUDRS = new System.Windows.Forms.NumericUpDown();
@@ -147,12 +144,17 @@
             this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
             this.gBRumble = new System.Windows.Forms.GroupBox();
             this.gBDeadzone = new System.Windows.Forms.GroupBox();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.lbSixaxisX = new System.Windows.Forms.Label();
+            this.lbSixaxisZ = new System.Windows.Forms.Label();
+            this.nUDSZ = new System.Windows.Forms.NumericUpDown();
+            this.nUDSX = new System.Windows.Forms.NumericUpDown();
             this.bnGyroXP = new System.Windows.Forms.Button();
             this.bnGyroXN = new System.Windows.Forms.Button();
             this.bnGyroZN = new System.Windows.Forms.Button();
             this.fLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
+            this.cBMouseAccel = new System.Windows.Forms.CheckBox();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
             this.SticksPanel.SuspendLayout();
@@ -193,6 +195,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.gBRumble.SuspendLayout();
             this.gBDeadzone.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).BeginInit();
             this.fLPTiltControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -899,7 +903,7 @@
             // lBControlTip
             // 
             this.lBControlTip.AutoSize = true;
-            this.lBControlTip.Location = new System.Drawing.Point(25, 3);
+            this.lBControlTip.Location = new System.Drawing.Point(25, 7);
             this.lBControlTip.Name = "lBControlTip";
             this.lBControlTip.Size = new System.Drawing.Size(219, 26);
             this.lBControlTip.TabIndex = 181;
@@ -1086,7 +1090,7 @@
             this.cBDoubleTap.AutoSize = true;
             this.cBDoubleTap.Checked = true;
             this.cBDoubleTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBDoubleTap.Location = new System.Drawing.Point(357, 17);
+            this.cBDoubleTap.Location = new System.Drawing.Point(349, 16);
             this.cBDoubleTap.Name = "cBDoubleTap";
             this.cBDoubleTap.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cBDoubleTap.Size = new System.Drawing.Size(82, 17);
@@ -1100,7 +1104,7 @@
             this.cBTap.AutoSize = true;
             this.cBTap.Checked = true;
             this.cBTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBTap.Location = new System.Drawing.Point(326, 47);
+            this.cBTap.Location = new System.Drawing.Point(318, 46);
             this.cBTap.Name = "cBTap";
             this.cBTap.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cBTap.Size = new System.Drawing.Size(45, 17);
@@ -1111,7 +1115,7 @@
             // 
             // nUDTap
             // 
-            this.nUDTap.Location = new System.Drawing.Point(377, 46);
+            this.nUDTap.Location = new System.Drawing.Point(369, 45);
             this.nUDTap.Maximum = new decimal(new int[] {
             200,
             0,
@@ -1132,7 +1136,7 @@
             this.cBScroll.AutoSize = true;
             this.cBScroll.Checked = true;
             this.cBScroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBScroll.Location = new System.Drawing.Point(180, 48);
+            this.cBScroll.Location = new System.Drawing.Point(169, 47);
             this.cBScroll.Name = "cBScroll";
             this.cBScroll.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cBScroll.Size = new System.Drawing.Size(52, 17);
@@ -1157,7 +1161,7 @@
             // 
             // nUDScroll
             // 
-            this.nUDScroll.Location = new System.Drawing.Point(234, 46);
+            this.nUDScroll.Location = new System.Drawing.Point(227, 45);
             this.nUDScroll.Maximum = new decimal(new int[] {
             10,
             0,
@@ -1209,7 +1213,7 @@
             // cBlowerRCOn
             // 
             this.cBlowerRCOn.AutoSize = true;
-            this.cBlowerRCOn.Location = new System.Drawing.Point(218, 10);
+            this.cBlowerRCOn.Location = new System.Drawing.Point(182, 11);
             this.cBlowerRCOn.Name = "cBlowerRCOn";
             this.cBlowerRCOn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cBlowerRCOn.Size = new System.Drawing.Size(100, 30);
@@ -1223,7 +1227,7 @@
             this.cBTouchpadJitterCompensation.AutoSize = true;
             this.cBTouchpadJitterCompensation.Checked = true;
             this.cBTouchpadJitterCompensation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBTouchpadJitterCompensation.Location = new System.Drawing.Point(42, 17);
+            this.cBTouchpadJitterCompensation.Location = new System.Drawing.Point(12, 18);
             this.cBTouchpadJitterCompensation.Name = "cBTouchpadJitterCompensation";
             this.cBTouchpadJitterCompensation.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cBTouchpadJitterCompensation.Size = new System.Drawing.Size(118, 17);
@@ -1244,7 +1248,7 @@
             // lBR2
             // 
             this.lBR2.AutoSize = true;
-            this.lBR2.Location = new System.Drawing.Point(109, 17);
+            this.lBR2.Location = new System.Drawing.Point(88, 17);
             this.lBR2.Name = "lBR2";
             this.lBR2.Size = new System.Drawing.Size(21, 13);
             this.lBR2.TabIndex = 197;
@@ -1281,7 +1285,7 @@
             0,
             0,
             65536});
-            this.nUDR2.Location = new System.Drawing.Point(133, 15);
+            this.nUDR2.Location = new System.Drawing.Point(111, 15);
             this.nUDR2.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1332,11 +1336,12 @@
             // leftMotorLabel
             // 
             this.leftMotorLabel.AutoSize = true;
-            this.leftMotorLabel.Location = new System.Drawing.Point(8, 45);
+            this.leftMotorLabel.Location = new System.Drawing.Point(763, 208);
             this.leftMotorLabel.Name = "leftMotorLabel";
-            this.leftMotorLabel.Size = new System.Drawing.Size(25, 13);
+            this.leftMotorLabel.Size = new System.Drawing.Size(13, 13);
             this.leftMotorLabel.TabIndex = 209;
-            this.leftMotorLabel.Text = "Left";
+            this.leftMotorLabel.Text = "L";
+            this.leftMotorLabel.Visible = false;
             // 
             // tBsixaxisAccelX
             // 
@@ -1353,11 +1358,12 @@
             // rightMotorLabel
             // 
             this.rightMotorLabel.AutoSize = true;
-            this.rightMotorLabel.Location = new System.Drawing.Point(111, 45);
+            this.rightMotorLabel.Location = new System.Drawing.Point(674, 207);
             this.rightMotorLabel.Name = "rightMotorLabel";
-            this.rightMotorLabel.Size = new System.Drawing.Size(32, 13);
+            this.rightMotorLabel.Size = new System.Drawing.Size(15, 13);
             this.rightMotorLabel.TabIndex = 208;
-            this.rightMotorLabel.Text = "Right";
+            this.rightMotorLabel.Text = "R";
+            this.rightMotorLabel.Visible = false;
             // 
             // tBsixaxisGyroZ
             // 
@@ -1374,11 +1380,12 @@
             // rumbleBoostLabel
             // 
             this.rumbleBoostLabel.AutoSize = true;
-            this.rumbleBoostLabel.Location = new System.Drawing.Point(8, 17);
+            this.rumbleBoostLabel.Location = new System.Drawing.Point(842, 212);
             this.rumbleBoostLabel.Name = "rumbleBoostLabel";
             this.rumbleBoostLabel.Size = new System.Drawing.Size(34, 13);
             this.rumbleBoostLabel.TabIndex = 207;
             this.rumbleBoostLabel.Text = "Boost";
+            this.rumbleBoostLabel.Visible = false;
             // 
             // tBsixaxisGyroY
             // 
@@ -1406,14 +1413,14 @@
             // 
             // nUDRumbleBoost
             // 
-            this.nUDRumbleBoost.Location = new System.Drawing.Point(46, 14);
+            this.nUDRumbleBoost.Location = new System.Drawing.Point(14, 15);
             this.nUDRumbleBoost.Maximum = new decimal(new int[] {
-            200,
+            150,
             0,
             0,
             0});
             this.nUDRumbleBoost.Name = "nUDRumbleBoost";
-            this.nUDRumbleBoost.Size = new System.Drawing.Size(52, 20);
+            this.nUDRumbleBoost.Size = new System.Drawing.Size(43, 20);
             this.nUDRumbleBoost.TabIndex = 211;
             this.nUDRumbleBoost.Value = new decimal(new int[] {
             100,
@@ -1433,15 +1440,16 @@
             // 
             // nUDHeavyRumble
             // 
-            this.nUDHeavyRumble.Location = new System.Drawing.Point(149, 43);
+            this.nUDHeavyRumble.Location = new System.Drawing.Point(695, 205);
             this.nUDHeavyRumble.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.nUDHeavyRumble.Name = "nUDHeavyRumble";
-            this.nUDHeavyRumble.Size = new System.Drawing.Size(52, 20);
+            this.nUDHeavyRumble.Size = new System.Drawing.Size(43, 20);
             this.nUDHeavyRumble.TabIndex = 212;
+            this.nUDHeavyRumble.Visible = false;
             this.nUDHeavyRumble.ValueChanged += new System.EventHandler(this.numUDHeavyRumble_ValueChanged);
             // 
             // lB6Gryo
@@ -1456,22 +1464,23 @@
             // 
             // nUDLightRumble
             // 
-            this.nUDLightRumble.Location = new System.Drawing.Point(46, 43);
+            this.nUDLightRumble.Location = new System.Drawing.Point(782, 205);
             this.nUDLightRumble.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.nUDLightRumble.Name = "nUDLightRumble";
-            this.nUDLightRumble.Size = new System.Drawing.Size(52, 20);
+            this.nUDLightRumble.Size = new System.Drawing.Size(43, 20);
             this.nUDLightRumble.TabIndex = 213;
+            this.nUDLightRumble.Visible = false;
             this.nUDLightRumble.ValueChanged += new System.EventHandler(this.numUDLightRumble_ValueChanged);
             // 
             // btnRumbleTest
             // 
-            this.btnRumbleTest.Location = new System.Drawing.Point(161, 11);
+            this.btnRumbleTest.Location = new System.Drawing.Point(14, 39);
             this.btnRumbleTest.Name = "btnRumbleTest";
-            this.btnRumbleTest.Size = new System.Drawing.Size(41, 23);
+            this.btnRumbleTest.Size = new System.Drawing.Size(64, 23);
             this.btnRumbleTest.TabIndex = 214;
             this.btnRumbleTest.Text = "Test";
             this.btnRumbleTest.UseVisualStyleBackColor = true;
@@ -1624,44 +1633,10 @@
             this.bnGyroZP.UseVisualStyleBackColor = true;
             this.bnGyroZP.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
-            // lBProfileTip
-            // 
-            this.lBProfileTip.AutoSize = true;
-            this.lBProfileTip.Location = new System.Drawing.Point(13, 302);
-            this.lBProfileTip.Name = "lBProfileTip";
-            this.lBProfileTip.Size = new System.Drawing.Size(70, 13);
-            this.lBProfileTip.TabIndex = 239;
-            this.lBProfileTip.Text = "Profile Name:";
-            this.lBProfileTip.Visible = false;
-            // 
-            // tBProfile
-            // 
-            this.tBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.tBProfile.Location = new System.Drawing.Point(85, 299);
-            this.tBProfile.Name = "tBProfile";
-            this.tBProfile.Size = new System.Drawing.Size(185, 20);
-            this.tBProfile.TabIndex = 238;
-            this.tBProfile.Text = "<type profile name here>";
-            this.tBProfile.Visible = false;
-            this.tBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
-            this.tBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
-            this.tBProfile.Leave += new System.EventHandler(this.tBProfile_Leave);
-            // 
-            // btnSaveProfile
-            // 
-            this.btnSaveProfile.Location = new System.Drawing.Point(276, 297);
-            this.btnSaveProfile.Name = "btnSaveProfile";
-            this.btnSaveProfile.Size = new System.Drawing.Size(78, 23);
-            this.btnSaveProfile.TabIndex = 237;
-            this.btnSaveProfile.Text = "Save Profile";
-            this.btnSaveProfile.UseVisualStyleBackColor = true;
-            this.btnSaveProfile.Visible = false;
-            this.btnSaveProfile.Click += new System.EventHandler(this.saveButton_Click);
-            // 
             // lbRS
             // 
             this.lbRS.AutoSize = true;
-            this.lbRS.Location = new System.Drawing.Point(110, 46);
+            this.lbRS.Location = new System.Drawing.Point(88, 46);
             this.lbRS.Name = "lbRS";
             this.lbRS.Size = new System.Drawing.Size(22, 13);
             this.lbRS.TabIndex = 197;
@@ -1684,7 +1659,7 @@
             0,
             0,
             65536});
-            this.nUDRS.Location = new System.Drawing.Point(133, 43);
+            this.nUDRS.Location = new System.Drawing.Point(111, 43);
             this.nUDRS.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1767,13 +1742,14 @@
             this.gBTouchpad.Controls.Add(this.cBScroll);
             this.gBTouchpad.Location = new System.Drawing.Point(440, 220);
             this.gBTouchpad.Name = "gBTouchpad";
-            this.gBTouchpad.Size = new System.Drawing.Size(438, 70);
+            this.gBTouchpad.Size = new System.Drawing.Size(437, 70);
             this.gBTouchpad.TabIndex = 246;
             this.gBTouchpad.TabStop = false;
             this.gBTouchpad.Text = "Touchpad";
             // 
             // gBOther
             // 
+            this.gBOther.Controls.Add(this.cBMouseAccel);
             this.gBOther.Controls.Add(this.nUDSixaxis);
             this.gBOther.Controls.Add(this.cBControllerInput);
             this.gBOther.Controls.Add(this.nUDIdleDisconnect);
@@ -1963,16 +1939,12 @@
             // 
             // gBRumble
             // 
-            this.gBRumble.Controls.Add(this.rumbleBoostLabel);
-            this.gBRumble.Controls.Add(this.nUDHeavyRumble);
+            this.gBRumble.Controls.Add(this.label2);
             this.gBRumble.Controls.Add(this.btnRumbleTest);
-            this.gBRumble.Controls.Add(this.leftMotorLabel);
-            this.gBRumble.Controls.Add(this.nUDLightRumble);
-            this.gBRumble.Controls.Add(this.rightMotorLabel);
             this.gBRumble.Controls.Add(this.nUDRumbleBoost);
             this.gBRumble.Location = new System.Drawing.Point(442, 3);
             this.gBRumble.Name = "gBRumble";
-            this.gBRumble.Size = new System.Drawing.Size(213, 67);
+            this.gBRumble.Size = new System.Drawing.Size(89, 67);
             this.gBRumble.TabIndex = 247;
             this.gBRumble.TabStop = false;
             this.gBRumble.Text = "Rumble";
@@ -1981,30 +1953,89 @@
             // 
             this.gBDeadzone.Controls.Add(this.lBL2);
             this.gBDeadzone.Controls.Add(this.nUDL2);
+            this.gBDeadzone.Controls.Add(this.lbSixaxisX);
+            this.gBDeadzone.Controls.Add(this.lbSixaxisZ);
             this.gBDeadzone.Controls.Add(this.lBR2);
             this.gBDeadzone.Controls.Add(this.lbRS);
+            this.gBDeadzone.Controls.Add(this.nUDSZ);
             this.gBDeadzone.Controls.Add(this.lbLS);
+            this.gBDeadzone.Controls.Add(this.nUDSX);
             this.gBDeadzone.Controls.Add(this.nUDRS);
             this.gBDeadzone.Controls.Add(this.nUDR2);
             this.gBDeadzone.Controls.Add(this.nUDLS);
-            this.gBDeadzone.Location = new System.Drawing.Point(684, 3);
+            this.gBDeadzone.Location = new System.Drawing.Point(598, 2);
             this.gBDeadzone.Name = "gBDeadzone";
-            this.gBDeadzone.Size = new System.Drawing.Size(194, 67);
+            this.gBDeadzone.Size = new System.Drawing.Size(282, 67);
             this.gBDeadzone.TabIndex = 248;
             this.gBDeadzone.TabStop = false;
             this.gBDeadzone.Text = "Deadzone";
             // 
-            // btnCancel
+            // lbSixaxisX
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(360, 297);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 249;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Visible = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.lbSixaxisX.AutoSize = true;
+            this.lbSixaxisX.Location = new System.Drawing.Point(168, 16);
+            this.lbSixaxisX.Name = "lbSixaxisX";
+            this.lbSixaxisX.Size = new System.Drawing.Size(49, 13);
+            this.lbSixaxisX.TabIndex = 197;
+            this.lbSixaxisX.Text = "Sixaxis X";
+            // 
+            // lbSixaxisZ
+            // 
+            this.lbSixaxisZ.AutoSize = true;
+            this.lbSixaxisZ.Location = new System.Drawing.Point(168, 45);
+            this.lbSixaxisZ.Name = "lbSixaxisZ";
+            this.lbSixaxisZ.Size = new System.Drawing.Size(49, 13);
+            this.lbSixaxisZ.TabIndex = 197;
+            this.lbSixaxisZ.Text = "Sixaxis Z";
+            // 
+            // nUDSZ
+            // 
+            this.nUDSZ.DecimalPlaces = 2;
+            this.nUDSZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDSZ.Location = new System.Drawing.Point(223, 43);
+            this.nUDSZ.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSZ.Name = "nUDSZ";
+            this.nUDSZ.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.nUDSZ.Size = new System.Drawing.Size(50, 20);
+            this.nUDSZ.TabIndex = 203;
+            this.nUDSZ.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
+            this.nUDSZ.ValueChanged += new System.EventHandler(this.nUDSZ_ValueChanged);
+            // 
+            // nUDSX
+            // 
+            this.nUDSX.DecimalPlaces = 2;
+            this.nUDSX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDSX.Location = new System.Drawing.Point(223, 14);
+            this.nUDSX.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSX.Name = "nUDSX";
+            this.nUDSX.Size = new System.Drawing.Size(50, 20);
+            this.nUDSX.TabIndex = 202;
+            this.nUDSX.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
+            this.nUDSX.ValueChanged += new System.EventHandler(this.nUDSX_ValueChanged);
             // 
             // bnGyroXP
             // 
@@ -2047,11 +2078,31 @@
             this.fLPTiltControls.Size = new System.Drawing.Size(350, 31);
             this.fLPTiltControls.TabIndex = 252;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(63, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(15, 13);
+            this.label2.TabIndex = 207;
+            this.label2.Text = "%";
+            // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
             this.advColorDialog.Color = System.Drawing.Color.Blue;
             this.advColorDialog.FullOpen = true;
+            // 
+            // cBMouseAccel
+            // 
+            this.cBMouseAccel.AutoSize = true;
+            this.cBMouseAccel.Location = new System.Drawing.Point(161, 17);
+            this.cBMouseAccel.Name = "cBMouseAccel";
+            this.cBMouseAccel.Size = new System.Drawing.Size(85, 17);
+            this.cBMouseAccel.TabIndex = 251;
+            this.cBMouseAccel.Text = "Acceleration";
+            this.cBMouseAccel.UseVisualStyleBackColor = true;
+            this.cBMouseAccel.CheckedChanged += new System.EventHandler(this.cBMouseAccel_CheckedChanged);
             // 
             // Options
             // 
@@ -2059,24 +2110,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(888, 295);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.rumbleBoostLabel);
+            this.Controls.Add(this.nUDHeavyRumble);
             this.Controls.Add(this.lB6Gryo);
             this.Controls.Add(this.gBDeadzone);
+            this.Controls.Add(this.leftMotorLabel);
             this.Controls.Add(this.gBRumble);
+            this.Controls.Add(this.nUDLightRumble);
+            this.Controls.Add(this.rightMotorLabel);
             this.Controls.Add(this.gBLightbar);
             this.Controls.Add(this.gBTouchpad);
-            this.Controls.Add(this.lBProfileTip);
-            this.Controls.Add(this.tBProfile);
-            this.Controls.Add(this.btnSaveProfile);
             this.Controls.Add(this.lBControlTip);
             this.Controls.Add(this.lBControls);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.SticksPanel);
             this.Controls.Add(this.gBOther);
-            this.Controls.Add(this.fLPTiltControls);
             this.Controls.Add(this.SixaxisPanel);
+            this.Controls.Add(this.fLPTiltControls);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -2132,6 +2183,8 @@
             this.gBRumble.PerformLayout();
             this.gBDeadzone.ResumeLayout(false);
             this.gBDeadzone.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).EndInit();
             this.fLPTiltControls.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -2234,9 +2287,6 @@
         private System.Windows.Forms.Panel lowBatteryPanel;
         private System.Windows.Forms.Panel FullPanel;
         private System.Windows.Forms.Panel SixaxisPanel;
-        private System.Windows.Forms.Label lBProfileTip;
-        private System.Windows.Forms.TextBox tBProfile;
-        private System.Windows.Forms.Button btnSaveProfile;
         private System.Windows.Forms.Label lBControlTip;
         private System.Windows.Forms.Label lbRS;
         private System.Windows.Forms.Label lbLS;
@@ -2250,7 +2300,6 @@
         private System.Windows.Forms.GroupBox gBRumble;
         private System.Windows.Forms.GroupBox gBDeadzone;
         private System.Windows.Forms.CheckBox cBControllerInput;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.NumericUpDown nUDSixaxis;
         private System.Windows.Forms.NumericUpDown nUDflashLED;
         private System.Windows.Forms.Label label1;
@@ -2267,6 +2316,12 @@
         private System.Windows.Forms.Button bnGyroZP;
         private System.Windows.Forms.Button bnGyroZN;
         private System.Windows.Forms.FlowLayoutPanel fLPTiltControls;
+        private System.Windows.Forms.Label lbSixaxisX;
+        private System.Windows.Forms.Label lbSixaxisZ;
+        private System.Windows.Forms.NumericUpDown nUDSZ;
+        private System.Windows.Forms.NumericUpDown nUDSX;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox cBMouseAccel;
     }
 }
 

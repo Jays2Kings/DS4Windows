@@ -39,7 +39,6 @@ namespace ScpServer
             {
                 Global.setAProfile(4, name);
                 Global.LoadProfile(deviceNum);
-                tBProfile.Text = filename;
                 DS4Color color = Global.loadColor(device);
                 redBar.Value = color.red;
                 greenBar.Value = color.green;
@@ -104,6 +103,8 @@ namespace ScpServer
                 }
                 nUDLS.Value = Math.Round((decimal)(Global.getLSDeadzone(device) / 127d ), 3);
                 nUDRS.Value = Math.Round((decimal)(Global.getRSDeadzone(device) / 127d ), 3);
+                nUDSX.Value = (decimal)Global.getSXDeadzone(device);
+                nUDSZ.Value = (decimal)Global.getSZDeadzone(device);
             }
             else
                 Set();
@@ -275,24 +276,11 @@ namespace ScpServer
             Global.setLSDeadzone(device, (byte)Math.Round((nUDLS.Value * 127), 0));
             Global.setButtonMouseSensitivity(device, (int)numUDMouseSens.Value);
             Global.setFlashAt(device, (int)nUDflashLED.Value);
+            Global.setSXDeadzone(device, (double)nUDSX.Value);
+            Global.setSZDeadzone(device, (double)nUDSZ.Value);
+            Global.setMouseAccel(device, cBMouseAccel.Checked);
             if (nUDRainbow.Value == 0) pBRainbow.Image = greyscale;
             else pBRainbow.Image = colored;
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            Set();
-
-            if (tBProfile.Text != null && tBProfile.Text != "" && !tBProfile.Text.Contains("\\") && !tBProfile.Text.Contains("/") && !tBProfile.Text.Contains(":") && !tBProfile.Text.Contains("*") && !tBProfile.Text.Contains("?") && !tBProfile.Text.Contains("\"") && !tBProfile.Text.Contains("<") && !tBProfile.Text.Contains(">") && !tBProfile.Text.Contains("|"))
-            {
-                System.IO.File.Delete(Global.appdatapath + @"\Profiles\" + filename + ".xml");
-                Global.setAProfile(device, tBProfile.Text);
-                Global.SaveProfile(device, tBProfile.Text, buttons.ToArray());
-                Global.Save();
-                this.Close();
-            }
-            else
-                MessageBox.Show("Please enter a valid name", "Not valid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         KBM360 kbm360 = null;
@@ -556,7 +544,7 @@ namespace ScpServer
         {
             if (((Button)sender).Text == "Test")
             {
-                scpDevice.setRumble((byte)nUDHeavyRumble.Value, (byte)nUDLightRumble.Value, (int)nUDSixaxis.Value - 1);
+                scpDevice.setRumble(255, 255, (int)nUDSixaxis.Value - 1);
                 ((Button)sender).Text = "Stop";
             }
             else
@@ -629,26 +617,6 @@ namespace ScpServer
             sixaxisTimer.Stop();
         }
 
-        private void tBProfile_TextChanged(object sender, EventArgs e)
-        {
-            if (tBProfile.Text != null && tBProfile.Text != "" && !tBProfile.Text.Contains("\\") && !tBProfile.Text.Contains("/") && !tBProfile.Text.Contains(":") && !tBProfile.Text.Contains("*") && !tBProfile.Text.Contains("?") && !tBProfile.Text.Contains("\"") && !tBProfile.Text.Contains("<") && !tBProfile.Text.Contains(">") && !tBProfile.Text.Contains("|"))            
-                tBProfile.ForeColor = System.Drawing.SystemColors.WindowText;            
-            else
-                tBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
-        }
-
-        private void tBProfile_Enter(object sender, EventArgs e)
-        {
-            if (tBProfile.Text == "<type profile name here>")
-                tBProfile.Text = "";
-        }
-
-        private void tBProfile_Leave(object sender, EventArgs e)
-        {
-            if (tBProfile.Text == "")
-                tBProfile.Text = "<type profile name here>";
-        }
-
         private void cBSlide_CheckedChanged(object sender, EventArgs e)
         {
             if (cBSlide.Checked)
@@ -680,12 +648,6 @@ namespace ScpServer
         private void cBDoubleTap_CheckedChanged(object sender, EventArgs e)
         {
             Global.setDoubleTap(device, cBDoubleTap.Checked);
-        }
-
-        private void tbProfile_EnterDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == 13)
-                saveButton_Click(sender, e);
         }
 
         public void UpdateLists()
@@ -869,6 +831,16 @@ namespace ScpServer
             Global.setRightTriggerMiddle(device, (byte)(nUDR2.Value * 255));
         }
 
+        private void nUDSX_ValueChanged(object sender, EventArgs e)
+        {
+            Global.setSXDeadzone(device, (double)nUDSX.Value);
+        }
+
+        private void nUDSZ_ValueChanged(object sender, EventArgs e)
+        {
+            Global.setSZDeadzone(device, (double)nUDSZ.Value);
+        }
+
         Image L = Properties.Resources.LeftTouch;
         Image R = Properties.Resources.RightTouch;
         Image M = Properties.Resources.MultiTouch;
@@ -970,6 +942,11 @@ namespace ScpServer
                 sixaxisTimer.Start();
             else
                 sixaxisTimer.Stop();
+        }
+
+        private void cBMouseAccel_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setMouseAccel(device, cBMouseAccel.Checked);
         }
     }
 }

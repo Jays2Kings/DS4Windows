@@ -320,9 +320,9 @@
             // 
             this.tabMain.Controls.Add(this.tabControllers);
             this.tabMain.Controls.Add(this.tabProfiles);
-            this.tabMain.Controls.Add(this.tabLog);
             this.tabMain.Controls.Add(this.tabAutoProfiles);
             this.tabMain.Controls.Add(this.tabSettings);
+            this.tabMain.Controls.Add(this.tabLog);
             resources.ApplyResources(this.tabMain, "tabMain");
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;

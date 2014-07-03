@@ -18,7 +18,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 10.65;
+        double version = 10.651;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 

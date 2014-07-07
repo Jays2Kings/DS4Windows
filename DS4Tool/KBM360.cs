@@ -29,7 +29,14 @@ namespace ScpServer
             cbScanCode.Checked = button.Font.Bold;
             //cBMacro.Checked = button.Font.Underline;
             lBMacroOn.Visible = button.Font.Underline;
-            Text = "Select an action for " + button.Name.Substring(2);
+            if (button.Name.StartsWith("bn"))
+                Text = "Select an action for " + button.Name.Substring(2);
+            else if (button.Name.StartsWith("sbn"))
+            {
+                Text = "Select an action for " + button.Name.Substring(3);
+                btnUNBOUND2.Text = "Fall Back";
+                btnUNBOUND2.Tag = null;
+            }
             foreach (System.Windows.Forms.Control control in this.Controls)
                 if (control is Button)
                     ((Button)control).Click += anybtn_Click;
@@ -64,13 +71,15 @@ namespace ScpServer
                     else
                         keyname = "How did you get here?";
                 }
+                else if (((Button)sender).Tag == null)
+                    keyname = "Fall back";
                 else if (((Button)sender).Tag.ToString().Contains("X360"))
                     keyname = ((Button)sender).Tag.ToString().Substring(4);
                 else
                     keyname = ((Button)sender).Text;
 
                 object keytag;
-                if (((Button)sender).Tag.ToString().Contains("X360"))
+                if (((Button)sender).Tag != null && ((Button)sender).Tag.ToString().Contains("X360"))
                     keytag = ((Button)sender).Tag.ToString().Substring(4);
                 else
                     keytag = ((Button)sender).Tag;
@@ -95,13 +104,6 @@ namespace ScpServer
             this.Close();
         }
 
-        private void Key_Up_Action(object sender, KeyEventArgs e)
-        {
-            lBMacroOn.Visible = false;
-            ops.ChangeButtonText(e.KeyCode.ToString(), e.KeyValue);
-            this.Close();
-        }
-        
         private void Key_Press_Action(object sender, KeyEventArgs e)
         {
             lBMacroOn.Visible = false;

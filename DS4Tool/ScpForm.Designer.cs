@@ -100,6 +100,8 @@
             this.tSTBProfile = new System.Windows.Forms.ToolStripTextBox();
             this.tSBSaveProfile = new System.Windows.Forms.ToolStripButton();
             this.tSBCancel = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tSBKeepSize = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsBNewProfle = new System.Windows.Forms.ToolStripButton();
             this.tsBEditProfile = new System.Windows.Forms.ToolStripButton();
@@ -107,7 +109,6 @@
             this.tSBDupProfile = new System.Windows.Forms.ToolStripButton();
             this.tSBImportProfile = new System.Windows.Forms.ToolStripButton();
             this.tSBExportProfile = new System.Windows.Forms.ToolStripButton();
-            this.tabLog = new System.Windows.Forms.TabPage();
             this.tabAutoProfiles = new System.Windows.Forms.TabPage();
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -123,6 +124,7 @@
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
             this.linkUninstall = new System.Windows.Forms.LinkLabel();
             this.lLSetup = new System.Windows.Forms.LinkLabel();
+            this.tabLog = new System.Windows.Forms.TabPage();
             this.saveProfiles = new System.Windows.Forms.SaveFileDialog();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
@@ -137,11 +139,11 @@
             this.cMProfile.SuspendLayout();
             this.tSOptions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.tabLog.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pNUpdate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).BeginInit();
+            this.tabLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvDebug
@@ -624,9 +626,12 @@
             this.toolStripLabel1,
             this.tSTBProfile,
             this.tSBSaveProfile,
-            this.tSBCancel});
+            this.tSBCancel,
+            this.toolStripSeparator3,
+            this.tSBKeepSize});
             resources.ApplyResources(this.tSOptions, "tSOptions");
             this.tSOptions.Name = "tSOptions";
+            this.tSOptions.ShowItemToolTips = false;
             // 
             // toolStripLabel1
             // 
@@ -657,6 +662,18 @@
             resources.ApplyResources(this.tSBCancel, "tSBCancel");
             this.tSBCancel.Name = "tSBCancel";
             this.tSBCancel.Click += new System.EventHandler(this.tSBCancel_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+            // 
+            // tSBKeepSize
+            // 
+            this.tSBKeepSize.Image = global::ScpServer.Properties.Resources.size;
+            resources.ApplyResources(this.tSBKeepSize, "tSBKeepSize");
+            this.tSBKeepSize.Name = "tSBKeepSize";
+            this.tSBKeepSize.Click += new System.EventHandler(this.tSBKeepSize_Click);
             // 
             // toolStrip1
             // 
@@ -709,14 +726,6 @@
             resources.ApplyResources(this.tSBExportProfile, "tSBExportProfile");
             this.tSBExportProfile.Name = "tSBExportProfile";
             this.tSBExportProfile.Click += new System.EventHandler(this.tSBExportProfile_Click);
-            // 
-            // tabLog
-            // 
-            this.tabLog.Controls.Add(this.lvDebug);
-            this.tabLog.Controls.Add(this.btnClear);
-            resources.ApplyResources(this.tabLog, "tabLog");
-            this.tabLog.Name = "tabLog";
-            this.tabLog.UseVisualStyleBackColor = true;
             // 
             // tabAutoProfiles
             // 
@@ -842,6 +851,14 @@
             this.lLSetup.TabStop = true;
             this.lLSetup.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLSetup_LinkClicked);
             // 
+            // tabLog
+            // 
+            this.tabLog.Controls.Add(this.lvDebug);
+            this.tabLog.Controls.Add(this.btnClear);
+            resources.ApplyResources(this.tabLog, "tabLog");
+            this.tabLog.Name = "tabLog";
+            this.tabLog.UseVisualStyleBackColor = true;
+            // 
             // saveProfiles
             // 
             resources.ApplyResources(this.saveProfiles, "saveProfiles");
@@ -878,13 +895,13 @@
             this.tSOptions.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.tabLog.ResumeLayout(false);
             this.tabSettings.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.pNUpdate.ResumeLayout(false);
             this.pNUpdate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).EndInit();
+            this.tabLog.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -985,6 +1002,8 @@
         private System.Windows.Forms.LinkLabel lLSetup;
         private System.Windows.Forms.CheckBox cBDisconnectBT;
         private System.Windows.Forms.CheckBox cBSwipeProfiles;
+        private System.Windows.Forms.ToolStripButton tSBKeepSize;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

@@ -220,6 +220,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\size.png" />
     <None Include="Resources\xbox_360_controller.png" />
     <None Include="Resources\Y.png" />
     <None Include="Resources\X.png" />
@@ -248,6 +249,7 @@
     <None Include="Resources\BACK.png" />
     <None Include="Resources\DOWN.png" />
     <None Include="Resources\360 fades.png" />
+    <None Include="Resources\checked.png" />
     <Content Include="Resources\DS4.ico" />
     <None Include="Resources\mouse.png" />
     <None Include="Resources\rainbow.png" />
@@ -277,6 +279,7 @@
     <None Include="Resources\RSR.png" />
     <None Include="Resources\RSU.png" />
     <None Include="Resources\RT.png" />
+    <None Include="Resources\Red Circle.png" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>

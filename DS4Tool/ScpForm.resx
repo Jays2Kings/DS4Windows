@@ -122,13 +122,13 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="chTime.Width" type="System.Int32, mscorlib">
-    <value>147</value>
+    <value>167</value>
   </data>
   <data name="chData.Text" xml:space="preserve">
     <value>Data</value>
   </data>
   <data name="chData.Width" type="System.Int32, mscorlib">
-    <value>145</value>
+    <value>84</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lvDebug.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -142,7 +142,7 @@
     <value>3, 3</value>
   </data>
   <data name="lvDebug.Size" type="System.Drawing.Size, System.Drawing">
-    <value>660, 250</value>
+    <value>851, 310</value>
   </data>
   <data name="lvDebug.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -169,7 +169,7 @@
     <value>True</value>
   </data>
   <data name="lBTest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 9</value>
+    <value>611, 9</value>
   </data>
   <data name="lBTest.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 13</value>
@@ -199,7 +199,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="btnStartStop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>609, 4</value>
+    <value>800, 4</value>
   </data>
   <data name="btnStartStop.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 23</value>
@@ -229,7 +229,7 @@
     <value>4, 9</value>
   </data>
   <data name="lbLastMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>514, 18</value>
+    <value>705, 18</value>
   </data>
   <data name="lbLastMessage.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -253,7 +253,7 @@
     <value>True</value>
   </data>
   <data name="llbHelp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>524, 9</value>
+    <value>715, 9</value>
   </data>
   <data name="llbHelp.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 13</value>
@@ -280,10 +280,10 @@
     <value>Bottom</value>
   </data>
   <data name="pnlButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 305</value>
+    <value>0, 365</value>
   </data>
   <data name="pnlButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>674, 30</value>
+    <value>865, 30</value>
   </data>
   <data name="pnlButton.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -307,7 +307,7 @@
     <value>True</value>
   </data>
   <data name="lnkControllers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 56</value>
+    <value>474, 33</value>
   </data>
   <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 13</value>
@@ -337,7 +337,7 @@
     <value>True</value>
   </data>
   <data name="StartWindowsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>3, 5</value>
   </data>
   <data name="StartWindowsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 17</value>
@@ -367,7 +367,7 @@
     <value>True</value>
   </data>
   <data name="startMinimizedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 3</value>
+    <value>104, 5</value>
   </data>
   <data name="startMinimizedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 17</value>
@@ -397,7 +397,7 @@
     <value>True</value>
   </data>
   <data name="hideDS4CheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 3</value>
+    <value>207, 5</value>
   </data>
   <data name="hideDS4CheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 17</value>
@@ -427,10 +427,10 @@
     <value>False</value>
   </data>
   <data name="btnClear.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 253</value>
+    <value>3, 313</value>
   </data>
   <data name="btnClear.Size" type="System.Drawing.Size, System.Drawing">
-    <value>660, 23</value>
+    <value>851, 23</value>
   </data>
   <data name="btnClear.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -6760,7 +6760,7 @@
 </value>
   </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 19</value>
+    <value>400, 19</value>
   </data>
   <data name="pBStatus1.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -6853,7 +6853,7 @@
     <value>Left</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>624, 76</value>
+    <value>815, 76</value>
   </data>
   <data name="bnEditC3.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 23</value>
@@ -6880,7 +6880,7 @@
     <value>Left</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>624, 105</value>
+    <value>815, 105</value>
   </data>
   <data name="bnEditC4.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 23</value>
@@ -6973,7 +6973,7 @@
     <value>None</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>507, 19</value>
+    <value>698, 19</value>
   </data>
   <data name="cBController1.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -6997,7 +6997,7 @@
     <value>Left</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>624, 47</value>
+    <value>815, 47</value>
   </data>
   <data name="bnEditC2.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 23</value>
@@ -7024,7 +7024,7 @@
     <value>None</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>507, 48</value>
+    <value>698, 48</value>
   </data>
   <data name="cBController2.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -7048,7 +7048,7 @@
     <value>None</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>507, 77</value>
+    <value>698, 77</value>
   </data>
   <data name="cBController3.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -7072,7 +7072,7 @@
     <value>Left</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>624, 18</value>
+    <value>815, 18</value>
   </data>
   <data name="bnEditC1.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 23</value>
@@ -7099,7 +7099,7 @@
     <value>None</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>507, 106</value>
+    <value>698, 106</value>
   </data>
   <data name="cBController4.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -7129,7 +7129,7 @@
     <value>Microsoft Sans Serif, 9pt, style=Bold</value>
   </data>
   <data name="lBSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>508, 0</value>
+    <value>699, 0</value>
   </data>
   <data name="lBSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 15</value>
@@ -7195,7 +7195,7 @@
     <value>Microsoft Sans Serif, 9pt, style=Bold</value>
   </data>
   <data name="lBStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>281, 0</value>
+    <value>396, 0</value>
   </data>
   <data name="lBStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 15</value>
@@ -7228,7 +7228,7 @@
     <value>Microsoft Sans Serif, 9pt, style=Bold</value>
   </data>
   <data name="lBBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>414, 0</value>
+    <value>581, 0</value>
   </data>
   <data name="lBBattery.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 15</value>
@@ -7261,7 +7261,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lBBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 22</value>
+    <value>587, 22</value>
   </data>
   <data name="lBBatt1.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -7294,7 +7294,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lBBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 51</value>
+    <value>587, 51</value>
   </data>
   <data name="lBBatt2.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -7327,7 +7327,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lBBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 80</value>
+    <value>587, 80</value>
   </data>
   <data name="lBBatt3.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -7360,7 +7360,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lBBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 109</value>
+    <value>587, 109</value>
   </data>
   <data name="lBBatt4.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -7443,7 +7443,7 @@
 </value>
   </data>
   <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 48</value>
+    <value>400, 48</value>
   </data>
   <data name="pBStatus2.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -7526,7 +7526,7 @@
 </value>
   </data>
   <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 77</value>
+    <value>400, 77</value>
   </data>
   <data name="pBStatus3.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -7609,7 +7609,7 @@
 </value>
   </data>
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 106</value>
+    <value>400, 106</value>
   </data>
   <data name="pBStatus4.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -7642,7 +7642,7 @@
     <value>5</value>
   </data>
   <data name="tLPControllers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>666, 130</value>
+    <value>857, 130</value>
   </data>
   <data name="tLPControllers.TabIndex" type="System.Int32, mscorlib">
     <value>46</value>
@@ -7666,7 +7666,7 @@
     <value>4, 22</value>
   </data>
   <data name="tabControllers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>666, 279</value>
+    <value>857, 339</value>
   </data>
   <data name="tabControllers.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -7774,7 +7774,7 @@
     <value>3, 53</value>
   </data>
   <data name="lBProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>660, 223</value>
+    <value>851, 283</value>
   </data>
   <data name="lBProfiles.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -7801,7 +7801,7 @@
     <value>Profile Name: </value>
   </data>
   <data name="tSTBProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 25</value>
+    <value>150, 25</value>
   </data>
   <data name="tSTBProfile.Text" xml:space="preserve">
     <value>&lt;type profile name here&gt;</value>
@@ -7824,11 +7824,23 @@
   <data name="tSBCancel.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="tSBKeepSize.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tSBKeepSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 22</value>
+  </data>
+  <data name="tSBKeepSize.Text" xml:space="preserve">
+    <value>Keep this window size after closing</value>
+  </data>
   <data name="tSOptions.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 28</value>
   </data>
   <data name="tSOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>660, 25</value>
+    <value>851, 25</value>
   </data>
   <data name="tSOptions.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -7864,7 +7876,7 @@
     <value>TopLeft</value>
   </data>
   <data name="tsBNewProfle.ToolTipText" xml:space="preserve">
-    <value>Make New Profile</value>
+    <value>Make a New Profile</value>
   </data>
   <data name="tsBEditProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -7974,7 +7986,7 @@
     <value>3, 3</value>
   </data>
   <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>660, 25</value>
+    <value>851, 25</value>
   </data>
   <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -8001,7 +8013,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>666, 279</value>
+    <value>857, 339</value>
   </data>
   <data name="tabProfiles.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -8025,7 +8037,7 @@
     <value>4, 22</value>
   </data>
   <data name="tabAutoProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>666, 279</value>
+    <value>857, 339</value>
   </data>
   <data name="tabAutoProfiles.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -8082,7 +8094,7 @@
     <value>True</value>
   </data>
   <data name="cBUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>452, 3</value>
+    <value>452, 5</value>
   </data>
   <data name="cBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 17</value>
@@ -8190,7 +8202,7 @@
     <value>False</value>
   </data>
   <data name="pNUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 26</value>
+    <value>622, 3</value>
   </data>
   <data name="pNUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
@@ -8217,7 +8229,7 @@
     <value>True</value>
   </data>
   <data name="cBSwipeProfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>198, 28</value>
+    <value>3, 31</value>
   </data>
   <data name="cBSwipeProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 17</value>
@@ -8247,7 +8259,7 @@
     <value>True</value>
   </data>
   <data name="cBDisconnectBT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>398, 28</value>
+    <value>203, 31</value>
   </data>
   <data name="cBDisconnectBT.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 17</value>
@@ -8277,7 +8289,7 @@
     <value>True</value>
   </data>
   <data name="linkProfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 56</value>
+    <value>403, 33</value>
   </data>
   <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 13</value>
@@ -8304,7 +8316,7 @@
     <value>None</value>
   </data>
   <data name="lLBUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 51</value>
+    <value>553, 28</value>
   </data>
   <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 23</value>
@@ -8334,7 +8346,7 @@
     <value>None</value>
   </data>
   <data name="linkUninstall.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 51</value>
+    <value>675, 28</value>
   </data>
   <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 23</value>
@@ -8367,7 +8379,7 @@
     <value>True</value>
   </data>
   <data name="lLSetup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>387, 56</value>
+    <value>3, 51</value>
   </data>
   <data name="lLSetup.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 13</value>
@@ -8397,7 +8409,7 @@
     <value>3, 3</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>660, 273</value>
+    <value>851, 333</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -8421,7 +8433,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>666, 279</value>
+    <value>857, 339</value>
   </data>
   <data name="tabSettings.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -8448,7 +8460,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>666, 279</value>
+    <value>857, 339</value>
   </data>
   <data name="tabLog.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -8475,7 +8487,7 @@
     <value>0, 0</value>
   </data>
   <data name="tabMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>674, 305</value>
+    <value>865, 365</value>
   </data>
   <data name="tabMain.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -8505,7 +8517,7 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>674, 335</value>
+    <value>865, 395</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>440, 231</value>
@@ -8673,6 +8685,18 @@
     <value>tSBCancel</value>
   </data>
   <data name="&gt;&gt;tSBCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
+    <value>toolStripSeparator3</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tSBKeepSize.Name" xml:space="preserve">
+    <value>tSBKeepSize</value>
+  </data>
+  <data name="&gt;&gt;tSBKeepSize.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsBNewProfle.Name" xml:space="preserve">

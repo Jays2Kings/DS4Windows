@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
             this.bnTouchUpper = new System.Windows.Forms.Button();
             this.bnTouchMulti = new System.Windows.Forms.Button();
             this.bnTouchRight = new System.Windows.Forms.Button();
@@ -96,18 +97,12 @@
             this.tBsixaxisAccelZ = new System.Windows.Forms.TrackBar();
             this.cBFlushHIDQueue = new System.Windows.Forms.CheckBox();
             this.tBsixaxisAccelY = new System.Windows.Forms.TrackBar();
-            this.leftMotorLabel = new System.Windows.Forms.Label();
             this.tBsixaxisAccelX = new System.Windows.Forms.TrackBar();
-            this.rightMotorLabel = new System.Windows.Forms.Label();
             this.tBsixaxisGyroZ = new System.Windows.Forms.TrackBar();
-            this.rumbleBoostLabel = new System.Windows.Forms.Label();
             this.tBsixaxisGyroY = new System.Windows.Forms.TrackBar();
             this.tBsixaxisGyroX = new System.Windows.Forms.TrackBar();
             this.nUDRumbleBoost = new System.Windows.Forms.NumericUpDown();
             this.lB6Accel = new System.Windows.Forms.Label();
-            this.nUDHeavyRumble = new System.Windows.Forms.NumericUpDown();
-            this.lB6Gryo = new System.Windows.Forms.Label();
-            this.nUDLightRumble = new System.Windows.Forms.NumericUpDown();
             this.btnRumbleTest = new System.Windows.Forms.Button();
             this.lbFull = new System.Windows.Forms.Label();
             this.lBLowRed = new System.Windows.Forms.Label();
@@ -119,8 +114,7 @@
             this.lBEmpty = new System.Windows.Forms.Label();
             this.FullPanel = new System.Windows.Forms.Panel();
             this.lowBatteryPanel = new System.Windows.Forms.Panel();
-            this.SixaxisPanel = new System.Windows.Forms.Panel();
-            this.bnGyroZP = new System.Windows.Forms.Button();
+            this.lB6Gryo = new System.Windows.Forms.Label();
             this.lbRS = new System.Windows.Forms.Label();
             this.lbLS = new System.Windows.Forms.Label();
             this.nUDRS = new System.Windows.Forms.NumericUpDown();
@@ -129,6 +123,9 @@
             this.nUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.gBOther = new System.Windows.Forms.GroupBox();
+            this.lBforMandR = new System.Windows.Forms.Label();
+            this.lBUseController = new System.Windows.Forms.Label();
+            this.cBMouseAccel = new System.Windows.Forms.CheckBox();
             this.nUDSixaxis = new System.Windows.Forms.NumericUpDown();
             this.cBControllerInput = new System.Windows.Forms.CheckBox();
             this.cBIdleDisconnect = new System.Windows.Forms.CheckBox();
@@ -139,22 +136,93 @@
             this.rBNormal = new System.Windows.Forms.RadioButton();
             this.rBRainbow = new System.Windows.Forms.RadioButton();
             this.lbWhileCharging = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lBPercentFlashBar = new System.Windows.Forms.Label();
             this.lBFlashAt = new System.Windows.Forms.Label();
             this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
             this.gBRumble = new System.Windows.Forms.GroupBox();
+            this.lBPercentRumble = new System.Windows.Forms.Label();
             this.gBDeadzone = new System.Windows.Forms.GroupBox();
             this.lbSixaxisX = new System.Windows.Forms.Label();
             this.lbSixaxisZ = new System.Windows.Forms.Label();
             this.nUDSZ = new System.Windows.Forms.NumericUpDown();
             this.nUDSX = new System.Windows.Forms.NumericUpDown();
+            this.tabControls = new System.Windows.Forms.TabControl();
+            this.tPControls = new System.Windows.Forms.TabPage();
+            this.lBGryo = new System.Windows.Forms.Label();
+            this.fLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
+            this.bnGyroZN = new System.Windows.Forms.Button();
+            this.bnGyroZP = new System.Windows.Forms.Button();
             this.bnGyroXP = new System.Windows.Forms.Button();
             this.bnGyroXN = new System.Windows.Forms.Button();
-            this.bnGyroZN = new System.Windows.Forms.Button();
-            this.fLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.tPShiftMod = new System.Windows.Forms.TabPage();
+            this.slBGryo = new System.Windows.Forms.Label();
+            this.sfLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
+            this.sbnGyroZN = new System.Windows.Forms.Button();
+            this.sbnGyroZP = new System.Windows.Forms.Button();
+            this.sbnGyroXP = new System.Windows.Forms.Button();
+            this.sbnGyroXN = new System.Windows.Forms.Button();
+            this.cBShiftControl = new System.Windows.Forms.ComboBox();
+            this.lBShiftControls = new System.Windows.Forms.ListBox();
+            this.lBHold = new System.Windows.Forms.Label();
+            this.lBtoUse = new System.Windows.Forms.Label();
+            this.ShiftMainPanel = new System.Windows.Forms.Panel();
+            this.spBController = new System.Windows.Forms.PictureBox();
+            this.sbnTouchUpper = new System.Windows.Forms.Button();
+            this.sbnTouchLeft = new System.Windows.Forms.Button();
+            this.sbnTouchRight = new System.Windows.Forms.Button();
+            this.sbnTouchMulti = new System.Windows.Forms.Button();
+            this.sbnR1 = new System.Windows.Forms.Button();
+            this.sbnCross = new System.Windows.Forms.Button();
+            this.sbnCircle = new System.Windows.Forms.Button();
+            this.sbtnRightStick = new System.Windows.Forms.Button();
+            this.sbnSquare = new System.Windows.Forms.Button();
+            this.sbtnLightbar = new System.Windows.Forms.Button();
+            this.sbnTriangle = new System.Windows.Forms.Button();
+            this.sbnUp = new System.Windows.Forms.Button();
+            this.sbtnLeftStick = new System.Windows.Forms.Button();
+            this.sbnDown = new System.Windows.Forms.Button();
+            this.sbnL2 = new System.Windows.Forms.Button();
+            this.sbnRight = new System.Windows.Forms.Button();
+            this.sbnR2 = new System.Windows.Forms.Button();
+            this.sbnLeft = new System.Windows.Forms.Button();
+            this.sbnL1 = new System.Windows.Forms.Button();
+            this.sbnOptions = new System.Windows.Forms.Button();
+            this.sbnPS = new System.Windows.Forms.Button();
+            this.sbnShare = new System.Windows.Forms.Button();
+            this.ShiftSticksPanel = new System.Windows.Forms.Panel();
+            this.sbtnFullView = new System.Windows.Forms.Button();
+            this.spBSticks = new System.Windows.Forms.PictureBox();
+            this.sbnL3 = new System.Windows.Forms.Button();
+            this.sbnRSDown = new System.Windows.Forms.Button();
+            this.sbnLSUp = new System.Windows.Forms.Button();
+            this.sbnRSUp = new System.Windows.Forms.Button();
+            this.sbnLSLeft = new System.Windows.Forms.Button();
+            this.sbnRSRight = new System.Windows.Forms.Button();
+            this.sbnLSRight = new System.Windows.Forms.Button();
+            this.sbnRSLeft = new System.Windows.Forms.Button();
+            this.sbnLSDown = new System.Windows.Forms.Button();
+            this.sbnR3 = new System.Windows.Forms.Button();
+            this.tPController = new System.Windows.Forms.TabPage();
+            this.lBL2Track = new System.Windows.Forms.Label();
+            this.pBDelayTracker = new System.Windows.Forms.PictureBox();
+            this.btnSATrack = new System.Windows.Forms.Button();
+            this.btnRSTrack = new System.Windows.Forms.Button();
+            this.lBRSTip = new System.Windows.Forms.Label();
+            this.lBInputDelay = new System.Windows.Forms.Label();
+            this.lBR2Track = new System.Windows.Forms.Label();
+            this.lBLSTip = new System.Windows.Forms.Label();
+            this.lBSATip = new System.Windows.Forms.Label();
+            this.btnLSTrack = new System.Windows.Forms.Button();
+            this.pBSADeadzone = new System.Windows.Forms.PictureBox();
+            this.lBSATrack = new System.Windows.Forms.Label();
+            this.pBRSDeadzone = new System.Windows.Forms.PictureBox();
+            this.lBRSTrack = new System.Windows.Forms.Label();
+            this.pBLSDeadzone = new System.Windows.Forms.PictureBox();
+            this.lBLSTrack = new System.Windows.Forms.Label();
+            this.tBR2 = new System.Windows.Forms.TrackBar();
+            this.tBL2 = new System.Windows.Forms.TrackBar();
+            this.SixaxisPanel = new System.Windows.Forms.Panel();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
-            this.cBMouseAccel = new System.Windows.Forms.CheckBox();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
             this.SticksPanel.SuspendLayout();
@@ -176,14 +244,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRumbleBoost)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHeavyRumble)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLightRumble)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).BeginInit();
             this.FullPanel.SuspendLayout();
             this.lowBatteryPanel.SuspendLayout();
-            this.SixaxisPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDMouseSens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLS)).BeginInit();
@@ -197,7 +262,23 @@
             this.gBDeadzone.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).BeginInit();
+            this.tabControls.SuspendLayout();
+            this.tPControls.SuspendLayout();
             this.fLPTiltControls.SuspendLayout();
+            this.tPShiftMod.SuspendLayout();
+            this.sfLPTiltControls.SuspendLayout();
+            this.ShiftMainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spBController)).BeginInit();
+            this.ShiftSticksPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spBSticks)).BeginInit();
+            this.tPController.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBDelayTracker)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBSADeadzone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBRSDeadzone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBLSDeadzone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBR2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBL2)).BeginInit();
+            this.SixaxisPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // bnTouchUpper
@@ -309,7 +390,7 @@
             this.MainPanel.Controls.Add(this.bnOptions);
             this.MainPanel.Controls.Add(this.bnPS);
             this.MainPanel.Controls.Add(this.bnShare);
-            this.MainPanel.Location = new System.Drawing.Point(7, 44);
+            this.MainPanel.Location = new System.Drawing.Point(6, 42);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(249, 137);
             this.MainPanel.TabIndex = 185;
@@ -325,6 +406,8 @@
             this.pBController.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBController.TabIndex = 1;
             this.pBController.TabStop = false;
+            this.pBController.BackColorChanged += new System.EventHandler(this.pBController_BackColorChanged);
+            this.pBController.BackgroundImageChanged += new System.EventHandler(this.pBController_BackgroundImageChanged);
             // 
             // bnR1
             // 
@@ -683,7 +766,7 @@
             this.SticksPanel.Controls.Add(this.bnRSLeft);
             this.SticksPanel.Controls.Add(this.bnLSDown);
             this.SticksPanel.Controls.Add(this.bnR3);
-            this.SticksPanel.Location = new System.Drawing.Point(7, 44);
+            this.SticksPanel.Location = new System.Drawing.Point(6, 42);
             this.SticksPanel.Name = "SticksPanel";
             this.SticksPanel.Size = new System.Drawing.Size(249, 142);
             this.SticksPanel.TabIndex = 187;
@@ -903,7 +986,7 @@
             // lBControlTip
             // 
             this.lBControlTip.AutoSize = true;
-            this.lBControlTip.Location = new System.Drawing.Point(25, 7);
+            this.lBControlTip.Location = new System.Drawing.Point(24, 5);
             this.lBControlTip.Name = "lBControlTip";
             this.lBControlTip.Size = new System.Drawing.Size(219, 26);
             this.lBControlTip.TabIndex = 181;
@@ -948,7 +1031,7 @@
             "Sixaxis Down :",
             "Sixaxis Left :",
             "Sixaxis Right :"});
-            this.lBControls.Location = new System.Drawing.Point(258, 9);
+            this.lBControls.Location = new System.Drawing.Point(257, 7);
             this.lBControls.Name = "lBControls";
             this.lBControls.Size = new System.Drawing.Size(169, 173);
             this.lBControls.TabIndex = 180;
@@ -1257,7 +1340,7 @@
             // lBIdleMinutes
             // 
             this.lBIdleMinutes.AutoSize = true;
-            this.lBIdleMinutes.Location = new System.Drawing.Point(164, 49);
+            this.lBIdleMinutes.Location = new System.Drawing.Point(163, 48);
             this.lBIdleMinutes.Name = "lBIdleMinutes";
             this.lBIdleMinutes.Size = new System.Drawing.Size(28, 13);
             this.lBIdleMinutes.TabIndex = 200;
@@ -1300,19 +1383,19 @@
             // 
             this.tBsixaxisAccelZ.AutoSize = false;
             this.tBsixaxisAccelZ.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisAccelZ.Location = new System.Drawing.Point(315, 3);
-            this.tBsixaxisAccelZ.Maximum = 32767;
-            this.tBsixaxisAccelZ.Minimum = -32768;
+            this.tBsixaxisAccelZ.Location = new System.Drawing.Point(71, 79);
+            this.tBsixaxisAccelZ.Maximum = 8500;
+            this.tBsixaxisAccelZ.Minimum = -8500;
             this.tBsixaxisAccelZ.Name = "tBsixaxisAccelZ";
             this.tBsixaxisAccelZ.Size = new System.Drawing.Size(50, 19);
             this.tBsixaxisAccelZ.TabIndex = 217;
-            this.tBsixaxisAccelZ.TickFrequency = 16384;
+            this.tBsixaxisAccelZ.TickFrequency = 4750;
             // 
             // cBFlushHIDQueue
             // 
             this.cBFlushHIDQueue.AccessibleName = "flushHIDQueue";
             this.cBFlushHIDQueue.AutoSize = true;
-            this.cBFlushHIDQueue.Location = new System.Drawing.Point(306, 48);
+            this.cBFlushHIDQueue.Location = new System.Drawing.Point(357, 16);
             this.cBFlushHIDQueue.Name = "cBFlushHIDQueue";
             this.cBFlushHIDQueue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cBFlushHIDQueue.Size = new System.Drawing.Size(73, 17);
@@ -1325,91 +1408,61 @@
             // 
             this.tBsixaxisAccelY.AutoSize = false;
             this.tBsixaxisAccelY.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisAccelY.Location = new System.Drawing.Point(268, 3);
-            this.tBsixaxisAccelY.Maximum = 32767;
-            this.tBsixaxisAccelY.Minimum = -32768;
+            this.tBsixaxisAccelY.Location = new System.Drawing.Point(72, 49);
+            this.tBsixaxisAccelY.Maximum = 8500;
+            this.tBsixaxisAccelY.Minimum = -8500;
             this.tBsixaxisAccelY.Name = "tBsixaxisAccelY";
             this.tBsixaxisAccelY.Size = new System.Drawing.Size(50, 19);
             this.tBsixaxisAccelY.TabIndex = 218;
-            this.tBsixaxisAccelY.TickFrequency = 16384;
-            // 
-            // leftMotorLabel
-            // 
-            this.leftMotorLabel.AutoSize = true;
-            this.leftMotorLabel.Location = new System.Drawing.Point(763, 208);
-            this.leftMotorLabel.Name = "leftMotorLabel";
-            this.leftMotorLabel.Size = new System.Drawing.Size(13, 13);
-            this.leftMotorLabel.TabIndex = 209;
-            this.leftMotorLabel.Text = "L";
-            this.leftMotorLabel.Visible = false;
+            this.tBsixaxisAccelY.TickFrequency = 4750;
             // 
             // tBsixaxisAccelX
             // 
             this.tBsixaxisAccelX.AutoSize = false;
             this.tBsixaxisAccelX.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisAccelX.Location = new System.Drawing.Point(222, 3);
-            this.tBsixaxisAccelX.Maximum = 32767;
-            this.tBsixaxisAccelX.Minimum = -32768;
+            this.tBsixaxisAccelX.Location = new System.Drawing.Point(71, 25);
+            this.tBsixaxisAccelX.Maximum = 8500;
+            this.tBsixaxisAccelX.Minimum = -8500;
             this.tBsixaxisAccelX.Name = "tBsixaxisAccelX";
             this.tBsixaxisAccelX.Size = new System.Drawing.Size(50, 19);
             this.tBsixaxisAccelX.TabIndex = 219;
-            this.tBsixaxisAccelX.TickFrequency = 16384;
-            // 
-            // rightMotorLabel
-            // 
-            this.rightMotorLabel.AutoSize = true;
-            this.rightMotorLabel.Location = new System.Drawing.Point(674, 207);
-            this.rightMotorLabel.Name = "rightMotorLabel";
-            this.rightMotorLabel.Size = new System.Drawing.Size(15, 13);
-            this.rightMotorLabel.TabIndex = 208;
-            this.rightMotorLabel.Text = "R";
-            this.rightMotorLabel.Visible = false;
+            this.tBsixaxisAccelX.TickFrequency = 4750;
             // 
             // tBsixaxisGyroZ
             // 
             this.tBsixaxisGyroZ.AutoSize = false;
             this.tBsixaxisGyroZ.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisGyroZ.Location = new System.Drawing.Point(96, 3);
-            this.tBsixaxisGyroZ.Maximum = 32767;
-            this.tBsixaxisGyroZ.Minimum = -32768;
+            this.tBsixaxisGyroZ.Location = new System.Drawing.Point(3, 79);
+            this.tBsixaxisGyroZ.Maximum = 8500;
+            this.tBsixaxisGyroZ.Minimum = -8500;
             this.tBsixaxisGyroZ.Name = "tBsixaxisGyroZ";
             this.tBsixaxisGyroZ.Size = new System.Drawing.Size(50, 19);
             this.tBsixaxisGyroZ.TabIndex = 220;
-            this.tBsixaxisGyroZ.TickFrequency = 16384;
-            // 
-            // rumbleBoostLabel
-            // 
-            this.rumbleBoostLabel.AutoSize = true;
-            this.rumbleBoostLabel.Location = new System.Drawing.Point(842, 212);
-            this.rumbleBoostLabel.Name = "rumbleBoostLabel";
-            this.rumbleBoostLabel.Size = new System.Drawing.Size(34, 13);
-            this.rumbleBoostLabel.TabIndex = 207;
-            this.rumbleBoostLabel.Text = "Boost";
-            this.rumbleBoostLabel.Visible = false;
+            this.tBsixaxisGyroZ.TickFrequency = 4750;
             // 
             // tBsixaxisGyroY
             // 
             this.tBsixaxisGyroY.AutoSize = false;
             this.tBsixaxisGyroY.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisGyroY.Location = new System.Drawing.Point(49, 3);
-            this.tBsixaxisGyroY.Maximum = 32767;
-            this.tBsixaxisGyroY.Minimum = -32768;
+            this.tBsixaxisGyroY.Location = new System.Drawing.Point(3, 49);
+            this.tBsixaxisGyroY.Maximum = 8500;
+            this.tBsixaxisGyroY.Minimum = -8500;
             this.tBsixaxisGyroY.Name = "tBsixaxisGyroY";
             this.tBsixaxisGyroY.Size = new System.Drawing.Size(50, 19);
             this.tBsixaxisGyroY.TabIndex = 221;
-            this.tBsixaxisGyroY.TickFrequency = 16384;
+            this.tBsixaxisGyroY.TickFrequency = 4750;
             // 
             // tBsixaxisGyroX
             // 
             this.tBsixaxisGyroX.AutoSize = false;
             this.tBsixaxisGyroX.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisGyroX.Location = new System.Drawing.Point(2, 3);
-            this.tBsixaxisGyroX.Maximum = 32767;
-            this.tBsixaxisGyroX.Minimum = -32768;
+            this.tBsixaxisGyroX.Location = new System.Drawing.Point(3, 24);
+            this.tBsixaxisGyroX.Maximum = 8500;
+            this.tBsixaxisGyroX.Minimum = -8500;
             this.tBsixaxisGyroX.Name = "tBsixaxisGyroX";
             this.tBsixaxisGyroX.Size = new System.Drawing.Size(50, 19);
             this.tBsixaxisGyroX.TabIndex = 222;
-            this.tBsixaxisGyroX.TickFrequency = 16384;
+            this.tBsixaxisGyroX.TickFrequency = 4750;
             // 
             // nUDRumbleBoost
             // 
@@ -1432,49 +1485,11 @@
             // lB6Accel
             // 
             this.lB6Accel.AutoSize = true;
-            this.lB6Accel.Location = new System.Drawing.Point(153, 3);
+            this.lB6Accel.Location = new System.Drawing.Point(81, 4);
             this.lB6Accel.Name = "lB6Accel";
-            this.lB6Accel.Size = new System.Drawing.Size(72, 13);
+            this.lB6Accel.Size = new System.Drawing.Size(34, 13);
             this.lB6Accel.TabIndex = 215;
-            this.lB6Accel.Text = "Sixaxis Accel:";
-            // 
-            // nUDHeavyRumble
-            // 
-            this.nUDHeavyRumble.Location = new System.Drawing.Point(695, 205);
-            this.nUDHeavyRumble.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.nUDHeavyRumble.Name = "nUDHeavyRumble";
-            this.nUDHeavyRumble.Size = new System.Drawing.Size(43, 20);
-            this.nUDHeavyRumble.TabIndex = 212;
-            this.nUDHeavyRumble.Visible = false;
-            this.nUDHeavyRumble.ValueChanged += new System.EventHandler(this.numUDHeavyRumble_ValueChanged);
-            // 
-            // lB6Gryo
-            // 
-            this.lB6Gryo.AutoSize = true;
-            this.lB6Gryo.Location = new System.Drawing.Point(4, 197);
-            this.lB6Gryo.Name = "lB6Gryo";
-            this.lB6Gryo.Size = new System.Drawing.Size(67, 13);
-            this.lB6Gryo.TabIndex = 216;
-            this.lB6Gryo.Text = "Sixaxis Gyro:";
-            this.lB6Gryo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lB6Gryo_MouseClick);
-            // 
-            // nUDLightRumble
-            // 
-            this.nUDLightRumble.Location = new System.Drawing.Point(782, 205);
-            this.nUDLightRumble.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.nUDLightRumble.Name = "nUDLightRumble";
-            this.nUDLightRumble.Size = new System.Drawing.Size(43, 20);
-            this.nUDLightRumble.TabIndex = 213;
-            this.nUDLightRumble.Visible = false;
-            this.nUDLightRumble.ValueChanged += new System.EventHandler(this.numUDLightRumble_ValueChanged);
+            this.lB6Accel.Text = "Accel";
             // 
             // btnRumbleTest
             // 
@@ -1578,6 +1593,7 @@
             this.lBEmpty.Size = new System.Drawing.Size(39, 13);
             this.lBEmpty.TabIndex = 225;
             this.lBEmpty.Text = "Empty:";
+            this.lBEmpty.Click += new System.EventHandler(this.lBEmpty_Click);
             // 
             // FullPanel
             // 
@@ -1608,30 +1624,14 @@
             this.lowBatteryPanel.Size = new System.Drawing.Size(435, 29);
             this.lowBatteryPanel.TabIndex = 234;
             // 
-            // SixaxisPanel
+            // lB6Gryo
             // 
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelX);
-            this.SixaxisPanel.Controls.Add(this.lB6Accel);
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroX);
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroY);
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroZ);
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelY);
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelZ);
-            this.SixaxisPanel.Location = new System.Drawing.Point(70, 195);
-            this.SixaxisPanel.Name = "SixaxisPanel";
-            this.SixaxisPanel.Size = new System.Drawing.Size(371, 28);
-            this.SixaxisPanel.TabIndex = 236;
-            this.SixaxisPanel.Visible = false;
-            // 
-            // bnGyroZP
-            // 
-            this.bnGyroZP.Location = new System.Drawing.Point(89, 3);
-            this.bnGyroZP.Name = "bnGyroZP";
-            this.bnGyroZP.Size = new System.Drawing.Size(80, 23);
-            this.bnGyroZP.TabIndex = 250;
-            this.bnGyroZP.Text = "Tilt Down";
-            this.bnGyroZP.UseVisualStyleBackColor = true;
-            this.bnGyroZP.Click += new System.EventHandler(this.Show_ControlsBn);
+            this.lB6Gryo.AutoSize = true;
+            this.lB6Gryo.Location = new System.Drawing.Point(13, 5);
+            this.lB6Gryo.Name = "lB6Gryo";
+            this.lB6Gryo.Size = new System.Drawing.Size(29, 13);
+            this.lB6Gryo.TabIndex = 216;
+            this.lB6Gryo.Text = "Gyro";
             // 
             // lbRS
             // 
@@ -1740,7 +1740,7 @@
             this.gBTouchpad.Controls.Add(this.nUDScroll);
             this.gBTouchpad.Controls.Add(this.nUDTap);
             this.gBTouchpad.Controls.Add(this.cBScroll);
-            this.gBTouchpad.Location = new System.Drawing.Point(440, 220);
+            this.gBTouchpad.Location = new System.Drawing.Point(2, 251);
             this.gBTouchpad.Name = "gBTouchpad";
             this.gBTouchpad.Size = new System.Drawing.Size(437, 70);
             this.gBTouchpad.TabIndex = 246;
@@ -1749,6 +1749,8 @@
             // 
             // gBOther
             // 
+            this.gBOther.Controls.Add(this.lBforMandR);
+            this.gBOther.Controls.Add(this.lBUseController);
             this.gBOther.Controls.Add(this.cBMouseAccel);
             this.gBOther.Controls.Add(this.nUDSixaxis);
             this.gBOther.Controls.Add(this.cBControllerInput);
@@ -1758,16 +1760,45 @@
             this.gBOther.Controls.Add(this.numUDMouseSens);
             this.gBOther.Controls.Add(this.cBFlushHIDQueue);
             this.gBOther.Controls.Add(this.lBIdleMinutes);
-            this.gBOther.Location = new System.Drawing.Point(7, 220);
+            this.gBOther.Location = new System.Drawing.Point(445, 226);
             this.gBOther.Name = "gBOther";
-            this.gBOther.Size = new System.Drawing.Size(421, 70);
+            this.gBOther.Size = new System.Drawing.Size(436, 95);
             this.gBOther.TabIndex = 247;
             this.gBOther.TabStop = false;
             this.gBOther.Text = "Other";
             // 
+            // lBforMandR
+            // 
+            this.lBforMandR.AutoSize = true;
+            this.lBforMandR.Location = new System.Drawing.Point(307, 74);
+            this.lBforMandR.Name = "lBforMandR";
+            this.lBforMandR.Size = new System.Drawing.Size(123, 13);
+            this.lBforMandR.TabIndex = 252;
+            this.lBforMandR.Text = "for Mapping and readout";
+            // 
+            // lBUseController
+            // 
+            this.lBUseController.AutoSize = true;
+            this.lBUseController.Location = new System.Drawing.Point(195, 74);
+            this.lBUseController.Name = "lBUseController";
+            this.lBUseController.Size = new System.Drawing.Size(73, 13);
+            this.lBUseController.TabIndex = 252;
+            this.lBUseController.Text = "Use Controller";
+            // 
+            // cBMouseAccel
+            // 
+            this.cBMouseAccel.AutoSize = true;
+            this.cBMouseAccel.Location = new System.Drawing.Point(170, 17);
+            this.cBMouseAccel.Name = "cBMouseAccel";
+            this.cBMouseAccel.Size = new System.Drawing.Size(120, 17);
+            this.cBMouseAccel.TabIndex = 251;
+            this.cBMouseAccel.Text = "Mouse Acceleration";
+            this.cBMouseAccel.UseVisualStyleBackColor = true;
+            this.cBMouseAccel.CheckedChanged += new System.EventHandler(this.cBMouseAccel_CheckedChanged);
+            // 
             // nUDSixaxis
             // 
-            this.nUDSixaxis.Location = new System.Drawing.Point(385, 16);
+            this.nUDSixaxis.Location = new System.Drawing.Point(272, 71);
             this.nUDSixaxis.Maximum = new decimal(new int[] {
             4,
             0,
@@ -1792,7 +1823,7 @@
             this.cBControllerInput.AutoSize = true;
             this.cBControllerInput.Checked = true;
             this.cBControllerInput.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBControllerInput.Location = new System.Drawing.Point(266, 17);
+            this.cBControllerInput.Location = new System.Drawing.Point(6, 72);
             this.cBControllerInput.Name = "cBControllerInput";
             this.cBControllerInput.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cBControllerInput.Size = new System.Drawing.Size(113, 17);
@@ -1822,7 +1853,7 @@
             this.gBLightbar.Controls.Add(this.rBNormal);
             this.gBLightbar.Controls.Add(this.rBRainbow);
             this.gBLightbar.Controls.Add(this.lbWhileCharging);
-            this.gBLightbar.Controls.Add(this.label1);
+            this.gBLightbar.Controls.Add(this.lBPercentFlashBar);
             this.gBLightbar.Controls.Add(this.lBFlashAt);
             this.gBLightbar.Controls.Add(this.pBRainbow);
             this.gBLightbar.Controls.Add(this.lowBatteryPanel);
@@ -1831,7 +1862,7 @@
             this.gBLightbar.Controls.Add(this.FullPanel);
             this.gBLightbar.Controls.Add(this.lBspc);
             this.gBLightbar.Controls.Add(this.cBLightbyBattery);
-            this.gBLightbar.Location = new System.Drawing.Point(440, 76);
+            this.gBLightbar.Location = new System.Drawing.Point(443, 85);
             this.gBLightbar.Name = "gBLightbar";
             this.gBLightbar.Size = new System.Drawing.Size(438, 129);
             this.gBLightbar.TabIndex = 247;
@@ -1906,14 +1937,14 @@
             this.lbWhileCharging.TabIndex = 236;
             this.lbWhileCharging.Text = "While Charging:";
             // 
-            // label1
+            // lBPercentFlashBar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(98, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(15, 13);
-            this.label1.TabIndex = 207;
-            this.label1.Text = "%";
+            this.lBPercentFlashBar.AutoSize = true;
+            this.lBPercentFlashBar.Location = new System.Drawing.Point(98, 18);
+            this.lBPercentFlashBar.Name = "lBPercentFlashBar";
+            this.lBPercentFlashBar.Size = new System.Drawing.Size(15, 13);
+            this.lBPercentFlashBar.TabIndex = 207;
+            this.lBPercentFlashBar.Text = "%";
             // 
             // lBFlashAt
             // 
@@ -1939,15 +1970,24 @@
             // 
             // gBRumble
             // 
-            this.gBRumble.Controls.Add(this.label2);
+            this.gBRumble.Controls.Add(this.lBPercentRumble);
             this.gBRumble.Controls.Add(this.btnRumbleTest);
             this.gBRumble.Controls.Add(this.nUDRumbleBoost);
-            this.gBRumble.Location = new System.Drawing.Point(442, 3);
+            this.gBRumble.Location = new System.Drawing.Point(445, 12);
             this.gBRumble.Name = "gBRumble";
             this.gBRumble.Size = new System.Drawing.Size(89, 67);
             this.gBRumble.TabIndex = 247;
             this.gBRumble.TabStop = false;
             this.gBRumble.Text = "Rumble";
+            // 
+            // lBPercentRumble
+            // 
+            this.lBPercentRumble.AutoSize = true;
+            this.lBPercentRumble.Location = new System.Drawing.Point(63, 17);
+            this.lBPercentRumble.Name = "lBPercentRumble";
+            this.lBPercentRumble.Size = new System.Drawing.Size(15, 13);
+            this.lBPercentRumble.TabIndex = 207;
+            this.lBPercentRumble.Text = "%";
             // 
             // gBDeadzone
             // 
@@ -1963,7 +2003,7 @@
             this.gBDeadzone.Controls.Add(this.nUDRS);
             this.gBDeadzone.Controls.Add(this.nUDR2);
             this.gBDeadzone.Controls.Add(this.nUDLS);
-            this.gBDeadzone.Location = new System.Drawing.Point(598, 2);
+            this.gBDeadzone.Location = new System.Drawing.Point(601, 11);
             this.gBDeadzone.Name = "gBDeadzone";
             this.gBDeadzone.Size = new System.Drawing.Size(282, 67);
             this.gBDeadzone.TabIndex = 248;
@@ -2037,6 +2077,74 @@
             131072});
             this.nUDSX.ValueChanged += new System.EventHandler(this.nUDSX_ValueChanged);
             // 
+            // tabControls
+            // 
+            this.tabControls.Controls.Add(this.tPControls);
+            this.tabControls.Controls.Add(this.tPShiftMod);
+            this.tabControls.Controls.Add(this.tPController);
+            this.tabControls.Location = new System.Drawing.Point(3, 3);
+            this.tabControls.Name = "tabControls";
+            this.tabControls.SelectedIndex = 0;
+            this.tabControls.Size = new System.Drawing.Size(436, 242);
+            this.tabControls.TabIndex = 253;
+            this.tabControls.SelectedIndexChanged += new System.EventHandler(this.tabControls_SelectedIndexChanged);
+            // 
+            // tPControls
+            // 
+            this.tPControls.Controls.Add(this.lBGryo);
+            this.tPControls.Controls.Add(this.fLPTiltControls);
+            this.tPControls.Controls.Add(this.MainPanel);
+            this.tPControls.Controls.Add(this.lBControls);
+            this.tPControls.Controls.Add(this.lBControlTip);
+            this.tPControls.Controls.Add(this.SticksPanel);
+            this.tPControls.Location = new System.Drawing.Point(4, 22);
+            this.tPControls.Name = "tPControls";
+            this.tPControls.Padding = new System.Windows.Forms.Padding(3);
+            this.tPControls.Size = new System.Drawing.Size(428, 216);
+            this.tPControls.TabIndex = 0;
+            this.tPControls.Text = "Controls";
+            this.tPControls.UseVisualStyleBackColor = true;
+            // 
+            // lBGryo
+            // 
+            this.lBGryo.AutoSize = true;
+            this.lBGryo.Location = new System.Drawing.Point(5, 192);
+            this.lBGryo.Name = "lBGryo";
+            this.lBGryo.Size = new System.Drawing.Size(67, 13);
+            this.lBGryo.TabIndex = 253;
+            this.lBGryo.Text = "Sixaxis Gyro:";
+            // 
+            // fLPTiltControls
+            // 
+            this.fLPTiltControls.Controls.Add(this.bnGyroZN);
+            this.fLPTiltControls.Controls.Add(this.bnGyroZP);
+            this.fLPTiltControls.Controls.Add(this.bnGyroXP);
+            this.fLPTiltControls.Controls.Add(this.bnGyroXN);
+            this.fLPTiltControls.Location = new System.Drawing.Point(72, 185);
+            this.fLPTiltControls.Name = "fLPTiltControls";
+            this.fLPTiltControls.Size = new System.Drawing.Size(350, 31);
+            this.fLPTiltControls.TabIndex = 254;
+            // 
+            // bnGyroZN
+            // 
+            this.bnGyroZN.Location = new System.Drawing.Point(3, 3);
+            this.bnGyroZN.Name = "bnGyroZN";
+            this.bnGyroZN.Size = new System.Drawing.Size(80, 23);
+            this.bnGyroZN.TabIndex = 250;
+            this.bnGyroZN.Text = "Tilt Up";
+            this.bnGyroZN.UseVisualStyleBackColor = true;
+            this.bnGyroZN.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // bnGyroZP
+            // 
+            this.bnGyroZP.Location = new System.Drawing.Point(89, 3);
+            this.bnGyroZP.Name = "bnGyroZP";
+            this.bnGyroZP.Size = new System.Drawing.Size(80, 23);
+            this.bnGyroZP.TabIndex = 250;
+            this.bnGyroZP.Text = "Tilt Down";
+            this.bnGyroZP.UseVisualStyleBackColor = true;
+            this.bnGyroZP.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
             // bnGyroXP
             // 
             this.bnGyroXP.Location = new System.Drawing.Point(175, 3);
@@ -2057,35 +2165,1118 @@
             this.bnGyroXN.UseVisualStyleBackColor = true;
             this.bnGyroXN.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
-            // bnGyroZN
+            // tPShiftMod
             // 
-            this.bnGyroZN.Location = new System.Drawing.Point(3, 3);
-            this.bnGyroZN.Name = "bnGyroZN";
-            this.bnGyroZN.Size = new System.Drawing.Size(80, 23);
-            this.bnGyroZN.TabIndex = 250;
-            this.bnGyroZN.Text = "Tilt Up";
-            this.bnGyroZN.UseVisualStyleBackColor = true;
-            this.bnGyroZN.Click += new System.EventHandler(this.Show_ControlsBn);
+            this.tPShiftMod.Controls.Add(this.slBGryo);
+            this.tPShiftMod.Controls.Add(this.sfLPTiltControls);
+            this.tPShiftMod.Controls.Add(this.cBShiftControl);
+            this.tPShiftMod.Controls.Add(this.lBShiftControls);
+            this.tPShiftMod.Controls.Add(this.lBHold);
+            this.tPShiftMod.Controls.Add(this.lBtoUse);
+            this.tPShiftMod.Controls.Add(this.ShiftMainPanel);
+            this.tPShiftMod.Controls.Add(this.ShiftSticksPanel);
+            this.tPShiftMod.Location = new System.Drawing.Point(4, 22);
+            this.tPShiftMod.Name = "tPShiftMod";
+            this.tPShiftMod.Padding = new System.Windows.Forms.Padding(3);
+            this.tPShiftMod.Size = new System.Drawing.Size(428, 216);
+            this.tPShiftMod.TabIndex = 1;
+            this.tPShiftMod.Text = "Shift Modifier";
+            this.tPShiftMod.UseVisualStyleBackColor = true;
             // 
-            // fLPTiltControls
+            // slBGryo
             // 
-            this.fLPTiltControls.Controls.Add(this.bnGyroZN);
-            this.fLPTiltControls.Controls.Add(this.bnGyroZP);
-            this.fLPTiltControls.Controls.Add(this.bnGyroXP);
-            this.fLPTiltControls.Controls.Add(this.bnGyroXN);
-            this.fLPTiltControls.Location = new System.Drawing.Point(84, 190);
-            this.fLPTiltControls.Name = "fLPTiltControls";
-            this.fLPTiltControls.Size = new System.Drawing.Size(350, 31);
-            this.fLPTiltControls.TabIndex = 252;
+            this.slBGryo.AutoSize = true;
+            this.slBGryo.Location = new System.Drawing.Point(5, 192);
+            this.slBGryo.Name = "slBGryo";
+            this.slBGryo.Size = new System.Drawing.Size(67, 13);
+            this.slBGryo.TabIndex = 255;
+            this.slBGryo.Text = "Sixaxis Gyro:";
             // 
-            // label2
+            // sfLPTiltControls
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(63, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(15, 13);
-            this.label2.TabIndex = 207;
-            this.label2.Text = "%";
+            this.sfLPTiltControls.Controls.Add(this.sbnGyroZN);
+            this.sfLPTiltControls.Controls.Add(this.sbnGyroZP);
+            this.sfLPTiltControls.Controls.Add(this.sbnGyroXP);
+            this.sfLPTiltControls.Controls.Add(this.sbnGyroXN);
+            this.sfLPTiltControls.Location = new System.Drawing.Point(72, 185);
+            this.sfLPTiltControls.Name = "sfLPTiltControls";
+            this.sfLPTiltControls.Size = new System.Drawing.Size(350, 31);
+            this.sfLPTiltControls.TabIndex = 256;
+            // 
+            // sbnGyroZN
+            // 
+            this.sbnGyroZN.Location = new System.Drawing.Point(3, 3);
+            this.sbnGyroZN.Name = "sbnGyroZN";
+            this.sbnGyroZN.Size = new System.Drawing.Size(80, 23);
+            this.sbnGyroZN.TabIndex = 250;
+            this.sbnGyroZN.Text = "Tilt Up";
+            this.sbnGyroZN.UseVisualStyleBackColor = true;
+            this.sbnGyroZN.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnGyroZP
+            // 
+            this.sbnGyroZP.Location = new System.Drawing.Point(89, 3);
+            this.sbnGyroZP.Name = "sbnGyroZP";
+            this.sbnGyroZP.Size = new System.Drawing.Size(80, 23);
+            this.sbnGyroZP.TabIndex = 250;
+            this.sbnGyroZP.Text = "Tilt Down";
+            this.sbnGyroZP.UseVisualStyleBackColor = true;
+            this.sbnGyroZP.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnGyroXP
+            // 
+            this.sbnGyroXP.Location = new System.Drawing.Point(175, 3);
+            this.sbnGyroXP.Name = "sbnGyroXP";
+            this.sbnGyroXP.Size = new System.Drawing.Size(80, 23);
+            this.sbnGyroXP.TabIndex = 250;
+            this.sbnGyroXP.Text = "Tilt Left";
+            this.sbnGyroXP.UseVisualStyleBackColor = true;
+            this.sbnGyroXP.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnGyroXN
+            // 
+            this.sbnGyroXN.Location = new System.Drawing.Point(261, 3);
+            this.sbnGyroXN.Name = "sbnGyroXN";
+            this.sbnGyroXN.Size = new System.Drawing.Size(80, 23);
+            this.sbnGyroXN.TabIndex = 250;
+            this.sbnGyroXN.Text = "Tilt Right";
+            this.sbnGyroXN.UseVisualStyleBackColor = true;
+            this.sbnGyroXN.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // cBShiftControl
+            // 
+            this.cBShiftControl.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBShiftControl.FormattingEnabled = true;
+            this.cBShiftControl.Items.AddRange(new object[] {
+            "(nothing)/shift off",
+            "Cross",
+            "Circle",
+            "Square",
+            "Triangle",
+            "Options",
+            "Share",
+            "Up",
+            "Down",
+            "Left",
+            "Right",
+            "PS",
+            "L1",
+            "R1",
+            "L2",
+            "R2",
+            "L3",
+            "R3",
+            "Left Touch",
+            "Upper Touch",
+            "Multitouch",
+            "Right Touch",
+            "Sixaxis Up",
+            "Sixaxis Down",
+            "Sixaxis Left",
+            "Sixaxis Right",
+            "Touchpad (not clicked in)"});
+            this.cBShiftControl.Location = new System.Drawing.Point(79, 3);
+            this.cBShiftControl.Name = "cBShiftControl";
+            this.cBShiftControl.Size = new System.Drawing.Size(145, 21);
+            this.cBShiftControl.TabIndex = 192;
+            this.cBShiftControl.SelectedIndexChanged += new System.EventHandler(this.cBShiftControl_SelectedIndexChanged);
+            // 
+            // lBShiftControls
+            // 
+            this.lBShiftControls.FormattingEnabled = true;
+            this.lBShiftControls.Items.AddRange(new object[] {
+            "Cross :",
+            "Circle :",
+            "Sqaure :",
+            "Triangle :",
+            "Options :",
+            "Share :",
+            "Up :",
+            "Down :",
+            "Left :",
+            "Right :",
+            "PS :",
+            "L1 :",
+            "R1 :",
+            "L2 :",
+            "R2 :",
+            "L3 :",
+            "R3 :",
+            "Left Touch :",
+            "Upper Touch : ",
+            "Multitouch :",
+            "Right Touch :",
+            "Left Stick Up :",
+            "Left Stick Down :",
+            "Left Stick Left :",
+            "Left Stick Right :",
+            "Right Stick Up :",
+            "Right Stick Down :",
+            "Right Stick Left :",
+            "Right Stick Right :",
+            "Sixaxis Up :",
+            "Sixaxis Down :",
+            "Sixaxis Left :",
+            "Sixaxis Right :"});
+            this.lBShiftControls.Location = new System.Drawing.Point(257, 7);
+            this.lBShiftControls.Name = "lBShiftControls";
+            this.lBShiftControls.Size = new System.Drawing.Size(169, 173);
+            this.lBShiftControls.TabIndex = 188;
+            this.lBShiftControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
+            this.lBShiftControls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.List_MouseDoubleClick);
+            // 
+            // lBHold
+            // 
+            this.lBHold.AutoSize = true;
+            this.lBHold.Location = new System.Drawing.Point(44, 6);
+            this.lBHold.Name = "lBHold";
+            this.lBHold.Size = new System.Drawing.Size(29, 13);
+            this.lBHold.TabIndex = 189;
+            this.lBHold.Text = "Hold";
+            this.lBHold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lBtoUse
+            // 
+            this.lBtoUse.AutoSize = true;
+            this.lBtoUse.Location = new System.Drawing.Point(84, 24);
+            this.lBtoUse.Name = "lBtoUse";
+            this.lBtoUse.Size = new System.Drawing.Size(105, 13);
+            this.lBtoUse.TabIndex = 189;
+            this.lBtoUse.Text = "to use these controls";
+            this.lBtoUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ShiftMainPanel
+            // 
+            this.ShiftMainPanel.Controls.Add(this.spBController);
+            this.ShiftMainPanel.Controls.Add(this.sbnTouchUpper);
+            this.ShiftMainPanel.Controls.Add(this.sbnTouchLeft);
+            this.ShiftMainPanel.Controls.Add(this.sbnTouchRight);
+            this.ShiftMainPanel.Controls.Add(this.sbnTouchMulti);
+            this.ShiftMainPanel.Controls.Add(this.sbnR1);
+            this.ShiftMainPanel.Controls.Add(this.sbnCross);
+            this.ShiftMainPanel.Controls.Add(this.sbnCircle);
+            this.ShiftMainPanel.Controls.Add(this.sbtnRightStick);
+            this.ShiftMainPanel.Controls.Add(this.sbnSquare);
+            this.ShiftMainPanel.Controls.Add(this.sbtnLightbar);
+            this.ShiftMainPanel.Controls.Add(this.sbnTriangle);
+            this.ShiftMainPanel.Controls.Add(this.sbnUp);
+            this.ShiftMainPanel.Controls.Add(this.sbtnLeftStick);
+            this.ShiftMainPanel.Controls.Add(this.sbnDown);
+            this.ShiftMainPanel.Controls.Add(this.sbnL2);
+            this.ShiftMainPanel.Controls.Add(this.sbnRight);
+            this.ShiftMainPanel.Controls.Add(this.sbnR2);
+            this.ShiftMainPanel.Controls.Add(this.sbnLeft);
+            this.ShiftMainPanel.Controls.Add(this.sbnL1);
+            this.ShiftMainPanel.Controls.Add(this.sbnOptions);
+            this.ShiftMainPanel.Controls.Add(this.sbnPS);
+            this.ShiftMainPanel.Controls.Add(this.sbnShare);
+            this.ShiftMainPanel.Location = new System.Drawing.Point(6, 42);
+            this.ShiftMainPanel.Name = "ShiftMainPanel";
+            this.ShiftMainPanel.Size = new System.Drawing.Size(249, 137);
+            this.ShiftMainPanel.TabIndex = 190;
+            // 
+            // spBController
+            // 
+            this.spBController.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.spBController.Enabled = false;
+            this.spBController.Image = global::ScpServer.Properties.Resources.DS4_Controller;
+            this.spBController.Location = new System.Drawing.Point(0, 0);
+            this.spBController.Name = "spBController";
+            this.spBController.Size = new System.Drawing.Size(245, 132);
+            this.spBController.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.spBController.TabIndex = 1;
+            this.spBController.TabStop = false;
+            // 
+            // sbnTouchUpper
+            // 
+            this.sbnTouchUpper.BackColor = System.Drawing.Color.Transparent;
+            this.sbnTouchUpper.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnTouchUpper.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnTouchUpper.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnTouchUpper.FlatAppearance.BorderSize = 0;
+            this.sbnTouchUpper.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnTouchUpper.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnTouchUpper.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnTouchUpper.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnTouchUpper.Location = new System.Drawing.Point(84, 25);
+            this.sbnTouchUpper.Name = "sbnTouchUpper";
+            this.sbnTouchUpper.Size = new System.Drawing.Size(78, 16);
+            this.sbnTouchUpper.TabIndex = 193;
+            this.sbnTouchUpper.Text = "Fall Back";
+            this.sbnTouchUpper.UseVisualStyleBackColor = false;
+            this.sbnTouchUpper.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnTouchLeft
+            // 
+            this.sbnTouchLeft.BackColor = System.Drawing.Color.Transparent;
+            this.sbnTouchLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnTouchLeft.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnTouchLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnTouchLeft.FlatAppearance.BorderSize = 0;
+            this.sbnTouchLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnTouchLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnTouchLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnTouchLeft.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnTouchLeft.Location = new System.Drawing.Point(84, 40);
+            this.sbnTouchLeft.Name = "sbnTouchLeft";
+            this.sbnTouchLeft.Size = new System.Drawing.Size(25, 35);
+            this.sbnTouchLeft.TabIndex = 191;
+            this.sbnTouchLeft.Text = "Fall Back";
+            this.sbnTouchLeft.UseVisualStyleBackColor = false;
+            this.sbnTouchLeft.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnTouchRight
+            // 
+            this.sbnTouchRight.BackColor = System.Drawing.Color.Transparent;
+            this.sbnTouchRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnTouchRight.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnTouchRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnTouchRight.FlatAppearance.BorderSize = 0;
+            this.sbnTouchRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnTouchRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnTouchRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnTouchRight.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnTouchRight.Location = new System.Drawing.Point(139, 40);
+            this.sbnTouchRight.Name = "sbnTouchRight";
+            this.sbnTouchRight.Size = new System.Drawing.Size(23, 34);
+            this.sbnTouchRight.TabIndex = 190;
+            this.sbnTouchRight.Text = "Fall Back";
+            this.sbnTouchRight.UseVisualStyleBackColor = false;
+            this.sbnTouchRight.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnTouchMulti
+            // 
+            this.sbnTouchMulti.BackColor = System.Drawing.Color.Transparent;
+            this.sbnTouchMulti.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnTouchMulti.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnTouchMulti.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnTouchMulti.FlatAppearance.BorderSize = 0;
+            this.sbnTouchMulti.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnTouchMulti.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnTouchMulti.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnTouchMulti.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnTouchMulti.Location = new System.Drawing.Point(109, 40);
+            this.sbnTouchMulti.Name = "sbnTouchMulti";
+            this.sbnTouchMulti.Size = new System.Drawing.Size(30, 34);
+            this.sbnTouchMulti.TabIndex = 192;
+            this.sbnTouchMulti.Text = "Fall Back";
+            this.sbnTouchMulti.UseVisualStyleBackColor = false;
+            this.sbnTouchMulti.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnR1
+            // 
+            this.sbnR1.BackColor = System.Drawing.Color.Transparent;
+            this.sbnR1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnR1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnR1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnR1.FlatAppearance.BorderSize = 0;
+            this.sbnR1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnR1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnR1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnR1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnR1.Location = new System.Drawing.Point(175, 13);
+            this.sbnR1.Name = "sbnR1";
+            this.sbnR1.Size = new System.Drawing.Size(43, 15);
+            this.sbnR1.TabIndex = 87;
+            this.sbnR1.Text = "Fall Back";
+            this.sbnR1.UseVisualStyleBackColor = false;
+            this.sbnR1.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnCross
+            // 
+            this.sbnCross.BackColor = System.Drawing.Color.Transparent;
+            this.sbnCross.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnCross.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnCross.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnCross.FlatAppearance.BorderSize = 0;
+            this.sbnCross.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnCross.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnCross.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnCross.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnCross.Location = new System.Drawing.Point(187, 76);
+            this.sbnCross.Name = "sbnCross";
+            this.sbnCross.Size = new System.Drawing.Size(19, 17);
+            this.sbnCross.TabIndex = 74;
+            this.sbnCross.Text = "Fall Back";
+            this.sbnCross.UseVisualStyleBackColor = false;
+            this.sbnCross.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnCircle
+            // 
+            this.sbnCircle.BackColor = System.Drawing.Color.Transparent;
+            this.sbnCircle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnCircle.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnCircle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnCircle.FlatAppearance.BorderSize = 0;
+            this.sbnCircle.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnCircle.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnCircle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnCircle.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnCircle.Location = new System.Drawing.Point(208, 60);
+            this.sbnCircle.Name = "sbnCircle";
+            this.sbnCircle.Size = new System.Drawing.Size(16, 17);
+            this.sbnCircle.TabIndex = 71;
+            this.sbnCircle.Text = "Fall Back";
+            this.sbnCircle.UseVisualStyleBackColor = false;
+            this.sbnCircle.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbtnRightStick
+            // 
+            this.sbtnRightStick.BackColor = System.Drawing.Color.Transparent;
+            this.sbtnRightStick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbtnRightStick.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbtnRightStick.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbtnRightStick.FlatAppearance.BorderSize = 0;
+            this.sbtnRightStick.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbtnRightStick.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbtnRightStick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbtnRightStick.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbtnRightStick.Location = new System.Drawing.Point(150, 90);
+            this.sbtnRightStick.Name = "sbtnRightStick";
+            this.sbtnRightStick.Size = new System.Drawing.Size(28, 28);
+            this.sbtnRightStick.TabIndex = 91;
+            this.sbtnRightStick.Text = "RS";
+            this.sbtnRightStick.UseVisualStyleBackColor = false;
+            // 
+            // sbnSquare
+            // 
+            this.sbnSquare.BackColor = System.Drawing.Color.Transparent;
+            this.sbnSquare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnSquare.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnSquare.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnSquare.FlatAppearance.BorderSize = 0;
+            this.sbnSquare.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnSquare.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnSquare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnSquare.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnSquare.Location = new System.Drawing.Point(173, 61);
+            this.sbnSquare.Name = "sbnSquare";
+            this.sbnSquare.Size = new System.Drawing.Size(15, 14);
+            this.sbnSquare.TabIndex = 72;
+            this.sbnSquare.Text = "Fall Back";
+            this.sbnSquare.UseVisualStyleBackColor = false;
+            this.sbnSquare.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbtnLightbar
+            // 
+            this.sbtnLightbar.BackColor = System.Drawing.Color.Transparent;
+            this.sbtnLightbar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbtnLightbar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbtnLightbar.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbtnLightbar.FlatAppearance.BorderSize = 0;
+            this.sbtnLightbar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbtnLightbar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbtnLightbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbtnLightbar.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbtnLightbar.Location = new System.Drawing.Point(84, 6);
+            this.sbtnLightbar.Name = "sbtnLightbar";
+            this.sbtnLightbar.Size = new System.Drawing.Size(78, 19);
+            this.sbtnLightbar.TabIndex = 91;
+            this.sbtnLightbar.Text = "Lightbar";
+            this.sbtnLightbar.UseVisualStyleBackColor = false;
+            this.sbtnLightbar.Click += new System.EventHandler(this.btnLightbar_Click);
+            // 
+            // sbnTriangle
+            // 
+            this.sbnTriangle.BackColor = System.Drawing.Color.Transparent;
+            this.sbnTriangle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnTriangle.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnTriangle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnTriangle.FlatAppearance.BorderSize = 0;
+            this.sbnTriangle.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnTriangle.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnTriangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnTriangle.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnTriangle.Location = new System.Drawing.Point(188, 45);
+            this.sbnTriangle.Name = "sbnTriangle";
+            this.sbnTriangle.Size = new System.Drawing.Size(20, 16);
+            this.sbnTriangle.TabIndex = 73;
+            this.sbnTriangle.Text = "Fall Back";
+            this.sbnTriangle.UseVisualStyleBackColor = false;
+            this.sbnTriangle.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnUp
+            // 
+            this.sbnUp.BackColor = System.Drawing.Color.Transparent;
+            this.sbnUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnUp.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnUp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.sbnUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnUp.FlatAppearance.BorderSize = 0;
+            this.sbnUp.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnUp.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnUp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnUp.Location = new System.Drawing.Point(44, 48);
+            this.sbnUp.Name = "sbnUp";
+            this.sbnUp.Size = new System.Drawing.Size(11, 15);
+            this.sbnUp.TabIndex = 80;
+            this.sbnUp.Text = "Fall Back";
+            this.sbnUp.UseVisualStyleBackColor = false;
+            this.sbnUp.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbtnLeftStick
+            // 
+            this.sbtnLeftStick.BackColor = System.Drawing.Color.Transparent;
+            this.sbtnLeftStick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbtnLeftStick.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbtnLeftStick.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbtnLeftStick.FlatAppearance.BorderSize = 0;
+            this.sbtnLeftStick.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbtnLeftStick.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbtnLeftStick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbtnLeftStick.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbtnLeftStick.Location = new System.Drawing.Point(70, 90);
+            this.sbtnLeftStick.Name = "sbtnLeftStick";
+            this.sbtnLeftStick.Size = new System.Drawing.Size(28, 28);
+            this.sbtnLeftStick.TabIndex = 91;
+            this.sbtnLeftStick.Text = "LS";
+            this.sbtnLeftStick.UseVisualStyleBackColor = false;
+            // 
+            // sbnDown
+            // 
+            this.sbnDown.BackColor = System.Drawing.Color.Transparent;
+            this.sbnDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnDown.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnDown.FlatAppearance.BorderSize = 0;
+            this.sbnDown.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnDown.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnDown.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnDown.Location = new System.Drawing.Point(44, 73);
+            this.sbnDown.Name = "sbnDown";
+            this.sbnDown.Size = new System.Drawing.Size(12, 12);
+            this.sbnDown.TabIndex = 81;
+            this.sbnDown.Text = "Fall Back";
+            this.sbnDown.UseVisualStyleBackColor = false;
+            this.sbnDown.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnL2
+            // 
+            this.sbnL2.BackColor = System.Drawing.Color.Transparent;
+            this.sbnL2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnL2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnL2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnL2.FlatAppearance.BorderSize = 0;
+            this.sbnL2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnL2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnL2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnL2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnL2.Location = new System.Drawing.Point(31, 0);
+            this.sbnL2.Name = "sbnL2";
+            this.sbnL2.Size = new System.Drawing.Size(43, 12);
+            this.sbnL2.TabIndex = 90;
+            this.sbnL2.Text = "Fall Back";
+            this.sbnL2.UseVisualStyleBackColor = false;
+            this.sbnL2.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnRight
+            // 
+            this.sbnRight.BackColor = System.Drawing.Color.Transparent;
+            this.sbnRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnRight.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnRight.FlatAppearance.BorderSize = 0;
+            this.sbnRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnRight.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnRight.Location = new System.Drawing.Point(55, 61);
+            this.sbnRight.Name = "sbnRight";
+            this.sbnRight.Size = new System.Drawing.Size(14, 14);
+            this.sbnRight.TabIndex = 82;
+            this.sbnRight.Text = "Fall Back";
+            this.sbnRight.UseVisualStyleBackColor = false;
+            this.sbnRight.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnR2
+            // 
+            this.sbnR2.BackColor = System.Drawing.Color.Transparent;
+            this.sbnR2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnR2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnR2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnR2.FlatAppearance.BorderSize = 0;
+            this.sbnR2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnR2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnR2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnR2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnR2.Location = new System.Drawing.Point(174, 0);
+            this.sbnR2.Name = "sbnR2";
+            this.sbnR2.Size = new System.Drawing.Size(40, 13);
+            this.sbnR2.TabIndex = 89;
+            this.sbnR2.Text = "Fall Back";
+            this.sbnR2.UseVisualStyleBackColor = false;
+            this.sbnR2.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnLeft
+            // 
+            this.sbnLeft.BackColor = System.Drawing.Color.Transparent;
+            this.sbnLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnLeft.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnLeft.FlatAppearance.BorderSize = 0;
+            this.sbnLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnLeft.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnLeft.Location = new System.Drawing.Point(31, 61);
+            this.sbnLeft.Name = "sbnLeft";
+            this.sbnLeft.Size = new System.Drawing.Size(14, 12);
+            this.sbnLeft.TabIndex = 83;
+            this.sbnLeft.Text = "Fall Back";
+            this.sbnLeft.UseVisualStyleBackColor = false;
+            this.sbnLeft.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnL1
+            // 
+            this.sbnL1.BackColor = System.Drawing.Color.Transparent;
+            this.sbnL1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnL1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnL1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnL1.FlatAppearance.BorderSize = 0;
+            this.sbnL1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnL1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnL1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnL1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnL1.Location = new System.Drawing.Point(31, 13);
+            this.sbnL1.Name = "sbnL1";
+            this.sbnL1.Size = new System.Drawing.Size(43, 15);
+            this.sbnL1.TabIndex = 88;
+            this.sbnL1.Text = "Fall Back";
+            this.sbnL1.UseVisualStyleBackColor = false;
+            this.sbnL1.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnOptions
+            // 
+            this.sbnOptions.BackColor = System.Drawing.Color.Transparent;
+            this.sbnOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnOptions.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnOptions.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnOptions.FlatAppearance.BorderSize = 0;
+            this.sbnOptions.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnOptions.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnOptions.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnOptions.Location = new System.Drawing.Point(167, 33);
+            this.sbnOptions.Name = "sbnOptions";
+            this.sbnOptions.Size = new System.Drawing.Size(11, 21);
+            this.sbnOptions.TabIndex = 84;
+            this.sbnOptions.Text = "Fall Back";
+            this.sbnOptions.UseVisualStyleBackColor = false;
+            this.sbnOptions.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnPS
+            // 
+            this.sbnPS.BackColor = System.Drawing.Color.Transparent;
+            this.sbnPS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnPS.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnPS.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnPS.FlatAppearance.BorderSize = 0;
+            this.sbnPS.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnPS.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnPS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnPS.Location = new System.Drawing.Point(115, 87);
+            this.sbnPS.Name = "sbnPS";
+            this.sbnPS.Size = new System.Drawing.Size(18, 18);
+            this.sbnPS.TabIndex = 86;
+            this.sbnPS.Text = "Fall Back";
+            this.sbnPS.UseVisualStyleBackColor = false;
+            this.sbnPS.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnShare
+            // 
+            this.sbnShare.BackColor = System.Drawing.Color.Transparent;
+            this.sbnShare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnShare.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnShare.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnShare.FlatAppearance.BorderSize = 0;
+            this.sbnShare.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnShare.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnShare.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnShare.Location = new System.Drawing.Point(71, 33);
+            this.sbnShare.Name = "sbnShare";
+            this.sbnShare.Size = new System.Drawing.Size(11, 18);
+            this.sbnShare.TabIndex = 85;
+            this.sbnShare.Text = "Fall Back";
+            this.sbnShare.UseVisualStyleBackColor = false;
+            this.sbnShare.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // ShiftSticksPanel
+            // 
+            this.ShiftSticksPanel.Controls.Add(this.sbtnFullView);
+            this.ShiftSticksPanel.Controls.Add(this.spBSticks);
+            this.ShiftSticksPanel.Controls.Add(this.sbnL3);
+            this.ShiftSticksPanel.Controls.Add(this.sbnRSDown);
+            this.ShiftSticksPanel.Controls.Add(this.sbnLSUp);
+            this.ShiftSticksPanel.Controls.Add(this.sbnRSUp);
+            this.ShiftSticksPanel.Controls.Add(this.sbnLSLeft);
+            this.ShiftSticksPanel.Controls.Add(this.sbnRSRight);
+            this.ShiftSticksPanel.Controls.Add(this.sbnLSRight);
+            this.ShiftSticksPanel.Controls.Add(this.sbnRSLeft);
+            this.ShiftSticksPanel.Controls.Add(this.sbnLSDown);
+            this.ShiftSticksPanel.Controls.Add(this.sbnR3);
+            this.ShiftSticksPanel.Location = new System.Drawing.Point(6, 42);
+            this.ShiftSticksPanel.Name = "ShiftSticksPanel";
+            this.ShiftSticksPanel.Size = new System.Drawing.Size(249, 142);
+            this.ShiftSticksPanel.TabIndex = 191;
+            this.ShiftSticksPanel.Visible = false;
+            // 
+            // sbtnFullView
+            // 
+            this.sbtnFullView.Location = new System.Drawing.Point(71, 9);
+            this.sbtnFullView.Name = "sbtnFullView";
+            this.sbtnFullView.Size = new System.Drawing.Size(106, 23);
+            this.sbtnFullView.TabIndex = 184;
+            this.sbtnFullView.Text = "<- Back to full view";
+            this.sbtnFullView.UseVisualStyleBackColor = true;
+            this.sbtnFullView.Click += new System.EventHandler(this.sbtnFullView_Click);
+            // 
+            // spBSticks
+            // 
+            this.spBSticks.Enabled = false;
+            this.spBSticks.Image = global::ScpServer.Properties.Resources.sticks;
+            this.spBSticks.Location = new System.Drawing.Point(0, 1);
+            this.spBSticks.Name = "spBSticks";
+            this.spBSticks.Size = new System.Drawing.Size(245, 132);
+            this.spBSticks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.spBSticks.TabIndex = 161;
+            this.spBSticks.TabStop = false;
+            // 
+            // sbnL3
+            // 
+            this.sbnL3.BackColor = System.Drawing.Color.Transparent;
+            this.sbnL3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnL3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnL3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnL3.FlatAppearance.BorderSize = 0;
+            this.sbnL3.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnL3.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnL3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnL3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnL3.Location = new System.Drawing.Point(36, 92);
+            this.sbnL3.Name = "sbnL3";
+            this.sbnL3.Size = new System.Drawing.Size(23, 23);
+            this.sbnL3.TabIndex = 163;
+            this.sbnL3.Text = "Fall Back";
+            this.sbnL3.UseVisualStyleBackColor = false;
+            this.sbnL3.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnRSDown
+            // 
+            this.sbnRSDown.BackColor = System.Drawing.Color.Transparent;
+            this.sbnRSDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnRSDown.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnRSDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnRSDown.FlatAppearance.BorderSize = 0;
+            this.sbnRSDown.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnRSDown.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnRSDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnRSDown.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnRSDown.Location = new System.Drawing.Point(182, 116);
+            this.sbnRSDown.Name = "sbnRSDown";
+            this.sbnRSDown.Size = new System.Drawing.Size(23, 11);
+            this.sbnRSDown.TabIndex = 172;
+            this.sbnRSDown.Text = "Fall Back";
+            this.sbnRSDown.UseVisualStyleBackColor = false;
+            this.sbnRSDown.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnLSUp
+            // 
+            this.sbnLSUp.BackColor = System.Drawing.Color.Transparent;
+            this.sbnLSUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnLSUp.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnLSUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnLSUp.FlatAppearance.BorderSize = 0;
+            this.sbnLSUp.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnLSUp.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnLSUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnLSUp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnLSUp.Location = new System.Drawing.Point(36, 77);
+            this.sbnLSUp.Name = "sbnLSUp";
+            this.sbnLSUp.Size = new System.Drawing.Size(23, 11);
+            this.sbnLSUp.TabIndex = 167;
+            this.sbnLSUp.Text = "Fall Back";
+            this.sbnLSUp.UseVisualStyleBackColor = false;
+            this.sbnLSUp.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnRSUp
+            // 
+            this.sbnRSUp.BackColor = System.Drawing.Color.Transparent;
+            this.sbnRSUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnRSUp.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnRSUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnRSUp.FlatAppearance.BorderSize = 0;
+            this.sbnRSUp.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnRSUp.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnRSUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnRSUp.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnRSUp.Location = new System.Drawing.Point(182, 78);
+            this.sbnRSUp.Name = "sbnRSUp";
+            this.sbnRSUp.Size = new System.Drawing.Size(23, 11);
+            this.sbnRSUp.TabIndex = 171;
+            this.sbnRSUp.Text = "Fall Back";
+            this.sbnRSUp.UseVisualStyleBackColor = false;
+            this.sbnRSUp.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnLSLeft
+            // 
+            this.sbnLSLeft.BackColor = System.Drawing.Color.Transparent;
+            this.sbnLSLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnLSLeft.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnLSLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnLSLeft.FlatAppearance.BorderSize = 0;
+            this.sbnLSLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnLSLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnLSLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnLSLeft.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnLSLeft.Location = new System.Drawing.Point(21, 92);
+            this.sbnLSLeft.Name = "sbnLSLeft";
+            this.sbnLSLeft.Size = new System.Drawing.Size(11, 23);
+            this.sbnLSLeft.TabIndex = 164;
+            this.sbnLSLeft.Text = "Fall Back";
+            this.sbnLSLeft.UseVisualStyleBackColor = false;
+            this.sbnLSLeft.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnRSRight
+            // 
+            this.sbnRSRight.BackColor = System.Drawing.Color.Transparent;
+            this.sbnRSRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnRSRight.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnRSRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnRSRight.FlatAppearance.BorderSize = 0;
+            this.sbnRSRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnRSRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnRSRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnRSRight.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnRSRight.Location = new System.Drawing.Point(210, 92);
+            this.sbnRSRight.Name = "sbnRSRight";
+            this.sbnRSRight.Size = new System.Drawing.Size(13, 23);
+            this.sbnRSRight.TabIndex = 170;
+            this.sbnRSRight.Text = "Fall Back";
+            this.sbnRSRight.UseVisualStyleBackColor = false;
+            this.sbnRSRight.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnLSRight
+            // 
+            this.sbnLSRight.BackColor = System.Drawing.Color.Transparent;
+            this.sbnLSRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnLSRight.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnLSRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnLSRight.FlatAppearance.BorderSize = 0;
+            this.sbnLSRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnLSRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnLSRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnLSRight.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnLSRight.Location = new System.Drawing.Point(65, 92);
+            this.sbnLSRight.Name = "sbnLSRight";
+            this.sbnLSRight.Size = new System.Drawing.Size(11, 23);
+            this.sbnLSRight.TabIndex = 165;
+            this.sbnLSRight.Text = "Fall Back";
+            this.sbnLSRight.UseVisualStyleBackColor = false;
+            this.sbnLSRight.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnRSLeft
+            // 
+            this.sbnRSLeft.BackColor = System.Drawing.Color.Transparent;
+            this.sbnRSLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnRSLeft.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnRSLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnRSLeft.FlatAppearance.BorderSize = 0;
+            this.sbnRSLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnRSLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnRSLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnRSLeft.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnRSLeft.Location = new System.Drawing.Point(165, 92);
+            this.sbnRSLeft.Name = "sbnRSLeft";
+            this.sbnRSLeft.Size = new System.Drawing.Size(11, 23);
+            this.sbnRSLeft.TabIndex = 169;
+            this.sbnRSLeft.Text = "Fall Back";
+            this.sbnRSLeft.UseVisualStyleBackColor = false;
+            this.sbnRSLeft.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnLSDown
+            // 
+            this.sbnLSDown.BackColor = System.Drawing.Color.Transparent;
+            this.sbnLSDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnLSDown.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnLSDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnLSDown.FlatAppearance.BorderSize = 0;
+            this.sbnLSDown.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnLSDown.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnLSDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnLSDown.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnLSDown.Location = new System.Drawing.Point(36, 120);
+            this.sbnLSDown.Name = "sbnLSDown";
+            this.sbnLSDown.Size = new System.Drawing.Size(23, 11);
+            this.sbnLSDown.TabIndex = 166;
+            this.sbnLSDown.Text = "Fall Back";
+            this.sbnLSDown.UseVisualStyleBackColor = false;
+            this.sbnLSDown.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // sbnR3
+            // 
+            this.sbnR3.BackColor = System.Drawing.Color.Transparent;
+            this.sbnR3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.sbnR3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sbnR3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.sbnR3.FlatAppearance.BorderSize = 0;
+            this.sbnR3.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.sbnR3.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.sbnR3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sbnR3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.sbnR3.Location = new System.Drawing.Point(182, 92);
+            this.sbnR3.Name = "sbnR3";
+            this.sbnR3.Size = new System.Drawing.Size(23, 23);
+            this.sbnR3.TabIndex = 168;
+            this.sbnR3.Text = "Fall Back";
+            this.sbnR3.UseVisualStyleBackColor = false;
+            this.sbnR3.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // tPController
+            // 
+            this.tPController.Controls.Add(this.SixaxisPanel);
+            this.tPController.Controls.Add(this.lBL2Track);
+            this.tPController.Controls.Add(this.pBDelayTracker);
+            this.tPController.Controls.Add(this.btnSATrack);
+            this.tPController.Controls.Add(this.btnRSTrack);
+            this.tPController.Controls.Add(this.lBRSTip);
+            this.tPController.Controls.Add(this.lBInputDelay);
+            this.tPController.Controls.Add(this.lBR2Track);
+            this.tPController.Controls.Add(this.lBLSTip);
+            this.tPController.Controls.Add(this.lBSATip);
+            this.tPController.Controls.Add(this.btnLSTrack);
+            this.tPController.Controls.Add(this.pBSADeadzone);
+            this.tPController.Controls.Add(this.pBRSDeadzone);
+            this.tPController.Controls.Add(this.lBRSTrack);
+            this.tPController.Controls.Add(this.pBLSDeadzone);
+            this.tPController.Controls.Add(this.lBLSTrack);
+            this.tPController.Controls.Add(this.tBR2);
+            this.tPController.Controls.Add(this.tBL2);
+            this.tPController.Controls.Add(this.lBSATrack);
+            this.tPController.Location = new System.Drawing.Point(4, 22);
+            this.tPController.Name = "tPController";
+            this.tPController.Padding = new System.Windows.Forms.Padding(3);
+            this.tPController.Size = new System.Drawing.Size(428, 216);
+            this.tPController.TabIndex = 2;
+            this.tPController.Text = "Controller Readings";
+            this.tPController.UseVisualStyleBackColor = true;
+            // 
+            // lBL2Track
+            // 
+            this.lBL2Track.AutoSize = true;
+            this.lBL2Track.Location = new System.Drawing.Point(316, 33);
+            this.lBL2Track.Name = "lBL2Track";
+            this.lBL2Track.Size = new System.Drawing.Size(19, 13);
+            this.lBL2Track.TabIndex = 216;
+            this.lBL2Track.Text = "L2";
+            this.lBL2Track.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pBDelayTracker
+            // 
+            this.pBDelayTracker.Location = new System.Drawing.Point(112, 9);
+            this.pBDelayTracker.Name = "pBDelayTracker";
+            this.pBDelayTracker.Size = new System.Drawing.Size(10, 10);
+            this.pBDelayTracker.TabIndex = 243;
+            this.pBDelayTracker.TabStop = false;
+            // 
+            // btnSATrack
+            // 
+            this.btnSATrack.BackColor = System.Drawing.Color.Black;
+            this.btnSATrack.Enabled = false;
+            this.btnSATrack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSATrack.Location = new System.Drawing.Point(362, 150);
+            this.btnSATrack.Name = "btnSATrack";
+            this.btnSATrack.Size = new System.Drawing.Size(3, 3);
+            this.btnSATrack.TabIndex = 237;
+            this.btnSATrack.Text = "button1";
+            this.btnSATrack.UseVisualStyleBackColor = false;
+            // 
+            // btnRSTrack
+            // 
+            this.btnRSTrack.BackColor = System.Drawing.Color.Black;
+            this.btnRSTrack.Enabled = false;
+            this.btnRSTrack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRSTrack.Location = new System.Drawing.Point(211, 149);
+            this.btnRSTrack.Name = "btnRSTrack";
+            this.btnRSTrack.Size = new System.Drawing.Size(3, 3);
+            this.btnRSTrack.TabIndex = 237;
+            this.btnRSTrack.Text = "button1";
+            this.btnRSTrack.UseVisualStyleBackColor = false;
+            // 
+            // lBRSTip
+            // 
+            this.lBRSTip.Location = new System.Drawing.Point(150, 56);
+            this.lBRSTip.Name = "lBRSTip";
+            this.lBRSTip.Size = new System.Drawing.Size(125, 30);
+            this.lBRSTip.TabIndex = 216;
+            this.lBRSTip.Text = "Right Stick";
+            this.lBRSTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lBInputDelay
+            // 
+            this.lBInputDelay.AutoSize = true;
+            this.lBInputDelay.Location = new System.Drawing.Point(6, 7);
+            this.lBInputDelay.Name = "lBInputDelay";
+            this.lBInputDelay.Size = new System.Drawing.Size(100, 13);
+            this.lBInputDelay.TabIndex = 216;
+            this.lBInputDelay.Text = "Input Delay: N/Ams";
+            this.lBInputDelay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lBR2Track
+            // 
+            this.lBR2Track.AutoSize = true;
+            this.lBR2Track.Location = new System.Drawing.Point(385, 33);
+            this.lBR2Track.Name = "lBR2Track";
+            this.lBR2Track.Size = new System.Drawing.Size(21, 13);
+            this.lBR2Track.TabIndex = 216;
+            this.lBR2Track.Text = "R2";
+            this.lBR2Track.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lBLSTip
+            // 
+            this.lBLSTip.Location = new System.Drawing.Point(6, 56);
+            this.lBLSTip.Name = "lBLSTip";
+            this.lBLSTip.Size = new System.Drawing.Size(125, 30);
+            this.lBLSTip.TabIndex = 216;
+            this.lBLSTip.Text = "Left Stick";
+            this.lBLSTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lBSATip
+            // 
+            this.lBSATip.Location = new System.Drawing.Point(300, 56);
+            this.lBSATip.Name = "lBSATip";
+            this.lBSATip.Size = new System.Drawing.Size(125, 30);
+            this.lBSATip.TabIndex = 216;
+            this.lBSATip.Text = "Sixaxis: X axis is flipped for easier reading";
+            this.lBSATip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lBSATip.Click += new System.EventHandler(this.lBSATip_Click);
+            // 
+            // btnLSTrack
+            // 
+            this.btnLSTrack.BackColor = System.Drawing.Color.Black;
+            this.btnLSTrack.Enabled = false;
+            this.btnLSTrack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLSTrack.Location = new System.Drawing.Point(67, 149);
+            this.btnLSTrack.Name = "btnLSTrack";
+            this.btnLSTrack.Size = new System.Drawing.Size(3, 3);
+            this.btnLSTrack.TabIndex = 237;
+            this.btnLSTrack.Text = "button1";
+            this.btnLSTrack.UseVisualStyleBackColor = false;
+            // 
+            // pBSADeadzone
+            // 
+            this.pBSADeadzone.BackColor = System.Drawing.Color.Transparent;
+            this.pBSADeadzone.Image = ((System.Drawing.Image)(resources.GetObject("pBSADeadzone.Image")));
+            this.pBSADeadzone.Location = new System.Drawing.Point(348, 136);
+            this.pBSADeadzone.Name = "pBSADeadzone";
+            this.pBSADeadzone.Size = new System.Drawing.Size(31, 31);
+            this.pBSADeadzone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBSADeadzone.TabIndex = 242;
+            this.pBSADeadzone.TabStop = false;
+            this.pBSADeadzone.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawCircle);
+            // 
+            // lBSATrack
+            // 
+            this.lBSATrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lBSATrack.Location = new System.Drawing.Point(300, 88);
+            this.lBSATrack.Name = "lBSATrack";
+            this.lBSATrack.Size = new System.Drawing.Size(125, 125);
+            this.lBSATrack.TabIndex = 239;
+            this.lBSATrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lBSATrack.Click += new System.EventHandler(this.lBSATrack_Click);
+            // 
+            // pBRSDeadzone
+            // 
+            this.pBRSDeadzone.BackColor = System.Drawing.Color.Transparent;
+            this.pBRSDeadzone.Image = ((System.Drawing.Image)(resources.GetObject("pBRSDeadzone.Image")));
+            this.pBRSDeadzone.Location = new System.Drawing.Point(207, 146);
+            this.pBRSDeadzone.Name = "pBRSDeadzone";
+            this.pBRSDeadzone.Size = new System.Drawing.Size(10, 10);
+            this.pBRSDeadzone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBRSDeadzone.TabIndex = 241;
+            this.pBRSDeadzone.TabStop = false;
+            this.pBRSDeadzone.Visible = false;
+            // 
+            // lBRSTrack
+            // 
+            this.lBRSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lBRSTrack.Location = new System.Drawing.Point(150, 88);
+            this.lBRSTrack.Name = "lBRSTrack";
+            this.lBRSTrack.Size = new System.Drawing.Size(125, 125);
+            this.lBRSTrack.TabIndex = 239;
+            this.lBRSTrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pBLSDeadzone
+            // 
+            this.pBLSDeadzone.BackColor = System.Drawing.Color.Transparent;
+            this.pBLSDeadzone.Image = ((System.Drawing.Image)(resources.GetObject("pBLSDeadzone.Image")));
+            this.pBLSDeadzone.Location = new System.Drawing.Point(63, 146);
+            this.pBLSDeadzone.Name = "pBLSDeadzone";
+            this.pBLSDeadzone.Size = new System.Drawing.Size(10, 10);
+            this.pBLSDeadzone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBLSDeadzone.TabIndex = 240;
+            this.pBLSDeadzone.TabStop = false;
+            this.pBLSDeadzone.Visible = false;
+            // 
+            // lBLSTrack
+            // 
+            this.lBLSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lBLSTrack.Location = new System.Drawing.Point(5, 88);
+            this.lBLSTrack.Name = "lBLSTrack";
+            this.lBLSTrack.Size = new System.Drawing.Size(125, 125);
+            this.lBLSTrack.TabIndex = 239;
+            this.lBLSTrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tBR2
+            // 
+            this.tBR2.AutoSize = false;
+            this.tBR2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tBR2.Enabled = false;
+            this.tBR2.Location = new System.Drawing.Point(365, 3);
+            this.tBR2.Maximum = 255;
+            this.tBR2.Name = "tBR2";
+            this.tBR2.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.tBR2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tBR2.Size = new System.Drawing.Size(25, 50);
+            this.tBR2.TabIndex = 244;
+            this.tBR2.TickFrequency = 0;
+            this.tBR2.TickStyle = System.Windows.Forms.TickStyle.None;
+            // 
+            // tBL2
+            // 
+            this.tBL2.AutoSize = false;
+            this.tBL2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tBL2.Enabled = false;
+            this.tBL2.Location = new System.Drawing.Point(331, 3);
+            this.tBL2.Maximum = 255;
+            this.tBL2.Name = "tBL2";
+            this.tBL2.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.tBL2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tBL2.RightToLeftLayout = true;
+            this.tBL2.Size = new System.Drawing.Size(25, 50);
+            this.tBL2.TabIndex = 244;
+            this.tBL2.TickFrequency = 127;
+            this.tBL2.TickStyle = System.Windows.Forms.TickStyle.None;
+            // 
+            // SixaxisPanel
+            // 
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelX);
+            this.SixaxisPanel.Controls.Add(this.lB6Accel);
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroX);
+            this.SixaxisPanel.Controls.Add(this.lB6Gryo);
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroY);
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroZ);
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelY);
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelZ);
+            this.SixaxisPanel.Location = new System.Drawing.Point(300, 88);
+            this.SixaxisPanel.Name = "SixaxisPanel";
+            this.SixaxisPanel.Size = new System.Drawing.Size(125, 125);
+            this.SixaxisPanel.TabIndex = 236;
+            this.SixaxisPanel.Visible = false;
+            this.SixaxisPanel.Click += new System.EventHandler(this.SixaxisPanel_Click);
             // 
             // advColorDialog
             // 
@@ -2093,47 +3284,25 @@
             this.advColorDialog.Color = System.Drawing.Color.Blue;
             this.advColorDialog.FullOpen = true;
             // 
-            // cBMouseAccel
-            // 
-            this.cBMouseAccel.AutoSize = true;
-            this.cBMouseAccel.Location = new System.Drawing.Point(161, 17);
-            this.cBMouseAccel.Name = "cBMouseAccel";
-            this.cBMouseAccel.Size = new System.Drawing.Size(85, 17);
-            this.cBMouseAccel.TabIndex = 251;
-            this.cBMouseAccel.Text = "Acceleration";
-            this.cBMouseAccel.UseVisualStyleBackColor = true;
-            this.cBMouseAccel.CheckedChanged += new System.EventHandler(this.cBMouseAccel_CheckedChanged);
-            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(888, 295);
-            this.Controls.Add(this.rumbleBoostLabel);
-            this.Controls.Add(this.nUDHeavyRumble);
-            this.Controls.Add(this.lB6Gryo);
+            this.ClientSize = new System.Drawing.Size(885, 325);
+            this.Controls.Add(this.tabControls);
             this.Controls.Add(this.gBDeadzone);
-            this.Controls.Add(this.leftMotorLabel);
             this.Controls.Add(this.gBRumble);
-            this.Controls.Add(this.nUDLightRumble);
-            this.Controls.Add(this.rightMotorLabel);
             this.Controls.Add(this.gBLightbar);
             this.Controls.Add(this.gBTouchpad);
-            this.Controls.Add(this.lBControlTip);
-            this.Controls.Add(this.lBControls);
-            this.Controls.Add(this.MainPanel);
-            this.Controls.Add(this.SticksPanel);
             this.Controls.Add(this.gBOther);
-            this.Controls.Add(this.SixaxisPanel);
-            this.Controls.Add(this.fLPTiltControls);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(901, 364);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(450, 270);
+            this.MinimumSize = new System.Drawing.Size(100, 100);
             this.Name = "Options";
-            this.Text = "Options";
+            this.Text = "Profile Options";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Options_Closed);
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).EndInit();
@@ -2156,8 +3325,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRumbleBoost)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHeavyRumble)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLightRumble)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).EndInit();
@@ -2165,8 +3332,6 @@
             this.FullPanel.PerformLayout();
             this.lowBatteryPanel.ResumeLayout(false);
             this.lowBatteryPanel.PerformLayout();
-            this.SixaxisPanel.ResumeLayout(false);
-            this.SixaxisPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDMouseSens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLS)).EndInit();
@@ -2185,9 +3350,28 @@
             this.gBDeadzone.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).EndInit();
+            this.tabControls.ResumeLayout(false);
+            this.tPControls.ResumeLayout(false);
+            this.tPControls.PerformLayout();
             this.fLPTiltControls.ResumeLayout(false);
+            this.tPShiftMod.ResumeLayout(false);
+            this.tPShiftMod.PerformLayout();
+            this.sfLPTiltControls.ResumeLayout(false);
+            this.ShiftMainPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spBController)).EndInit();
+            this.ShiftSticksPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spBSticks)).EndInit();
+            this.tPController.ResumeLayout(false);
+            this.tPController.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBDelayTracker)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBSADeadzone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBRSDeadzone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBLSDeadzone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBR2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBL2)).EndInit();
+            this.SixaxisPanel.ResumeLayout(false);
+            this.SixaxisPanel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -2263,18 +3447,12 @@
         private System.Windows.Forms.TrackBar tBsixaxisAccelZ;
         private System.Windows.Forms.CheckBox cBFlushHIDQueue;
         private System.Windows.Forms.TrackBar tBsixaxisAccelY;
-        private System.Windows.Forms.Label leftMotorLabel;
         private System.Windows.Forms.TrackBar tBsixaxisAccelX;
-        private System.Windows.Forms.Label rightMotorLabel;
         private System.Windows.Forms.TrackBar tBsixaxisGyroZ;
-        private System.Windows.Forms.Label rumbleBoostLabel;
         private System.Windows.Forms.TrackBar tBsixaxisGyroY;
         private System.Windows.Forms.TrackBar tBsixaxisGyroX;
         private System.Windows.Forms.NumericUpDown nUDRumbleBoost;
         private System.Windows.Forms.Label lB6Accel;
-        private System.Windows.Forms.NumericUpDown nUDHeavyRumble;
-        private System.Windows.Forms.Label lB6Gryo;
-        private System.Windows.Forms.NumericUpDown nUDLightRumble;
         private System.Windows.Forms.Button btnRumbleTest;
         private System.Windows.Forms.Label lbFull;
         private System.Windows.Forms.Label lBLowRed;
@@ -2286,7 +3464,6 @@
         private System.Windows.Forms.Label lBEmpty;
         private System.Windows.Forms.Panel lowBatteryPanel;
         private System.Windows.Forms.Panel FullPanel;
-        private System.Windows.Forms.Panel SixaxisPanel;
         private System.Windows.Forms.Label lBControlTip;
         private System.Windows.Forms.Label lbRS;
         private System.Windows.Forms.Label lbLS;
@@ -2302,7 +3479,7 @@
         private System.Windows.Forms.CheckBox cBControllerInput;
         private System.Windows.Forms.NumericUpDown nUDSixaxis;
         private System.Windows.Forms.NumericUpDown nUDflashLED;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lBPercentFlashBar;
         private System.Windows.Forms.Label lBFlashAt;
         private System.Windows.Forms.RadioButton rBFade;
         private System.Windows.Forms.RadioButton rBNormal;
@@ -2311,17 +3488,91 @@
         private System.Windows.Forms.Button btnChargingColor;
         private System.Windows.Forms.RadioButton rBColor;
         private System.Windows.Forms.CheckBox cBIdleDisconnect;
-        private System.Windows.Forms.Button bnGyroXP;
-        private System.Windows.Forms.Button bnGyroXN;
-        private System.Windows.Forms.Button bnGyroZP;
-        private System.Windows.Forms.Button bnGyroZN;
-        private System.Windows.Forms.FlowLayoutPanel fLPTiltControls;
         private System.Windows.Forms.Label lbSixaxisX;
         private System.Windows.Forms.Label lbSixaxisZ;
         private System.Windows.Forms.NumericUpDown nUDSZ;
         private System.Windows.Forms.NumericUpDown nUDSX;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lBPercentRumble;
         private System.Windows.Forms.CheckBox cBMouseAccel;
+        private System.Windows.Forms.TabControl tabControls;
+        private System.Windows.Forms.TabPage tPShiftMod;
+        private System.Windows.Forms.ComboBox cBShiftControl;
+        private System.Windows.Forms.Panel ShiftMainPanel;
+        private System.Windows.Forms.PictureBox spBController;
+        private System.Windows.Forms.Button sbnTouchUpper;
+        private System.Windows.Forms.Button sbnTouchLeft;
+        private System.Windows.Forms.Button sbnTouchRight;
+        private System.Windows.Forms.Button sbnTouchMulti;
+        private System.Windows.Forms.Button sbnR1;
+        private System.Windows.Forms.Button sbnCross;
+        private System.Windows.Forms.Button sbnCircle;
+        private System.Windows.Forms.Button sbtnRightStick;
+        private System.Windows.Forms.Button sbnSquare;
+        private System.Windows.Forms.Button sbtnLightbar;
+        private System.Windows.Forms.Button sbnTriangle;
+        private System.Windows.Forms.Button sbnUp;
+        private System.Windows.Forms.Button sbtnLeftStick;
+        private System.Windows.Forms.Button sbnDown;
+        private System.Windows.Forms.Button sbnL2;
+        private System.Windows.Forms.Button sbnRight;
+        private System.Windows.Forms.Button sbnR2;
+        private System.Windows.Forms.Button sbnLeft;
+        private System.Windows.Forms.Button sbnL1;
+        private System.Windows.Forms.Button sbnOptions;
+        private System.Windows.Forms.Button sbnPS;
+        private System.Windows.Forms.Button sbnShare;
+        private System.Windows.Forms.Panel ShiftSticksPanel;
+        private System.Windows.Forms.Button sbtnFullView;
+        private System.Windows.Forms.PictureBox spBSticks;
+        private System.Windows.Forms.Button sbnL3;
+        private System.Windows.Forms.Button sbnRSDown;
+        private System.Windows.Forms.Button sbnLSUp;
+        private System.Windows.Forms.Button sbnRSUp;
+        private System.Windows.Forms.Button sbnLSLeft;
+        private System.Windows.Forms.Button sbnRSRight;
+        private System.Windows.Forms.Button sbnLSRight;
+        private System.Windows.Forms.Button sbnRSLeft;
+        private System.Windows.Forms.Button sbnLSDown;
+        private System.Windows.Forms.Button sbnR3;
+        public System.Windows.Forms.ListBox lBShiftControls;
+        private System.Windows.Forms.Label lBtoUse;
+        private System.Windows.Forms.TabPage tPControls;
+        private System.Windows.Forms.Label lB6Gryo;
+        private System.Windows.Forms.Label lBGryo;
+        private System.Windows.Forms.FlowLayoutPanel fLPTiltControls;
+        private System.Windows.Forms.Button bnGyroZN;
+        private System.Windows.Forms.Button bnGyroZP;
+        private System.Windows.Forms.Button bnGyroXP;
+        private System.Windows.Forms.Button bnGyroXN;
+        private System.Windows.Forms.Label slBGryo;
+        private System.Windows.Forms.FlowLayoutPanel sfLPTiltControls;
+        private System.Windows.Forms.Button sbnGyroZN;
+        private System.Windows.Forms.Button sbnGyroZP;
+        private System.Windows.Forms.Button sbnGyroXP;
+        private System.Windows.Forms.Button sbnGyroXN;
+        private System.Windows.Forms.Label lBHold;
+        private System.Windows.Forms.TabPage tPController;
+        private System.Windows.Forms.Button btnLSTrack;
+        private System.Windows.Forms.Button btnSATrack;
+        private System.Windows.Forms.Button btnRSTrack;
+        private System.Windows.Forms.Label lBSATrack;
+        private System.Windows.Forms.Label lBRSTrack;
+        private System.Windows.Forms.Label lBLSTrack;
+        private System.Windows.Forms.Label lBSATip;
+        private System.Windows.Forms.PictureBox pBLSDeadzone;
+        private System.Windows.Forms.PictureBox pBSADeadzone;
+        private System.Windows.Forms.PictureBox pBRSDeadzone;
+        private System.Windows.Forms.Label lBforMandR;
+        private System.Windows.Forms.Label lBUseController;
+        private System.Windows.Forms.Label lBRSTip;
+        private System.Windows.Forms.Label lBLSTip;
+        private System.Windows.Forms.PictureBox pBDelayTracker;
+        private System.Windows.Forms.Label lBInputDelay;
+        private System.Windows.Forms.TrackBar tBL2;
+        private System.Windows.Forms.TrackBar tBR2;
+        private System.Windows.Forms.Label lBR2Track;
+        private System.Windows.Forms.Label lBL2Track;
+        private System.Windows.Forms.Panel SixaxisPanel;
     }
 }
 

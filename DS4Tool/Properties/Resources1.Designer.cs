@@ -73,6 +73,16 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _checked {
+            get {
+                object obj = ResourceManager.GetObject("_checked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap A {
             get {
                 object obj = ResourceManager.GetObject("A", resourceCulture);
@@ -372,6 +382,16 @@ namespace ScpServer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Red_Circle {
+            get {
+                object obj = ResourceManager.GetObject("Red_Circle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RIGHT {
             get {
                 object obj = ResourceManager.GetObject("RIGHT", resourceCulture);
@@ -455,6 +475,16 @@ namespace ScpServer.Properties {
         internal static System.Drawing.Bitmap saveprofile {
             get {
                 object obj = ResourceManager.GetObject("saveprofile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap size {
+            get {
+                object obj = ResourceManager.GetObject("size", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

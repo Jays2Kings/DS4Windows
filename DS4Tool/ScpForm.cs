@@ -18,7 +18,6 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
-        double version = 10.651;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -166,7 +165,6 @@ namespace ScpServer
             
             Directory.CreateDirectory(Global.appdatapath);
             Global.Load();
-            Global.setVersion(version);
             if (!Global.Save()) //if can't write to file
                 if (MessageBox.Show("Cannot write at current locataion\nCopy Settings to appdata?", "DS4Windows", 
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
@@ -199,7 +197,8 @@ namespace ScpServer
                 t.DropDownItemClicked += Profile_Changed_Menu;
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
             hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
-            hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;            
+            hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
+            cBDisconnectBT.Checked = Global.getDCBTatStop();
             // New settings
             this.Width = Global.getFormWidth();
             this.Height = Global.getFormHeight();
@@ -231,7 +230,7 @@ namespace ScpServer
                 cBUpdateTime.SelectedIndex = 0;
                 nUDUpdateTime.Value = checkwhen;
             }
-            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Windows/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
             
             
             if (checkwhen > 0 && DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(checkwhen))
@@ -258,7 +257,7 @@ namespace ScpServer
         private void test_Tick(object sender, EventArgs e)
         {
             lBTest.Visible = true;
-            lBTest.Text = Mapping.mouseaccel[18]+"";
+            lBTest.Text = rootHub.DS4Controllers[0].Latency.ToString();
         }
         void Hotkeys(object sender, EventArgs e)
         {
@@ -309,41 +308,6 @@ namespace ScpServer
                 ShowInTaskbar = true;
                 Focus();
             }
-            #region Old Process check
-            /*DateTime now = DateTime.UtcNow;
-            if (now >= oldnow + TimeSpan.FromSeconds(2))
-            {
-                oldnow = now;
-                if (tempprofile == "null")
-                {
-                    for (int i = 0; i < programpaths.Count; i++)
-                    {
-                        string name = Path.GetFileNameWithoutExtension(programpaths[i]);
-                        if (Process.GetProcessesByName(name).Length > 0)
-                        {
-                            if (programpaths[i].ToLower() == Process.GetProcessesByName(name)[0].Modules[0].FileName.ToLower())
-                            {
-                                for (int j = 0; j < 4; j++)
-                                    if (proprofiles[j][i] != "(none)")
-                                        Global.LoadTempProfile(j, proprofiles[j][i]); //j is filename, i is controller index
-                                tempprofile = name;
-                                filename = Process.GetProcessesByName(name)[0].Modules[0].FileName;
-                                break;
-                            }
-                        }
-                    }
-                }
-                else if (Process.GetProcessesByName(tempprofile).Length <= 0)
-                {
-                    for (int j = 0; j < 4; j++)
-                        Global.LoadProfile(j);
-                    tempprofile = "null";
-                }                 
-                PerformanceCounter.CloseSharedResources();
-            }
-            else
-                PerformanceCounter.CloseSharedResources();*/
-            #endregion
             GC.Collect();
         }
         
@@ -392,43 +356,39 @@ namespace ScpServer
 
         private void Check_Version(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            double newversion;
-            try
-            {
-                if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), NumberStyles.Any, CultureInfo.InvariantCulture, out newversion))
-                    if (newversion > version)
-                        if (MessageBox.Show("Download Version " + newversion + " now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                        {
-                            if (!File.Exists(exepath + "\\DS4Updater.exe"))
-                            {
-                                Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/DS4Updater.exe");
-                                WebClient wc2 = new WebClient();
-                                if (Global.appdatapath == exepath)
-                                    wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
-                                else
-                                {
-                                    MessageBox.Show("Please Download the Updater now, and place it in the programs folder, then check for update again");
-                                    Process.Start("https://www.dropbox.com/s/tlqtdkdumdo0yir/DS4Updater.exe");
-                                }
-                            }
-                            if (Global.appdatapath == exepath)
-                            {
-                                Process p = new Process();
-                                p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                                if (Global.AdminNeeded())
-                                    p.StartInfo.Verb = "runas";
-                                p.Start();
-                                Close();
-                            }
-                        }
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+            string version = fvi.FileVersion;
+            string newversion = File.ReadAllText(Global.appdatapath + "\\version.txt");
+            if (version.Replace(',', '.').CompareTo(File.ReadAllText(Global.appdatapath + "\\version.txt")) == -1)//CompareVersions();
+                if (MessageBox.Show("Download Version " + newversion + " now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe") 
+                        && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
+                    {
+                        Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Windows/DS4Updater.exe");
+                        WebClient wc2 = new WebClient();
+                        if (Global.appdatapath == exepath)
+                            wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
-                            File.Delete(Global.appdatapath + "\\version.txt");
-                    else
-                        File.Delete(Global.appdatapath + "\\version.txt");
+                        {
+                            MessageBox.Show("Please Download the new Updater, and (re)place it in the programs folder, then check for update again");
+                            Process.Start("https://www.dropbox.com/s/tlqtdkdumdo0yir/DS4Updater.exe");
+                        }
+                    }
+                    if (Global.appdatapath == exepath)
+                    {
+                        Process p = new Process();
+                        p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
+                        if (Global.AdminNeeded())
+                            p.StartInfo.Verb = "runas";
+                        p.Start();
+                        Close();
+                    }
+                }
                 else
                     File.Delete(Global.appdatapath + "\\version.txt");
-            }
-            catch { };
+            else
+                File.Delete(Global.appdatapath + "\\version.txt");
         }
 
         public void RefreshProfiles()
@@ -572,6 +532,7 @@ namespace ScpServer
                 this.Show();
                 this.ShowInTaskbar = true;
             }
+            chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         protected void btnStartStop_Click(object sender, EventArgs e)
@@ -634,7 +595,7 @@ namespace ScpServer
         }
         protected void ControllerStatusChanged()
         {
-            String tooltip = "DS4Windows v" + version;
+            String tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
             for (Int32 Index = 0; Index < Pads.Length; Index++)
             {
                 Pads[Index].Text = rootHub.getDS4MacAddress(Index);
@@ -840,6 +801,9 @@ namespace ScpServer
                 RefreshProfiles();
                 this.Size = oldsize;
                 oldsize = new System.Drawing.Size(0, 0);
+                tSBKeepSize.Text = "Keep this window size after closing";
+                tSBKeepSize.Image = Properties.Resources.size;
+                tSBKeepSize.Enabled = true;
                 tSOptions.Visible = false;
                 toolStrip1.Visible = true;
                 toolStrip1.Enabled = true;
@@ -847,17 +811,17 @@ namespace ScpServer
             oldsize = this.Size;
             if (dpix == 120)
             {
-                if (this.Size.Height < 518)
-                    this.Size = new System.Drawing.Size(this.Size.Width, 518);
-                if (this.Size.Width < 1125)
-                    this.Size = new System.Drawing.Size(1125, this.Size.Height);
+                if (this.Size.Height < 90 + opt.MaximumSize.Height * 1.25)
+                    this.Size = new System.Drawing.Size(this.Size.Width, (int)(90 + opt.MaximumSize.Height * 1.25));
+                if (this.Size.Width < 20 + opt.MaximumSize.Width * 1.25)
+                    this.Size = new System.Drawing.Size((int)(20 + opt.Size.Width * 1.25), this.Size.Height);
             }
             else
             {
-                if (this.Size.Height < 418)
-                    this.Size = new System.Drawing.Size(this.Size.Width, 418);
-                if (this.Size.Width < 910)
-                    this.Size = new System.Drawing.Size(910, this.Size.Height);
+                if (this.Size.Height < 90 + opt.MaximumSize.Height)
+                    this.Size = new System.Drawing.Size(this.Size.Width, 90 + opt.MaximumSize.Height);
+                if (this.Size.Width < 20 + opt.MaximumSize.Width)
+                    this.Size = new System.Drawing.Size(20 + opt.MaximumSize.Width, this.Size.Height);
             }
             tabMain.SelectedIndex = 1;
         }
@@ -983,7 +947,7 @@ namespace ScpServer
 
         private void llbHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Hotkeys hotkeysForm = new Hotkeys(this);
+            Hotkeys hotkeysForm = new Hotkeys();
             hotkeysForm.Icon = this.Icon;
             hotkeysForm.ShowDialog();
         }
@@ -1026,11 +990,13 @@ namespace ScpServer
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbLastMessage.Visible = tabMain.SelectedIndex != 4;
+            if (tabMain.SelectedIndex == 4)
+                chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             if (opt != null)
                 if (tabMain.SelectedIndex != 1)
                     opt.inputtimer.Stop();
                 else
-                    opt.inputtimer.Start();
+                    opt.inputtimer.Start();            
         }
 
         private void lBProfiles_MouseDown(object sender, MouseEventArgs e)
@@ -1136,13 +1102,21 @@ namespace ScpServer
                 {
                     System.IO.File.Delete(Global.appdatapath + @"\Profiles\" + opt.filename + ".xml");
                     Global.setAProfile(opt.device, tSTBProfile.Text);
-                    Global.SaveProfile(opt.device, tSTBProfile.Text, opt.buttons.ToArray());
+                    Global.SaveProfile(opt.device, tSTBProfile.Text, opt.buttons.ToArray(), opt.subbuttons.ToArray());
                     Global.Save();
                     opt.Close();
                 }
                 else
                     MessageBox.Show("Please enter a valid name", "Not valid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void tSBKeepSize_Click(object sender, EventArgs e)
+        {
+            oldsize = Size;
+            tSBKeepSize.Text = "Will keep";
+            tSBKeepSize.Image = Properties.Resources._checked;
+            tSBKeepSize.Enabled = false;
         }
 
         private void cBUpdate_CheckedChanged(object sender, EventArgs e)
@@ -1196,7 +1170,7 @@ namespace ScpServer
 
         private void lLBUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Windows/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
             WebClient wct = new WebClient();
             wct.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
             wct.DownloadFileCompleted += wct_DownloadFileCompleted;
@@ -1210,46 +1184,42 @@ namespace ScpServer
         void wct_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             Global.setLastChecked(DateTime.Now);
-            double newversion;
-            try
-            {
-                if (double.TryParse(File.ReadAllText(Global.appdatapath + "\\version.txt"), NumberStyles.Any, CultureInfo.InvariantCulture, out newversion))
-                    if (newversion > Global.getVersion())
-                        if (MessageBox.Show("Download Version " + newversion + " now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                        {
-                            if (!File.Exists(exepath + "\\DS4Updater.exe"))
-                            {
-                                Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Tool/DS4Updater.exe");
-                                WebClient wc2 = new WebClient();
-                                if (Global.appdatapath == exepath)
-                                wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
-                                else 
-                                {
-                                    MessageBox.Show("Please Download the Updater now, and place it in the programs folder, then check for update again");
-                                    Process.Start("https://www.dropbox.com/s/tlqtdkdumdo0yir/DS4Updater.exe");
-                                }
-                            }
-                            if (Global.appdatapath == exepath)
-                            {
-                                Process p = new Process();
-                                p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                                if (Global.AdminNeeded())
-                                    p.StartInfo.Verb = "runas";
-                                p.Start();
-                                Close();
-                            }
-                        }
-                        else
-                            File.Delete(Global.appdatapath + "\\version.txt");
-                    else
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+            string version2 = fvi.FileVersion;
+            string newversion2 = File.ReadAllText(Global.appdatapath + "\\version.txt");
+            if (version2.Replace(',', '.').CompareTo(File.ReadAllText(Global.appdatapath + "\\version.txt")) == -1)//CompareVersions();
+                if (MessageBox.Show("Download Version " + newversion2 + " now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
+                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
                     {
-                        File.Delete(Global.appdatapath + "\\version.txt");
-                        MessageBox.Show("You are up to date", "DS4 Updater");
+                        Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Windows/DS4Updater.exe");
+                        WebClient wc2 = new WebClient();
+                        if (Global.appdatapath == exepath)
+                            wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
+                        else
+                        {
+                            MessageBox.Show("Please Download the new Updater, and (re)place it in the programs folder, then check for update again");
+                            Process.Start("https://www.dropbox.com/s/tlqtdkdumdo0yir/DS4Updater.exe");
+                        }
                     }
+                    if (Global.appdatapath == exepath)
+                    {
+                        Process p = new Process();
+                        p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
+                        if (Global.AdminNeeded())
+                            p.StartInfo.Verb = "runas";
+                        p.Start();
+                        Close();
+                    }
+                }
                 else
                     File.Delete(Global.appdatapath + "\\version.txt");
+            else
+            {
+                File.Delete(Global.appdatapath + "\\version.txt");
+                MessageBox.Show("You are up to date", "DS4Windows Updater");
             }
-            catch { };
         }
 
         private void linkProfiles_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

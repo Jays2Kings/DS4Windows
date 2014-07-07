@@ -1256,7 +1256,7 @@
             this.btnSEMICOLON.Size = new System.Drawing.Size(24, 24);
             this.btnSEMICOLON.TabIndex = 200;
             this.btnSEMICOLON.TabStop = false;
-            this.btnSEMICOLON.Tag = "59";
+            this.btnSEMICOLON.Tag = "186";
             this.btnSEMICOLON.Text = ";";
             this.btnSEMICOLON.UseVisualStyleBackColor = true;
             // 
@@ -2195,7 +2195,6 @@
             this.Text = "Keybaord";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finalMeasure);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down_Action);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Key_Up_Action);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

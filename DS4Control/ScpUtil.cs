@@ -240,16 +240,6 @@ namespace DS4Control
             return m_Config.useExclusiveMode;
         }
 
-        public static void setVersion(double data)
-        {
-            m_Config.version = data;
-        }
-
-        public static double getVersion()
-        {
-            return m_Config.version;
-        }
-
         public static void setLastChecked(DateTime data)
         {
             m_Config.lastChecked = data;
@@ -456,6 +446,14 @@ namespace DS4Control
         {
             m_Config.mouseAccel[device] = value;
         }
+        public static int getShiftModifier (int device)
+        {
+            return m_Config.shiftModifier[device];
+        }
+        public static void setShiftModifier(int device, int value)
+        {
+            m_Config.shiftModifier[device] = value;
+        }
         public static void setAProfile(int device, string filepath)
         {
             m_Config.profilePath[device] = appdatapath + @"\Profiles\" + filepath + ".xml";
@@ -501,30 +499,68 @@ namespace DS4Control
         {
             return m_Config.customMapKeyTypes[device];
         }
+
+        public static X360Controls getShiftCustomButton(int device, DS4Controls controlName)
+        {
+            return m_Config.GetShiftCustomButton(device, controlName);
+        }
+        public static ushort getShiftCustomKey(int device, DS4Controls controlName)
+        {
+            return m_Config.GetShiftCustomKey(device, controlName);
+        }
+        public static string getShiftCustomMacro(int device, DS4Controls controlName)
+        {
+            return m_Config.GetShiftCustomMacro(device, controlName);
+        }
+        public static DS4KeyType getShiftCustomKeyType(int device, DS4Controls controlName)
+        {
+            return m_Config.GetShiftCustomKeyType(device, controlName);
+        }
+        public static bool getHasShiftCustomKeysorButtons(int device)
+        {
+            return m_Config.shiftCustomMapButtons[device].Count > 0
+                || m_Config.shiftCustomMapKeys[device].Count > 0;
+        }
+        public static Dictionary<DS4Controls, X360Controls> getShiftCustomButtons(int device)
+        {
+            return m_Config.shiftCustomMapButtons[device];
+        }
+        public static Dictionary<DS4Controls, ushort> getShiftCustomKeys(int device)
+        {
+            return m_Config.shiftCustomMapKeys[device];
+        }
+        public static Dictionary<DS4Controls, string> getShiftCustomMacros(int device)
+        {
+            return m_Config.shiftCustomMapMacros[device];
+        }
+        public static Dictionary<DS4Controls, DS4KeyType> getShiftCustomKeyTypes(int device)
+        {
+            return m_Config.shiftCustomMapKeyTypes[device];
+        }
         public static bool Load()
         {
             return m_Config.Load();
         }
-        public static void LoadProfile(int device, System.Windows.Forms.Control[] buttons)
+        public static void LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons)
         {
-            m_Config.LoadProfile(device, buttons);
+            m_Config.LoadProfile(device, buttons, shiftbuttons);
         }
         public static void LoadProfile(int device)
         {
-            m_Config.LoadProfile(device, null);
+            m_Config.LoadProfile(device, null, null);
         }
         public static void LoadTempProfile(int device, string name)
         {
-            m_Config.LoadProfile(device, null, appdatapath + @"\Profiles\" + name + ".xml");
+            m_Config.LoadProfile(device, null, null, appdatapath + @"\Profiles\" + name + ".xml");
         }
         public static bool Save()
         {
             return m_Config.Save();
         }
 
-        public static void SaveProfile(int device, string propath, System.Windows.Forms.Control[] buttons)
+        public static void SaveProfile(int device, string propath, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons)
         {
-            m_Config.SaveProfile(device, propath, buttons);
+            m_Config.SaveProfile(device, propath, buttons, shiftbuttons);
         }
 
         private static byte applyRatio(byte b1, byte b2, double r)
@@ -623,6 +659,7 @@ namespace DS4Control
         public int[] scrollSensitivity = { 0, 0, 0, 0, 0 };
         public double[] rainbow = { 0, 0, 0, 0, 0 };
         public int[] flashAt = { 30, 30, 30, 30, 30 };
+        public int[] shiftModifier = { 0, 0, 0, 0, 0 };
         public bool[] mouseAccel = { true, true, true, true, true };
         public Byte[][] m_LowLeds = new Byte[][]
         {
@@ -656,7 +693,6 @@ namespace DS4Control
         public Int32 formWidth = 782;
         public Int32 formHeight = 550;
         public Boolean startMinimized = false;
-        public double version;
         public DateTime lastChecked;
         public int CheckWhen = 1;
         public bool notifications = true;
@@ -666,6 +702,12 @@ namespace DS4Control
         public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null, null };
         public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null, null };
+
+        public Dictionary<DS4Controls, DS4KeyType>[] shiftCustomMapKeyTypes = { null, null, null, null, null };
+        public Dictionary<DS4Controls, UInt16>[] shiftCustomMapKeys = { null, null, null, null, null };
+        public Dictionary<DS4Controls, String>[] shiftCustomMapMacros = { null, null, null, null, null };
+        public Dictionary<DS4Controls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
+
         public BackingStore()
         {
             for (int i = 0; i < 5; i++)
@@ -674,6 +716,11 @@ namespace DS4Control
                 customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
                 customMapMacros[i] = new Dictionary<DS4Controls, String>();
                 customMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
+
+                shiftCustomMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
+                shiftCustomMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
+                shiftCustomMapMacros[i] = new Dictionary<DS4Controls, String>();
+                shiftCustomMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
             }
         }
 
@@ -706,15 +753,44 @@ namespace DS4Control
             catch { return 0; }
         }
 
+        public X360Controls GetShiftCustomButton(int device, DS4Controls controlName)
+        {
+            if (shiftCustomMapButtons[device].ContainsKey(controlName))
+                return shiftCustomMapButtons[device][controlName];
+            else return X360Controls.None;
+        }
+        public UInt16 GetShiftCustomKey(int device, DS4Controls controlName)
+        {
+            if (shiftCustomMapKeys[device].ContainsKey(controlName))
+                return shiftCustomMapKeys[device][controlName];
+            else return 0;
+        }
+        public string GetShiftCustomMacro(int device, DS4Controls controlName)
+        {
+            if (shiftCustomMapMacros[device].ContainsKey(controlName))
+                return shiftCustomMapMacros[device][controlName];
+            else return "0";
+        }
+        public DS4KeyType GetShiftCustomKeyType(int device, DS4Controls controlName)
+        {
+            try
+            {
+                if (shiftCustomMapKeyTypes[device].ContainsKey(controlName))
+                    return shiftCustomMapKeyTypes[device][controlName];
+                else return 0;
+            }
+            catch { return 0; }
+        }
 
-        public Boolean SaveProfile(int device, String propath, System.Windows.Forms.Control[] buttons)
+        public Boolean SaveProfile(int device, String propath, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons)
         {
             Boolean Saved = true;
-            String path = Global.appdatapath + @"\Profiles\" + propath + ".xml";
+            String path = Global.appdatapath + @"\Profiles\" + Path.GetFileNameWithoutExtension(propath) + ".xml";
             try
             {
                 XmlNode Node;
-
+                XmlNode xmlControls = m_Xdoc.SelectSingleNode("/ScpControl/Control");
+                XmlNode xmlShiftControls = m_Xdoc.SelectSingleNode("/ScpControl/ShiftControl");
                 m_Xdoc.RemoveAll();
 
                 Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
@@ -759,14 +835,16 @@ namespace DS4Control
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); Node.AppendChild(xmlSZD);
                 XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null); xmlChargingType.InnerText = chargingType[device].ToString(); Node.AppendChild(xmlChargingType);
                 XmlNode xmlMouseAccel = m_Xdoc.CreateNode(XmlNodeType.Element, "MouseAcceleration", null); xmlMouseAccel.InnerText = mouseAccel[device].ToString(); Node.AppendChild(xmlMouseAccel);
+                XmlNode xmlShiftMod = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftModifier", null); xmlShiftMod.InnerText = shiftModifier[device].ToString(); Node.AppendChild(xmlShiftMod);                
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
                 XmlNode Macro = m_Xdoc.CreateNode(XmlNodeType.Element, "Macro", null);
                 XmlNode KeyType = m_Xdoc.CreateNode(XmlNodeType.Element, "KeyType", null);
                 XmlNode Button = m_Xdoc.CreateNode(XmlNodeType.Element, "Button", null);
-
-                foreach (var button in buttons)
+                if (buttons != null)
+                {
+                    foreach (var button in buttons)
                     {
                         // Save even if string (for xbox controller buttons)
                         if (button.Tag != null)
@@ -805,15 +883,80 @@ namespace DS4Control
                             else Button.AppendChild(buttonNode);
                         }
                     }
-                Node.AppendChild(NodeControl);
-                if (Button.HasChildNodes)
-                    NodeControl.AppendChild(Button);
-                if (Macro.HasChildNodes)
-                    NodeControl.AppendChild(Macro);
-                if (Key.HasChildNodes)
-                    NodeControl.AppendChild(Key);
-                if (KeyType.HasChildNodes)
-                    NodeControl.AppendChild(KeyType);
+                    Node.AppendChild(NodeControl);
+                    if (Button.HasChildNodes)
+                        NodeControl.AppendChild(Button);
+                    if (Macro.HasChildNodes)
+                        NodeControl.AppendChild(Macro);
+                    if (Key.HasChildNodes)
+                        NodeControl.AppendChild(Key);
+                    if (KeyType.HasChildNodes)
+                        NodeControl.AppendChild(KeyType);
+                }
+                else if (xmlControls != null)
+                    Node.AppendChild(xmlControls);
+                if (shiftModifier[device] > 0)
+                {
+                    XmlNode NodeShiftControl = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftControl", null);
+
+                    XmlNode ShiftKey = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
+                    XmlNode ShiftMacro = m_Xdoc.CreateNode(XmlNodeType.Element, "Macro", null);
+                    XmlNode ShiftKeyType = m_Xdoc.CreateNode(XmlNodeType.Element, "KeyType", null);
+                    XmlNode ShiftButton = m_Xdoc.CreateNode(XmlNodeType.Element, "Button", null);
+                    if (shiftbuttons != null)
+                    {
+                        foreach (var button in shiftbuttons)
+                        {
+                            // Save even if string (for xbox controller buttons)
+                            if (button.Tag != null)
+                            {
+                                XmlNode buttonNode;
+                                string keyType = String.Empty;
+                                if (button.Tag is String && (String)button.Tag == "Unbound")
+                                {
+                                    keyType += DS4KeyType.Unbound;
+                                }
+                                {
+                                    if (button.Font.Strikeout)
+                                        keyType += DS4KeyType.HoldMacro;
+                                    if (button.Font.Underline)
+                                        keyType += DS4KeyType.Macro;
+                                    if (button.Font.Italic)
+                                        keyType += DS4KeyType.Toggle;
+                                    if (button.Font.Bold)
+                                        keyType += DS4KeyType.ScanCode;
+                                }
+                                if (keyType != String.Empty)
+                                {
+                                    buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
+                                    buttonNode.InnerText = keyType;
+                                    ShiftKeyType.AppendChild(buttonNode);
+                                }
+                                buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
+                                buttonNode.InnerText = button.Tag.ToString();
+                                if (button.Tag is IEnumerable<int> || button.Tag is Int32[] || button.Tag is UInt16[])
+                                {
+                                    buttonNode.InnerText = string.Join("/", (int[])button.Tag);
+                                    ShiftMacro.AppendChild(buttonNode);
+                                }
+                                else if (button.Tag is Int32 || button.Tag is UInt16)
+                                    ShiftKey.AppendChild(buttonNode);
+                                else ShiftButton.AppendChild(buttonNode);
+                            }
+                        }
+                        Node.AppendChild(NodeShiftControl);
+                        if (ShiftButton.HasChildNodes)
+                            NodeShiftControl.AppendChild(ShiftButton);
+                        if (ShiftMacro.HasChildNodes)
+                            NodeShiftControl.AppendChild(ShiftMacro);
+                        if (ShiftKey.HasChildNodes)
+                            NodeShiftControl.AppendChild(ShiftKey);
+                        if (ShiftKeyType.HasChildNodes)
+                            NodeShiftControl.AppendChild(ShiftKeyType);
+                    }
+                    else if (xmlShiftControls != null)
+                        Node.AppendChild(xmlShiftControls);
+                }
                 m_Xdoc.AppendChild(Node);
                 if (NodeControl.HasChildNodes)
                     Node.AppendChild(NodeControl);
@@ -863,9 +1006,49 @@ namespace DS4Control
                 case "bnGyroXN": return DS4Controls.GyroXNeg;
                 case "bnGyroZP": return DS4Controls.GyroZPos;
                 case "bnGyroZN": return DS4Controls.GyroZNeg;
+
+
+                case "sbnShare": return DS4Controls.Share;
+                case "sbnL3": return DS4Controls.L3;
+                case "sbnR3": return DS4Controls.R3;
+                case "sbnOptions": return DS4Controls.Options;
+                case "sbnUp": return DS4Controls.DpadUp;
+                case "sbnRight": return DS4Controls.DpadRight;
+                case "sbnDown": return DS4Controls.DpadDown;
+                case "sbnLeft": return DS4Controls.DpadLeft;
+
+                case "sbnL1": return DS4Controls.L1;
+                case "sbnR1": return DS4Controls.R1;
+                case "sbnTriangle": return DS4Controls.Triangle;
+                case "sbnCircle": return DS4Controls.Circle;
+                case "sbnCross": return DS4Controls.Cross;
+                case "sbnSquare": return DS4Controls.Square;
+
+                case "sbnPS": return DS4Controls.PS;
+                case "sbnLSLeft": return DS4Controls.LXNeg;
+                case "sbnLSUp": return DS4Controls.LYNeg;
+                case "sbnRSLeft": return DS4Controls.RXNeg;
+                case "sbnRSUp": return DS4Controls.RYNeg;
+
+                case "sbnLSRight": return DS4Controls.LXPos;
+                case "sbnLSDown": return DS4Controls.LYPos;
+                case "sbnRSRight": return DS4Controls.RXPos;
+                case "sbnRSDown": return DS4Controls.RYPos;
+                case "sbnL2": return DS4Controls.L2;
+                case "sbnR2": return DS4Controls.R2;
+
+                case "sbnTouchLeft": return DS4Controls.TouchLeft;
+                case "sbnTouchMulti": return DS4Controls.TouchMulti;
+                case "sbnTouchUpper": return DS4Controls.TouchUpper;
+                case "sbnTouchRight": return DS4Controls.TouchRight;
+                case "sbnGsyroXP": return DS4Controls.GyroXPos;
+                case "sbnGyroXN": return DS4Controls.GyroXNeg;
+                case "sbnGyroZP": return DS4Controls.GyroZPos;
+                case "sbnGyroZN": return DS4Controls.GyroZNeg;
             }
             return 0;
         }
+
         private X360Controls getX360ControlsByName(string key)
         {
             switch (key)
@@ -916,13 +1099,17 @@ namespace DS4Control
             return X360Controls.Unbound;
         }
 
-        public Boolean LoadProfile(int device, System.Windows.Forms.Control[] buttons, string propath = "")
+        public Boolean LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons, string propath = "")
         {
             Boolean Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
             Dictionary<DS4Controls, UInt16> customMapKeys = new Dictionary<DS4Controls, UInt16>();
             Dictionary<DS4Controls, X360Controls> customMapButtons = new Dictionary<DS4Controls, X360Controls>();
             Dictionary<DS4Controls, String> customMapMacros = new Dictionary<DS4Controls, String>();
+            Dictionary<DS4Controls, DS4KeyType> shiftCustomMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
+            Dictionary<DS4Controls, UInt16> shiftCustomMapKeys = new Dictionary<DS4Controls, UInt16>();
+            Dictionary<DS4Controls, X360Controls> shiftCustomMapButtons = new Dictionary<DS4Controls, X360Controls>();
+            Dictionary<DS4Controls, String> shiftCustomMapMacros = new Dictionary<DS4Controls, String>();
             Boolean missingSetting = false;
             string profilepath;
             if (propath == "")
@@ -1053,7 +1240,8 @@ namespace DS4Control
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/ScpControl/MouseAcceleration"); Boolean.TryParse(Item.InnerText, out mouseAccel[device]); }
                 catch { missingSetting = true; }
-
+                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ShiftModifier"); Int32.TryParse(Item.InnerText, out shiftModifier[device]); }
+                catch { shiftModifier[device] = 0; missingSetting = true; }
                 DS4KeyType keyType;
                 UInt16 wvk;
                 if (buttons == null)
@@ -1090,109 +1278,157 @@ namespace DS4Control
                                 if (keyType != DS4KeyType.None)
                                     customMapKeyTypes.Add(getDS4ControlsByName(item.Name), keyType);
                             }
+                    if (shiftModifier[device] > 0)
+                    {
+                        ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/ShiftControl/Button");
+                        if (ParentItem != null)
+                            foreach (XmlNode item in ParentItem.ChildNodes)
+                                shiftCustomMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
+                        ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/ShiftControl/Macro");
+                        if (ParentItem != null)
+                            foreach (XmlNode item in ParentItem.ChildNodes)
+                                shiftCustomMapMacros.Add(getDS4ControlsByName(item.Name), item.InnerText);
+                        ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/ShiftControl/Key");
+                        if (ParentItem != null)
+                            foreach (XmlNode item in ParentItem.ChildNodes)
+                                if (UInt16.TryParse(item.InnerText, out wvk))
+                                    shiftCustomMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
+                        ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/ShiftControl/KeyType");
+                        if (ParentItem != null)
+                            foreach (XmlNode item in ParentItem.ChildNodes)
+                                if (item != null)
+                                {
+                                    keyType = DS4KeyType.None;
+                                    if (item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
+                                        keyType |= DS4KeyType.ScanCode;
+                                    if (item.InnerText.Contains(DS4KeyType.Toggle.ToString()))
+                                        keyType |= DS4KeyType.Toggle;
+                                    if (item.InnerText.Contains(DS4KeyType.Macro.ToString()))
+                                        keyType |= DS4KeyType.Macro;
+                                    if (item.InnerText.Contains(DS4KeyType.HoldMacro.ToString()))
+                                        keyType |= DS4KeyType.HoldMacro;
+                                    if (item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
+                                        keyType |= DS4KeyType.Unbound;
+                                    if (keyType != DS4KeyType.None)
+                                        shiftCustomMapKeyTypes.Add(getDS4ControlsByName(item.Name), keyType);
+                                }
+                    }
                 }
                 else
                 {
-                    foreach (var button in buttons)
-                        try
-                        {
-                            //bool foundBinding = false;
-                            Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/KeyType/{0}", button.Name));
-                            if (Item != null)
-                            {
-                                //foundBinding = true;
-                                keyType = DS4KeyType.None;
-                                if (Item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
-                                {
-                                    keyType = DS4KeyType.Unbound;
-                                    button.Tag = "Unbound";
-                                    button.Text = "Unbound";
-                                }
-                                else
-                                {
-                                    bool SC = Item.InnerText.Contains(DS4KeyType.ScanCode.ToString());
-                                    bool TG = Item.InnerText.Contains(DS4KeyType.Toggle.ToString());
-                                    bool MC = Item.InnerText.Contains(DS4KeyType.Macro.ToString());
-                                    bool MR = Item.InnerText.Contains(DS4KeyType.HoldMacro.ToString());
-                                    button.Font = new Font(button.Font,
-                                        (SC ? FontStyle.Bold : FontStyle.Regular) | (TG ? FontStyle.Italic : FontStyle.Regular) |
-                                        (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
-                                    if (Item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
-                                        keyType |= DS4KeyType.ScanCode;
-                                    if (Item.InnerText.Contains(DS4KeyType.Toggle.ToString()))
-                                        keyType |= DS4KeyType.Toggle;
-                                    if (Item.InnerText.Contains(DS4KeyType.Macro.ToString()))
-                                        keyType |= DS4KeyType.Macro;
-                                }
-                                if (keyType != DS4KeyType.None)
-                                    customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
-                            }
-
-                            Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/Macro/{0}", button.Name));
-                            if (Item != null)
-                            {
-                                string[] splitter = Item.InnerText.Split('/');
-                                int[] keys = new int[splitter.Length];
-                                for (int i = 0; i < keys.Length; i++)
-                                {
-                                    keys[i] = int.Parse(splitter[i]);
-                                    if (keys[i] < 255) splitter[i] = ((System.Windows.Forms.Keys)keys[i]).ToString();
-                                    else if (keys[i] == 256) splitter[i] = "Left Mouse Button";
-                                    else if (keys[i] == 257) splitter[i] = "Right Mouse Button";
-                                    else if (keys[i] == 258) splitter[i] = "Middle Mouse Button";
-                                    else if (keys[i] == 259) splitter[i] = "4th Mouse Button";
-                                    else if (keys[i] == 260) splitter[i] = "5th Mouse Button";
-                                    else if (keys[i] > 300) splitter[i] = "Wait " + (keys[i] - 300) + "ms";
-                                }
-                                button.Text = "Macro";
-                                button.Tag = keys;
-                                customMapMacros.Add(getDS4ControlsByName(button.Name), Item.InnerText);
-                            }
-                            else if (m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/Key/{0}", button.Name)) != null)
-                            {
-                                Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/Key/{0}", button.Name));
-                                if (UInt16.TryParse(Item.InnerText, out wvk))
-                                {
-                                    //foundBinding = true;
-                                    customMapKeys.Add(getDS4ControlsByName(Item.Name), wvk);
-                                    button.Tag = wvk;
-                                    button.Text = ((System.Windows.Forms.Keys)wvk).ToString();
-                                }
-                            }
-                            else
-                            {
-                                Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/Control/Button/{0}", button.Name));
-                                if (Item != null)
-                                {
-                                    //foundBinding = true;
-                                    button.Tag = Item.InnerText;
-                                    button.Text = Item.InnerText;
-                                    customMapButtons.Add(getDS4ControlsByName(button.Name), getX360ControlsByName(Item.InnerText));
-                                }
-                            }
-                        }
-                        catch
-                        {
-
-                        }
+                    LoadButtons(buttons, "Control", customMapKeyTypes, customMapKeys, customMapButtons, customMapMacros);
+                    LoadButtons(shiftbuttons, "ShiftControl", shiftCustomMapKeyTypes, shiftCustomMapKeys, shiftCustomMapButtons, shiftCustomMapMacros);                    
                 }
             }            
             //catch { Loaded = false; }
-
             if (Loaded)
             {
                 this.customMapButtons[device] = customMapButtons;
                 this.customMapKeys[device] = customMapKeys;
                 this.customMapKeyTypes[device] = customMapKeyTypes;
                 this.customMapMacros[device] = customMapMacros;
+
+                this.shiftCustomMapButtons[device] = shiftCustomMapButtons;
+                this.shiftCustomMapKeys[device] = shiftCustomMapKeys;
+                this.shiftCustomMapKeyTypes[device] = shiftCustomMapKeyTypes;
+                this.shiftCustomMapMacros[device] = shiftCustomMapMacros;
             }
             // Only add missing settings if the actual load was graceful
-            if (missingSetting && Loaded)
-                SaveProfile(device, profilepath, buttons);
+            if (missingSetting && Loaded)// && buttons != null)
+                SaveProfile(device, profilepath, buttons, shiftbuttons);
 
             return Loaded;
         }
 
+        public void LoadButtons(System.Windows.Forms.Control[] buttons, string control, Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes,
+           Dictionary<DS4Controls, UInt16> customMapKeys, Dictionary<DS4Controls, X360Controls> customMapButtons, Dictionary<DS4Controls, String> customMapMacros)
+        {
+            XmlNode Item;
+            DS4KeyType keyType;
+            UInt16 wvk;
+            foreach (var button in buttons)
+                try
+                {
+                    //bool foundBinding = false;
+                    Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/" + control + "/KeyType/{0}", button.Name));
+                    if (Item != null)
+                    {
+                        //foundBinding = true;
+                        keyType = DS4KeyType.None;
+                        if (Item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
+                        {
+                            keyType = DS4KeyType.Unbound;
+                            button.Tag = "Unbound";
+                            button.Text = "Unbound";
+                        }
+                        else
+                        {
+                            bool SC = Item.InnerText.Contains(DS4KeyType.ScanCode.ToString());
+                            bool TG = Item.InnerText.Contains(DS4KeyType.Toggle.ToString());
+                            bool MC = Item.InnerText.Contains(DS4KeyType.Macro.ToString());
+                            bool MR = Item.InnerText.Contains(DS4KeyType.HoldMacro.ToString());
+                            button.Font = new Font(button.Font,
+                                (SC ? FontStyle.Bold : FontStyle.Regular) | (TG ? FontStyle.Italic : FontStyle.Regular) |
+                                (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
+                            if (Item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
+                                keyType |= DS4KeyType.ScanCode;
+                            if (Item.InnerText.Contains(DS4KeyType.Toggle.ToString()))
+                                keyType |= DS4KeyType.Toggle;
+                            if (Item.InnerText.Contains(DS4KeyType.Macro.ToString()))
+                                keyType |= DS4KeyType.Macro;
+                        }
+                        if (keyType != DS4KeyType.None)
+                            customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
+                    }
+
+                    Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/" + control + "/Macro/{0}", button.Name));
+                    if (Item != null)
+                    {
+                        string[] splitter = Item.InnerText.Split('/');
+                        int[] keys = new int[splitter.Length];
+                        for (int i = 0; i < keys.Length; i++)
+                        {
+                            keys[i] = int.Parse(splitter[i]);
+                            if (keys[i] < 255) splitter[i] = ((System.Windows.Forms.Keys)keys[i]).ToString();
+                            else if (keys[i] == 256) splitter[i] = "Left Mouse Button";
+                            else if (keys[i] == 257) splitter[i] = "Right Mouse Button";
+                            else if (keys[i] == 258) splitter[i] = "Middle Mouse Button";
+                            else if (keys[i] == 259) splitter[i] = "4th Mouse Button";
+                            else if (keys[i] == 260) splitter[i] = "5th Mouse Button";
+                            else if (keys[i] > 300) splitter[i] = "Wait " + (keys[i] - 300) + "ms";
+                        }
+                        button.Text = "Macro";
+                        button.Tag = keys;
+                        customMapMacros.Add(getDS4ControlsByName(button.Name), Item.InnerText);
+                    }
+                    else if (m_Xdoc.SelectSingleNode(String.Format("/ScpControl/" + control + "/Key/{0}", button.Name)) != null)
+                    {
+                        Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/" + control + "/Key/{0}", button.Name));
+                        if (UInt16.TryParse(Item.InnerText, out wvk))
+                        {
+                            //foundBinding = true;
+                            customMapKeys.Add(getDS4ControlsByName(Item.Name), wvk);
+                            button.Tag = wvk;
+                            button.Text = ((System.Windows.Forms.Keys)wvk).ToString();
+                        }
+                    }
+                    else
+                    {
+                        Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/" + control + "/Button/{0}", button.Name));
+                        if (Item != null)
+                        {
+                            //foundBinding = true;
+                            button.Tag = Item.InnerText;
+                            button.Text = Item.InnerText;
+                            customMapButtons.Add(getDS4ControlsByName(button.Name), getX360ControlsByName(Item.InnerText));
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+        }
         public bool Load()
         {
             Boolean Loaded = true;
@@ -1223,13 +1459,9 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller4"); profilePath[3] = Item.InnerText; }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/DS4Version"); Double.TryParse(Item.InnerText, out version); }
-                    catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/LastChecked"); DateTime.TryParse(Item.InnerText, out lastChecked); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CheckWhen"); Int32.TryParse(Item.InnerText, out CheckWhen); }
-                    catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Notifications"); Boolean.TryParse(Item.InnerText, out notifications); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/Notifications"); Boolean.TryParse(Item.InnerText, out notifications); }
                     catch { missingSetting = true; }
@@ -1274,7 +1506,6 @@ namespace DS4Control
             XmlNode xmlController3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null); xmlController3.InnerText = profilePath[2]; Node.AppendChild(xmlController3);
             XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); xmlController4.InnerText = profilePath[3]; Node.AppendChild(xmlController4);
 
-            XmlNode xmlVersion = m_Xdoc.CreateNode(XmlNodeType.Element, "DS4Version", null); xmlVersion.InnerText = version.ToString(); Node.AppendChild(xmlVersion);
             XmlNode xmlLastChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastChecked", null); xmlLastChecked.InnerText = lastChecked.ToString(); Node.AppendChild(xmlLastChecked);
             XmlNode xmlCheckWhen = m_Xdoc.CreateNode(XmlNodeType.Element, "CheckWhen", null); xmlCheckWhen.InnerText = CheckWhen.ToString(); Node.AppendChild(xmlCheckWhen);
             XmlNode xmlNotifications = m_Xdoc.CreateNode(XmlNodeType.Element, "Notifications", null); xmlNotifications.InnerText = notifications.ToString(); Node.AppendChild(xmlNotifications);

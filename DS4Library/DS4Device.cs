@@ -264,18 +264,33 @@ namespace DS4Library
             return priorInputReport30 != 0xff;
         }
         private byte priorInputReport30 = 0xff;
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
-        public void ReleaseKeys(ushort key)
-        {
-            keybd_event((byte)key, 0, 2, 0);
-        }
+        public double Latency = 0;
+        bool warn;
         private void performDs4Input()
         {
             System.Timers.Timer readTimeout = new System.Timers.Timer(); // Await 30 seconds for the initial packet, then 3 seconds thereafter.
             readTimeout.Elapsed += delegate { HidDevice.CancelIO(); };
+            List<long> Latency = new List<long>();
+            long oldtime = 0;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             while (true)
             {
+                Latency.Add(sw.ElapsedMilliseconds - oldtime);
+                oldtime = sw.ElapsedMilliseconds;
+
+                if (Latency.Count > 100)
+                    Latency.RemoveAt(0);
+
+                this.Latency = Latency.Average();
+
+                if (this.Latency > 10 && !warn && sw.ElapsedMilliseconds > 4000)
+                {
+                    warn = true;
+                    //System.Diagnostics.Trace.WriteLine(System.DateTime.UtcNow.ToString("o") + "> " + "Controller " + /*this.DeviceNum*/ + 1 + " (" + this.MacAddress + ") is experiencing latency issues. Currently at " + Math.Round(this.Latency, 2).ToString() + "ms of recomended maximum 10ms");
+                }
+                else if (this.Latency <= 10 && warn) warn = false;
+
                 if (readTimeout.Interval != 3000.0)
                 {
                     if (readTimeout.Interval != 30000.0)

@@ -9,17 +9,20 @@ using System.Windows.Forms;
 using DS4Control;
 using System.Net;
 using System.IO;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace ScpServer
 {
     public partial class Hotkeys : Form
     {
-        ScpForm form;
-        public Hotkeys(ScpForm main)
+        public Hotkeys()
         {
-            form = main;
             InitializeComponent();
-            lbAbout.Text += Global.getVersion().ToString() + ")";           
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+            string version = fvi.FileVersion;
+            lbAbout.Text += version + ")";
+            //lbAbout.Text += Global.getVersion().ToString() + ")";           
         }
 
         private void button1_Click(object sender, EventArgs e)

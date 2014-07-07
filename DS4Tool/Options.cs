@@ -15,7 +15,7 @@ namespace ScpServer
         public string filename;
         Byte[] oldLedColor, oldLowLedColor, oldChargingColor;
         public Timer inputtimer = new Timer(), sixaxisTimer = new Timer();
-        public List<Button> buttons = new List<Button>();
+        public List<Button> buttons = new List<Button>(), subbuttons = new List<Button>();
         private Button lastSelected;
         private int alphacolor;
         private Color reg, full;
@@ -33,12 +33,39 @@ namespace ScpServer
             root = rt;
             g = CreateGraphics();
             greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
-            if (deviceNum < 4)
+            foreach (System.Windows.Forms.Control control in MainPanel.Controls)
+                if (control is Button)
+                    if (!((Button)control).Name.Contains("btn"))
+                        buttons.Add((Button)control);
+            foreach (System.Windows.Forms.Control control in SticksPanel.Controls)
+                if (control is Button)
+                    if (!((Button)control).Name.Contains("btn"))
+                        buttons.Add((Button)control);
+            foreach (System.Windows.Forms.Control control in fLPTiltControls.Controls)
+                if (control is Button)
+                    if (!((Button)control).Name.Contains("btn"))
+                        buttons.Add((Button)control);
+            foreach (System.Windows.Forms.Control control in ShiftMainPanel.Controls)
+                if (control is Button)
+                    if (!((Button)control).Name.Contains("sbtn"))
+                        subbuttons.Add((Button)control);
+            foreach (System.Windows.Forms.Control control in ShiftSticksPanel.Controls)
+                if (control is Button)
+                    if (!((Button)control).Name.Contains("sbtn"))
+                        subbuttons.Add((Button)control);
+            foreach (System.Windows.Forms.Control control in sfLPTiltControls.Controls)
+                if (control is Button)
+                    if (!((Button)control).Name.Contains("sbtn"))
+                        subbuttons.Add((Button)control);
+            if (device < 4)
             nUDSixaxis.Value = deviceNum + 1;
             if (filename != "")
             {
-                Global.setAProfile(4, name);
-                Global.LoadProfile(deviceNum);
+                if (device == 4)
+                {
+                    Global.setAProfile(4, name);
+                }
+                Global.LoadProfile(device, buttons.ToArray(), subbuttons.ToArray());
                 DS4Color color = Global.loadColor(device);
                 redBar.Value = color.red;
                 greenBar.Value = color.green;
@@ -105,25 +132,15 @@ namespace ScpServer
                 nUDRS.Value = Math.Round((decimal)(Global.getRSDeadzone(device) / 127d ), 3);
                 nUDSX.Value = (decimal)Global.getSXDeadzone(device);
                 nUDSZ.Value = (decimal)Global.getSZDeadzone(device);
+                cBShiftControl.SelectedIndex = Global.getShiftModifier(device);
             }
             else
                 Set();
-            foreach (System.Windows.Forms.Control control in MainPanel.Controls)
-                if (control is Button)
-                    if (!((Button)control).Name.Contains("btn"))
-                        buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in SticksPanel.Controls)
-                if (control is Button)
-                    if (!((Button)control).Name.Contains("btn"))
-                        buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in fLPTiltControls.Controls)
-                if (control is Button)
-                    if (!((Button)control).Name.Contains("btn"))
-                        buttons.Add((Button)control);
             foreach (Button b in buttons)
                 b.MouseHover += button_MouseHover;
-            if (filename != "" && filename != "New Profile")
-                Global.LoadProfile(device, buttons.ToArray());
+            foreach (Button b in subbuttons)
+                b.MouseHover += button_MouseHover;
+           
             tp.SetToolTip(cBlowerRCOn, "Best used with right side as a mouse function");
             tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with single taps");
             tp.SetToolTip(lBControlTip, "You can also use your controller to change controls");
@@ -131,39 +148,87 @@ namespace ScpServer
             tp.SetToolTip(pBRainbow, "Always on Rainbow Mode");
             tp.SetToolTip(cBFlushHIDQueue, "Flush HID Queue after each reading");
             tp.SetToolTip(cBLightbyBattery, "Also dim light by idle timeout if on");
-            tp.SetToolTip(lB6Gryo, "Click to see readout of Sixaxis Gyro");
+            tp.SetToolTip(lBGryo, "Click to see readout of Sixaxis Gyro");
             tp.SetToolTip(tBsixaxisGyroX, "GyroX, Left and Right Tilt");
             tp.SetToolTip(tBsixaxisGyroY, "GyroY, Forward and Back Tilt");
             tp.SetToolTip(tBsixaxisGyroZ, "GyroZ, Up and Down Tilt");
             tp.SetToolTip(tBsixaxisAccelX, "AccelX");
             tp.SetToolTip(tBsixaxisAccelY, "AccelY");
             tp.SetToolTip(tBsixaxisAccelZ, "AccelZ");
+            tp.SetToolTip(lBEmpty, "Click to copy the full color");
+            tp.SetToolTip(lBSATip, "Click for advanced Sixaxis reading");
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
+            sbtnLeftStick.Enter += sbtnSticks_Enter;
+            sbtnRightStick.Enter += sbtnSticks_Enter;
             UpdateLists();
             inputtimer.Start();
             inputtimer.Tick += InputDS4;
             sixaxisTimer.Tick += sixaxisTimer_Tick;
             sixaxisTimer.Interval = 1000 / 60;
+            
         }
 
         void sixaxisTimer_Tick(object sender, EventArgs e)
-        {
+        {            
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
             // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
             // We should try to indicate setpoints of the calibration when exposing this measurement....
-            SetDynamicTrackBarValue(tBsixaxisGyroX, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
-            SetDynamicTrackBarValue(tBsixaxisGyroY, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroY + tBsixaxisGyroY.Value * 2) / 3);
-            SetDynamicTrackBarValue(tBsixaxisGyroZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
-            SetDynamicTrackBarValue(tBsixaxisAccelX, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
-            SetDynamicTrackBarValue(tBsixaxisAccelY, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelY + tBsixaxisAccelY.Value * 2) / 3);
-            SetDynamicTrackBarValue(tBsixaxisAccelZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
+            if (scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1] == null)
+            {
+                tPController.Enabled = false;
+                lBInputDelay.Text = "Input Delay: N/Ams";
+                pBDelayTracker.BackColor = Color.Transparent;
+            }
+            else
+            {
+                tPController.Enabled = true;
+                SetDynamicTrackBarValue(tBsixaxisGyroX, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroY, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroY + tBsixaxisGyroY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelX, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelY, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelY + tBsixaxisAccelY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
+                int x = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).LX;
+                int y = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).LY;
+                btnLSTrack.Location = new Point((int)(x / 2.09 + lBLSTrack.Location.X), (int)(y / 2.09 + lBLSTrack.Location.Y));
+                x = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).RX;
+                y = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).RY;
+                btnRSTrack.Location = new Point((int)(x / 2.09 + lBRSTrack.Location.X), (int)(y / 2.09 + lBRSTrack.Location.Y));
+                x = -scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroX / 62 + 127;
+                y = scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ / 62 + 127;
+                btnSATrack.Location = new Point((int)(x / 2.09 + lBSATrack.Location.X), (int)(y / 2.09 + lBSATrack.Location.Y));
+                tBL2.Value = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).L2;
+                lBL2Track.Location = new Point(tBL2.Location.X - 15, (int)(24 - tBL2.Value / 10.625) + 10);
+                if (tBL2.Value == 255)
+                    lBL2Track.ForeColor = Color.Green;
+                else if (tBL2.Value < (double)nUDL2.Value * 255)
+                    lBL2Track.ForeColor = Color.Red;
+                else
+                    lBL2Track.ForeColor = Color.Black;
+                tBR2.Value = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).R2;
+                lBR2Track.Location = new Point(tBR2.Location.X + 20, (int)(24 - tBR2.Value / 10.625) + 10);
+                if (tBR2.Value == 255)
+                    lBR2Track.ForeColor = Color.Green;
+                else if (tBR2.Value < (double)nUDR2.Value * 255)
+                    lBR2Track.ForeColor = Color.Red;
+                else
+                    lBR2Track.ForeColor = Color.Black;
+                double latency = scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1].Latency;
+                lBInputDelay.Text = "Input Delay: " + latency + "ms";
+                if (latency > 10)
+                    pBDelayTracker.BackColor = Color.Red;
+                else if (latency > 5)
+                    pBDelayTracker.BackColor = Color.Yellow;
+                else
+                    pBDelayTracker.BackColor = Color.Green;
+            }
         }
         private void InputDS4(object sender, EventArgs e)
         {
             #region DS4Input
-            if (Form.ActiveForm == root && cBControllerInput.Checked)
+            if (Form.ActiveForm == root && cBControllerInput.Checked && tabControls.SelectedIndex != 2)
             switch (scpDevice.GetInputkeys((int)nUDSixaxis.Value - 1))
                 {
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
@@ -241,6 +306,39 @@ namespace ScpServer
                 case ("bnGyroXP"): lBControls.SelectedIndex = 31; break;
                 case ("bnGyroXN"): lBControls.SelectedIndex = 32; break;
 
+                case ("sbnCross"): lBShiftControls.SelectedIndex = 0; break;
+                case ("sbnCircle"): lBShiftControls.SelectedIndex = 1; break;
+                case ("sbnSquare"): lBShiftControls.SelectedIndex = 2; break;
+                case ("sbnTriangle"): lBShiftControls.SelectedIndex = 3; break;
+                case ("sbnOptions"): lBShiftControls.SelectedIndex = 4; break;
+                case ("sbnShare"): lBShiftControls.SelectedIndex = 5; break;
+                case ("sbnUp"): lBShiftControls.SelectedIndex = 6; break;
+                case ("sbnDown"): lBShiftControls.SelectedIndex = 7; break;
+                case ("sbnLeft"): lBShiftControls.SelectedIndex = 8; break;
+                case ("sbnRight"): lBShiftControls.SelectedIndex = 9; break;
+                case ("sbnPS"): lBShiftControls.SelectedIndex = 10; break;
+                case ("sbnL1"): lBShiftControls.SelectedIndex = 11; break;
+                case ("sbnR1"): lBShiftControls.SelectedIndex = 12; break;
+                case ("sbnL2"): lBShiftControls.SelectedIndex = 13; break;
+                case ("sbnR2"): lBShiftControls.SelectedIndex = 14; break;
+                case ("sbnL3"): lBShiftControls.SelectedIndex = 15; break;
+                case ("sbnR3"): lBShiftControls.SelectedIndex = 16; break;
+                case ("sbnTouchLeft"): lBShiftControls.SelectedIndex = 17; break;
+                case ("sbnTouchRight"): lBShiftControls.SelectedIndex = 18; break;
+                case ("sbnTouchMulti"): lBShiftControls.SelectedIndex = 19; break;
+                case ("sbnTouchUpper"): lBShiftControls.SelectedIndex = 20; break;
+                case ("sbnLSUp"): lBShiftControls.SelectedIndex = 21; break;
+                case ("sbnLSDown"): lBShiftControls.SelectedIndex = 22; break;
+                case ("sbnLSLeft"): lBShiftControls.SelectedIndex = 23; break;
+                case ("sbnLSRight"): lBShiftControls.SelectedIndex = 24; break;
+                case ("sbnRSUp"): lBShiftControls.SelectedIndex = 25; break;
+                case ("sbnRSDown"): lBShiftControls.SelectedIndex = 26; break;
+                case ("sbnRSLeft"): lBShiftControls.SelectedIndex = 27; break;
+                case ("sbnRSRight"): lBShiftControls.SelectedIndex = 28; break;
+                case ("sbnGyroZN"): lBShiftControls.SelectedIndex = 29; break;
+                case ("sbnGyroZP"): lBShiftControls.SelectedIndex = 30; break;
+                case ("sbnGyroXP"): lBShiftControls.SelectedIndex = 31; break;
+                case ("sbnGyroXN"): lBShiftControls.SelectedIndex = 32; break;
                 #endregion
             }
         }
@@ -279,6 +377,7 @@ namespace ScpServer
             Global.setSXDeadzone(device, (double)nUDSX.Value);
             Global.setSZDeadzone(device, (double)nUDSZ.Value);
             Global.setMouseAccel(device, cBMouseAccel.Checked);
+            Global.setShiftModifier(device, cBShiftControl.SelectedIndex);
             if (nUDRainbow.Value == 0) pBRainbow.Image = greyscale;
             else pBRainbow.Image = colored;
         }
@@ -297,7 +396,9 @@ namespace ScpServer
         {
             lastSelected.Text = controlname;
             int value;
-            if (Int32.TryParse(tag.ToString(), out value))
+            if (tag == null)
+                lastSelected.Tag = tag;
+            else if (Int32.TryParse(tag.ToString(), out value))
                 lastSelected.Tag = value;
             else if (tag is Int32[])
                 lastSelected.Tag = tag;
@@ -331,6 +432,18 @@ namespace ScpServer
         {
             SticksPanel.Visible = false;
             MainPanel.Visible = true;
+        }
+
+        private void sbtnSticks_Enter(object sender, EventArgs e)
+        {
+            ShiftSticksPanel.Visible = true;
+            ShiftMainPanel.Visible = false;
+        }
+
+        private void sbtnFullView_Click(object sender, EventArgs e)
+        {
+            ShiftSticksPanel.Visible = false;
+            ShiftMainPanel.Visible = true;
         }
         private void btnLightbar_Click(object sender, EventArgs e)
         {
@@ -525,19 +638,8 @@ namespace ScpServer
         private void rumbleBoostBar_ValueChanged(object sender, EventArgs e)
         {
             Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
-            scpDevice.setRumble((byte)nUDHeavyRumble.Value, (byte)nUDLightRumble.Value, device);
-        }
-                
-        private void numUDLightRumble_ValueChanged(object sender, EventArgs e)
-        {
             if (btnRumbleTest.Text == "Stop")
-                scpDevice.setRumble((byte)nUDHeavyRumble.Value, (byte)nUDLightRumble.Value, device);
-        }
-
-        private void numUDHeavyRumble_ValueChanged(object sender, EventArgs e)
-        {
-            if (btnRumbleTest.Text == "Stop")
-                scpDevice.setRumble((byte)nUDHeavyRumble.Value, (byte)nUDLightRumble.Value, device);
+                scpDevice.setRumble(255, 255, device);
         }
 
         private void btnRumbleTest_Click(object sender, EventArgs e)
@@ -609,8 +711,6 @@ namespace ScpServer
 
         private void Options_Closed(object sender, FormClosedEventArgs e)
         {
-            if (sixaxisTimer.Enabled)
-                sixaxisTimer.Stop();
             for (int i = 0; i < 4; i++)
                 Global.LoadProfile(i); //Refreshes all profiles in case other controllers are using the same profile
             inputtimer.Stop();
@@ -689,6 +789,47 @@ namespace ScpServer
             bnGyroZP.Text = "Tilt Down";
             bnGyroXP.Text = "Tilt Left";
             bnGyroXN.Text = "Tilt Right";
+
+            foreach (Button b in subbuttons)
+                if (b.Tag == null)
+                    b.Text = "Fall Back to " + buttons[subbuttons.IndexOf(b)].Text;
+            lBShiftControls.Items[0] = "Cross : " + sbnCross.Text;
+            lBShiftControls.Items[1] = "Circle : " + sbnCircle.Text;
+            lBShiftControls.Items[2] = "Sqaure : " + sbnSquare.Text;
+            lBShiftControls.Items[3] = "Triangle : " + sbnTriangle.Text;
+            lBShiftControls.Items[4] = "Options : " + sbnOptions.Text;
+            lBShiftControls.Items[5] = "Share : " + sbnShare.Text;
+            lBShiftControls.Items[6] = "Up : " + sbnUp.Text;
+            lBShiftControls.Items[7] = "Down : " + sbnDown.Text;
+            lBShiftControls.Items[8] = "Left : " + sbnLeft.Text;
+            lBShiftControls.Items[9] = "Right : " + sbnRight.Text;
+            lBShiftControls.Items[10] = "PS : " + sbnPS.Text;
+            lBShiftControls.Items[11] = "L1 : " + sbnL1.Text;
+            lBShiftControls.Items[12] = "R1 : " + sbnR1.Text;
+            lBShiftControls.Items[13] = "L2 : " + sbnL2.Text;
+            lBShiftControls.Items[14] = "R2 : " + sbnR2.Text;
+            lBShiftControls.Items[15] = "L3 : " + sbnL3.Text;
+            lBShiftControls.Items[16] = "R3 : " + sbnR3.Text;
+            lBShiftControls.Items[17] = "Left Touch : " + sbnTouchLeft.Text;
+            lBShiftControls.Items[18] = "Right Touch : " + sbnTouchRight.Text;
+            lBShiftControls.Items[19] = "Multitouch : " + sbnTouchMulti.Text;
+            lBShiftControls.Items[20] = "Upper Touch : " + sbnTouchUpper.Text;
+            lBShiftControls.Items[21] = "LS Up : " + sbnLSUp.Text;
+            lBShiftControls.Items[22] = "LS Down : " + sbnLSDown.Text;
+            lBShiftControls.Items[23] = "LS Left : " + sbnLSLeft.Text;
+            lBShiftControls.Items[24] = "LS Right : " + sbnLSRight.Text;
+            lBShiftControls.Items[25] = "RS Up : " + sbnRSUp.Text;
+            lBShiftControls.Items[26] = "RS Down : " + sbnRSDown.Text;
+            lBShiftControls.Items[27] = "RS Left : " + sbnRSLeft.Text;
+            lBShiftControls.Items[28] = "RS Right : " + sbnRSRight.Text;
+            lBShiftControls.Items[29] = "Tilt Up : " + UpdateGyroList(sbnGyroZN);
+            lBShiftControls.Items[30] = "Tilt Down : " + UpdateGyroList(sbnGyroZP);
+            lBShiftControls.Items[31] = "Tilt Left : " + UpdateGyroList(sbnGyroXP);
+            lBShiftControls.Items[32] = "Tilt Right : " + UpdateGyroList(sbnGyroXN);
+            sbnGyroZN.Text = "Tilt Up";
+            sbnGyroZP.Text = "Tilt Down";
+            sbnGyroXP.Text = "Tilt Left";
+            sbnGyroXN.Text = "Tilt Right";
         }
 
         private string UpdateGyroList(Button button)
@@ -697,10 +838,14 @@ namespace ScpServer
                 return "Unbound";
             else if (button.Tag is IEnumerable<int> || button.Tag is Int32[] || button.Tag is UInt16[])
                 return "Macro";
-            else if (button.Tag is Int32 || button.Tag is UInt16)
-                return ((Keys)(ushort)button.Tag).ToString();
+            else if (button.Tag is Int32)
+                return ((Keys)(Int32)button.Tag).ToString();
+            else if (button.Tag is UInt16)
+                return ((Keys)(UInt16)button.Tag).ToString();
             else if (button.Tag is string)
                 return button.Tag.ToString();
+            else if (button.Name.StartsWith("s") && buttons[subbuttons.IndexOf(button)].Tag != null && button.Tag == null)
+                return "Fall Back to " + UpdateGyroList(buttons[subbuttons.IndexOf(button)]);
             else
                 return string.Empty;
         }
@@ -744,15 +889,61 @@ namespace ScpServer
             if (lBControls.SelectedIndex == 32) Show_ControlsBn(bnGyroXN, e);
         }
 
+        private void Show_ShiftControlsList(object sender, EventArgs e)
+        {
+            if (lBShiftControls.SelectedIndex == 0) Show_ControlsBn(sbnCross, e);
+            if (lBShiftControls.SelectedIndex == 1) Show_ControlsBn(sbnCircle, e);
+            if (lBShiftControls.SelectedIndex == 2) Show_ControlsBn(sbnSquare, e);
+            if (lBShiftControls.SelectedIndex == 3) Show_ControlsBn(sbnTriangle, e);
+            if (lBShiftControls.SelectedIndex == 4) Show_ControlsBn(sbnOptions, e);
+            if (lBShiftControls.SelectedIndex == 5) Show_ControlsBn(sbnShare, e);
+            if (lBShiftControls.SelectedIndex == 6) Show_ControlsBn(sbnUp, e);
+            if (lBShiftControls.SelectedIndex == 7) Show_ControlsBn(sbnDown, e);
+            if (lBShiftControls.SelectedIndex == 8) Show_ControlsBn(sbnLeft, e);
+            if (lBShiftControls.SelectedIndex == 9) Show_ControlsBn(sbnRight, e);
+            if (lBShiftControls.SelectedIndex == 10) Show_ControlsBn(sbnPS, e);
+            if (lBShiftControls.SelectedIndex == 11) Show_ControlsBn(sbnL1, e);
+            if (lBShiftControls.SelectedIndex == 12) Show_ControlsBn(sbnR1, e);
+            if (lBShiftControls.SelectedIndex == 13) Show_ControlsBn(sbnL2, e);
+            if (lBShiftControls.SelectedIndex == 14) Show_ControlsBn(sbnR2, e);
+            if (lBShiftControls.SelectedIndex == 15) Show_ControlsBn(sbnL3, e);
+            if (lBShiftControls.SelectedIndex == 16) Show_ControlsBn(sbnR3, e);
+
+            if (lBShiftControls.SelectedIndex == 17) Show_ControlsBn(sbnTouchLeft, e);
+            if (lBShiftControls.SelectedIndex == 18) Show_ControlsBn(sbnTouchRight, e);
+            if (lBShiftControls.SelectedIndex == 19) Show_ControlsBn(sbnTouchMulti, e);
+            if (lBShiftControls.SelectedIndex == 20) Show_ControlsBn(sbnTouchUpper, e);
+
+            if (lBShiftControls.SelectedIndex == 21) Show_ControlsBn(sbnLSUp, e);
+            if (lBShiftControls.SelectedIndex == 22) Show_ControlsBn(sbnLSDown, e);
+            if (lBShiftControls.SelectedIndex == 23) Show_ControlsBn(sbnLSLeft, e);
+            if (lBShiftControls.SelectedIndex == 24) Show_ControlsBn(sbnLSRight, e);
+            if (lBShiftControls.SelectedIndex == 25) Show_ControlsBn(sbnRSUp, e);
+            if (lBShiftControls.SelectedIndex == 26) Show_ControlsBn(sbnRSDown, e);
+            if (lBShiftControls.SelectedIndex == 27) Show_ControlsBn(sbnRSLeft, e);
+            if (lBShiftControls.SelectedIndex == 28) Show_ControlsBn(sbnRSRight, e);
+
+            if (lBShiftControls.SelectedIndex == 29) Show_ControlsBn(sbnGyroZN, e);
+            if (lBShiftControls.SelectedIndex == 30) Show_ControlsBn(sbnGyroZP, e);
+            if (lBShiftControls.SelectedIndex == 31) Show_ControlsBn(sbnGyroXP, e);
+            if (lBShiftControls.SelectedIndex == 32) Show_ControlsBn(sbnGyroXN, e);
+        }
+
         private void List_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+           if (((ListBox)sender).Name.Contains("Shift"))
+               Show_ShiftControlsList(sender, e);
+           else
             Show_ControlsList(sender, e);
         }
 
         private void List_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13)
-                Show_ControlsList(sender, e);
+                if (((ListBox)sender).Name.Contains("Shift"))
+                    Show_ShiftControlsList(sender, e);
+                else
+                    Show_ControlsList(sender, e);
         }
 
         private void numUDRainbow_ValueChanged(object sender, EventArgs e)
@@ -834,11 +1025,27 @@ namespace ScpServer
         private void nUDSX_ValueChanged(object sender, EventArgs e)
         {
             Global.setSXDeadzone(device, (double)nUDSX.Value);
+            if (nUDSX.Value <= 0 && nUDSZ.Value <= 0)
+                pBSADeadzone.Visible = false;
+            else
+            {
+                pBSADeadzone.Visible = true;
+                pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
+                pBSADeadzone.Location = new Point(lBSATrack.Location.X + 63 - pBSADeadzone.Size.Width / 2, lBSATrack.Location.Y + 63 - pBSADeadzone.Size.Height / 2);
+            }
         }
 
         private void nUDSZ_ValueChanged(object sender, EventArgs e)
         {
             Global.setSZDeadzone(device, (double)nUDSZ.Value);
+            if (nUDSX.Value <= 0 && nUDSZ.Value <= 0)
+                pBSADeadzone.Visible = false;
+            else
+            {
+                pBSADeadzone.Visible = true;
+                pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
+                pBSADeadzone.Location = new Point(lBSATrack.Location.X + 63 - pBSADeadzone.Size.Width / 2, lBSATrack.Location.Y + 63 - pBSADeadzone.Size.Height / 2);
+            }
         }
 
         Image L = Properties.Resources.LeftTouch;
@@ -873,11 +1080,27 @@ namespace ScpServer
         private void numUDRS_ValueChanged(object sender, EventArgs e)
         {
             Global.setRSDeadzone(device, (byte)Math.Round((nUDRS.Value * 127),0));
+            if (nUDRS.Value <= 0)
+                pBRSDeadzone.Visible = false;
+            else
+            {
+                pBRSDeadzone.Visible = true;
+                pBRSDeadzone.Size = new Size((int)(nUDRS.Value * 125), (int)(nUDRS.Value * 125));
+                pBRSDeadzone.Location = new Point(lBRSTrack.Location.X + 63 - pBRSDeadzone.Size.Width / 2, lBRSTrack.Location.Y + 63 - pBRSDeadzone.Size.Width / 2);
+            }
         }
 
         private void numUDLS_ValueChanged(object sender, EventArgs e)
         {
             Global.setLSDeadzone(device, (byte)Math.Round((nUDLS.Value * 127),0));
+            if (nUDLS.Value <= 0)
+                pBLSDeadzone.Visible = false;
+            else
+            {
+                pBLSDeadzone.Visible = true;
+                pBLSDeadzone.Size = new Size((int)(nUDLS.Value*125), (int)(nUDLS.Value*125));
+                pBLSDeadzone.Location = new Point(lBLSTrack.Location.X + 63 - pBLSDeadzone.Size.Width / 2, lBLSTrack.Location.Y + 63 - pBLSDeadzone.Size.Width / 2);
+            }
         }
 
         private void numUDMouseSens_ValueChanged(object sender, EventArgs e)
@@ -934,19 +1157,68 @@ namespace ScpServer
             btnChargingColor.Visible = true;
         }
 
-        private void lB6Gryo_MouseClick(object sender, MouseEventArgs e)
+        private void cBMouseAccel_CheckedChanged(object sender, EventArgs e)
         {
-            fLPTiltControls.Visible = !fLPTiltControls.Visible;
-            SixaxisPanel.Visible = !SixaxisPanel.Visible;
-            if (SixaxisPanel.Visible)
+            Global.setMouseAccel(device, cBMouseAccel.Checked);
+        }
+
+        private void cBShiftControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Global.setShiftModifier(device, cBShiftControl.SelectedIndex);
+        }
+
+        private void pBController_BackColorChanged(object sender, EventArgs e)
+        {
+            spBController.BackColor = pBController.BackColor;
+        }
+
+        private void pBController_BackgroundImageChanged(object sender, EventArgs e)
+        {
+            spBController.BackgroundImage = pBController.BackgroundImage;
+        }
+
+        private void tabControls_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControls.SelectedIndex == 2)
                 sixaxisTimer.Start();
             else
                 sixaxisTimer.Stop();
         }
 
-        private void cBMouseAccel_CheckedChanged(object sender, EventArgs e)
+        private void DrawCircle(object sender, PaintEventArgs e)
         {
-            Global.setMouseAccel(device, cBMouseAccel.Checked);
+            // Create pen.
+            Pen blackPen = new Pen(Color.Red);
+
+            // Create rectangle for ellipse.
+            Rectangle rect = new Rectangle(0, 0, ((PictureBox)sender).Size.Width, ((PictureBox)sender).Size.Height);
+
+            // Draw ellipse to screen.
+            e.Graphics.DrawEllipse(blackPen, rect);
+        }
+
+        private void lBEmpty_Click(object sender, EventArgs e)
+        {
+            lowRedBar.Value = redBar.Value;
+            lowGreenBar.Value = greenBar.Value;
+            lowBlueBar.Value = blueBar.Value;
+        }
+
+        private void lBSATip_Click(object sender, EventArgs e)
+        {
+            SixaxisPanel.Visible = !SixaxisPanel.Visible;
+            pBSADeadzone.Visible = !pBSADeadzone.Visible;
+            btnSATrack.Visible = !btnSATrack.Visible;
+        }
+
+        private void SixaxisPanel_Click(object sender, EventArgs e)
+        {
+            lBSATip_Click(sender, e);
+        }
+
+        private void lBSATrack_Click(object sender, EventArgs e)
+        {
+            lBSATip_Click(sender, e);
         }
     }
 }

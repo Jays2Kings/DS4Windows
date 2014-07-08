@@ -34,8 +34,8 @@ namespace ScpServer
             else if (button.Name.StartsWith("sbn"))
             {
                 Text = "Select an action for " + button.Name.Substring(3);
-                btnUNBOUND2.Text = "Fall Back";
-                btnUNBOUND2.Tag = null;
+                btnFallBack.Visible = true;
+                btnUNBOUND2.Location = new Point(btnUNBOUND2.Location.X + 35, btnUNBOUND2.Location.Y);
             }
             foreach (System.Windows.Forms.Control control in this.Controls)
                 if (control is Button)

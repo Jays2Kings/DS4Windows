@@ -508,8 +508,7 @@ namespace DS4Control
                 if (shift == false ||
                     (Global.getShiftCustomMacro(device, customKey.Key) == "0" &&
                     Global.getShiftCustomKey(device, customKey.Key) == 0 &&
-                    (Global.getShiftCustomButton(device, customKey.Key) == X360Controls.None ||
-                    Global.getShiftCustomButton(device, customKey.Key) == X360Controls.Unbound)))
+                    Global.getShiftCustomButton(device, customKey.Key) == X360Controls.None))
                 {
                     DS4KeyType keyType = Global.getCustomKeyType(device, customKey.Key);
                     if (getBoolMapping(customKey.Key, cState, eState))
@@ -620,8 +619,7 @@ namespace DS4Control
                 if (shift == false ||
                     (Global.getShiftCustomMacro(device, customKey.Key) == "0" &&
                     Global.getShiftCustomKey(device, customKey.Key) == 0 &&
-                    (Global.getShiftCustomButton(device, customKey.Key) == X360Controls.None ||
-                    Global.getShiftCustomButton(device, customKey.Key) == X360Controls.Unbound)))
+                    Global.getShiftCustomButton(device, customKey.Key) == X360Controls.None))
                 {
                     DS4KeyType keyType = Global.getCustomKeyType(device, customKey.Key);
                     if (getBoolMapping(customKey.Key, cState, eState))
@@ -665,8 +663,7 @@ namespace DS4Control
                 if (shift == false ||
                     (Global.getShiftCustomMacro(device, customButton.Key) == "0" &&
                     Global.getShiftCustomKey(device, customButton.Key) == 0 &&
-                    (Global.getShiftCustomButton(device, customButton.Key) == X360Controls.None ||
-                    Global.getShiftCustomButton(device, customButton.Key) == X360Controls.Unbound)))
+                    Global.getShiftCustomButton(device, customButton.Key) == X360Controls.None))
                 {
                     if (customButton.Key == DS4Controls.Square)
                     Console.WriteLine("hello");

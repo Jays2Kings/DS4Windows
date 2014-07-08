@@ -39,10 +39,6 @@
             this.btnStartStop = new System.Windows.Forms.Button();
             this.lbLastMessage = new System.Windows.Forms.Label();
             this.llbHelp = new System.Windows.Forms.LinkLabel();
-            this.lnkControllers = new System.Windows.Forms.LinkLabel();
-            this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
-            this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
-            this.hideDS4CheckBox = new System.Windows.Forms.CheckBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.cMTaskbar = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -112,18 +108,22 @@
             this.tabAutoProfiles = new System.Windows.Forms.TabPage();
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.cBNotifications = new System.Windows.Forms.CheckBox();
+            this.hideDS4CheckBox = new System.Windows.Forms.CheckBox();
+            this.cBSwipeProfiles = new System.Windows.Forms.CheckBox();
+            this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
+            this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
             this.cBUpdate = new System.Windows.Forms.CheckBox();
             this.pNUpdate = new System.Windows.Forms.Panel();
             this.cBUpdateTime = new System.Windows.Forms.ComboBox();
             this.lBCheckEvery = new System.Windows.Forms.Label();
             this.nUDUpdateTime = new System.Windows.Forms.NumericUpDown();
-            this.cBSwipeProfiles = new System.Windows.Forms.CheckBox();
+            this.cBNotifications = new System.Windows.Forms.CheckBox();
             this.cBDisconnectBT = new System.Windows.Forms.CheckBox();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
+            this.linkSetup = new System.Windows.Forms.LinkLabel();
             this.linkUninstall = new System.Windows.Forms.LinkLabel();
-            this.lLSetup = new System.Windows.Forms.LinkLabel();
+            this.lnkControllers = new System.Windows.Forms.LinkLabel();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.saveProfiles = new System.Windows.Forms.SaveFileDialog();
             this.pnlButton.SuspendLayout();
@@ -205,34 +205,6 @@
             this.llbHelp.Name = "llbHelp";
             this.llbHelp.TabStop = true;
             this.llbHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbHelp_LinkClicked);
-            // 
-            // lnkControllers
-            // 
-            resources.ApplyResources(this.lnkControllers, "lnkControllers");
-            this.lnkControllers.Name = "lnkControllers";
-            this.lnkControllers.TabStop = true;
-            this.lnkControllers.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkControllers_LinkClicked);
-            // 
-            // StartWindowsCheckBox
-            // 
-            resources.ApplyResources(this.StartWindowsCheckBox, "StartWindowsCheckBox");
-            this.StartWindowsCheckBox.Name = "StartWindowsCheckBox";
-            this.StartWindowsCheckBox.UseVisualStyleBackColor = true;
-            this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
-            // 
-            // startMinimizedCheckBox
-            // 
-            resources.ApplyResources(this.startMinimizedCheckBox, "startMinimizedCheckBox");
-            this.startMinimizedCheckBox.Name = "startMinimizedCheckBox";
-            this.startMinimizedCheckBox.UseVisualStyleBackColor = true;
-            this.startMinimizedCheckBox.CheckedChanged += new System.EventHandler(this.startMinimizedCheckBox_CheckedChanged);
-            // 
-            // hideDS4CheckBox
-            // 
-            resources.ApplyResources(this.hideDS4CheckBox, "hideDS4CheckBox");
-            this.hideDS4CheckBox.Name = "hideDS4CheckBox";
-            this.hideDS4CheckBox.UseVisualStyleBackColor = true;
-            this.hideDS4CheckBox.CheckedChanged += new System.EventHandler(this.hideDS4CheckBox_CheckedChanged);
             // 
             // btnClear
             // 
@@ -743,27 +715,50 @@
             // flowLayoutPanel1
             // 
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Controls.Add(this.hideDS4CheckBox);
+            this.flowLayoutPanel1.Controls.Add(this.cBSwipeProfiles);
             this.flowLayoutPanel1.Controls.Add(this.StartWindowsCheckBox);
             this.flowLayoutPanel1.Controls.Add(this.startMinimizedCheckBox);
-            this.flowLayoutPanel1.Controls.Add(this.hideDS4CheckBox);
-            this.flowLayoutPanel1.Controls.Add(this.cBNotifications);
             this.flowLayoutPanel1.Controls.Add(this.cBUpdate);
             this.flowLayoutPanel1.Controls.Add(this.pNUpdate);
-            this.flowLayoutPanel1.Controls.Add(this.cBSwipeProfiles);
+            this.flowLayoutPanel1.Controls.Add(this.cBNotifications);
             this.flowLayoutPanel1.Controls.Add(this.cBDisconnectBT);
             this.flowLayoutPanel1.Controls.Add(this.linkProfiles);
-            this.flowLayoutPanel1.Controls.Add(this.lnkControllers);
             this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
+            this.flowLayoutPanel1.Controls.Add(this.linkSetup);
             this.flowLayoutPanel1.Controls.Add(this.linkUninstall);
-            this.flowLayoutPanel1.Controls.Add(this.lLSetup);
+            this.flowLayoutPanel1.Controls.Add(this.lnkControllers);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
-            // cBNotifications
+            // hideDS4CheckBox
             // 
-            resources.ApplyResources(this.cBNotifications, "cBNotifications");
-            this.cBNotifications.Name = "cBNotifications";
-            this.cBNotifications.UseVisualStyleBackColor = true;
-            this.cBNotifications.CheckedChanged += new System.EventHandler(this.cBNotifications_CheckedChanged);
+            resources.ApplyResources(this.hideDS4CheckBox, "hideDS4CheckBox");
+            this.hideDS4CheckBox.Name = "hideDS4CheckBox";
+            this.hideDS4CheckBox.UseVisualStyleBackColor = true;
+            this.hideDS4CheckBox.CheckedChanged += new System.EventHandler(this.hideDS4CheckBox_CheckedChanged);
+            // 
+            // cBSwipeProfiles
+            // 
+            resources.ApplyResources(this.cBSwipeProfiles, "cBSwipeProfiles");
+            this.cBSwipeProfiles.Checked = true;
+            this.cBSwipeProfiles.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSwipeProfiles.Name = "cBSwipeProfiles";
+            this.cBSwipeProfiles.UseVisualStyleBackColor = true;
+            this.cBSwipeProfiles.CheckedChanged += new System.EventHandler(this.cBSwipeProfiles_CheckedChanged);
+            // 
+            // StartWindowsCheckBox
+            // 
+            resources.ApplyResources(this.StartWindowsCheckBox, "StartWindowsCheckBox");
+            this.StartWindowsCheckBox.Name = "StartWindowsCheckBox";
+            this.StartWindowsCheckBox.UseVisualStyleBackColor = true;
+            this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
+            // 
+            // startMinimizedCheckBox
+            // 
+            resources.ApplyResources(this.startMinimizedCheckBox, "startMinimizedCheckBox");
+            this.startMinimizedCheckBox.Name = "startMinimizedCheckBox";
+            this.startMinimizedCheckBox.UseVisualStyleBackColor = true;
+            this.startMinimizedCheckBox.CheckedChanged += new System.EventHandler(this.startMinimizedCheckBox_CheckedChanged);
             // 
             // cBUpdate
             // 
@@ -807,14 +802,12 @@
             this.nUDUpdateTime.Name = "nUDUpdateTime";
             this.nUDUpdateTime.ValueChanged += new System.EventHandler(this.nUDUpdateTime_ValueChanged);
             // 
-            // cBSwipeProfiles
+            // cBNotifications
             // 
-            resources.ApplyResources(this.cBSwipeProfiles, "cBSwipeProfiles");
-            this.cBSwipeProfiles.Checked = true;
-            this.cBSwipeProfiles.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSwipeProfiles.Name = "cBSwipeProfiles";
-            this.cBSwipeProfiles.UseVisualStyleBackColor = true;
-            this.cBSwipeProfiles.CheckedChanged += new System.EventHandler(this.cBSwipeProfiles_CheckedChanged);
+            resources.ApplyResources(this.cBNotifications, "cBNotifications");
+            this.cBNotifications.Name = "cBNotifications";
+            this.cBNotifications.UseVisualStyleBackColor = true;
+            this.cBNotifications.CheckedChanged += new System.EventHandler(this.cBNotifications_CheckedChanged);
             // 
             // cBDisconnectBT
             // 
@@ -837,6 +830,13 @@
             this.lLBUpdate.TabStop = true;
             this.lLBUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLBUpdate_LinkClicked);
             // 
+            // linkSetup
+            // 
+            resources.ApplyResources(this.linkSetup, "linkSetup");
+            this.linkSetup.Name = "linkSetup";
+            this.linkSetup.TabStop = true;
+            this.linkSetup.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLSetup_LinkClicked);
+            // 
             // linkUninstall
             // 
             resources.ApplyResources(this.linkUninstall, "linkUninstall");
@@ -844,12 +844,12 @@
             this.linkUninstall.TabStop = true;
             this.linkUninstall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkUninstall_LinkClicked);
             // 
-            // lLSetup
+            // lnkControllers
             // 
-            resources.ApplyResources(this.lLSetup, "lLSetup");
-            this.lLSetup.Name = "lLSetup";
-            this.lLSetup.TabStop = true;
-            this.lLSetup.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLSetup_LinkClicked);
+            resources.ApplyResources(this.lnkControllers, "lnkControllers");
+            this.lnkControllers.Name = "lnkControllers";
+            this.lnkControllers.TabStop = true;
+            this.lnkControllers.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkControllers_LinkClicked);
             // 
             // tabLog
             // 
@@ -916,10 +916,7 @@
         private System.Windows.Forms.Button btnStartStop;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.CheckBox hideDS4CheckBox;
-        private System.Windows.Forms.CheckBox startMinimizedCheckBox;
         private System.Windows.Forms.Label lbLastMessage;
-        private System.Windows.Forms.LinkLabel lnkControllers;
         private System.Windows.Forms.ContextMenuStrip cMTaskbar;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editProfileForController1ToolStripMenuItem;
@@ -931,7 +928,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.OpenFileDialog openProfiles;
         private System.Windows.Forms.LinkLabel llbHelp;
-        private System.Windows.Forms.CheckBox StartWindowsCheckBox;
         private System.Windows.Forms.Label lBTest;
         private System.Windows.Forms.TabControl tabMain;
         private System.Windows.Forms.TabPage tabProfiles;
@@ -989,21 +985,25 @@
         private System.Windows.Forms.ToolStripButton tSBSaveProfile;
         private System.Windows.Forms.ToolStripButton tSBCancel;
         private System.Windows.Forms.TabPage tabSettings;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.CheckBox cBUpdate;
-        private System.Windows.Forms.NumericUpDown nUDUpdateTime;
-        private System.Windows.Forms.Panel pNUpdate;
-        private System.Windows.Forms.Label lBCheckEvery;
-        private System.Windows.Forms.ComboBox cBUpdateTime;
-        private System.Windows.Forms.LinkLabel lLBUpdate;
-        private System.Windows.Forms.LinkLabel linkUninstall;
-        private System.Windows.Forms.LinkLabel linkProfiles;
-        private System.Windows.Forms.CheckBox cBNotifications;
-        private System.Windows.Forms.LinkLabel lLSetup;
-        private System.Windows.Forms.CheckBox cBDisconnectBT;
-        private System.Windows.Forms.CheckBox cBSwipeProfiles;
         private System.Windows.Forms.ToolStripButton tSBKeepSize;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.LinkLabel lLBUpdate;
+        private System.Windows.Forms.LinkLabel linkSetup;
+        private System.Windows.Forms.CheckBox hideDS4CheckBox;
+        private System.Windows.Forms.CheckBox cBUpdate;
+        private System.Windows.Forms.Panel pNUpdate;
+        private System.Windows.Forms.ComboBox cBUpdateTime;
+        private System.Windows.Forms.Label lBCheckEvery;
+        private System.Windows.Forms.NumericUpDown nUDUpdateTime;
+        private System.Windows.Forms.LinkLabel lnkControllers;
+        private System.Windows.Forms.CheckBox StartWindowsCheckBox;
+        private System.Windows.Forms.CheckBox startMinimizedCheckBox;
+        private System.Windows.Forms.LinkLabel linkProfiles;
+        private System.Windows.Forms.LinkLabel linkUninstall;
+        private System.Windows.Forms.CheckBox cBNotifications;
+        private System.Windows.Forms.CheckBox cBDisconnectBT;
+        private System.Windows.Forms.CheckBox cBSwipeProfiles;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

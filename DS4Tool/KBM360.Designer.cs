@@ -185,6 +185,7 @@
             this.lBMacroOn = new System.Windows.Forms.Label();
             this.btnMacro = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnFallBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -2026,11 +2027,24 @@
             this.pictureBox1.TabIndex = 322;
             this.pictureBox1.TabStop = false;
             // 
+            // btnFallBack
+            // 
+            this.btnFallBack.Location = new System.Drawing.Point(350, 379);
+            this.btnFallBack.Name = "btnFallBack";
+            this.btnFallBack.Size = new System.Drawing.Size(75, 23);
+            this.btnFallBack.TabIndex = 323;
+            this.btnFallBack.TabStop = false;
+            this.btnFallBack.Text = "Fall Back";
+            this.btnFallBack.UseVisualStyleBackColor = true;
+            this.btnFallBack.Visible = false;
+            // 
             // KBM360
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(868, 413);
+            this.Controls.Add(this.btnUNBOUND2);
+            this.Controls.Add(this.btnFallBack);
             this.Controls.Add(this.btnLS);
             this.Controls.Add(this.btnLSU);
             this.Controls.Add(this.btnRS);
@@ -2047,7 +2061,6 @@
             this.Controls.Add(this.lBMacroOn);
             this.Controls.Add(this.KBMlabel);
             this.Controls.Add(this.X360Label);
-            this.Controls.Add(this.btnUNBOUND2);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button19);
             this.Controls.Add(this.button20);
@@ -2360,6 +2373,7 @@
         private System.Windows.Forms.Button btnMacro;
         public System.Windows.Forms.Label lBMacroOn;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnFallBack;
 
     }
 }

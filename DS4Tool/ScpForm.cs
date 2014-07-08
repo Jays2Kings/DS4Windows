@@ -125,6 +125,9 @@ namespace ScpServer
         protected void Form_Load(object sender, EventArgs e)
         {
             SetupArrays();
+            var AppCollectionThread = new System.Threading.Thread(() => CheckDrivers());
+            AppCollectionThread.IsBackground = true;
+            AppCollectionThread.Start();
             if (File.Exists(exepath + "\\Auto Profiles.xml")
                 && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml"))
                 new SaveWhere(true).ShowDialog();
@@ -136,7 +139,6 @@ namespace ScpServer
                 && !File.Exists(appdatapath + "\\Auto Profiles.xml"))
             {
                 new SaveWhere(false).ShowDialog();
-                MessageBox.Show("If you haven't installed the Virtual Bus driver, go to Settings and \"Controller Setup\"", "Welcome to DS4Windows");
             }
            
 
@@ -334,23 +336,36 @@ namespace ScpServer
         private void CheckDrivers()
         {
             bool deriverinstalled = false;
+            try
+            {
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPSignedDriver");
-            foreach (ManagementObject obj in searcher.Get())
-            {
-                try
+            
+                foreach (ManagementObject obj in searcher.Get())
                 {
-                    if (obj.GetPropertyValue("DeviceName").ToString() == "Scp Virtual Bus Driver")
+                    try
                     {
-                        deriverinstalled = true;
-                        break;
+                        if (obj.GetPropertyValue("DeviceName").ToString() == "Scp Virtual Bus Driver")
+                        {
+                            deriverinstalled = true;
+                            break;
+                        }
                     }
+                    catch { }
                 }
-                catch { }
+
+                if (!deriverinstalled)
+                {
+                    WelcomeDialog wd = new WelcomeDialog();
+                    wd.ShowDialog();
+                }
             }
-            if (!deriverinstalled)
+            catch
             {
-                WelcomeDialog wd = new WelcomeDialog();
-                wd.ShowDialog();
+                if (!File.Exists(exepath + "\\Auto Profiles.xml") && !File.Exists(appdatapath + "\\Auto Profiles.xml"))
+                {
+                    linkSetup.LinkColor = Color.Green;
+                    tabSettings.Text += " (Install Drivers here)";
+                }
             }
         }
 
@@ -1243,6 +1258,8 @@ namespace ScpServer
         {
             WelcomeDialog wd = new WelcomeDialog();
             wd.ShowDialog();
+            tabSettings.Text = "Settings";
+            linkSetup.LinkColor = Color.Blue;
         }
 
         protected void ScpForm_Closing(object sender, FormClosingEventArgs e)

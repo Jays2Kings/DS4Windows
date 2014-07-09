@@ -627,8 +627,12 @@ namespace ScpServer
                     if (Pads[Index].Text != "Connecting...")
                     {
                         Enable_Controls(Index, true);
+                        if (opt != null)
+                            opt.inputtimer.Start();
                         //MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
                     }
+                    else if (opt != null)
+                        opt.inputtimer.Stop();
                 }
                 else
                 {

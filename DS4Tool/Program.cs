@@ -43,12 +43,12 @@ namespace ScpServer
                 else
                 {
                     Process current = Process.GetCurrentProcess();
-                    foreach (Process process in Process.GetProcessesByName(current.ProcessName))
+                    foreach (Process process in Process.GetProcessesByName("DS4Windows"))
                     {
                         if (process.Id != current.Id)
                         {
-                            SetForegroundWindow(process.MainWindowHandle);                            
-                            if (GetForegroundWindow() != process.MainWindowHandle)
+                            SetForegroundWindow(process.MainWindowHandle);
+                            if (GetForegroundWindow() != process.MainWindowHandle) //if tool is minimized to tray
                             {
                                 Application.EnableVisualStyles();
                                 Application.SetCompatibleTextRenderingDefault(false);

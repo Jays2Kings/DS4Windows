@@ -212,10 +212,12 @@ namespace ScpServer
             Form_Resize(sender, e);
             RefreshProfiles();
             for (int i = 0; i < 4; i++)
+            {
                 Global.LoadProfile(i);
+            }
             LoadP();
             Global.ControllerStatusChange += ControllerStatusChange;
-            ControllerStatusChanged();
+            ControllerStatusChanged(false);
             if (btnStartStop.Enabled)
                 btnStartStop_Clicked();
             cBNotifications.Checked = Global.getNotifications();
@@ -290,7 +292,10 @@ namespace ScpServer
                     {
                         for (int j = 0; j < 4; j++)
                             if (proprofiles[j][i] != "(none)")
+                            {
                                 Global.LoadTempProfile(j, proprofiles[j][i]); //j is controller index, i is filename
+                                if (Global.getLaunchProgram(j) != string.Empty) Process.Start(Global.getLaunchProgram(j));
+                            }
                         tempprofile = name;
                     }
                 }
@@ -554,18 +559,18 @@ namespace ScpServer
         {
             btnStartStop_Clicked();
         }
-        protected void btnStartStop_Clicked()
+        protected void btnStartStop_Clicked(bool log = true)
         {
             if (btnStartStop.Text == Properties.Resources.StartText)
             {
-                rootHub.Start();
+                rootHub.Start(log);
                 hotkeystimer.Start();
                 btnStartStop.Text = Properties.Resources.StopText;
             }
 
             else if (btnStartStop.Text == Properties.Resources.StopText)
             {                
-                rootHub.Stop();
+                rootHub.Stop(log);
                 hotkeystimer.Stop();
                 btnStartStop.Text = Properties.Resources.StartText;
             }
@@ -608,7 +613,7 @@ namespace ScpServer
             else
                 ControllerStatusChanged();
         }
-        protected void ControllerStatusChanged()
+        protected void ControllerStatusChanged(bool program = true)
         {
             String tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
             for (Int32 Index = 0; Index < Pads.Length; Index++)
@@ -627,6 +632,8 @@ namespace ScpServer
                     if (Pads[Index].Text != "Connecting...")
                     {
                         Enable_Controls(Index, true);
+                        //Console.WriteLine(opt == null);
+                        //if (program && Global.getLaunchProgram(Index) != string.Empty) Process.Start(Global.getLaunchProgram(Index));
                         if (opt != null)
                             opt.inputtimer.Start();
                         //MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
@@ -882,8 +889,8 @@ namespace ScpServer
                         module.Dispose();
 
             Global.setUseExclusiveMode(hideDS4CheckBox.Checked);
-            btnStartStop_Clicked();
-            btnStartStop_Clicked();
+            btnStartStop_Clicked(false);
+            btnStartStop_Clicked(false);
             Global.Save();
         }
 
@@ -915,6 +922,7 @@ namespace ScpServer
                     Global.setAProfile(tdevice, cb.Items[cb.SelectedIndex].ToString());
                     Global.Save();
                     Global.LoadProfile(tdevice);
+                    if (Global.getLaunchProgram(tdevice) != string.Empty) Process.Start(Global.getLaunchProgram(tdevice));
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
                     ShowOptions(tdevice, "");
@@ -923,7 +931,7 @@ namespace ScpServer
                 else
                     ebns[tdevice].Text = "Edit";
             }
-            ControllerStatusChanged(); //to update profile name in notify icon
+            ControllerStatusChanged(false); //to update profile name in notify icon
         }
 
         private void Profile_Changed_Menu(object sender, ToolStripItemClickedEventArgs e)

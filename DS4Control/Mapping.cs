@@ -1246,13 +1246,47 @@ namespace DS4Control
             double SZD = Global.getSZDeadzone(device);
             int deadzone = 10;
             double value = 0;
-            int speed = Global.getButtonMouseSensitivity(device);
+            int speed = Global.getButtonMouseSensitivity(device)+15;
             double root = 1.002;
             double divide = 10000d;
             DateTime now = mousenow[mnum];
+            bool leftsitcklive = ((cState.LX < 127 - deadzone || 127 + deadzone < cState.LX) || (cState.LY < 127 - deadzone || 127 + deadzone < cState.LY));
+            bool rightsitcklive =  ((cState.RX < 127 - deadzone || 127 + deadzone < cState.RX) || (cState.RY < 127 - deadzone || 127 + deadzone < cState.RY));
             switch (control)
             {
                 case DS4Controls.LXNeg:
+                    if (leftsitcklive)
+                        value = -(cState.LX - 127) / 2550d * speed;
+                    break;
+                case DS4Controls.LXPos:
+                    if (leftsitcklive)
+                        value = (cState.LX - 127) / 2550d * speed;
+                    break;
+                case DS4Controls.RXNeg:
+                    if (rightsitcklive)
+                        value = -(cState.RX - 127) / 2550d * speed;
+                    break;
+                case DS4Controls.RXPos:
+                    if (rightsitcklive)
+                        value = (cState.RX - 127) / 2550d * speed;
+                    break;
+                case DS4Controls.LYNeg:
+                    if (leftsitcklive)
+                        value = -(cState.LY - 127) / 2550d * speed;
+                    break;
+                case DS4Controls.LYPos:
+                    if (leftsitcklive)
+                        value = (cState.LY - 127) / 2550d * speed;
+                    break;
+                case DS4Controls.RYNeg:
+                    if (rightsitcklive)
+                        value = -(cState.RY - 127) / 2550d * speed;
+                    break;
+                case DS4Controls.RYPos:
+                    if (rightsitcklive)
+                        value = (cState.RY - 127) / 2550d * speed;
+                    break;
+                /*case DS4Controls.LXNeg:
                     if (cState.LX < 127 - deadzone)
                         value = Math.Pow(root + speed / divide, -(cState.LX - 127)) - 1;
                     break;
@@ -1283,7 +1317,7 @@ namespace DS4Control
                 case DS4Controls.RYPos:
                     if (cState.RY > 127 + deadzone)
                         value = Math.Pow(root + speed / divide, (cState.RY - 127))  - 1;
-                    break;
+                    break;*/
                 case DS4Controls.Share: value = (cState.Share ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
                 case DS4Controls.Options: value = (cState.Options ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
                 case DS4Controls.L1: value = (cState.L1 ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;

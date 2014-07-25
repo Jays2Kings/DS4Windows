@@ -62,9 +62,7 @@ namespace ScpServer
             if (filename != "")
             {
                 if (device == 4)
-                {
                     Global.setAProfile(4, name);
-                }
                 Global.LoadProfile(device, buttons.ToArray(), subbuttons.ToArray());
                 DS4Color color = Global.loadColor(device);
                 redBar.Value = color.red;
@@ -81,6 +79,12 @@ namespace ScpServer
                 lowRedBar.Value = lowColor.red;
                 lowGreenBar.Value = lowColor.green;
                 lowBlueBar.Value = lowColor.blue;
+
+                DS4Color shiftColor = Global.loadShiftColor(device);
+                shiftRedBar.Value = shiftColor.red;
+                shiftGreenBar.Value = shiftColor.green;
+                shiftBlueBar.Value = shiftColor.blue;
+                cBShiftLight.Checked = Global.getShiftColorOn(device);
 
                 DS4Color cColor = Global.loadChargingColor(device);
                 btnChargingColor.BackColor = Color.FromArgb(cColor.red, cColor.green, cColor.blue);
@@ -133,6 +137,12 @@ namespace ScpServer
                 nUDSX.Value = (decimal)Global.getSXDeadzone(device);
                 nUDSZ.Value = (decimal)Global.getSZDeadzone(device);
                 cBShiftControl.SelectedIndex = Global.getShiftModifier(device);
+                if (Global.getLaunchProgram(device) != string.Empty)
+                {
+                    cBLaunchProgram.Checked = true;
+                    pBProgram.Image = Icon.ExtractAssociatedIcon(Global.getLaunchProgram(device)).ToBitmap();
+                    btnBrowse.Text = Path.GetFileNameWithoutExtension(Global.getLaunchProgram(device));
+                }
             }
             else
                 Set();
@@ -143,20 +153,21 @@ namespace ScpServer
            
             tp.SetToolTip(cBlowerRCOn, "Best used with right side as a mouse function");
             tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with single taps");
-            tp.SetToolTip(lBControlTip, "You can also use your controller to change controls");
+            tp.SetToolTip(lbControlTip, "You can also use your controller to change controls");
             tp.SetToolTip(cBTouchpadJitterCompensation, "Use Sixaxis to help calculate touchpad movement");
             tp.SetToolTip(pBRainbow, "Always on Rainbow Mode");
             tp.SetToolTip(cBFlushHIDQueue, "Flush HID Queue after each reading");
             tp.SetToolTip(cBLightbyBattery, "Also dim light by idle timeout if on");
-            tp.SetToolTip(lBGryo, "Click to see readout of Sixaxis Gyro");
+            tp.SetToolTip(lbGryo, "Click to see readout of Sixaxis Gyro");
             tp.SetToolTip(tBsixaxisGyroX, "GyroX, Left and Right Tilt");
             tp.SetToolTip(tBsixaxisGyroY, "GyroY, Forward and Back Tilt");
             tp.SetToolTip(tBsixaxisGyroZ, "GyroZ, Up and Down Tilt");
             tp.SetToolTip(tBsixaxisAccelX, "AccelX");
             tp.SetToolTip(tBsixaxisAccelY, "AccelY");
             tp.SetToolTip(tBsixaxisAccelZ, "AccelZ");
-            tp.SetToolTip(lBEmpty, "Click to copy the full color");
-            tp.SetToolTip(lBSATip, "Click for advanced Sixaxis reading");
+            tp.SetToolTip(lbEmpty, "Click to copy the full color");
+            tp.SetToolTip(lbShift, "Click to copy the full color");
+            tp.SetToolTip(lbSATip, "Click for advanced Sixaxis reading");
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
@@ -178,7 +189,7 @@ namespace ScpServer
             if (scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1] == null)
             {
                 tPController.Enabled = false;
-                lBInputDelay.Text = "Input Delay: N/Ams";
+                lbInputDelay.Text = "Input Delay: N/Ams";
                 pBDelayTracker.BackColor = Color.Transparent;
             }
             else
@@ -192,31 +203,31 @@ namespace ScpServer
                 SetDynamicTrackBarValue(tBsixaxisAccelZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
                 int x = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).LX;
                 int y = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).LY;
-                btnLSTrack.Location = new Point((int)(x / 2.09 + lBLSTrack.Location.X), (int)(y / 2.09 + lBLSTrack.Location.Y));
+                btnLSTrack.Location = new Point((int)(x / 2.09 + lbLSTrack.Location.X), (int)(y / 2.09 + lbLSTrack.Location.Y));
                 x = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).RX;
                 y = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).RY;
-                btnRSTrack.Location = new Point((int)(x / 2.09 + lBRSTrack.Location.X), (int)(y / 2.09 + lBRSTrack.Location.Y));
+                btnRSTrack.Location = new Point((int)(x / 2.09 + lbRSTrack.Location.X), (int)(y / 2.09 + lbRSTrack.Location.Y));
                 x = -scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroX / 62 + 127;
                 y = scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ / 62 + 127;
-                btnSATrack.Location = new Point((int)(x / 2.09 + lBSATrack.Location.X), (int)(y / 2.09 + lBSATrack.Location.Y));
+                btnSATrack.Location = new Point((int)(x / 2.09 + lbSATrack.Location.X), (int)(y / 2.09 + lbSATrack.Location.Y));
                 tBL2.Value = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).L2;
-                lBL2Track.Location = new Point(tBL2.Location.X - 15, (int)(24 - tBL2.Value / 10.625) + 10);
+                lbL2Track.Location = new Point(tBL2.Location.X - 15, (int)(24 - tBL2.Value / 10.625) + 10);
                 if (tBL2.Value == 255)
-                    lBL2Track.ForeColor = Color.Green;
+                    lbL2Track.ForeColor = Color.Green;
                 else if (tBL2.Value < (double)nUDL2.Value * 255)
-                    lBL2Track.ForeColor = Color.Red;
+                    lbL2Track.ForeColor = Color.Red;
                 else
-                    lBL2Track.ForeColor = Color.Black;
+                    lbL2Track.ForeColor = Color.Black;
                 tBR2.Value = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).R2;
-                lBR2Track.Location = new Point(tBR2.Location.X + 20, (int)(24 - tBR2.Value / 10.625) + 10);
+                lbR2Track.Location = new Point(tBR2.Location.X + 20, (int)(24 - tBR2.Value / 10.625) + 10);
                 if (tBR2.Value == 255)
-                    lBR2Track.ForeColor = Color.Green;
+                    lbR2Track.ForeColor = Color.Green;
                 else if (tBR2.Value < (double)nUDR2.Value * 255)
-                    lBR2Track.ForeColor = Color.Red;
+                    lbR2Track.ForeColor = Color.Red;
                 else
-                    lBR2Track.ForeColor = Color.Black;
+                    lbR2Track.ForeColor = Color.Black;
                 double latency = scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1].Latency;
-                lBInputDelay.Text = "Input Delay: " + latency + "ms";
+                lbInputDelay.Text = "Input Delay: " + latency + "ms";
                 if (latency > 10)
                     pBDelayTracker.BackColor = Color.Red;
                 else if (latency > 5)
@@ -359,6 +370,7 @@ namespace ScpServer
             FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
+            Global.saveShiftColor(device, (byte)shiftRedBar.Value, (byte)shiftGreenBar.Value, (byte)shiftBlueBar.Value);
             Global.setLeftTriggerMiddle(device, (byte)Math.Round((nUDL2.Value * 255), 0));
             Global.setRightTriggerMiddle(device, (byte)Math.Round((nUDR2.Value * 255), 0));
             Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
@@ -618,6 +630,57 @@ namespace ScpServer
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
         }
 
+        private void shiftRedBar_ValueChanged(object sender, EventArgs e)
+        {
+            int value = ((TrackBar)sender).Value;
+            int sat = bgc - (value < bgc ? value : bgc);
+            int som = bgc + 11 * (int)(value * 0.0039215);
+            ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
+            alphacolor = Math.Max(shiftRedBar.Value, Math.Max(shiftGreenBar.Value, shiftBlueBar.Value));
+            reg = Color.FromArgb(shiftRedBar.Value, shiftGreenBar.Value, shiftBlueBar.Value);
+            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
+            spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveShiftColor(device, (byte)shiftRedBar.Value, (byte)shiftGreenBar.Value, (byte)shiftBlueBar.Value);
+            if (g.DpiX == 120)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
+            else
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+        }
+
+        private void shiftGreenBar_ValueChanged(object sender, EventArgs e)
+        {
+            int value = ((TrackBar)sender).Value;
+            int sat = bgc - (value < bgc ? value : bgc);
+            int som = bgc + 11 * (int)(value * 0.0039215);
+            ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
+            alphacolor = Math.Max(shiftRedBar.Value, Math.Max(shiftGreenBar.Value, shiftBlueBar.Value));
+            reg = Color.FromArgb(shiftRedBar.Value, shiftGreenBar.Value, shiftBlueBar.Value);
+            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
+            spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveShiftColor(device, (byte)shiftRedBar.Value, (byte)shiftGreenBar.Value, (byte)shiftBlueBar.Value);
+            if (g.DpiX == 120)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
+            else
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+        }
+
+        private void shiftBlueBar_ValueChanged(object sender, EventArgs e)
+        {
+            int value = ((TrackBar)sender).Value;
+            int sat = bgc - (value < bgc ? value : bgc);
+            int som = bgc + 11 * (int)(value * 0.0039215);
+            ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
+            alphacolor = Math.Max(shiftRedBar.Value, Math.Max(shiftGreenBar.Value, shiftBlueBar.Value));
+            reg = Color.FromArgb(shiftRedBar.Value, shiftGreenBar.Value, shiftBlueBar.Value);
+            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
+            spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveShiftColor(device, (byte)shiftRedBar.Value, (byte)shiftGreenBar.Value, (byte)shiftBlueBar.Value);
+            if (g.DpiX == 120)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
+            else
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+        }
+
         public Color HuetoRGB(float hue, float light, Color rgb)
         {
             float L = (float)Math.Max(.5, light);
@@ -754,7 +817,7 @@ namespace ScpServer
         {
             lBControls.Items[0] = "Cross : " + bnCross.Text;
             lBControls.Items[1] = "Circle : " + bnCircle.Text;
-            lBControls.Items[2] = "Sqaure : " + bnSquare.Text;
+            lBControls.Items[2] = "Square : " + bnSquare.Text;
             lBControls.Items[3] = "Triangle : " + bnTriangle.Text;
             lBControls.Items[4] = "Options : " + bnOptions.Text;
             lBControls.Items[5] = "Share : " + bnShare.Text;
@@ -795,7 +858,7 @@ namespace ScpServer
                     b.Text = "Fall Back to " + buttons[subbuttons.IndexOf(b)].Text;
             lBShiftControls.Items[0] = "Cross : " + sbnCross.Text;
             lBShiftControls.Items[1] = "Circle : " + sbnCircle.Text;
-            lBShiftControls.Items[2] = "Sqaure : " + sbnSquare.Text;
+            lBShiftControls.Items[2] = "Square : " + sbnSquare.Text;
             lBShiftControls.Items[3] = "Triangle : " + sbnTriangle.Text;
             lBShiftControls.Items[4] = "Options : " + sbnOptions.Text;
             lBShiftControls.Items[5] = "Share : " + sbnShare.Text;
@@ -989,7 +1052,7 @@ namespace ScpServer
                 pBController.BackgroundImage = null;
                 cBLightbyBattery.Text = "Color by Battery %";
             }
-            lBspc.Enabled = on;
+            lbspc.Enabled = on;
             lowBatteryPanel.Enabled = !on;
             FullPanel.Enabled = !on;
         }
@@ -1031,7 +1094,7 @@ namespace ScpServer
             {
                 pBSADeadzone.Visible = true;
                 pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
-                pBSADeadzone.Location = new Point(lBSATrack.Location.X + 63 - pBSADeadzone.Size.Width / 2, lBSATrack.Location.Y + 63 - pBSADeadzone.Size.Height / 2);
+                pBSADeadzone.Location = new Point(lbSATrack.Location.X + 63 - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + 63 - pBSADeadzone.Size.Height / 2);
             }
         }
 
@@ -1044,7 +1107,7 @@ namespace ScpServer
             {
                 pBSADeadzone.Visible = true;
                 pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
-                pBSADeadzone.Location = new Point(lBSATrack.Location.X + 63 - pBSADeadzone.Size.Width / 2, lBSATrack.Location.Y + 63 - pBSADeadzone.Size.Height / 2);
+                pBSADeadzone.Location = new Point(lbSATrack.Location.X + 63 - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + 63 - pBSADeadzone.Size.Height / 2);
             }
         }
 
@@ -1086,7 +1149,7 @@ namespace ScpServer
             {
                 pBRSDeadzone.Visible = true;
                 pBRSDeadzone.Size = new Size((int)(nUDRS.Value * 125), (int)(nUDRS.Value * 125));
-                pBRSDeadzone.Location = new Point(lBRSTrack.Location.X + 63 - pBRSDeadzone.Size.Width / 2, lBRSTrack.Location.Y + 63 - pBRSDeadzone.Size.Width / 2);
+                pBRSDeadzone.Location = new Point(lbRSTrack.Location.X + 63 - pBRSDeadzone.Size.Width / 2, lbRSTrack.Location.Y + 63 - pBRSDeadzone.Size.Width / 2);
             }
         }
 
@@ -1099,7 +1162,7 @@ namespace ScpServer
             {
                 pBLSDeadzone.Visible = true;
                 pBLSDeadzone.Size = new Size((int)(nUDLS.Value*125), (int)(nUDLS.Value*125));
-                pBLSDeadzone.Location = new Point(lBLSTrack.Location.X + 63 - pBLSDeadzone.Size.Width / 2, lBLSTrack.Location.Y + 63 - pBLSDeadzone.Size.Width / 2);
+                pBLSDeadzone.Location = new Point(lbLSTrack.Location.X + 63 - pBLSDeadzone.Size.Width / 2, lbLSTrack.Location.Y + 63 - pBLSDeadzone.Size.Width / 2);
             }
         }
 
@@ -1165,16 +1228,8 @@ namespace ScpServer
         private void cBShiftControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             Global.setShiftModifier(device, cBShiftControl.SelectedIndex);
-        }
-
-        private void pBController_BackColorChanged(object sender, EventArgs e)
-        {
-            spBController.BackColor = pBController.BackColor;
-        }
-
-        private void pBController_BackgroundImageChanged(object sender, EventArgs e)
-        {
-            spBController.BackgroundImage = pBController.BackgroundImage;
+            if (cBShiftControl.SelectedIndex < 1)
+                cBShiftLight.Checked = false;
         }
 
         private void tabControls_SelectedIndexChanged(object sender, EventArgs e)
@@ -1183,6 +1238,10 @@ namespace ScpServer
                 sixaxisTimer.Start();
             else
                 sixaxisTimer.Stop();
+            if (tabControls.SelectedIndex == 1)
+                ShiftPanel.Visible = true;
+            else
+                ShiftPanel.Visible = false;
         }
 
         private void DrawCircle(object sender, PaintEventArgs e)
@@ -1197,14 +1256,21 @@ namespace ScpServer
             e.Graphics.DrawEllipse(blackPen, rect);
         }
 
-        private void lBEmpty_Click(object sender, EventArgs e)
+        private void lbEmpty_Click(object sender, EventArgs e)
         {
             lowRedBar.Value = redBar.Value;
             lowGreenBar.Value = greenBar.Value;
             lowBlueBar.Value = blueBar.Value;
         }
 
-        private void lBSATip_Click(object sender, EventArgs e)
+        private void lbShift_Click(object sender, EventArgs e)
+        {
+            shiftRedBar.Value = redBar.Value;
+            shiftGreenBar.Value = greenBar.Value;
+            shiftBlueBar.Value = blueBar.Value;
+        }
+
+        private void lbSATip_Click(object sender, EventArgs e)
         {
             SixaxisPanel.Visible = !SixaxisPanel.Visible;
             pBSADeadzone.Visible = !pBSADeadzone.Visible;
@@ -1213,12 +1279,59 @@ namespace ScpServer
 
         private void SixaxisPanel_Click(object sender, EventArgs e)
         {
-            lBSATip_Click(sender, e);
+            lbSATip_Click(sender, e);
         }
 
-        private void lBSATrack_Click(object sender, EventArgs e)
+        private void lbSATrack_Click(object sender, EventArgs e)
         {
-            lBSATip_Click(sender, e);
+            lbSATip_Click(sender, e);
+        }
+
+        private void cBShiftLight_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Global.getShiftModifier(device) < 1)
+                cBShiftLight.Checked = false;
+            if (!cBShiftLight.Checked)
+            {
+                spBController.BackColor = pBController.BackColor;
+                spBController.BackgroundImage = pBController.BackgroundImage;
+            }
+            else
+            {
+                alphacolor = Math.Max(shiftRedBar.Value, Math.Max(shiftGreenBar.Value, shiftBlueBar.Value));
+                reg = Color.FromArgb(shiftRedBar.Value, shiftGreenBar.Value, shiftBlueBar.Value);
+                full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
+                spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            }
+            Global.setShiftColorOn(device, cBShiftLight.Checked);
+            lbShift.Enabled = cBShiftLight.Checked;
+            lbShiftRed.Enabled = cBShiftLight.Checked;
+            lbShiftGreen.Enabled = cBShiftLight.Checked;
+            lbShiftBlue.Enabled = cBShiftLight.Checked;
+            shiftRedBar.Enabled = cBShiftLight.Checked;
+            shiftGreenBar.Enabled = cBShiftLight.Checked;
+            shiftBlueBar.Enabled = cBShiftLight.Checked;
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            if( openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                cBLaunchProgram.Checked = true;
+                Global.setLaunchProgram(device, openFileDialog1.FileName);
+                pBProgram.Image = Icon.ExtractAssociatedIcon(openFileDialog1.FileName).ToBitmap();
+                btnBrowse.Text = Path.GetFileNameWithoutExtension(openFileDialog1.FileName);
+            }
+        }
+
+        private void cBLaunchProgram_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!cBLaunchProgram.Checked)
+            {
+                Global.setLaunchProgram(device, string.Empty);
+                pBProgram.Image = null;
+                btnBrowse.Text = "Browse...";
+            }
         }
     }
 }

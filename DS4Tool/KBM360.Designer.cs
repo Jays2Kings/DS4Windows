@@ -1694,7 +1694,7 @@
             // 
             // btnUNBOUND2
             // 
-            this.btnUNBOUND2.Location = new System.Drawing.Point(396, 379);
+            this.btnUNBOUND2.Location = new System.Drawing.Point(440, 379);
             this.btnUNBOUND2.Name = "btnUNBOUND2";
             this.btnUNBOUND2.Size = new System.Drawing.Size(75, 23);
             this.btnUNBOUND2.TabIndex = 317;
@@ -2034,9 +2034,8 @@
             this.btnFallBack.Size = new System.Drawing.Size(75, 23);
             this.btnFallBack.TabIndex = 323;
             this.btnFallBack.TabStop = false;
-            this.btnFallBack.Text = "Fall Back";
+            this.btnFallBack.Text = "Default";
             this.btnFallBack.UseVisualStyleBackColor = true;
-            this.btnFallBack.Visible = false;
             // 
             // KBM360
             // 

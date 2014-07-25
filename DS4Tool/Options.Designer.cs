@@ -66,7 +66,7 @@
             this.bnRSLeft = new System.Windows.Forms.Button();
             this.bnLSDown = new System.Windows.Forms.Button();
             this.bnR3 = new System.Windows.Forms.Button();
-            this.lBControlTip = new System.Windows.Forms.Label();
+            this.lbControlTip = new System.Windows.Forms.Label();
             this.lBControls = new System.Windows.Forms.ListBox();
             this.lowColorChooserButton = new System.Windows.Forms.Button();
             this.nUDRainbow = new System.Windows.Forms.NumericUpDown();
@@ -75,10 +75,10 @@
             this.greenBar = new System.Windows.Forms.TrackBar();
             this.redBar = new System.Windows.Forms.TrackBar();
             this.cBLightbyBattery = new System.Windows.Forms.CheckBox();
-            this.lBBlue = new System.Windows.Forms.Label();
-            this.lBGreen = new System.Windows.Forms.Label();
-            this.lBspc = new System.Windows.Forms.Label();
-            this.lBRed = new System.Windows.Forms.Label();
+            this.lbBlue = new System.Windows.Forms.Label();
+            this.lbGreen = new System.Windows.Forms.Label();
+            this.lbspc = new System.Windows.Forms.Label();
+            this.lbRed = new System.Windows.Forms.Label();
             this.cBDoubleTap = new System.Windows.Forms.CheckBox();
             this.cBTap = new System.Windows.Forms.CheckBox();
             this.nUDTap = new System.Windows.Forms.NumericUpDown();
@@ -86,12 +86,12 @@
             this.cBSlide = new System.Windows.Forms.CheckBox();
             this.nUDScroll = new System.Windows.Forms.NumericUpDown();
             this.nUDTouch = new System.Windows.Forms.NumericUpDown();
-            this.lBButtonMouseSens = new System.Windows.Forms.Label();
+            this.lbButtonMouseSens = new System.Windows.Forms.Label();
             this.cBlowerRCOn = new System.Windows.Forms.CheckBox();
             this.cBTouchpadJitterCompensation = new System.Windows.Forms.CheckBox();
-            this.lBL2 = new System.Windows.Forms.Label();
-            this.lBR2 = new System.Windows.Forms.Label();
-            this.lBIdleMinutes = new System.Windows.Forms.Label();
+            this.lbL2 = new System.Windows.Forms.Label();
+            this.lbR2 = new System.Windows.Forms.Label();
+            this.lbIdleMinutes = new System.Windows.Forms.Label();
             this.nUDIdleDisconnect = new System.Windows.Forms.NumericUpDown();
             this.nUDR2 = new System.Windows.Forms.NumericUpDown();
             this.tBsixaxisAccelZ = new System.Windows.Forms.TrackBar();
@@ -102,19 +102,19 @@
             this.tBsixaxisGyroY = new System.Windows.Forms.TrackBar();
             this.tBsixaxisGyroX = new System.Windows.Forms.TrackBar();
             this.nUDRumbleBoost = new System.Windows.Forms.NumericUpDown();
-            this.lB6Accel = new System.Windows.Forms.Label();
+            this.lb6Accel = new System.Windows.Forms.Label();
             this.btnRumbleTest = new System.Windows.Forms.Button();
             this.lbFull = new System.Windows.Forms.Label();
-            this.lBLowRed = new System.Windows.Forms.Label();
-            this.lBLowGreen = new System.Windows.Forms.Label();
-            this.lBLowBlue = new System.Windows.Forms.Label();
+            this.lbLowRed = new System.Windows.Forms.Label();
+            this.lbLowGreen = new System.Windows.Forms.Label();
+            this.lbLowBlue = new System.Windows.Forms.Label();
             this.lowRedBar = new System.Windows.Forms.TrackBar();
             this.lowGreenBar = new System.Windows.Forms.TrackBar();
             this.lowBlueBar = new System.Windows.Forms.TrackBar();
-            this.lBEmpty = new System.Windows.Forms.Label();
+            this.lbEmpty = new System.Windows.Forms.Label();
             this.FullPanel = new System.Windows.Forms.Panel();
             this.lowBatteryPanel = new System.Windows.Forms.Panel();
-            this.lB6Gryo = new System.Windows.Forms.Label();
+            this.lb6Gryo = new System.Windows.Forms.Label();
             this.lbRS = new System.Windows.Forms.Label();
             this.lbLS = new System.Windows.Forms.Label();
             this.nUDRS = new System.Windows.Forms.NumericUpDown();
@@ -123,8 +123,9 @@
             this.nUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.gBOther = new System.Windows.Forms.GroupBox();
-            this.lBforMandR = new System.Windows.Forms.Label();
-            this.lBUseController = new System.Windows.Forms.Label();
+            this.cBLaunchProgram = new System.Windows.Forms.CheckBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.lbUseController = new System.Windows.Forms.Label();
             this.cBMouseAccel = new System.Windows.Forms.CheckBox();
             this.nUDSixaxis = new System.Windows.Forms.NumericUpDown();
             this.cBControllerInput = new System.Windows.Forms.CheckBox();
@@ -136,11 +137,20 @@
             this.rBNormal = new System.Windows.Forms.RadioButton();
             this.rBRainbow = new System.Windows.Forms.RadioButton();
             this.lbWhileCharging = new System.Windows.Forms.Label();
-            this.lBPercentFlashBar = new System.Windows.Forms.Label();
-            this.lBFlashAt = new System.Windows.Forms.Label();
+            this.lbPercentFlashBar = new System.Windows.Forms.Label();
+            this.lbFlashAt = new System.Windows.Forms.Label();
             this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
+            this.ShiftPanel = new System.Windows.Forms.Panel();
+            this.cBShiftLight = new System.Windows.Forms.CheckBox();
+            this.lbShift = new System.Windows.Forms.Label();
+            this.lbShiftRed = new System.Windows.Forms.Label();
+            this.lbShiftGreen = new System.Windows.Forms.Label();
+            this.lbShiftBlue = new System.Windows.Forms.Label();
+            this.shiftRedBar = new System.Windows.Forms.TrackBar();
+            this.shiftGreenBar = new System.Windows.Forms.TrackBar();
+            this.shiftBlueBar = new System.Windows.Forms.TrackBar();
             this.gBRumble = new System.Windows.Forms.GroupBox();
-            this.lBPercentRumble = new System.Windows.Forms.Label();
+            this.lbPercentRumble = new System.Windows.Forms.Label();
             this.gBDeadzone = new System.Windows.Forms.GroupBox();
             this.lbSixaxisX = new System.Windows.Forms.Label();
             this.lbSixaxisZ = new System.Windows.Forms.Label();
@@ -148,14 +158,14 @@
             this.nUDSX = new System.Windows.Forms.NumericUpDown();
             this.tabControls = new System.Windows.Forms.TabControl();
             this.tPControls = new System.Windows.Forms.TabPage();
-            this.lBGryo = new System.Windows.Forms.Label();
+            this.lbGryo = new System.Windows.Forms.Label();
             this.fLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
             this.bnGyroZN = new System.Windows.Forms.Button();
             this.bnGyroZP = new System.Windows.Forms.Button();
             this.bnGyroXP = new System.Windows.Forms.Button();
             this.bnGyroXN = new System.Windows.Forms.Button();
             this.tPShiftMod = new System.Windows.Forms.TabPage();
-            this.slBGryo = new System.Windows.Forms.Label();
+            this.slbGryo = new System.Windows.Forms.Label();
             this.sfLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
             this.sbnGyroZN = new System.Windows.Forms.Button();
             this.sbnGyroZP = new System.Windows.Forms.Button();
@@ -163,8 +173,8 @@
             this.sbnGyroXN = new System.Windows.Forms.Button();
             this.cBShiftControl = new System.Windows.Forms.ComboBox();
             this.lBShiftControls = new System.Windows.Forms.ListBox();
-            this.lBHold = new System.Windows.Forms.Label();
-            this.lBtoUse = new System.Windows.Forms.Label();
+            this.lbHold = new System.Windows.Forms.Label();
+            this.lbtoUse = new System.Windows.Forms.Label();
             this.ShiftMainPanel = new System.Windows.Forms.Panel();
             this.spBController = new System.Windows.Forms.PictureBox();
             this.sbnTouchUpper = new System.Windows.Forms.Button();
@@ -203,25 +213,27 @@
             this.sbnLSDown = new System.Windows.Forms.Button();
             this.sbnR3 = new System.Windows.Forms.Button();
             this.tPController = new System.Windows.Forms.TabPage();
-            this.lBL2Track = new System.Windows.Forms.Label();
+            this.SixaxisPanel = new System.Windows.Forms.Panel();
+            this.lbL2Track = new System.Windows.Forms.Label();
             this.pBDelayTracker = new System.Windows.Forms.PictureBox();
             this.btnSATrack = new System.Windows.Forms.Button();
             this.btnRSTrack = new System.Windows.Forms.Button();
-            this.lBRSTip = new System.Windows.Forms.Label();
-            this.lBInputDelay = new System.Windows.Forms.Label();
-            this.lBR2Track = new System.Windows.Forms.Label();
-            this.lBLSTip = new System.Windows.Forms.Label();
-            this.lBSATip = new System.Windows.Forms.Label();
+            this.lbRSTip = new System.Windows.Forms.Label();
+            this.lbInputDelay = new System.Windows.Forms.Label();
+            this.lbR2Track = new System.Windows.Forms.Label();
+            this.lbLSTip = new System.Windows.Forms.Label();
+            this.lbSATip = new System.Windows.Forms.Label();
             this.btnLSTrack = new System.Windows.Forms.Button();
             this.pBSADeadzone = new System.Windows.Forms.PictureBox();
-            this.lBSATrack = new System.Windows.Forms.Label();
             this.pBRSDeadzone = new System.Windows.Forms.PictureBox();
-            this.lBRSTrack = new System.Windows.Forms.Label();
+            this.lbRSTrack = new System.Windows.Forms.Label();
             this.pBLSDeadzone = new System.Windows.Forms.PictureBox();
-            this.lBLSTrack = new System.Windows.Forms.Label();
+            this.lbLSTrack = new System.Windows.Forms.Label();
             this.tBR2 = new System.Windows.Forms.TrackBar();
             this.tBL2 = new System.Windows.Forms.TrackBar();
-            this.SixaxisPanel = new System.Windows.Forms.Panel();
+            this.lbSATrack = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.pBProgram = new System.Windows.Forms.PictureBox();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
@@ -258,6 +270,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
             this.gBLightbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
+            this.ShiftPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.shiftRedBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shiftGreenBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shiftBlueBar)).BeginInit();
             this.gBRumble.SuspendLayout();
             this.gBDeadzone.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).BeginInit();
@@ -272,13 +288,14 @@
             this.ShiftSticksPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spBSticks)).BeginInit();
             this.tPController.SuspendLayout();
+            this.SixaxisPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBDelayTracker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBSADeadzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRSDeadzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBLSDeadzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBR2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBL2)).BeginInit();
-            this.SixaxisPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             this.SuspendLayout();
             // 
             // bnTouchUpper
@@ -406,8 +423,6 @@
             this.pBController.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBController.TabIndex = 1;
             this.pBController.TabStop = false;
-            this.pBController.BackColorChanged += new System.EventHandler(this.pBController_BackColorChanged);
-            this.pBController.BackgroundImageChanged += new System.EventHandler(this.pBController_BackgroundImageChanged);
             // 
             // bnR1
             // 
@@ -983,16 +998,16 @@
             this.bnR3.UseVisualStyleBackColor = false;
             this.bnR3.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
-            // lBControlTip
+            // lbControlTip
             // 
-            this.lBControlTip.AutoSize = true;
-            this.lBControlTip.Location = new System.Drawing.Point(24, 5);
-            this.lBControlTip.Name = "lBControlTip";
-            this.lBControlTip.Size = new System.Drawing.Size(219, 26);
-            this.lBControlTip.TabIndex = 181;
-            this.lBControlTip.Text = "Click a part of the controller to change action\r\nClick the lightbar for color pic" +
+            this.lbControlTip.AutoSize = true;
+            this.lbControlTip.Location = new System.Drawing.Point(24, 5);
+            this.lbControlTip.Name = "lbControlTip";
+            this.lbControlTip.Size = new System.Drawing.Size(219, 26);
+            this.lbControlTip.TabIndex = 181;
+            this.lbControlTip.Text = "Click a part of the controller to change action\r\nClick the lightbar for color pic" +
     "ker";
-            this.lBControlTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbControlTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lBControls
             // 
@@ -1000,7 +1015,7 @@
             this.lBControls.Items.AddRange(new object[] {
             "Cross :",
             "Circle :",
-            "Sqaure :",
+            "Square :",
             "Triangle :",
             "Options :",
             "Share :",
@@ -1132,41 +1147,41 @@
             this.cBLightbyBattery.UseVisualStyleBackColor = true;
             this.cBLightbyBattery.CheckedChanged += new System.EventHandler(this.ledAsBatteryIndicator_CheckedChanged);
             // 
-            // lBBlue
+            // lbBlue
             // 
-            this.lBBlue.AutoSize = true;
-            this.lBBlue.Location = new System.Drawing.Point(308, 7);
-            this.lBBlue.Name = "lBBlue";
-            this.lBBlue.Size = new System.Drawing.Size(14, 13);
-            this.lBBlue.TabIndex = 160;
-            this.lBBlue.Text = "B";
+            this.lbBlue.AutoSize = true;
+            this.lbBlue.Location = new System.Drawing.Point(308, 7);
+            this.lbBlue.Name = "lbBlue";
+            this.lbBlue.Size = new System.Drawing.Size(14, 13);
+            this.lbBlue.TabIndex = 160;
+            this.lbBlue.Text = "B";
             // 
-            // lBGreen
+            // lbGreen
             // 
-            this.lBGreen.AutoSize = true;
-            this.lBGreen.Location = new System.Drawing.Point(180, 7);
-            this.lBGreen.Name = "lBGreen";
-            this.lBGreen.Size = new System.Drawing.Size(15, 13);
-            this.lBGreen.TabIndex = 159;
-            this.lBGreen.Text = "G";
+            this.lbGreen.AutoSize = true;
+            this.lbGreen.Location = new System.Drawing.Point(180, 7);
+            this.lbGreen.Name = "lbGreen";
+            this.lbGreen.Size = new System.Drawing.Size(15, 13);
+            this.lbGreen.TabIndex = 159;
+            this.lbGreen.Text = "G";
             // 
-            // lBspc
+            // lbspc
             // 
-            this.lBspc.AutoSize = true;
-            this.lBspc.Location = new System.Drawing.Point(223, 19);
-            this.lBspc.Name = "lBspc";
-            this.lBspc.Size = new System.Drawing.Size(59, 13);
-            this.lBspc.TabIndex = 157;
-            this.lBspc.Text = "secs/cycle";
+            this.lbspc.AutoSize = true;
+            this.lbspc.Location = new System.Drawing.Point(223, 19);
+            this.lbspc.Name = "lbspc";
+            this.lbspc.Size = new System.Drawing.Size(59, 13);
+            this.lbspc.TabIndex = 157;
+            this.lbspc.Text = "secs/cycle";
             // 
-            // lBRed
+            // lbRed
             // 
-            this.lBRed.AutoSize = true;
-            this.lBRed.Location = new System.Drawing.Point(58, 7);
-            this.lBRed.Name = "lBRed";
-            this.lBRed.Size = new System.Drawing.Size(15, 13);
-            this.lBRed.TabIndex = 158;
-            this.lBRed.Text = "R";
+            this.lbRed.AutoSize = true;
+            this.lbRed.Location = new System.Drawing.Point(58, 7);
+            this.lbRed.Name = "lbRed";
+            this.lbRed.Size = new System.Drawing.Size(15, 13);
+            this.lbRed.TabIndex = 158;
+            this.lbRed.Text = "R";
             // 
             // cBDoubleTap
             // 
@@ -1283,15 +1298,15 @@
             0});
             this.nUDTouch.ValueChanged += new System.EventHandler(this.numUDTouch_ValueChanged);
             // 
-            // lBButtonMouseSens
+            // lbButtonMouseSens
             // 
-            this.lBButtonMouseSens.AutoSize = true;
-            this.lBButtonMouseSens.Location = new System.Drawing.Point(5, 18);
-            this.lBButtonMouseSens.Name = "lBButtonMouseSens";
-            this.lBButtonMouseSens.Size = new System.Drawing.Size(92, 13);
-            this.lBButtonMouseSens.TabIndex = 206;
-            this.lBButtonMouseSens.Text = "Mouse Sensitivity:";
-            this.lBButtonMouseSens.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbButtonMouseSens.AutoSize = true;
+            this.lbButtonMouseSens.Location = new System.Drawing.Point(5, 18);
+            this.lbButtonMouseSens.Name = "lbButtonMouseSens";
+            this.lbButtonMouseSens.Size = new System.Drawing.Size(92, 13);
+            this.lbButtonMouseSens.TabIndex = 206;
+            this.lbButtonMouseSens.Text = "Mouse Sensitivity:";
+            this.lbButtonMouseSens.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // cBlowerRCOn
             // 
@@ -1319,37 +1334,37 @@
             this.cBTouchpadJitterCompensation.UseVisualStyleBackColor = true;
             this.cBTouchpadJitterCompensation.CheckedChanged += new System.EventHandler(this.touchpadJitterCompensation_CheckedChanged);
             // 
-            // lBL2
+            // lbL2
             // 
-            this.lBL2.AutoSize = true;
-            this.lBL2.Location = new System.Drawing.Point(7, 17);
-            this.lBL2.Name = "lBL2";
-            this.lBL2.Size = new System.Drawing.Size(19, 13);
-            this.lBL2.TabIndex = 196;
-            this.lBL2.Text = "L2";
+            this.lbL2.AutoSize = true;
+            this.lbL2.Location = new System.Drawing.Point(7, 17);
+            this.lbL2.Name = "lbL2";
+            this.lbL2.Size = new System.Drawing.Size(19, 13);
+            this.lbL2.TabIndex = 196;
+            this.lbL2.Text = "L2";
             // 
-            // lBR2
+            // lbR2
             // 
-            this.lBR2.AutoSize = true;
-            this.lBR2.Location = new System.Drawing.Point(88, 17);
-            this.lBR2.Name = "lBR2";
-            this.lBR2.Size = new System.Drawing.Size(21, 13);
-            this.lBR2.TabIndex = 197;
-            this.lBR2.Text = "R2";
+            this.lbR2.AutoSize = true;
+            this.lbR2.Location = new System.Drawing.Point(88, 17);
+            this.lbR2.Name = "lbR2";
+            this.lbR2.Size = new System.Drawing.Size(21, 13);
+            this.lbR2.TabIndex = 197;
+            this.lbR2.Text = "R2";
             // 
-            // lBIdleMinutes
+            // lbIdleMinutes
             // 
-            this.lBIdleMinutes.AutoSize = true;
-            this.lBIdleMinutes.Location = new System.Drawing.Point(163, 48);
-            this.lBIdleMinutes.Name = "lBIdleMinutes";
-            this.lBIdleMinutes.Size = new System.Drawing.Size(28, 13);
-            this.lBIdleMinutes.TabIndex = 200;
-            this.lBIdleMinutes.Text = "mins";
+            this.lbIdleMinutes.AutoSize = true;
+            this.lbIdleMinutes.Location = new System.Drawing.Point(163, 46);
+            this.lbIdleMinutes.Name = "lbIdleMinutes";
+            this.lbIdleMinutes.Size = new System.Drawing.Size(28, 13);
+            this.lbIdleMinutes.TabIndex = 200;
+            this.lbIdleMinutes.Text = "mins";
             // 
             // nUDIdleDisconnect
             // 
             this.nUDIdleDisconnect.DecimalPlaces = 1;
-            this.nUDIdleDisconnect.Location = new System.Drawing.Point(109, 46);
+            this.nUDIdleDisconnect.Location = new System.Drawing.Point(109, 44);
             this.nUDIdleDisconnect.Maximum = new decimal(new int[] {
             60,
             0,
@@ -1482,14 +1497,14 @@
             0});
             this.nUDRumbleBoost.ValueChanged += new System.EventHandler(this.rumbleBoostBar_ValueChanged);
             // 
-            // lB6Accel
+            // lb6Accel
             // 
-            this.lB6Accel.AutoSize = true;
-            this.lB6Accel.Location = new System.Drawing.Point(81, 4);
-            this.lB6Accel.Name = "lB6Accel";
-            this.lB6Accel.Size = new System.Drawing.Size(34, 13);
-            this.lB6Accel.TabIndex = 215;
-            this.lB6Accel.Text = "Accel";
+            this.lb6Accel.AutoSize = true;
+            this.lb6Accel.Location = new System.Drawing.Point(81, 4);
+            this.lb6Accel.Name = "lb6Accel";
+            this.lb6Accel.Size = new System.Drawing.Size(34, 13);
+            this.lb6Accel.TabIndex = 215;
+            this.lb6Accel.Text = "Accel";
             // 
             // btnRumbleTest
             // 
@@ -1510,32 +1525,32 @@
             this.lbFull.TabIndex = 225;
             this.lbFull.Text = "Full:";
             // 
-            // lBLowRed
+            // lbLowRed
             // 
-            this.lBLowRed.AutoSize = true;
-            this.lBLowRed.Location = new System.Drawing.Point(58, 9);
-            this.lBLowRed.Name = "lBLowRed";
-            this.lBLowRed.Size = new System.Drawing.Size(15, 13);
-            this.lBLowRed.TabIndex = 158;
-            this.lBLowRed.Text = "R";
+            this.lbLowRed.AutoSize = true;
+            this.lbLowRed.Location = new System.Drawing.Point(58, 9);
+            this.lbLowRed.Name = "lbLowRed";
+            this.lbLowRed.Size = new System.Drawing.Size(15, 13);
+            this.lbLowRed.TabIndex = 158;
+            this.lbLowRed.Text = "R";
             // 
-            // lBLowGreen
+            // lbLowGreen
             // 
-            this.lBLowGreen.AutoSize = true;
-            this.lBLowGreen.Location = new System.Drawing.Point(180, 9);
-            this.lBLowGreen.Name = "lBLowGreen";
-            this.lBLowGreen.Size = new System.Drawing.Size(15, 13);
-            this.lBLowGreen.TabIndex = 159;
-            this.lBLowGreen.Text = "G";
+            this.lbLowGreen.AutoSize = true;
+            this.lbLowGreen.Location = new System.Drawing.Point(180, 9);
+            this.lbLowGreen.Name = "lbLowGreen";
+            this.lbLowGreen.Size = new System.Drawing.Size(15, 13);
+            this.lbLowGreen.TabIndex = 159;
+            this.lbLowGreen.Text = "G";
             // 
-            // lBLowBlue
+            // lbLowBlue
             // 
-            this.lBLowBlue.AutoSize = true;
-            this.lBLowBlue.Location = new System.Drawing.Point(308, 9);
-            this.lBLowBlue.Name = "lBLowBlue";
-            this.lBLowBlue.Size = new System.Drawing.Size(14, 13);
-            this.lBLowBlue.TabIndex = 160;
-            this.lBLowBlue.Text = "B";
+            this.lbLowBlue.AutoSize = true;
+            this.lbLowBlue.Location = new System.Drawing.Point(308, 9);
+            this.lbLowBlue.Name = "lbLowBlue";
+            this.lbLowBlue.Size = new System.Drawing.Size(14, 13);
+            this.lbLowBlue.TabIndex = 160;
+            this.lbLowBlue.Text = "B";
             // 
             // lowRedBar
             // 
@@ -1585,22 +1600,22 @@
             this.lowBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
             this.lowBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
-            // lBEmpty
+            // lbEmpty
             // 
-            this.lBEmpty.AutoSize = true;
-            this.lBEmpty.Location = new System.Drawing.Point(7, 9);
-            this.lBEmpty.Name = "lBEmpty";
-            this.lBEmpty.Size = new System.Drawing.Size(39, 13);
-            this.lBEmpty.TabIndex = 225;
-            this.lBEmpty.Text = "Empty:";
-            this.lBEmpty.Click += new System.EventHandler(this.lBEmpty_Click);
+            this.lbEmpty.AutoSize = true;
+            this.lbEmpty.Location = new System.Drawing.Point(7, 9);
+            this.lbEmpty.Name = "lbEmpty";
+            this.lbEmpty.Size = new System.Drawing.Size(39, 13);
+            this.lbEmpty.TabIndex = 225;
+            this.lbEmpty.Text = "Empty:";
+            this.lbEmpty.Click += new System.EventHandler(this.lbEmpty_Click);
             // 
             // FullPanel
             // 
             this.FullPanel.Controls.Add(this.lbFull);
-            this.FullPanel.Controls.Add(this.lBRed);
-            this.FullPanel.Controls.Add(this.lBGreen);
-            this.FullPanel.Controls.Add(this.lBBlue);
+            this.FullPanel.Controls.Add(this.lbRed);
+            this.FullPanel.Controls.Add(this.lbGreen);
+            this.FullPanel.Controls.Add(this.lbBlue);
             this.FullPanel.Controls.Add(this.redBar);
             this.FullPanel.Controls.Add(this.greenBar);
             this.FullPanel.Controls.Add(this.blueBar);
@@ -1612,26 +1627,26 @@
             // lowBatteryPanel
             // 
             this.lowBatteryPanel.Controls.Add(this.lowColorChooserButton);
-            this.lowBatteryPanel.Controls.Add(this.lBLowRed);
-            this.lowBatteryPanel.Controls.Add(this.lBLowGreen);
-            this.lowBatteryPanel.Controls.Add(this.lBLowBlue);
+            this.lowBatteryPanel.Controls.Add(this.lbLowRed);
+            this.lowBatteryPanel.Controls.Add(this.lbLowGreen);
+            this.lowBatteryPanel.Controls.Add(this.lbLowBlue);
             this.lowBatteryPanel.Controls.Add(this.lowRedBar);
             this.lowBatteryPanel.Controls.Add(this.lowGreenBar);
             this.lowBatteryPanel.Controls.Add(this.lowBlueBar);
-            this.lowBatteryPanel.Controls.Add(this.lBEmpty);
+            this.lowBatteryPanel.Controls.Add(this.lbEmpty);
             this.lowBatteryPanel.Location = new System.Drawing.Point(2, 72);
             this.lowBatteryPanel.Name = "lowBatteryPanel";
             this.lowBatteryPanel.Size = new System.Drawing.Size(435, 29);
             this.lowBatteryPanel.TabIndex = 234;
             // 
-            // lB6Gryo
+            // lb6Gryo
             // 
-            this.lB6Gryo.AutoSize = true;
-            this.lB6Gryo.Location = new System.Drawing.Point(13, 5);
-            this.lB6Gryo.Name = "lB6Gryo";
-            this.lB6Gryo.Size = new System.Drawing.Size(29, 13);
-            this.lB6Gryo.TabIndex = 216;
-            this.lB6Gryo.Text = "Gyro";
+            this.lb6Gryo.AutoSize = true;
+            this.lb6Gryo.Location = new System.Drawing.Point(13, 5);
+            this.lb6Gryo.Name = "lb6Gryo";
+            this.lb6Gryo.Size = new System.Drawing.Size(29, 13);
+            this.lb6Gryo.TabIndex = 216;
+            this.lb6Gryo.Text = "Gyro";
             // 
             // lbRS
             // 
@@ -1749,17 +1764,19 @@
             // 
             // gBOther
             // 
-            this.gBOther.Controls.Add(this.lBforMandR);
-            this.gBOther.Controls.Add(this.lBUseController);
+            this.gBOther.Controls.Add(this.pBProgram);
+            this.gBOther.Controls.Add(this.cBLaunchProgram);
+            this.gBOther.Controls.Add(this.btnBrowse);
+            this.gBOther.Controls.Add(this.lbUseController);
             this.gBOther.Controls.Add(this.cBMouseAccel);
             this.gBOther.Controls.Add(this.nUDSixaxis);
             this.gBOther.Controls.Add(this.cBControllerInput);
             this.gBOther.Controls.Add(this.nUDIdleDisconnect);
             this.gBOther.Controls.Add(this.cBIdleDisconnect);
-            this.gBOther.Controls.Add(this.lBButtonMouseSens);
+            this.gBOther.Controls.Add(this.lbButtonMouseSens);
             this.gBOther.Controls.Add(this.numUDMouseSens);
             this.gBOther.Controls.Add(this.cBFlushHIDQueue);
-            this.gBOther.Controls.Add(this.lBIdleMinutes);
+            this.gBOther.Controls.Add(this.lbIdleMinutes);
             this.gBOther.Location = new System.Drawing.Point(445, 226);
             this.gBOther.Name = "gBOther";
             this.gBOther.Size = new System.Drawing.Size(436, 95);
@@ -1767,23 +1784,38 @@
             this.gBOther.TabStop = false;
             this.gBOther.Text = "Other";
             // 
-            // lBforMandR
+            // cBLaunchProgram
             // 
-            this.lBforMandR.AutoSize = true;
-            this.lBforMandR.Location = new System.Drawing.Point(307, 74);
-            this.lBforMandR.Name = "lBforMandR";
-            this.lBforMandR.Size = new System.Drawing.Size(123, 13);
-            this.lBforMandR.TabIndex = 252;
-            this.lBforMandR.Text = "for Mapping and readout";
+            this.cBLaunchProgram.AutoSize = true;
+            this.cBLaunchProgram.Location = new System.Drawing.Point(224, 39);
+            this.cBLaunchProgram.Name = "cBLaunchProgram";
+            this.cBLaunchProgram.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cBLaunchProgram.Size = new System.Drawing.Size(136, 30);
+            this.cBLaunchProgram.TabIndex = 254;
+            this.cBLaunchProgram.Text = "Launch Program when \r\nstarting profile";
+            this.cBLaunchProgram.UseVisualStyleBackColor = true;
+            this.cBLaunchProgram.CheckedChanged += new System.EventHandler(this.cBLaunchProgram_CheckedChanged);
             // 
-            // lBUseController
+            // btnBrowse
             // 
-            this.lBUseController.AutoSize = true;
-            this.lBUseController.Location = new System.Drawing.Point(195, 74);
-            this.lBUseController.Name = "lBUseController";
-            this.lBUseController.Size = new System.Drawing.Size(73, 13);
-            this.lBUseController.TabIndex = 252;
-            this.lBUseController.Text = "Use Controller";
+            this.btnBrowse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBrowse.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBrowse.Location = new System.Drawing.Point(363, 41);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(67, 23);
+            this.btnBrowse.TabIndex = 253;
+            this.btnBrowse.Text = "Browse...";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // lbUseController
+            // 
+            this.lbUseController.AutoSize = true;
+            this.lbUseController.Location = new System.Drawing.Point(7, 75);
+            this.lbUseController.Name = "lbUseController";
+            this.lbUseController.Size = new System.Drawing.Size(73, 13);
+            this.lbUseController.TabIndex = 252;
+            this.lbUseController.Text = "Use Controller";
             // 
             // cBMouseAccel
             // 
@@ -1798,7 +1830,7 @@
             // 
             // nUDSixaxis
             // 
-            this.nUDSixaxis.Location = new System.Drawing.Point(272, 71);
+            this.nUDSixaxis.Location = new System.Drawing.Point(82, 73);
             this.nUDSixaxis.Maximum = new decimal(new int[] {
             4,
             0,
@@ -1823,12 +1855,12 @@
             this.cBControllerInput.AutoSize = true;
             this.cBControllerInput.Checked = true;
             this.cBControllerInput.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBControllerInput.Location = new System.Drawing.Point(6, 72);
+            this.cBControllerInput.Location = new System.Drawing.Point(117, 74);
             this.cBControllerInput.Name = "cBControllerInput";
             this.cBControllerInput.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBControllerInput.Size = new System.Drawing.Size(113, 17);
+            this.cBControllerInput.Size = new System.Drawing.Size(142, 17);
             this.cBControllerInput.TabIndex = 242;
-            this.cBControllerInput.Text = "Use a DS4 to map";
+            this.cBControllerInput.Text = "for Mapping and readout";
             this.cBControllerInput.UseVisualStyleBackColor = true;
             // 
             // cBIdleDisconnect
@@ -1836,7 +1868,7 @@
             this.cBIdleDisconnect.AutoSize = true;
             this.cBIdleDisconnect.Checked = true;
             this.cBIdleDisconnect.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBIdleDisconnect.Location = new System.Drawing.Point(6, 47);
+            this.cBIdleDisconnect.Location = new System.Drawing.Point(6, 45);
             this.cBIdleDisconnect.Name = "cBIdleDisconnect";
             this.cBIdleDisconnect.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cBIdleDisconnect.Size = new System.Drawing.Size(100, 17);
@@ -1853,15 +1885,16 @@
             this.gBLightbar.Controls.Add(this.rBNormal);
             this.gBLightbar.Controls.Add(this.rBRainbow);
             this.gBLightbar.Controls.Add(this.lbWhileCharging);
-            this.gBLightbar.Controls.Add(this.lBPercentFlashBar);
-            this.gBLightbar.Controls.Add(this.lBFlashAt);
+            this.gBLightbar.Controls.Add(this.lbPercentFlashBar);
+            this.gBLightbar.Controls.Add(this.lbFlashAt);
             this.gBLightbar.Controls.Add(this.pBRainbow);
-            this.gBLightbar.Controls.Add(this.lowBatteryPanel);
             this.gBLightbar.Controls.Add(this.nUDflashLED);
             this.gBLightbar.Controls.Add(this.nUDRainbow);
-            this.gBLightbar.Controls.Add(this.FullPanel);
-            this.gBLightbar.Controls.Add(this.lBspc);
+            this.gBLightbar.Controls.Add(this.lbspc);
             this.gBLightbar.Controls.Add(this.cBLightbyBattery);
+            this.gBLightbar.Controls.Add(this.ShiftPanel);
+            this.gBLightbar.Controls.Add(this.lowBatteryPanel);
+            this.gBLightbar.Controls.Add(this.FullPanel);
             this.gBLightbar.Location = new System.Drawing.Point(443, 85);
             this.gBLightbar.Name = "gBLightbar";
             this.gBLightbar.Size = new System.Drawing.Size(438, 129);
@@ -1937,23 +1970,23 @@
             this.lbWhileCharging.TabIndex = 236;
             this.lbWhileCharging.Text = "While Charging:";
             // 
-            // lBPercentFlashBar
+            // lbPercentFlashBar
             // 
-            this.lBPercentFlashBar.AutoSize = true;
-            this.lBPercentFlashBar.Location = new System.Drawing.Point(98, 18);
-            this.lBPercentFlashBar.Name = "lBPercentFlashBar";
-            this.lBPercentFlashBar.Size = new System.Drawing.Size(15, 13);
-            this.lBPercentFlashBar.TabIndex = 207;
-            this.lBPercentFlashBar.Text = "%";
+            this.lbPercentFlashBar.AutoSize = true;
+            this.lbPercentFlashBar.Location = new System.Drawing.Point(98, 18);
+            this.lbPercentFlashBar.Name = "lbPercentFlashBar";
+            this.lbPercentFlashBar.Size = new System.Drawing.Size(15, 13);
+            this.lbPercentFlashBar.TabIndex = 207;
+            this.lbPercentFlashBar.Text = "%";
             // 
-            // lBFlashAt
+            // lbFlashAt
             // 
-            this.lBFlashAt.AutoSize = true;
-            this.lBFlashAt.Location = new System.Drawing.Point(9, 18);
-            this.lBFlashAt.Name = "lBFlashAt";
-            this.lBFlashAt.Size = new System.Drawing.Size(44, 13);
-            this.lBFlashAt.TabIndex = 207;
-            this.lBFlashAt.Text = "Flash at";
+            this.lbFlashAt.AutoSize = true;
+            this.lbFlashAt.Location = new System.Drawing.Point(9, 18);
+            this.lbFlashAt.Name = "lbFlashAt";
+            this.lbFlashAt.Size = new System.Drawing.Size(44, 13);
+            this.lbFlashAt.TabIndex = 207;
+            this.lbFlashAt.Text = "Flash at";
             // 
             // nUDflashLED
             // 
@@ -1968,9 +2001,123 @@
             this.nUDflashLED.TabIndex = 167;
             this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
             // 
+            // ShiftPanel
+            // 
+            this.ShiftPanel.Controls.Add(this.cBShiftLight);
+            this.ShiftPanel.Controls.Add(this.lbShift);
+            this.ShiftPanel.Controls.Add(this.lbShiftRed);
+            this.ShiftPanel.Controls.Add(this.lbShiftGreen);
+            this.ShiftPanel.Controls.Add(this.lbShiftBlue);
+            this.ShiftPanel.Controls.Add(this.shiftRedBar);
+            this.ShiftPanel.Controls.Add(this.shiftGreenBar);
+            this.ShiftPanel.Controls.Add(this.shiftBlueBar);
+            this.ShiftPanel.Location = new System.Drawing.Point(2, 42);
+            this.ShiftPanel.Name = "ShiftPanel";
+            this.ShiftPanel.Size = new System.Drawing.Size(435, 60);
+            this.ShiftPanel.TabIndex = 235;
+            this.ShiftPanel.Visible = false;
+            // 
+            // cBShiftLight
+            // 
+            this.cBShiftLight.AutoSize = true;
+            this.cBShiftLight.Checked = true;
+            this.cBShiftLight.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBShiftLight.Location = new System.Drawing.Point(8, 8);
+            this.cBShiftLight.Name = "cBShiftLight";
+            this.cBShiftLight.Size = new System.Drawing.Size(176, 17);
+            this.cBShiftLight.TabIndex = 226;
+            this.cBShiftLight.Text = "Use another color for shift mode";
+            this.cBShiftLight.UseVisualStyleBackColor = true;
+            this.cBShiftLight.CheckedChanged += new System.EventHandler(this.cBShiftLight_CheckedChanged);
+            // 
+            // lbShift
+            // 
+            this.lbShift.AutoSize = true;
+            this.lbShift.Location = new System.Drawing.Point(7, 33);
+            this.lbShift.Name = "lbShift";
+            this.lbShift.Size = new System.Drawing.Size(31, 13);
+            this.lbShift.TabIndex = 225;
+            this.lbShift.Text = "Shift:";
+            this.lbShift.Click += new System.EventHandler(this.lbShift_Click);
+            // 
+            // lbShiftRed
+            // 
+            this.lbShiftRed.AutoSize = true;
+            this.lbShiftRed.Location = new System.Drawing.Point(58, 33);
+            this.lbShiftRed.Name = "lbShiftRed";
+            this.lbShiftRed.Size = new System.Drawing.Size(15, 13);
+            this.lbShiftRed.TabIndex = 158;
+            this.lbShiftRed.Text = "R";
+            // 
+            // lbShiftGreen
+            // 
+            this.lbShiftGreen.AutoSize = true;
+            this.lbShiftGreen.Location = new System.Drawing.Point(180, 33);
+            this.lbShiftGreen.Name = "lbShiftGreen";
+            this.lbShiftGreen.Size = new System.Drawing.Size(15, 13);
+            this.lbShiftGreen.TabIndex = 159;
+            this.lbShiftGreen.Text = "G";
+            // 
+            // lbShiftBlue
+            // 
+            this.lbShiftBlue.AutoSize = true;
+            this.lbShiftBlue.Location = new System.Drawing.Point(308, 33);
+            this.lbShiftBlue.Name = "lbShiftBlue";
+            this.lbShiftBlue.Size = new System.Drawing.Size(14, 13);
+            this.lbShiftBlue.TabIndex = 160;
+            this.lbShiftBlue.Text = "B";
+            // 
+            // shiftRedBar
+            // 
+            this.shiftRedBar.AutoSize = false;
+            this.shiftRedBar.BackColor = System.Drawing.Color.Red;
+            this.shiftRedBar.Location = new System.Drawing.Point(73, 30);
+            this.shiftRedBar.Maximum = 255;
+            this.shiftRedBar.Name = "shiftRedBar";
+            this.shiftRedBar.Size = new System.Drawing.Size(100, 20);
+            this.shiftRedBar.TabIndex = 10;
+            this.shiftRedBar.TickFrequency = 25;
+            this.shiftRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.shiftRedBar.Value = 255;
+            this.shiftRedBar.ValueChanged += new System.EventHandler(this.shiftRedBar_ValueChanged);
+            this.shiftRedBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.shiftRedBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            // 
+            // shiftGreenBar
+            // 
+            this.shiftGreenBar.AutoSize = false;
+            this.shiftGreenBar.BackColor = System.Drawing.Color.Green;
+            this.shiftGreenBar.Location = new System.Drawing.Point(196, 30);
+            this.shiftGreenBar.Maximum = 255;
+            this.shiftGreenBar.Name = "shiftGreenBar";
+            this.shiftGreenBar.Size = new System.Drawing.Size(100, 20);
+            this.shiftGreenBar.TabIndex = 11;
+            this.shiftGreenBar.TickFrequency = 25;
+            this.shiftGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.shiftGreenBar.Value = 255;
+            this.shiftGreenBar.ValueChanged += new System.EventHandler(this.shiftGreenBar_ValueChanged);
+            this.shiftGreenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.shiftGreenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            // 
+            // shiftBlueBar
+            // 
+            this.shiftBlueBar.AutoSize = false;
+            this.shiftBlueBar.BackColor = System.Drawing.Color.Blue;
+            this.shiftBlueBar.Location = new System.Drawing.Point(325, 30);
+            this.shiftBlueBar.Maximum = 255;
+            this.shiftBlueBar.Name = "shiftBlueBar";
+            this.shiftBlueBar.Size = new System.Drawing.Size(100, 20);
+            this.shiftBlueBar.TabIndex = 12;
+            this.shiftBlueBar.TickFrequency = 25;
+            this.shiftBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.shiftBlueBar.Value = 255;
+            this.shiftBlueBar.ValueChanged += new System.EventHandler(this.shiftBlueBar_ValueChanged);
+            this.shiftBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.shiftBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            // 
             // gBRumble
             // 
-            this.gBRumble.Controls.Add(this.lBPercentRumble);
+            this.gBRumble.Controls.Add(this.lbPercentRumble);
             this.gBRumble.Controls.Add(this.btnRumbleTest);
             this.gBRumble.Controls.Add(this.nUDRumbleBoost);
             this.gBRumble.Location = new System.Drawing.Point(445, 12);
@@ -1980,22 +2127,22 @@
             this.gBRumble.TabStop = false;
             this.gBRumble.Text = "Rumble";
             // 
-            // lBPercentRumble
+            // lbPercentRumble
             // 
-            this.lBPercentRumble.AutoSize = true;
-            this.lBPercentRumble.Location = new System.Drawing.Point(63, 17);
-            this.lBPercentRumble.Name = "lBPercentRumble";
-            this.lBPercentRumble.Size = new System.Drawing.Size(15, 13);
-            this.lBPercentRumble.TabIndex = 207;
-            this.lBPercentRumble.Text = "%";
+            this.lbPercentRumble.AutoSize = true;
+            this.lbPercentRumble.Location = new System.Drawing.Point(63, 17);
+            this.lbPercentRumble.Name = "lbPercentRumble";
+            this.lbPercentRumble.Size = new System.Drawing.Size(15, 13);
+            this.lbPercentRumble.TabIndex = 207;
+            this.lbPercentRumble.Text = "%";
             // 
             // gBDeadzone
             // 
-            this.gBDeadzone.Controls.Add(this.lBL2);
+            this.gBDeadzone.Controls.Add(this.lbL2);
             this.gBDeadzone.Controls.Add(this.nUDL2);
             this.gBDeadzone.Controls.Add(this.lbSixaxisX);
             this.gBDeadzone.Controls.Add(this.lbSixaxisZ);
-            this.gBDeadzone.Controls.Add(this.lBR2);
+            this.gBDeadzone.Controls.Add(this.lbR2);
             this.gBDeadzone.Controls.Add(this.lbRS);
             this.gBDeadzone.Controls.Add(this.nUDSZ);
             this.gBDeadzone.Controls.Add(this.lbLS);
@@ -2091,11 +2238,11 @@
             // 
             // tPControls
             // 
-            this.tPControls.Controls.Add(this.lBGryo);
+            this.tPControls.Controls.Add(this.lbGryo);
             this.tPControls.Controls.Add(this.fLPTiltControls);
             this.tPControls.Controls.Add(this.MainPanel);
             this.tPControls.Controls.Add(this.lBControls);
-            this.tPControls.Controls.Add(this.lBControlTip);
+            this.tPControls.Controls.Add(this.lbControlTip);
             this.tPControls.Controls.Add(this.SticksPanel);
             this.tPControls.Location = new System.Drawing.Point(4, 22);
             this.tPControls.Name = "tPControls";
@@ -2105,14 +2252,14 @@
             this.tPControls.Text = "Controls";
             this.tPControls.UseVisualStyleBackColor = true;
             // 
-            // lBGryo
+            // lbGryo
             // 
-            this.lBGryo.AutoSize = true;
-            this.lBGryo.Location = new System.Drawing.Point(5, 192);
-            this.lBGryo.Name = "lBGryo";
-            this.lBGryo.Size = new System.Drawing.Size(67, 13);
-            this.lBGryo.TabIndex = 253;
-            this.lBGryo.Text = "Sixaxis Gyro:";
+            this.lbGryo.AutoSize = true;
+            this.lbGryo.Location = new System.Drawing.Point(5, 192);
+            this.lbGryo.Name = "lbGryo";
+            this.lbGryo.Size = new System.Drawing.Size(67, 13);
+            this.lbGryo.TabIndex = 253;
+            this.lbGryo.Text = "Sixaxis Gyro:";
             // 
             // fLPTiltControls
             // 
@@ -2167,12 +2314,12 @@
             // 
             // tPShiftMod
             // 
-            this.tPShiftMod.Controls.Add(this.slBGryo);
+            this.tPShiftMod.Controls.Add(this.slbGryo);
             this.tPShiftMod.Controls.Add(this.sfLPTiltControls);
             this.tPShiftMod.Controls.Add(this.cBShiftControl);
             this.tPShiftMod.Controls.Add(this.lBShiftControls);
-            this.tPShiftMod.Controls.Add(this.lBHold);
-            this.tPShiftMod.Controls.Add(this.lBtoUse);
+            this.tPShiftMod.Controls.Add(this.lbHold);
+            this.tPShiftMod.Controls.Add(this.lbtoUse);
             this.tPShiftMod.Controls.Add(this.ShiftMainPanel);
             this.tPShiftMod.Controls.Add(this.ShiftSticksPanel);
             this.tPShiftMod.Location = new System.Drawing.Point(4, 22);
@@ -2183,14 +2330,14 @@
             this.tPShiftMod.Text = "Shift Modifier";
             this.tPShiftMod.UseVisualStyleBackColor = true;
             // 
-            // slBGryo
+            // slbGryo
             // 
-            this.slBGryo.AutoSize = true;
-            this.slBGryo.Location = new System.Drawing.Point(5, 192);
-            this.slBGryo.Name = "slBGryo";
-            this.slBGryo.Size = new System.Drawing.Size(67, 13);
-            this.slBGryo.TabIndex = 255;
-            this.slBGryo.Text = "Sixaxis Gyro:";
+            this.slbGryo.AutoSize = true;
+            this.slbGryo.Location = new System.Drawing.Point(5, 192);
+            this.slbGryo.Name = "slbGryo";
+            this.slbGryo.Size = new System.Drawing.Size(67, 13);
+            this.slbGryo.TabIndex = 255;
+            this.slbGryo.Text = "Sixaxis Gyro:";
             // 
             // sfLPTiltControls
             // 
@@ -2325,25 +2472,25 @@
             this.lBShiftControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
             this.lBShiftControls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.List_MouseDoubleClick);
             // 
-            // lBHold
+            // lbHold
             // 
-            this.lBHold.AutoSize = true;
-            this.lBHold.Location = new System.Drawing.Point(44, 6);
-            this.lBHold.Name = "lBHold";
-            this.lBHold.Size = new System.Drawing.Size(29, 13);
-            this.lBHold.TabIndex = 189;
-            this.lBHold.Text = "Hold";
-            this.lBHold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbHold.AutoSize = true;
+            this.lbHold.Location = new System.Drawing.Point(44, 6);
+            this.lbHold.Name = "lbHold";
+            this.lbHold.Size = new System.Drawing.Size(29, 13);
+            this.lbHold.TabIndex = 189;
+            this.lbHold.Text = "Hold";
+            this.lbHold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lBtoUse
+            // lbtoUse
             // 
-            this.lBtoUse.AutoSize = true;
-            this.lBtoUse.Location = new System.Drawing.Point(84, 24);
-            this.lBtoUse.Name = "lBtoUse";
-            this.lBtoUse.Size = new System.Drawing.Size(105, 13);
-            this.lBtoUse.TabIndex = 189;
-            this.lBtoUse.Text = "to use these controls";
-            this.lBtoUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbtoUse.AutoSize = true;
+            this.lbtoUse.Location = new System.Drawing.Point(84, 24);
+            this.lbtoUse.Name = "lbtoUse";
+            this.lbtoUse.Size = new System.Drawing.Size(105, 13);
+            this.lbtoUse.TabIndex = 189;
+            this.lbtoUse.Text = "to use these controls";
+            this.lbtoUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ShiftMainPanel
             // 
@@ -3038,24 +3185,24 @@
             // tPController
             // 
             this.tPController.Controls.Add(this.SixaxisPanel);
-            this.tPController.Controls.Add(this.lBL2Track);
+            this.tPController.Controls.Add(this.lbL2Track);
             this.tPController.Controls.Add(this.pBDelayTracker);
             this.tPController.Controls.Add(this.btnSATrack);
             this.tPController.Controls.Add(this.btnRSTrack);
-            this.tPController.Controls.Add(this.lBRSTip);
-            this.tPController.Controls.Add(this.lBInputDelay);
-            this.tPController.Controls.Add(this.lBR2Track);
-            this.tPController.Controls.Add(this.lBLSTip);
-            this.tPController.Controls.Add(this.lBSATip);
+            this.tPController.Controls.Add(this.lbRSTip);
+            this.tPController.Controls.Add(this.lbInputDelay);
+            this.tPController.Controls.Add(this.lbR2Track);
+            this.tPController.Controls.Add(this.lbLSTip);
+            this.tPController.Controls.Add(this.lbSATip);
             this.tPController.Controls.Add(this.btnLSTrack);
             this.tPController.Controls.Add(this.pBSADeadzone);
             this.tPController.Controls.Add(this.pBRSDeadzone);
-            this.tPController.Controls.Add(this.lBRSTrack);
+            this.tPController.Controls.Add(this.lbRSTrack);
             this.tPController.Controls.Add(this.pBLSDeadzone);
-            this.tPController.Controls.Add(this.lBLSTrack);
+            this.tPController.Controls.Add(this.lbLSTrack);
             this.tPController.Controls.Add(this.tBR2);
             this.tPController.Controls.Add(this.tBL2);
-            this.tPController.Controls.Add(this.lBSATrack);
+            this.tPController.Controls.Add(this.lbSATrack);
             this.tPController.Location = new System.Drawing.Point(4, 22);
             this.tPController.Name = "tPController";
             this.tPController.Padding = new System.Windows.Forms.Padding(3);
@@ -3064,15 +3211,32 @@
             this.tPController.Text = "Controller Readings";
             this.tPController.UseVisualStyleBackColor = true;
             // 
-            // lBL2Track
+            // SixaxisPanel
             // 
-            this.lBL2Track.AutoSize = true;
-            this.lBL2Track.Location = new System.Drawing.Point(316, 33);
-            this.lBL2Track.Name = "lBL2Track";
-            this.lBL2Track.Size = new System.Drawing.Size(19, 13);
-            this.lBL2Track.TabIndex = 216;
-            this.lBL2Track.Text = "L2";
-            this.lBL2Track.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelX);
+            this.SixaxisPanel.Controls.Add(this.lb6Accel);
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroX);
+            this.SixaxisPanel.Controls.Add(this.lb6Gryo);
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroY);
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroZ);
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelY);
+            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelZ);
+            this.SixaxisPanel.Location = new System.Drawing.Point(300, 88);
+            this.SixaxisPanel.Name = "SixaxisPanel";
+            this.SixaxisPanel.Size = new System.Drawing.Size(125, 125);
+            this.SixaxisPanel.TabIndex = 236;
+            this.SixaxisPanel.Visible = false;
+            this.SixaxisPanel.Click += new System.EventHandler(this.SixaxisPanel_Click);
+            // 
+            // lbL2Track
+            // 
+            this.lbL2Track.AutoSize = true;
+            this.lbL2Track.Location = new System.Drawing.Point(316, 33);
+            this.lbL2Track.Name = "lbL2Track";
+            this.lbL2Track.Size = new System.Drawing.Size(19, 13);
+            this.lbL2Track.TabIndex = 216;
+            this.lbL2Track.Text = "L2";
+            this.lbL2Track.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pBDelayTracker
             // 
@@ -3106,53 +3270,53 @@
             this.btnRSTrack.Text = "button1";
             this.btnRSTrack.UseVisualStyleBackColor = false;
             // 
-            // lBRSTip
+            // lbRSTip
             // 
-            this.lBRSTip.Location = new System.Drawing.Point(150, 56);
-            this.lBRSTip.Name = "lBRSTip";
-            this.lBRSTip.Size = new System.Drawing.Size(125, 30);
-            this.lBRSTip.TabIndex = 216;
-            this.lBRSTip.Text = "Right Stick";
-            this.lBRSTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbRSTip.Location = new System.Drawing.Point(150, 56);
+            this.lbRSTip.Name = "lbRSTip";
+            this.lbRSTip.Size = new System.Drawing.Size(125, 30);
+            this.lbRSTip.TabIndex = 216;
+            this.lbRSTip.Text = "Right Stick";
+            this.lbRSTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lBInputDelay
+            // lbInputDelay
             // 
-            this.lBInputDelay.AutoSize = true;
-            this.lBInputDelay.Location = new System.Drawing.Point(6, 7);
-            this.lBInputDelay.Name = "lBInputDelay";
-            this.lBInputDelay.Size = new System.Drawing.Size(100, 13);
-            this.lBInputDelay.TabIndex = 216;
-            this.lBInputDelay.Text = "Input Delay: N/Ams";
-            this.lBInputDelay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbInputDelay.AutoSize = true;
+            this.lbInputDelay.Location = new System.Drawing.Point(6, 7);
+            this.lbInputDelay.Name = "lbInputDelay";
+            this.lbInputDelay.Size = new System.Drawing.Size(100, 13);
+            this.lbInputDelay.TabIndex = 216;
+            this.lbInputDelay.Text = "Input Delay: N/Ams";
+            this.lbInputDelay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lBR2Track
+            // lbR2Track
             // 
-            this.lBR2Track.AutoSize = true;
-            this.lBR2Track.Location = new System.Drawing.Point(385, 33);
-            this.lBR2Track.Name = "lBR2Track";
-            this.lBR2Track.Size = new System.Drawing.Size(21, 13);
-            this.lBR2Track.TabIndex = 216;
-            this.lBR2Track.Text = "R2";
-            this.lBR2Track.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbR2Track.AutoSize = true;
+            this.lbR2Track.Location = new System.Drawing.Point(385, 33);
+            this.lbR2Track.Name = "lbR2Track";
+            this.lbR2Track.Size = new System.Drawing.Size(21, 13);
+            this.lbR2Track.TabIndex = 216;
+            this.lbR2Track.Text = "R2";
+            this.lbR2Track.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lBLSTip
+            // lbLSTip
             // 
-            this.lBLSTip.Location = new System.Drawing.Point(6, 56);
-            this.lBLSTip.Name = "lBLSTip";
-            this.lBLSTip.Size = new System.Drawing.Size(125, 30);
-            this.lBLSTip.TabIndex = 216;
-            this.lBLSTip.Text = "Left Stick";
-            this.lBLSTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbLSTip.Location = new System.Drawing.Point(6, 56);
+            this.lbLSTip.Name = "lbLSTip";
+            this.lbLSTip.Size = new System.Drawing.Size(125, 30);
+            this.lbLSTip.TabIndex = 216;
+            this.lbLSTip.Text = "Left Stick";
+            this.lbLSTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lBSATip
+            // lbSATip
             // 
-            this.lBSATip.Location = new System.Drawing.Point(300, 56);
-            this.lBSATip.Name = "lBSATip";
-            this.lBSATip.Size = new System.Drawing.Size(125, 30);
-            this.lBSATip.TabIndex = 216;
-            this.lBSATip.Text = "Sixaxis: X axis is flipped for easier reading";
-            this.lBSATip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lBSATip.Click += new System.EventHandler(this.lBSATip_Click);
+            this.lbSATip.Location = new System.Drawing.Point(300, 56);
+            this.lbSATip.Name = "lbSATip";
+            this.lbSATip.Size = new System.Drawing.Size(125, 30);
+            this.lbSATip.TabIndex = 216;
+            this.lbSATip.Text = "Sixaxis: X axis is flipped for easier reading";
+            this.lbSATip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbSATip.Click += new System.EventHandler(this.lbSATip_Click);
             // 
             // btnLSTrack
             // 
@@ -3178,16 +3342,6 @@
             this.pBSADeadzone.TabStop = false;
             this.pBSADeadzone.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawCircle);
             // 
-            // lBSATrack
-            // 
-            this.lBSATrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lBSATrack.Location = new System.Drawing.Point(300, 88);
-            this.lBSATrack.Name = "lBSATrack";
-            this.lBSATrack.Size = new System.Drawing.Size(125, 125);
-            this.lBSATrack.TabIndex = 239;
-            this.lBSATrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lBSATrack.Click += new System.EventHandler(this.lBSATrack_Click);
-            // 
             // pBRSDeadzone
             // 
             this.pBRSDeadzone.BackColor = System.Drawing.Color.Transparent;
@@ -3200,14 +3354,14 @@
             this.pBRSDeadzone.TabStop = false;
             this.pBRSDeadzone.Visible = false;
             // 
-            // lBRSTrack
+            // lbRSTrack
             // 
-            this.lBRSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lBRSTrack.Location = new System.Drawing.Point(150, 88);
-            this.lBRSTrack.Name = "lBRSTrack";
-            this.lBRSTrack.Size = new System.Drawing.Size(125, 125);
-            this.lBRSTrack.TabIndex = 239;
-            this.lBRSTrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbRSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbRSTrack.Location = new System.Drawing.Point(150, 88);
+            this.lbRSTrack.Name = "lbRSTrack";
+            this.lbRSTrack.Size = new System.Drawing.Size(125, 125);
+            this.lbRSTrack.TabIndex = 239;
+            this.lbRSTrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pBLSDeadzone
             // 
@@ -3221,14 +3375,14 @@
             this.pBLSDeadzone.TabStop = false;
             this.pBLSDeadzone.Visible = false;
             // 
-            // lBLSTrack
+            // lbLSTrack
             // 
-            this.lBLSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lBLSTrack.Location = new System.Drawing.Point(5, 88);
-            this.lBLSTrack.Name = "lBLSTrack";
-            this.lBLSTrack.Size = new System.Drawing.Size(125, 125);
-            this.lBLSTrack.TabIndex = 239;
-            this.lBLSTrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbLSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbLSTrack.Location = new System.Drawing.Point(5, 88);
+            this.lbLSTrack.Name = "lbLSTrack";
+            this.lbLSTrack.Size = new System.Drawing.Size(125, 125);
+            this.lbLSTrack.TabIndex = 239;
+            this.lbLSTrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tBR2
             // 
@@ -3261,22 +3415,28 @@
             this.tBL2.TickFrequency = 127;
             this.tBL2.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
-            // SixaxisPanel
+            // lbSATrack
             // 
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelX);
-            this.SixaxisPanel.Controls.Add(this.lB6Accel);
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroX);
-            this.SixaxisPanel.Controls.Add(this.lB6Gryo);
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroY);
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroZ);
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelY);
-            this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelZ);
-            this.SixaxisPanel.Location = new System.Drawing.Point(300, 88);
-            this.SixaxisPanel.Name = "SixaxisPanel";
-            this.SixaxisPanel.Size = new System.Drawing.Size(125, 125);
-            this.SixaxisPanel.TabIndex = 236;
-            this.SixaxisPanel.Visible = false;
-            this.SixaxisPanel.Click += new System.EventHandler(this.SixaxisPanel_Click);
+            this.lbSATrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbSATrack.Location = new System.Drawing.Point(300, 88);
+            this.lbSATrack.Name = "lbSATrack";
+            this.lbSATrack.Size = new System.Drawing.Size(125, 125);
+            this.lbSATrack.TabIndex = 239;
+            this.lbSATrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lbSATrack.Click += new System.EventHandler(this.lbSATrack_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // pBProgram
+            // 
+            this.pBProgram.Location = new System.Drawing.Point(406, 70);
+            this.pBProgram.Name = "pBProgram";
+            this.pBProgram.Size = new System.Drawing.Size(23, 23);
+            this.pBProgram.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBProgram.TabIndex = 255;
+            this.pBProgram.TabStop = false;
             // 
             // advColorDialog
             // 
@@ -3344,6 +3504,11 @@
             this.gBLightbar.ResumeLayout(false);
             this.gBLightbar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
+            this.ShiftPanel.ResumeLayout(false);
+            this.ShiftPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.shiftRedBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shiftGreenBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shiftBlueBar)).EndInit();
             this.gBRumble.ResumeLayout(false);
             this.gBRumble.PerformLayout();
             this.gBDeadzone.ResumeLayout(false);
@@ -3363,14 +3528,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.spBSticks)).EndInit();
             this.tPController.ResumeLayout(false);
             this.tPController.PerformLayout();
+            this.SixaxisPanel.ResumeLayout(false);
+            this.SixaxisPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBDelayTracker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBSADeadzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRSDeadzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBLSDeadzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBR2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBL2)).EndInit();
-            this.SixaxisPanel.ResumeLayout(false);
-            this.SixaxisPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3425,10 +3591,10 @@
         private System.Windows.Forms.TrackBar greenBar;
         private System.Windows.Forms.TrackBar redBar;
         private System.Windows.Forms.CheckBox cBLightbyBattery;
-        private System.Windows.Forms.Label lBBlue;
-        private System.Windows.Forms.Label lBGreen;
-        private System.Windows.Forms.Label lBspc;
-        private System.Windows.Forms.Label lBRed;
+        private System.Windows.Forms.Label lbBlue;
+        private System.Windows.Forms.Label lbGreen;
+        private System.Windows.Forms.Label lbspc;
+        private System.Windows.Forms.Label lbRed;
         private System.Windows.Forms.CheckBox cBDoubleTap;
         private System.Windows.Forms.CheckBox cBTap;
         private System.Windows.Forms.NumericUpDown nUDTap;
@@ -3436,12 +3602,12 @@
         private System.Windows.Forms.CheckBox cBSlide;
         private System.Windows.Forms.NumericUpDown nUDScroll;
         private System.Windows.Forms.NumericUpDown nUDTouch;
-        private System.Windows.Forms.Label lBButtonMouseSens;
+        private System.Windows.Forms.Label lbButtonMouseSens;
         private System.Windows.Forms.CheckBox cBlowerRCOn;
         private System.Windows.Forms.CheckBox cBTouchpadJitterCompensation;
-        private System.Windows.Forms.Label lBL2;
-        private System.Windows.Forms.Label lBR2;
-        private System.Windows.Forms.Label lBIdleMinutes;
+        private System.Windows.Forms.Label lbL2;
+        private System.Windows.Forms.Label lbR2;
+        private System.Windows.Forms.Label lbIdleMinutes;
         private System.Windows.Forms.NumericUpDown nUDIdleDisconnect;
         private System.Windows.Forms.NumericUpDown nUDR2;
         private System.Windows.Forms.TrackBar tBsixaxisAccelZ;
@@ -3452,19 +3618,19 @@
         private System.Windows.Forms.TrackBar tBsixaxisGyroY;
         private System.Windows.Forms.TrackBar tBsixaxisGyroX;
         private System.Windows.Forms.NumericUpDown nUDRumbleBoost;
-        private System.Windows.Forms.Label lB6Accel;
+        private System.Windows.Forms.Label lb6Accel;
         private System.Windows.Forms.Button btnRumbleTest;
         private System.Windows.Forms.Label lbFull;
-        private System.Windows.Forms.Label lBLowRed;
-        private System.Windows.Forms.Label lBLowGreen;
-        private System.Windows.Forms.Label lBLowBlue;
+        private System.Windows.Forms.Label lbLowRed;
+        private System.Windows.Forms.Label lbLowGreen;
+        private System.Windows.Forms.Label lbLowBlue;
         private System.Windows.Forms.TrackBar lowRedBar;
         private System.Windows.Forms.TrackBar lowGreenBar;
         private System.Windows.Forms.TrackBar lowBlueBar;
-        private System.Windows.Forms.Label lBEmpty;
+        private System.Windows.Forms.Label lbEmpty;
         private System.Windows.Forms.Panel lowBatteryPanel;
         private System.Windows.Forms.Panel FullPanel;
-        private System.Windows.Forms.Label lBControlTip;
+        private System.Windows.Forms.Label lbControlTip;
         private System.Windows.Forms.Label lbRS;
         private System.Windows.Forms.Label lbLS;
         private System.Windows.Forms.NumericUpDown nUDRS;
@@ -3479,8 +3645,8 @@
         private System.Windows.Forms.CheckBox cBControllerInput;
         private System.Windows.Forms.NumericUpDown nUDSixaxis;
         private System.Windows.Forms.NumericUpDown nUDflashLED;
-        private System.Windows.Forms.Label lBPercentFlashBar;
-        private System.Windows.Forms.Label lBFlashAt;
+        private System.Windows.Forms.Label lbPercentFlashBar;
+        private System.Windows.Forms.Label lbFlashAt;
         private System.Windows.Forms.RadioButton rBFade;
         private System.Windows.Forms.RadioButton rBNormal;
         private System.Windows.Forms.RadioButton rBRainbow;
@@ -3492,7 +3658,7 @@
         private System.Windows.Forms.Label lbSixaxisZ;
         private System.Windows.Forms.NumericUpDown nUDSZ;
         private System.Windows.Forms.NumericUpDown nUDSX;
-        private System.Windows.Forms.Label lBPercentRumble;
+        private System.Windows.Forms.Label lbPercentRumble;
         private System.Windows.Forms.CheckBox cBMouseAccel;
         private System.Windows.Forms.TabControl tabControls;
         private System.Windows.Forms.TabPage tPShiftMod;
@@ -3535,44 +3701,56 @@
         private System.Windows.Forms.Button sbnLSDown;
         private System.Windows.Forms.Button sbnR3;
         public System.Windows.Forms.ListBox lBShiftControls;
-        private System.Windows.Forms.Label lBtoUse;
+        private System.Windows.Forms.Label lbtoUse;
         private System.Windows.Forms.TabPage tPControls;
-        private System.Windows.Forms.Label lB6Gryo;
-        private System.Windows.Forms.Label lBGryo;
+        private System.Windows.Forms.Label lb6Gryo;
+        private System.Windows.Forms.Label lbGryo;
         private System.Windows.Forms.FlowLayoutPanel fLPTiltControls;
         private System.Windows.Forms.Button bnGyroZN;
         private System.Windows.Forms.Button bnGyroZP;
         private System.Windows.Forms.Button bnGyroXP;
         private System.Windows.Forms.Button bnGyroXN;
-        private System.Windows.Forms.Label slBGryo;
+        private System.Windows.Forms.Label slbGryo;
         private System.Windows.Forms.FlowLayoutPanel sfLPTiltControls;
         private System.Windows.Forms.Button sbnGyroZN;
         private System.Windows.Forms.Button sbnGyroZP;
         private System.Windows.Forms.Button sbnGyroXP;
         private System.Windows.Forms.Button sbnGyroXN;
-        private System.Windows.Forms.Label lBHold;
+        private System.Windows.Forms.Label lbHold;
         private System.Windows.Forms.TabPage tPController;
         private System.Windows.Forms.Button btnLSTrack;
         private System.Windows.Forms.Button btnSATrack;
         private System.Windows.Forms.Button btnRSTrack;
-        private System.Windows.Forms.Label lBSATrack;
-        private System.Windows.Forms.Label lBRSTrack;
-        private System.Windows.Forms.Label lBLSTrack;
-        private System.Windows.Forms.Label lBSATip;
+        private System.Windows.Forms.Label lbSATrack;
+        private System.Windows.Forms.Label lbRSTrack;
+        private System.Windows.Forms.Label lbLSTrack;
+        private System.Windows.Forms.Label lbSATip;
         private System.Windows.Forms.PictureBox pBLSDeadzone;
         private System.Windows.Forms.PictureBox pBSADeadzone;
         private System.Windows.Forms.PictureBox pBRSDeadzone;
-        private System.Windows.Forms.Label lBforMandR;
-        private System.Windows.Forms.Label lBUseController;
-        private System.Windows.Forms.Label lBRSTip;
-        private System.Windows.Forms.Label lBLSTip;
+        private System.Windows.Forms.Label lbUseController;
+        private System.Windows.Forms.Label lbRSTip;
+        private System.Windows.Forms.Label lbLSTip;
         private System.Windows.Forms.PictureBox pBDelayTracker;
-        private System.Windows.Forms.Label lBInputDelay;
+        private System.Windows.Forms.Label lbInputDelay;
         private System.Windows.Forms.TrackBar tBL2;
         private System.Windows.Forms.TrackBar tBR2;
-        private System.Windows.Forms.Label lBR2Track;
-        private System.Windows.Forms.Label lBL2Track;
+        private System.Windows.Forms.Label lbR2Track;
+        private System.Windows.Forms.Label lbL2Track;
         private System.Windows.Forms.Panel SixaxisPanel;
+        private System.Windows.Forms.Panel ShiftPanel;
+        private System.Windows.Forms.Label lbShift;
+        private System.Windows.Forms.Label lbShiftRed;
+        private System.Windows.Forms.Label lbShiftGreen;
+        private System.Windows.Forms.Label lbShiftBlue;
+        private System.Windows.Forms.TrackBar shiftRedBar;
+        private System.Windows.Forms.TrackBar shiftGreenBar;
+        private System.Windows.Forms.TrackBar shiftBlueBar;
+        private System.Windows.Forms.CheckBox cBShiftLight;
+        private System.Windows.Forms.CheckBox cBLaunchProgram;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.PictureBox pBProgram;
     }
 }
 

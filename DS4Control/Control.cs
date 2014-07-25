@@ -5,6 +5,7 @@ using System.Text;
 using DS4Library;
 using System.IO;
 using System.Reflection;
+using System.Diagnostics;
 namespace DS4Control
 {
     public class Control
@@ -78,16 +79,13 @@ namespace DS4Control
                         device.Removal -= DS4Devices.On_Removal;
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
-                        //TPadModeSwitcher m_switcher = new TPadModeSwitcher(device, ind);
-                        //m_switcher.Debug += OnDebug;
-                        //modeSwitcher[ind] = m_switcher;
                         touchPad[ind] = new Mouse(ind, device);
                         DS4Color color = Global.loadColor(ind);
                         device.LightBarColor = color;
                         x360Bus.Plugin(ind);
                         device.Report += this.On_Report;
-                        //m_switcher.setMode(Global.getInitialMode(ind));
                         TouchPadOn(ind, device);
+                        LaunchProgram(ind);
                         string filename = Path.GetFileName(Global.getAProfile(ind));
                         ind++;
                         if (showlog)
@@ -133,7 +131,7 @@ namespace DS4Control
                         else
                         {
                             DS4LightBar.defualtLight = true;
-                            DS4LightBar.updateLightBar(DS4Controllers[i], i);
+                            DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i], ExposedState[i]);
                             System.Threading.Thread.Sleep(50);
                         }
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
@@ -188,6 +186,7 @@ namespace DS4Control
                             device.Report += this.On_Report;
                             x360Bus.Plugin(Index);
                             TouchPadOn(Index, device);
+                            LaunchProgram(Index);
                             string filename = Path.GetFileName(Global.getAProfile(Index));
                             if (System.IO.File.Exists(Global.appdatapath + "\\Profiles\\" + filename))
                             {
@@ -207,6 +206,13 @@ namespace DS4Control
             return true;
         }
 
+        public void LaunchProgram(int ind)
+        {
+            if (Global.getLaunchProgram(ind) != string.Empty)
+            {
+                Process.Start(Global.getLaunchProgram(ind));
+            }
+        }
         public void TouchPadOn(int ind, DS4Device device)
         {
             ITouchpadBehaviour tPad = touchPad[ind];
@@ -218,7 +224,7 @@ namespace DS4Control
             device.Touchpad.TouchUnchanged += tPad.touchUnchanged;
             //LogDebug("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
             //Log.LogToTray("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
-            Global.ControllerStatusChanged(this);
+            //Global.ControllerStatusChanged(this);
         }
 
         public void TimeoutConnection(DS4Device d)
@@ -379,7 +385,6 @@ namespace DS4Control
                 Log.LogToTray("Controller " + device.MacAddress + " was removed or lost connection");
                 System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 DS4Controllers[ind] = null;
-                //modeSwitcher[ind] = null;
                 touchPad[ind] = null;
                 Global.ControllerStatusChanged(this);
             }
@@ -414,8 +419,7 @@ namespace DS4Control
                 }
 
                 // Update the GUI/whatever.
-                DS4LightBar.updateLightBar(device, ind);
-                //DS4LightBar.defualtLight(device, ind);
+                DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind]);
 
                 x360Bus.Parse(cState, processingData[ind].Report, ind);
                 // We push the translated Xinput state, and simultaneously we

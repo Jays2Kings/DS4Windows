@@ -34,8 +34,7 @@ namespace ScpServer
             else if (button.Name.StartsWith("sbn"))
             {
                 Text = "Select an action for " + button.Name.Substring(3);
-                btnFallBack.Visible = true;
-                btnUNBOUND2.Location = new Point(btnUNBOUND2.Location.X + 35, btnUNBOUND2.Location.Y);
+                btnFallBack.Text = "Fall Back";
             }
             foreach (System.Windows.Forms.Control control in this.Controls)
                 if (control is Button)
@@ -72,7 +71,7 @@ namespace ScpServer
                         keyname = "How did you get here?";
                 }
                 else if (((Button)sender).Tag == null)
-                    keyname = "Fall back";
+                    keyname = ((Button)sender).Text;
                 else if (((Button)sender).Tag.ToString().Contains("X360"))
                     keyname = ((Button)sender).Tag.ToString().Substring(4);
                 else

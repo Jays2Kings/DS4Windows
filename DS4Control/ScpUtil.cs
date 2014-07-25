@@ -318,6 +318,28 @@ namespace DS4Control
             color.blue = m_Config.m_ChargingLeds[device][2];
             return color;
         }
+        public static void saveShiftColor(int device, byte red, byte green, byte blue)
+        {
+            m_Config.m_ShiftLeds[device][0] = red;
+            m_Config.m_ShiftLeds[device][1] = green;
+            m_Config.m_ShiftLeds[device][2] = blue;
+        }
+        public static DS4Color loadShiftColor(int device)
+        {
+            DS4Color color = new DS4Color();
+            color.red = m_Config.m_ShiftLeds[device][0];
+            color.green = m_Config.m_ShiftLeds[device][1];
+            color.blue = m_Config.m_ShiftLeds[device][2];
+            return color;
+        }
+        public static void setShiftColorOn(int device, bool on)
+        {
+            m_Config.shiftColorOn[device] = on;
+        }
+        public static bool getShiftColorOn(int device)
+        {
+            return m_Config.shiftColorOn[device];
+        }
         public static void setTapSensitivity(int device, byte sen)
         {
             m_Config.tapSensitivity[device] = sen;
@@ -453,6 +475,14 @@ namespace DS4Control
         public static void setShiftModifier(int device, int value)
         {
             m_Config.shiftModifier[device] = value;
+        }
+        public static string getLaunchProgram(int device)
+        {
+            return m_Config.launchProgram[device];
+        }
+        public static void setLaunchProgram(int device, string value)
+        {
+            m_Config.launchProgram[device] = value;
         }
         public static void setAProfile(int device, string filepath)
         {
@@ -685,9 +715,19 @@ namespace DS4Control
             new Byte[] {0,0,0},
             new Byte[] {0,0,0}
         };
+        public Byte[][] m_ShiftLeds = new Byte[][]
+        {
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0},
+            new Byte[] {0,0,0}
+        };
+        public bool[] shiftColorOn = { false, false, false, false, false };
         public int[] chargingType = { 0, 0, 0, 0, 0 };
         public bool[] flushHIDQueue = { true, true, true, true, true };
         public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
+        public string[] launchProgram = { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
 
         public Boolean useExclusiveMode = false;
         public Int32 formWidth = 782;
@@ -820,6 +860,10 @@ namespace DS4Control
                 XmlNode xmlChargingColor = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingColor", null);
                 xmlChargingColor.InnerText = m_ChargingLeds[device][0].ToString() + "," + m_ChargingLeds[device][1].ToString() + "," + m_ChargingLeds[device][2].ToString();
                 Node.AppendChild(xmlChargingColor);
+                XmlNode xmlShiftColor = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftColor", null);
+                xmlShiftColor.InnerText = m_ShiftLeds[device][0].ToString() + "," + m_ShiftLeds[device][1].ToString() + "," + m_ShiftLeds[device][2].ToString();
+                Node.AppendChild(xmlShiftColor);
+                XmlNode xmlShiftColorOn = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftColorOn", null); xmlShiftColorOn.InnerText = shiftColorOn[device].ToString(); Node.AppendChild(xmlShiftColorOn);
                 XmlNode xmlTouchpadJitterCompensation = m_Xdoc.CreateNode(XmlNodeType.Element, "touchpadJitterCompensation", null); xmlTouchpadJitterCompensation.InnerText = touchpadJitterCompensation[device].ToString(); Node.AppendChild(xmlTouchpadJitterCompensation);
                 XmlNode xmlLowerRCOn = m_Xdoc.CreateNode(XmlNodeType.Element, "lowerRCOn", null); xmlLowerRCOn.InnerText = lowerRCOn[device].ToString(); Node.AppendChild(xmlLowerRCOn);
                 XmlNode xmlTapSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "tapSensitivity", null); xmlTapSensitivity.InnerText = tapSensitivity[device].ToString(); Node.AppendChild(xmlTapSensitivity);
@@ -835,7 +879,8 @@ namespace DS4Control
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); Node.AppendChild(xmlSZD);
                 XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null); xmlChargingType.InnerText = chargingType[device].ToString(); Node.AppendChild(xmlChargingType);
                 XmlNode xmlMouseAccel = m_Xdoc.CreateNode(XmlNodeType.Element, "MouseAcceleration", null); xmlMouseAccel.InnerText = mouseAccel[device].ToString(); Node.AppendChild(xmlMouseAccel);
-                XmlNode xmlShiftMod = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftModifier", null); xmlShiftMod.InnerText = shiftModifier[device].ToString(); Node.AppendChild(xmlShiftMod);                
+                XmlNode xmlShiftMod = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftModifier", null); xmlShiftMod.InnerText = shiftModifier[device].ToString(); Node.AppendChild(xmlShiftMod);
+                XmlNode xmlLaunchProgram = m_Xdoc.CreateNode(XmlNodeType.Element, "LaunchProgram", null); xmlLaunchProgram.InnerText = launchProgram[device].ToString(); Node.AppendChild(xmlLaunchProgram);                                
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -1210,6 +1255,20 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingBlue"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][2]); }
                     catch { missingSetting = true; }
                 }
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/ScpControl/ShiftColor");
+                    string[] colors;
+                    if (!string.IsNullOrEmpty(Item.InnerText))
+                        colors = Item.InnerText.Split(',');
+                    else
+                        colors = new string[0];
+                    for (int i = 0; i < colors.Length; i++)
+                        m_ShiftLeds[device][i] = byte.Parse(colors[i]);
+                }
+                catch { m_ShiftLeds[device] = m_Leds[device]; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ShiftColorOn"); Boolean.TryParse(Item.InnerText, out shiftColorOn[device]); }
+                catch { shiftColorOn[device] = false; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn[device]); }
@@ -1242,6 +1301,8 @@ namespace DS4Control
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ShiftModifier"); Int32.TryParse(Item.InnerText, out shiftModifier[device]); }
                 catch { shiftModifier[device] = 0; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LaunchProgram"); launchProgram[device] = Item.InnerText; }
+                catch { launchProgram[device] = string.Empty; missingSetting = true; }
                 DS4KeyType keyType;
                 UInt16 wvk;
                 if (buttons == null)

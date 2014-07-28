@@ -5,7 +5,6 @@ using System.Text;
 using DS4Library;
 using System.IO;
 using System.Reflection;
-using System.Diagnostics;
 namespace DS4Control
 {
     public class Control
@@ -210,7 +209,7 @@ namespace DS4Control
         {
             if (Global.getLaunchProgram(ind) != string.Empty)
             {
-                Process.Start(Global.getLaunchProgram(ind));
+                System.Diagnostics.Process.Start(Global.getLaunchProgram(ind));
             }
         }
         public void TouchPadOn(int ind, DS4Device device)
@@ -224,7 +223,7 @@ namespace DS4Control
             device.Touchpad.TouchUnchanged += tPad.touchUnchanged;
             //LogDebug("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
             //Log.LogToTray("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
-            //Global.ControllerStatusChanged(this);
+            Global.ControllerStatusChanged(this);
         }
 
         public void TimeoutConnection(DS4Device d)

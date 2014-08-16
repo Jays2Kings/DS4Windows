@@ -39,7 +39,7 @@ namespace ScpServer
             for (int i = 0; i < 4; i++)
             {
                 cbs[i].Items.AddRange(oc);
-                cbs[i].Items.Add("(none)");
+                cbs[i].Items.Add(Properties.Resources.noneProfile);
                 cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
             }
             if (!File.Exists(Global.appdatapath + @"\Auto Profiles.xml"))
@@ -147,7 +147,7 @@ namespace ScpServer
         {
             if (appsloaded)
             {
-                bnAddPrograms.Text = "Adding to list...";
+                bnAddPrograms.Text = Properties.Resources.AddingToList;
                 for (int i = lodsf.Count - 1; i >= 0; i--)
                     if (lodsf[i].Contains("etup") || lodsf[i].Contains("dotnet") || lodsf[i].Contains("SETUP")
                         || lodsf[i].Contains("edist") || lodsf[i].Contains("nstall") || String.IsNullOrEmpty(lodsf[i]))
@@ -168,7 +168,7 @@ namespace ScpServer
                         lVPrograms.Items.Add(lvi);
                     }
                 }
-                bnAddPrograms.Text = "Add programs";
+                bnAddPrograms.Text = Properties.Resources.AddPrograms;
                 bnAddPrograms.Enabled = true;
                 appsloaded = false;
                 ((Timer)sender).Stop();
@@ -325,7 +325,7 @@ namespace ScpServer
                 AppCollectionThread.Start();
             }
             catch { }
-            bnAddPrograms.Text = "Loading...";
+            bnAddPrograms.Text = Properties.Resources.Loading;
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addSteamGamesToolStripMenuItem);
             Timer appstimer = new Timer();
@@ -359,7 +359,7 @@ namespace ScpServer
                 AppCollectionThread.Start();
             }
             catch { }
-            bnAddPrograms.Text = "Loading...";
+            bnAddPrograms.Text = Properties.Resources.Loading;
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addOriginGamesToolStripMenuItem);
             Timer appstimer = new Timer();
@@ -377,7 +377,7 @@ namespace ScpServer
                 AppCollectionThread.Start();
             }
             catch { }
-            bnAddPrograms.Text = "Loading...";
+            bnAddPrograms.Text = Properties.Resources.Loading;
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addProgramsFromStartMenuToolStripMenuItem);
             Timer appstimer = new Timer();

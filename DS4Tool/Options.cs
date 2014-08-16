@@ -151,11 +151,11 @@ namespace ScpServer
             foreach (Button b in subbuttons)
                 b.MouseHover += button_MouseHover;
            
-            tp.SetToolTip(cBlowerRCOn, "Best used with right side as a mouse function");
-            tp.SetToolTip(cBDoubleTap, "Tap and hold to drag, slight delay with single taps");
-            tp.SetToolTip(lbControlTip, "You can also use your controller to change controls");
+            tp.SetToolTip(cBlowerRCOn, Properties.Resources.BestUsedRightSide);
+            tp.SetToolTip(cBDoubleTap, Properties.Resources.TapAndHold);
+            tp.SetToolTip(lbControlTip, Properties.Resources.UseControllerForMapping);
             tp.SetToolTip(cBTouchpadJitterCompensation, "Use Sixaxis to help calculate touchpad movement");
-            tp.SetToolTip(pBRainbow, "Always on Rainbow Mode");
+            tp.SetToolTip(pBRainbow, Properties.Resources.AlwaysRainbow);
             tp.SetToolTip(cBFlushHIDQueue, "Flush HID Queue after each reading");
             tp.SetToolTip(cBLightbyBattery, "Also dim light by idle timeout if on");
             tp.SetToolTip(lbGryo, "Click to see readout of Sixaxis Gyro");
@@ -165,8 +165,8 @@ namespace ScpServer
             tp.SetToolTip(tBsixaxisAccelX, "AccelX");
             tp.SetToolTip(tBsixaxisAccelY, "AccelY");
             tp.SetToolTip(tBsixaxisAccelZ, "AccelZ");
-            tp.SetToolTip(lbEmpty, "Click to copy the full color");
-            tp.SetToolTip(lbShift, "Click to copy the full color");
+            tp.SetToolTip(lbEmpty, Properties.Resources.CopyFullColor);
+            tp.SetToolTip(lbShift, Properties.Resources.CopyFullColor);
             tp.SetToolTip(lbSATip, "Click for advanced Sixaxis reading");
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
@@ -189,7 +189,7 @@ namespace ScpServer
             if (scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1] == null)
             {
                 tPController.Enabled = false;
-                lbInputDelay.Text = "Input Delay: N/Ams";
+                lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", Properties.Resources.NA).Replace("*ms*", "ms");
                 pBDelayTracker.BackColor = Color.Transparent;
             }
             else
@@ -227,7 +227,7 @@ namespace ScpServer
                 else
                     lbR2Track.ForeColor = Color.Black;
                 double latency = scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1].Latency;
-                lbInputDelay.Text = "Input Delay: " + latency + "ms";
+                lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", latency.ToString()).Replace("*ms*", "ms");
                 if (latency > 10)
                     pBDelayTracker.BackColor = Color.Red;
                 else if (latency > 5)
@@ -366,7 +366,7 @@ namespace ScpServer
         public void Set()
         {
             lowBatteryPanel.Visible = cBLightbyBattery.Checked;
-            lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
+            lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.Full + ":": Properties.Resources.Color + ":");
             FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
@@ -701,21 +701,21 @@ namespace ScpServer
         private void rumbleBoostBar_ValueChanged(object sender, EventArgs e)
         {
             Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
-            if (btnRumbleTest.Text == "Stop")
+            if (btnRumbleTest.Text == Properties.Resources.StopText)
                 scpDevice.setRumble(255, 255, device);
         }
 
         private void btnRumbleTest_Click(object sender, EventArgs e)
         {
-            if (((Button)sender).Text == "Test")
+            if (((Button)sender).Text == Properties.Resources.TestText)
             {
                 scpDevice.setRumble(255, 255, (int)nUDSixaxis.Value - 1);
-                ((Button)sender).Text = "Stop";
+                ((Button)sender).Text = Properties.Resources.StopText;
             }
             else
             {
                 scpDevice.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
-                ((Button)sender).Text = "Test";
+                ((Button)sender).Text = Properties.Resources.TestText;
             }                
         }
 
@@ -738,7 +738,7 @@ namespace ScpServer
             Global.setLedAsBatteryIndicator(device, cBLightbyBattery.Checked);
             lowBatteryPanel.Visible = cBLightbyBattery.Checked;
             FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
-            lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
+            lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.Full + ":" : Properties.Resources.Color + ":");
         }
 
         private void lowerRCOffCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -1043,14 +1043,14 @@ namespace ScpServer
             {
                 //pBRainbow.Location = new Point(216 - 78, pBRainbow.Location.Y);
                 pBController.BackgroundImage = Properties.Resources.rainbowC;
-                cBLightbyBattery.Text = "Dim by Battery %";
+                cBLightbyBattery.Text = Properties.Resources.DimByBattery.Replace("*nl*", "\n");
             }
             else
             {
                 lowBatteryPanel.Enabled = cBLightbyBattery.Checked;
                 //pBRainbow.Location = new Point(216, pBRainbow.Location.Y);
                 pBController.BackgroundImage = null;
-                cBLightbyBattery.Text = "Color by Battery %";
+                cBLightbyBattery.Text = Properties.Resources.ColorByBattery.Replace("*nl*", "\n");
             }
             lbspc.Enabled = on;
             lowBatteryPanel.Enabled = !on;
@@ -1330,7 +1330,7 @@ namespace ScpServer
             {
                 Global.setLaunchProgram(device, string.Empty);
                 pBProgram.Image = null;
-                btnBrowse.Text = "Browse...";
+                btnBrowse.Text = Properties.Resources.Browse;
             }
         }
     }

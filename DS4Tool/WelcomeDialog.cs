@@ -40,7 +40,7 @@ namespace ScpServer
         private void bnStep1_Click(object sender, EventArgs e)
         {            
             WebClient wb = new WebClient();
-            if (bnStep1.Text == "Step 1: Install the DS4 Driver")
+            if (bnStep1.Text == Properties.Resources.Step1)
             {
                 wb.DownloadFileAsync(new Uri("https://docs.google.com/uc?authuser=0&id=0BwPaAe9M8N9mYVdPakJ6OXpMUlU&export=download"), Global.appdatapath + "\\VBus.zip");
                 wb.DownloadProgressChanged += wb_DownloadProgressChanged;
@@ -50,7 +50,7 @@ namespace ScpServer
 
         private void wb_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            bnStep1.Text = "Downloading " + e.ProgressPercentage + "%";
+            bnStep1.Text = Properties.Resources.Downloading.Replace("*number*", e.ProgressPercentage.ToString());
         }
 
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
@@ -58,7 +58,7 @@ namespace ScpServer
         {
             if (!Global.AdminNeeded())
             {
-                bnStep1.Text = "Opening Installer";
+                bnStep1.Text = Properties.Resources.OpeningInstaller;
                 try
                 {
                     File.Delete(exepath + "\\ScpDriver.exe");
@@ -82,7 +82,7 @@ namespace ScpServer
             }
             else
             {
-                bnStep1.Text = "Please Open ScpDriver.exe";
+                bnStep1.Text = Properties.Resources.OpenScpDriver;
                 Directory.CreateDirectory(Global.appdatapath + "\\Virtual Bus Driver");
                 try { ZipFile.ExtractToDirectory(Global.appdatapath + "\\VBus.zip", Global.appdatapath + "\\Virtual Bus Driver"); }
                 catch { }
@@ -101,7 +101,7 @@ namespace ScpServer
             {
                 if (processes.Length < 1)
                 {
-                    bnStep1.Text = "Install Complete";
+                    bnStep1.Text = Properties.Resources.InstallComplete;
                     
                     try
                     {
@@ -122,7 +122,7 @@ namespace ScpServer
                 if (running)
                     if (processes.Length < 1)
                     {
-                        bnStep1.Text = "Install Complete";
+                        bnStep1.Text = Properties.Resources.InstallComplete;
                         File.Delete(Global.appdatapath + "\\VBus.zip");
                         ((Timer)sender).Stop();
                     }

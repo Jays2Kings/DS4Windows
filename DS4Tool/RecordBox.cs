@@ -32,26 +32,26 @@ namespace ScpServer
 
         private void btnRecord_Click(object sender, EventArgs e)
         {
-            if (btnRecord.Text == "Record")
+            if (btnRecord.Text == Properties.Resources.RecordText)
             {
                 if (cBRecordDelays.Checked)
                     sw.Start();
                 macros.Clear();
                 lVMacros.Items.Clear();
-                btnRecord.Text = "Stop";
+                btnRecord.Text = Properties.Resources.StopText;
                 EnableControls(false);
                 ActiveControl = null;
                 lVMacros.Focus();
             }
             else
             {
-                if (btn4th.Text.Contains("Up"))
+                if (btn4th.Text.Contains(Properties.Resources.UpText))
                     btn4th_Click(sender, e);
-                if (btn5th.Text.Contains("Up"))
+                if (btn5th.Text.Contains(Properties.Resources.UpText))
                     btn5th_Click(sender, e);
                 if (cBRecordDelays.Checked)
                     sw.Reset();
-                btnRecord.Text = "Record";
+                btnRecord.Text = Properties.Resources.RecordText;
                 EnableControls(true);                
             }
         }
@@ -68,7 +68,7 @@ namespace ScpServer
 
         private void anyKeyDown(object sender, KeyEventArgs e)
         {
-            if (btnRecord.Text == "Stop")
+            if (btnRecord.Text == Properties.Resources.StopText)
             {
                 int value = WhichKey(e, 0);
                 int count = 0;
@@ -92,7 +92,7 @@ namespace ScpServer
                     if (cBRecordDelays.Checked)
                     {
                         macros.Add((int)sw.ElapsedMilliseconds + 300);
-                        lVMacros.Items.Add("Wait " + sw.ElapsedMilliseconds + "ms", 2);
+                        lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
                         sw.Reset();
                         sw.Start();
                     }
@@ -164,13 +164,13 @@ namespace ScpServer
 
         private void anyKeyUp(object sender, KeyEventArgs e)
         {
-            if (btnRecord.Text == "Stop" && macros.Count != 0)
+            if (btnRecord.Text == Properties.Resources.StopText && macros.Count != 0)
             {
                 int value = WhichKey(e, 1);
                 if (cBRecordDelays.Checked)
                 {
                     macros.Add((int)sw.ElapsedMilliseconds + 300);
-                    lVMacros.Items.Add("Wait " + sw.ElapsedMilliseconds + "ms", 2);
+                    lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
                     sw.Reset();
                     sw.Start();
                 }
@@ -181,7 +181,7 @@ namespace ScpServer
         }
         private void anyMouseDown(object sender, MouseEventArgs e)
         {
-            if (btnRecord.Text == "Stop")
+            if (btnRecord.Text == Properties.Resources.StopText)
             {
                 int value;
                 switch (e.Button)
@@ -208,7 +208,7 @@ namespace ScpServer
                     if (cBRecordDelays.Checked)
                     {
                         macros.Add((int)sw.ElapsedMilliseconds + 300);
-                        lVMacros.Items.Add("Wait " + sw.ElapsedMilliseconds + "ms", 2);
+                        lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
                         sw.Reset();
                         sw.Start();
                     }
@@ -225,7 +225,7 @@ namespace ScpServer
 
         private void anyMouseUp(object sender, MouseEventArgs e)
         {
-            if (btnRecord.Text == "Stop" && macros.Count != 0)
+            if (btnRecord.Text == Properties.Resources.StopText && macros.Count != 0)
             {
                 int value;
                 switch (e.Button)
@@ -275,7 +275,7 @@ namespace ScpServer
                 saved = true;
                 Close();
             }
-            else MessageBox.Show("No macro was recorded", "DS4Windows", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else MessageBox.Show(Properties.Resources.NoMacroRecorded, "DS4Windows", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         
         private void lVMacros_MouseMove(object sender, MouseEventArgs e)
@@ -293,7 +293,7 @@ namespace ScpServer
         private void RecordBox_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!saved && macros.Count > 0)
-                if (MessageBox.Show("Save Recorded Macro?", "DS4Windows", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(Properties.Resources.SaveRecordedMacro, "DS4Windows", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     btnSave_Click(null, null);
         }
 
@@ -349,7 +349,7 @@ namespace ScpServer
         private void btn4th_Click(object sender, EventArgs e)
         {
             int value = 259;
-            if (btn4th.Text.Contains("Down"))
+            if (btn4th.Text.Contains(Properties.Resources.DownText))
             {
                 if (macros.Count == 0)
                 {
@@ -366,27 +366,27 @@ namespace ScpServer
                     if (cBRecordDelays.Checked)
                     {
                         macros.Add((int)sw.ElapsedMilliseconds + 300);
-                        lVMacros.Items.Add("Wait " + sw.ElapsedMilliseconds + "ms", 2);
+                        lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
                         sw.Reset();
                         sw.Start();
                     }
                     macros.Add(value);
                     lVMacros.Items.Add("4th Mouse Button", 0);
                 }
-                btn4th.Text = "4th Mouse Button Up";
+                btn4th.Text = Properties.Resources.FourthMouseUp;
             }
             else
             {
                 if (cBRecordDelays.Checked)
                 {
                     macros.Add((int)sw.ElapsedMilliseconds + 300);
-                    lVMacros.Items.Add("Wait " + sw.ElapsedMilliseconds + "ms", 2);
+                    lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
                     sw.Reset();
                     sw.Start();
                 }
                 macros.Add(value);
                 lVMacros.Items.Add("4th Mouse Button", 1);
-                btn4th.Text = "4th Mouse Button Down";
+                btn4th.Text = Properties.Resources.FourthMouseDown;
             }
             lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
         }
@@ -394,7 +394,7 @@ namespace ScpServer
         private void btn5th_Click(object sender, EventArgs e)
         {
             int value = 260;
-            if (btn5th.Text.Contains("Down"))
+            if (btn5th.Text.Contains(Properties.Resources.DownText))
             {
                 if (macros.Count == 0)
                 {
@@ -411,27 +411,27 @@ namespace ScpServer
                     if (cBRecordDelays.Checked)
                     {
                         macros.Add((int)sw.ElapsedMilliseconds + 300);
-                        lVMacros.Items.Add("Wait " + sw.ElapsedMilliseconds + "ms", 2);
+                        lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
                         sw.Reset();
                         sw.Start();
                     }
                     macros.Add(value);
                     lVMacros.Items.Add("5th Mouse Button", 0);
                 }
-                btn5th.Text = "5th Mouse Button Up";
+                btn5th.Text = Properties.Resources.FifthMouseUp;
             }
             else
             {
                 if (cBRecordDelays.Checked)
                 {
                     macros.Add((int)sw.ElapsedMilliseconds + 300);
-                    lVMacros.Items.Add("Wait " + sw.ElapsedMilliseconds + "ms", 2);
+                    lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
                     sw.Reset();
                     sw.Start();
                 }
                 macros.Add(value);
                 lVMacros.Items.Add("5th Mouse Button", 1);
-                btn5th.Text = "5th Mouse Button Down";
+                btn5th.Text = Properties.Resources.FifthMouseDown;
             }
             lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
         }

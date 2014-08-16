@@ -161,14 +161,26 @@
     <EmbeddedResource Include="Alreadyrunning.resx">
       <DependentUpon>Alreadyrunning.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Hotkeys.fr-FR.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hotkeys.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KBM360.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MessageTextBox.fr-FR.resx">
+      <DependentUpon>MessageTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MessageTextBox.resx">
       <DependentUpon>MessageTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options.cs.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options.fr-FR.resx">
+      <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
@@ -178,21 +190,34 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecordBox.fr-FR.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecordBox.resx">
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.es.resx" />
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
     <EmbeddedResource Include="SaveWhere.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScpForm.es.resx">
       <DependentUpon>ScpForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ScpForm.fr-FR.resx">
+      <DependentUpon>ScpForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScpForm.resx">
       <DependentUpon>ScpForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WelcomeDialog.fr-FR.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WelcomeDialog.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinProgs.fr-FR.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinProgs.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>

@@ -87,8 +87,8 @@ namespace ScpServer
             tSOptions.Visible = false;
             ToolTip tt = new ToolTip();
             if (File.Exists(appdatapath + "\\Profiles.xml"))
-                tt.SetToolTip(linkUninstall, "If removing DS4Windows, You can delete the settings following the profile folder link");
-            tt.SetToolTip(cBSwipeProfiles, "2 finger swipe touchpad left or right to change profiles");
+                tt.SetToolTip(linkUninstall, Properties.Resources.IfRemovingDS4Windows);
+            tt.SetToolTip(cBSwipeProfiles, Properties.Resources.TwoFingerSwipe);
         }
 
         public static string GetTopWindowName()
@@ -112,11 +112,11 @@ namespace ScpServer
             switch (e.Mode)
             {
                 case PowerModes.Resume:
-                    if (btnStartStop.Text == "Start")
+                    if (btnStartStop.Text == Properties.Resources.StartText)
                         btnStartStop_Clicked();
                     break;
                 case PowerModes.Suspend:
-                    if (btnStartStop.Text == "Stop")
+                    if (btnStartStop.Text == Properties.Resources.StopText)
                         btnStartStop_Clicked();
                     break;
             }
@@ -280,7 +280,7 @@ namespace ScpServer
                         else
                             cbs[i].SelectedIndex++;
                     if (slide.Contains("t"))
-                        ShowNotification(this, "Controller " + (i + 1) + " is now using Profile \"" + cbs[i].Text + "\"");
+                        ShowNotification(this, Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", cbs[i].Text));
                 }
 
             //Check for process for auto profiles
@@ -291,7 +291,7 @@ namespace ScpServer
                     if (name == GetTopWindowName().ToLower().Replace('/', '\\'))
                     {
                         for (int j = 0; j < 4; j++)
-                            if (proprofiles[j][i] != "(none)")
+                            if (proprofiles[j][i] != "(none)" && proprofiles[j][i] != Properties.Resources.noneProfile)
                             {
                                 Global.LoadTempProfile(j, proprofiles[j][i]); //j is controller index, i is filename
                                 if (Global.getLaunchProgram(j) != string.Empty) Process.Start(Global.getLaunchProgram(j));
@@ -380,7 +380,7 @@ namespace ScpServer
             string version = fvi.FileVersion;
             string newversion = File.ReadAllText(Global.appdatapath + "\\version.txt");
             if (version.Replace(',', '.').CompareTo(File.ReadAllText(Global.appdatapath + "\\version.txt")) == -1)//CompareVersions();
-                if (MessageBox.Show("Download Version " + newversion + " now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion), Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe") 
                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
@@ -391,7 +391,7 @@ namespace ScpServer
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
-                            MessageBox.Show("Please Download the new Updater, and (re)place it in the programs folder, then check for update again");
+                            MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
                             Process.Start("https://www.dropbox.com/s/tlqtdkdumdo0yir/DS4Updater.exe");
                         }
                     }
@@ -435,15 +435,15 @@ namespace ScpServer
                             cbs[i].SelectedIndex = j;
                             ((ToolStripMenuItem)shortcuts[i].DropDownItems[j]).Checked = true;
                             Global.setAProfile(i, cbs[i].Text);
-                            shortcuts[i].Text = "Edit Profile for Controller " + (i + 1);
-                            ebns[i].Text = "Edit";
+                            shortcuts[i].Text = Properties.Resources.ContextEdit.Replace("*number*", (i + 1).ToString());
+                            ebns[i].Text = Properties.Resources.EditProfile;
                             break;
                         }
                         else
                         {
-                            cbs[i].Text = "(No Profile Loaded)";
-                            shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
-                            ebns[i].Text = "New";
+                            cbs[i].Text = "(" + Properties.Resources.NoProfileLoaded + ")";
+                            shortcuts[i].Text = Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString());
+                            ebns[i].Text = Properties.Resources.New;
                         }
                 }
             }
@@ -452,25 +452,25 @@ namespace ScpServer
                 if (Global.appdatapath == Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName)
                 {
                     if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + @"\Profiles\"))
-                        MessageBox.Show("Please import or make a profile", "Profile Folder Moved to program folder");
+                        MessageBox.Show(Properties.Resources.PleaseImport, Properties.Resources.ProfileFolderMoved);
                     Directory.CreateDirectory(Global.appdatapath + @"\Profiles\");
                     for (int i = 0; i < 4; i++)
                     {
-                        cbs[i].Text = "(No Profile Loaded)";
-                        shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
-                        ebns[i].Text = "New";
+                        cbs[i].Text = "(" + Properties.Resources.NoProfileLoaded + ")";
+                        shortcuts[i].Text = Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString());
+                        ebns[i].Text = Properties.Resources.New;
                     }
                 }
                 else
                 {
                     if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\"))
-                        MessageBox.Show("Please import or make a profile", "Profile Folder Moved");
+                        MessageBox.Show(Properties.Resources.PleaseImport, Properties.Resources.ProfileFolderMoved);
                     Directory.CreateDirectory(Global.appdatapath + @"\Profiles\");
                     for (int i = 0; i < 4; i++)
                     {
-                        cbs[i].Text = "(No Profile Loaded)";
-                        shortcuts[i].Text = "Make Profile for Controller " + (i + 1);
-                        ebns[i].Text = "New";
+                        cbs[i].Text = "(" + Properties.Resources.NoProfileLoaded + ")";
+                        shortcuts[i].Text = Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString());
+                        ebns[i].Text = Properties.Resources.New;
                     }
                 }
             }
@@ -629,7 +629,7 @@ namespace ScpServer
                 if (Pads[Index].Text != String.Empty)
                 {
                     Pads[Index].Enabled = true;
-                    if (Pads[Index].Text != "Connecting...")
+                    if (Pads[Index].Text != Properties.Resources.Connecting)
                     {
                         Enable_Controls(Index, true);
                         //Console.WriteLine(opt == null);
@@ -647,7 +647,9 @@ namespace ScpServer
                     Enable_Controls(Index, false);
                     shortcuts[Index].Enabled = false;
                 }
-                if (rootHub.getShortDS4ControllerInfo(Index) != "None")
+                //if (((Index + 1) + ": " + rootHub.getShortDS4ControllerInfo(Index)).Length > 50)
+                //MessageBox.Show(((Index + 1) + ": " + rootHub.getShortDS4ControllerInfo(Index)).Length.ToString());
+                if (rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
                     tooltip += "\n" + (Index + 1) + ": " + rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
             }
             btnClear.Enabled = lvDebug.Items.Count > 0;
@@ -736,7 +738,7 @@ namespace ScpServer
             if (lBProfiles.SelectedIndex >= 0)
             {
                 string filename = lBProfiles.SelectedItem.ToString();
-                if (MessageBox.Show("\"" + filename + "\" cannot be restored.", "Delete Profile?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(Properties.Resources.ProfileCannotRestore.Replace("*Profile name*", "\"" + filename + "\""), Properties.Resources.DeleteProfile, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     System.IO.File.Delete(Global.appdatapath + @"\Profiles\" + filename + ".xml");
                     RefreshProfiles();
@@ -809,7 +811,7 @@ namespace ScpServer
             if (profile != "")
                 tSTBProfile.Text = profile;
             else
-                tSTBProfile.Text = "<type profile name here>";
+                tSTBProfile.Text = "<" + Properties.Resources.TypeProfileName + ">";
             opt = new Options(rootHub, devID, profile, this);
             opt.Text = "Options for Controller " + (devID + 1);
             opt.Icon = this.Icon;
@@ -827,7 +829,7 @@ namespace ScpServer
                 RefreshProfiles();
                 this.Size = oldsize;
                 oldsize = new System.Drawing.Size(0, 0);
-                tSBKeepSize.Text = "Keep this window size after closing";
+                tSBKeepSize.Text =  Properties.Resources.KeepThisSize;
                 tSBKeepSize.Image = Properties.Resources.size;
                 tSBKeepSize.Enabled = true;
                 tSOptions.Visible = false;
@@ -856,7 +858,7 @@ namespace ScpServer
         {
             Button bn = (Button)sender;
             int i = Int32.Parse(bn.Tag.ToString());
-            if (cbs[i].Text == "(No Profile Loaded)")
+            if (cbs[i].Text == "(" + Properties.Resources.NoProfileLoaded + ")")
                     ShowOptions(i, "");
                 else
                     ShowOptions(i, cbs[i].Text);
@@ -866,7 +868,7 @@ namespace ScpServer
         {
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
             int i = Int32.Parse(em.Tag.ToString());
-                if (em.Text == "Make Profile for Controller " + (i + 1))
+                if (em.Text == Properties.Resources.ContextEdit.Replace("*number*", (i + 1).ToString()))
                     ShowOptions(i, "");
                 else
                     for (int t=0; t < em.DropDownItems.Count-2; t++)
@@ -917,8 +919,8 @@ namespace ScpServer
                         if (!(shortcuts[tdevice].DropDownItems[i] is ToolStripSeparator))
                             ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[i]).Checked = false;
                     ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[cb.SelectedIndex]).Checked = true;
-                    LogDebug(DateTime.Now, "Controller " + (tdevice + 1) + " is now using Profile \"" + cb.Text + "\"");
-                    shortcuts[tdevice].Text = "Edit Profile for Controller " + (tdevice + 1);
+                    LogDebug(DateTime.Now, Properties.Resources.UsingProfile.Replace("*number*", (tdevice + 1).ToString()).Replace("*Profile name*", cb.Text));
+                    shortcuts[tdevice].Text = Properties.Resources.ContextEdit.Replace("*number*", (tdevice + 1).ToString());
                     Global.setAProfile(tdevice, cb.Items[cb.SelectedIndex].ToString());
                     Global.Save();
                     Global.LoadProfile(tdevice);
@@ -926,10 +928,10 @@ namespace ScpServer
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
                     ShowOptions(tdevice, "");
-                if (cb.Text == "(No Profile Loaded)")
-                    ebns[tdevice].Text = "New";
+                if (cb.Text == "(" + Properties.Resources.NoProfileLoaded + ")")
+                    ebns[tdevice].Text = Properties.Resources.New;
                 else
-                    ebns[tdevice].Text = "Edit";
+                    ebns[tdevice].Text = Properties.Resources.EditProfile;
             }
             ControllerStatusChanged(false); //to update profile name in notify icon
         }
@@ -1103,14 +1105,14 @@ namespace ScpServer
 
         private void tBProfile_Enter(object sender, EventArgs e)
         {
-            if (tSTBProfile.Text == "<type profile name here>")
+            if (tSTBProfile.Text == "<" + Properties.Resources.TypeProfileName + ">")
                 tSTBProfile.Text = "";
         }
 
         private void tBProfile_Leave(object sender, EventArgs e)
         {
             if (tSTBProfile.Text == "")
-                tSTBProfile.Text = "<type profile name here>";
+                tSTBProfile.Text = "<" + Properties.Resources.TypeProfileName + ">";
         }
 
         private void tSBCancel_Click(object sender, EventArgs e)
@@ -1134,14 +1136,14 @@ namespace ScpServer
                     opt.Close();
                 }
                 else
-                    MessageBox.Show("Please enter a valid name", "Not valid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(Properties.Resources.ValidName, Properties.Resources.NotValid, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private void tSBKeepSize_Click(object sender, EventArgs e)
         {
             oldsize = Size;
-            tSBKeepSize.Text = "Will keep";
+            tSBKeepSize.Text = Properties.Resources.WillKeep;
             tSBKeepSize.Image = Properties.Resources._checked;
             tSBKeepSize.Enabled = false;
         }
@@ -1173,16 +1175,16 @@ namespace ScpServer
             {
                 int index = cBUpdateTime.SelectedIndex;
                 cBUpdateTime.Items.Clear();
-                cBUpdateTime.Items.Add("hour");
-                cBUpdateTime.Items.Add("day");
+                cBUpdateTime.Items.Add(Properties.Resources.Hour);
+                cBUpdateTime.Items.Add(Properties.Resources.Day);
                 cBUpdateTime.SelectedIndex = index;
             }
-            else if (cBUpdateTime.Items[0].ToString() == "hour")
+            else if (cBUpdateTime.Items[0].ToString() == Properties.Resources.Hour)
             {
                 int index = cBUpdateTime.SelectedIndex;
                 cBUpdateTime.Items.Clear();
-                cBUpdateTime.Items.Add("hours");
-                cBUpdateTime.Items.Add("days");
+                cBUpdateTime.Items.Add(Properties.Resources.Hours);
+                cBUpdateTime.Items.Add(Properties.Resources.Days);
                 cBUpdateTime.SelectedIndex = index;
             }
         }
@@ -1215,7 +1217,7 @@ namespace ScpServer
             string version2 = fvi.FileVersion;
             string newversion2 = File.ReadAllText(Global.appdatapath + "\\version.txt");
             if (version2.Replace(',', '.').CompareTo(File.ReadAllText(Global.appdatapath + "\\version.txt")) == -1)//CompareVersions();
-                if (MessageBox.Show("Download Version " + newversion2 + " now?", "DS4Windows Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2), Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                          && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
@@ -1226,7 +1228,7 @@ namespace ScpServer
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
-                            MessageBox.Show("Please Download the new Updater, and (re)place it in the programs folder, then check for update again");
+                            MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
                             Process.Start("https://www.dropbox.com/s/tlqtdkdumdo0yir/DS4Updater.exe");
                         }
                     }
@@ -1245,7 +1247,7 @@ namespace ScpServer
             else
             {
                 File.Delete(Global.appdatapath + "\\version.txt");
-                MessageBox.Show("You are up to date", "DS4Windows Updater");
+                MessageBox.Show(Properties.Resources.UpToDate, "DS4Windows Updater");
             }
         }
 

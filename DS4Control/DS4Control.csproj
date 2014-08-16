@@ -51,6 +51,11 @@
     <Compile Include="Control.cs" />
     <Compile Include="InputMethods.cs" />
     <Compile Include="ITouchpadBehaviour.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="X360Device.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -79,6 +84,13 @@
       <Project>{43e14dad-e6e8-4b66-ac50-20f5cf9b9712}</Project>
       <Name>DS4Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

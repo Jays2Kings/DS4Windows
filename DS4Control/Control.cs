@@ -45,8 +45,7 @@ namespace DS4Control
         {
             if (DS4Devices.isExclusiveMode && !device.IsExclusive)
             {
-                String message = "Warning: Could not open DS4 " + device.MacAddress + " exclusively.  " +
-                "You must quit other applications like Steam, Uplay before activating the 'Hide DS4 Controller' option.";
+                String message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.MacAddress) + Properties.Resources.QuitOtherPrograms;
                 LogDebug(message);
                 Log.LogToTray(message);
             }
@@ -56,12 +55,12 @@ namespace DS4Control
             if (x360Bus.Open() && x360Bus.Start())
             {
                 if (showlog)
-                LogDebug("Starting...");
+                LogDebug(Properties.Resources.Starting);
                 DS4Devices.isExclusiveMode = Global.getUseExclusiveMode();
                 if (showlog)
                 {
-                    LogDebug("Searching for controllers....");
-                    LogDebug("Using " + (DS4Devices.isExclusiveMode ? "Exclusive Mode" : "Shared Mode"));
+                    LogDebug(Properties.Resources.SearchingController);
+                    LogDebug(DS4Devices.isExclusiveMode ?  Properties.Resources.UsingExclusive: Properties.Resources.UsingShared);
                 }
                 try
                 {
@@ -72,7 +71,7 @@ namespace DS4Control
                     foreach (DS4Device device in devices)
                     {
                         if (showlog)
-                            LogDebug("Found Controller: " + device.MacAddress + " (" + device.ConnectionType + ")");
+                            LogDebug(Properties.Resources.FoundController + device.MacAddress + " (" + device.ConnectionType + ")");
                         WarnExclusiveModeFailure(device);
                         DS4Controllers[ind] = device;
                         device.Removal -= DS4Devices.On_Removal;
@@ -90,8 +89,9 @@ namespace DS4Control
                         if (showlog)
                             if (System.IO.File.Exists(Global.appdatapath + "\\Profiles\\" + filename))
                             {
-                                LogDebug("Controller " + ind + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
-                                Log.LogToTray("Controller " + ind + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                                string prolog = Properties.Resources.UsingProfile.Replace("*number*", ind.ToString()).Replace("*Profile name*", filename.Substring(0, filename.Length - 4));
+                                LogDebug(prolog);
+                                Log.LogToTray(prolog);
                             }
                             else
                             {
@@ -119,7 +119,7 @@ namespace DS4Control
             {
                 running = false;
                 if (showlog)
-                    LogDebug("Stopping X360 Controllers");
+                    LogDebug(Properties.Resources.StoppingX360);
                 bool anyUnplugged = false;                
                 for (int i = 0; i < DS4Controllers.Length; i++)
                 {
@@ -144,10 +144,10 @@ namespace DS4Control
                     System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 x360Bus.Stop();
                 if (showlog)
-                    LogDebug("Stopping DS4 Controllers");
+                    LogDebug(Properties.Resources.StoppingDS4);
                 DS4Devices.stopControllers();
                 if (showlog)
-                    LogDebug("Stopped DS4 Tool");
+                    LogDebug(Properties.Resources.StoppedDS4Windows);
                 Global.ControllerStatusChanged(this);                
             }
             return true;
@@ -174,7 +174,7 @@ namespace DS4Control
                     for (Int32 Index = 0; Index < DS4Controllers.Length; Index++)
                         if (DS4Controllers[Index] == null)
                         {
-                            LogDebug("Found Controller: " + device.MacAddress + " (" + device.ConnectionType + ")");
+                            LogDebug(Properties.Resources.FoundController + device.MacAddress + " (" + device.ConnectionType + ")");
                             WarnExclusiveModeFailure(device);
                             DS4Controllers[Index] = device;
                             device.Removal -= DS4Devices.On_Removal;
@@ -189,8 +189,9 @@ namespace DS4Control
                             string filename = Path.GetFileName(Global.getAProfile(Index));
                             if (System.IO.File.Exists(Global.appdatapath + "\\Profiles\\" + filename))
                             {
-                                LogDebug("Controller " + (Index + 1) + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
-                                Log.LogToTray("Controller " + (Index + 1) + " is using Profile \"" + filename.Substring(0, filename.Length - 4) + "\"");
+                                string prolog = Properties.Resources.UsingProfile.Replace("*number*", (Index + 1).ToString()).Replace("*Profile name*", filename.Substring(0, filename.Length - 4));
+                                LogDebug(prolog);
+                                Log.LogToTray(prolog);
                             }
                             else
                             {
@@ -264,19 +265,19 @@ namespace DS4Control
                     TimeoutThread.IsBackground = true;
                     TimeoutThread.Name = "TimeoutFor" + d.MacAddress.ToString();
                     TimeoutThread.Start();
-                    return "Connecting...";
+                    return Properties.Resources.Connecting;
                 }
                 String battery;
                 if (d.Charging)
                 {
                     if (d.Battery >= 100)
-                        battery = "Charged";
+                        battery = Properties.Resources.Charged;
                     else
-                        battery = "Charging:" + d.Battery + "%";
+                        battery = Properties.Resources.Charging.Replace("*number*", d.Battery.ToString());
                 }
                 else
                 {
-                    battery = "Battery: " + d.Battery + "%";
+                    battery = Properties.Resources.Battery.Replace("*number*", d.Battery.ToString());
                 }
                 return d.MacAddress + " (" + d.ConnectionType + "), " + battery;
                 //return d.MacAddress + " (" + d.ConnectionType + "), Battery is " + battery + ", Touchpad in " + modeSwitcher[index].ToString();
@@ -297,7 +298,7 @@ namespace DS4Control
                     TimeoutThread.IsBackground = true;
                     TimeoutThread.Name = "TimeoutFor" + d.MacAddress.ToString();
                     TimeoutThread.Start();
-                    return "Connecting...";
+                    return Properties.Resources.Connecting;
                 }
                 return d.MacAddress;
             }
@@ -316,7 +317,7 @@ namespace DS4Control
                 if (d.Charging)
                 {
                     if (d.Battery >= 100)
-                        battery = "Full";
+                        battery = Properties.Resources.Full;
                     else
                         battery = d.Battery + "%+";
                 }
@@ -324,10 +325,10 @@ namespace DS4Control
                 {
                     battery = d.Battery + "%";
                 }
-                return d.ConnectionType + " " + battery + " (" + System.IO.Path.GetFileNameWithoutExtension(Global.getAProfile(index)) + ")";
+                return (d.ConnectionType + " " + battery + " (" + System.IO.Path.GetFileNameWithoutExtension(Global.getAProfile(index)) + ")");//.Substring(0,30);
             }
             else
-                return "None";
+                return Properties.Resources.NoneText;
         }
 
         public string getDS4Battery(int index)
@@ -341,7 +342,7 @@ namespace DS4Control
                 if (d.Charging)
                 {
                     if (d.Battery >= 100)
-                        battery = "Full";
+                        battery = Properties.Resources.Full;
                     else
                         battery = d.Battery + "%+";
                 }
@@ -352,7 +353,7 @@ namespace DS4Control
                 return battery;
             }
             else
-                return "N/A";
+                return Properties.Resources.NA;
         }
 
         public string getDS4Status(int index)
@@ -363,7 +364,7 @@ namespace DS4Control
                 return d.ConnectionType+"";
             }
             else
-                return "None";
+                return Properties.Resources.NoneText;
         }
 
 
@@ -380,8 +381,8 @@ namespace DS4Control
             {
                 CurrentState[ind].Battery = PreviousState[ind].Battery = 0; // Reset for the next connection's initial status change.
                 x360Bus.Unplug(ind);
-                LogDebug("Controller " + device.MacAddress + " was removed or lost connection");
-                Log.LogToTray("Controller " + device.MacAddress + " was removed or lost connection");
+                LogDebug(Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", device.MacAddress));
+                Log.LogToTray(Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", device.MacAddress));
                 System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 DS4Controllers[ind] = null;
                 touchPad[ind] = null;
@@ -508,15 +509,15 @@ namespace DS4Control
                 {
                     oldtouchvalue[deviceID] = Global.getTouchSensitivity(deviceID);
                     Global.setTouchSensitivity(deviceID, 0);
-                    LogDebug("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
-                    Log.LogToTray("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
+                    LogDebug(Global.getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
+                    Log.LogToTray(Global.getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }
                 else if (touchreleased[deviceID])
                 {
                     Global.setTouchSensitivity(deviceID, oldtouchvalue[deviceID]);
-                    LogDebug("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
-                    Log.LogToTray("Touchpad Movement is now " + (Global.getTouchSensitivity(deviceID) > 0 ? "On" : "Off"));
+                    LogDebug(Global.getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
+                    Log.LogToTray(Global.getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }
             }

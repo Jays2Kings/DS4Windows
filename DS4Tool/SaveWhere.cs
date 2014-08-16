@@ -26,7 +26,7 @@ namespace ScpServer
             lbMultiSaves.Visible = multisaves;
             cBDeleteOther.Visible = multisaves;
             if (multisaves)
-                lbPickWhere.Text += ", other location files will be deleted";
+                lbPickWhere.Text += "other location files will be deleted";
             if (Global.AdminNeeded())
                 bnPrgmFolder.Enabled = false;
         }

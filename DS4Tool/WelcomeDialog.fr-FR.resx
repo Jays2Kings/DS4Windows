@@ -117,112 +117,90 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="button2.TabIndex" type="System.Int32, mscorlib">
-    <value>240</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tBProfile.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="bnStep1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="bnStep1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 8</value>
   </data>
-  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="bnStep1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 23</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button2.Name" xml:space="preserve">
-    <value>button2</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MessageTextBox</value>
-  </data>
-  <data name="&gt;&gt;button2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="tBProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 7</value>
-  </data>
-  <data name="tBProfile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="&gt;&gt;tBProfile.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>359, 35</value>
-  </data>
-  <data name="tBProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
-  </data>
-  <data name="button2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;tBProfile.Name" xml:space="preserve">
-    <value>tBProfile</value>
-  </data>
-  <data name="&gt;&gt;tBProfile.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="tBProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>239</value>
-  </data>
-  <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;type new name here&gt;</value>
-  </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
-  </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="&gt;&gt;tBProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 5</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Type name of New Profile</value>
+  <data name="bnStep1.Text" xml:space="preserve">
+    <value>Étape 1: Installez les pilotes DS4</value>
   </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 5</value>
+    <value>4, 48</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 45</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Étape 2: Si vous êtes sous Windows 7 ou antérieur, installez les pilotes 360</value>
   </data>
-  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 227</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>fr-FR</value>
-  </metadata>
+  <data name="labelBluetooth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 185</value>
+  </data>
+  <data name="labelBluetooth.Text" xml:space="preserve">
+    <value>Pour paramétrer l'installation bluetooth
+Maintenir les boutons PS et SHARE pendant 3 secondes
+La barre lumineuse va commencer à doublement clignoter</value>
+  </data>
+  <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-1, 126</value>
+  </data>
+  <data name="labelUSB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>313, 59</value>
+  </data>
+  <data name="labelUSB.Text" xml:space="preserve">
+    <value>Étape 3: Connecter la manette DualShock 4
+Pour paramétrer l'installation filaire/usb:
+Brancher simplement le câble mini usb dans votre PC et votre DualShock 4</value>
+  </data>
+  <data name="labelBluetooth2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 362</value>
+  </data>
+  <data name="labelBluetooth2.Text" xml:space="preserve">
+    <value>Une fois le clignotement débuté, rendez vous aux paramètres Bluetooth
+puis connectez sur "Wireless Controller"
+Une fois appareillée, vous êtes prêt. Amusez-vous bien !</value>
+  </data>
+  <data name="linkBluetoothSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 375</value>
+  </data>
+  <data name="linkBluetoothSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
+  </data>
+  <data name="linkBluetoothSettings.Text" xml:space="preserve">
+    <value>Bluetooth</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Veillez à cocher Force Install</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 96</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>315, 31</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Si vous avez déjà utilisé une manette 360 sur votre PC, passez cette étape</value>
+  </data>
+  <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
+    <value>117, 424</value>
+  </data>
+  <data name="bnFinish.Text" xml:space="preserve">
+    <value>Fini</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>315, 446</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Bienvenue à DS4Windows</value>
+  </data>
 </root>

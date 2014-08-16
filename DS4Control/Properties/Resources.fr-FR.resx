@@ -117,112 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="button2.TabIndex" type="System.Int32, mscorlib">
-    <value>240</value>
+  <data name="Battery" xml:space="preserve">
+    <value>Batterie: *number*%</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tBProfile.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
+  <data name="Charged" xml:space="preserve">
+    <value>Chargée</value>
   </data>
-  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="Charging" xml:space="preserve">
+    <value>En charge: *number*%</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="Connecting" xml:space="preserve">
+    <value>Connexion...</value>
   </data>
-  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="ControllerWasRemoved" xml:space="preserve">
+    <value>La manette *Mac address* a été déconnectée ou la connexion a été perdue</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="CouldNotOpenDS4" xml:space="preserve">
+    <value>Attention: Ouverture impossible de la DS4 *Mac Address*</value>
   </data>
-  <data name="&gt;&gt;button2.Name" xml:space="preserve">
-    <value>button2</value>
+  <data name="FoundController" xml:space="preserve">
+    <value>Manette trouvée: </value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MessageTextBox</value>
+  <data name="Full" xml:space="preserve">
+    <value>Complète</value>
   </data>
-  <data name="&gt;&gt;button2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
   </data>
-  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+  <data name="NoneText" xml:space="preserve">
+    <value>aucune</value>
   </data>
-  <data name="tBProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 7</value>
+  <data name="QuitOtherPrograms" xml:space="preserve">
+    <value>Vous devez quitter les autres applications telles que Steam, Uplay avant d'activer l'option "Cacher la manette DS4"</value>
   </data>
-  <data name="tBProfile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+  <data name="SearchingController" xml:space="preserve">
+    <value>Recherche de manettes...</value>
   </data>
-  <data name="&gt;&gt;tBProfile.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="Starting" xml:space="preserve">
+    <value>Ouverture...</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>359, 35</value>
+  <data name="StoppedDS4Windows" xml:space="preserve">
+    <value>Arrêt de DS4Windows</value>
   </data>
-  <data name="tBProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
+  <data name="StoppingDS4" xml:space="preserve">
+    <value>Arrêt des manettes DS4</value>
   </data>
-  <data name="button2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+  <data name="StoppingX360" xml:space="preserve">
+    <value>Arrêt des manettes X360</value>
   </data>
-  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="TouchpadMovementOff" xml:space="preserve">
+    <value>Reconnaissance de mouvement du pavé tactile est Désactivée</value>
   </data>
-  <data name="&gt;&gt;tBProfile.Name" xml:space="preserve">
-    <value>tBProfile</value>
+  <data name="TouchpadMovementOn" xml:space="preserve">
+    <value>Reconnaissance de mouvement du pavé tactile est Activée</value>
   </data>
-  <data name="&gt;&gt;tBProfile.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="UsingExclusive" xml:space="preserve">
+    <value>Utilisation du mode Exclusif</value>
   </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="UsingProfile" xml:space="preserve">
+    <value>La manette *number* utilise le profil "*Profile name*"</value>
   </data>
-  <data name="tBProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>239</value>
+  <data name="UsingShared" xml:space="preserve">
+    <value>Utilisation du mode Partagé</value>
   </data>
-  <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;type new name here&gt;</value>
-  </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
-  </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="&gt;&gt;tBProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 5</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Type name of New Profile</value>
-  </data>
-  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 5</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>fr-FR</value>
-  </metadata>
 </root>

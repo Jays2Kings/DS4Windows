@@ -91,6 +91,42 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding to list....
+        /// </summary>
+        internal static string AddingToList {
+            get {
+                return ResourceManager.GetString("AddingToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Programs.
+        /// </summary>
+        internal static string AddPrograms {
+            get {
+                return ResourceManager.GetString("AddPrograms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always Rainbow Mode.
+        /// </summary>
+        internal static string AlwaysRainbow {
+            get {
+                return ResourceManager.GetString("AlwaysRainbow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assign to Controller *number*.
+        /// </summary>
+        internal static string AssignProfile {
+            get {
+                return ResourceManager.GetString("AssignProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap B {
@@ -111,12 +147,120 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Battery: *number*%.
+        /// </summary>
+        internal static string Battery {
+            get {
+                return ResourceManager.GetString("Battery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best used with right side as a mouse function.
+        /// </summary>
+        internal static string BestUsedRightSide {
+            get {
+                return ResourceManager.GetString("BestUsedRightSide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse....
+        /// </summary>
+        internal static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap BT {
             get {
                 object obj = ResourceManager.GetObject("BT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot write at current locataion. Copy Settings to appdata?.
+        /// </summary>
+        internal static string CannotWriteHere {
+            get {
+                return ResourceManager.GetString("CannotWriteHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charged.
+        /// </summary>
+        internal static string Charged {
+            get {
+                return ResourceManager.GetString("Charged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charging: *number*%.
+        /// </summary>
+        internal static string Charging {
+            get {
+                return ResourceManager.GetString("Charging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        internal static string Color {
+            get {
+                return ResourceManager.GetString("Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color by Battey %.
+        /// </summary>
+        internal static string ColorByBattery {
+            get {
+                return ResourceManager.GetString("ColorByBattery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connecting....
+        /// </summary>
+        internal static string Connecting {
+            get {
+                return ResourceManager.GetString("Connecting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Profile for Controller *number*.
+        /// </summary>
+        internal static string ContextEdit {
+            get {
+                return ResourceManager.GetString("ContextEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Profile for Controller *number*.
+        /// </summary>
+        internal static string ContextNew {
+            get {
+                return ResourceManager.GetString("ContextNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controller *Mac address* was removed or lost connection.
+        /// </summary>
+        internal static string ControllerWasRemoved {
+            get {
+                return ResourceManager.GetString("ControllerWasRemoved", resourceCulture);
             }
         }
         
@@ -131,12 +275,75 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy complete, please relaunch DS4Windows and remove settings from Program Directory.
+        /// </summary>
+        internal static string CopyComplete {
+            get {
+                return ResourceManager.GetString("CopyComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to copy the full color.
+        /// </summary>
+        internal static string CopyFullColor {
+            get {
+                return ResourceManager.GetString("CopyFullColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning: Could not open DS4 *Mac address* exclusively..
+        /// </summary>
+        internal static string CouldNotOpenDS4 {
+            get {
+                return ResourceManager.GetString("CouldNotOpenDS4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to day.
+        /// </summary>
+        internal static string Day {
+            get {
+                return ResourceManager.GetString("Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to days.
+        /// </summary>
+        internal static string Days {
+            get {
+                return ResourceManager.GetString("Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Profile?.
+        /// </summary>
+        internal static string DeleteProfile {
+            get {
+                return ResourceManager.GetString("DeleteProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dim by Battey %.
+        /// </summary>
+        internal static string DimByBattery {
+            get {
+                return ResourceManager.GetString("DimByBattery", resourceCulture);
             }
         }
         
@@ -156,6 +363,33 @@ namespace ScpServer.Properties {
             get {
                 object obj = ResourceManager.GetObject("DOWN", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading *number*%.
+        /// </summary>
+        internal static string Downloading {
+            get {
+                return ResourceManager.GetString("Downloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download Version *number* now?.
+        /// </summary>
+        internal static string DownloadVersion {
+            get {
+                return ResourceManager.GetString("DownloadVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Down.
+        /// </summary>
+        internal static string DownText {
+            get {
+                return ResourceManager.GetString("DownText", resourceCulture);
             }
         }
         
@@ -180,12 +414,39 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DS4Windows Update Available!.
+        /// </summary>
+        internal static string DS4Update {
+            get {
+                return ResourceManager.GetString("DS4Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DS4Windows cannot edit settings here, This will now close.
+        /// </summary>
+        internal static string DS4WindowsCannotEditHere {
+            get {
+                return ResourceManager.GetString("DS4WindowsCannotEditHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap edit {
             get {
                 object obj = ResourceManager.GetObject("edit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string EditProfile {
+            get {
+                return ResourceManager.GetString("EditProfile", resourceCulture);
             }
         }
         
@@ -200,12 +461,129 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 5th Mouse Button Down.
+        /// </summary>
+        internal static string FifthMouseDown {
+            get {
+                return ResourceManager.GetString("FifthMouseDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5th Mouse Button Up.
+        /// </summary>
+        internal static string FifthMouseUp {
+            get {
+                return ResourceManager.GetString("FifthMouseUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flush HID.
+        /// </summary>
+        internal static string FlushHID {
+            get {
+                return ResourceManager.GetString("FlushHID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found Controller:.
+        /// </summary>
+        internal static string FoundController {
+            get {
+                return ResourceManager.GetString("FoundController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4th Mouse Button Down.
+        /// </summary>
+        internal static string FourthMouseDown {
+            get {
+                return ResourceManager.GetString("FourthMouseDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4th Mouse Button Up.
+        /// </summary>
+        internal static string FourthMouseUp {
+            get {
+                return ResourceManager.GetString("FourthMouseUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full.
+        /// </summary>
+        internal static string Full {
+            get {
+                return ResourceManager.GetString("Full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hour.
+        /// </summary>
+        internal static string Hour {
+            get {
+                return ResourceManager.GetString("Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hours.
+        /// </summary>
+        internal static string Hours {
+            get {
+                return ResourceManager.GetString("Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If removing DS4Windows, You can delete the settings following the profile folder link.
+        /// </summary>
+        internal static string IfRemovingDS4Windows {
+            get {
+                return ResourceManager.GetString("IfRemovingDS4Windows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap import {
             get {
                 object obj = ResourceManager.GetObject("import", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input Delay: *number**ms*.
+        /// </summary>
+        internal static string InputDelay {
+            get {
+                return ResourceManager.GetString("InputDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install Complete.
+        /// </summary>
+        internal static string InstallComplete {
+            get {
+                return ResourceManager.GetString("InstallComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string KeepThisSize {
+            get {
+                return ResourceManager.GetString("KeepThisSize", resourceCulture);
             }
         }
         
@@ -236,6 +614,15 @@ namespace ScpServer.Properties {
             get {
                 object obj = ResourceManager.GetObject("LeftTouch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
             }
         }
         
@@ -300,6 +687,15 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make a New Profile.
+        /// </summary>
+        internal static string MakeNewProfile {
+            get {
+                return ResourceManager.GetString("MakeNewProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap mouse {
@@ -320,12 +716,39 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        internal static string NA {
+            get {
+                return ResourceManager.GetString("NA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        internal static string New {
+            get {
+                return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap newprofile {
             get {
                 object obj = ResourceManager.GetObject("newprofile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No macro was recorded.
+        /// </summary>
+        internal static string NoMacroRecorded {
+            get {
+                return ResourceManager.GetString("NoMacroRecorded", resourceCulture);
             }
         }
         
@@ -340,12 +763,111 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (none).
+        /// </summary>
+        internal static string noneProfile {
+            get {
+                return ResourceManager.GetString("noneProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to none.
+        /// </summary>
+        internal static string NoneText {
+            get {
+                return ResourceManager.GetString("NoneText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Profile Loaded.
+        /// </summary>
+        internal static string NoProfileLoaded {
+            get {
+                return ResourceManager.GetString("NoProfileLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not valid.
+        /// </summary>
+        internal static string NotValid {
+            get {
+                return ResourceManager.GetString("NotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opening Installer.
+        /// </summary>
+        internal static string OpeningInstaller {
+            get {
+                return ResourceManager.GetString("OpeningInstaller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Open ScpDriver.exe.
+        /// </summary>
+        internal static string OpenScpDriver {
+            get {
+                return ResourceManager.GetString("OpenScpDriver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Pairmode {
             get {
                 object obj = ResourceManager.GetObject("Pairmode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Download the Updater now, and place it in the programs folder, then check for update again.
+        /// </summary>
+        internal static string PleaseDownloadUpdater {
+            get {
+                return ResourceManager.GetString("PleaseDownloadUpdater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please import or make a profile.
+        /// </summary>
+        internal static string PleaseImport {
+            get {
+                return ResourceManager.GetString("PleaseImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *Profile name* cannot be restored..
+        /// </summary>
+        internal static string ProfileCannotRestore {
+            get {
+                return ResourceManager.GetString("ProfileCannotRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile Folder Moved to program folder.
+        /// </summary>
+        internal static string ProfileFolderMoved {
+            get {
+                return ResourceManager.GetString("ProfileFolderMoved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must quit other applications like Steam, Uplay before activating the &apos;Hide DS4 Controller&apos; option.&quot;.
+        /// </summary>
+        internal static string QuitOtherPrograms {
+            get {
+                return ResourceManager.GetString("QuitOtherPrograms", resourceCulture);
             }
         }
         
@@ -376,6 +898,15 @@ namespace ScpServer.Properties {
             get {
                 object obj = ResourceManager.GetObject("RB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record.
+        /// </summary>
+        internal static string RecordText {
+            get {
+                return ResourceManager.GetString("RecordText", resourceCulture);
             }
         }
         
@@ -480,6 +1011,33 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Recorded Macro?.
+        /// </summary>
+        internal static string SaveRecordedMacro {
+            get {
+                return ResourceManager.GetString("SaveRecordedMacro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searching for controllers….
+        /// </summary>
+        internal static string SearchingController {
+            get {
+                return ResourceManager.GetString("SearchingController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an action for *action*.
+        /// </summary>
+        internal static string SelectActionTitle {
+            get {
+                return ResourceManager.GetString("SelectActionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap size {
@@ -500,11 +1058,29 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Starting....
+        /// </summary>
+        internal static string Starting {
+            get {
+                return ResourceManager.GetString("Starting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         internal static string StartText {
             get {
                 return ResourceManager.GetString("StartText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step 1: Install the DS4 Driver.
+        /// </summary>
+        internal static string Step1 {
+            get {
+                return ResourceManager.GetString("Step1", resourceCulture);
             }
         }
         
@@ -519,11 +1095,110 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stopped DS4 Tool.
+        /// </summary>
+        internal static string StoppedDS4Tool {
+            get {
+                return ResourceManager.GetString("StoppedDS4Tool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stopping DS4 Controllers.
+        /// </summary>
+        internal static string StoppingDS4 {
+            get {
+                return ResourceManager.GetString("StoppingDS4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stopping X360 Controllers.
+        /// </summary>
+        internal static string StoppingX360 {
+            get {
+                return ResourceManager.GetString("StoppingX360", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stop.
         /// </summary>
         internal static string StopText {
             get {
                 return ResourceManager.GetString("StopText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swipe Touchpad to change profiles.
+        /// </summary>
+        internal static string SwipeTouchpad {
+            get {
+                return ResourceManager.GetString("SwipeTouchpad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tap and hold to drag, slight delay with single taps.
+        /// </summary>
+        internal static string TapAndHold {
+            get {
+                return ResourceManager.GetString("TapAndHold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test.
+        /// </summary>
+        internal static string TestText {
+            get {
+                return ResourceManager.GetString("TestText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Touchpad Movement is now Off.
+        /// </summary>
+        internal static string TouchpadMovementOff {
+            get {
+                return ResourceManager.GetString("TouchpadMovementOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Touchpad Movement is now On.
+        /// </summary>
+        internal static string TouchpadMovementOn {
+            get {
+                return ResourceManager.GetString("TouchpadMovementOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 finger touchpad swipe left or right.
+        /// </summary>
+        internal static string TwoFingerSwipe {
+            get {
+                return ResourceManager.GetString("TwoFingerSwipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to type new name here.
+        /// </summary>
+        internal static string TypeNewName {
+            get {
+                return ResourceManager.GetString("TypeNewName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to type profile name here.
+        /// </summary>
+        internal static string TypeProfileName {
+            get {
+                return ResourceManager.GetString("TypeProfileName", resourceCulture);
             }
         }
         
@@ -548,12 +1223,93 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Up.
+        /// </summary>
+        internal static string UpText {
+            get {
+                return ResourceManager.GetString("UpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are up to date.
+        /// </summary>
+        internal static string UpToDate {
+            get {
+                return ResourceManager.GetString("UpToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap USB {
             get {
                 object obj = ResourceManager.GetObject("USB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can also use your controller to change controls.
+        /// </summary>
+        internal static string UseControllerForMapping {
+            get {
+                return ResourceManager.GetString("UseControllerForMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Using Exclusive Mode.
+        /// </summary>
+        internal static string UsingExclusive {
+            get {
+                return ResourceManager.GetString("UsingExclusive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controller *number* is using Profile “*Profile name*&quot;.
+        /// </summary>
+        internal static string UsingProfile {
+            get {
+                return ResourceManager.GetString("UsingProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Using Shared Mode.
+        /// </summary>
+        internal static string UsingShared {
+            get {
+                return ResourceManager.GetString("UsingShared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid name.
+        /// </summary>
+        internal static string ValidName {
+            get {
+                return ResourceManager.GetString("ValidName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait *number**ms*.
+        /// </summary>
+        internal static string WaitMS {
+            get {
+                return ResourceManager.GetString("WaitMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Will Keep.
+        /// </summary>
+        internal static string WillKeep {
+            get {
+                return ResourceManager.GetString("WillKeep", resourceCulture);
             }
         }
         

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinProgs));
             this.bnAddPrograms = new System.Windows.Forms.Button();
             this.lBProgramPath = new System.Windows.Forms.Label();
             this.cBProfile1 = new System.Windows.Forms.ComboBox();
@@ -58,147 +59,97 @@
             // 
             // bnAddPrograms
             // 
-            this.bnAddPrograms.Location = new System.Drawing.Point(5, 2);
+            resources.ApplyResources(this.bnAddPrograms, "bnAddPrograms");
             this.bnAddPrograms.Name = "bnAddPrograms";
-            this.bnAddPrograms.Size = new System.Drawing.Size(88, 23);
-            this.bnAddPrograms.TabIndex = 2;
-            this.bnAddPrograms.Text = "Add programs";
             this.bnAddPrograms.UseVisualStyleBackColor = true;
             this.bnAddPrograms.Click += new System.EventHandler(this.bnAddPrograms_Click);
             // 
             // lBProgramPath
             // 
-            this.lBProgramPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lBProgramPath.Location = new System.Drawing.Point(519, 195);
+            resources.ApplyResources(this.lBProgramPath, "lBProgramPath");
             this.lBProgramPath.Name = "lBProgramPath";
-            this.lBProgramPath.Size = new System.Drawing.Size(205, 18);
-            this.lBProgramPath.TabIndex = 3;
-            this.lBProgramPath.Visible = false;
             this.lBProgramPath.TextChanged += new System.EventHandler(this.lBProgramPath_TextChanged);
             // 
             // cBProfile1
             // 
-            this.cBProfile1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.cBProfile1, "cBProfile1");
             this.cBProfile1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBProfile1.FormattingEnabled = true;
-            this.cBProfile1.Location = new System.Drawing.Point(609, 28);
             this.cBProfile1.Name = "cBProfile1";
-            this.cBProfile1.Size = new System.Drawing.Size(121, 21);
-            this.cBProfile1.TabIndex = 6;
             this.cBProfile1.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
             // 
             // cBProfile2
             // 
-            this.cBProfile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.cBProfile2, "cBProfile2");
             this.cBProfile2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBProfile2.FormattingEnabled = true;
-            this.cBProfile2.Location = new System.Drawing.Point(609, 55);
             this.cBProfile2.Name = "cBProfile2";
-            this.cBProfile2.Size = new System.Drawing.Size(121, 21);
-            this.cBProfile2.TabIndex = 6;
             this.cBProfile2.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
             // 
             // cBProfile3
             // 
-            this.cBProfile3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.cBProfile3, "cBProfile3");
             this.cBProfile3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBProfile3.FormattingEnabled = true;
-            this.cBProfile3.Location = new System.Drawing.Point(609, 82);
             this.cBProfile3.Name = "cBProfile3";
-            this.cBProfile3.Size = new System.Drawing.Size(121, 21);
-            this.cBProfile3.TabIndex = 6;
             this.cBProfile3.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
             // 
             // cBProfile4
             // 
-            this.cBProfile4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.cBProfile4, "cBProfile4");
             this.cBProfile4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBProfile4.FormattingEnabled = true;
-            this.cBProfile4.Location = new System.Drawing.Point(609, 109);
             this.cBProfile4.Name = "cBProfile4";
-            this.cBProfile4.Size = new System.Drawing.Size(121, 21);
-            this.cBProfile4.TabIndex = 6;
             this.cBProfile4.SelectedIndexChanged += new System.EventHandler(this.CBProfile_IndexChanged);
             // 
             // bnSave
             // 
-            this.bnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnSave.Enabled = false;
-            this.bnSave.Location = new System.Drawing.Point(663, 2);
+            resources.ApplyResources(this.bnSave, "bnSave");
             this.bnSave.Name = "bnSave";
-            this.bnSave.Size = new System.Drawing.Size(67, 23);
-            this.bnSave.TabIndex = 2;
-            this.bnSave.Text = "Save";
             this.bnSave.UseVisualStyleBackColor = true;
             this.bnSave.Click += new System.EventHandler(this.bnSave_Click);
             // 
             // lBController1
             // 
-            this.lBController1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lBController1.AutoSize = true;
-            this.lBController1.Location = new System.Drawing.Point(516, 31);
+            resources.ApplyResources(this.lBController1, "lBController1");
             this.lBController1.Name = "lBController1";
-            this.lBController1.Size = new System.Drawing.Size(60, 13);
-            this.lBController1.TabIndex = 7;
-            this.lBController1.Text = "Controller 1";
             // 
             // lBController2
             // 
-            this.lBController2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lBController2.AutoSize = true;
-            this.lBController2.Location = new System.Drawing.Point(516, 58);
+            resources.ApplyResources(this.lBController2, "lBController2");
             this.lBController2.Name = "lBController2";
-            this.lBController2.Size = new System.Drawing.Size(60, 13);
-            this.lBController2.TabIndex = 7;
-            this.lBController2.Text = "Controller 2";
             // 
             // lBController3
             // 
-            this.lBController3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lBController3.AutoSize = true;
-            this.lBController3.Location = new System.Drawing.Point(516, 85);
+            resources.ApplyResources(this.lBController3, "lBController3");
             this.lBController3.Name = "lBController3";
-            this.lBController3.Size = new System.Drawing.Size(60, 13);
-            this.lBController3.TabIndex = 7;
-            this.lBController3.Text = "Controller 3";
             // 
             // lBController4
             // 
-            this.lBController4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lBController4.AutoSize = true;
-            this.lBController4.Location = new System.Drawing.Point(516, 112);
+            resources.ApplyResources(this.lBController4, "lBController4");
             this.lBController4.Name = "lBController4";
-            this.lBController4.Size = new System.Drawing.Size(60, 13);
-            this.lBController4.TabIndex = 7;
-            this.lBController4.Text = "Controller 4";
             // 
             // openProgram
             // 
             this.openProgram.FileName = "openFileDialog1";
-            this.openProgram.Filter = "Programs|*.exe|Shortcuts|*.lnk";
+            resources.ApplyResources(this.openProgram, "openProgram");
             // 
             // bnDelete
             // 
-            this.bnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnDelete.Location = new System.Drawing.Point(590, 2);
+            resources.ApplyResources(this.bnDelete, "bnDelete");
             this.bnDelete.Name = "bnDelete";
-            this.bnDelete.Size = new System.Drawing.Size(67, 23);
-            this.bnDelete.TabIndex = 2;
-            this.bnDelete.Text = "Remove";
             this.bnDelete.UseVisualStyleBackColor = true;
             this.bnDelete.Click += new System.EventHandler(this.bnDelete_Click);
             // 
             // iLIcons
             // 
             this.iLIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.iLIcons.ImageSize = new System.Drawing.Size(16, 16);
+            resources.ApplyResources(this.iLIcons, "iLIcons");
             this.iLIcons.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // lVPrograms
             // 
-            this.lVPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.lVPrograms, "lVPrograms");
             this.lVPrograms.CheckBoxes = true;
             this.lVPrograms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameHeader,
@@ -206,13 +157,10 @@
             this.lVPrograms.FullRowSelect = true;
             this.lVPrograms.HideSelection = false;
             this.lVPrograms.LargeImageList = this.iLIcons;
-            this.lVPrograms.Location = new System.Drawing.Point(5, 28);
             this.lVPrograms.MultiSelect = false;
             this.lVPrograms.Name = "lVPrograms";
             this.lVPrograms.ShowItemToolTips = true;
-            this.lVPrograms.Size = new System.Drawing.Size(505, 190);
             this.lVPrograms.SmallImageList = this.iLIcons;
-            this.lVPrograms.TabIndex = 12;
             this.lVPrograms.UseCompatibleStateImageBehavior = false;
             this.lVPrograms.View = System.Windows.Forms.View.Details;
             this.lVPrograms.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listView1_ItemCheck);
@@ -220,38 +168,29 @@
             // 
             // nameHeader
             // 
-            this.nameHeader.Text = "Name";
-            this.nameHeader.Width = 140;
+            resources.ApplyResources(this.nameHeader, "nameHeader");
             // 
             // PathHeader
             // 
-            this.PathHeader.Text = "Path";
-            this.PathHeader.Width = 358;
+            resources.ApplyResources(this.PathHeader, "PathHeader");
             // 
             // pBProfilesTip
             // 
-            this.pBProfilesTip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pBProfilesTip.AutoSize = true;
+            resources.ApplyResources(this.pBProfilesTip, "pBProfilesTip");
             this.pBProfilesTip.BackColor = System.Drawing.Color.Transparent;
             this.pBProfilesTip.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.pBProfilesTip.Location = new System.Drawing.Point(622, 136);
             this.pBProfilesTip.Name = "pBProfilesTip";
-            this.pBProfilesTip.Size = new System.Drawing.Size(89, 13);
-            this.pBProfilesTip.TabIndex = 8;
-            this.pBProfilesTip.Text = "Pick Profiles here";
             // 
             // bnHideUnchecked
             // 
-            this.bnHideUnchecked.Location = new System.Drawing.Point(99, 2);
+            resources.ApplyResources(this.bnHideUnchecked, "bnHideUnchecked");
             this.bnHideUnchecked.Name = "bnHideUnchecked";
-            this.bnHideUnchecked.Size = new System.Drawing.Size(94, 23);
-            this.bnHideUnchecked.TabIndex = 2;
-            this.bnHideUnchecked.Text = "Hide unchecked";
             this.bnHideUnchecked.UseVisualStyleBackColor = true;
             this.bnHideUnchecked.Click += new System.EventHandler(this.bnHideUnchecked_Click);
             // 
             // cMSPrograms
             // 
+            resources.ApplyResources(this.cMSPrograms, "cMSPrograms");
             this.cMSPrograms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addProgramsFromStartMenuToolStripMenuItem,
             this.addSteamGamesToolStripMenuItem,
@@ -259,42 +198,36 @@
             this.browseForOtherProgramsToolStripMenuItem});
             this.cMSPrograms.Name = "contextMenuStrip1";
             this.cMSPrograms.ShowImageMargin = false;
-            this.cMSPrograms.Size = new System.Drawing.Size(193, 92);
             // 
             // addProgramsFromStartMenuToolStripMenuItem
             // 
+            resources.ApplyResources(this.addProgramsFromStartMenuToolStripMenuItem, "addProgramsFromStartMenuToolStripMenuItem");
             this.addProgramsFromStartMenuToolStripMenuItem.Name = "addProgramsFromStartMenuToolStripMenuItem";
-            this.addProgramsFromStartMenuToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.addProgramsFromStartMenuToolStripMenuItem.Text = "Add Start Menu Programs";
             this.addProgramsFromStartMenuToolStripMenuItem.Click += new System.EventHandler(this.addProgramsFromStartMenuToolStripMenuItem_Click);
             // 
             // addSteamGamesToolStripMenuItem
             // 
+            resources.ApplyResources(this.addSteamGamesToolStripMenuItem, "addSteamGamesToolStripMenuItem");
             this.addSteamGamesToolStripMenuItem.Name = "addSteamGamesToolStripMenuItem";
-            this.addSteamGamesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.addSteamGamesToolStripMenuItem.Text = "Add Steam Games";
             this.addSteamGamesToolStripMenuItem.Click += new System.EventHandler(this.addSteamGamesToolStripMenuItem_Click);
             // 
             // addOriginGamesToolStripMenuItem
             // 
+            resources.ApplyResources(this.addOriginGamesToolStripMenuItem, "addOriginGamesToolStripMenuItem");
             this.addOriginGamesToolStripMenuItem.Name = "addOriginGamesToolStripMenuItem";
-            this.addOriginGamesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.addOriginGamesToolStripMenuItem.Text = "Add Origin Games";
             this.addOriginGamesToolStripMenuItem.Click += new System.EventHandler(this.addOriginGamesToolStripMenuItem_Click);
             // 
             // browseForOtherProgramsToolStripMenuItem
             // 
+            resources.ApplyResources(this.browseForOtherProgramsToolStripMenuItem, "browseForOtherProgramsToolStripMenuItem");
             this.browseForOtherProgramsToolStripMenuItem.Name = "browseForOtherProgramsToolStripMenuItem";
-            this.browseForOtherProgramsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.browseForOtherProgramsToolStripMenuItem.Text = "Browse for Other Programs";
             this.browseForOtherProgramsToolStripMenuItem.Click += new System.EventHandler(this.browseForOtherProgramsToolStripMenuItem_Click);
             // 
             // WinProgs
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(736, 222);
             this.Controls.Add(this.pBProfilesTip);
             this.Controls.Add(this.bnHideUnchecked);
             this.Controls.Add(this.bnAddPrograms);
@@ -311,7 +244,6 @@
             this.Controls.Add(this.bnDelete);
             this.Controls.Add(this.bnSave);
             this.Name = "WinProgs";
-            this.Text = "Auto-Profiles";
             this.cMSPrograms.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

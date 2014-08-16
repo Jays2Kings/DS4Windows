@@ -31,7 +31,7 @@ namespace ScpServer
                 this.Close();
             }
             else
-                MessageBox.Show("Please enter a valid name", "Not valid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);            
+                MessageBox.Show(Properties.Resources.ValidName, Properties.Resources.NotValid, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);            
         }
 
         private void tBProfile_TextChanged(object sender, EventArgs e)
@@ -44,14 +44,14 @@ namespace ScpServer
 
         private void tBProfile_Enter(object sender, EventArgs e)
         {
-            if (tBProfile.Text == "<type new name here>")
+            if (tBProfile.Text == "<" + Properties.Resources.TypeNewName + ">")
                 tBProfile.Text = "";
         }
 
         private void tBProfile_Leave(object sender, EventArgs e)
         {
             if (tBProfile.Text == "")
-                tBProfile.Text = "<type new name here>";
+                tBProfile.Text = "<" + Properties.Resources.TypeNewName + ">";
         }
 
         private void button2_Click(object sender, EventArgs e)

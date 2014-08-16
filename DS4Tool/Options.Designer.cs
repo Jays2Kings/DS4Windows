@@ -123,6 +123,7 @@
             this.nUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.gBOther = new System.Windows.Forms.GroupBox();
+            this.pBProgram = new System.Windows.Forms.PictureBox();
             this.cBLaunchProgram = new System.Windows.Forms.CheckBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.lbUseController = new System.Windows.Forms.Label();
@@ -233,7 +234,6 @@
             this.tBL2 = new System.Windows.Forms.TrackBar();
             this.lbSATrack = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.pBProgram = new System.Windows.Forms.PictureBox();
             this.advColorDialog = new ScpServer.AdvancedColorDialog();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
@@ -267,6 +267,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).BeginInit();
             this.gBTouchpad.SuspendLayout();
             this.gBOther.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
             this.gBLightbar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
@@ -295,25 +296,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBLSDeadzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBR2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBL2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             this.SuspendLayout();
             // 
             // bnTouchUpper
             // 
+            resources.ApplyResources(this.bnTouchUpper, "bnTouchUpper");
             this.bnTouchUpper.BackColor = System.Drawing.Color.Transparent;
-            this.bnTouchUpper.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnTouchUpper.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchUpper.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnTouchUpper.FlatAppearance.BorderSize = 0;
             this.bnTouchUpper.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnTouchUpper.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnTouchUpper.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnTouchUpper.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnTouchUpper.Location = new System.Drawing.Point(84, 25);
             this.bnTouchUpper.Name = "bnTouchUpper";
-            this.bnTouchUpper.Size = new System.Drawing.Size(78, 16);
-            this.bnTouchUpper.TabIndex = 193;
-            this.bnTouchUpper.Text = "Middle Mouse Button";
             this.bnTouchUpper.UseVisualStyleBackColor = false;
             this.bnTouchUpper.Click += new System.EventHandler(this.Show_ControlsBn);
             this.bnTouchUpper.MouseLeave += new System.EventHandler(this.Toucpad_Leave);
@@ -321,20 +316,15 @@
             // 
             // bnTouchMulti
             // 
+            resources.ApplyResources(this.bnTouchMulti, "bnTouchMulti");
             this.bnTouchMulti.BackColor = System.Drawing.Color.Transparent;
-            this.bnTouchMulti.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnTouchMulti.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchMulti.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnTouchMulti.FlatAppearance.BorderSize = 0;
             this.bnTouchMulti.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnTouchMulti.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnTouchMulti.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnTouchMulti.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnTouchMulti.Location = new System.Drawing.Point(109, 40);
             this.bnTouchMulti.Name = "bnTouchMulti";
-            this.bnTouchMulti.Size = new System.Drawing.Size(30, 34);
-            this.bnTouchMulti.TabIndex = 192;
-            this.bnTouchMulti.Text = "Right Mouse Button";
             this.bnTouchMulti.UseVisualStyleBackColor = false;
             this.bnTouchMulti.Click += new System.EventHandler(this.Show_ControlsBn);
             this.bnTouchMulti.MouseLeave += new System.EventHandler(this.Toucpad_Leave);
@@ -342,20 +332,15 @@
             // 
             // bnTouchRight
             // 
+            resources.ApplyResources(this.bnTouchRight, "bnTouchRight");
             this.bnTouchRight.BackColor = System.Drawing.Color.Transparent;
-            this.bnTouchRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnTouchRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnTouchRight.FlatAppearance.BorderSize = 0;
             this.bnTouchRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnTouchRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnTouchRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnTouchRight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnTouchRight.Location = new System.Drawing.Point(139, 40);
             this.bnTouchRight.Name = "bnTouchRight";
-            this.bnTouchRight.Size = new System.Drawing.Size(23, 34);
-            this.bnTouchRight.TabIndex = 190;
-            this.bnTouchRight.Text = "Left Mouse Button";
             this.bnTouchRight.UseVisualStyleBackColor = false;
             this.bnTouchRight.Click += new System.EventHandler(this.Show_ControlsBn);
             this.bnTouchRight.MouseLeave += new System.EventHandler(this.Toucpad_Leave);
@@ -363,20 +348,15 @@
             // 
             // bnTouchLeft
             // 
+            resources.ApplyResources(this.bnTouchLeft, "bnTouchLeft");
             this.bnTouchLeft.BackColor = System.Drawing.Color.Transparent;
-            this.bnTouchLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnTouchLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnTouchLeft.FlatAppearance.BorderSize = 0;
             this.bnTouchLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnTouchLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnTouchLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnTouchLeft.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnTouchLeft.Location = new System.Drawing.Point(84, 40);
             this.bnTouchLeft.Name = "bnTouchLeft";
-            this.bnTouchLeft.Size = new System.Drawing.Size(25, 35);
-            this.bnTouchLeft.TabIndex = 191;
-            this.bnTouchLeft.Text = "Left Mouse Button";
             this.bnTouchLeft.UseVisualStyleBackColor = false;
             this.bnTouchLeft.Click += new System.EventHandler(this.Show_ControlsBn);
             this.bnTouchLeft.MouseLeave += new System.EventHandler(this.Toucpad_Leave);
@@ -384,6 +364,7 @@
             // 
             // MainPanel
             // 
+            resources.ApplyResources(this.MainPanel, "MainPanel");
             this.MainPanel.Controls.Add(this.pBController);
             this.MainPanel.Controls.Add(this.bnTouchUpper);
             this.MainPanel.Controls.Add(this.bnTouchLeft);
@@ -407,368 +388,271 @@
             this.MainPanel.Controls.Add(this.bnOptions);
             this.MainPanel.Controls.Add(this.bnPS);
             this.MainPanel.Controls.Add(this.bnShare);
-            this.MainPanel.Location = new System.Drawing.Point(6, 42);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(249, 137);
-            this.MainPanel.TabIndex = 185;
             // 
             // pBController
             // 
-            this.pBController.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pBController.Enabled = false;
+            resources.ApplyResources(this.pBController, "pBController");
             this.pBController.Image = global::ScpServer.Properties.Resources.DS4_Controller;
-            this.pBController.Location = new System.Drawing.Point(0, 0);
             this.pBController.Name = "pBController";
-            this.pBController.Size = new System.Drawing.Size(245, 132);
-            this.pBController.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pBController.TabIndex = 1;
             this.pBController.TabStop = false;
             // 
             // bnR1
             // 
+            resources.ApplyResources(this.bnR1, "bnR1");
             this.bnR1.BackColor = System.Drawing.Color.Transparent;
-            this.bnR1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnR1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnR1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnR1.FlatAppearance.BorderSize = 0;
             this.bnR1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnR1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnR1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnR1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnR1.Location = new System.Drawing.Point(175, 13);
             this.bnR1.Name = "bnR1";
-            this.bnR1.Size = new System.Drawing.Size(43, 15);
-            this.bnR1.TabIndex = 87;
-            this.bnR1.Text = "Right Bumper";
             this.bnR1.UseVisualStyleBackColor = false;
             this.bnR1.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnCross
             // 
+            resources.ApplyResources(this.bnCross, "bnCross");
             this.bnCross.BackColor = System.Drawing.Color.Transparent;
-            this.bnCross.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnCross.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnCross.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnCross.FlatAppearance.BorderSize = 0;
             this.bnCross.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnCross.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnCross.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnCross.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnCross.Location = new System.Drawing.Point(187, 76);
             this.bnCross.Name = "bnCross";
-            this.bnCross.Size = new System.Drawing.Size(19, 17);
-            this.bnCross.TabIndex = 74;
-            this.bnCross.Text = "A Button";
             this.bnCross.UseVisualStyleBackColor = false;
             this.bnCross.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnCircle
             // 
+            resources.ApplyResources(this.bnCircle, "bnCircle");
             this.bnCircle.BackColor = System.Drawing.Color.Transparent;
-            this.bnCircle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnCircle.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnCircle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnCircle.FlatAppearance.BorderSize = 0;
             this.bnCircle.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnCircle.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnCircle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnCircle.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnCircle.Location = new System.Drawing.Point(208, 60);
             this.bnCircle.Name = "bnCircle";
-            this.bnCircle.Size = new System.Drawing.Size(16, 17);
-            this.bnCircle.TabIndex = 71;
-            this.bnCircle.Text = "B Button";
             this.bnCircle.UseVisualStyleBackColor = false;
             this.bnCircle.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // btnRightStick
             // 
+            resources.ApplyResources(this.btnRightStick, "btnRightStick");
             this.btnRightStick.BackColor = System.Drawing.Color.Transparent;
-            this.btnRightStick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRightStick.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnRightStick.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnRightStick.FlatAppearance.BorderSize = 0;
             this.btnRightStick.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.btnRightStick.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.btnRightStick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRightStick.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnRightStick.Location = new System.Drawing.Point(150, 90);
             this.btnRightStick.Name = "btnRightStick";
-            this.btnRightStick.Size = new System.Drawing.Size(28, 28);
-            this.btnRightStick.TabIndex = 91;
-            this.btnRightStick.Text = "RS";
             this.btnRightStick.UseVisualStyleBackColor = false;
             this.btnRightStick.Click += new System.EventHandler(this.btnSticks_Enter);
             // 
             // bnSquare
             // 
+            resources.ApplyResources(this.bnSquare, "bnSquare");
             this.bnSquare.BackColor = System.Drawing.Color.Transparent;
-            this.bnSquare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnSquare.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnSquare.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnSquare.FlatAppearance.BorderSize = 0;
             this.bnSquare.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnSquare.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnSquare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnSquare.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnSquare.Location = new System.Drawing.Point(173, 61);
             this.bnSquare.Name = "bnSquare";
-            this.bnSquare.Size = new System.Drawing.Size(15, 14);
-            this.bnSquare.TabIndex = 72;
-            this.bnSquare.Text = "X Button";
             this.bnSquare.UseVisualStyleBackColor = false;
             this.bnSquare.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // btnLightbar
             // 
+            resources.ApplyResources(this.btnLightbar, "btnLightbar");
             this.btnLightbar.BackColor = System.Drawing.Color.Transparent;
-            this.btnLightbar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnLightbar.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnLightbar.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnLightbar.FlatAppearance.BorderSize = 0;
             this.btnLightbar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.btnLightbar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.btnLightbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLightbar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnLightbar.Location = new System.Drawing.Point(84, 6);
             this.btnLightbar.Name = "btnLightbar";
-            this.btnLightbar.Size = new System.Drawing.Size(78, 19);
-            this.btnLightbar.TabIndex = 91;
-            this.btnLightbar.Text = "Lightbar";
             this.btnLightbar.UseVisualStyleBackColor = false;
             this.btnLightbar.Click += new System.EventHandler(this.btnLightbar_Click);
             // 
             // bnTriangle
             // 
+            resources.ApplyResources(this.bnTriangle, "bnTriangle");
             this.bnTriangle.BackColor = System.Drawing.Color.Transparent;
-            this.bnTriangle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnTriangle.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTriangle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnTriangle.FlatAppearance.BorderSize = 0;
             this.bnTriangle.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnTriangle.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnTriangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnTriangle.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnTriangle.Location = new System.Drawing.Point(188, 45);
             this.bnTriangle.Name = "bnTriangle";
-            this.bnTriangle.Size = new System.Drawing.Size(20, 16);
-            this.bnTriangle.TabIndex = 73;
-            this.bnTriangle.Text = "Y Button";
             this.bnTriangle.UseVisualStyleBackColor = false;
             this.bnTriangle.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnUp
             // 
+            resources.ApplyResources(this.bnUp, "bnUp");
             this.bnUp.BackColor = System.Drawing.Color.Transparent;
-            this.bnUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnUp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bnUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnUp.FlatAppearance.BorderSize = 0;
             this.bnUp.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnUp.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnUp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnUp.Location = new System.Drawing.Point(44, 48);
             this.bnUp.Name = "bnUp";
-            this.bnUp.Size = new System.Drawing.Size(11, 15);
-            this.bnUp.TabIndex = 80;
-            this.bnUp.Text = "Up Button";
             this.bnUp.UseVisualStyleBackColor = false;
             this.bnUp.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // btnLeftStick
             // 
+            resources.ApplyResources(this.btnLeftStick, "btnLeftStick");
             this.btnLeftStick.BackColor = System.Drawing.Color.Transparent;
-            this.btnLeftStick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnLeftStick.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnLeftStick.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnLeftStick.FlatAppearance.BorderSize = 0;
             this.btnLeftStick.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.btnLeftStick.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.btnLeftStick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLeftStick.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnLeftStick.Location = new System.Drawing.Point(70, 90);
             this.btnLeftStick.Name = "btnLeftStick";
-            this.btnLeftStick.Size = new System.Drawing.Size(28, 28);
-            this.btnLeftStick.TabIndex = 91;
-            this.btnLeftStick.Text = "LS";
             this.btnLeftStick.UseVisualStyleBackColor = false;
             this.btnLeftStick.Click += new System.EventHandler(this.btnSticks_Enter);
             // 
             // bnDown
             // 
+            resources.ApplyResources(this.bnDown, "bnDown");
             this.bnDown.BackColor = System.Drawing.Color.Transparent;
-            this.bnDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnDown.FlatAppearance.BorderSize = 0;
             this.bnDown.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnDown.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnDown.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnDown.Location = new System.Drawing.Point(44, 73);
             this.bnDown.Name = "bnDown";
-            this.bnDown.Size = new System.Drawing.Size(12, 12);
-            this.bnDown.TabIndex = 81;
-            this.bnDown.Text = "Down Button";
             this.bnDown.UseVisualStyleBackColor = false;
             this.bnDown.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnL2
             // 
+            resources.ApplyResources(this.bnL2, "bnL2");
             this.bnL2.BackColor = System.Drawing.Color.Transparent;
-            this.bnL2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnL2.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnL2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnL2.FlatAppearance.BorderSize = 0;
             this.bnL2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnL2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnL2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnL2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnL2.Location = new System.Drawing.Point(31, 0);
             this.bnL2.Name = "bnL2";
-            this.bnL2.Size = new System.Drawing.Size(43, 12);
-            this.bnL2.TabIndex = 90;
-            this.bnL2.Text = "Left Trigger";
             this.bnL2.UseVisualStyleBackColor = false;
             this.bnL2.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnRight
             // 
+            resources.ApplyResources(this.bnRight, "bnRight");
             this.bnRight.BackColor = System.Drawing.Color.Transparent;
-            this.bnRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnRight.FlatAppearance.BorderSize = 0;
             this.bnRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnRight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnRight.Location = new System.Drawing.Point(55, 61);
             this.bnRight.Name = "bnRight";
-            this.bnRight.Size = new System.Drawing.Size(14, 14);
-            this.bnRight.TabIndex = 82;
-            this.bnRight.Text = "Right Button";
             this.bnRight.UseVisualStyleBackColor = false;
             this.bnRight.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnR2
             // 
+            resources.ApplyResources(this.bnR2, "bnR2");
             this.bnR2.BackColor = System.Drawing.Color.Transparent;
-            this.bnR2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnR2.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnR2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnR2.FlatAppearance.BorderSize = 0;
             this.bnR2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnR2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnR2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnR2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnR2.Location = new System.Drawing.Point(174, 0);
             this.bnR2.Name = "bnR2";
-            this.bnR2.Size = new System.Drawing.Size(40, 13);
-            this.bnR2.TabIndex = 89;
-            this.bnR2.Text = "Right Trigger";
             this.bnR2.UseVisualStyleBackColor = false;
             this.bnR2.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnLeft
             // 
+            resources.ApplyResources(this.bnLeft, "bnLeft");
             this.bnLeft.BackColor = System.Drawing.Color.Transparent;
-            this.bnLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnLeft.FlatAppearance.BorderSize = 0;
             this.bnLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnLeft.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnLeft.Location = new System.Drawing.Point(31, 61);
             this.bnLeft.Name = "bnLeft";
-            this.bnLeft.Size = new System.Drawing.Size(14, 12);
-            this.bnLeft.TabIndex = 83;
-            this.bnLeft.Text = "Left Button";
             this.bnLeft.UseVisualStyleBackColor = false;
             this.bnLeft.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnL1
             // 
+            resources.ApplyResources(this.bnL1, "bnL1");
             this.bnL1.BackColor = System.Drawing.Color.Transparent;
-            this.bnL1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnL1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnL1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnL1.FlatAppearance.BorderSize = 0;
             this.bnL1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnL1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnL1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnL1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnL1.Location = new System.Drawing.Point(31, 13);
             this.bnL1.Name = "bnL1";
-            this.bnL1.Size = new System.Drawing.Size(43, 15);
-            this.bnL1.TabIndex = 88;
-            this.bnL1.Text = "Left Bumper";
             this.bnL1.UseVisualStyleBackColor = false;
             this.bnL1.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnOptions
             // 
+            resources.ApplyResources(this.bnOptions, "bnOptions");
             this.bnOptions.BackColor = System.Drawing.Color.Transparent;
-            this.bnOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnOptions.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnOptions.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnOptions.FlatAppearance.BorderSize = 0;
             this.bnOptions.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnOptions.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnOptions.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnOptions.Location = new System.Drawing.Point(167, 33);
             this.bnOptions.Name = "bnOptions";
-            this.bnOptions.Size = new System.Drawing.Size(11, 21);
-            this.bnOptions.TabIndex = 84;
-            this.bnOptions.Text = "Start";
             this.bnOptions.UseVisualStyleBackColor = false;
             this.bnOptions.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnPS
             // 
+            resources.ApplyResources(this.bnPS, "bnPS");
             this.bnPS.BackColor = System.Drawing.Color.Transparent;
-            this.bnPS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnPS.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnPS.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnPS.FlatAppearance.BorderSize = 0;
             this.bnPS.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnPS.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnPS.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnPS.Location = new System.Drawing.Point(115, 87);
             this.bnPS.Name = "bnPS";
-            this.bnPS.Size = new System.Drawing.Size(18, 18);
-            this.bnPS.TabIndex = 86;
-            this.bnPS.Text = "Guide";
             this.bnPS.UseVisualStyleBackColor = false;
             this.bnPS.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnShare
             // 
+            resources.ApplyResources(this.bnShare, "bnShare");
             this.bnShare.BackColor = System.Drawing.Color.Transparent;
-            this.bnShare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnShare.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShare.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShare.FlatAppearance.BorderSize = 0;
             this.bnShare.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnShare.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnShare.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnShare.Location = new System.Drawing.Point(71, 33);
             this.bnShare.Name = "bnShare";
-            this.bnShare.Size = new System.Drawing.Size(11, 18);
-            this.bnShare.TabIndex = 85;
-            this.bnShare.Text = "Back";
             this.bnShare.UseVisualStyleBackColor = false;
             this.bnShare.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // SticksPanel
             // 
+            resources.ApplyResources(this.SticksPanel, "SticksPanel");
             this.SticksPanel.Controls.Add(this.btnFullView);
             this.SticksPanel.Controls.Add(this.pBSticks);
             this.SticksPanel.Controls.Add(this.bnL3);
@@ -781,322 +665,242 @@
             this.SticksPanel.Controls.Add(this.bnRSLeft);
             this.SticksPanel.Controls.Add(this.bnLSDown);
             this.SticksPanel.Controls.Add(this.bnR3);
-            this.SticksPanel.Location = new System.Drawing.Point(6, 42);
             this.SticksPanel.Name = "SticksPanel";
-            this.SticksPanel.Size = new System.Drawing.Size(249, 142);
-            this.SticksPanel.TabIndex = 187;
-            this.SticksPanel.Visible = false;
             // 
             // btnFullView
             // 
-            this.btnFullView.Location = new System.Drawing.Point(71, 9);
+            resources.ApplyResources(this.btnFullView, "btnFullView");
             this.btnFullView.Name = "btnFullView";
-            this.btnFullView.Size = new System.Drawing.Size(106, 23);
-            this.btnFullView.TabIndex = 184;
-            this.btnFullView.Text = "<- Back to full view";
             this.btnFullView.UseVisualStyleBackColor = true;
             this.btnFullView.Click += new System.EventHandler(this.btnFullView_Click);
             // 
             // pBSticks
             // 
-            this.pBSticks.Enabled = false;
+            resources.ApplyResources(this.pBSticks, "pBSticks");
             this.pBSticks.Image = global::ScpServer.Properties.Resources.sticks;
-            this.pBSticks.Location = new System.Drawing.Point(0, 1);
             this.pBSticks.Name = "pBSticks";
-            this.pBSticks.Size = new System.Drawing.Size(245, 132);
-            this.pBSticks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pBSticks.TabIndex = 161;
             this.pBSticks.TabStop = false;
             // 
             // bnL3
             // 
+            resources.ApplyResources(this.bnL3, "bnL3");
             this.bnL3.BackColor = System.Drawing.Color.Transparent;
-            this.bnL3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnL3.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnL3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnL3.FlatAppearance.BorderSize = 0;
             this.bnL3.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnL3.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnL3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnL3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnL3.Location = new System.Drawing.Point(36, 92);
             this.bnL3.Name = "bnL3";
-            this.bnL3.Size = new System.Drawing.Size(23, 23);
-            this.bnL3.TabIndex = 163;
-            this.bnL3.Text = "Left Stick";
             this.bnL3.UseVisualStyleBackColor = false;
             this.bnL3.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnRSDown
             // 
+            resources.ApplyResources(this.bnRSDown, "bnRSDown");
             this.bnRSDown.BackColor = System.Drawing.Color.Transparent;
-            this.bnRSDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnRSDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnRSDown.FlatAppearance.BorderSize = 0;
             this.bnRSDown.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnRSDown.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnRSDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnRSDown.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnRSDown.Location = new System.Drawing.Point(182, 116);
             this.bnRSDown.Name = "bnRSDown";
-            this.bnRSDown.Size = new System.Drawing.Size(23, 11);
-            this.bnRSDown.TabIndex = 172;
-            this.bnRSDown.Text = "Right Y-Axis+";
             this.bnRSDown.UseVisualStyleBackColor = false;
             this.bnRSDown.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnLSUp
             // 
+            resources.ApplyResources(this.bnLSUp, "bnLSUp");
             this.bnLSUp.BackColor = System.Drawing.Color.Transparent;
-            this.bnLSUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnLSUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnLSUp.FlatAppearance.BorderSize = 0;
             this.bnLSUp.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnLSUp.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnLSUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnLSUp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnLSUp.Location = new System.Drawing.Point(36, 77);
             this.bnLSUp.Name = "bnLSUp";
-            this.bnLSUp.Size = new System.Drawing.Size(23, 11);
-            this.bnLSUp.TabIndex = 167;
-            this.bnLSUp.Text = "Left Y-Axis-";
             this.bnLSUp.UseVisualStyleBackColor = false;
             this.bnLSUp.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnRSUp
             // 
+            resources.ApplyResources(this.bnRSUp, "bnRSUp");
             this.bnRSUp.BackColor = System.Drawing.Color.Transparent;
-            this.bnRSUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnRSUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnRSUp.FlatAppearance.BorderSize = 0;
             this.bnRSUp.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnRSUp.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnRSUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnRSUp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnRSUp.Location = new System.Drawing.Point(182, 78);
             this.bnRSUp.Name = "bnRSUp";
-            this.bnRSUp.Size = new System.Drawing.Size(23, 11);
-            this.bnRSUp.TabIndex = 171;
-            this.bnRSUp.Text = "Right Y-Axis-";
             this.bnRSUp.UseVisualStyleBackColor = false;
             this.bnRSUp.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnLSLeft
             // 
+            resources.ApplyResources(this.bnLSLeft, "bnLSLeft");
             this.bnLSLeft.BackColor = System.Drawing.Color.Transparent;
-            this.bnLSLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnLSLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnLSLeft.FlatAppearance.BorderSize = 0;
             this.bnLSLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnLSLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnLSLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnLSLeft.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnLSLeft.Location = new System.Drawing.Point(21, 92);
             this.bnLSLeft.Name = "bnLSLeft";
-            this.bnLSLeft.Size = new System.Drawing.Size(11, 23);
-            this.bnLSLeft.TabIndex = 164;
-            this.bnLSLeft.Text = "Left X-Axis-";
             this.bnLSLeft.UseVisualStyleBackColor = false;
             this.bnLSLeft.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnRSRight
             // 
+            resources.ApplyResources(this.bnRSRight, "bnRSRight");
             this.bnRSRight.BackColor = System.Drawing.Color.Transparent;
-            this.bnRSRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnRSRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnRSRight.FlatAppearance.BorderSize = 0;
             this.bnRSRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnRSRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnRSRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnRSRight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnRSRight.Location = new System.Drawing.Point(210, 92);
             this.bnRSRight.Name = "bnRSRight";
-            this.bnRSRight.Size = new System.Drawing.Size(13, 23);
-            this.bnRSRight.TabIndex = 170;
-            this.bnRSRight.Text = "Right X-Axis+";
             this.bnRSRight.UseVisualStyleBackColor = false;
             this.bnRSRight.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnLSRight
             // 
+            resources.ApplyResources(this.bnLSRight, "bnLSRight");
             this.bnLSRight.BackColor = System.Drawing.Color.Transparent;
-            this.bnLSRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnLSRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnLSRight.FlatAppearance.BorderSize = 0;
             this.bnLSRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnLSRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnLSRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnLSRight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnLSRight.Location = new System.Drawing.Point(65, 92);
             this.bnLSRight.Name = "bnLSRight";
-            this.bnLSRight.Size = new System.Drawing.Size(11, 23);
-            this.bnLSRight.TabIndex = 165;
-            this.bnLSRight.Text = "Left X-Axis+";
             this.bnLSRight.UseVisualStyleBackColor = false;
             this.bnLSRight.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnRSLeft
             // 
+            resources.ApplyResources(this.bnRSLeft, "bnRSLeft");
             this.bnRSLeft.BackColor = System.Drawing.Color.Transparent;
-            this.bnRSLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnRSLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnRSLeft.FlatAppearance.BorderSize = 0;
             this.bnRSLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnRSLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnRSLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnRSLeft.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnRSLeft.Location = new System.Drawing.Point(165, 92);
             this.bnRSLeft.Name = "bnRSLeft";
-            this.bnRSLeft.Size = new System.Drawing.Size(11, 23);
-            this.bnRSLeft.TabIndex = 169;
-            this.bnRSLeft.Text = "Right X-Axis-";
             this.bnRSLeft.UseVisualStyleBackColor = false;
             this.bnRSLeft.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnLSDown
             // 
+            resources.ApplyResources(this.bnLSDown, "bnLSDown");
             this.bnLSDown.BackColor = System.Drawing.Color.Transparent;
-            this.bnLSDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnLSDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnLSDown.FlatAppearance.BorderSize = 0;
             this.bnLSDown.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnLSDown.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnLSDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnLSDown.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnLSDown.Location = new System.Drawing.Point(36, 120);
             this.bnLSDown.Name = "bnLSDown";
-            this.bnLSDown.Size = new System.Drawing.Size(23, 11);
-            this.bnLSDown.TabIndex = 166;
-            this.bnLSDown.Text = "Left Y-Axis+";
             this.bnLSDown.UseVisualStyleBackColor = false;
             this.bnLSDown.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnR3
             // 
+            resources.ApplyResources(this.bnR3, "bnR3");
             this.bnR3.BackColor = System.Drawing.Color.Transparent;
-            this.bnR3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bnR3.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnR3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnR3.FlatAppearance.BorderSize = 0;
             this.bnR3.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.bnR3.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnR3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnR3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnR3.Location = new System.Drawing.Point(182, 92);
             this.bnR3.Name = "bnR3";
-            this.bnR3.Size = new System.Drawing.Size(23, 23);
-            this.bnR3.TabIndex = 168;
-            this.bnR3.Text = "Right Stick";
             this.bnR3.UseVisualStyleBackColor = false;
             this.bnR3.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // lbControlTip
             // 
-            this.lbControlTip.AutoSize = true;
-            this.lbControlTip.Location = new System.Drawing.Point(24, 5);
+            resources.ApplyResources(this.lbControlTip, "lbControlTip");
             this.lbControlTip.Name = "lbControlTip";
-            this.lbControlTip.Size = new System.Drawing.Size(219, 26);
-            this.lbControlTip.TabIndex = 181;
-            this.lbControlTip.Text = "Click a part of the controller to change action\r\nClick the lightbar for color pic" +
-    "ker";
-            this.lbControlTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lBControls
             // 
+            resources.ApplyResources(this.lBControls, "lBControls");
             this.lBControls.FormattingEnabled = true;
             this.lBControls.Items.AddRange(new object[] {
-            "Cross :",
-            "Circle :",
-            "Square :",
-            "Triangle :",
-            "Options :",
-            "Share :",
-            "Up :",
-            "Down :",
-            "Left :",
-            "Right :",
-            "PS :",
-            "L1 :",
-            "R1 :",
-            "L2 :",
-            "R2 :",
-            "L3 :",
-            "R3 :",
-            "Left Touch :",
-            "Upper Touch : ",
-            "Multitouch :",
-            "Right Touch :",
-            "Left Stick Up :",
-            "Left Stick Down :",
-            "Left Stick Left :",
-            "Left Stick Right :",
-            "Right Stick Up :",
-            "Right Stick Down :",
-            "Right Stick Left :",
-            "Right Stick Right :",
-            "Sixaxis Up :",
-            "Sixaxis Down :",
-            "Sixaxis Left :",
-            "Sixaxis Right :"});
-            this.lBControls.Location = new System.Drawing.Point(257, 7);
+            resources.GetString("lBControls.Items"),
+            resources.GetString("lBControls.Items1"),
+            resources.GetString("lBControls.Items2"),
+            resources.GetString("lBControls.Items3"),
+            resources.GetString("lBControls.Items4"),
+            resources.GetString("lBControls.Items5"),
+            resources.GetString("lBControls.Items6"),
+            resources.GetString("lBControls.Items7"),
+            resources.GetString("lBControls.Items8"),
+            resources.GetString("lBControls.Items9"),
+            resources.GetString("lBControls.Items10"),
+            resources.GetString("lBControls.Items11"),
+            resources.GetString("lBControls.Items12"),
+            resources.GetString("lBControls.Items13"),
+            resources.GetString("lBControls.Items14"),
+            resources.GetString("lBControls.Items15"),
+            resources.GetString("lBControls.Items16"),
+            resources.GetString("lBControls.Items17"),
+            resources.GetString("lBControls.Items18"),
+            resources.GetString("lBControls.Items19"),
+            resources.GetString("lBControls.Items20"),
+            resources.GetString("lBControls.Items21"),
+            resources.GetString("lBControls.Items22"),
+            resources.GetString("lBControls.Items23"),
+            resources.GetString("lBControls.Items24"),
+            resources.GetString("lBControls.Items25"),
+            resources.GetString("lBControls.Items26"),
+            resources.GetString("lBControls.Items27"),
+            resources.GetString("lBControls.Items28"),
+            resources.GetString("lBControls.Items29"),
+            resources.GetString("lBControls.Items30"),
+            resources.GetString("lBControls.Items31"),
+            resources.GetString("lBControls.Items32")});
             this.lBControls.Name = "lBControls";
-            this.lBControls.Size = new System.Drawing.Size(169, 173);
-            this.lBControls.TabIndex = 180;
             this.lBControls.DoubleClick += new System.EventHandler(this.Show_ControlsList);
             this.lBControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
             // 
             // lowColorChooserButton
             // 
+            resources.ApplyResources(this.lowColorChooserButton, "lowColorChooserButton");
             this.lowColorChooserButton.BackColor = System.Drawing.Color.White;
-            this.lowColorChooserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lowColorChooserButton.Location = new System.Drawing.Point(44, 9);
             this.lowColorChooserButton.Name = "lowColorChooserButton";
-            this.lowColorChooserButton.Size = new System.Drawing.Size(13, 13);
-            this.lowColorChooserButton.TabIndex = 49;
             this.lowColorChooserButton.UseVisualStyleBackColor = false;
             this.lowColorChooserButton.Click += new System.EventHandler(this.lowColorChooserButton_Click);
             // 
             // nUDRainbow
             // 
-            this.nUDRainbow.Location = new System.Drawing.Point(181, 16);
+            resources.ApplyResources(this.nUDRainbow, "nUDRainbow");
             this.nUDRainbow.Maximum = new decimal(new int[] {
             60,
             0,
             0,
             0});
             this.nUDRainbow.Name = "nUDRainbow";
-            this.nUDRainbow.Size = new System.Drawing.Size(39, 20);
-            this.nUDRainbow.TabIndex = 167;
             this.nUDRainbow.ValueChanged += new System.EventHandler(this.numUDRainbow_ValueChanged);
             // 
             // pBRainbow
             // 
+            resources.ApplyResources(this.pBRainbow, "pBRainbow");
             this.pBRainbow.Image = global::ScpServer.Properties.Resources.rainbow;
-            this.pBRainbow.Location = new System.Drawing.Point(159, 18);
             this.pBRainbow.Name = "pBRainbow";
-            this.pBRainbow.Size = new System.Drawing.Size(16, 16);
-            this.pBRainbow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pBRainbow.TabIndex = 166;
             this.pBRainbow.TabStop = false;
             this.pBRainbow.Click += new System.EventHandler(this.pbRainbow_Click);
             // 
             // blueBar
             // 
-            this.blueBar.AutoSize = false;
+            resources.ApplyResources(this.blueBar, "blueBar");
             this.blueBar.BackColor = System.Drawing.Color.Blue;
-            this.blueBar.Location = new System.Drawing.Point(325, 4);
             this.blueBar.Maximum = 255;
             this.blueBar.Name = "blueBar";
-            this.blueBar.Size = new System.Drawing.Size(100, 20);
-            this.blueBar.TabIndex = 12;
             this.blueBar.TickFrequency = 25;
             this.blueBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.blueBar.Value = 255;
@@ -1106,13 +910,10 @@
             // 
             // greenBar
             // 
-            this.greenBar.AutoSize = false;
+            resources.ApplyResources(this.greenBar, "greenBar");
             this.greenBar.BackColor = System.Drawing.Color.Green;
-            this.greenBar.Location = new System.Drawing.Point(196, 4);
             this.greenBar.Maximum = 255;
             this.greenBar.Name = "greenBar";
-            this.greenBar.Size = new System.Drawing.Size(100, 20);
-            this.greenBar.TabIndex = 11;
             this.greenBar.TickFrequency = 25;
             this.greenBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.greenBar.Value = 255;
@@ -1122,13 +923,10 @@
             // 
             // redBar
             // 
-            this.redBar.AutoSize = false;
+            resources.ApplyResources(this.redBar, "redBar");
             this.redBar.BackColor = System.Drawing.Color.Red;
-            this.redBar.Location = new System.Drawing.Point(73, 4);
             this.redBar.Maximum = 255;
             this.redBar.Name = "redBar";
-            this.redBar.Size = new System.Drawing.Size(100, 20);
-            this.redBar.TabIndex = 10;
             this.redBar.TickFrequency = 25;
             this.redBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.redBar.Value = 255;
@@ -1138,90 +936,58 @@
             // 
             // cBLightbyBattery
             // 
-            this.cBLightbyBattery.AutoSize = true;
-            this.cBLightbyBattery.Location = new System.Drawing.Point(316, 17);
+            resources.ApplyResources(this.cBLightbyBattery, "cBLightbyBattery");
             this.cBLightbyBattery.Name = "cBLightbyBattery";
-            this.cBLightbyBattery.Size = new System.Drawing.Size(111, 17);
-            this.cBLightbyBattery.TabIndex = 162;
-            this.cBLightbyBattery.Text = "Color by Battery %";
             this.cBLightbyBattery.UseVisualStyleBackColor = true;
             this.cBLightbyBattery.CheckedChanged += new System.EventHandler(this.ledAsBatteryIndicator_CheckedChanged);
             // 
             // lbBlue
             // 
-            this.lbBlue.AutoSize = true;
-            this.lbBlue.Location = new System.Drawing.Point(308, 7);
+            resources.ApplyResources(this.lbBlue, "lbBlue");
             this.lbBlue.Name = "lbBlue";
-            this.lbBlue.Size = new System.Drawing.Size(14, 13);
-            this.lbBlue.TabIndex = 160;
-            this.lbBlue.Text = "B";
             // 
             // lbGreen
             // 
-            this.lbGreen.AutoSize = true;
-            this.lbGreen.Location = new System.Drawing.Point(180, 7);
+            resources.ApplyResources(this.lbGreen, "lbGreen");
             this.lbGreen.Name = "lbGreen";
-            this.lbGreen.Size = new System.Drawing.Size(15, 13);
-            this.lbGreen.TabIndex = 159;
-            this.lbGreen.Text = "G";
             // 
             // lbspc
             // 
-            this.lbspc.AutoSize = true;
-            this.lbspc.Location = new System.Drawing.Point(223, 19);
+            resources.ApplyResources(this.lbspc, "lbspc");
             this.lbspc.Name = "lbspc";
-            this.lbspc.Size = new System.Drawing.Size(59, 13);
-            this.lbspc.TabIndex = 157;
-            this.lbspc.Text = "secs/cycle";
             // 
             // lbRed
             // 
-            this.lbRed.AutoSize = true;
-            this.lbRed.Location = new System.Drawing.Point(58, 7);
+            resources.ApplyResources(this.lbRed, "lbRed");
             this.lbRed.Name = "lbRed";
-            this.lbRed.Size = new System.Drawing.Size(15, 13);
-            this.lbRed.TabIndex = 158;
-            this.lbRed.Text = "R";
             // 
             // cBDoubleTap
             // 
-            this.cBDoubleTap.AutoSize = true;
+            resources.ApplyResources(this.cBDoubleTap, "cBDoubleTap");
             this.cBDoubleTap.Checked = true;
             this.cBDoubleTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBDoubleTap.Location = new System.Drawing.Point(349, 16);
             this.cBDoubleTap.Name = "cBDoubleTap";
-            this.cBDoubleTap.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cBDoubleTap.Size = new System.Drawing.Size(82, 17);
-            this.cBDoubleTap.TabIndex = 226;
-            this.cBDoubleTap.Text = "Double Tap";
             this.cBDoubleTap.UseVisualStyleBackColor = true;
             this.cBDoubleTap.CheckedChanged += new System.EventHandler(this.cBDoubleTap_CheckedChanged);
             // 
             // cBTap
             // 
-            this.cBTap.AutoSize = true;
+            resources.ApplyResources(this.cBTap, "cBTap");
             this.cBTap.Checked = true;
             this.cBTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBTap.Location = new System.Drawing.Point(318, 46);
             this.cBTap.Name = "cBTap";
-            this.cBTap.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBTap.Size = new System.Drawing.Size(45, 17);
-            this.cBTap.TabIndex = 230;
-            this.cBTap.Text = "Tap";
             this.cBTap.UseVisualStyleBackColor = true;
             this.cBTap.CheckedChanged += new System.EventHandler(this.cBTap_CheckedChanged);
             // 
             // nUDTap
             // 
-            this.nUDTap.Location = new System.Drawing.Point(369, 45);
+            resources.ApplyResources(this.nUDTap, "nUDTap");
             this.nUDTap.Maximum = new decimal(new int[] {
             200,
             0,
             0,
             0});
             this.nUDTap.Name = "nUDTap";
-            this.nUDTap.Size = new System.Drawing.Size(40, 20);
-            this.nUDTap.TabIndex = 227;
             this.nUDTap.Value = new decimal(new int[] {
             100,
             0,
@@ -1231,35 +997,25 @@
             // 
             // cBScroll
             // 
-            this.cBScroll.AutoSize = true;
+            resources.ApplyResources(this.cBScroll, "cBScroll");
             this.cBScroll.Checked = true;
             this.cBScroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBScroll.Location = new System.Drawing.Point(169, 47);
             this.cBScroll.Name = "cBScroll";
-            this.cBScroll.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBScroll.Size = new System.Drawing.Size(52, 17);
-            this.cBScroll.TabIndex = 231;
-            this.cBScroll.Text = "Scroll";
             this.cBScroll.UseVisualStyleBackColor = true;
             this.cBScroll.CheckedChanged += new System.EventHandler(this.cBScroll_CheckedChanged);
             // 
             // cBSlide
             // 
-            this.cBSlide.AutoSize = true;
+            resources.ApplyResources(this.cBSlide, "cBSlide");
             this.cBSlide.Checked = true;
             this.cBSlide.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSlide.Location = new System.Drawing.Point(7, 48);
             this.cBSlide.Name = "cBSlide";
-            this.cBSlide.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBSlide.Size = new System.Drawing.Size(49, 17);
-            this.cBSlide.TabIndex = 232;
-            this.cBSlide.Text = "Slide";
             this.cBSlide.UseVisualStyleBackColor = true;
             this.cBSlide.CheckedChanged += new System.EventHandler(this.cBSlide_CheckedChanged);
             // 
             // nUDScroll
             // 
-            this.nUDScroll.Location = new System.Drawing.Point(227, 45);
+            resources.ApplyResources(this.nUDScroll, "nUDScroll");
             this.nUDScroll.Maximum = new decimal(new int[] {
             10,
             0,
@@ -1271,8 +1027,6 @@
             0,
             -2147483648});
             this.nUDScroll.Name = "nUDScroll";
-            this.nUDScroll.Size = new System.Drawing.Size(40, 20);
-            this.nUDScroll.TabIndex = 228;
             this.nUDScroll.Value = new decimal(new int[] {
             5,
             0,
@@ -1282,15 +1036,13 @@
             // 
             // nUDTouch
             // 
-            this.nUDTouch.Location = new System.Drawing.Point(62, 46);
+            resources.ApplyResources(this.nUDTouch, "nUDTouch");
             this.nUDTouch.Maximum = new decimal(new int[] {
             150,
             0,
             0,
             0});
             this.nUDTouch.Name = "nUDTouch";
-            this.nUDTouch.Size = new System.Drawing.Size(40, 20);
-            this.nUDTouch.TabIndex = 229;
             this.nUDTouch.Value = new decimal(new int[] {
             100,
             0,
@@ -1300,196 +1052,139 @@
             // 
             // lbButtonMouseSens
             // 
-            this.lbButtonMouseSens.AutoSize = true;
-            this.lbButtonMouseSens.Location = new System.Drawing.Point(5, 18);
+            resources.ApplyResources(this.lbButtonMouseSens, "lbButtonMouseSens");
             this.lbButtonMouseSens.Name = "lbButtonMouseSens";
-            this.lbButtonMouseSens.Size = new System.Drawing.Size(92, 13);
-            this.lbButtonMouseSens.TabIndex = 206;
-            this.lbButtonMouseSens.Text = "Mouse Sensitivity:";
-            this.lbButtonMouseSens.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // cBlowerRCOn
             // 
-            this.cBlowerRCOn.AutoSize = true;
-            this.cBlowerRCOn.Location = new System.Drawing.Point(182, 11);
+            resources.ApplyResources(this.cBlowerRCOn, "cBlowerRCOn");
             this.cBlowerRCOn.Name = "cBlowerRCOn";
-            this.cBlowerRCOn.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cBlowerRCOn.Size = new System.Drawing.Size(100, 30);
-            this.cBlowerRCOn.TabIndex = 223;
-            this.cBlowerRCOn.Text = "Lower Right as \r\nRight Mouse";
             this.cBlowerRCOn.UseVisualStyleBackColor = true;
             this.cBlowerRCOn.CheckedChanged += new System.EventHandler(this.lowerRCOffCheckBox_CheckedChanged);
             // 
             // cBTouchpadJitterCompensation
             // 
-            this.cBTouchpadJitterCompensation.AutoSize = true;
+            resources.ApplyResources(this.cBTouchpadJitterCompensation, "cBTouchpadJitterCompensation");
             this.cBTouchpadJitterCompensation.Checked = true;
             this.cBTouchpadJitterCompensation.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBTouchpadJitterCompensation.Location = new System.Drawing.Point(12, 18);
             this.cBTouchpadJitterCompensation.Name = "cBTouchpadJitterCompensation";
-            this.cBTouchpadJitterCompensation.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cBTouchpadJitterCompensation.Size = new System.Drawing.Size(118, 17);
-            this.cBTouchpadJitterCompensation.TabIndex = 224;
-            this.cBTouchpadJitterCompensation.Text = "Jitter Compensation";
             this.cBTouchpadJitterCompensation.UseVisualStyleBackColor = true;
             this.cBTouchpadJitterCompensation.CheckedChanged += new System.EventHandler(this.touchpadJitterCompensation_CheckedChanged);
             // 
             // lbL2
             // 
-            this.lbL2.AutoSize = true;
-            this.lbL2.Location = new System.Drawing.Point(7, 17);
+            resources.ApplyResources(this.lbL2, "lbL2");
             this.lbL2.Name = "lbL2";
-            this.lbL2.Size = new System.Drawing.Size(19, 13);
-            this.lbL2.TabIndex = 196;
-            this.lbL2.Text = "L2";
             // 
             // lbR2
             // 
-            this.lbR2.AutoSize = true;
-            this.lbR2.Location = new System.Drawing.Point(88, 17);
+            resources.ApplyResources(this.lbR2, "lbR2");
             this.lbR2.Name = "lbR2";
-            this.lbR2.Size = new System.Drawing.Size(21, 13);
-            this.lbR2.TabIndex = 197;
-            this.lbR2.Text = "R2";
             // 
             // lbIdleMinutes
             // 
-            this.lbIdleMinutes.AutoSize = true;
-            this.lbIdleMinutes.Location = new System.Drawing.Point(163, 46);
+            resources.ApplyResources(this.lbIdleMinutes, "lbIdleMinutes");
             this.lbIdleMinutes.Name = "lbIdleMinutes";
-            this.lbIdleMinutes.Size = new System.Drawing.Size(28, 13);
-            this.lbIdleMinutes.TabIndex = 200;
-            this.lbIdleMinutes.Text = "mins";
             // 
             // nUDIdleDisconnect
             // 
+            resources.ApplyResources(this.nUDIdleDisconnect, "nUDIdleDisconnect");
             this.nUDIdleDisconnect.DecimalPlaces = 1;
-            this.nUDIdleDisconnect.Location = new System.Drawing.Point(109, 44);
             this.nUDIdleDisconnect.Maximum = new decimal(new int[] {
             60,
             0,
             0,
             0});
             this.nUDIdleDisconnect.Name = "nUDIdleDisconnect";
-            this.nUDIdleDisconnect.Size = new System.Drawing.Size(50, 20);
-            this.nUDIdleDisconnect.TabIndex = 201;
             this.nUDIdleDisconnect.ValueChanged += new System.EventHandler(this.nUDIdleDisconnect_ValueChanged);
             // 
             // nUDR2
             // 
+            resources.ApplyResources(this.nUDR2, "nUDR2");
             this.nUDR2.DecimalPlaces = 2;
             this.nUDR2.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.nUDR2.Location = new System.Drawing.Point(111, 15);
             this.nUDR2.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDR2.Name = "nUDR2";
-            this.nUDR2.Size = new System.Drawing.Size(50, 20);
-            this.nUDR2.TabIndex = 202;
             this.nUDR2.ValueChanged += new System.EventHandler(this.numUDR2_ValueChanged);
             // 
             // tBsixaxisAccelZ
             // 
-            this.tBsixaxisAccelZ.AutoSize = false;
+            resources.ApplyResources(this.tBsixaxisAccelZ, "tBsixaxisAccelZ");
             this.tBsixaxisAccelZ.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisAccelZ.Location = new System.Drawing.Point(71, 79);
             this.tBsixaxisAccelZ.Maximum = 8500;
             this.tBsixaxisAccelZ.Minimum = -8500;
             this.tBsixaxisAccelZ.Name = "tBsixaxisAccelZ";
-            this.tBsixaxisAccelZ.Size = new System.Drawing.Size(50, 19);
-            this.tBsixaxisAccelZ.TabIndex = 217;
             this.tBsixaxisAccelZ.TickFrequency = 4750;
             // 
             // cBFlushHIDQueue
             // 
-            this.cBFlushHIDQueue.AccessibleName = "flushHIDQueue";
-            this.cBFlushHIDQueue.AutoSize = true;
-            this.cBFlushHIDQueue.Location = new System.Drawing.Point(357, 16);
+            resources.ApplyResources(this.cBFlushHIDQueue, "cBFlushHIDQueue");
             this.cBFlushHIDQueue.Name = "cBFlushHIDQueue";
-            this.cBFlushHIDQueue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBFlushHIDQueue.Size = new System.Drawing.Size(73, 17);
-            this.cBFlushHIDQueue.TabIndex = 198;
-            this.cBFlushHIDQueue.Text = "Flush HID\r\n";
             this.cBFlushHIDQueue.UseVisualStyleBackColor = true;
             this.cBFlushHIDQueue.CheckedChanged += new System.EventHandler(this.flushHIDQueue_CheckedChanged);
             // 
             // tBsixaxisAccelY
             // 
-            this.tBsixaxisAccelY.AutoSize = false;
+            resources.ApplyResources(this.tBsixaxisAccelY, "tBsixaxisAccelY");
             this.tBsixaxisAccelY.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisAccelY.Location = new System.Drawing.Point(72, 49);
             this.tBsixaxisAccelY.Maximum = 8500;
             this.tBsixaxisAccelY.Minimum = -8500;
             this.tBsixaxisAccelY.Name = "tBsixaxisAccelY";
-            this.tBsixaxisAccelY.Size = new System.Drawing.Size(50, 19);
-            this.tBsixaxisAccelY.TabIndex = 218;
             this.tBsixaxisAccelY.TickFrequency = 4750;
             // 
             // tBsixaxisAccelX
             // 
-            this.tBsixaxisAccelX.AutoSize = false;
+            resources.ApplyResources(this.tBsixaxisAccelX, "tBsixaxisAccelX");
             this.tBsixaxisAccelX.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisAccelX.Location = new System.Drawing.Point(71, 25);
             this.tBsixaxisAccelX.Maximum = 8500;
             this.tBsixaxisAccelX.Minimum = -8500;
             this.tBsixaxisAccelX.Name = "tBsixaxisAccelX";
-            this.tBsixaxisAccelX.Size = new System.Drawing.Size(50, 19);
-            this.tBsixaxisAccelX.TabIndex = 219;
             this.tBsixaxisAccelX.TickFrequency = 4750;
             // 
             // tBsixaxisGyroZ
             // 
-            this.tBsixaxisGyroZ.AutoSize = false;
+            resources.ApplyResources(this.tBsixaxisGyroZ, "tBsixaxisGyroZ");
             this.tBsixaxisGyroZ.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisGyroZ.Location = new System.Drawing.Point(3, 79);
             this.tBsixaxisGyroZ.Maximum = 8500;
             this.tBsixaxisGyroZ.Minimum = -8500;
             this.tBsixaxisGyroZ.Name = "tBsixaxisGyroZ";
-            this.tBsixaxisGyroZ.Size = new System.Drawing.Size(50, 19);
-            this.tBsixaxisGyroZ.TabIndex = 220;
             this.tBsixaxisGyroZ.TickFrequency = 4750;
             // 
             // tBsixaxisGyroY
             // 
-            this.tBsixaxisGyroY.AutoSize = false;
+            resources.ApplyResources(this.tBsixaxisGyroY, "tBsixaxisGyroY");
             this.tBsixaxisGyroY.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisGyroY.Location = new System.Drawing.Point(3, 49);
             this.tBsixaxisGyroY.Maximum = 8500;
             this.tBsixaxisGyroY.Minimum = -8500;
             this.tBsixaxisGyroY.Name = "tBsixaxisGyroY";
-            this.tBsixaxisGyroY.Size = new System.Drawing.Size(50, 19);
-            this.tBsixaxisGyroY.TabIndex = 221;
             this.tBsixaxisGyroY.TickFrequency = 4750;
             // 
             // tBsixaxisGyroX
             // 
-            this.tBsixaxisGyroX.AutoSize = false;
+            resources.ApplyResources(this.tBsixaxisGyroX, "tBsixaxisGyroX");
             this.tBsixaxisGyroX.BackColor = System.Drawing.Color.White;
-            this.tBsixaxisGyroX.Location = new System.Drawing.Point(3, 24);
             this.tBsixaxisGyroX.Maximum = 8500;
             this.tBsixaxisGyroX.Minimum = -8500;
             this.tBsixaxisGyroX.Name = "tBsixaxisGyroX";
-            this.tBsixaxisGyroX.Size = new System.Drawing.Size(50, 19);
-            this.tBsixaxisGyroX.TabIndex = 222;
             this.tBsixaxisGyroX.TickFrequency = 4750;
             // 
             // nUDRumbleBoost
             // 
-            this.nUDRumbleBoost.Location = new System.Drawing.Point(14, 15);
+            resources.ApplyResources(this.nUDRumbleBoost, "nUDRumbleBoost");
             this.nUDRumbleBoost.Maximum = new decimal(new int[] {
             150,
             0,
             0,
             0});
             this.nUDRumbleBoost.Name = "nUDRumbleBoost";
-            this.nUDRumbleBoost.Size = new System.Drawing.Size(43, 20);
-            this.nUDRumbleBoost.TabIndex = 211;
             this.nUDRumbleBoost.Value = new decimal(new int[] {
             100,
             0,
@@ -1499,68 +1194,42 @@
             // 
             // lb6Accel
             // 
-            this.lb6Accel.AutoSize = true;
-            this.lb6Accel.Location = new System.Drawing.Point(81, 4);
+            resources.ApplyResources(this.lb6Accel, "lb6Accel");
             this.lb6Accel.Name = "lb6Accel";
-            this.lb6Accel.Size = new System.Drawing.Size(34, 13);
-            this.lb6Accel.TabIndex = 215;
-            this.lb6Accel.Text = "Accel";
             // 
             // btnRumbleTest
             // 
-            this.btnRumbleTest.Location = new System.Drawing.Point(14, 39);
+            resources.ApplyResources(this.btnRumbleTest, "btnRumbleTest");
             this.btnRumbleTest.Name = "btnRumbleTest";
-            this.btnRumbleTest.Size = new System.Drawing.Size(64, 23);
-            this.btnRumbleTest.TabIndex = 214;
-            this.btnRumbleTest.Text = "Test";
             this.btnRumbleTest.UseVisualStyleBackColor = true;
             this.btnRumbleTest.Click += new System.EventHandler(this.btnRumbleTest_Click);
             // 
             // lbFull
             // 
-            this.lbFull.AutoSize = true;
-            this.lbFull.Location = new System.Drawing.Point(7, 7);
+            resources.ApplyResources(this.lbFull, "lbFull");
             this.lbFull.Name = "lbFull";
-            this.lbFull.Size = new System.Drawing.Size(26, 13);
-            this.lbFull.TabIndex = 225;
-            this.lbFull.Text = "Full:";
             // 
             // lbLowRed
             // 
-            this.lbLowRed.AutoSize = true;
-            this.lbLowRed.Location = new System.Drawing.Point(58, 9);
+            resources.ApplyResources(this.lbLowRed, "lbLowRed");
             this.lbLowRed.Name = "lbLowRed";
-            this.lbLowRed.Size = new System.Drawing.Size(15, 13);
-            this.lbLowRed.TabIndex = 158;
-            this.lbLowRed.Text = "R";
             // 
             // lbLowGreen
             // 
-            this.lbLowGreen.AutoSize = true;
-            this.lbLowGreen.Location = new System.Drawing.Point(180, 9);
+            resources.ApplyResources(this.lbLowGreen, "lbLowGreen");
             this.lbLowGreen.Name = "lbLowGreen";
-            this.lbLowGreen.Size = new System.Drawing.Size(15, 13);
-            this.lbLowGreen.TabIndex = 159;
-            this.lbLowGreen.Text = "G";
             // 
             // lbLowBlue
             // 
-            this.lbLowBlue.AutoSize = true;
-            this.lbLowBlue.Location = new System.Drawing.Point(308, 9);
+            resources.ApplyResources(this.lbLowBlue, "lbLowBlue");
             this.lbLowBlue.Name = "lbLowBlue";
-            this.lbLowBlue.Size = new System.Drawing.Size(14, 13);
-            this.lbLowBlue.TabIndex = 160;
-            this.lbLowBlue.Text = "B";
             // 
             // lowRedBar
             // 
-            this.lowRedBar.AutoSize = false;
+            resources.ApplyResources(this.lowRedBar, "lowRedBar");
             this.lowRedBar.BackColor = System.Drawing.Color.Red;
-            this.lowRedBar.Location = new System.Drawing.Point(73, 5);
             this.lowRedBar.Maximum = 255;
             this.lowRedBar.Name = "lowRedBar";
-            this.lowRedBar.Size = new System.Drawing.Size(100, 20);
-            this.lowRedBar.TabIndex = 10;
             this.lowRedBar.TickFrequency = 25;
             this.lowRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.lowRedBar.Value = 255;
@@ -1570,13 +1239,10 @@
             // 
             // lowGreenBar
             // 
-            this.lowGreenBar.AutoSize = false;
+            resources.ApplyResources(this.lowGreenBar, "lowGreenBar");
             this.lowGreenBar.BackColor = System.Drawing.Color.Green;
-            this.lowGreenBar.Location = new System.Drawing.Point(196, 5);
             this.lowGreenBar.Maximum = 255;
             this.lowGreenBar.Name = "lowGreenBar";
-            this.lowGreenBar.Size = new System.Drawing.Size(100, 20);
-            this.lowGreenBar.TabIndex = 11;
             this.lowGreenBar.TickFrequency = 25;
             this.lowGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.lowGreenBar.Value = 255;
@@ -1586,13 +1252,10 @@
             // 
             // lowBlueBar
             // 
-            this.lowBlueBar.AutoSize = false;
+            resources.ApplyResources(this.lowBlueBar, "lowBlueBar");
             this.lowBlueBar.BackColor = System.Drawing.Color.Blue;
-            this.lowBlueBar.Location = new System.Drawing.Point(325, 5);
             this.lowBlueBar.Maximum = 255;
             this.lowBlueBar.Name = "lowBlueBar";
-            this.lowBlueBar.Size = new System.Drawing.Size(100, 20);
-            this.lowBlueBar.TabIndex = 12;
             this.lowBlueBar.TickFrequency = 25;
             this.lowBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.lowBlueBar.Value = 255;
@@ -1602,16 +1265,13 @@
             // 
             // lbEmpty
             // 
-            this.lbEmpty.AutoSize = true;
-            this.lbEmpty.Location = new System.Drawing.Point(7, 9);
+            resources.ApplyResources(this.lbEmpty, "lbEmpty");
             this.lbEmpty.Name = "lbEmpty";
-            this.lbEmpty.Size = new System.Drawing.Size(39, 13);
-            this.lbEmpty.TabIndex = 225;
-            this.lbEmpty.Text = "Empty:";
             this.lbEmpty.Click += new System.EventHandler(this.lbEmpty_Click);
             // 
             // FullPanel
             // 
+            resources.ApplyResources(this.FullPanel, "FullPanel");
             this.FullPanel.Controls.Add(this.lbFull);
             this.FullPanel.Controls.Add(this.lbRed);
             this.FullPanel.Controls.Add(this.lbGreen);
@@ -1619,13 +1279,11 @@
             this.FullPanel.Controls.Add(this.redBar);
             this.FullPanel.Controls.Add(this.greenBar);
             this.FullPanel.Controls.Add(this.blueBar);
-            this.FullPanel.Location = new System.Drawing.Point(2, 42);
             this.FullPanel.Name = "FullPanel";
-            this.FullPanel.Size = new System.Drawing.Size(435, 29);
-            this.FullPanel.TabIndex = 235;
             // 
             // lowBatteryPanel
             // 
+            resources.ApplyResources(this.lowBatteryPanel, "lowBatteryPanel");
             this.lowBatteryPanel.Controls.Add(this.lowColorChooserButton);
             this.lowBatteryPanel.Controls.Add(this.lbLowRed);
             this.lowBatteryPanel.Controls.Add(this.lbLowGreen);
@@ -1634,69 +1292,49 @@
             this.lowBatteryPanel.Controls.Add(this.lowGreenBar);
             this.lowBatteryPanel.Controls.Add(this.lowBlueBar);
             this.lowBatteryPanel.Controls.Add(this.lbEmpty);
-            this.lowBatteryPanel.Location = new System.Drawing.Point(2, 72);
             this.lowBatteryPanel.Name = "lowBatteryPanel";
-            this.lowBatteryPanel.Size = new System.Drawing.Size(435, 29);
-            this.lowBatteryPanel.TabIndex = 234;
             // 
             // lb6Gryo
             // 
-            this.lb6Gryo.AutoSize = true;
-            this.lb6Gryo.Location = new System.Drawing.Point(13, 5);
+            resources.ApplyResources(this.lb6Gryo, "lb6Gryo");
             this.lb6Gryo.Name = "lb6Gryo";
-            this.lb6Gryo.Size = new System.Drawing.Size(29, 13);
-            this.lb6Gryo.TabIndex = 216;
-            this.lb6Gryo.Text = "Gyro";
             // 
             // lbRS
             // 
-            this.lbRS.AutoSize = true;
-            this.lbRS.Location = new System.Drawing.Point(88, 46);
+            resources.ApplyResources(this.lbRS, "lbRS");
             this.lbRS.Name = "lbRS";
-            this.lbRS.Size = new System.Drawing.Size(22, 13);
-            this.lbRS.TabIndex = 197;
-            this.lbRS.Text = "RS";
             // 
             // lbLS
             // 
-            this.lbLS.AutoSize = true;
-            this.lbLS.Location = new System.Drawing.Point(6, 46);
+            resources.ApplyResources(this.lbLS, "lbLS");
             this.lbLS.Name = "lbLS";
-            this.lbLS.Size = new System.Drawing.Size(20, 13);
-            this.lbLS.TabIndex = 196;
-            this.lbLS.Text = "LS";
             // 
             // nUDRS
             // 
+            resources.ApplyResources(this.nUDRS, "nUDRS");
             this.nUDRS.DecimalPlaces = 2;
             this.nUDRS.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.nUDRS.Location = new System.Drawing.Point(111, 43);
             this.nUDRS.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDRS.Name = "nUDRS";
-            this.nUDRS.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nUDRS.Size = new System.Drawing.Size(50, 20);
-            this.nUDRS.TabIndex = 203;
             this.nUDRS.ValueChanged += new System.EventHandler(this.numUDRS_ValueChanged);
             // 
             // numUDMouseSens
             // 
-            this.numUDMouseSens.Location = new System.Drawing.Point(109, 16);
+            resources.ApplyResources(this.numUDMouseSens, "numUDMouseSens");
             this.numUDMouseSens.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numUDMouseSens.Name = "numUDMouseSens";
-            this.numUDMouseSens.Size = new System.Drawing.Size(50, 20);
-            this.numUDMouseSens.TabIndex = 241;
             this.numUDMouseSens.Value = new decimal(new int[] {
             25,
             0,
@@ -1706,46 +1344,41 @@
             // 
             // nUDLS
             // 
+            resources.ApplyResources(this.nUDLS, "nUDLS");
             this.nUDLS.DecimalPlaces = 2;
             this.nUDLS.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.nUDLS.Location = new System.Drawing.Point(31, 44);
             this.nUDLS.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDLS.Name = "nUDLS";
-            this.nUDLS.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nUDLS.Size = new System.Drawing.Size(50, 20);
-            this.nUDLS.TabIndex = 203;
             this.nUDLS.ValueChanged += new System.EventHandler(this.numUDLS_ValueChanged);
             // 
             // nUDL2
             // 
+            resources.ApplyResources(this.nUDL2, "nUDL2");
             this.nUDL2.DecimalPlaces = 2;
             this.nUDL2.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.nUDL2.Location = new System.Drawing.Point(31, 15);
             this.nUDL2.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDL2.Name = "nUDL2";
-            this.nUDL2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nUDL2.Size = new System.Drawing.Size(50, 20);
-            this.nUDL2.TabIndex = 203;
             this.nUDL2.ValueChanged += new System.EventHandler(this.numUDL2_ValueChanged);
             // 
             // gBTouchpad
             // 
+            resources.ApplyResources(this.gBTouchpad, "gBTouchpad");
             this.gBTouchpad.Controls.Add(this.cBTouchpadJitterCompensation);
             this.gBTouchpad.Controls.Add(this.cBDoubleTap);
             this.gBTouchpad.Controls.Add(this.cBlowerRCOn);
@@ -1755,15 +1388,12 @@
             this.gBTouchpad.Controls.Add(this.nUDScroll);
             this.gBTouchpad.Controls.Add(this.nUDTap);
             this.gBTouchpad.Controls.Add(this.cBScroll);
-            this.gBTouchpad.Location = new System.Drawing.Point(2, 251);
             this.gBTouchpad.Name = "gBTouchpad";
-            this.gBTouchpad.Size = new System.Drawing.Size(437, 70);
-            this.gBTouchpad.TabIndex = 246;
             this.gBTouchpad.TabStop = false;
-            this.gBTouchpad.Text = "Touchpad";
             // 
             // gBOther
             // 
+            resources.ApplyResources(this.gBOther, "gBOther");
             this.gBOther.Controls.Add(this.pBProgram);
             this.gBOther.Controls.Add(this.cBLaunchProgram);
             this.gBOther.Controls.Add(this.btnBrowse);
@@ -1777,60 +1407,44 @@
             this.gBOther.Controls.Add(this.numUDMouseSens);
             this.gBOther.Controls.Add(this.cBFlushHIDQueue);
             this.gBOther.Controls.Add(this.lbIdleMinutes);
-            this.gBOther.Location = new System.Drawing.Point(445, 226);
             this.gBOther.Name = "gBOther";
-            this.gBOther.Size = new System.Drawing.Size(436, 95);
-            this.gBOther.TabIndex = 247;
             this.gBOther.TabStop = false;
-            this.gBOther.Text = "Other";
+            // 
+            // pBProgram
+            // 
+            resources.ApplyResources(this.pBProgram, "pBProgram");
+            this.pBProgram.Name = "pBProgram";
+            this.pBProgram.TabStop = false;
             // 
             // cBLaunchProgram
             // 
-            this.cBLaunchProgram.AutoSize = true;
-            this.cBLaunchProgram.Location = new System.Drawing.Point(224, 39);
+            resources.ApplyResources(this.cBLaunchProgram, "cBLaunchProgram");
             this.cBLaunchProgram.Name = "cBLaunchProgram";
-            this.cBLaunchProgram.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBLaunchProgram.Size = new System.Drawing.Size(136, 30);
-            this.cBLaunchProgram.TabIndex = 254;
-            this.cBLaunchProgram.Text = "Launch Program when \r\nstarting profile";
             this.cBLaunchProgram.UseVisualStyleBackColor = true;
             this.cBLaunchProgram.CheckedChanged += new System.EventHandler(this.cBLaunchProgram_CheckedChanged);
             // 
             // btnBrowse
             // 
-            this.btnBrowse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnBrowse.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBrowse.Location = new System.Drawing.Point(363, 41);
+            resources.ApplyResources(this.btnBrowse, "btnBrowse");
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(67, 23);
-            this.btnBrowse.TabIndex = 253;
-            this.btnBrowse.Text = "Browse...";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // lbUseController
             // 
-            this.lbUseController.AutoSize = true;
-            this.lbUseController.Location = new System.Drawing.Point(7, 75);
+            resources.ApplyResources(this.lbUseController, "lbUseController");
             this.lbUseController.Name = "lbUseController";
-            this.lbUseController.Size = new System.Drawing.Size(73, 13);
-            this.lbUseController.TabIndex = 252;
-            this.lbUseController.Text = "Use Controller";
             // 
             // cBMouseAccel
             // 
-            this.cBMouseAccel.AutoSize = true;
-            this.cBMouseAccel.Location = new System.Drawing.Point(170, 17);
+            resources.ApplyResources(this.cBMouseAccel, "cBMouseAccel");
             this.cBMouseAccel.Name = "cBMouseAccel";
-            this.cBMouseAccel.Size = new System.Drawing.Size(120, 17);
-            this.cBMouseAccel.TabIndex = 251;
-            this.cBMouseAccel.Text = "Mouse Acceleration";
             this.cBMouseAccel.UseVisualStyleBackColor = true;
             this.cBMouseAccel.CheckedChanged += new System.EventHandler(this.cBMouseAccel_CheckedChanged);
             // 
             // nUDSixaxis
             // 
-            this.nUDSixaxis.Location = new System.Drawing.Point(82, 73);
+            resources.ApplyResources(this.nUDSixaxis, "nUDSixaxis");
             this.nUDSixaxis.Maximum = new decimal(new int[] {
             4,
             0,
@@ -1842,8 +1456,6 @@
             0,
             0});
             this.nUDSixaxis.Name = "nUDSixaxis";
-            this.nUDSixaxis.Size = new System.Drawing.Size(29, 20);
-            this.nUDSixaxis.TabIndex = 250;
             this.nUDSixaxis.Value = new decimal(new int[] {
             1,
             0,
@@ -1852,33 +1464,24 @@
             // 
             // cBControllerInput
             // 
-            this.cBControllerInput.AutoSize = true;
+            resources.ApplyResources(this.cBControllerInput, "cBControllerInput");
             this.cBControllerInput.Checked = true;
             this.cBControllerInput.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBControllerInput.Location = new System.Drawing.Point(117, 74);
             this.cBControllerInput.Name = "cBControllerInput";
-            this.cBControllerInput.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBControllerInput.Size = new System.Drawing.Size(142, 17);
-            this.cBControllerInput.TabIndex = 242;
-            this.cBControllerInput.Text = "for Mapping and readout";
             this.cBControllerInput.UseVisualStyleBackColor = true;
             // 
             // cBIdleDisconnect
             // 
-            this.cBIdleDisconnect.AutoSize = true;
+            resources.ApplyResources(this.cBIdleDisconnect, "cBIdleDisconnect");
             this.cBIdleDisconnect.Checked = true;
             this.cBIdleDisconnect.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBIdleDisconnect.Location = new System.Drawing.Point(6, 45);
             this.cBIdleDisconnect.Name = "cBIdleDisconnect";
-            this.cBIdleDisconnect.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cBIdleDisconnect.Size = new System.Drawing.Size(100, 17);
-            this.cBIdleDisconnect.TabIndex = 232;
-            this.cBIdleDisconnect.Text = "Idle Disconnect";
             this.cBIdleDisconnect.UseVisualStyleBackColor = true;
             this.cBIdleDisconnect.CheckedChanged += new System.EventHandler(this.cBIdleDisconnect_CheckedChanged);
             // 
             // gBLightbar
             // 
+            resources.ApplyResources(this.gBLightbar, "gBLightbar");
             this.gBLightbar.Controls.Add(this.btnChargingColor);
             this.gBLightbar.Controls.Add(this.rBColor);
             this.gBLightbar.Controls.Add(this.rBFade);
@@ -1886,123 +1489,86 @@
             this.gBLightbar.Controls.Add(this.rBRainbow);
             this.gBLightbar.Controls.Add(this.lbWhileCharging);
             this.gBLightbar.Controls.Add(this.lbPercentFlashBar);
-            this.gBLightbar.Controls.Add(this.lbFlashAt);
             this.gBLightbar.Controls.Add(this.pBRainbow);
             this.gBLightbar.Controls.Add(this.nUDflashLED);
             this.gBLightbar.Controls.Add(this.nUDRainbow);
             this.gBLightbar.Controls.Add(this.lbspc);
             this.gBLightbar.Controls.Add(this.cBLightbyBattery);
-            this.gBLightbar.Controls.Add(this.ShiftPanel);
             this.gBLightbar.Controls.Add(this.lowBatteryPanel);
             this.gBLightbar.Controls.Add(this.FullPanel);
-            this.gBLightbar.Location = new System.Drawing.Point(443, 85);
+            this.gBLightbar.Controls.Add(this.lbFlashAt);
+            this.gBLightbar.Controls.Add(this.ShiftPanel);
             this.gBLightbar.Name = "gBLightbar";
-            this.gBLightbar.Size = new System.Drawing.Size(438, 129);
-            this.gBLightbar.TabIndex = 247;
             this.gBLightbar.TabStop = false;
-            this.gBLightbar.Text = "Lightbar";
             // 
             // btnChargingColor
             // 
+            resources.ApplyResources(this.btnChargingColor, "btnChargingColor");
             this.btnChargingColor.BackColor = System.Drawing.Color.White;
-            this.btnChargingColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChargingColor.Location = new System.Drawing.Point(391, 108);
             this.btnChargingColor.Name = "btnChargingColor";
-            this.btnChargingColor.Size = new System.Drawing.Size(13, 13);
-            this.btnChargingColor.TabIndex = 49;
             this.btnChargingColor.UseVisualStyleBackColor = false;
-            this.btnChargingColor.Visible = false;
             this.btnChargingColor.Click += new System.EventHandler(this.btnChargingColor_Click);
             // 
             // rBColor
             // 
-            this.rBColor.AutoSize = true;
-            this.rBColor.Location = new System.Drawing.Point(336, 106);
+            resources.ApplyResources(this.rBColor, "rBColor");
             this.rBColor.Name = "rBColor";
-            this.rBColor.Size = new System.Drawing.Size(49, 17);
-            this.rBColor.TabIndex = 238;
             this.rBColor.TabStop = true;
-            this.rBColor.Text = "Color";
             this.rBColor.UseVisualStyleBackColor = true;
             this.rBColor.CheckedChanged += new System.EventHandler(this.rBColor_CheckedChanged);
             // 
             // rBFade
             // 
-            this.rBFade.AutoSize = true;
-            this.rBFade.Location = new System.Drawing.Point(158, 106);
+            resources.ApplyResources(this.rBFade, "rBFade");
             this.rBFade.Name = "rBFade";
-            this.rBFade.Size = new System.Drawing.Size(99, 17);
-            this.rBFade.TabIndex = 237;
-            this.rBFade.Text = "Fade in and out";
             this.rBFade.UseVisualStyleBackColor = true;
             this.rBFade.CheckedChanged += new System.EventHandler(this.rBFade_CheckedChanged);
             // 
             // rBNormal
             // 
-            this.rBNormal.AutoSize = true;
+            resources.ApplyResources(this.rBNormal, "rBNormal");
             this.rBNormal.Checked = true;
-            this.rBNormal.Location = new System.Drawing.Point(97, 106);
             this.rBNormal.Name = "rBNormal";
-            this.rBNormal.Size = new System.Drawing.Size(58, 17);
-            this.rBNormal.TabIndex = 237;
             this.rBNormal.TabStop = true;
-            this.rBNormal.Text = "Normal";
             this.rBNormal.UseVisualStyleBackColor = true;
             this.rBNormal.CheckedChanged += new System.EventHandler(this.rBNormal_CheckedChanged);
             // 
             // rBRainbow
             // 
-            this.rBRainbow.AutoSize = true;
-            this.rBRainbow.Location = new System.Drawing.Point(263, 106);
+            resources.ApplyResources(this.rBRainbow, "rBRainbow");
             this.rBRainbow.Name = "rBRainbow";
-            this.rBRainbow.Size = new System.Drawing.Size(67, 17);
-            this.rBRainbow.TabIndex = 237;
-            this.rBRainbow.Text = "Rainbow";
             this.rBRainbow.UseVisualStyleBackColor = true;
             this.rBRainbow.CheckedChanged += new System.EventHandler(this.rBRainbow_CheckedChanged);
             // 
             // lbWhileCharging
             // 
-            this.lbWhileCharging.AutoSize = true;
-            this.lbWhileCharging.Location = new System.Drawing.Point(9, 108);
+            resources.ApplyResources(this.lbWhileCharging, "lbWhileCharging");
             this.lbWhileCharging.Name = "lbWhileCharging";
-            this.lbWhileCharging.Size = new System.Drawing.Size(82, 13);
-            this.lbWhileCharging.TabIndex = 236;
-            this.lbWhileCharging.Text = "While Charging:";
             // 
             // lbPercentFlashBar
             // 
-            this.lbPercentFlashBar.AutoSize = true;
-            this.lbPercentFlashBar.Location = new System.Drawing.Point(98, 18);
+            resources.ApplyResources(this.lbPercentFlashBar, "lbPercentFlashBar");
             this.lbPercentFlashBar.Name = "lbPercentFlashBar";
-            this.lbPercentFlashBar.Size = new System.Drawing.Size(15, 13);
-            this.lbPercentFlashBar.TabIndex = 207;
-            this.lbPercentFlashBar.Text = "%";
             // 
             // lbFlashAt
             // 
-            this.lbFlashAt.AutoSize = true;
-            this.lbFlashAt.Location = new System.Drawing.Point(9, 18);
+            resources.ApplyResources(this.lbFlashAt, "lbFlashAt");
             this.lbFlashAt.Name = "lbFlashAt";
-            this.lbFlashAt.Size = new System.Drawing.Size(44, 13);
-            this.lbFlashAt.TabIndex = 207;
-            this.lbFlashAt.Text = "Flash at";
             // 
             // nUDflashLED
             // 
+            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
             this.nUDflashLED.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.nUDflashLED.Location = new System.Drawing.Point(54, 16);
             this.nUDflashLED.Name = "nUDflashLED";
-            this.nUDflashLED.Size = new System.Drawing.Size(43, 20);
-            this.nUDflashLED.TabIndex = 167;
             this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
             // 
             // ShiftPanel
             // 
+            resources.ApplyResources(this.ShiftPanel, "ShiftPanel");
             this.ShiftPanel.Controls.Add(this.cBShiftLight);
             this.ShiftPanel.Controls.Add(this.lbShift);
             this.ShiftPanel.Controls.Add(this.lbShiftRed);
@@ -2011,71 +1577,44 @@
             this.ShiftPanel.Controls.Add(this.shiftRedBar);
             this.ShiftPanel.Controls.Add(this.shiftGreenBar);
             this.ShiftPanel.Controls.Add(this.shiftBlueBar);
-            this.ShiftPanel.Location = new System.Drawing.Point(2, 42);
             this.ShiftPanel.Name = "ShiftPanel";
-            this.ShiftPanel.Size = new System.Drawing.Size(435, 60);
-            this.ShiftPanel.TabIndex = 235;
-            this.ShiftPanel.Visible = false;
             // 
             // cBShiftLight
             // 
-            this.cBShiftLight.AutoSize = true;
+            resources.ApplyResources(this.cBShiftLight, "cBShiftLight");
             this.cBShiftLight.Checked = true;
             this.cBShiftLight.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBShiftLight.Location = new System.Drawing.Point(8, 8);
             this.cBShiftLight.Name = "cBShiftLight";
-            this.cBShiftLight.Size = new System.Drawing.Size(176, 17);
-            this.cBShiftLight.TabIndex = 226;
-            this.cBShiftLight.Text = "Use another color for shift mode";
             this.cBShiftLight.UseVisualStyleBackColor = true;
             this.cBShiftLight.CheckedChanged += new System.EventHandler(this.cBShiftLight_CheckedChanged);
             // 
             // lbShift
             // 
-            this.lbShift.AutoSize = true;
-            this.lbShift.Location = new System.Drawing.Point(7, 33);
+            resources.ApplyResources(this.lbShift, "lbShift");
             this.lbShift.Name = "lbShift";
-            this.lbShift.Size = new System.Drawing.Size(31, 13);
-            this.lbShift.TabIndex = 225;
-            this.lbShift.Text = "Shift:";
             this.lbShift.Click += new System.EventHandler(this.lbShift_Click);
             // 
             // lbShiftRed
             // 
-            this.lbShiftRed.AutoSize = true;
-            this.lbShiftRed.Location = new System.Drawing.Point(58, 33);
+            resources.ApplyResources(this.lbShiftRed, "lbShiftRed");
             this.lbShiftRed.Name = "lbShiftRed";
-            this.lbShiftRed.Size = new System.Drawing.Size(15, 13);
-            this.lbShiftRed.TabIndex = 158;
-            this.lbShiftRed.Text = "R";
             // 
             // lbShiftGreen
             // 
-            this.lbShiftGreen.AutoSize = true;
-            this.lbShiftGreen.Location = new System.Drawing.Point(180, 33);
+            resources.ApplyResources(this.lbShiftGreen, "lbShiftGreen");
             this.lbShiftGreen.Name = "lbShiftGreen";
-            this.lbShiftGreen.Size = new System.Drawing.Size(15, 13);
-            this.lbShiftGreen.TabIndex = 159;
-            this.lbShiftGreen.Text = "G";
             // 
             // lbShiftBlue
             // 
-            this.lbShiftBlue.AutoSize = true;
-            this.lbShiftBlue.Location = new System.Drawing.Point(308, 33);
+            resources.ApplyResources(this.lbShiftBlue, "lbShiftBlue");
             this.lbShiftBlue.Name = "lbShiftBlue";
-            this.lbShiftBlue.Size = new System.Drawing.Size(14, 13);
-            this.lbShiftBlue.TabIndex = 160;
-            this.lbShiftBlue.Text = "B";
             // 
             // shiftRedBar
             // 
-            this.shiftRedBar.AutoSize = false;
+            resources.ApplyResources(this.shiftRedBar, "shiftRedBar");
             this.shiftRedBar.BackColor = System.Drawing.Color.Red;
-            this.shiftRedBar.Location = new System.Drawing.Point(73, 30);
             this.shiftRedBar.Maximum = 255;
             this.shiftRedBar.Name = "shiftRedBar";
-            this.shiftRedBar.Size = new System.Drawing.Size(100, 20);
-            this.shiftRedBar.TabIndex = 10;
             this.shiftRedBar.TickFrequency = 25;
             this.shiftRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.shiftRedBar.Value = 255;
@@ -2085,13 +1624,10 @@
             // 
             // shiftGreenBar
             // 
-            this.shiftGreenBar.AutoSize = false;
+            resources.ApplyResources(this.shiftGreenBar, "shiftGreenBar");
             this.shiftGreenBar.BackColor = System.Drawing.Color.Green;
-            this.shiftGreenBar.Location = new System.Drawing.Point(196, 30);
             this.shiftGreenBar.Maximum = 255;
             this.shiftGreenBar.Name = "shiftGreenBar";
-            this.shiftGreenBar.Size = new System.Drawing.Size(100, 20);
-            this.shiftGreenBar.TabIndex = 11;
             this.shiftGreenBar.TickFrequency = 25;
             this.shiftGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.shiftGreenBar.Value = 255;
@@ -2101,13 +1637,10 @@
             // 
             // shiftBlueBar
             // 
-            this.shiftBlueBar.AutoSize = false;
+            resources.ApplyResources(this.shiftBlueBar, "shiftBlueBar");
             this.shiftBlueBar.BackColor = System.Drawing.Color.Blue;
-            this.shiftBlueBar.Location = new System.Drawing.Point(325, 30);
             this.shiftBlueBar.Maximum = 255;
             this.shiftBlueBar.Name = "shiftBlueBar";
-            this.shiftBlueBar.Size = new System.Drawing.Size(100, 20);
-            this.shiftBlueBar.TabIndex = 12;
             this.shiftBlueBar.TickFrequency = 25;
             this.shiftBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.shiftBlueBar.Value = 255;
@@ -2117,27 +1650,21 @@
             // 
             // gBRumble
             // 
+            resources.ApplyResources(this.gBRumble, "gBRumble");
             this.gBRumble.Controls.Add(this.lbPercentRumble);
             this.gBRumble.Controls.Add(this.btnRumbleTest);
             this.gBRumble.Controls.Add(this.nUDRumbleBoost);
-            this.gBRumble.Location = new System.Drawing.Point(445, 12);
             this.gBRumble.Name = "gBRumble";
-            this.gBRumble.Size = new System.Drawing.Size(89, 67);
-            this.gBRumble.TabIndex = 247;
             this.gBRumble.TabStop = false;
-            this.gBRumble.Text = "Rumble";
             // 
             // lbPercentRumble
             // 
-            this.lbPercentRumble.AutoSize = true;
-            this.lbPercentRumble.Location = new System.Drawing.Point(63, 17);
+            resources.ApplyResources(this.lbPercentRumble, "lbPercentRumble");
             this.lbPercentRumble.Name = "lbPercentRumble";
-            this.lbPercentRumble.Size = new System.Drawing.Size(15, 13);
-            this.lbPercentRumble.TabIndex = 207;
-            this.lbPercentRumble.Text = "%";
             // 
             // gBDeadzone
             // 
+            resources.ApplyResources(this.gBDeadzone, "gBDeadzone");
             this.gBDeadzone.Controls.Add(this.lbL2);
             this.gBDeadzone.Controls.Add(this.nUDL2);
             this.gBDeadzone.Controls.Add(this.lbSixaxisX);
@@ -2150,49 +1677,34 @@
             this.gBDeadzone.Controls.Add(this.nUDRS);
             this.gBDeadzone.Controls.Add(this.nUDR2);
             this.gBDeadzone.Controls.Add(this.nUDLS);
-            this.gBDeadzone.Location = new System.Drawing.Point(601, 11);
             this.gBDeadzone.Name = "gBDeadzone";
-            this.gBDeadzone.Size = new System.Drawing.Size(282, 67);
-            this.gBDeadzone.TabIndex = 248;
             this.gBDeadzone.TabStop = false;
-            this.gBDeadzone.Text = "Deadzone";
             // 
             // lbSixaxisX
             // 
-            this.lbSixaxisX.AutoSize = true;
-            this.lbSixaxisX.Location = new System.Drawing.Point(168, 16);
+            resources.ApplyResources(this.lbSixaxisX, "lbSixaxisX");
             this.lbSixaxisX.Name = "lbSixaxisX";
-            this.lbSixaxisX.Size = new System.Drawing.Size(49, 13);
-            this.lbSixaxisX.TabIndex = 197;
-            this.lbSixaxisX.Text = "Sixaxis X";
             // 
             // lbSixaxisZ
             // 
-            this.lbSixaxisZ.AutoSize = true;
-            this.lbSixaxisZ.Location = new System.Drawing.Point(168, 45);
+            resources.ApplyResources(this.lbSixaxisZ, "lbSixaxisZ");
             this.lbSixaxisZ.Name = "lbSixaxisZ";
-            this.lbSixaxisZ.Size = new System.Drawing.Size(49, 13);
-            this.lbSixaxisZ.TabIndex = 197;
-            this.lbSixaxisZ.Text = "Sixaxis Z";
             // 
             // nUDSZ
             // 
+            resources.ApplyResources(this.nUDSZ, "nUDSZ");
             this.nUDSZ.DecimalPlaces = 2;
             this.nUDSZ.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.nUDSZ.Location = new System.Drawing.Point(223, 43);
             this.nUDSZ.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDSZ.Name = "nUDSZ";
-            this.nUDSZ.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nUDSZ.Size = new System.Drawing.Size(50, 20);
-            this.nUDSZ.TabIndex = 203;
             this.nUDSZ.Value = new decimal(new int[] {
             25,
             0,
@@ -2202,21 +1714,19 @@
             // 
             // nUDSX
             // 
+            resources.ApplyResources(this.nUDSX, "nUDSX");
             this.nUDSX.DecimalPlaces = 2;
             this.nUDSX.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.nUDSX.Location = new System.Drawing.Point(223, 14);
             this.nUDSX.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDSX.Name = "nUDSX";
-            this.nUDSX.Size = new System.Drawing.Size(50, 20);
-            this.nUDSX.TabIndex = 202;
             this.nUDSX.Value = new decimal(new int[] {
             25,
             0,
@@ -2226,94 +1736,71 @@
             // 
             // tabControls
             // 
+            resources.ApplyResources(this.tabControls, "tabControls");
             this.tabControls.Controls.Add(this.tPControls);
             this.tabControls.Controls.Add(this.tPShiftMod);
             this.tabControls.Controls.Add(this.tPController);
-            this.tabControls.Location = new System.Drawing.Point(3, 3);
             this.tabControls.Name = "tabControls";
             this.tabControls.SelectedIndex = 0;
-            this.tabControls.Size = new System.Drawing.Size(436, 242);
-            this.tabControls.TabIndex = 253;
             this.tabControls.SelectedIndexChanged += new System.EventHandler(this.tabControls_SelectedIndexChanged);
             // 
             // tPControls
             // 
+            resources.ApplyResources(this.tPControls, "tPControls");
             this.tPControls.Controls.Add(this.lbGryo);
             this.tPControls.Controls.Add(this.fLPTiltControls);
             this.tPControls.Controls.Add(this.MainPanel);
             this.tPControls.Controls.Add(this.lBControls);
             this.tPControls.Controls.Add(this.lbControlTip);
             this.tPControls.Controls.Add(this.SticksPanel);
-            this.tPControls.Location = new System.Drawing.Point(4, 22);
             this.tPControls.Name = "tPControls";
-            this.tPControls.Padding = new System.Windows.Forms.Padding(3);
-            this.tPControls.Size = new System.Drawing.Size(428, 216);
-            this.tPControls.TabIndex = 0;
-            this.tPControls.Text = "Controls";
             this.tPControls.UseVisualStyleBackColor = true;
             // 
             // lbGryo
             // 
-            this.lbGryo.AutoSize = true;
-            this.lbGryo.Location = new System.Drawing.Point(5, 192);
+            resources.ApplyResources(this.lbGryo, "lbGryo");
             this.lbGryo.Name = "lbGryo";
-            this.lbGryo.Size = new System.Drawing.Size(67, 13);
-            this.lbGryo.TabIndex = 253;
-            this.lbGryo.Text = "Sixaxis Gyro:";
             // 
             // fLPTiltControls
             // 
+            resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
             this.fLPTiltControls.Controls.Add(this.bnGyroZN);
             this.fLPTiltControls.Controls.Add(this.bnGyroZP);
             this.fLPTiltControls.Controls.Add(this.bnGyroXP);
             this.fLPTiltControls.Controls.Add(this.bnGyroXN);
-            this.fLPTiltControls.Location = new System.Drawing.Point(72, 185);
             this.fLPTiltControls.Name = "fLPTiltControls";
-            this.fLPTiltControls.Size = new System.Drawing.Size(350, 31);
-            this.fLPTiltControls.TabIndex = 254;
             // 
             // bnGyroZN
             // 
-            this.bnGyroZN.Location = new System.Drawing.Point(3, 3);
+            resources.ApplyResources(this.bnGyroZN, "bnGyroZN");
             this.bnGyroZN.Name = "bnGyroZN";
-            this.bnGyroZN.Size = new System.Drawing.Size(80, 23);
-            this.bnGyroZN.TabIndex = 250;
-            this.bnGyroZN.Text = "Tilt Up";
             this.bnGyroZN.UseVisualStyleBackColor = true;
             this.bnGyroZN.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnGyroZP
             // 
-            this.bnGyroZP.Location = new System.Drawing.Point(89, 3);
+            resources.ApplyResources(this.bnGyroZP, "bnGyroZP");
             this.bnGyroZP.Name = "bnGyroZP";
-            this.bnGyroZP.Size = new System.Drawing.Size(80, 23);
-            this.bnGyroZP.TabIndex = 250;
-            this.bnGyroZP.Text = "Tilt Down";
             this.bnGyroZP.UseVisualStyleBackColor = true;
             this.bnGyroZP.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnGyroXP
             // 
-            this.bnGyroXP.Location = new System.Drawing.Point(175, 3);
+            resources.ApplyResources(this.bnGyroXP, "bnGyroXP");
             this.bnGyroXP.Name = "bnGyroXP";
-            this.bnGyroXP.Size = new System.Drawing.Size(80, 23);
-            this.bnGyroXP.TabIndex = 250;
-            this.bnGyroXP.Text = "Tilt Left";
             this.bnGyroXP.UseVisualStyleBackColor = true;
             this.bnGyroXP.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnGyroXN
             // 
-            this.bnGyroXN.Location = new System.Drawing.Point(261, 3);
+            resources.ApplyResources(this.bnGyroXN, "bnGyroXN");
             this.bnGyroXN.Name = "bnGyroXN";
-            this.bnGyroXN.Size = new System.Drawing.Size(80, 23);
-            this.bnGyroXN.TabIndex = 250;
-            this.bnGyroXN.Text = "Tilt Right";
             this.bnGyroXN.UseVisualStyleBackColor = true;
             this.bnGyroXN.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // tPShiftMod
             // 
+            resources.ApplyResources(this.tPShiftMod, "tPShiftMod");
             this.tPShiftMod.Controls.Add(this.slbGryo);
             this.tPShiftMod.Controls.Add(this.sfLPTiltControls);
             this.tPShiftMod.Controls.Add(this.cBShiftControl);
@@ -2322,178 +1809,142 @@
             this.tPShiftMod.Controls.Add(this.lbtoUse);
             this.tPShiftMod.Controls.Add(this.ShiftMainPanel);
             this.tPShiftMod.Controls.Add(this.ShiftSticksPanel);
-            this.tPShiftMod.Location = new System.Drawing.Point(4, 22);
             this.tPShiftMod.Name = "tPShiftMod";
-            this.tPShiftMod.Padding = new System.Windows.Forms.Padding(3);
-            this.tPShiftMod.Size = new System.Drawing.Size(428, 216);
-            this.tPShiftMod.TabIndex = 1;
-            this.tPShiftMod.Text = "Shift Modifier";
             this.tPShiftMod.UseVisualStyleBackColor = true;
             // 
             // slbGryo
             // 
-            this.slbGryo.AutoSize = true;
-            this.slbGryo.Location = new System.Drawing.Point(5, 192);
+            resources.ApplyResources(this.slbGryo, "slbGryo");
             this.slbGryo.Name = "slbGryo";
-            this.slbGryo.Size = new System.Drawing.Size(67, 13);
-            this.slbGryo.TabIndex = 255;
-            this.slbGryo.Text = "Sixaxis Gyro:";
             // 
             // sfLPTiltControls
             // 
+            resources.ApplyResources(this.sfLPTiltControls, "sfLPTiltControls");
             this.sfLPTiltControls.Controls.Add(this.sbnGyroZN);
             this.sfLPTiltControls.Controls.Add(this.sbnGyroZP);
             this.sfLPTiltControls.Controls.Add(this.sbnGyroXP);
             this.sfLPTiltControls.Controls.Add(this.sbnGyroXN);
-            this.sfLPTiltControls.Location = new System.Drawing.Point(72, 185);
             this.sfLPTiltControls.Name = "sfLPTiltControls";
-            this.sfLPTiltControls.Size = new System.Drawing.Size(350, 31);
-            this.sfLPTiltControls.TabIndex = 256;
             // 
             // sbnGyroZN
             // 
-            this.sbnGyroZN.Location = new System.Drawing.Point(3, 3);
+            resources.ApplyResources(this.sbnGyroZN, "sbnGyroZN");
             this.sbnGyroZN.Name = "sbnGyroZN";
-            this.sbnGyroZN.Size = new System.Drawing.Size(80, 23);
-            this.sbnGyroZN.TabIndex = 250;
-            this.sbnGyroZN.Text = "Tilt Up";
             this.sbnGyroZN.UseVisualStyleBackColor = true;
             this.sbnGyroZN.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnGyroZP
             // 
-            this.sbnGyroZP.Location = new System.Drawing.Point(89, 3);
+            resources.ApplyResources(this.sbnGyroZP, "sbnGyroZP");
             this.sbnGyroZP.Name = "sbnGyroZP";
-            this.sbnGyroZP.Size = new System.Drawing.Size(80, 23);
-            this.sbnGyroZP.TabIndex = 250;
-            this.sbnGyroZP.Text = "Tilt Down";
             this.sbnGyroZP.UseVisualStyleBackColor = true;
             this.sbnGyroZP.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnGyroXP
             // 
-            this.sbnGyroXP.Location = new System.Drawing.Point(175, 3);
+            resources.ApplyResources(this.sbnGyroXP, "sbnGyroXP");
             this.sbnGyroXP.Name = "sbnGyroXP";
-            this.sbnGyroXP.Size = new System.Drawing.Size(80, 23);
-            this.sbnGyroXP.TabIndex = 250;
-            this.sbnGyroXP.Text = "Tilt Left";
             this.sbnGyroXP.UseVisualStyleBackColor = true;
             this.sbnGyroXP.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnGyroXN
             // 
-            this.sbnGyroXN.Location = new System.Drawing.Point(261, 3);
+            resources.ApplyResources(this.sbnGyroXN, "sbnGyroXN");
             this.sbnGyroXN.Name = "sbnGyroXN";
-            this.sbnGyroXN.Size = new System.Drawing.Size(80, 23);
-            this.sbnGyroXN.TabIndex = 250;
-            this.sbnGyroXN.Text = "Tilt Right";
             this.sbnGyroXN.UseVisualStyleBackColor = true;
             this.sbnGyroXN.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // cBShiftControl
             // 
+            resources.ApplyResources(this.cBShiftControl, "cBShiftControl");
             this.cBShiftControl.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBShiftControl.FormattingEnabled = true;
             this.cBShiftControl.Items.AddRange(new object[] {
-            "(nothing)/shift off",
-            "Cross",
-            "Circle",
-            "Square",
-            "Triangle",
-            "Options",
-            "Share",
-            "Up",
-            "Down",
-            "Left",
-            "Right",
-            "PS",
-            "L1",
-            "R1",
-            "L2",
-            "R2",
-            "L3",
-            "R3",
-            "Left Touch",
-            "Upper Touch",
-            "Multitouch",
-            "Right Touch",
-            "Sixaxis Up",
-            "Sixaxis Down",
-            "Sixaxis Left",
-            "Sixaxis Right",
-            "Touchpad (not clicked in)"});
-            this.cBShiftControl.Location = new System.Drawing.Point(79, 3);
+            resources.GetString("cBShiftControl.Items"),
+            resources.GetString("cBShiftControl.Items1"),
+            resources.GetString("cBShiftControl.Items2"),
+            resources.GetString("cBShiftControl.Items3"),
+            resources.GetString("cBShiftControl.Items4"),
+            resources.GetString("cBShiftControl.Items5"),
+            resources.GetString("cBShiftControl.Items6"),
+            resources.GetString("cBShiftControl.Items7"),
+            resources.GetString("cBShiftControl.Items8"),
+            resources.GetString("cBShiftControl.Items9"),
+            resources.GetString("cBShiftControl.Items10"),
+            resources.GetString("cBShiftControl.Items11"),
+            resources.GetString("cBShiftControl.Items12"),
+            resources.GetString("cBShiftControl.Items13"),
+            resources.GetString("cBShiftControl.Items14"),
+            resources.GetString("cBShiftControl.Items15"),
+            resources.GetString("cBShiftControl.Items16"),
+            resources.GetString("cBShiftControl.Items17"),
+            resources.GetString("cBShiftControl.Items18"),
+            resources.GetString("cBShiftControl.Items19"),
+            resources.GetString("cBShiftControl.Items20"),
+            resources.GetString("cBShiftControl.Items21"),
+            resources.GetString("cBShiftControl.Items22"),
+            resources.GetString("cBShiftControl.Items23"),
+            resources.GetString("cBShiftControl.Items24"),
+            resources.GetString("cBShiftControl.Items25"),
+            resources.GetString("cBShiftControl.Items26")});
             this.cBShiftControl.Name = "cBShiftControl";
-            this.cBShiftControl.Size = new System.Drawing.Size(145, 21);
-            this.cBShiftControl.TabIndex = 192;
             this.cBShiftControl.SelectedIndexChanged += new System.EventHandler(this.cBShiftControl_SelectedIndexChanged);
             // 
             // lBShiftControls
             // 
+            resources.ApplyResources(this.lBShiftControls, "lBShiftControls");
             this.lBShiftControls.FormattingEnabled = true;
             this.lBShiftControls.Items.AddRange(new object[] {
-            "Cross :",
-            "Circle :",
-            "Sqaure :",
-            "Triangle :",
-            "Options :",
-            "Share :",
-            "Up :",
-            "Down :",
-            "Left :",
-            "Right :",
-            "PS :",
-            "L1 :",
-            "R1 :",
-            "L2 :",
-            "R2 :",
-            "L3 :",
-            "R3 :",
-            "Left Touch :",
-            "Upper Touch : ",
-            "Multitouch :",
-            "Right Touch :",
-            "Left Stick Up :",
-            "Left Stick Down :",
-            "Left Stick Left :",
-            "Left Stick Right :",
-            "Right Stick Up :",
-            "Right Stick Down :",
-            "Right Stick Left :",
-            "Right Stick Right :",
-            "Sixaxis Up :",
-            "Sixaxis Down :",
-            "Sixaxis Left :",
-            "Sixaxis Right :"});
-            this.lBShiftControls.Location = new System.Drawing.Point(257, 7);
+            resources.GetString("lBShiftControls.Items"),
+            resources.GetString("lBShiftControls.Items1"),
+            resources.GetString("lBShiftControls.Items2"),
+            resources.GetString("lBShiftControls.Items3"),
+            resources.GetString("lBShiftControls.Items4"),
+            resources.GetString("lBShiftControls.Items5"),
+            resources.GetString("lBShiftControls.Items6"),
+            resources.GetString("lBShiftControls.Items7"),
+            resources.GetString("lBShiftControls.Items8"),
+            resources.GetString("lBShiftControls.Items9"),
+            resources.GetString("lBShiftControls.Items10"),
+            resources.GetString("lBShiftControls.Items11"),
+            resources.GetString("lBShiftControls.Items12"),
+            resources.GetString("lBShiftControls.Items13"),
+            resources.GetString("lBShiftControls.Items14"),
+            resources.GetString("lBShiftControls.Items15"),
+            resources.GetString("lBShiftControls.Items16"),
+            resources.GetString("lBShiftControls.Items17"),
+            resources.GetString("lBShiftControls.Items18"),
+            resources.GetString("lBShiftControls.Items19"),
+            resources.GetString("lBShiftControls.Items20"),
+            resources.GetString("lBShiftControls.Items21"),
+            resources.GetString("lBShiftControls.Items22"),
+            resources.GetString("lBShiftControls.Items23"),
+            resources.GetString("lBShiftControls.Items24"),
+            resources.GetString("lBShiftControls.Items25"),
+            resources.GetString("lBShiftControls.Items26"),
+            resources.GetString("lBShiftControls.Items27"),
+            resources.GetString("lBShiftControls.Items28"),
+            resources.GetString("lBShiftControls.Items29"),
+            resources.GetString("lBShiftControls.Items30"),
+            resources.GetString("lBShiftControls.Items31"),
+            resources.GetString("lBShiftControls.Items32")});
             this.lBShiftControls.Name = "lBShiftControls";
-            this.lBShiftControls.Size = new System.Drawing.Size(169, 173);
-            this.lBShiftControls.TabIndex = 188;
             this.lBShiftControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
             this.lBShiftControls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.List_MouseDoubleClick);
             // 
             // lbHold
             // 
-            this.lbHold.AutoSize = true;
-            this.lbHold.Location = new System.Drawing.Point(44, 6);
+            resources.ApplyResources(this.lbHold, "lbHold");
             this.lbHold.Name = "lbHold";
-            this.lbHold.Size = new System.Drawing.Size(29, 13);
-            this.lbHold.TabIndex = 189;
-            this.lbHold.Text = "Hold";
-            this.lbHold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbtoUse
             // 
-            this.lbtoUse.AutoSize = true;
-            this.lbtoUse.Location = new System.Drawing.Point(84, 24);
+            resources.ApplyResources(this.lbtoUse, "lbtoUse");
             this.lbtoUse.Name = "lbtoUse";
-            this.lbtoUse.Size = new System.Drawing.Size(105, 13);
-            this.lbtoUse.TabIndex = 189;
-            this.lbtoUse.Text = "to use these controls";
-            this.lbtoUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ShiftMainPanel
             // 
+            resources.ApplyResources(this.ShiftMainPanel, "ShiftMainPanel");
             this.ShiftMainPanel.Controls.Add(this.spBController);
             this.ShiftMainPanel.Controls.Add(this.sbnTouchUpper);
             this.ShiftMainPanel.Controls.Add(this.sbnTouchLeft);
@@ -2517,442 +1968,325 @@
             this.ShiftMainPanel.Controls.Add(this.sbnOptions);
             this.ShiftMainPanel.Controls.Add(this.sbnPS);
             this.ShiftMainPanel.Controls.Add(this.sbnShare);
-            this.ShiftMainPanel.Location = new System.Drawing.Point(6, 42);
             this.ShiftMainPanel.Name = "ShiftMainPanel";
-            this.ShiftMainPanel.Size = new System.Drawing.Size(249, 137);
-            this.ShiftMainPanel.TabIndex = 190;
             // 
             // spBController
             // 
-            this.spBController.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.spBController.Enabled = false;
+            resources.ApplyResources(this.spBController, "spBController");
             this.spBController.Image = global::ScpServer.Properties.Resources.DS4_Controller;
-            this.spBController.Location = new System.Drawing.Point(0, 0);
             this.spBController.Name = "spBController";
-            this.spBController.Size = new System.Drawing.Size(245, 132);
-            this.spBController.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.spBController.TabIndex = 1;
             this.spBController.TabStop = false;
             // 
             // sbnTouchUpper
             // 
+            resources.ApplyResources(this.sbnTouchUpper, "sbnTouchUpper");
             this.sbnTouchUpper.BackColor = System.Drawing.Color.Transparent;
-            this.sbnTouchUpper.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnTouchUpper.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnTouchUpper.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnTouchUpper.FlatAppearance.BorderSize = 0;
             this.sbnTouchUpper.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnTouchUpper.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnTouchUpper.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnTouchUpper.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnTouchUpper.Location = new System.Drawing.Point(84, 25);
             this.sbnTouchUpper.Name = "sbnTouchUpper";
-            this.sbnTouchUpper.Size = new System.Drawing.Size(78, 16);
-            this.sbnTouchUpper.TabIndex = 193;
-            this.sbnTouchUpper.Text = "Fall Back";
             this.sbnTouchUpper.UseVisualStyleBackColor = false;
             this.sbnTouchUpper.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnTouchLeft
             // 
+            resources.ApplyResources(this.sbnTouchLeft, "sbnTouchLeft");
             this.sbnTouchLeft.BackColor = System.Drawing.Color.Transparent;
-            this.sbnTouchLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnTouchLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnTouchLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnTouchLeft.FlatAppearance.BorderSize = 0;
             this.sbnTouchLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnTouchLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnTouchLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnTouchLeft.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnTouchLeft.Location = new System.Drawing.Point(84, 40);
             this.sbnTouchLeft.Name = "sbnTouchLeft";
-            this.sbnTouchLeft.Size = new System.Drawing.Size(25, 35);
-            this.sbnTouchLeft.TabIndex = 191;
-            this.sbnTouchLeft.Text = "Fall Back";
             this.sbnTouchLeft.UseVisualStyleBackColor = false;
             this.sbnTouchLeft.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnTouchRight
             // 
+            resources.ApplyResources(this.sbnTouchRight, "sbnTouchRight");
             this.sbnTouchRight.BackColor = System.Drawing.Color.Transparent;
-            this.sbnTouchRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnTouchRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnTouchRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnTouchRight.FlatAppearance.BorderSize = 0;
             this.sbnTouchRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnTouchRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnTouchRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnTouchRight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnTouchRight.Location = new System.Drawing.Point(139, 40);
             this.sbnTouchRight.Name = "sbnTouchRight";
-            this.sbnTouchRight.Size = new System.Drawing.Size(23, 34);
-            this.sbnTouchRight.TabIndex = 190;
-            this.sbnTouchRight.Text = "Fall Back";
             this.sbnTouchRight.UseVisualStyleBackColor = false;
             this.sbnTouchRight.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnTouchMulti
             // 
+            resources.ApplyResources(this.sbnTouchMulti, "sbnTouchMulti");
             this.sbnTouchMulti.BackColor = System.Drawing.Color.Transparent;
-            this.sbnTouchMulti.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnTouchMulti.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnTouchMulti.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnTouchMulti.FlatAppearance.BorderSize = 0;
             this.sbnTouchMulti.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnTouchMulti.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnTouchMulti.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnTouchMulti.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnTouchMulti.Location = new System.Drawing.Point(109, 40);
             this.sbnTouchMulti.Name = "sbnTouchMulti";
-            this.sbnTouchMulti.Size = new System.Drawing.Size(30, 34);
-            this.sbnTouchMulti.TabIndex = 192;
-            this.sbnTouchMulti.Text = "Fall Back";
             this.sbnTouchMulti.UseVisualStyleBackColor = false;
             this.sbnTouchMulti.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnR1
             // 
+            resources.ApplyResources(this.sbnR1, "sbnR1");
             this.sbnR1.BackColor = System.Drawing.Color.Transparent;
-            this.sbnR1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnR1.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnR1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnR1.FlatAppearance.BorderSize = 0;
             this.sbnR1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnR1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnR1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnR1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnR1.Location = new System.Drawing.Point(175, 13);
             this.sbnR1.Name = "sbnR1";
-            this.sbnR1.Size = new System.Drawing.Size(43, 15);
-            this.sbnR1.TabIndex = 87;
-            this.sbnR1.Text = "Fall Back";
             this.sbnR1.UseVisualStyleBackColor = false;
             this.sbnR1.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnCross
             // 
+            resources.ApplyResources(this.sbnCross, "sbnCross");
             this.sbnCross.BackColor = System.Drawing.Color.Transparent;
-            this.sbnCross.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnCross.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnCross.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnCross.FlatAppearance.BorderSize = 0;
             this.sbnCross.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnCross.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnCross.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnCross.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnCross.Location = new System.Drawing.Point(187, 76);
             this.sbnCross.Name = "sbnCross";
-            this.sbnCross.Size = new System.Drawing.Size(19, 17);
-            this.sbnCross.TabIndex = 74;
-            this.sbnCross.Text = "Fall Back";
             this.sbnCross.UseVisualStyleBackColor = false;
             this.sbnCross.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnCircle
             // 
+            resources.ApplyResources(this.sbnCircle, "sbnCircle");
             this.sbnCircle.BackColor = System.Drawing.Color.Transparent;
-            this.sbnCircle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnCircle.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnCircle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnCircle.FlatAppearance.BorderSize = 0;
             this.sbnCircle.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnCircle.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnCircle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnCircle.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnCircle.Location = new System.Drawing.Point(208, 60);
             this.sbnCircle.Name = "sbnCircle";
-            this.sbnCircle.Size = new System.Drawing.Size(16, 17);
-            this.sbnCircle.TabIndex = 71;
-            this.sbnCircle.Text = "Fall Back";
             this.sbnCircle.UseVisualStyleBackColor = false;
             this.sbnCircle.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbtnRightStick
             // 
+            resources.ApplyResources(this.sbtnRightStick, "sbtnRightStick");
             this.sbtnRightStick.BackColor = System.Drawing.Color.Transparent;
-            this.sbtnRightStick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbtnRightStick.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbtnRightStick.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbtnRightStick.FlatAppearance.BorderSize = 0;
             this.sbtnRightStick.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbtnRightStick.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbtnRightStick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbtnRightStick.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbtnRightStick.Location = new System.Drawing.Point(150, 90);
             this.sbtnRightStick.Name = "sbtnRightStick";
-            this.sbtnRightStick.Size = new System.Drawing.Size(28, 28);
-            this.sbtnRightStick.TabIndex = 91;
-            this.sbtnRightStick.Text = "RS";
             this.sbtnRightStick.UseVisualStyleBackColor = false;
             // 
             // sbnSquare
             // 
+            resources.ApplyResources(this.sbnSquare, "sbnSquare");
             this.sbnSquare.BackColor = System.Drawing.Color.Transparent;
-            this.sbnSquare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnSquare.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnSquare.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnSquare.FlatAppearance.BorderSize = 0;
             this.sbnSquare.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnSquare.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnSquare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnSquare.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnSquare.Location = new System.Drawing.Point(173, 61);
             this.sbnSquare.Name = "sbnSquare";
-            this.sbnSquare.Size = new System.Drawing.Size(15, 14);
-            this.sbnSquare.TabIndex = 72;
-            this.sbnSquare.Text = "Fall Back";
             this.sbnSquare.UseVisualStyleBackColor = false;
             this.sbnSquare.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbtnLightbar
             // 
+            resources.ApplyResources(this.sbtnLightbar, "sbtnLightbar");
             this.sbtnLightbar.BackColor = System.Drawing.Color.Transparent;
-            this.sbtnLightbar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbtnLightbar.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbtnLightbar.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbtnLightbar.FlatAppearance.BorderSize = 0;
             this.sbtnLightbar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbtnLightbar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbtnLightbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbtnLightbar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbtnLightbar.Location = new System.Drawing.Point(84, 6);
             this.sbtnLightbar.Name = "sbtnLightbar";
-            this.sbtnLightbar.Size = new System.Drawing.Size(78, 19);
-            this.sbtnLightbar.TabIndex = 91;
-            this.sbtnLightbar.Text = "Lightbar";
             this.sbtnLightbar.UseVisualStyleBackColor = false;
             this.sbtnLightbar.Click += new System.EventHandler(this.btnLightbar_Click);
             // 
             // sbnTriangle
             // 
+            resources.ApplyResources(this.sbnTriangle, "sbnTriangle");
             this.sbnTriangle.BackColor = System.Drawing.Color.Transparent;
-            this.sbnTriangle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnTriangle.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnTriangle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnTriangle.FlatAppearance.BorderSize = 0;
             this.sbnTriangle.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnTriangle.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnTriangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnTriangle.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnTriangle.Location = new System.Drawing.Point(188, 45);
             this.sbnTriangle.Name = "sbnTriangle";
-            this.sbnTriangle.Size = new System.Drawing.Size(20, 16);
-            this.sbnTriangle.TabIndex = 73;
-            this.sbnTriangle.Text = "Fall Back";
             this.sbnTriangle.UseVisualStyleBackColor = false;
             this.sbnTriangle.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnUp
             // 
+            resources.ApplyResources(this.sbnUp, "sbnUp");
             this.sbnUp.BackColor = System.Drawing.Color.Transparent;
-            this.sbnUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnUp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.sbnUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnUp.FlatAppearance.BorderSize = 0;
             this.sbnUp.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnUp.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnUp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnUp.Location = new System.Drawing.Point(44, 48);
             this.sbnUp.Name = "sbnUp";
-            this.sbnUp.Size = new System.Drawing.Size(11, 15);
-            this.sbnUp.TabIndex = 80;
-            this.sbnUp.Text = "Fall Back";
             this.sbnUp.UseVisualStyleBackColor = false;
             this.sbnUp.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbtnLeftStick
             // 
+            resources.ApplyResources(this.sbtnLeftStick, "sbtnLeftStick");
             this.sbtnLeftStick.BackColor = System.Drawing.Color.Transparent;
-            this.sbtnLeftStick.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbtnLeftStick.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbtnLeftStick.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbtnLeftStick.FlatAppearance.BorderSize = 0;
             this.sbtnLeftStick.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbtnLeftStick.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbtnLeftStick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbtnLeftStick.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbtnLeftStick.Location = new System.Drawing.Point(70, 90);
             this.sbtnLeftStick.Name = "sbtnLeftStick";
-            this.sbtnLeftStick.Size = new System.Drawing.Size(28, 28);
-            this.sbtnLeftStick.TabIndex = 91;
-            this.sbtnLeftStick.Text = "LS";
             this.sbtnLeftStick.UseVisualStyleBackColor = false;
             // 
             // sbnDown
             // 
+            resources.ApplyResources(this.sbnDown, "sbnDown");
             this.sbnDown.BackColor = System.Drawing.Color.Transparent;
-            this.sbnDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnDown.FlatAppearance.BorderSize = 0;
             this.sbnDown.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnDown.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnDown.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnDown.Location = new System.Drawing.Point(44, 73);
             this.sbnDown.Name = "sbnDown";
-            this.sbnDown.Size = new System.Drawing.Size(12, 12);
-            this.sbnDown.TabIndex = 81;
-            this.sbnDown.Text = "Fall Back";
             this.sbnDown.UseVisualStyleBackColor = false;
             this.sbnDown.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnL2
             // 
+            resources.ApplyResources(this.sbnL2, "sbnL2");
             this.sbnL2.BackColor = System.Drawing.Color.Transparent;
-            this.sbnL2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnL2.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnL2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnL2.FlatAppearance.BorderSize = 0;
             this.sbnL2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnL2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnL2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnL2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnL2.Location = new System.Drawing.Point(31, 0);
             this.sbnL2.Name = "sbnL2";
-            this.sbnL2.Size = new System.Drawing.Size(43, 12);
-            this.sbnL2.TabIndex = 90;
-            this.sbnL2.Text = "Fall Back";
             this.sbnL2.UseVisualStyleBackColor = false;
             this.sbnL2.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnRight
             // 
+            resources.ApplyResources(this.sbnRight, "sbnRight");
             this.sbnRight.BackColor = System.Drawing.Color.Transparent;
-            this.sbnRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnRight.FlatAppearance.BorderSize = 0;
             this.sbnRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnRight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnRight.Location = new System.Drawing.Point(55, 61);
             this.sbnRight.Name = "sbnRight";
-            this.sbnRight.Size = new System.Drawing.Size(14, 14);
-            this.sbnRight.TabIndex = 82;
-            this.sbnRight.Text = "Fall Back";
             this.sbnRight.UseVisualStyleBackColor = false;
             this.sbnRight.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnR2
             // 
+            resources.ApplyResources(this.sbnR2, "sbnR2");
             this.sbnR2.BackColor = System.Drawing.Color.Transparent;
-            this.sbnR2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnR2.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnR2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnR2.FlatAppearance.BorderSize = 0;
             this.sbnR2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnR2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnR2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnR2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnR2.Location = new System.Drawing.Point(174, 0);
             this.sbnR2.Name = "sbnR2";
-            this.sbnR2.Size = new System.Drawing.Size(40, 13);
-            this.sbnR2.TabIndex = 89;
-            this.sbnR2.Text = "Fall Back";
             this.sbnR2.UseVisualStyleBackColor = false;
             this.sbnR2.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnLeft
             // 
+            resources.ApplyResources(this.sbnLeft, "sbnLeft");
             this.sbnLeft.BackColor = System.Drawing.Color.Transparent;
-            this.sbnLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnLeft.FlatAppearance.BorderSize = 0;
             this.sbnLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnLeft.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnLeft.Location = new System.Drawing.Point(31, 61);
             this.sbnLeft.Name = "sbnLeft";
-            this.sbnLeft.Size = new System.Drawing.Size(14, 12);
-            this.sbnLeft.TabIndex = 83;
-            this.sbnLeft.Text = "Fall Back";
             this.sbnLeft.UseVisualStyleBackColor = false;
             this.sbnLeft.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnL1
             // 
+            resources.ApplyResources(this.sbnL1, "sbnL1");
             this.sbnL1.BackColor = System.Drawing.Color.Transparent;
-            this.sbnL1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnL1.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnL1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnL1.FlatAppearance.BorderSize = 0;
             this.sbnL1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnL1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnL1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnL1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnL1.Location = new System.Drawing.Point(31, 13);
             this.sbnL1.Name = "sbnL1";
-            this.sbnL1.Size = new System.Drawing.Size(43, 15);
-            this.sbnL1.TabIndex = 88;
-            this.sbnL1.Text = "Fall Back";
             this.sbnL1.UseVisualStyleBackColor = false;
             this.sbnL1.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnOptions
             // 
+            resources.ApplyResources(this.sbnOptions, "sbnOptions");
             this.sbnOptions.BackColor = System.Drawing.Color.Transparent;
-            this.sbnOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnOptions.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnOptions.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnOptions.FlatAppearance.BorderSize = 0;
             this.sbnOptions.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnOptions.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnOptions.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnOptions.Location = new System.Drawing.Point(167, 33);
             this.sbnOptions.Name = "sbnOptions";
-            this.sbnOptions.Size = new System.Drawing.Size(11, 21);
-            this.sbnOptions.TabIndex = 84;
-            this.sbnOptions.Text = "Fall Back";
             this.sbnOptions.UseVisualStyleBackColor = false;
             this.sbnOptions.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnPS
             // 
+            resources.ApplyResources(this.sbnPS, "sbnPS");
             this.sbnPS.BackColor = System.Drawing.Color.Transparent;
-            this.sbnPS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnPS.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnPS.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnPS.FlatAppearance.BorderSize = 0;
             this.sbnPS.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnPS.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnPS.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnPS.Location = new System.Drawing.Point(115, 87);
             this.sbnPS.Name = "sbnPS";
-            this.sbnPS.Size = new System.Drawing.Size(18, 18);
-            this.sbnPS.TabIndex = 86;
-            this.sbnPS.Text = "Fall Back";
             this.sbnPS.UseVisualStyleBackColor = false;
             this.sbnPS.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnShare
             // 
+            resources.ApplyResources(this.sbnShare, "sbnShare");
             this.sbnShare.BackColor = System.Drawing.Color.Transparent;
-            this.sbnShare.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnShare.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnShare.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnShare.FlatAppearance.BorderSize = 0;
             this.sbnShare.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnShare.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnShare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnShare.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnShare.Location = new System.Drawing.Point(71, 33);
             this.sbnShare.Name = "sbnShare";
-            this.sbnShare.Size = new System.Drawing.Size(11, 18);
-            this.sbnShare.TabIndex = 85;
-            this.sbnShare.Text = "Fall Back";
             this.sbnShare.UseVisualStyleBackColor = false;
             this.sbnShare.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // ShiftSticksPanel
             // 
+            resources.ApplyResources(this.ShiftSticksPanel, "ShiftSticksPanel");
             this.ShiftSticksPanel.Controls.Add(this.sbtnFullView);
             this.ShiftSticksPanel.Controls.Add(this.spBSticks);
             this.ShiftSticksPanel.Controls.Add(this.sbnL3);
@@ -2965,225 +2299,165 @@
             this.ShiftSticksPanel.Controls.Add(this.sbnRSLeft);
             this.ShiftSticksPanel.Controls.Add(this.sbnLSDown);
             this.ShiftSticksPanel.Controls.Add(this.sbnR3);
-            this.ShiftSticksPanel.Location = new System.Drawing.Point(6, 42);
             this.ShiftSticksPanel.Name = "ShiftSticksPanel";
-            this.ShiftSticksPanel.Size = new System.Drawing.Size(249, 142);
-            this.ShiftSticksPanel.TabIndex = 191;
-            this.ShiftSticksPanel.Visible = false;
             // 
             // sbtnFullView
             // 
-            this.sbtnFullView.Location = new System.Drawing.Point(71, 9);
+            resources.ApplyResources(this.sbtnFullView, "sbtnFullView");
             this.sbtnFullView.Name = "sbtnFullView";
-            this.sbtnFullView.Size = new System.Drawing.Size(106, 23);
-            this.sbtnFullView.TabIndex = 184;
-            this.sbtnFullView.Text = "<- Back to full view";
             this.sbtnFullView.UseVisualStyleBackColor = true;
             this.sbtnFullView.Click += new System.EventHandler(this.sbtnFullView_Click);
             // 
             // spBSticks
             // 
-            this.spBSticks.Enabled = false;
+            resources.ApplyResources(this.spBSticks, "spBSticks");
             this.spBSticks.Image = global::ScpServer.Properties.Resources.sticks;
-            this.spBSticks.Location = new System.Drawing.Point(0, 1);
             this.spBSticks.Name = "spBSticks";
-            this.spBSticks.Size = new System.Drawing.Size(245, 132);
-            this.spBSticks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.spBSticks.TabIndex = 161;
             this.spBSticks.TabStop = false;
             // 
             // sbnL3
             // 
+            resources.ApplyResources(this.sbnL3, "sbnL3");
             this.sbnL3.BackColor = System.Drawing.Color.Transparent;
-            this.sbnL3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnL3.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnL3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnL3.FlatAppearance.BorderSize = 0;
             this.sbnL3.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnL3.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnL3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnL3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnL3.Location = new System.Drawing.Point(36, 92);
             this.sbnL3.Name = "sbnL3";
-            this.sbnL3.Size = new System.Drawing.Size(23, 23);
-            this.sbnL3.TabIndex = 163;
-            this.sbnL3.Text = "Fall Back";
             this.sbnL3.UseVisualStyleBackColor = false;
             this.sbnL3.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnRSDown
             // 
+            resources.ApplyResources(this.sbnRSDown, "sbnRSDown");
             this.sbnRSDown.BackColor = System.Drawing.Color.Transparent;
-            this.sbnRSDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnRSDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnRSDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnRSDown.FlatAppearance.BorderSize = 0;
             this.sbnRSDown.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnRSDown.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnRSDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnRSDown.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnRSDown.Location = new System.Drawing.Point(182, 116);
             this.sbnRSDown.Name = "sbnRSDown";
-            this.sbnRSDown.Size = new System.Drawing.Size(23, 11);
-            this.sbnRSDown.TabIndex = 172;
-            this.sbnRSDown.Text = "Fall Back";
             this.sbnRSDown.UseVisualStyleBackColor = false;
             this.sbnRSDown.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnLSUp
             // 
+            resources.ApplyResources(this.sbnLSUp, "sbnLSUp");
             this.sbnLSUp.BackColor = System.Drawing.Color.Transparent;
-            this.sbnLSUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnLSUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnLSUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnLSUp.FlatAppearance.BorderSize = 0;
             this.sbnLSUp.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnLSUp.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnLSUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnLSUp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnLSUp.Location = new System.Drawing.Point(36, 77);
             this.sbnLSUp.Name = "sbnLSUp";
-            this.sbnLSUp.Size = new System.Drawing.Size(23, 11);
-            this.sbnLSUp.TabIndex = 167;
-            this.sbnLSUp.Text = "Fall Back";
             this.sbnLSUp.UseVisualStyleBackColor = false;
             this.sbnLSUp.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnRSUp
             // 
+            resources.ApplyResources(this.sbnRSUp, "sbnRSUp");
             this.sbnRSUp.BackColor = System.Drawing.Color.Transparent;
-            this.sbnRSUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnRSUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnRSUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnRSUp.FlatAppearance.BorderSize = 0;
             this.sbnRSUp.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnRSUp.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnRSUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnRSUp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnRSUp.Location = new System.Drawing.Point(182, 78);
             this.sbnRSUp.Name = "sbnRSUp";
-            this.sbnRSUp.Size = new System.Drawing.Size(23, 11);
-            this.sbnRSUp.TabIndex = 171;
-            this.sbnRSUp.Text = "Fall Back";
             this.sbnRSUp.UseVisualStyleBackColor = false;
             this.sbnRSUp.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnLSLeft
             // 
+            resources.ApplyResources(this.sbnLSLeft, "sbnLSLeft");
             this.sbnLSLeft.BackColor = System.Drawing.Color.Transparent;
-            this.sbnLSLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnLSLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnLSLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnLSLeft.FlatAppearance.BorderSize = 0;
             this.sbnLSLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnLSLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnLSLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnLSLeft.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnLSLeft.Location = new System.Drawing.Point(21, 92);
             this.sbnLSLeft.Name = "sbnLSLeft";
-            this.sbnLSLeft.Size = new System.Drawing.Size(11, 23);
-            this.sbnLSLeft.TabIndex = 164;
-            this.sbnLSLeft.Text = "Fall Back";
             this.sbnLSLeft.UseVisualStyleBackColor = false;
             this.sbnLSLeft.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnRSRight
             // 
+            resources.ApplyResources(this.sbnRSRight, "sbnRSRight");
             this.sbnRSRight.BackColor = System.Drawing.Color.Transparent;
-            this.sbnRSRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnRSRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnRSRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnRSRight.FlatAppearance.BorderSize = 0;
             this.sbnRSRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnRSRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnRSRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnRSRight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnRSRight.Location = new System.Drawing.Point(210, 92);
             this.sbnRSRight.Name = "sbnRSRight";
-            this.sbnRSRight.Size = new System.Drawing.Size(13, 23);
-            this.sbnRSRight.TabIndex = 170;
-            this.sbnRSRight.Text = "Fall Back";
             this.sbnRSRight.UseVisualStyleBackColor = false;
             this.sbnRSRight.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnLSRight
             // 
+            resources.ApplyResources(this.sbnLSRight, "sbnLSRight");
             this.sbnLSRight.BackColor = System.Drawing.Color.Transparent;
-            this.sbnLSRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnLSRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnLSRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnLSRight.FlatAppearance.BorderSize = 0;
             this.sbnLSRight.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnLSRight.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnLSRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnLSRight.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnLSRight.Location = new System.Drawing.Point(65, 92);
             this.sbnLSRight.Name = "sbnLSRight";
-            this.sbnLSRight.Size = new System.Drawing.Size(11, 23);
-            this.sbnLSRight.TabIndex = 165;
-            this.sbnLSRight.Text = "Fall Back";
             this.sbnLSRight.UseVisualStyleBackColor = false;
             this.sbnLSRight.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnRSLeft
             // 
+            resources.ApplyResources(this.sbnRSLeft, "sbnRSLeft");
             this.sbnRSLeft.BackColor = System.Drawing.Color.Transparent;
-            this.sbnRSLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnRSLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnRSLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnRSLeft.FlatAppearance.BorderSize = 0;
             this.sbnRSLeft.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnRSLeft.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnRSLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnRSLeft.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnRSLeft.Location = new System.Drawing.Point(165, 92);
             this.sbnRSLeft.Name = "sbnRSLeft";
-            this.sbnRSLeft.Size = new System.Drawing.Size(11, 23);
-            this.sbnRSLeft.TabIndex = 169;
-            this.sbnRSLeft.Text = "Fall Back";
             this.sbnRSLeft.UseVisualStyleBackColor = false;
             this.sbnRSLeft.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnLSDown
             // 
+            resources.ApplyResources(this.sbnLSDown, "sbnLSDown");
             this.sbnLSDown.BackColor = System.Drawing.Color.Transparent;
-            this.sbnLSDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnLSDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnLSDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnLSDown.FlatAppearance.BorderSize = 0;
             this.sbnLSDown.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnLSDown.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnLSDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnLSDown.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnLSDown.Location = new System.Drawing.Point(36, 120);
             this.sbnLSDown.Name = "sbnLSDown";
-            this.sbnLSDown.Size = new System.Drawing.Size(23, 11);
-            this.sbnLSDown.TabIndex = 166;
-            this.sbnLSDown.Text = "Fall Back";
             this.sbnLSDown.UseVisualStyleBackColor = false;
             this.sbnLSDown.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // sbnR3
             // 
+            resources.ApplyResources(this.sbnR3, "sbnR3");
             this.sbnR3.BackColor = System.Drawing.Color.Transparent;
-            this.sbnR3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.sbnR3.Cursor = System.Windows.Forms.Cursors.Default;
             this.sbnR3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.sbnR3.FlatAppearance.BorderSize = 0;
             this.sbnR3.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
             this.sbnR3.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.sbnR3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sbnR3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sbnR3.Location = new System.Drawing.Point(182, 92);
             this.sbnR3.Name = "sbnR3";
-            this.sbnR3.Size = new System.Drawing.Size(23, 23);
-            this.sbnR3.TabIndex = 168;
-            this.sbnR3.Text = "Fall Back";
             this.sbnR3.UseVisualStyleBackColor = false;
             this.sbnR3.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // tPController
             // 
+            resources.ApplyResources(this.tPController, "tPController");
             this.tPController.Controls.Add(this.SixaxisPanel);
             this.tPController.Controls.Add(this.lbL2Track);
             this.tPController.Controls.Add(this.pBDelayTracker);
@@ -3203,16 +2477,12 @@
             this.tPController.Controls.Add(this.tBR2);
             this.tPController.Controls.Add(this.tBL2);
             this.tPController.Controls.Add(this.lbSATrack);
-            this.tPController.Location = new System.Drawing.Point(4, 22);
             this.tPController.Name = "tPController";
-            this.tPController.Padding = new System.Windows.Forms.Padding(3);
-            this.tPController.Size = new System.Drawing.Size(428, 216);
-            this.tPController.TabIndex = 2;
-            this.tPController.Text = "Controller Readings";
             this.tPController.UseVisualStyleBackColor = true;
             // 
             // SixaxisPanel
             // 
+            resources.ApplyResources(this.SixaxisPanel, "SixaxisPanel");
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelX);
             this.SixaxisPanel.Controls.Add(this.lb6Accel);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroX);
@@ -3221,222 +2491,130 @@
             this.SixaxisPanel.Controls.Add(this.tBsixaxisGyroZ);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelY);
             this.SixaxisPanel.Controls.Add(this.tBsixaxisAccelZ);
-            this.SixaxisPanel.Location = new System.Drawing.Point(300, 88);
             this.SixaxisPanel.Name = "SixaxisPanel";
-            this.SixaxisPanel.Size = new System.Drawing.Size(125, 125);
-            this.SixaxisPanel.TabIndex = 236;
-            this.SixaxisPanel.Visible = false;
             this.SixaxisPanel.Click += new System.EventHandler(this.SixaxisPanel_Click);
             // 
             // lbL2Track
             // 
-            this.lbL2Track.AutoSize = true;
-            this.lbL2Track.Location = new System.Drawing.Point(316, 33);
+            resources.ApplyResources(this.lbL2Track, "lbL2Track");
             this.lbL2Track.Name = "lbL2Track";
-            this.lbL2Track.Size = new System.Drawing.Size(19, 13);
-            this.lbL2Track.TabIndex = 216;
-            this.lbL2Track.Text = "L2";
-            this.lbL2Track.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pBDelayTracker
             // 
-            this.pBDelayTracker.Location = new System.Drawing.Point(112, 9);
+            resources.ApplyResources(this.pBDelayTracker, "pBDelayTracker");
             this.pBDelayTracker.Name = "pBDelayTracker";
-            this.pBDelayTracker.Size = new System.Drawing.Size(10, 10);
-            this.pBDelayTracker.TabIndex = 243;
             this.pBDelayTracker.TabStop = false;
             // 
             // btnSATrack
             // 
+            resources.ApplyResources(this.btnSATrack, "btnSATrack");
             this.btnSATrack.BackColor = System.Drawing.Color.Black;
-            this.btnSATrack.Enabled = false;
-            this.btnSATrack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSATrack.Location = new System.Drawing.Point(362, 150);
             this.btnSATrack.Name = "btnSATrack";
-            this.btnSATrack.Size = new System.Drawing.Size(3, 3);
-            this.btnSATrack.TabIndex = 237;
-            this.btnSATrack.Text = "button1";
             this.btnSATrack.UseVisualStyleBackColor = false;
             // 
             // btnRSTrack
             // 
+            resources.ApplyResources(this.btnRSTrack, "btnRSTrack");
             this.btnRSTrack.BackColor = System.Drawing.Color.Black;
-            this.btnRSTrack.Enabled = false;
-            this.btnRSTrack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRSTrack.Location = new System.Drawing.Point(211, 149);
             this.btnRSTrack.Name = "btnRSTrack";
-            this.btnRSTrack.Size = new System.Drawing.Size(3, 3);
-            this.btnRSTrack.TabIndex = 237;
-            this.btnRSTrack.Text = "button1";
             this.btnRSTrack.UseVisualStyleBackColor = false;
             // 
             // lbRSTip
             // 
-            this.lbRSTip.Location = new System.Drawing.Point(150, 56);
+            resources.ApplyResources(this.lbRSTip, "lbRSTip");
             this.lbRSTip.Name = "lbRSTip";
-            this.lbRSTip.Size = new System.Drawing.Size(125, 30);
-            this.lbRSTip.TabIndex = 216;
-            this.lbRSTip.Text = "Right Stick";
-            this.lbRSTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbInputDelay
             // 
-            this.lbInputDelay.AutoSize = true;
-            this.lbInputDelay.Location = new System.Drawing.Point(6, 7);
+            resources.ApplyResources(this.lbInputDelay, "lbInputDelay");
             this.lbInputDelay.Name = "lbInputDelay";
-            this.lbInputDelay.Size = new System.Drawing.Size(100, 13);
-            this.lbInputDelay.TabIndex = 216;
-            this.lbInputDelay.Text = "Input Delay: N/Ams";
-            this.lbInputDelay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbR2Track
             // 
-            this.lbR2Track.AutoSize = true;
-            this.lbR2Track.Location = new System.Drawing.Point(385, 33);
+            resources.ApplyResources(this.lbR2Track, "lbR2Track");
             this.lbR2Track.Name = "lbR2Track";
-            this.lbR2Track.Size = new System.Drawing.Size(21, 13);
-            this.lbR2Track.TabIndex = 216;
-            this.lbR2Track.Text = "R2";
-            this.lbR2Track.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbLSTip
             // 
-            this.lbLSTip.Location = new System.Drawing.Point(6, 56);
+            resources.ApplyResources(this.lbLSTip, "lbLSTip");
             this.lbLSTip.Name = "lbLSTip";
-            this.lbLSTip.Size = new System.Drawing.Size(125, 30);
-            this.lbLSTip.TabIndex = 216;
-            this.lbLSTip.Text = "Left Stick";
-            this.lbLSTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbSATip
             // 
-            this.lbSATip.Location = new System.Drawing.Point(300, 56);
+            resources.ApplyResources(this.lbSATip, "lbSATip");
             this.lbSATip.Name = "lbSATip";
-            this.lbSATip.Size = new System.Drawing.Size(125, 30);
-            this.lbSATip.TabIndex = 216;
-            this.lbSATip.Text = "Sixaxis: X axis is flipped for easier reading";
-            this.lbSATip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbSATip.Click += new System.EventHandler(this.lbSATip_Click);
             // 
             // btnLSTrack
             // 
+            resources.ApplyResources(this.btnLSTrack, "btnLSTrack");
             this.btnLSTrack.BackColor = System.Drawing.Color.Black;
-            this.btnLSTrack.Enabled = false;
-            this.btnLSTrack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLSTrack.Location = new System.Drawing.Point(67, 149);
             this.btnLSTrack.Name = "btnLSTrack";
-            this.btnLSTrack.Size = new System.Drawing.Size(3, 3);
-            this.btnLSTrack.TabIndex = 237;
-            this.btnLSTrack.Text = "button1";
             this.btnLSTrack.UseVisualStyleBackColor = false;
             // 
             // pBSADeadzone
             // 
+            resources.ApplyResources(this.pBSADeadzone, "pBSADeadzone");
             this.pBSADeadzone.BackColor = System.Drawing.Color.Transparent;
-            this.pBSADeadzone.Image = ((System.Drawing.Image)(resources.GetObject("pBSADeadzone.Image")));
-            this.pBSADeadzone.Location = new System.Drawing.Point(348, 136);
             this.pBSADeadzone.Name = "pBSADeadzone";
-            this.pBSADeadzone.Size = new System.Drawing.Size(31, 31);
-            this.pBSADeadzone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pBSADeadzone.TabIndex = 242;
             this.pBSADeadzone.TabStop = false;
             this.pBSADeadzone.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawCircle);
             // 
             // pBRSDeadzone
             // 
+            resources.ApplyResources(this.pBRSDeadzone, "pBRSDeadzone");
             this.pBRSDeadzone.BackColor = System.Drawing.Color.Transparent;
-            this.pBRSDeadzone.Image = ((System.Drawing.Image)(resources.GetObject("pBRSDeadzone.Image")));
-            this.pBRSDeadzone.Location = new System.Drawing.Point(207, 146);
             this.pBRSDeadzone.Name = "pBRSDeadzone";
-            this.pBRSDeadzone.Size = new System.Drawing.Size(10, 10);
-            this.pBRSDeadzone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pBRSDeadzone.TabIndex = 241;
             this.pBRSDeadzone.TabStop = false;
-            this.pBRSDeadzone.Visible = false;
             // 
             // lbRSTrack
             // 
+            resources.ApplyResources(this.lbRSTrack, "lbRSTrack");
             this.lbRSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbRSTrack.Location = new System.Drawing.Point(150, 88);
             this.lbRSTrack.Name = "lbRSTrack";
-            this.lbRSTrack.Size = new System.Drawing.Size(125, 125);
-            this.lbRSTrack.TabIndex = 239;
-            this.lbRSTrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pBLSDeadzone
             // 
+            resources.ApplyResources(this.pBLSDeadzone, "pBLSDeadzone");
             this.pBLSDeadzone.BackColor = System.Drawing.Color.Transparent;
-            this.pBLSDeadzone.Image = ((System.Drawing.Image)(resources.GetObject("pBLSDeadzone.Image")));
-            this.pBLSDeadzone.Location = new System.Drawing.Point(63, 146);
             this.pBLSDeadzone.Name = "pBLSDeadzone";
-            this.pBLSDeadzone.Size = new System.Drawing.Size(10, 10);
-            this.pBLSDeadzone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pBLSDeadzone.TabIndex = 240;
             this.pBLSDeadzone.TabStop = false;
-            this.pBLSDeadzone.Visible = false;
             // 
             // lbLSTrack
             // 
+            resources.ApplyResources(this.lbLSTrack, "lbLSTrack");
             this.lbLSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbLSTrack.Location = new System.Drawing.Point(5, 88);
             this.lbLSTrack.Name = "lbLSTrack";
-            this.lbLSTrack.Size = new System.Drawing.Size(125, 125);
-            this.lbLSTrack.TabIndex = 239;
-            this.lbLSTrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tBR2
             // 
-            this.tBR2.AutoSize = false;
+            resources.ApplyResources(this.tBR2, "tBR2");
             this.tBR2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tBR2.Enabled = false;
-            this.tBR2.Location = new System.Drawing.Point(365, 3);
             this.tBR2.Maximum = 255;
             this.tBR2.Name = "tBR2";
-            this.tBR2.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.tBR2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tBR2.Size = new System.Drawing.Size(25, 50);
-            this.tBR2.TabIndex = 244;
             this.tBR2.TickFrequency = 0;
             this.tBR2.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // tBL2
             // 
-            this.tBL2.AutoSize = false;
+            resources.ApplyResources(this.tBL2, "tBL2");
             this.tBL2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tBL2.Enabled = false;
-            this.tBL2.Location = new System.Drawing.Point(331, 3);
             this.tBL2.Maximum = 255;
             this.tBL2.Name = "tBL2";
-            this.tBL2.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.tBL2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tBL2.RightToLeftLayout = true;
-            this.tBL2.Size = new System.Drawing.Size(25, 50);
-            this.tBL2.TabIndex = 244;
             this.tBL2.TickFrequency = 127;
             this.tBL2.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // lbSATrack
             // 
+            resources.ApplyResources(this.lbSATrack, "lbSATrack");
             this.lbSATrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbSATrack.Location = new System.Drawing.Point(300, 88);
             this.lbSATrack.Name = "lbSATrack";
-            this.lbSATrack.Size = new System.Drawing.Size(125, 125);
-            this.lbSATrack.TabIndex = 239;
-            this.lbSATrack.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lbSATrack.Click += new System.EventHandler(this.lbSATrack_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // pBProgram
-            // 
-            this.pBProgram.Location = new System.Drawing.Point(406, 70);
-            this.pBProgram.Name = "pBProgram";
-            this.pBProgram.Size = new System.Drawing.Size(23, 23);
-            this.pBProgram.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pBProgram.TabIndex = 255;
-            this.pBProgram.TabStop = false;
+            resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
             // 
             // advColorDialog
             // 
@@ -3446,11 +2624,9 @@
             // 
             // Options
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(885, 325);
             this.Controls.Add(this.tabControls);
             this.Controls.Add(this.gBDeadzone);
             this.Controls.Add(this.gBRumble);
@@ -3458,11 +2634,8 @@
             this.Controls.Add(this.gBTouchpad);
             this.Controls.Add(this.gBOther);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(901, 364);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(100, 100);
             this.Name = "Options";
-            this.Text = "Profile Options";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Options_Closed);
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).EndInit();
@@ -3500,6 +2673,7 @@
             this.gBTouchpad.PerformLayout();
             this.gBOther.ResumeLayout(false);
             this.gBOther.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).EndInit();
             this.gBLightbar.ResumeLayout(false);
             this.gBLightbar.PerformLayout();
@@ -3536,7 +2710,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBLSDeadzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBR2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBL2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).EndInit();
             this.ResumeLayout(false);
 
         }

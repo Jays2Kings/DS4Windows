@@ -50,15 +50,9 @@
             // 
             // btnRecord
             // 
-            this.btnRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRecord.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecord.Location = new System.Drawing.Point(3, 2);
+            resources.ApplyResources(this.btnRecord, "btnRecord");
             this.btnRecord.Name = "btnRecord";
-            this.btnRecord.Size = new System.Drawing.Size(268, 23);
-            this.btnRecord.TabIndex = 322;
             this.btnRecord.TabStop = false;
-            this.btnRecord.Text = "Record";
             this.btnRecord.UseVisualStyleBackColor = true;
             this.btnRecord.Click += new System.EventHandler(this.btnRecord_Click);
             this.btnRecord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
@@ -66,13 +60,9 @@
             // 
             // cBRecordDelays
             // 
-            this.cBRecordDelays.AutoSize = true;
-            this.cBRecordDelays.Location = new System.Drawing.Point(0, 5);
+            resources.ApplyResources(this.cBRecordDelays, "cBRecordDelays");
             this.cBRecordDelays.Name = "cBRecordDelays";
-            this.cBRecordDelays.Size = new System.Drawing.Size(96, 17);
-            this.cBRecordDelays.TabIndex = 324;
             this.cBRecordDelays.TabStop = false;
-            this.cBRecordDelays.Text = "Record Delays";
             this.cBRecordDelays.UseVisualStyleBackColor = true;
             this.cBRecordDelays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
             this.cBRecordDelays.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
@@ -81,18 +71,13 @@
             // 
             // lVMacros
             // 
-            this.lVMacros.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.lVMacros, "lVMacros");
             this.lVMacros.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.lVMacros.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lVMacros.LargeImageList = this.iLKeys;
-            this.lVMacros.Location = new System.Drawing.Point(3, 29);
             this.lVMacros.Name = "lVMacros";
-            this.lVMacros.Size = new System.Drawing.Size(268, 200);
             this.lVMacros.SmallImageList = this.iLKeys;
-            this.lVMacros.TabIndex = 326;
             this.lVMacros.UseCompatibleStateImageBehavior = false;
             this.lVMacros.View = System.Windows.Forms.View.Details;
             this.lVMacros.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
@@ -103,8 +88,7 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Macro Order";
-            this.columnHeader1.Width = 150;
+            resources.ApplyResources(this.columnHeader1, "columnHeader1");
             // 
             // iLKeys
             // 
@@ -116,123 +100,93 @@
             // 
             // cBStyle
             // 
-            this.cBStyle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.cBStyle, "cBStyle");
             this.cBStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBStyle.FormattingEnabled = true;
             this.cBStyle.Items.AddRange(new object[] {
-            "Play once",
-            "Repeat while held"});
-            this.cBStyle.Location = new System.Drawing.Point(147, 3);
+            resources.GetString("cBStyle.Items"),
+            resources.GetString("cBStyle.Items1")});
             this.cBStyle.Name = "cBStyle";
-            this.cBStyle.Size = new System.Drawing.Size(121, 21);
-            this.cBStyle.TabIndex = 327;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(0, 51);
+            resources.ApplyResources(this.btnSave, "btnSave");
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 328;
-            this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(193, 51);
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 328;
-            this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // cB360Controls
             // 
-            this.cB360Controls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.cB360Controls, "cB360Controls");
             this.cB360Controls.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cB360Controls.FormattingEnabled = true;
             this.cB360Controls.Items.AddRange(new object[] {
-            "(none)",
-            "A Button",
-            "B Button",
-            "X Button",
-            "Y Button",
-            "Up Button",
-            "Down Button",
-            "Left Button",
-            "Right Button",
-            "Start",
-            "Back",
-            "Guide",
-            "Left Bumper",
-            "Right Bumper",
-            "Left Trigger",
-            "Right Trigger",
-            "Left Stick",
-            "Right Click",
-            "Left Y-Axis+",
-            "Left Y-Axis-",
-            "Left X-Axis+",
-            "Left X-Axis-",
-            "Right Y-Axis+",
-            "Right Y-Axis-",
-            "Right X-Axis+",
-            "Right X-Axis-"});
-            this.cB360Controls.Location = new System.Drawing.Point(147, 27);
+            resources.GetString("cB360Controls.Items"),
+            resources.GetString("cB360Controls.Items1"),
+            resources.GetString("cB360Controls.Items2"),
+            resources.GetString("cB360Controls.Items3"),
+            resources.GetString("cB360Controls.Items4"),
+            resources.GetString("cB360Controls.Items5"),
+            resources.GetString("cB360Controls.Items6"),
+            resources.GetString("cB360Controls.Items7"),
+            resources.GetString("cB360Controls.Items8"),
+            resources.GetString("cB360Controls.Items9"),
+            resources.GetString("cB360Controls.Items10"),
+            resources.GetString("cB360Controls.Items11"),
+            resources.GetString("cB360Controls.Items12"),
+            resources.GetString("cB360Controls.Items13"),
+            resources.GetString("cB360Controls.Items14"),
+            resources.GetString("cB360Controls.Items15"),
+            resources.GetString("cB360Controls.Items16"),
+            resources.GetString("cB360Controls.Items17"),
+            resources.GetString("cB360Controls.Items18"),
+            resources.GetString("cB360Controls.Items19"),
+            resources.GetString("cB360Controls.Items20"),
+            resources.GetString("cB360Controls.Items21"),
+            resources.GetString("cB360Controls.Items22"),
+            resources.GetString("cB360Controls.Items23"),
+            resources.GetString("cB360Controls.Items24"),
+            resources.GetString("cB360Controls.Items25")});
             this.cB360Controls.Name = "cB360Controls";
-            this.cB360Controls.Size = new System.Drawing.Size(121, 21);
-            this.cB360Controls.TabIndex = 329;
             // 
             // lBHoldX360
             // 
-            this.lBHoldX360.AutoSize = true;
-            this.lBHoldX360.Location = new System.Drawing.Point(-3, 30);
+            resources.ApplyResources(this.lBHoldX360, "lBHoldX360");
             this.lBHoldX360.Name = "lBHoldX360";
-            this.lBHoldX360.Size = new System.Drawing.Size(125, 13);
-            this.lBHoldX360.TabIndex = 330;
-            this.lBHoldX360.Text = "Also hold a X360 control:";
             // 
             // pnlSettings
             // 
-            this.pnlSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.pnlSettings, "pnlSettings");
             this.pnlSettings.Controls.Add(this.lBHoldX360);
             this.pnlSettings.Controls.Add(this.cBStyle);
             this.pnlSettings.Controls.Add(this.cB360Controls);
             this.pnlSettings.Controls.Add(this.cBRecordDelays);
             this.pnlSettings.Controls.Add(this.btnCancel);
             this.pnlSettings.Controls.Add(this.btnSave);
-            this.pnlSettings.Location = new System.Drawing.Point(3, 229);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(272, 77);
-            this.pnlSettings.TabIndex = 331;
             this.pnlSettings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
             this.pnlSettings.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
             // 
             // pnlMouseButtons
             // 
-            this.pnlMouseButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.pnlMouseButtons, "pnlMouseButtons");
             this.pnlMouseButtons.Controls.Add(this.btn5th);
             this.pnlMouseButtons.Controls.Add(this.btn4th);
-            this.pnlMouseButtons.Location = new System.Drawing.Point(3, 232);
             this.pnlMouseButtons.Name = "pnlMouseButtons";
-            this.pnlMouseButtons.Size = new System.Drawing.Size(272, 78);
-            this.pnlMouseButtons.TabIndex = 331;
-            this.pnlMouseButtons.Visible = false;
             this.pnlMouseButtons.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
             this.pnlMouseButtons.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
             // 
             // btn5th
             // 
-            this.btn5th.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn5th.Location = new System.Drawing.Point(76, 42);
+            resources.ApplyResources(this.btn5th, "btn5th");
             this.btn5th.Name = "btn5th";
-            this.btn5th.Size = new System.Drawing.Size(131, 23);
-            this.btn5th.TabIndex = 0;
-            this.btn5th.Text = "5th Mouse Button Down";
             this.btn5th.UseVisualStyleBackColor = true;
             this.btn5th.Click += new System.EventHandler(this.btn5th_Click);
             this.btn5th.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
@@ -240,12 +194,8 @@
             // 
             // btn4th
             // 
-            this.btn4th.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn4th.Location = new System.Drawing.Point(76, 13);
+            resources.ApplyResources(this.btn4th, "btn4th");
             this.btn4th.Name = "btn4th";
-            this.btn4th.Size = new System.Drawing.Size(131, 23);
-            this.btn4th.TabIndex = 0;
-            this.btn4th.Text = "4th Mouse Button Down";
             this.btn4th.UseVisualStyleBackColor = true;
             this.btn4th.Click += new System.EventHandler(this.btn4th_Click);
             this.btn4th.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
@@ -253,19 +203,16 @@
             // 
             // RecordBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(276, 306);
             this.Controls.Add(this.btnRecord);
             this.Controls.Add(this.lVMacros);
-            this.Controls.Add(this.pnlSettings);
             this.Controls.Add(this.pnlMouseButtons);
+            this.Controls.Add(this.pnlSettings);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.MinimumSize = new System.Drawing.Size(260, 205);
             this.Name = "RecordBox";
             this.ShowInTaskbar = false;
-            this.Text = "Record a Macro";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RecordBox_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);

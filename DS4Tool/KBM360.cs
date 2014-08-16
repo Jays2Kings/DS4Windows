@@ -30,10 +30,10 @@ namespace ScpServer
             //cBMacro.Checked = button.Font.Underline;
             lBMacroOn.Visible = button.Font.Underline;
             if (button.Name.StartsWith("bn"))
-                Text = "Select an action for " + button.Name.Substring(2);
+                Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(2));
             else if (button.Name.StartsWith("sbn"))
             {
-                Text = "Select an action for " + button.Name.Substring(3);
+                Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(3));
                 btnFallBack.Text = "Fall Back";
             }
             foreach (System.Windows.Forms.Control control in this.Controls)

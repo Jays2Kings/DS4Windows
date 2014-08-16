@@ -194,23 +194,23 @@
             // 
             this.lBTip.AutoSize = true;
             this.lBTip.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lBTip.Location = new System.Drawing.Point(465, 110);
+            this.lBTip.Location = new System.Drawing.Point(448, 110);
             this.lBTip.Name = "lBTip";
-            this.lBTip.Size = new System.Drawing.Size(103, 26);
+            this.lBTip.Size = new System.Drawing.Size(133, 26);
             this.lBTip.TabIndex = 289;
-            this.lBTip.Text = "You can also select \r\na key by typing it";
+            this.lBTip.Text = "Vous pouvez aussi sélect-\r\nionner une clé en la tapant";
             this.lBTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // cbScanCode
             // 
             this.cbScanCode.AutoSize = true;
-            this.cbScanCode.Location = new System.Drawing.Point(677, 5);
+            this.cbScanCode.Location = new System.Drawing.Point(640, 5);
             this.cbScanCode.Name = "cbScanCode";
             this.cbScanCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbScanCode.Size = new System.Drawing.Size(79, 17);
+            this.cbScanCode.Size = new System.Drawing.Size(104, 17);
             this.cbScanCode.TabIndex = 288;
             this.cbScanCode.TabStop = false;
-            this.cbScanCode.Text = "Scan Code";
+            this.cbScanCode.Text = "Scanner le code";
             this.cbScanCode.UseVisualStyleBackColor = true;
             // 
             // button7
@@ -1682,7 +1682,7 @@
             // cbToggle
             // 
             this.cbToggle.AutoSize = true;
-            this.cbToggle.Location = new System.Drawing.Point(604, 5);
+            this.cbToggle.Location = new System.Drawing.Point(567, 5);
             this.cbToggle.Name = "cbToggle";
             this.cbToggle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cbToggle.Size = new System.Drawing.Size(59, 17);
@@ -1983,37 +1983,38 @@
             this.X360Label.AutoSize = true;
             this.X360Label.Location = new System.Drawing.Point(395, 210);
             this.X360Label.Name = "X360Label";
-            this.X360Label.Size = new System.Drawing.Size(73, 13);
+            this.X360Label.Size = new System.Drawing.Size(93, 13);
             this.X360Label.TabIndex = 318;
-            this.X360Label.Text = "X360 Controls";
+            this.X360Label.Text = "Commandes X360";
             // 
             // KBMlabel
             // 
             this.KBMlabel.AutoSize = true;
-            this.KBMlabel.Location = new System.Drawing.Point(378, 6);
+            this.KBMlabel.Location = new System.Drawing.Point(456, 6);
             this.KBMlabel.Name = "KBMlabel";
-            this.KBMlabel.Size = new System.Drawing.Size(108, 13);
+            this.KBMlabel.Size = new System.Drawing.Size(83, 13);
             this.KBMlabel.TabIndex = 318;
-            this.KBMlabel.Text = "Keyboard and Mouse";
+            this.KBMlabel.Text = "Clavier et Souris";
             // 
             // lBMacroOn
             // 
             this.lBMacroOn.AutoSize = true;
             this.lBMacroOn.Location = new System.Drawing.Point(10, 6);
             this.lBMacroOn.Name = "lBMacroOn";
-            this.lBMacroOn.Size = new System.Drawing.Size(322, 13);
+            this.lBMacroOn.Size = new System.Drawing.Size(413, 13);
             this.lBMacroOn.TabIndex = 319;
-            this.lBMacroOn.Text = "Macro On, Choose a key to disable, else close this window to save";
+            this.lBMacroOn.Text = "Macro activé, choisir une touche pour désactiver, fermer cette page pour sauvegar" +
+    "der";
             this.lBMacroOn.Visible = false;
             // 
             // btnMacro
             // 
-            this.btnMacro.Location = new System.Drawing.Point(761, 1);
+            this.btnMacro.Location = new System.Drawing.Point(747, 1);
             this.btnMacro.Name = "btnMacro";
-            this.btnMacro.Size = new System.Drawing.Size(104, 23);
+            this.btnMacro.Size = new System.Drawing.Size(118, 23);
             this.btnMacro.TabIndex = 321;
             this.btnMacro.TabStop = false;
-            this.btnMacro.Text = "Record a Macro";
+            this.btnMacro.Text = "Enregistrer un macro";
             this.btnMacro.UseVisualStyleBackColor = true;
             this.btnMacro.Click += new System.EventHandler(this.btnMacro_Click);
             // 

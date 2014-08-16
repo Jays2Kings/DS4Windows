@@ -117,112 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="button2.TabIndex" type="System.Int32, mscorlib">
-    <value>240</value>
+  <data name="Battery" xml:space="preserve">
+    <value>Battery: *number*%</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tBProfile.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
+  <data name="Charged" xml:space="preserve">
+    <value>Charged</value>
   </data>
-  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="Charging" xml:space="preserve">
+    <value>Charging: *number*%</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="Connecting" xml:space="preserve">
+    <value>Connecting...</value>
   </data>
-  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="ControllerWasRemoved" xml:space="preserve">
+    <value>Controller *Mac address* was removed or lost connection</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="CouldNotOpenDS4" xml:space="preserve">
+    <value>Warning: Could not open DS4 *Mac address* exclusively.</value>
   </data>
-  <data name="&gt;&gt;button2.Name" xml:space="preserve">
-    <value>button2</value>
+  <data name="FoundController" xml:space="preserve">
+    <value>Found Controller: </value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MessageTextBox</value>
+  <data name="Full" xml:space="preserve">
+    <value>Full</value>
   </data>
-  <data name="&gt;&gt;button2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
   </data>
-  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+  <data name="NoneText" xml:space="preserve">
+    <value>none</value>
   </data>
-  <data name="tBProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 7</value>
+  <data name="QuitOtherPrograms" xml:space="preserve">
+    <value>You must quit other applications like Steam, Uplay before activating the 'Hide DS4 Controller' option."</value>
   </data>
-  <data name="tBProfile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+  <data name="SearchingController" xml:space="preserve">
+    <value>Searching for controllers…</value>
   </data>
-  <data name="&gt;&gt;tBProfile.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="Starting" xml:space="preserve">
+    <value>Starting...</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>359, 35</value>
+  <data name="StoppedDS4Windows" xml:space="preserve">
+    <value>Stopped DS4Windows</value>
   </data>
-  <data name="tBProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 20</value>
+  <data name="StoppingDS4" xml:space="preserve">
+    <value>Stopping DS4 Controllers</value>
   </data>
-  <data name="button2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+  <data name="StoppingX360" xml:space="preserve">
+    <value>Stopping X360 Controllers</value>
   </data>
-  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="TouchpadMovementOff" xml:space="preserve">
+    <value>Touchpad Movement is now Off</value>
   </data>
-  <data name="&gt;&gt;tBProfile.Name" xml:space="preserve">
-    <value>tBProfile</value>
+  <data name="TouchpadMovementOn" xml:space="preserve">
+    <value>Touchpad Movement is now On</value>
   </data>
-  <data name="&gt;&gt;tBProfile.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="UsingExclusive" xml:space="preserve">
+    <value>Using Exclusive Mode</value>
   </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="UsingProfile" xml:space="preserve">
+    <value>Controller *number* is using Profile “*Profile name*"</value>
   </data>
-  <data name="tBProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>239</value>
+  <data name="UsingShared" xml:space="preserve">
+    <value>Using Shared Mode</value>
   </data>
-  <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;type new name here&gt;</value>
-  </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
-  </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="&gt;&gt;tBProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 5</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Type name of New Profile</value>
-  </data>
-  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 5</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>fr-FR</value>
-  </metadata>
 </root>

@@ -382,7 +382,7 @@ namespace ScpServer
             if (version.Replace(',', '.').CompareTo(File.ReadAllText(Global.appdatapath + "\\version.txt")) == -1)//CompareVersions();
                 if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion), Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe") 
+                    if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
                     {
                         Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Windows/DS4Updater.exe");
@@ -395,15 +395,12 @@ namespace ScpServer
                             Process.Start("https://www.dropbox.com/s/tlqtdkdumdo0yir/DS4Updater.exe");
                         }
                     }
-                    if (Global.appdatapath == exepath)
-                    {
-                        Process p = new Process();
-                        p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                        if (Global.AdminNeeded())
-                            p.StartInfo.Verb = "runas";
-                        p.Start();
-                        Close();
-                    }
+                    Process p = new Process();
+                    p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
+                    if (Global.AdminNeeded())
+                        p.StartInfo.Verb = "runas";
+                    p.Start();
+                    Close();
                 }
                 else
                     File.Delete(Global.appdatapath + "\\version.txt");
@@ -653,7 +650,10 @@ namespace ScpServer
                     tooltip += "\n" + (Index + 1) + ": " + rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
             }
             btnClear.Enabled = lvDebug.Items.Count > 0;
-            notifyIcon1.Text = tooltip;
+            if (tooltip.Length > 63)
+                notifyIcon1.Text = tooltip.Substring(0,63);
+            else
+                notifyIcon1.Text = tooltip;
         }
 
 
@@ -1232,15 +1232,12 @@ namespace ScpServer
                             Process.Start("https://www.dropbox.com/s/tlqtdkdumdo0yir/DS4Updater.exe");
                         }
                     }
-                    if (Global.appdatapath == exepath)
-                    {
-                        Process p = new Process();
-                        p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                        if (Global.AdminNeeded())
-                            p.StartInfo.Verb = "runas";
-                        p.Start();
-                        Close();
-                    }
+                    Process p = new Process();
+                    p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
+                    if (Global.AdminNeeded())
+                        p.StartInfo.Verb = "runas";
+                    p.Start();
+                    Close();
                 }
                 else
                     File.Delete(Global.appdatapath + "\\version.txt");

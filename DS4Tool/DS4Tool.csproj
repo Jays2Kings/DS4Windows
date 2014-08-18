@@ -198,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.es.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
+    <EmbeddedResource Include="SaveWhere.fr-FR.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaveWhere.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>

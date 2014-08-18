@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaveWhere));
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.bnAppdataFolder = new System.Windows.Forms.Button();
@@ -39,86 +40,53 @@
             // 
             // label4
             // 
+            resources.ApplyResources(this.label4, "label4");
             this.label4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label4.Location = new System.Drawing.Point(206, 89);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(177, 69);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Pour ceux préférant une installation normale, les paramètres sont sauvegardés à %" +
-    "appdata%/ds4tool";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label3
             // 
+            resources.ApplyResources(this.label3, "label3");
             this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label3.Location = new System.Drawing.Point(5, 89);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(195, 69);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Pour ceux qui préfèrent une application portable Note: Cette option ne fonctionne" +
-    " point si dans un dossier admin sans UAC (contrôle de compte d\'utilisateur)";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // bnAppdataFolder
             // 
-            this.bnAppdataFolder.Location = new System.Drawing.Point(222, 63);
+            resources.ApplyResources(this.bnAppdataFolder, "bnAppdataFolder");
             this.bnAppdataFolder.Name = "bnAppdataFolder";
-            this.bnAppdataFolder.Size = new System.Drawing.Size(140, 23);
-            this.bnAppdataFolder.TabIndex = 7;
-            this.bnAppdataFolder.Text = "Appdata";
             this.bnAppdataFolder.UseVisualStyleBackColor = true;
             this.bnAppdataFolder.Click += new System.EventHandler(this.bnAppdataFolder_Click);
             // 
             // bnPrgmFolder
             // 
-            this.bnPrgmFolder.Location = new System.Drawing.Point(32, 63);
+            resources.ApplyResources(this.bnPrgmFolder, "bnPrgmFolder");
             this.bnPrgmFolder.Name = "bnPrgmFolder";
-            this.bnPrgmFolder.Size = new System.Drawing.Size(140, 23);
-            this.bnPrgmFolder.TabIndex = 8;
-            this.bnPrgmFolder.Text = "Dossier de l\'application";
             this.bnPrgmFolder.UseVisualStyleBackColor = true;
             this.bnPrgmFolder.Click += new System.EventHandler(this.bnPrgmFolder_Click);
             // 
             // lbPickWhere
             // 
+            resources.ApplyResources(this.lbPickWhere, "lbPickWhere");
             this.lbPickWhere.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbPickWhere.Location = new System.Drawing.Point(1, 33);
             this.lbPickWhere.Name = "lbPickWhere";
-            this.lbPickWhere.Size = new System.Drawing.Size(386, 27);
-            this.lbPickWhere.TabIndex = 10;
-            this.lbPickWhere.Text = "Choisissez l\'emplacement auquel vous voulez que vos paramètres et profiles soient" +
-    " sauvegardes, ";
-            this.lbPickWhere.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbMultiSaves
             // 
-            this.lbMultiSaves.AutoSize = true;
+            resources.ApplyResources(this.lbMultiSaves, "lbMultiSaves");
             this.lbMultiSaves.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbMultiSaves.Location = new System.Drawing.Point(9, 8);
             this.lbMultiSaves.Name = "lbMultiSaves";
-            this.lbMultiSaves.Size = new System.Drawing.Size(243, 13);
-            this.lbMultiSaves.TabIndex = 10;
-            this.lbMultiSaves.Text = "Multiples emplacements de sauvegarde supprimés";
-            this.lbMultiSaves.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lbMultiSaves.Visible = false;
             // 
             // cBDeleteOther
             // 
-            this.cBDeleteOther.AutoSize = true;
-            this.cBDeleteOther.Location = new System.Drawing.Point(240, 0);
+            resources.ApplyResources(this.cBDeleteOther, "cBDeleteOther");
             this.cBDeleteOther.Name = "cBDeleteOther";
-            this.cBDeleteOther.Size = new System.Drawing.Size(147, 30);
-            this.cBDeleteOther.TabIndex = 11;
-            this.cBDeleteOther.Text = "Ne pas encore supprimer \r\nles autres paramètres";
             this.cBDeleteOther.UseVisualStyleBackColor = true;
-            this.cBDeleteOther.Visible = false;
             // 
             // SaveWhere
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(389, 161);
             this.Controls.Add(this.cBDeleteOther);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lbMultiSaves);
@@ -130,7 +98,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SaveWhere";
-            this.Text = "DS4Windows";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveWhere_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

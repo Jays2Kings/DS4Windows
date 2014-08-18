@@ -325,7 +325,7 @@ namespace DS4Control
                 {
                     battery = d.Battery + "%";
                 }
-                return (d.ConnectionType + " " + battery + " (" + System.IO.Path.GetFileNameWithoutExtension(Global.getAProfile(index)) + ")");//.Substring(0,30);
+                return (d.ConnectionType + " " + battery);
             }
             else
                 return Properties.Resources.NoneText;

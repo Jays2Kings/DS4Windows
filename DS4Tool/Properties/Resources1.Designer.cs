@@ -348,6 +348,15 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Turn off X360 input and only use the DS4&apos;s native input, hide ds4 must be off.
+        /// </summary>
+        internal static string DinputOnly {
+            get {
+                return ResourceManager.GetString("DinputOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disconnected.
         /// </summary>
         internal static string Disconnected {
@@ -579,7 +588,7 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Keep this window size after closing.
         /// </summary>
         internal static string KeepThisSize {
             get {

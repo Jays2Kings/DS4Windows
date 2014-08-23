@@ -81,6 +81,15 @@ namespace DS4Control
                         color = Global.loadColor(deviceNum);
                     }
 
+
+                    if (device.Battery <= Global.getFlashAt(deviceNum) && !defualtLight && !device.Charging)
+                    {
+                        if (!(Global.loadFlashColor(deviceNum).red == 0 &&
+                            Global.loadFlashColor(deviceNum).green == 0 &&
+                            Global.loadFlashColor(deviceNum).blue == 0))
+                            color = Global.loadFlashColor(deviceNum);
+                    }
+
                     if (Global.getIdleDisconnectTimeout(deviceNum) > 0 && Global.getLedAsBatteryIndicator(deviceNum) && (!device.Charging || device.Battery >= 100))
                     {//Fade lightbar by idle time
                         TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
@@ -131,13 +140,14 @@ namespace DS4Control
                 if (device.Battery <= Global.getFlashAt(deviceNum) && !defualtLight && !device.Charging)
                 {
                     int level = device.Battery / 10;
-                    if (level >= 10)
-                        level = 0; // all values of ~0% or >~100% are rendered the same
+                    //if (level >= 10)
+                        //level = 0; // all values of ~0% or >~100% are rendered the same
                     haptics.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
                     haptics.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];
                 }
                 else
                 {
+                    //haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
                     haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 0;
                     haptics.LightBarExplicitlyOff = true;
                 }
@@ -147,13 +157,12 @@ namespace DS4Control
                 haptics.LightBarExplicitlyOff = true;
             }
             device.pushHapticState(haptics);
-
         }
         public static bool defualtLight = false, shuttingdown = false;
 
         public static bool shiftMod(DS4Device device, int deviceNum, DS4State cState, DS4StateExposed eState)
         {
-            bool shift;;
+            bool shift;
             switch (Global.getShiftModifier(deviceNum))
             {
                 case 1: shift = Mapping.getBoolMapping(DS4Controls.Cross, cState, eState); break;

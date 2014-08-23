@@ -38,6 +38,7 @@ namespace ScpServer
         List<string>[] proprofiles;
         private static int WM_QUERYENDSESSION = 0x11;
         private static bool systemShutdown = false;
+        private bool wasrunning = false;
         delegate void ControllerStatusChangedDelegate(object sender, EventArgs e);
         delegate void HotKeysDelegate(object sender, EventArgs e);
         Options opt;
@@ -112,12 +113,20 @@ namespace ScpServer
             switch (e.Mode)
             {
                 case PowerModes.Resume:
-                    if (btnStartStop.Text == Properties.Resources.StartText)
+                    if (btnStartStop.Text == Properties.Resources.StartText && wasrunning)
+                    {
+                        DS4LightBar.shuttingdown = false;
+                        wasrunning = false;
                         btnStartStop_Clicked();
+                    }
                     break;
                 case PowerModes.Suspend:
                     if (btnStartStop.Text == Properties.Resources.StopText)
+                    {
+                        DS4LightBar.shuttingdown = true;
                         btnStartStop_Clicked();
+                        wasrunning = true;
+                    }
                     break;
             }
         }
@@ -556,7 +565,7 @@ namespace ScpServer
         {
             btnStartStop_Clicked();
         }
-        protected void btnStartStop_Clicked(bool log = true)
+        public void btnStartStop_Clicked(bool log = true)
         {
             if (btnStartStop.Text == Properties.Resources.StartText)
             {
@@ -1308,6 +1317,13 @@ namespace ScpServer
         private void cBSwipeProfiles_CheckedChanged(object sender, EventArgs e)
         {
             Global.setSwipeProfiles(cBSwipeProfiles.Checked);
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Global.saveColor(0, Global.loadColor(0).red, Global.loadColor(0).green, Global.loadColor(0).blue);
+            //Global.saveColor(0, 0, 122, 255);
+            //DS4LightBar.updateLightBar(rootHub.DS4Controllers[0], 0, rootHub.getDS4State(0), rootHub.ExposedState[0]);
         }
     }
 

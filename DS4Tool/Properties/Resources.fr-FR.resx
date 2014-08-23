@@ -376,6 +376,9 @@
     <value>Bas</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>You are up to date</value>
+    <value>Votre version de DS4Windows est à jour</value>
+  </data>
+  <data name="DinputOnly" xml:space="preserve">
+    <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off</value>
   </data>
 </root>

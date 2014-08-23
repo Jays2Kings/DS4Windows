@@ -167,6 +167,9 @@
     <EmbeddedResource Include="Hotkeys.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KBM360.fr-FR.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KBM360.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>

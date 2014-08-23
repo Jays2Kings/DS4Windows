@@ -143,46 +143,7 @@
     <value>Hotkeys/À propos</value>
   </data>
   <data name="btnClear.Text" xml:space="preserve">
-    <value>Éclaircir</value>
-  </data>
-  <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Éditer le Profil de la Manette 1</value>
-  </data>
-  <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Éditer le Profil de la Manette 2</value>
-  </data>
-  <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Éditer le Profil de la Manette 3</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Éditer le Profil de la Manette 4</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 6</value>
-  </data>
-  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ouvrir</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sortir (Souris du Milieu)</value>
+    <value>Effacer</value>
   </data>
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 142</value>
@@ -6359,6 +6320,84 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
   </data>
+  <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Éditer le Profil de la Manette 1</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Éditer le Profil de la Manette 2</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Éditer le Profil de la Manette 3</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Éditer le Profil de la Manette 4</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 6</value>
+  </data>
+  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ouvrir</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sortir (Souris du Milieu)</value>
+  </data>
+  <data name="tabControllers.Text" xml:space="preserve">
+    <value>Manettes</value>
+  </data>
+  <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 22</value>
+  </data>
+  <data name="toolStripLabel1.Text" xml:space="preserve">
+    <value>Nom de Profil:</value>
+  </data>
+  <data name="tSTBProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 25</value>
+  </data>
+  <data name="tSBSaveProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 22</value>
+  </data>
+  <data name="tSBSaveProfile.Text" xml:space="preserve">
+    <value>Sauvegarder Profil</value>
+  </data>
+  <data name="tSBCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 22</value>
+  </data>
+  <data name="tSBCancel.Text" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="tSBKeepSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>297, 22</value>
+  </data>
+  <data name="tSBKeepSize.Text" xml:space="preserve">
+    <value>Garder les dimensions de la fenêtre après fermeture</value>
+  </data>
+  <data name="tabProfiles.Text" xml:space="preserve">
+    <value>Profils</value>
+  </data>
+  <data name="tabAutoProfiles.Text" xml:space="preserve">
+    <value>Profils Auto</value>
+  </data>
+  <data name="tabSettings.Text" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
   <data name="pBStatus1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACcAAAAUCAYAAAAOTSQ2AAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
@@ -6700,36 +6739,6 @@
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
     <value>403, 106</value>
   </data>
-  <data name="tabControllers.Text" xml:space="preserve">
-    <value>Manettes</value>
-  </data>
-  <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 22</value>
-  </data>
-  <data name="toolStripLabel1.Text" xml:space="preserve">
-    <value>Nom de Profil:</value>
-  </data>
-  <data name="tSTBProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 25</value>
-  </data>
-  <data name="tSBSaveProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
-  </data>
-  <data name="tSBSaveProfile.Text" xml:space="preserve">
-    <value>Sauvegarder Profil</value>
-  </data>
-  <data name="tSBCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 22</value>
-  </data>
-  <data name="tSBCancel.Text" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
-  <data name="tSBKeepSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>297, 22</value>
-  </data>
-  <data name="tSBKeepSize.Text" xml:space="preserve">
-    <value>Garder les dimensions de la fenêtre après fermeture</value>
-  </data>
   <data name="tsBNewProfle.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 22</value>
   </data>
@@ -6801,12 +6810,6 @@
   <data name="tSBExportProfile.Text" xml:space="preserve">
     <value>Exporter</value>
   </data>
-  <data name="tabProfiles.Text" xml:space="preserve">
-    <value>Profils</value>
-  </data>
-  <data name="tabAutoProfiles.Text" xml:space="preserve">
-    <value>Profils Auto</value>
-  </data>
   <data name="hideDS4CheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 17</value>
   </data>
@@ -6831,6 +6834,9 @@
   <data name="cBUpdate.Text" xml:space="preserve">
     <value>Vérifier les Mises à Jour au Démarrage</value>
   </data>
+  <data name="pNUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 22</value>
+  </data>
   <data name="cBUpdateTime.Items" xml:space="preserve">
     <value>heures</value>
   </data>
@@ -6848,9 +6854,6 @@
   </data>
   <data name="nUDUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>85, 1</value>
-  </data>
-  <data name="pNUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
   </data>
   <data name="cBNotifications.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 17</value>
@@ -6893,8 +6896,5 @@
   </data>
   <data name="lnkControllers.Text" xml:space="preserve">
     <value>Panneau de Configuration</value>
-  </data>
-  <data name="tabSettings.Text" xml:space="preserve">
-    <value>Paramètres</value>
   </data>
 </root>

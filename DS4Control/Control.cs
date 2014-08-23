@@ -9,7 +9,7 @@ namespace DS4Control
 {
     public class Control
     {
-        X360Device x360Bus;
+        public X360Device x360Bus;
         public DS4Device[] DS4Controllers = new DS4Device[4];
         //TPadModeSwitcher[] modeSwitcher = new TPadModeSwitcher[4];
         Mouse[] touchPad = new Mouse[4];
@@ -80,7 +80,8 @@ namespace DS4Control
                         touchPad[ind] = new Mouse(ind, device);
                         DS4Color color = Global.loadColor(ind);
                         device.LightBarColor = color;
-                        x360Bus.Plugin(ind);
+                        if (!Global.getDinputOnly(ind))
+                            x360Bus.Plugin(ind);
                         device.Report += this.On_Report;
                         TouchPadOn(ind, device);
                         LaunchProgram(ind);
@@ -183,7 +184,8 @@ namespace DS4Control
                             touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = Global.loadColor(Index);
                             device.Report += this.On_Report;
-                            x360Bus.Plugin(Index);
+                            if (!Global.getDinputOnly(Index))
+                                x360Bus.Plugin(Index);
                             TouchPadOn(Index, device);
                             LaunchProgram(Index);
                             string filename = Path.GetFileName(Global.getAProfile(Index));
@@ -485,6 +487,7 @@ namespace DS4Control
 
         bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };
         byte[] oldtouchvalue = { 0, 0, 0, 0 };
+        int[] oldscrollvalue = { 0, 0, 0, 0 };
         protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
         {
             DS4Device d = DS4Controllers[deviceID];
@@ -508,7 +511,9 @@ namespace DS4Control
                 if (Global.getTouchSensitivity(deviceID) > 0 && touchreleased[deviceID])
                 {
                     oldtouchvalue[deviceID] = Global.getTouchSensitivity(deviceID);
+                    oldscrollvalue[deviceID] = Global.getScrollSensitivity(deviceID);
                     Global.setTouchSensitivity(deviceID, 0);
+                    Global.setScrollSensitivity(deviceID, 0);
                     LogDebug(Global.getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
                     Log.LogToTray(Global.getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
@@ -516,6 +521,7 @@ namespace DS4Control
                 else if (touchreleased[deviceID])
                 {
                     Global.setTouchSensitivity(deviceID, oldtouchvalue[deviceID]);
+                    Global.setScrollSensitivity(deviceID, oldscrollvalue[deviceID]);
                     LogDebug(Global.getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
                     Log.LogToTray(Global.getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;

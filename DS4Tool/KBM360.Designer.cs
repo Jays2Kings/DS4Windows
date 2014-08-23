@@ -192,1857 +192,1271 @@
             // 
             // lBTip
             // 
-            this.lBTip.AutoSize = true;
+            resources.ApplyResources(this.lBTip, "lBTip");
             this.lBTip.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lBTip.Location = new System.Drawing.Point(448, 110);
             this.lBTip.Name = "lBTip";
-            this.lBTip.Size = new System.Drawing.Size(133, 26);
-            this.lBTip.TabIndex = 289;
-            this.lBTip.Text = "Vous pouvez aussi sélect-\r\nionner une clé en la tapant";
-            this.lBTip.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // cbScanCode
             // 
-            this.cbScanCode.AutoSize = true;
-            this.cbScanCode.Location = new System.Drawing.Point(640, 5);
+            resources.ApplyResources(this.cbScanCode, "cbScanCode");
             this.cbScanCode.Name = "cbScanCode";
-            this.cbScanCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbScanCode.Size = new System.Drawing.Size(104, 17);
-            this.cbScanCode.TabIndex = 288;
             this.cbScanCode.TabStop = false;
-            this.cbScanCode.Text = "Scanner le code";
             this.cbScanCode.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button7.Location = new System.Drawing.Point(498, 143);
+            resources.ApplyResources(this.button7, "button7");
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(33, 24);
-            this.button7.TabIndex = 286;
             this.button7.TabStop = false;
             this.button7.Tag = "38";
-            this.button7.Text = "↑Up";
             this.button7.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button5.Location = new System.Drawing.Point(531, 173);
+            resources.ApplyResources(this.button5, "button5");
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(33, 24);
-            this.button5.TabIndex = 285;
             this.button5.TabStop = false;
             this.button5.Tag = "39";
-            this.button5.Text = "→Right";
             this.button5.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Location = new System.Drawing.Point(465, 173);
+            resources.ApplyResources(this.button4, "button4");
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(33, 24);
-            this.button4.TabIndex = 284;
             this.button4.TabStop = false;
             this.button4.Tag = "37";
-            this.button4.Text = "←Left";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button6.Location = new System.Drawing.Point(498, 173);
+            resources.ApplyResources(this.button6, "button6");
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(33, 24);
-            this.button6.TabIndex = 283;
             this.button6.TabStop = false;
             this.button6.Tag = "40";
-            this.button6.Text = "↓Down";
             this.button6.UseVisualStyleBackColor = true;
             // 
             // btnNUMDOT
             // 
-            this.btnNUMDOT.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUMDOT.Location = new System.Drawing.Point(641, 172);
+            resources.ApplyResources(this.btnNUMDOT, "btnNUMDOT");
             this.btnNUMDOT.Name = "btnNUMDOT";
-            this.btnNUMDOT.Size = new System.Drawing.Size(24, 24);
-            this.btnNUMDOT.TabIndex = 275;
             this.btnNUMDOT.TabStop = false;
             this.btnNUMDOT.Tag = "110";
-            this.btnNUMDOT.Text = ".";
             this.btnNUMDOT.UseVisualStyleBackColor = true;
             // 
             // btnNUM3
             // 
-            this.btnNUM3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUM3.Location = new System.Drawing.Point(641, 142);
+            resources.ApplyResources(this.btnNUM3, "btnNUM3");
             this.btnNUM3.Name = "btnNUM3";
-            this.btnNUM3.Size = new System.Drawing.Size(24, 24);
-            this.btnNUM3.TabIndex = 276;
             this.btnNUM3.TabStop = false;
             this.btnNUM3.Tag = "99";
-            this.btnNUM3.Text = "3Numpad";
             this.btnNUM3.UseVisualStyleBackColor = true;
             // 
             // btnNUM2
             // 
-            this.btnNUM2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUM2.Location = new System.Drawing.Point(611, 142);
+            resources.ApplyResources(this.btnNUM2, "btnNUM2");
             this.btnNUM2.Name = "btnNUM2";
-            this.btnNUM2.Size = new System.Drawing.Size(24, 24);
-            this.btnNUM2.TabIndex = 279;
             this.btnNUM2.TabStop = false;
             this.btnNUM2.Tag = "98";
-            this.btnNUM2.Text = "2Numpad";
             this.btnNUM2.UseVisualStyleBackColor = true;
             // 
             // btnNUM0
             // 
-            this.btnNUM0.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUM0.Location = new System.Drawing.Point(581, 172);
+            resources.ApplyResources(this.btnNUM0, "btnNUM0");
             this.btnNUM0.Name = "btnNUM0";
-            this.btnNUM0.Size = new System.Drawing.Size(54, 24);
-            this.btnNUM0.TabIndex = 280;
             this.btnNUM0.TabStop = false;
             this.btnNUM0.Tag = "96";
-            this.btnNUM0.Text = "Num0";
             this.btnNUM0.UseVisualStyleBackColor = true;
             // 
             // btnNUM6
             // 
-            this.btnNUM6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUM6.Location = new System.Drawing.Point(641, 112);
+            resources.ApplyResources(this.btnNUM6, "btnNUM6");
             this.btnNUM6.Name = "btnNUM6";
-            this.btnNUM6.Size = new System.Drawing.Size(24, 24);
-            this.btnNUM6.TabIndex = 277;
             this.btnNUM6.TabStop = false;
             this.btnNUM6.Tag = "102";
-            this.btnNUM6.Text = "6Numpad";
             this.btnNUM6.UseVisualStyleBackColor = true;
             // 
             // btnNUM1
             // 
-            this.btnNUM1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUM1.Location = new System.Drawing.Point(581, 142);
+            resources.ApplyResources(this.btnNUM1, "btnNUM1");
             this.btnNUM1.Name = "btnNUM1";
-            this.btnNUM1.Size = new System.Drawing.Size(24, 24);
-            this.btnNUM1.TabIndex = 282;
             this.btnNUM1.TabStop = false;
             this.btnNUM1.Tag = "97";
-            this.btnNUM1.Text = "1Numpad";
             this.btnNUM1.UseVisualStyleBackColor = true;
             // 
             // btnNUM5
             // 
-            this.btnNUM5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUM5.Location = new System.Drawing.Point(611, 112);
+            resources.ApplyResources(this.btnNUM5, "btnNUM5");
             this.btnNUM5.Name = "btnNUM5";
-            this.btnNUM5.Size = new System.Drawing.Size(24, 24);
-            this.btnNUM5.TabIndex = 278;
             this.btnNUM5.TabStop = false;
             this.btnNUM5.Tag = "101";
-            this.btnNUM5.Text = "5Numpad";
             this.btnNUM5.UseVisualStyleBackColor = true;
             // 
             // btnNUM4
             // 
-            this.btnNUM4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUM4.Location = new System.Drawing.Point(581, 112);
+            resources.ApplyResources(this.btnNUM4, "btnNUM4");
             this.btnNUM4.Name = "btnNUM4";
-            this.btnNUM4.Size = new System.Drawing.Size(24, 24);
-            this.btnNUM4.TabIndex = 281;
             this.btnNUM4.TabStop = false;
             this.btnNUM4.Tag = "100";
-            this.btnNUM4.Text = "4Numpad";
             this.btnNUM4.UseVisualStyleBackColor = true;
             // 
             // btnNUMENTER
             // 
-            this.btnNUMENTER.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUMENTER.Location = new System.Drawing.Point(671, 142);
+            resources.ApplyResources(this.btnNUMENTER, "btnNUMENTER");
             this.btnNUMENTER.Name = "btnNUMENTER";
-            this.btnNUMENTER.Size = new System.Drawing.Size(24, 54);
-            this.btnNUMENTER.TabIndex = 266;
             this.btnNUMENTER.TabStop = false;
             this.btnNUMENTER.Tag = "13";
-            this.btnNUMENTER.Text = "Enter";
             this.btnNUMENTER.UseVisualStyleBackColor = true;
             // 
             // btnNUMPLUS
             // 
-            this.btnNUMPLUS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUMPLUS.Location = new System.Drawing.Point(671, 82);
+            resources.ApplyResources(this.btnNUMPLUS, "btnNUMPLUS");
             this.btnNUMPLUS.Name = "btnNUMPLUS";
-            this.btnNUMPLUS.Size = new System.Drawing.Size(24, 54);
-            this.btnNUMPLUS.TabIndex = 267;
             this.btnNUMPLUS.TabStop = false;
             this.btnNUMPLUS.Tag = "107";
-            this.btnNUMPLUS.Text = "+";
             this.btnNUMPLUS.UseVisualStyleBackColor = true;
             // 
             // btnNUMMINUS
             // 
-            this.btnNUMMINUS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUMMINUS.Location = new System.Drawing.Point(671, 52);
+            resources.ApplyResources(this.btnNUMMINUS, "btnNUMMINUS");
             this.btnNUMMINUS.Name = "btnNUMMINUS";
-            this.btnNUMMINUS.Size = new System.Drawing.Size(24, 24);
-            this.btnNUMMINUS.TabIndex = 268;
             this.btnNUMMINUS.TabStop = false;
             this.btnNUMMINUS.Tag = "109";
-            this.btnNUMMINUS.Text = "-Numpad";
             this.btnNUMMINUS.UseVisualStyleBackColor = true;
             // 
             // btnNUM9
             // 
-            this.btnNUM9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUM9.Location = new System.Drawing.Point(641, 82);
+            resources.ApplyResources(this.btnNUM9, "btnNUM9");
             this.btnNUM9.Name = "btnNUM9";
-            this.btnNUM9.Size = new System.Drawing.Size(24, 24);
-            this.btnNUM9.TabIndex = 269;
             this.btnNUM9.TabStop = false;
             this.btnNUM9.Tag = "105";
-            this.btnNUM9.Text = "9Numpad";
             this.btnNUM9.UseVisualStyleBackColor = true;
             // 
             // btnNUMSTAR
             // 
-            this.btnNUMSTAR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUMSTAR.Location = new System.Drawing.Point(641, 52);
+            resources.ApplyResources(this.btnNUMSTAR, "btnNUMSTAR");
             this.btnNUMSTAR.Name = "btnNUMSTAR";
-            this.btnNUMSTAR.Size = new System.Drawing.Size(24, 24);
-            this.btnNUMSTAR.TabIndex = 274;
             this.btnNUMSTAR.TabStop = false;
             this.btnNUMSTAR.Tag = "106";
-            this.btnNUMSTAR.Text = "*Numpad";
             this.btnNUMSTAR.UseVisualStyleBackColor = true;
             // 
             // btnNUM8
             // 
-            this.btnNUM8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUM8.Location = new System.Drawing.Point(611, 82);
+            resources.ApplyResources(this.btnNUM8, "btnNUM8");
             this.btnNUM8.Name = "btnNUM8";
-            this.btnNUM8.Size = new System.Drawing.Size(24, 24);
-            this.btnNUM8.TabIndex = 270;
             this.btnNUM8.TabStop = false;
             this.btnNUM8.Tag = "104";
-            this.btnNUM8.Text = "8Numpad";
             this.btnNUM8.UseVisualStyleBackColor = true;
             // 
             // btnNUMSLASH
             // 
-            this.btnNUMSLASH.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUMSLASH.Location = new System.Drawing.Point(611, 52);
+            resources.ApplyResources(this.btnNUMSLASH, "btnNUMSLASH");
             this.btnNUMSLASH.Name = "btnNUMSLASH";
-            this.btnNUMSLASH.Size = new System.Drawing.Size(24, 24);
-            this.btnNUMSLASH.TabIndex = 271;
             this.btnNUMSLASH.TabStop = false;
             this.btnNUMSLASH.Tag = "111";
-            this.btnNUMSLASH.Text = "/Numpad";
             this.btnNUMSLASH.UseVisualStyleBackColor = true;
             // 
             // btnNUM7
             // 
-            this.btnNUM7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUM7.Location = new System.Drawing.Point(581, 82);
+            resources.ApplyResources(this.btnNUM7, "btnNUM7");
             this.btnNUM7.Name = "btnNUM7";
-            this.btnNUM7.Size = new System.Drawing.Size(24, 24);
-            this.btnNUM7.TabIndex = 272;
             this.btnNUM7.TabStop = false;
             this.btnNUM7.Tag = "103";
-            this.btnNUM7.Text = "7Numpad";
             this.btnNUM7.UseVisualStyleBackColor = true;
             // 
             // btnNUMLOCK
             // 
-            this.btnNUMLOCK.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNUMLOCK.Location = new System.Drawing.Point(581, 52);
+            resources.ApplyResources(this.btnNUMLOCK, "btnNUMLOCK");
             this.btnNUMLOCK.Name = "btnNUMLOCK";
-            this.btnNUMLOCK.Size = new System.Drawing.Size(24, 24);
-            this.btnNUMLOCK.TabIndex = 273;
             this.btnNUMLOCK.TabStop = false;
             this.btnNUMLOCK.Tag = "144";
-            this.btnNUMLOCK.Text = "Num Lock";
             this.btnNUMLOCK.UseVisualStyleBackColor = true;
             // 
             // btnESC
             // 
-            this.btnESC.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnESC.Location = new System.Drawing.Point(9, 22);
+            resources.ApplyResources(this.btnESC, "btnESC");
             this.btnESC.Name = "btnESC";
-            this.btnESC.Size = new System.Drawing.Size(51, 24);
-            this.btnESC.TabIndex = 235;
             this.btnESC.TabStop = false;
             this.btnESC.Tag = "27";
-            this.btnESC.Text = "Escape";
             this.btnESC.UseVisualStyleBackColor = true;
             // 
             // btnTILDE
             // 
-            this.btnTILDE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnTILDE.Location = new System.Drawing.Point(9, 52);
+            resources.ApplyResources(this.btnTILDE, "btnTILDE");
             this.btnTILDE.Name = "btnTILDE";
-            this.btnTILDE.Size = new System.Drawing.Size(24, 24);
-            this.btnTILDE.TabIndex = 236;
             this.btnTILDE.TabStop = false;
             this.btnTILDE.Tag = "192";
-            this.btnTILDE.Text = "`";
             this.btnTILDE.UseVisualStyleBackColor = true;
             // 
             // btnF11
             // 
-            this.btnF11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF11.Location = new System.Drawing.Point(372, 22);
+            resources.ApplyResources(this.btnF11, "btnF11");
             this.btnF11.Name = "btnF11";
-            this.btnF11.Size = new System.Drawing.Size(33, 24);
-            this.btnF11.TabIndex = 237;
             this.btnF11.TabStop = false;
             this.btnF11.Tag = "122";
-            this.btnF11.Text = "F11";
             this.btnF11.UseVisualStyleBackColor = true;
             // 
             // btnF10
             // 
-            this.btnF10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF10.Location = new System.Drawing.Point(336, 22);
+            resources.ApplyResources(this.btnF10, "btnF10");
             this.btnF10.Name = "btnF10";
-            this.btnF10.Size = new System.Drawing.Size(33, 24);
-            this.btnF10.TabIndex = 254;
             this.btnF10.TabStop = false;
             this.btnF10.Tag = "121";
-            this.btnF10.Text = "F10";
             this.btnF10.UseVisualStyleBackColor = true;
             // 
             // btnF12
             // 
-            this.btnF12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF12.Location = new System.Drawing.Point(411, 22);
+            resources.ApplyResources(this.btnF12, "btnF12");
             this.btnF12.Name = "btnF12";
-            this.btnF12.Size = new System.Drawing.Size(33, 24);
-            this.btnF12.TabIndex = 239;
             this.btnF12.TabStop = false;
             this.btnF12.Tag = "123";
-            this.btnF12.Text = "F12";
             this.btnF12.UseVisualStyleBackColor = true;
             // 
             // btnBREAK
             // 
-            this.btnBREAK.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBREAK.Location = new System.Drawing.Point(531, 22);
+            resources.ApplyResources(this.btnBREAK, "btnBREAK");
             this.btnBREAK.Name = "btnBREAK";
-            this.btnBREAK.Size = new System.Drawing.Size(33, 24);
-            this.btnBREAK.TabIndex = 240;
             this.btnBREAK.TabStop = false;
             this.btnBREAK.Tag = "19";
-            this.btnBREAK.Text = "bk";
             this.btnBREAK.UseVisualStyleBackColor = true;
             // 
             // button35
             // 
-            this.button35.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button35.Location = new System.Drawing.Point(701, 82);
+            resources.ApplyResources(this.button35, "button35");
             this.button35.Name = "button35";
-            this.button35.Size = new System.Drawing.Size(40, 24);
-            this.button35.TabIndex = 248;
             this.button35.TabStop = false;
             this.button35.Tag = "173";
-            this.button35.Text = "ØVolume Mute";
             this.button35.UseVisualStyleBackColor = true;
             // 
             // button39
             // 
-            this.button39.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button39.Location = new System.Drawing.Point(701, 52);
+            resources.ApplyResources(this.button39, "button39");
             this.button39.Name = "button39";
-            this.button39.Size = new System.Drawing.Size(40, 24);
-            this.button39.TabIndex = 249;
             this.button39.TabStop = false;
             this.button39.Tag = "174";
-            this.button39.Text = "↓Volume Down";
             this.button39.UseVisualStyleBackColor = true;
             // 
             // button38
             // 
-            this.button38.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button38.Location = new System.Drawing.Point(701, 23);
+            resources.ApplyResources(this.button38, "button38");
             this.button38.Name = "button38";
-            this.button38.Size = new System.Drawing.Size(40, 24);
-            this.button38.TabIndex = 242;
             this.button38.TabStop = false;
             this.button38.Tag = "175";
-            this.button38.Text = "↑Volume Up";
             this.button38.UseVisualStyleBackColor = true;
             // 
             // bnPREVTRACK
             // 
-            this.bnPREVTRACK.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bnPREVTRACK.Font = new System.Drawing.Font("Webdings", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.bnPREVTRACK.Location = new System.Drawing.Point(581, 23);
+            resources.ApplyResources(this.bnPREVTRACK, "bnPREVTRACK");
             this.bnPREVTRACK.Name = "bnPREVTRACK";
-            this.bnPREVTRACK.Size = new System.Drawing.Size(24, 24);
-            this.bnPREVTRACK.TabIndex = 243;
             this.bnPREVTRACK.TabStop = false;
             this.bnPREVTRACK.Tag = "177";
-            this.bnPREVTRACK.Text = "9";
             this.bnPREVTRACK.UseVisualStyleBackColor = true;
             // 
             // bnNEXTTRACK
             // 
-            this.bnNEXTTRACK.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bnNEXTTRACK.Font = new System.Drawing.Font("Webdings", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.bnNEXTTRACK.Location = new System.Drawing.Point(671, 23);
+            resources.ApplyResources(this.bnNEXTTRACK, "bnNEXTTRACK");
             this.bnNEXTTRACK.Name = "bnNEXTTRACK";
-            this.bnNEXTTRACK.Size = new System.Drawing.Size(24, 24);
-            this.bnNEXTTRACK.TabIndex = 244;
             this.bnNEXTTRACK.TabStop = false;
             this.bnNEXTTRACK.Tag = "176";
-            this.bnNEXTTRACK.Text = ":";
             this.bnNEXTTRACK.UseVisualStyleBackColor = true;
             // 
             // bnPLAYPAUSE
             // 
-            this.bnPLAYPAUSE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bnPLAYPAUSE.Font = new System.Drawing.Font("Webdings", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.bnPLAYPAUSE.Location = new System.Drawing.Point(641, 23);
+            resources.ApplyResources(this.bnPLAYPAUSE, "bnPLAYPAUSE");
             this.bnPLAYPAUSE.Name = "bnPLAYPAUSE";
-            this.bnPLAYPAUSE.Size = new System.Drawing.Size(24, 24);
-            this.bnPLAYPAUSE.TabIndex = 245;
             this.bnPLAYPAUSE.TabStop = false;
             this.bnPLAYPAUSE.Tag = "179";
-            this.bnPLAYPAUSE.Text = "4";
             this.bnPLAYPAUSE.UseVisualStyleBackColor = true;
             // 
             // bnSTOP
             // 
-            this.bnSTOP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bnSTOP.Font = new System.Drawing.Font("Webdings", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.bnSTOP.Location = new System.Drawing.Point(611, 23);
+            resources.ApplyResources(this.bnSTOP, "bnSTOP");
             this.bnSTOP.Name = "bnSTOP";
-            this.bnSTOP.Size = new System.Drawing.Size(24, 24);
-            this.bnSTOP.TabIndex = 246;
             this.bnSTOP.TabStop = false;
             this.bnSTOP.Tag = "178";
-            this.bnSTOP.Text = "<";
             this.bnSTOP.UseVisualStyleBackColor = true;
             // 
             // button34
             // 
-            this.button34.Enabled = false;
-            this.button34.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button34.Location = new System.Drawing.Point(465, 22);
+            resources.ApplyResources(this.button34, "button34");
             this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(33, 24);
-            this.button34.TabIndex = 241;
             this.button34.TabStop = false;
             this.button34.Tag = "";
-            this.button34.Text = "prt";
             this.button34.UseVisualStyleBackColor = true;
             // 
             // btnSCL
             // 
-            this.btnSCL.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSCL.Location = new System.Drawing.Point(498, 22);
+            resources.ApplyResources(this.btnSCL, "btnSCL");
             this.btnSCL.Name = "btnSCL";
-            this.btnSCL.Size = new System.Drawing.Size(33, 24);
-            this.btnSCL.TabIndex = 247;
             this.btnSCL.TabStop = false;
             this.btnSCL.Tag = "145";
-            this.btnSCL.Text = "scl";
             this.btnSCL.UseVisualStyleBackColor = true;
             // 
             // btnDEL
             // 
-            this.btnDEL.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDEL.Location = new System.Drawing.Point(465, 82);
+            resources.ApplyResources(this.btnDEL, "btnDEL");
             this.btnDEL.Name = "btnDEL";
-            this.btnDEL.Size = new System.Drawing.Size(33, 24);
-            this.btnDEL.TabIndex = 250;
             this.btnDEL.TabStop = false;
             this.btnDEL.Tag = "46";
-            this.btnDEL.Text = "del";
             this.btnDEL.UseVisualStyleBackColor = true;
             // 
             // btnEND
             // 
-            this.btnEND.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEND.Location = new System.Drawing.Point(498, 82);
+            resources.ApplyResources(this.btnEND, "btnEND");
             this.btnEND.Name = "btnEND";
-            this.btnEND.Size = new System.Drawing.Size(33, 24);
-            this.btnEND.TabIndex = 251;
             this.btnEND.TabStop = false;
             this.btnEND.Tag = "35";
-            this.btnEND.Text = "end";
             this.btnEND.UseVisualStyleBackColor = true;
             // 
             // btnPGDN
             // 
-            this.btnPGDN.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPGDN.Location = new System.Drawing.Point(531, 82);
+            resources.ApplyResources(this.btnPGDN, "btnPGDN");
             this.btnPGDN.Name = "btnPGDN";
-            this.btnPGDN.Size = new System.Drawing.Size(33, 24);
-            this.btnPGDN.TabIndex = 252;
             this.btnPGDN.TabStop = false;
             this.btnPGDN.Tag = "34";
-            this.btnPGDN.Text = "pgd";
             this.btnPGDN.UseVisualStyleBackColor = true;
             // 
             // btnPGUP
             // 
-            this.btnPGUP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPGUP.Location = new System.Drawing.Point(531, 52);
+            resources.ApplyResources(this.btnPGUP, "btnPGUP");
             this.btnPGUP.Name = "btnPGUP";
-            this.btnPGUP.Size = new System.Drawing.Size(33, 24);
-            this.btnPGUP.TabIndex = 238;
             this.btnPGUP.TabStop = false;
             this.btnPGUP.Tag = "33";
-            this.btnPGUP.Text = "pgu";
             this.btnPGUP.UseVisualStyleBackColor = true;
             // 
             // btnHOME
             // 
-            this.btnHOME.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnHOME.Location = new System.Drawing.Point(498, 52);
+            resources.ApplyResources(this.btnHOME, "btnHOME");
             this.btnHOME.Name = "btnHOME";
-            this.btnHOME.Size = new System.Drawing.Size(33, 24);
-            this.btnHOME.TabIndex = 253;
             this.btnHOME.TabStop = false;
             this.btnHOME.Tag = "36";
-            this.btnHOME.Text = "hm";
             this.btnHOME.UseVisualStyleBackColor = true;
             // 
             // btnINS
             // 
-            this.btnINS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnINS.Location = new System.Drawing.Point(465, 52);
+            resources.ApplyResources(this.btnINS, "btnINS");
             this.btnINS.Name = "btnINS";
-            this.btnINS.Size = new System.Drawing.Size(33, 24);
-            this.btnINS.TabIndex = 265;
             this.btnINS.TabStop = false;
             this.btnINS.Tag = "45";
-            this.btnINS.Text = "ins";
             this.btnINS.UseVisualStyleBackColor = true;
             // 
             // btnF9
             // 
-            this.btnF9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF9.Location = new System.Drawing.Point(306, 22);
+            resources.ApplyResources(this.btnF9, "btnF9");
             this.btnF9.Name = "btnF9";
-            this.btnF9.Size = new System.Drawing.Size(27, 24);
-            this.btnF9.TabIndex = 255;
             this.btnF9.TabStop = false;
             this.btnF9.Tag = "120";
-            this.btnF9.Text = "F9";
             this.btnF9.UseVisualStyleBackColor = true;
             // 
             // btnF8
             // 
-            this.btnF8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF8.Location = new System.Drawing.Point(276, 22);
+            resources.ApplyResources(this.btnF8, "btnF8");
             this.btnF8.Name = "btnF8";
-            this.btnF8.Size = new System.Drawing.Size(27, 24);
-            this.btnF8.TabIndex = 256;
             this.btnF8.TabStop = false;
             this.btnF8.Tag = "119";
-            this.btnF8.Text = "F8";
             this.btnF8.UseVisualStyleBackColor = true;
             // 
             // btnF7
             // 
-            this.btnF7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF7.Location = new System.Drawing.Point(246, 22);
+            resources.ApplyResources(this.btnF7, "btnF7");
             this.btnF7.Name = "btnF7";
-            this.btnF7.Size = new System.Drawing.Size(27, 24);
-            this.btnF7.TabIndex = 257;
             this.btnF7.TabStop = false;
             this.btnF7.Tag = "118";
-            this.btnF7.Text = "F7";
             this.btnF7.UseVisualStyleBackColor = true;
             // 
             // btnF6
             // 
-            this.btnF6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF6.Location = new System.Drawing.Point(216, 22);
+            resources.ApplyResources(this.btnF6, "btnF6");
             this.btnF6.Name = "btnF6";
-            this.btnF6.Size = new System.Drawing.Size(27, 24);
-            this.btnF6.TabIndex = 258;
             this.btnF6.TabStop = false;
             this.btnF6.Tag = "117";
-            this.btnF6.Text = "F6";
             this.btnF6.UseVisualStyleBackColor = true;
             // 
             // btnF5
             // 
-            this.btnF5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF5.Location = new System.Drawing.Point(186, 22);
+            resources.ApplyResources(this.btnF5, "btnF5");
             this.btnF5.Name = "btnF5";
-            this.btnF5.Size = new System.Drawing.Size(27, 24);
-            this.btnF5.TabIndex = 259;
             this.btnF5.TabStop = false;
             this.btnF5.Tag = "116";
-            this.btnF5.Text = "F5";
             this.btnF5.UseVisualStyleBackColor = true;
             // 
             // btnF4
             // 
-            this.btnF4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF4.Location = new System.Drawing.Point(156, 22);
+            resources.ApplyResources(this.btnF4, "btnF4");
             this.btnF4.Name = "btnF4";
-            this.btnF4.Size = new System.Drawing.Size(27, 24);
-            this.btnF4.TabIndex = 260;
             this.btnF4.TabStop = false;
             this.btnF4.Tag = "115";
-            this.btnF4.Text = "F4";
             this.btnF4.UseVisualStyleBackColor = true;
             // 
             // btnF3
             // 
-            this.btnF3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF3.Location = new System.Drawing.Point(126, 22);
+            resources.ApplyResources(this.btnF3, "btnF3");
             this.btnF3.Name = "btnF3";
-            this.btnF3.Size = new System.Drawing.Size(27, 24);
-            this.btnF3.TabIndex = 261;
             this.btnF3.TabStop = false;
             this.btnF3.Tag = "114";
-            this.btnF3.Text = "F3";
             this.btnF3.UseVisualStyleBackColor = true;
             // 
             // btnF2
             // 
-            this.btnF2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF2.Location = new System.Drawing.Point(96, 22);
+            resources.ApplyResources(this.btnF2, "btnF2");
             this.btnF2.Name = "btnF2";
-            this.btnF2.Size = new System.Drawing.Size(27, 24);
-            this.btnF2.TabIndex = 262;
             this.btnF2.TabStop = false;
             this.btnF2.Tag = "113";
-            this.btnF2.Text = "F2";
             this.btnF2.UseVisualStyleBackColor = true;
             // 
             // btnF1
             // 
-            this.btnF1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF1.Location = new System.Drawing.Point(66, 22);
+            resources.ApplyResources(this.btnF1, "btnF1");
             this.btnF1.Name = "btnF1";
-            this.btnF1.Size = new System.Drawing.Size(27, 24);
-            this.btnF1.TabIndex = 263;
             this.btnF1.TabStop = false;
             this.btnF1.Tag = "112";
-            this.btnF1.Text = "F1";
             this.btnF1.UseVisualStyleBackColor = true;
             // 
             // btn1
             // 
-            this.btn1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn1.Location = new System.Drawing.Point(36, 52);
+            resources.ApplyResources(this.btn1, "btn1");
             this.btn1.Name = "btn1";
-            this.btn1.Size = new System.Drawing.Size(24, 24);
-            this.btn1.TabIndex = 264;
             this.btn1.TabStop = false;
             this.btn1.Tag = "49";
-            this.btn1.Text = "1";
             this.btn1.UseVisualStyleBackColor = true;
             // 
             // btnBACKSPACE
             // 
-            this.btnBACKSPACE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBACKSPACE.Location = new System.Drawing.Point(396, 52);
+            resources.ApplyResources(this.btnBACKSPACE, "btnBACKSPACE");
             this.btnBACKSPACE.Name = "btnBACKSPACE";
-            this.btnBACKSPACE.Size = new System.Drawing.Size(51, 24);
-            this.btnBACKSPACE.TabIndex = 234;
             this.btnBACKSPACE.TabStop = false;
             this.btnBACKSPACE.Tag = "8";
-            this.btnBACKSPACE.Text = "Backspace";
             this.btnBACKSPACE.UseVisualStyleBackColor = true;
             // 
             // btnEQUALS
             // 
-            this.btnEQUALS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEQUALS.Location = new System.Drawing.Point(366, 52);
+            resources.ApplyResources(this.btnEQUALS, "btnEQUALS");
             this.btnEQUALS.Name = "btnEQUALS";
-            this.btnEQUALS.Size = new System.Drawing.Size(24, 24);
-            this.btnEQUALS.TabIndex = 233;
             this.btnEQUALS.TabStop = false;
             this.btnEQUALS.Tag = "61";
-            this.btnEQUALS.Text = "=";
             this.btnEQUALS.UseVisualStyleBackColor = true;
             // 
             // btnMINUS
             // 
-            this.btnMINUS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnMINUS.Location = new System.Drawing.Point(336, 52);
+            resources.ApplyResources(this.btnMINUS, "btnMINUS");
             this.btnMINUS.Name = "btnMINUS";
-            this.btnMINUS.Size = new System.Drawing.Size(24, 24);
-            this.btnMINUS.TabIndex = 232;
             this.btnMINUS.TabStop = false;
-            this.btnMINUS.Text = "-";
             this.btnMINUS.UseVisualStyleBackColor = true;
             // 
             // btn0
             // 
-            this.btn0.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn0.Location = new System.Drawing.Point(306, 52);
+            resources.ApplyResources(this.btn0, "btn0");
             this.btn0.Name = "btn0";
-            this.btn0.Size = new System.Drawing.Size(24, 24);
-            this.btn0.TabIndex = 231;
             this.btn0.TabStop = false;
             this.btn0.Tag = "48";
-            this.btn0.Text = "0";
             this.btn0.UseVisualStyleBackColor = true;
             // 
             // btn9
             // 
-            this.btn9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn9.Location = new System.Drawing.Point(276, 52);
+            resources.ApplyResources(this.btn9, "btn9");
             this.btn9.Name = "btn9";
-            this.btn9.Size = new System.Drawing.Size(24, 24);
-            this.btn9.TabIndex = 230;
             this.btn9.TabStop = false;
             this.btn9.Tag = "57";
-            this.btn9.Text = "9";
             this.btn9.UseVisualStyleBackColor = true;
             // 
             // btn8
             // 
-            this.btn8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn8.Location = new System.Drawing.Point(246, 52);
+            resources.ApplyResources(this.btn8, "btn8");
             this.btn8.Name = "btn8";
-            this.btn8.Size = new System.Drawing.Size(24, 24);
-            this.btn8.TabIndex = 229;
             this.btn8.TabStop = false;
             this.btn8.Tag = "56";
-            this.btn8.Text = "8";
             this.btn8.UseVisualStyleBackColor = true;
             // 
             // btn7
             // 
-            this.btn7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn7.Location = new System.Drawing.Point(216, 52);
+            resources.ApplyResources(this.btn7, "btn7");
             this.btn7.Name = "btn7";
-            this.btn7.Size = new System.Drawing.Size(24, 24);
-            this.btn7.TabIndex = 228;
             this.btn7.TabStop = false;
             this.btn7.Tag = "55";
-            this.btn7.Text = "7";
             this.btn7.UseVisualStyleBackColor = true;
             // 
             // btn6
             // 
-            this.btn6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn6.Location = new System.Drawing.Point(186, 52);
+            resources.ApplyResources(this.btn6, "btn6");
             this.btn6.Name = "btn6";
-            this.btn6.Size = new System.Drawing.Size(24, 24);
-            this.btn6.TabIndex = 227;
             this.btn6.TabStop = false;
             this.btn6.Tag = "54";
-            this.btn6.Text = "6";
             this.btn6.UseVisualStyleBackColor = true;
             // 
             // btn5
             // 
-            this.btn5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn5.Location = new System.Drawing.Point(156, 52);
+            resources.ApplyResources(this.btn5, "btn5");
             this.btn5.Name = "btn5";
-            this.btn5.Size = new System.Drawing.Size(24, 24);
-            this.btn5.TabIndex = 226;
             this.btn5.TabStop = false;
             this.btn5.Tag = "53";
-            this.btn5.Text = "5";
             this.btn5.UseVisualStyleBackColor = true;
             // 
             // btn4
             // 
-            this.btn4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn4.Location = new System.Drawing.Point(126, 52);
+            resources.ApplyResources(this.btn4, "btn4");
             this.btn4.Name = "btn4";
-            this.btn4.Size = new System.Drawing.Size(24, 24);
-            this.btn4.TabIndex = 225;
             this.btn4.TabStop = false;
             this.btn4.Tag = "52";
-            this.btn4.Text = "4";
             this.btn4.UseVisualStyleBackColor = true;
             // 
             // btn3
             // 
-            this.btn3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn3.Location = new System.Drawing.Point(96, 52);
+            resources.ApplyResources(this.btn3, "btn3");
             this.btn3.Name = "btn3";
-            this.btn3.Size = new System.Drawing.Size(24, 24);
-            this.btn3.TabIndex = 224;
             this.btn3.TabStop = false;
             this.btn3.Tag = "51";
-            this.btn3.Text = "3";
             this.btn3.UseVisualStyleBackColor = true;
             // 
             // btn2
             // 
-            this.btn2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn2.Location = new System.Drawing.Point(66, 52);
+            resources.ApplyResources(this.btn2, "btn2");
             this.btn2.Name = "btn2";
-            this.btn2.Size = new System.Drawing.Size(24, 24);
-            this.btn2.TabIndex = 223;
             this.btn2.TabStop = false;
             this.btn2.Tag = "50";
-            this.btn2.Text = "2";
             this.btn2.UseVisualStyleBackColor = true;
             // 
             // btnSPACE
             // 
-            this.btnSPACE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSPACE.Location = new System.Drawing.Point(159, 172);
+            resources.ApplyResources(this.btnSPACE, "btnSPACE");
             this.btnSPACE.Name = "btnSPACE";
-            this.btnSPACE.Size = new System.Drawing.Size(138, 24);
-            this.btnSPACE.TabIndex = 222;
             this.btnSPACE.TabStop = false;
             this.btnSPACE.Tag = "32";
-            this.btnSPACE.Text = "Space";
             this.btnSPACE.UseVisualStyleBackColor = true;
             // 
             // btnLSHIFT
             // 
-            this.btnLSHIFT.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLSHIFT.Location = new System.Drawing.Point(9, 142);
+            resources.ApplyResources(this.btnLSHIFT, "btnLSHIFT");
             this.btnLSHIFT.Name = "btnLSHIFT";
-            this.btnLSHIFT.Size = new System.Drawing.Size(66, 24);
-            this.btnLSHIFT.TabIndex = 221;
             this.btnLSHIFT.TabStop = false;
             this.btnLSHIFT.Tag = "160";
-            this.btnLSHIFT.Text = "LShift";
             this.btnLSHIFT.UseVisualStyleBackColor = true;
             // 
             // btnRSHIFT
             // 
-            this.btnRSHIFT.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRSHIFT.Location = new System.Drawing.Point(381, 142);
+            resources.ApplyResources(this.btnRSHIFT, "btnRSHIFT");
             this.btnRSHIFT.Name = "btnRSHIFT";
-            this.btnRSHIFT.Size = new System.Drawing.Size(66, 24);
-            this.btnRSHIFT.TabIndex = 220;
             this.btnRSHIFT.TabStop = false;
             this.btnRSHIFT.Tag = "161";
-            this.btnRSHIFT.Text = "RShift";
             this.btnRSHIFT.UseVisualStyleBackColor = true;
             // 
             // btnSLASH
             // 
-            this.btnSLASH.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSLASH.Location = new System.Drawing.Point(351, 142);
+            resources.ApplyResources(this.btnSLASH, "btnSLASH");
             this.btnSLASH.Name = "btnSLASH";
-            this.btnSLASH.Size = new System.Drawing.Size(24, 24);
-            this.btnSLASH.TabIndex = 219;
             this.btnSLASH.TabStop = false;
             this.btnSLASH.Tag = "191";
-            this.btnSLASH.Text = "/";
             this.btnSLASH.UseVisualStyleBackColor = true;
             // 
             // btnPERIOD
             // 
-            this.btnPERIOD.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPERIOD.Location = new System.Drawing.Point(321, 142);
+            resources.ApplyResources(this.btnPERIOD, "btnPERIOD");
             this.btnPERIOD.Name = "btnPERIOD";
-            this.btnPERIOD.Size = new System.Drawing.Size(24, 24);
-            this.btnPERIOD.TabIndex = 218;
             this.btnPERIOD.TabStop = false;
             this.btnPERIOD.Tag = "190";
-            this.btnPERIOD.Text = ".";
             this.btnPERIOD.UseVisualStyleBackColor = true;
             // 
             // btnCOMMA
             // 
-            this.btnCOMMA.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCOMMA.Location = new System.Drawing.Point(291, 142);
+            resources.ApplyResources(this.btnCOMMA, "btnCOMMA");
             this.btnCOMMA.Name = "btnCOMMA";
-            this.btnCOMMA.Size = new System.Drawing.Size(24, 24);
-            this.btnCOMMA.TabIndex = 217;
             this.btnCOMMA.TabStop = false;
             this.btnCOMMA.Tag = "188";
-            this.btnCOMMA.Text = ",";
             this.btnCOMMA.UseVisualStyleBackColor = true;
             // 
             // btnM
             // 
-            this.btnM.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnM.Location = new System.Drawing.Point(261, 142);
+            resources.ApplyResources(this.btnM, "btnM");
             this.btnM.Name = "btnM";
-            this.btnM.Size = new System.Drawing.Size(24, 24);
-            this.btnM.TabIndex = 216;
             this.btnM.TabStop = false;
             this.btnM.Tag = "77";
-            this.btnM.Text = "M";
             this.btnM.UseVisualStyleBackColor = true;
             // 
             // btnN
             // 
-            this.btnN.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnN.Location = new System.Drawing.Point(231, 142);
+            resources.ApplyResources(this.btnN, "btnN");
             this.btnN.Name = "btnN";
-            this.btnN.Size = new System.Drawing.Size(24, 24);
-            this.btnN.TabIndex = 215;
             this.btnN.TabStop = false;
             this.btnN.Tag = "78";
-            this.btnN.Text = "N";
             this.btnN.UseVisualStyleBackColor = true;
             // 
             // btnB
             // 
-            this.btnB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnB.Location = new System.Drawing.Point(201, 142);
+            resources.ApplyResources(this.btnB, "btnB");
             this.btnB.Name = "btnB";
-            this.btnB.Size = new System.Drawing.Size(24, 24);
-            this.btnB.TabIndex = 214;
             this.btnB.TabStop = false;
             this.btnB.Tag = "66";
-            this.btnB.Text = "B";
             this.btnB.UseVisualStyleBackColor = true;
             // 
             // btnV
             // 
-            this.btnV.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnV.Location = new System.Drawing.Point(171, 142);
+            resources.ApplyResources(this.btnV, "btnV");
             this.btnV.Name = "btnV";
-            this.btnV.Size = new System.Drawing.Size(24, 24);
-            this.btnV.TabIndex = 213;
             this.btnV.TabStop = false;
             this.btnV.Tag = "86";
-            this.btnV.Text = "V";
             this.btnV.UseVisualStyleBackColor = true;
             // 
             // btnC
             // 
-            this.btnC.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnC.Location = new System.Drawing.Point(141, 142);
+            resources.ApplyResources(this.btnC, "btnC");
             this.btnC.Name = "btnC";
-            this.btnC.Size = new System.Drawing.Size(24, 24);
-            this.btnC.TabIndex = 212;
             this.btnC.TabStop = false;
             this.btnC.Tag = "67";
-            this.btnC.Text = "C";
             this.btnC.UseVisualStyleBackColor = true;
             // 
             // btnX
             // 
-            this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnX.Location = new System.Drawing.Point(111, 142);
+            resources.ApplyResources(this.btnX, "btnX");
             this.btnX.Name = "btnX";
-            this.btnX.Size = new System.Drawing.Size(24, 24);
-            this.btnX.TabIndex = 211;
             this.btnX.TabStop = false;
             this.btnX.Tag = "88";
-            this.btnX.Text = "X";
             this.btnX.UseVisualStyleBackColor = true;
             // 
             // btnZ
             // 
-            this.btnZ.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnZ.Location = new System.Drawing.Point(81, 142);
+            resources.ApplyResources(this.btnZ, "btnZ");
             this.btnZ.Name = "btnZ";
-            this.btnZ.Size = new System.Drawing.Size(24, 24);
-            this.btnZ.TabIndex = 210;
             this.btnZ.TabStop = false;
             this.btnZ.Tag = "90";
-            this.btnZ.Text = "Z";
             this.btnZ.UseVisualStyleBackColor = true;
             // 
             // btnRALT
             // 
-            this.btnRALT.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRALT.Location = new System.Drawing.Point(351, 172);
+            resources.ApplyResources(this.btnRALT, "btnRALT");
             this.btnRALT.Name = "btnRALT";
-            this.btnRALT.Size = new System.Drawing.Size(39, 24);
-            this.btnRALT.TabIndex = 202;
             this.btnRALT.TabStop = false;
             this.btnRALT.Tag = "165";
-            this.btnRALT.Text = "RAlt";
             this.btnRALT.UseVisualStyleBackColor = true;
             // 
             // button36
             // 
-            this.button36.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button36.Location = new System.Drawing.Point(303, 172);
+            resources.ApplyResources(this.button36, "button36");
             this.button36.Name = "button36";
-            this.button36.Size = new System.Drawing.Size(42, 24);
-            this.button36.TabIndex = 205;
             this.button36.TabStop = false;
             this.button36.Tag = "92";
-            this.button36.Text = "RWin";
             this.button36.UseVisualStyleBackColor = true;
             // 
             // btnWINDOWS
             // 
-            this.btnWINDOWS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnWINDOWS.Location = new System.Drawing.Point(111, 172);
+            resources.ApplyResources(this.btnWINDOWS, "btnWINDOWS");
             this.btnWINDOWS.Name = "btnWINDOWS";
-            this.btnWINDOWS.Size = new System.Drawing.Size(42, 24);
-            this.btnWINDOWS.TabIndex = 204;
             this.btnWINDOWS.TabStop = false;
             this.btnWINDOWS.Tag = "91";
-            this.btnWINDOWS.Text = "LWin";
             this.btnWINDOWS.UseVisualStyleBackColor = true;
             // 
             // btnLALT
             // 
-            this.btnLALT.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLALT.Location = new System.Drawing.Point(66, 172);
+            resources.ApplyResources(this.btnLALT, "btnLALT");
             this.btnLALT.Name = "btnLALT";
-            this.btnLALT.Size = new System.Drawing.Size(39, 24);
-            this.btnLALT.TabIndex = 203;
             this.btnLALT.TabStop = false;
             this.btnLALT.Tag = "164";
-            this.btnLALT.Text = "LAlt";
             this.btnLALT.UseVisualStyleBackColor = true;
             // 
             // btnRCTRL
             // 
-            this.btnRCTRL.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRCTRL.Location = new System.Drawing.Point(396, 172);
+            resources.ApplyResources(this.btnRCTRL, "btnRCTRL");
             this.btnRCTRL.Name = "btnRCTRL";
-            this.btnRCTRL.Size = new System.Drawing.Size(51, 24);
-            this.btnRCTRL.TabIndex = 209;
             this.btnRCTRL.TabStop = false;
             this.btnRCTRL.Tag = "163";
-            this.btnRCTRL.Text = "RCtrl";
             this.btnRCTRL.UseVisualStyleBackColor = true;
             // 
             // btnLCTRL
             // 
-            this.btnLCTRL.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLCTRL.Location = new System.Drawing.Point(9, 172);
+            resources.ApplyResources(this.btnLCTRL, "btnLCTRL");
             this.btnLCTRL.Name = "btnLCTRL";
-            this.btnLCTRL.Size = new System.Drawing.Size(51, 24);
-            this.btnLCTRL.TabIndex = 207;
             this.btnLCTRL.TabStop = false;
             this.btnLCTRL.Tag = "162";
-            this.btnLCTRL.Text = "LCtrl";
             this.btnLCTRL.UseVisualStyleBackColor = true;
             // 
             // btnCAPS
             // 
-            this.btnCAPS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCAPS.Location = new System.Drawing.Point(9, 112);
+            resources.ApplyResources(this.btnCAPS, "btnCAPS");
             this.btnCAPS.Name = "btnCAPS";
-            this.btnCAPS.Size = new System.Drawing.Size(51, 24);
-            this.btnCAPS.TabIndex = 208;
             this.btnCAPS.TabStop = false;
             this.btnCAPS.Tag = "20";
-            this.btnCAPS.Text = "Caps";
             this.btnCAPS.UseVisualStyleBackColor = true;
             // 
             // btnRETURN
             // 
-            this.btnRETURN.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRETURN.Location = new System.Drawing.Point(396, 112);
+            resources.ApplyResources(this.btnRETURN, "btnRETURN");
             this.btnRETURN.Name = "btnRETURN";
-            this.btnRETURN.Size = new System.Drawing.Size(51, 24);
-            this.btnRETURN.TabIndex = 206;
             this.btnRETURN.TabStop = false;
             this.btnRETURN.Tag = "13";
-            this.btnRETURN.Text = "Enter";
             this.btnRETURN.UseVisualStyleBackColor = true;
             // 
             // btnAPOSTROPHE
             // 
-            this.btnAPOSTROPHE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAPOSTROPHE.Location = new System.Drawing.Point(366, 112);
+            resources.ApplyResources(this.btnAPOSTROPHE, "btnAPOSTROPHE");
             this.btnAPOSTROPHE.Name = "btnAPOSTROPHE";
-            this.btnAPOSTROPHE.Size = new System.Drawing.Size(24, 24);
-            this.btnAPOSTROPHE.TabIndex = 201;
             this.btnAPOSTROPHE.TabStop = false;
             this.btnAPOSTROPHE.Tag = "222";
-            this.btnAPOSTROPHE.Text = "\'";
             this.btnAPOSTROPHE.UseVisualStyleBackColor = true;
             // 
             // btnSEMICOLON
             // 
-            this.btnSEMICOLON.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSEMICOLON.Location = new System.Drawing.Point(336, 112);
+            resources.ApplyResources(this.btnSEMICOLON, "btnSEMICOLON");
             this.btnSEMICOLON.Name = "btnSEMICOLON";
-            this.btnSEMICOLON.Size = new System.Drawing.Size(24, 24);
-            this.btnSEMICOLON.TabIndex = 200;
             this.btnSEMICOLON.TabStop = false;
             this.btnSEMICOLON.Tag = "186";
-            this.btnSEMICOLON.Text = ";";
             this.btnSEMICOLON.UseVisualStyleBackColor = true;
             // 
             // btnL
             // 
-            this.btnL.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnL.Location = new System.Drawing.Point(306, 112);
+            resources.ApplyResources(this.btnL, "btnL");
             this.btnL.Name = "btnL";
-            this.btnL.Size = new System.Drawing.Size(24, 24);
-            this.btnL.TabIndex = 199;
             this.btnL.TabStop = false;
             this.btnL.Tag = "76";
-            this.btnL.Text = "L";
             this.btnL.UseVisualStyleBackColor = true;
             // 
             // btnK
             // 
-            this.btnK.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnK.Location = new System.Drawing.Point(276, 112);
+            resources.ApplyResources(this.btnK, "btnK");
             this.btnK.Name = "btnK";
-            this.btnK.Size = new System.Drawing.Size(24, 24);
-            this.btnK.TabIndex = 198;
             this.btnK.TabStop = false;
             this.btnK.Tag = "75";
-            this.btnK.Text = "K";
             this.btnK.UseVisualStyleBackColor = true;
             // 
             // btnJ
             // 
-            this.btnJ.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnJ.Location = new System.Drawing.Point(246, 112);
+            resources.ApplyResources(this.btnJ, "btnJ");
             this.btnJ.Name = "btnJ";
-            this.btnJ.Size = new System.Drawing.Size(24, 24);
-            this.btnJ.TabIndex = 197;
             this.btnJ.TabStop = false;
             this.btnJ.Tag = "74";
-            this.btnJ.Text = "J";
             this.btnJ.UseVisualStyleBackColor = true;
             // 
             // btnH
             // 
-            this.btnH.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnH.Location = new System.Drawing.Point(216, 112);
+            resources.ApplyResources(this.btnH, "btnH");
             this.btnH.Name = "btnH";
-            this.btnH.Size = new System.Drawing.Size(24, 24);
-            this.btnH.TabIndex = 196;
             this.btnH.TabStop = false;
             this.btnH.Tag = "72";
-            this.btnH.Text = "H";
             this.btnH.UseVisualStyleBackColor = true;
             // 
             // btnG
             // 
-            this.btnG.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnG.Location = new System.Drawing.Point(186, 112);
+            resources.ApplyResources(this.btnG, "btnG");
             this.btnG.Name = "btnG";
-            this.btnG.Size = new System.Drawing.Size(24, 24);
-            this.btnG.TabIndex = 195;
             this.btnG.TabStop = false;
             this.btnG.Tag = "71";
-            this.btnG.Text = "G";
             this.btnG.UseVisualStyleBackColor = true;
             // 
             // btnF
             // 
-            this.btnF.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnF.Location = new System.Drawing.Point(156, 112);
+            resources.ApplyResources(this.btnF, "btnF");
             this.btnF.Name = "btnF";
-            this.btnF.Size = new System.Drawing.Size(24, 24);
-            this.btnF.TabIndex = 194;
             this.btnF.TabStop = false;
             this.btnF.Tag = "70";
-            this.btnF.Text = "F";
             this.btnF.UseVisualStyleBackColor = true;
             // 
             // btnD
             // 
-            this.btnD.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnD.Location = new System.Drawing.Point(126, 112);
+            resources.ApplyResources(this.btnD, "btnD");
             this.btnD.Name = "btnD";
-            this.btnD.Size = new System.Drawing.Size(24, 24);
-            this.btnD.TabIndex = 193;
             this.btnD.TabStop = false;
             this.btnD.Tag = "68";
-            this.btnD.Text = "D";
             this.btnD.UseVisualStyleBackColor = true;
             // 
             // btnS
             // 
-            this.btnS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnS.Location = new System.Drawing.Point(96, 112);
+            resources.ApplyResources(this.btnS, "btnS");
             this.btnS.Name = "btnS";
-            this.btnS.Size = new System.Drawing.Size(24, 24);
-            this.btnS.TabIndex = 192;
             this.btnS.TabStop = false;
             this.btnS.Tag = "83";
-            this.btnS.Text = "S";
             this.btnS.UseVisualStyleBackColor = true;
             // 
             // btnA
             // 
-            this.btnA.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnA.Location = new System.Drawing.Point(66, 112);
+            resources.ApplyResources(this.btnA, "btnA");
             this.btnA.Name = "btnA";
-            this.btnA.Size = new System.Drawing.Size(24, 24);
-            this.btnA.TabIndex = 191;
             this.btnA.TabStop = false;
             this.btnA.Tag = "65";
-            this.btnA.Text = "A";
             this.btnA.UseVisualStyleBackColor = true;
             // 
             // btnTAB
             // 
-            this.btnTAB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnTAB.Location = new System.Drawing.Point(9, 82);
+            resources.ApplyResources(this.btnTAB, "btnTAB");
             this.btnTAB.Name = "btnTAB";
-            this.btnTAB.Size = new System.Drawing.Size(36, 24);
-            this.btnTAB.TabIndex = 189;
             this.btnTAB.TabStop = false;
             this.btnTAB.Tag = "9";
-            this.btnTAB.Text = "Tab";
             this.btnTAB.UseVisualStyleBackColor = true;
             // 
             // btnBACKSLASH
             // 
-            this.btnBACKSLASH.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBACKSLASH.Location = new System.Drawing.Point(411, 82);
+            resources.ApplyResources(this.btnBACKSLASH, "btnBACKSLASH");
             this.btnBACKSLASH.Name = "btnBACKSLASH";
-            this.btnBACKSLASH.Size = new System.Drawing.Size(36, 24);
-            this.btnBACKSLASH.TabIndex = 190;
             this.btnBACKSLASH.TabStop = false;
             this.btnBACKSLASH.Tag = "220";
-            this.btnBACKSLASH.Text = "\\";
             this.btnBACKSLASH.UseVisualStyleBackColor = true;
             // 
             // btnCLOSEBRACKET
             // 
-            this.btnCLOSEBRACKET.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCLOSEBRACKET.Location = new System.Drawing.Point(381, 82);
+            resources.ApplyResources(this.btnCLOSEBRACKET, "btnCLOSEBRACKET");
             this.btnCLOSEBRACKET.Name = "btnCLOSEBRACKET";
-            this.btnCLOSEBRACKET.Size = new System.Drawing.Size(24, 24);
-            this.btnCLOSEBRACKET.TabIndex = 188;
             this.btnCLOSEBRACKET.TabStop = false;
             this.btnCLOSEBRACKET.Tag = "221";
-            this.btnCLOSEBRACKET.Text = "]";
             this.btnCLOSEBRACKET.UseVisualStyleBackColor = true;
             // 
             // btnOPENBRACKET
             // 
-            this.btnOPENBRACKET.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOPENBRACKET.Location = new System.Drawing.Point(351, 82);
+            resources.ApplyResources(this.btnOPENBRACKET, "btnOPENBRACKET");
             this.btnOPENBRACKET.Name = "btnOPENBRACKET";
-            this.btnOPENBRACKET.Size = new System.Drawing.Size(24, 24);
-            this.btnOPENBRACKET.TabIndex = 187;
             this.btnOPENBRACKET.TabStop = false;
             this.btnOPENBRACKET.Tag = "219";
-            this.btnOPENBRACKET.Text = "[";
             this.btnOPENBRACKET.UseVisualStyleBackColor = true;
             // 
             // btnP
             // 
-            this.btnP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnP.Location = new System.Drawing.Point(321, 82);
+            resources.ApplyResources(this.btnP, "btnP");
             this.btnP.Name = "btnP";
-            this.btnP.Size = new System.Drawing.Size(24, 24);
-            this.btnP.TabIndex = 186;
             this.btnP.TabStop = false;
             this.btnP.Tag = "80";
-            this.btnP.Text = "P";
             this.btnP.UseVisualStyleBackColor = true;
             // 
             // btnO
             // 
-            this.btnO.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnO.Location = new System.Drawing.Point(291, 82);
+            resources.ApplyResources(this.btnO, "btnO");
             this.btnO.Name = "btnO";
-            this.btnO.Size = new System.Drawing.Size(24, 24);
-            this.btnO.TabIndex = 185;
             this.btnO.TabStop = false;
             this.btnO.Tag = "79";
-            this.btnO.Text = "O";
             this.btnO.UseVisualStyleBackColor = true;
             // 
             // btnI
             // 
-            this.btnI.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnI.Location = new System.Drawing.Point(261, 82);
+            resources.ApplyResources(this.btnI, "btnI");
             this.btnI.Name = "btnI";
-            this.btnI.Size = new System.Drawing.Size(24, 24);
-            this.btnI.TabIndex = 184;
             this.btnI.TabStop = false;
             this.btnI.Tag = "73";
-            this.btnI.Text = "I";
             this.btnI.UseVisualStyleBackColor = true;
             // 
             // btnU
             // 
-            this.btnU.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnU.Location = new System.Drawing.Point(231, 82);
+            resources.ApplyResources(this.btnU, "btnU");
             this.btnU.Name = "btnU";
-            this.btnU.Size = new System.Drawing.Size(24, 24);
-            this.btnU.TabIndex = 183;
             this.btnU.TabStop = false;
             this.btnU.Tag = "85";
-            this.btnU.Text = "U";
             this.btnU.UseVisualStyleBackColor = true;
             // 
             // btnY
             // 
-            this.btnY.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnY.Location = new System.Drawing.Point(201, 82);
+            resources.ApplyResources(this.btnY, "btnY");
             this.btnY.Name = "btnY";
-            this.btnY.Size = new System.Drawing.Size(24, 24);
-            this.btnY.TabIndex = 182;
             this.btnY.TabStop = false;
             this.btnY.Tag = "89";
-            this.btnY.Text = "Y";
             this.btnY.UseVisualStyleBackColor = true;
             // 
             // btnT
             // 
-            this.btnT.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnT.Location = new System.Drawing.Point(171, 82);
+            resources.ApplyResources(this.btnT, "btnT");
             this.btnT.Name = "btnT";
-            this.btnT.Size = new System.Drawing.Size(24, 24);
-            this.btnT.TabIndex = 181;
             this.btnT.TabStop = false;
             this.btnT.Tag = "84";
-            this.btnT.Text = "T";
             this.btnT.UseVisualStyleBackColor = true;
             // 
             // btnR
             // 
-            this.btnR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnR.Location = new System.Drawing.Point(141, 82);
+            resources.ApplyResources(this.btnR, "btnR");
             this.btnR.Name = "btnR";
-            this.btnR.Size = new System.Drawing.Size(24, 24);
-            this.btnR.TabIndex = 180;
             this.btnR.TabStop = false;
             this.btnR.Tag = "82";
-            this.btnR.Text = "R";
             this.btnR.UseVisualStyleBackColor = true;
             // 
             // bTNRIGHTMOUSE
             // 
-            this.bTNRIGHTMOUSE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bTNRIGHTMOUSE.Location = new System.Drawing.Point(824, 82);
+            resources.ApplyResources(this.bTNRIGHTMOUSE, "bTNRIGHTMOUSE");
             this.bTNRIGHTMOUSE.Name = "bTNRIGHTMOUSE";
-            this.bTNRIGHTMOUSE.Size = new System.Drawing.Size(24, 24);
-            this.bTNRIGHTMOUSE.TabIndex = 178;
             this.bTNRIGHTMOUSE.TabStop = false;
             this.bTNRIGHTMOUSE.Tag = "Right Mouse Button";
-            this.bTNRIGHTMOUSE.Text = "Right Mouse Button";
             this.bTNRIGHTMOUSE.UseVisualStyleBackColor = true;
             // 
             // btnE
             // 
-            this.btnE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnE.Location = new System.Drawing.Point(111, 82);
+            resources.ApplyResources(this.btnE, "btnE");
             this.btnE.Name = "btnE";
-            this.btnE.Size = new System.Drawing.Size(24, 24);
-            this.btnE.TabIndex = 179;
             this.btnE.TabStop = false;
             this.btnE.Tag = "69";
-            this.btnE.Text = "E";
             this.btnE.UseVisualStyleBackColor = true;
             // 
             // bnWHEELDOWN
             // 
-            this.bnWHEELDOWN.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bnWHEELDOWN.Location = new System.Drawing.Point(794, 107);
+            resources.ApplyResources(this.bnWHEELDOWN, "bnWHEELDOWN");
             this.bnWHEELDOWN.Name = "bnWHEELDOWN";
-            this.bnWHEELDOWN.Size = new System.Drawing.Size(24, 21);
-            this.bnWHEELDOWN.TabIndex = 175;
             this.bnWHEELDOWN.TabStop = false;
             this.bnWHEELDOWN.Tag = "Mouse Wheel Down";
-            this.bnWHEELDOWN.Text = "↓Mouse Wheel Down";
             this.bnWHEELDOWN.UseVisualStyleBackColor = true;
             // 
             // bnWHEELUP
             // 
-            this.bnWHEELUP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bnWHEELUP.Location = new System.Drawing.Point(794, 59);
+            resources.ApplyResources(this.bnWHEELUP, "bnWHEELUP");
             this.bnWHEELUP.Name = "bnWHEELUP";
-            this.bnWHEELUP.Size = new System.Drawing.Size(24, 22);
-            this.bnWHEELUP.TabIndex = 174;
             this.bnWHEELUP.TabStop = false;
             this.bnWHEELUP.Tag = "Mouse Wheel Up";
-            this.bnWHEELUP.Text = "↑Mouse Wheel Up";
             this.bnWHEELUP.UseVisualStyleBackColor = true;
             // 
             // btnMIDDLEMOUSE
             // 
-            this.btnMIDDLEMOUSE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnMIDDLEMOUSE.Location = new System.Drawing.Point(794, 82);
+            resources.ApplyResources(this.btnMIDDLEMOUSE, "btnMIDDLEMOUSE");
             this.btnMIDDLEMOUSE.Name = "btnMIDDLEMOUSE";
-            this.btnMIDDLEMOUSE.Size = new System.Drawing.Size(24, 24);
-            this.btnMIDDLEMOUSE.TabIndex = 176;
             this.btnMIDDLEMOUSE.TabStop = false;
             this.btnMIDDLEMOUSE.Tag = "Middle Mouse Button";
-            this.btnMIDDLEMOUSE.Text = "Middle Mouse Button";
             this.btnMIDDLEMOUSE.UseVisualStyleBackColor = true;
             // 
             // btnW
             // 
-            this.btnW.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnW.Location = new System.Drawing.Point(81, 82);
+            resources.ApplyResources(this.btnW, "btnW");
             this.btnW.Name = "btnW";
-            this.btnW.Size = new System.Drawing.Size(24, 24);
-            this.btnW.TabIndex = 177;
             this.btnW.TabStop = false;
             this.btnW.Tag = "87";
-            this.btnW.Text = "W";
             this.btnW.UseVisualStyleBackColor = true;
             // 
             // button33
             // 
-            this.button33.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button33.Location = new System.Drawing.Point(829, 147);
+            resources.ApplyResources(this.button33, "button33");
             this.button33.Name = "button33";
-            this.button33.Size = new System.Drawing.Size(19, 24);
-            this.button33.TabIndex = 169;
             this.button33.TabStop = false;
             this.button33.Tag = "5th Mouse Button";
-            this.button33.Text = "5th Mouse Button";
             this.button33.UseVisualStyleBackColor = true;
             // 
             // button30
             // 
-            this.button30.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button30.Location = new System.Drawing.Point(764, 146);
+            resources.ApplyResources(this.button30, "button30");
             this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(19, 24);
-            this.button30.TabIndex = 173;
             this.button30.TabStop = false;
             this.button30.Tag = "4th Mouse Button";
-            this.button30.Text = "4th Mouse Button";
             this.button30.UseVisualStyleBackColor = true;
             // 
             // bnMOUSERIGHT
             // 
-            this.bnMOUSERIGHT.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bnMOUSERIGHT.Location = new System.Drawing.Point(841, 117);
+            resources.ApplyResources(this.bnMOUSERIGHT, "bnMOUSERIGHT");
             this.bnMOUSERIGHT.Name = "bnMOUSERIGHT";
-            this.bnMOUSERIGHT.Size = new System.Drawing.Size(24, 24);
-            this.bnMOUSERIGHT.TabIndex = 171;
             this.bnMOUSERIGHT.TabStop = false;
             this.bnMOUSERIGHT.Tag = "Mouse Right";
-            this.bnMOUSERIGHT.Text = "→Mouse Right";
             this.bnMOUSERIGHT.UseVisualStyleBackColor = true;
             // 
             // bnMOUSELEFT
             // 
-            this.bnMOUSELEFT.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bnMOUSELEFT.Location = new System.Drawing.Point(743, 118);
+            resources.ApplyResources(this.bnMOUSELEFT, "bnMOUSELEFT");
             this.bnMOUSELEFT.Name = "bnMOUSELEFT";
-            this.bnMOUSELEFT.Size = new System.Drawing.Size(24, 24);
-            this.bnMOUSELEFT.TabIndex = 172;
             this.bnMOUSELEFT.TabStop = false;
             this.bnMOUSELEFT.Tag = "Mouse Left";
-            this.bnMOUSELEFT.Text = "←Mouse Left";
             this.bnMOUSELEFT.UseVisualStyleBackColor = true;
             // 
             // bnMOUSEDOWN
             // 
-            this.bnMOUSEDOWN.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bnMOUSEDOWN.Location = new System.Drawing.Point(794, 167);
+            resources.ApplyResources(this.bnMOUSEDOWN, "bnMOUSEDOWN");
             this.bnMOUSEDOWN.Name = "bnMOUSEDOWN";
-            this.bnMOUSEDOWN.Size = new System.Drawing.Size(24, 24);
-            this.bnMOUSEDOWN.TabIndex = 170;
             this.bnMOUSEDOWN.TabStop = false;
             this.bnMOUSEDOWN.Tag = "Mouse Down";
-            this.bnMOUSEDOWN.Text = "↓Mouse Down";
             this.bnMOUSEDOWN.UseVisualStyleBackColor = true;
             // 
             // bnMOUSEUP
             // 
-            this.bnMOUSEUP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bnMOUSEUP.Location = new System.Drawing.Point(794, 25);
+            resources.ApplyResources(this.bnMOUSEUP, "bnMOUSEUP");
             this.bnMOUSEUP.Name = "bnMOUSEUP";
-            this.bnMOUSEUP.Size = new System.Drawing.Size(24, 24);
-            this.bnMOUSEUP.TabIndex = 167;
             this.bnMOUSEUP.TabStop = false;
             this.bnMOUSEUP.Tag = "Mouse Up";
-            this.bnMOUSEUP.Text = "↑Mouse Up";
             this.bnMOUSEUP.UseVisualStyleBackColor = true;
             // 
             // btnLEFTMOUSE
             // 
-            this.btnLEFTMOUSE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLEFTMOUSE.Location = new System.Drawing.Point(764, 82);
+            resources.ApplyResources(this.btnLEFTMOUSE, "btnLEFTMOUSE");
             this.btnLEFTMOUSE.Name = "btnLEFTMOUSE";
-            this.btnLEFTMOUSE.Size = new System.Drawing.Size(24, 24);
-            this.btnLEFTMOUSE.TabIndex = 168;
             this.btnLEFTMOUSE.TabStop = false;
             this.btnLEFTMOUSE.Tag = "Left Mouse Button";
-            this.btnLEFTMOUSE.Text = "Left Mouse Button";
             this.btnLEFTMOUSE.UseVisualStyleBackColor = true;
             // 
             // btnQ
             // 
-            this.btnQ.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnQ.Location = new System.Drawing.Point(51, 82);
+            resources.ApplyResources(this.btnQ, "btnQ");
             this.btnQ.Name = "btnQ";
-            this.btnQ.Size = new System.Drawing.Size(24, 24);
-            this.btnQ.TabIndex = 0;
             this.btnQ.TabStop = false;
             this.btnQ.Tag = "81";
-            this.btnQ.Text = "Q";
             this.btnQ.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
             this.pictureBox2.Image = global::ScpServer.Properties.Resources.mouse;
-            this.pictureBox2.Location = new System.Drawing.Point(758, 41);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(97, 140);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 290;
             this.pictureBox2.TabStop = false;
             // 
             // cbToggle
             // 
-            this.cbToggle.AutoSize = true;
-            this.cbToggle.Location = new System.Drawing.Point(567, 5);
+            resources.ApplyResources(this.cbToggle, "cbToggle");
             this.cbToggle.Name = "cbToggle";
-            this.cbToggle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbToggle.Size = new System.Drawing.Size(59, 17);
-            this.cbToggle.TabIndex = 287;
             this.cbToggle.TabStop = false;
-            this.cbToggle.Text = "Toggle";
             this.cbToggle.UseVisualStyleBackColor = true;
             this.cbToggle.CheckedChanged += new System.EventHandler(this.cbToggle_CheckedChanged);
             // 
             // btnUNBOUND2
             // 
-            this.btnUNBOUND2.Location = new System.Drawing.Point(440, 379);
+            resources.ApplyResources(this.btnUNBOUND2, "btnUNBOUND2");
             this.btnUNBOUND2.Name = "btnUNBOUND2";
-            this.btnUNBOUND2.Size = new System.Drawing.Size(75, 23);
-            this.btnUNBOUND2.TabIndex = 317;
             this.btnUNBOUND2.TabStop = false;
             this.btnUNBOUND2.Tag = "X360Unbound";
-            this.btnUNBOUND2.Text = "Unbound";
             this.btnUNBOUND2.UseVisualStyleBackColor = true;
             // 
             // button13
             // 
+            resources.ApplyResources(this.button13, "button13");
             this.button13.Image = global::ScpServer.Properties.Resources.LT;
-            this.button13.Location = new System.Drawing.Point(322, 218);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(30, 30);
-            this.button13.TabIndex = 313;
             this.button13.TabStop = false;
             this.button13.Tag = "X360Left Trigger";
             this.button13.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
+            resources.ApplyResources(this.button2, "button2");
             this.button2.Image = global::ScpServer.Properties.Resources.RT;
-            this.button2.Location = new System.Drawing.Point(509, 217);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(30, 30);
-            this.button2.TabIndex = 312;
             this.button2.TabStop = false;
             this.button2.Tag = "X360Right Trigger";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // btnRSL
             // 
+            resources.ApplyResources(this.btnRSL, "btnRSL");
             this.btnRSL.Image = global::ScpServer.Properties.Resources.RSL;
-            this.btnRSL.Location = new System.Drawing.Point(640, 348);
             this.btnRSL.Name = "btnRSL";
-            this.btnRSL.Size = new System.Drawing.Size(30, 30);
-            this.btnRSL.TabIndex = 311;
             this.btnRSL.TabStop = false;
             this.btnRSL.Tag = "X360Right X-Axis-";
             this.btnRSL.UseVisualStyleBackColor = true;
             // 
             // btnLSL
             // 
+            resources.ApplyResources(this.btnLSL, "btnLSL");
             this.btnLSL.Image = global::ScpServer.Properties.Resources.LSL;
-            this.btnLSL.Location = new System.Drawing.Point(60, 269);
             this.btnLSL.Name = "btnLSL";
-            this.btnLSL.Size = new System.Drawing.Size(30, 30);
-            this.btnLSL.TabIndex = 310;
             this.btnLSL.TabStop = false;
             this.btnLSL.Tag = "X360Left X-Axis-";
             this.btnLSL.UseVisualStyleBackColor = true;
             // 
             // btnRSD
             // 
+            resources.ApplyResources(this.btnRSD, "btnRSD");
             this.btnRSD.Image = global::ScpServer.Properties.Resources.RSD;
-            this.btnRSD.Location = new System.Drawing.Point(673, 382);
             this.btnRSD.Name = "btnRSD";
-            this.btnRSD.Size = new System.Drawing.Size(30, 30);
-            this.btnRSD.TabIndex = 309;
             this.btnRSD.TabStop = false;
             this.btnRSD.Tag = "X360Right Y-Axis+";
             this.btnRSD.UseVisualStyleBackColor = true;
             // 
             // btnLSD
             // 
+            resources.ApplyResources(this.btnLSD, "btnLSD");
             this.btnLSD.Image = global::ScpServer.Properties.Resources.LSD;
-            this.btnLSD.Location = new System.Drawing.Point(95, 302);
             this.btnLSD.Name = "btnLSD";
-            this.btnLSD.Size = new System.Drawing.Size(30, 30);
-            this.btnLSD.TabIndex = 308;
             this.btnLSD.TabStop = false;
             this.btnLSD.Tag = "X360Left Y-Axis+";
             this.btnLSD.UseVisualStyleBackColor = true;
             // 
             // button19
             // 
+            resources.ApplyResources(this.button19, "button19");
             this.button19.Image = global::ScpServer.Properties.Resources.LEFT;
-            this.button19.Location = new System.Drawing.Point(122, 340);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(30, 30);
-            this.button19.TabIndex = 307;
             this.button19.TabStop = false;
             this.button19.Tag = "X360Left Button";
             this.button19.UseVisualStyleBackColor = true;
             // 
             // button20
             // 
+            resources.ApplyResources(this.button20, "button20");
             this.button20.Image = global::ScpServer.Properties.Resources.DOWN;
-            this.button20.Location = new System.Drawing.Point(152, 370);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(30, 30);
-            this.button20.TabIndex = 306;
             this.button20.TabStop = false;
             this.button20.Tag = "X360Down Button";
             this.button20.UseVisualStyleBackColor = true;
             // 
             // button18
             // 
+            resources.ApplyResources(this.button18, "button18");
             this.button18.Image = global::ScpServer.Properties.Resources.UP;
-            this.button18.Location = new System.Drawing.Point(152, 314);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(30, 30);
-            this.button18.TabIndex = 305;
             this.button18.TabStop = false;
             this.button18.Tag = "X360Up Button";
             this.button18.UseVisualStyleBackColor = true;
             // 
             // button17
             // 
+            resources.ApplyResources(this.button17, "button17");
             this.button17.Image = global::ScpServer.Properties.Resources.RIGHT;
-            this.button17.Location = new System.Drawing.Point(182, 340);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(30, 30);
-            this.button17.TabIndex = 304;
             this.button17.TabStop = false;
             this.button17.Tag = "X360Right Button";
             this.button17.UseVisualStyleBackColor = true;
             // 
             // btnRSR
             // 
+            resources.ApplyResources(this.btnRSR, "btnRSR");
             this.btnRSR.Image = global::ScpServer.Properties.Resources.RSR;
-            this.btnRSR.Location = new System.Drawing.Point(706, 348);
             this.btnRSR.Name = "btnRSR";
-            this.btnRSR.Size = new System.Drawing.Size(30, 30);
-            this.btnRSR.TabIndex = 314;
             this.btnRSR.TabStop = false;
             this.btnRSR.Tag = "X360Right X-Axis+";
             this.btnRSR.UseVisualStyleBackColor = true;
             // 
             // btnRS
             // 
+            resources.ApplyResources(this.btnRS, "btnRS");
             this.btnRS.Image = global::ScpServer.Properties.Resources.RS;
-            this.btnRS.Location = new System.Drawing.Point(673, 348);
             this.btnRS.Name = "btnRS";
-            this.btnRS.Size = new System.Drawing.Size(30, 30);
-            this.btnRS.TabIndex = 303;
             this.btnRS.TabStop = false;
             this.btnRS.Tag = "X360Right Stick";
             this.btnRS.UseVisualStyleBackColor = true;
             // 
             // btnLSR
             // 
+            resources.ApplyResources(this.btnLSR, "btnLSR");
             this.btnLSR.Image = global::ScpServer.Properties.Resources.LSR;
-            this.btnLSR.Location = new System.Drawing.Point(130, 269);
             this.btnLSR.Name = "btnLSR";
-            this.btnLSR.Size = new System.Drawing.Size(30, 30);
-            this.btnLSR.TabIndex = 315;
             this.btnLSR.TabStop = false;
             this.btnLSR.Tag = "X360Left X-Axis+";
             this.btnLSR.UseVisualStyleBackColor = true;
             // 
             // btnRSU
             // 
+            resources.ApplyResources(this.btnRSU, "btnRSU");
             this.btnRSU.Image = global::ScpServer.Properties.Resources.RSU;
-            this.btnRSU.Location = new System.Drawing.Point(673, 315);
             this.btnRSU.Name = "btnRSU";
-            this.btnRSU.Size = new System.Drawing.Size(30, 30);
-            this.btnRSU.TabIndex = 302;
             this.btnRSU.TabStop = false;
             this.btnRSU.Tag = "X360Right Y-Axis-";
             this.btnRSU.UseVisualStyleBackColor = true;
             // 
             // btnLS
             // 
+            resources.ApplyResources(this.btnLS, "btnLS");
             this.btnLS.Image = global::ScpServer.Properties.Resources.LS;
-            this.btnLS.Location = new System.Drawing.Point(95, 269);
             this.btnLS.Name = "btnLS";
-            this.btnLS.Size = new System.Drawing.Size(30, 30);
-            this.btnLS.TabIndex = 301;
             this.btnLS.TabStop = false;
             this.btnLS.Tag = "X360Left Stick";
             this.btnLS.UseVisualStyleBackColor = true;
             // 
             // btnLSU
             // 
+            resources.ApplyResources(this.btnLSU, "btnLSU");
             this.btnLSU.Image = global::ScpServer.Properties.Resources.LSU;
-            this.btnLSU.Location = new System.Drawing.Point(95, 235);
             this.btnLSU.Name = "btnLSU";
-            this.btnLSU.Size = new System.Drawing.Size(30, 30);
-            this.btnLSU.TabIndex = 300;
             this.btnLSU.TabStop = false;
             this.btnLSU.Tag = "X360Left Y-Axis-";
             this.btnLSU.UseVisualStyleBackColor = true;
             // 
             // button11
             // 
+            resources.ApplyResources(this.button11, "button11");
             this.button11.Image = global::ScpServer.Properties.Resources.LB;
-            this.button11.Location = new System.Drawing.Point(292, 268);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(30, 30);
-            this.button11.TabIndex = 299;
             this.button11.TabStop = false;
             this.button11.Tag = "X360Left Bumper";
             this.button11.UseVisualStyleBackColor = true;
             // 
             // btnRB
             // 
+            resources.ApplyResources(this.btnRB, "btnRB");
             this.btnRB.Image = global::ScpServer.Properties.Resources.RB;
-            this.btnRB.Location = new System.Drawing.Point(537, 267);
             this.btnRB.Name = "btnRB";
-            this.btnRB.Size = new System.Drawing.Size(30, 30);
-            this.btnRB.TabIndex = 298;
             this.btnRB.TabStop = false;
             this.btnRB.Tag = "X360Right Bumper";
             this.btnRB.UseVisualStyleBackColor = true;
             // 
             // button10
             // 
+            resources.ApplyResources(this.button10, "button10");
             this.button10.Image = global::ScpServer.Properties.Resources.Y;
-            this.button10.Location = new System.Drawing.Point(735, 244);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(30, 30);
-            this.button10.TabIndex = 297;
             this.button10.TabStop = false;
             this.button10.Tag = "X360Y Button";
             this.button10.UseVisualStyleBackColor = true;
             // 
             // button9
             // 
+            resources.ApplyResources(this.button9, "button9");
             this.button9.Image = global::ScpServer.Properties.Resources.X;
-            this.button9.Location = new System.Drawing.Point(703, 276);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(30, 30);
-            this.button9.TabIndex = 296;
             this.button9.TabStop = false;
             this.button9.Tag = "X360X Button";
             this.button9.UseVisualStyleBackColor = true;
             // 
             // button8
             // 
+            resources.ApplyResources(this.button8, "button8");
             this.button8.Image = global::ScpServer.Properties.Resources.B;
-            this.button8.Location = new System.Drawing.Point(768, 276);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(30, 30);
-            this.button8.TabIndex = 295;
             this.button8.TabStop = false;
             this.button8.Tag = "X360B Button";
             this.button8.UseVisualStyleBackColor = true;
             // 
             // button23
             // 
+            resources.ApplyResources(this.button23, "button23");
             this.button23.Image = global::ScpServer.Properties.Resources.BACK;
-            this.button23.Location = new System.Drawing.Point(373, 323);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(30, 30);
-            this.button23.TabIndex = 292;
             this.button23.TabStop = false;
             this.button23.Tag = "X360Back";
             this.button23.UseVisualStyleBackColor = true;
             // 
             // button22
             // 
+            resources.ApplyResources(this.button22, "button22");
             this.button22.Image = global::ScpServer.Properties.Resources.START;
-            this.button22.Location = new System.Drawing.Point(465, 323);
             this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(30, 30);
-            this.button22.TabIndex = 294;
             this.button22.TabStop = false;
             this.button22.Tag = "X360Start";
             this.button22.UseVisualStyleBackColor = true;
             // 
             // button21
             // 
-            this.button21.Location = new System.Drawing.Point(409, 323);
+            resources.ApplyResources(this.button21, "button21");
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(50, 30);
-            this.button21.TabIndex = 291;
             this.button21.TabStop = false;
             this.button21.Tag = "X360Guide";
-            this.button21.Text = "Guide";
             this.button21.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
+            resources.ApplyResources(this.button3, "button3");
             this.button3.Image = global::ScpServer.Properties.Resources.A;
-            this.button3.Location = new System.Drawing.Point(735, 309);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(30, 30);
-            this.button3.TabIndex = 293;
             this.button3.TabStop = false;
             this.button3.Tag = "X360A Button";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // X360Label
             // 
-            this.X360Label.AutoSize = true;
-            this.X360Label.Location = new System.Drawing.Point(395, 210);
+            resources.ApplyResources(this.X360Label, "X360Label");
             this.X360Label.Name = "X360Label";
-            this.X360Label.Size = new System.Drawing.Size(93, 13);
-            this.X360Label.TabIndex = 318;
-            this.X360Label.Text = "Commandes X360";
             // 
             // KBMlabel
             // 
-            this.KBMlabel.AutoSize = true;
-            this.KBMlabel.Location = new System.Drawing.Point(456, 6);
+            resources.ApplyResources(this.KBMlabel, "KBMlabel");
             this.KBMlabel.Name = "KBMlabel";
-            this.KBMlabel.Size = new System.Drawing.Size(83, 13);
-            this.KBMlabel.TabIndex = 318;
-            this.KBMlabel.Text = "Clavier et Souris";
             // 
             // lBMacroOn
             // 
-            this.lBMacroOn.AutoSize = true;
-            this.lBMacroOn.Location = new System.Drawing.Point(10, 6);
+            resources.ApplyResources(this.lBMacroOn, "lBMacroOn");
             this.lBMacroOn.Name = "lBMacroOn";
-            this.lBMacroOn.Size = new System.Drawing.Size(413, 13);
-            this.lBMacroOn.TabIndex = 319;
-            this.lBMacroOn.Text = "Macro activé, choisir une touche pour désactiver, fermer cette page pour sauvegar" +
-    "der";
-            this.lBMacroOn.Visible = false;
             // 
             // btnMacro
             // 
-            this.btnMacro.Location = new System.Drawing.Point(747, 1);
+            resources.ApplyResources(this.btnMacro, "btnMacro");
             this.btnMacro.Name = "btnMacro";
-            this.btnMacro.Size = new System.Drawing.Size(118, 23);
-            this.btnMacro.TabIndex = 321;
             this.btnMacro.TabStop = false;
-            this.btnMacro.Text = "Enregistrer un macro";
             this.btnMacro.UseVisualStyleBackColor = true;
             this.btnMacro.Click += new System.EventHandler(this.btnMacro_Click);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(32, 210);
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(798, 280);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 322;
             this.pictureBox1.TabStop = false;
             // 
             // btnFallBack
             // 
-            this.btnFallBack.Location = new System.Drawing.Point(350, 379);
+            resources.ApplyResources(this.btnFallBack, "btnFallBack");
             this.btnFallBack.Name = "btnFallBack";
-            this.btnFallBack.Size = new System.Drawing.Size(75, 23);
-            this.btnFallBack.TabIndex = 323;
             this.btnFallBack.TabStop = false;
-            this.btnFallBack.Text = "Default";
             this.btnFallBack.UseVisualStyleBackColor = true;
             // 
             // KBM360
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(868, 413);
             this.Controls.Add(this.btnUNBOUND2);
             this.Controls.Add(this.btnFallBack);
             this.Controls.Add(this.btnLS);
@@ -2205,7 +1619,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "KBM360";
-            this.Text = "Keybaord";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finalMeasure);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down_Action);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

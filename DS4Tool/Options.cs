@@ -23,6 +23,7 @@ namespace ScpServer
         ToolTip tp = new ToolTip();
         Graphics g;
         ScpForm root;
+        bool olddinputcheck = false;
         public Options(DS4Control.Control bus_device, int deviceNum, string name, ScpForm rt)
         {
             InitializeComponent();
@@ -88,6 +89,13 @@ namespace ScpServer
 
                 DS4Color cColor = Global.loadChargingColor(device);
                 btnChargingColor.BackColor = Color.FromArgb(cColor.red, cColor.green, cColor.blue);
+
+                DS4Color fColor = Global.loadFlashColor(device);
+                lbFlashAt.ForeColor = Color.FromArgb(fColor.red, fColor.green, fColor.blue);
+                if (lbFlashAt.ForeColor.GetBrightness() > .5f)
+                     lbFlashAt.BackColor = Color.Black;
+                lbPercentFlashBar.ForeColor = lbFlashAt.ForeColor;
+                lbPercentFlashBar.BackColor = lbFlashAt.BackColor;
                 nUDRumbleBoost.Value = Global.loadRumbleBoost(device);
                 nUDTouch.Value = Global.getTouchSensitivity(device);
                 cBSlide.Checked = Global.getTouchSensitivity(device) > 0;
@@ -143,6 +151,8 @@ namespace ScpServer
                     pBProgram.Image = Icon.ExtractAssociatedIcon(Global.getLaunchProgram(device)).ToBitmap();
                     btnBrowse.Text = Path.GetFileNameWithoutExtension(Global.getLaunchProgram(device));
                 }
+                cBDinput.Checked = Global.getDinputOnly(device);
+                olddinputcheck = cBDinput.Checked;
             }
             else
                 Set();
@@ -168,6 +178,8 @@ namespace ScpServer
             tp.SetToolTip(lbEmpty, Properties.Resources.CopyFullColor);
             tp.SetToolTip(lbShift, Properties.Resources.CopyFullColor);
             tp.SetToolTip(lbSATip, "Click for advanced Sixaxis reading");
+            tp.SetToolTip(cBDinput, Properties.Resources.DinputOnly);
+            tp.SetToolTip(lbFlashAt, "Click to change flash color. Black = default color");
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
@@ -371,6 +383,7 @@ namespace ScpServer
             Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
             Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
             Global.saveShiftColor(device, (byte)shiftRedBar.Value, (byte)shiftGreenBar.Value, (byte)shiftBlueBar.Value);
+            Global.saveFlashColor(device, lbFlashAt.ForeColor.R, lbFlashAt.ForeColor.G, lbFlashAt.ForeColor.B);
             Global.setLeftTriggerMiddle(device, (byte)Math.Round((nUDL2.Value * 255), 0));
             Global.setRightTriggerMiddle(device, (byte)Math.Round((nUDR2.Value * 255), 0));
             Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
@@ -390,6 +403,8 @@ namespace ScpServer
             Global.setSZDeadzone(device, (double)nUDSZ.Value);
             Global.setMouseAccel(device, cBMouseAccel.Checked);
             Global.setShiftModifier(device, cBShiftControl.SelectedIndex);
+            Global.setDinputOnly(device, cBDinput.Checked);
+
             if (nUDRainbow.Value == 0) pBRainbow.Image = greyscale;
             else pBRainbow.Image = colored;
         }
@@ -776,6 +791,11 @@ namespace ScpServer
         {
             for (int i = 0; i < 4; i++)
                 Global.LoadProfile(i); //Refreshes all profiles in case other controllers are using the same profile
+            if (olddinputcheck != cBDinput.Checked)
+            {
+                root.btnStartStop_Clicked(false);
+                root.btnStartStop_Clicked(false);
+            }
             inputtimer.Stop();
             sixaxisTimer.Stop();
         }
@@ -1332,6 +1352,45 @@ namespace ScpServer
                 pBProgram.Image = null;
                 btnBrowse.Text = Properties.Resources.Browse;
             }
+        }
+
+        private void cBDinput_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setDinputOnly(device, cBDinput.Checked);
+            if (device > 4)
+            {
+                root.btnStartStop_Clicked(false);
+                root.btnStartStop_Clicked(false);
+            }
+        }
+
+        private void lbFlashAt_Click(object sender, EventArgs e)
+        {
+            advColorDialog.Color = lbFlashAt.ForeColor;
+            advColorDialog.Color = lbPercentFlashBar.ForeColor;
+            advColorDialog_OnUpdateColor(lbPercentFlashBar.ForeColor, e);
+            if (advColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                lbFlashAt.ForeColor = advColorDialog.Color; 
+                lbPercentFlashBar.ForeColor = advColorDialog.Color;
+                Global.saveFlashColor(device, advColorDialog.Color.R, advColorDialog.Color.G, advColorDialog.Color.B);
+            }
+            //else Global.saveChargingColor(device, oldChargingColor[0], oldChargingColor[1], oldChargingColor[2]);
+            //Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
+            Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
+            oldLedColor = null;
+            if (lbFlashAt.ForeColor.GetBrightness() > .5f)
+            {
+                lbFlashAt.BackColor = Color.Black;
+                lbPercentFlashBar.BackColor = Color.Black;
+            }
+            else
+            {
+                lbFlashAt.BackColor = Color.White;
+                lbPercentFlashBar.BackColor = Color.White;
+            }
+            //oldChargingColor = null;
+            //oldLowLedColor = null;
         }
     }
 }

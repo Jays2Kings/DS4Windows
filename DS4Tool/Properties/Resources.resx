@@ -512,7 +512,7 @@
     <value>Input Delay: *number**ms*</value>
   </data>
   <data name="KeepThisSize" xml:space="preserve">
-    <value />
+    <value>Keep this window size after closing</value>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>Record</value>
@@ -525,5 +525,8 @@
   </data>
   <data name="UpText" xml:space="preserve">
     <value>Up</value>
+  </data>
+  <data name="DinputOnly" xml:space="preserve">
+    <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off</value>
   </data>
 </root>

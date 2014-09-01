@@ -21,6 +21,20 @@ namespace DS4Library
         public byte red;
         public byte green;
         public byte blue;
+        public override bool Equals(object obj)
+        {
+            if (obj is DS4Color)
+            {
+                DS4Color dsc = ((DS4Color)obj);
+                return (this.red == dsc.red && this.green == dsc.green && this.blue == dsc.blue);
+            }
+            else
+                return false;
+        }
+        public override string ToString()
+        {
+            return ("Red: " + red + " Green: " + green + " Blue: " + blue);
+        }
     }
 
     public enum ConnectionType : byte { BT, USB }; // Prioritize Bluetooth when both are connected.

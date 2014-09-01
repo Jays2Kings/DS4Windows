@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using DS4Library;
 namespace DS4Control
 {
@@ -128,9 +129,16 @@ namespace DS4Control
                 }
             }
             else if (shuttingdown)
-                color = new DS4Color { red = 0, green = 0, blue = 0};
+                color = new DS4Color { red = 0, green = 0, blue = 0 };
             else
                 color = new DS4Color { red = 32, green = 64, blue = 64 };
+            Color dsc = Color.FromArgb(color.red, color.green, color.blue);
+            if (Global.getAProfile(deviceNum).ToLower().Contains("distance"))
+            { //Thing I did for Distance
+                float rumble = device.LeftHeavySlowRumble / 2.55f;
+                if (device.LeftHeavySlowRumble > 50)
+                    color = getTransitionedColor(color, rumble);
+            }
             DS4HapticState haptics = new DS4HapticState
             {
                 LightBarColor = color
@@ -141,9 +149,14 @@ namespace DS4Control
                 {
                     int level = device.Battery / 10;
                     //if (level >= 10)
-                        //level = 0; // all values of ~0% or >~100% are rendered the same
+                    //level = 0; // all values of ~0% or >~100% are rendered the same
                     haptics.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
                     haptics.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];
+                }
+                else if (Global.getAProfile(deviceNum).ToLower().Contains("distance") && device.LeftHeavySlowRumble > 155) //also part of Distance
+                {
+                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)((-device.LeftHeavySlowRumble + 265));
+                    haptics.LightBarExplicitlyOff = true;
                 }
                 else
                 {
@@ -156,6 +169,10 @@ namespace DS4Control
             {
                 haptics.LightBarExplicitlyOff = true;
             }
+            if (device.LightBarOnDuration != haptics.LightBarFlashDurationOn && device.LightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
+                haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
+            if (device.LightBarOnDuration == 1)
+                System.Threading.Thread.Sleep(5);
             device.pushHapticState(haptics);
         }
         public static bool defualtLight = false, shuttingdown = false;
@@ -213,6 +230,33 @@ namespace DS4Control
                 return new DS4Color { red = C, green = 0, blue = (byte)X };
             else
                 return new DS4Color { red = 255, green = 0, blue = 0 };
+        }
+
+        public static DS4Color getTransitionedColor(DS4Color c1, double ratio)
+        {//;
+            //Color cs = Color.FromArgb(c1.red, c1.green, c1.blue);
+            DS4Color c2 = new DS4Color { red = 255, green = 0, blue = 0 };
+            c1.red = applyRatio(c1.red, c2.red, ratio);
+            c1.green = applyRatio(c1.green, c2.green, ratio);
+            c1.blue = applyRatio(c1.blue, c2.blue, ratio);
+            return c1;
+        }
+
+        private static byte applyRatio(byte b1, byte b2, double r)
+        {
+            if (r > 100)
+                r = 100;
+            else if (r < 0)
+                r = 0;
+            uint ratio = (uint)r;
+            if (b1 > b2)
+            {
+                ratio = 100 - (uint)r;
+            }
+            byte bmax = Math.Max(b1, b2);
+            byte bmin = Math.Min(b1, b2);
+            byte bdif = (byte)(bmax - bmin);
+            return (byte)(bmin + (bdif * ratio / 100));
         }
     }
 }

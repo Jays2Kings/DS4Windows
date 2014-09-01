@@ -151,14 +151,14 @@
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
+  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="lbAbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>515, 19</value>
   </data>
   <data name="&gt;&gt;label15.Name" xml:space="preserve">
     <value>label15</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>520, 434</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
@@ -173,12 +173,15 @@
   <data name="lbAbout.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
-  <data name="label10.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+  <data name="lbAbout.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label28.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
+  </data>
+  <data name="label29.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 31</value>
@@ -207,6 +210,9 @@
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 13</value>
   </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Upper Touch</value>
+  </data>
   <data name="label11.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
@@ -221,9 +227,6 @@
   </data>
   <data name="&gt;&gt;label15.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
   </data>
   <data name="label31.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -258,12 +261,6 @@
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 13</value>
   </data>
-  <data name="&gt;&gt;label33.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="label23.Text" xml:space="preserve">
-    <value>*If enabled</value>
-  </data>
   <data name="label26.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
@@ -278,6 +275,9 @@
   </data>
   <data name="&gt;&gt;label10.Name" xml:space="preserve">
     <value>label10</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 13</value>
   </data>
   <data name="label28.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -309,9 +309,6 @@
   <data name="&gt;&gt;linkJhebbel.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 146</value>
-  </data>
   <data name="linkJhebbel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -321,20 +318,23 @@
   <data name="label22.Text" xml:space="preserve">
     <value>Cycle through profiles</value>
   </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
   <data name="&gt;&gt;label26.Name" xml:space="preserve">
     <value>label26</value>
   </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 13</value>
   </data>
-  <data name="&gt;&gt;linkDonate.Name" xml:space="preserve">
-    <value>linkDonate</value>
-  </data>
   <data name="&gt;&gt;label29.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Toggle</value>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 13</value>
+  </data>
+  <data name="&gt;&gt;label21.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -345,11 +345,11 @@
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 184</value>
-  </data>
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;linkElectro.Name" xml:space="preserve">
+    <value>linkElectro</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -378,14 +378,8 @@
   <data name="linkJays2Kings.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
-  <data name="label23.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>8</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 13</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
     <value>193, 51</value>
@@ -462,9 +456,6 @@
   <data name="linkInhexSTER.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <data name="&gt;&gt;label30.Name" xml:space="preserve">
-    <value>label30</value>
-  </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>193, 165</value>
   </data>
@@ -479,9 +470,6 @@
   </data>
   <data name="label15.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
-  </data>
-  <data name="&gt;&gt;label30.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
   </data>
   <data name="label29.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -525,9 +513,6 @@
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>Multitouch</value>
-  </data>
   <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 13</value>
   </data>
@@ -543,17 +528,14 @@
   <data name="&gt;&gt;linkElectro.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 13</value>
-  </data>
-  <data name="label30.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
-    <value>29</value>
+  <data name="linkDonate.Text" xml:space="preserve">
+    <value>Donate via Paypal</value>
   </data>
   <data name="linkDonate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
   </data>
   <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 13</value>
@@ -594,9 +576,6 @@
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
   </data>
-  <data name="&gt;&gt;linkElectro.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="&gt;&gt;label18.Name" xml:space="preserve">
     <value>label18</value>
   </data>
@@ -618,8 +597,8 @@
   <data name="label25.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
+  <data name="label23.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="label25.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -633,8 +612,8 @@
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;linkInhexSTER.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Touch Touchpad + PS</value>
@@ -645,9 +624,6 @@
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
   </data>
-  <data name="lLChangelog.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
   <data name="&gt;&gt;label6.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
@@ -656,9 +632,6 @@
   </data>
   <data name="&gt;&gt;label13.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label23.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
   </data>
   <data name="&gt;&gt;label32.ZOrder" xml:space="preserve">
     <value>22</value>
@@ -684,6 +657,9 @@
   <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 13</value>
   </data>
+  <data name="&gt;&gt;linkInhexSTER.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>193, 263</value>
   </data>
@@ -693,11 +669,14 @@
   <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 13</value>
   </data>
-  <data name="linkDonate.Text" xml:space="preserve">
-    <value>Donate via Paypal</value>
+  <data name="&gt;&gt;lLChangelog.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 225</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 89</value>
   </data>
   <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 301</value>
@@ -753,8 +732,8 @@
   <data name="label21.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="label23.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="label19.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -776,9 +755,6 @@
   </data>
   <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
     <value>tableLayoutPanel1</value>
-  </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
   </data>
   <data name="&gt;&gt;linkElectro.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -846,11 +822,17 @@
   <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 13</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -864,8 +846,8 @@
   <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 352</value>
   </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
+    <value>29</value>
   </data>
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -876,17 +858,20 @@
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Disconnect Controller (Only on Bluetooth)</value>
+  </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 127</value>
   </data>
   <data name="lLChangelog.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 13</value>
   </data>
+  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 301</value>
+  </data>
   <data name="&gt;&gt;lbAbout.Name" xml:space="preserve">
     <value>lbAbout</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
   </data>
   <data name="label26.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -894,11 +879,17 @@
   <data name="&gt;&gt;label12.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 13</value>
+  </data>
   <data name="&gt;&gt;label19.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
     <value>324, 26</value>
+  </data>
+  <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 9</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Tap then hold touchpad*</value>
@@ -909,8 +900,8 @@
   <data name="&gt;&gt;linkInhexSTER.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Hotkeys</value>
+  <data name="&gt;&gt;label30.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lLChangelog.Parent" xml:space="preserve">
     <value>$this</value>
@@ -924,8 +915,8 @@
   <data name="label30.Text" xml:space="preserve">
     <value>Hide DS4 Controller</value>
   </data>
-  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 89</value>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Toggle</value>
   </data>
   <data name="&gt;&gt;linkInhexSTER.Name" xml:space="preserve">
     <value>linkInhexSTER</value>
@@ -933,8 +924,8 @@
   <data name="label17.Text" xml:space="preserve">
     <value>Click left side of touchpad</value>
   </data>
-  <data name="&gt;&gt;lLChangelog.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -957,9 +948,6 @@
   <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 13</value>
   </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
   <data name="&gt;&gt;label18.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
@@ -978,9 +966,6 @@
   <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 13</value>
   </data>
-  <data name="label20.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
   <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
@@ -990,11 +975,11 @@
   <data name="linkJays2Kings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
   <data name="&gt;&gt;label32.Name" xml:space="preserve">
     <value>label32</value>
-  </data>
-  <data name="&gt;&gt;label32.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Left Touch</value>
@@ -1016,6 +1001,9 @@
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>14</value>
+  </data>
+  <data name="label24.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;label22.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -1044,14 +1032,14 @@
   <data name="linkJays2Kings.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <data name="lbAbout.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>18</value>
   </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Disconnect Controller (Only on Bluetooth)</value>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 146</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
     <value>28</value>
@@ -1074,8 +1062,8 @@
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;linkDonate.Name" xml:space="preserve">
+    <value>linkDonate</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Two fingers up/down on touchpad*</value>
@@ -1086,8 +1074,8 @@
   <data name="&gt;&gt;label32.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 13</value>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="linkJhebbel.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 13</value>
@@ -1119,14 +1107,14 @@
   <data name="label31.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
   </data>
+  <data name="label20.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
   <data name="linkElectro.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label14.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;linkJays2Kings.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Hotkeys</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -1146,23 +1134,29 @@
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 32</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lLChangelog.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="label13.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
   </data>
   <data name="&gt;&gt;linkDonate.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Scroll Up/Down</value>
+  </data>
   <data name="&gt;&gt;linkJays2Kings.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label24.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>520, 434</value>
   </data>
-  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 301</value>
+  <data name="&gt;&gt;label32.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Scroll Up/Down</value>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
   </data>
   <data name="label21.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -1185,8 +1179,8 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Help</value>
   </data>
-  <data name="&gt;&gt;label21.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label30.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
   </data>
   <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 13</value>
@@ -1194,14 +1188,14 @@
   <data name="linkInhexSTER.Location" type="System.Drawing.Point, System.Drawing">
     <value>95, 382</value>
   </data>
-  <data name="label27.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left</value>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>The key will remain in a "held down" state until pressed again</value>
   </data>
-  <data name="label29.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;label33.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label16.Name" xml:space="preserve">
     <value>label16</value>
@@ -1215,8 +1209,8 @@
   <data name="label28.Text" xml:space="preserve">
     <value>Assign multiple keys to one input</value>
   </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Upper Touch</value>
+  <data name="&gt;&gt;label30.Name" xml:space="preserve">
+    <value>label30</value>
   </data>
   <data name="label27.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1239,8 +1233,8 @@
   <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="label13.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
+  <data name="label23.Text" xml:space="preserve">
+    <value>*If enabled</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>513, 318</value>
@@ -1251,11 +1245,14 @@
   <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
     <value>193, 203</value>
   </data>
+  <data name="label27.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
   <data name="button1.Text" xml:space="preserve">
     <value>Done</value>
   </data>
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 13</value>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Multitouch</value>
   </data>
   <data name="lbAbout.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
@@ -1275,8 +1272,8 @@
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 108</value>
   </data>
-  <data name="&gt;&gt;linkElectro.Name" xml:space="preserve">
-    <value>linkElectro</value>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 184</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Scan Code</value>
@@ -1290,11 +1287,14 @@
   <data name="&gt;&gt;lbAbout.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>12</value>
+  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 13</value>
   </data>
   <data name="&gt;&gt;lLChangelog.Name" xml:space="preserve">
     <value>lLChangelog</value>
+  </data>
+  <data name="&gt;&gt;label14.Name" xml:space="preserve">
+    <value>label14</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1315,8 +1315,8 @@ check if you are getting double input in games or R2 pauses games</value>
   <data name="label30.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 9</value>
+  <data name="&gt;&gt;linkJays2Kings.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 263</value>
@@ -1324,13 +1324,10 @@ check if you are getting double input in games or R2 pauses games</value>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;label14.Name" xml:space="preserve">
-    <value>label14</value>
+  <data name="&gt;&gt;linkElectro.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>fr-FR</value>
   </metadata>
 </root>

@@ -47,6 +47,7 @@
             this.editProfileForController3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -148,10 +149,10 @@
             // 
             // lvDebug
             // 
-            resources.ApplyResources(this.lvDebug, "lvDebug");
             this.lvDebug.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chTime,
             this.chData});
+            resources.ApplyResources(this.lvDebug, "lvDebug");
             this.lvDebug.FullRowSelect = true;
             this.lvDebug.Name = "lvDebug";
             this.lvDebug.UseCompatibleStateImageBehavior = false;
@@ -173,12 +174,12 @@
             // 
             // pnlButton
             // 
-            resources.ApplyResources(this.pnlButton, "pnlButton");
             this.pnlButton.BackColor = System.Drawing.SystemColors.Control;
             this.pnlButton.Controls.Add(this.lBTest);
             this.pnlButton.Controls.Add(this.btnStartStop);
             this.pnlButton.Controls.Add(this.lbLastMessage);
             this.pnlButton.Controls.Add(this.llbHelp);
+            resources.ApplyResources(this.pnlButton, "pnlButton");
             this.pnlButton.Name = "pnlButton";
             // 
             // lBTest
@@ -223,50 +224,57 @@
             // 
             // cMTaskbar
             // 
-            resources.ApplyResources(this.cMTaskbar, "cMTaskbar");
             this.cMTaskbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editProfileForController1ToolStripMenuItem,
             this.editProfileForController2ToolStripMenuItem,
             this.editProfileForController3ToolStripMenuItem,
             this.editProfileForController4ToolStripMenuItem,
             this.toolStripSeparator1,
+            this.startToolStripMenuItem,
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.cMTaskbar.Name = "cMTaskbar";
+            resources.ApplyResources(this.cMTaskbar, "cMTaskbar");
             this.cMTaskbar.Tag = "25";
             // 
             // editProfileForController1ToolStripMenuItem
             // 
-            resources.ApplyResources(this.editProfileForController1ToolStripMenuItem, "editProfileForController1ToolStripMenuItem");
             this.editProfileForController1ToolStripMenuItem.Name = "editProfileForController1ToolStripMenuItem";
+            resources.ApplyResources(this.editProfileForController1ToolStripMenuItem, "editProfileForController1ToolStripMenuItem");
             this.editProfileForController1ToolStripMenuItem.Tag = "0";
             this.editProfileForController1ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
             // 
             // editProfileForController2ToolStripMenuItem
             // 
-            resources.ApplyResources(this.editProfileForController2ToolStripMenuItem, "editProfileForController2ToolStripMenuItem");
             this.editProfileForController2ToolStripMenuItem.Name = "editProfileForController2ToolStripMenuItem";
+            resources.ApplyResources(this.editProfileForController2ToolStripMenuItem, "editProfileForController2ToolStripMenuItem");
             this.editProfileForController2ToolStripMenuItem.Tag = "1";
             this.editProfileForController2ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
             // 
             // editProfileForController3ToolStripMenuItem
             // 
-            resources.ApplyResources(this.editProfileForController3ToolStripMenuItem, "editProfileForController3ToolStripMenuItem");
             this.editProfileForController3ToolStripMenuItem.Name = "editProfileForController3ToolStripMenuItem";
+            resources.ApplyResources(this.editProfileForController3ToolStripMenuItem, "editProfileForController3ToolStripMenuItem");
             this.editProfileForController3ToolStripMenuItem.Tag = "2";
             this.editProfileForController3ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
             // 
             // editProfileForController4ToolStripMenuItem
             // 
-            resources.ApplyResources(this.editProfileForController4ToolStripMenuItem, "editProfileForController4ToolStripMenuItem");
             this.editProfileForController4ToolStripMenuItem.Name = "editProfileForController4ToolStripMenuItem";
+            resources.ApplyResources(this.editProfileForController4ToolStripMenuItem, "editProfileForController4ToolStripMenuItem");
             this.editProfileForController4ToolStripMenuItem.Tag = "4";
             this.editProfileForController4ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // startToolStripMenuItem
+            // 
+            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
+            resources.ApplyResources(this.startToolStripMenuItem, "startToolStripMenuItem");
+            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -276,14 +284,14 @@
             // 
             // exitToolStripMenuItem
             // 
-            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // openProfiles
             // 
@@ -292,20 +300,20 @@
             // 
             // tabMain
             // 
-            resources.ApplyResources(this.tabMain, "tabMain");
             this.tabMain.Controls.Add(this.tabControllers);
             this.tabMain.Controls.Add(this.tabProfiles);
             this.tabMain.Controls.Add(this.tabAutoProfiles);
             this.tabMain.Controls.Add(this.tabSettings);
             this.tabMain.Controls.Add(this.tabLog);
+            resources.ApplyResources(this.tabMain, "tabMain");
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
             this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabMain_SelectedIndexChanged);
             // 
             // tabControllers
             // 
-            resources.ApplyResources(this.tabControllers, "tabControllers");
             this.tabControllers.Controls.Add(this.tLPControllers);
+            resources.ApplyResources(this.tabControllers, "tabControllers");
             this.tabControllers.Name = "tabControllers";
             this.tabControllers.UseVisualStyleBackColor = true;
             // 
@@ -344,6 +352,8 @@
             this.pBStatus1.InitialImage = global::ScpServer.Properties.Resources.BT;
             this.pBStatus1.Name = "pBStatus1";
             this.pBStatus1.TabStop = false;
+            this.pBStatus1.Tag = "0";
+            this.pBStatus1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pBStatus_MouseClick);
             // 
             // lbPad1
             // 
@@ -479,6 +489,8 @@
             this.pBStatus2.InitialImage = global::ScpServer.Properties.Resources.BT;
             this.pBStatus2.Name = "pBStatus2";
             this.pBStatus2.TabStop = false;
+            this.pBStatus2.Tag = "1";
+            this.pBStatus2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pBStatus_MouseClick);
             // 
             // pBStatus3
             // 
@@ -486,6 +498,8 @@
             this.pBStatus3.InitialImage = global::ScpServer.Properties.Resources.BT;
             this.pBStatus3.Name = "pBStatus3";
             this.pBStatus3.TabStop = false;
+            this.pBStatus3.Tag = "2";
+            this.pBStatus3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pBStatus_MouseClick);
             // 
             // pBStatus4
             // 
@@ -493,21 +507,23 @@
             this.pBStatus4.InitialImage = global::ScpServer.Properties.Resources.BT;
             this.pBStatus4.Name = "pBStatus4";
             this.pBStatus4.TabStop = false;
+            this.pBStatus4.Tag = "3";
+            this.pBStatus4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pBStatus_MouseClick);
             // 
             // tabProfiles
             // 
-            resources.ApplyResources(this.tabProfiles, "tabProfiles");
             this.tabProfiles.Controls.Add(this.lBProfiles);
             this.tabProfiles.Controls.Add(this.tSOptions);
             this.tabProfiles.Controls.Add(this.toolStrip1);
+            resources.ApplyResources(this.tabProfiles, "tabProfiles");
             this.tabProfiles.Name = "tabProfiles";
             this.tabProfiles.UseVisualStyleBackColor = true;
             // 
             // lBProfiles
             // 
-            resources.ApplyResources(this.lBProfiles, "lBProfiles");
             this.lBProfiles.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lBProfiles.ContextMenuStrip = this.cMProfile;
+            resources.ApplyResources(this.lBProfiles, "lBProfiles");
             this.lBProfiles.FormattingEnabled = true;
             this.lBProfiles.MultiColumn = true;
             this.lBProfiles.Name = "lBProfiles";
@@ -517,7 +533,6 @@
             // 
             // cMProfile
             // 
-            resources.ApplyResources(this.cMProfile, "cMProfile");
             this.cMProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editToolStripMenuItem,
             this.assignToController1ToolStripMenuItem,
@@ -530,6 +545,7 @@
             this.importToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.cMProfile.Name = "cMProfile";
+            resources.ApplyResources(this.cMProfile, "cMProfile");
             // 
             // editToolStripMenuItem
             // 
@@ -539,61 +555,60 @@
             // 
             // assignToController1ToolStripMenuItem
             // 
-            resources.ApplyResources(this.assignToController1ToolStripMenuItem, "assignToController1ToolStripMenuItem");
             this.assignToController1ToolStripMenuItem.Name = "assignToController1ToolStripMenuItem";
+            resources.ApplyResources(this.assignToController1ToolStripMenuItem, "assignToController1ToolStripMenuItem");
             this.assignToController1ToolStripMenuItem.Click += new System.EventHandler(this.assignToController1ToolStripMenuItem_Click);
             // 
             // assignToController2ToolStripMenuItem
             // 
-            resources.ApplyResources(this.assignToController2ToolStripMenuItem, "assignToController2ToolStripMenuItem");
             this.assignToController2ToolStripMenuItem.Name = "assignToController2ToolStripMenuItem";
+            resources.ApplyResources(this.assignToController2ToolStripMenuItem, "assignToController2ToolStripMenuItem");
             this.assignToController2ToolStripMenuItem.Click += new System.EventHandler(this.assignToController2ToolStripMenuItem_Click);
             // 
             // assignToController3ToolStripMenuItem
             // 
-            resources.ApplyResources(this.assignToController3ToolStripMenuItem, "assignToController3ToolStripMenuItem");
             this.assignToController3ToolStripMenuItem.Name = "assignToController3ToolStripMenuItem";
+            resources.ApplyResources(this.assignToController3ToolStripMenuItem, "assignToController3ToolStripMenuItem");
             this.assignToController3ToolStripMenuItem.Click += new System.EventHandler(this.assignToController3ToolStripMenuItem_Click);
             // 
             // assignToController4ToolStripMenuItem
             // 
-            resources.ApplyResources(this.assignToController4ToolStripMenuItem, "assignToController4ToolStripMenuItem");
             this.assignToController4ToolStripMenuItem.Name = "assignToController4ToolStripMenuItem";
+            resources.ApplyResources(this.assignToController4ToolStripMenuItem, "assignToController4ToolStripMenuItem");
             this.assignToController4ToolStripMenuItem.Click += new System.EventHandler(this.assignToController4ToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
-            resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.tsBDeleteProfle_Click);
             // 
             // duplicateToolStripMenuItem
             // 
-            resources.ApplyResources(this.duplicateToolStripMenuItem, "duplicateToolStripMenuItem");
             this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
+            resources.ApplyResources(this.duplicateToolStripMenuItem, "duplicateToolStripMenuItem");
             this.duplicateToolStripMenuItem.Click += new System.EventHandler(this.tSBDupProfile_Click);
             // 
             // newProfileToolStripMenuItem
             // 
-            resources.ApplyResources(this.newProfileToolStripMenuItem, "newProfileToolStripMenuItem");
             this.newProfileToolStripMenuItem.Name = "newProfileToolStripMenuItem";
+            resources.ApplyResources(this.newProfileToolStripMenuItem, "newProfileToolStripMenuItem");
             this.newProfileToolStripMenuItem.Click += new System.EventHandler(this.tsBNewProfile_Click);
             // 
             // importToolStripMenuItem
             // 
-            resources.ApplyResources(this.importToolStripMenuItem, "importToolStripMenuItem");
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            resources.ApplyResources(this.importToolStripMenuItem, "importToolStripMenuItem");
             this.importToolStripMenuItem.Click += new System.EventHandler(this.tSBImportProfile_Click);
             // 
             // exportToolStripMenuItem
             // 
-            resources.ApplyResources(this.exportToolStripMenuItem, "exportToolStripMenuItem");
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            resources.ApplyResources(this.exportToolStripMenuItem, "exportToolStripMenuItem");
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.tSBExportProfile_Click);
             // 
             // tSOptions
             // 
-            resources.ApplyResources(this.tSOptions, "tSOptions");
             this.tSOptions.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tSOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
@@ -602,54 +617,54 @@
             this.tSBCancel,
             this.toolStripSeparator3,
             this.tSBKeepSize});
+            resources.ApplyResources(this.tSOptions, "tSOptions");
             this.tSOptions.Name = "tSOptions";
             this.tSOptions.ShowItemToolTips = false;
             // 
             // toolStripLabel1
             // 
-            resources.ApplyResources(this.toolStripLabel1, "toolStripLabel1");
             this.toolStripLabel1.Name = "toolStripLabel1";
+            resources.ApplyResources(this.toolStripLabel1, "toolStripLabel1");
             // 
             // tSTBProfile
             // 
-            resources.ApplyResources(this.tSTBProfile, "tSTBProfile");
             this.tSTBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
             this.tSTBProfile.Name = "tSTBProfile";
+            resources.ApplyResources(this.tSTBProfile, "tSTBProfile");
             this.tSTBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
             this.tSTBProfile.Leave += new System.EventHandler(this.tBProfile_Leave);
             this.tSTBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
             // 
             // tSBSaveProfile
             // 
-            resources.ApplyResources(this.tSBSaveProfile, "tSBSaveProfile");
             this.tSBSaveProfile.AutoToolTip = false;
             this.tSBSaveProfile.Image = global::ScpServer.Properties.Resources.saveprofile;
+            resources.ApplyResources(this.tSBSaveProfile, "tSBSaveProfile");
             this.tSBSaveProfile.Name = "tSBSaveProfile";
             this.tSBSaveProfile.Click += new System.EventHandler(this.tSBSaveProfile_Click);
             // 
             // tSBCancel
             // 
-            resources.ApplyResources(this.tSBCancel, "tSBCancel");
             this.tSBCancel.AutoToolTip = false;
             this.tSBCancel.Image = global::ScpServer.Properties.Resources.delete;
+            resources.ApplyResources(this.tSBCancel, "tSBCancel");
             this.tSBCancel.Name = "tSBCancel";
             this.tSBCancel.Click += new System.EventHandler(this.tSBCancel_Click);
             // 
             // toolStripSeparator3
             // 
-            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
             // tSBKeepSize
             // 
-            resources.ApplyResources(this.tSBKeepSize, "tSBKeepSize");
             this.tSBKeepSize.Image = global::ScpServer.Properties.Resources.size;
+            resources.ApplyResources(this.tSBKeepSize, "tSBKeepSize");
             this.tSBKeepSize.Name = "tSBKeepSize";
             this.tSBKeepSize.Click += new System.EventHandler(this.tSBKeepSize_Click);
             // 
             // toolStrip1
             // 
-            resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsBNewProfle,
@@ -658,19 +673,20 @@
             this.tSBDupProfile,
             this.tSBImportProfile,
             this.tSBExportProfile});
+            resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.Name = "toolStrip1";
             // 
             // tsBNewProfle
             // 
-            resources.ApplyResources(this.tsBNewProfle, "tsBNewProfle");
             this.tsBNewProfle.Image = global::ScpServer.Properties.Resources.newprofile;
+            resources.ApplyResources(this.tsBNewProfle, "tsBNewProfle");
             this.tsBNewProfle.Name = "tsBNewProfle";
             this.tsBNewProfle.Click += new System.EventHandler(this.tsBNewProfile_Click);
             // 
             // tsBEditProfile
             // 
-            resources.ApplyResources(this.tsBEditProfile, "tsBEditProfile");
             this.tsBEditProfile.Image = global::ScpServer.Properties.Resources.edit;
+            resources.ApplyResources(this.tsBEditProfile, "tsBEditProfile");
             this.tsBEditProfile.Name = "tsBEditProfile";
             this.tsBEditProfile.Click += new System.EventHandler(this.tsBNEditProfile_Click);
             // 
@@ -688,8 +704,8 @@
             // 
             // tSBImportProfile
             // 
-            resources.ApplyResources(this.tSBImportProfile, "tSBImportProfile");
             this.tSBImportProfile.Image = global::ScpServer.Properties.Resources.import;
+            resources.ApplyResources(this.tSBImportProfile, "tSBImportProfile");
             this.tSBImportProfile.Name = "tSBImportProfile";
             this.tSBImportProfile.Click += new System.EventHandler(this.tSBImportProfile_Click);
             // 
@@ -707,8 +723,8 @@
             // 
             // tabSettings
             // 
-            resources.ApplyResources(this.tabSettings, "tabSettings");
             this.tabSettings.Controls.Add(this.flowLayoutPanel1);
+            resources.ApplyResources(this.tabSettings, "tabSettings");
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.UseVisualStyleBackColor = true;
             // 
@@ -769,20 +785,20 @@
             // 
             // pNUpdate
             // 
-            resources.ApplyResources(this.pNUpdate, "pNUpdate");
             this.pNUpdate.Controls.Add(this.cBUpdateTime);
             this.pNUpdate.Controls.Add(this.lBCheckEvery);
             this.pNUpdate.Controls.Add(this.nUDUpdateTime);
+            resources.ApplyResources(this.pNUpdate, "pNUpdate");
             this.pNUpdate.Name = "pNUpdate";
             // 
             // cBUpdateTime
             // 
-            resources.ApplyResources(this.cBUpdateTime, "cBUpdateTime");
             this.cBUpdateTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBUpdateTime.FormattingEnabled = true;
             this.cBUpdateTime.Items.AddRange(new object[] {
             resources.GetString("cBUpdateTime.Items"),
             resources.GetString("cBUpdateTime.Items1")});
+            resources.ApplyResources(this.cBUpdateTime, "cBUpdateTime");
             this.cBUpdateTime.Name = "cBUpdateTime";
             this.cBUpdateTime.SelectedIndexChanged += new System.EventHandler(this.cBUpdateTime_SelectedIndexChanged);
             // 
@@ -853,9 +869,9 @@
             // 
             // tabLog
             // 
-            resources.ApplyResources(this.tabLog, "tabLog");
             this.tabLog.Controls.Add(this.lvDebug);
             this.tabLog.Controls.Add(this.btnClear);
+            resources.ApplyResources(this.tabLog, "tabLog");
             this.tabLog.Name = "tabLog";
             this.tabLog.UseVisualStyleBackColor = true;
             // 
@@ -865,8 +881,8 @@
             // 
             // ScpForm
             // 
-            resources.ApplyResources(this, "$this");
             this.AllowDrop = true;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tabMain);
@@ -1004,6 +1020,7 @@
         private System.Windows.Forms.CheckBox cBNotifications;
         private System.Windows.Forms.CheckBox cBDisconnectBT;
         private System.Windows.Forms.CheckBox cBSwipeProfiles;
+        private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

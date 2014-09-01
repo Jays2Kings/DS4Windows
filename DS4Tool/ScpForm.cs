@@ -44,6 +44,7 @@ namespace ScpServer
         Options opt;
         private System.Drawing.Size oldsize;
         WinProgs WP;
+        ToolTip tt = new ToolTip();
 
         protected void SetupArrays()
         {
@@ -86,7 +87,6 @@ namespace ScpServer
             //CheckDrivers();
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
-            ToolTip tt = new ToolTip();
             if (File.Exists(appdatapath + "\\Profiles.xml"))
                 tt.SetToolTip(linkUninstall, Properties.Resources.IfRemovingDS4Windows);
             tt.SetToolTip(cBSwipeProfiles, Properties.Resources.TwoFingerSwipe);
@@ -229,6 +229,7 @@ namespace ScpServer
             ControllerStatusChanged(false);
             if (btnStartStop.Enabled)
                 btnStartStop_Clicked();
+            startToolStripMenuItem.Text = btnStartStop.Text;
             cBNotifications.Checked = Global.getNotifications();
             cBSwipeProfiles.Checked = Global.getSwipeProfiles();
             int checkwhen = Global.getCheckWhen();
@@ -266,11 +267,11 @@ namespace ScpServer
                 linkUninstall.Visible = false;
             StartWindowsCheckBox.Checked = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
         }
-        
+
         private void test_Tick(object sender, EventArgs e)
         {
             lBTest.Visible = true;
-            lBTest.Text = rootHub.DS4Controllers[0].Latency.ToString();
+            lBTest.Text = rootHub.DS4Controllers[0].LeftHeavySlowRumble.ToString();
         }
         void Hotkeys(object sender, EventArgs e)
         {
@@ -580,6 +581,7 @@ namespace ScpServer
                 hotkeystimer.Stop();
                 btnStartStop.Text = Properties.Resources.StartText;
             }
+            startToolStripMenuItem.Text = btnStartStop.Text;
         }
         protected void btnClear_Click(object sender, EventArgs e)
         {
@@ -627,9 +629,9 @@ namespace ScpServer
                 Pads[Index].Text = rootHub.getDS4MacAddress(Index);
                 switch (rootHub.getDS4Status(Index))
                 {
-                    case "USB": statPB[Index].Image = Properties.Resources.USB; break;
-                    case "BT": statPB[Index].Image = Properties.Resources.BT; break;
-                    default: statPB[Index].Image = Properties.Resources.none; break;
+                    case "USB": statPB[Index].Image = Properties.Resources.USB; tt.SetToolTip(statPB[Index], ""); break;
+                    case "BT": statPB[Index].Image = Properties.Resources.BT; tt.SetToolTip(statPB[Index], "Right click to disconnect"); break;
+                    default: statPB[Index].Image = Properties.Resources.none; tt.SetToolTip(statPB[Index], ""); break;
                 }
                 Batteries[Index].Text = rootHub.getDS4Battery(Index);
                 if (Pads[Index].Text != String.Empty)
@@ -664,7 +666,13 @@ namespace ScpServer
             else
                 notifyIcon1.Text = tooltip;
         }
-
+        
+        private void pBStatus_MouseClick(object sender, MouseEventArgs e)
+        {
+            int i = Int32.Parse(((PictureBox)sender).Tag.ToString());
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rootHub.getDS4Status(i) == "BT")
+                rootHub.DS4Controllers[i].DisconnectBT();
+        }
 
         private void Enable_Controls(int device, bool on)
         {
@@ -903,6 +911,7 @@ namespace ScpServer
             btnStartStop_Clicked(false);
             btnStartStop_Clicked(false);
             Global.Save();
+            //if (MessageBox.Show("Restart DS4Windows?", "") == System.Windows.Forms.DialogResult.OK);
         }
 
         private void startMinimizedCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -965,8 +974,12 @@ namespace ScpServer
         {
             this.Show();
             WindowState = FormWindowState.Normal;
-        }        
-
+        }
+        
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnStartStop_Clicked();
+        }
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -1317,13 +1330,6 @@ namespace ScpServer
         private void cBSwipeProfiles_CheckedChanged(object sender, EventArgs e)
         {
             Global.setSwipeProfiles(cBSwipeProfiles.Checked);
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            Global.saveColor(0, Global.loadColor(0).red, Global.loadColor(0).green, Global.loadColor(0).blue);
-            //Global.saveColor(0, 0, 122, 255);
-            //DS4LightBar.updateLightBar(rootHub.DS4Controllers[0], 0, rootHub.getDS4State(0), rootHub.ExposedState[0]);
         }
     }
 

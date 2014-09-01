@@ -724,7 +724,7 @@ namespace ScpServer
         {
             if (((Button)sender).Text == Properties.Resources.TestText)
             {
-                scpDevice.setRumble(255, 255, (int)nUDSixaxis.Value - 1);
+                scpDevice.setRumble((byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), (int)nUDSixaxis.Value - 1);
                 ((Button)sender).Text = Properties.Resources.StopText;
             }
             else

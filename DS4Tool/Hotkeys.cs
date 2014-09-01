@@ -32,7 +32,7 @@ namespace ScpServer
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://code.google.com/r/jays2kings-ds4tool/source/list?name=jay");
+            System.Diagnostics.Process.Start("https://github.com/Jays2Kings/DS4Windows");
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

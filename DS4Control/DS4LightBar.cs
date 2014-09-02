@@ -131,7 +131,12 @@ namespace DS4Control
             else if (shuttingdown)
                 color = new DS4Color { red = 0, green = 0, blue = 0 };
             else
-                color = new DS4Color { red = 32, green = 64, blue = 64 };
+            {
+                if (device.ConnectionType == ConnectionType.BT)
+                    color = new DS4Color { red = 32, green = 64, blue = 64 };
+                else
+                    color = new DS4Color { red = 0, green = 0, blue = 0 };
+            }
             Color dsc = Color.FromArgb(color.red, color.green, color.blue);
             if (Global.getAProfile(deviceNum).ToLower().Contains("distance"))
             { //Thing I did for Distance
@@ -171,7 +176,7 @@ namespace DS4Control
             }
             if (device.LightBarOnDuration != haptics.LightBarFlashDurationOn && device.LightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
                 haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
-            if (device.LightBarOnDuration == 1)
+            if (device.LightBarOnDuration == 1) //helps better reset the color
                 System.Threading.Thread.Sleep(5);
             device.pushHapticState(haptics);
         }

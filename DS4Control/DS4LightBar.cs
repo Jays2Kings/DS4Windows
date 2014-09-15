@@ -137,12 +137,15 @@ namespace DS4Control
                 else
                     color = new DS4Color { red = 0, green = 0, blue = 0 };
             }
-            Color dsc = Color.FromArgb(color.red, color.green, color.blue);
-            if (Global.getAProfile(deviceNum).ToLower().Contains("distance"))
+            bool distanceprofile = (Global.getAProfile(deviceNum).ToLower().Contains("distance") || Global.tempprofilename[deviceNum].ToLower().Contains("distance"));
+            if (distanceprofile && !defualtLight)
             { //Thing I did for Distance
                 float rumble = device.LeftHeavySlowRumble / 2.55f;
-                if (device.LeftHeavySlowRumble > 50)
-                    color = getTransitionedColor(color, rumble);
+                byte max= Math.Max(color.red, Math.Max(color.green, color.blue));
+                if (device.LeftHeavySlowRumble > 100)
+                    color = getTransitionedColor(new DS4Color { green = max, red = max }, rumble, new DS4Color { red = 255 });
+                else
+                    color = getTransitionedColor(color, device.LeftHeavySlowRumble, getTransitionedColor(new DS4Color { green = max, red = max }, 39.6078f, new DS4Color { red = 255 }));
             }
             DS4HapticState haptics = new DS4HapticState
             {
@@ -158,7 +161,7 @@ namespace DS4Control
                     haptics.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
                     haptics.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];
                 }
-                else if (Global.getAProfile(deviceNum).ToLower().Contains("distance") && device.LeftHeavySlowRumble > 155) //also part of Distance
+                else if (distanceprofile && device.LeftHeavySlowRumble > 155) //also part of Distance
                 {
                     haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)((-device.LeftHeavySlowRumble + 265));
                     haptics.LightBarExplicitlyOff = true;
@@ -237,10 +240,8 @@ namespace DS4Control
                 return new DS4Color { red = 255, green = 0, blue = 0 };
         }
 
-        public static DS4Color getTransitionedColor(DS4Color c1, double ratio)
-        {//;
-            //Color cs = Color.FromArgb(c1.red, c1.green, c1.blue);
-            DS4Color c2 = new DS4Color { red = 255, green = 0, blue = 0 };
+        public static DS4Color getTransitionedColor(DS4Color c1, double ratio, DS4Color c2)
+        {
             c1.red = applyRatio(c1.red, c2.red, ratio);
             c1.green = applyRatio(c1.green, c2.green, ratio);
             c1.blue = applyRatio(c1.blue, c2.blue, ratio);
@@ -254,7 +255,7 @@ namespace DS4Control
             else if (r < 0)
                 r = 0;
             uint ratio = (uint)r;
-            if (b1 > b2)
+            if (b1 > b2)// b2 == 255)
             {
                 ratio = 100 - (uint)r;
             }

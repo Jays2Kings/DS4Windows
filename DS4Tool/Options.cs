@@ -58,13 +58,29 @@ namespace ScpServer
                 if (control is Button)
                     if (!((Button)control).Name.Contains("sbtn"))
                         subbuttons.Add((Button)control);
+            root.lbLastMessage.ForeColor = Color.Black;
+            root.lbLastMessage.Text = "Hover over items to see description or more about";
+            foreach (System.Windows.Forms.Control control in Controls)
+                if (control.HasChildren)
+                    foreach (System.Windows.Forms.Control ctrl in control.Controls)
+                        if (ctrl.HasChildren)
+                            foreach (System.Windows.Forms.Control ctrl2 in ctrl.Controls)
+                                if (ctrl2.HasChildren)
+                                    foreach (System.Windows.Forms.Control ctrl3 in ctrl2.Controls)
+                                        ctrl3.MouseHover += Items_MouseHover;
+                                else
+                                    ctrl2.MouseHover += Items_MouseHover;
+                        else
+                            ctrl.MouseHover += Items_MouseHover;
+                else
+                    control.MouseHover += Items_MouseHover;
             if (device < 4)
             nUDSixaxis.Value = deviceNum + 1;
             if (filename != "")
             {
                 if (device == 4)
                     Global.setAProfile(4, name);
-                Global.LoadProfile(device, buttons.ToArray(), subbuttons.ToArray());
+                Global.LoadProfile(device, buttons.ToArray(), subbuttons.ToArray(), false, scpDevice);
                 DS4Color color = Global.loadColor(device);
                 redBar.Value = color.red;
                 greenBar.Value = color.green;
@@ -153,6 +169,7 @@ namespace ScpServer
                 }
                 cBDinput.Checked = Global.getDinputOnly(device);
                 olddinputcheck = cBDinput.Checked;
+                cbStartTouchpadOff.Checked = Global.getStartTouchpadOff(device);
             }
             else
                 Set();
@@ -161,25 +178,7 @@ namespace ScpServer
             foreach (Button b in subbuttons)
                 b.MouseHover += button_MouseHover;
            
-            tp.SetToolTip(cBlowerRCOn, Properties.Resources.BestUsedRightSide);
-            tp.SetToolTip(cBDoubleTap, Properties.Resources.TapAndHold);
-            tp.SetToolTip(lbControlTip, Properties.Resources.UseControllerForMapping);
-            tp.SetToolTip(cBTouchpadJitterCompensation, "Use Sixaxis to help calculate touchpad movement");
-            tp.SetToolTip(pBRainbow, Properties.Resources.AlwaysRainbow);
-            tp.SetToolTip(cBFlushHIDQueue, "Flush HID Queue after each reading");
-            tp.SetToolTip(cBLightbyBattery, "Also dim light by idle timeout if on");
-            tp.SetToolTip(lbGryo, "Click to see readout of Sixaxis Gyro");
-            tp.SetToolTip(tBsixaxisGyroX, "GyroX, Left and Right Tilt");
-            tp.SetToolTip(tBsixaxisGyroY, "GyroY, Forward and Back Tilt");
-            tp.SetToolTip(tBsixaxisGyroZ, "GyroZ, Up and Down Tilt");
-            tp.SetToolTip(tBsixaxisAccelX, "AccelX");
-            tp.SetToolTip(tBsixaxisAccelY, "AccelY");
-            tp.SetToolTip(tBsixaxisAccelZ, "AccelZ");
-            tp.SetToolTip(lbEmpty, Properties.Resources.CopyFullColor);
-            tp.SetToolTip(lbShift, Properties.Resources.CopyFullColor);
-            tp.SetToolTip(lbSATip, "Click for advanced Sixaxis reading");
-            tp.SetToolTip(cBDinput, Properties.Resources.DinputOnly);
-            tp.SetToolTip(lbFlashAt, "Click to change flash color. Black = default color");
+            
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
@@ -404,6 +403,7 @@ namespace ScpServer
             Global.setMouseAccel(device, cBMouseAccel.Checked);
             Global.setShiftModifier(device, cBShiftControl.SelectedIndex);
             Global.setDinputOnly(device, cBDinput.Checked);
+            Global.setStartTouchpadOff(device, cbStartTouchpadOff.Checked);
 
             if (nUDRainbow.Value == 0) pBRainbow.Image = greyscale;
             else pBRainbow.Image = colored;
@@ -790,12 +790,14 @@ namespace ScpServer
         private void Options_Closed(object sender, FormClosedEventArgs e)
         {
             for (int i = 0; i < 4; i++)
-                Global.LoadProfile(i); //Refreshes all profiles in case other controllers are using the same profile
+                Global.LoadProfile(i, false, scpDevice); //Refreshes all profiles in case other controllers are using the same profile
             if (olddinputcheck != cBDinput.Checked)
             {
                 root.btnStartStop_Clicked(false);
                 root.btnStartStop_Clicked(false);
             }
+            if (btnRumbleTest.Text == Properties.Resources.StopText)
+                scpDevice.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
             inputtimer.Stop();
             sixaxisTimer.Stop();
         }
@@ -864,14 +866,14 @@ namespace ScpServer
             lBControls.Items[26] = "RS Down : " + bnRSDown.Text;
             lBControls.Items[27] = "RS Left : " + bnRSLeft.Text;
             lBControls.Items[28] = "RS Right : " + bnRSRight.Text;
-            lBControls.Items[29] = "Tilt Up : " + UpdateGyroList(bnGyroZN);
-            lBControls.Items[30] = "Tilt Down : " + UpdateGyroList(bnGyroZP);
-            lBControls.Items[31] = "Tilt Left : " + UpdateGyroList(bnGyroXP);
-            lBControls.Items[32] = "Tilt Right : " + UpdateGyroList(bnGyroXN);
-            bnGyroZN.Text = "Tilt Up";
-            bnGyroZP.Text = "Tilt Down";
-            bnGyroXP.Text = "Tilt Left";
-            bnGyroXN.Text = "Tilt Right";
+            lBControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateGyroList(bnGyroZN);
+            lBControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateGyroList(bnGyroZP);
+            lBControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateGyroList(bnGyroXP);
+            lBControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateGyroList(bnGyroXN);
+            bnGyroZN.Text = Properties.Resources.TiltUp;
+            bnGyroZP.Text = Properties.Resources.TiltDown;
+            bnGyroXP.Text = Properties.Resources.TiltLeft;
+            bnGyroXN.Text = Properties.Resources.TiltRight;
 
             foreach (Button b in subbuttons)
                 if (b.Tag == null)
@@ -905,14 +907,14 @@ namespace ScpServer
             lBShiftControls.Items[26] = "RS Down : " + sbnRSDown.Text;
             lBShiftControls.Items[27] = "RS Left : " + sbnRSLeft.Text;
             lBShiftControls.Items[28] = "RS Right : " + sbnRSRight.Text;
-            lBShiftControls.Items[29] = "Tilt Up : " + UpdateGyroList(sbnGyroZN);
-            lBShiftControls.Items[30] = "Tilt Down : " + UpdateGyroList(sbnGyroZP);
-            lBShiftControls.Items[31] = "Tilt Left : " + UpdateGyroList(sbnGyroXP);
-            lBShiftControls.Items[32] = "Tilt Right : " + UpdateGyroList(sbnGyroXN);
-            sbnGyroZN.Text = "Tilt Up";
-            sbnGyroZP.Text = "Tilt Down";
-            sbnGyroXP.Text = "Tilt Left";
-            sbnGyroXN.Text = "Tilt Right";
+            lBShiftControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateGyroList(sbnGyroZN);
+            lBShiftControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateGyroList(sbnGyroZP);
+            lBShiftControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateGyroList(sbnGyroXP);
+            lBShiftControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateGyroList(sbnGyroXN);
+            sbnGyroZN.Text = Properties.Resources.TiltUp;
+            sbnGyroZP.Text = Properties.Resources.TiltDown;
+            sbnGyroXP.Text = Properties.Resources.TiltLeft;
+            sbnGyroXN.Text = Properties.Resources.TiltRight;
         }
 
         private string UpdateGyroList(Button button)
@@ -1391,6 +1393,48 @@ namespace ScpServer
             }
             //oldChargingColor = null;
             //oldLowLedColor = null;
+        }
+
+        private void cbStartTouchpadOff_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setStartTouchpadOff(device, cbStartTouchpadOff.Checked);
+        }
+
+        private void cBDinput_MouseHover(object sender, EventArgs e)
+        {
+            root.lbLastMessage.Text = Properties.Resources.DinputOnly;
+        }
+
+        private void Items_MouseHover(object sender, EventArgs e)
+        {
+            switch (((System.Windows.Forms.Control)sender).Name)
+            {
+                case "cBlowerRCOn": root.lbLastMessage.Text = Properties.Resources.BestUsedRightSide; break;
+                case "cBDoubleTap": root.lbLastMessage.Text = Properties.Resources.TapAndHold; break;
+                case "lbControlTip": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;
+                case "cBTouchpadJitterCompensation": root.lbLastMessage.Text = "Use Sixaxis to help calculate touchpad movement"; break;
+                case "pBRainbow": root.lbLastMessage.Text = Properties.Resources.AlwaysRainbow; break;
+                case "cBFlushHIDQueue": root.lbLastMessage.Text = "Flush HID Queue after each reading"; break;
+                case "cBLightbyBattery": root.lbLastMessage.Text = "Also dim light by idle timeout if on"; break;
+                case "lbGryo": root.lbLastMessage.Text = "Click to see readout of Sixaxis Gyro"; break;
+                case "tBsixaxisGyroX": root.lbLastMessage.Text = "GyroX, Left and Right Tilt"; break;
+                case "tBsixaxisGyroY": root.lbLastMessage.Text = "GyroY, Forward and Back Tilt"; break;
+                case "tBsixaxisGyroZ": root.lbLastMessage.Text = "GyroZ, Up and Down Tilt"; break;
+                case "tBsixaxisAccelX": root.lbLastMessage.Text = "AccelX"; break;
+                case "tBsixaxisAccelY": root.lbLastMessage.Text = "AccelY"; break;
+                case "tBsixaxisAccelZ": root.lbLastMessage.Text = "AccelZ"; break;
+                case "lbEmpty": root.lbLastMessage.Text = Properties.Resources.CopyFullColor; break;
+                case "lbShift": root.lbLastMessage.Text = Properties.Resources.CopyFullColor; break;
+                case "lbSATip": root.lbLastMessage.Text = "Click for advanced Sixaxis reading"; break;
+                case "cBDinput": root.lbLastMessage.Text = Properties.Resources.DinputOnly; break;
+                case "lbFlashAt": root.lbLastMessage.Text = "Click to change flash color. Black = default color"; break;
+                case "cbStartTouchpadOff": root.lbLastMessage.Text = "Re-enable by pressing PS+Touchpad"; break;
+                default: root.lbLastMessage.Text = "Hover over items to see description or more about"; break;
+            }
+            if (root.lbLastMessage.Text != "Hover over items to see description or more about")
+                root.lbLastMessage.ForeColor = Color.Black;
+            else
+                root.lbLastMessage.ForeColor = SystemColors.GrayText;
         }
     }
 }

@@ -588,6 +588,15 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Instal Drivers here.
+        /// </summary>
+        internal static string InstallDriver {
+            get {
+                return ResourceManager.GetString("InstallDriver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keep this window size after closing.
         /// </summary>
         internal static string KeepThisSize {
@@ -1163,6 +1172,42 @@ namespace ScpServer.Properties {
         internal static string TestText {
             get {
                 return ResourceManager.GetString("TestText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt Down.
+        /// </summary>
+        internal static string TiltDown {
+            get {
+                return ResourceManager.GetString("TiltDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt Left.
+        /// </summary>
+        internal static string TiltLeft {
+            get {
+                return ResourceManager.GetString("TiltLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt Right.
+        /// </summary>
+        internal static string TiltRight {
+            get {
+                return ResourceManager.GetString("TiltRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt Up.
+        /// </summary>
+        internal static string TiltUp {
+            get {
+                return ResourceManager.GetString("TiltUp", resourceCulture);
             }
         }
         

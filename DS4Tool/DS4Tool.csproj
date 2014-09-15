@@ -185,6 +185,9 @@
     <EmbeddedResource Include="Options.fr-FR.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Options.fr.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>

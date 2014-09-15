@@ -529,4 +529,19 @@
   <data name="DinputOnly" xml:space="preserve">
     <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off</value>
   </data>
+  <data name="InstallDriver" xml:space="preserve">
+    <value>Instal Drivers here</value>
+  </data>
+  <data name="TiltDown" xml:space="preserve">
+    <value>Tilt Down</value>
+  </data>
+  <data name="TiltLeft" xml:space="preserve">
+    <value>Tilt Left</value>
+  </data>
+  <data name="TiltRight" xml:space="preserve">
+    <value>Tilt Right</value>
+  </data>
+  <data name="TiltUp" xml:space="preserve">
+    <value>Tilt Up</value>
+  </data>
 </root>

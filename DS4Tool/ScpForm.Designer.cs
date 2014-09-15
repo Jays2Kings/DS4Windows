@@ -932,7 +932,6 @@
         private System.Windows.Forms.Button btnStartStop;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.Label lbLastMessage;
         private System.Windows.Forms.ContextMenuStrip cMTaskbar;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editProfileForController1ToolStripMenuItem;
@@ -1021,6 +1020,7 @@
         private System.Windows.Forms.CheckBox cBDisconnectBT;
         private System.Windows.Forms.CheckBox cBSwipeProfiles;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
+        public System.Windows.Forms.Label lbLastMessage;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

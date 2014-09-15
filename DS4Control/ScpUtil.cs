@@ -84,6 +84,7 @@ namespace DS4Control
         protected static Int32 m_IdleTimeout = 600000;
         static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         public static string appdatapath;
+        public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
 
         public static void SaveWhere(string path)
         {
@@ -238,6 +239,14 @@ namespace DS4Control
         public static bool getDinputOnly(int device)
         {
             return m_Config.dinputOnly[device];
+        }
+        public static void setStartTouchpadOff(int device, bool off)
+        {
+            m_Config.startTouchpadOff[device] = off;
+        }
+        public static bool getStartTouchpadOff(int device)
+        {
+            return m_Config.startTouchpadOff[device];
         }
         public static void setUseExclusiveMode(bool exclusive)
         {
@@ -593,17 +602,21 @@ namespace DS4Control
         {
             return m_Config.Load();
         }
-        public static void LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons)
+        public static void LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons, bool launchprogram, Control control)
         {
-            m_Config.LoadProfile(device, buttons, shiftbuttons);
+            m_Config.LoadProfile(device, buttons, shiftbuttons, launchprogram, control);
+            tempprofilename[device] = string.Empty;
         }
-        public static void LoadProfile(int device)
+        public static void LoadProfile(int device, bool launchprogram, Control control)
         {
-            m_Config.LoadProfile(device, null, null);
+            m_Config.LoadProfile(device, null, null, launchprogram, control);
+            tempprofilename[device] = string.Empty;
+
         }
-        public static void LoadTempProfile(int device, string name)
+        public static void LoadTempProfile(int device, string name, bool launchprogram, Control control)
         {
-            m_Config.LoadProfile(device, null, null, appdatapath + @"\Profiles\" + name + ".xml");
+            m_Config.LoadProfile(device, null, null, launchprogram, control, appdatapath + @"\Profiles\" + name + ".xml");
+            tempprofilename[device] = name;
         }
         public static bool Save()
         {
@@ -695,8 +708,10 @@ namespace DS4Control
         protected XmlDocument m_Xdoc = new XmlDocument();
         //fifth value used to for options, not fifth controller
         public int[] buttonMouseSensitivity = { 25, 25, 25, 25, 25 };
-        
-        public Boolean[] touchpadJitterCompensation = {true, true, true, true, true};
+
+        public bool[] flushHIDQueue = { true, true, true, true, true };
+        public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
+        public Boolean[] touchpadJitterCompensation = { true, true, true, true, true };
         public Boolean[] lowerRCOn = { false, false, false, false, false };
         public Boolean[] ledAsBattery = { false, false, false, false, false };
         public Boolean[] flashLedLowBattery = { false, false, false, false, false };
@@ -710,7 +725,7 @@ namespace DS4Control
         public bool[] doubleTap = { false, false, false, false, false };
         public int[] scrollSensitivity = { 0, 0, 0, 0, 0 };
         public double[] rainbow = { 0, 0, 0, 0, 0 };
-        public int[] flashAt = { 30, 30, 30, 30, 30 };
+        public int[] flashAt = { 0, 0, 0, 0, 0 };
         public int[] shiftModifier = { 0, 0, 0, 0, 0 };
         public bool[] mouseAccel = { true, true, true, true, true };
         public Byte[][] m_LowLeds = new Byte[][]
@@ -755,11 +770,9 @@ namespace DS4Control
         };
         public bool[] shiftColorOn = { false, false, false, false, false };
         public int[] chargingType = { 0, 0, 0, 0, 0 };
-        public bool[] flushHIDQueue = { true, true, true, true, true };
-        public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
         public string[] launchProgram = { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public bool[] dinputOnly = { false, false, false, false, false };
-
+        public bool[] startTouchpadOff = { false, false, false, false, false };
         public Boolean useExclusiveMode = false;
         public Int32 formWidth = 782;
         public Int32 formHeight = 550;
@@ -916,6 +929,7 @@ namespace DS4Control
                 XmlNode xmlShiftMod = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftModifier", null); xmlShiftMod.InnerText = shiftModifier[device].ToString(); Node.AppendChild(xmlShiftMod);
                 XmlNode xmlLaunchProgram = m_Xdoc.CreateNode(XmlNodeType.Element, "LaunchProgram", null); xmlLaunchProgram.InnerText = launchProgram[device].ToString(); Node.AppendChild(xmlLaunchProgram);
                 XmlNode xmlDinput = m_Xdoc.CreateNode(XmlNodeType.Element, "DinputOnly", null); xmlDinput.InnerText = dinputOnly[device].ToString(); Node.AppendChild(xmlDinput);
+                XmlNode xmlStartTouchpadOff = m_Xdoc.CreateNode(XmlNodeType.Element, "StartTouchpadOff", null); xmlStartTouchpadOff.InnerText = startTouchpadOff[device].ToString(); Node.AppendChild(xmlStartTouchpadOff);
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -1179,7 +1193,7 @@ namespace DS4Control
             return X360Controls.Unbound;
         }
 
-        public Boolean LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons, string propath = "")
+        public Boolean LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons, bool launchprogram, Control control, string propath = "")
         {
             Boolean Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
@@ -1348,10 +1362,28 @@ namespace DS4Control
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ShiftModifier"); Int32.TryParse(Item.InnerText, out shiftModifier[device]); }
                 catch { shiftModifier[device] = 0; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LaunchProgram"); launchProgram[device] = Item.InnerText; }
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/ScpControl/LaunchProgram");
+                    launchProgram[device] = Item.InnerText;
+                    if (launchprogram == true && launchProgram[device] != string.Empty) System.Diagnostics.Process.Start(launchProgram[device]);
+                }
                 catch { launchProgram[device] = string.Empty; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/DinputOnly"); Boolean.TryParse(Item.InnerText, out dinputOnly[device]); }
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/ScpControl/DinputOnly");
+                    Boolean.TryParse(Item.InnerText, out dinputOnly[device]);
+                    if (dinputOnly[device] == true) control.x360Bus.Unplug(device);
+                    else control.x360Bus.Plugin(device);
+                }
                 catch { missingSetting = true; }
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/ScpControl/StartTouchpadOff"); 
+                    Boolean.TryParse(Item.InnerText, out startTouchpadOff[device]);
+                    if (startTouchpadOff[device] == true) control.StartTPOff(device);
+                }
+                catch { startTouchpadOff[device] = false; missingSetting = true; }
                 DS4KeyType keyType;
                 UInt16 wvk;
                 if (buttons == null)

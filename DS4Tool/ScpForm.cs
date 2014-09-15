@@ -45,6 +45,8 @@ namespace ScpServer
         private System.Drawing.Size oldsize;
         WinProgs WP;
         ToolTip tt = new ToolTip();
+        public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
+        protected XmlDocument m_Xdoc = new XmlDocument();
 
         protected void SetupArrays()
         {
@@ -222,11 +224,11 @@ namespace ScpServer
             RefreshProfiles();
             for (int i = 0; i < 4; i++)
             {
-                Global.LoadProfile(i);
+                Global.LoadProfile(i, true, rootHub);
             }
             LoadP();
             Global.ControllerStatusChange += ControllerStatusChange;
-            ControllerStatusChanged(false);
+            ControllerStatusChanged();
             if (btnStartStop.Enabled)
                 btnStartStop_Clicked();
             startToolStripMenuItem.Text = btnStartStop.Text;
@@ -271,7 +273,7 @@ namespace ScpServer
         private void test_Tick(object sender, EventArgs e)
         {
             lBTest.Visible = true;
-            lBTest.Text = rootHub.DS4Controllers[0].LeftHeavySlowRumble.ToString();
+            lBTest.Text = rootHub.oldtouchvalue[0].ToString();
         }
         void Hotkeys(object sender, EventArgs e)
         {
@@ -303,7 +305,7 @@ namespace ScpServer
                         for (int j = 0; j < 4; j++)
                             if (proprofiles[j][i] != "(none)" && proprofiles[j][i] != Properties.Resources.noneProfile)
                             {
-                                Global.LoadTempProfile(j, proprofiles[j][i]); //j is controller index, i is filename
+                                Global.LoadTempProfile(j, proprofiles[j][i], true, rootHub); //j is controller index, i is filename
                                 if (Global.getLaunchProgram(j) != string.Empty) Process.Start(Global.getLaunchProgram(j));
                             }
                         tempprofile = name;
@@ -315,7 +317,7 @@ namespace ScpServer
                 {
                     tempprofile = "null";
                     for (int j = 0; j < 4; j++)
-                        Global.LoadProfile(j);
+                        Global.LoadProfile(j, false, rootHub);
                 }
             }
             if (Process.GetProcessesByName("DS4Tool").Length + Process.GetProcessesByName("DS4Windows").Length > 1)
@@ -379,7 +381,7 @@ namespace ScpServer
                 if (!File.Exists(exepath + "\\Auto Profiles.xml") && !File.Exists(appdatapath + "\\Auto Profiles.xml"))
                 {
                     linkSetup.LinkColor = Color.Green;
-                    tabSettings.Text += " (Install Drivers here)";
+                    tabSettings.Text += " (" + Properties.Resources.InstallDriver + ")";
                 }
             }
         }
@@ -429,13 +431,20 @@ namespace ScpServer
                         profilenames.Add(Path.GetFileNameWithoutExtension(s));
                 lBProfiles.Items.Clear();
                 lBProfiles.Items.AddRange(profilenames.ToArray());
+                if (lBProfiles.Items.Count == 0)
+                {
+                    Global.SaveProfile(0, "Default", null, null);
+                    Global.setAProfile(0, "Default");
+                    RefreshProfiles();
+                    return;
+                }
                 for (int i = 0; i < 4; i++)
                 {
                     cbs[i].Items.Clear();
                     shortcuts[i].DropDownItems.Clear();
                     cbs[i].Items.AddRange(profilenames.ToArray());
                     foreach (string s in profilenames)
-                        shortcuts[i].DropDownItems.Add(Path.GetFileNameWithoutExtension(s));
+                        shortcuts[i].DropDownItems.Add(s);
                     for (int j = 0; j < cbs[i].Items.Count; j++)
                         if (cbs[i].Items[j].ToString() == Path.GetFileNameWithoutExtension(Global.getAProfile(i)))
                         {
@@ -456,41 +465,25 @@ namespace ScpServer
             }
             catch (DirectoryNotFoundException)
             {
-                if (Global.appdatapath == Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName)
-                {
-                    if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + @"\Profiles\"))
-                        MessageBox.Show(Properties.Resources.PleaseImport, Properties.Resources.ProfileFolderMoved);
-                    Directory.CreateDirectory(Global.appdatapath + @"\Profiles\");
-                    for (int i = 0; i < 4; i++)
-                    {
-                        cbs[i].Text = "(" + Properties.Resources.NoProfileLoaded + ")";
-                        shortcuts[i].Text = Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString());
-                        ebns[i].Text = Properties.Resources.New;
-                    }
-                }
-                else
-                {
-                    if (Directory.Exists(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\"))
-                        MessageBox.Show(Properties.Resources.PleaseImport, Properties.Resources.ProfileFolderMoved);
-                    Directory.CreateDirectory(Global.appdatapath + @"\Profiles\");
-                    for (int i = 0; i < 4; i++)
-                    {
-                        cbs[i].Text = "(" + Properties.Resources.NoProfileLoaded + ")";
-                        shortcuts[i].Text = Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString());
-                        ebns[i].Text = Properties.Resources.New;
-                    }
-                }
+                Directory.CreateDirectory(Global.appdatapath + @"\Profiles\");
+                Global.SaveProfile(0, "Default", null, null);
+                Global.setAProfile(0, "Default");
+                RefreshProfiles();
+                return;
             }
             finally
             {
-                for (int i = 0; i < 4; i++)
+                if (!(cbs[0].Items.Count > 0 && cbs[0].Items[cbs[0].Items.Count - 1].ToString() == "+New Profile"))
                 {
-                    cbs[i].Items.Add("+New Profile");
-                    shortcuts[i].DropDownItems.Add("-");
-                    shortcuts[i].DropDownItems.Add("+New Profile");
+                    for (int i = 0; i < 4; i++)
+                    {
+                        cbs[i].Items.Add("+New Profile");
+                        shortcuts[i].DropDownItems.Add("-");
+                        shortcuts[i].DropDownItems.Add("+New Profile");
+                    }
+                    RefreshAutoProfilesPage();
                 }
-                RefreshAutoProfilesPage();
-            }            
+            }
         }
 
 
@@ -621,7 +614,7 @@ namespace ScpServer
             else
                 ControllerStatusChanged();
         }
-        protected void ControllerStatusChanged(bool program = true)
+        protected void ControllerStatusChanged()
         {
             String tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
             for (Int32 Index = 0; Index < Pads.Length; Index++)
@@ -641,7 +634,6 @@ namespace ScpServer
                     {
                         Enable_Controls(Index, true);
                         //Console.WriteLine(opt == null);
-                        //if (program && Global.getLaunchProgram(Index) != string.Empty) Process.Start(Global.getLaunchProgram(Index));
                         if (opt != null)
                             opt.inputtimer.Start();
                         //MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
@@ -852,6 +844,8 @@ namespace ScpServer
                 tSOptions.Visible = false;
                 toolStrip1.Visible = true;
                 toolStrip1.Enabled = true;
+                lbLastMessage.ForeColor = SystemColors.GrayText;
+                lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
             };
             oldsize = this.Size;
             if (dpix == 120)
@@ -885,7 +879,7 @@ namespace ScpServer
         {
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
             int i = Int32.Parse(em.Tag.ToString());
-                if (em.Text == Properties.Resources.ContextEdit.Replace("*number*", (i + 1).ToString()))
+                if (em.Text == Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString()))
                     ShowOptions(i, "");
                 else
                     for (int t=0; t < em.DropDownItems.Count-2; t++)
@@ -941,8 +935,7 @@ namespace ScpServer
                     shortcuts[tdevice].Text = Properties.Resources.ContextEdit.Replace("*number*", (tdevice + 1).ToString());
                     Global.setAProfile(tdevice, cb.Items[cb.SelectedIndex].ToString());
                     Global.Save();
-                    Global.LoadProfile(tdevice);
-                    if (Global.getLaunchProgram(tdevice) != string.Empty) Process.Start(Global.getLaunchProgram(tdevice));
+                    Global.LoadProfile(tdevice, true, rootHub);
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
                     ShowOptions(tdevice, "");
@@ -951,7 +944,7 @@ namespace ScpServer
                 else
                     ebns[tdevice].Text = Properties.Resources.EditProfile;
             }
-            ControllerStatusChanged(false); //to update profile name in notify icon
+            ControllerStatusChanged(); //to update profile name in notify icon
         }
 
         private void Profile_Changed_Menu(object sender, ToolStripItemClickedEventArgs e)

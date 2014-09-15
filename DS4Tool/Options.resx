@@ -1778,7 +1778,7 @@ Click the lightbar for color picker</value>
     <value>NoControl</value>
   </data>
   <data name="cBDoubleTap.Location" type="System.Drawing.Point, System.Drawing">
-    <value>349, 16</value>
+    <value>355, 18</value>
   </data>
   <data name="cBDoubleTap.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
@@ -1802,7 +1802,7 @@ Click the lightbar for color picker</value>
     <value>gBTouchpad</value>
   </data>
   <data name="&gt;&gt;cBDoubleTap.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBTap.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1811,7 +1811,7 @@ Click the lightbar for color picker</value>
     <value>NoControl</value>
   </data>
   <data name="cBTap.Location" type="System.Drawing.Point, System.Drawing">
-    <value>318, 46</value>
+    <value>258, 18</value>
   </data>
   <data name="cBTap.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -1835,10 +1835,10 @@ Click the lightbar for color picker</value>
     <value>gBTouchpad</value>
   </data>
   <data name="&gt;&gt;cBTap.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="nUDTap.Location" type="System.Drawing.Point, System.Drawing">
-    <value>369, 45</value>
+    <value>309, 17</value>
   </data>
   <data name="nUDTap.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
@@ -1856,7 +1856,7 @@ Click the lightbar for color picker</value>
     <value>gBTouchpad</value>
   </data>
   <data name="&gt;&gt;nUDTap.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="cBScroll.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1865,7 +1865,7 @@ Click the lightbar for color picker</value>
     <value>NoControl</value>
   </data>
   <data name="cBScroll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>169, 47</value>
+    <value>108, 48</value>
   </data>
   <data name="cBScroll.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -1889,7 +1889,7 @@ Click the lightbar for color picker</value>
     <value>gBTouchpad</value>
   </data>
   <data name="&gt;&gt;cBScroll.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="cBSlide.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1922,10 +1922,10 @@ Click the lightbar for color picker</value>
     <value>gBTouchpad</value>
   </data>
   <data name="&gt;&gt;cBSlide.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="nUDScroll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 45</value>
+    <value>166, 46</value>
   </data>
   <data name="nUDScroll.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
@@ -1943,7 +1943,7 @@ Click the lightbar for color picker</value>
     <value>gBTouchpad</value>
   </data>
   <data name="&gt;&gt;nUDScroll.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="nUDTouch.Location" type="System.Drawing.Point, System.Drawing">
     <value>62, 46</value>
@@ -1964,7 +1964,7 @@ Click the lightbar for color picker</value>
     <value>gBTouchpad</value>
   </data>
   <data name="&gt;&gt;nUDTouch.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="lbButtonMouseSens.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2006,20 +2006,19 @@ Click the lightbar for color picker</value>
     <value>NoControl</value>
   </data>
   <data name="cBlowerRCOn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 11</value>
+    <value>132, 18</value>
   </data>
   <data name="cBlowerRCOn.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="cBlowerRCOn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
+    <value>124, 17</value>
   </data>
   <data name="cBlowerRCOn.TabIndex" type="System.Int32, mscorlib">
     <value>223</value>
   </data>
   <data name="cBlowerRCOn.Text" xml:space="preserve">
-    <value>Lower Right as 
-Right Mouse</value>
+    <value>Lower Right as RMB</value>
   </data>
   <data name="&gt;&gt;cBlowerRCOn.Name" xml:space="preserve">
     <value>cBlowerRCOn</value>
@@ -2031,7 +2030,7 @@ Right Mouse</value>
     <value>gBTouchpad</value>
   </data>
   <data name="&gt;&gt;cBlowerRCOn.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBTouchpadJitterCompensation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2064,7 +2063,7 @@ Right Mouse</value>
     <value>gBTouchpad</value>
   </data>
   <data name="&gt;&gt;cBTouchpadJitterCompensation.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="lbL2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2930,6 +2929,36 @@ Right Mouse</value>
   </data>
   <data name="&gt;&gt;nUDL2.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="cbStartTouchpadOff.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbStartTouchpadOff.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbStartTouchpadOff.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 48</value>
+  </data>
+  <data name="cbStartTouchpadOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 17</value>
+  </data>
+  <data name="cbStartTouchpadOff.TabIndex" type="System.Int32, mscorlib">
+    <value>233</value>
+  </data>
+  <data name="cbStartTouchpadOff.Text" xml:space="preserve">
+    <value>Start with Slide/Scroll off</value>
+  </data>
+  <data name="&gt;&gt;cbStartTouchpadOff.Name" xml:space="preserve">
+    <value>cbStartTouchpadOff</value>
+  </data>
+  <data name="&gt;&gt;cbStartTouchpadOff.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbStartTouchpadOff.Parent" xml:space="preserve">
+    <value>gBTouchpad</value>
+  </data>
+  <data name="&gt;&gt;cbStartTouchpadOff.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="gBTouchpad.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 251</value>
@@ -6755,7 +6784,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>ScpServer.AdvancedColorDialog, DS4Windows, Version=1.4.0.5, Culture=neutral, PublicKeyToken=null</value>
+    <value>ScpServer.AdvancedColorDialog, DS4Windows, Version=1.4.0.6, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

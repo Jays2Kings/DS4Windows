@@ -122,6 +122,7 @@
             this.nUDLS = new System.Windows.Forms.NumericUpDown();
             this.nUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
+            this.cbStartTouchpadOff = new System.Windows.Forms.CheckBox();
             this.gBOther = new System.Windows.Forms.GroupBox();
             this.cBDinput = new System.Windows.Forms.CheckBox();
             this.pBProgram = new System.Windows.Forms.PictureBox();
@@ -133,15 +134,6 @@
             this.cBControllerInput = new System.Windows.Forms.CheckBox();
             this.cBIdleDisconnect = new System.Windows.Forms.CheckBox();
             this.gBLightbar = new System.Windows.Forms.GroupBox();
-            this.btnChargingColor = new System.Windows.Forms.Button();
-            this.rBColor = new System.Windows.Forms.RadioButton();
-            this.rBFade = new System.Windows.Forms.RadioButton();
-            this.rBNormal = new System.Windows.Forms.RadioButton();
-            this.rBRainbow = new System.Windows.Forms.RadioButton();
-            this.lbWhileCharging = new System.Windows.Forms.Label();
-            this.lbPercentFlashBar = new System.Windows.Forms.Label();
-            this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
-            this.lbFlashAt = new System.Windows.Forms.Label();
             this.ShiftPanel = new System.Windows.Forms.Panel();
             this.cBShiftLight = new System.Windows.Forms.CheckBox();
             this.lbShift = new System.Windows.Forms.Label();
@@ -151,6 +143,15 @@
             this.shiftRedBar = new System.Windows.Forms.TrackBar();
             this.shiftGreenBar = new System.Windows.Forms.TrackBar();
             this.shiftBlueBar = new System.Windows.Forms.TrackBar();
+            this.btnChargingColor = new System.Windows.Forms.Button();
+            this.rBColor = new System.Windows.Forms.RadioButton();
+            this.rBFade = new System.Windows.Forms.RadioButton();
+            this.rBNormal = new System.Windows.Forms.RadioButton();
+            this.rBRainbow = new System.Windows.Forms.RadioButton();
+            this.lbWhileCharging = new System.Windows.Forms.Label();
+            this.lbPercentFlashBar = new System.Windows.Forms.Label();
+            this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
+            this.lbFlashAt = new System.Windows.Forms.Label();
             this.gBRumble = new System.Windows.Forms.GroupBox();
             this.lbPercentRumble = new System.Windows.Forms.Label();
             this.gBDeadzone = new System.Windows.Forms.GroupBox();
@@ -271,11 +272,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
             this.gBLightbar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.ShiftPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shiftRedBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shiftGreenBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shiftBlueBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.gBRumble.SuspendLayout();
             this.gBDeadzone.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).BeginInit();
@@ -1379,6 +1380,7 @@
             // 
             // gBTouchpad
             // 
+            this.gBTouchpad.Controls.Add(this.cbStartTouchpadOff);
             this.gBTouchpad.Controls.Add(this.cBTouchpadJitterCompensation);
             this.gBTouchpad.Controls.Add(this.cBDoubleTap);
             this.gBTouchpad.Controls.Add(this.cBlowerRCOn);
@@ -1391,6 +1393,13 @@
             resources.ApplyResources(this.gBTouchpad, "gBTouchpad");
             this.gBTouchpad.Name = "gBTouchpad";
             this.gBTouchpad.TabStop = false;
+            // 
+            // cbStartTouchpadOff
+            // 
+            resources.ApplyResources(this.cbStartTouchpadOff, "cbStartTouchpadOff");
+            this.cbStartTouchpadOff.Name = "cbStartTouchpadOff";
+            this.cbStartTouchpadOff.UseVisualStyleBackColor = true;
+            this.cbStartTouchpadOff.CheckedChanged += new System.EventHandler(this.cbStartTouchpadOff_CheckedChanged);
             // 
             // gBOther
             // 
@@ -1510,72 +1519,6 @@
             this.gBLightbar.Name = "gBLightbar";
             this.gBLightbar.TabStop = false;
             // 
-            // btnChargingColor
-            // 
-            this.btnChargingColor.BackColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.btnChargingColor, "btnChargingColor");
-            this.btnChargingColor.Name = "btnChargingColor";
-            this.btnChargingColor.UseVisualStyleBackColor = false;
-            this.btnChargingColor.Click += new System.EventHandler(this.btnChargingColor_Click);
-            // 
-            // rBColor
-            // 
-            resources.ApplyResources(this.rBColor, "rBColor");
-            this.rBColor.Name = "rBColor";
-            this.rBColor.TabStop = true;
-            this.rBColor.UseVisualStyleBackColor = true;
-            this.rBColor.CheckedChanged += new System.EventHandler(this.rBColor_CheckedChanged);
-            // 
-            // rBFade
-            // 
-            resources.ApplyResources(this.rBFade, "rBFade");
-            this.rBFade.Name = "rBFade";
-            this.rBFade.UseVisualStyleBackColor = true;
-            this.rBFade.CheckedChanged += new System.EventHandler(this.rBFade_CheckedChanged);
-            // 
-            // rBNormal
-            // 
-            resources.ApplyResources(this.rBNormal, "rBNormal");
-            this.rBNormal.Checked = true;
-            this.rBNormal.Name = "rBNormal";
-            this.rBNormal.TabStop = true;
-            this.rBNormal.UseVisualStyleBackColor = true;
-            this.rBNormal.CheckedChanged += new System.EventHandler(this.rBNormal_CheckedChanged);
-            // 
-            // rBRainbow
-            // 
-            resources.ApplyResources(this.rBRainbow, "rBRainbow");
-            this.rBRainbow.Name = "rBRainbow";
-            this.rBRainbow.UseVisualStyleBackColor = true;
-            this.rBRainbow.CheckedChanged += new System.EventHandler(this.rBRainbow_CheckedChanged);
-            // 
-            // lbWhileCharging
-            // 
-            resources.ApplyResources(this.lbWhileCharging, "lbWhileCharging");
-            this.lbWhileCharging.Name = "lbWhileCharging";
-            // 
-            // lbPercentFlashBar
-            // 
-            resources.ApplyResources(this.lbPercentFlashBar, "lbPercentFlashBar");
-            this.lbPercentFlashBar.Name = "lbPercentFlashBar";
-            // 
-            // nUDflashLED
-            // 
-            this.nUDflashLED.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
-            this.nUDflashLED.Name = "nUDflashLED";
-            this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
-            // 
-            // lbFlashAt
-            // 
-            resources.ApplyResources(this.lbFlashAt, "lbFlashAt");
-            this.lbFlashAt.Name = "lbFlashAt";
-            this.lbFlashAt.Click += new System.EventHandler(this.lbFlashAt_Click);
-            // 
             // ShiftPanel
             // 
             this.ShiftPanel.Controls.Add(this.cBShiftLight);
@@ -1657,6 +1600,72 @@
             this.shiftBlueBar.ValueChanged += new System.EventHandler(this.shiftBlueBar_ValueChanged);
             this.shiftBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
             this.shiftBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            // 
+            // btnChargingColor
+            // 
+            this.btnChargingColor.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.btnChargingColor, "btnChargingColor");
+            this.btnChargingColor.Name = "btnChargingColor";
+            this.btnChargingColor.UseVisualStyleBackColor = false;
+            this.btnChargingColor.Click += new System.EventHandler(this.btnChargingColor_Click);
+            // 
+            // rBColor
+            // 
+            resources.ApplyResources(this.rBColor, "rBColor");
+            this.rBColor.Name = "rBColor";
+            this.rBColor.TabStop = true;
+            this.rBColor.UseVisualStyleBackColor = true;
+            this.rBColor.CheckedChanged += new System.EventHandler(this.rBColor_CheckedChanged);
+            // 
+            // rBFade
+            // 
+            resources.ApplyResources(this.rBFade, "rBFade");
+            this.rBFade.Name = "rBFade";
+            this.rBFade.UseVisualStyleBackColor = true;
+            this.rBFade.CheckedChanged += new System.EventHandler(this.rBFade_CheckedChanged);
+            // 
+            // rBNormal
+            // 
+            resources.ApplyResources(this.rBNormal, "rBNormal");
+            this.rBNormal.Checked = true;
+            this.rBNormal.Name = "rBNormal";
+            this.rBNormal.TabStop = true;
+            this.rBNormal.UseVisualStyleBackColor = true;
+            this.rBNormal.CheckedChanged += new System.EventHandler(this.rBNormal_CheckedChanged);
+            // 
+            // rBRainbow
+            // 
+            resources.ApplyResources(this.rBRainbow, "rBRainbow");
+            this.rBRainbow.Name = "rBRainbow";
+            this.rBRainbow.UseVisualStyleBackColor = true;
+            this.rBRainbow.CheckedChanged += new System.EventHandler(this.rBRainbow_CheckedChanged);
+            // 
+            // lbWhileCharging
+            // 
+            resources.ApplyResources(this.lbWhileCharging, "lbWhileCharging");
+            this.lbWhileCharging.Name = "lbWhileCharging";
+            // 
+            // lbPercentFlashBar
+            // 
+            resources.ApplyResources(this.lbPercentFlashBar, "lbPercentFlashBar");
+            this.lbPercentFlashBar.Name = "lbPercentFlashBar";
+            // 
+            // nUDflashLED
+            // 
+            this.nUDflashLED.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
+            this.nUDflashLED.Name = "nUDflashLED";
+            this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
+            // 
+            // lbFlashAt
+            // 
+            resources.ApplyResources(this.lbFlashAt, "lbFlashAt");
+            this.lbFlashAt.Name = "lbFlashAt";
+            this.lbFlashAt.Click += new System.EventHandler(this.lbFlashAt_Click);
             // 
             // gBRumble
             // 
@@ -2686,12 +2695,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).EndInit();
             this.gBLightbar.ResumeLayout(false);
             this.gBLightbar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
             this.ShiftPanel.ResumeLayout(false);
             this.ShiftPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shiftRedBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shiftGreenBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shiftBlueBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
             this.gBRumble.ResumeLayout(false);
             this.gBRumble.PerformLayout();
             this.gBDeadzone.ResumeLayout(false);
@@ -2934,6 +2943,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.PictureBox pBProgram;
         private System.Windows.Forms.CheckBox cBDinput;
+        private System.Windows.Forms.CheckBox cbStartTouchpadOff;
     }
 }
 

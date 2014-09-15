@@ -84,7 +84,6 @@ namespace DS4Control
                             x360Bus.Plugin(ind);
                         device.Report += this.On_Report;
                         TouchPadOn(ind, device);
-                        LaunchProgram(ind);
                         string filename = Path.GetFileName(Global.getAProfile(ind));
                         ind++;
                         if (showlog)
@@ -187,7 +186,6 @@ namespace DS4Control
                             if (!Global.getDinputOnly(Index))
                                 x360Bus.Plugin(Index);
                             TouchPadOn(Index, device);
-                            LaunchProgram(Index);
                             string filename = Path.GetFileName(Global.getAProfile(Index));
                             if (System.IO.File.Exists(Global.appdatapath + "\\Profiles\\" + filename))
                             {
@@ -208,13 +206,6 @@ namespace DS4Control
             return true;
         }
 
-        public void LaunchProgram(int ind)
-        {
-            if (Global.getLaunchProgram(ind) != string.Empty)
-            {
-                System.Diagnostics.Process.Start(Global.getLaunchProgram(ind));
-            }
-        }
         public void TouchPadOn(int ind, DS4Device device)
         {
             ITouchpadBehaviour tPad = touchPad[ind];
@@ -485,9 +476,9 @@ namespace DS4Control
             return "nothing";
         }
 
-        bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };
-        byte[] oldtouchvalue = { 0, 0, 0, 0 };
-        int[] oldscrollvalue = { 0, 0, 0, 0 };
+        public bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };
+        public byte[] oldtouchvalue = { 0, 0, 0, 0 };
+        public int[] oldscrollvalue = { 0, 0, 0, 0 };
         protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
         {
             DS4Device d = DS4Controllers[deviceID];
@@ -531,6 +522,14 @@ namespace DS4Control
                 touchreleased[deviceID] = true;            
         }
 
+        public virtual void StartTPOff(int deviceID)
+        {
+            oldtouchvalue[deviceID] = Global.getTouchSensitivity(deviceID);
+            oldscrollvalue[deviceID] = Global.getScrollSensitivity(deviceID);
+            Global.setTouchSensitivity(deviceID, 0);
+            Global.setScrollSensitivity(deviceID, 0);
+        }
+            
         public virtual string TouchpadSlide(int ind)
         {
             DS4State cState = CurrentState[ind];

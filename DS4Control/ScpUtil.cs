@@ -1373,8 +1373,11 @@ namespace DS4Control
                 {
                     Item = m_Xdoc.SelectSingleNode("/ScpControl/DinputOnly");
                     Boolean.TryParse(Item.InnerText, out dinputOnly[device]);
-                    if (dinputOnly[device] == true) control.x360Bus.Unplug(device);
-                    else control.x360Bus.Plugin(device);
+                    if (device < 4)
+                    {
+                        if (dinputOnly[device] == true) control.x360Bus.Unplug(device);
+                        else if (control.DS4Controllers[device].IsAlive()) control.x360Bus.Plugin(device);
+                    }
                 }
                 catch { missingSetting = true; }
                 try

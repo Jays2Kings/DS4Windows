@@ -142,6 +142,7 @@ namespace DS4Control
                 }
                 if (anyUnplugged)
                     System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
+                x360Bus.UnplugAll();
                 x360Bus.Stop();
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingDS4);

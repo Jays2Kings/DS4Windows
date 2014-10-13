@@ -42,7 +42,7 @@ namespace ScpServer
             WebClient wb = new WebClient();
             if (bnStep1.Text == Properties.Resources.Step1)
             {
-                wb.DownloadFileAsync(new Uri("https://docs.google.com/uc?authuser=0&id=0BwPaAe9M8N9mYVdPakJ6OXpMUlU&export=download"), Global.appdatapath + "\\VBus.zip");
+                wb.DownloadFileAsync(new Uri("http://ds4windows.com/Files/Virtual Bus Driver.zip"), Global.appdatapath + "\\VBus.zip");
                 wb.DownloadProgressChanged += wb_DownloadProgressChanged;
                 wb.DownloadFileCompleted += wb_DownloadFileCompleted;               
             }  

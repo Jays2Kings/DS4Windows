@@ -18,6 +18,7 @@ namespace ScpServer
 {
     public partial class ScpForm : Form
     {
+        public string[] arguements;
         private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
@@ -80,10 +81,10 @@ namespace ScpServer
         [DllImport("psapi.dll")]
         private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
 
-        public ScpForm()
+        public ScpForm(string [] args)
         {
             InitializeComponent();
-
+            arguements = args;
             ThemeUtil.SetTheme(lvDebug);
             SetupArrays();
             //CheckDrivers();
@@ -228,8 +229,14 @@ namespace ScpServer
             }
             LoadP();
             Global.ControllerStatusChange += ControllerStatusChange;
-            ControllerStatusChanged();
-            if (btnStartStop.Enabled)
+            bool start = true;
+            foreach (string s in arguements)
+                if (s == "stop")
+                {
+                    start = false;
+                    break;
+                }            
+            if (btnStartStop.Enabled && start)
                 btnStartStop_Clicked();
             startToolStripMenuItem.Text = btnStartStop.Text;
             cBNotifications.Checked = Global.getNotifications();
@@ -246,7 +253,7 @@ namespace ScpServer
                 cBUpdateTime.SelectedIndex = 0;
                 nUDUpdateTime.Value = checkwhen;
             }
-            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Windows/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("http://ds4windows.com/Files/Builds/newest.txt"); //Sorry other devs, gonna have to find your own server
             
             
             if (checkwhen > 0 && DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(checkwhen))
@@ -397,14 +404,14 @@ namespace ScpServer
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
                     {
-                        Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Windows/DS4Updater.exe");
+                        Uri url2 = new Uri("http://ds4windows.com/Files/DS4Updater.exe");
                         WebClient wc2 = new WebClient();
                         if (Global.appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
-                            Process.Start("https://www.dropbox.com/s/tlqtdkdumdo0yir/DS4Updater.exe");
+                            Process.Start("http://ds4windows.com/Files/DS4Updater.exe");
                         }
                     }
                     Process p = new Process();
@@ -545,12 +552,14 @@ namespace ScpServer
             {
                 this.Hide();
                 this.ShowInTaskbar = false;
+                this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
             }
 
             else if (FormWindowState.Normal == this.WindowState)
             {
                 this.Show();
                 this.ShowInTaskbar = true;
+                this.FormBorderStyle = FormBorderStyle.Sizable;
             }
             chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
@@ -1214,7 +1223,7 @@ namespace ScpServer
 
         private void lLBUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Uri url = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Windows/newest%20version.txt"); //Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("http://ds4windows.com/Files/Builds/newest.txt"); //Sorry other devs, gonna have to find your own server
             WebClient wct = new WebClient();
             wct.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
             wct.DownloadFileCompleted += wct_DownloadFileCompleted;
@@ -1237,14 +1246,14 @@ namespace ScpServer
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                          && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
                     {
-                        Uri url2 = new Uri("https://dl.dropboxusercontent.com/u/16364552/DS4Windows/DS4Updater.exe");
+                        Uri url2 = new Uri("http://ds4windows.com/Files/DS4Updater.exe");
                         WebClient wc2 = new WebClient();
                         if (Global.appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
-                            Process.Start("https://www.dropbox.com/s/tlqtdkdumdo0yir/DS4Updater.exe");
+                            Process.Start("http://ds4windows.com/Files/DS4Updater.exe");
                         }
                     }
                     Process p = new Process();

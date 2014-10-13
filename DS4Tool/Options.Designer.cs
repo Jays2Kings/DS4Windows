@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
+            this.bnL2 = new System.Windows.Forms.Button();
+            this.bnR2 = new System.Windows.Forms.Button();
             this.bnTouchUpper = new System.Windows.Forms.Button();
             this.bnTouchMulti = new System.Windows.Forms.Button();
             this.bnTouchRight = new System.Windows.Forms.Button();
@@ -45,9 +47,7 @@
             this.bnUp = new System.Windows.Forms.Button();
             this.btnLeftStick = new System.Windows.Forms.Button();
             this.bnDown = new System.Windows.Forms.Button();
-            this.bnL2 = new System.Windows.Forms.Button();
             this.bnRight = new System.Windows.Forms.Button();
-            this.bnR2 = new System.Windows.Forms.Button();
             this.bnLeft = new System.Windows.Forms.Button();
             this.bnL1 = new System.Windows.Forms.Button();
             this.bnOptions = new System.Windows.Forms.Button();
@@ -300,6 +300,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBL2)).BeginInit();
             this.SuspendLayout();
             // 
+            // bnL2
+            // 
+            this.bnL2.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnL2, "bnL2");
+            this.bnL2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bnL2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.bnL2.FlatAppearance.BorderSize = 0;
+            this.bnL2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.bnL2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.bnL2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.bnL2.Name = "bnL2";
+            this.bnL2.UseVisualStyleBackColor = false;
+            this.bnL2.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // bnR2
+            // 
+            this.bnR2.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.bnR2, "bnR2");
+            this.bnR2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bnR2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.bnR2.FlatAppearance.BorderSize = 0;
+            this.bnR2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.bnR2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.bnR2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.bnR2.Name = "bnR2";
+            this.bnR2.UseVisualStyleBackColor = false;
+            this.bnR2.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
             // bnTouchUpper
             // 
             this.bnTouchUpper.BackColor = System.Drawing.Color.Transparent;
@@ -381,14 +409,14 @@
             this.MainPanel.Controls.Add(this.bnUp);
             this.MainPanel.Controls.Add(this.btnLeftStick);
             this.MainPanel.Controls.Add(this.bnDown);
-            this.MainPanel.Controls.Add(this.bnL2);
             this.MainPanel.Controls.Add(this.bnRight);
-            this.MainPanel.Controls.Add(this.bnR2);
             this.MainPanel.Controls.Add(this.bnLeft);
             this.MainPanel.Controls.Add(this.bnL1);
             this.MainPanel.Controls.Add(this.bnOptions);
             this.MainPanel.Controls.Add(this.bnPS);
             this.MainPanel.Controls.Add(this.bnShare);
+            this.MainPanel.Controls.Add(this.bnL2);
+            this.MainPanel.Controls.Add(this.bnR2);
             resources.ApplyResources(this.MainPanel, "MainPanel");
             this.MainPanel.Name = "MainPanel";
             // 
@@ -540,20 +568,6 @@
             this.bnDown.UseVisualStyleBackColor = false;
             this.bnDown.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
-            // bnL2
-            // 
-            this.bnL2.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.bnL2, "bnL2");
-            this.bnL2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bnL2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.bnL2.FlatAppearance.BorderSize = 0;
-            this.bnL2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.bnL2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnL2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnL2.Name = "bnL2";
-            this.bnL2.UseVisualStyleBackColor = false;
-            this.bnL2.Click += new System.EventHandler(this.Show_ControlsBn);
-            // 
             // bnRight
             // 
             this.bnRight.BackColor = System.Drawing.Color.Transparent;
@@ -567,20 +581,6 @@
             this.bnRight.Name = "bnRight";
             this.bnRight.UseVisualStyleBackColor = false;
             this.bnRight.Click += new System.EventHandler(this.Show_ControlsBn);
-            // 
-            // bnR2
-            // 
-            this.bnR2.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.bnR2, "bnR2");
-            this.bnR2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bnR2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.bnR2.FlatAppearance.BorderSize = 0;
-            this.bnR2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.bnR2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.bnR2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.bnR2.Name = "bnR2";
-            this.bnR2.UseVisualStyleBackColor = false;
-            this.bnR2.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // bnLeft
             // 

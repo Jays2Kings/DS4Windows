@@ -34,11 +34,11 @@ namespace ScpServer
             root = rt;
             g = CreateGraphics();
             greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
-            foreach (System.Windows.Forms.Control control in MainPanel.Controls)
+            foreach (System.Windows.Forms.Control control in SticksPanel.Controls)
                 if (control is Button)
                     if (!((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in SticksPanel.Controls)
+            foreach (System.Windows.Forms.Control control in MainPanel.Controls)
                 if (control is Button)
                     if (!((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
@@ -58,6 +58,10 @@ namespace ScpServer
                 if (control is Button)
                     if (!((Button)control).Name.Contains("sbtn"))
                         subbuttons.Add((Button)control);
+            string butts = "";
+            foreach (Button b in buttons)
+                butts += "\n" + b.Name;
+            //MessageBox.Show(butts);
             root.lbLastMessage.ForeColor = Color.Black;
             root.lbLastMessage.Text = "Hover over items to see description or more about";
             foreach (System.Windows.Forms.Control control in Controls)

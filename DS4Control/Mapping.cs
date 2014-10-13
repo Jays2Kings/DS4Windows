@@ -666,7 +666,7 @@ namespace DS4Control
                     Global.getShiftCustomButton(device, customButton.Key) == X360Controls.None))
                 {
                     if (customButton.Key == DS4Controls.Square)
-                    Console.WriteLine("hello");
+                        Console.WriteLine("hello");
                     DS4KeyType keyType = Global.getCustomKeyType(device, customButton.Key);
                     int keyvalue = 0;
                     switch (customButton.Value)
@@ -702,68 +702,73 @@ namespace DS4Control
 
                     //once++;
 
-                    resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
+                    if (customButton.Key == DS4Controls.L2 || customButton.Key == DS4Controls.R2 ||
+                        customButton.Key == DS4Controls.LXNeg || customButton.Key == DS4Controls.LXPos ||
+                        customButton.Key == DS4Controls.LYNeg || customButton.Key == DS4Controls.LYPos ||
+                        customButton.Key == DS4Controls.RXNeg || customButton.Key == DS4Controls.RXPos ||
+                        customButton.Key == DS4Controls.RYNeg || customButton.Key == DS4Controls.RYPos)
+                        resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
                     switch (customButton.Value)
                     {
                         case X360Controls.A:
-                            if (!MappedState.Cross)
-                                MappedState.Cross = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.Cross)
+                            MappedState.Cross = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.B:
-                            if (!MappedState.Circle)
-                                MappedState.Circle = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.Circle)
+                            MappedState.Circle = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.X:
-                            if (!MappedState.Square)
-                                MappedState.Square = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.Square)
+                            MappedState.Square = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.Y:
-                            if (!MappedState.Triangle)
-                                MappedState.Triangle = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.Triangle)
+                            MappedState.Triangle = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.LB:
-                            if (!MappedState.L1)
-                                MappedState.L1 = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.L1)
+                            MappedState.L1 = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.LS:
-                            if (!MappedState.L3)
-                                MappedState.L3 = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.L3)
+                            MappedState.L3 = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.RB:
-                            if (!MappedState.R1)
-                                MappedState.R1 = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.R1)
+                            MappedState.R1 = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.RS:
-                            if (!MappedState.R3)
-                                MappedState.R3 = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.R3)
+                            MappedState.R3 = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.DpadUp:
-                            if (!MappedState.DpadUp)
-                                MappedState.DpadUp = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.DpadUp)
+                            MappedState.DpadUp = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.DpadDown:
-                            if (!MappedState.DpadDown)
-                                MappedState.DpadDown = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.DpadDown)
+                            MappedState.DpadDown = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.DpadLeft:
-                            if (!MappedState.DpadLeft)
-                                MappedState.DpadLeft = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.DpadLeft)
+                            MappedState.DpadLeft = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.DpadRight:
-                            if (!MappedState.DpadRight)
-                                MappedState.DpadRight = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.DpadRight)
+                            MappedState.DpadRight = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.Guide:
-                            if (!MappedState.PS)
-                                MappedState.PS = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.PS)
+                            MappedState.PS = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.Back:
-                            if (!MappedState.Share)
-                                MappedState.Share = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.Share)
+                            MappedState.Share = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.Start:
-                            if (!MappedState.Options)
-                                MappedState.Options = getBoolMapping(customButton.Key, cState, eState);
+                            //if (!MappedState.Options)
+                            MappedState.Options = getBoolMapping(customButton.Key, cState, eState);
                             break;
                         case X360Controls.LXNeg:
                             if (LXChanged)
@@ -864,8 +869,7 @@ namespace DS4Control
                     }
                 }
             }
-            //if (!LX)
-            if (Math.Abs(127 - MappedState.LX) <= 5)// || (Math.Abs(127 - cState.LX) > 5))
+            if (Math.Abs(127 - MappedState.LX) <= 5)
                 MappedState.LX = cState.LX;
             if (Math.Abs(127 - MappedState.LY) <= 5)
                 MappedState.LY = cState.LY;
@@ -1025,8 +1029,6 @@ namespace DS4Control
             // resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
             foreach (KeyValuePair<DS4Controls, X360Controls> customButton in customButtons)
             {
-                if (customButton.Key == DS4Controls.Square)
-                    Console.WriteLine("Hi");
                 DS4KeyType keyType = Global.getShiftCustomKeyType(device, customButton.Key);
                 int keyvalue = 0;
                 switch (customButton.Value)
@@ -1061,108 +1063,112 @@ namespace DS4Control
                 bool RYChanged = Math.Abs(127 - MappedState.RY) <= 5;
 
                 //once++;
-
-                resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
+                if (customButton.Key == DS4Controls.L2 || customButton.Key == DS4Controls.R2 ||
+                       customButton.Key == DS4Controls.LXNeg || customButton.Key == DS4Controls.LXPos ||
+                       customButton.Key == DS4Controls.LYNeg || customButton.Key == DS4Controls.LYPos ||
+                       customButton.Key == DS4Controls.RXNeg || customButton.Key == DS4Controls.RXPos ||
+                       customButton.Key == DS4Controls.RYNeg || customButton.Key == DS4Controls.RYPos)
+                    resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
                 switch (customButton.Value)
                 {
                     case X360Controls.A:
-                        if (!MappedState.Cross)
+                        //if (!MappedState.Cross)
                             MappedState.Cross = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.B:
-                        if (!MappedState.Circle)
+                        //if (!MappedState.Circle)
                             MappedState.Circle = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.X:
-                        if (!MappedState.Square)
+                        //if (!MappedState.Square)
                             MappedState.Square = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.Y:
-                        if (!MappedState.Triangle)
+                        //if (!MappedState.Triangle)
                             MappedState.Triangle = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.LB:
-                        if (!MappedState.L1)
+                        //if (!MappedState.L1)
                             MappedState.L1 = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.LS:
-                        if (!MappedState.L3)
+                        //if (!MappedState.L3)
                             MappedState.L3 = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.RB:
-                        if (!MappedState.R1)
+                        //if (!MappedState.R1)
                             MappedState.R1 = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.RS:
-                        if (!MappedState.R3)
+                        //if (!MappedState.R3)
                             MappedState.R3 = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.DpadUp:
-                        if (!MappedState.DpadUp)
+                        //if (!MappedState.DpadUp)
                             MappedState.DpadUp = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.DpadDown:
-                        if (!MappedState.DpadDown)
+                        //if (!MappedState.DpadDown)
                             MappedState.DpadDown = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.DpadLeft:
-                        if (!MappedState.DpadLeft)
+                        //if (!MappedState.DpadLeft)
                             MappedState.DpadLeft = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.DpadRight:
-                        if (!MappedState.DpadRight)
+                        //if (!MappedState.DpadRight)
                             MappedState.DpadRight = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.Guide:
-                        if (!MappedState.PS)
+                        //if (!MappedState.PS)
                             MappedState.PS = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.Back:
-                        if (!MappedState.Share)
+                        //if (!MappedState.Share)
                             MappedState.Share = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.Start:
-                        if (!MappedState.Options)
+                        //if (!MappedState.Options)
                             MappedState.Options = getBoolMapping(customButton.Key, cState, eState);
                         break;
                     case X360Controls.LXNeg:
-                        if (LXChanged)
+                        //if (LXChanged)
                             MappedState.LX = getXYAxisMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.LYNeg:
-                        if (LYChanged)
+                        //if (LYChanged)
                             MappedState.LY = getXYAxisMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.RXNeg:
-                        if (RXChanged)
+                        //if (RXChanged)
                             MappedState.RX = getXYAxisMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.RYNeg:
-                        if (RYChanged)
+                        //if (RYChanged)
                             MappedState.RY = getXYAxisMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.LXPos:
-                        if (LXChanged)
+                        //if (LXChanged)
                             MappedState.LX = getXYAxisMapping(device, customButton.Key, cState, eState, true);
                         break;
                     case X360Controls.LYPos:
-                        if (LYChanged)
+                        //if (LYChanged)
                             MappedState.LY = getXYAxisMapping(device, customButton.Key, cState, eState, true);
                         break;
                     case X360Controls.RXPos:
-                        if (RXChanged)
+                        //if (RXChanged)
                             MappedState.RX = getXYAxisMapping(device, customButton.Key, cState, eState, true);
                         break;
                     case X360Controls.RYPos:
-                        if (RYChanged)
+                        //if (RYChanged)
                             MappedState.RY = getXYAxisMapping(device, customButton.Key, cState, eState, true);
                         break;
                     case X360Controls.LT:
-                        if (MappedState.L2 == 0)
+                        //if (MappedState.L2 == 0)
                             MappedState.L2 = getByteMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.RT:
-                        if (MappedState.R2 == 0)
+                        //if (MappedState.R2 == 0)
                             MappedState.R2 = getByteMapping(device, customButton.Key, cState, eState);
                         break;
                     case X360Controls.LeftMouse:

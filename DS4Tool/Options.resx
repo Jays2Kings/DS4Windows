@@ -118,6 +118,74 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bnL2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="bnL2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="bnL2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bnL2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 0</value>
+  </data>
+  <data name="bnL2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 12</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bnL2.TabIndex" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="bnL2.Text" xml:space="preserve">
+    <value>Left Trigger</value>
+  </data>
+  <data name="&gt;&gt;bnL2.Name" xml:space="preserve">
+    <value>bnL2</value>
+  </data>
+  <data name="&gt;&gt;bnL2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnL2.Parent" xml:space="preserve">
+    <value>MainPanel</value>
+  </data>
+  <data name="&gt;&gt;bnL2.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="bnR2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="bnR2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="bnR2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="bnR2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>174, 0</value>
+  </data>
+  <data name="bnR2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 13</value>
+  </data>
+  <data name="bnR2.TabIndex" type="System.Int32, mscorlib">
+    <value>89</value>
+  </data>
+  <data name="bnR2.Text" xml:space="preserve">
+    <value>Right Trigger</value>
+  </data>
+  <data name="&gt;&gt;bnR2.Name" xml:space="preserve">
+    <value>bnR2</value>
+  </data>
+  <data name="&gt;&gt;bnR2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnR2.Parent" xml:space="preserve">
+    <value>MainPanel</value>
+  </data>
+  <data name="&gt;&gt;bnR2.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
   <data name="bnTouchUpper.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
@@ -127,14 +195,12 @@
   <data name="bnTouchUpper.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bnTouchUpper.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 25</value>
   </data>
   <data name="bnTouchUpper.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 16</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="bnTouchUpper.TabIndex" type="System.Int32, mscorlib">
     <value>193</value>
   </data>
@@ -615,39 +681,6 @@
   <data name="&gt;&gt;bnDown.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
-  <data name="bnL2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="bnL2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="bnL2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bnL2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 0</value>
-  </data>
-  <data name="bnL2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 12</value>
-  </data>
-  <data name="bnL2.TabIndex" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="bnL2.Text" xml:space="preserve">
-    <value>Left Trigger</value>
-  </data>
-  <data name="&gt;&gt;bnL2.Name" xml:space="preserve">
-    <value>bnL2</value>
-  </data>
-  <data name="&gt;&gt;bnL2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bnL2.Parent" xml:space="preserve">
-    <value>MainPanel</value>
-  </data>
-  <data name="&gt;&gt;bnL2.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
   <data name="bnRight.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
@@ -679,40 +712,7 @@
     <value>MainPanel</value>
   </data>
   <data name="&gt;&gt;bnRight.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="bnR2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="bnR2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="bnR2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bnR2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 0</value>
-  </data>
-  <data name="bnR2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 13</value>
-  </data>
-  <data name="bnR2.TabIndex" type="System.Int32, mscorlib">
-    <value>89</value>
-  </data>
-  <data name="bnR2.Text" xml:space="preserve">
-    <value>Right Trigger</value>
-  </data>
-  <data name="&gt;&gt;bnR2.Name" xml:space="preserve">
-    <value>bnR2</value>
-  </data>
-  <data name="&gt;&gt;bnR2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bnR2.Parent" xml:space="preserve">
-    <value>MainPanel</value>
-  </data>
-  <data name="&gt;&gt;bnR2.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>15</value>
   </data>
   <data name="bnLeft.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -745,7 +745,7 @@
     <value>MainPanel</value>
   </data>
   <data name="&gt;&gt;bnLeft.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>16</value>
   </data>
   <data name="bnL1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -778,7 +778,7 @@
     <value>MainPanel</value>
   </data>
   <data name="&gt;&gt;bnL1.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>17</value>
   </data>
   <data name="bnOptions.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -811,7 +811,7 @@
     <value>MainPanel</value>
   </data>
   <data name="&gt;&gt;bnOptions.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>18</value>
   </data>
   <data name="bnPS.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -844,7 +844,7 @@
     <value>MainPanel</value>
   </data>
   <data name="&gt;&gt;bnPS.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>19</value>
   </data>
   <data name="bnShare.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -877,7 +877,7 @@
     <value>MainPanel</value>
   </data>
   <data name="&gt;&gt;bnShare.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>20</value>
   </data>
   <data name="MainPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 42</value>
@@ -6784,7 +6784,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>ScpServer.AdvancedColorDialog, DS4Windows, Version=1.4.0.6, Culture=neutral, PublicKeyToken=null</value>
+    <value>ScpServer.AdvancedColorDialog, DS4Windows, Version=1.4.0.61, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

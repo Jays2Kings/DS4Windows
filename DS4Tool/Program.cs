@@ -20,7 +20,7 @@ namespace ScpServer
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string [] args)
         {
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;
             try
@@ -38,7 +38,7 @@ namespace ScpServer
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new ScpForm());
+                    Application.Run(new ScpForm(args));
                 }
                 else
                 {

@@ -665,8 +665,6 @@ namespace DS4Control
                     Global.getShiftCustomKey(device, customButton.Key) == 0 &&
                     Global.getShiftCustomButton(device, customButton.Key) == X360Controls.None))
                 {
-                    if (customButton.Key == DS4Controls.Square)
-                        Console.WriteLine("hello");
                     DS4KeyType keyType = Global.getCustomKeyType(device, customButton.Key);
                     int keyvalue = 0;
                     switch (customButton.Value)

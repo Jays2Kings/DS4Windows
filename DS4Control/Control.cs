@@ -425,7 +425,7 @@ namespace DS4Control
 
                     if (processingData[ind].Rumble[1] == 0x08)
                     {
-                        setRumble(Small, Big, ind);
+                        setRumble(Big, Small, ind);
                     }
                 }
 

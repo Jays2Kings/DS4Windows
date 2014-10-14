@@ -889,7 +889,6 @@
             this.Controls.Add(this.pnlButton);
             this.Name = "ScpForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScpForm_Closing);
-            this.Load += new System.EventHandler(this.Form_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragEnter);
             this.Resize += new System.EventHandler(this.Form_Resize);

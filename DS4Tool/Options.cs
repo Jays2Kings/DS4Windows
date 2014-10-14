@@ -132,6 +132,7 @@ namespace ScpServer
                 nUDIdleDisconnect.Value = Math.Round((decimal)(Global.getIdleDisconnectTimeout(device) / 60d), 1);
                 cBIdleDisconnect.Checked = Global.getIdleDisconnectTimeout(device) > 0;
                 numUDMouseSens.Value = Global.getButtonMouseSensitivity(device);
+                cBMouseAccel.Checked = Global.getMouseAccel(device);
                 // Force update of color choosers    
                 alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
                 reg = Color.FromArgb(color.red, color.green, color.blue);

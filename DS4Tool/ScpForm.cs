@@ -93,6 +93,146 @@ namespace ScpServer
             if (File.Exists(appdatapath + "\\Profiles.xml"))
                 tt.SetToolTip(linkUninstall, Properties.Resources.IfRemovingDS4Windows);
             tt.SetToolTip(cBSwipeProfiles, Properties.Resources.TwoFingerSwipe);
+            {
+                var AppCollectionThread = new System.Threading.Thread(() => CheckDrivers());
+                AppCollectionThread.IsBackground = true;
+                AppCollectionThread.Start();
+                if (File.Exists(exepath + "\\Auto Profiles.xml")
+                    && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml"))
+                    new SaveWhere(true).ShowDialog();
+                else if (File.Exists(exepath + "\\Auto Profiles.xml"))
+                    Global.SaveWhere(exepath);
+                else if (File.Exists(appdatapath + "\\Auto Profiles.xml"))
+                    Global.SaveWhere(appdatapath);
+                else if (!File.Exists(exepath + "\\Auto Profiles.xml")
+                    && !File.Exists(appdatapath + "\\Auto Profiles.xml"))
+                {
+                    new SaveWhere(false).ShowDialog();
+                }
+
+
+                if (String.IsNullOrEmpty(Global.appdatapath))
+                {
+                    Close();
+                    return;
+                }
+                Graphics g = this.CreateGraphics();
+                try
+                {
+                    dpix = g.DpiX;
+                    dpiy = g.DpiY;
+                }
+                finally
+                {
+                    g.Dispose();
+                }
+                Icon = Properties.Resources.DS4;
+                notifyIcon1.Icon = Properties.Resources.DS4;
+                rootHub = new DS4Control.Control();
+                rootHub.Debug += On_Debug;
+                Log.GuiLog += On_Debug;
+                Log.TrayIconLog += ShowNotification;
+                // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
+
+                Directory.CreateDirectory(Global.appdatapath);
+                Global.Load();
+                if (!Global.Save()) //if can't write to file
+                    if (MessageBox.Show("Cannot write at current locataion\nCopy Settings to appdata?", "DS4Windows",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        try
+                        {
+                            Directory.CreateDirectory(appdatapath);
+                            File.Copy(exepath + "\\Profiles.xml", appdatapath + "\\Profiles.xml");
+                            File.Copy(exepath + "\\Auto Profiles.xml", appdatapath + "\\Auto Profiles.xml");
+                            Directory.CreateDirectory(appdatapath + "\\Profiles");
+                            foreach (string s in Directory.GetFiles(exepath + "\\Profiles"))
+                            {
+                                File.Copy(s, appdatapath + "\\Profiles\\" + Path.GetFileName(s));
+                            }
+                        }
+                        catch { }
+                        MessageBox.Show("Copy complete, please relaunch DS4Windows and remove settings from Program Directory", "DS4Windows");
+                        Global.appdatapath = null;
+                        Close();
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("DS4Windows cannot edit settings here, This will now close", "DS4Windows");
+                        Global.appdatapath = null;
+                        Close();
+                        return;
+                    }
+                foreach (ToolStripMenuItem t in shortcuts)
+                    t.DropDownItemClicked += Profile_Changed_Menu;
+                hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
+                hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
+                hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
+                cBDisconnectBT.Checked = Global.getDCBTatStop();
+                // New settings
+                this.Width = Global.getFormWidth();
+                this.Height = Global.getFormHeight();
+                startMinimizedCheckBox.CheckedChanged -= startMinimizedCheckBox_CheckedChanged;
+                startMinimizedCheckBox.Checked = Global.getStartMinimized();
+                startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
+                if (startMinimizedCheckBox.Checked)
+                    this.WindowState = FormWindowState.Minimized;
+                Form_Resize(null, null);
+                RefreshProfiles();
+                for (int i = 0; i < 4; i++)
+                {
+                    Global.LoadProfile(i, true, rootHub);
+                }
+                LoadP();
+                Global.ControllerStatusChange += ControllerStatusChange;
+                bool start = true;
+                foreach (string s in arguements)
+                    if (s == "stop")
+                    {
+                        start = false;
+                        break;
+                    }
+                if (btnStartStop.Enabled && start)
+                    btnStartStop_Clicked();
+                startToolStripMenuItem.Text = btnStartStop.Text;
+                cBNotifications.Checked = Global.getNotifications();
+                cBSwipeProfiles.Checked = Global.getSwipeProfiles();
+                int checkwhen = Global.getCheckWhen();
+                cBUpdate.Checked = checkwhen > 0;
+                if (checkwhen > 23)
+                {
+                    cBUpdateTime.SelectedIndex = 1;
+                    nUDUpdateTime.Value = checkwhen / 24;
+                }
+                else
+                {
+                    cBUpdateTime.SelectedIndex = 0;
+                    nUDUpdateTime.Value = checkwhen;
+                }
+                Uri url = new Uri("http://ds4windows.com/Files/Builds/newest.txt"); //Sorry other devs, gonna have to find your own server
+
+
+                if (checkwhen > 0 && DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(checkwhen))
+                {
+                    wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
+                    wc.DownloadFileCompleted += Check_Version;
+                    Global.setLastChecked(DateTime.Now);
+                }
+
+                if (File.Exists(exepath + "\\Updater.exe"))
+                {
+                    System.Threading.Thread.Sleep(2000);
+                    File.Delete(exepath + "\\Updater.exe");
+                }
+                //test.Start();
+                hotkeystimer.Start();
+                hotkeystimer.Tick += Hotkeys;
+                test.Tick += test_Tick;
+                if (!System.IO.Directory.Exists(Global.appdatapath + "\\Virtual Bus Driver"))
+                    linkUninstall.Visible = false;
+                StartWindowsCheckBox.Checked = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
+            }
         }
 
         public static string GetTopWindowName()
@@ -132,149 +272,6 @@ namespace ScpServer
                     }
                     break;
             }
-        }
-
-        protected void Form_Load(object sender, EventArgs e)
-        {
-            SetupArrays();
-            var AppCollectionThread = new System.Threading.Thread(() => CheckDrivers());
-            AppCollectionThread.IsBackground = true;
-            AppCollectionThread.Start();
-            if (File.Exists(exepath + "\\Auto Profiles.xml")
-                && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml"))
-                new SaveWhere(true).ShowDialog();
-            else if (File.Exists(exepath + "\\Auto Profiles.xml"))
-                Global.SaveWhere(exepath);
-            else if (File.Exists(appdatapath + "\\Auto Profiles.xml"))
-                Global.SaveWhere(appdatapath);
-            else if (!File.Exists(exepath + "\\Auto Profiles.xml")
-                && !File.Exists(appdatapath + "\\Auto Profiles.xml"))
-            {
-                new SaveWhere(false).ShowDialog();
-            }
-           
-
-            if (String.IsNullOrEmpty(Global.appdatapath))
-            {
-                Close();
-                return;
-            }
-            Graphics g = this.CreateGraphics();
-            try
-            {
-                dpix = g.DpiX;
-                dpiy = g.DpiY;
-            }
-            finally
-            {
-                g.Dispose();
-            }
-            Icon = Properties.Resources.DS4;
-            notifyIcon1.Icon = Properties.Resources.DS4;
-            rootHub = new DS4Control.Control();
-            rootHub.Debug += On_Debug;
-            Log.GuiLog += On_Debug;
-            Log.TrayIconLog += ShowNotification;
-            // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
-            
-            Directory.CreateDirectory(Global.appdatapath);
-            Global.Load();
-            if (!Global.Save()) //if can't write to file
-                if (MessageBox.Show("Cannot write at current locataion\nCopy Settings to appdata?", "DS4Windows", 
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    try 
-                    {
-                        Directory.CreateDirectory(appdatapath);
-                        File.Copy(exepath + "\\Profiles.xml", appdatapath + "\\Profiles.xml");
-                        File.Copy(exepath + "\\Auto Profiles.xml", appdatapath + "\\Auto Profiles.xml");
-                        Directory.CreateDirectory(appdatapath + "\\Profiles");
-                        foreach (string s in Directory.GetFiles(exepath + "\\Profiles"))
-                        {
-                            File.Copy(s, appdatapath + "\\Profiles\\" + Path.GetFileName(s));
-                        }
-                    }
-                    catch { }
-                    MessageBox.Show("Copy complete, please relaunch DS4Windows and remove settings from Program Directory", "DS4Windows");
-                    Global.appdatapath = null;
-                    Close();
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("DS4Windows cannot edit settings here, This will now close", "DS4Windows");
-                    Global.appdatapath = null;
-                    Close();
-                    return;
-                }
-            foreach (ToolStripMenuItem t in shortcuts)
-                t.DropDownItemClicked += Profile_Changed_Menu;
-            hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
-            hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
-            hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
-            cBDisconnectBT.Checked = Global.getDCBTatStop();
-            // New settings
-            this.Width = Global.getFormWidth();
-            this.Height = Global.getFormHeight();
-            startMinimizedCheckBox.CheckedChanged -= startMinimizedCheckBox_CheckedChanged;
-            startMinimizedCheckBox.Checked = Global.getStartMinimized();
-            startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
-            if (startMinimizedCheckBox.Checked)
-                this.WindowState = FormWindowState.Minimized;
-            Form_Resize(sender, e);
-            RefreshProfiles();
-            for (int i = 0; i < 4; i++)
-            {
-                Global.LoadProfile(i, true, rootHub);
-            }
-            LoadP();
-            Global.ControllerStatusChange += ControllerStatusChange;
-            bool start = true;
-            foreach (string s in arguements)
-                if (s == "stop")
-                {
-                    start = false;
-                    break;
-                }            
-            if (btnStartStop.Enabled && start)
-                btnStartStop_Clicked();
-            startToolStripMenuItem.Text = btnStartStop.Text;
-            cBNotifications.Checked = Global.getNotifications();
-            cBSwipeProfiles.Checked = Global.getSwipeProfiles();
-            int checkwhen = Global.getCheckWhen();
-            cBUpdate.Checked = checkwhen > 0;
-            if (checkwhen > 23)
-            {
-                cBUpdateTime.SelectedIndex = 1;
-                nUDUpdateTime.Value = checkwhen / 24;
-            }
-            else
-            {
-                cBUpdateTime.SelectedIndex = 0;
-                nUDUpdateTime.Value = checkwhen;
-            }
-            Uri url = new Uri("http://ds4windows.com/Files/Builds/newest.txt"); //Sorry other devs, gonna have to find your own server
-            
-            
-            if (checkwhen > 0 && DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(checkwhen))
-            {
-                wc.DownloadFileAsync(url, Global.appdatapath + "\\version.txt");
-                wc.DownloadFileCompleted += Check_Version;
-                Global.setLastChecked(DateTime.Now);
-            }
-
-            if (File.Exists(exepath + "\\Updater.exe"))
-            {
-                System.Threading.Thread.Sleep(2000);
-                File.Delete(exepath + "\\Updater.exe");
-            }
-            //test.Start();
-            hotkeystimer.Start();
-            hotkeystimer.Tick += Hotkeys;
-            test.Tick += test_Tick;
-            if (!System.IO.Directory.Exists(Global.appdatapath + "\\Virtual Bus Driver"))
-                linkUninstall.Visible = false;
-            StartWindowsCheckBox.Checked = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
         }
 
         private void test_Tick(object sender, EventArgs e)
@@ -552,14 +549,14 @@ namespace ScpServer
             {
                 this.Hide();
                 this.ShowInTaskbar = false;
-                this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+                //this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
             }
 
             else if (FormWindowState.Normal == this.WindowState)
             {
                 this.Show();
                 this.ShowInTaskbar = true;
-                this.FormBorderStyle = FormBorderStyle.Sizable;
+                //this.FormBorderStyle = FormBorderStyle.Sizable;
             }
             chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
         }

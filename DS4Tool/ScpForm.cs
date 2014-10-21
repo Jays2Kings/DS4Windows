@@ -554,14 +554,14 @@ namespace ScpServer
             {
                 this.Hide();
                 this.ShowInTaskbar = false;
-                //this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+                this.FormBorderStyle = FormBorderStyle.None;
             }
 
             else if (FormWindowState.Normal == this.WindowState)
             {
                 this.Show();
                 this.ShowInTaskbar = true;
-                //this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.FormBorderStyle = FormBorderStyle.Sizable;
             }
             chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
         }

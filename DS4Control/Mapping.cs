@@ -720,25 +720,25 @@ namespace DS4Control
                 if (getXYAxisMapping(device, dc, cState, eState) != 127)
                     MappedState.LX = getXYAxisMapping(device, dc, cState, eState);
             foreach (DS4Controls dc in LXP)
-                if (getXYAxisMapping(device, dc, cState, eState) != 127)
+                if (getXYAxisMapping(device, dc, cState, eState, true) != 127)
                     MappedState.LX = getXYAxisMapping(device, dc, cState, eState, true);
             foreach (DS4Controls dc in LYN)
                 if (getXYAxisMapping(device, dc, cState, eState) != 127)
                     MappedState.LY = getXYAxisMapping(device, dc, cState, eState);
             foreach (DS4Controls dc in LYP)
-                if (getXYAxisMapping(device, dc, cState, eState) != 127)
+                if (getXYAxisMapping(device, dc, cState, eState, true) != 127)
                     MappedState.LY = getXYAxisMapping(device, dc, cState, eState, true);
             foreach (DS4Controls dc in RXN)
                 if (getXYAxisMapping(device, dc, cState, eState) != 127)
                     MappedState.RX = getXYAxisMapping(device, dc, cState, eState);
             foreach (DS4Controls dc in RXP)
-                if (getXYAxisMapping(device, dc, cState, eState) != 127)
+                if (getXYAxisMapping(device, dc, cState, eState, true) != 127)
                     MappedState.RX = getXYAxisMapping(device, dc, cState, eState, true);
             foreach (DS4Controls dc in RYN)
                 if (getXYAxisMapping(device, dc, cState, eState) != 127)
                     MappedState.RY = getXYAxisMapping(device, dc, cState, eState);
             foreach (DS4Controls dc in RYP)
-                if (getXYAxisMapping(device, dc, cState, eState) != 127)
+                if (getXYAxisMapping(device, dc, cState, eState, true) != 127)
                     MappedState.RY = getXYAxisMapping(device, dc, cState, eState, true);
             InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
         }

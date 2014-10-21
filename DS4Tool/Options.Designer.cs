@@ -71,9 +71,9 @@
             this.lowColorChooserButton = new System.Windows.Forms.Button();
             this.nUDRainbow = new System.Windows.Forms.NumericUpDown();
             this.pBRainbow = new System.Windows.Forms.PictureBox();
-            this.blueBar = new System.Windows.Forms.TrackBar();
-            this.greenBar = new System.Windows.Forms.TrackBar();
-            this.redBar = new System.Windows.Forms.TrackBar();
+            this.tBBlueBar = new System.Windows.Forms.TrackBar();
+            this.tBGreenBar = new System.Windows.Forms.TrackBar();
+            this.tBRedBar = new System.Windows.Forms.TrackBar();
             this.cBLightbyBattery = new System.Windows.Forms.CheckBox();
             this.lbBlue = new System.Windows.Forms.Label();
             this.lbGreen = new System.Windows.Forms.Label();
@@ -108,9 +108,9 @@
             this.lbLowRed = new System.Windows.Forms.Label();
             this.lbLowGreen = new System.Windows.Forms.Label();
             this.lbLowBlue = new System.Windows.Forms.Label();
-            this.lowRedBar = new System.Windows.Forms.TrackBar();
-            this.lowGreenBar = new System.Windows.Forms.TrackBar();
-            this.lowBlueBar = new System.Windows.Forms.TrackBar();
+            this.tBLowRedBar = new System.Windows.Forms.TrackBar();
+            this.tBLowGreenBar = new System.Windows.Forms.TrackBar();
+            this.tBLowBlueBar = new System.Windows.Forms.TrackBar();
             this.lbEmpty = new System.Windows.Forms.Label();
             this.FullPanel = new System.Windows.Forms.Panel();
             this.lowBatteryPanel = new System.Windows.Forms.Panel();
@@ -140,9 +140,9 @@
             this.lbShiftRed = new System.Windows.Forms.Label();
             this.lbShiftGreen = new System.Windows.Forms.Label();
             this.lbShiftBlue = new System.Windows.Forms.Label();
-            this.shiftRedBar = new System.Windows.Forms.TrackBar();
-            this.shiftGreenBar = new System.Windows.Forms.TrackBar();
-            this.shiftBlueBar = new System.Windows.Forms.TrackBar();
+            this.tBShiftRedBar = new System.Windows.Forms.TrackBar();
+            this.tBShiftGreenBar = new System.Windows.Forms.TrackBar();
+            this.tBShiftBlueBar = new System.Windows.Forms.TrackBar();
             this.btnChargingColor = new System.Windows.Forms.Button();
             this.rBColor = new System.Windows.Forms.RadioButton();
             this.rBFade = new System.Windows.Forms.RadioButton();
@@ -243,9 +243,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBSticks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.blueBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.greenBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.redBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBRedBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDScroll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTouch)).BeginInit();
@@ -258,9 +258,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRumbleBoost)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowRedBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowGreenBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowBlueBar)).BeginInit();
             this.FullPanel.SuspendLayout();
             this.lowBatteryPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRS)).BeginInit();
@@ -273,9 +273,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
             this.gBLightbar.SuspendLayout();
             this.ShiftPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.shiftRedBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shiftGreenBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shiftBlueBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBShiftRedBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBShiftGreenBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBShiftBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.gBRumble.SuspendLayout();
             this.gBDeadzone.SuspendLayout();
@@ -897,44 +897,44 @@
             this.pBRainbow.TabStop = false;
             this.pBRainbow.Click += new System.EventHandler(this.pbRainbow_Click);
             // 
-            // blueBar
+            // tBBlueBar
             // 
-            resources.ApplyResources(this.blueBar, "blueBar");
-            this.blueBar.BackColor = System.Drawing.Color.Blue;
-            this.blueBar.Maximum = 255;
-            this.blueBar.Name = "blueBar";
-            this.blueBar.TickFrequency = 25;
-            this.blueBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.blueBar.Value = 255;
-            this.blueBar.ValueChanged += new System.EventHandler(this.blueBar_ValueChanged);
-            this.blueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.blueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            resources.ApplyResources(this.tBBlueBar, "tBBlueBar");
+            this.tBBlueBar.BackColor = System.Drawing.Color.Blue;
+            this.tBBlueBar.Maximum = 255;
+            this.tBBlueBar.Name = "tBBlueBar";
+            this.tBBlueBar.TickFrequency = 25;
+            this.tBBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBBlueBar.Value = 255;
+            this.tBBlueBar.ValueChanged += new System.EventHandler(this.blueBar_ValueChanged);
+            this.tBBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.tBBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
-            // greenBar
+            // tBGreenBar
             // 
-            resources.ApplyResources(this.greenBar, "greenBar");
-            this.greenBar.BackColor = System.Drawing.Color.Green;
-            this.greenBar.Maximum = 255;
-            this.greenBar.Name = "greenBar";
-            this.greenBar.TickFrequency = 25;
-            this.greenBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.greenBar.Value = 255;
-            this.greenBar.ValueChanged += new System.EventHandler(this.greenBar_ValueChanged);
-            this.greenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.greenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            resources.ApplyResources(this.tBGreenBar, "tBGreenBar");
+            this.tBGreenBar.BackColor = System.Drawing.Color.Green;
+            this.tBGreenBar.Maximum = 255;
+            this.tBGreenBar.Name = "tBGreenBar";
+            this.tBGreenBar.TickFrequency = 25;
+            this.tBGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBGreenBar.Value = 255;
+            this.tBGreenBar.ValueChanged += new System.EventHandler(this.greenBar_ValueChanged);
+            this.tBGreenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.tBGreenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
-            // redBar
+            // tBRedBar
             // 
-            resources.ApplyResources(this.redBar, "redBar");
-            this.redBar.BackColor = System.Drawing.Color.Red;
-            this.redBar.Maximum = 255;
-            this.redBar.Name = "redBar";
-            this.redBar.TickFrequency = 25;
-            this.redBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.redBar.Value = 255;
-            this.redBar.ValueChanged += new System.EventHandler(this.redBar_ValueChanged);
-            this.redBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.redBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            resources.ApplyResources(this.tBRedBar, "tBRedBar");
+            this.tBRedBar.BackColor = System.Drawing.Color.Red;
+            this.tBRedBar.Maximum = 255;
+            this.tBRedBar.Name = "tBRedBar";
+            this.tBRedBar.TickFrequency = 25;
+            this.tBRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBRedBar.Value = 255;
+            this.tBRedBar.ValueChanged += new System.EventHandler(this.redBar_ValueChanged);
+            this.tBRedBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.tBRedBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // cBLightbyBattery
             // 
@@ -1226,44 +1226,44 @@
             resources.ApplyResources(this.lbLowBlue, "lbLowBlue");
             this.lbLowBlue.Name = "lbLowBlue";
             // 
-            // lowRedBar
+            // tBLowRedBar
             // 
-            resources.ApplyResources(this.lowRedBar, "lowRedBar");
-            this.lowRedBar.BackColor = System.Drawing.Color.Red;
-            this.lowRedBar.Maximum = 255;
-            this.lowRedBar.Name = "lowRedBar";
-            this.lowRedBar.TickFrequency = 25;
-            this.lowRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.lowRedBar.Value = 255;
-            this.lowRedBar.ValueChanged += new System.EventHandler(this.lowRedBar_ValueChanged);
-            this.lowRedBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.lowRedBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            resources.ApplyResources(this.tBLowRedBar, "tBLowRedBar");
+            this.tBLowRedBar.BackColor = System.Drawing.Color.Red;
+            this.tBLowRedBar.Maximum = 255;
+            this.tBLowRedBar.Name = "tBLowRedBar";
+            this.tBLowRedBar.TickFrequency = 25;
+            this.tBLowRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBLowRedBar.Value = 255;
+            this.tBLowRedBar.ValueChanged += new System.EventHandler(this.lowRedBar_ValueChanged);
+            this.tBLowRedBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.tBLowRedBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
-            // lowGreenBar
+            // tBLowGreenBar
             // 
-            resources.ApplyResources(this.lowGreenBar, "lowGreenBar");
-            this.lowGreenBar.BackColor = System.Drawing.Color.Green;
-            this.lowGreenBar.Maximum = 255;
-            this.lowGreenBar.Name = "lowGreenBar";
-            this.lowGreenBar.TickFrequency = 25;
-            this.lowGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.lowGreenBar.Value = 255;
-            this.lowGreenBar.ValueChanged += new System.EventHandler(this.lowGreenBar_ValueChanged);
-            this.lowGreenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.lowGreenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            resources.ApplyResources(this.tBLowGreenBar, "tBLowGreenBar");
+            this.tBLowGreenBar.BackColor = System.Drawing.Color.Green;
+            this.tBLowGreenBar.Maximum = 255;
+            this.tBLowGreenBar.Name = "tBLowGreenBar";
+            this.tBLowGreenBar.TickFrequency = 25;
+            this.tBLowGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBLowGreenBar.Value = 255;
+            this.tBLowGreenBar.ValueChanged += new System.EventHandler(this.lowGreenBar_ValueChanged);
+            this.tBLowGreenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.tBLowGreenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
-            // lowBlueBar
+            // tBLowBlueBar
             // 
-            resources.ApplyResources(this.lowBlueBar, "lowBlueBar");
-            this.lowBlueBar.BackColor = System.Drawing.Color.Blue;
-            this.lowBlueBar.Maximum = 255;
-            this.lowBlueBar.Name = "lowBlueBar";
-            this.lowBlueBar.TickFrequency = 25;
-            this.lowBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.lowBlueBar.Value = 255;
-            this.lowBlueBar.ValueChanged += new System.EventHandler(this.lowBlueBar_ValueChanged);
-            this.lowBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.lowBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            resources.ApplyResources(this.tBLowBlueBar, "tBLowBlueBar");
+            this.tBLowBlueBar.BackColor = System.Drawing.Color.Blue;
+            this.tBLowBlueBar.Maximum = 255;
+            this.tBLowBlueBar.Name = "tBLowBlueBar";
+            this.tBLowBlueBar.TickFrequency = 25;
+            this.tBLowBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBLowBlueBar.Value = 255;
+            this.tBLowBlueBar.ValueChanged += new System.EventHandler(this.lowBlueBar_ValueChanged);
+            this.tBLowBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.tBLowBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // lbEmpty
             // 
@@ -1277,9 +1277,9 @@
             this.FullPanel.Controls.Add(this.lbRed);
             this.FullPanel.Controls.Add(this.lbGreen);
             this.FullPanel.Controls.Add(this.lbBlue);
-            this.FullPanel.Controls.Add(this.redBar);
-            this.FullPanel.Controls.Add(this.greenBar);
-            this.FullPanel.Controls.Add(this.blueBar);
+            this.FullPanel.Controls.Add(this.tBRedBar);
+            this.FullPanel.Controls.Add(this.tBGreenBar);
+            this.FullPanel.Controls.Add(this.tBBlueBar);
             resources.ApplyResources(this.FullPanel, "FullPanel");
             this.FullPanel.Name = "FullPanel";
             // 
@@ -1289,9 +1289,9 @@
             this.lowBatteryPanel.Controls.Add(this.lbLowRed);
             this.lowBatteryPanel.Controls.Add(this.lbLowGreen);
             this.lowBatteryPanel.Controls.Add(this.lbLowBlue);
-            this.lowBatteryPanel.Controls.Add(this.lowRedBar);
-            this.lowBatteryPanel.Controls.Add(this.lowGreenBar);
-            this.lowBatteryPanel.Controls.Add(this.lowBlueBar);
+            this.lowBatteryPanel.Controls.Add(this.tBLowRedBar);
+            this.lowBatteryPanel.Controls.Add(this.tBLowGreenBar);
+            this.lowBatteryPanel.Controls.Add(this.tBLowBlueBar);
             this.lowBatteryPanel.Controls.Add(this.lbEmpty);
             resources.ApplyResources(this.lowBatteryPanel, "lowBatteryPanel");
             this.lowBatteryPanel.Name = "lowBatteryPanel";
@@ -1499,7 +1499,6 @@
             // 
             // gBLightbar
             // 
-            this.gBLightbar.Controls.Add(this.ShiftPanel);
             this.gBLightbar.Controls.Add(this.btnChargingColor);
             this.gBLightbar.Controls.Add(this.rBColor);
             this.gBLightbar.Controls.Add(this.rBFade);
@@ -1515,6 +1514,7 @@
             this.gBLightbar.Controls.Add(this.lbFlashAt);
             this.gBLightbar.Controls.Add(this.lowBatteryPanel);
             this.gBLightbar.Controls.Add(this.FullPanel);
+            this.gBLightbar.Controls.Add(this.ShiftPanel);
             resources.ApplyResources(this.gBLightbar, "gBLightbar");
             this.gBLightbar.Name = "gBLightbar";
             this.gBLightbar.TabStop = false;
@@ -1526,9 +1526,9 @@
             this.ShiftPanel.Controls.Add(this.lbShiftRed);
             this.ShiftPanel.Controls.Add(this.lbShiftGreen);
             this.ShiftPanel.Controls.Add(this.lbShiftBlue);
-            this.ShiftPanel.Controls.Add(this.shiftRedBar);
-            this.ShiftPanel.Controls.Add(this.shiftGreenBar);
-            this.ShiftPanel.Controls.Add(this.shiftBlueBar);
+            this.ShiftPanel.Controls.Add(this.tBShiftRedBar);
+            this.ShiftPanel.Controls.Add(this.tBShiftGreenBar);
+            this.ShiftPanel.Controls.Add(this.tBShiftBlueBar);
             resources.ApplyResources(this.ShiftPanel, "ShiftPanel");
             this.ShiftPanel.Name = "ShiftPanel";
             // 
@@ -1562,44 +1562,44 @@
             resources.ApplyResources(this.lbShiftBlue, "lbShiftBlue");
             this.lbShiftBlue.Name = "lbShiftBlue";
             // 
-            // shiftRedBar
+            // tBShiftRedBar
             // 
-            resources.ApplyResources(this.shiftRedBar, "shiftRedBar");
-            this.shiftRedBar.BackColor = System.Drawing.Color.Red;
-            this.shiftRedBar.Maximum = 255;
-            this.shiftRedBar.Name = "shiftRedBar";
-            this.shiftRedBar.TickFrequency = 25;
-            this.shiftRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.shiftRedBar.Value = 255;
-            this.shiftRedBar.ValueChanged += new System.EventHandler(this.shiftRedBar_ValueChanged);
-            this.shiftRedBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.shiftRedBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            resources.ApplyResources(this.tBShiftRedBar, "tBShiftRedBar");
+            this.tBShiftRedBar.BackColor = System.Drawing.Color.Red;
+            this.tBShiftRedBar.Maximum = 255;
+            this.tBShiftRedBar.Name = "tBShiftRedBar";
+            this.tBShiftRedBar.TickFrequency = 25;
+            this.tBShiftRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBShiftRedBar.Value = 255;
+            this.tBShiftRedBar.ValueChanged += new System.EventHandler(this.shiftRedBar_ValueChanged);
+            this.tBShiftRedBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.tBShiftRedBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
-            // shiftGreenBar
+            // tBShiftGreenBar
             // 
-            resources.ApplyResources(this.shiftGreenBar, "shiftGreenBar");
-            this.shiftGreenBar.BackColor = System.Drawing.Color.Green;
-            this.shiftGreenBar.Maximum = 255;
-            this.shiftGreenBar.Name = "shiftGreenBar";
-            this.shiftGreenBar.TickFrequency = 25;
-            this.shiftGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.shiftGreenBar.Value = 255;
-            this.shiftGreenBar.ValueChanged += new System.EventHandler(this.shiftGreenBar_ValueChanged);
-            this.shiftGreenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.shiftGreenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            resources.ApplyResources(this.tBShiftGreenBar, "tBShiftGreenBar");
+            this.tBShiftGreenBar.BackColor = System.Drawing.Color.Green;
+            this.tBShiftGreenBar.Maximum = 255;
+            this.tBShiftGreenBar.Name = "tBShiftGreenBar";
+            this.tBShiftGreenBar.TickFrequency = 25;
+            this.tBShiftGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBShiftGreenBar.Value = 255;
+            this.tBShiftGreenBar.ValueChanged += new System.EventHandler(this.shiftGreenBar_ValueChanged);
+            this.tBShiftGreenBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.tBShiftGreenBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
-            // shiftBlueBar
+            // tBShiftBlueBar
             // 
-            resources.ApplyResources(this.shiftBlueBar, "shiftBlueBar");
-            this.shiftBlueBar.BackColor = System.Drawing.Color.Blue;
-            this.shiftBlueBar.Maximum = 255;
-            this.shiftBlueBar.Name = "shiftBlueBar";
-            this.shiftBlueBar.TickFrequency = 25;
-            this.shiftBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.shiftBlueBar.Value = 255;
-            this.shiftBlueBar.ValueChanged += new System.EventHandler(this.shiftBlueBar_ValueChanged);
-            this.shiftBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
-            this.shiftBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
+            resources.ApplyResources(this.tBShiftBlueBar, "tBShiftBlueBar");
+            this.tBShiftBlueBar.BackColor = System.Drawing.Color.Blue;
+            this.tBShiftBlueBar.Maximum = 255;
+            this.tBShiftBlueBar.Name = "tBShiftBlueBar";
+            this.tBShiftBlueBar.TickFrequency = 25;
+            this.tBShiftBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBShiftBlueBar.Value = 255;
+            this.tBShiftBlueBar.ValueChanged += new System.EventHandler(this.shiftBlueBar_ValueChanged);
+            this.tBShiftBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
+            this.tBShiftBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
             // 
             // btnChargingColor
             // 
@@ -2661,9 +2661,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBSticks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.blueBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.greenBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.redBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBRedBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDScroll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTouch)).EndInit();
@@ -2676,9 +2676,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBsixaxisGyroX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRumbleBoost)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowRedBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowGreenBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowBlueBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowRedBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowGreenBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLowBlueBar)).EndInit();
             this.FullPanel.ResumeLayout(false);
             this.FullPanel.PerformLayout();
             this.lowBatteryPanel.ResumeLayout(false);
@@ -2697,9 +2697,9 @@
             this.gBLightbar.PerformLayout();
             this.ShiftPanel.ResumeLayout(false);
             this.ShiftPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.shiftRedBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shiftGreenBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shiftBlueBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBShiftRedBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBShiftGreenBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBShiftBlueBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
             this.gBRumble.ResumeLayout(false);
             this.gBRumble.PerformLayout();
@@ -2778,9 +2778,9 @@
         private System.Windows.Forms.NumericUpDown nUDRainbow;
         private System.Windows.Forms.PictureBox pBRainbow;
         private System.Windows.Forms.Button lowColorChooserButton;
-        private System.Windows.Forms.TrackBar blueBar;
-        private System.Windows.Forms.TrackBar greenBar;
-        private System.Windows.Forms.TrackBar redBar;
+        private System.Windows.Forms.TrackBar tBBlueBar;
+        private System.Windows.Forms.TrackBar tBGreenBar;
+        private System.Windows.Forms.TrackBar tBRedBar;
         private System.Windows.Forms.CheckBox cBLightbyBattery;
         private System.Windows.Forms.Label lbBlue;
         private System.Windows.Forms.Label lbGreen;
@@ -2815,9 +2815,9 @@
         private System.Windows.Forms.Label lbLowRed;
         private System.Windows.Forms.Label lbLowGreen;
         private System.Windows.Forms.Label lbLowBlue;
-        private System.Windows.Forms.TrackBar lowRedBar;
-        private System.Windows.Forms.TrackBar lowGreenBar;
-        private System.Windows.Forms.TrackBar lowBlueBar;
+        private System.Windows.Forms.TrackBar tBLowRedBar;
+        private System.Windows.Forms.TrackBar tBLowGreenBar;
+        private System.Windows.Forms.TrackBar tBLowBlueBar;
         private System.Windows.Forms.Label lbEmpty;
         private System.Windows.Forms.Panel lowBatteryPanel;
         private System.Windows.Forms.Panel FullPanel;
@@ -2934,9 +2934,9 @@
         private System.Windows.Forms.Label lbShiftRed;
         private System.Windows.Forms.Label lbShiftGreen;
         private System.Windows.Forms.Label lbShiftBlue;
-        private System.Windows.Forms.TrackBar shiftRedBar;
-        private System.Windows.Forms.TrackBar shiftGreenBar;
-        private System.Windows.Forms.TrackBar shiftBlueBar;
+        private System.Windows.Forms.TrackBar tBShiftRedBar;
+        private System.Windows.Forms.TrackBar tBShiftGreenBar;
+        private System.Windows.Forms.TrackBar tBShiftBlueBar;
         private System.Windows.Forms.CheckBox cBShiftLight;
         private System.Windows.Forms.CheckBox cBLaunchProgram;
         private System.Windows.Forms.Button btnBrowse;

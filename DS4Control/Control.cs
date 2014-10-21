@@ -409,13 +409,13 @@ namespace DS4Control
                 if (Global.getHasCustomKeysorButtons(ind))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind]);
-                    cState = MappedState[ind];
+                    //cState = MappedState[ind];
                 }
 
                 // Update the GUI/whatever.
-                DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind]);
+                DS4LightBar.updateLightBar(device, ind, MappedState[ind], ExposedState[ind]);
 
-                x360Bus.Parse(cState, processingData[ind].Report, ind);
+                x360Bus.Parse(MappedState[ind], processingData[ind].Report, ind);
                 // We push the translated Xinput state, and simultaneously we
                 // pull back any possible rumble data coming from Xinput consumers.
                 if (x360Bus.Report(processingData[ind].Report, processingData[ind].Rumble))

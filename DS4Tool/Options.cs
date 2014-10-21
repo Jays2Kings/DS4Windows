@@ -86,10 +86,10 @@ namespace ScpServer
                     Global.setAProfile(4, name);
                 Global.LoadProfile(device, buttons.ToArray(), subbuttons.ToArray(), false, scpDevice);
                 DS4Color color = Global.loadColor(device);
-                redBar.Value = color.red;
-                greenBar.Value = color.green;
-                blueBar.Value = color.blue;
-                
+                tBRedBar.Value = color.red;
+                tBGreenBar.Value = color.green;
+                tBBlueBar.Value = color.blue;
+
                 cBLightbyBattery.Checked = Global.getLedAsBatteryIndicator(device);
                 nUDflashLED.Value = Global.getFlashAt(device);
                 lowBatteryPanel.Visible = cBLightbyBattery.Checked;
@@ -97,14 +97,14 @@ namespace ScpServer
                 FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
 
                 DS4Color lowColor = Global.loadLowColor(device);
-                lowRedBar.Value = lowColor.red;
-                lowGreenBar.Value = lowColor.green;
-                lowBlueBar.Value = lowColor.blue;
+                tBLowRedBar.Value = lowColor.red;
+                tBLowGreenBar.Value = lowColor.green;
+                tBLowBlueBar.Value = lowColor.blue;
 
                 DS4Color shiftColor = Global.loadShiftColor(device);
-                shiftRedBar.Value = shiftColor.red;
-                shiftGreenBar.Value = shiftColor.green;
-                shiftBlueBar.Value = shiftColor.blue;
+                tBShiftRedBar.Value = shiftColor.red;
+                tBShiftGreenBar.Value = shiftColor.green;
+                tBShiftBlueBar.Value = shiftColor.blue;
                 cBShiftLight.Checked = Global.getShiftColorOn(device);
 
                 DS4Color cColor = Global.loadChargingColor(device);
@@ -113,19 +113,19 @@ namespace ScpServer
                 DS4Color fColor = Global.loadFlashColor(device);
                 lbFlashAt.ForeColor = Color.FromArgb(fColor.red, fColor.green, fColor.blue);
                 if (lbFlashAt.ForeColor.GetBrightness() > .5f)
-                     lbFlashAt.BackColor = Color.Black;
+                    lbFlashAt.BackColor = Color.Black;
                 lbPercentFlashBar.ForeColor = lbFlashAt.ForeColor;
                 lbPercentFlashBar.BackColor = lbFlashAt.BackColor;
                 nUDRumbleBoost.Value = Global.loadRumbleBoost(device);
                 nUDTouch.Value = Global.getTouchSensitivity(device);
                 cBSlide.Checked = Global.getTouchSensitivity(device) > 0;
                 nUDScroll.Value = Global.getScrollSensitivity(device);
-                cBScroll.Checked = Global.getScrollSensitivity(device) >0;
+                cBScroll.Checked = Global.getScrollSensitivity(device) > 0;
                 nUDTap.Value = Global.getTapSensitivity(device);
                 cBTap.Checked = Global.getTapSensitivity(device) > 0;
                 cBDoubleTap.Checked = Global.getDoubleTap(device);
-                nUDL2.Value = (decimal)Global.getLeftTriggerMiddle(device)/255;
-                nUDR2.Value = (decimal)Global.getRightTriggerMiddle(device)/255;
+                nUDL2.Value = (decimal)Global.getLeftTriggerMiddle(device) / 255;
+                nUDR2.Value = (decimal)Global.getRightTriggerMiddle(device) / 255;
                 cBTouchpadJitterCompensation.Checked = Global.getTouchpadJitterCompensation(device);
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
                 cBFlushHIDQueue.Checked = Global.getFlushHIDQueue(device);
@@ -134,12 +134,12 @@ namespace ScpServer
                 numUDMouseSens.Value = Global.getButtonMouseSensitivity(device);
                 cBMouseAccel.Checked = Global.getMouseAccel(device);
                 // Force update of color choosers    
-                alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
+                alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
                 reg = Color.FromArgb(color.red, color.green, color.blue);
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
 
-                alphacolor = Math.Max(lowRedBar.Value, Math.Max(greenBar.Value, blueBar.Value));
+                alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
                 reg = Color.FromArgb(lowColor.red, lowColor.green, lowColor.blue);
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
@@ -161,8 +161,8 @@ namespace ScpServer
                     pBRainbow.Image = colored;
                     ToggleRainbow(true);
                 }
-                nUDLS.Value = Math.Round((decimal)(Global.getLSDeadzone(device) / 127d ), 3);
-                nUDRS.Value = Math.Round((decimal)(Global.getRSDeadzone(device) / 127d ), 3);
+                nUDLS.Value = Math.Round((decimal)(Global.getLSDeadzone(device) / 127d), 3);
+                nUDRS.Value = Math.Round((decimal)(Global.getRSDeadzone(device) / 127d), 3);
                 nUDSX.Value = (decimal)Global.getSXDeadzone(device);
                 nUDSZ.Value = (decimal)Global.getSZDeadzone(device);
                 cBShiftControl.SelectedIndex = Global.getShiftModifier(device);
@@ -177,7 +177,17 @@ namespace ScpServer
                 cbStartTouchpadOff.Checked = Global.getStartTouchpadOff(device);
             }
             else
+            {
                 Set();
+                switch (device)
+                {
+                    case 0: tBRedBar.Value = 0; tBGreenBar.Value = 0; break;
+                    case 1: tBGreenBar.Value = 0; tBBlueBar.Value = 0; break;
+                    case 2: tBRedBar.Value = 0; tBBlueBar.Value = 0; break;
+                    case 3: tBGreenBar.Value = 0; break;
+                    case 4: tBRedBar.Value = 0; tBGreenBar.Value = 0; break;
+                }
+            }
             foreach (Button b in buttons)
                 b.MouseHover += button_MouseHover;
             foreach (Button b in subbuttons)
@@ -384,9 +394,9 @@ namespace ScpServer
             lowBatteryPanel.Visible = cBLightbyBattery.Checked;
             lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.Full + ":": Properties.Resources.Color + ":");
             FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
-            Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
-            Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
-            Global.saveShiftColor(device, (byte)shiftRedBar.Value, (byte)shiftGreenBar.Value, (byte)shiftBlueBar.Value);
+            Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
+            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
+            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             Global.saveFlashColor(device, lbFlashAt.ForeColor.R, lbFlashAt.ForeColor.G, lbFlashAt.ForeColor.B);
             Global.setLeftTriggerMiddle(device, (byte)Math.Round((nUDL2.Value * 255), 0));
             Global.setRightTriggerMiddle(device, (byte)Math.Round((nUDR2.Value * 255), 0));
@@ -479,14 +489,14 @@ namespace ScpServer
         }
         private void btnLightbar_Click(object sender, EventArgs e)
         {
-            advColorDialog.Color = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
+            advColorDialog.Color = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
             advColorDialog_OnUpdateColor(pBController.BackColor, e);
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
                 pBController.BackColor = advColorDialog.Color;
-                redBar.Value = advColorDialog.Color.R;
-                greenBar.Value = advColorDialog.Color.G;
-                blueBar.Value = advColorDialog.Color.B;
+                tBRedBar.Value = advColorDialog.Color.R;
+                tBGreenBar.Value = advColorDialog.Color.G;
+                tBBlueBar.Value = advColorDialog.Color.B;
             }
             else Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
             Global.saveChargingColor(device, oldChargingColor[0], oldChargingColor[1], oldChargingColor[2]);
@@ -502,9 +512,9 @@ namespace ScpServer
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
                 lowColorChooserButton.BackColor = advColorDialog.Color;
-                lowRedBar.Value = advColorDialog.Color.R;
-                lowGreenBar.Value = advColorDialog.Color.G;
-                lowBlueBar.Value = advColorDialog.Color.B;
+                tBLowRedBar.Value = advColorDialog.Color.R;
+                tBLowGreenBar.Value = advColorDialog.Color.G;
+                tBLowBlueBar.Value = advColorDialog.Color.B;
             }
             else Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
             Global.saveChargingColor(device, oldChargingColor[0], oldChargingColor[1], oldChargingColor[2]);
@@ -556,11 +566,11 @@ namespace ScpServer
             int sat = bgc - (value < bgc ? value : bgc);
             int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
-            alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
-            reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
+            alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
+            reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
+            Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
             else
@@ -572,11 +582,11 @@ namespace ScpServer
             int sat = bgc - (value < bgc ? value : bgc);
             int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
-            alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
-            reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
+            alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
+            reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
+            Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
             else
@@ -588,11 +598,11 @@ namespace ScpServer
             int sat = bgc - (value < bgc ? value : bgc);
             int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
-            alphacolor = Math.Max(redBar.Value, Math.Max(greenBar.Value, blueBar.Value));
-            reg = Color.FromArgb(redBar.Value, greenBar.Value, blueBar.Value);
+            alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
+            reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveColor(device, (byte)redBar.Value, (byte)greenBar.Value, (byte)blueBar.Value);
+            Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
             else
@@ -605,11 +615,11 @@ namespace ScpServer
             int sat = bgc - (value < bgc ? value : bgc);
             int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
-            alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
-            reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
+            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
+            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
+            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
             else
@@ -622,11 +632,11 @@ namespace ScpServer
             int sat = bgc - (value < bgc ? value : bgc);
             int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
-            alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
-            reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
+            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
+            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
+            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
             else
@@ -639,11 +649,11 @@ namespace ScpServer
             int sat = bgc - (value < bgc ? value : bgc);
             int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
-            alphacolor = Math.Max(lowRedBar.Value, Math.Max(lowGreenBar.Value, lowBlueBar.Value));
-            reg = Color.FromArgb(lowRedBar.Value, lowGreenBar.Value, lowBlueBar.Value);
+            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
+            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveLowColor(device, (byte)lowRedBar.Value, (byte)lowGreenBar.Value, (byte)lowBlueBar.Value);
+            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
             else
@@ -656,11 +666,11 @@ namespace ScpServer
             int sat = bgc - (value < bgc ? value : bgc);
             int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
-            alphacolor = Math.Max(shiftRedBar.Value, Math.Max(shiftGreenBar.Value, shiftBlueBar.Value));
-            reg = Color.FromArgb(shiftRedBar.Value, shiftGreenBar.Value, shiftBlueBar.Value);
+            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
+            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveShiftColor(device, (byte)shiftRedBar.Value, (byte)shiftGreenBar.Value, (byte)shiftBlueBar.Value);
+            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
             else
@@ -673,11 +683,11 @@ namespace ScpServer
             int sat = bgc - (value < bgc ? value : bgc);
             int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
-            alphacolor = Math.Max(shiftRedBar.Value, Math.Max(shiftGreenBar.Value, shiftBlueBar.Value));
-            reg = Color.FromArgb(shiftRedBar.Value, shiftGreenBar.Value, shiftBlueBar.Value);
+            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
+            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveShiftColor(device, (byte)shiftRedBar.Value, (byte)shiftGreenBar.Value, (byte)shiftBlueBar.Value);
+            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
             else
@@ -690,11 +700,11 @@ namespace ScpServer
             int sat = bgc - (value < bgc ? value : bgc);
             int som = bgc + 11 * (int)(value * 0.0039215);
             ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
-            alphacolor = Math.Max(shiftRedBar.Value, Math.Max(shiftGreenBar.Value, shiftBlueBar.Value));
-            reg = Color.FromArgb(shiftRedBar.Value, shiftGreenBar.Value, shiftBlueBar.Value);
+            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
+            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveShiftColor(device, (byte)shiftRedBar.Value, (byte)shiftGreenBar.Value, (byte)shiftBlueBar.Value);
+            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
             else
@@ -1285,16 +1295,16 @@ namespace ScpServer
 
         private void lbEmpty_Click(object sender, EventArgs e)
         {
-            lowRedBar.Value = redBar.Value;
-            lowGreenBar.Value = greenBar.Value;
-            lowBlueBar.Value = blueBar.Value;
+            tBLowRedBar.Value = tBRedBar.Value;
+            tBLowGreenBar.Value = tBGreenBar.Value;
+            tBLowBlueBar.Value = tBBlueBar.Value;
         }
 
         private void lbShift_Click(object sender, EventArgs e)
         {
-            shiftRedBar.Value = redBar.Value;
-            shiftGreenBar.Value = greenBar.Value;
-            shiftBlueBar.Value = blueBar.Value;
+            tBShiftRedBar.Value = tBRedBar.Value;
+            tBShiftGreenBar.Value = tBGreenBar.Value;
+            tBShiftBlueBar.Value = tBBlueBar.Value;
         }
 
         private void lbSATip_Click(object sender, EventArgs e)
@@ -1325,8 +1335,8 @@ namespace ScpServer
             }
             else
             {
-                alphacolor = Math.Max(shiftRedBar.Value, Math.Max(shiftGreenBar.Value, shiftBlueBar.Value));
-                reg = Color.FromArgb(shiftRedBar.Value, shiftGreenBar.Value, shiftBlueBar.Value);
+                alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
+                reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             }
@@ -1335,9 +1345,9 @@ namespace ScpServer
             lbShiftRed.Enabled = cBShiftLight.Checked;
             lbShiftGreen.Enabled = cBShiftLight.Checked;
             lbShiftBlue.Enabled = cBShiftLight.Checked;
-            shiftRedBar.Enabled = cBShiftLight.Checked;
-            shiftGreenBar.Enabled = cBShiftLight.Checked;
-            shiftBlueBar.Enabled = cBShiftLight.Checked;
+            tBShiftRedBar.Enabled = cBShiftLight.Checked;
+            tBShiftGreenBar.Enabled = cBShiftLight.Checked;
+            tBShiftBlueBar.Enabled = cBShiftLight.Checked;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)

@@ -115,15 +115,14 @@ namespace DS4Control
         private DS4State remapped = new DS4State();
         private void synthesizeMouseButtons()
         {
-            //Mapping.MapCustom(deviceNum, s, remapped, null);
-            if (leftDown)
-                Mapping.MapTouchpadButton(deviceNum, DS4Controls.TouchLeft, Mapping.Click.Left, remapped);
-            if (upperDown)
-                Mapping.MapTouchpadButton(deviceNum, DS4Controls.TouchUpper, Mapping.Click.Middle, remapped);
-            if (rightDown)
-                Mapping.MapTouchpadButton(deviceNum, DS4Controls.TouchRight, Mapping.Click.Left, remapped);
-            if (multiDown)
-                Mapping.MapTouchpadButton(deviceNum, DS4Controls.TouchMulti, Mapping.Click.Right, remapped);
+            if (Global.getCustomButton(deviceNum, DS4Controls.TouchLeft) == X360Controls.None && leftDown)
+                Mapping.MapClick(deviceNum, Mapping.Click.Left);
+            if (Global.getCustomButton(deviceNum, DS4Controls.TouchUpper) == X360Controls.None && upperDown)
+                Mapping.MapClick(deviceNum, Mapping.Click.Middle);
+            if (Global.getCustomButton(deviceNum, DS4Controls.TouchRight) == X360Controls.None && rightDown)
+                Mapping.MapClick(deviceNum, Mapping.Click.Left);
+            if (Global.getCustomButton(deviceNum, DS4Controls.TouchMulti) == X360Controls.None && multiDown)
+                Mapping.MapClick(deviceNum, Mapping.Click.Right);
             if (tappedOnce)
             {
                 DateTime tester = DateTime.Now;

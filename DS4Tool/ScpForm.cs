@@ -501,7 +501,7 @@ namespace ScpServer
             WP.Dock = DockStyle.Fill;
             tabAutoProfiles.Controls.Add(WP);
         }
-        protected void LogDebug(DateTime Time, String Data)
+        protected async void LogDebug(DateTime Time, String Data)
         {
             if (lvDebug.InvokeRequired)
             {
@@ -514,6 +514,11 @@ namespace ScpServer
             }
             else
             {
+                if (Data.StartsWith("Warning"))
+                {
+                    await System.Threading.Tasks.Task.Delay(5);
+                    Time = DateTime.Now;
+                }
                 String Posted = Time.ToString("G");
 
                 lvDebug.Items.Add(new ListViewItem(new String[] { Posted, Data })).EnsureVisible();
@@ -1329,6 +1334,16 @@ namespace ScpServer
         private void cBSwipeProfiles_CheckedChanged(object sender, EventArgs e)
         {
             Global.setSwipeProfiles(cBSwipeProfiles.Checked);
+        }
+
+        private void lbLastMessage_MouseHover(object sender, EventArgs e)
+        {
+            tt.Show(lbLastMessage.Text, lbLastMessage, -3, -3);
+        }
+
+        private void pnlButton_MouseLeave(object sender, EventArgs e)
+        {
+            tt.Hide(lbLastMessage);
         }
     }
 

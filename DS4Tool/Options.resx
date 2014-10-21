@@ -1511,7 +1511,7 @@ Click the lightbar for color picker</value>
     <value>gBLightbar</value>
   </data>
   <data name="&gt;&gt;nUDRainbow.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="pBRainbow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1538,87 +1538,87 @@ Click the lightbar for color picker</value>
     <value>gBLightbar</value>
   </data>
   <data name="&gt;&gt;pBRainbow.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
-  <data name="blueBar.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tBBlueBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="blueBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tBBlueBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="blueBar.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tBBlueBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>325, 4</value>
   </data>
-  <data name="blueBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tBBlueBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="blueBar.TabIndex" type="System.Int32, mscorlib">
+  <data name="tBBlueBar.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;blueBar.Name" xml:space="preserve">
-    <value>blueBar</value>
+  <data name="&gt;&gt;tBBlueBar.Name" xml:space="preserve">
+    <value>tBBlueBar</value>
   </data>
-  <data name="&gt;&gt;blueBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;tBBlueBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;blueBar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tBBlueBar.Parent" xml:space="preserve">
     <value>FullPanel</value>
   </data>
-  <data name="&gt;&gt;blueBar.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tBBlueBar.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="greenBar.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tBGreenBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="greenBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tBGreenBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="greenBar.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tBGreenBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>196, 4</value>
   </data>
-  <data name="greenBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tBGreenBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="greenBar.TabIndex" type="System.Int32, mscorlib">
+  <data name="tBGreenBar.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;greenBar.Name" xml:space="preserve">
-    <value>greenBar</value>
+  <data name="&gt;&gt;tBGreenBar.Name" xml:space="preserve">
+    <value>tBGreenBar</value>
   </data>
-  <data name="&gt;&gt;greenBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;tBGreenBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;greenBar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tBGreenBar.Parent" xml:space="preserve">
     <value>FullPanel</value>
   </data>
-  <data name="&gt;&gt;greenBar.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tBGreenBar.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="redBar.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tBRedBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="redBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tBRedBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="redBar.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tBRedBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>73, 4</value>
   </data>
-  <data name="redBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tBRedBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="redBar.TabIndex" type="System.Int32, mscorlib">
+  <data name="tBRedBar.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;redBar.Name" xml:space="preserve">
-    <value>redBar</value>
+  <data name="&gt;&gt;tBRedBar.Name" xml:space="preserve">
+    <value>tBRedBar</value>
   </data>
-  <data name="&gt;&gt;redBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;tBRedBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;redBar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tBRedBar.Parent" xml:space="preserve">
     <value>FullPanel</value>
   </data>
-  <data name="&gt;&gt;redBar.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tBRedBar.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="cBLightbyBattery.AutoSize" type="System.Boolean, mscorlib">
@@ -1649,7 +1649,7 @@ Click the lightbar for color picker</value>
     <value>gBLightbar</value>
   </data>
   <data name="&gt;&gt;cBLightbyBattery.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>11</value>
   </data>
   <data name="lbBlue.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1739,7 +1739,7 @@ Click the lightbar for color picker</value>
     <value>gBLightbar</value>
   </data>
   <data name="&gt;&gt;lbspc.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <data name="lbRed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2594,85 +2594,85 @@ Click the lightbar for color picker</value>
   <data name="&gt;&gt;lbLowBlue.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="lowRedBar.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tBLowRedBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="lowRedBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tBLowRedBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lowRedBar.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tBLowRedBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>73, 5</value>
   </data>
-  <data name="lowRedBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tBLowRedBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="lowRedBar.TabIndex" type="System.Int32, mscorlib">
+  <data name="tBLowRedBar.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;lowRedBar.Name" xml:space="preserve">
-    <value>lowRedBar</value>
+  <data name="&gt;&gt;tBLowRedBar.Name" xml:space="preserve">
+    <value>tBLowRedBar</value>
   </data>
-  <data name="&gt;&gt;lowRedBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;tBLowRedBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lowRedBar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tBLowRedBar.Parent" xml:space="preserve">
     <value>lowBatteryPanel</value>
   </data>
-  <data name="&gt;&gt;lowRedBar.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tBLowRedBar.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="lowGreenBar.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tBLowGreenBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="lowGreenBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tBLowGreenBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lowGreenBar.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tBLowGreenBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>196, 5</value>
   </data>
-  <data name="lowGreenBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tBLowGreenBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="lowGreenBar.TabIndex" type="System.Int32, mscorlib">
+  <data name="tBLowGreenBar.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;lowGreenBar.Name" xml:space="preserve">
-    <value>lowGreenBar</value>
+  <data name="&gt;&gt;tBLowGreenBar.Name" xml:space="preserve">
+    <value>tBLowGreenBar</value>
   </data>
-  <data name="&gt;&gt;lowGreenBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;tBLowGreenBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lowGreenBar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tBLowGreenBar.Parent" xml:space="preserve">
     <value>lowBatteryPanel</value>
   </data>
-  <data name="&gt;&gt;lowGreenBar.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tBLowGreenBar.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="lowBlueBar.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tBLowBlueBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="lowBlueBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tBLowBlueBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lowBlueBar.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tBLowBlueBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>325, 5</value>
   </data>
-  <data name="lowBlueBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tBLowBlueBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="lowBlueBar.TabIndex" type="System.Int32, mscorlib">
+  <data name="tBLowBlueBar.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;lowBlueBar.Name" xml:space="preserve">
-    <value>lowBlueBar</value>
+  <data name="&gt;&gt;tBLowBlueBar.Name" xml:space="preserve">
+    <value>tBLowBlueBar</value>
   </data>
-  <data name="&gt;&gt;lowBlueBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;tBLowBlueBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lowBlueBar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tBLowBlueBar.Parent" xml:space="preserve">
     <value>lowBatteryPanel</value>
   </data>
-  <data name="&gt;&gt;lowBlueBar.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tBLowBlueBar.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="lbEmpty.AutoSize" type="System.Boolean, mscorlib">
@@ -2724,7 +2724,7 @@ Click the lightbar for color picker</value>
     <value>gBLightbar</value>
   </data>
   <data name="&gt;&gt;FullPanel.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="lowBatteryPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 72</value>
@@ -2745,7 +2745,7 @@ Click the lightbar for color picker</value>
     <value>gBLightbar</value>
   </data>
   <data name="&gt;&gt;lowBatteryPanel.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>13</value>
   </data>
   <data name="lb6Gryo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3282,6 +3282,267 @@ with profile</value>
   <data name="&gt;&gt;gBOther.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="btnChargingColor.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnChargingColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnChargingColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>391, 108</value>
+  </data>
+  <data name="btnChargingColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 13</value>
+  </data>
+  <data name="btnChargingColor.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="btnChargingColor.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnChargingColor.Name" xml:space="preserve">
+    <value>btnChargingColor</value>
+  </data>
+  <data name="&gt;&gt;btnChargingColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnChargingColor.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;btnChargingColor.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rBColor.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>336, 106</value>
+  </data>
+  <data name="rBColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 17</value>
+  </data>
+  <data name="rBColor.TabIndex" type="System.Int32, mscorlib">
+    <value>238</value>
+  </data>
+  <data name="rBColor.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="&gt;&gt;rBColor.Name" xml:space="preserve">
+    <value>rBColor</value>
+  </data>
+  <data name="&gt;&gt;rBColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBColor.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;rBColor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rBFade.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBFade.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBFade.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 106</value>
+  </data>
+  <data name="rBFade.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 17</value>
+  </data>
+  <data name="rBFade.TabIndex" type="System.Int32, mscorlib">
+    <value>237</value>
+  </data>
+  <data name="rBFade.Text" xml:space="preserve">
+    <value>Fade in and out</value>
+  </data>
+  <data name="&gt;&gt;rBFade.Name" xml:space="preserve">
+    <value>rBFade</value>
+  </data>
+  <data name="&gt;&gt;rBFade.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBFade.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;rBFade.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="rBNormal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBNormal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBNormal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 106</value>
+  </data>
+  <data name="rBNormal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 17</value>
+  </data>
+  <data name="rBNormal.TabIndex" type="System.Int32, mscorlib">
+    <value>237</value>
+  </data>
+  <data name="rBNormal.Text" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="&gt;&gt;rBNormal.Name" xml:space="preserve">
+    <value>rBNormal</value>
+  </data>
+  <data name="&gt;&gt;rBNormal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBNormal.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;rBNormal.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="rBRainbow.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBRainbow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBRainbow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>263, 106</value>
+  </data>
+  <data name="rBRainbow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="rBRainbow.TabIndex" type="System.Int32, mscorlib">
+    <value>237</value>
+  </data>
+  <data name="rBRainbow.Text" xml:space="preserve">
+    <value>Rainbow</value>
+  </data>
+  <data name="&gt;&gt;rBRainbow.Name" xml:space="preserve">
+    <value>rBRainbow</value>
+  </data>
+  <data name="&gt;&gt;rBRainbow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBRainbow.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;rBRainbow.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lbWhileCharging.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbWhileCharging.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbWhileCharging.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 108</value>
+  </data>
+  <data name="lbWhileCharging.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 13</value>
+  </data>
+  <data name="lbWhileCharging.TabIndex" type="System.Int32, mscorlib">
+    <value>236</value>
+  </data>
+  <data name="lbWhileCharging.Text" xml:space="preserve">
+    <value>While Charging:</value>
+  </data>
+  <data name="&gt;&gt;lbWhileCharging.Name" xml:space="preserve">
+    <value>lbWhileCharging</value>
+  </data>
+  <data name="&gt;&gt;lbWhileCharging.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbWhileCharging.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;lbWhileCharging.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lbPercentFlashBar.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbPercentFlashBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbPercentFlashBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 18</value>
+  </data>
+  <data name="lbPercentFlashBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="lbPercentFlashBar.TabIndex" type="System.Int32, mscorlib">
+    <value>207</value>
+  </data>
+  <data name="lbPercentFlashBar.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="&gt;&gt;lbPercentFlashBar.Name" xml:space="preserve">
+    <value>lbPercentFlashBar</value>
+  </data>
+  <data name="&gt;&gt;lbPercentFlashBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbPercentFlashBar.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;lbPercentFlashBar.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="nUDflashLED.Location" type="System.Drawing.Point, System.Drawing">
+    <value>54, 16</value>
+  </data>
+  <data name="nUDflashLED.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
+  </data>
+  <data name="nUDflashLED.TabIndex" type="System.Int32, mscorlib">
+    <value>167</value>
+  </data>
+  <data name="&gt;&gt;nUDflashLED.Name" xml:space="preserve">
+    <value>nUDflashLED</value>
+  </data>
+  <data name="&gt;&gt;nUDflashLED.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDflashLED.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;nUDflashLED.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="lbFlashAt.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbFlashAt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbFlashAt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 18</value>
+  </data>
+  <data name="lbFlashAt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 13</value>
+  </data>
+  <data name="lbFlashAt.TabIndex" type="System.Int32, mscorlib">
+    <value>207</value>
+  </data>
+  <data name="lbFlashAt.Text" xml:space="preserve">
+    <value>Flash at</value>
+  </data>
+  <data name="&gt;&gt;lbFlashAt.Name" xml:space="preserve">
+    <value>lbFlashAt</value>
+  </data>
+  <data name="&gt;&gt;lbFlashAt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbFlashAt.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;lbFlashAt.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
   <data name="cBShiftLight.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3432,85 +3693,85 @@ with profile</value>
   <data name="&gt;&gt;lbShiftBlue.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="shiftRedBar.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tBShiftRedBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="shiftRedBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tBShiftRedBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="shiftRedBar.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tBShiftRedBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>73, 30</value>
   </data>
-  <data name="shiftRedBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tBShiftRedBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="shiftRedBar.TabIndex" type="System.Int32, mscorlib">
+  <data name="tBShiftRedBar.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;shiftRedBar.Name" xml:space="preserve">
-    <value>shiftRedBar</value>
+  <data name="&gt;&gt;tBShiftRedBar.Name" xml:space="preserve">
+    <value>tBShiftRedBar</value>
   </data>
-  <data name="&gt;&gt;shiftRedBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;tBShiftRedBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;shiftRedBar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tBShiftRedBar.Parent" xml:space="preserve">
     <value>ShiftPanel</value>
   </data>
-  <data name="&gt;&gt;shiftRedBar.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tBShiftRedBar.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="shiftGreenBar.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tBShiftGreenBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="shiftGreenBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tBShiftGreenBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="shiftGreenBar.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tBShiftGreenBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>196, 30</value>
   </data>
-  <data name="shiftGreenBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tBShiftGreenBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="shiftGreenBar.TabIndex" type="System.Int32, mscorlib">
+  <data name="tBShiftGreenBar.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;shiftGreenBar.Name" xml:space="preserve">
-    <value>shiftGreenBar</value>
+  <data name="&gt;&gt;tBShiftGreenBar.Name" xml:space="preserve">
+    <value>tBShiftGreenBar</value>
   </data>
-  <data name="&gt;&gt;shiftGreenBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;tBShiftGreenBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;shiftGreenBar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tBShiftGreenBar.Parent" xml:space="preserve">
     <value>ShiftPanel</value>
   </data>
-  <data name="&gt;&gt;shiftGreenBar.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tBShiftGreenBar.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="shiftBlueBar.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tBShiftBlueBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="shiftBlueBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tBShiftBlueBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="shiftBlueBar.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tBShiftBlueBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>325, 30</value>
   </data>
-  <data name="shiftBlueBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tBShiftBlueBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="shiftBlueBar.TabIndex" type="System.Int32, mscorlib">
+  <data name="tBShiftBlueBar.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;shiftBlueBar.Name" xml:space="preserve">
-    <value>shiftBlueBar</value>
+  <data name="&gt;&gt;tBShiftBlueBar.Name" xml:space="preserve">
+    <value>tBShiftBlueBar</value>
   </data>
-  <data name="&gt;&gt;shiftBlueBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;tBShiftBlueBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;shiftBlueBar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tBShiftBlueBar.Parent" xml:space="preserve">
     <value>ShiftPanel</value>
   </data>
-  <data name="&gt;&gt;shiftBlueBar.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tBShiftBlueBar.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
   <data name="ShiftPanel.Location" type="System.Drawing.Point, System.Drawing">
@@ -3535,268 +3796,7 @@ with profile</value>
     <value>gBLightbar</value>
   </data>
   <data name="&gt;&gt;ShiftPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnChargingColor.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnChargingColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnChargingColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>391, 108</value>
-  </data>
-  <data name="btnChargingColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 13</value>
-  </data>
-  <data name="btnChargingColor.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="btnChargingColor.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;btnChargingColor.Name" xml:space="preserve">
-    <value>btnChargingColor</value>
-  </data>
-  <data name="&gt;&gt;btnChargingColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnChargingColor.Parent" xml:space="preserve">
-    <value>gBLightbar</value>
-  </data>
-  <data name="&gt;&gt;btnChargingColor.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="rBColor.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rBColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rBColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 106</value>
-  </data>
-  <data name="rBColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 17</value>
-  </data>
-  <data name="rBColor.TabIndex" type="System.Int32, mscorlib">
-    <value>238</value>
-  </data>
-  <data name="rBColor.Text" xml:space="preserve">
-    <value>Color</value>
-  </data>
-  <data name="&gt;&gt;rBColor.Name" xml:space="preserve">
-    <value>rBColor</value>
-  </data>
-  <data name="&gt;&gt;rBColor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBColor.Parent" xml:space="preserve">
-    <value>gBLightbar</value>
-  </data>
-  <data name="&gt;&gt;rBColor.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="rBFade.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rBFade.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rBFade.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 106</value>
-  </data>
-  <data name="rBFade.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 17</value>
-  </data>
-  <data name="rBFade.TabIndex" type="System.Int32, mscorlib">
-    <value>237</value>
-  </data>
-  <data name="rBFade.Text" xml:space="preserve">
-    <value>Fade in and out</value>
-  </data>
-  <data name="&gt;&gt;rBFade.Name" xml:space="preserve">
-    <value>rBFade</value>
-  </data>
-  <data name="&gt;&gt;rBFade.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBFade.Parent" xml:space="preserve">
-    <value>gBLightbar</value>
-  </data>
-  <data name="&gt;&gt;rBFade.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="rBNormal.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rBNormal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rBNormal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 106</value>
-  </data>
-  <data name="rBNormal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 17</value>
-  </data>
-  <data name="rBNormal.TabIndex" type="System.Int32, mscorlib">
-    <value>237</value>
-  </data>
-  <data name="rBNormal.Text" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="&gt;&gt;rBNormal.Name" xml:space="preserve">
-    <value>rBNormal</value>
-  </data>
-  <data name="&gt;&gt;rBNormal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBNormal.Parent" xml:space="preserve">
-    <value>gBLightbar</value>
-  </data>
-  <data name="&gt;&gt;rBNormal.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="rBRainbow.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rBRainbow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rBRainbow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 106</value>
-  </data>
-  <data name="rBRainbow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
-  </data>
-  <data name="rBRainbow.TabIndex" type="System.Int32, mscorlib">
-    <value>237</value>
-  </data>
-  <data name="rBRainbow.Text" xml:space="preserve">
-    <value>Rainbow</value>
-  </data>
-  <data name="&gt;&gt;rBRainbow.Name" xml:space="preserve">
-    <value>rBRainbow</value>
-  </data>
-  <data name="&gt;&gt;rBRainbow.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBRainbow.Parent" xml:space="preserve">
-    <value>gBLightbar</value>
-  </data>
-  <data name="&gt;&gt;rBRainbow.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="lbWhileCharging.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbWhileCharging.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbWhileCharging.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 108</value>
-  </data>
-  <data name="lbWhileCharging.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 13</value>
-  </data>
-  <data name="lbWhileCharging.TabIndex" type="System.Int32, mscorlib">
-    <value>236</value>
-  </data>
-  <data name="lbWhileCharging.Text" xml:space="preserve">
-    <value>While Charging:</value>
-  </data>
-  <data name="&gt;&gt;lbWhileCharging.Name" xml:space="preserve">
-    <value>lbWhileCharging</value>
-  </data>
-  <data name="&gt;&gt;lbWhileCharging.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbWhileCharging.Parent" xml:space="preserve">
-    <value>gBLightbar</value>
-  </data>
-  <data name="&gt;&gt;lbWhileCharging.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="lbPercentFlashBar.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbPercentFlashBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbPercentFlashBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 18</value>
-  </data>
-  <data name="lbPercentFlashBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 13</value>
-  </data>
-  <data name="lbPercentFlashBar.TabIndex" type="System.Int32, mscorlib">
-    <value>207</value>
-  </data>
-  <data name="lbPercentFlashBar.Text" xml:space="preserve">
-    <value>%</value>
-  </data>
-  <data name="&gt;&gt;lbPercentFlashBar.Name" xml:space="preserve">
-    <value>lbPercentFlashBar</value>
-  </data>
-  <data name="&gt;&gt;lbPercentFlashBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbPercentFlashBar.Parent" xml:space="preserve">
-    <value>gBLightbar</value>
-  </data>
-  <data name="&gt;&gt;lbPercentFlashBar.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="nUDflashLED.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 16</value>
-  </data>
-  <data name="nUDflashLED.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
-  </data>
-  <data name="nUDflashLED.TabIndex" type="System.Int32, mscorlib">
-    <value>167</value>
-  </data>
-  <data name="&gt;&gt;nUDflashLED.Name" xml:space="preserve">
-    <value>nUDflashLED</value>
-  </data>
-  <data name="&gt;&gt;nUDflashLED.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDflashLED.Parent" xml:space="preserve">
-    <value>gBLightbar</value>
-  </data>
-  <data name="&gt;&gt;nUDflashLED.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="lbFlashAt.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbFlashAt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbFlashAt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 18</value>
-  </data>
-  <data name="lbFlashAt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
-  </data>
-  <data name="lbFlashAt.TabIndex" type="System.Int32, mscorlib">
-    <value>207</value>
-  </data>
-  <data name="lbFlashAt.Text" xml:space="preserve">
-    <value>Flash at</value>
-  </data>
-  <data name="&gt;&gt;lbFlashAt.Name" xml:space="preserve">
-    <value>lbFlashAt</value>
-  </data>
-  <data name="&gt;&gt;lbFlashAt.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbFlashAt.Parent" xml:space="preserve">
-    <value>gBLightbar</value>
-  </data>
-  <data name="&gt;&gt;lbFlashAt.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="gBLightbar.Location" type="System.Drawing.Point, System.Drawing">
     <value>443, 85</value>
@@ -6784,7 +6784,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>ScpServer.AdvancedColorDialog, DS4Windows, Version=1.4.0.61, Culture=neutral, PublicKeyToken=null</value>
+    <value>ScpServer.AdvancedColorDialog, DS4Windows, Version=1.4.0.75, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

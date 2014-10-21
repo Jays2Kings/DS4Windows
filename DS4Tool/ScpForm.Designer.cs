@@ -181,6 +181,7 @@
             this.pnlButton.Controls.Add(this.llbHelp);
             resources.ApplyResources(this.pnlButton, "pnlButton");
             this.pnlButton.Name = "pnlButton";
+            this.pnlButton.MouseLeave += new System.EventHandler(this.pnlButton_MouseLeave);
             // 
             // lBTest
             // 
@@ -199,6 +200,7 @@
             resources.ApplyResources(this.lbLastMessage, "lbLastMessage");
             this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
             this.lbLastMessage.Name = "lbLastMessage";
+            this.lbLastMessage.MouseHover += new System.EventHandler(this.lbLastMessage_MouseHover);
             // 
             // llbHelp
             // 

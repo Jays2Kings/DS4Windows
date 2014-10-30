@@ -16,6 +16,11 @@ namespace DS4Control
         private readonly MouseCursor cursor;
         private readonly MouseWheel wheel;
         private bool tappedOnce = false, secondtouchbegin = false;
+        public bool slideleft, slideright;
+        // touch area stuff
+        public bool leftDown, rightDown, upperDown, multiDown;
+        protected DS4Controls pushed = DS4Controls.None;
+        protected Mapping.Click clicked = Mapping.Click.None;
 
         public Mouse(int deviceID, DS4Device d)
         {
@@ -29,7 +34,7 @@ namespace DS4Control
         {
             return "Standard Mode";
         }
-        public bool slideleft, slideright;
+
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
             cursor.touchesMoved(arg);
@@ -90,11 +95,6 @@ namespace DS4Control
             synthesizeMouseButtons();
         }
 
-        protected DS4Controls pushed = DS4Controls.None;
-        protected Mapping.Click clicked = Mapping.Click.None;
-
-        // touch area stuff
-        public bool leftDown, rightDown, upperDown, multiDown;
         private bool isLeft(Touch t)
         {
             return t.hwX < 1920 * 2 / 5;

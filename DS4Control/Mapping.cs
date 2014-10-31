@@ -1397,10 +1397,10 @@ namespace DS4Control
                 case DS4Controls.Square: return cState.Square;
                 case DS4Controls.Triangle: return cState.Triangle;
                 case DS4Controls.Circle: return cState.Circle;
-                case DS4Controls.TouchLeft: return tp.leftDown;
-                case DS4Controls.TouchRight: return tp.rightDown;
-                case DS4Controls.TouchMulti: return tp.multiDown;
-                case DS4Controls.TouchUpper: return tp.upperDown;
+                case DS4Controls.TouchLeft: return (tp != null ? tp.leftDown : false);
+                case DS4Controls.TouchRight: return (tp != null ? tp.rightDown : false);
+                case DS4Controls.TouchMulti: return (tp != null ? tp.multiDown : false);
+                case DS4Controls.TouchUpper: return (tp != null ? tp.upperDown : false);
                 case DS4Controls.LXNeg: return cState.LX < 127 - 55;
                 case DS4Controls.LYNeg: return cState.LY < 127 - 55;
                 case DS4Controls.RXNeg: return cState.RX < 127 - 55;

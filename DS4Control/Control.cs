@@ -484,8 +484,7 @@ namespace DS4Control
             {
                 if (!d.Charging)
                 {
-                    d.DisconnectBT();
-                    InputMethods.performKeyRelease(Global.getCustomKey(0, DS4Controls.PS));
+                    d.DisconnectBT(); InputMethods.performKeyRelease(Global.getCustomKey(0, DS4Controls.PS));
                     string[] skeys = Global.getCustomMacro(0, DS4Controls.PS).Split('/');
                     ushort[] keys = new ushort[skeys.Length];
                     for (int i = 0; i < keys.Length; i++)
@@ -493,6 +492,7 @@ namespace DS4Control
                         keys[i] = ushort.Parse(skeys[i]);
                         InputMethods.performKeyRelease(keys[i]);
                     }
+                    d = null;
                 }
             }
             if (cState.Touch1 && pState.PS)

@@ -1376,7 +1376,7 @@ namespace DS4Control
                     if (device < 4)
                     {
                         if (dinputOnly[device] == true) control.x360Bus.Unplug(device);
-                        else if (control.DS4Controllers[device].IsAlive()) control.x360Bus.Plugin(device);
+                        else if (control.DS4Controllers[device] != null && control.DS4Controllers[device].IsAlive()) control.x360Bus.Plugin(device);
                     }
                 }
                 catch { missingSetting = true; }

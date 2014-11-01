@@ -34,29 +34,23 @@ namespace ScpServer
             root = rt;
             g = CreateGraphics();
             greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
-            foreach (System.Windows.Forms.Control control in SticksPanel.Controls)
-                if (control is Button)
-                    if (!((Button)control).Name.Contains("btn"))
+            foreach (System.Windows.Forms.Control control in pnlMain.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in MainPanel.Controls)
-                if (control is Button)
-                    if (!((Button)control).Name.Contains("btn"))
+            foreach (System.Windows.Forms.Control control in pnlSticks.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
             foreach (System.Windows.Forms.Control control in fLPTiltControls.Controls)
-                if (control is Button)
-                    if (!((Button)control).Name.Contains("btn"))
+                if (control is Button && !((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in ShiftMainPanel.Controls)
-                if (control is Button)
-                    if (!((Button)control).Name.Contains("sbtn"))
+            foreach (System.Windows.Forms.Control control in pnlShiftMain.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btnShift"))
                         subbuttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in ShiftSticksPanel.Controls)
-                if (control is Button)
-                    if (!((Button)control).Name.Contains("sbtn"))
+            foreach (System.Windows.Forms.Control control in pnlShiftSticks.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btnShift"))
                         subbuttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in sfLPTiltControls.Controls)
-                if (control is Button)
-                    if (!((Button)control).Name.Contains("sbtn"))
+            foreach (System.Windows.Forms.Control control in fLPShiftTiltControls.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btnShift"))
                         subbuttons.Add((Button)control);
             string butts = "";
             foreach (Button b in buttons)
@@ -92,9 +86,9 @@ namespace ScpServer
 
                 cBLightbyBattery.Checked = Global.getLedAsBatteryIndicator(device);
                 nUDflashLED.Value = Global.getFlashAt(device);
-                lowBatteryPanel.Visible = cBLightbyBattery.Checked;
+                pnlLowBattery.Visible = cBLightbyBattery.Checked;
                 lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
-                FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
+                pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, 42) : new Point(pnlFull.Location.X, 48));
 
                 DS4Color lowColor = Global.loadLowColor(device);
                 tBLowRedBar.Value = lowColor.red;
@@ -197,8 +191,8 @@ namespace ScpServer
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
-            sbtnLeftStick.Enter += sbtnSticks_Enter;
-            sbtnRightStick.Enter += sbtnSticks_Enter;
+            btnShiftLeftStick.Enter += btnShiftSticks_Enter;
+            btnShiftRightStick.Enter += btnShiftSticks_Enter;
             UpdateLists();
             inputtimer.Start();
             inputtimer.Tick += InputDS4;
@@ -343,39 +337,39 @@ namespace ScpServer
                 case ("bnGyroXP"): lBControls.SelectedIndex = 31; break;
                 case ("bnGyroXN"): lBControls.SelectedIndex = 32; break;
 
-                case ("sbnCross"): lBShiftControls.SelectedIndex = 0; break;
-                case ("sbnCircle"): lBShiftControls.SelectedIndex = 1; break;
-                case ("sbnSquare"): lBShiftControls.SelectedIndex = 2; break;
-                case ("sbnTriangle"): lBShiftControls.SelectedIndex = 3; break;
-                case ("sbnOptions"): lBShiftControls.SelectedIndex = 4; break;
-                case ("sbnShare"): lBShiftControls.SelectedIndex = 5; break;
-                case ("sbnUp"): lBShiftControls.SelectedIndex = 6; break;
-                case ("sbnDown"): lBShiftControls.SelectedIndex = 7; break;
-                case ("sbnLeft"): lBShiftControls.SelectedIndex = 8; break;
-                case ("sbnRight"): lBShiftControls.SelectedIndex = 9; break;
-                case ("sbnPS"): lBShiftControls.SelectedIndex = 10; break;
-                case ("sbnL1"): lBShiftControls.SelectedIndex = 11; break;
-                case ("sbnR1"): lBShiftControls.SelectedIndex = 12; break;
-                case ("sbnL2"): lBShiftControls.SelectedIndex = 13; break;
-                case ("sbnR2"): lBShiftControls.SelectedIndex = 14; break;
-                case ("sbnL3"): lBShiftControls.SelectedIndex = 15; break;
-                case ("sbnR3"): lBShiftControls.SelectedIndex = 16; break;
-                case ("sbnTouchLeft"): lBShiftControls.SelectedIndex = 17; break;
-                case ("sbnTouchRight"): lBShiftControls.SelectedIndex = 18; break;
-                case ("sbnTouchMulti"): lBShiftControls.SelectedIndex = 19; break;
-                case ("sbnTouchUpper"): lBShiftControls.SelectedIndex = 20; break;
-                case ("sbnLSUp"): lBShiftControls.SelectedIndex = 21; break;
-                case ("sbnLSDown"): lBShiftControls.SelectedIndex = 22; break;
-                case ("sbnLSLeft"): lBShiftControls.SelectedIndex = 23; break;
-                case ("sbnLSRight"): lBShiftControls.SelectedIndex = 24; break;
-                case ("sbnRSUp"): lBShiftControls.SelectedIndex = 25; break;
-                case ("sbnRSDown"): lBShiftControls.SelectedIndex = 26; break;
-                case ("sbnRSLeft"): lBShiftControls.SelectedIndex = 27; break;
-                case ("sbnRSRight"): lBShiftControls.SelectedIndex = 28; break;
-                case ("sbnGyroZN"): lBShiftControls.SelectedIndex = 29; break;
-                case ("sbnGyroZP"): lBShiftControls.SelectedIndex = 30; break;
-                case ("sbnGyroXP"): lBShiftControls.SelectedIndex = 31; break;
-                case ("sbnGyroXN"): lBShiftControls.SelectedIndex = 32; break;
+                case ("bnShiftCross"): lBShiftControls.SelectedIndex = 0; break;
+                case ("bnShiftCircle"): lBShiftControls.SelectedIndex = 1; break;
+                case ("bnShiftSquare"): lBShiftControls.SelectedIndex = 2; break;
+                case ("bnShiftTriangle"): lBShiftControls.SelectedIndex = 3; break;
+                case ("bnShiftOptions"): lBShiftControls.SelectedIndex = 4; break;
+                case ("bnShiftShare"): lBShiftControls.SelectedIndex = 5; break;
+                case ("bnShiftUp"): lBShiftControls.SelectedIndex = 6; break;
+                case ("bnShiftDown"): lBShiftControls.SelectedIndex = 7; break;
+                case ("bnShiftLeft"): lBShiftControls.SelectedIndex = 8; break;
+                case ("bnShiftRight"): lBShiftControls.SelectedIndex = 9; break;
+                case ("bnShiftPS"): lBShiftControls.SelectedIndex = 10; break;
+                case ("bnShiftL1"): lBShiftControls.SelectedIndex = 11; break;
+                case ("bnShiftR1"): lBShiftControls.SelectedIndex = 12; break;
+                case ("bnShiftL2"): lBShiftControls.SelectedIndex = 13; break;
+                case ("bnShiftR2"): lBShiftControls.SelectedIndex = 14; break;
+                case ("bnShiftL3"): lBShiftControls.SelectedIndex = 15; break;
+                case ("bnShiftR3"): lBShiftControls.SelectedIndex = 16; break;
+                case ("bnShiftTouchLeft"): lBShiftControls.SelectedIndex = 17; break;
+                case ("bnShiftTouchRight"): lBShiftControls.SelectedIndex = 18; break;
+                case ("bnShiftTouchMulti"): lBShiftControls.SelectedIndex = 19; break;
+                case ("bnShiftTouchUpper"): lBShiftControls.SelectedIndex = 20; break;
+                case ("bnShiftLSUp"): lBShiftControls.SelectedIndex = 21; break;
+                case ("bnShiftLSDown"): lBShiftControls.SelectedIndex = 22; break;
+                case ("bnShiftLSLeft"): lBShiftControls.SelectedIndex = 23; break;
+                case ("bnShiftLSRight"): lBShiftControls.SelectedIndex = 24; break;
+                case ("bnShiftRSUp"): lBShiftControls.SelectedIndex = 25; break;
+                case ("bnShiftRSDown"): lBShiftControls.SelectedIndex = 26; break;
+                case ("bnShiftRSLeft"): lBShiftControls.SelectedIndex = 27; break;
+                case ("bnShiftRSRight"): lBShiftControls.SelectedIndex = 28; break;
+                case ("bnShiftGyroZN"): lBShiftControls.SelectedIndex = 29; break;
+                case ("bnShiftGyroZP"): lBShiftControls.SelectedIndex = 30; break;
+                case ("bnShiftGyroXP"): lBShiftControls.SelectedIndex = 31; break;
+                case ("bnShiftGyroXN"): lBShiftControls.SelectedIndex = 32; break;
                 #endregion
             }
         }
@@ -391,9 +385,9 @@ namespace ScpServer
 
         public void Set()
         {
-            lowBatteryPanel.Visible = cBLightbyBattery.Checked;
+            pnlLowBattery.Visible = cBLightbyBattery.Checked;
             lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.Full + ":": Properties.Resources.Color + ":");
-            FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
+            pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, 42) : new Point(pnlFull.Location.X, 48));
             Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
             Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
@@ -466,26 +460,26 @@ namespace ScpServer
         }
         private void btnSticks_Enter(object sender, EventArgs e)
         {
-            SticksPanel.Visible = true;
-            MainPanel.Visible = false;
+            pnlSticks.Visible = true;
+            pnlMain.Visible = false;
         }
 
         private void btnFullView_Click(object sender, EventArgs e)
         {
-            SticksPanel.Visible = false;
-            MainPanel.Visible = true;
+            pnlSticks.Visible = false;
+            pnlMain.Visible = true;
         }
 
-        private void sbtnSticks_Enter(object sender, EventArgs e)
+        private void btnShiftSticks_Enter(object sender, EventArgs e)
         {
-            ShiftSticksPanel.Visible = true;
-            ShiftMainPanel.Visible = false;
+            pnlShiftSticks.Visible = true;
+            pnlShiftMain.Visible = false;
         }
 
-        private void sbtnFullView_Click(object sender, EventArgs e)
+        private void btnShiftFullView_Click(object sender, EventArgs e)
         {
-            ShiftSticksPanel.Visible = false;
-            ShiftMainPanel.Visible = true;
+            pnlShiftSticks.Visible = false;
+            pnlShiftMain.Visible = true;
         }
         private void btnLightbar_Click(object sender, EventArgs e)
         {
@@ -669,7 +663,7 @@ namespace ScpServer
             alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
             reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
@@ -686,7 +680,7 @@ namespace ScpServer
             alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
             reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
@@ -703,7 +697,7 @@ namespace ScpServer
             alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
             reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             if (g.DpiX == 120)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
@@ -766,8 +760,8 @@ namespace ScpServer
         private void ledAsBatteryIndicator_CheckedChanged(object sender, EventArgs e)
         {
             Global.setLedAsBatteryIndicator(device, cBLightbyBattery.Checked);
-            lowBatteryPanel.Visible = cBLightbyBattery.Checked;
-            FullPanel.Location = (cBLightbyBattery.Checked ? new Point(FullPanel.Location.X, 42) : new Point(FullPanel.Location.X, 48));
+            pnlLowBattery.Visible = cBLightbyBattery.Checked;
+            pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, 42) : new Point(pnlFull.Location.X, 48));
             lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.Full + ":" : Properties.Resources.Color + ":");
         }
 
@@ -893,43 +887,43 @@ namespace ScpServer
             foreach (Button b in subbuttons)
                 if (b.Tag == null)
                     b.Text = "Fall Back to " + buttons[subbuttons.IndexOf(b)].Text;
-            lBShiftControls.Items[0] = "Cross : " + sbnCross.Text;
-            lBShiftControls.Items[1] = "Circle : " + sbnCircle.Text;
-            lBShiftControls.Items[2] = "Square : " + sbnSquare.Text;
-            lBShiftControls.Items[3] = "Triangle : " + sbnTriangle.Text;
-            lBShiftControls.Items[4] = "Options : " + sbnOptions.Text;
-            lBShiftControls.Items[5] = "Share : " + sbnShare.Text;
-            lBShiftControls.Items[6] = "Up : " + sbnUp.Text;
-            lBShiftControls.Items[7] = "Down : " + sbnDown.Text;
-            lBShiftControls.Items[8] = "Left : " + sbnLeft.Text;
-            lBShiftControls.Items[9] = "Right : " + sbnRight.Text;
-            lBShiftControls.Items[10] = "PS : " + sbnPS.Text;
-            lBShiftControls.Items[11] = "L1 : " + sbnL1.Text;
-            lBShiftControls.Items[12] = "R1 : " + sbnR1.Text;
-            lBShiftControls.Items[13] = "L2 : " + sbnL2.Text;
-            lBShiftControls.Items[14] = "R2 : " + sbnR2.Text;
-            lBShiftControls.Items[15] = "L3 : " + sbnL3.Text;
-            lBShiftControls.Items[16] = "R3 : " + sbnR3.Text;
-            lBShiftControls.Items[17] = "Left Touch : " + sbnTouchLeft.Text;
-            lBShiftControls.Items[18] = "Right Touch : " + sbnTouchRight.Text;
-            lBShiftControls.Items[19] = "Multitouch : " + sbnTouchMulti.Text;
-            lBShiftControls.Items[20] = "Upper Touch : " + sbnTouchUpper.Text;
-            lBShiftControls.Items[21] = "LS Up : " + sbnLSUp.Text;
-            lBShiftControls.Items[22] = "LS Down : " + sbnLSDown.Text;
-            lBShiftControls.Items[23] = "LS Left : " + sbnLSLeft.Text;
-            lBShiftControls.Items[24] = "LS Right : " + sbnLSRight.Text;
-            lBShiftControls.Items[25] = "RS Up : " + sbnRSUp.Text;
-            lBShiftControls.Items[26] = "RS Down : " + sbnRSDown.Text;
-            lBShiftControls.Items[27] = "RS Left : " + sbnRSLeft.Text;
-            lBShiftControls.Items[28] = "RS Right : " + sbnRSRight.Text;
-            lBShiftControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateGyroList(sbnGyroZN);
-            lBShiftControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateGyroList(sbnGyroZP);
-            lBShiftControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateGyroList(sbnGyroXP);
-            lBShiftControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateGyroList(sbnGyroXN);
-            sbnGyroZN.Text = Properties.Resources.TiltUp;
-            sbnGyroZP.Text = Properties.Resources.TiltDown;
-            sbnGyroXP.Text = Properties.Resources.TiltLeft;
-            sbnGyroXN.Text = Properties.Resources.TiltRight;
+            lBShiftControls.Items[0] = "Cross : " + bnShiftCross.Text;
+            lBShiftControls.Items[1] = "Circle : " + bnShiftCircle.Text;
+            lBShiftControls.Items[2] = "Square : " + bnShiftSquare.Text;
+            lBShiftControls.Items[3] = "Triangle : " + bnShiftTriangle.Text;
+            lBShiftControls.Items[4] = "Options : " + bnShiftOptions.Text;
+            lBShiftControls.Items[5] = "Share : " + bnShiftShare.Text;
+            lBShiftControls.Items[6] = "Up : " + bnShiftUp.Text;
+            lBShiftControls.Items[7] = "Down : " + bnShiftDown.Text;
+            lBShiftControls.Items[8] = "Left : " + bnShiftLeft.Text;
+            lBShiftControls.Items[9] = "Right : " + bnShiftRight.Text;
+            lBShiftControls.Items[10] = "PS : " + bnShiftPS.Text;
+            lBShiftControls.Items[11] = "L1 : " + bnShiftL1.Text;
+            lBShiftControls.Items[12] = "R1 : " + bnShiftR1.Text;
+            lBShiftControls.Items[13] = "L2 : " + bnShiftL2.Text;
+            lBShiftControls.Items[14] = "R2 : " + bnShiftR2.Text;
+            lBShiftControls.Items[15] = "L3 : " + bnShiftL3.Text;
+            lBShiftControls.Items[16] = "R3 : " + bnShiftR3.Text;
+            lBShiftControls.Items[17] = "Left Touch : " + bnShiftTouchLeft.Text;
+            lBShiftControls.Items[18] = "Right Touch : " + bnShiftTouchRight.Text;
+            lBShiftControls.Items[19] = "Multitouch : " + bnShiftTouchMulti.Text;
+            lBShiftControls.Items[20] = "Upper Touch : " + bnShiftTouchUpper.Text;
+            lBShiftControls.Items[21] = "LS Up : " + bnShiftLSUp.Text;
+            lBShiftControls.Items[22] = "LS Down : " + bnShiftLSDown.Text;
+            lBShiftControls.Items[23] = "LS Left : " + bnShiftLSLeft.Text;
+            lBShiftControls.Items[24] = "LS Right : " + bnShiftLSRight.Text;
+            lBShiftControls.Items[25] = "RS Up : " + bnShiftRSUp.Text;
+            lBShiftControls.Items[26] = "RS Down : " + bnShiftRSDown.Text;
+            lBShiftControls.Items[27] = "RS Left : " + bnShiftRSLeft.Text;
+            lBShiftControls.Items[28] = "RS Right : " + bnShiftRSRight.Text;
+            lBShiftControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateGyroList(bnShiftGyroZN);
+            lBShiftControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateGyroList(bnShiftGyroZP);
+            lBShiftControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateGyroList(bnShiftGyroXP);
+            lBShiftControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateGyroList(bnShiftGyroXN);
+            bnShiftGyroZN.Text = Properties.Resources.TiltUp;
+            bnShiftGyroZP.Text = Properties.Resources.TiltDown;
+            bnShiftGyroXP.Text = Properties.Resources.TiltLeft;
+            bnShiftGyroXN.Text = Properties.Resources.TiltRight;
         }
 
         private string UpdateGyroList(Button button)
@@ -991,42 +985,42 @@ namespace ScpServer
 
         private void Show_ShiftControlsList(object sender, EventArgs e)
         {
-            if (lBShiftControls.SelectedIndex == 0) Show_ControlsBn(sbnCross, e);
-            if (lBShiftControls.SelectedIndex == 1) Show_ControlsBn(sbnCircle, e);
-            if (lBShiftControls.SelectedIndex == 2) Show_ControlsBn(sbnSquare, e);
-            if (lBShiftControls.SelectedIndex == 3) Show_ControlsBn(sbnTriangle, e);
-            if (lBShiftControls.SelectedIndex == 4) Show_ControlsBn(sbnOptions, e);
-            if (lBShiftControls.SelectedIndex == 5) Show_ControlsBn(sbnShare, e);
-            if (lBShiftControls.SelectedIndex == 6) Show_ControlsBn(sbnUp, e);
-            if (lBShiftControls.SelectedIndex == 7) Show_ControlsBn(sbnDown, e);
-            if (lBShiftControls.SelectedIndex == 8) Show_ControlsBn(sbnLeft, e);
-            if (lBShiftControls.SelectedIndex == 9) Show_ControlsBn(sbnRight, e);
-            if (lBShiftControls.SelectedIndex == 10) Show_ControlsBn(sbnPS, e);
-            if (lBShiftControls.SelectedIndex == 11) Show_ControlsBn(sbnL1, e);
-            if (lBShiftControls.SelectedIndex == 12) Show_ControlsBn(sbnR1, e);
-            if (lBShiftControls.SelectedIndex == 13) Show_ControlsBn(sbnL2, e);
-            if (lBShiftControls.SelectedIndex == 14) Show_ControlsBn(sbnR2, e);
-            if (lBShiftControls.SelectedIndex == 15) Show_ControlsBn(sbnL3, e);
-            if (lBShiftControls.SelectedIndex == 16) Show_ControlsBn(sbnR3, e);
+            if (lBShiftControls.SelectedIndex == 0) Show_ControlsBn(bnShiftCross, e);
+            if (lBShiftControls.SelectedIndex == 1) Show_ControlsBn(bnShiftCircle, e);
+            if (lBShiftControls.SelectedIndex == 2) Show_ControlsBn(bnShiftSquare, e);
+            if (lBShiftControls.SelectedIndex == 3) Show_ControlsBn(bnShiftTriangle, e);
+            if (lBShiftControls.SelectedIndex == 4) Show_ControlsBn(bnShiftOptions, e);
+            if (lBShiftControls.SelectedIndex == 5) Show_ControlsBn(bnShiftShare, e);
+            if (lBShiftControls.SelectedIndex == 6) Show_ControlsBn(bnShiftUp, e);
+            if (lBShiftControls.SelectedIndex == 7) Show_ControlsBn(bnShiftDown, e);
+            if (lBShiftControls.SelectedIndex == 8) Show_ControlsBn(bnShiftLeft, e);
+            if (lBShiftControls.SelectedIndex == 9) Show_ControlsBn(bnShiftRight, e);
+            if (lBShiftControls.SelectedIndex == 10) Show_ControlsBn(bnShiftPS, e);
+            if (lBShiftControls.SelectedIndex == 11) Show_ControlsBn(bnShiftL1, e);
+            if (lBShiftControls.SelectedIndex == 12) Show_ControlsBn(bnShiftR1, e);
+            if (lBShiftControls.SelectedIndex == 13) Show_ControlsBn(bnShiftL2, e);
+            if (lBShiftControls.SelectedIndex == 14) Show_ControlsBn(bnShiftR2, e);
+            if (lBShiftControls.SelectedIndex == 15) Show_ControlsBn(bnShiftL3, e);
+            if (lBShiftControls.SelectedIndex == 16) Show_ControlsBn(bnShiftR3, e);
 
-            if (lBShiftControls.SelectedIndex == 17) Show_ControlsBn(sbnTouchLeft, e);
-            if (lBShiftControls.SelectedIndex == 18) Show_ControlsBn(sbnTouchRight, e);
-            if (lBShiftControls.SelectedIndex == 19) Show_ControlsBn(sbnTouchMulti, e);
-            if (lBShiftControls.SelectedIndex == 20) Show_ControlsBn(sbnTouchUpper, e);
+            if (lBShiftControls.SelectedIndex == 17) Show_ControlsBn(bnShiftTouchLeft, e);
+            if (lBShiftControls.SelectedIndex == 18) Show_ControlsBn(bnShiftTouchRight, e);
+            if (lBShiftControls.SelectedIndex == 19) Show_ControlsBn(bnShiftTouchMulti, e);
+            if (lBShiftControls.SelectedIndex == 20) Show_ControlsBn(bnShiftTouchUpper, e);
 
-            if (lBShiftControls.SelectedIndex == 21) Show_ControlsBn(sbnLSUp, e);
-            if (lBShiftControls.SelectedIndex == 22) Show_ControlsBn(sbnLSDown, e);
-            if (lBShiftControls.SelectedIndex == 23) Show_ControlsBn(sbnLSLeft, e);
-            if (lBShiftControls.SelectedIndex == 24) Show_ControlsBn(sbnLSRight, e);
-            if (lBShiftControls.SelectedIndex == 25) Show_ControlsBn(sbnRSUp, e);
-            if (lBShiftControls.SelectedIndex == 26) Show_ControlsBn(sbnRSDown, e);
-            if (lBShiftControls.SelectedIndex == 27) Show_ControlsBn(sbnRSLeft, e);
-            if (lBShiftControls.SelectedIndex == 28) Show_ControlsBn(sbnRSRight, e);
+            if (lBShiftControls.SelectedIndex == 21) Show_ControlsBn(bnShiftLSUp, e);
+            if (lBShiftControls.SelectedIndex == 22) Show_ControlsBn(bnShiftLSDown, e);
+            if (lBShiftControls.SelectedIndex == 23) Show_ControlsBn(bnShiftLSLeft, e);
+            if (lBShiftControls.SelectedIndex == 24) Show_ControlsBn(bnShiftLSRight, e);
+            if (lBShiftControls.SelectedIndex == 25) Show_ControlsBn(bnShiftRSUp, e);
+            if (lBShiftControls.SelectedIndex == 26) Show_ControlsBn(bnShiftRSDown, e);
+            if (lBShiftControls.SelectedIndex == 27) Show_ControlsBn(bnShiftRSLeft, e);
+            if (lBShiftControls.SelectedIndex == 28) Show_ControlsBn(bnShiftRSRight, e);
 
-            if (lBShiftControls.SelectedIndex == 29) Show_ControlsBn(sbnGyroZN, e);
-            if (lBShiftControls.SelectedIndex == 30) Show_ControlsBn(sbnGyroZP, e);
-            if (lBShiftControls.SelectedIndex == 31) Show_ControlsBn(sbnGyroXP, e);
-            if (lBShiftControls.SelectedIndex == 32) Show_ControlsBn(sbnGyroXN, e);
+            if (lBShiftControls.SelectedIndex == 29) Show_ControlsBn(bnShiftGyroZN, e);
+            if (lBShiftControls.SelectedIndex == 30) Show_ControlsBn(bnShiftGyroZP, e);
+            if (lBShiftControls.SelectedIndex == 31) Show_ControlsBn(bnShiftGyroXP, e);
+            if (lBShiftControls.SelectedIndex == 32) Show_ControlsBn(bnShiftGyroXN, e);
         }
 
         private void List_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -1084,14 +1078,14 @@ namespace ScpServer
             }
             else
             {
-                lowBatteryPanel.Enabled = cBLightbyBattery.Checked;
+                pnlLowBattery.Enabled = cBLightbyBattery.Checked;
                 //pBRainbow.Location = new Point(216, pBRainbow.Location.Y);
                 pBController.BackgroundImage = null;
                 cBLightbyBattery.Text = Properties.Resources.ColorByBattery.Replace("*nl*", "\n");
             }
             lbspc.Enabled = on;
-            lowBatteryPanel.Enabled = !on;
-            FullPanel.Enabled = !on;
+            pnlLowBattery.Enabled = !on;
+            pnlFull.Enabled = !on;
         }
 
         private Bitmap GreyscaleImage(Bitmap image)
@@ -1276,9 +1270,9 @@ namespace ScpServer
             else
                 sixaxisTimer.Stop();
             if (tabControls.SelectedIndex == 1)
-                ShiftPanel.Visible = true;
+                pnlShift.Visible = true;
             else
-                ShiftPanel.Visible = false;
+                pnlShift.Visible = false;
         }
 
         private void DrawCircle(object sender, PaintEventArgs e)
@@ -1309,7 +1303,7 @@ namespace ScpServer
 
         private void lbSATip_Click(object sender, EventArgs e)
         {
-            SixaxisPanel.Visible = !SixaxisPanel.Visible;
+            pnlSixaxis.Visible = !pnlSixaxis.Visible;
             pBSADeadzone.Visible = !pBSADeadzone.Visible;
             btnSATrack.Visible = !btnSATrack.Visible;
         }
@@ -1330,15 +1324,15 @@ namespace ScpServer
                 cBShiftLight.Checked = false;
             if (!cBShiftLight.Checked)
             {
-                spBController.BackColor = pBController.BackColor;
-                spBController.BackgroundImage = pBController.BackgroundImage;
+                pBShiftController.BackColor = pBController.BackColor;
+                pBShiftController.BackgroundImage = pBController.BackgroundImage;
             }
             else
             {
                 alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
                 reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-                spBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+                pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             }
             Global.setShiftColorOn(device, cBShiftLight.Checked);
             lbShift.Enabled = cBShiftLight.Checked;

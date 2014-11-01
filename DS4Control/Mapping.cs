@@ -329,7 +329,6 @@ namespace DS4Control
         public static async void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp)
         {
             bool shift;
-            cState.CopyTo(MappedState);
             SyntheticState deviceState = Mapping.deviceState[device];
             switch (Global.getShiftModifier(device))
             {
@@ -361,8 +360,10 @@ namespace DS4Control
                 case 26: shift = cState.Touch1; break;
                 default: shift = false; break;
             }
+            cState.CopyTo(MappedState);
             if (shift)
                 MapShiftCustom(device, cState, MappedState, eState, tp);
+            //else
             foreach (KeyValuePair<DS4Controls, string> customKey in Global.getCustomMacros(device))
             {
                 if (shift == false ||
@@ -782,7 +783,7 @@ namespace DS4Control
 
         public static async void MapShiftCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp)
         {
-            cState.CopyTo(MappedState);
+            //cState.CopyTo(MappedState);
             SyntheticState deviceState = Mapping.deviceState[device];
             foreach (KeyValuePair<DS4Controls, string> customKey in Global.getShiftCustomMacros(device)) //with delays
             {
@@ -955,6 +956,7 @@ namespace DS4Control
             List<DS4Controls> RYP = new List<DS4Controls>();
             foreach (KeyValuePair<DS4Controls, X360Controls> customButton in customButtons)
             {
+                resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
                 DS4KeyType keyType = Global.getShiftCustomKeyType(device, customButton.Key);
                 int keyvalue = 0;
                 switch (customButton.Value)
@@ -969,7 +971,6 @@ namespace DS4Control
                 {
                     if (getBoolMapping(customButton.Key, cState, eState, tp))
                     {
-                        resetToDefaultValue(customButton.Key, MappedState);
                         if (!pressedonce[keyvalue])
                         {
                             deviceState.currentClicks.toggle = !deviceState.currentClicks.toggle;
@@ -1068,6 +1069,7 @@ namespace DS4Control
                             break;
                     }
                 }
+            Console.WriteLine(Cross.Count);
             foreach (DS4Controls dc in Cross)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Cross = true;
@@ -1120,21 +1122,21 @@ namespace DS4Control
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.PS = true;
 
-            if (Global.getCustomButton(device, DS4Controls.LXNeg) == X360Controls.None)
+            if (Global.getShiftCustomButton(device, DS4Controls.LXNeg) == X360Controls.None)
                 LXN.Add(DS4Controls.LXNeg);
-            if (Global.getCustomButton(device, DS4Controls.LXPos) == X360Controls.None)
+            if (Global.getShiftCustomButton(device, DS4Controls.LXPos) == X360Controls.None)
                 LXP.Add(DS4Controls.LXPos);
-            if (Global.getCustomButton(device, DS4Controls.LYNeg) == X360Controls.None)
+            if (Global.getShiftCustomButton(device, DS4Controls.LYNeg) == X360Controls.None)
                 LYN.Add(DS4Controls.LYNeg);
-            if (Global.getCustomButton(device, DS4Controls.LYPos) == X360Controls.None)
+            if (Global.getShiftCustomButton(device, DS4Controls.LYPos) == X360Controls.None)
                 LYP.Add(DS4Controls.LYPos);
-            if (Global.getCustomButton(device, DS4Controls.RXNeg) == X360Controls.None)
+            if (Global.getShiftCustomButton(device, DS4Controls.RXNeg) == X360Controls.None)
                 RXN.Add(DS4Controls.RXNeg);
-            if (Global.getCustomButton(device, DS4Controls.RXPos) == X360Controls.None)
+            if (Global.getShiftCustomButton(device, DS4Controls.RXPos) == X360Controls.None)
                 RXP.Add(DS4Controls.RXPos);
-            if (Global.getCustomButton(device, DS4Controls.RYNeg) == X360Controls.None)
+            if (Global.getShiftCustomButton(device, DS4Controls.RYNeg) == X360Controls.None)
                 RYN.Add(DS4Controls.RYNeg);
-            if (Global.getCustomButton(device, DS4Controls.RYPos) == X360Controls.None)
+            if (Global.getShiftCustomButton(device, DS4Controls.RYPos) == X360Controls.None)
                 RYP.Add(DS4Controls.RYPos);
             if (LXN.Count > 0 || LXP.Count > 0)
             {
@@ -1356,10 +1358,10 @@ namespace DS4Control
                 case DS4Controls.Square: return (byte)(cState.Square ? 255 : 0);
                 case DS4Controls.Triangle: return (byte)(cState.Triangle ? 255 : 0);
                 case DS4Controls.Circle: return (byte)(cState.Circle ? 255 : 0);
-                case DS4Controls.TouchLeft: return (byte)(tp.leftDown ? 255 : 0);
-                case DS4Controls.TouchRight: return (byte)(tp.rightDown ? 255 : 0);
-                case DS4Controls.TouchMulti: return (byte)(tp.multiDown ? 255 : 0);
-                case DS4Controls.TouchUpper: return (byte)(tp.upperDown ? 255 : 0);
+                case DS4Controls.TouchLeft: return (byte)(tp != null && tp.leftDown ? 255 : 0);
+                case DS4Controls.TouchRight: return (byte)(tp != null && tp.rightDown ? 255 : 0);
+                case DS4Controls.TouchMulti: return (byte)(tp != null && tp.multiDown ? 255 : 0);
+                case DS4Controls.TouchUpper: return (byte)(tp != null && tp.upperDown ? 255 : 0);
                 case DS4Controls.LXNeg: return (byte)cState.LX;
                 case DS4Controls.LYNeg: return (byte)cState.LY;
                 case DS4Controls.RXNeg: return (byte)cState.RX;
@@ -1444,10 +1446,10 @@ namespace DS4Control
                 case DS4Controls.Square: return (byte)(cState.Square ? trueVal : falseVal);
                 case DS4Controls.Triangle: return (byte)(cState.Triangle ? trueVal : falseVal);
                 case DS4Controls.Circle: return (byte)(cState.Circle ? trueVal : falseVal);
-                case DS4Controls.TouchLeft: return (byte)(tp.leftDown ? trueVal : falseVal);
-                case DS4Controls.TouchRight: return (byte)(tp.rightDown ? trueVal : falseVal);
-                case DS4Controls.TouchMulti: return (byte)(tp.multiDown ? trueVal : falseVal);
-                case DS4Controls.TouchUpper: return (byte)(tp.upperDown ? trueVal : falseVal);
+                case DS4Controls.TouchLeft: return (byte)(tp != null && tp.leftDown ? trueVal : falseVal);
+                case DS4Controls.TouchRight: return (byte)(tp != null && tp.rightDown ? trueVal : falseVal);
+                case DS4Controls.TouchMulti: return (byte)(tp != null && tp.multiDown ? trueVal : falseVal);
+                case DS4Controls.TouchUpper: return (byte)(tp != null && tp.upperDown ? trueVal : falseVal);
                 case DS4Controls.L2: if (alt) return (byte)(127 + cState.L2 / 2); else return (byte)(127 - cState.L2 / 2);
                 case DS4Controls.R2: if (alt) return (byte)(127 + cState.R2 / 2); else return (byte)(127 - cState.R2 / 2);
                 case DS4Controls.GyroXPos: if (eState.GyroX > SXD * 7500)

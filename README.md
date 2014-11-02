@@ -10,4 +10,4 @@ Auto-Updates - When a new update arrives DS4Tool/DS4Windows will tell you there'
 More mapping options - You can assign mouse movement to all buttons and axis, 4th and 5th mouse button, and most keyboard keys.
 And other things I didn't care to list here.
 
-This tool requires a driver to use, however I have not made the driver myself.
+This tool requires a driver to use, however I have not made the driver myself (but is downloaded when installing)

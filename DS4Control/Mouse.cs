@@ -116,23 +116,23 @@ namespace DS4Control
         private void synthesizeMouseButtons()
         {
             if (Global.getCustomButton(deviceNum, DS4Controls.TouchLeft) == X360Controls.None &&
-                Global.getShiftCustomMacro(deviceNum, DS4Controls.TouchLeft) == "0" &&
-                    Global.getShiftCustomKey(deviceNum, DS4Controls.TouchLeft) == 0 &&
+                Global.getCustomMacro(deviceNum, DS4Controls.TouchLeft) == "0" &&
+                    Global.getCustomKey(deviceNum, DS4Controls.TouchLeft) == 0 &&
                 leftDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
             if (Global.getCustomButton(deviceNum, DS4Controls.TouchUpper) == X360Controls.None &&
-                Global.getShiftCustomMacro(deviceNum, DS4Controls.TouchUpper) == "0" &&
-                    Global.getShiftCustomKey(deviceNum, DS4Controls.TouchUpper) == 0 &&
+                Global.getCustomMacro(deviceNum, DS4Controls.TouchUpper) == "0" &&
+                    Global.getCustomKey(deviceNum, DS4Controls.TouchUpper) == 0 &&
                 upperDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Middle);
             if (Global.getCustomButton(deviceNum, DS4Controls.TouchRight) == X360Controls.None &&
-                Global.getShiftCustomMacro(deviceNum, DS4Controls.TouchRight) == "0" &&
-                    Global.getShiftCustomKey(deviceNum, DS4Controls.TouchRight) == 0 &&
+                Global.getCustomMacro(deviceNum, DS4Controls.TouchRight) == "0" &&
+                    Global.getCustomKey(deviceNum, DS4Controls.TouchRight) == 0 &&
                 rightDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
             if (Global.getCustomButton(deviceNum, DS4Controls.TouchMulti) == X360Controls.None &&
-                Global.getShiftCustomMacro(deviceNum, DS4Controls.TouchMulti) == "0" &&
-                    Global.getShiftCustomKey(deviceNum, DS4Controls.TouchMulti) == 0 &&
+                Global.getCustomMacro(deviceNum, DS4Controls.TouchMulti) == "0" &&
+                    Global.getCustomKey(deviceNum, DS4Controls.TouchMulti) == 0 &&
                 multiDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
             if (tappedOnce)

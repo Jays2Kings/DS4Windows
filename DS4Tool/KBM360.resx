@@ -128,9 +128,6 @@
   <data name="btn4.Text" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
-  </data>
   <data name="&gt;&gt;btnNUMMINUS.ZOrder" xml:space="preserve">
     <value>47</value>
   </data>
@@ -147,20 +144,14 @@
   <data name="&gt;&gt;lBTip.Name" xml:space="preserve">
     <value>lBTip</value>
   </data>
-  <data name="bnPREVTRACK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>581, 23</value>
-  </data>
   <data name="button4.TabIndex" type="System.Int32, mscorlib">
     <value>284</value>
-  </data>
-  <data name="&gt;&gt;button11.Name" xml:space="preserve">
-    <value>button11</value>
   </data>
   <data name="btnLSD.Location" type="System.Drawing.Point, System.Drawing">
     <value>95, 302</value>
   </data>
-  <data name="button22.TabIndex" type="System.Int32, mscorlib">
-    <value>294</value>
+  <data name="&gt;&gt;btnRSD.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="button21.Text" xml:space="preserve">
     <value>Guide</value>
@@ -173,6 +164,9 @@
   </data>
   <data name="btn4.TabIndex" type="System.Int32, mscorlib">
     <value>225</value>
+  </data>
+  <data name="btnTAB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 24</value>
   </data>
   <data name="bTNRIGHTMOUSE.Location" type="System.Drawing.Point, System.Drawing">
     <value>824, 82</value>
@@ -198,8 +192,8 @@
   <data name="button38.Location" type="System.Drawing.Point, System.Drawing">
     <value>701, 23</value>
   </data>
-  <data name="bnMOUSEDOWN.Text" xml:space="preserve">
-    <value>↓Mouse Down</value>
+  <data name="KBMlabel.TabIndex" type="System.Int32, mscorlib">
+    <value>318</value>
   </data>
   <data name="btnJ.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -246,9 +240,6 @@
   <data name="&gt;&gt;btnNUMSTAR.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;bnMOUSERIGHT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;btnHOME.Name" xml:space="preserve">
     <value>btnHOME</value>
   </data>
@@ -258,8 +249,8 @@
   <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
     <value>735, 309</value>
   </data>
-  <data name="button6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="&gt;&gt;btnNEXTTRACK.ZOrder" xml:space="preserve">
+    <value>64</value>
   </data>
   <data name="btn5.Text" xml:space="preserve">
     <value>5</value>
@@ -273,6 +264,9 @@
   <data name="btnB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
+  <data name="&gt;&gt;btnMOUSERIGHT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="btnRALT.Location" type="System.Drawing.Point, System.Drawing">
     <value>351, 172</value>
   </data>
@@ -285,17 +279,17 @@
   <data name="&gt;&gt;btnSEMICOLON.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="btnX.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
   <data name="&gt;&gt;btnBACKSPACE.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button17.TabIndex" type="System.Int32, mscorlib">
-    <value>304</value>
   </data>
   <data name="&gt;&gt;btnNUM4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="button13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
+  <data name="&gt;&gt;btnNEXTTRACK.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnRS.Location" type="System.Drawing.Point, System.Drawing">
     <value>673, 348</value>
@@ -339,9 +333,6 @@
   <data name="&gt;&gt;X360Label.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="KBMlabel.TabIndex" type="System.Int32, mscorlib">
-    <value>318</value>
-  </data>
   <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
     <value>30</value>
   </data>
@@ -357,11 +348,11 @@
   <data name="btnS.Text" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="btnPERIOD.TabIndex" type="System.Int32, mscorlib">
-    <value>218</value>
+  <data name="btnPREVTRACK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
   </data>
-  <data name="&gt;&gt;btnLSR.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="btnPREVTRACK.Text" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="lBTip.Location" type="System.Drawing.Point, System.Drawing">
     <value>462, 110</value>
@@ -381,23 +372,23 @@
   <data name="&gt;&gt;button39.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnRSL.TabIndex" type="System.Int32, mscorlib">
-    <value>311</value>
+  <data name="btnMOUSERIGHT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>841, 117</value>
   </data>
   <data name="btnLSR.TabIndex" type="System.Int32, mscorlib">
     <value>315</value>
   </data>
-  <data name="btn6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 52</value>
+  <data name="button3.TabIndex" type="System.Int32, mscorlib">
+    <value>293</value>
   </data>
-  <data name="btnO.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+  <data name="btnSTOP.TabIndex" type="System.Int32, mscorlib">
+    <value>246</value>
   </data>
-  <data name="bnMOUSEUP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="btnNUM8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>611, 82</value>
   </data>
-  <data name="bnSTOP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+  <data name="bTNRIGHTMOUSE.Text" xml:space="preserve">
+    <value>Right Mouse Button</value>
   </data>
   <data name="&gt;&gt;button10.ZOrder" xml:space="preserve">
     <value>24</value>
@@ -435,8 +426,8 @@
   <data name="btnT.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
-  <data name="btnG.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="&gt;&gt;button8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnBACKSLASH.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -444,8 +435,8 @@
   <data name="btnPGUP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnNUM8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>611, 82</value>
+  <data name="btnNEXTTRACK.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Webdings, 8.25pt</value>
   </data>
   <data name="&gt;&gt;pictureBox2.Name" xml:space="preserve">
     <value>pictureBox2</value>
@@ -495,11 +486,11 @@
   <data name="&gt;&gt;btnA.Name" xml:space="preserve">
     <value>btnA</value>
   </data>
+  <data name="&gt;&gt;btnPLAYPAUSE.ZOrder" xml:space="preserve">
+    <value>65</value>
+  </data>
   <data name="&gt;&gt;btnDEL.ZOrder" xml:space="preserve">
     <value>69</value>
-  </data>
-  <data name="btnMacro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 23</value>
   </data>
   <data name="&gt;&gt;button35.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -522,8 +513,8 @@
   <data name="&gt;&gt;btnPERIOD.Name" xml:space="preserve">
     <value>btnPERIOD</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnMOUSEDOWN.ZOrder" xml:space="preserve">
+    <value>150</value>
   </data>
   <data name="button9.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
@@ -549,14 +540,11 @@
   <data name="button10.Location" type="System.Drawing.Point, System.Drawing">
     <value>735, 244</value>
   </data>
-  <data name="&gt;&gt;btnT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnRSR.Location" type="System.Drawing.Point, System.Drawing">
+    <value>706, 348</value>
   </data>
   <data name="btnQ.Location" type="System.Drawing.Point, System.Drawing">
     <value>51, 82</value>
-  </data>
-  <data name="&gt;&gt;bnMOUSELEFT.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="btnNUM4.Text" xml:space="preserve">
     <value>4Numpad</value>
@@ -594,9 +582,6 @@
   <data name="btnF8.TabIndex" type="System.Int32, mscorlib">
     <value>256</value>
   </data>
-  <data name="bnPLAYPAUSE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
   <data name="btnL.TabIndex" type="System.Int32, mscorlib">
     <value>199</value>
   </data>
@@ -621,11 +606,14 @@
   <data name="btnLALT.Text" xml:space="preserve">
     <value>LAlt</value>
   </data>
-  <data name="&gt;&gt;btnNUMSLASH.Name" xml:space="preserve">
-    <value>btnNUMSLASH</value>
+  <data name="btnW.Text" xml:space="preserve">
+    <value>W</value>
   </data>
   <data name="&gt;&gt;btnRSD.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnFallBack.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="btnMIDDLEMOUSE.Location" type="System.Drawing.Point, System.Drawing">
     <value>794, 82</value>
@@ -666,11 +654,8 @@
   <data name="&gt;&gt;btnP.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnMOUSERIGHT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>841, 117</value>
-  </data>
-  <data name="button18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
+  <data name="&gt;&gt;btnH.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="button35.Location" type="System.Drawing.Point, System.Drawing">
     <value>701, 82</value>
@@ -681,11 +666,11 @@
   <data name="&gt;&gt;btnB.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="bnMOUSEDOWN.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+  <data name="btnMOUSEUP.Text" xml:space="preserve">
+    <value>↑Mouse Up</value>
   </data>
-  <data name="btnX.Text" xml:space="preserve">
-    <value>X</value>
+  <data name="&gt;&gt;btnPREVTRACK.Name" xml:space="preserve">
+    <value>btnPREVTRACK</value>
   </data>
   <data name="lBMacroOn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -693,11 +678,11 @@
   <data name="btnNUMSLASH.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnNUMSLASH.TabIndex" type="System.Int32, mscorlib">
-    <value>271</value>
+  <data name="btnSCL.Text" xml:space="preserve">
+    <value>scl</value>
   </data>
-  <data name="bnSTOP.Text" xml:space="preserve">
-    <value>&lt;</value>
+  <data name="&gt;&gt;button11.Name" xml:space="preserve">
+    <value>button11</value>
   </data>
   <data name="button36.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 24</value>
@@ -723,14 +708,14 @@
   <data name="btnP.Text" xml:space="preserve">
     <value>P</value>
   </data>
-  <data name="bnNEXTTRACK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>671, 23</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>KBM360</value>
   </data>
   <data name="btn5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="bnPLAYPAUSE.Location" type="System.Drawing.Point, System.Drawing">
-    <value>641, 23</value>
+  <data name="btnG.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;button39.ZOrder" xml:space="preserve">
     <value>61</value>
@@ -738,8 +723,11 @@
   <data name="button33.Text" xml:space="preserve">
     <value>5th Mouse Button</value>
   </data>
-  <data name="button11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
+  <data name="btnMOUSERIGHT.TabIndex" type="System.Int32, mscorlib">
+    <value>171</value>
+  </data>
+  <data name="&gt;&gt;btnNEXTTRACK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbToggle.Name" xml:space="preserve">
     <value>cbToggle</value>
@@ -774,8 +762,8 @@
   <data name="btnNUM3.Text" xml:space="preserve">
     <value>3Numpad</value>
   </data>
-  <data name="btnSCL.Text" xml:space="preserve">
-    <value>scl</value>
+  <data name="&gt;&gt;btnMOUSEUP.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btnLSL.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -789,14 +777,14 @@
   <data name="&gt;&gt;btnNUMDOT.Name" xml:space="preserve">
     <value>btnNUMDOT</value>
   </data>
-  <data name="bnMOUSERIGHT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="btnLSD.TabIndex" type="System.Int32, mscorlib">
+    <value>308</value>
   </data>
   <data name="btn4.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 52</value>
   </data>
-  <data name="&gt;&gt;btnB.ZOrder" xml:space="preserve">
-    <value>105</value>
+  <data name="&gt;&gt;btnPERIOD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnAPOSTROPHE.Text" xml:space="preserve">
     <value>'</value>
@@ -804,14 +792,11 @@
   <data name="btnUNBOUND2.Text" xml:space="preserve">
     <value>Unbound</value>
   </data>
-  <data name="&gt;&gt;bnPLAYPAUSE.ZOrder" xml:space="preserve">
-    <value>65</value>
+  <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
   </data>
   <data name="&gt;&gt;btnLSU.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="bnMOUSEUP.Location" type="System.Drawing.Point, System.Drawing">
-    <value>794, 25</value>
   </data>
   <data name="&gt;&gt;btnH.Parent" xml:space="preserve">
     <value>$this</value>
@@ -819,8 +804,8 @@
   <data name="&gt;&gt;lBMacroOn.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="bnSTOP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="&gt;&gt;btnN.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnF4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -843,6 +828,9 @@
   <data name="btnNUM2.Location" type="System.Drawing.Point, System.Drawing">
     <value>611, 142</value>
   </data>
+  <data name="btnMOUSELEFT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
   <data name="btn8.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
@@ -858,14 +846,17 @@
   <data name="&gt;&gt;btn4.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnTAB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 24</value>
+  <data name="&gt;&gt;btnPLAYPAUSE.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnM.Text" xml:space="preserve">
     <value>M</value>
   </data>
   <data name="&gt;&gt;btnRSR.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnMOUSEUP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
   </data>
   <data name="btn0.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -879,8 +870,8 @@
   <data name="&gt;&gt;btnR.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnNEXTTRACK.Text" xml:space="preserve">
-    <value>:</value>
+  <data name="button23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="btnT.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 82</value>
@@ -900,20 +891,17 @@
   <data name="&gt;&gt;btnF3.Name" xml:space="preserve">
     <value>btnF3</value>
   </data>
-  <data name="bnMOUSEUP.Text" xml:space="preserve">
-    <value>↑Mouse Up</value>
+  <data name="button39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 24</value>
   </data>
-  <data name="bnMOUSEDOWN.TabIndex" type="System.Int32, mscorlib">
-    <value>170</value>
+  <data name="btnMOUSEUP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>794, 25</value>
   </data>
-  <data name="bnNEXTTRACK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="&gt;&gt;bnMacro.ZOrder" xml:space="preserve">
+    <value>14</value>
   </data>
   <data name="btnBACKSLASH.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 24</value>
-  </data>
-  <data name="&gt;&gt;KBMlabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnSEMICOLON.Location" type="System.Drawing.Point, System.Drawing">
     <value>336, 112</value>
@@ -945,6 +933,9 @@
   <data name="&gt;&gt;button34.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="btnPERIOD.TabIndex" type="System.Int32, mscorlib">
+    <value>218</value>
+  </data>
   <data name="button10.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
@@ -960,9 +951,6 @@
   <data name="&gt;&gt;btnLEFTMOUSE.ZOrder" xml:space="preserve">
     <value>152</value>
   </data>
-  <data name="&gt;&gt;bnSTOP.ZOrder" xml:space="preserve">
-    <value>66</value>
-  </data>
   <data name="&gt;&gt;btnF5.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -971,6 +959,9 @@
   </data>
   <data name="button39.Text" xml:space="preserve">
     <value>↓Volume Down</value>
+  </data>
+  <data name="btnMOUSELEFT.Text" xml:space="preserve">
+    <value>←Mouse Left</value>
   </data>
   <data name="&gt;&gt;btnF11.Parent" xml:space="preserve">
     <value>$this</value>
@@ -989,9 +980,6 @@
   </data>
   <data name="&gt;&gt;btnF3.ZOrder" xml:space="preserve">
     <value>81</value>
-  </data>
-  <data name="btnMacro.Location" type="System.Drawing.Point, System.Drawing">
-    <value>747, 1</value>
   </data>
   <data name="&gt;&gt;btnNUMLOCK.ZOrder" xml:space="preserve">
     <value>53</value>
@@ -1026,20 +1014,17 @@
   <data name="btnMINUS.TabIndex" type="System.Int32, mscorlib">
     <value>232</value>
   </data>
-  <data name="bnPREVTRACK.TabIndex" type="System.Int32, mscorlib">
-    <value>243</value>
-  </data>
   <data name="btn2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
   <data name="btnLS.TabIndex" type="System.Int32, mscorlib">
     <value>301</value>
   </data>
-  <data name="&gt;&gt;button23.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnF4.TabIndex" type="System.Int32, mscorlib">
+    <value>260</value>
   </data>
-  <data name="btnLSR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
+  <data name="&gt;&gt;btnMOUSERIGHT.Name" xml:space="preserve">
+    <value>btnMOUSERIGHT</value>
   </data>
   <data name="btn1.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -1065,14 +1050,11 @@
   <data name="btnRSHIFT.Location" type="System.Drawing.Point, System.Drawing">
     <value>381, 142</value>
   </data>
-  <data name="&gt;&gt;button22.Name" xml:space="preserve">
-    <value>button22</value>
-  </data>
   <data name="btnTILDE.Text" xml:space="preserve">
     <value>`</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>KBM360</value>
+  <data name="&gt;&gt;button5.ZOrder" xml:space="preserve">
+    <value>34</value>
   </data>
   <data name="&gt;&gt;btnF11.Name" xml:space="preserve">
     <value>btnF11</value>
@@ -1119,8 +1101,8 @@
   <data name="btnW.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="&gt;&gt;bnMOUSERIGHT.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="X360Label.Text" xml:space="preserve">
+    <value>X360 Controls</value>
   </data>
   <data name="&gt;&gt;btnUNBOUND2.Name" xml:space="preserve">
     <value>btnUNBOUND2</value>
@@ -1152,8 +1134,8 @@
   <data name="&gt;&gt;btnX.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="bnMOUSEUP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+  <data name="button18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="btn6.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -1161,17 +1143,17 @@
   <data name="&gt;&gt;btnNUMSLASH.ZOrder" xml:space="preserve">
     <value>51</value>
   </data>
-  <data name="&gt;&gt;bnMOUSEDOWN.Name" xml:space="preserve">
-    <value>bnMOUSEDOWN</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
   </data>
   <data name="btnE.Text" xml:space="preserve">
     <value>E</value>
   </data>
-  <data name="bnMOUSELEFT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>743, 118</value>
+  <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btn9.TabIndex" type="System.Int32, mscorlib">
-    <value>230</value>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
   </data>
   <data name="&gt;&gt;btnB.Name" xml:space="preserve">
     <value>btnB</value>
@@ -1188,8 +1170,11 @@
   <data name="&gt;&gt;btnLSR.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnSCL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 24</value>
+  <data name="&gt;&gt;btnSTOP.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnMOUSEUP.Name" xml:space="preserve">
+    <value>btnMOUSEUP</value>
   </data>
   <data name="btnF11.TabIndex" type="System.Int32, mscorlib">
     <value>237</value>
@@ -1215,8 +1200,8 @@
   <data name="btnI.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 140</value>
+  <data name="btnPREVTRACK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>581, 23</value>
   </data>
   <data name="btnNUMMINUS.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -1230,8 +1215,8 @@
   <data name="X360Label.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="bnMOUSEDOWN.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="btnMOUSEDOWN.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
   </data>
   <data name="&gt;&gt;btnF1.Name" xml:space="preserve">
     <value>btnF1</value>
@@ -1273,11 +1258,14 @@ a key by typing it</value>
   <data name="btnNUMMINUS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
+  <data name="btnMOUSERIGHT.Text" xml:space="preserve">
+    <value>→Mouse Right</value>
+  </data>
   <data name="&gt;&gt;button17.Name" xml:space="preserve">
     <value>button17</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="button6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;bnWHEELUP.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1297,8 +1285,8 @@ a key by typing it</value>
   <data name="btnCAPS.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 112</value>
   </data>
-  <data name="&gt;&gt;btnF8.ZOrder" xml:space="preserve">
-    <value>76</value>
+  <data name="btnINS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
   </data>
   <data name="btnEND.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1314,9 +1302,6 @@ a key by typing it</value>
   </data>
   <data name="btnRSR.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
-  </data>
-  <data name="btn1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
   </data>
   <data name="&gt;&gt;btnINS.Name" xml:space="preserve">
     <value>btnINS</value>
@@ -1348,9 +1333,6 @@ a key by typing it</value>
   <data name="btnNUMLOCK.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
-  <data name="bnPREVTRACK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
   <data name="btnF9.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -1363,11 +1345,8 @@ a key by typing it</value>
   <data name="btnOPENBRACKET.Location" type="System.Drawing.Point, System.Drawing">
     <value>351, 82</value>
   </data>
-  <data name="&gt;&gt;button8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bnMOUSEDOWN.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;btnRS.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="btnNUMPLUS.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 54</value>
@@ -1393,23 +1372,17 @@ a key by typing it</value>
   <data name="&gt;&gt;btnEQUALS.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="btnMOUSERIGHT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
   <data name="btnZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
   <data name="btnLCTRL.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 24</value>
   </data>
-  <data name="&gt;&gt;bnMOUSEDOWN.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button34.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="bnMOUSELEFT.Text" xml:space="preserve">
-    <value>←Mouse Left</value>
-  </data>
-  <data name="&gt;&gt;btnF2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btn2.Text" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;btnOPENBRACKET.Name" xml:space="preserve">
     <value>btnOPENBRACKET</value>
@@ -1435,8 +1408,8 @@ a key by typing it</value>
   <data name="btnRETURN.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 24</value>
   </data>
-  <data name="btnNUM1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>581, 142</value>
+  <data name="btnNEXTTRACK.TabIndex" type="System.Int32, mscorlib">
+    <value>244</value>
   </data>
   <data name="&gt;&gt;btnBREAK.Name" xml:space="preserve">
     <value>btnBREAK</value>
@@ -1447,8 +1420,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF5.Name" xml:space="preserve">
     <value>btnF5</value>
   </data>
-  <data name="&gt;&gt;bnPREVTRACK.ZOrder" xml:space="preserve">
-    <value>63</value>
+  <data name="&gt;&gt;btnT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;KBMlabel.ZOrder" xml:space="preserve">
     <value>16</value>
@@ -1465,14 +1438,14 @@ a key by typing it</value>
   <data name="&gt;&gt;btn3.ZOrder" xml:space="preserve">
     <value>95</value>
   </data>
-  <data name="&gt;&gt;bnMOUSEUP.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="btnRETURN.Text" xml:space="preserve">
     <value>Enter</value>
   </data>
   <data name="btnS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
+  </data>
+  <data name="&gt;&gt;btnMOUSEUP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnAPOSTROPHE.ZOrder" xml:space="preserve">
     <value>118</value>
@@ -1492,8 +1465,8 @@ a key by typing it</value>
   <data name="btnJ.Location" type="System.Drawing.Point, System.Drawing">
     <value>246, 112</value>
   </data>
-  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>322</value>
+  <data name="button23.TabIndex" type="System.Int32, mscorlib">
+    <value>292</value>
   </data>
   <data name="btnF12.Location" type="System.Drawing.Point, System.Drawing">
     <value>411, 22</value>
@@ -1519,8 +1492,8 @@ a key by typing it</value>
   <data name="button33.Location" type="System.Drawing.Point, System.Drawing">
     <value>829, 147</value>
   </data>
-  <data name="bnPLAYPAUSE.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Webdings, 8.25pt</value>
+  <data name="&gt;&gt;button8.ZOrder" xml:space="preserve">
+    <value>26</value>
   </data>
   <data name="btnNUMPLUS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1530,6 +1503,9 @@ a key by typing it</value>
   </data>
   <data name="&gt;&gt;btnEND.ZOrder" xml:space="preserve">
     <value>70</value>
+  </data>
+  <data name="button20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 370</value>
   </data>
   <data name="&gt;&gt;btnV.Name" xml:space="preserve">
     <value>btnV</value>
@@ -1546,20 +1522,11 @@ a key by typing it</value>
   <data name="btnNUM0.TabIndex" type="System.Int32, mscorlib">
     <value>280</value>
   </data>
-  <data name="&gt;&gt;btnRS.Name" xml:space="preserve">
-    <value>btnRS</value>
-  </data>
   <data name="btnF11.Location" type="System.Drawing.Point, System.Drawing">
     <value>372, 22</value>
   </data>
   <data name="btnBACKSPACE.Text" xml:space="preserve">
     <value>Backspace</value>
-  </data>
-  <data name="bnPREVTRACK.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Webdings, 8.25pt</value>
-  </data>
-  <data name="bnSTOP.Location" type="System.Drawing.Point, System.Drawing">
-    <value>611, 23</value>
   </data>
   <data name="btnQ.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -1573,14 +1540,14 @@ a key by typing it</value>
   <data name="&gt;&gt;btnG.ZOrder" xml:space="preserve">
     <value>124</value>
   </data>
-  <data name="&gt;&gt;bnMOUSERIGHT.ZOrder" xml:space="preserve">
-    <value>148</value>
+  <data name="&gt;&gt;btnMOUSELEFT.ZOrder" xml:space="preserve">
+    <value>149</value>
   </data>
-  <data name="bnMOUSERIGHT.TabIndex" type="System.Int32, mscorlib">
-    <value>171</value>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnF4.TabIndex" type="System.Int32, mscorlib">
-    <value>260</value>
+  <data name="&gt;&gt;btnF2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnRETURN.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1588,17 +1555,14 @@ a key by typing it</value>
   <data name="btnY.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
-  <data name="&gt;&gt;bnSTOP.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="btnF2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
   <data name="btnF6.TabIndex" type="System.Int32, mscorlib">
     <value>258</value>
   </data>
-  <data name="&gt;&gt;button6.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnO.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;btnS.ZOrder" xml:space="preserve">
     <value>127</value>
@@ -1615,8 +1579,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnFallBack.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btn1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 52</value>
+  <data name="&gt;&gt;btnNEXTTRACK.Name" xml:space="preserve">
+    <value>btnNEXTTRACK</value>
   </data>
   <data name="btnBACKSPACE.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 24</value>
@@ -1635,6 +1599,9 @@ a key by typing it</value>
   </data>
   <data name="&gt;&gt;btnU.ZOrder" xml:space="preserve">
     <value>136</value>
+  </data>
+  <data name="&gt;&gt;btnMOUSELEFT.Name" xml:space="preserve">
+    <value>btnMOUSELEFT</value>
   </data>
   <data name="btnI.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -1656,6 +1623,9 @@ a key by typing it</value>
   </data>
   <data name="&gt;&gt;btnPGUP.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;button22.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1681,8 +1651,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF.ZOrder" xml:space="preserve">
     <value>125</value>
   </data>
-  <data name="button23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
+  <data name="&gt;&gt;btnSTOP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;button34.ZOrder" xml:space="preserve">
     <value>67</value>
@@ -1729,6 +1699,9 @@ a key by typing it</value>
   <data name="bnWHEELDOWN.Text" xml:space="preserve">
     <value>↓Mouse Wheel Down</value>
   </data>
+  <data name="&gt;&gt;btnMOUSERIGHT.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;btnLSHIFT.ZOrder" xml:space="preserve">
     <value>98</value>
   </data>
@@ -1744,8 +1717,8 @@ a key by typing it</value>
   <data name="btnBREAK.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 24</value>
   </data>
-  <data name="button19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
+  <data name="&gt;&gt;btnMOUSEDOWN.Name" xml:space="preserve">
+    <value>btnMOUSEDOWN</value>
   </data>
   <data name="&gt;&gt;btnOPENBRACKET.ZOrder" xml:space="preserve">
     <value>132</value>
@@ -1774,8 +1747,11 @@ a key by typing it</value>
   <data name="&gt;&gt;btnSLASH.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnRSHIFT.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btn1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="btn3.Text" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="btnEND.Text" xml:space="preserve">
     <value>end</value>
@@ -1786,8 +1762,8 @@ a key by typing it</value>
   <data name="btn8.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="bnNEXTTRACK.TabIndex" type="System.Int32, mscorlib">
-    <value>244</value>
+  <data name="btnC.TabIndex" type="System.Int32, mscorlib">
+    <value>212</value>
   </data>
   <data name="btnY.Location" type="System.Drawing.Point, System.Drawing">
     <value>201, 82</value>
@@ -1807,8 +1783,8 @@ a key by typing it</value>
   <data name="btn7.TabIndex" type="System.Int32, mscorlib">
     <value>228</value>
   </data>
-  <data name="bTNRIGHTMOUSE.Text" xml:space="preserve">
-    <value>Right Mouse Button</value>
+  <data name="&gt;&gt;btnRSU.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;button2.Name" xml:space="preserve">
     <value>button2</value>
@@ -1819,8 +1795,11 @@ a key by typing it</value>
   <data name="button38.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="&gt;&gt;btnD.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnMOUSERIGHT.ZOrder" xml:space="preserve">
+    <value>148</value>
+  </data>
+  <data name="&gt;&gt;btnRALT.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnNUM0.Location" type="System.Drawing.Point, System.Drawing">
     <value>581, 172</value>
@@ -1846,8 +1825,11 @@ a key by typing it</value>
   <data name="btnOPENBRACKET.Text" xml:space="preserve">
     <value>[</value>
   </data>
-  <data name="btnZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 142</value>
+  <data name="btnMOUSERIGHT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="btn1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 52</value>
   </data>
   <data name="&gt;&gt;btnRCTRL.Name" xml:space="preserve">
     <value>btnRCTRL</value>
@@ -1882,14 +1864,17 @@ a key by typing it</value>
   <data name="&gt;&gt;btnNUMMINUS.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;button23.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="button36.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 172</value>
   </data>
   <data name="cbScanCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>661, 5</value>
   </data>
-  <data name="&gt;&gt;btnFallBack.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="btnMOUSEUP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="btnV.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 142</value>
@@ -1933,14 +1918,11 @@ a key by typing it</value>
   <data name="btnH.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnMacro.TabIndex" type="System.Int32, mscorlib">
-    <value>321</value>
-  </data>
   <data name="btnNUMSLASH.Text" xml:space="preserve">
     <value>/Numpad</value>
   </data>
-  <data name="&gt;&gt;bnNEXTTRACK.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;btnRS.Name" xml:space="preserve">
+    <value>btnRS</value>
   </data>
   <data name="btnNUM7.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1951,11 +1933,8 @@ a key by typing it</value>
   <data name="btnR.Text" xml:space="preserve">
     <value>R</value>
   </data>
-  <data name="&gt;&gt;btn1.ZOrder" xml:space="preserve">
-    <value>84</value>
-  </data>
-  <data name="&gt;&gt;btnMacro.Name" xml:space="preserve">
-    <value>btnMacro</value>
+  <data name="&gt;&gt;btnSTOP.ZOrder" xml:space="preserve">
+    <value>66</value>
   </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5490,14 +5469,14 @@ a key by typing it</value>
   <data name="&gt;&gt;cbScanCode.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnCAPS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 24</value>
+  <data name="btnTAB.Text" xml:space="preserve">
+    <value>Tab</value>
   </data>
   <data name="btnF.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="bnMOUSEDOWN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>794, 167</value>
+  <data name="&gt;&gt;btnLCTRL.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnRSHIFT.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 24</value>
@@ -5535,8 +5514,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnO.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="button20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 370</value>
+  <data name="btnNEXTTRACK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>671, 23</value>
   </data>
   <data name="&gt;&gt;bTNRIGHTMOUSE.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5546,9 +5525,6 @@ a key by typing it</value>
   </data>
   <data name="btnK.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
-  </data>
-  <data name="&gt;&gt;bnSTOP.Name" xml:space="preserve">
-    <value>bnSTOP</value>
   </data>
   <data name="btnAPOSTROPHE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -5577,8 +5553,8 @@ a key by typing it</value>
   <data name="btnRSD.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
-  <data name="&gt;&gt;btnEND.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnRSHIFT.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btn5.ZOrder" xml:space="preserve">
     <value>93</value>
@@ -5604,14 +5580,20 @@ a key by typing it</value>
   <data name="btnF9.TabIndex" type="System.Int32, mscorlib">
     <value>255</value>
   </data>
+  <data name="btnPREVTRACK.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Webdings, 8.25pt</value>
+  </data>
   <data name="&gt;&gt;btnNUM0.Name" xml:space="preserve">
     <value>btnNUM0</value>
   </data>
   <data name="btnDEL.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 24</value>
   </data>
-  <data name="&gt;&gt;bnMOUSEDOWN.ZOrder" xml:space="preserve">
-    <value>150</value>
+  <data name="btnSTOP.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Webdings, 8.25pt</value>
+  </data>
+  <data name="button17.TabIndex" type="System.Int32, mscorlib">
+    <value>304</value>
   </data>
   <data name="&gt;&gt;btnU.Parent" xml:space="preserve">
     <value>$this</value>
@@ -5640,8 +5622,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnLSU.Name" xml:space="preserve">
     <value>btnLSU</value>
   </data>
-  <data name="bnSTOP.TabIndex" type="System.Int32, mscorlib">
-    <value>246</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnN.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -5649,14 +5631,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF7.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnT.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="&gt;&gt;btnCAPS.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bnSTOP.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="button34.TabIndex" type="System.Int32, mscorlib">
     <value>241</value>
@@ -5688,11 +5664,11 @@ a key by typing it</value>
   <data name="&gt;&gt;btnTILDE.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;bnMOUSEUP.ZOrder" xml:space="preserve">
-    <value>151</value>
-  </data>
   <data name="btnF12.Text" xml:space="preserve">
     <value>F12</value>
+  </data>
+  <data name="btnPLAYPAUSE.TabIndex" type="System.Int32, mscorlib">
+    <value>245</value>
   </data>
   <data name="&gt;&gt;btnEQUALS.Name" xml:space="preserve">
     <value>btnEQUALS</value>
@@ -5721,14 +5697,11 @@ a key by typing it</value>
   <data name="btnK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnO.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
   <data name="&gt;&gt;btnMINUS.ZOrder" xml:space="preserve">
     <value>87</value>
   </data>
-  <data name="&gt;&gt;btnN.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnO.Text" xml:space="preserve">
+    <value>O</value>
   </data>
   <data name="&gt;&gt;btn7.ZOrder" xml:space="preserve">
     <value>91</value>
@@ -5763,9 +5736,6 @@ a key by typing it</value>
   <data name="&gt;&gt;btnNUM6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnMOUSELEFT.TabIndex" type="System.Int32, mscorlib">
-    <value>172</value>
-  </data>
   <data name="btnLEFTMOUSE.Location" type="System.Drawing.Point, System.Drawing">
     <value>764, 82</value>
   </data>
@@ -5778,8 +5748,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btn0.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;bnNEXTTRACK.Name" xml:space="preserve">
-    <value>bnNEXTTRACK</value>
+  <data name="&gt;&gt;btnD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnT.Text" xml:space="preserve">
     <value>T</value>
@@ -5789,9 +5759,6 @@ a key by typing it</value>
   </data>
   <data name="button19.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 340</value>
-  </data>
-  <data name="&gt;&gt;bnMOUSEUP.Name" xml:space="preserve">
-    <value>bnMOUSEUP</value>
   </data>
   <data name="&gt;&gt;button9.Name" xml:space="preserve">
     <value>button9</value>
@@ -5808,8 +5775,8 @@ a key by typing it</value>
   <data name="btnRSU.Location" type="System.Drawing.Point, System.Drawing">
     <value>673, 315</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
-    <value>pictureBox1</value>
+  <data name="btnSTOP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>611, 23</value>
   </data>
   <data name="btnL.Text" xml:space="preserve">
     <value>L</value>
@@ -5841,6 +5808,9 @@ a key by typing it</value>
   <data name="btnF5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
+  <data name="&gt;&gt;cbToggle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;btnINS.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -5856,8 +5826,8 @@ a key by typing it</value>
   <data name="cbToggle.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 17</value>
   </data>
-  <data name="btnR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 82</value>
+  <data name="button5.TabIndex" type="System.Int32, mscorlib">
+    <value>285</value>
   </data>
   <data name="&gt;&gt;button20.Parent" xml:space="preserve">
     <value>$this</value>
@@ -5871,6 +5841,9 @@ a key by typing it</value>
   <data name="btnCAPS.TabIndex" type="System.Int32, mscorlib">
     <value>208</value>
   </data>
+  <data name="&gt;&gt;btnRALT.Name" xml:space="preserve">
+    <value>btnRALT</value>
+  </data>
   <data name="btnEQUALS.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
@@ -5880,8 +5853,14 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="bnNEXTTRACK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+  <data name="&gt;&gt;btnLEFTMOUSE.Name" xml:space="preserve">
+    <value>btnLEFTMOUSE</value>
+  </data>
+  <data name="button22.TabIndex" type="System.Int32, mscorlib">
+    <value>294</value>
+  </data>
+  <data name="button36.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;button5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5889,17 +5868,23 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="btnNUMSLASH.TabIndex" type="System.Int32, mscorlib">
+    <value>271</value>
+  </data>
   <data name="btn3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="&gt;&gt;btnLEFTMOUSE.Name" xml:space="preserve">
-    <value>btnLEFTMOUSE</value>
+  <data name="bnMacro.TabIndex" type="System.Int32, mscorlib">
+    <value>321</value>
+  </data>
+  <data name="btnPLAYPAUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="button21.TabIndex" type="System.Int32, mscorlib">
     <value>291</value>
   </data>
-  <data name="bnPLAYPAUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="btnCAPS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 24</value>
   </data>
   <data name="btn3.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 52</value>
@@ -5916,8 +5901,11 @@ a key by typing it</value>
   <data name="&gt;&gt;btnL.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnPLAYPAUSE.TabIndex" type="System.Int32, mscorlib">
-    <value>245</value>
+  <data name="button9.TabIndex" type="System.Int32, mscorlib">
+    <value>296</value>
+  </data>
+  <data name="bnMacro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 23</value>
   </data>
   <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
     <value>154</value>
@@ -5946,8 +5934,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btn8.Name" xml:space="preserve">
     <value>btn8</value>
   </data>
-  <data name="bnMOUSELEFT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="button13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="btn6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -5976,6 +5964,9 @@ a key by typing it</value>
   <data name="&gt;&gt;btnLALT.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;btnMOUSEDOWN.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="button35.TabIndex" type="System.Int32, mscorlib">
     <value>248</value>
   </data>
@@ -5988,14 +5979,17 @@ a key by typing it</value>
   <data name="btnI.Text" xml:space="preserve">
     <value>I</value>
   </data>
-  <data name="&gt;&gt;bnMOUSELEFT.ZOrder" xml:space="preserve">
-    <value>149</value>
+  <data name="button34.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="&gt;&gt;btnRS.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btnLCTRL.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="button23.TabIndex" type="System.Int32, mscorlib">
-    <value>292</value>
+  <data name="btnMOUSELEFT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="btnWINDOWS.Text" xml:space="preserve">
     <value>LWin</value>
@@ -6005,6 +5999,9 @@ a key by typing it</value>
   </data>
   <data name="btnCOMMA.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
+  </data>
+  <data name="&gt;&gt;btnF8.ZOrder" xml:space="preserve">
+    <value>76</value>
   </data>
   <data name="&gt;&gt;btnPGUP.Name" xml:space="preserve">
     <value>btnPGUP</value>
@@ -6018,7 +6015,7 @@ a key by typing it</value>
   <data name="&gt;&gt;btn7.Name" xml:space="preserve">
     <value>btn7</value>
   </data>
-  <data name="&gt;&gt;bnNEXTTRACK.Type" xml:space="preserve">
+  <data name="&gt;&gt;button13.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;button7.Type" xml:space="preserve">
@@ -6072,8 +6069,11 @@ a key by typing it</value>
   <data name="btnNUM8.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="button5.TabIndex" type="System.Int32, mscorlib">
-    <value>285</value>
+  <data name="&gt;&gt;btn9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnPREVTRACK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="btnF3.Size" type="System.Drawing.Size, System.Drawing">
     <value>27, 24</value>
@@ -6084,8 +6084,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnR.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;bnMOUSELEFT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnO.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
   </data>
   <data name="btnMINUS.Text" xml:space="preserve">
     <value>-</value>
@@ -6095,9 +6095,6 @@ a key by typing it</value>
   </data>
   <data name="btnN.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
-  </data>
-  <data name="&gt;&gt;button8.ZOrder" xml:space="preserve">
-    <value>26</value>
   </data>
   <data name="btnO.TabIndex" type="System.Int32, mscorlib">
     <value>185</value>
@@ -6135,8 +6132,11 @@ a key by typing it</value>
   <data name="&gt;&gt;btnCAPS.Name" xml:space="preserve">
     <value>btnCAPS</value>
   </data>
-  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="btnMOUSELEFT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>743, 118</value>
+  </data>
+  <data name="btnNEXTTRACK.Text" xml:space="preserve">
+    <value>:</value>
   </data>
   <data name="btnF12.TabIndex" type="System.Int32, mscorlib">
     <value>239</value>
@@ -6189,9 +6189,6 @@ a key by typing it</value>
   <data name="btnF12.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnLSD.TabIndex" type="System.Int32, mscorlib">
-    <value>308</value>
-  </data>
   <data name="btn0.Text" xml:space="preserve">
     <value>0</value>
   </data>
@@ -6225,8 +6222,8 @@ a key by typing it</value>
   <data name="btnSPACE.Location" type="System.Drawing.Point, System.Drawing">
     <value>159, 172</value>
   </data>
-  <data name="&gt;&gt;btnJ.ZOrder" xml:space="preserve">
-    <value>122</value>
+  <data name="&gt;&gt;KBMlabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnSCL.ZOrder" xml:space="preserve">
     <value>68</value>
@@ -6252,8 +6249,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnL.Name" xml:space="preserve">
     <value>btnL</value>
   </data>
-  <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnMOUSEUP.ZOrder" xml:space="preserve">
+    <value>151</value>
   </data>
   <data name="&gt;&gt;btnTAB.Parent" xml:space="preserve">
     <value>$this</value>
@@ -6275,6 +6272,9 @@ a key by typing it</value>
   </data>
   <data name="btnF5.Location" type="System.Drawing.Point, System.Drawing">
     <value>186, 22</value>
+  </data>
+  <data name="btnNUM1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>581, 142</value>
   </data>
   <data name="&gt;&gt;button11.ZOrder" xml:space="preserve">
     <value>23</value>
@@ -6306,7 +6306,7 @@ a key by typing it</value>
   <data name="btnF6.Text" xml:space="preserve">
     <value>F6</value>
   </data>
-  <data name="btnP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="btnNEXTTRACK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
   <data name="btnM.TabIndex" type="System.Int32, mscorlib">
@@ -6348,11 +6348,11 @@ a key by typing it</value>
   <data name="btn1.TabIndex" type="System.Int32, mscorlib">
     <value>264</value>
   </data>
-  <data name="&gt;&gt;btnTAB.ZOrder" xml:space="preserve">
-    <value>129</value>
-  </data>
   <data name="btnNUM5.Text" xml:space="preserve">
     <value>5Numpad</value>
+  </data>
+  <data name="&gt;&gt;btnMOUSEDOWN.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnFallBack.Name" xml:space="preserve">
     <value>btnFallBack</value>
@@ -6360,14 +6360,17 @@ a key by typing it</value>
   <data name="btnNUMENTER.Location" type="System.Drawing.Point, System.Drawing">
     <value>671, 142</value>
   </data>
+  <data name="&gt;&gt;btnMOUSELEFT.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;btnTAB.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnRETURN.ZOrder" xml:space="preserve">
     <value>117</value>
   </data>
-  <data name="&gt;&gt;btnLSHIFT.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="cbToggle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>596, 5</value>
   </data>
   <data name="btnBREAK.Text" xml:space="preserve">
     <value>bk</value>
@@ -6441,8 +6444,8 @@ a key by typing it</value>
   <data name="&gt;&gt;KBMlabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="bnNEXTTRACK.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Webdings, 8.25pt</value>
+  <data name="button11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>292, 268</value>
   </data>
   <data name="&gt;&gt;btnNUMLOCK.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -6459,8 +6462,8 @@ a key by typing it</value>
   <data name="btn6.Text" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;btnF1.ZOrder" xml:space="preserve">
-    <value>83</value>
+  <data name="btnPGDN.Location" type="System.Drawing.Point, System.Drawing">
+    <value>531, 82</value>
   </data>
   <data name="btnJ.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -6471,8 +6474,8 @@ a key by typing it</value>
   <data name="&gt;&gt;KBMlabel.Name" xml:space="preserve">
     <value>KBMlabel</value>
   </data>
-  <data name="btnW.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+  <data name="&gt;&gt;btnPLAYPAUSE.Name" xml:space="preserve">
+    <value>btnPLAYPAUSE</value>
   </data>
   <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -6491,6 +6494,9 @@ a key by typing it</value>
   </data>
   <data name="&gt;&gt;btn3.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="btnMOUSEDOWN.Location" type="System.Drawing.Point, System.Drawing">
+    <value>794, 167</value>
   </data>
   <data name="&gt;&gt;btnT.ZOrder" xml:space="preserve">
     <value>138</value>
@@ -6519,17 +6525,17 @@ a key by typing it</value>
   <data name="&gt;&gt;btnRETURN.Name" xml:space="preserve">
     <value>btnRETURN</value>
   </data>
-  <data name="&gt;&gt;button18.Name" xml:space="preserve">
-    <value>button18</value>
+  <data name="btnW.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="&gt;&gt;btnPLAYPAUSE.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btnUNBOUND2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnWINDOWS.ZOrder" xml:space="preserve">
     <value>112</value>
-  </data>
-  <data name="button9.TabIndex" type="System.Int32, mscorlib">
-    <value>296</value>
   </data>
   <data name="btnP.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -6540,8 +6546,11 @@ a key by typing it</value>
   <data name="&gt;&gt;button13.Name" xml:space="preserve">
     <value>button13</value>
   </data>
-  <data name="&gt;&gt;btnMIDDLEMOUSE.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnMOUSEDOWN.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="&gt;&gt;bnMacro.Name" xml:space="preserve">
+    <value>bnMacro</value>
   </data>
   <data name="btn0.Location" type="System.Drawing.Point, System.Drawing">
     <value>306, 52</value>
@@ -6555,8 +6564,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnNUM7.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;bnPREVTRACK.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;button6.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnPGUP.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 24</value>
@@ -6567,8 +6576,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnC.Name" xml:space="preserve">
     <value>btnC</value>
   </data>
-  <data name="btnDEL.Text" xml:space="preserve">
-    <value>del</value>
+  <data name="btn6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>186, 52</value>
   </data>
   <data name="btnJ.TabIndex" type="System.Int32, mscorlib">
     <value>197</value>
@@ -6585,22 +6594,19 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF11.ZOrder" xml:space="preserve">
     <value>56</value>
   </data>
-  <data name="&gt;&gt;btnRSD.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnW.Text" xml:space="preserve">
-    <value>W</value>
+  <data name="btnMOUSELEFT.TabIndex" type="System.Int32, mscorlib">
+    <value>172</value>
   </data>
   <data name="btnF2.Text" xml:space="preserve">
     <value>F2</value>
   </data>
+  <data name="&gt;&gt;btnLSL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;btnSLASH.Name" xml:space="preserve">
     <value>btnSLASH</value>
   </data>
-  <data name="&gt;&gt;button38.Name" xml:space="preserve">
-    <value>button38</value>
-  </data>
-  <data name="&gt;&gt;button13.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnW.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnLSHIFT.Name" xml:space="preserve">
@@ -6630,8 +6636,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnNUM4.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;bnPLAYPAUSE.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnNEXTTRACK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
   </data>
   <data name="btnFallBack.TabIndex" type="System.Int32, mscorlib">
     <value>323</value>
@@ -6653,6 +6659,9 @@ a key by typing it</value>
   </data>
   <data name="button18.TabIndex" type="System.Int32, mscorlib">
     <value>305</value>
+  </data>
+  <data name="bnMacro.Text" xml:space="preserve">
+    <value>Record a macro</value>
   </data>
   <data name="cbScanCode.Text" xml:space="preserve">
     <value>Scan Code</value>
@@ -6714,14 +6723,17 @@ a key by typing it</value>
   <data name="&gt;&gt;button17.ZOrder" xml:space="preserve">
     <value>22</value>
   </data>
+  <data name="btnMOUSEDOWN.TabIndex" type="System.Int32, mscorlib">
+    <value>170</value>
+  </data>
   <data name="btnF4.Size" type="System.Drawing.Size, System.Drawing">
     <value>27, 24</value>
   </data>
   <data name="btnX.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
-  <data name="btnMacro.Text" xml:space="preserve">
-    <value>Record a macro</value>
+  <data name="btnRSL.TabIndex" type="System.Int32, mscorlib">
+    <value>311</value>
   </data>
   <data name="btnLSU.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
@@ -6732,8 +6744,8 @@ a key by typing it</value>
   <data name="btnLSL.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 269</value>
   </data>
-  <data name="&gt;&gt;bnNEXTTRACK.ZOrder" xml:space="preserve">
-    <value>64</value>
+  <data name="&gt;&gt;btnT.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btnF3.Parent" xml:space="preserve">
     <value>$this</value>
@@ -6755,9 +6767,6 @@ a key by typing it</value>
   </data>
   <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
     <value>35</value>
-  </data>
-  <data name="&gt;&gt;bnMOUSEUP.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="btnE.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -6798,23 +6807,17 @@ a key by typing it</value>
   <data name="btnB.Location" type="System.Drawing.Point, System.Drawing">
     <value>201, 142</value>
   </data>
-  <data name="&gt;&gt;btnRSU.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="btnMIDDLEMOUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
   <data name="btnNUMENTER.TabIndex" type="System.Int32, mscorlib">
     <value>266</value>
   </data>
-  <data name="&gt;&gt;button5.ZOrder" xml:space="preserve">
-    <value>34</value>
+  <data name="&gt;&gt;btnLSHIFT.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btn0.TabIndex" type="System.Int32, mscorlib">
     <value>231</value>
-  </data>
-  <data name="bTNRIGHTMOUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
   </data>
   <data name="&gt;&gt;btnPGDN.Parent" xml:space="preserve">
     <value>$this</value>
@@ -6828,17 +6831,17 @@ a key by typing it</value>
   <data name="&gt;&gt;btnY.Name" xml:space="preserve">
     <value>btnY</value>
   </data>
-  <data name="&gt;&gt;btnP.Name" xml:space="preserve">
-    <value>btnP</value>
+  <data name="btnSTOP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="&gt;&gt;btnLSR.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="btnBREAK.Location" type="System.Drawing.Point, System.Drawing">
     <value>531, 22</value>
   </data>
-  <data name="bnPREVTRACK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="&gt;&gt;bnMOUSELEFT.Name" xml:space="preserve">
-    <value>bnMOUSELEFT</value>
+  <data name="&gt;&gt;btnD.Name" xml:space="preserve">
+    <value>btnD</value>
   </data>
   <data name="btnX.TabIndex" type="System.Int32, mscorlib">
     <value>211</value>
@@ -6855,8 +6858,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnK.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btn2.Text" xml:space="preserve">
-    <value>2</value>
+  <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 140</value>
   </data>
   <data name="btnNUM9.Text" xml:space="preserve">
     <value>9Numpad</value>
@@ -6870,14 +6873,20 @@ a key by typing it</value>
   <data name="btnNUM7.TabIndex" type="System.Int32, mscorlib">
     <value>272</value>
   </data>
+  <data name="btnPLAYPAUSE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
   <data name="&gt;&gt;btn4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnNUM7.ZOrder" xml:space="preserve">
     <value>52</value>
   </data>
-  <data name="bnSTOP.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Webdings, 8.25pt</value>
+  <data name="bTNRIGHTMOUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="btnLSR.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="btnCLOSEBRACKET.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -6896,6 +6905,9 @@ a key by typing it</value>
   </data>
   <data name="&gt;&gt;btnMIDDLEMOUSE.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="bnMacro.Location" type="System.Drawing.Point, System.Drawing">
+    <value>747, 1</value>
   </data>
   <data name="&gt;&gt;btnCAPS.Parent" xml:space="preserve">
     <value>$this</value>
@@ -6918,14 +6930,14 @@ a key by typing it</value>
   <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
     <value>290</value>
   </data>
-  <data name="bnMOUSERIGHT.Text" xml:space="preserve">
-    <value>→Mouse Right</value>
+  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btn5.TabIndex" type="System.Int32, mscorlib">
     <value>226</value>
   </data>
-  <data name="&gt;&gt;btnW.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnMOUSEUP.TabIndex" type="System.Int32, mscorlib">
+    <value>167</value>
   </data>
   <data name="btnAPOSTROPHE.Location" type="System.Drawing.Point, System.Drawing">
     <value>366, 112</value>
@@ -6990,8 +7002,8 @@ a key by typing it</value>
   <data name="btnMINUS.Location" type="System.Drawing.Point, System.Drawing">
     <value>336, 52</value>
   </data>
-  <data name="&gt;&gt;bnPREVTRACK.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnA.Text" xml:space="preserve">
+    <value>A</value>
   </data>
   <data name="btnLSHIFT.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 142</value>
@@ -7005,8 +7017,11 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF4.ZOrder" xml:space="preserve">
     <value>80</value>
   </data>
-  <data name="button39.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 24</value>
+  <data name="&gt;&gt;btn1.ZOrder" xml:space="preserve">
+    <value>84</value>
+  </data>
+  <data name="btnP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;btnNUM5.ZOrder" xml:space="preserve">
     <value>43</value>
@@ -7047,8 +7062,8 @@ a key by typing it</value>
   <data name="btnF5.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
   </data>
-  <data name="&gt;&gt;btnQ.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnMOUSEDOWN.Text" xml:space="preserve">
+    <value>↓Mouse Down</value>
   </data>
   <data name="&gt;&gt;bnWHEELDOWN.Parent" xml:space="preserve">
     <value>$this</value>
@@ -7071,14 +7086,17 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF10.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="button11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
+  </data>
   <data name="btnN.Text" xml:space="preserve">
     <value>N</value>
   </data>
   <data name="&gt;&gt;btnCLOSEBRACKET.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnRALT.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnPLAYPAUSE.Text" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="btnSLASH.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -7104,6 +7122,9 @@ a key by typing it</value>
   <data name="btnF11.Text" xml:space="preserve">
     <value>F11</value>
   </data>
+  <data name="btnSCL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 24</value>
+  </data>
   <data name="&gt;&gt;btnF.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -7119,9 +7140,6 @@ a key by typing it</value>
   <data name="btnA.TabIndex" type="System.Int32, mscorlib">
     <value>191</value>
   </data>
-  <data name="bnMOUSEUP.TabIndex" type="System.Int32, mscorlib">
-    <value>167</value>
-  </data>
   <data name="&gt;&gt;btn6.Name" xml:space="preserve">
     <value>btn6</value>
   </data>
@@ -7134,8 +7152,8 @@ a key by typing it</value>
   <data name="btnRS.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
-  <data name="button3.TabIndex" type="System.Int32, mscorlib">
-    <value>293</value>
+  <data name="&gt;&gt;btnPREVTRACK.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;X360Label.ZOrder" xml:space="preserve">
     <value>17</value>
@@ -7203,8 +7221,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnLS.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;cbToggle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnR.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 82</value>
   </data>
   <data name="btnN.Location" type="System.Drawing.Point, System.Drawing">
     <value>231, 142</value>
@@ -7215,8 +7233,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnRS.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnMOUSERIGHT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="button20.TabIndex" type="System.Int32, mscorlib">
     <value>306</value>
@@ -7248,20 +7266,17 @@ a key by typing it</value>
   <data name="btnESC.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 24</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>96, 96</value>
-  </data>
   <data name="&gt;&gt;bTNRIGHTMOUSE.Name" xml:space="preserve">
     <value>bTNRIGHTMOUSE</value>
   </data>
-  <data name="btnPGDN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>531, 82</value>
+  <data name="&gt;&gt;btnMIDDLEMOUSE.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnLALT.Location" type="System.Drawing.Point, System.Drawing">
     <value>66, 172</value>
   </data>
-  <data name="&gt;&gt;bnPLAYPAUSE.Name" xml:space="preserve">
-    <value>bnPLAYPAUSE</value>
+  <data name="&gt;&gt;button18.Name" xml:space="preserve">
+    <value>button18</value>
   </data>
   <data name="btn2.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -7281,8 +7296,8 @@ a key by typing it</value>
   <data name="&gt;&gt;button9.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnMacro.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>322</value>
   </data>
   <data name="&gt;&gt;btn7.Parent" xml:space="preserve">
     <value>$this</value>
@@ -7299,11 +7314,17 @@ a key by typing it</value>
   <data name="btnF8.Text" xml:space="preserve">
     <value>F8</value>
   </data>
-  <data name="X360Label.Text" xml:space="preserve">
-    <value>X360 Controls</value>
+  <data name="button19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
+  </data>
+  <data name="&gt;&gt;btnSTOP.Name" xml:space="preserve">
+    <value>btnSTOP</value>
   </data>
   <data name="btnF3.Text" xml:space="preserve">
     <value>F3</value>
+  </data>
+  <data name="&gt;&gt;bnMacro.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btnNUM9.ZOrder" xml:space="preserve">
     <value>48</value>
@@ -7323,11 +7344,11 @@ a key by typing it</value>
   <data name="btnLSHIFT.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 24</value>
   </data>
-  <data name="btnA.Text" xml:space="preserve">
-    <value>A</value>
+  <data name="btnRSR.TabIndex" type="System.Int32, mscorlib">
+    <value>314</value>
   </data>
-  <data name="button36.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="&gt;&gt;btnCLOSEBRACKET.Name" xml:space="preserve">
+    <value>btnCLOSEBRACKET</value>
   </data>
   <data name="&gt;&gt;btnF4.Name" xml:space="preserve">
     <value>btnF4</value>
@@ -7347,8 +7368,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF6.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnRSR.TabIndex" type="System.Int32, mscorlib">
-    <value>314</value>
+  <data name="btnPREVTRACK.TabIndex" type="System.Int32, mscorlib">
+    <value>243</value>
   </data>
   <data name="btnPERIOD.Location" type="System.Drawing.Point, System.Drawing">
     <value>321, 142</value>
@@ -7359,8 +7380,8 @@ a key by typing it</value>
   <data name="btnF8.Location" type="System.Drawing.Point, System.Drawing">
     <value>276, 22</value>
   </data>
-  <data name="&gt;&gt;btnMacro.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnSTOP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="btnNUM2.TabIndex" type="System.Int32, mscorlib">
     <value>279</value>
@@ -7370,6 +7391,9 @@ a key by typing it</value>
   </data>
   <data name="btnEQUALS.TabIndex" type="System.Int32, mscorlib">
     <value>233</value>
+  </data>
+  <data name="&gt;&gt;btnMOUSELEFT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnNUM6.ZOrder" xml:space="preserve">
     <value>41</value>
@@ -7386,20 +7410,14 @@ a key by typing it</value>
   <data name="btnF11.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 24</value>
   </data>
-  <data name="&gt;&gt;btnRS.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 24</value>
+  <data name="&gt;&gt;button38.Name" xml:space="preserve">
+    <value>button38</value>
   </data>
   <data name="&gt;&gt;btnJ.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;button3.Name" xml:space="preserve">
     <value>button3</value>
-  </data>
-  <data name="btnINS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 24</value>
   </data>
   <data name="btn3.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
@@ -7434,9 +7452,6 @@ a key by typing it</value>
   <data name="&gt;&gt;button11.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnD.Name" xml:space="preserve">
-    <value>btnD</value>
-  </data>
   <data name="btnUNBOUND2.TabIndex" type="System.Int32, mscorlib">
     <value>317</value>
   </data>
@@ -7457,9 +7472,6 @@ a key by typing it</value>
   </data>
   <data name="btn6.TabIndex" type="System.Int32, mscorlib">
     <value>227</value>
-  </data>
-  <data name="&gt;&gt;btnRS.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="btnT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -7482,8 +7494,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnLALT.ZOrder" xml:space="preserve">
     <value>113</value>
   </data>
-  <data name="&gt;&gt;btnPERIOD.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnNUMSLASH.Name" xml:space="preserve">
+    <value>btnNUMSLASH</value>
   </data>
   <data name="lBMacroOn.Text" xml:space="preserve">
     <value>Macro On, Choose a key to disable, else close this window to save</value>
@@ -7491,17 +7503,14 @@ a key by typing it</value>
   <data name="btnX.Location" type="System.Drawing.Point, System.Drawing">
     <value>111, 142</value>
   </data>
-  <data name="bnPREVTRACK.Text" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;btnF1.ZOrder" xml:space="preserve">
+    <value>83</value>
   </data>
   <data name="cbToggle.Text" xml:space="preserve">
     <value>Toggle</value>
   </data>
   <data name="btnLS.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
-  </data>
-  <data name="&gt;&gt;btnMacro.ZOrder" xml:space="preserve">
-    <value>14</value>
   </data>
   <data name="btnNUMLOCK.TabIndex" type="System.Int32, mscorlib">
     <value>273</value>
@@ -7512,14 +7521,14 @@ a key by typing it</value>
   <data name="&gt;&gt;btn6.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnLCTRL.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;btnEND.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnPERIOD.Text" xml:space="preserve">
     <value>.</value>
   </data>
-  <data name="btnRSR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>706, 348</value>
+  <data name="&gt;&gt;btnPREVTRACK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lBTip.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -7533,14 +7542,11 @@ a key by typing it</value>
   <data name="btnLSD.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
-  <data name="bnMOUSELEFT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+  <data name="btn9.TabIndex" type="System.Int32, mscorlib">
+    <value>230</value>
   </data>
-  <data name="button4.Text" xml:space="preserve">
-    <value>←Left</value>
-  </data>
-  <data name="btnTAB.Text" xml:space="preserve">
-    <value>Tab</value>
+  <data name="&gt;&gt;btnTAB.ZOrder" xml:space="preserve">
+    <value>129</value>
   </data>
   <data name="btnESC.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -7548,7 +7554,10 @@ a key by typing it</value>
   <data name="btnTAB.TabIndex" type="System.Int32, mscorlib">
     <value>189</value>
   </data>
-  <data name="&gt;&gt;bnPLAYPAUSE.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnP.Name" xml:space="preserve">
+    <value>btnP</value>
+  </data>
+  <data name="&gt;&gt;btnQ.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="lBTip.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
@@ -7566,8 +7575,8 @@ a key by typing it</value>
   <data name="button23.Location" type="System.Drawing.Point, System.Drawing">
     <value>373, 323</value>
   </data>
-  <data name="button11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 268</value>
+  <data name="&gt;&gt;btnB.ZOrder" xml:space="preserve">
+    <value>105</value>
   </data>
   <data name="&gt;&gt;btnF7.ZOrder" xml:space="preserve">
     <value>77</value>
@@ -7578,8 +7587,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnCLOSEBRACKET.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnLSL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnPLAYPAUSE.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Webdings, 8.25pt</value>
   </data>
   <data name="btnBACKSLASH.Location" type="System.Drawing.Point, System.Drawing">
     <value>411, 82</value>
@@ -7590,9 +7599,6 @@ a key by typing it</value>
   <data name="btnNUMMINUS.TabIndex" type="System.Int32, mscorlib">
     <value>268</value>
   </data>
-  <data name="&gt;&gt;bnMOUSERIGHT.Name" xml:space="preserve">
-    <value>bnMOUSERIGHT</value>
-  </data>
   <data name="btnR.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
@@ -7602,8 +7608,11 @@ a key by typing it</value>
   <data name="&gt;&gt;btn6.ZOrder" xml:space="preserve">
     <value>92</value>
   </data>
-  <data name="btn3.Text" xml:space="preserve">
-    <value>3</value>
+  <data name="btnDEL.Text" xml:space="preserve">
+    <value>del</value>
+  </data>
+  <data name="&gt;&gt;bnMacro.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnNUM3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -7632,8 +7641,8 @@ a key by typing it</value>
   <data name="btnD.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
-  <data name="&gt;&gt;btnCLOSEBRACKET.Name" xml:space="preserve">
-    <value>btnCLOSEBRACKET</value>
+  <data name="&gt;&gt;button22.Name" xml:space="preserve">
+    <value>button22</value>
   </data>
   <data name="&gt;&gt;btnSCL.Parent" xml:space="preserve">
     <value>$this</value>
@@ -7647,12 +7656,6 @@ a key by typing it</value>
   <data name="btnSCL.TabIndex" type="System.Int32, mscorlib">
     <value>247</value>
   </data>
-  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnC.TabIndex" type="System.Int32, mscorlib">
-    <value>212</value>
-  </data>
   <data name="btnRS.TabIndex" type="System.Int32, mscorlib">
     <value>303</value>
   </data>
@@ -7661,6 +7664,9 @@ a key by typing it</value>
   </data>
   <data name="&gt;&gt;btnN.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnPLAYPAUSE.Location" type="System.Drawing.Point, System.Drawing">
+    <value>641, 23</value>
   </data>
   <data name="bnWHEELDOWN.TabIndex" type="System.Int32, mscorlib">
     <value>175</value>
@@ -7701,8 +7707,8 @@ a key by typing it</value>
   <data name="button33.Size" type="System.Drawing.Size, System.Drawing">
     <value>19, 24</value>
   </data>
-  <data name="&gt;&gt;btn9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnJ.ZOrder" xml:space="preserve">
+    <value>122</value>
   </data>
   <data name="btn7.Text" xml:space="preserve">
     <value>7</value>
@@ -7713,8 +7719,11 @@ a key by typing it</value>
   <data name="btnNUM4.TabIndex" type="System.Int32, mscorlib">
     <value>281</value>
   </data>
-  <data name="&gt;&gt;btnH.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="button4.Text" xml:space="preserve">
+    <value>←Left</value>
+  </data>
+  <data name="btnSTOP.Text" xml:space="preserve">
+    <value>&lt;</value>
   </data>
   <data name="&gt;&gt;btn4.Name" xml:space="preserve">
     <value>btn4</value>
@@ -7725,17 +7734,8 @@ a key by typing it</value>
   <data name="button7.Text" xml:space="preserve">
     <value>↑Up</value>
   </data>
-  <data name="bnPLAYPAUSE.Text" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="&gt;&gt;btnNUM1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnO.Text" xml:space="preserve">
-    <value>O</value>
-  </data>
-  <data name="cbToggle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>596, 5</value>
   </data>
   <data name="&gt;&gt;btnNUMPLUS.ZOrder" xml:space="preserve">
     <value>46</value>
@@ -7749,14 +7749,14 @@ a key by typing it</value>
   <data name="&gt;&gt;btn8.ZOrder" xml:space="preserve">
     <value>90</value>
   </data>
-  <data name="&gt;&gt;bnPREVTRACK.Name" xml:space="preserve">
-    <value>bnPREVTRACK</value>
-  </data>
   <data name="&gt;&gt;btnF8.Name" xml:space="preserve">
     <value>btnF8</value>
   </data>
   <data name="btnMIDDLEMOUSE.Text" xml:space="preserve">
     <value>Middle Mouse Button</value>
+  </data>
+  <data name="btnZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>81, 142</value>
   </data>
   <data name="btnU.Location" type="System.Drawing.Point, System.Drawing">
     <value>231, 82</value>
@@ -7767,13 +7767,10 @@ a key by typing it</value>
   <data name="&gt;&gt;button19.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnRALT.Name" xml:space="preserve">
-    <value>btnRALT</value>
+  <data name="&gt;&gt;btnPREVTRACK.ZOrder" xml:space="preserve">
+    <value>63</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>fr-FR</value>
   </metadata>
 </root>

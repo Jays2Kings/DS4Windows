@@ -121,7 +121,7 @@
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>300, 410</value>
   </data>
-  <data name="button1.Text" xml:space="preserve">
+  <data name="btnDone.Text" xml:space="preserve">
     <value>Fait</value>
   </data>
   <data name="linkElectro.Location" type="System.Drawing.Point, System.Drawing">

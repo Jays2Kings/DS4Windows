@@ -396,4 +396,7 @@
   <data name="TiltUp" xml:space="preserve">
     <value>Tilt Haut</value>
   </data>
+  <data name="Installing" xml:space="preserve">
+    <value>l'installation de ...</value>
+  </data>
 </root>

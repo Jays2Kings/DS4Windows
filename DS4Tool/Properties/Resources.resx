@@ -544,4 +544,7 @@
   <data name="TiltUp" xml:space="preserve">
     <value>Tilt Up</value>
   </data>
+  <data name="Installing" xml:space="preserve">
+    <value>Installing...</value>
+  </data>
 </root>

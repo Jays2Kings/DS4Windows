@@ -144,7 +144,7 @@
     <value>4</value>
   </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 57</value>
+    <value>29, 63</value>
   </data>
   <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
     <value>259, 23</value>
@@ -172,7 +172,7 @@
     <value />
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 197</value>
+    <value>36, 203</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 132</value>
@@ -196,7 +196,7 @@
     <value>2</value>
   </data>
   <data name="labelBluetooth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 155</value>
+    <value>1, 161</value>
   </data>
   <data name="labelBluetooth.Size" type="System.Drawing.Size, System.Drawing">
     <value>312, 39</value>
@@ -225,7 +225,7 @@ The lightbar will begin to double flash</value>
     <value>1</value>
   </data>
   <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 106</value>
+    <value>0, 112</value>
   </data>
   <data name="labelUSB.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 39</value>
@@ -254,7 +254,7 @@ Simply plug a micro usb into your PC and DualShock 4</value>
     <value>8</value>
   </data>
   <data name="labelBluetooth2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 332</value>
+    <value>1, 338</value>
   </data>
   <data name="labelBluetooth2.Size" type="System.Drawing.Size, System.Drawing">
     <value>312, 64</value>
@@ -287,7 +287,7 @@ Once paired, you're ready. Have fun!</value>
     <value>True</value>
   </data>
   <data name="linkBluetoothSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>169, 332</value>
+    <value>169, 338</value>
   </data>
   <data name="linkBluetoothSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
@@ -314,13 +314,13 @@ Once paired, you're ready. Have fun!</value>
     <value>1, 32</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>314, 22</value>
+    <value>314, 32</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Make sure to check Force Install</value>
+    <value>If this window reappears after installing, you may need to reboot your pc or wait 10-15mins for Windows to notice the driver</value>
   </data>
   <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
@@ -338,7 +338,7 @@ Once paired, you're ready. Have fun!</value>
     <value>7</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 82</value>
+    <value>0, 88</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>315, 22</value>
@@ -365,7 +365,7 @@ Once paired, you're ready. Have fun!</value>
     <value>6</value>
   </data>
   <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 394</value>
+    <value>117, 400</value>
   </data>
   <data name="bnFinish.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -395,7 +395,7 @@ Once paired, you're ready. Have fun!</value>
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>315, 421</value>
+    <value>315, 428</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Welcome to DS4Windows</value>

@@ -124,7 +124,7 @@
   <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 23</value>
   </data>
-  <data name="button1.Text" xml:space="preserve">
+  <data name="btnSave.Text" xml:space="preserve">
     <value>Sauvegarder</value>
   </data>
   <data name="tBProfile.Size" type="System.Drawing.Size, System.Drawing">
@@ -133,7 +133,7 @@
   <data name="tBProfile.Text" xml:space="preserve">
     <value>&lt;écrire un nouveau nom ici&gt;</value>
   </data>
-  <data name="button2.Text" xml:space="preserve">
+  <data name="btnCancel.Text" xml:space="preserve">
     <value>Annuler</value>
   </data>
 </root>

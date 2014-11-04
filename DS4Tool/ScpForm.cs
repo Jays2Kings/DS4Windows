@@ -87,16 +87,12 @@ namespace ScpServer
             arguements = args;
             ThemeUtil.SetTheme(lvDebug);
             SetupArrays();
-            //CheckDrivers();
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
             if (File.Exists(appdatapath + "\\Profiles.xml"))
                 tt.SetToolTip(linkUninstall, Properties.Resources.IfRemovingDS4Windows);
             tt.SetToolTip(cBSwipeProfiles, Properties.Resources.TwoFingerSwipe);
             {
-                var AppCollectionThread = new System.Threading.Thread(() => CheckDrivers());
-                AppCollectionThread.IsBackground = true;
-                AppCollectionThread.Start();
                 if (File.Exists(exepath + "\\Auto Profiles.xml")
                     && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml"))
                     new SaveWhere(true).ShowDialog();
@@ -110,6 +106,9 @@ namespace ScpServer
                     new SaveWhere(false).ShowDialog();
                 }
 
+                var AppCollectionThread = new System.Threading.Thread(() => CheckDrivers());
+                AppCollectionThread.IsBackground = true;
+                AppCollectionThread.Start();
 
                 if (String.IsNullOrEmpty(Global.appdatapath))
                 {
@@ -378,6 +377,7 @@ namespace ScpServer
                 {
                     WelcomeDialog wd = new WelcomeDialog();
                     wd.ShowDialog();
+                    wd.FormClosing += delegate { btnStartStop_Click(null, null); btnStartStop_Click(null, null); };
                 }
             }
             catch

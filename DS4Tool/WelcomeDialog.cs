@@ -74,8 +74,13 @@ namespace ScpServer
                 //Made here as starting the scpdriver.exe via process.start, the program looks for file from where it was called, not where the exe is
                 catch { }
                 if (File.Exists(exepath + "\\ScpDriver.exe"))
-                    try { Process.Start(exepath + "\\ScpDriver.exe"); }
-                    catch { Process.Start(Global.appdatapath + "\\Virtual Bus Driver"); }          
+                    try
+                    {
+                        Process.Start(exepath + "\\ScpDriver.exe", "si");
+                        bnStep1.Text = Properties.Resources.Installing;
+                    }
+                    catch { Process.Start(Global.appdatapath + "\\Virtual Bus Driver"); }
+                
                 Timer timer = new Timer();
                 timer.Start();
                 timer.Tick += timer_Tick;

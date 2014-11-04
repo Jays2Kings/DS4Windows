@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Hotkeys));
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDone = new System.Windows.Forms.Button();
             this.linkElectro = new System.Windows.Forms.LinkLabel();
             this.linkJays2Kings = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
@@ -74,13 +74,13 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnDone
             // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            resources.ApplyResources(this.btnDone, "btnDone");
+            this.btnDone.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDone.Name = "btnDone";
+            this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.button1_Click);
             // 
             // linkElectro
             // 
@@ -332,10 +332,10 @@
             // 
             // Hotkeys
             // 
-            this.AcceptButton = this.button1;
+            this.AcceptButton = this.btnDone;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.button1;
+            this.CancelButton = this.btnDone;
             this.Controls.Add(this.linkDonate);
             this.Controls.Add(this.lLChangelog);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -345,7 +345,7 @@
             this.Controls.Add(this.linkElectro);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDone);
             this.Controls.Add(this.lbAbout);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -360,7 +360,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.LinkLabel linkElectro;
         private System.Windows.Forms.LinkLabel linkJays2Kings;
         private System.Windows.Forms.Label label2;

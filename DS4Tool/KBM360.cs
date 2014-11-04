@@ -29,7 +29,9 @@ namespace ScpServer
             cbScanCode.Checked = button.Font.Bold;
             //cBMacro.Checked = button.Font.Underline;
             lBMacroOn.Visible = button.Font.Underline;
-            if (button.Name.StartsWith("bnHold"))
+            if (button.Name.StartsWith("bn"))
+                Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(2));
+            else if (button.Name.StartsWith("bnHold"))
             {
                 Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(6));
                 btnFallBack.Text = "Disable";
@@ -38,18 +40,16 @@ namespace ScpServer
             {
                 Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(7));
                 btnFallBack.Text = "Fall Back";
-            }            
-            else if (button.Name.StartsWith("bn"))
-                Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(2));
+            }
             foreach (System.Windows.Forms.Control control in this.Controls)
                 if (control is Button)
                     ((Button)control).Click += anybtn_Click;
             if (button.Name.Contains("Touch"))
             {
-                bnMOUSEDOWN.Visible = false;
-                bnMOUSELEFT.Visible = false;
-                bnMOUSERIGHT.Visible = false;
-                bnMOUSEUP.Visible = false;
+                btnMOUSEDOWN.Visible = false;
+                btnMOUSELEFT.Visible = false;
+                btnMOUSERIGHT.Visible = false;
+                btnMOUSEUP.Visible = false;
             }
             ActiveControl = null;
         }

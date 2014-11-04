@@ -164,9 +164,6 @@ ionner une clé en la tapant</value>
   <data name="lBMacroOn.Text" xml:space="preserve">
     <value>Macro activé, choisir une touche pour désactiver, fermer cette page pour sauvegarder</value>
   </data>
-  <data name="btnMacro.Text" xml:space="preserve">
-    <value>Enregistrer un macro</value>
-  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAx4AAAEYCAYAAADS/CAKAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH

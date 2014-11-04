@@ -61,10 +61,10 @@
             this.button35 = new System.Windows.Forms.Button();
             this.button39 = new System.Windows.Forms.Button();
             this.button38 = new System.Windows.Forms.Button();
-            this.bnPREVTRACK = new System.Windows.Forms.Button();
-            this.bnNEXTTRACK = new System.Windows.Forms.Button();
-            this.bnPLAYPAUSE = new System.Windows.Forms.Button();
-            this.bnSTOP = new System.Windows.Forms.Button();
+            this.btnPREVTRACK = new System.Windows.Forms.Button();
+            this.btnNEXTTRACK = new System.Windows.Forms.Button();
+            this.btnPLAYPAUSE = new System.Windows.Forms.Button();
+            this.btnSTOP = new System.Windows.Forms.Button();
             this.button34 = new System.Windows.Forms.Button();
             this.btnSCL = new System.Windows.Forms.Button();
             this.btnDEL = new System.Windows.Forms.Button();
@@ -146,10 +146,10 @@
             this.btnW = new System.Windows.Forms.Button();
             this.button33 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
-            this.bnMOUSERIGHT = new System.Windows.Forms.Button();
-            this.bnMOUSELEFT = new System.Windows.Forms.Button();
-            this.bnMOUSEDOWN = new System.Windows.Forms.Button();
-            this.bnMOUSEUP = new System.Windows.Forms.Button();
+            this.btnMOUSERIGHT = new System.Windows.Forms.Button();
+            this.btnMOUSELEFT = new System.Windows.Forms.Button();
+            this.btnMOUSEDOWN = new System.Windows.Forms.Button();
+            this.btnMOUSEUP = new System.Windows.Forms.Button();
             this.btnLEFTMOUSE = new System.Windows.Forms.Button();
             this.btnQ = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -183,7 +183,7 @@
             this.X360Label = new System.Windows.Forms.Label();
             this.KBMlabel = new System.Windows.Forms.Label();
             this.lBMacroOn = new System.Windows.Forms.Label();
-            this.btnMacro = new System.Windows.Forms.Button();
+            this.bnMacro = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnFallBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -443,37 +443,37 @@
             this.button38.Tag = "175";
             this.button38.UseVisualStyleBackColor = true;
             // 
-            // bnPREVTRACK
+            // btnPREVTRACK
             // 
-            resources.ApplyResources(this.bnPREVTRACK, "bnPREVTRACK");
-            this.bnPREVTRACK.Name = "bnPREVTRACK";
-            this.bnPREVTRACK.TabStop = false;
-            this.bnPREVTRACK.Tag = "177";
-            this.bnPREVTRACK.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnPREVTRACK, "btnPREVTRACK");
+            this.btnPREVTRACK.Name = "btnPREVTRACK";
+            this.btnPREVTRACK.TabStop = false;
+            this.btnPREVTRACK.Tag = "177";
+            this.btnPREVTRACK.UseVisualStyleBackColor = true;
             // 
-            // bnNEXTTRACK
+            // btnNEXTTRACK
             // 
-            resources.ApplyResources(this.bnNEXTTRACK, "bnNEXTTRACK");
-            this.bnNEXTTRACK.Name = "bnNEXTTRACK";
-            this.bnNEXTTRACK.TabStop = false;
-            this.bnNEXTTRACK.Tag = "176";
-            this.bnNEXTTRACK.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnNEXTTRACK, "btnNEXTTRACK");
+            this.btnNEXTTRACK.Name = "btnNEXTTRACK";
+            this.btnNEXTTRACK.TabStop = false;
+            this.btnNEXTTRACK.Tag = "176";
+            this.btnNEXTTRACK.UseVisualStyleBackColor = true;
             // 
-            // bnPLAYPAUSE
+            // btnPLAYPAUSE
             // 
-            resources.ApplyResources(this.bnPLAYPAUSE, "bnPLAYPAUSE");
-            this.bnPLAYPAUSE.Name = "bnPLAYPAUSE";
-            this.bnPLAYPAUSE.TabStop = false;
-            this.bnPLAYPAUSE.Tag = "179";
-            this.bnPLAYPAUSE.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnPLAYPAUSE, "btnPLAYPAUSE");
+            this.btnPLAYPAUSE.Name = "btnPLAYPAUSE";
+            this.btnPLAYPAUSE.TabStop = false;
+            this.btnPLAYPAUSE.Tag = "179";
+            this.btnPLAYPAUSE.UseVisualStyleBackColor = true;
             // 
-            // bnSTOP
+            // btnSTOP
             // 
-            resources.ApplyResources(this.bnSTOP, "bnSTOP");
-            this.bnSTOP.Name = "bnSTOP";
-            this.bnSTOP.TabStop = false;
-            this.bnSTOP.Tag = "178";
-            this.bnSTOP.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnSTOP, "btnSTOP");
+            this.btnSTOP.Name = "btnSTOP";
+            this.btnSTOP.TabStop = false;
+            this.btnSTOP.Tag = "178";
+            this.btnSTOP.UseVisualStyleBackColor = true;
             // 
             // button34
             // 
@@ -1122,37 +1122,37 @@
             this.button30.Tag = "4th Mouse Button";
             this.button30.UseVisualStyleBackColor = true;
             // 
-            // bnMOUSERIGHT
+            // btnMOUSERIGHT
             // 
-            resources.ApplyResources(this.bnMOUSERIGHT, "bnMOUSERIGHT");
-            this.bnMOUSERIGHT.Name = "bnMOUSERIGHT";
-            this.bnMOUSERIGHT.TabStop = false;
-            this.bnMOUSERIGHT.Tag = "Mouse Right";
-            this.bnMOUSERIGHT.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnMOUSERIGHT, "btnMOUSERIGHT");
+            this.btnMOUSERIGHT.Name = "btnMOUSERIGHT";
+            this.btnMOUSERIGHT.TabStop = false;
+            this.btnMOUSERIGHT.Tag = "Mouse Right";
+            this.btnMOUSERIGHT.UseVisualStyleBackColor = true;
             // 
-            // bnMOUSELEFT
+            // btnMOUSELEFT
             // 
-            resources.ApplyResources(this.bnMOUSELEFT, "bnMOUSELEFT");
-            this.bnMOUSELEFT.Name = "bnMOUSELEFT";
-            this.bnMOUSELEFT.TabStop = false;
-            this.bnMOUSELEFT.Tag = "Mouse Left";
-            this.bnMOUSELEFT.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnMOUSELEFT, "btnMOUSELEFT");
+            this.btnMOUSELEFT.Name = "btnMOUSELEFT";
+            this.btnMOUSELEFT.TabStop = false;
+            this.btnMOUSELEFT.Tag = "Mouse Left";
+            this.btnMOUSELEFT.UseVisualStyleBackColor = true;
             // 
-            // bnMOUSEDOWN
+            // btnMOUSEDOWN
             // 
-            resources.ApplyResources(this.bnMOUSEDOWN, "bnMOUSEDOWN");
-            this.bnMOUSEDOWN.Name = "bnMOUSEDOWN";
-            this.bnMOUSEDOWN.TabStop = false;
-            this.bnMOUSEDOWN.Tag = "Mouse Down";
-            this.bnMOUSEDOWN.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnMOUSEDOWN, "btnMOUSEDOWN");
+            this.btnMOUSEDOWN.Name = "btnMOUSEDOWN";
+            this.btnMOUSEDOWN.TabStop = false;
+            this.btnMOUSEDOWN.Tag = "Mouse Down";
+            this.btnMOUSEDOWN.UseVisualStyleBackColor = true;
             // 
-            // bnMOUSEUP
+            // btnMOUSEUP
             // 
-            resources.ApplyResources(this.bnMOUSEUP, "bnMOUSEUP");
-            this.bnMOUSEUP.Name = "bnMOUSEUP";
-            this.bnMOUSEUP.TabStop = false;
-            this.bnMOUSEUP.Tag = "Mouse Up";
-            this.bnMOUSEUP.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnMOUSEUP, "btnMOUSEUP");
+            this.btnMOUSEUP.Name = "btnMOUSEUP";
+            this.btnMOUSEUP.TabStop = false;
+            this.btnMOUSEUP.Tag = "Mouse Up";
+            this.btnMOUSEUP.UseVisualStyleBackColor = true;
             // 
             // btnLEFTMOUSE
             // 
@@ -1432,13 +1432,13 @@
             resources.ApplyResources(this.lBMacroOn, "lBMacroOn");
             this.lBMacroOn.Name = "lBMacroOn";
             // 
-            // btnMacro
+            // bnMacro
             // 
-            resources.ApplyResources(this.btnMacro, "btnMacro");
-            this.btnMacro.Name = "btnMacro";
-            this.btnMacro.TabStop = false;
-            this.btnMacro.UseVisualStyleBackColor = true;
-            this.btnMacro.Click += new System.EventHandler(this.btnMacro_Click);
+            resources.ApplyResources(this.bnMacro, "bnMacro");
+            this.bnMacro.Name = "bnMacro";
+            this.bnMacro.TabStop = false;
+            this.bnMacro.UseVisualStyleBackColor = true;
+            this.bnMacro.Click += new System.EventHandler(this.btnMacro_Click);
             // 
             // pictureBox1
             // 
@@ -1471,7 +1471,7 @@
             this.Controls.Add(this.btnRSR);
             this.Controls.Add(this.btnRSD);
             this.Controls.Add(this.btnRSL);
-            this.Controls.Add(this.btnMacro);
+            this.Controls.Add(this.bnMacro);
             this.Controls.Add(this.lBMacroOn);
             this.Controls.Add(this.KBMlabel);
             this.Controls.Add(this.X360Label);
@@ -1520,10 +1520,10 @@
             this.Controls.Add(this.button35);
             this.Controls.Add(this.button39);
             this.Controls.Add(this.button38);
-            this.Controls.Add(this.bnPREVTRACK);
-            this.Controls.Add(this.bnNEXTTRACK);
-            this.Controls.Add(this.bnPLAYPAUSE);
-            this.Controls.Add(this.bnSTOP);
+            this.Controls.Add(this.btnPREVTRACK);
+            this.Controls.Add(this.btnNEXTTRACK);
+            this.Controls.Add(this.btnPLAYPAUSE);
+            this.Controls.Add(this.btnSTOP);
             this.Controls.Add(this.button34);
             this.Controls.Add(this.btnSCL);
             this.Controls.Add(this.btnDEL);
@@ -1605,10 +1605,10 @@
             this.Controls.Add(this.btnW);
             this.Controls.Add(this.button33);
             this.Controls.Add(this.button30);
-            this.Controls.Add(this.bnMOUSERIGHT);
-            this.Controls.Add(this.bnMOUSELEFT);
-            this.Controls.Add(this.bnMOUSEDOWN);
-            this.Controls.Add(this.bnMOUSEUP);
+            this.Controls.Add(this.btnMOUSERIGHT);
+            this.Controls.Add(this.btnMOUSELEFT);
+            this.Controls.Add(this.btnMOUSEDOWN);
+            this.Controls.Add(this.btnMOUSEUP);
             this.Controls.Add(this.btnLEFTMOUSE);
             this.Controls.Add(this.btnQ);
             this.Controls.Add(this.pictureBox2);
@@ -1662,10 +1662,10 @@
         private System.Windows.Forms.Button button35;
         private System.Windows.Forms.Button button39;
         private System.Windows.Forms.Button button38;
-        private System.Windows.Forms.Button bnPREVTRACK;
-        private System.Windows.Forms.Button bnNEXTTRACK;
-        private System.Windows.Forms.Button bnPLAYPAUSE;
-        private System.Windows.Forms.Button bnSTOP;
+        private System.Windows.Forms.Button btnPREVTRACK;
+        private System.Windows.Forms.Button btnNEXTTRACK;
+        private System.Windows.Forms.Button btnPLAYPAUSE;
+        private System.Windows.Forms.Button btnSTOP;
         private System.Windows.Forms.Button button34;
         private System.Windows.Forms.Button btnSCL;
         private System.Windows.Forms.Button btnDEL;
@@ -1747,10 +1747,10 @@
         private System.Windows.Forms.Button btnW;
         private System.Windows.Forms.Button button33;
         private System.Windows.Forms.Button button30;
-        private System.Windows.Forms.Button bnMOUSERIGHT;
-        private System.Windows.Forms.Button bnMOUSELEFT;
-        private System.Windows.Forms.Button bnMOUSEDOWN;
-        private System.Windows.Forms.Button bnMOUSEUP;
+        private System.Windows.Forms.Button btnMOUSERIGHT;
+        private System.Windows.Forms.Button btnMOUSELEFT;
+        private System.Windows.Forms.Button btnMOUSEDOWN;
+        private System.Windows.Forms.Button btnMOUSEUP;
         private System.Windows.Forms.Button btnLEFTMOUSE;
         private System.Windows.Forms.Button btnQ;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -1783,7 +1783,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label X360Label;
         private System.Windows.Forms.Label KBMlabel;
-        private System.Windows.Forms.Button btnMacro;
+        private System.Windows.Forms.Button bnMacro;
         public System.Windows.Forms.Label lBMacroOn;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnFallBack;

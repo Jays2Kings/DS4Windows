@@ -73,6 +73,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -172,6 +175,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KBM360.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MessageTextBox.fr-FR.resx">
       <DependentUpon>MessageTextBox.cs</DependentUpon>
@@ -350,6 +354,13 @@
     </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>ilmerge /targetplatform:"v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319" /out:Build\DS4Windows.exe DS4Windows.exe HidLibrary.dll DS4Control.dll DS4Library.dll</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

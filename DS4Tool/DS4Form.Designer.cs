@@ -1,6 +1,6 @@
 ﻿namespace ScpServer
 {
-    partial class ScpForm
+    partial class DS4Form
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScpForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DS4Form));
             this.lvDebug = new System.Windows.Forms.ListView();
             this.chTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -226,6 +226,7 @@
             // 
             // cMTaskbar
             // 
+            this.cMTaskbar.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.cMTaskbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editProfileForController1ToolStripMenuItem,
             this.editProfileForController2ToolStripMenuItem,
@@ -535,6 +536,7 @@
             // 
             // cMProfile
             // 
+            this.cMProfile.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.cMProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editToolStripMenuItem,
             this.assignToController1ToolStripMenuItem,
@@ -881,7 +883,7 @@
             // 
             resources.ApplyResources(this.saveProfiles, "saveProfiles");
             // 
-            // ScpForm
+            // DS4Form
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
@@ -889,7 +891,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.pnlButton);
-            this.Name = "ScpForm";
+            this.Name = "DS4Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScpForm_Closing);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragEnter);

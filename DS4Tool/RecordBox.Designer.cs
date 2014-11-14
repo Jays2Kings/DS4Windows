@@ -38,13 +38,16 @@
             this.cBStyle = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.cB360Controls = new System.Windows.Forms.ComboBox();
-            this.lBHoldX360 = new System.Windows.Forms.Label();
-            this.pnlSettings = new System.Windows.Forms.Panel();
+            this.btnSaveP = new System.Windows.Forms.Button();
+            this.lbRecordTip = new System.Windows.Forms.Label();
             this.pnlMouseButtons = new System.Windows.Forms.Panel();
             this.btn5th = new System.Windows.Forms.Button();
             this.btn4th = new System.Windows.Forms.Button();
-            this.pnlSettings.SuspendLayout();
+            this.btnLoadP = new System.Windows.Forms.Button();
+            this.savePresets = new System.Windows.Forms.SaveFileDialog();
+            this.openPresets = new System.Windows.Forms.OpenFileDialog();
+            this.lbMacroOrder = new System.Windows.Forms.Label();
+            this.lbDelayTip = new System.Windows.Forms.Label();
             this.pnlMouseButtons.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,16 +77,19 @@
             resources.ApplyResources(this.lVMacros, "lVMacros");
             this.lVMacros.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.lVMacros.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lVMacros.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lVMacros.LargeImageList = this.iLKeys;
+            this.lVMacros.MultiSelect = false;
             this.lVMacros.Name = "lVMacros";
             this.lVMacros.SmallImageList = this.iLKeys;
+            this.lVMacros.TileSize = new System.Drawing.Size(180, 30);
             this.lVMacros.UseCompatibleStateImageBehavior = false;
             this.lVMacros.View = System.Windows.Forms.View.Details;
             this.lVMacros.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
             this.lVMacros.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
+            this.lVMacros.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lVMacros_MouseDoubleClick);
             this.lVMacros.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
-            this.lVMacros.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lVMacros_MouseMove);
+            this.lVMacros.MouseHover += new System.EventHandler(this.lVMacros_MouseHover);
             this.lVMacros.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
             // 
             // columnHeader1
@@ -122,57 +128,17 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // cB360Controls
+            // btnSaveP
             // 
-            resources.ApplyResources(this.cB360Controls, "cB360Controls");
-            this.cB360Controls.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cB360Controls.FormattingEnabled = true;
-            this.cB360Controls.Items.AddRange(new object[] {
-            resources.GetString("cB360Controls.Items"),
-            resources.GetString("cB360Controls.Items1"),
-            resources.GetString("cB360Controls.Items2"),
-            resources.GetString("cB360Controls.Items3"),
-            resources.GetString("cB360Controls.Items4"),
-            resources.GetString("cB360Controls.Items5"),
-            resources.GetString("cB360Controls.Items6"),
-            resources.GetString("cB360Controls.Items7"),
-            resources.GetString("cB360Controls.Items8"),
-            resources.GetString("cB360Controls.Items9"),
-            resources.GetString("cB360Controls.Items10"),
-            resources.GetString("cB360Controls.Items11"),
-            resources.GetString("cB360Controls.Items12"),
-            resources.GetString("cB360Controls.Items13"),
-            resources.GetString("cB360Controls.Items14"),
-            resources.GetString("cB360Controls.Items15"),
-            resources.GetString("cB360Controls.Items16"),
-            resources.GetString("cB360Controls.Items17"),
-            resources.GetString("cB360Controls.Items18"),
-            resources.GetString("cB360Controls.Items19"),
-            resources.GetString("cB360Controls.Items20"),
-            resources.GetString("cB360Controls.Items21"),
-            resources.GetString("cB360Controls.Items22"),
-            resources.GetString("cB360Controls.Items23"),
-            resources.GetString("cB360Controls.Items24"),
-            resources.GetString("cB360Controls.Items25")});
-            this.cB360Controls.Name = "cB360Controls";
+            resources.ApplyResources(this.btnSaveP, "btnSaveP");
+            this.btnSaveP.Name = "btnSaveP";
+            this.btnSaveP.UseVisualStyleBackColor = true;
+            this.btnSaveP.Click += new System.EventHandler(this.btnSaveP_Click);
             // 
-            // lBHoldX360
+            // lbRecordTip
             // 
-            resources.ApplyResources(this.lBHoldX360, "lBHoldX360");
-            this.lBHoldX360.Name = "lBHoldX360";
-            // 
-            // pnlSettings
-            // 
-            resources.ApplyResources(this.pnlSettings, "pnlSettings");
-            this.pnlSettings.Controls.Add(this.lBHoldX360);
-            this.pnlSettings.Controls.Add(this.cBStyle);
-            this.pnlSettings.Controls.Add(this.cB360Controls);
-            this.pnlSettings.Controls.Add(this.cBRecordDelays);
-            this.pnlSettings.Controls.Add(this.btnCancel);
-            this.pnlSettings.Controls.Add(this.btnSave);
-            this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
-            this.pnlSettings.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
+            resources.ApplyResources(this.lbRecordTip, "lbRecordTip");
+            this.lbRecordTip.Name = "lbRecordTip";
             // 
             // pnlMouseButtons
             // 
@@ -201,16 +167,50 @@
             this.btn4th.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
             this.btn4th.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
             // 
+            // btnLoadP
+            // 
+            resources.ApplyResources(this.btnLoadP, "btnLoadP");
+            this.btnLoadP.Name = "btnLoadP";
+            this.btnLoadP.UseVisualStyleBackColor = true;
+            this.btnLoadP.Click += new System.EventHandler(this.btnLoadP_Click);
+            // 
+            // savePresets
+            // 
+            resources.ApplyResources(this.savePresets, "savePresets");
+            // 
+            // openPresets
+            // 
+            this.openPresets.FileName = "openFileDialog1";
+            resources.ApplyResources(this.openPresets, "openPresets");
+            // 
+            // lbMacroOrder
+            // 
+            resources.ApplyResources(this.lbMacroOrder, "lbMacroOrder");
+            this.lbMacroOrder.Name = "lbMacroOrder";
+            // 
+            // lbDelayTip
+            // 
+            resources.ApplyResources(this.lbDelayTip, "lbDelayTip");
+            this.lbDelayTip.Name = "lbDelayTip";
+            // 
             // RecordBox
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Controls.Add(this.lbMacroOrder);
+            this.Controls.Add(this.cBStyle);
+            this.Controls.Add(this.btnSaveP);
+            this.Controls.Add(this.cBRecordDelays);
+            this.Controls.Add(this.btnLoadP);
+            this.Controls.Add(this.lbDelayTip);
+            this.Controls.Add(this.lbRecordTip);
             this.Controls.Add(this.btnRecord);
             this.Controls.Add(this.lVMacros);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.pnlMouseButtons);
-            this.Controls.Add(this.pnlSettings);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RecordBox";
             this.ShowInTaskbar = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RecordBox_FormClosing);
@@ -218,10 +218,9 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
-            this.pnlSettings.ResumeLayout(false);
-            this.pnlSettings.PerformLayout();
             this.pnlMouseButtons.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -235,11 +234,15 @@
         private System.Windows.Forms.ComboBox cBStyle;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.ComboBox cB360Controls;
-        private System.Windows.Forms.Label lBHoldX360;
-        private System.Windows.Forms.Panel pnlSettings;
         private System.Windows.Forms.Panel pnlMouseButtons;
         private System.Windows.Forms.Button btn5th;
         private System.Windows.Forms.Button btn4th;
+        private System.Windows.Forms.Label lbRecordTip;
+        private System.Windows.Forms.Button btnSaveP;
+        private System.Windows.Forms.Button btnLoadP;
+        private System.Windows.Forms.SaveFileDialog savePresets;
+        private System.Windows.Forms.OpenFileDialog openPresets;
+        private System.Windows.Forms.Label lbMacroOrder;
+        private System.Windows.Forms.Label lbDelayTip;
     }
 }

@@ -21,7 +21,7 @@ namespace ScpServer
         public SaveWhere(bool multisavespots)
         {
             InitializeComponent();
-            Icon = Properties.Resources.DS4;
+            Icon = Properties.Resources.DS4W;
             multisaves = multisavespots;
             lbMultiSaves.Visible = multisaves;
             cBDeleteOther.Visible = multisaves;

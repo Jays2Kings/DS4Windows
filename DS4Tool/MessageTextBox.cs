@@ -14,8 +14,8 @@ namespace ScpServer
     public partial class MessageTextBox : Form
     {
         public string oldfilename;
-        ScpForm yes;
-        public MessageTextBox(string name, ScpForm mainwindow)
+        DS4Form yes;
+        public MessageTextBox(string name, DS4Form mainwindow)
         {
             InitializeComponent();
             oldfilename = name;

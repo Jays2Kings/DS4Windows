@@ -38,7 +38,7 @@ namespace ScpServer
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new ScpForm(args));
+                    Application.Run(new DS4Form(args));
                 }
                 else
                 {

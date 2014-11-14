@@ -16,7 +16,7 @@ using System.Text;
 using System.Globalization;
 namespace ScpServer
 {
-    public partial class ScpForm : Form
+    public partial class DS4Form : Form
     {
         public string[] arguements;
         private DS4Control.Control rootHub;
@@ -81,7 +81,7 @@ namespace ScpServer
         [DllImport("psapi.dll")]
         private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
 
-        public ScpForm(string[] args)
+        public DS4Form(string[] args)
         {
             InitializeComponent();
             arguements = args;
@@ -126,15 +126,15 @@ namespace ScpServer
             Graphics g = this.CreateGraphics();
             try
             {
-                dpix = g.DpiX;
-                dpiy = g.DpiY;
+                dpix = g.DpiX / 100f * 1.041666666667f;
+                dpiy = g.DpiY / 100f * 1.041666666667f;
             }
             finally
             {
                 g.Dispose();
             }
-            Icon = Properties.Resources.DS4;
-            notifyIcon1.Icon = Properties.Resources.DS4;
+            Icon = Properties.Resources.DS4W;
+            notifyIcon1.Icon = Properties.Resources.DS4W;
             rootHub = new DS4Control.Control();
             rootHub.Debug += On_Debug;
             Log.GuiLog += On_Debug;
@@ -382,7 +382,6 @@ namespace ScpServer
 
                 if (!deriverinstalled)
                 {
-                    //Console.WriteLine("yo");
                     WelcomeDialog wd = new WelcomeDialog();
                     wd.ShowDialog();
                     wd.FormClosed += delegate { btnStartStop_Clicked(false); btnStartStop_Clicked(false); };
@@ -403,7 +402,7 @@ namespace ScpServer
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             string newversion = File.ReadAllText(Global.appdatapath + "\\version.txt");
-            if (version.Replace(',', '.').CompareTo(File.ReadAllText(Global.appdatapath + "\\version.txt")) == -1)//CompareVersions();
+            if (version.Replace(',', '.').CompareTo(newversion) == -1)//CompareVersions();
                 if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion), Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
@@ -652,7 +651,6 @@ namespace ScpServer
                     if (Pads[Index].Text != Properties.Resources.Connecting)
                     {
                         Enable_Controls(Index, true);
-                        //Console.WriteLine(opt == null);
                         if (opt != null)
                             opt.inputtimer.Start();
                         //MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
@@ -867,19 +865,19 @@ namespace ScpServer
                 lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
             };
             oldsize = this.Size;
-            if (dpix == 120)
+            /*if (dpix == 120)
             {
                 if (this.Size.Height < 90 + opt.MaximumSize.Height * 1.25)
                     this.Size = new System.Drawing.Size(this.Size.Width, (int)(90 + opt.MaximumSize.Height * 1.25));
                 if (this.Size.Width < 20 + opt.MaximumSize.Width * 1.25)
                     this.Size = new System.Drawing.Size((int)(20 + opt.Size.Width * 1.25), this.Size.Height);
             }
-            else
+            else*/
             {
-                if (this.Size.Height < 90 + opt.MaximumSize.Height)
-                    this.Size = new System.Drawing.Size(this.Size.Width, 90 + opt.MaximumSize.Height);
-                if (this.Size.Width < 20 + opt.MaximumSize.Width)
-                    this.Size = new System.Drawing.Size(20 + opt.MaximumSize.Width, this.Size.Height);
+                if (this.Size.Height < (int)(90 * dpiy) + opt.MaximumSize.Height)
+                    this.Size = new System.Drawing.Size(this.Size.Width, (int)(90 * dpiy) + opt.MaximumSize.Height);
+                if (this.Size.Width < (int)(20 * dpix) + opt.MaximumSize.Width)
+                    this.Size = new System.Drawing.Size((int)(20 * dpix) + opt.MaximumSize.Width, this.Size.Height);
             }
             tabMain.SelectedIndex = 1;
         }

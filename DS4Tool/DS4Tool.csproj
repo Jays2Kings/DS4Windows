@@ -55,7 +55,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\DS4.ico</ApplicationIcon>
+    <ApplicationIcon>DS4W.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -76,6 +76,11 @@
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -142,11 +147,11 @@
     <Compile Include="SaveWhere.Designer.cs">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </Compile>
-    <Compile Include="ScpForm.cs">
+    <Compile Include="DS4Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ScpForm.Designer.cs">
-      <DependentUpon>ScpForm.cs</DependentUpon>
+    <Compile Include="DS4Form.Designer.cs">
+      <DependentUpon>DS4Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="WelcomeDialog.cs">
@@ -214,14 +219,15 @@
     <EmbeddedResource Include="SaveWhere.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScpForm.es.resx">
-      <DependentUpon>ScpForm.cs</DependentUpon>
+    <EmbeddedResource Include="DS4Form.es.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScpForm.fr-FR.resx">
-      <DependentUpon>ScpForm.cs</DependentUpon>
+    <EmbeddedResource Include="DS4Form.fr-FR.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScpForm.resx">
-      <DependentUpon>ScpForm.cs</DependentUpon>
+    <EmbeddedResource Include="DS4Form.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeDialog.fr-FR.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
@@ -288,6 +294,7 @@
     <None Include="Resources\DOWN.png" />
     <None Include="Resources\360 fades.png" />
     <None Include="Resources\checked.png" />
+    <Content Include="DS4W.ico" />
     <Content Include="Resources\DS4.ico" />
     <None Include="Resources\mouse.png" />
     <None Include="Resources\rainbow.png" />
@@ -318,6 +325,7 @@
     <None Include="Resources\RSU.png" />
     <None Include="Resources\RT.png" />
     <None Include="Resources\Red Circle.png" />
+    <None Include="Resources\DS4W.ico" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>

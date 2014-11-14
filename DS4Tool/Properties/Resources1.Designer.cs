@@ -432,6 +432,16 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon DS4W {
+            get {
+                object obj = ResourceManager.GetObject("DS4W", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DS4Windows cannot edit settings here, This will now close.
         /// </summary>
         internal static string DS4WindowsCannotEditHere {
@@ -593,6 +603,15 @@ namespace ScpServer.Properties {
         internal static string InstallDriver {
             get {
                 return ResourceManager.GetString("InstallDriver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install Failed, Please Retry.
+        /// </summary>
+        internal static string InstallFailed {
+            get {
+                return ResourceManager.GetString("InstallFailed", resourceCulture);
             }
         }
         

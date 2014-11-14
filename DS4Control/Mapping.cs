@@ -325,6 +325,7 @@ namespace DS4Control
         }
         public static bool[] pressedonce = new bool[261], macrodone = new bool[34];
         public static int test = 0;
+        static bool[] macroControl = new bool[25];
         /** Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons. */
         public static async void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp)
         {
@@ -363,7 +364,7 @@ namespace DS4Control
             cState.CopyTo(MappedState);
             if (shift)
                 MapShiftCustom(device, cState, MappedState, eState, tp);
-            //else
+
             foreach (KeyValuePair<DS4Controls, string> customKey in Global.getCustomMacros(device))
             {
                 if (shift == false ||
@@ -393,35 +394,7 @@ namespace DS4Control
                         }
                         for (int i = 0; i < keys.Length; i++)
                             keys[i] = ushort.Parse(skeys[i]);
-                        bool[] keydown = new bool[261];
-                        if (keys.Length > 0 && keys[0] > 260 && keys[0] < 300)
-                        {
-                            if (keys[0] == 261 && !MappedState.Cross) MappedState.Cross = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 262 && !MappedState.Circle) MappedState.Circle = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 263 && !MappedState.Square) MappedState.Square = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 264 && !MappedState.Triangle) MappedState.Triangle = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 265 && !MappedState.DpadUp) MappedState.DpadUp = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 266 && !MappedState.DpadDown) MappedState.DpadDown = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 267 && !MappedState.DpadLeft) MappedState.DpadLeft = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 268 && !MappedState.DpadRight) MappedState.DpadRight = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 269 && !MappedState.Options) MappedState.Options = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 270 && !MappedState.Share) MappedState.Share = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 271 && !MappedState.PS) MappedState.PS = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 272 && !MappedState.L1) MappedState.L1 = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 273 && !MappedState.R1) MappedState.R1 = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 274 && MappedState.L2 == 0) MappedState.L2 = getByteMapping(device, customKey.Key, cState, eState, tp);
-                            if (keys[0] == 275 && MappedState.R2 == 0) MappedState.R2 = getByteMapping(device, customKey.Key, cState, eState, tp);
-                            if (keys[0] == 276 && !MappedState.L3) MappedState.L3 = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 277 && !MappedState.R3) MappedState.R3 = getBoolMapping(customKey.Key, cState, eState, tp);
-                            if (keys[0] == 278 && LYChanged) MappedState.LY = getXYAxisMapping(device, customKey.Key, cState, eState, tp);
-                            if (keys[0] == 279 && LYChanged) MappedState.LY = getXYAxisMapping(device, customKey.Key, cState, eState, tp, true);
-                            if (keys[0] == 280 && LXChanged) MappedState.LX = getXYAxisMapping(device, customKey.Key, cState, eState, tp);
-                            if (keys[0] == 281 && LXChanged) MappedState.LX = getXYAxisMapping(device, customKey.Key, cState, eState, tp, true);
-                            if (keys[0] == 282 && RYChanged) MappedState.RY = getXYAxisMapping(device, customKey.Key, cState, eState, tp);
-                            if (keys[0] == 283 && RYChanged) MappedState.RY = getXYAxisMapping(device, customKey.Key, cState, eState, tp, true);
-                            if (keys[0] == 284 && RXChanged) MappedState.RX = getXYAxisMapping(device, customKey.Key, cState, eState, tp);
-                            if (keys[0] == 285 && RXChanged) MappedState.RX = getXYAxisMapping(device, customKey.Key, cState, eState, tp, true);
-                        }
+                        bool[] keydown = new bool[286];
                         if (!macrodone[DS4ControltoInt(customKey.Key)])
                         {
                             macrodone[DS4ControltoInt(customKey.Key)] = true;
@@ -429,26 +402,76 @@ namespace DS4Control
                             {
                                 if (keys[i] >= 300) //ints over 300 used to delay
                                     await Task.Delay(keys[i] - 300);
-                                else if (keys[i] < 261 && !keydown[keys[i]])
+                                else if (!keydown[keys[i]])
                                 {
                                     if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
                                     else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
                                     else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
                                     else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
                                     else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                                    else if (keys[i] == 261) macroControl[0] = true; 
+                                    else if (keys[i] == 262) macroControl[1] = true; 
+                                    else if (keys[i] == 263) macroControl[2] = true; 
+                                    else if (keys[i] == 264) macroControl[3] = true; 
+                                    else if (keys[i] == 265) macroControl[4] = true; 
+                                    else if (keys[i] == 266) macroControl[5] = true; 
+                                    else if (keys[i] == 267) macroControl[6] = true; 
+                                    else if (keys[i] == 268) macroControl[7] = true; 
+                                    else if (keys[i] == 269) macroControl[8] = true; 
+                                    else if (keys[i] == 270) macroControl[9] = true; 
+                                    else if (keys[i] == 271) macroControl[10] = true;
+                                    else if (keys[i] == 272) macroControl[11] = true;
+                                    else if (keys[i] == 273) macroControl[12] = true;
+                                    else if (keys[i] == 274) macroControl[13] = true;
+                                    else if (keys[i] == 275) macroControl[14] = true;
+                                    else if (keys[i] == 276) macroControl[15] = true;
+                                    else if (keys[i] == 277) macroControl[16] = true;
+                                    else if (keys[i] == 278) macroControl[17] = true;
+                                    else if (keys[i] == 279) macroControl[18] = true;
+                                    else if (keys[i] == 280) macroControl[19] = true;
+                                    else if (keys[i] == 281) macroControl[20] = true;
+                                    else if (keys[i] == 282) macroControl[21] = true;
+                                    else if (keys[i] == 283) macroControl[22] = true;
+                                    else if (keys[i] == 284) macroControl[23] = true;
+                                    else if (keys[i] == 285) macroControl[24] = true;
                                     else if (keyType.HasFlag(DS4KeyType.ScanCode))
                                         InputMethods.performSCKeyPress((ushort)keys[i]);
                                     else
                                         InputMethods.performKeyPress((ushort)keys[i]);
                                     keydown[keys[i]] = true;
                                 }
-                                else if (keys[i] < 261)
+                                else
                                 {
                                     if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
                                     else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
                                     else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
                                     else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
                                     else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                                    else if (keys[i] == 261) macroControl[0] = false; 
+                                    else if (keys[i] == 262) macroControl[1] = false; 
+                                    else if (keys[i] == 263) macroControl[2] = false; 
+                                    else if (keys[i] == 264) macroControl[3] = false; 
+                                    else if (keys[i] == 265) macroControl[4] = false; 
+                                    else if (keys[i] == 266) macroControl[5] = false; 
+                                    else if (keys[i] == 267) macroControl[6] = false; 
+                                    else if (keys[i] == 268) macroControl[7] = false; 
+                                    else if (keys[i] == 269) macroControl[8] = false; 
+                                    else if (keys[i] == 270) macroControl[9] = false; 
+                                    else if (keys[i] == 271) macroControl[10] = false;
+                                    else if (keys[i] == 272) macroControl[11] = false;
+                                    else if (keys[i] == 273) macroControl[12] = false;
+                                    else if (keys[i] == 274) macroControl[13] = false;
+                                    else if (keys[i] == 275) macroControl[14] = false;
+                                    else if (keys[i] == 276) macroControl[15] = false;
+                                    else if (keys[i] == 277) macroControl[16] = false;
+                                    else if (keys[i] == 278) macroControl[17] = false;
+                                    else if (keys[i] == 279) macroControl[18] = false;
+                                    else if (keys[i] == 280) macroControl[19] = false;
+                                    else if (keys[i] == 281) macroControl[20] = false;
+                                    else if (keys[i] == 282) macroControl[21] = false;
+                                    else if (keys[i] == 283) macroControl[22] = false;
+                                    else if (keys[i] == 284) macroControl[23] = false;
+                                    else if (keys[i] == 285) macroControl[24] = false;
                                     else if (keyType.HasFlag(DS4KeyType.ScanCode))
                                         InputMethods.performSCKeyRelease((ushort)keys[i]);
                                     else
@@ -459,7 +482,37 @@ namespace DS4Control
                             for (ushort i = 0; i < keydown.Length; i++)
                             {
                                 if (keydown[i])
-                                    if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
+                                    else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                                    else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                                    else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                                    else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                                    else if (i == 261) macroControl[0] = false;
+                                    else if (i == 262) macroControl[1] = false;
+                                    else if (i == 263) macroControl[2] = false;
+                                    else if (i == 264) macroControl[3] = false;
+                                    else if (i == 265) macroControl[4] = false;
+                                    else if (i == 266) macroControl[5] = false;
+                                    else if (i == 267) macroControl[6] = false;
+                                    else if (i == 268) macroControl[7] = false;
+                                    else if (i == 269) macroControl[8] = false;
+                                    else if (i == 270) macroControl[9] = false;
+                                    else if (i == 271) macroControl[10] = false;
+                                    else if (i == 272) macroControl[11] = false;
+                                    else if (i == 273) macroControl[12] = false;
+                                    else if (i == 274) macroControl[13] = false;
+                                    else if (i == 275) macroControl[14] = false;
+                                    else if (i == 276) macroControl[15] = false;
+                                    else if (i == 277) macroControl[16] = false;
+                                    else if (keys[i] == 278) macroControl[17] = false;
+                                    else if (keys[i] == 279) macroControl[18] = false;
+                                    else if (keys[i] == 280) macroControl[19] = false;
+                                    else if (keys[i] == 281) macroControl[20] = false;
+                                    else if (keys[i] == 282) macroControl[21] = false;
+                                    else if (keys[i] == 283) macroControl[22] = false;
+                                    else if (keys[i] == 284) macroControl[23] = false;
+                                    else if (keys[i] == 285) macroControl[24] = false;
+                                    else if (keyType.HasFlag(DS4KeyType.ScanCode))
                                         InputMethods.performSCKeyRelease(i);
                                     else
                                         InputMethods.performKeyRelease(i);
@@ -516,9 +569,8 @@ namespace DS4Control
             int MouseDeltaX = 0;
             int MouseDeltaY = 0;
 
-            Dictionary<DS4Controls, X360Controls> customButtons = Global.getCustomButtons(device);
+            //Dictionary<DS4Controls, X360Controls> customButtons = Global.getCustomButtons(device);
             //foreach (KeyValuePair<DS4Controls, X360Controls> customButton in customButtons)
-            // resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
             List<DS4Controls> Cross = new List<DS4Controls>();
             List<DS4Controls> Circle = new List<DS4Controls>();
             List<DS4Controls> Square = new List<DS4Controls>();
@@ -544,7 +596,7 @@ namespace DS4Control
             List<DS4Controls> RXP = new List<DS4Controls>();
             List<DS4Controls> RYN = new List<DS4Controls>();
             List<DS4Controls> RYP = new List<DS4Controls>();
-            foreach (KeyValuePair<DS4Controls, X360Controls> customButton in customButtons)
+            foreach (KeyValuePair<DS4Controls, X360Controls> customButton in Global.getCustomButtons(device))
             {
                 if (shift == false ||
                     (Global.getShiftCustomMacro(device, customButton.Key) == "0" &&
@@ -666,6 +718,31 @@ namespace DS4Control
                     }
                 }
             }
+            if (macroControl[0]) MappedState.Cross = true;
+            if (macroControl[01]) MappedState.Circle = true;
+            if (macroControl[02]) MappedState.Square = true;
+            if (macroControl[03]) MappedState.Triangle = true;
+            if (macroControl[04]) MappedState.Options = true;
+            if (macroControl[05]) MappedState.Share = true;
+            if (macroControl[06]) MappedState.DpadUp = true;
+            if (macroControl[07]) MappedState.DpadDown =true;
+            if (macroControl[08]) MappedState.DpadLeft = true;
+            if (macroControl[09]) MappedState.DpadRight = true;
+            if (macroControl[10]) MappedState.PS = true;
+            if (macroControl[11]) MappedState.L1 = true;
+            if (macroControl[12]) MappedState.R1 = true;
+            if (macroControl[13]) MappedState.L2 = 255;
+            if (macroControl[14]) MappedState.R2 = 255;
+            if (macroControl[15])  MappedState.L3 = true;
+            if (macroControl[16]) MappedState.R3 = true;
+            if (macroControl[17]) MappedState.LX = 255;
+            if (macroControl[18]) MappedState.LX = 0;
+            if (macroControl[19]) MappedState.LY = 255;
+            if (macroControl[20]) MappedState.LY = 0;
+            if (macroControl[21]) MappedState.RX = 255;
+            if (macroControl[22]) MappedState.RX = 0;
+            if (macroControl[23]) MappedState.RY = 255;
+            if (macroControl[24]) MappedState.RY = 0;
             foreach (DS4Controls dc in Cross)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Cross = true;
@@ -809,35 +886,7 @@ namespace DS4Control
                     }
                     for (int i = 0; i < keys.Length; i++)
                         keys[i] = ushort.Parse(skeys[i]);
-                    bool[] keydown = new bool[261];
-                    if (keys.Length > 0 && keys[0] > 260 && keys[0] < 300)
-                    {
-                        if (keys[0] == 261 && !MappedState.Cross) MappedState.Cross = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 262 && !MappedState.Circle) MappedState.Circle = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 263 && !MappedState.Square) MappedState.Square = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 264 && !MappedState.Triangle) MappedState.Triangle = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 265 && !MappedState.DpadUp) MappedState.DpadUp = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 266 && !MappedState.DpadDown) MappedState.DpadDown = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 267 && !MappedState.DpadLeft) MappedState.DpadLeft = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 268 && !MappedState.DpadRight) MappedState.DpadRight = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 269 && !MappedState.Options) MappedState.Options = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 270 && !MappedState.Share) MappedState.Share = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 271 && !MappedState.PS) MappedState.PS = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 272 && !MappedState.L1) MappedState.L1 = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 273 && !MappedState.R1) MappedState.R1 = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 274 && MappedState.L2 == 0) MappedState.L2 = getByteMapping(device, customKey.Key, cState, eState, tp);
-                        if (keys[0] == 275 && MappedState.R2 == 0) MappedState.R2 = getByteMapping(device, customKey.Key, cState, eState, tp);
-                        if (keys[0] == 276 && !MappedState.L3) MappedState.L3 = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 277 && !MappedState.R3) MappedState.R3 = getBoolMapping(customKey.Key, cState, eState, tp);
-                        if (keys[0] == 278 && LYChanged) MappedState.LY = getXYAxisMapping(device, customKey.Key, cState, eState, tp);
-                        if (keys[0] == 279 && LYChanged) MappedState.LY = getXYAxisMapping(device, customKey.Key, cState, eState, tp, true);
-                        if (keys[0] == 280 && LXChanged) MappedState.LX = getXYAxisMapping(device, customKey.Key, cState, eState, tp);
-                        if (keys[0] == 281 && LXChanged) MappedState.LX = getXYAxisMapping(device, customKey.Key, cState, eState, tp, true);
-                        if (keys[0] == 282 && RYChanged) MappedState.RY = getXYAxisMapping(device, customKey.Key, cState, eState, tp);
-                        if (keys[0] == 283 && RYChanged) MappedState.RY = getXYAxisMapping(device, customKey.Key, cState, eState, tp, true);
-                        if (keys[0] == 284 && RXChanged) MappedState.RX = getXYAxisMapping(device, customKey.Key, cState, eState, tp);
-                        if (keys[0] == 285 && RXChanged) MappedState.RX = getXYAxisMapping(device, customKey.Key, cState, eState, tp, true);
-                    }
+                    bool[] keydown = new bool[278];
                     if (!macrodone[DS4ControltoInt(customKey.Key)])
                     {
                         macrodone[DS4ControltoInt(customKey.Key)] = true;
@@ -845,26 +894,76 @@ namespace DS4Control
                         {
                             if (keys[i] >= 300) //ints over 300 used to delay
                                 await Task.Delay(keys[i] - 300);
-                            else if (keys[i] < 261 && !keydown[keys[i]])
+                            else if (!keydown[keys[i]])
                             {
                                 if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
                                 else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
                                 else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
                                 else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
                                 else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                                else if (keys[i] == 261) macroControl[0] = true;
+                                else if (keys[i] == 262) macroControl[1] = true;
+                                else if (keys[i] == 263) macroControl[2] = true;
+                                else if (keys[i] == 264) macroControl[3] = true;
+                                else if (keys[i] == 265) macroControl[4] = true;
+                                else if (keys[i] == 266) macroControl[5] = true;
+                                else if (keys[i] == 267) macroControl[6] = true;
+                                else if (keys[i] == 268) macroControl[7] = true;
+                                else if (keys[i] == 269) macroControl[8] = true;
+                                else if (keys[i] == 270) macroControl[9] = true;
+                                else if (keys[i] == 271) macroControl[10] = true;
+                                else if (keys[i] == 272) macroControl[11] = true;
+                                else if (keys[i] == 273) macroControl[12] = true;
+                                else if (keys[i] == 274) macroControl[13] = true;
+                                else if (keys[i] == 275) macroControl[14] = true;
+                                else if (keys[i] == 276) macroControl[15] = true;
+                                else if (keys[i] == 277) macroControl[16] = true;
+                                else if (keys[i] == 278) macroControl[17] = true;
+                                else if (keys[i] == 279) macroControl[18] = true;
+                                else if (keys[i] == 280) macroControl[19] = true;
+                                else if (keys[i] == 281) macroControl[20] = true;
+                                else if (keys[i] == 282) macroControl[21] = true;
+                                else if (keys[i] == 283) macroControl[22] = true;
+                                else if (keys[i] == 284) macroControl[23] = true;
+                                else if (keys[i] == 285) macroControl[24] = true;
                                 else if (keyType.HasFlag(DS4KeyType.ScanCode))
                                     InputMethods.performSCKeyPress((ushort)keys[i]);
                                 else
                                     InputMethods.performKeyPress((ushort)keys[i]);
                                 keydown[keys[i]] = true;
                             }
-                            else if (keys[i] < 261)
+                            else
                             {
                                 if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
                                 else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
                                 else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
                                 else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
                                 else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                                else if (keys[i] == 261) macroControl[0] = false;
+                                else if (keys[i] == 262) macroControl[1] = false;
+                                else if (keys[i] == 263) macroControl[2] = false;
+                                else if (keys[i] == 264) macroControl[3] = false;
+                                else if (keys[i] == 265) macroControl[4] = false;
+                                else if (keys[i] == 266) macroControl[5] = false;
+                                else if (keys[i] == 267) macroControl[6] = false;
+                                else if (keys[i] == 268) macroControl[7] = false;
+                                else if (keys[i] == 269) macroControl[8] = false;
+                                else if (keys[i] == 270) macroControl[9] = false;
+                                else if (keys[i] == 271) macroControl[10] = false;
+                                else if (keys[i] == 272) macroControl[11] = false;
+                                else if (keys[i] == 273) macroControl[12] = false;
+                                else if (keys[i] == 274) macroControl[13] = false;
+                                else if (keys[i] == 275) macroControl[14] = false;
+                                else if (keys[i] == 276) macroControl[15] = false;
+                                else if (keys[i] == 277) macroControl[16] = false;
+                                else if (keys[i] == 278) macroControl[17] = false;
+                                else if (keys[i] == 279) macroControl[18] = false;
+                                else if (keys[i] == 280) macroControl[19] = false;
+                                else if (keys[i] == 281) macroControl[20] = false;
+                                else if (keys[i] == 282) macroControl[21] = false;
+                                else if (keys[i] == 283) macroControl[22] = false;
+                                else if (keys[i] == 284) macroControl[23] = false;
+                                else if (keys[i] == 285) macroControl[24] = false;
                                 else if (keyType.HasFlag(DS4KeyType.ScanCode))
                                     InputMethods.performSCKeyRelease((ushort)keys[i]);
                                 else
@@ -875,7 +974,37 @@ namespace DS4Control
                         for (ushort i = 0; i < keydown.Length; i++)
                         {
                             if (keydown[i])
-                                if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
+                                else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                                else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                                else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                                else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                                else if (i == 261) macroControl[0] = false;
+                                else if (i == 262) macroControl[1] = false;
+                                else if (i == 263) macroControl[2] = false;
+                                else if (i == 264) macroControl[3] = false;
+                                else if (i == 265) macroControl[4] = false;
+                                else if (i == 266) macroControl[5] = false;
+                                else if (i == 267) macroControl[6] = false;
+                                else if (i == 268) macroControl[7] = false;
+                                else if (i == 269) macroControl[8] = false;
+                                else if (i == 270) macroControl[9] = false;
+                                else if (i == 271) macroControl[10] = false;
+                                else if (i == 272) macroControl[11] = false;
+                                else if (i == 273) macroControl[12] = false;
+                                else if (i == 274) macroControl[13] = false;
+                                else if (i == 275) macroControl[14] = false;
+                                else if (i == 276) macroControl[15] = false;
+                                else if (i == 277) macroControl[16] = false;
+                                else if (keys[i] == 278) macroControl[17] = false;
+                                else if (keys[i] == 279) macroControl[18] = false;
+                                else if (keys[i] == 280) macroControl[19] = false;
+                                else if (keys[i] == 281) macroControl[20] = false;
+                                else if (keys[i] == 282) macroControl[21] = false;
+                                else if (keys[i] == 283) macroControl[22] = false;
+                                else if (keys[i] == 284) macroControl[23] = false;
+                                else if (keys[i] == 285) macroControl[24] = false;
+                                else if (keyType.HasFlag(DS4KeyType.ScanCode))
                                     InputMethods.performSCKeyRelease(i);
                                 else
                                     InputMethods.performKeyRelease(i);
@@ -1069,7 +1198,31 @@ namespace DS4Control
                             break;
                     }
                 }
-            Console.WriteLine(Cross.Count);
+            if (macroControl[0]) MappedState.Cross = true;
+            if (macroControl[1]) MappedState.Circle = true;
+            if (macroControl[2]) MappedState.Square = true;
+            if (macroControl[3]) MappedState.Triangle = true;
+            if (macroControl[4]) MappedState.Options = true;
+            if (macroControl[5]) MappedState.Share = true;
+            if (macroControl[6]) MappedState.DpadUp = true;
+            if (macroControl[7]) MappedState.DpadDown = true;
+            if (macroControl[8]) MappedState.DpadLeft = true;
+            if (macroControl[9]) MappedState.DpadRight = true;
+            if (macroControl[10]) MappedState.PS = true;
+            if (macroControl[11]) MappedState.L1 = true;
+            if (macroControl[12]) MappedState.R1 = true;
+            if (macroControl[13]) MappedState.L2 = 255;
+            if (macroControl[14]) MappedState.R2 = 255;
+            if (macroControl[15]) MappedState.L3 = true;
+            if (macroControl[16]) MappedState.R3 = true;
+            if (macroControl[17]) MappedState.LX = 255;
+            if (macroControl[18]) MappedState.LX = 0;
+            if (macroControl[19]) MappedState.LY = 255;
+            if (macroControl[20]) MappedState.LY = 0;
+            if (macroControl[21]) MappedState.RX = 255;
+            if (macroControl[22]) MappedState.RX = 0;
+            if (macroControl[23]) MappedState.RY = 255;
+            if (macroControl[24]) MappedState.RY = 0;
             foreach (DS4Controls dc in Cross)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Cross = true;
@@ -1236,38 +1389,6 @@ namespace DS4Control
                     if (rightsitcklive)
                         value = (cState.RY - 127) / 2550d * speed;
                     break;
-                /*case DS4Controls.LXNeg:
-                    if (cState.LX < 127 - deadzone)
-                        value = Math.Pow(root + speed / divide, -(cState.LX - 127)) - 1;
-                    break;
-                case DS4Controls.LXPos:
-                    if (cState.LX > 127 + deadzone)
-                        value = Math.Pow(root + speed / divide, (cState.LX - 127)) -1;
-                    break;
-                case DS4Controls.RXNeg:
-                    if (cState.RX < 127 - deadzone)
-                        value = Math.Pow(root + speed / divide, -(cState.RX - 127)) - 1;                        
-                    break;
-                case DS4Controls.RXPos:
-                    if (cState.RX > 127 + deadzone)
-                        value = Math.Pow(root + speed / divide, (cState.RX - 127)) - 1;
-                    break;
-                case DS4Controls.LYNeg:
-                    if (cState.LY < 127 - deadzone)
-                        value = Math.Pow(root + speed / divide, -(cState.LY - 127)) - 1;
-                    break;
-                case DS4Controls.LYPos:
-                    if (cState.LY > 127 + deadzone)
-                        value = Math.Pow(root + speed / divide,(cState.LY - 127))  - 1;
-                    break;
-                case DS4Controls.RYNeg:
-                    if (cState.RY < 127 - deadzone)
-                        value = Math.Pow(root + speed / divide,-(cState.RY - 127)) - 1;
-                    break;
-                case DS4Controls.RYPos:
-                    if (cState.RY > 127 + deadzone)
-                        value = Math.Pow(root + speed / divide, (cState.RY - 127))  - 1;
-                    break;*/
                 case DS4Controls.Share: value = (cState.Share ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
                 case DS4Controls.Options: value = (cState.Options ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
                 case DS4Controls.L1: value = (cState.L1 ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;

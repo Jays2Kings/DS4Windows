@@ -21,10 +21,16 @@ namespace ScpServer
         private Color reg, full;
         private Image colored, greyscale;
         ToolTip tp = new ToolTip();
-        Graphics g;
-        ScpForm root;
+        DS4Form root;
         bool olddinputcheck = false;
-        public Options(DS4Control.Control bus_device, int deviceNum, string name, ScpForm rt)
+        Image L = Properties.Resources.LeftTouch;
+        Image R = Properties.Resources.RightTouch;
+        Image M = Properties.Resources.MultiTouch;
+        Image U = Properties.Resources.UpperTouch;
+        private float dpix;
+        private float dpiy;
+
+        public Options(DS4Control.Control bus_device, int deviceNum, string name, DS4Form rt)
         {
             InitializeComponent();
             device = deviceNum;
@@ -32,7 +38,17 @@ namespace ScpServer
             filename = name;
             colored = pBRainbow.Image;
             root = rt;
-            g = CreateGraphics();
+            Graphics g = this.CreateGraphics();
+            try
+            {
+                dpix = g.DpiX / 100f * 1.041666666667f;
+                dpiy = g.DpiY / 100f * 1.041666666667f;
+            }
+            finally
+            {
+                g.Dispose();
+            }
+
             greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
             foreach (System.Windows.Forms.Control control in pnlMain.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btn"))
@@ -88,7 +104,7 @@ namespace ScpServer
                 nUDflashLED.Value = Global.getFlashAt(device);
                 pnlLowBattery.Visible = cBLightbyBattery.Checked;
                 lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
-                pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, 42) : new Point(pnlFull.Location.X, 48));
+                pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, (int)(dpix * 42)) : new Point(pnlFull.Location.X, (int)(dpiy * 48)));
 
                 DS4Color lowColor = Global.loadLowColor(device);
                 tBLowRedBar.Value = lowColor.red;
@@ -200,7 +216,6 @@ namespace ScpServer
             sixaxisTimer.Interval = 1000 / 60;
             
         }
-
         void sixaxisTimer_Tick(object sender, EventArgs e)
         {            
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
@@ -223,15 +238,15 @@ namespace ScpServer
                 SetDynamicTrackBarValue(tBsixaxisAccelZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
                 int x = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).LX;
                 int y = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).LY;
-                btnLSTrack.Location = new Point((int)(x / 2.09 + lbLSTrack.Location.X), (int)(y / 2.09 + lbLSTrack.Location.Y));
+                btnLSTrack.Location = new Point((int)(dpix * x / 2.09 + lbLSTrack.Location.X), (int)(dpiy * y / 2.09 + lbLSTrack.Location.Y));
                 x = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).RX;
                 y = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).RY;
-                btnRSTrack.Location = new Point((int)(x / 2.09 + lbRSTrack.Location.X), (int)(y / 2.09 + lbRSTrack.Location.Y));
+                btnRSTrack.Location = new Point((int)(dpix * x / 2.09 + lbRSTrack.Location.X), (int)(dpiy * y / 2.09 + lbRSTrack.Location.Y));
                 x = -scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroX / 62 + 127;
                 y = scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ / 62 + 127;
-                btnSATrack.Location = new Point((int)(x / 2.09 + lbSATrack.Location.X), (int)(y / 2.09 + lbSATrack.Location.Y));
+                btnSATrack.Location = new Point((int)(dpix * x / 2.09 + lbSATrack.Location.X), (int)(dpiy * y / 2.09 + lbSATrack.Location.Y));
                 tBL2.Value = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).L2;
-                lbL2Track.Location = new Point(tBL2.Location.X - 15, (int)(24 - tBL2.Value / 10.625) + 10);
+                lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 15), (int)((dpix * (24 - tBL2.Value / 10.625) + 10)));
                 if (tBL2.Value == 255)
                     lbL2Track.ForeColor = Color.Green;
                 else if (tBL2.Value < (double)nUDL2.Value * 255)
@@ -239,7 +254,7 @@ namespace ScpServer
                 else
                     lbL2Track.ForeColor = Color.Black;
                 tBR2.Value = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).R2;
-                lbR2Track.Location = new Point(tBR2.Location.X + 20, (int)(24 - tBR2.Value / 10.625) + 10);
+                lbR2Track.Location = new Point(tBR2.Location.X + (int)(dpix * 20), (int)((dpix * (24 - tBR2.Value / 10.625) + 10)));
                 if (tBR2.Value == 255)
                     lbR2Track.ForeColor = Color.Green;
                 else if (tBR2.Value < (double)nUDR2.Value * 255)
@@ -387,7 +402,7 @@ namespace ScpServer
         {
             pnlLowBattery.Visible = cBLightbyBattery.Checked;
             lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.Full + ":": Properties.Resources.Color + ":");
-            pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, 42) : new Point(pnlFull.Location.X, 48));
+            pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, (int)(dpix * 42)) : new Point(pnlFull.Location.X, (int)(dpiy * 48)));
             Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
             Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
@@ -565,10 +580,10 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
-            if (g.DpiX == 120)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            else
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+            //if (g.DpiX == 120)
+                //tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
+            //else
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(dpix * 100), 0, 2000);
         }
         private void greenBar_ValueChanged(object sender, EventArgs e)
         {
@@ -581,10 +596,10 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
-            if (g.DpiX == 120)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            else
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+            //if (g.DpiX == 120)
+                //tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
+            //else
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100*dpix), 0, 2000);
         }
         private void blueBar_ValueChanged(object sender, EventArgs e)
         {
@@ -597,10 +612,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
-            if (g.DpiX == 120)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            else
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void lowRedBar_ValueChanged(object sender, EventArgs e)
@@ -614,10 +626,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            if (g.DpiX == 120)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            else
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void lowGreenBar_ValueChanged(object sender, EventArgs e)
@@ -631,10 +640,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            if (g.DpiX == 120)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            else
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void lowBlueBar_ValueChanged(object sender, EventArgs e)
@@ -648,10 +654,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            if (g.DpiX == 120)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            else
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void shiftRedBar_ValueChanged(object sender, EventArgs e)
@@ -665,10 +668,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            if (g.DpiX == 120)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            else
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void shiftGreenBar_ValueChanged(object sender, EventArgs e)
@@ -682,10 +682,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            if (g.DpiX == 120)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            else
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void shiftBlueBar_ValueChanged(object sender, EventArgs e)
@@ -699,10 +696,7 @@ namespace ScpServer
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            if (g.DpiX == 120)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            else
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         public Color HuetoRGB(float hue, float light, Color rgb)
@@ -761,7 +755,7 @@ namespace ScpServer
         {
             Global.setLedAsBatteryIndicator(device, cBLightbyBattery.Checked);
             pnlLowBattery.Visible = cBLightbyBattery.Checked;
-            pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, 42) : new Point(pnlFull.Location.X, 48));
+            pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, (int)(dpix * 42)) : new Point(pnlFull.Location.X, (int)(dpiy * 48)));
             lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.Full + ":" : Properties.Resources.Color + ":");
         }
 
@@ -1125,7 +1119,7 @@ namespace ScpServer
             {
                 pBSADeadzone.Visible = true;
                 pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
-                pBSADeadzone.Location = new Point(lbSATrack.Location.X + 63 - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + 63 - pBSADeadzone.Size.Height / 2);
+                pBSADeadzone.Location = new Point(lbSATrack.Location.X + (int)(dpix * 63) - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + (int)(dpix * 63) - pBSADeadzone.Size.Height / 2);
             }
         }
 
@@ -1138,14 +1132,10 @@ namespace ScpServer
             {
                 pBSADeadzone.Visible = true;
                 pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
-                pBSADeadzone.Location = new Point(lbSATrack.Location.X + 63 - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + 63 - pBSADeadzone.Size.Height / 2);
+                pBSADeadzone.Location = new Point(lbSATrack.Location.X + (int)(dpix * 63) - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + (int)(dpiy * 63) - pBSADeadzone.Size.Height / 2);
             }
         }
 
-        Image L = Properties.Resources.LeftTouch;
-        Image R = Properties.Resources.RightTouch;
-        Image M = Properties.Resources.MultiTouch;
-        Image U = Properties.Resources.UpperTouch;
         private void bnTouchLeft_MouseHover(object sender, EventArgs e)
         {
             pBController.Image = L;       
@@ -1180,7 +1170,7 @@ namespace ScpServer
             {
                 pBRSDeadzone.Visible = true;
                 pBRSDeadzone.Size = new Size((int)(nUDRS.Value * 125), (int)(nUDRS.Value * 125));
-                pBRSDeadzone.Location = new Point(lbRSTrack.Location.X + 63 - pBRSDeadzone.Size.Width / 2, lbRSTrack.Location.Y + 63 - pBRSDeadzone.Size.Width / 2);
+                pBRSDeadzone.Location = new Point(lbRSTrack.Location.X + (int)(dpix * 63) - pBRSDeadzone.Size.Width / 2, lbRSTrack.Location.Y + (int)(dpiy * 63) - pBRSDeadzone.Size.Width / 2);
             }
         }
 
@@ -1193,7 +1183,7 @@ namespace ScpServer
             {
                 pBLSDeadzone.Visible = true;
                 pBLSDeadzone.Size = new Size((int)(nUDLS.Value*125), (int)(nUDLS.Value*125));
-                pBLSDeadzone.Location = new Point(lbLSTrack.Location.X + 63 - pBLSDeadzone.Size.Width / 2, lbLSTrack.Location.Y + 63 - pBLSDeadzone.Size.Width / 2);
+                pBLSDeadzone.Location = new Point(lbLSTrack.Location.X + (int)(dpix * 63) - pBLSDeadzone.Size.Width / 2, lbLSTrack.Location.Y + (int)(dpiy * 63) - pBLSDeadzone.Size.Width / 2);
             }
         }
 
@@ -1204,10 +1194,7 @@ namespace ScpServer
 
         private void LightBar_MouseDown(object sender, MouseEventArgs e)
         {
-            if (g.DpiX == 120)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            else
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 100, 0, 2000);
+            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void Lightbar_MouseUp(object sender, MouseEventArgs e)

@@ -23,7 +23,7 @@ namespace ScpServer
         public WelcomeDialog()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.DS4;
+            Icon = Properties.Resources.DS4;
             
         }
 
@@ -45,7 +45,7 @@ namespace ScpServer
                 wb.DownloadFileAsync(new Uri("http://ds4windows.com/Files/Virtual Bus Driver.zip"), Global.appdatapath + "\\VBus.zip");
                 wb.DownloadProgressChanged += wb_DownloadProgressChanged;
                 wb.DownloadFileCompleted += wb_DownloadFileCompleted;               
-            }  
+            } 
         }
 
         private void wb_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -106,8 +106,14 @@ namespace ScpServer
             {
                 if (processes.Length < 1)
                 {
-                    bnStep1.Text = Properties.Resources.InstallComplete;
-                    
+                    string log = File.ReadAllText(exepath + "\\ScpDriver.log");
+                    if (log.Contains("Install Succeeded"))
+                        bnStep1.Text = Properties.Resources.InstallComplete;
+                    else
+                    {
+                        bnStep1.Text = Properties.Resources.InstallFailed;
+                        Process.Start(Global.appdatapath + "\\Virtual Bus Driver");
+                    }
                     try
                     {
                         File.Delete(exepath + "\\ScpDriver.exe");

@@ -16,6 +16,7 @@ namespace DS4Control
         private readonly MouseCursor cursor;
         private readonly MouseWheel wheel;
         private bool tappedOnce = false, secondtouchbegin = false;
+        public bool swipeLeft, swipeRight, swipeUp, swipeDown;
         public bool slideleft, slideright;
         // touch area stuff
         public bool leftDown, rightDown, upperDown, multiDown;
@@ -39,6 +40,15 @@ namespace DS4Control
         {
             cursor.touchesMoved(arg);
             wheel.touchesMoved(arg);
+            if (!(swipeUp || swipeDown || swipeLeft || swipeRight))
+            {
+                if (arg.touches[0].hwX - firstTouch.hwX > 200) swipeRight = true;
+                if (arg.touches[0].hwX - firstTouch.hwX < -200) swipeLeft = true;
+                if (arg.touches[0].hwY - firstTouch.hwY > 100) swipeDown = true;
+                if (arg.touches[0].hwY - firstTouch.hwY < -100) swipeUp = true;
+            }
+            /*if ((swipeUp || swipeDown || swipeLeft || swipeRight))
+            Console.WriteLine("Up " + swipeUp + " Down " + swipeDown + " Left " + swipeLeft + " Right " + swipeRight);*/
             if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 50)
                 if (arg.touches.Length == 2)
                     if (arg.touches[0].hwX - firstTouch.hwX > 200 && !slideleft)
@@ -47,8 +57,6 @@ namespace DS4Control
                         slideleft = true;
             dev.getCurrentState(s);
             synthesizeMouseButtons();
-            //if (arg.touches.Length == 2)
-           // Console.WriteLine("Left " + slideleft + " Right " + slideright);
         }
         public virtual void touchesBegan(object sender, TouchpadEventArgs arg)
         {
@@ -64,12 +72,11 @@ namespace DS4Control
             }
             dev.getCurrentState(s);
             synthesizeMouseButtons(); 
-            //Console.WriteLine(arg.timeStamp.ToString("O") + " " + "began at " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
         }
         public virtual void touchesEnded(object sender, TouchpadEventArgs arg)
         {
-            //Console.WriteLine(arg.timeStamp.ToString("O") + " " + "ended at " + arg.touches[0].hwX + "," + arg.touches[0].hwY);
             slideright = slideleft = false;
+            swipeUp = swipeDown = swipeLeft = swipeRight = false;
             if (Global.getTapSensitivity(deviceNum) != 0)
             {
 
@@ -91,7 +98,6 @@ namespace DS4Control
                         Mapping.MapClick(deviceNum, Mapping.Click.Left); //this way no delay if disabled
             }
             dev.getCurrentState(s);
-            //if (buttonLock)
             synthesizeMouseButtons();
         }
 

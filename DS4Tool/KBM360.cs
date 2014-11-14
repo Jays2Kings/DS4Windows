@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using DS4Control;
 namespace ScpServer
 {
     public partial class KBM360 : Form
@@ -18,6 +18,7 @@ namespace ScpServer
         public List<string> macros = new List<string>();
         public List<int> macrostag = new List<int>();
         public bool macrorepeat;
+        RecordBox rb;
         public KBM360(DS4Control.Control bus_device, int deviceNum, Options ooo, Button buton)
         {
             InitializeComponent();
@@ -27,8 +28,12 @@ namespace ScpServer
             button = buton;
             cbToggle.Checked = button.Font.Italic;
             cbScanCode.Checked = button.Font.Bold;
-            //cBMacro.Checked = button.Font.Underline;
-            lBMacroOn.Visible = button.Font.Underline;
+            if (button.Font.Underline)
+            {
+                lBMacroOn.Visible = true;
+                foreach (int i in ((int[])button.Tag))
+                    macrostag.Add(i);
+            }
             if (button.Name.StartsWith("bn"))
                 Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(2));
             else if (button.Name.StartsWith("bnHold"))
@@ -53,10 +58,10 @@ namespace ScpServer
             }
             ActiveControl = null;
         }
-       
+
         public void anybtn_Click(object sender, EventArgs e)
         {
-            if (sender is Button && ((Button)sender).Name != "btnMacro")
+            if (rb == null && sender is Button && ((Button)sender).Name != "bnMacro")
             {
                 Button bn = ((Button)sender);
                 string keyname;
@@ -95,6 +100,12 @@ namespace ScpServer
 
         private void finalMeasure(object sender, FormClosedEventArgs e)
         {
+            if (rb != null)
+            {
+                if (!rb.saved && rb.macros.Count > 0)
+                    if (MessageBox.Show(Properties.Resources.SaveRecordedMacro, "DS4Windows", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                        rb.btnSave_Click(this, null);
+            }
             if (lBMacroOn.Visible)
                 ops.ChangeButtonText("Macro", macrostag.ToArray());
             ops.Toggle_Bn(cbScanCode.Checked, cbToggle.Checked, lBMacroOn.Visible, macrorepeat);
@@ -103,16 +114,22 @@ namespace ScpServer
 
         private void Key_Down_Action(object sender, KeyEventArgs e)
         {
-            lBMacroOn.Visible = false;
-            ops.ChangeButtonText(e.KeyCode.ToString(), e.KeyValue);
-            this.Close();
+            if (rb == null)
+            {
+                lBMacroOn.Visible = false;
+                ops.ChangeButtonText(e.KeyCode.ToString(), e.KeyValue);
+                this.Close();
+            }
         }
 
         private void Key_Press_Action(object sender, KeyEventArgs e)
         {
-            lBMacroOn.Visible = false;
-            ops.ChangeButtonText(e.KeyCode.ToString(), e.KeyValue);
-            this.Close();
+            if (rb == null)
+            {
+                lBMacroOn.Visible = false;
+                ops.ChangeButtonText(e.KeyCode.ToString(), e.KeyValue);
+                this.Close();
+            }
         }
 
         private void cbToggle_CheckedChanged(object sender, EventArgs e)
@@ -122,11 +139,16 @@ namespace ScpServer
         }
 
         private void btnMacro_Click(object sender, EventArgs e)
-        {            
-            RecordBox rb = new RecordBox(this);
-            rb.StartPosition = FormStartPosition.Manual;
-            rb.Location = new Point(this.Location.X + 580, this.Location.Y+ 55);
-            rb.ShowDialog();
+        {
+            rb = new RecordBox(this, scpDevice);
+            rb.TopLevel = false;
+            rb.Dock = DockStyle.Fill;
+            rb.Visible = true;
+            Controls.Add(rb);
+            rb.BringToFront();
+            //rb.StartPosition = FormStartPosition.Manual;
+            //rb.Location = new Point(this.Location.X + 580, this.Location.Y+ 55);
+            //rb.Show();
         }
 
         protected override bool IsInputKey(Keys keyData)

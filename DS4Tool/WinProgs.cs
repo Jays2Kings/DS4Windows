@@ -21,7 +21,7 @@ namespace ScpServer
     {
         ToolTip tp = new ToolTip();
         ComboBox[] cbs;
-        ScpForm form;
+        DS4Form form;
         //C:\ProgramData\Microsoft\Windows\Start Menu\Programs
         string steamgamesdir, origingamesdir;
         protected String m_Profile = Global.appdatapath + "\\Auto Profiles.xml";
@@ -30,7 +30,7 @@ namespace ScpServer
         List<string> lodsf = new List<string>();
         bool appsloaded = false;
 
-        public WinProgs(string[] oc, ScpForm main)
+        public WinProgs(string[] oc, DS4Form main)
         {
             InitializeComponent();
 

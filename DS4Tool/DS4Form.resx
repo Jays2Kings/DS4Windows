@@ -142,7 +142,7 @@
     <value>3, 3</value>
   </data>
   <data name="lvDebug.Size" type="System.Drawing.Size, System.Drawing">
-    <value>891, 330</value>
+    <value>890, 330</value>
   </data>
   <data name="lvDebug.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -169,7 +169,7 @@
     <value>True</value>
   </data>
   <data name="lBTest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>651, 9</value>
+    <value>649, 9</value>
   </data>
   <data name="lBTest.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 13</value>
@@ -199,7 +199,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="btnStartStop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>840, 4</value>
+    <value>839, 4</value>
   </data>
   <data name="btnStartStop.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 23</value>
@@ -229,7 +229,7 @@
     <value>4, 9</value>
   </data>
   <data name="lbLastMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>745, 18</value>
+    <value>744, 18</value>
   </data>
   <data name="lbLastMessage.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -253,7 +253,7 @@
     <value>True</value>
   </data>
   <data name="llbHelp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 9</value>
+    <value>753, 9</value>
   </data>
   <data name="llbHelp.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 13</value>
@@ -283,7 +283,7 @@
     <value>0, 385</value>
   </data>
   <data name="pnlButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>905, 30</value>
+    <value>904, 30</value>
   </data>
   <data name="pnlButton.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -310,7 +310,7 @@
     <value>3, 333</value>
   </data>
   <data name="btnClear.Size" type="System.Drawing.Size, System.Drawing">
-    <value>891, 23</value>
+    <value>890, 23</value>
   </data>
   <data name="btnClear.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -6646,7 +6646,7 @@
 </value>
   </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>425, 19</value>
+    <value>424, 19</value>
   </data>
   <data name="pBStatus1.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -6739,7 +6739,7 @@
     <value>Left</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>856, 76</value>
+    <value>854, 76</value>
   </data>
   <data name="bnEditC3.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 23</value>
@@ -6766,7 +6766,7 @@
     <value>Left</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>856, 105</value>
+    <value>854, 105</value>
   </data>
   <data name="bnEditC4.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 23</value>
@@ -6859,7 +6859,7 @@
     <value>None</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>739, 19</value>
+    <value>737, 19</value>
   </data>
   <data name="cBController1.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -6883,7 +6883,7 @@
     <value>Left</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>856, 47</value>
+    <value>854, 47</value>
   </data>
   <data name="bnEditC2.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 23</value>
@@ -6910,7 +6910,7 @@
     <value>None</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>739, 48</value>
+    <value>737, 48</value>
   </data>
   <data name="cBController2.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -6934,7 +6934,7 @@
     <value>None</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>739, 77</value>
+    <value>737, 77</value>
   </data>
   <data name="cBController3.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -6958,7 +6958,7 @@
     <value>Left</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>856, 18</value>
+    <value>854, 18</value>
   </data>
   <data name="bnEditC1.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 23</value>
@@ -6985,7 +6985,7 @@
     <value>None</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>739, 106</value>
+    <value>737, 106</value>
   </data>
   <data name="cBController4.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -7015,7 +7015,7 @@
     <value>Microsoft Sans Serif, 9pt, style=Bold</value>
   </data>
   <data name="lBSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>740, 0</value>
+    <value>738, 0</value>
   </data>
   <data name="lBSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 15</value>
@@ -7081,7 +7081,7 @@
     <value>Microsoft Sans Serif, 9pt, style=Bold</value>
   </data>
   <data name="lBStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>421, 0</value>
+    <value>420, 0</value>
   </data>
   <data name="lBStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 15</value>
@@ -7114,7 +7114,7 @@
     <value>Microsoft Sans Serif, 9pt, style=Bold</value>
   </data>
   <data name="lBBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>617, 0</value>
+    <value>615, 0</value>
   </data>
   <data name="lBBattery.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 15</value>
@@ -7147,7 +7147,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lBBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 22</value>
+    <value>621, 22</value>
   </data>
   <data name="lBBatt1.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -7180,7 +7180,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lBBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 51</value>
+    <value>621, 51</value>
   </data>
   <data name="lBBatt2.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -7213,7 +7213,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lBBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 80</value>
+    <value>621, 80</value>
   </data>
   <data name="lBBatt3.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -7246,7 +7246,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lBBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 109</value>
+    <value>621, 109</value>
   </data>
   <data name="lBBatt4.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -7329,7 +7329,7 @@
 </value>
   </data>
   <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>425, 48</value>
+    <value>424, 48</value>
   </data>
   <data name="pBStatus2.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -7412,7 +7412,7 @@
 </value>
   </data>
   <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>425, 77</value>
+    <value>424, 77</value>
   </data>
   <data name="pBStatus3.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -7495,7 +7495,7 @@
 </value>
   </data>
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>425, 106</value>
+    <value>424, 106</value>
   </data>
   <data name="pBStatus4.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -7528,7 +7528,7 @@
     <value>5</value>
   </data>
   <data name="tLPControllers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>897, 130</value>
+    <value>896, 130</value>
   </data>
   <data name="tLPControllers.TabIndex" type="System.Int32, mscorlib">
     <value>46</value>
@@ -7552,7 +7552,7 @@
     <value>4, 22</value>
   </data>
   <data name="tabControllers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>897, 359</value>
+    <value>896, 359</value>
   </data>
   <data name="tabControllers.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -7660,7 +7660,7 @@
     <value>3, 53</value>
   </data>
   <data name="lBProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>891, 303</value>
+    <value>890, 303</value>
   </data>
   <data name="lBProfiles.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -7726,7 +7726,7 @@
     <value>3, 28</value>
   </data>
   <data name="tSOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>891, 25</value>
+    <value>890, 25</value>
   </data>
   <data name="tSOptions.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -7758,9 +7758,6 @@
   <data name="tsBNewProfle.Text" xml:space="preserve">
     <value>New</value>
   </data>
-  <data name="tsBNewProfle.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopLeft</value>
-  </data>
   <data name="tsBNewProfle.ToolTipText" xml:space="preserve">
     <value>Make a New Profile</value>
   </data>
@@ -7772,9 +7769,6 @@
   </data>
   <data name="tsBEditProfile.Text" xml:space="preserve">
     <value>Edit</value>
-  </data>
-  <data name="tsBEditProfile.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopLeft</value>
   </data>
   <data name="tsBEditProfile.ToolTipText" xml:space="preserve">
     <value>Edit Selected Profile (Enter)</value>
@@ -7799,9 +7793,6 @@
   <data name="tsBDeleteProfile.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="tsBDeleteProfile.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopLeft</value>
-  </data>
   <data name="tsBDeleteProfile.ToolTipText" xml:space="preserve">
     <value>Delete Selected Profle (Delete)</value>
   </data>
@@ -7823,9 +7814,6 @@
   </data>
   <data name="tSBDupProfile.Text" xml:space="preserve">
     <value>Duplicate</value>
-  </data>
-  <data name="tSBDupProfile.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopLeft</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
     <value>Dupliacate Selected Profile (Ctrl+C)</value>
@@ -7872,7 +7860,7 @@
     <value>3, 3</value>
   </data>
   <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>891, 25</value>
+    <value>890, 25</value>
   </data>
   <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -7899,7 +7887,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>897, 359</value>
+    <value>896, 359</value>
   </data>
   <data name="tabProfiles.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -7923,7 +7911,7 @@
     <value>4, 22</value>
   </data>
   <data name="tabAutoProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>897, 359</value>
+    <value>896, 359</value>
   </data>
   <data name="tabAutoProfiles.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -8418,7 +8406,7 @@
     <value>7, 7, 0, 9</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>891, 353</value>
+    <value>890, 353</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -8442,7 +8430,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>897, 359</value>
+    <value>896, 359</value>
   </data>
   <data name="tabSettings.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -8469,7 +8457,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>897, 359</value>
+    <value>896, 359</value>
   </data>
   <data name="tabLog.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -8496,7 +8484,7 @@
     <value>0, 0</value>
   </data>
   <data name="tabMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>905, 385</value>
+    <value>904, 385</value>
   </data>
   <data name="tabMain.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -8526,10 +8514,10 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>905, 415</value>
+    <value>904, 415</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>440, 231</value>
+    <value>438, 225</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>DS4Windows</value>
@@ -8757,7 +8745,7 @@
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ScpForm</value>
+    <value>DS4Form</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

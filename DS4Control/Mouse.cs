@@ -17,6 +17,7 @@ namespace DS4Control
         private readonly MouseWheel wheel;
         private bool tappedOnce = false, secondtouchbegin = false;
         public bool swipeLeft, swipeRight, swipeUp, swipeDown;
+        public byte swipeLeftB, swipeRightB, swipeUpB, swipeDownB, swipedB;
         public bool slideleft, slideright;
         // touch area stuff
         public bool leftDown, rightDown, upperDown, multiDown;
@@ -38,30 +39,40 @@ namespace DS4Control
 
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
-            cursor.touchesMoved(arg);
-            wheel.touchesMoved(arg);
-            if (!(swipeUp || swipeDown || swipeLeft || swipeRight))
+            if (!Global.getUseTPforControls(deviceNum))
             {
-                if (arg.touches[0].hwX - firstTouch.hwX > 200) swipeRight = true;
-                if (arg.touches[0].hwX - firstTouch.hwX < -200) swipeLeft = true;
-                if (arg.touches[0].hwY - firstTouch.hwY > 100) swipeDown = true;
-                if (arg.touches[0].hwY - firstTouch.hwY < -100) swipeUp = true;
+                cursor.touchesMoved(arg);
+                wheel.touchesMoved(arg);
             }
-            /*if ((swipeUp || swipeDown || swipeLeft || swipeRight))
-            Console.WriteLine("Up " + swipeUp + " Down " + swipeDown + " Left " + swipeLeft + " Right " + swipeRight);*/
-            if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 50)
-                if (arg.touches.Length == 2)
-                    if (arg.touches[0].hwX - firstTouch.hwX > 200 && !slideleft)
-                        slideright = true;
-                    else if (firstTouch.hwX - arg.touches[0].hwX > 200 && !slideright)
-                        slideleft = true;
+            else
+            {
+                if (!(swipeUp || swipeDown || swipeLeft || swipeRight) && arg.touches.Length == 1)
+                {
+                    if (arg.touches[0].hwX - firstTouch.hwX > 200) swipeRight = true;
+                    if (arg.touches[0].hwX - firstTouch.hwX < -200) swipeLeft = true;
+                    if (arg.touches[0].hwY - firstTouch.hwY > 150) swipeDown = true;
+                    if (arg.touches[0].hwY - firstTouch.hwY < -150) swipeUp = true;
+                }
+                swipeUpB = (byte)Math.Min(255, Math.Max(0, (firstTouch.hwY - arg.touches[0].hwY) * 1.5f));
+                swipeDownB = (byte)Math.Min(255, Math.Max(0, (arg.touches[0].hwY - firstTouch.hwY) * 1.5f));
+                swipeLeftB = (byte)Math.Min(255, Math.Max(0, firstTouch.hwX - arg.touches[0].hwX));
+                swipeRightB = (byte)Math.Min(255, Math.Max(0, arg.touches[0].hwX - firstTouch.hwX));
+            }
+            if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 50 && arg.touches.Length == 2)
+                if (arg.touches[0].hwX - firstTouch.hwX > 200 && !slideleft)
+                    slideright = true;
+                else if (firstTouch.hwX - arg.touches[0].hwX > 200 && !slideright)
+                    slideleft = true;
             dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
         public virtual void touchesBegan(object sender, TouchpadEventArgs arg)
         {
-            cursor.touchesBegan(arg);
-            wheel.touchesBegan(arg);
+            if (!Global.getUseTPforControls(deviceNum))
+            {
+                cursor.touchesBegan(arg);
+                wheel.touchesBegan(arg);
+            }
             pastTime = arg.timeStamp;
             firstTouch = arg.touches[0];
             if (Global.getDoubleTap(deviceNum))
@@ -71,13 +82,14 @@ namespace DS4Control
                     secondtouchbegin = true;
             }
             dev.getCurrentState(s);
-            synthesizeMouseButtons(); 
+            synthesizeMouseButtons();
         }
         public virtual void touchesEnded(object sender, TouchpadEventArgs arg)
         {
             slideright = slideleft = false;
             swipeUp = swipeDown = swipeLeft = swipeRight = false;
-            if (Global.getTapSensitivity(deviceNum) != 0)
+            swipeUpB = swipeDownB = swipeLeftB = swipeRightB = 0;
+            if (Global.getTapSensitivity(deviceNum) != 0 && !Global.getUseTPforControls(deviceNum))
             {
 
                 if (secondtouchbegin)
@@ -88,14 +100,14 @@ namespace DS4Control
                 DateTime test = arg.timeStamp;
                 if (test <= (pastTime + TimeSpan.FromMilliseconds((double)Global.getTapSensitivity(deviceNum) * 2)) && !arg.touchButtonPressed && !tappedOnce)
                     if (Math.Abs(firstTouch.hwX - arg.touches[0].hwX) < 10 && Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 10)
-                    if (Global.getDoubleTap(deviceNum))
-                    {
-                        tappedOnce = true; 
-                        firstTap = arg.timeStamp;
-                        TimeofEnd = DateTime.Now; //since arg can't be used in synthesizeMouseButtons
-                    }
-                    else
-                        Mapping.MapClick(deviceNum, Mapping.Click.Left); //this way no delay if disabled
+                        if (Global.getDoubleTap(deviceNum))
+                        {
+                            tappedOnce = true;
+                            firstTap = arg.timeStamp;
+                            TimeofEnd = DateTime.Now; //since arg can't be used in synthesizeMouseButtons
+                        }
+                        else
+                            Mapping.MapClick(deviceNum, Mapping.Click.Left); //this way no delay if disabled
             }
             dev.getCurrentState(s);
             synthesizeMouseButtons();
@@ -115,7 +127,7 @@ namespace DS4Control
         {
             dev.getCurrentState(s);
             //if (s.Touch1 || s.Touch2 || s.TouchButton)
-                synthesizeMouseButtons();
+            synthesizeMouseButtons();
         }
 
         private DS4State remapped = new DS4State();
@@ -141,18 +153,21 @@ namespace DS4Control
                     Global.getCustomKey(deviceNum, DS4Controls.TouchMulti) == 0 &&
                 multiDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
-            if (tappedOnce)
+            if (!Global.getUseTPforControls(deviceNum))
             {
-                DateTime tester = DateTime.Now;
-                if (tester > (TimeofEnd + TimeSpan.FromMilliseconds((double)(Global.getTapSensitivity(deviceNum)) * 1.5)))
+                if (tappedOnce)
+                {
+                    DateTime tester = DateTime.Now;
+                    if (tester > (TimeofEnd + TimeSpan.FromMilliseconds((double)(Global.getTapSensitivity(deviceNum)) * 1.5)))
                     {
-                        Mapping.MapClick(deviceNum, Mapping.Click.Left); 
+                        Mapping.MapClick(deviceNum, Mapping.Click.Left);
                         tappedOnce = false;
                     }
-                //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
+                    //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
+                }
+                if (secondtouchbegin) //if tap and hold (also works as double tap)
+                    Mapping.MapClick(deviceNum, Mapping.Click.Left);
             }
-            if (secondtouchbegin) //if tap and hold (also works as double tap)
-               Mapping.MapClick(deviceNum, Mapping.Click.Left);
             s = remapped;
             //remapped.CopyTo(s);
         }
@@ -169,37 +184,18 @@ namespace DS4Control
 
         public virtual void touchButtonDown(object sender, TouchpadEventArgs arg)
         {
-            //byte leftRumble, rightRumble;
             if (arg.touches == null)
-            {
-                //No touches, finger on upper portion of touchpad
-                //leftRumble = rightRumble = 0;
                 upperDown = true;
-            }
-            else if (arg.touches.Length > 1 )//|| (Global.getLowerRCOn(deviceNum) && arg.touches[0].hwX > (1920 * 3) / 4 && arg.touches[0].hwY > (960 * 3) / 4))
-            {
-                //leftRumble = rightRumble = 150;
+            else if (arg.touches.Length > 1)
                 multiDown = true;
-            }
             else
             {
                 if ((Global.getLowerRCOn(deviceNum) && arg.touches[0].hwX > (1920 * 3) / 4 && arg.touches[0].hwY > (960 * 3) / 4))
                     Mapping.MapClick(deviceNum, Mapping.Click.Right);
                 if (isLeft(arg.touches[0]))
-                {
                     leftDown = true;
-                    //leftRumble = 25;
-                    //rightRumble = 0;
-                }
                 else if (isRight(arg.touches[0]))
-                {
                     rightDown = true;
-                    //leftRumble = 0;
-                    //rightRumble = 25;
-                }
-                else
-                {
-                }
             }
             dev.getCurrentState(s);
             synthesizeMouseButtons();

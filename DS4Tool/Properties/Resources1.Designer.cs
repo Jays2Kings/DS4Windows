@@ -1177,11 +1177,47 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Swipe Down.
+        /// </summary>
+        internal static string SwipeDown {
+            get {
+                return ResourceManager.GetString("SwipeDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swipe Left.
+        /// </summary>
+        internal static string SwipeLeft {
+            get {
+                return ResourceManager.GetString("SwipeLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swipe Right.
+        /// </summary>
+        internal static string SwipeRight {
+            get {
+                return ResourceManager.GetString("SwipeRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Swipe Touchpad to change profiles.
         /// </summary>
         internal static string SwipeTouchpad {
             get {
                 return ResourceManager.GetString("SwipeTouchpad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swipe Up.
+        /// </summary>
+        internal static string SwipeUp {
+            get {
+                return ResourceManager.GetString("SwipeUp", resourceCulture);
             }
         }
         

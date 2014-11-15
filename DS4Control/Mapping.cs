@@ -1483,26 +1483,32 @@ namespace DS4Control
                 case DS4Controls.TouchRight: return (byte)(tp != null && tp.rightDown ? 255 : 0);
                 case DS4Controls.TouchMulti: return (byte)(tp != null && tp.multiDown ? 255 : 0);
                 case DS4Controls.TouchUpper: return (byte)(tp != null && tp.upperDown ? 255 : 0);
-                case DS4Controls.LXNeg: return (byte)cState.LX;
-                case DS4Controls.LYNeg: return (byte)cState.LY;
-                case DS4Controls.RXNeg: return (byte)cState.RX;
-                case DS4Controls.RYNeg: return (byte)cState.RY;
-                case DS4Controls.LXPos: return (byte)(cState.LX - 127 < 0 ? 0 : (cState.LX - 127));
-                case DS4Controls.LYPos: return (byte)(cState.LY - 123 < 0 ? 0 : (cState.LY - 123));
-                case DS4Controls.RXPos: return (byte)(cState.RX - 129 < 0 ? 0 : (cState.RX - 125));
-                case DS4Controls.RYPos: return (byte)(cState.RY - 125 < 0 ? 0 : (cState.RY - 127));
-                case DS4Controls.L2: return (byte)cState.L2;
-                case DS4Controls.R2: return (byte)cState.R2;
+                case DS4Controls.LXNeg: return (byte)(cState.LX - 127.5f > 0 ? 0 : -(cState.LX - 127.5f) * 2);
+                case DS4Controls.LYNeg: return (byte)(cState.LY - 127.5f > 0 ? 0 : -(cState.LY - 127.5f) * 2);
+                case DS4Controls.RXNeg: return (byte)(cState.RX - 127.5f > 0 ? 0 : -(cState.RX - 127.5f) * 2);
+                case DS4Controls.RYNeg: return (byte)(cState.RY - 127.5f > 0 ? 0 : -(cState.RY - 127.5f) * 2);
+                case DS4Controls.LXPos: return (byte)(cState.LX - 127.5f < 0 ? 0 : (cState.LX - 127.5f) * 2);
+                case DS4Controls.LYPos: return (byte)(cState.LY - 127.5f < 0 ? 0 : (cState.LY - 127.5f) * 2);
+                case DS4Controls.RXPos: return (byte)(cState.RX - 127.5f < 0 ? 0 : (cState.RX - 127.5f) * 2);
+                case DS4Controls.RYPos: return (byte)(cState.RY - 127.5f < 0 ? 0 : (cState.RY - 127.5f) * 2);
+                case DS4Controls.L2: return cState.L2;
+                case DS4Controls.R2: return cState.R2;
                 case DS4Controls.GyroXPos: return (byte)(eState.GyroX > SXD * 7500 ? Math.Min(255, eState.GyroX / 31) : 0);
                 case DS4Controls.GyroXNeg: return (byte)(eState.GyroX < -SXD * 7500 ? Math.Min(255, -eState.GyroX / 31) : 0);
                 case DS4Controls.GyroZPos: return (byte)(eState.GyroZ > SZD * 7500 ? Math.Min(255, eState.GyroZ / 31) : 0);
                 case DS4Controls.GyroZNeg: return (byte)(eState.GyroZ < -SZD * 7500 ? Math.Min(255, -eState.GyroZ / 31) : 0);
+                case DS4Controls.SwipeUp: return (byte)(tp != null ? tp.swipeUpB : 0);
+                case DS4Controls.SwipeDown: return (byte)(tp != null ? tp.swipeDownB: 0);
+                case DS4Controls.SwipeLeft: return (byte)(tp != null ?  tp.swipeLeftB: 0);
+                case DS4Controls.SwipeRight: return (byte)(tp != null ? tp.swipeRightB : 0);
             }
             return 0;
         }
 
         public static bool getBoolMapping(DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
+            //if (control == DS4Controls.Up)
+            //Cons
             switch (control)
             {
                 case DS4Controls.Share: return cState.Share;
@@ -1538,6 +1544,10 @@ namespace DS4Control
                 case DS4Controls.GyroXNeg: return eState.GyroX < -5000;
                 case DS4Controls.GyroZPos: return eState.GyroZ > 5000;
                 case DS4Controls.GyroZNeg: return eState.GyroZ < -5000;
+                case DS4Controls.SwipeUp: return (tp != null && tp.swipeUp);
+                case DS4Controls.SwipeDown: return (tp != null && tp.swipeDown);
+                case DS4Controls.SwipeLeft: return (tp != null && tp.swipeLeft);
+                case DS4Controls.SwipeRight: return (tp != null && tp.swipeRight);
             }
             return false;
         }
@@ -1571,8 +1581,12 @@ namespace DS4Control
                 case DS4Controls.TouchRight: return (byte)(tp != null && tp.rightDown ? trueVal : falseVal);
                 case DS4Controls.TouchMulti: return (byte)(tp != null && tp.multiDown ? trueVal : falseVal);
                 case DS4Controls.TouchUpper: return (byte)(tp != null && tp.upperDown ? trueVal : falseVal);
-                case DS4Controls.L2: if (alt) return (byte)(127 + cState.L2 / 2); else return (byte)(127 - cState.L2 / 2);
-                case DS4Controls.R2: if (alt) return (byte)(127 + cState.R2 / 2); else return (byte)(127 - cState.R2 / 2);
+                case DS4Controls.L2: if (alt) return (byte)(127.5f + cState.L2 / 2f); else return (byte)(127.5f - cState.L2 / 2f);
+                case DS4Controls.R2: if (alt) return (byte)(127.5f + cState.R2 / 2f); else return (byte)(127.5f - cState.R2 / 2f);
+                case DS4Controls.SwipeUp: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeUpB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeUpB / 2f : 0);
+                case DS4Controls.SwipeDown: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeDownB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeDownB / 2f : 0);
+                case DS4Controls.SwipeLeft: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeLeftB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeLeftB / 2f : 0);
+                case DS4Controls.SwipeRight: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeRightB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeRightB / 2f : 0);
                 case DS4Controls.GyroXPos: if (eState.GyroX > SXD * 7500)
                         if (alt) return (byte)Math.Min(255, 127 + eState.GyroX / 62); else return (byte)Math.Max(0, 127 - eState.GyroX / 62);
                     else return falseVal;
@@ -1649,10 +1663,6 @@ namespace DS4Control
                 case DS4Controls.RYPos: cState.RY = 127; break;
                 case DS4Controls.L2: cState.L2 = 0; break;
                 case DS4Controls.R2: cState.R2 = 0; break;
-                //case DS4Controls.TouchButton: cState.TouchLeft = false; break;
-                //case DS4Controls.TouchMulti: cState.Touch2 = false; break;
-                //case DS4Controls.TouchRight: cState.TouchRight = false; break;
-                //case DS4Controls.TouchUpper: cState.TouchButton = false; break;
             }
         }
 

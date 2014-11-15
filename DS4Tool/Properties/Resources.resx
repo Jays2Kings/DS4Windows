@@ -553,4 +553,16 @@
   <data name="InstallFailed" xml:space="preserve">
     <value>Install Failed, Please Retry</value>
   </data>
+  <data name="SwipeDown" xml:space="preserve">
+    <value>Swipe Down</value>
+  </data>
+  <data name="SwipeLeft" xml:space="preserve">
+    <value>Swipe Left</value>
+  </data>
+  <data name="SwipeRight" xml:space="preserve">
+    <value>Swipe Right</value>
+  </data>
+  <data name="SwipeUp" xml:space="preserve">
+    <value>Swipe Up</value>
+  </data>
 </root>

@@ -59,6 +59,9 @@ namespace ScpServer
             foreach (System.Windows.Forms.Control control in fLPTiltControls.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
+            foreach (System.Windows.Forms.Control control in fLPTouchSwipe.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btn"))
+                    buttons.Add((Button)control);
             foreach (System.Windows.Forms.Control control in pnlShiftMain.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btnShift"))
                         subbuttons.Add((Button)control);
@@ -67,11 +70,15 @@ namespace ScpServer
                         subbuttons.Add((Button)control);
             foreach (System.Windows.Forms.Control control in fLPShiftTiltControls.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btnShift"))
-                        subbuttons.Add((Button)control);
+                    subbuttons.Add((Button)control);
+            foreach (System.Windows.Forms.Control control in fLPShiftTouchSwipe.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btn"))
+                    subbuttons.Add((Button)control);
             string butts = "";
             foreach (Button b in buttons)
                 butts += "\n" + b.Name;
             //MessageBox.Show(butts);
+
             root.lbLastMessage.ForeColor = Color.Black;
             root.lbLastMessage.Text = "Hover over items to see description or more about";
             foreach (System.Windows.Forms.Control control in Controls)
@@ -88,11 +95,12 @@ namespace ScpServer
                             ctrl.MouseHover += Items_MouseHover;
                 else
                     control.MouseHover += Items_MouseHover;
+
             if (device < 4)
             nUDSixaxis.Value = deviceNum + 1;
             if (filename != "")
             {
-                if (device == 4)
+                if (device == 4) //if temp device is called
                     Global.setAProfile(4, name);
                 Global.LoadProfile(device, buttons.ToArray(), subbuttons.ToArray(), false, scpDevice);
                 DS4Color color = Global.loadColor(device);
@@ -185,6 +193,7 @@ namespace ScpServer
                 cBDinput.Checked = Global.getDinputOnly(device);
                 olddinputcheck = cBDinput.Checked;
                 cbStartTouchpadOff.Checked = Global.getStartTouchpadOff(device);
+                cBTPforControls.Checked = Global.getUseTPforControls(device);
             }
             else
             {
@@ -318,73 +327,83 @@ namespace ScpServer
             switch (((Button)sender).Name)
             {
                 #region
-                case ("bnCross"): lBControls.SelectedIndex = 0; break;
-                case ("bnCircle"): lBControls.SelectedIndex = 1; break;
-                case ("bnSquare"): lBControls.SelectedIndex = 2; break;
-                case ("bnTriangle"): lBControls.SelectedIndex = 3; break;
-                case ("bnOptions"): lBControls.SelectedIndex = 4; break;
-                case ("bnShare"): lBControls.SelectedIndex = 5; break;
-                case ("bnUp"): lBControls.SelectedIndex = 6; break;
-                case ("bnDown"): lBControls.SelectedIndex = 7; break;
-                case ("bnLeft"): lBControls.SelectedIndex = 8; break;
-                case ("bnRight"): lBControls.SelectedIndex = 9; break;
-                case ("bnPS"): lBControls.SelectedIndex = 10; break;
-                case ("bnL1"): lBControls.SelectedIndex = 11; break;
-                case ("bnR1"): lBControls.SelectedIndex = 12; break;
-                case ("bnL2"): lBControls.SelectedIndex = 13; break;
-                case ("bnR2"): lBControls.SelectedIndex = 14; break;
-                case ("bnL3"): lBControls.SelectedIndex = 15; break;
-                case ("bnR3"): lBControls.SelectedIndex = 16; break;
-                case ("bnTouchLeft"): lBControls.SelectedIndex = 17; break;
-                case ("bnTouchRight"): lBControls.SelectedIndex = 18; break;
-                case ("bnTouchMulti"): lBControls.SelectedIndex = 19; break;
-                case ("bnTouchUpper"): lBControls.SelectedIndex = 20; break;
-                case ("bnLSUp"): lBControls.SelectedIndex = 21; break;
-                case ("bnLSDown"): lBControls.SelectedIndex = 22; break;
-                case ("bnLSLeft"): lBControls.SelectedIndex = 23; break;
-                case ("bnLSRight"): lBControls.SelectedIndex = 24; break;
-                case ("bnRSUp"): lBControls.SelectedIndex = 25; break;
-                case ("bnRSDown"): lBControls.SelectedIndex = 26; break;
-                case ("bnRSLeft"): lBControls.SelectedIndex = 27; break;
-                case ("bnRSRight"): lBControls.SelectedIndex = 28; break;
-                case ("bnGyroZN"): lBControls.SelectedIndex = 29; break;
-                case ("bnGyroZP"): lBControls.SelectedIndex = 30; break;
-                case ("bnGyroXP"): lBControls.SelectedIndex = 31; break;
-                case ("bnGyroXN"): lBControls.SelectedIndex = 32; break;
+                case "bnCross": lBControls.SelectedIndex = 0; break;
+                case "bnCircle": lBControls.SelectedIndex = 1; break;
+                case "bnSquare": lBControls.SelectedIndex = 2; break;
+                case "bnTriangle": lBControls.SelectedIndex = 3; break;
+                case "bnOptions": lBControls.SelectedIndex = 4; break;
+                case "bnShare": lBControls.SelectedIndex = 5; break;
+                case "bnUp": lBControls.SelectedIndex = 6; break;
+                case "bnDown": lBControls.SelectedIndex = 7; break;
+                case "bnLeft": lBControls.SelectedIndex = 8; break;
+                case "bnRight": lBControls.SelectedIndex = 9; break;
+                case "bnPS": lBControls.SelectedIndex = 10; break;
+                case "bnL1": lBControls.SelectedIndex = 11; break;
+                case "bnR1": lBControls.SelectedIndex = 12; break;
+                case "bnL2": lBControls.SelectedIndex = 13; break;
+                case "bnR2": lBControls.SelectedIndex = 14; break;
+                case "bnL3": lBControls.SelectedIndex = 15; break;
+                case "bnR3": lBControls.SelectedIndex = 16; break;
+                case "bnTouchLeft": lBControls.SelectedIndex = 17; break;
+                case "bnTouchRight": lBControls.SelectedIndex = 18; break;
+                case "bnTouchMulti": lBControls.SelectedIndex = 19; break;
+                case "bnTouchUpper": lBControls.SelectedIndex = 20; break;
+                case "bnLSUp": lBControls.SelectedIndex = 21; break;
+                case "bnLSDown": lBControls.SelectedIndex = 22; break;
+                case "bnLSLeft": lBControls.SelectedIndex = 23; break;
+                case "bnLSRight": lBControls.SelectedIndex = 24; break;
+                case "bnRSUp": lBControls.SelectedIndex = 25; break;
+                case "bnRSDown": lBControls.SelectedIndex = 26; break;
+                case "bnRSLeft": lBControls.SelectedIndex = 27; break;
+                case "bnRSRight": lBControls.SelectedIndex = 28; break;
+                case "bnGyroZN": lBControls.SelectedIndex = 29; break;
+                case "bnGyroZP": lBControls.SelectedIndex = 30; break;
+                case "bnGyroXP": lBControls.SelectedIndex = 31; break;
+                case "bnGyroXN": lBControls.SelectedIndex = 32; break;
 
-                case ("bnShiftCross"): lBShiftControls.SelectedIndex = 0; break;
-                case ("bnShiftCircle"): lBShiftControls.SelectedIndex = 1; break;
-                case ("bnShiftSquare"): lBShiftControls.SelectedIndex = 2; break;
-                case ("bnShiftTriangle"): lBShiftControls.SelectedIndex = 3; break;
-                case ("bnShiftOptions"): lBShiftControls.SelectedIndex = 4; break;
-                case ("bnShiftShare"): lBShiftControls.SelectedIndex = 5; break;
-                case ("bnShiftUp"): lBShiftControls.SelectedIndex = 6; break;
-                case ("bnShiftDown"): lBShiftControls.SelectedIndex = 7; break;
-                case ("bnShiftLeft"): lBShiftControls.SelectedIndex = 8; break;
-                case ("bnShiftRight"): lBShiftControls.SelectedIndex = 9; break;
-                case ("bnShiftPS"): lBShiftControls.SelectedIndex = 10; break;
-                case ("bnShiftL1"): lBShiftControls.SelectedIndex = 11; break;
-                case ("bnShiftR1"): lBShiftControls.SelectedIndex = 12; break;
-                case ("bnShiftL2"): lBShiftControls.SelectedIndex = 13; break;
-                case ("bnShiftR2"): lBShiftControls.SelectedIndex = 14; break;
-                case ("bnShiftL3"): lBShiftControls.SelectedIndex = 15; break;
-                case ("bnShiftR3"): lBShiftControls.SelectedIndex = 16; break;
-                case ("bnShiftTouchLeft"): lBShiftControls.SelectedIndex = 17; break;
-                case ("bnShiftTouchRight"): lBShiftControls.SelectedIndex = 18; break;
-                case ("bnShiftTouchMulti"): lBShiftControls.SelectedIndex = 19; break;
-                case ("bnShiftTouchUpper"): lBShiftControls.SelectedIndex = 20; break;
-                case ("bnShiftLSUp"): lBShiftControls.SelectedIndex = 21; break;
-                case ("bnShiftLSDown"): lBShiftControls.SelectedIndex = 22; break;
-                case ("bnShiftLSLeft"): lBShiftControls.SelectedIndex = 23; break;
-                case ("bnShiftLSRight"): lBShiftControls.SelectedIndex = 24; break;
-                case ("bnShiftRSUp"): lBShiftControls.SelectedIndex = 25; break;
-                case ("bnShiftRSDown"): lBShiftControls.SelectedIndex = 26; break;
-                case ("bnShiftRSLeft"): lBShiftControls.SelectedIndex = 27; break;
-                case ("bnShiftRSRight"): lBShiftControls.SelectedIndex = 28; break;
-                case ("bnShiftGyroZN"): lBShiftControls.SelectedIndex = 29; break;
-                case ("bnShiftGyroZP"): lBShiftControls.SelectedIndex = 30; break;
-                case ("bnShiftGyroXP"): lBShiftControls.SelectedIndex = 31; break;
-                case ("bnShiftGyroXN"): lBShiftControls.SelectedIndex = 32; break;
+                case "bnSwipeUp": lBControls.SelectedIndex = 33; break;
+                case "bnSwipeDown": lBControls.SelectedIndex = 34; break;
+                case "bnSwipeLeft": lBControls.SelectedIndex = 35; break;
+                case "bnSwipeRight": lBControls.SelectedIndex = 36; break;
+
+                case "bnShiftCross": lBShiftControls.SelectedIndex = 0; break;
+                case "bnShiftCircle": lBShiftControls.SelectedIndex = 1; break;
+                case "bnShiftSquare": lBShiftControls.SelectedIndex = 2; break;
+                case "bnShiftTriangle": lBShiftControls.SelectedIndex = 3; break;
+                case "bnShiftOptions": lBShiftControls.SelectedIndex = 4; break;
+                case "bnShiftShare": lBShiftControls.SelectedIndex = 5; break;
+                case "bnShiftUp": lBShiftControls.SelectedIndex = 6; break;
+                case "bnShiftDown": lBShiftControls.SelectedIndex = 7; break;
+                case "bnShiftLeft": lBShiftControls.SelectedIndex = 8; break;
+                case "bnShiftRight": lBShiftControls.SelectedIndex = 9; break;
+                case "bnShiftPS": lBShiftControls.SelectedIndex = 10; break;
+                case "bnShiftL1": lBShiftControls.SelectedIndex = 11; break;
+                case "bnShiftR1": lBShiftControls.SelectedIndex = 12; break;
+                case "bnShiftL2": lBShiftControls.SelectedIndex = 13; break;
+                case "bnShiftR2": lBShiftControls.SelectedIndex = 14; break;
+                case "bnShiftL3": lBShiftControls.SelectedIndex = 15; break;
+                case "bnShiftR3": lBShiftControls.SelectedIndex = 16; break;
+                case "bnShiftTouchLeft": lBShiftControls.SelectedIndex = 17; break;
+                case "bnShiftTouchRight": lBShiftControls.SelectedIndex = 18; break;
+                case "bnShiftTouchMulti": lBShiftControls.SelectedIndex = 19; break;
+                case "bnShiftTouchUpper": lBShiftControls.SelectedIndex = 20; break;
+                case "bnShiftLSUp": lBShiftControls.SelectedIndex = 21; break;
+                case "bnShiftLSDown": lBShiftControls.SelectedIndex = 22; break;
+                case "bnShiftLSLeft": lBShiftControls.SelectedIndex = 23; break;
+                case "bnShiftLSRight": lBShiftControls.SelectedIndex = 24; break;
+                case "bnShiftRSUp": lBShiftControls.SelectedIndex = 25; break;
+                case "bnShiftRSDown": lBShiftControls.SelectedIndex = 26; break;
+                case "bnShiftRSLeft": lBShiftControls.SelectedIndex = 27; break;
+                case "bnShiftRSRight": lBShiftControls.SelectedIndex = 28; break;
+                case "bnShiftGyroZN": lBShiftControls.SelectedIndex = 29; break;
+                case "bnShiftGyroZP": lBShiftControls.SelectedIndex = 30; break;
+                case "bnShiftGyroXP": lBShiftControls.SelectedIndex = 31; break;
+                case "bnShiftGyroXN": lBShiftControls.SelectedIndex = 32; break;
+
+                case "bnShiftSwipeUp": lBShiftControls.SelectedIndex = 33; break;
+                case "bnShiftSwipeDown": lBShiftControls.SelectedIndex = 34; break;
+                case "bnShiftSwipeLeft": lBShiftControls.SelectedIndex = 35; break;
+                case "bnShiftSwipeRight": lBShiftControls.SelectedIndex = 36; break;
                 #endregion
             }
         }
@@ -428,7 +447,12 @@ namespace ScpServer
             Global.setShiftModifier(device, cBShiftControl.SelectedIndex);
             Global.setDinputOnly(device, cBDinput.Checked);
             Global.setStartTouchpadOff(device, cbStartTouchpadOff.Checked);
-
+            Global.setUseTPforControls(device, cBTPforControls.Checked);
+            gBTouchpad.Enabled = !cBTPforControls.Checked;
+            if (cBTPforControls.Checked)
+                tabControls.Size = new Size(tabControls.Size.Width, (int)(282 * dpiy));
+            else
+                tabControls.Size = new Size(tabControls.Size.Width, (int)(242 * dpiy));
             if (nUDRainbow.Value == 0) pBRainbow.Image = greyscale;
             else pBRainbow.Image = colored;
         }
@@ -869,14 +893,25 @@ namespace ScpServer
             lBControls.Items[26] = "RS Down : " + bnRSDown.Text;
             lBControls.Items[27] = "RS Left : " + bnRSLeft.Text;
             lBControls.Items[28] = "RS Right : " + bnRSRight.Text;
-            lBControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateGyroList(bnGyroZN);
-            lBControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateGyroList(bnGyroZP);
-            lBControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateGyroList(bnGyroXP);
-            lBControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateGyroList(bnGyroXN);
+            lBControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateRegButtonList(bnGyroZN);
+            lBControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateRegButtonList(bnGyroZP);
+            lBControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateRegButtonList(bnGyroXP);
+            lBControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateRegButtonList(bnGyroXN);
             bnGyroZN.Text = Properties.Resources.TiltUp;
             bnGyroZP.Text = Properties.Resources.TiltDown;
             bnGyroXP.Text = Properties.Resources.TiltLeft;
             bnGyroXN.Text = Properties.Resources.TiltRight;
+            if (lBControls.Items.Count > 33)
+            {
+                lBControls.Items[33] = Properties.Resources.SwipeUp + " : " + UpdateRegButtonList(bnSwipeUp);
+                lBControls.Items[34] = Properties.Resources.SwipeDown + " : " + UpdateRegButtonList(bnSwipeDown);
+                lBControls.Items[35] = Properties.Resources.SwipeLeft + " : " + UpdateRegButtonList(bnSwipeLeft);
+                lBControls.Items[36] = Properties.Resources.SwipeRight + " : " + UpdateRegButtonList(bnSwipeRight);
+                bnSwipeUp.Text = Properties.Resources.SwipeUp;
+                bnSwipeDown.Text = Properties.Resources.SwipeDown;
+                bnSwipeLeft.Text = Properties.Resources.SwipeLeft;
+                bnSwipeRight.Text = Properties.Resources.SwipeRight;
+            }
 
             foreach (Button b in subbuttons)
                 if (b.Tag == null)
@@ -910,17 +945,28 @@ namespace ScpServer
             lBShiftControls.Items[26] = "RS Down : " + bnShiftRSDown.Text;
             lBShiftControls.Items[27] = "RS Left : " + bnShiftRSLeft.Text;
             lBShiftControls.Items[28] = "RS Right : " + bnShiftRSRight.Text;
-            lBShiftControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateGyroList(bnShiftGyroZN);
-            lBShiftControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateGyroList(bnShiftGyroZP);
-            lBShiftControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateGyroList(bnShiftGyroXP);
-            lBShiftControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateGyroList(bnShiftGyroXN);
+            lBShiftControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateRegButtonList(bnShiftGyroZN);
+            lBShiftControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateRegButtonList(bnShiftGyroZP);
+            lBShiftControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateRegButtonList(bnShiftGyroXP);
+            lBShiftControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateRegButtonList(bnShiftGyroXN);
             bnShiftGyroZN.Text = Properties.Resources.TiltUp;
             bnShiftGyroZP.Text = Properties.Resources.TiltDown;
             bnShiftGyroXP.Text = Properties.Resources.TiltLeft;
             bnShiftGyroXN.Text = Properties.Resources.TiltRight;
+            if (lBShiftControls.Items.Count > 33)
+            {
+                lBShiftControls.Items[33] = Properties.Resources.SwipeUp + " : " + UpdateRegButtonList(bnShiftSwipeUp);
+                lBShiftControls.Items[34] = Properties.Resources.SwipeDown + " : " + UpdateRegButtonList(bnShiftSwipeDown);
+                lBShiftControls.Items[35] = Properties.Resources.SwipeLeft + " : " + UpdateRegButtonList(bnShiftSwipeLeft);
+                lBShiftControls.Items[36] = Properties.Resources.SwipeRight + " : " + UpdateRegButtonList(bnShiftSwipeRight);
+                bnShiftSwipeUp.Text = Properties.Resources.SwipeUp;
+                bnShiftSwipeDown.Text = Properties.Resources.SwipeDown;
+                bnShiftSwipeLeft.Text = Properties.Resources.SwipeLeft;
+                bnShiftSwipeRight.Text = Properties.Resources.SwipeRight;
+            }
         }
 
-        private string UpdateGyroList(Button button)
+        private string UpdateRegButtonList(Button button)
         {
             if (button.Tag is String && (String)button.Tag == "Unbound")
                 return "Unbound";
@@ -933,7 +979,7 @@ namespace ScpServer
             else if (button.Tag is string)
                 return button.Tag.ToString();
             else if (button.Name.StartsWith("s") && buttons[subbuttons.IndexOf(button)].Tag != null && button.Tag == null)
-                return "Fall Back to " + UpdateGyroList(buttons[subbuttons.IndexOf(button)]);
+                return "Fall Back to " + UpdateRegButtonList(buttons[subbuttons.IndexOf(button)]);
             else
                 return string.Empty;
         }
@@ -975,6 +1021,11 @@ namespace ScpServer
             if (lBControls.SelectedIndex == 30) Show_ControlsBn(bnGyroZP, e);
             if (lBControls.SelectedIndex == 31) Show_ControlsBn(bnGyroXP, e);
             if (lBControls.SelectedIndex == 32) Show_ControlsBn(bnGyroXN, e);
+
+            if (lBControls.SelectedIndex == 33) Show_ControlsBn(bnSwipeUp, e);
+            if (lBControls.SelectedIndex == 34) Show_ControlsBn(bnSwipeDown, e);
+            if (lBControls.SelectedIndex == 35) Show_ControlsBn(bnSwipeLeft, e);
+            if (lBControls.SelectedIndex == 36) Show_ControlsBn(bnSwipeRight, e);
         }
 
         private void Show_ShiftControlsList(object sender, EventArgs e)
@@ -1015,6 +1066,12 @@ namespace ScpServer
             if (lBShiftControls.SelectedIndex == 30) Show_ControlsBn(bnShiftGyroZP, e);
             if (lBShiftControls.SelectedIndex == 31) Show_ControlsBn(bnShiftGyroXP, e);
             if (lBShiftControls.SelectedIndex == 32) Show_ControlsBn(bnShiftGyroXN, e);
+
+
+            if (lBShiftControls.SelectedIndex == 33) Show_ControlsBn(bnShiftSwipeUp, e);
+            if (lBShiftControls.SelectedIndex == 34) Show_ControlsBn(bnShiftSwipeDown, e);
+            if (lBShiftControls.SelectedIndex == 35) Show_ControlsBn(bnShiftSwipeLeft, e);
+            if (lBShiftControls.SelectedIndex == 36) Show_ControlsBn(bnShiftSwipeRight, e);
         }
 
         private void List_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -1425,12 +1482,51 @@ namespace ScpServer
                 case "cBDinput": root.lbLastMessage.Text = Properties.Resources.DinputOnly; break;
                 case "lbFlashAt": root.lbLastMessage.Text = "Click to change flash color. Black = default color"; break;
                 case "cbStartTouchpadOff": root.lbLastMessage.Text = "Re-enable by pressing PS+Touchpad"; break;
+                case "cBTPforControls": root.lbLastMessage.Text = "This disables the Touchpad as a mouse"; break;
                 default: root.lbLastMessage.Text = "Hover over items to see description or more about"; break;
             }
             if (root.lbLastMessage.Text != "Hover over items to see description or more about")
                 root.lbLastMessage.ForeColor = Color.Black;
             else
                 root.lbLastMessage.ForeColor = SystemColors.GrayText;
+        }
+
+        private void cBTPforControls_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setUseTPforControls(device, cBTPforControls.Checked);
+            gBTouchpad.Enabled = !cBTPforControls.Checked;
+            if (cBTPforControls.Checked)
+            {
+                tabControls.Size = new Size(tabControls.Size.Width, (int)(282 * dpiy));
+                lBControls.Items.Add(Properties.Resources.SwipeUp + " : " + UpdateRegButtonList(bnSwipeUp));
+                lBControls.Items.Add(Properties.Resources.SwipeDown + " : " + UpdateRegButtonList(bnSwipeDown));
+                lBControls.Items.Add(Properties.Resources.SwipeLeft + " : " + UpdateRegButtonList(bnSwipeLeft));
+                lBControls.Items.Add(Properties.Resources.SwipeRight + " : " + UpdateRegButtonList(bnSwipeRight));
+                bnSwipeUp.Text = Properties.Resources.SwipeUp;
+                bnSwipeDown.Text = Properties.Resources.SwipeDown;
+                bnSwipeLeft.Text = Properties.Resources.SwipeLeft;
+                bnSwipeRight.Text = Properties.Resources.SwipeRight;
+                lBShiftControls.Items.Add(Properties.Resources.SwipeUp + " : " + UpdateRegButtonList(bnShiftSwipeUp));
+                lBShiftControls.Items.Add(Properties.Resources.SwipeDown + " : " + UpdateRegButtonList(bnShiftSwipeDown));
+                lBShiftControls.Items.Add(Properties.Resources.SwipeLeft + " : " + UpdateRegButtonList(bnShiftSwipeLeft));
+                lBShiftControls.Items.Add(Properties.Resources.SwipeRight + " : " + UpdateRegButtonList(bnShiftSwipeRight));
+                bnShiftSwipeUp.Text = Properties.Resources.SwipeUp;
+                bnShiftSwipeDown.Text = Properties.Resources.SwipeDown;
+                bnShiftSwipeLeft.Text = Properties.Resources.SwipeLeft;
+                bnShiftSwipeRight.Text = Properties.Resources.SwipeRight;
+            }
+            else
+            {
+                tabControls.Size = new Size(tabControls.Size.Width, (int)(242 * dpiy));
+                lBControls.Items.RemoveAt(36);
+                lBControls.Items.RemoveAt(35);
+                lBControls.Items.RemoveAt(34);
+                lBControls.Items.RemoveAt(33);
+                lBShiftControls.Items.RemoveAt(36);
+                lBShiftControls.Items.RemoveAt(35);
+                lBShiftControls.Items.RemoveAt(34);
+                lBShiftControls.Items.RemoveAt(33);
+            }
         }
     }
 }

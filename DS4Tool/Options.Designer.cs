@@ -77,6 +77,7 @@
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.cbStartTouchpadOff = new System.Windows.Forms.CheckBox();
             this.gBOther = new System.Windows.Forms.GroupBox();
+            this.cBTPforControls = new System.Windows.Forms.CheckBox();
             this.cBDinput = new System.Windows.Forms.CheckBox();
             this.pBProgram = new System.Windows.Forms.PictureBox();
             this.cBLaunchProgram = new System.Windows.Forms.CheckBox();
@@ -142,6 +143,12 @@
             this.tBL2 = new System.Windows.Forms.TrackBar();
             this.lbSATrack = new System.Windows.Forms.Label();
             this.tPShiftMod = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.fLPShiftTouchSwipe = new System.Windows.Forms.FlowLayoutPanel();
+            this.bnShiftSwipeUp = new System.Windows.Forms.Button();
+            this.bnShiftSwipeDown = new System.Windows.Forms.Button();
+            this.bnShiftSwipeLeft = new System.Windows.Forms.Button();
+            this.bnShiftSwipeRight = new System.Windows.Forms.Button();
             this.lbShiftGryo = new System.Windows.Forms.Label();
             this.fLPShiftTiltControls = new System.Windows.Forms.FlowLayoutPanel();
             this.bnShiftGyroZN = new System.Windows.Forms.Button();
@@ -190,6 +197,12 @@
             this.bnShiftLSDown = new System.Windows.Forms.Button();
             this.bnShiftR3 = new System.Windows.Forms.Button();
             this.tPControls = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.fLPTouchSwipe = new System.Windows.Forms.FlowLayoutPanel();
+            this.bnSwipeUp = new System.Windows.Forms.Button();
+            this.bnSwipeDown = new System.Windows.Forms.Button();
+            this.bnSwipeLeft = new System.Windows.Forms.Button();
+            this.bnSwipeRight = new System.Windows.Forms.Button();
             this.lbGryo = new System.Windows.Forms.Label();
             this.fLPTiltControls = new System.Windows.Forms.FlowLayoutPanel();
             this.bnGyroZN = new System.Windows.Forms.Button();
@@ -286,12 +299,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBR2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBL2)).BeginInit();
             this.tPShiftMod.SuspendLayout();
+            this.fLPShiftTouchSwipe.SuspendLayout();
             this.fLPShiftTiltControls.SuspendLayout();
             this.pnlShiftMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBShiftController)).BeginInit();
             this.pnlShiftSticks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBShiftSticks)).BeginInit();
             this.tPControls.SuspendLayout();
+            this.fLPTouchSwipe.SuspendLayout();
             this.fLPTiltControls.SuspendLayout();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).BeginInit();
@@ -748,7 +763,6 @@
             // 
             this.gBTouchpad.Controls.Add(this.cbStartTouchpadOff);
             this.gBTouchpad.Controls.Add(this.cBTouchpadJitterCompensation);
-            this.gBTouchpad.Controls.Add(this.cBDoubleTap);
             this.gBTouchpad.Controls.Add(this.cBlowerRCOn);
             this.gBTouchpad.Controls.Add(this.cBSlide);
             this.gBTouchpad.Controls.Add(this.nUDTouch);
@@ -756,6 +770,7 @@
             this.gBTouchpad.Controls.Add(this.nUDScroll);
             this.gBTouchpad.Controls.Add(this.nUDTap);
             this.gBTouchpad.Controls.Add(this.cBScroll);
+            this.gBTouchpad.Controls.Add(this.cBDoubleTap);
             resources.ApplyResources(this.gBTouchpad, "gBTouchpad");
             this.gBTouchpad.Name = "gBTouchpad";
             this.gBTouchpad.TabStop = false;
@@ -769,6 +784,7 @@
             // 
             // gBOther
             // 
+            this.gBOther.Controls.Add(this.cBTPforControls);
             this.gBOther.Controls.Add(this.cBDinput);
             this.gBOther.Controls.Add(this.pBProgram);
             this.gBOther.Controls.Add(this.cBLaunchProgram);
@@ -786,6 +802,13 @@
             resources.ApplyResources(this.gBOther, "gBOther");
             this.gBOther.Name = "gBOther";
             this.gBOther.TabStop = false;
+            // 
+            // cBTPforControls
+            // 
+            resources.ApplyResources(this.cBTPforControls, "cBTPforControls");
+            this.cBTPforControls.Name = "cBTPforControls";
+            this.cBTPforControls.UseVisualStyleBackColor = true;
+            this.cBTPforControls.CheckedChanged += new System.EventHandler(this.cBTPforControls_CheckedChanged);
             // 
             // cBDinput
             // 
@@ -1345,6 +1368,8 @@
             // 
             // tPShiftMod
             // 
+            this.tPShiftMod.Controls.Add(this.label2);
+            this.tPShiftMod.Controls.Add(this.fLPShiftTouchSwipe);
             this.tPShiftMod.Controls.Add(this.lbShiftGryo);
             this.tPShiftMod.Controls.Add(this.fLPShiftTiltControls);
             this.tPShiftMod.Controls.Add(this.cBShiftControl);
@@ -1356,6 +1381,48 @@
             resources.ApplyResources(this.tPShiftMod, "tPShiftMod");
             this.tPShiftMod.Name = "tPShiftMod";
             this.tPShiftMod.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // fLPShiftTouchSwipe
+            // 
+            this.fLPShiftTouchSwipe.Controls.Add(this.bnShiftSwipeUp);
+            this.fLPShiftTouchSwipe.Controls.Add(this.bnShiftSwipeDown);
+            this.fLPShiftTouchSwipe.Controls.Add(this.bnShiftSwipeLeft);
+            this.fLPShiftTouchSwipe.Controls.Add(this.bnShiftSwipeRight);
+            resources.ApplyResources(this.fLPShiftTouchSwipe, "fLPShiftTouchSwipe");
+            this.fLPShiftTouchSwipe.Name = "fLPShiftTouchSwipe";
+            // 
+            // bnShiftSwipeUp
+            // 
+            resources.ApplyResources(this.bnShiftSwipeUp, "bnShiftSwipeUp");
+            this.bnShiftSwipeUp.Name = "bnShiftSwipeUp";
+            this.bnShiftSwipeUp.UseVisualStyleBackColor = true;
+            this.bnShiftSwipeUp.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // bnShiftSwipeDown
+            // 
+            resources.ApplyResources(this.bnShiftSwipeDown, "bnShiftSwipeDown");
+            this.bnShiftSwipeDown.Name = "bnShiftSwipeDown";
+            this.bnShiftSwipeDown.UseVisualStyleBackColor = true;
+            this.bnShiftSwipeDown.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // bnShiftSwipeLeft
+            // 
+            resources.ApplyResources(this.bnShiftSwipeLeft, "bnShiftSwipeLeft");
+            this.bnShiftSwipeLeft.Name = "bnShiftSwipeLeft";
+            this.bnShiftSwipeLeft.UseVisualStyleBackColor = true;
+            this.bnShiftSwipeLeft.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // bnShiftSwipeRight
+            // 
+            resources.ApplyResources(this.bnShiftSwipeRight, "bnShiftSwipeRight");
+            this.bnShiftSwipeRight.Name = "bnShiftSwipeRight";
+            this.bnShiftSwipeRight.UseVisualStyleBackColor = true;
+            this.bnShiftSwipeRight.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // lbShiftGryo
             // 
@@ -1438,7 +1505,6 @@
             // lBShiftControls
             // 
             this.lBShiftControls.FormattingEnabled = true;
-            resources.ApplyResources(this.lBShiftControls, "lBShiftControls");
             this.lBShiftControls.Items.AddRange(new object[] {
             resources.GetString("lBShiftControls.Items"),
             resources.GetString("lBShiftControls.Items1"),
@@ -1473,6 +1539,7 @@
             resources.GetString("lBShiftControls.Items30"),
             resources.GetString("lBShiftControls.Items31"),
             resources.GetString("lBShiftControls.Items32")});
+            resources.ApplyResources(this.lBShiftControls, "lBShiftControls");
             this.lBShiftControls.Name = "lBShiftControls";
             this.lBShiftControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
             this.lBShiftControls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.List_MouseDoubleClick);
@@ -2002,6 +2069,8 @@
             // 
             // tPControls
             // 
+            this.tPControls.Controls.Add(this.label1);
+            this.tPControls.Controls.Add(this.fLPTouchSwipe);
             this.tPControls.Controls.Add(this.lbGryo);
             this.tPControls.Controls.Add(this.fLPTiltControls);
             this.tPControls.Controls.Add(this.pnlMain);
@@ -2011,6 +2080,48 @@
             resources.ApplyResources(this.tPControls, "tPControls");
             this.tPControls.Name = "tPControls";
             this.tPControls.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // fLPTouchSwipe
+            // 
+            this.fLPTouchSwipe.Controls.Add(this.bnSwipeUp);
+            this.fLPTouchSwipe.Controls.Add(this.bnSwipeDown);
+            this.fLPTouchSwipe.Controls.Add(this.bnSwipeLeft);
+            this.fLPTouchSwipe.Controls.Add(this.bnSwipeRight);
+            resources.ApplyResources(this.fLPTouchSwipe, "fLPTouchSwipe");
+            this.fLPTouchSwipe.Name = "fLPTouchSwipe";
+            // 
+            // bnSwipeUp
+            // 
+            resources.ApplyResources(this.bnSwipeUp, "bnSwipeUp");
+            this.bnSwipeUp.Name = "bnSwipeUp";
+            this.bnSwipeUp.UseVisualStyleBackColor = true;
+            this.bnSwipeUp.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // bnSwipeDown
+            // 
+            resources.ApplyResources(this.bnSwipeDown, "bnSwipeDown");
+            this.bnSwipeDown.Name = "bnSwipeDown";
+            this.bnSwipeDown.UseVisualStyleBackColor = true;
+            this.bnSwipeDown.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // bnSwipeLeft
+            // 
+            resources.ApplyResources(this.bnSwipeLeft, "bnSwipeLeft");
+            this.bnSwipeLeft.Name = "bnSwipeLeft";
+            this.bnSwipeLeft.UseVisualStyleBackColor = true;
+            this.bnSwipeLeft.Click += new System.EventHandler(this.Show_ControlsBn);
+            // 
+            // bnSwipeRight
+            // 
+            resources.ApplyResources(this.bnSwipeRight, "bnSwipeRight");
+            this.bnSwipeRight.Name = "bnSwipeRight";
+            this.bnSwipeRight.UseVisualStyleBackColor = true;
+            this.bnSwipeRight.Click += new System.EventHandler(this.Show_ControlsBn);
             // 
             // lbGryo
             // 
@@ -2409,7 +2520,6 @@
             // lBControls
             // 
             this.lBControls.FormattingEnabled = true;
-            resources.ApplyResources(this.lBControls, "lBControls");
             this.lBControls.Items.AddRange(new object[] {
             resources.GetString("lBControls.Items"),
             resources.GetString("lBControls.Items1"),
@@ -2444,6 +2554,7 @@
             resources.GetString("lBControls.Items30"),
             resources.GetString("lBControls.Items31"),
             resources.GetString("lBControls.Items32")});
+            resources.ApplyResources(this.lBControls, "lBControls");
             this.lBControls.Name = "lBControls";
             this.lBControls.DoubleClick += new System.EventHandler(this.Show_ControlsList);
             this.lBControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
@@ -2715,6 +2826,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBL2)).EndInit();
             this.tPShiftMod.ResumeLayout(false);
             this.tPShiftMod.PerformLayout();
+            this.fLPShiftTouchSwipe.ResumeLayout(false);
             this.fLPShiftTiltControls.ResumeLayout(false);
             this.pnlShiftMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pBShiftController)).EndInit();
@@ -2722,6 +2834,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBShiftSticks)).EndInit();
             this.tPControls.ResumeLayout(false);
             this.tPControls.PerformLayout();
+            this.fLPTouchSwipe.ResumeLayout(false);
             this.fLPTiltControls.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pBController)).EndInit();
@@ -2944,5 +3057,18 @@
         private System.Windows.Forms.Button bnLSDown;
         private System.Windows.Forms.Button bnR3;
         private System.Windows.Forms.TabControl tabControls;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel fLPTouchSwipe;
+        private System.Windows.Forms.Button bnSwipeUp;
+        private System.Windows.Forms.Button bnSwipeDown;
+        private System.Windows.Forms.Button bnSwipeLeft;
+        private System.Windows.Forms.Button bnSwipeRight;
+        private System.Windows.Forms.CheckBox cBTPforControls;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.FlowLayoutPanel fLPShiftTouchSwipe;
+        private System.Windows.Forms.Button bnShiftSwipeUp;
+        private System.Windows.Forms.Button bnShiftSwipeDown;
+        private System.Windows.Forms.Button bnShiftSwipeLeft;
+        private System.Windows.Forms.Button bnShiftSwipeRight;
     }
 }

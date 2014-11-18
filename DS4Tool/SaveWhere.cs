@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace ScpServer
+namespace DS4Windows
 {
     public partial class SaveWhere : Form
     {

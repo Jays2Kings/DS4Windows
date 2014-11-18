@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS4Library", "DS4Library\DS4Library.csproj", "{43E14DAD-E6E8-4B66-AC50-20F5CF9B9712}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidLibrary", "HidLibrary\Hi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS4Control", "DS4Control\DS4Control.csproj", "{B0AD793E-BAEB-435F-BB40-D647DE2BC2BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS4Tool", "DS4Tool\DS4Tool.csproj", "{B1081607-B630-4F57-9580-8A4897145890}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS4Windows", "DS4Tool\DS4Windows.csproj", "{B1081607-B630-4F57-9580-8A4897145890}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS4Service", "DS4Service\DS4Service.csproj", "{04CCD3D1-2ABC-4B5F-90D9-641D8DEC7127}"
 EndProject

@@ -15,13 +15,13 @@ using DS4Control;
 using System.Xml;
 using System.Runtime.InteropServices;
 
-namespace ScpServer
+namespace DS4Windows
 {
     public partial class WinProgs : Form
     {
         ToolTip tp = new ToolTip();
         ComboBox[] cbs;
-        DS4Form form;
+        public DS4Form form;
         //C:\ProgramData\Microsoft\Windows\Start Menu\Programs
         string steamgamesdir, origingamesdir;
         protected String m_Profile = Global.appdatapath + "\\Auto Profiles.xml";
@@ -85,6 +85,13 @@ namespace ScpServer
             catch { Saved = false; }
 
             return Saved;
+        }
+
+        public void ShowMainWindow()
+        {
+            form.Visible = true;
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
         }
 
         public void LoadP()

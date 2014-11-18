@@ -1,4 +1,4 @@
-﻿namespace ScpServer
+﻿namespace DS4Windows
 {
     partial class Options
     {
@@ -57,7 +57,7 @@
             this.nUDR2 = new System.Windows.Forms.NumericUpDown();
             this.cBFlushHIDQueue = new System.Windows.Forms.CheckBox();
             this.nUDRumbleBoost = new System.Windows.Forms.NumericUpDown();
-            this.btnRumbleTest = new System.Windows.Forms.Button();
+            this.btnRumbleHeavyTest = new System.Windows.Forms.Button();
             this.lbFull = new System.Windows.Forms.Label();
             this.lbLowRed = new System.Windows.Forms.Label();
             this.lbLowGreen = new System.Windows.Forms.Label();
@@ -108,6 +108,7 @@
             this.tBShiftBlueBar = new System.Windows.Forms.TrackBar();
             this.gBRumble = new System.Windows.Forms.GroupBox();
             this.lbPercentRumble = new System.Windows.Forms.Label();
+            this.btnRumbleLightTest = new System.Windows.Forms.Button();
             this.gBDeadzone = new System.Windows.Forms.GroupBox();
             this.lbSixaxisX = new System.Windows.Forms.Label();
             this.lbSixaxisZ = new System.Windows.Forms.Label();
@@ -249,7 +250,7 @@
             this.bnLSDown = new System.Windows.Forms.Button();
             this.bnR3 = new System.Windows.Forms.Button();
             this.tabControls = new System.Windows.Forms.TabControl();
-            this.advColorDialog = new ScpServer.AdvancedColorDialog();
+            this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -317,8 +318,8 @@
             // 
             // lowColorChooserButton
             // 
-            this.lowColorChooserButton.BackColor = System.Drawing.Color.White;
             resources.ApplyResources(this.lowColorChooserButton, "lowColorChooserButton");
+            this.lowColorChooserButton.BackColor = System.Drawing.Color.White;
             this.lowColorChooserButton.Name = "lowColorChooserButton";
             this.lowColorChooserButton.UseVisualStyleBackColor = false;
             this.lowColorChooserButton.Click += new System.EventHandler(this.lowColorChooserButton_Click);
@@ -336,8 +337,8 @@
             // 
             // pBRainbow
             // 
-            this.pBRainbow.Image = global::ScpServer.Properties.Resources.rainbow;
             resources.ApplyResources(this.pBRainbow, "pBRainbow");
+            this.pBRainbow.Image = global::DS4Windows.Properties.Resources.rainbow;
             this.pBRainbow.Name = "pBRainbow";
             this.pBRainbow.TabStop = false;
             this.pBRainbow.Click += new System.EventHandler(this.pbRainbow_Click);
@@ -535,8 +536,8 @@
             // 
             // nUDIdleDisconnect
             // 
-            this.nUDIdleDisconnect.DecimalPlaces = 1;
             resources.ApplyResources(this.nUDIdleDisconnect, "nUDIdleDisconnect");
+            this.nUDIdleDisconnect.DecimalPlaces = 1;
             this.nUDIdleDisconnect.Maximum = new decimal(new int[] {
             60,
             0,
@@ -547,13 +548,13 @@
             // 
             // nUDR2
             // 
+            resources.ApplyResources(this.nUDR2, "nUDR2");
             this.nUDR2.DecimalPlaces = 2;
             this.nUDR2.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDR2, "nUDR2");
             this.nUDR2.Maximum = new decimal(new int[] {
             1,
             0,
@@ -585,12 +586,12 @@
             0});
             this.nUDRumbleBoost.ValueChanged += new System.EventHandler(this.rumbleBoostBar_ValueChanged);
             // 
-            // btnRumbleTest
+            // btnRumbleHeavyTest
             // 
-            resources.ApplyResources(this.btnRumbleTest, "btnRumbleTest");
-            this.btnRumbleTest.Name = "btnRumbleTest";
-            this.btnRumbleTest.UseVisualStyleBackColor = true;
-            this.btnRumbleTest.Click += new System.EventHandler(this.btnRumbleTest_Click);
+            resources.ApplyResources(this.btnRumbleHeavyTest, "btnRumbleHeavyTest");
+            this.btnRumbleHeavyTest.Name = "btnRumbleHeavyTest";
+            this.btnRumbleHeavyTest.UseVisualStyleBackColor = true;
+            this.btnRumbleHeavyTest.Click += new System.EventHandler(this.btnRumbleHeavyTest_Click);
             // 
             // lbFull
             // 
@@ -659,6 +660,7 @@
             // 
             // pnlFull
             // 
+            resources.ApplyResources(this.pnlFull, "pnlFull");
             this.pnlFull.Controls.Add(this.lbFull);
             this.pnlFull.Controls.Add(this.lbRed);
             this.pnlFull.Controls.Add(this.lbGreen);
@@ -666,11 +668,11 @@
             this.pnlFull.Controls.Add(this.tBRedBar);
             this.pnlFull.Controls.Add(this.tBGreenBar);
             this.pnlFull.Controls.Add(this.tBBlueBar);
-            resources.ApplyResources(this.pnlFull, "pnlFull");
             this.pnlFull.Name = "pnlFull";
             // 
             // pnlLowBattery
             // 
+            resources.ApplyResources(this.pnlLowBattery, "pnlLowBattery");
             this.pnlLowBattery.Controls.Add(this.lowColorChooserButton);
             this.pnlLowBattery.Controls.Add(this.lbLowRed);
             this.pnlLowBattery.Controls.Add(this.lbLowGreen);
@@ -679,7 +681,6 @@
             this.pnlLowBattery.Controls.Add(this.tBLowGreenBar);
             this.pnlLowBattery.Controls.Add(this.tBLowBlueBar);
             this.pnlLowBattery.Controls.Add(this.lbEmpty);
-            resources.ApplyResources(this.pnlLowBattery, "pnlLowBattery");
             this.pnlLowBattery.Name = "pnlLowBattery";
             // 
             // lbRS
@@ -694,13 +695,13 @@
             // 
             // nUDRS
             // 
+            resources.ApplyResources(this.nUDRS, "nUDRS");
             this.nUDRS.DecimalPlaces = 2;
             this.nUDRS.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDRS, "nUDRS");
             this.nUDRS.Maximum = new decimal(new int[] {
             1,
             0,
@@ -727,13 +728,13 @@
             // 
             // nUDLS
             // 
+            resources.ApplyResources(this.nUDLS, "nUDLS");
             this.nUDLS.DecimalPlaces = 2;
             this.nUDLS.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDLS, "nUDLS");
             this.nUDLS.Maximum = new decimal(new int[] {
             1,
             0,
@@ -744,13 +745,13 @@
             // 
             // nUDL2
             // 
+            resources.ApplyResources(this.nUDL2, "nUDL2");
             this.nUDL2.DecimalPlaces = 2;
             this.nUDL2.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDL2, "nUDL2");
             this.nUDL2.Maximum = new decimal(new int[] {
             1,
             0,
@@ -761,6 +762,7 @@
             // 
             // gBTouchpad
             // 
+            resources.ApplyResources(this.gBTouchpad, "gBTouchpad");
             this.gBTouchpad.Controls.Add(this.cbStartTouchpadOff);
             this.gBTouchpad.Controls.Add(this.cBTouchpadJitterCompensation);
             this.gBTouchpad.Controls.Add(this.cBlowerRCOn);
@@ -771,7 +773,6 @@
             this.gBTouchpad.Controls.Add(this.nUDTap);
             this.gBTouchpad.Controls.Add(this.cBScroll);
             this.gBTouchpad.Controls.Add(this.cBDoubleTap);
-            resources.ApplyResources(this.gBTouchpad, "gBTouchpad");
             this.gBTouchpad.Name = "gBTouchpad";
             this.gBTouchpad.TabStop = false;
             // 
@@ -784,6 +785,7 @@
             // 
             // gBOther
             // 
+            resources.ApplyResources(this.gBOther, "gBOther");
             this.gBOther.Controls.Add(this.cBTPforControls);
             this.gBOther.Controls.Add(this.cBDinput);
             this.gBOther.Controls.Add(this.pBProgram);
@@ -799,7 +801,6 @@
             this.gBOther.Controls.Add(this.numUDMouseSens);
             this.gBOther.Controls.Add(this.cBFlushHIDQueue);
             this.gBOther.Controls.Add(this.lbIdleMinutes);
-            resources.ApplyResources(this.gBOther, "gBOther");
             this.gBOther.Name = "gBOther";
             this.gBOther.TabStop = false;
             // 
@@ -888,6 +889,8 @@
             // 
             // gBLightbar
             // 
+            resources.ApplyResources(this.gBLightbar, "gBLightbar");
+            this.gBLightbar.Controls.Add(this.pnlShift);
             this.gBLightbar.Controls.Add(this.btnChargingColor);
             this.gBLightbar.Controls.Add(this.rBColor);
             this.gBLightbar.Controls.Add(this.rBFade);
@@ -901,17 +904,15 @@
             this.gBLightbar.Controls.Add(this.lbspc);
             this.gBLightbar.Controls.Add(this.cBLightbyBattery);
             this.gBLightbar.Controls.Add(this.lbFlashAt);
-            this.gBLightbar.Controls.Add(this.pnlShift);
-            this.gBLightbar.Controls.Add(this.pnlFull);
             this.gBLightbar.Controls.Add(this.pnlLowBattery);
-            resources.ApplyResources(this.gBLightbar, "gBLightbar");
+            this.gBLightbar.Controls.Add(this.pnlFull);
             this.gBLightbar.Name = "gBLightbar";
             this.gBLightbar.TabStop = false;
             // 
             // btnChargingColor
             // 
-            this.btnChargingColor.BackColor = System.Drawing.Color.White;
             resources.ApplyResources(this.btnChargingColor, "btnChargingColor");
+            this.btnChargingColor.BackColor = System.Drawing.Color.White;
             this.btnChargingColor.Name = "btnChargingColor";
             this.btnChargingColor.UseVisualStyleBackColor = false;
             this.btnChargingColor.Click += new System.EventHandler(this.btnChargingColor_Click);
@@ -959,12 +960,12 @@
             // 
             // nUDflashLED
             // 
+            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
             this.nUDflashLED.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
             this.nUDflashLED.Name = "nUDflashLED";
             this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
             // 
@@ -976,6 +977,7 @@
             // 
             // pnlShift
             // 
+            resources.ApplyResources(this.pnlShift, "pnlShift");
             this.pnlShift.Controls.Add(this.cBShiftLight);
             this.pnlShift.Controls.Add(this.lbShift);
             this.pnlShift.Controls.Add(this.lbShiftRed);
@@ -984,7 +986,6 @@
             this.pnlShift.Controls.Add(this.tBShiftRedBar);
             this.pnlShift.Controls.Add(this.tBShiftGreenBar);
             this.pnlShift.Controls.Add(this.tBShiftBlueBar);
-            resources.ApplyResources(this.pnlShift, "pnlShift");
             this.pnlShift.Name = "pnlShift";
             // 
             // cBShiftLight
@@ -1058,10 +1059,11 @@
             // 
             // gBRumble
             // 
-            this.gBRumble.Controls.Add(this.lbPercentRumble);
-            this.gBRumble.Controls.Add(this.btnRumbleTest);
-            this.gBRumble.Controls.Add(this.nUDRumbleBoost);
             resources.ApplyResources(this.gBRumble, "gBRumble");
+            this.gBRumble.Controls.Add(this.lbPercentRumble);
+            this.gBRumble.Controls.Add(this.btnRumbleLightTest);
+            this.gBRumble.Controls.Add(this.btnRumbleHeavyTest);
+            this.gBRumble.Controls.Add(this.nUDRumbleBoost);
             this.gBRumble.Name = "gBRumble";
             this.gBRumble.TabStop = false;
             // 
@@ -1070,8 +1072,16 @@
             resources.ApplyResources(this.lbPercentRumble, "lbPercentRumble");
             this.lbPercentRumble.Name = "lbPercentRumble";
             // 
+            // btnRumbleLightTest
+            // 
+            resources.ApplyResources(this.btnRumbleLightTest, "btnRumbleLightTest");
+            this.btnRumbleLightTest.Name = "btnRumbleLightTest";
+            this.btnRumbleLightTest.UseVisualStyleBackColor = true;
+            this.btnRumbleLightTest.Click += new System.EventHandler(this.btnRumbleLightTest_Click);
+            // 
             // gBDeadzone
             // 
+            resources.ApplyResources(this.gBDeadzone, "gBDeadzone");
             this.gBDeadzone.Controls.Add(this.lbL2);
             this.gBDeadzone.Controls.Add(this.nUDL2);
             this.gBDeadzone.Controls.Add(this.lbSixaxisX);
@@ -1084,7 +1094,6 @@
             this.gBDeadzone.Controls.Add(this.nUDRS);
             this.gBDeadzone.Controls.Add(this.nUDR2);
             this.gBDeadzone.Controls.Add(this.nUDLS);
-            resources.ApplyResources(this.gBDeadzone, "gBDeadzone");
             this.gBDeadzone.Name = "gBDeadzone";
             this.gBDeadzone.TabStop = false;
             // 
@@ -1100,13 +1109,13 @@
             // 
             // nUDSZ
             // 
+            resources.ApplyResources(this.nUDSZ, "nUDSZ");
             this.nUDSZ.DecimalPlaces = 2;
             this.nUDSZ.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDSZ, "nUDSZ");
             this.nUDSZ.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1122,13 +1131,13 @@
             // 
             // nUDSX
             // 
+            resources.ApplyResources(this.nUDSX, "nUDSX");
             this.nUDSX.DecimalPlaces = 2;
             this.nUDSX.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDSX, "nUDSX");
             this.nUDSX.Maximum = new decimal(new int[] {
             1,
             0,
@@ -1145,9 +1154,11 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
             // 
             // tPController
             // 
+            resources.ApplyResources(this.tPController, "tPController");
             this.tPController.Controls.Add(this.pnlSixaxis);
             this.tPController.Controls.Add(this.lbL2Track);
             this.tPController.Controls.Add(this.pBDelayTracker);
@@ -1167,12 +1178,12 @@
             this.tPController.Controls.Add(this.tBR2);
             this.tPController.Controls.Add(this.tBL2);
             this.tPController.Controls.Add(this.lbSATrack);
-            resources.ApplyResources(this.tPController, "tPController");
             this.tPController.Name = "tPController";
             this.tPController.UseVisualStyleBackColor = true;
             // 
             // pnlSixaxis
             // 
+            resources.ApplyResources(this.pnlSixaxis, "pnlSixaxis");
             this.pnlSixaxis.Controls.Add(this.tBsixaxisAccelX);
             this.pnlSixaxis.Controls.Add(this.lb6Accel);
             this.pnlSixaxis.Controls.Add(this.tBsixaxisGyroX);
@@ -1181,7 +1192,6 @@
             this.pnlSixaxis.Controls.Add(this.tBsixaxisGyroZ);
             this.pnlSixaxis.Controls.Add(this.tBsixaxisAccelY);
             this.pnlSixaxis.Controls.Add(this.tBsixaxisAccelZ);
-            resources.ApplyResources(this.pnlSixaxis, "pnlSixaxis");
             this.pnlSixaxis.Name = "pnlSixaxis";
             this.pnlSixaxis.Click += new System.EventHandler(this.SixaxisPanel_Click);
             // 
@@ -1262,15 +1272,15 @@
             // 
             // btnSATrack
             // 
-            this.btnSATrack.BackColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.btnSATrack, "btnSATrack");
+            this.btnSATrack.BackColor = System.Drawing.Color.Black;
             this.btnSATrack.Name = "btnSATrack";
             this.btnSATrack.UseVisualStyleBackColor = false;
             // 
             // btnRSTrack
             // 
-            this.btnRSTrack.BackColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.btnRSTrack, "btnRSTrack");
+            this.btnRSTrack.BackColor = System.Drawing.Color.Black;
             this.btnRSTrack.Name = "btnRSTrack";
             this.btnRSTrack.UseVisualStyleBackColor = false;
             // 
@@ -1302,43 +1312,43 @@
             // 
             // btnLSTrack
             // 
-            this.btnLSTrack.BackColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.btnLSTrack, "btnLSTrack");
+            this.btnLSTrack.BackColor = System.Drawing.Color.Black;
             this.btnLSTrack.Name = "btnLSTrack";
             this.btnLSTrack.UseVisualStyleBackColor = false;
             // 
             // pBSADeadzone
             // 
-            this.pBSADeadzone.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.pBSADeadzone, "pBSADeadzone");
+            this.pBSADeadzone.BackColor = System.Drawing.Color.Transparent;
             this.pBSADeadzone.Name = "pBSADeadzone";
             this.pBSADeadzone.TabStop = false;
             this.pBSADeadzone.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawCircle);
             // 
             // pBRSDeadzone
             // 
-            this.pBRSDeadzone.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.pBRSDeadzone, "pBRSDeadzone");
+            this.pBRSDeadzone.BackColor = System.Drawing.Color.Transparent;
             this.pBRSDeadzone.Name = "pBRSDeadzone";
             this.pBRSDeadzone.TabStop = false;
             // 
             // lbRSTrack
             // 
-            this.lbRSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.lbRSTrack, "lbRSTrack");
+            this.lbRSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbRSTrack.Name = "lbRSTrack";
             // 
             // pBLSDeadzone
             // 
-            this.pBLSDeadzone.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.pBLSDeadzone, "pBLSDeadzone");
+            this.pBLSDeadzone.BackColor = System.Drawing.Color.Transparent;
             this.pBLSDeadzone.Name = "pBLSDeadzone";
             this.pBLSDeadzone.TabStop = false;
             // 
             // lbLSTrack
             // 
-            this.lbLSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.lbLSTrack, "lbLSTrack");
+            this.lbLSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbLSTrack.Name = "lbLSTrack";
             // 
             // tBR2
@@ -1361,13 +1371,14 @@
             // 
             // lbSATrack
             // 
-            this.lbSATrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.lbSATrack, "lbSATrack");
+            this.lbSATrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbSATrack.Name = "lbSATrack";
             this.lbSATrack.Click += new System.EventHandler(this.lbSATrack_Click);
             // 
             // tPShiftMod
             // 
+            resources.ApplyResources(this.tPShiftMod, "tPShiftMod");
             this.tPShiftMod.Controls.Add(this.label2);
             this.tPShiftMod.Controls.Add(this.fLPShiftTouchSwipe);
             this.tPShiftMod.Controls.Add(this.lbShiftGryo);
@@ -1378,7 +1389,6 @@
             this.tPShiftMod.Controls.Add(this.lbtoUse);
             this.tPShiftMod.Controls.Add(this.pnlShiftMain);
             this.tPShiftMod.Controls.Add(this.pnlShiftSticks);
-            resources.ApplyResources(this.tPShiftMod, "tPShiftMod");
             this.tPShiftMod.Name = "tPShiftMod";
             this.tPShiftMod.UseVisualStyleBackColor = true;
             // 
@@ -1389,11 +1399,11 @@
             // 
             // fLPShiftTouchSwipe
             // 
+            resources.ApplyResources(this.fLPShiftTouchSwipe, "fLPShiftTouchSwipe");
             this.fLPShiftTouchSwipe.Controls.Add(this.bnShiftSwipeUp);
             this.fLPShiftTouchSwipe.Controls.Add(this.bnShiftSwipeDown);
             this.fLPShiftTouchSwipe.Controls.Add(this.bnShiftSwipeLeft);
             this.fLPShiftTouchSwipe.Controls.Add(this.bnShiftSwipeRight);
-            resources.ApplyResources(this.fLPShiftTouchSwipe, "fLPShiftTouchSwipe");
             this.fLPShiftTouchSwipe.Name = "fLPShiftTouchSwipe";
             // 
             // bnShiftSwipeUp
@@ -1431,11 +1441,11 @@
             // 
             // fLPShiftTiltControls
             // 
+            resources.ApplyResources(this.fLPShiftTiltControls, "fLPShiftTiltControls");
             this.fLPShiftTiltControls.Controls.Add(this.bnShiftGyroZN);
             this.fLPShiftTiltControls.Controls.Add(this.bnShiftGyroZP);
             this.fLPShiftTiltControls.Controls.Add(this.bnShiftGyroXP);
             this.fLPShiftTiltControls.Controls.Add(this.bnShiftGyroXN);
-            resources.ApplyResources(this.fLPShiftTiltControls, "fLPShiftTiltControls");
             this.fLPShiftTiltControls.Name = "fLPShiftTiltControls";
             // 
             // bnShiftGyroZN
@@ -1468,6 +1478,7 @@
             // 
             // cBShiftControl
             // 
+            resources.ApplyResources(this.cBShiftControl, "cBShiftControl");
             this.cBShiftControl.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBShiftControl.FormattingEnabled = true;
             this.cBShiftControl.Items.AddRange(new object[] {
@@ -1498,12 +1509,12 @@
             resources.GetString("cBShiftControl.Items24"),
             resources.GetString("cBShiftControl.Items25"),
             resources.GetString("cBShiftControl.Items26")});
-            resources.ApplyResources(this.cBShiftControl, "cBShiftControl");
             this.cBShiftControl.Name = "cBShiftControl";
             this.cBShiftControl.SelectedIndexChanged += new System.EventHandler(this.cBShiftControl_SelectedIndexChanged);
             // 
             // lBShiftControls
             // 
+            resources.ApplyResources(this.lBShiftControls, "lBShiftControls");
             this.lBShiftControls.FormattingEnabled = true;
             this.lBShiftControls.Items.AddRange(new object[] {
             resources.GetString("lBShiftControls.Items"),
@@ -1539,7 +1550,6 @@
             resources.GetString("lBShiftControls.Items30"),
             resources.GetString("lBShiftControls.Items31"),
             resources.GetString("lBShiftControls.Items32")});
-            resources.ApplyResources(this.lBShiftControls, "lBShiftControls");
             this.lBShiftControls.Name = "lBShiftControls";
             this.lBShiftControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
             this.lBShiftControls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.List_MouseDoubleClick);
@@ -1556,6 +1566,7 @@
             // 
             // pnlShiftMain
             // 
+            resources.ApplyResources(this.pnlShiftMain, "pnlShiftMain");
             this.pnlShiftMain.Controls.Add(this.pBShiftController);
             this.pnlShiftMain.Controls.Add(this.bnShiftTouchUpper);
             this.pnlShiftMain.Controls.Add(this.bnShiftTouchLeft);
@@ -1579,20 +1590,19 @@
             this.pnlShiftMain.Controls.Add(this.bnShiftOptions);
             this.pnlShiftMain.Controls.Add(this.bnShiftPS);
             this.pnlShiftMain.Controls.Add(this.bnShiftShare);
-            resources.ApplyResources(this.pnlShiftMain, "pnlShiftMain");
             this.pnlShiftMain.Name = "pnlShiftMain";
             // 
             // pBShiftController
             // 
             resources.ApplyResources(this.pBShiftController, "pBShiftController");
-            this.pBShiftController.Image = global::ScpServer.Properties.Resources.DS4_Controller;
+            this.pBShiftController.Image = global::DS4Windows.Properties.Resources.DS4_Controller;
             this.pBShiftController.Name = "pBShiftController";
             this.pBShiftController.TabStop = false;
             // 
             // bnShiftTouchUpper
             // 
-            this.bnShiftTouchUpper.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftTouchUpper, "bnShiftTouchUpper");
+            this.bnShiftTouchUpper.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftTouchUpper.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftTouchUpper.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftTouchUpper.FlatAppearance.BorderSize = 0;
@@ -1605,8 +1615,8 @@
             // 
             // bnShiftTouchLeft
             // 
-            this.bnShiftTouchLeft.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftTouchLeft, "bnShiftTouchLeft");
+            this.bnShiftTouchLeft.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftTouchLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftTouchLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftTouchLeft.FlatAppearance.BorderSize = 0;
@@ -1619,8 +1629,8 @@
             // 
             // bnShiftTouchRight
             // 
-            this.bnShiftTouchRight.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftTouchRight, "bnShiftTouchRight");
+            this.bnShiftTouchRight.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftTouchRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftTouchRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftTouchRight.FlatAppearance.BorderSize = 0;
@@ -1633,8 +1643,8 @@
             // 
             // bnShiftTouchMulti
             // 
-            this.bnShiftTouchMulti.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftTouchMulti, "bnShiftTouchMulti");
+            this.bnShiftTouchMulti.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftTouchMulti.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftTouchMulti.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftTouchMulti.FlatAppearance.BorderSize = 0;
@@ -1647,8 +1657,8 @@
             // 
             // bnShiftR1
             // 
-            this.bnShiftR1.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftR1, "bnShiftR1");
+            this.bnShiftR1.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftR1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftR1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftR1.FlatAppearance.BorderSize = 0;
@@ -1661,8 +1671,8 @@
             // 
             // bnShiftCross
             // 
-            this.bnShiftCross.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftCross, "bnShiftCross");
+            this.bnShiftCross.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftCross.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftCross.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftCross.FlatAppearance.BorderSize = 0;
@@ -1675,8 +1685,8 @@
             // 
             // bnShiftCircle
             // 
-            this.bnShiftCircle.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftCircle, "bnShiftCircle");
+            this.bnShiftCircle.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftCircle.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftCircle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftCircle.FlatAppearance.BorderSize = 0;
@@ -1689,8 +1699,8 @@
             // 
             // btnShiftRightStick
             // 
-            this.btnShiftRightStick.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.btnShiftRightStick, "btnShiftRightStick");
+            this.btnShiftRightStick.BackColor = System.Drawing.Color.Transparent;
             this.btnShiftRightStick.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnShiftRightStick.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnShiftRightStick.FlatAppearance.BorderSize = 0;
@@ -1702,8 +1712,8 @@
             // 
             // bnShiftSquare
             // 
-            this.bnShiftSquare.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftSquare, "bnShiftSquare");
+            this.bnShiftSquare.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftSquare.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftSquare.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftSquare.FlatAppearance.BorderSize = 0;
@@ -1716,8 +1726,8 @@
             // 
             // btnShiftLightbar
             // 
-            this.btnShiftLightbar.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.btnShiftLightbar, "btnShiftLightbar");
+            this.btnShiftLightbar.BackColor = System.Drawing.Color.Transparent;
             this.btnShiftLightbar.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnShiftLightbar.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnShiftLightbar.FlatAppearance.BorderSize = 0;
@@ -1730,8 +1740,8 @@
             // 
             // bnShiftTriangle
             // 
-            this.bnShiftTriangle.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftTriangle, "bnShiftTriangle");
+            this.bnShiftTriangle.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftTriangle.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftTriangle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftTriangle.FlatAppearance.BorderSize = 0;
@@ -1744,8 +1754,8 @@
             // 
             // bnShiftUp
             // 
-            this.bnShiftUp.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftUp, "bnShiftUp");
+            this.bnShiftUp.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftUp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bnShiftUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
@@ -1759,8 +1769,8 @@
             // 
             // btnShiftLeftStick
             // 
-            this.btnShiftLeftStick.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.btnShiftLeftStick, "btnShiftLeftStick");
+            this.btnShiftLeftStick.BackColor = System.Drawing.Color.Transparent;
             this.btnShiftLeftStick.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnShiftLeftStick.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnShiftLeftStick.FlatAppearance.BorderSize = 0;
@@ -1772,8 +1782,8 @@
             // 
             // bnShiftDown
             // 
-            this.bnShiftDown.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftDown, "bnShiftDown");
+            this.bnShiftDown.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftDown.FlatAppearance.BorderSize = 0;
@@ -1786,8 +1796,8 @@
             // 
             // bnShiftL2
             // 
-            this.bnShiftL2.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftL2, "bnShiftL2");
+            this.bnShiftL2.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftL2.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftL2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftL2.FlatAppearance.BorderSize = 0;
@@ -1800,8 +1810,8 @@
             // 
             // bnShiftRight
             // 
-            this.bnShiftRight.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftRight, "bnShiftRight");
+            this.bnShiftRight.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftRight.FlatAppearance.BorderSize = 0;
@@ -1814,8 +1824,8 @@
             // 
             // bnShiftR2
             // 
-            this.bnShiftR2.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftR2, "bnShiftR2");
+            this.bnShiftR2.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftR2.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftR2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftR2.FlatAppearance.BorderSize = 0;
@@ -1828,8 +1838,8 @@
             // 
             // bnShiftLeft
             // 
-            this.bnShiftLeft.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftLeft, "bnShiftLeft");
+            this.bnShiftLeft.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftLeft.FlatAppearance.BorderSize = 0;
@@ -1842,8 +1852,8 @@
             // 
             // bnShiftL1
             // 
-            this.bnShiftL1.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftL1, "bnShiftL1");
+            this.bnShiftL1.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftL1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftL1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftL1.FlatAppearance.BorderSize = 0;
@@ -1856,8 +1866,8 @@
             // 
             // bnShiftOptions
             // 
-            this.bnShiftOptions.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftOptions, "bnShiftOptions");
+            this.bnShiftOptions.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftOptions.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftOptions.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftOptions.FlatAppearance.BorderSize = 0;
@@ -1870,8 +1880,8 @@
             // 
             // bnShiftPS
             // 
-            this.bnShiftPS.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftPS, "bnShiftPS");
+            this.bnShiftPS.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftPS.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftPS.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftPS.FlatAppearance.BorderSize = 0;
@@ -1884,8 +1894,8 @@
             // 
             // bnShiftShare
             // 
-            this.bnShiftShare.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftShare, "bnShiftShare");
+            this.bnShiftShare.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftShare.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftShare.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftShare.FlatAppearance.BorderSize = 0;
@@ -1898,6 +1908,7 @@
             // 
             // pnlShiftSticks
             // 
+            resources.ApplyResources(this.pnlShiftSticks, "pnlShiftSticks");
             this.pnlShiftSticks.Controls.Add(this.btnShiftFullView);
             this.pnlShiftSticks.Controls.Add(this.pBShiftSticks);
             this.pnlShiftSticks.Controls.Add(this.bnShiftL3);
@@ -1910,7 +1921,6 @@
             this.pnlShiftSticks.Controls.Add(this.bnShiftRSLeft);
             this.pnlShiftSticks.Controls.Add(this.bnShiftLSDown);
             this.pnlShiftSticks.Controls.Add(this.bnShiftR3);
-            resources.ApplyResources(this.pnlShiftSticks, "pnlShiftSticks");
             this.pnlShiftSticks.Name = "pnlShiftSticks";
             // 
             // btnShiftFullView
@@ -1923,14 +1933,14 @@
             // pBShiftSticks
             // 
             resources.ApplyResources(this.pBShiftSticks, "pBShiftSticks");
-            this.pBShiftSticks.Image = global::ScpServer.Properties.Resources.sticks;
+            this.pBShiftSticks.Image = global::DS4Windows.Properties.Resources.sticks;
             this.pBShiftSticks.Name = "pBShiftSticks";
             this.pBShiftSticks.TabStop = false;
             // 
             // bnShiftL3
             // 
-            this.bnShiftL3.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftL3, "bnShiftL3");
+            this.bnShiftL3.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftL3.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftL3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftL3.FlatAppearance.BorderSize = 0;
@@ -1943,8 +1953,8 @@
             // 
             // bnShiftRSDown
             // 
-            this.bnShiftRSDown.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftRSDown, "bnShiftRSDown");
+            this.bnShiftRSDown.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftRSDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftRSDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftRSDown.FlatAppearance.BorderSize = 0;
@@ -1957,8 +1967,8 @@
             // 
             // bnShiftLSUp
             // 
-            this.bnShiftLSUp.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftLSUp, "bnShiftLSUp");
+            this.bnShiftLSUp.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftLSUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftLSUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftLSUp.FlatAppearance.BorderSize = 0;
@@ -1971,8 +1981,8 @@
             // 
             // bnShiftRSUp
             // 
-            this.bnShiftRSUp.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftRSUp, "bnShiftRSUp");
+            this.bnShiftRSUp.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftRSUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftRSUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftRSUp.FlatAppearance.BorderSize = 0;
@@ -1985,8 +1995,8 @@
             // 
             // bnShiftLSLeft
             // 
-            this.bnShiftLSLeft.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftLSLeft, "bnShiftLSLeft");
+            this.bnShiftLSLeft.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftLSLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftLSLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftLSLeft.FlatAppearance.BorderSize = 0;
@@ -1999,8 +2009,8 @@
             // 
             // bnShiftRSRight
             // 
-            this.bnShiftRSRight.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftRSRight, "bnShiftRSRight");
+            this.bnShiftRSRight.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftRSRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftRSRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftRSRight.FlatAppearance.BorderSize = 0;
@@ -2013,8 +2023,8 @@
             // 
             // bnShiftLSRight
             // 
-            this.bnShiftLSRight.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftLSRight, "bnShiftLSRight");
+            this.bnShiftLSRight.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftLSRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftLSRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftLSRight.FlatAppearance.BorderSize = 0;
@@ -2027,8 +2037,8 @@
             // 
             // bnShiftRSLeft
             // 
-            this.bnShiftRSLeft.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftRSLeft, "bnShiftRSLeft");
+            this.bnShiftRSLeft.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftRSLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftRSLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftRSLeft.FlatAppearance.BorderSize = 0;
@@ -2041,8 +2051,8 @@
             // 
             // bnShiftLSDown
             // 
-            this.bnShiftLSDown.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftLSDown, "bnShiftLSDown");
+            this.bnShiftLSDown.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftLSDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftLSDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftLSDown.FlatAppearance.BorderSize = 0;
@@ -2055,8 +2065,8 @@
             // 
             // bnShiftR3
             // 
-            this.bnShiftR3.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShiftR3, "bnShiftR3");
+            this.bnShiftR3.BackColor = System.Drawing.Color.Transparent;
             this.bnShiftR3.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShiftR3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShiftR3.FlatAppearance.BorderSize = 0;
@@ -2069,6 +2079,7 @@
             // 
             // tPControls
             // 
+            resources.ApplyResources(this.tPControls, "tPControls");
             this.tPControls.Controls.Add(this.label1);
             this.tPControls.Controls.Add(this.fLPTouchSwipe);
             this.tPControls.Controls.Add(this.lbGryo);
@@ -2077,7 +2088,6 @@
             this.tPControls.Controls.Add(this.lBControls);
             this.tPControls.Controls.Add(this.lbControlTip);
             this.tPControls.Controls.Add(this.pnlSticks);
-            resources.ApplyResources(this.tPControls, "tPControls");
             this.tPControls.Name = "tPControls";
             this.tPControls.UseVisualStyleBackColor = true;
             // 
@@ -2088,11 +2098,11 @@
             // 
             // fLPTouchSwipe
             // 
+            resources.ApplyResources(this.fLPTouchSwipe, "fLPTouchSwipe");
             this.fLPTouchSwipe.Controls.Add(this.bnSwipeUp);
             this.fLPTouchSwipe.Controls.Add(this.bnSwipeDown);
             this.fLPTouchSwipe.Controls.Add(this.bnSwipeLeft);
             this.fLPTouchSwipe.Controls.Add(this.bnSwipeRight);
-            resources.ApplyResources(this.fLPTouchSwipe, "fLPTouchSwipe");
             this.fLPTouchSwipe.Name = "fLPTouchSwipe";
             // 
             // bnSwipeUp
@@ -2130,11 +2140,11 @@
             // 
             // fLPTiltControls
             // 
+            resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
             this.fLPTiltControls.Controls.Add(this.bnGyroZN);
             this.fLPTiltControls.Controls.Add(this.bnGyroZP);
             this.fLPTiltControls.Controls.Add(this.bnGyroXP);
             this.fLPTiltControls.Controls.Add(this.bnGyroXN);
-            resources.ApplyResources(this.fLPTiltControls, "fLPTiltControls");
             this.fLPTiltControls.Name = "fLPTiltControls";
             // 
             // bnGyroZN
@@ -2167,6 +2177,7 @@
             // 
             // pnlMain
             // 
+            resources.ApplyResources(this.pnlMain, "pnlMain");
             this.pnlMain.Controls.Add(this.pBController);
             this.pnlMain.Controls.Add(this.bnTouchUpper);
             this.pnlMain.Controls.Add(this.bnTouchLeft);
@@ -2190,20 +2201,19 @@
             this.pnlMain.Controls.Add(this.bnShare);
             this.pnlMain.Controls.Add(this.bnL2);
             this.pnlMain.Controls.Add(this.bnR2);
-            resources.ApplyResources(this.pnlMain, "pnlMain");
             this.pnlMain.Name = "pnlMain";
             // 
             // pBController
             // 
             resources.ApplyResources(this.pBController, "pBController");
-            this.pBController.Image = global::ScpServer.Properties.Resources.DS4_Controller;
+            this.pBController.Image = global::DS4Windows.Properties.Resources.DS4_Controller;
             this.pBController.Name = "pBController";
             this.pBController.TabStop = false;
             // 
             // bnTouchUpper
             // 
-            this.bnTouchUpper.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnTouchUpper, "bnTouchUpper");
+            this.bnTouchUpper.BackColor = System.Drawing.Color.Transparent;
             this.bnTouchUpper.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchUpper.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnTouchUpper.FlatAppearance.BorderSize = 0;
@@ -2218,8 +2228,8 @@
             // 
             // bnTouchLeft
             // 
-            this.bnTouchLeft.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnTouchLeft, "bnTouchLeft");
+            this.bnTouchLeft.BackColor = System.Drawing.Color.Transparent;
             this.bnTouchLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnTouchLeft.FlatAppearance.BorderSize = 0;
@@ -2234,8 +2244,8 @@
             // 
             // bnTouchRight
             // 
-            this.bnTouchRight.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnTouchRight, "bnTouchRight");
+            this.bnTouchRight.BackColor = System.Drawing.Color.Transparent;
             this.bnTouchRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnTouchRight.FlatAppearance.BorderSize = 0;
@@ -2250,8 +2260,8 @@
             // 
             // bnTouchMulti
             // 
-            this.bnTouchMulti.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnTouchMulti, "bnTouchMulti");
+            this.bnTouchMulti.BackColor = System.Drawing.Color.Transparent;
             this.bnTouchMulti.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTouchMulti.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnTouchMulti.FlatAppearance.BorderSize = 0;
@@ -2266,8 +2276,8 @@
             // 
             // bnR1
             // 
-            this.bnR1.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnR1, "bnR1");
+            this.bnR1.BackColor = System.Drawing.Color.Transparent;
             this.bnR1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnR1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnR1.FlatAppearance.BorderSize = 0;
@@ -2280,8 +2290,8 @@
             // 
             // bnCross
             // 
-            this.bnCross.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnCross, "bnCross");
+            this.bnCross.BackColor = System.Drawing.Color.Transparent;
             this.bnCross.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnCross.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnCross.FlatAppearance.BorderSize = 0;
@@ -2294,8 +2304,8 @@
             // 
             // bnCircle
             // 
-            this.bnCircle.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnCircle, "bnCircle");
+            this.bnCircle.BackColor = System.Drawing.Color.Transparent;
             this.bnCircle.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnCircle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnCircle.FlatAppearance.BorderSize = 0;
@@ -2308,8 +2318,8 @@
             // 
             // btnRightStick
             // 
-            this.btnRightStick.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.btnRightStick, "btnRightStick");
+            this.btnRightStick.BackColor = System.Drawing.Color.Transparent;
             this.btnRightStick.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnRightStick.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnRightStick.FlatAppearance.BorderSize = 0;
@@ -2322,8 +2332,8 @@
             // 
             // bnSquare
             // 
-            this.bnSquare.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnSquare, "bnSquare");
+            this.bnSquare.BackColor = System.Drawing.Color.Transparent;
             this.bnSquare.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnSquare.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnSquare.FlatAppearance.BorderSize = 0;
@@ -2336,8 +2346,8 @@
             // 
             // btnLightbar
             // 
-            this.btnLightbar.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.btnLightbar, "btnLightbar");
+            this.btnLightbar.BackColor = System.Drawing.Color.Transparent;
             this.btnLightbar.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnLightbar.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnLightbar.FlatAppearance.BorderSize = 0;
@@ -2350,8 +2360,8 @@
             // 
             // bnTriangle
             // 
-            this.bnTriangle.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnTriangle, "bnTriangle");
+            this.bnTriangle.BackColor = System.Drawing.Color.Transparent;
             this.bnTriangle.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnTriangle.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnTriangle.FlatAppearance.BorderSize = 0;
@@ -2364,8 +2374,8 @@
             // 
             // bnUp
             // 
-            this.bnUp.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnUp, "bnUp");
+            this.bnUp.BackColor = System.Drawing.Color.Transparent;
             this.bnUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnUp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bnUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
@@ -2379,8 +2389,8 @@
             // 
             // btnLeftStick
             // 
-            this.btnLeftStick.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.btnLeftStick, "btnLeftStick");
+            this.btnLeftStick.BackColor = System.Drawing.Color.Transparent;
             this.btnLeftStick.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnLeftStick.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnLeftStick.FlatAppearance.BorderSize = 0;
@@ -2393,8 +2403,8 @@
             // 
             // bnDown
             // 
-            this.bnDown.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnDown, "bnDown");
+            this.bnDown.BackColor = System.Drawing.Color.Transparent;
             this.bnDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnDown.FlatAppearance.BorderSize = 0;
@@ -2407,8 +2417,8 @@
             // 
             // bnRight
             // 
-            this.bnRight.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnRight, "bnRight");
+            this.bnRight.BackColor = System.Drawing.Color.Transparent;
             this.bnRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnRight.FlatAppearance.BorderSize = 0;
@@ -2421,8 +2431,8 @@
             // 
             // bnLeft
             // 
-            this.bnLeft.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnLeft, "bnLeft");
+            this.bnLeft.BackColor = System.Drawing.Color.Transparent;
             this.bnLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnLeft.FlatAppearance.BorderSize = 0;
@@ -2435,8 +2445,8 @@
             // 
             // bnL1
             // 
-            this.bnL1.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnL1, "bnL1");
+            this.bnL1.BackColor = System.Drawing.Color.Transparent;
             this.bnL1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnL1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnL1.FlatAppearance.BorderSize = 0;
@@ -2449,8 +2459,8 @@
             // 
             // bnOptions
             // 
-            this.bnOptions.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnOptions, "bnOptions");
+            this.bnOptions.BackColor = System.Drawing.Color.Transparent;
             this.bnOptions.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnOptions.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnOptions.FlatAppearance.BorderSize = 0;
@@ -2463,8 +2473,8 @@
             // 
             // bnPS
             // 
-            this.bnPS.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnPS, "bnPS");
+            this.bnPS.BackColor = System.Drawing.Color.Transparent;
             this.bnPS.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnPS.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnPS.FlatAppearance.BorderSize = 0;
@@ -2477,8 +2487,8 @@
             // 
             // bnShare
             // 
-            this.bnShare.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnShare, "bnShare");
+            this.bnShare.BackColor = System.Drawing.Color.Transparent;
             this.bnShare.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnShare.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnShare.FlatAppearance.BorderSize = 0;
@@ -2491,8 +2501,8 @@
             // 
             // bnL2
             // 
-            this.bnL2.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnL2, "bnL2");
+            this.bnL2.BackColor = System.Drawing.Color.Transparent;
             this.bnL2.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnL2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnL2.FlatAppearance.BorderSize = 0;
@@ -2505,8 +2515,8 @@
             // 
             // bnR2
             // 
-            this.bnR2.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnR2, "bnR2");
+            this.bnR2.BackColor = System.Drawing.Color.Transparent;
             this.bnR2.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnR2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnR2.FlatAppearance.BorderSize = 0;
@@ -2519,6 +2529,7 @@
             // 
             // lBControls
             // 
+            resources.ApplyResources(this.lBControls, "lBControls");
             this.lBControls.FormattingEnabled = true;
             this.lBControls.Items.AddRange(new object[] {
             resources.GetString("lBControls.Items"),
@@ -2554,7 +2565,6 @@
             resources.GetString("lBControls.Items30"),
             resources.GetString("lBControls.Items31"),
             resources.GetString("lBControls.Items32")});
-            resources.ApplyResources(this.lBControls, "lBControls");
             this.lBControls.Name = "lBControls";
             this.lBControls.DoubleClick += new System.EventHandler(this.Show_ControlsList);
             this.lBControls.KeyDown += new System.Windows.Forms.KeyEventHandler(this.List_KeyDown);
@@ -2566,6 +2576,7 @@
             // 
             // pnlSticks
             // 
+            resources.ApplyResources(this.pnlSticks, "pnlSticks");
             this.pnlSticks.Controls.Add(this.btnFullView);
             this.pnlSticks.Controls.Add(this.pBSticks);
             this.pnlSticks.Controls.Add(this.bnL3);
@@ -2578,7 +2589,6 @@
             this.pnlSticks.Controls.Add(this.bnRSLeft);
             this.pnlSticks.Controls.Add(this.bnLSDown);
             this.pnlSticks.Controls.Add(this.bnR3);
-            resources.ApplyResources(this.pnlSticks, "pnlSticks");
             this.pnlSticks.Name = "pnlSticks";
             // 
             // btnFullView
@@ -2591,14 +2601,14 @@
             // pBSticks
             // 
             resources.ApplyResources(this.pBSticks, "pBSticks");
-            this.pBSticks.Image = global::ScpServer.Properties.Resources.sticks;
+            this.pBSticks.Image = global::DS4Windows.Properties.Resources.sticks;
             this.pBSticks.Name = "pBSticks";
             this.pBSticks.TabStop = false;
             // 
             // bnL3
             // 
-            this.bnL3.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnL3, "bnL3");
+            this.bnL3.BackColor = System.Drawing.Color.Transparent;
             this.bnL3.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnL3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnL3.FlatAppearance.BorderSize = 0;
@@ -2611,8 +2621,8 @@
             // 
             // bnRSDown
             // 
-            this.bnRSDown.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnRSDown, "bnRSDown");
+            this.bnRSDown.BackColor = System.Drawing.Color.Transparent;
             this.bnRSDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnRSDown.FlatAppearance.BorderSize = 0;
@@ -2625,8 +2635,8 @@
             // 
             // bnLSUp
             // 
-            this.bnLSUp.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnLSUp, "bnLSUp");
+            this.bnLSUp.BackColor = System.Drawing.Color.Transparent;
             this.bnLSUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnLSUp.FlatAppearance.BorderSize = 0;
@@ -2639,8 +2649,8 @@
             // 
             // bnRSUp
             // 
-            this.bnRSUp.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnRSUp, "bnRSUp");
+            this.bnRSUp.BackColor = System.Drawing.Color.Transparent;
             this.bnRSUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSUp.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnRSUp.FlatAppearance.BorderSize = 0;
@@ -2653,8 +2663,8 @@
             // 
             // bnLSLeft
             // 
-            this.bnLSLeft.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnLSLeft, "bnLSLeft");
+            this.bnLSLeft.BackColor = System.Drawing.Color.Transparent;
             this.bnLSLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnLSLeft.FlatAppearance.BorderSize = 0;
@@ -2667,8 +2677,8 @@
             // 
             // bnRSRight
             // 
-            this.bnRSRight.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnRSRight, "bnRSRight");
+            this.bnRSRight.BackColor = System.Drawing.Color.Transparent;
             this.bnRSRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnRSRight.FlatAppearance.BorderSize = 0;
@@ -2681,8 +2691,8 @@
             // 
             // bnLSRight
             // 
-            this.bnLSRight.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnLSRight, "bnLSRight");
+            this.bnLSRight.BackColor = System.Drawing.Color.Transparent;
             this.bnLSRight.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSRight.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnLSRight.FlatAppearance.BorderSize = 0;
@@ -2695,8 +2705,8 @@
             // 
             // bnRSLeft
             // 
-            this.bnRSLeft.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnRSLeft, "bnRSLeft");
+            this.bnRSLeft.BackColor = System.Drawing.Color.Transparent;
             this.bnRSLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnRSLeft.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnRSLeft.FlatAppearance.BorderSize = 0;
@@ -2709,8 +2719,8 @@
             // 
             // bnLSDown
             // 
-            this.bnLSDown.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnLSDown, "bnLSDown");
+            this.bnLSDown.BackColor = System.Drawing.Color.Transparent;
             this.bnLSDown.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnLSDown.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnLSDown.FlatAppearance.BorderSize = 0;
@@ -2723,8 +2733,8 @@
             // 
             // bnR3
             // 
-            this.bnR3.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.bnR3, "bnR3");
+            this.bnR3.BackColor = System.Drawing.Color.Transparent;
             this.bnR3.Cursor = System.Windows.Forms.Cursors.Default;
             this.bnR3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.bnR3.FlatAppearance.BorderSize = 0;
@@ -2737,10 +2747,10 @@
             // 
             // tabControls
             // 
+            resources.ApplyResources(this.tabControls, "tabControls");
             this.tabControls.Controls.Add(this.tPControls);
             this.tabControls.Controls.Add(this.tPShiftMod);
             this.tabControls.Controls.Add(this.tPController);
-            resources.ApplyResources(this.tabControls, "tabControls");
             this.tabControls.Name = "tabControls";
             this.tabControls.SelectedIndex = 0;
             this.tabControls.SelectedIndexChanged += new System.EventHandler(this.tabControls_SelectedIndexChanged);
@@ -2878,7 +2888,7 @@
         private System.Windows.Forms.NumericUpDown nUDR2;
         private System.Windows.Forms.CheckBox cBFlushHIDQueue;
         private System.Windows.Forms.NumericUpDown nUDRumbleBoost;
-        private System.Windows.Forms.Button btnRumbleTest;
+        private System.Windows.Forms.Button btnRumbleHeavyTest;
         private System.Windows.Forms.Label lbFull;
         private System.Windows.Forms.Label lbLowRed;
         private System.Windows.Forms.Label lbLowGreen;
@@ -3070,5 +3080,6 @@
         private System.Windows.Forms.Button bnShiftSwipeDown;
         private System.Windows.Forms.Button bnShiftSwipeLeft;
         private System.Windows.Forms.Button bnShiftSwipeRight;
+        private System.Windows.Forms.Button btnRumbleLightTest;
     }
 }

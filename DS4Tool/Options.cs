@@ -6,7 +6,7 @@ using DS4Control;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-namespace ScpServer
+namespace DS4Windows
 {
     public partial class Options : Form
     {
@@ -743,22 +743,41 @@ namespace ScpServer
         private void rumbleBoostBar_ValueChanged(object sender, EventArgs e)
         {
             Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
-            if (btnRumbleTest.Text == Properties.Resources.StopText)
-                scpDevice.setRumble(255, 255, device);
+            byte h = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
+            byte l = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
+            bool hB = btnRumbleHeavyTest.Text == Properties.Resources.TestLText;
+            bool lB = btnRumbleLightTest.Text == Properties.Resources.TestLText;
+            scpDevice.setRumble((byte)(hB ? h : 0), (byte)(lB ? l : 0), device);
         }
 
-        private void btnRumbleTest_Click(object sender, EventArgs e)
+        private void btnRumbleHeavyTest_Click(object sender, EventArgs e)
         {
-            if (((Button)sender).Text == Properties.Resources.TestText)
+            DS4Device d = scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1];
+            if (((Button)sender).Text == Properties.Resources.TestHText)
             {
-                scpDevice.setRumble((byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), (int)nUDSixaxis.Value - 1);
-                ((Button)sender).Text = Properties.Resources.StopText;
+                scpDevice.setRumble((byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), d.RightLightFastRumble, (int)nUDSixaxis.Value - 1);
+                ((Button)sender).Text = Properties.Resources.StopHText;
             }
             else
             {
-                scpDevice.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
-                ((Button)sender).Text = Properties.Resources.TestText;
+                scpDevice.setRumble(0, d.RightLightFastRumble, (int)nUDSixaxis.Value - 1);
+                ((Button)sender).Text = Properties.Resources.TestHText;
             }                
+        }
+
+        private void btnRumbleLightTest_Click(object sender, EventArgs e)
+        {
+            DS4Device d = scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1];
+            if (((Button)sender).Text == Properties.Resources.TestLText)
+            {
+                scpDevice.setRumble(d.LeftHeavySlowRumble, (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), (int)nUDSixaxis.Value - 1);
+                ((Button)sender).Text = Properties.Resources.StopLText;
+            }
+            else
+            {
+                scpDevice.setRumble(d.LeftHeavySlowRumble, 0, (int)nUDSixaxis.Value - 1);
+                ((Button)sender).Text = Properties.Resources.TestLText;
+            }
         }
 
         private void numUDTouch_ValueChanged(object sender, EventArgs e)
@@ -780,7 +799,7 @@ namespace ScpServer
             Global.setLedAsBatteryIndicator(device, cBLightbyBattery.Checked);
             pnlLowBattery.Visible = cBLightbyBattery.Checked;
             pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, (int)(dpix * 42)) : new Point(pnlFull.Location.X, (int)(dpiy * 48)));
-            lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.Full + ":" : Properties.Resources.Color + ":");
+            lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.FullLightText + ":" : Properties.Resources.Color + ":");
         }
 
         private void lowerRCOffCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -823,7 +842,7 @@ namespace ScpServer
                 root.btnStartStop_Clicked(false);
                 root.btnStartStop_Clicked(false);
             }
-            if (btnRumbleTest.Text == Properties.Resources.StopText)
+            if (btnRumbleHeavyTest.Text == Properties.Resources.StopText)
                 scpDevice.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
             inputtimer.Stop();
             sixaxisTimer.Stop();
@@ -915,7 +934,7 @@ namespace ScpServer
 
             foreach (Button b in subbuttons)
                 if (b.Tag == null)
-                    b.Text = "Fall Back to " + buttons[subbuttons.IndexOf(b)].Text;
+                    b.Text = "Fall Back to " + ((Button)Controls.Find(b.Name.Remove(2,5), true)[0]).Text;
             lBShiftControls.Items[0] = "Cross : " + bnShiftCross.Text;
             lBShiftControls.Items[1] = "Circle : " + bnShiftCircle.Text;
             lBShiftControls.Items[2] = "Square : " + bnShiftSquare.Text;
@@ -978,8 +997,8 @@ namespace ScpServer
                 return ((Keys)(UInt16)button.Tag).ToString();
             else if (button.Tag is string)
                 return button.Tag.ToString();
-            else if (button.Name.StartsWith("s") && buttons[subbuttons.IndexOf(button)].Tag != null && button.Tag == null)
-                return "Fall Back to " + UpdateRegButtonList(buttons[subbuttons.IndexOf(button)]);
+            else if (button.Name.StartsWith("s") && ((Button)Controls.Find(button.Name.Remove(2, 5), true)[0]).Tag != null && button.Tag == null)
+                return "Fall Back to " + UpdateRegButtonList(((Button)Controls.Find(button.Name.Remove(2, 5), true)[0]));
             else
                 return string.Empty;
         }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DS4Control;
-namespace ScpServer
+namespace DS4Windows
 {
     public partial class KBM360 : Form
     {
@@ -49,7 +49,7 @@ namespace ScpServer
             foreach (System.Windows.Forms.Control control in this.Controls)
                 if (control is Button)
                     ((Button)control).Click += anybtn_Click;
-            if (button.Name.Contains("Touch"))
+            if (button.Name.Contains("Touch") || button.Name.Contains("Swipe"))
             {
                 btnMOUSEDOWN.Visible = false;
                 btnMOUSELEFT.Visible = false;

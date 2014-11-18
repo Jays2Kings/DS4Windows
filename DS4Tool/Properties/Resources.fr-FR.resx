@@ -399,4 +399,7 @@
   <data name="Installing" xml:space="preserve">
     <value>l'installation de ...</value>
   </data>
+  <data name="FullLightText" xml:space="preserve">
+    <value>Plein:</value>
+  </data>
 </root>

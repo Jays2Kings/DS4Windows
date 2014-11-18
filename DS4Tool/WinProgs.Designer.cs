@@ -1,4 +1,4 @@
-﻿namespace ScpServer
+﻿namespace DS4Windows
 {
     partial class WinProgs
     {

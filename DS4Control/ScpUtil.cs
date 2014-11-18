@@ -883,20 +883,20 @@ namespace DS4Control
             try
             {
                 XmlNode Node;
-                XmlNode xmlControls = m_Xdoc.SelectSingleNode("/ScpControl/Control");
-                XmlNode xmlShiftControls = m_Xdoc.SelectSingleNode("/ScpControl/ShiftControl");
+                XmlNode xmlControls = m_Xdoc.SelectSingleNode("/DS4Windows/Control");
+                XmlNode xmlShiftControls = m_Xdoc.SelectSingleNode("/DS4Windows/ShiftControl");
                 m_Xdoc.RemoveAll();
 
                 Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
                 m_Xdoc.AppendChild(Node);
 
-                Node = m_Xdoc.CreateComment(String.Format(" ScpControl Configuration Data. {0} ", DateTime.Now));
+                Node = m_Xdoc.CreateComment(String.Format(" DS4Windows Configuration Data. {0} ", DateTime.Now));
                 m_Xdoc.AppendChild(Node);
 
                 Node = m_Xdoc.CreateWhitespace("\r\n");
                 m_Xdoc.AppendChild(Node);
 
-                Node = m_Xdoc.CreateNode(XmlNodeType.Element, "ScpControl", null);
+                Node = m_Xdoc.CreateNode(XmlNodeType.Element, "DS4Windows", null);
 
                 XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); xmlFlushHIDQueue.InnerText = flushHIDQueue[device].ToString(); Node.AppendChild(xmlFlushHIDQueue);
                 XmlNode xmlIdleDisconnectTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "idleDisconnectTimeout", null); xmlIdleDisconnectTimeout.InnerText = idleDisconnectTimeout[device].ToString(); Node.AppendChild(xmlIdleDisconnectTimeout);
@@ -1112,6 +1112,48 @@ namespace DS4Control
                 case "bnGyroZP": return DS4Controls.GyroZPos;
                 case "bnGyroZN": return DS4Controls.GyroZNeg;
 
+
+
+                #region OldShiftname
+                case "sbnShare": return DS4Controls.Share;
+                case "sbnL3": return DS4Controls.L3;
+                case "sbnR3": return DS4Controls.R3;
+                case "sbnOptions": return DS4Controls.Options;
+                case "sbnUp": return DS4Controls.DpadUp;
+                case "sbnRight": return DS4Controls.DpadRight;
+                case "sbnDown": return DS4Controls.DpadDown;
+                case "sbnLeft": return DS4Controls.DpadLeft;
+
+                case "sbnL1": return DS4Controls.L1;
+                case "sbnR1": return DS4Controls.R1;
+                case "sbnTriangle": return DS4Controls.Triangle;
+                case "sbnCircle": return DS4Controls.Circle;
+                case "sbnCross": return DS4Controls.Cross;
+                case "sbnSquare": return DS4Controls.Square;
+
+                case "sbnPS": return DS4Controls.PS;
+                case "sbnLSLeft": return DS4Controls.LXNeg;
+                case "sbnLSUp": return DS4Controls.LYNeg;
+                case "sbnRSLeft": return DS4Controls.RXNeg;
+                case "sbnRSUp": return DS4Controls.RYNeg;
+
+                case "sbnLSRight": return DS4Controls.LXPos;
+                case "sbnLSDown": return DS4Controls.LYPos;
+                case "sbnRSRight": return DS4Controls.RXPos;
+                case "sbnRSDown": return DS4Controls.RYPos;
+                case "sbnL2": return DS4Controls.L2;
+                case "sbnR2": return DS4Controls.R2;
+
+                case "sbnTouchLeft": return DS4Controls.TouchLeft;
+                case "sbnTouchMulti": return DS4Controls.TouchMulti;
+                case "sbnTouchUpper": return DS4Controls.TouchUpper;
+                case "sbnTouchRight": return DS4Controls.TouchRight;
+                case "sbnGsyroXP": return DS4Controls.GyroXPos;
+                case "sbnGyroXN": return DS4Controls.GyroXNeg;
+                case "sbnGyroZP": return DS4Controls.GyroZPos;
+                case "sbnGyroZN": return DS4Controls.GyroZNeg;
+#endregion
+
                 case "bnSwipeUp": return DS4Controls.SwipeUp;
                 case "bnSwipeDown": return DS4Controls.SwipeDown;
                 case "bnSwipeLeft": return DS4Controls.SwipeLeft;
@@ -1150,7 +1192,7 @@ namespace DS4Control
                 case "bnShiftTouchMulti": return DS4Controls.TouchMulti;
                 case "bnShiftTouchUpper": return DS4Controls.TouchUpper;
                 case "bnShiftTouchRight": return DS4Controls.TouchRight;
-                case "bnShiftGsyroXP": return DS4Controls.GyroXPos;
+                case "bnShiftGyroXP": return DS4Controls.GyroXPos;
                 case "bnShiftGyroXN": return DS4Controls.GyroXNeg;
                 case "bnShiftGyroZP": return DS4Controls.GyroZPos;
                 case "bnShiftGyroZN": return DS4Controls.GyroZNeg;
@@ -1224,6 +1266,7 @@ namespace DS4Control
             Dictionary<DS4Controls, UInt16> shiftCustomMapKeys = new Dictionary<DS4Controls, UInt16>();
             Dictionary<DS4Controls, X360Controls> shiftCustomMapButtons = new Dictionary<DS4Controls, X360Controls>();
             Dictionary<DS4Controls, String> shiftCustomMapMacros = new Dictionary<DS4Controls, String>();
+            string rootname = "DS4Windows";
             Boolean missingSetting = false;
             string profilepath;
             if (propath == "")
@@ -1235,16 +1278,20 @@ namespace DS4Control
                 XmlNode Item;
 
                 m_Xdoc.Load(profilepath);
+                if (m_Xdoc.SelectSingleNode(rootname) == null)
+                {
+                    rootname = "ScpControl";
+                    missingSetting = true;
+                }
+                try { Item = m_Xdoc.SelectSingleNode("/"+ rootname + "/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
+                catch { missingSetting = true; }//rootname = }
 
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
-                catch { missingSetting = true; }
-
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout[device]); }
                 catch { missingSetting = true; }
                 //New method for saving color
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/ScpControl/Color");
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Color");
                     string[] colors;
                     if (!string.IsNullOrEmpty(Item.InnerText))
                         colors = Item.InnerText.Split(',');
@@ -1254,35 +1301,35 @@ namespace DS4Control
                         m_Leds[device][i] = byte.Parse(colors[i]);
                 }
                 catch { missingSetting = true; }
-                if (m_Xdoc.SelectSingleNode("/ScpControl/Color") == null)
+                if (m_Xdoc.SelectSingleNode("/" + rootname + "/Color") == null)
                 {
                     //Old method of color saving
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Red"); Byte.TryParse(Item.InnerText, out m_Leds[device][0]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Red"); Byte.TryParse(Item.InnerText, out m_Leds[device][0]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Green"); Byte.TryParse(Item.InnerText, out m_Leds[device][1]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Green"); Byte.TryParse(Item.InnerText, out m_Leds[device][1]); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[device][2]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[device][2]); }
                     catch { missingSetting = true; }
                 }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble[device]); }
                 catch { missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery[device]); }
                 catch { missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery[device]); }
                 catch { missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/flashBatteryAt"); Int32.TryParse(Item.InnerText, out flashAt[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/flashBatteryAt"); Int32.TryParse(Item.InnerText, out flashAt[device]); }
                 catch { missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity[device]); }
                 catch { missingSetting = true; }
                 //New method for saving color
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/ScpControl/LowColor");
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowColor");
                     string[] colors;
                     if (!string.IsNullOrEmpty(Item.InnerText))
                         colors = Item.InnerText.Split(',');
@@ -1292,20 +1339,20 @@ namespace DS4Control
                         m_LowLeds[device][i] = byte.Parse(colors[i]);
                 }
                 catch { missingSetting = true; }
-                if (m_Xdoc.SelectSingleNode("/ScpControl/LowColor") == null)
+                if (m_Xdoc.SelectSingleNode("/" + rootname + "/LowColor") == null)
                 {
                     //Old method of color saving
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][0]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][0]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][1]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][1]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][2]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][2]); }
                     catch { missingSetting = true; }
                 }
                 //New method for saving color
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingColor");
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingColor");
                     string[] colors;
                     if (!string.IsNullOrEmpty(Item.InnerText))
                         colors = Item.InnerText.Split(',');
@@ -1315,18 +1362,18 @@ namespace DS4Control
                         m_ChargingLeds[device][i] = byte.Parse(colors[i]);
                 }
                 catch { missingSetting = true; }
-                if (m_Xdoc.SelectSingleNode("/ScpControl/ChargingColor") == null)
+                if (m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingColor") == null)
                 {
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingRed"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][0]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingRed"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][0]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingGreen"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][1]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingGreen"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][1]); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingBlue"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][2]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingBlue"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][2]); }
                     catch { missingSetting = true; }
                 }
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/ScpControl/ShiftColor");
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftColor");
                     string[] colors;
                     if (!string.IsNullOrEmpty(Item.InnerText))
                         colors = Item.InnerText.Split(',');
@@ -1336,11 +1383,11 @@ namespace DS4Control
                         m_ShiftLeds[device][i] = byte.Parse(colors[i]);
                 }
                 catch { m_ShiftLeds[device] = m_Leds[device]; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ShiftColorOn"); Boolean.TryParse(Item.InnerText, out shiftColorOn[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftColorOn"); Boolean.TryParse(Item.InnerText, out shiftColorOn[device]); }
                 catch { shiftColorOn[device] = false; missingSetting = true; }
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/ScpControl/FlashColor");
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/FlashColor");
                     string[] colors;
                     if (!string.IsNullOrEmpty(Item.InnerText))
                         colors = Item.InnerText.Split(',');
@@ -1350,48 +1397,48 @@ namespace DS4Control
                         m_FlashLeds[device][i] = byte.Parse(colors[i]);
                 }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/lowerRCOn"); Boolean.TryParse(Item.InnerText, out lowerRCOn[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/tapSensitivity"); Byte.TryParse(Item.InnerText, out tapSensitivity[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/doubleTap"); Boolean.TryParse(Item.InnerText, out doubleTap[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/doubleTap"); Boolean.TryParse(Item.InnerText, out doubleTap[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LeftTriggerMiddle"); Byte.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LeftTriggerMiddle"); Byte.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RightTriggerMiddle"); Byte.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RightTriggerMiddle"); Byte.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/Rainbow"); Double.TryParse(Item.InnerText, out rainbow[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); Double.TryParse(Item.InnerText, out rainbow[device]); }
                 catch { rainbow[device] = 0; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/LSDeadZone"); Byte.TryParse(Item.InnerText, out LSDeadzone[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone"); Byte.TryParse(Item.InnerText, out LSDeadzone[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/RSDeadZone"); Byte.TryParse(Item.InnerText, out RSDeadzone[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone"); Byte.TryParse(Item.InnerText, out RSDeadzone[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/SXDeadZone"); Double.TryParse(Item.InnerText, out SXDeadzone[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); Double.TryParse(Item.InnerText, out SXDeadzone[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/SZDeadZone"); Double.TryParse(Item.InnerText, out SZDeadzone[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZDeadZone"); Double.TryParse(Item.InnerText, out SZDeadzone[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ChargingType"); Int32.TryParse(Item.InnerText, out chargingType[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingType"); Int32.TryParse(Item.InnerText, out chargingType[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/MouseAcceleration"); Boolean.TryParse(Item.InnerText, out mouseAccel[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/MouseAcceleration"); Boolean.TryParse(Item.InnerText, out mouseAccel[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/ScpControl/ShiftModifier"); Int32.TryParse(Item.InnerText, out shiftModifier[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftModifier"); Int32.TryParse(Item.InnerText, out shiftModifier[device]); }
                 catch { shiftModifier[device] = 0; missingSetting = true; }
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/ScpControl/LaunchProgram");
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LaunchProgram");
                     launchProgram[device] = Item.InnerText;
                     if (launchprogram == true && launchProgram[device] != string.Empty) System.Diagnostics.Process.Start(launchProgram[device]);
                 }
                 catch { launchProgram[device] = string.Empty; missingSetting = true; }
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/ScpControl/DinputOnly");
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/DinputOnly");
                     Boolean.TryParse(Item.InnerText, out dinputOnly[device]);
                     if (device < 4)
                     {
@@ -1402,32 +1449,32 @@ namespace DS4Control
                 catch { missingSetting = true; }
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/ScpControl/StartTouchpadOff"); 
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/StartTouchpadOff"); 
                     Boolean.TryParse(Item.InnerText, out startTouchpadOff[device]);
                     if (startTouchpadOff[device] == true) control.StartTPOff(device);
                 }
                 catch { startTouchpadOff[device] = false; missingSetting = true; }
                 try
-                { Item = m_Xdoc.SelectSingleNode("/ScpControl/UseTPforControls"); Boolean.TryParse(Item.InnerText, out useTPforControls[device]); }
+                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls"); Boolean.TryParse(Item.InnerText, out useTPforControls[device]); }
                 catch { useTPforControls[device] = false; missingSetting = true; }
                 DS4KeyType keyType;
                 UInt16 wvk;
                 if (buttons == null)
                 {
-                    XmlNode ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/Control/Button");
+                    XmlNode ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Button");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
                             customMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
-                    ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/Control/Macro");
+                    ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Macro");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
                             customMapMacros.Add(getDS4ControlsByName(item.Name), item.InnerText);
-                    ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/Control/Key");
+                    ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Key");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
                             if (UInt16.TryParse(item.InnerText, out wvk))
                                 customMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
-                    ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/Control/KeyType");
+                    ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/KeyType");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
                             if (item != null)
@@ -1448,20 +1495,20 @@ namespace DS4Control
                             }
                     if (shiftModifier[device] > 0)
                     {
-                        ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/ShiftControl/Button");
+                        ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Button");
                         if (ParentItem != null)
                             foreach (XmlNode item in ParentItem.ChildNodes)
                                 shiftCustomMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
-                        ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/ShiftControl/Macro");
+                        ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Macro");
                         if (ParentItem != null)
                             foreach (XmlNode item in ParentItem.ChildNodes)
                                 shiftCustomMapMacros.Add(getDS4ControlsByName(item.Name), item.InnerText);
-                        ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/ShiftControl/Key");
+                        ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Key");
                         if (ParentItem != null)
                             foreach (XmlNode item in ParentItem.ChildNodes)
                                 if (UInt16.TryParse(item.InnerText, out wvk))
                                     shiftCustomMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
-                        ParentItem = m_Xdoc.SelectSingleNode("/ScpControl/ShiftControl/KeyType");
+                        ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/KeyType");
                         if (ParentItem != null)
                             foreach (XmlNode item in ParentItem.ChildNodes)
                                 if (item != null)
@@ -1514,11 +1561,16 @@ namespace DS4Control
             XmlNode Item;
             DS4KeyType keyType;
             UInt16 wvk;
+            string rootname = "DS4Windows";
             foreach (var button in buttons)
                 try
                 {
+                    if (m_Xdoc.SelectSingleNode(rootname) == null)
+                    {
+                        rootname = "ScpControl";
+                    }
                     //bool foundBinding = false;
-                    Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/" + control + "/KeyType/{0}", button.Name));
+                    Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/KeyType/{0}", button.Name));
                     if (Item != null)
                     {
                         //foundBinding = true;
@@ -1549,7 +1601,7 @@ namespace DS4Control
                             customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
                     }
 
-                    Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/" + control + "/Macro/{0}", button.Name));
+                    Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Macro/{0}", button.Name));
                     if (Item != null)
                     {
                         string[] splitter = Item.InnerText.Split('/');
@@ -1569,9 +1621,9 @@ namespace DS4Control
                         button.Tag = keys;
                         customMapMacros.Add(getDS4ControlsByName(button.Name), Item.InnerText);
                     }
-                    else if (m_Xdoc.SelectSingleNode(String.Format("/ScpControl/" + control + "/Key/{0}", button.Name)) != null)
+                    else if (m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Key/{0}", button.Name)) != null)
                     {
-                        Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/" + control + "/Key/{0}", button.Name));
+                        Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Key/{0}", button.Name));
                         if (UInt16.TryParse(Item.InnerText, out wvk))
                         {
                             //foundBinding = true;
@@ -1582,7 +1634,7 @@ namespace DS4Control
                     }
                     else
                     {
-                        Item = m_Xdoc.SelectSingleNode(String.Format("/ScpControl/" + control + "/Button/{0}", button.Name));
+                        Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Button/{0}", button.Name));
                         if (Item != null)
                         {
                             //foundBinding = true;

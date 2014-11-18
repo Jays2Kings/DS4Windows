@@ -1,4 +1,4 @@
-﻿namespace ScpServer
+﻿namespace DS4Windows
 {
     partial class KBM360
     {
@@ -1173,7 +1173,7 @@
             // pictureBox2
             // 
             resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Image = global::ScpServer.Properties.Resources.mouse;
+            this.pictureBox2.Image = global::DS4Windows.Properties.Resources.mouse;
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
             // 
@@ -1196,7 +1196,7 @@
             // button13
             // 
             resources.ApplyResources(this.button13, "button13");
-            this.button13.Image = global::ScpServer.Properties.Resources.LT;
+            this.button13.Image = global::DS4Windows.Properties.Resources.LT;
             this.button13.Name = "button13";
             this.button13.TabStop = false;
             this.button13.Tag = "X360Left Trigger";
@@ -1205,7 +1205,7 @@
             // button2
             // 
             resources.ApplyResources(this.button2, "button2");
-            this.button2.Image = global::ScpServer.Properties.Resources.RT;
+            this.button2.Image = global::DS4Windows.Properties.Resources.RT;
             this.button2.Name = "button2";
             this.button2.TabStop = false;
             this.button2.Tag = "X360Right Trigger";
@@ -1214,7 +1214,7 @@
             // btnRSL
             // 
             resources.ApplyResources(this.btnRSL, "btnRSL");
-            this.btnRSL.Image = global::ScpServer.Properties.Resources.RSL;
+            this.btnRSL.Image = global::DS4Windows.Properties.Resources.RSL;
             this.btnRSL.Name = "btnRSL";
             this.btnRSL.TabStop = false;
             this.btnRSL.Tag = "X360Right X-Axis-";
@@ -1223,7 +1223,7 @@
             // btnLSL
             // 
             resources.ApplyResources(this.btnLSL, "btnLSL");
-            this.btnLSL.Image = global::ScpServer.Properties.Resources.LSL;
+            this.btnLSL.Image = global::DS4Windows.Properties.Resources.LSL;
             this.btnLSL.Name = "btnLSL";
             this.btnLSL.TabStop = false;
             this.btnLSL.Tag = "X360Left X-Axis-";
@@ -1232,7 +1232,7 @@
             // btnRSD
             // 
             resources.ApplyResources(this.btnRSD, "btnRSD");
-            this.btnRSD.Image = global::ScpServer.Properties.Resources.RSD;
+            this.btnRSD.Image = global::DS4Windows.Properties.Resources.RSD;
             this.btnRSD.Name = "btnRSD";
             this.btnRSD.TabStop = false;
             this.btnRSD.Tag = "X360Right Y-Axis+";
@@ -1241,7 +1241,7 @@
             // btnLSD
             // 
             resources.ApplyResources(this.btnLSD, "btnLSD");
-            this.btnLSD.Image = global::ScpServer.Properties.Resources.LSD;
+            this.btnLSD.Image = global::DS4Windows.Properties.Resources.LSD;
             this.btnLSD.Name = "btnLSD";
             this.btnLSD.TabStop = false;
             this.btnLSD.Tag = "X360Left Y-Axis+";
@@ -1250,7 +1250,7 @@
             // button19
             // 
             resources.ApplyResources(this.button19, "button19");
-            this.button19.Image = global::ScpServer.Properties.Resources.LEFT;
+            this.button19.Image = global::DS4Windows.Properties.Resources.LEFT;
             this.button19.Name = "button19";
             this.button19.TabStop = false;
             this.button19.Tag = "X360Left Button";
@@ -1259,7 +1259,7 @@
             // button20
             // 
             resources.ApplyResources(this.button20, "button20");
-            this.button20.Image = global::ScpServer.Properties.Resources.DOWN;
+            this.button20.Image = global::DS4Windows.Properties.Resources.DOWN;
             this.button20.Name = "button20";
             this.button20.TabStop = false;
             this.button20.Tag = "X360Down Button";
@@ -1268,7 +1268,7 @@
             // button18
             // 
             resources.ApplyResources(this.button18, "button18");
-            this.button18.Image = global::ScpServer.Properties.Resources.UP;
+            this.button18.Image = global::DS4Windows.Properties.Resources.UP;
             this.button18.Name = "button18";
             this.button18.TabStop = false;
             this.button18.Tag = "X360Up Button";
@@ -1277,7 +1277,7 @@
             // button17
             // 
             resources.ApplyResources(this.button17, "button17");
-            this.button17.Image = global::ScpServer.Properties.Resources.RIGHT;
+            this.button17.Image = global::DS4Windows.Properties.Resources.RIGHT;
             this.button17.Name = "button17";
             this.button17.TabStop = false;
             this.button17.Tag = "X360Right Button";
@@ -1286,7 +1286,7 @@
             // btnRSR
             // 
             resources.ApplyResources(this.btnRSR, "btnRSR");
-            this.btnRSR.Image = global::ScpServer.Properties.Resources.RSR;
+            this.btnRSR.Image = global::DS4Windows.Properties.Resources.RSR;
             this.btnRSR.Name = "btnRSR";
             this.btnRSR.TabStop = false;
             this.btnRSR.Tag = "X360Right X-Axis+";
@@ -1295,7 +1295,7 @@
             // btnRS
             // 
             resources.ApplyResources(this.btnRS, "btnRS");
-            this.btnRS.Image = global::ScpServer.Properties.Resources.RS;
+            this.btnRS.Image = global::DS4Windows.Properties.Resources.RS;
             this.btnRS.Name = "btnRS";
             this.btnRS.TabStop = false;
             this.btnRS.Tag = "X360Right Stick";
@@ -1304,7 +1304,7 @@
             // btnLSR
             // 
             resources.ApplyResources(this.btnLSR, "btnLSR");
-            this.btnLSR.Image = global::ScpServer.Properties.Resources.LSR;
+            this.btnLSR.Image = global::DS4Windows.Properties.Resources.LSR;
             this.btnLSR.Name = "btnLSR";
             this.btnLSR.TabStop = false;
             this.btnLSR.Tag = "X360Left X-Axis+";
@@ -1313,7 +1313,7 @@
             // btnRSU
             // 
             resources.ApplyResources(this.btnRSU, "btnRSU");
-            this.btnRSU.Image = global::ScpServer.Properties.Resources.RSU;
+            this.btnRSU.Image = global::DS4Windows.Properties.Resources.RSU;
             this.btnRSU.Name = "btnRSU";
             this.btnRSU.TabStop = false;
             this.btnRSU.Tag = "X360Right Y-Axis-";
@@ -1322,7 +1322,7 @@
             // btnLS
             // 
             resources.ApplyResources(this.btnLS, "btnLS");
-            this.btnLS.Image = global::ScpServer.Properties.Resources.LS;
+            this.btnLS.Image = global::DS4Windows.Properties.Resources.LS;
             this.btnLS.Name = "btnLS";
             this.btnLS.TabStop = false;
             this.btnLS.Tag = "X360Left Stick";
@@ -1331,7 +1331,7 @@
             // btnLSU
             // 
             resources.ApplyResources(this.btnLSU, "btnLSU");
-            this.btnLSU.Image = global::ScpServer.Properties.Resources.LSU;
+            this.btnLSU.Image = global::DS4Windows.Properties.Resources.LSU;
             this.btnLSU.Name = "btnLSU";
             this.btnLSU.TabStop = false;
             this.btnLSU.Tag = "X360Left Y-Axis-";
@@ -1340,7 +1340,7 @@
             // button11
             // 
             resources.ApplyResources(this.button11, "button11");
-            this.button11.Image = global::ScpServer.Properties.Resources.LB;
+            this.button11.Image = global::DS4Windows.Properties.Resources.LB;
             this.button11.Name = "button11";
             this.button11.TabStop = false;
             this.button11.Tag = "X360Left Bumper";
@@ -1349,7 +1349,7 @@
             // btnRB
             // 
             resources.ApplyResources(this.btnRB, "btnRB");
-            this.btnRB.Image = global::ScpServer.Properties.Resources.RB;
+            this.btnRB.Image = global::DS4Windows.Properties.Resources.RB;
             this.btnRB.Name = "btnRB";
             this.btnRB.TabStop = false;
             this.btnRB.Tag = "X360Right Bumper";
@@ -1358,7 +1358,7 @@
             // button10
             // 
             resources.ApplyResources(this.button10, "button10");
-            this.button10.Image = global::ScpServer.Properties.Resources.Y;
+            this.button10.Image = global::DS4Windows.Properties.Resources.Y;
             this.button10.Name = "button10";
             this.button10.TabStop = false;
             this.button10.Tag = "X360Y Button";
@@ -1367,7 +1367,7 @@
             // button9
             // 
             resources.ApplyResources(this.button9, "button9");
-            this.button9.Image = global::ScpServer.Properties.Resources.X;
+            this.button9.Image = global::DS4Windows.Properties.Resources.X;
             this.button9.Name = "button9";
             this.button9.TabStop = false;
             this.button9.Tag = "X360X Button";
@@ -1376,7 +1376,7 @@
             // button8
             // 
             resources.ApplyResources(this.button8, "button8");
-            this.button8.Image = global::ScpServer.Properties.Resources.B;
+            this.button8.Image = global::DS4Windows.Properties.Resources.B;
             this.button8.Name = "button8";
             this.button8.TabStop = false;
             this.button8.Tag = "X360B Button";
@@ -1385,7 +1385,7 @@
             // button23
             // 
             resources.ApplyResources(this.button23, "button23");
-            this.button23.Image = global::ScpServer.Properties.Resources.BACK;
+            this.button23.Image = global::DS4Windows.Properties.Resources.BACK;
             this.button23.Name = "button23";
             this.button23.TabStop = false;
             this.button23.Tag = "X360Back";
@@ -1394,7 +1394,7 @@
             // button22
             // 
             resources.ApplyResources(this.button22, "button22");
-            this.button22.Image = global::ScpServer.Properties.Resources.START;
+            this.button22.Image = global::DS4Windows.Properties.Resources.START;
             this.button22.Name = "button22";
             this.button22.TabStop = false;
             this.button22.Tag = "X360Start";
@@ -1411,7 +1411,7 @@
             // button3
             // 
             resources.ApplyResources(this.button3, "button3");
-            this.button3.Image = global::ScpServer.Properties.Resources.A;
+            this.button3.Image = global::DS4Windows.Properties.Resources.A;
             this.button3.Name = "button3";
             this.button3.TabStop = false;
             this.button3.Tag = "X360A Button";

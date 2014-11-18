@@ -14,7 +14,7 @@ using System.Diagnostics;
 using System.Xml;
 using System.Text;
 using System.Globalization;
-namespace ScpServer
+namespace DS4Windows
 {
     public partial class DS4Form : Form
     {
@@ -28,7 +28,7 @@ namespace ScpServer
         protected PictureBox[] statPB;
         protected ToolStripMenuItem[] shortcuts;
         WebClient wc = new WebClient();
-        Timer test = new Timer(), hotkeystimer = new Timer();
+        Timer test = new Timer(), hotkeysTimer = new Timer();
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         string appdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
         float dpix, dpiy;
@@ -233,8 +233,8 @@ namespace ScpServer
                 File.Delete(exepath + "\\Updater.exe");
             }
             //test.Start();
-            hotkeystimer.Start();
-            hotkeystimer.Tick += Hotkeys;
+            hotkeysTimer.Start();
+            hotkeysTimer.Tick += Hotkeys;
             test.Tick += test_Tick;
             if (!System.IO.Directory.Exists(Global.appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
@@ -329,13 +329,6 @@ namespace ScpServer
                     for (int j = 0; j < 4; j++)
                         Global.LoadProfile(j, false, rootHub);
                 }
-            }
-            if (Process.GetProcessesByName("DS4Tool").Length + Process.GetProcessesByName("DS4Windows").Length > 1)
-            {//The second process closes and this one comes in focus
-                Show();
-                WindowState = FormWindowState.Normal;
-                ShowInTaskbar = true;
-                Focus();
             }
             GC.Collect();
         }
@@ -582,14 +575,14 @@ namespace ScpServer
             if (btnStartStop.Text == Properties.Resources.StartText)
             {
                 rootHub.Start(log);
-                hotkeystimer.Start();
+                hotkeysTimer.Start();
                 btnStartStop.Text = Properties.Resources.StopText;
             }
 
             else if (btnStartStop.Text == Properties.Resources.StopText)
             {                
                 rootHub.Stop(log);
-                hotkeystimer.Stop();
+                hotkeysTimer.Stop();
                 btnStartStop.Text = Properties.Resources.StartText;
             }
             startToolStripMenuItem.Text = btnStartStop.Text;

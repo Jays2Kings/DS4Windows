@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DS4Control;
 
-namespace ScpServer
+namespace DS4Windows
 {
     public partial class MessageTextBox : Form
     {

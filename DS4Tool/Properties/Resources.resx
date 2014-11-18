@@ -517,9 +517,6 @@
   <data name="Step1" xml:space="preserve">
     <value>Step 1: Install the DS4 Driver</value>
   </data>
-  <data name="TestText" xml:space="preserve">
-    <value>Test</value>
-  </data>
   <data name="UpText" xml:space="preserve">
     <value>Up</value>
   </data>
@@ -564,5 +561,20 @@
   </data>
   <data name="SwipeUp" xml:space="preserve">
     <value>Swipe Up</value>
+  </data>
+  <data name="StopHText" xml:space="preserve">
+    <value>Stop Heavy</value>
+  </data>
+  <data name="StopLText" xml:space="preserve">
+    <value>Stop Light</value>
+  </data>
+  <data name="TestHText" xml:space="preserve">
+    <value>Test Heavy</value>
+  </data>
+  <data name="TestLText" xml:space="preserve">
+    <value>Test Light</value>
+  </data>
+  <data name="FullLightText" xml:space="preserve">
+    <value>Plein:</value>
   </data>
 </root>

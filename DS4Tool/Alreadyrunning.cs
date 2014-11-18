@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ScpServer
+namespace DS4Windows
 {
     public partial class Alreadyrunning : Form
     {

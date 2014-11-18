@@ -471,6 +471,10 @@ namespace DS4Library
             }
         }
 
+        public void FlushHID()
+        {
+            hDevice.flush_Queue();
+        }
         private void sendOutputReport(bool synchronous)
         {
             setTestRumble();

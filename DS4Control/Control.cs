@@ -397,6 +397,8 @@ namespace DS4Control
 
             if (ind != -1)
             {
+                if (Global.getFlushHIDQueue(ind))
+                    device.FlushHID();
                 device.getExposedState(ExposedState[ind], CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
                 device.getPreviousState(PreviousState[ind]);
@@ -406,7 +408,7 @@ namespace DS4Control
                 CheckForHotkeys(ind, cState, pState);
                 GetInputkeys(ind);
 
-                if (Global.getHasCustomKeysorButtons(ind))
+                if (Global.getHasCustomKeysorButtons(ind) || Global.getHasShiftCustomKeysorButtons(ind))
                 {
                     if (!recordingMacro)
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind]);
@@ -534,7 +536,7 @@ namespace DS4Control
                     d = null;
                 }
             }
-            if (cState.Touch1 && pState.PS)
+            if (!Global.getUseTPforControls(deviceID) && cState.Touch1 && pState.PS)
             {
                 if (Global.getTouchSensitivity(deviceID) > 0 && touchreleased[deviceID])
                 {

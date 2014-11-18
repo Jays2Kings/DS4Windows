@@ -1,4 +1,4 @@
-﻿namespace ScpServer
+﻿namespace DS4Windows
 {
     partial class WelcomeDialog
     {
@@ -58,7 +58,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ScpServer.Properties.Resources.Pairmode;
+            this.pictureBox1.Image = global::DS4Windows.Properties.Resources.Pairmode;
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;

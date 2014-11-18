@@ -14,7 +14,7 @@ using DS4Library;
 using System.IO;
 using System.Reflection;
 
-namespace ScpServer
+namespace DS4Windows
 {
     public partial class RecordBox : Form
     {

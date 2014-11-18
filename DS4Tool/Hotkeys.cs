@@ -12,7 +12,7 @@ using System.IO;
 using System.Reflection;
 using System.Diagnostics;
 
-namespace ScpServer
+namespace DS4Windows
 {
     public partial class Hotkeys : Form
     {

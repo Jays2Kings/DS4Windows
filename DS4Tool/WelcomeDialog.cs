@@ -16,7 +16,7 @@ using System.Security.Principal;
 using System.Security.Permissions;
 using System.Reflection;
 
-namespace ScpServer
+namespace DS4Windows
 {
     public partial class WelcomeDialog : Form
     {

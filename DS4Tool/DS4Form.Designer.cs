@@ -1,4 +1,4 @@
-﻿namespace ScpServer
+﻿namespace DS4Windows
 {
     partial class DS4Form
     {
@@ -352,7 +352,7 @@
             // pBStatus1
             // 
             resources.ApplyResources(this.pBStatus1, "pBStatus1");
-            this.pBStatus1.InitialImage = global::ScpServer.Properties.Resources.BT;
+            this.pBStatus1.InitialImage = global::DS4Windows.Properties.Resources.BT;
             this.pBStatus1.Name = "pBStatus1";
             this.pBStatus1.TabStop = false;
             this.pBStatus1.Tag = "0";
@@ -489,7 +489,7 @@
             // pBStatus2
             // 
             resources.ApplyResources(this.pBStatus2, "pBStatus2");
-            this.pBStatus2.InitialImage = global::ScpServer.Properties.Resources.BT;
+            this.pBStatus2.InitialImage = global::DS4Windows.Properties.Resources.BT;
             this.pBStatus2.Name = "pBStatus2";
             this.pBStatus2.TabStop = false;
             this.pBStatus2.Tag = "1";
@@ -498,7 +498,7 @@
             // pBStatus3
             // 
             resources.ApplyResources(this.pBStatus3, "pBStatus3");
-            this.pBStatus3.InitialImage = global::ScpServer.Properties.Resources.BT;
+            this.pBStatus3.InitialImage = global::DS4Windows.Properties.Resources.BT;
             this.pBStatus3.Name = "pBStatus3";
             this.pBStatus3.TabStop = false;
             this.pBStatus3.Tag = "2";
@@ -507,7 +507,7 @@
             // pBStatus4
             // 
             resources.ApplyResources(this.pBStatus4, "pBStatus4");
-            this.pBStatus4.InitialImage = global::ScpServer.Properties.Resources.BT;
+            this.pBStatus4.InitialImage = global::DS4Windows.Properties.Resources.BT;
             this.pBStatus4.Name = "pBStatus4";
             this.pBStatus4.TabStop = false;
             this.pBStatus4.Tag = "3";
@@ -642,7 +642,7 @@
             // tSBSaveProfile
             // 
             this.tSBSaveProfile.AutoToolTip = false;
-            this.tSBSaveProfile.Image = global::ScpServer.Properties.Resources.saveprofile;
+            this.tSBSaveProfile.Image = global::DS4Windows.Properties.Resources.saveprofile;
             resources.ApplyResources(this.tSBSaveProfile, "tSBSaveProfile");
             this.tSBSaveProfile.Name = "tSBSaveProfile";
             this.tSBSaveProfile.Click += new System.EventHandler(this.tSBSaveProfile_Click);
@@ -650,7 +650,7 @@
             // tSBCancel
             // 
             this.tSBCancel.AutoToolTip = false;
-            this.tSBCancel.Image = global::ScpServer.Properties.Resources.delete;
+            this.tSBCancel.Image = global::DS4Windows.Properties.Resources.delete;
             resources.ApplyResources(this.tSBCancel, "tSBCancel");
             this.tSBCancel.Name = "tSBCancel";
             this.tSBCancel.Click += new System.EventHandler(this.tSBCancel_Click);
@@ -662,7 +662,7 @@
             // 
             // tSBKeepSize
             // 
-            this.tSBKeepSize.Image = global::ScpServer.Properties.Resources.size;
+            this.tSBKeepSize.Image = global::DS4Windows.Properties.Resources.size;
             resources.ApplyResources(this.tSBKeepSize, "tSBKeepSize");
             this.tSBKeepSize.Name = "tSBKeepSize";
             this.tSBKeepSize.Click += new System.EventHandler(this.tSBKeepSize_Click);
@@ -682,14 +682,14 @@
             // 
             // tsBNewProfle
             // 
-            this.tsBNewProfle.Image = global::ScpServer.Properties.Resources.newprofile;
+            this.tsBNewProfle.Image = global::DS4Windows.Properties.Resources.newprofile;
             resources.ApplyResources(this.tsBNewProfle, "tsBNewProfle");
             this.tsBNewProfle.Name = "tsBNewProfle";
             this.tsBNewProfle.Click += new System.EventHandler(this.tsBNewProfile_Click);
             // 
             // tsBEditProfile
             // 
-            this.tsBEditProfile.Image = global::ScpServer.Properties.Resources.edit;
+            this.tsBEditProfile.Image = global::DS4Windows.Properties.Resources.edit;
             resources.ApplyResources(this.tsBEditProfile, "tsBEditProfile");
             this.tsBEditProfile.Name = "tsBEditProfile";
             this.tsBEditProfile.Click += new System.EventHandler(this.tsBNEditProfile_Click);
@@ -708,7 +708,7 @@
             // 
             // tSBImportProfile
             // 
-            this.tSBImportProfile.Image = global::ScpServer.Properties.Resources.import;
+            this.tSBImportProfile.Image = global::DS4Windows.Properties.Resources.import;
             resources.ApplyResources(this.tSBImportProfile, "tSBImportProfile");
             this.tSBImportProfile.Name = "tSBImportProfile";
             this.tSBImportProfile.Click += new System.EventHandler(this.tSBImportProfile_Click);

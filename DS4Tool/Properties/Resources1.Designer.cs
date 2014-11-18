@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ScpServer.Properties {
+namespace DS4Windows.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ScpServer.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScpServer.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DS4Windows.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -539,6 +539,15 @@ namespace ScpServer.Properties {
         internal static string Full {
             get {
                 return ResourceManager.GetString("Full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plein:.
+        /// </summary>
+        internal static string FullLightText {
+            get {
+                return ResourceManager.GetString("FullLightText", resourceCulture);
             }
         }
         
@@ -1141,6 +1150,24 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stop Heavy.
+        /// </summary>
+        internal static string StopHText {
+            get {
+                return ResourceManager.GetString("StopHText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop Light.
+        /// </summary>
+        internal static string StopLText {
+            get {
+                return ResourceManager.GetString("StopLText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stopped DS4 Tool.
         /// </summary>
         internal static string StoppedDS4Tool {
@@ -1231,11 +1258,20 @@ namespace ScpServer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test.
+        ///   Looks up a localized string similar to Test Heavy.
         /// </summary>
-        internal static string TestText {
+        internal static string TestHText {
             get {
-                return ResourceManager.GetString("TestText", resourceCulture);
+                return ResourceManager.GetString("TestHText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test Light.
+        /// </summary>
+        internal static string TestLText {
+            get {
+                return ResourceManager.GetString("TestLText", resourceCulture);
             }
         }
         

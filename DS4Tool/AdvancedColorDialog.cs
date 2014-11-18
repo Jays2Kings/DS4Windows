@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace ScpServer
+namespace DS4Windows
 {
     [System.ComponentModel.DesignerCategory("")]
     public class AdvancedColorDialog : ColorDialog

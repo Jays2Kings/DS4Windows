@@ -106,14 +106,13 @@ namespace DS4Windows
         private delegate void SetFormVisableDelegate(Form frm);
         static private void ThreadFormVisable(Form frm)
         {
-            if (frm != null && frm is DS4Form)
+            if (frm != null)
             {
                 if (frm is DS4Form)
                 {
                     // display the form and bring to foreground.
-                    frm.Visible = true;
                     frm.WindowState = FormWindowState.Normal;
-                    frm.Show();
+                    frm.Focus();
                 }
                 else
                 {

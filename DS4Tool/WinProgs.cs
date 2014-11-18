@@ -89,9 +89,9 @@ namespace DS4Windows
 
         public void ShowMainWindow()
         {
-            form.Visible = true;
-            form.WindowState = FormWindowState.Normal;
             form.Show();
+            form.WindowState = FormWindowState.Normal;
+            form.Focus();
         }
 
         public void LoadP()

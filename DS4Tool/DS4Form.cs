@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Xml;
 using System.Text;
 using System.Globalization;
+using System.Threading.Tasks;
 namespace DS4Windows
 {
     public partial class DS4Form : Form
@@ -48,20 +49,7 @@ namespace DS4Windows
         ToolTip tt = new ToolTip();
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
-
-        protected void SetupArrays()
-        {
-            Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
-            Batteries = new Label[4] { lBBatt1, lBBatt2, lBBatt3, lBBatt4 };
-            cbs = new ComboBox[4] { cBController1, cBController2, cBController3, cBController4 };
-            ebns = new Button[4] { bnEditC1, bnEditC2, bnEditC3, bnEditC4 };
-            statPB = new PictureBox[4] { pBStatus1, pBStatus2, pBStatus3, pBStatus4 };
-
-            shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[0],
-                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
-                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
-                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
-        }
+        public bool mAllowVisible; 
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -86,12 +74,22 @@ namespace DS4Windows
             InitializeComponent();
             arguements = args;
             ThemeUtil.SetTheme(lvDebug);
-            SetupArrays();
+            Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
+            Batteries = new Label[4] { lBBatt1, lBBatt2, lBBatt3, lBBatt4 };
+            cbs = new ComboBox[4] { cBController1, cBController2, cBController3, cBController4 };
+            ebns = new Button[4] { bnEditC1, bnEditC2, bnEditC3, bnEditC4 };
+            statPB = new PictureBox[4] { pBStatus1, pBStatus2, pBStatus3, pBStatus4 };
+
+            shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[0],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
             if (File.Exists(appdatapath + "\\Profiles.xml"))
                 tt.SetToolTip(linkUninstall, Properties.Resources.IfRemovingDS4Windows);
             tt.SetToolTip(cBSwipeProfiles, Properties.Resources.TwoFingerSwipe);
+            tt.SetToolTip(cBQuickCharge, Properties.Resources.QuickCharge);
             bool firstrun = false;
             if (File.Exists(exepath + "\\Auto Profiles.xml")
                 && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml"))
@@ -177,14 +175,19 @@ namespace DS4Windows
             hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
             hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
             cBDisconnectBT.Checked = Global.getDCBTatStop();
+            cBQuickCharge.Checked = Global.getQuickCharge();
             // New settings
             this.Width = Global.getFormWidth();
             this.Height = Global.getFormHeight();
             startMinimizedCheckBox.CheckedChanged -= startMinimizedCheckBox_CheckedChanged;
             startMinimizedCheckBox.Checked = Global.getStartMinimized();
             startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
-            if (startMinimizedCheckBox.Checked)
-                this.WindowState = FormWindowState.Minimized;
+            if (!startMinimizedCheckBox.Checked)
+            {
+                mAllowVisible = true;
+                Show();
+            }
+                //this.WindowState = FormWindowState.Minimized;
             Form_Resize(null, null);
             RefreshProfiles();
             for (int i = 0; i < 4; i++)
@@ -240,6 +243,30 @@ namespace DS4Windows
                 linkUninstall.Visible = false;
             StartWindowsCheckBox.Checked = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
         }
+
+
+        protected override void SetVisibleCore(bool value)
+        {
+            if (!mAllowVisible)
+            {
+                value = false;
+                if (!this.IsHandleCreated) CreateHandle();
+            }
+            base.SetVisibleCore(value);
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mAllowVisible = true;
+            Show();
+        }
+
+        /*private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mAllowClose = mAllowVisible = true;
+            if (!mLoadFired) Show();
+            Close();
+        }*/
 
         public static string GetTopWindowName()
         {
@@ -559,6 +586,7 @@ namespace DS4Windows
 
             else if (FormWindowState.Normal == this.WindowState)
             {
+                //mAllowVisible = true;
                 this.Show();
                 this.ShowInTaskbar = true;
                 this.FormBorderStyle = FormBorderStyle.Sizable;
@@ -631,6 +659,12 @@ namespace DS4Windows
             for (Int32 Index = 0; Index < Pads.Length; Index++)
             {
                 Pads[Index].Text = rootHub.getDS4MacAddress(Index);
+                DS4Device d = rootHub.DS4Controllers[Index];
+                if (d != null && Global.getQuickCharge() && d.ConnectionType == ConnectionType.BT && d.Charging)
+                {
+                    d.DisconnectBT();
+                    return;
+                }
                 switch (rootHub.getDS4Status(Index))
                 {
                     case "USB": statPB[Index].Image = Properties.Resources.USB; tt.SetToolTip(statPB[Index], ""); break;
@@ -672,8 +706,19 @@ namespace DS4Windows
         private void pBStatus_MouseClick(object sender, MouseEventArgs e)
         {
             int i = Int32.Parse(((PictureBox)sender).Tag.ToString());
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && rootHub.getDS4Status(i) == "BT")
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && rootHub.getDS4Status(i) == "BT" && !rootHub.DS4Controllers[i].Charging)
                 rootHub.DS4Controllers[i].DisconnectBT();
+        }
+
+        private async void lbPad1_TextChanged(object sender, EventArgs e)
+        {
+            Label lb = ((Label)sender);
+            int i = int.Parse(lb.Name.Substring(lb.Name.Length-1)) - 1;
+            if (lb.Text == Properties.Resources.Disconnected && Pads[i].Enabled)
+            {
+                await Task.Delay(10);
+                Enable_Controls(i, false);
+            }
         }
 
         private void Enable_Controls(int device, bool on)
@@ -975,6 +1020,7 @@ namespace DS4Windows
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            mAllowVisible = true;
             this.Show();
             WindowState = FormWindowState.Normal;
         }
@@ -987,6 +1033,7 @@ namespace DS4Windows
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
+                mAllowVisible = true;
                 this.Show();
                 WindowState = FormWindowState.Normal;
             }
@@ -1333,6 +1380,11 @@ namespace DS4Windows
         private void cBSwipeProfiles_CheckedChanged(object sender, EventArgs e)
         {
             Global.setSwipeProfiles(cBSwipeProfiles.Checked);
+        }
+
+        private void cBQuickCharge_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setQuickCharge(cBQuickCharge.Checked);
         }
 
         private void lbLastMessage_MouseHover(object sender, EventArgs e)

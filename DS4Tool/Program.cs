@@ -117,6 +117,7 @@ namespace DS4Windows
                 else
                 {
                     WinProgs wp = (WinProgs)frm;
+                    wp.form.mAllowVisible = true;
                     wp.ShowMainWindow();
                     SetForegroundWindow(wp.form.Handle);
                 }

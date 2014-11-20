@@ -577,4 +577,7 @@
   <data name="FullLightText" xml:space="preserve">
     <value>Plein:</value>
   </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>EXPERIMENTAL: Auto-Disable BT when conencting to USB</value>
+  </data>
 </root>

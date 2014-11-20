@@ -315,7 +315,22 @@ namespace DS4Control
         {
             return m_Config.swipeProfiles;
         }
-        // New settings
+        public static void setDS4Mapping(bool data)
+        {
+            m_Config.ds4Mapping = data;
+        }
+        public static bool getDS4Mapping()
+        {
+            return m_Config.ds4Mapping;
+        }
+        public static void setQuickCharge(bool data)
+        {
+            m_Config.quickCharge = data;
+        }
+        public static bool getQuickCharge()
+        {
+            return m_Config.quickCharge;
+        }        
         public static void saveLowColor(int device, byte red, byte green, byte blue)
         {
             m_Config.m_LowLeds[device][0] = red;
@@ -792,6 +807,8 @@ namespace DS4Control
         public bool notifications = true;
         public bool disconnectBTAtStop = false;
         public bool swipeProfiles = true;
+        public bool ds4Mapping = true;
+        public bool quickCharge = false;
         public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = { null, null, null, null, null };
         public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null, null };
@@ -1662,7 +1679,6 @@ namespace DS4Control
 
                     m_Xdoc.Load(m_Profile);
 
-
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/useExclusiveMode"); Boolean.TryParse(Item.InnerText, out useExclusiveMode); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/startMinimized"); Boolean.TryParse(Item.InnerText, out startMinimized); }
@@ -1688,6 +1704,10 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/DisconnectBTAtStop"); Boolean.TryParse(Item.InnerText, out disconnectBTAtStop); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/SwipeProfiles"); Boolean.TryParse(Item.InnerText, out swipeProfiles); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/UseDS4ForMapping"); Boolean.TryParse(Item.InnerText, out ds4Mapping); }
+                    catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/QuickCharge"); Boolean.TryParse(Item.InnerText, out quickCharge); }
                     catch { missingSetting = true; }
                 }
             }
@@ -1731,6 +1751,8 @@ namespace DS4Control
             XmlNode xmlNotifications = m_Xdoc.CreateNode(XmlNodeType.Element, "Notifications", null); xmlNotifications.InnerText = notifications.ToString(); Node.AppendChild(xmlNotifications);
             XmlNode xmlDisconnectBT = m_Xdoc.CreateNode(XmlNodeType.Element, "DisconnectBTAtStop", null); xmlDisconnectBT.InnerText = disconnectBTAtStop.ToString(); Node.AppendChild(xmlDisconnectBT);
             XmlNode xmlSwipeProfiles = m_Xdoc.CreateNode(XmlNodeType.Element, "SwipeProfiles", null); xmlSwipeProfiles.InnerText = swipeProfiles.ToString(); Node.AppendChild(xmlSwipeProfiles);
+            XmlNode xmlDS4Mapping = m_Xdoc.CreateNode(XmlNodeType.Element, "UseDS4ForMapping", null); xmlDS4Mapping.InnerText = ds4Mapping.ToString(); Node.AppendChild(xmlDS4Mapping);
+            XmlNode xmlQuickCharge = m_Xdoc.CreateNode(XmlNodeType.Element, "QuickCharge", null); xmlQuickCharge.InnerText = quickCharge.ToString(); Node.AppendChild(xmlQuickCharge);
             m_Xdoc.AppendChild(Node);
 
             try { m_Xdoc.Save(m_Profile); }

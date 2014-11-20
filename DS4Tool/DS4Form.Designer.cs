@@ -120,6 +120,7 @@
             this.nUDUpdateTime = new System.Windows.Forms.NumericUpDown();
             this.cBNotifications = new System.Windows.Forms.CheckBox();
             this.cBDisconnectBT = new System.Windows.Forms.CheckBox();
+            this.cBQuickCharge = new System.Windows.Forms.CheckBox();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
             this.linkSetup = new System.Windows.Forms.LinkLabel();
@@ -362,11 +363,13 @@
             // 
             resources.ApplyResources(this.lbPad1, "lbPad1");
             this.lbPad1.Name = "lbPad1";
+            this.lbPad1.TextChanged += new System.EventHandler(this.lbPad1_TextChanged);
             // 
             // lbPad2
             // 
             resources.ApplyResources(this.lbPad2, "lbPad2");
             this.lbPad2.Name = "lbPad2";
+            this.lbPad2.TextChanged += new System.EventHandler(this.lbPad1_TextChanged);
             // 
             // bnEditC3
             // 
@@ -388,11 +391,13 @@
             // 
             resources.ApplyResources(this.lbPad3, "lbPad3");
             this.lbPad3.Name = "lbPad3";
+            this.lbPad3.TextChanged += new System.EventHandler(this.lbPad1_TextChanged);
             // 
             // lbPad4
             // 
             resources.ApplyResources(this.lbPad4, "lbPad4");
             this.lbPad4.Name = "lbPad4";
+            this.lbPad4.TextChanged += new System.EventHandler(this.lbPad1_TextChanged);
             // 
             // cBController1
             // 
@@ -743,6 +748,7 @@
             this.flowLayoutPanel1.Controls.Add(this.pNUpdate);
             this.flowLayoutPanel1.Controls.Add(this.cBNotifications);
             this.flowLayoutPanel1.Controls.Add(this.cBDisconnectBT);
+            this.flowLayoutPanel1.Controls.Add(this.cBQuickCharge);
             this.flowLayoutPanel1.Controls.Add(this.linkProfiles);
             this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
             this.flowLayoutPanel1.Controls.Add(this.linkSetup);
@@ -835,6 +841,13 @@
             this.cBDisconnectBT.Name = "cBDisconnectBT";
             this.cBDisconnectBT.UseVisualStyleBackColor = true;
             this.cBDisconnectBT.CheckedChanged += new System.EventHandler(this.cBDisconnectBT_CheckedChanged);
+            // 
+            // cBQuickCharge
+            // 
+            resources.ApplyResources(this.cBQuickCharge, "cBQuickCharge");
+            this.cBQuickCharge.Name = "cBQuickCharge";
+            this.cBQuickCharge.UseVisualStyleBackColor = true;
+            this.cBQuickCharge.CheckedChanged += new System.EventHandler(this.cBQuickCharge_CheckedChanged);
             // 
             // linkProfiles
             // 
@@ -1024,6 +1037,7 @@
         private System.Windows.Forms.CheckBox cBSwipeProfiles;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         public System.Windows.Forms.Label lbLastMessage;
+        private System.Windows.Forms.CheckBox cBQuickCharge;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

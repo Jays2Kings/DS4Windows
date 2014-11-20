@@ -512,7 +512,11 @@ namespace DS4Library
                     try
                     {
                         if (!writeOutput())
+                        {
                             Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered synchronous write failure: " + Marshal.GetLastWin32Error());
+                            ds4Output.Abort();
+                            ds4Output.Join();
+                        }
                     }
                     catch
                     {

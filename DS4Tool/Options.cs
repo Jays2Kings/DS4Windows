@@ -194,6 +194,7 @@ namespace DS4Windows
                 olddinputcheck = cBDinput.Checked;
                 cbStartTouchpadOff.Checked = Global.getStartTouchpadOff(device);
                 cBTPforControls.Checked = Global.getUseTPforControls(device);
+                cBControllerInput.Checked = Global.getDS4Mapping();
             }
             else
             {
@@ -448,6 +449,8 @@ namespace DS4Windows
             Global.setDinputOnly(device, cBDinput.Checked);
             Global.setStartTouchpadOff(device, cbStartTouchpadOff.Checked);
             Global.setUseTPforControls(device, cBTPforControls.Checked);
+            Global.setDS4Mapping(cBControllerInput.Checked);
+
             gBTouchpad.Enabled = !cBTPforControls.Checked;
             if (cBTPforControls.Checked)
                 tabControls.Size = new Size(tabControls.Size.Width, (int)(282 * dpiy));
@@ -1546,6 +1549,11 @@ namespace DS4Windows
                 lBShiftControls.Items.RemoveAt(34);
                 lBShiftControls.Items.RemoveAt(33);
             }
+        }
+
+        private void cBControllerInput_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setDS4Mapping(cBControllerInput.Checked);
         }
     }
 }

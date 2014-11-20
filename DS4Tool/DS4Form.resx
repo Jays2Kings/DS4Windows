@@ -8252,11 +8252,38 @@
   <data name="&gt;&gt;cBDisconnectBT.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="cBQuickCharge.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBQuickCharge.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 199</value>
+  </data>
+  <data name="cBQuickCharge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 17</value>
+  </data>
+  <data name="cBQuickCharge.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="cBQuickCharge.Text" xml:space="preserve">
+    <value>Quick Charge</value>
+  </data>
+  <data name="&gt;&gt;cBQuickCharge.Name" xml:space="preserve">
+    <value>cBQuickCharge</value>
+  </data>
+  <data name="&gt;&gt;cBQuickCharge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBQuickCharge.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;cBQuickCharge.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
   <data name="linkProfiles.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="linkProfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 196</value>
+    <value>10, 219</value>
   </data>
   <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 13</value>
@@ -8277,13 +8304,13 @@
     <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;linkProfiles.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="lLBUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lLBUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 209</value>
+    <value>10, 232</value>
   </data>
   <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 13</value>
@@ -8307,13 +8334,13 @@
     <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lLBUpdate.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="linkSetup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="linkSetup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 222</value>
+    <value>10, 245</value>
   </data>
   <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 13</value>
@@ -8334,13 +8361,13 @@
     <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;linkSetup.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="linkUninstall.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="linkUninstall.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 235</value>
+    <value>10, 258</value>
   </data>
   <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 13</value>
@@ -8364,13 +8391,13 @@
     <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;linkUninstall.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="lnkControllers.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lnkControllers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 248</value>
+    <value>10, 271</value>
   </data>
   <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 13</value>
@@ -8391,7 +8418,7 @@
     <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lnkControllers.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="flowLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

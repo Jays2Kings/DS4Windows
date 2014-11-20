@@ -1347,14 +1347,15 @@ namespace DS4Control
             int controlnum = DS4ControltoInt(control);
             double SXD = Global.getSXDeadzone(device);
             double SZD = Global.getSZDeadzone(device);
-            int deadzone = 10;
+            int deadzoneL = Math.Max((byte)10, Global.getLSDeadzone(device));
+            int deadzoneR = Math.Max((byte)10, Global.getRSDeadzone(device));
             double value = 0;
             int speed = Global.getButtonMouseSensitivity(device)+15;
             double root = 1.002;
             double divide = 10000d;
             DateTime now = mousenow[mnum];
-            bool leftsitcklive = ((cState.LX < 127 - deadzone || 127 + deadzone < cState.LX) || (cState.LY < 127 - deadzone || 127 + deadzone < cState.LY));
-            bool rightsitcklive =  ((cState.RX < 127 - deadzone || 127 + deadzone < cState.RX) || (cState.RY < 127 - deadzone || 127 + deadzone < cState.RY));
+            bool leftsitcklive = ((cState.LX < 127 - deadzoneL || 127 + deadzoneL < cState.LX) || (cState.LY < 127 - deadzoneL || 127 + deadzoneL < cState.LY));
+            bool rightsitcklive =  ((cState.RX < 127 - deadzoneR || 127 + deadzoneR < cState.RX) || (cState.RY < 127 - deadzoneR || 127 + deadzoneR < cState.RY));
             switch (control)
             {
                 case DS4Controls.LXNeg:
@@ -1419,10 +1420,10 @@ namespace DS4Control
                     case DS4Controls.GyroZNeg: return (byte)(eState.GyroZ < -SZD * 7500 ?
                         Math.Pow(root + speed / divide, -eState.GyroZ / 62) : 0);
                 }
-            bool LXChanged = (Math.Abs(127 - cState.LX) < deadzone);
-            bool LYChanged = (Math.Abs(127 - cState.LY) < deadzone);
-            bool RXChanged = (Math.Abs(127 - cState.RX) < deadzone);
-            bool RYChanged = (Math.Abs(127 - cState.RY) < deadzone);
+            bool LXChanged = (Math.Abs(127 - cState.LX) < deadzoneL);
+            bool LYChanged = (Math.Abs(127 - cState.LY) < deadzoneL);
+            bool RXChanged = (Math.Abs(127 - cState.RX) < deadzoneR);
+            bool RYChanged = (Math.Abs(127 - cState.RY) < deadzoneR);
             if (LXChanged || LYChanged || RXChanged || RYChanged)
                 now = DateTime.UtcNow;
             if (Global.getMouseAccel(device))

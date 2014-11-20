@@ -918,6 +918,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EXPERIMENTAL: Auto-Disable BT when conencting to USB.
+        /// </summary>
+        internal static string QuickCharge {
+            get {
+                return ResourceManager.GetString("QuickCharge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must quit other applications like Steam, Uplay before activating the &apos;Hide DS4 Controller&apos; option.&quot;.
         /// </summary>
         internal static string QuitOtherPrograms {

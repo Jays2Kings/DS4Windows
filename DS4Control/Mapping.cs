@@ -759,7 +759,7 @@ namespace DS4Control
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.L1 = true;
             foreach (DS4Controls dc in L2)
-                if (getByteMapping(device, dc, cState, eState, tp) != 0)
+                if (getByteMapping(device, dc, cState, eState, tp) > 5)
                     MappedState.L2 = getByteMapping(device, dc, cState, eState, tp);
             foreach (DS4Controls dc in L3)
                 if (getBoolMapping(dc, cState, eState, tp))
@@ -768,7 +768,7 @@ namespace DS4Control
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.R1 = true;
             foreach (DS4Controls dc in R2)
-                if (getByteMapping(device, dc, cState, eState, tp) != 0)
+                if (getByteMapping(device, dc, cState, eState, tp) > 5)
                     MappedState.R2 = getByteMapping(device, dc, cState, eState, tp);
             foreach (DS4Controls dc in R3)
                 if (getBoolMapping(dc, cState, eState, tp))
@@ -1138,7 +1138,7 @@ namespace DS4Control
                         case X360Controls.LYPos: LYP.Add(customButton.Key); break;
                         case X360Controls.RXPos: RXP.Add(customButton.Key); break;
                         case X360Controls.RYPos: RYP.Add(customButton.Key); break;
-                        case X360Controls.LT: L2.Add(customButton.Key); break;
+                        case X360Controls.LT: L2.Add(customButton.Key); Console.WriteLine("yes"); break;
                         case X360Controls.RT: R2.Add(customButton.Key); break;
                         case X360Controls.LeftMouse:
                             if (getBoolMapping(customButton.Key, cState, eState, tp))
@@ -1354,41 +1354,39 @@ namespace DS4Control
             double root = 1.002;
             double divide = 10000d;
             DateTime now = mousenow[mnum];
-            bool leftsitcklive = ((cState.LX < 127 - deadzoneL || 127 + deadzoneL < cState.LX) || (cState.LY < 127 - deadzoneL || 127 + deadzoneL < cState.LY));
-            bool rightsitcklive =  ((cState.RX < 127 - deadzoneR || 127 + deadzoneR < cState.RX) || (cState.RY < 127 - deadzoneR || 127 + deadzoneR < cState.RY));
             switch (control)
             {
                 case DS4Controls.LXNeg:
-                    if (leftsitcklive)
-                        value = -(cState.LX - 127) / 2550d * speed;
+                    if (cState.LX - 127.5f < -deadzoneL)
+                        value = -(cState.LX - 127.5f) / 2550d * speed;
                     break;
                 case DS4Controls.LXPos:
-                    if (leftsitcklive)
-                        value = (cState.LX - 127) / 2550d * speed;
+                    if (cState.LX - 127.5f > deadzoneL)
+                        value = (cState.LX - 127.5f) / 2550d * speed;
                     break;
                 case DS4Controls.RXNeg:
-                    if (rightsitcklive)
-                        value = -(cState.RX - 127) / 2550d * speed;
+                    if (cState.RX - 127.5f < -deadzoneR)
+                        value = -(cState.RX - 127.5f) / 2550d * speed;
                     break;
                 case DS4Controls.RXPos:
-                    if (rightsitcklive)
-                        value = (cState.RX - 127) / 2550d * speed;
+                    if (cState.RX - 127.5f > deadzoneR)
+                        value = (cState.RX - 127.5f) / 2550d * speed;
                     break;
                 case DS4Controls.LYNeg:
-                    if (leftsitcklive)
-                        value = -(cState.LY - 127) / 2550d * speed;
+                    if (cState.LY - 127.5f < -deadzoneL)
+                        value = -(cState.LY - 127.5f) / 2550d * speed;
                     break;
                 case DS4Controls.LYPos:
-                    if (leftsitcklive)
-                        value = (cState.LY - 127) / 2550d * speed;
+                    if (cState.LY - 127.5f > deadzoneL)
+                        value = (cState.LY - 127.5f) / 2550d * speed;
                     break;
                 case DS4Controls.RYNeg:
-                    if (rightsitcklive)
-                        value = -(cState.RY - 127) / 2550d * speed;
+                    if (cState.RY - 127.5f < -deadzoneR)
+                        value = -(cState.RY - 127.5f) / 2550d * speed;
                     break;
                 case DS4Controls.RYPos:
-                    if (rightsitcklive)
-                        value = (cState.RY - 127) / 2550d * speed;
+                    if (cState.RY - 127.5f > deadzoneR)
+                        value = (cState.RY - 127.5f) / 2550d * speed;
                     break;
                 case DS4Controls.Share: value = (cState.Share ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
                 case DS4Controls.Options: value = (cState.Options ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
@@ -1424,6 +1422,10 @@ namespace DS4Control
             bool LYChanged = (Math.Abs(127 - cState.LY) < deadzoneL);
             bool RXChanged = (Math.Abs(127 - cState.RX) < deadzoneR);
             bool RYChanged = (Math.Abs(127 - cState.RY) < deadzoneR);
+            bool contains = (control.ToString().Contains("LX") ||
+                control.ToString().Contains("LY") ||
+                control.ToString().Contains("RX") ||
+                    control.ToString().Contains("RY"));
             if (LXChanged || LYChanged || RXChanged || RYChanged)
                 now = DateTime.UtcNow;
             if (Global.getMouseAccel(device))
@@ -1436,7 +1438,8 @@ namespace DS4Control
                 if (mouseaccel[controlnum] > 1000)
                     value *= (double)Math.Min(2000, (mouseaccel[controlnum])) / 1000d;
             }
-            if (value <= 1)
+            if (value != 0)
+            if (contains && value <= 1 && value != 0)
             {
                 if (now >= mousenow[mnum] + TimeSpan.FromMilliseconds((1 - value) * 500))
                 {
@@ -1448,6 +1451,7 @@ namespace DS4Control
             }
             else
                 return (int)value;
+            return 0;
         }
 
         public static bool compare(byte b1, byte b2)

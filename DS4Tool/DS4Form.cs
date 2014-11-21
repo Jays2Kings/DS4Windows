@@ -710,17 +710,6 @@ namespace DS4Windows
                 rootHub.DS4Controllers[i].DisconnectBT();
         }
 
-        private async void lbPad1_TextChanged(object sender, EventArgs e)
-        {
-            Label lb = ((Label)sender);
-            int i = int.Parse(lb.Name.Substring(lb.Name.Length-1)) - 1;
-            if (lb.Text == Properties.Resources.Disconnected && Pads[i].Enabled)
-            {
-                await Task.Delay(10);
-                Enable_Controls(i, false);
-            }
-        }
-
         private void Enable_Controls(int device, bool on)
         {
             Pads[device].Enabled = on;

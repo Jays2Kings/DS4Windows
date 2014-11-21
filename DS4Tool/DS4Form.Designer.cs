@@ -363,13 +363,11 @@
             // 
             resources.ApplyResources(this.lbPad1, "lbPad1");
             this.lbPad1.Name = "lbPad1";
-            this.lbPad1.TextChanged += new System.EventHandler(this.lbPad1_TextChanged);
             // 
             // lbPad2
             // 
             resources.ApplyResources(this.lbPad2, "lbPad2");
             this.lbPad2.Name = "lbPad2";
-            this.lbPad2.TextChanged += new System.EventHandler(this.lbPad1_TextChanged);
             // 
             // bnEditC3
             // 
@@ -391,13 +389,11 @@
             // 
             resources.ApplyResources(this.lbPad3, "lbPad3");
             this.lbPad3.Name = "lbPad3";
-            this.lbPad3.TextChanged += new System.EventHandler(this.lbPad1_TextChanged);
             // 
             // lbPad4
             // 
             resources.ApplyResources(this.lbPad4, "lbPad4");
             this.lbPad4.Name = "lbPad4";
-            this.lbPad4.TextChanged += new System.EventHandler(this.lbPad1_TextChanged);
             // 
             // cBController1
             // 

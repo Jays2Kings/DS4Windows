@@ -31,7 +31,8 @@ namespace DS4Windows
         WebClient wc = new WebClient();
         Timer test = new Timer(), hotkeysTimer = new Timer();
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
-        string appdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
+        string appdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
+        string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
         float dpix, dpiy;
         DateTime oldnow = DateTime.UtcNow;
         string tempprofile = "null";
@@ -86,7 +87,7 @@ namespace DS4Windows
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
-            if (File.Exists(appdatapath + "\\Profiles.xml"))
+            if (File.Exists(appdatapath + "\\Auto Profiles.xml"))
                 tt.SetToolTip(linkUninstall, Properties.Resources.IfRemovingDS4Windows);
             tt.SetToolTip(cBSwipeProfiles, Properties.Resources.TwoFingerSwipe);
             tt.SetToolTip(cBQuickCharge, Properties.Resources.QuickCharge);
@@ -101,6 +102,20 @@ namespace DS4Windows
                 Global.SaveWhere(exepath);
             else if (File.Exists(appdatapath + "\\Auto Profiles.xml"))
                 Global.SaveWhere(appdatapath);
+            else if (File.Exists(oldappdatapath + "\\Auto Profiles.xml"))
+            {
+                try
+                {
+                    Directory.Move(oldappdatapath, appdatapath);
+                    Global.SaveWhere(appdatapath);
+                }
+                catch
+                {
+                    MessageBox.Show(Properties.Resources.CannotMoveFiles, "DS4Windows"); 
+                    Close(); 
+                    return;
+                }
+            }
             else if (!File.Exists(exepath + "\\Auto Profiles.xml")
                 && !File.Exists(appdatapath + "\\Auto Profiles.xml"))
             {
@@ -261,13 +276,6 @@ namespace DS4Windows
             Show();
         }
 
-        /*private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mAllowClose = mAllowVisible = true;
-            if (!mLoadFired) Show();
-            Close();
-        }*/
-
         public static string GetTopWindowName()
         {
             IntPtr hWnd = GetForegroundWindow();
@@ -402,9 +410,15 @@ namespace DS4Windows
 
                 if (!deriverinstalled)
                 {
-                    WelcomeDialog wd = new WelcomeDialog();
-                    wd.ShowDialog();
-                    wd.FormClosed += delegate { btnStartStop_Clicked(false); btnStartStop_Clicked(false); };
+                    Process p = new Process();
+                    p.StartInfo.FileName = Assembly.GetExecutingAssembly().Location;
+                    p.StartInfo.Arguments = "driverinstall";
+                    p.StartInfo.Verb = "runas";
+                    try { p.Start(); }
+                    catch { }
+                    //WelcomeDialog wd = new WelcomeDialog();
+                    //wd.ShowDialog();
+                    //wd.FormClosed += delegate { btnStartStop_Clicked(false); btnStartStop_Clicked(false); };
                 }
             }
             catch
@@ -442,8 +456,8 @@ namespace DS4Windows
                     p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
                     if (Global.AdminNeeded())
                         p.StartInfo.Verb = "runas";
-                    p.Start();
-                    Close();
+                    try { p.Start(); Close(); }
+                    catch { }
                 }
                 else
                     File.Delete(Global.appdatapath + "\\version.txt");
@@ -1297,8 +1311,8 @@ namespace DS4Windows
                     p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
                     if (Global.AdminNeeded())
                         p.StartInfo.Verb = "runas";
-                    p.Start();
-                    Close();
+                    try { p.Start(); Close(); }
+                    catch { }                    
                 }
                 else
                     File.Delete(Global.appdatapath + "\\version.txt");
@@ -1328,8 +1342,14 @@ namespace DS4Windows
 
         private void lLSetup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            WelcomeDialog wd = new WelcomeDialog();
-            wd.ShowDialog();
+            Process p = new Process();
+            p.StartInfo.FileName = Assembly.GetExecutingAssembly().Location;
+            p.StartInfo.Arguments = "driverinstall";
+            p.StartInfo.Verb = "runas";
+            try { p.Start(); }
+            catch { }
+            //WelcomeDialog wd = new WelcomeDialog();
+            //wd.ShowDialog();
             tabSettings.Text = "Settings";
             linkSetup.LinkColor = Color.Blue;
         }

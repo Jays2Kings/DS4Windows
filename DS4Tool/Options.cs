@@ -470,18 +470,18 @@ namespace DS4Windows
             kbm360.ShowDialog();
         }
 
-        public void ChangeButtonText(string controlname, object tag)
+        public void ChangeButtonText(string controlname, KeyValuePair<object, string> tag)
         {
             lastSelected.Text = controlname;
             int value;
-            if (tag == null)
+            if (tag.Key == null)
                 lastSelected.Tag = tag;
-            else if (Int32.TryParse(tag.ToString(), out value))
-                lastSelected.Tag = value;
-            else if (tag is Int32[])
-                lastSelected.Tag = tag;
+            else if (Int32.TryParse(tag.Key.ToString(), out value))
+                lastSelected.Tag = new KeyValuePair<int, string>(value, tag.Value);
+            else if (tag.Key is Int32[])
+                lastSelected.Tag = new KeyValuePair<Int32[], string>((Int32[])tag.Key, tag.Value);
             else
-                lastSelected.Tag = tag.ToString();
+                lastSelected.Tag = new KeyValuePair<string, string>(tag.Key.ToString(), tag.Value);    
         }
         public void ChangeButtonText(string controlname)
         {
@@ -490,11 +490,11 @@ namespace DS4Windows
         }
         public void Toggle_Bn(bool SC, bool TG, bool MC,  bool MR)
         {
-            if (lastSelected.Tag is int || lastSelected.Tag is UInt16 || lastSelected.Tag is int[])
+            if (lastSelected.Tag is KeyValuePair<int, string> || lastSelected.Tag is KeyValuePair<UInt16, string> || lastSelected.Tag is KeyValuePair<int[], string>)
                 lastSelected.Font = new Font(lastSelected.Font, 
                     (SC ? FontStyle.Bold : FontStyle.Regular) | (TG ? FontStyle.Italic : FontStyle.Regular) | 
                     (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
-            else if (lastSelected.Tag is string)
+            else if (lastSelected.Tag is KeyValuePair<string, string>)
                 if (lastSelected.Tag.ToString().Contains("Mouse Button"))
                     lastSelected.Font = new Font(lastSelected.Font, TG ? FontStyle.Italic : FontStyle.Regular);
             else
@@ -534,12 +534,8 @@ namespace DS4Windows
                 tBGreenBar.Value = advColorDialog.Color.G;
                 tBBlueBar.Value = advColorDialog.Color.B;
             }
-            else Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
-            Global.saveChargingColor(device, oldChargingColor[0], oldChargingColor[1], oldChargingColor[2]);
-            Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
-            oldChargingColor = null;
-            oldLedColor = null;
-            oldLowLedColor = null;
+            if (device < 4)
+                DS4Control.DS4LightBar.forcelight[device] = false;
         }
         private void lowColorChooserButton_Click(object sender, EventArgs e)
         {
@@ -552,12 +548,8 @@ namespace DS4Windows
                 tBLowGreenBar.Value = advColorDialog.Color.G;
                 tBLowBlueBar.Value = advColorDialog.Color.B;
             }
-            else Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
-            Global.saveChargingColor(device, oldChargingColor[0], oldChargingColor[1], oldChargingColor[2]);
-            Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
-            oldChargingColor = null;
-            oldLedColor = null;
-            oldLowLedColor = null;
+            if (device < 4)
+                DS4Control.DS4LightBar.forcelight[device] = false;
         }
 
 
@@ -569,30 +561,18 @@ namespace DS4Windows
             {
                 btnChargingColor.BackColor = advColorDialog.Color;
             }
-            else Global.saveChargingColor(device, oldChargingColor[0], oldChargingColor[1], oldChargingColor[2]);
-            Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
-            Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
-            oldChargingColor = null;
-            oldLedColor = null;
-            oldLowLedColor = null;
+            if (device < 4)
+                DS4Control.DS4LightBar.forcelight[device] = false;            
         }
         private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
         {
-            if (oldLedColor == null || oldLowLedColor == null || oldChargingColor == null)
-            {
-                DS4Color color = Global.loadColor(device);
-                oldLedColor = new Byte[] { color.red, color.green, color.blue };
-                color = Global.loadLowColor(device);
-                oldLowLedColor = new Byte[] { color.red, color.green, color.blue };
-                color = Global.loadChargingColor(device);
-                oldChargingColor = new Byte[] { color.red, color.green, color.blue };
-            }
-            if (sender is Color)
+            if (sender is Color && device < 4)
             {
                 Color color = (Color)sender;
-                Global.saveColor(device, color.R, color.G, color.B);
-                Global.saveLowColor(device, color.R, color.G, color.B);
-                Global.saveChargingColor(device, color.R, color.G, color.B);
+                DS4Library.DS4Color dcolor = new DS4Library.DS4Color { red = color.R, green = color.G, blue = color.B };
+                DS4Control.DS4LightBar.forcedColor[device] = dcolor;
+                DS4Control.DS4LightBar.forcedFlash[device] = 0;
+                DS4Control.DS4LightBar.forcelight[device] = true;
             }
         }
         int bgc = 255; //Color of the form background, If greyscale color
@@ -1434,7 +1414,7 @@ namespace DS4Windows
         private void cBDinput_CheckedChanged(object sender, EventArgs e)
         {
             Global.setDinputOnly(device, cBDinput.Checked);
-            if (device > 4)
+            if (device < 4)
             {
                 root.btnStartStop_Clicked(false);
                 root.btnStartStop_Clicked(false);

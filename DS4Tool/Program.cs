@@ -30,6 +30,16 @@ namespace DS4Windows
         [STAThread]
         static void Main(string[] args)
         {
+            foreach(string s in args)
+            {
+                if (s == "driverinstall")
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new WelcomeDialog());
+                    return;
+                }
+            }
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;
             try
             {

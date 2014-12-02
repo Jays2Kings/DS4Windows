@@ -38,14 +38,15 @@ namespace DS4Windows
         }
 
         private void bnStep1_Click(object sender, EventArgs e)
-        {            
+        {
+            //Application.Run(new DS4Driver(ref bnStep1));
             WebClient wb = new WebClient();
             if (bnStep1.Text == Properties.Resources.Step1)
             {
-                wb.DownloadFileAsync(new Uri("http://ds4windows.com/Files/Virtual Bus Driver.zip"), Global.appdatapath + "\\VBus.zip");
+                wb.DownloadFileAsync(new Uri("http://ds4windows.com/Files/Virtual Bus Driver.zip"), exepath + "\\VBus.zip");
                 wb.DownloadProgressChanged += wb_DownloadProgressChanged;
                 wb.DownloadFileCompleted += wb_DownloadFileCompleted;               
-            } 
+            }
         }
 
         private void wb_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -56,9 +57,48 @@ namespace DS4Windows
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         private void wb_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            if (!Global.AdminNeeded())
+            bnStep1.Text = Properties.Resources.OpeningInstaller;
+            try
             {
-                bnStep1.Text = Properties.Resources.OpeningInstaller;
+                File.Delete(exepath + "\\ScpDriver.exe");
+                File.Delete(exepath + "\\ScpDriver.log");
+                Directory.Delete(exepath + "\\System", true);
+                Directory.Delete(exepath + "\\DIFxAPI", true);
+            }
+            catch { }
+            Directory.CreateDirectory(exepath + "\\Virtual Bus Driver");
+            try { ZipFile.ExtractToDirectory(exepath + "\\VBus.zip", exepath + "\\Virtual Bus Driver"); } //Saved so the user can uninstall later
+            catch { }
+            try { ZipFile.ExtractToDirectory(exepath + "\\VBus.zip", exepath); }
+            //Made here as starting the scpdriver.exe via process.start, the program looks for file from where it was called, not where the exe is
+            catch { }
+            if (File.Exists(exepath + "\\ScpDriver.exe"))
+                try
+                {
+                    Process.Start(exepath + "\\ScpDriver.exe", "si");
+                    bnStep1.Text = Properties.Resources.Installing;
+                }
+                catch { Process.Start(exepath + "\\Virtual Bus Driver"); }
+
+            Timer timer = new Timer();
+            timer.Start();
+            timer.Tick += timer_Tick;
+        }
+
+        bool running = false;
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Process[] processes = Process.GetProcessesByName("ScpDriver");
+            if (processes.Length < 1)
+            {
+                string log = File.ReadAllText(exepath + "\\ScpDriver.log");
+                if (log.Contains("Install Succeeded"))
+                    bnStep1.Text = Properties.Resources.InstallComplete;
+                else
+                {
+                    bnStep1.Text = Properties.Resources.InstallFailed;
+                    Process.Start(exepath + "\\Virtual Bus Driver");
+                }
                 try
                 {
                     File.Delete(exepath + "\\ScpDriver.exe");
@@ -67,76 +107,8 @@ namespace DS4Windows
                     Directory.Delete(exepath + "\\DIFxAPI", true);
                 }
                 catch { }
-                Directory.CreateDirectory(Global.appdatapath + "\\Virtual Bus Driver");
-                try { ZipFile.ExtractToDirectory(Global.appdatapath + "\\VBus.zip", Global.appdatapath + "\\Virtual Bus Driver"); } //Saved so the user can uninstall later
-                catch { }
-                try { ZipFile.ExtractToDirectory(Global.appdatapath + "\\VBus.zip", exepath); }
-                //Made here as starting the scpdriver.exe via process.start, the program looks for file from where it was called, not where the exe is
-                catch { }
-                if (File.Exists(exepath + "\\ScpDriver.exe"))
-                    try
-                    {
-                        Process.Start(exepath + "\\ScpDriver.exe", "si");
-                        bnStep1.Text = Properties.Resources.Installing;
-                    }
-                    catch { Process.Start(Global.appdatapath + "\\Virtual Bus Driver"); }
-                
-                Timer timer = new Timer();
-                timer.Start();
-                timer.Tick += timer_Tick;
-            }
-            else
-            {
-                bnStep1.Text = Properties.Resources.OpenScpDriver;
-                Directory.CreateDirectory(Global.appdatapath + "\\Virtual Bus Driver");
-                try { ZipFile.ExtractToDirectory(Global.appdatapath + "\\VBus.zip", Global.appdatapath + "\\Virtual Bus Driver"); }
-                catch { }
-                Process.Start(Global.appdatapath + "\\Virtual Bus Driver");
-                Timer timer = new Timer();
-                timer.Start();
-                timer.Tick += timer_Tick;
-            }
-        }
-
-        bool running = false;
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            Process[] processes = Process.GetProcessesByName("ScpDriver");
-            if (!Global.AdminNeeded())
-            {
-                if (processes.Length < 1)
-                {
-                    string log = File.ReadAllText(exepath + "\\ScpDriver.log");
-                    if (log.Contains("Install Succeeded"))
-                        bnStep1.Text = Properties.Resources.InstallComplete;
-                    else
-                    {
-                        bnStep1.Text = Properties.Resources.InstallFailed;
-                        Process.Start(Global.appdatapath + "\\Virtual Bus Driver");
-                    }
-                    try
-                    {
-                        File.Delete(exepath + "\\ScpDriver.exe");
-                        File.Delete(exepath + "\\ScpDriver.log");
-                        Directory.Delete(exepath + "\\System", true);
-                        Directory.Delete(exepath + "\\DIFxAPI", true);
-                    }
-                    catch { }
-                    File.Delete(Global.appdatapath + "\\VBus.zip");
-                    ((Timer)sender).Stop();
-                }
-            }
-            else
-            {
-                if (processes.Length > 0)
-                    running = true;
-                if (running)
-                    if (processes.Length < 1)
-                    {
-                        bnStep1.Text = Properties.Resources.InstallComplete;
-                        File.Delete(Global.appdatapath + "\\VBus.zip");
-                        ((Timer)sender).Stop();
-                    }
+                File.Delete(exepath + "\\VBus.zip");
+                ((Timer)sender).Stop();
             }
         }
 

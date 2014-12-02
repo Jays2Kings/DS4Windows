@@ -25,10 +25,13 @@ namespace DS4Control
         public static double[] fadetimer = new double[4] { 0, 0, 0, 0 };
         static bool[] fadedirection = new bool[4] { false, false, false, false };
         static DateTime oldnow = DateTime.UtcNow;
+        public static bool[] forcelight = new bool[4] { false, false, false, false };
+        public static DS4Color[] forcedColor = new DS4Color[4];
+        public static byte[] forcedFlash = new byte[4];
         public static void updateLightBar(DS4Device device, int deviceNum, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
             DS4Color color;
-            if (!defualtLight)
+            if (!defualtLight && !forcelight[deviceNum])
             {
                 if (Global.getShiftColorOn(deviceNum) && Global.getShiftModifier(deviceNum) > 0 && shiftMod(device, deviceNum, cState, eState, tp))
                 {
@@ -128,6 +131,10 @@ namespace DS4Control
                         }
                 }
             }
+            else if (forcelight[deviceNum])
+            {
+                color = forcedColor[deviceNum];
+            }
             else if (shuttingdown)
                 color = new DS4Color { red = 0, green = 0, blue = 0 };
             else
@@ -153,7 +160,12 @@ namespace DS4Control
             };
             if (haptics.IsLightBarSet())
             {
-                if (device.Battery <= Global.getFlashAt(deviceNum) && !defualtLight && !device.Charging)
+                if (forcelight[deviceNum] && forcedFlash[deviceNum] > 0)
+                {
+                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
+                    haptics.LightBarExplicitlyOff = true;
+                }
+                else if (device.Battery <= Global.getFlashAt(deviceNum) && !defualtLight && !device.Charging)
                 {
                     int level = device.Battery / 10;
                     //if (level >= 10)
@@ -183,6 +195,7 @@ namespace DS4Control
                 System.Threading.Thread.Sleep(5);
             device.pushHapticState(haptics);
         }
+
         public static bool defualtLight = false, shuttingdown = false;
 
         public static bool shiftMod(DS4Device device, int deviceNum, DS4State cState, DS4StateExposed eState, Mouse tp)

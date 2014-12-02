@@ -176,30 +176,35 @@ namespace DS4Control
                     if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && gkp.current.toggle)
                     {
                         if (gkp.current.scanCodeCount != 0)
-                            InputMethods.performSCKeyPress(kvp.Key);
+                                    InputMethods.PressKeys(kvp.Key);
+                            //InputMethods.performSCKeyPress(kvp.Key);
                         else
-                            InputMethods.performKeyPress(kvp.Key);
+                            InputMethods.PressKeys(kvp.Key);
+                       // InputMethods.performKeyPress(kvp.Key);
                     }
                     else if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && !gkp.current.toggle)
                     {
                         if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
                             InputMethods.performSCKeyRelease(kvp.Key);
                         else
-                            InputMethods.performKeyRelease(kvp.Key);
+                            InputMethods.ReleaseKeys(kvp.Key);
+                        //InputMethods.performKeyRelease(kvp.Key);
                     }
                     else if (gkp.current.vkCount + gkp.current.scanCodeCount != 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount == 0)
                     {
                         if (gkp.current.scanCodeCount != 0)
                         {
                             oldnow = DateTime.UtcNow;
-                            InputMethods.performSCKeyPress(kvp.Key);
+                            InputMethods.PressKeys(kvp.Key);
+                            //InputMethods.performSCKeyPress(kvp.Key);
                             pressagain = false;
                             keyshelddown = kvp.Key;
                         }
                         else
                         {
                             oldnow = DateTime.UtcNow;
-                            InputMethods.performKeyPress(kvp.Key);
+                            InputMethods.PressKeys(kvp.Key);
+                            //InputMethods.performKeyPress(kvp.Key);
                             pressagain = false;
                             keyshelddown = kvp.Key;
                         }
@@ -221,7 +226,8 @@ namespace DS4Control
                                 if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                                 {
                                     oldnow = now;
-                                    InputMethods.performSCKeyPress(kvp.Key);
+                                    //InputMethods.performSCKeyPress(kvp.Key);
+                                    InputMethods.PressKeys(kvp.Key);
                                 }
                             }
                             else if (pressagain)
@@ -230,7 +236,8 @@ namespace DS4Control
                                 if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                                 {
                                     oldnow = now;
-                                    InputMethods.performKeyPress(kvp.Key);
+                                    InputMethods.PressKeys(kvp.Key);
+                                    //InputMethods.performKeyPress(kvp.Key);
                                 }
                             }
                         }
@@ -245,7 +252,8 @@ namespace DS4Control
                         }
                         else
                         {
-                            InputMethods.performKeyRelease(kvp.Key);
+                            InputMethods.ReleaseKeys(kvp.Key);
+                            //InputMethods.performKeyRelease(kvp.Key);
                             pressagain = false;
                         }
                     }

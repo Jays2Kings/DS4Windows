@@ -559,6 +559,10 @@ namespace DS4Control
         {
             return m_Config.GetCustomMacro(device, controlName);
         }
+        public static string getCustomExtras(int device, DS4Controls controlName)
+        {
+            return m_Config.GetCustomExtras(device, controlName);
+        }
         public static DS4KeyType getCustomKeyType(int device, DS4Controls controlName)
         {
             return m_Config.GetCustomKeyType(device, controlName);
@@ -567,6 +571,10 @@ namespace DS4Control
         {
             return m_Config.customMapButtons[device].Count > 0
                 || m_Config.customMapKeys[device].Count > 0;
+        }
+        public static bool getHasCustomExtras(int device)
+        {
+            return m_Config.customMapExtras[device].Count > 0;
         }
         public static Dictionary<DS4Controls, X360Controls> getCustomButtons(int device)
         {
@@ -579,6 +587,10 @@ namespace DS4Control
         public static Dictionary<DS4Controls, string> getCustomMacros(int device)
         {
             return m_Config.customMapMacros[device];
+        }
+        public static Dictionary<DS4Controls, string> getCustomExtras(int device)
+        {
+            return m_Config.customMapExtras[device];
         }
         public static Dictionary<DS4Controls, DS4KeyType> getCustomKeyTypes(int device)
         {
@@ -597,6 +609,10 @@ namespace DS4Control
         {
             return m_Config.GetShiftCustomMacro(device, controlName);
         }
+        public static string getShiftCustomExtras(int device, DS4Controls controlName)
+        {
+            return m_Config.GetShiftCustomExtras(device, controlName);
+        }
         public static DS4KeyType getShiftCustomKeyType(int device, DS4Controls controlName)
         {
             return m_Config.GetShiftCustomKeyType(device, controlName);
@@ -605,6 +621,10 @@ namespace DS4Control
         {
             return m_Config.shiftCustomMapButtons[device].Count > 0
                 || m_Config.shiftCustomMapKeys[device].Count > 0;
+        }
+        public static bool getHasShiftCustomExtras(int device)
+        {
+            return m_Config.shiftCustomMapExtras[device].Count > 0;
         }
         public static Dictionary<DS4Controls, X360Controls> getShiftCustomButtons(int device)
         {
@@ -617,6 +637,10 @@ namespace DS4Control
         public static Dictionary<DS4Controls, string> getShiftCustomMacros(int device)
         {
             return m_Config.shiftCustomMapMacros[device];
+        }
+        public static Dictionary<DS4Controls, string> getShiftCustomExtras(int device)
+        {
+            return m_Config.shiftCustomMapExtras[device];
         }
         public static Dictionary<DS4Controls, DS4KeyType> getShiftCustomKeyTypes(int device)
         {
@@ -813,11 +837,13 @@ namespace DS4Control
         public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null, null };
         public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null, null };
+        public Dictionary<DS4Controls, String>[] customMapExtras = { null, null, null, null, null };
 
         public Dictionary<DS4Controls, DS4KeyType>[] shiftCustomMapKeyTypes = { null, null, null, null, null };
         public Dictionary<DS4Controls, UInt16>[] shiftCustomMapKeys = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] shiftCustomMapMacros = { null, null, null, null, null };
         public Dictionary<DS4Controls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
+        public Dictionary<DS4Controls, String>[] shiftCustomMapExtras = { null, null, null, null, null };
 
         public BackingStore()
         {
@@ -827,11 +853,13 @@ namespace DS4Control
                 customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
                 customMapMacros[i] = new Dictionary<DS4Controls, String>();
                 customMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
+                customMapExtras[i] = new Dictionary<DS4Controls, string>();
 
                 shiftCustomMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
                 shiftCustomMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
                 shiftCustomMapMacros[i] = new Dictionary<DS4Controls, String>();
                 shiftCustomMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
+                shiftCustomMapExtras[i] = new Dictionary<DS4Controls, string>();
             }
         }
 
@@ -851,6 +879,12 @@ namespace DS4Control
         {
             if (customMapMacros[device].ContainsKey(controlName))
                 return customMapMacros[device][controlName];
+            else return "0";
+        }
+        public string GetCustomExtras(int device, DS4Controls controlName)
+        {
+            if (customMapExtras[device].ContainsKey(controlName))
+                return customMapExtras[device][controlName];
             else return "0";
         }
         public DS4KeyType GetCustomKeyType(int device, DS4Controls controlName)
@@ -880,6 +914,12 @@ namespace DS4Control
         {
             if (shiftCustomMapMacros[device].ContainsKey(controlName))
                 return shiftCustomMapMacros[device][controlName];
+            else return "0";
+        }
+        public string GetShiftCustomExtras(int device, DS4Controls controlName)
+        {
+            if (customMapExtras[device].ContainsKey(controlName))
+                return customMapExtras[device][controlName];
             else return "0";
         }
         public DS4KeyType GetShiftCustomKeyType(int device, DS4Controls controlName)
@@ -964,6 +1004,7 @@ namespace DS4Control
                 XmlNode Macro = m_Xdoc.CreateNode(XmlNodeType.Element, "Macro", null);
                 XmlNode KeyType = m_Xdoc.CreateNode(XmlNodeType.Element, "KeyType", null);
                 XmlNode Button = m_Xdoc.CreateNode(XmlNodeType.Element, "Button", null);
+                XmlNode Extras = m_Xdoc.CreateNode(XmlNodeType.Element, "Extras", null);
                 if (buttons != null)
                 {
                     foreach (var button in buttons)
@@ -973,36 +1014,68 @@ namespace DS4Control
                         {
                             XmlNode buttonNode;
                             string keyType = String.Empty;
-                            if (button.Tag is String && (String)button.Tag == "Unbound")
-                            {
-                                keyType += DS4KeyType.Unbound;
-                            }
-                            {
-                                if (button.Font.Strikeout)
-                                    keyType += DS4KeyType.HoldMacro;
-                                if (button.Font.Underline)
-                                    keyType += DS4KeyType.Macro;
-                                if (button.Font.Italic)
-                                    keyType += DS4KeyType.Toggle;
-                                if (button.Font.Bold)
-                                    keyType += DS4KeyType.ScanCode;
-                            }
+
+                            if (button.Tag is KeyValuePair<string, string>)
+                                if (((KeyValuePair<string, string>)button.Tag).Key == "Unbound")
+                                    keyType += DS4KeyType.Unbound;
+
+                            if (button.Font.Strikeout)
+                                keyType += DS4KeyType.HoldMacro;
+                            if (button.Font.Underline)
+                                keyType += DS4KeyType.Macro;
+                            if (button.Font.Italic)
+                                keyType += DS4KeyType.Toggle;
+                            if (button.Font.Bold)
+                                keyType += DS4KeyType.ScanCode;
                             if (keyType != String.Empty)
                             {
                                 buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
                                 buttonNode.InnerText = keyType;
                                 KeyType.AppendChild(buttonNode);
                             }
+
+                            string[] extras;
                             buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
-                            buttonNode.InnerText = button.Tag.ToString();
-                            if (button.Tag is IEnumerable<int> || button.Tag is Int32[] || button.Tag is UInt16[])
+                            if (button.Tag is KeyValuePair<IEnumerable<int>, string> || button.Tag is KeyValuePair<Int32[], string> || button.Tag is KeyValuePair<UInt16[], string>)
                             {
-                                buttonNode.InnerText = string.Join("/", (int[])button.Tag);
+                                KeyValuePair<Int32[], string> tag = (KeyValuePair<Int32[], string>)button.Tag;
+                                int[] ii = tag.Key;
+                                buttonNode.InnerText = string.Join("/", ii);
                                 Macro.AppendChild(buttonNode);
+                                extras = tag.Value.Split(',');
                             }
-                            else if (button.Tag is Int32 || button.Tag is UInt16)
+                            else if (button.Tag is KeyValuePair<Int32, string> || button.Tag is KeyValuePair<UInt16, string> || button.Tag is KeyValuePair<byte, string>)
+                            {
+                                KeyValuePair<int, string> tag = (KeyValuePair<int, string>)button.Tag;
+                                buttonNode.InnerText = tag.Key.ToString();
                                 Key.AppendChild(buttonNode);
-                            else Button.AppendChild(buttonNode);
+                                extras = tag.Value.Split(',');
+                            }
+                            else if (button.Tag is KeyValuePair<string, string>)
+                            {
+                                KeyValuePair<string, string> tag = (KeyValuePair<string, string>)button.Tag;
+                                buttonNode.InnerText = tag.Key;
+                                Button.AppendChild(buttonNode);
+                                extras = tag.Value.Split(',');
+                            }
+                            else
+                            {
+                                KeyValuePair<object, string> tag = (KeyValuePair<object, string>)button.Tag;
+                                extras = tag.Value.Split(',');
+                            }
+                            bool hasvalue = false;
+                            foreach (string s in extras)
+                                if (s != "0")
+                                {
+                                    hasvalue = true;
+                                    break;
+                                }
+                            if (hasvalue)
+                            {
+                                XmlNode extraNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
+                                extraNode.InnerText = String.Join(",", extras);
+                                Extras.AppendChild(extraNode);
+                            }
                         }
                     }
                     Node.AppendChild(NodeControl);
@@ -1012,6 +1085,8 @@ namespace DS4Control
                         NodeControl.AppendChild(Macro);
                     if (Key.HasChildNodes)
                         NodeControl.AppendChild(Key);
+                    if (Extras.HasChildNodes)
+                        NodeControl.AppendChild(Extras);
                     if (KeyType.HasChildNodes)
                         NodeControl.AppendChild(KeyType);
                 }
@@ -1025,6 +1100,7 @@ namespace DS4Control
                     XmlNode ShiftMacro = m_Xdoc.CreateNode(XmlNodeType.Element, "Macro", null);
                     XmlNode ShiftKeyType = m_Xdoc.CreateNode(XmlNodeType.Element, "KeyType", null);
                     XmlNode ShiftButton = m_Xdoc.CreateNode(XmlNodeType.Element, "Button", null);
+                    XmlNode ShiftExtras = m_Xdoc.CreateNode(XmlNodeType.Element, "Extras", null);
                     if (shiftbuttons != null)
                     {
                         foreach (var button in shiftbuttons)
@@ -1034,36 +1110,67 @@ namespace DS4Control
                             {
                                 XmlNode buttonNode;
                                 string keyType = String.Empty;
-                                if (button.Tag is String && (String)button.Tag == "Unbound")
-                                {
-                                    keyType += DS4KeyType.Unbound;
-                                }
-                                {
-                                    if (button.Font.Strikeout)
-                                        keyType += DS4KeyType.HoldMacro;
-                                    if (button.Font.Underline)
-                                        keyType += DS4KeyType.Macro;
-                                    if (button.Font.Italic)
-                                        keyType += DS4KeyType.Toggle;
-                                    if (button.Font.Bold)
-                                        keyType += DS4KeyType.ScanCode;
-                                }
+                                if (button.Tag is KeyValuePair<string, string>)
+                                    if (((KeyValuePair<string, string>)button.Tag).Key == "Unbound")
+                                        keyType += DS4KeyType.Unbound;
+
+                                if (button.Font.Strikeout)
+                                    keyType += DS4KeyType.HoldMacro;
+                                if (button.Font.Underline)
+                                    keyType += DS4KeyType.Macro;
+                                if (button.Font.Italic)
+                                    keyType += DS4KeyType.Toggle;
+                                if (button.Font.Bold)
+                                    keyType += DS4KeyType.ScanCode;
                                 if (keyType != String.Empty)
                                 {
                                     buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
                                     buttonNode.InnerText = keyType;
                                     ShiftKeyType.AppendChild(buttonNode);
                                 }
+
+                                string[] extras;
                                 buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
-                                buttonNode.InnerText = button.Tag.ToString();
-                                if (button.Tag is IEnumerable<int> || button.Tag is Int32[] || button.Tag is UInt16[])
+                                if (button.Tag is KeyValuePair<IEnumerable<int>, string> || button.Tag is KeyValuePair<Int32[], string> || button.Tag is KeyValuePair<UInt16[], string>)
                                 {
-                                    buttonNode.InnerText = string.Join("/", (int[])button.Tag);
+                                    KeyValuePair<Int32[], string> tag = (KeyValuePair<Int32[], string>)button.Tag;
+                                    int[] ii = tag.Key;
+                                    buttonNode.InnerText = string.Join("/", ii);
                                     ShiftMacro.AppendChild(buttonNode);
+                                    extras = tag.Value.Split(',');
                                 }
-                                else if (button.Tag is Int32 || button.Tag is UInt16)
+                                else if (button.Tag is KeyValuePair<Int32, string> || button.Tag is KeyValuePair<UInt16, string> || button.Tag is KeyValuePair<byte, string>)
+                                {
+                                    KeyValuePair<int, string> tag = (KeyValuePair<int, string>)button.Tag;
+                                    buttonNode.InnerText = tag.Key.ToString();
                                     ShiftKey.AppendChild(buttonNode);
-                                else ShiftButton.AppendChild(buttonNode);
+                                    extras = tag.Value.Split(',');
+                                }
+                                else if (button.Tag is KeyValuePair<string, string>)
+                                {
+                                    KeyValuePair<string, string> tag = (KeyValuePair<string, string>)button.Tag;
+                                    buttonNode.InnerText = tag.Key;
+                                    ShiftButton.AppendChild(buttonNode);
+                                    extras = tag.Value.Split(',');
+                                }
+                                else
+                                {
+                                    KeyValuePair<object, string> tag = (KeyValuePair<object, string>)button.Tag;
+                                    extras = tag.Value.Split(',');
+                                }
+                                bool hasvalue = false;
+                                foreach (string s in extras)
+                                    if (s != "0")
+                                    {
+                                        hasvalue = true;
+                                        break;
+                                    }
+                                if (hasvalue)
+                                {
+                                    XmlNode extraNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
+                                    extraNode.InnerText = String.Join(",", extras);
+                                    ShiftExtras.AppendChild(extraNode);
+                                }
                             }
                         }
                         Node.AppendChild(NodeShiftControl);
@@ -1279,10 +1386,12 @@ namespace DS4Control
             Dictionary<DS4Controls, UInt16> customMapKeys = new Dictionary<DS4Controls, UInt16>();
             Dictionary<DS4Controls, X360Controls> customMapButtons = new Dictionary<DS4Controls, X360Controls>();
             Dictionary<DS4Controls, String> customMapMacros = new Dictionary<DS4Controls, String>();
+            Dictionary<DS4Controls, String> customMapExtras = new Dictionary<DS4Controls, String>();
             Dictionary<DS4Controls, DS4KeyType> shiftCustomMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
             Dictionary<DS4Controls, UInt16> shiftCustomMapKeys = new Dictionary<DS4Controls, UInt16>();
             Dictionary<DS4Controls, X360Controls> shiftCustomMapButtons = new Dictionary<DS4Controls, X360Controls>();
             Dictionary<DS4Controls, String> shiftCustomMapMacros = new Dictionary<DS4Controls, String>();
+            Dictionary<DS4Controls, String> shiftCustomMapExtras = new Dictionary<DS4Controls, String>();
             string rootname = "DS4Windows";
             Boolean missingSetting = false;
             string profilepath;
@@ -1491,6 +1600,10 @@ namespace DS4Control
                         foreach (XmlNode item in ParentItem.ChildNodes)
                             if (UInt16.TryParse(item.InnerText, out wvk))
                                 customMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
+                    ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Extras");
+                    if (ParentItem != null) 
+                        foreach (XmlNode item in ParentItem.ChildNodes)
+                            customMapExtras.Add(getDS4ControlsByName(item.Name), item.InnerText);
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/KeyType");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
@@ -1525,6 +1638,10 @@ namespace DS4Control
                             foreach (XmlNode item in ParentItem.ChildNodes)
                                 if (UInt16.TryParse(item.InnerText, out wvk))
                                     shiftCustomMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
+                        ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Extras");
+                        if (ParentItem != null)
+                            foreach (XmlNode item in ParentItem.ChildNodes)
+                                shiftCustomMapExtras.Add(getDS4ControlsByName(item.Name), item.InnerText);
                         ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/KeyType");
                         if (ParentItem != null)
                             foreach (XmlNode item in ParentItem.ChildNodes)
@@ -1548,8 +1665,8 @@ namespace DS4Control
                 }
                 else
                 {
-                    LoadButtons(buttons, "Control", customMapKeyTypes, customMapKeys, customMapButtons, customMapMacros);
-                    LoadButtons(shiftbuttons, "ShiftControl", shiftCustomMapKeyTypes, shiftCustomMapKeys, shiftCustomMapButtons, shiftCustomMapMacros);                    
+                    LoadButtons(buttons, "Control", customMapKeyTypes, customMapKeys, customMapButtons, customMapMacros, customMapExtras);
+                    LoadButtons(shiftbuttons, "ShiftControl", shiftCustomMapKeyTypes, shiftCustomMapKeys, shiftCustomMapButtons, shiftCustomMapMacros, shiftCustomMapExtras);                    
                 }
             }            
             //catch { Loaded = false; }
@@ -1559,11 +1676,13 @@ namespace DS4Control
                 this.customMapKeys[device] = customMapKeys;
                 this.customMapKeyTypes[device] = customMapKeyTypes;
                 this.customMapMacros[device] = customMapMacros;
+                this.customMapExtras[device] = customMapExtras;
 
                 this.shiftCustomMapButtons[device] = shiftCustomMapButtons;
                 this.shiftCustomMapKeys[device] = shiftCustomMapKeys;
                 this.shiftCustomMapKeyTypes[device] = shiftCustomMapKeyTypes;
                 this.shiftCustomMapMacros[device] = shiftCustomMapMacros;
+                this.shiftCustomMapExtras[device] = shiftCustomMapExtras;
             }
             // Only add missing settings if the actual load was graceful
             if (missingSetting && Loaded)// && buttons != null)
@@ -1573,7 +1692,7 @@ namespace DS4Control
         }
 
         public void LoadButtons(System.Windows.Forms.Control[] buttons, string control, Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes,
-           Dictionary<DS4Controls, UInt16> customMapKeys, Dictionary<DS4Controls, X360Controls> customMapButtons, Dictionary<DS4Controls, String> customMapMacros)
+           Dictionary<DS4Controls, UInt16> customMapKeys, Dictionary<DS4Controls, X360Controls> customMapButtons, Dictionary<DS4Controls, String> customMapMacros, Dictionary<DS4Controls, String> customMapExtras)
         {
             XmlNode Item;
             DS4KeyType keyType;
@@ -1617,7 +1736,15 @@ namespace DS4Control
                         if (keyType != DS4KeyType.None)
                             customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
                     }
-
+                    string extras;
+                    Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Extras/{0}", button.Name));
+                    if (Item != null)
+                    {
+                        extras = Item.InnerText;
+                        customMapExtras.Add(getDS4ControlsByName(button.Name), Item.InnerText);
+                    }
+                    else
+                        extras = "0,0,0,0,0,0,0,0";
                     Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Macro/{0}", button.Name));
                     if (Item != null)
                     {
@@ -1635,7 +1762,7 @@ namespace DS4Control
                             else if (keys[i] > 300) splitter[i] = "Wait " + (keys[i] - 300) + "ms";
                         }
                         button.Text = "Macro";
-                        button.Tag = keys;
+                        button.Tag = new KeyValuePair<int[], string>(keys, extras);
                         customMapMacros.Add(getDS4ControlsByName(button.Name), Item.InnerText);
                     }
                     else if (m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Key/{0}", button.Name)) != null)
@@ -1645,20 +1772,21 @@ namespace DS4Control
                         {
                             //foundBinding = true;
                             customMapKeys.Add(getDS4ControlsByName(Item.Name), wvk);
-                            button.Tag = wvk;
+                            button.Tag = new KeyValuePair<int, string>(wvk, extras);
                             button.Text = ((System.Windows.Forms.Keys)wvk).ToString();
                         }
                     }
-                    else
+                    else if (m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Button/{0}", button.Name)) != null)
                     {
                         Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Button/{0}", button.Name));
-                        if (Item != null)
-                        {
-                            //foundBinding = true;
-                            button.Tag = Item.InnerText;
-                            button.Text = Item.InnerText;
-                            customMapButtons.Add(getDS4ControlsByName(button.Name), getX360ControlsByName(Item.InnerText));
-                        }
+                        //foundBinding = true;
+                        button.Tag = new KeyValuePair<string, string>(Item.InnerText, extras);
+                        button.Text = Item.InnerText;
+                        customMapButtons.Add(getDS4ControlsByName(button.Name), getX360ControlsByName(Item.InnerText));
+                    }
+                    else
+                    {
+                        button.Tag = new KeyValuePair<object, string>(null, extras);
                     }
                 }
                 catch

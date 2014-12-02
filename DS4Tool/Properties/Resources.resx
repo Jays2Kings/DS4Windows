@@ -580,4 +580,10 @@
   <data name="QuickCharge" xml:space="preserve">
     <value>EXPERIMENTAL: Auto-Disable BT when conencting to USB</value>
   </data>
+  <data name="TestText" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="CannotMoveFiles" xml:space="preserve">
+    <value>Cannot move files, to new location, Please close out of any profiles in external programs</value>
+  </data>
 </root>

@@ -184,6 +184,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot move files, to new location, Please close out of any profiles in external programs.
+        /// </summary>
+        internal static string CannotMoveFiles {
+            get {
+                return ResourceManager.GetString("CannotMoveFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot write at current locataion. Copy Settings to appdata?.
         /// </summary>
         internal static string CannotWriteHere {
@@ -1281,6 +1290,15 @@ namespace DS4Windows.Properties {
         internal static string TestLText {
             get {
                 return ResourceManager.GetString("TestLText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test.
+        /// </summary>
+        internal static string TestText {
+            get {
+                return ResourceManager.GetString("TestText", resourceCulture);
             }
         }
         

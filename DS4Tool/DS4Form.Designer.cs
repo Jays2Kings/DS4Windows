@@ -108,7 +108,7 @@
             this.tSBExportProfile = new System.Windows.Forms.ToolStripButton();
             this.tabAutoProfiles = new System.Windows.Forms.TabPage();
             this.tabSettings = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.fLPSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.hideDS4CheckBox = new System.Windows.Forms.CheckBox();
             this.cBSwipeProfiles = new System.Windows.Forms.CheckBox();
             this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
@@ -121,6 +121,10 @@
             this.cBNotifications = new System.Windows.Forms.CheckBox();
             this.cBDisconnectBT = new System.Windows.Forms.CheckBox();
             this.cBQuickCharge = new System.Windows.Forms.CheckBox();
+            this.pnlXIPorts = new System.Windows.Forms.Panel();
+            this.lbUseXIPorts = new System.Windows.Forms.Label();
+            this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
+            this.lbLastXIPort = new System.Windows.Forms.Label();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
             this.linkSetup = new System.Windows.Forms.LinkLabel();
@@ -142,9 +146,11 @@
             this.tSOptions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabSettings.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.fLPSettings.SuspendLayout();
             this.pNUpdate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).BeginInit();
+            this.pnlXIPorts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDXIPorts)).BeginInit();
             this.tabLog.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -728,29 +734,30 @@
             // 
             // tabSettings
             // 
-            this.tabSettings.Controls.Add(this.flowLayoutPanel1);
+            this.tabSettings.Controls.Add(this.fLPSettings);
             resources.ApplyResources(this.tabSettings, "tabSettings");
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
+            // fLPSettings
             // 
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
-            this.flowLayoutPanel1.Controls.Add(this.hideDS4CheckBox);
-            this.flowLayoutPanel1.Controls.Add(this.cBSwipeProfiles);
-            this.flowLayoutPanel1.Controls.Add(this.StartWindowsCheckBox);
-            this.flowLayoutPanel1.Controls.Add(this.startMinimizedCheckBox);
-            this.flowLayoutPanel1.Controls.Add(this.cBUpdate);
-            this.flowLayoutPanel1.Controls.Add(this.pNUpdate);
-            this.flowLayoutPanel1.Controls.Add(this.cBNotifications);
-            this.flowLayoutPanel1.Controls.Add(this.cBDisconnectBT);
-            this.flowLayoutPanel1.Controls.Add(this.cBQuickCharge);
-            this.flowLayoutPanel1.Controls.Add(this.linkProfiles);
-            this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
-            this.flowLayoutPanel1.Controls.Add(this.linkSetup);
-            this.flowLayoutPanel1.Controls.Add(this.linkUninstall);
-            this.flowLayoutPanel1.Controls.Add(this.lnkControllers);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            resources.ApplyResources(this.fLPSettings, "fLPSettings");
+            this.fLPSettings.Controls.Add(this.hideDS4CheckBox);
+            this.fLPSettings.Controls.Add(this.cBSwipeProfiles);
+            this.fLPSettings.Controls.Add(this.StartWindowsCheckBox);
+            this.fLPSettings.Controls.Add(this.startMinimizedCheckBox);
+            this.fLPSettings.Controls.Add(this.cBUpdate);
+            this.fLPSettings.Controls.Add(this.pNUpdate);
+            this.fLPSettings.Controls.Add(this.cBNotifications);
+            this.fLPSettings.Controls.Add(this.cBDisconnectBT);
+            this.fLPSettings.Controls.Add(this.cBQuickCharge);
+            this.fLPSettings.Controls.Add(this.pnlXIPorts);
+            this.fLPSettings.Controls.Add(this.linkProfiles);
+            this.fLPSettings.Controls.Add(this.lLBUpdate);
+            this.fLPSettings.Controls.Add(this.linkSetup);
+            this.fLPSettings.Controls.Add(this.linkUninstall);
+            this.fLPSettings.Controls.Add(this.lnkControllers);
+            this.fLPSettings.Name = "fLPSettings";
             // 
             // hideDS4CheckBox
             // 
@@ -845,6 +852,49 @@
             this.cBQuickCharge.UseVisualStyleBackColor = true;
             this.cBQuickCharge.CheckedChanged += new System.EventHandler(this.cBQuickCharge_CheckedChanged);
             // 
+            // pnlXIPorts
+            // 
+            this.pnlXIPorts.Controls.Add(this.lbUseXIPorts);
+            this.pnlXIPorts.Controls.Add(this.nUDXIPorts);
+            this.pnlXIPorts.Controls.Add(this.lbLastXIPort);
+            resources.ApplyResources(this.pnlXIPorts, "pnlXIPorts");
+            this.pnlXIPorts.Name = "pnlXIPorts";
+            this.pnlXIPorts.MouseEnter += new System.EventHandler(this.pnlXIPorts_MouseEnter);
+            this.pnlXIPorts.MouseLeave += new System.EventHandler(this.pnlXIPorts_MouseLeave);
+            // 
+            // lbUseXIPorts
+            // 
+            resources.ApplyResources(this.lbUseXIPorts, "lbUseXIPorts");
+            this.lbUseXIPorts.Name = "lbUseXIPorts";
+            // 
+            // nUDXIPorts
+            // 
+            resources.ApplyResources(this.nUDXIPorts, "nUDXIPorts");
+            this.nUDXIPorts.Maximum = new decimal(new int[] {
+            11,
+            0,
+            0,
+            0});
+            this.nUDXIPorts.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDXIPorts.Name = "nUDXIPorts";
+            this.nUDXIPorts.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDXIPorts.ValueChanged += new System.EventHandler(this.nUDXIPorts_ValueChanged);
+            this.nUDXIPorts.Enter += new System.EventHandler(this.nUDXIPorts_Enter);
+            this.nUDXIPorts.Leave += new System.EventHandler(this.nUDXIPorts_Leave);
+            // 
+            // lbLastXIPort
+            // 
+            resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
+            this.lbLastXIPort.Name = "lbLastXIPort";
+            // 
             // linkProfiles
             // 
             resources.ApplyResources(this.linkProfiles, "linkProfiles");
@@ -924,11 +974,14 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabSettings.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.fLPSettings.ResumeLayout(false);
+            this.fLPSettings.PerformLayout();
             this.pNUpdate.ResumeLayout(false);
             this.pNUpdate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).EndInit();
+            this.pnlXIPorts.ResumeLayout(false);
+            this.pnlXIPorts.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDXIPorts)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1014,7 +1067,7 @@
         private System.Windows.Forms.TabPage tabSettings;
         private System.Windows.Forms.ToolStripButton tSBKeepSize;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel fLPSettings;
         private System.Windows.Forms.LinkLabel lLBUpdate;
         private System.Windows.Forms.LinkLabel linkSetup;
         private System.Windows.Forms.CheckBox hideDS4CheckBox;
@@ -1034,6 +1087,10 @@
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         public System.Windows.Forms.Label lbLastMessage;
         private System.Windows.Forms.CheckBox cBQuickCharge;
+        private System.Windows.Forms.Panel pnlXIPorts;
+        private System.Windows.Forms.Label lbUseXIPorts;
+        private System.Windows.Forms.NumericUpDown nUDXIPorts;
+        private System.Windows.Forms.Label lbLastXIPort;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

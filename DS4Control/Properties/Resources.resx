@@ -148,7 +148,7 @@
     <value>none</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>You must quit other applications like Steam, Uplay before activating the 'Hide DS4 Controller' option."</value>
+    <value>You must quit other applications like Steam, Uplay before activating the 'Hide DS4 Controller' option.</value>
   </data>
   <data name="SearchingController" xml:space="preserve">
     <value>Searching for controllers…</value>

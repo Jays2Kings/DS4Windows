@@ -11,9 +11,9 @@ namespace DS4Control
     public partial class X360Device : ScpDevice
     {
         private const String DS3_BUS_CLASS_GUID = "{F679F562-3164-42CE-A4DB-E7DDBE723909}";
-        private const int CONTROLLER_OFFSET = 1 + 10; // Device 0 is the virtual USB hub itself, and we leave devices 1-10 available for other software (like the Scarlet.Crush DualShock driver itself)
+        private const int CONTROLLER_OFFSET = 1; // Device 0 is the virtual USB hub itself, and we leave devices 1-10 available for other software (like the Scarlet.Crush DualShock driver itself)
 
-        private int firstController = 1 + 10;
+        private int firstController = 1;
         // Device 0 is the virtual USB hub itself, and we can leave more available for other software (like the Scarlet.Crush DualShock driver)
         public int FirstController
         {

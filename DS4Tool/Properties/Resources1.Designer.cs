@@ -184,7 +184,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot move files, to new location, Please close out of any profiles in external programs.
+        ///   Looks up a localized string similar to Cannot move files to new location, Please rename the DS4Tool folder to &quot;DS4Windows&quot;.
         /// </summary>
         internal static string CannotMoveFiles {
             get {
@@ -1501,6 +1501,15 @@ namespace DS4Windows.Properties {
             get {
                 object obj = ResourceManager.GetObject("X", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use higher ports if you get conflicts in other emulating X360 programs, such as SCP&apos;s tool.
+        /// </summary>
+        internal static string XinputPorts {
+            get {
+                return ResourceManager.GetString("XinputPorts", resourceCulture);
             }
         }
         

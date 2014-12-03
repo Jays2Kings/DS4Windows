@@ -45,7 +45,7 @@ namespace DS4Control
         {
             if (DS4Devices.isExclusiveMode && !device.IsExclusive)
             {
-                String message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.MacAddress) + Properties.Resources.QuitOtherPrograms;
+                String message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.MacAddress) + " " + Properties.Resources.QuitOtherPrograms;
                 LogDebug(message);
                 Log.LogToTray(message);
             }

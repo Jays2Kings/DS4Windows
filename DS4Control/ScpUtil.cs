@@ -330,7 +330,15 @@ namespace DS4Control
         public static bool getQuickCharge()
         {
             return m_Config.quickCharge;
-        }        
+        }
+        public static void setFirstXinputPort(int data)
+        {
+            m_Config.firstXinputPort = data;
+        }
+        public static int getFirstXinputPort()
+        {
+            return m_Config.firstXinputPort;
+        }  
         public static void saveLowColor(int device, byte red, byte green, byte blue)
         {
             m_Config.m_LowLeds[device][0] = red;
@@ -833,6 +841,7 @@ namespace DS4Control
         public bool swipeProfiles = true;
         public bool ds4Mapping = true;
         public bool quickCharge = false;
+        public int firstXinputPort = 1;
         public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = { null, null, null, null, null };
         public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null, null };
@@ -1837,6 +1846,8 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/QuickCharge"); Boolean.TryParse(Item.InnerText, out quickCharge); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/FirstXinputPort"); Int32.TryParse(Item.InnerText, out firstXinputPort); }
+                    catch { missingSetting = true; }
                 }
             }
             catch { }
@@ -1881,6 +1892,7 @@ namespace DS4Control
             XmlNode xmlSwipeProfiles = m_Xdoc.CreateNode(XmlNodeType.Element, "SwipeProfiles", null); xmlSwipeProfiles.InnerText = swipeProfiles.ToString(); Node.AppendChild(xmlSwipeProfiles);
             XmlNode xmlDS4Mapping = m_Xdoc.CreateNode(XmlNodeType.Element, "UseDS4ForMapping", null); xmlDS4Mapping.InnerText = ds4Mapping.ToString(); Node.AppendChild(xmlDS4Mapping);
             XmlNode xmlQuickCharge = m_Xdoc.CreateNode(XmlNodeType.Element, "QuickCharge", null); xmlQuickCharge.InnerText = quickCharge.ToString(); Node.AppendChild(xmlQuickCharge);
+            XmlNode xmlFirstXinputPort = m_Xdoc.CreateNode(XmlNodeType.Element, "FirstXinputPort", null); xmlFirstXinputPort.InnerText = firstXinputPort.ToString(); Node.AppendChild(xmlFirstXinputPort);
             m_Xdoc.AppendChild(Node);
 
             try { m_Xdoc.Save(m_Profile); }

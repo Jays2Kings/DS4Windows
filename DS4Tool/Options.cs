@@ -82,19 +82,22 @@ namespace DS4Windows
             root.lbLastMessage.ForeColor = Color.Black;
             root.lbLastMessage.Text = "Hover over items to see description or more about";
             foreach (System.Windows.Forms.Control control in Controls)
+            {
                 if (control.HasChildren)
                     foreach (System.Windows.Forms.Control ctrl in control.Controls)
+                    {
                         if (ctrl.HasChildren)
                             foreach (System.Windows.Forms.Control ctrl2 in ctrl.Controls)
+                            {
                                 if (ctrl2.HasChildren)
                                     foreach (System.Windows.Forms.Control ctrl3 in ctrl2.Controls)
                                         ctrl3.MouseHover += Items_MouseHover;
-                                else
-                                    ctrl2.MouseHover += Items_MouseHover;
-                        else
-                            ctrl.MouseHover += Items_MouseHover;
-                else
-                    control.MouseHover += Items_MouseHover;
+                                ctrl2.MouseHover += Items_MouseHover;
+                            }
+                        ctrl.MouseHover += Items_MouseHover;
+                    }
+                control.MouseHover += Items_MouseHover;
+            }
 
             if (device < 4)
             nUDSixaxis.Value = deviceNum + 1;

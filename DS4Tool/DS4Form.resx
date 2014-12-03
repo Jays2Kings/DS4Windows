@@ -7639,7 +7639,7 @@
     <value>Export</value>
   </data>
   <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 224</value>
+    <value>189, 246</value>
   </data>
   <data name="&gt;&gt;cMProfile.Name" xml:space="preserve">
     <value>cMProfile</value>
@@ -7931,7 +7931,7 @@
   <data name="&gt;&gt;tabAutoProfiles.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="flowLayoutPanel1.AutoScroll" type="System.Boolean, mscorlib">
+  <data name="fLPSettings.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="hideDS4CheckBox.AutoSize" type="System.Boolean, mscorlib">
@@ -7959,7 +7959,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;hideDS4CheckBox.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;hideDS4CheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -7989,7 +7989,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBSwipeProfiles.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;cBSwipeProfiles.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -8019,7 +8019,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;StartWindowsCheckBox.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;StartWindowsCheckBox.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -8049,7 +8049,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;startMinimizedCheckBox.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;startMinimizedCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -8079,7 +8079,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBUpdate.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;cBUpdate.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -8187,7 +8187,7 @@
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pNUpdate.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;pNUpdate.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -8217,7 +8217,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBNotifications.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;cBNotifications.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -8247,7 +8247,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBDisconnectBT.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;cBDisconnectBT.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -8274,16 +8274,127 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBQuickCharge.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;cBQuickCharge.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="lbUseXIPorts.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="lbUseXIPorts.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbUseXIPorts.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbUseXIPorts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="lbUseXIPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="lbUseXIPorts.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lbUseXIPorts.Text" xml:space="preserve">
+    <value>Use Xinput Ports</value>
+  </data>
+  <data name="&gt;&gt;lbUseXIPorts.Name" xml:space="preserve">
+    <value>lbUseXIPorts</value>
+  </data>
+  <data name="&gt;&gt;lbUseXIPorts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbUseXIPorts.Parent" xml:space="preserve">
+    <value>pnlXIPorts</value>
+  </data>
+  <data name="&gt;&gt;lbUseXIPorts.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="nUDXIPorts.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="nUDXIPorts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 1</value>
+  </data>
+  <data name="nUDXIPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="nUDXIPorts.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;nUDXIPorts.Name" xml:space="preserve">
+    <value>nUDXIPorts</value>
+  </data>
+  <data name="&gt;&gt;nUDXIPorts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDXIPorts.Parent" xml:space="preserve">
+    <value>pnlXIPorts</value>
+  </data>
+  <data name="&gt;&gt;nUDXIPorts.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbLastXIPort.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="lbLastXIPort.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbLastXIPort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbLastXIPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 3</value>
+  </data>
+  <data name="lbLastXIPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 13</value>
+  </data>
+  <data name="lbLastXIPort.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lbLastXIPort.Text" xml:space="preserve">
+    <value>- 4</value>
+  </data>
+  <data name="&gt;&gt;lbLastXIPort.Name" xml:space="preserve">
+    <value>lbLastXIPort</value>
+  </data>
+  <data name="&gt;&gt;lbLastXIPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbLastXIPort.Parent" xml:space="preserve">
+    <value>pnlXIPorts</value>
+  </data>
+  <data name="&gt;&gt;lbLastXIPort.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pnlXIPorts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 222</value>
+  </data>
+  <data name="pnlXIPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="pnlXIPorts.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="&gt;&gt;pnlXIPorts.Name" xml:space="preserve">
+    <value>pnlXIPorts</value>
+  </data>
+  <data name="&gt;&gt;pnlXIPorts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlXIPorts.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;pnlXIPorts.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="linkProfiles.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="linkProfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 219</value>
+    <value>10, 247</value>
   </data>
   <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 13</value>
@@ -8301,16 +8412,16 @@
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkProfiles.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;linkProfiles.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="lLBUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lLBUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 232</value>
+    <value>10, 260</value>
   </data>
   <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 13</value>
@@ -8331,16 +8442,16 @@
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lLBUpdate.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;lLBUpdate.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="linkSetup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="linkSetup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 245</value>
+    <value>10, 273</value>
   </data>
   <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 13</value>
@@ -8358,16 +8469,16 @@
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkSetup.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;linkSetup.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="linkUninstall.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="linkUninstall.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 258</value>
+    <value>10, 286</value>
   </data>
   <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 13</value>
@@ -8388,16 +8499,16 @@
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkUninstall.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;linkUninstall.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="lnkControllers.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lnkControllers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 271</value>
+    <value>10, 299</value>
   </data>
   <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 13</value>
@@ -8415,39 +8526,39 @@
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lnkControllers.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+    <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;lnkControllers.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
-  <data name="flowLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="fLPSettings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="flowLayoutPanel1.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+  <data name="fLPSettings.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
     <value>TopDown</value>
   </data>
-  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="fLPSettings.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="flowLayoutPanel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="fLPSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>7, 7, 0, 9</value>
   </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="fLPSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>890, 353</value>
   </data>
-  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+  <data name="fLPSettings.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+  <data name="&gt;&gt;fLPSettings.Name" xml:space="preserve">
+    <value>fLPSettings</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+  <data name="&gt;&gt;fLPSettings.Type" xml:space="preserve">
     <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;fLPSettings.Parent" xml:space="preserve">
     <value>tabSettings</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;fLPSettings.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="tabSettings.Location" type="System.Drawing.Point, System.Drawing">

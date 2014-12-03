@@ -584,6 +584,9 @@
     <value>Test</value>
   </data>
   <data name="CannotMoveFiles" xml:space="preserve">
-    <value>Cannot move files, to new location, Please close out of any profiles in external programs</value>
+    <value>Cannot move files to new location, Please rename the DS4Tool folder to "DS4Windows"</value>
+  </data>
+  <data name="XinputPorts" xml:space="preserve">
+    <value>Use higher ports if you get conflicts in other emulating X360 programs, such as SCP's tool</value>
   </data>
 </root>

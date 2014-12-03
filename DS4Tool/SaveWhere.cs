@@ -36,7 +36,7 @@ namespace DS4Windows
             Global.SaveWhere(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName);
             if (multisaves && !cBDeleteOther.Checked)
             {
-                try { Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool", true); }
+                try { Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows", true); }
                 catch { }
             }
             else if (!multisaves)
@@ -56,8 +56,8 @@ namespace DS4Windows
                 }
                 catch (UnauthorizedAccessException) { MessageBox.Show("Cannot Delete old settings, please manaully delete", "DS4Windows"); }
             else if (!multisaves)
-                Save(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Profiles.xml");
-            Global.SaveWhere(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool");
+                Save(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows\\Profiles.xml");
+            Global.SaveWhere(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows");
             Close();
         }
 

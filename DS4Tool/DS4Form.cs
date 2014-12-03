@@ -87,13 +87,9 @@ namespace DS4Windows
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
-            if (File.Exists(appdatapath + "\\Auto Profiles.xml"))
-                tt.SetToolTip(linkUninstall, Properties.Resources.IfRemovingDS4Windows);
-            tt.SetToolTip(cBSwipeProfiles, Properties.Resources.TwoFingerSwipe);
-            tt.SetToolTip(cBQuickCharge, Properties.Resources.QuickCharge);
             bool firstrun = false;
             if (File.Exists(exepath + "\\Auto Profiles.xml")
-                && File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool\\Auto Profiles.xml"))
+                && File.Exists(appdatapath + "\\Auto Profiles.xml"))
             {
                 firstrun = true;
                 new SaveWhere(true).ShowDialog();
@@ -106,12 +102,15 @@ namespace DS4Windows
             {
                 try
                 {
+                    if (Directory.Exists(appdatapath))
+                        Directory.Move(appdatapath, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows Old");
                     Directory.Move(oldappdatapath, appdatapath);
                     Global.SaveWhere(appdatapath);
                 }
                 catch
                 {
-                    MessageBox.Show(Properties.Resources.CannotMoveFiles, "DS4Windows"); 
+                    MessageBox.Show(Properties.Resources.CannotMoveFiles, "DS4Windows");
+                    Process.Start("explorer.exe", @"/select, " + appdatapath);
                     Close(); 
                     return;
                 }
@@ -191,6 +190,8 @@ namespace DS4Windows
             hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
             cBDisconnectBT.Checked = Global.getDCBTatStop();
             cBQuickCharge.Checked = Global.getQuickCharge();
+            nUDXIPorts.Value = Global.getFirstXinputPort();
+            rootHub.x360Bus.FirstController = Global.getFirstXinputPort();
             // New settings
             this.Width = Global.getFormWidth();
             this.Height = Global.getFormHeight();
@@ -211,6 +212,10 @@ namespace DS4Windows
             }
             LoadP();
             Global.ControllerStatusChange += ControllerStatusChange;
+            Enable_Controls(0, false);
+            Enable_Controls(1, false);
+            Enable_Controls(2, false);
+            Enable_Controls(3, false);
             bool start = true;
             foreach (string s in arguements)
                 if (s == "stop")
@@ -1093,14 +1098,45 @@ namespace DS4Windows
 
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lbLastMessage.Visible = tabMain.SelectedIndex != 4;
-            if (tabMain.SelectedIndex == 4)
+            lbLastMessage.Visible = tabMain.SelectedTab != tabLog;
+            if (tabMain.SelectedTab == tabLog)
                 chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+            if (tabMain.SelectedTab == tabSettings)
+            {
+                lbLastMessage.Text = "Hover over items to see description or more about";
+                foreach (System.Windows.Forms.Control control in fLPSettings.Controls)
+                {
+                    if (control.HasChildren)
+                        foreach (System.Windows.Forms.Control ctrl in control.Controls)                            
+                                ctrl.MouseHover += Items_MouseHover;
+                    control.MouseHover += Items_MouseHover;
+                }
+            }
+            else
+                lbLastMessage.Text = lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
             if (opt != null)
                 if (tabMain.SelectedIndex != 1)
                     opt.inputtimer.Stop();
                 else
                     opt.inputtimer.Start();            
+        }
+
+        private void Items_MouseHover(object sender, EventArgs e)
+        {
+            switch (((System.Windows.Forms.Control)sender).Name)
+            {
+
+                //if (File.Exists(appdatapath + "\\Auto Profiles.xml"))
+                case "linkUninstall": lbLastMessage.Text = Properties.Resources.IfRemovingDS4Windows; break;
+                case "cBSwipeProfiles": lbLastMessage.Text = Properties.Resources.TwoFingerSwipe; break;
+                case "cBQuickCharge": lbLastMessage.Text = Properties.Resources.QuickCharge; break;
+                case "pnlXIPorts": lbLastMessage.Text = Properties.Resources.XinputPorts; break;
+                default: lbLastMessage.Text = "Hover over items to see description or more about"; break;
+            }
+            if (lbLastMessage.Text != "Hover over items to see description or more about")
+                lbLastMessage.ForeColor = Color.Black;
+            else
+                lbLastMessage.ForeColor = SystemColors.GrayText;
         }
 
         private void lBProfiles_MouseDown(object sender, MouseEventArgs e)
@@ -1404,6 +1440,38 @@ namespace DS4Windows
         private void pnlButton_MouseLeave(object sender, EventArgs e)
         {
             tt.Hide(lbLastMessage);
+        }
+
+        private void pnlXIPorts_MouseEnter(object sender, EventArgs e)
+        {
+            //oldxiport = (int)Math.Round(nUDXIPorts.Value,0);
+        }
+        int oldxiport;
+        private void pnlXIPorts_MouseLeave(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void nUDXIPorts_ValueChanged(object sender, EventArgs e)
+        {
+            lbLastXIPort.Text = "- " + ((int)Math.Round(nUDXIPorts.Value, 0) + 3);
+        }
+
+        private void nUDXIPorts_Leave(object sender, EventArgs e)
+        {
+            if (oldxiport != (int)Math.Round(nUDXIPorts.Value,0))
+           {
+               oldxiport = (int)Math.Round(nUDXIPorts.Value, 0);
+               Global.setFirstXinputPort(oldxiport);
+               rootHub.x360Bus.FirstController = oldxiport;
+               btnStartStop_Click(sender, e);
+               btnStartStop_Click(sender, e);
+           }
+        }
+
+        private void nUDXIPorts_Enter(object sender, EventArgs e)
+        {
+            oldxiport = (int)Math.Round(nUDXIPorts.Value, 0);
         }
     }
 

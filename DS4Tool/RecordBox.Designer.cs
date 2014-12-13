@@ -33,7 +33,7 @@
             this.btnRecord = new System.Windows.Forms.Button();
             this.cBRecordDelays = new System.Windows.Forms.CheckBox();
             this.lVMacros = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cHMacro = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.iLKeys = new System.Windows.Forms.ImageList(this.components);
             this.cBStyle = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -76,7 +76,7 @@
             // 
             resources.ApplyResources(this.lVMacros, "lVMacros");
             this.lVMacros.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.cHMacro});
             this.lVMacros.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lVMacros.LargeImageList = this.iLKeys;
             this.lVMacros.MultiSelect = false;
@@ -92,9 +92,9 @@
             this.lVMacros.MouseHover += new System.EventHandler(this.lVMacros_MouseHover);
             this.lVMacros.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
             // 
-            // columnHeader1
+            // cHMacro
             // 
-            resources.ApplyResources(this.columnHeader1, "columnHeader1");
+            resources.ApplyResources(this.cHMacro, "cHMacro");
             // 
             // iLKeys
             // 
@@ -218,6 +218,7 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
+            this.Resize += new System.EventHandler(this.RecordBox_Resize);
             this.pnlMouseButtons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -230,7 +231,7 @@
         private System.Windows.Forms.CheckBox cBRecordDelays;
         private System.Windows.Forms.ListView lVMacros;
         private System.Windows.Forms.ImageList iLKeys;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader cHMacro;
         private System.Windows.Forms.ComboBox cBStyle;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;

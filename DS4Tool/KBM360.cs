@@ -11,7 +11,6 @@ namespace DS4Windows
 {
     public partial class KBM360 : Form
     {
-        private DS4Control.Control scpDevice;
         private int device;
         private Button button;
         private Options ops;
@@ -20,11 +19,10 @@ namespace DS4Windows
         public bool macrorepeat, newaction;
         RecordBox rb;
         object oldtag;
-        public KBM360(DS4Control.Control bus_device, int deviceNum, Options ooo, Button buton)
+        public KBM360(int deviceNum, Options ooo, Button buton)
         {
             InitializeComponent();
             device = deviceNum;
-            scpDevice = bus_device;
             ops = ooo;
             button = buton;
             cbToggle.Checked = button.Font.Italic;
@@ -109,7 +107,7 @@ namespace DS4Windows
                 btnMOUSERIGHT.Visible = false;
                 btnMOUSEUP.Visible = false;
             }
-            ActiveControl = null;
+            ActiveControl = lBMacroOn;
         }
 
         public void anybtn_Click(object sender, EventArgs e)
@@ -220,7 +218,7 @@ namespace DS4Windows
 
         private void btnMacro_Click(object sender, EventArgs e)
         {
-            rb = new RecordBox(this, scpDevice);
+            rb = new RecordBox(this);
             rb.TopLevel = false;
             rb.Dock = DockStyle.Fill;
             rb.Visible = true;
@@ -366,23 +364,23 @@ namespace DS4Windows
             if (device < 4)
                 if (((Button)sender).Text == Properties.Resources.TestText)
                 {
-                    scpDevice.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, device);
+                    Program.rootHub.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, device);
                     ((Button)sender).Text = Properties.Resources.StopText;
                 }
                 else
                 {
-                    scpDevice.setRumble(0, 0, device);
+                    Program.rootHub.setRumble(0, 0, device);
                     ((Button)sender).Text = Properties.Resources.TestText;
                 }
             else
                 if (((Button)sender).Text == Properties.Resources.TestText)
                 {
-                    scpDevice.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, 0);
+                    Program.rootHub.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, 0);
                     ((Button)sender).Text = Properties.Resources.StopText;
                 }
                 else
                 {
-                    scpDevice.setRumble(0, 0, 0);
+                    Program.rootHub.setRumble(0, 0, 0);
                     ((Button)sender).Text = Properties.Resources.TestText;
                 }
         }
@@ -392,9 +390,9 @@ namespace DS4Windows
             if (bnTest.Text != Properties.Resources.TestText)
             {
                 if (device < 4)
-                    scpDevice.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, device);
+                    Program.rootHub.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, device);
                 else
-                    scpDevice.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, 0);
+                    Program.rootHub.setRumble((byte)nUDHeavy.Value, (byte)nUDLight.Value, 0);
             }
         }
 

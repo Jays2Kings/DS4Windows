@@ -18,18 +18,17 @@ namespace DS4Windows
 {
     public partial class RecordBox : Form
     {
-        private DS4Control.Control scpDevice;
         Stopwatch sw = new Stopwatch();
         Timer ds4 = new Timer();
         public List<int> macros = new List<int>();
         public List<string> macronames = new List<string>();
+        SpecActions sA;
         KBM360 kbm;
         DS4State cState;
         public bool saved = false;
         List<DS4Controls> dcs = new List<DS4Controls>();
-        public RecordBox(KBM360 op, DS4Control.Control bus_device)
+        public RecordBox(KBM360 op)
         {
-            scpDevice = bus_device;
             kbm = op;
             InitializeComponent();
             if (op != null)
@@ -37,8 +36,39 @@ namespace DS4Windows
                 cBStyle.SelectedIndex = 1;
             else
                 cBStyle.SelectedIndex = 0;
+            AddtoDS4List();
             ds4.Tick += ds4_Tick;
             ds4.Interval = 1;
+            if (kbm.macrostag.Count > 0)
+            {
+                macros.AddRange(kbm.macrostag);
+                LoadMacro();
+                saved = true;
+            }
+        }
+
+        public RecordBox(SpecActions op)
+        {
+            sA = op;
+            InitializeComponent();
+            if (sA.macrorepeat)
+                cBStyle.SelectedIndex = 1;
+            else
+                cBStyle.SelectedIndex = 0;
+            AddtoDS4List();
+            ds4.Tick += ds4_Tick;
+            ds4.Interval = 1;
+            lbRecordTip.Visible = false;
+            if (sA.macrostag.Count > 0)
+            {
+                macros.AddRange(sA.macrostag);
+                LoadMacro();
+                saved = true;
+            }
+        }
+
+        void AddtoDS4List()
+        {
             dcs.Add(DS4Controls.Cross);
             dcs.Add(DS4Controls.Cross);
             dcs.Add(DS4Controls.Circle);
@@ -65,19 +95,13 @@ namespace DS4Windows
             dcs.Add(DS4Controls.RXNeg);
             dcs.Add(DS4Controls.RYPos);
             dcs.Add(DS4Controls.RYNeg);
-            if (kbm.macrostag.Count > 0)
-            {
-                macros.AddRange(kbm.macrostag);
-                LoadMacro();
-                saved = true;
-            }
         }
 
         void ds4_Tick(object sender, EventArgs e)
         {
-            if (scpDevice.DS4Controllers[0] != null)
+            if (Program.rootHub.DS4Controllers[0] != null)
             {
-                cState = scpDevice.getDS4State(0);
+                cState = Program.rootHub.getDS4State(0);
                 if (btnRecord.Text == Properties.Resources.StopText)
                     foreach (DS4Controls dc in dcs)
                         if (Mapping.getBoolMapping(dc, cState, null, null))
@@ -217,7 +241,7 @@ namespace DS4Windows
             {
                 if (cBRecordDelays.Checked)
                     sw.Start();
-                scpDevice.recordingMacro = true;
+                Program.rootHub.recordingMacro = true;
                 saved = false;
                 ds4.Start();
                 macros.Clear();
@@ -229,7 +253,7 @@ namespace DS4Windows
             }
             else
             {
-                scpDevice.recordingMacro = false;
+                Program.rootHub.recordingMacro = false;
                 ds4.Stop();
                 if (btn4th.Text.Contains(Properties.Resources.UpText))
                     btn4th_Click(sender, e);
@@ -449,21 +473,38 @@ namespace DS4Windows
         {
             if (macros.Count > 0)
             {
-                kbm.macrostag = macros;
                 macronames.Clear();
                 foreach (ListViewItem lvi in lVMacros.Items)
                 {
                     macronames.Add(lvi.Text);
                 }
-                kbm.macros = macronames;
                 string macro = string.Join(", ", macronames.ToArray());
-                kbm.lBMacroOn.Visible = true;
-                if (cBStyle.SelectedIndex == 1)
-                    kbm.macrorepeat = true;
-                saved = true;
-                if (sender != kbm)
-                kbm.Close();
-                //Close();
+                if (kbm != null)
+                {
+                    kbm.macrostag = macros;
+                    kbm.macros = macronames;
+                    kbm.lBMacroOn.Visible = true;
+                    if (cBStyle.SelectedIndex == 1)
+                        kbm.macrorepeat = true;
+                    saved = true;
+                    if (sender != kbm)
+                        kbm.Close();
+                }
+                else if (sA != null)
+                {
+                    sA.macrostag = macros;
+                    sA.macros = macronames;
+                    sA.lbMacroRecorded.Text = string.Join(", ", macronames);
+                    //kbm.lBMacroOn.Visible = true;
+                    if (cBStyle.SelectedIndex == 1)
+                        sA.macrorepeat = true;
+                    saved = true;
+                    //if (sender != sA)
+                       // sA.Close();
+                    Close();
+                }
+                else
+                    Close();
             }
             else MessageBox.Show(Properties.Resources.NoMacroRecorded, "DS4Windows", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
@@ -860,6 +901,11 @@ namespace DS4Windows
                     lVMacros.MouseHover += lVMacros_MouseHover;
                 }
             }
+        }
+
+        private void RecordBox_Resize(object sender, EventArgs e)
+        {
+            cHMacro.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
     }

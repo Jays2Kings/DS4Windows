@@ -129,36 +129,21 @@ namespace DS4Control
 
             if (state.PS) Output[11] |= (Byte)(1 << 2); // Guide     
 
-            if (state.L2 > Global.getLeftTriggerMiddle(device))
-                Output[12] = state.L2; // Left Trigger
-            if (state.R2 > Global.getRightTriggerMiddle(device))
-                Output[13] = state.R2; // Right Trigger
+            Output[12] = state.L2; // Left Trigger
+            Output[13] = state.R2; // Right Trigger
 
             Int32 ThumbLX = Scale(state.LX, false);
             Int32 ThumbLY = -Scale(state.LY, false);
             Int32 ThumbRX = Scale(state.RX, false);
             Int32 ThumbRY = -Scale(state.RY, false);
-            if (state.LX > 127 + Global.getLSDeadzone(device) || state.LX < 127 - Global.getLSDeadzone(device))
-            {
-                Output[14] = (Byte)((ThumbLX >> 0) & 0xFF); // LX
-                Output[15] = (Byte)((ThumbLX >> 8) & 0xFF);
-            }
-            if (state.LY > 127 + Global.getLSDeadzone(device) || state.LY < 127 - Global.getLSDeadzone(device))
-            {
-                Output[16] = (Byte)((ThumbLY >> 0) & 0xFF); // LY
-                Output[17] = (Byte)((ThumbLY >> 8) & 0xFF);
-            }
-
-            if (state.RX > 127 + Global.getRSDeadzone(device) || state.RX < 127 - Global.getRSDeadzone(device))
-            {
-                Output[18] = (Byte)((ThumbRX >> 0) & 0xFF); // RX
-                Output[19] = (Byte)((ThumbRX >> 8) & 0xFF);
-            } 
-            if (state.RY > 127 + Global.getRSDeadzone(device) || state.RY < 127 - Global.getRSDeadzone(device))
-            {
-                Output[20] = (Byte)((ThumbRY >> 0) & 0xFF); // RY
-                Output[21] = (Byte)((ThumbRY >> 8) & 0xFF);
-            }
+            Output[14] = (Byte)((ThumbLX >> 0) & 0xFF); // LX
+            Output[15] = (Byte)((ThumbLX >> 8) & 0xFF);            
+            Output[16] = (Byte)((ThumbLY >> 0) & 0xFF); // LY
+            Output[17] = (Byte)((ThumbLY >> 8) & 0xFF);
+            Output[18] = (Byte)((ThumbRX >> 0) & 0xFF); // RX
+            Output[19] = (Byte)((ThumbRX >> 8) & 0xFF);
+            Output[20] = (Byte)((ThumbRY >> 0) & 0xFF); // RY
+            Output[21] = (Byte)((ThumbRY >> 8) & 0xFF);
         }
 
         public Boolean Plugin(Int32 Serial)

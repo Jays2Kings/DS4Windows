@@ -4,7 +4,7 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.ComponentModel;
-
+using DS4Control;
 
 namespace DS4Windows
 {
@@ -23,6 +23,7 @@ namespace DS4Windows
         static Mutex mutex = new Mutex(true, "{FI329DM2-DS4W-J2K2-HYES-92H21B3WJARG}");
         private static BackgroundWorker singleAppComThread = null;
         private static EventWaitHandle threadComEvent = null;
+        public static DS4Control.Control rootHub;
 
         /// <summary>
         /// The main entry point for the application.
@@ -32,7 +33,7 @@ namespace DS4Windows
         {
             foreach(string s in args)
             {
-                if (s == "driverinstall")
+                if (s == "driverinstall" || s == "-driverinstall")
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
@@ -63,6 +64,7 @@ namespace DS4Windows
             CreateInterAppComThread();
             if (mutex.WaitOne(TimeSpan.Zero, true))
             {
+                rootHub = new DS4Control.Control();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new DS4Form(args));

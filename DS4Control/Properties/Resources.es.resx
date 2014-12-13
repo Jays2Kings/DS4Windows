@@ -117,17 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Sauvegarder</value>
+  <data name="Battery" xml:space="preserve">
+    <value>Bateria: *number*%</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tBProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 20</value>
+  <data name="Charged" xml:space="preserve">
+    <value>Cargado</value>
   </data>
-  <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;écrire un nouveau nom ici&gt;</value>
+  <data name="Charging" xml:space="preserve">
+    <value>Cargando: *number*%</value>
   </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Annuler</value>
+  <data name="Connecting" xml:space="preserve">
+    <value>Conectando...</value>
+  </data>
+  <data name="ControllerWasRemoved" xml:space="preserve">
+    <value>Controlador *Mac address* perdio la conexion o fue desconectado</value>
+  </data>
+  <data name="CouldNotOpenDS4" xml:space="preserve">
+    <value>Advertencia: No se puede abrir DS4 *Mac address* exclusivamente.</value>
+  </data>
+  <data name="FoundController" xml:space="preserve">
+    <value>Controlador Encontrado.</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Completo</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="NoneText" xml:space="preserve">
+    <value>ninguno</value>
+  </data>
+  <data name="QuitOtherPrograms" xml:space="preserve">
+    <value>Debes de salir de otras aplicaciones como Steam, Uplay antes activando la opcion "Ocultar controlador DS4"</value>
+  </data>
+  <data name="SearchingController" xml:space="preserve">
+    <value>Buscando controladores...</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>Iniciando...</value>
+  </data>
+  <data name="StoppedDS4Windows" xml:space="preserve">
+    <value>DS4Windows detenido</value>
+  </data>
+  <data name="StoppingDS4" xml:space="preserve">
+    <value>Deteniendo Controladores DS4</value>
+  </data>
+  <data name="StoppingX360" xml:space="preserve">
+    <value>Deteniendo Controladores X360</value>
+  </data>
+  <data name="TouchpadMovementOff" xml:space="preserve">
+    <value>Movimiento de Touchpad Apagado</value>
+  </data>
+  <data name="TouchpadMovementOn" xml:space="preserve">
+    <value>Movimiento de Touchpad Encendido</value>
+  </data>
+  <data name="UsingExclusive" xml:space="preserve">
+    <value>Usando Modo Exclusivo</value>
+  </data>
+  <data name="UsingProfile" xml:space="preserve">
+    <value>Controlador *number* esta usando perfil "*Profile name*"</value>
+  </data>
+  <data name="UsingShared" xml:space="preserve">
+    <value>Usando Modo Compartido</value>
   </data>
 </root>

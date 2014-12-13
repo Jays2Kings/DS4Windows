@@ -117,17 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Sauvegarder</value>
+  <data name="bnAppdataFolder.Text" xml:space="preserve">
+    <value>Appdata</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tBProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 20</value>
-  </data>
-  <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;écrire un nouveau nom ici&gt;</value>
-  </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Annuler</value>
+  <data name="bnPrgmFolder.Text" xml:space="preserve">
+    <value>Carpeta de Programa</value>
   </data>
 </root>

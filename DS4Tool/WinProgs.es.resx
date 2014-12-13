@@ -117,17 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Sauvegarder</value>
+  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Adicionar Juegos de "Origin"</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tBProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 20</value>
+  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Adicionar Programas del menu de Inicio</value>
   </data>
-  <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;écrire un nouveau nom ici&gt;</value>
+  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Adicionar Juegos de "Steam"</value>
   </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Annuler</value>
+  <data name="bnAddPrograms.Text" xml:space="preserve">
+    <value>Adicionar Programas</value>
+  </data>
+  <data name="bnDelete.Text" xml:space="preserve">
+    <value>Quitar</value>
+  </data>
+  <data name="bnHideUnchecked.Text" xml:space="preserve">
+    <value>Ocultar desmarcados</value>
+  </data>
+  <data name="bnSave.Text" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Explorar para Otros Programas</value>
+  </data>
+  <data name="lBController1.Text" xml:space="preserve">
+    <value>Controlador 1</value>
+  </data>
+  <data name="lBController2.Text" xml:space="preserve">
+    <value>Controlador 2</value>
+  </data>
+  <data name="lBController3.Text" xml:space="preserve">
+    <value>Controlador 3</value>
+  </data>
+  <data name="lBController4.Text" xml:space="preserve">
+    <value>Controlador 4</value>
+  </data>
+  <data name="nameHeader.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="PathHeader.Text" xml:space="preserve">
+    <value>Ruta</value>
+  </data>
+  <data name="pBProfilesTip.Text" xml:space="preserve">
+    <value>Elegir Perfiles aqui</value>
   </data>
 </root>

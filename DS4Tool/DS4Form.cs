@@ -20,7 +20,6 @@ namespace DS4Windows
     public partial class DS4Form : Form
     {
         public string[] arguements;
-        private DS4Control.Control rootHub;
         delegate void LogDebugDelegate(DateTime Time, String Data);
 
         protected Label[] Pads, Batteries;
@@ -50,7 +49,8 @@ namespace DS4Windows
         ToolTip tt = new ToolTip();
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         protected XmlDocument m_Xdoc = new XmlDocument();
-        public bool mAllowVisible; 
+        public bool mAllowVisible;
+        bool contextclose;
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -147,8 +147,7 @@ namespace DS4Windows
             }
             Icon = Properties.Resources.DS4W;
             notifyIcon1.Icon = Properties.Resources.DS4W;
-            rootHub = new DS4Control.Control();
-            rootHub.Debug += On_Debug;
+            Program.rootHub.Debug += On_Debug;
             Log.GuiLog += On_Debug;
             Log.TrayIconLog += ShowNotification;
             // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
@@ -191,24 +190,36 @@ namespace DS4Windows
             cBDisconnectBT.Checked = Global.getDCBTatStop();
             cBQuickCharge.Checked = Global.getQuickCharge();
             nUDXIPorts.Value = Global.getFirstXinputPort();
-            rootHub.x360Bus.FirstController = Global.getFirstXinputPort();
+            Program.rootHub.x360Bus.FirstController = Global.getFirstXinputPort();
             // New settings
             this.Width = Global.getFormWidth();
             this.Height = Global.getFormHeight();
             startMinimizedCheckBox.CheckedChanged -= startMinimizedCheckBox_CheckedChanged;
             startMinimizedCheckBox.Checked = Global.getStartMinimized();
             startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
-            if (!startMinimizedCheckBox.Checked)
+            cBCloseMini.Checked = Global.getCloseMini();
+            Global.LoadActions();
+            bool start = true;
+            bool mini = false;
+            for (int i = 0; i < arguements.Length; i++)
+            {
+                if (arguements[i] == "-stop")
+                    start = false;
+                if (arguements[i] == "-m")
+                    mini = true;
+                if (mini && start)
+                    break;
+            }
+            if (!(startMinimizedCheckBox.Checked || mini))
             {
                 mAllowVisible = true;
                 Show();
             }
-                //this.WindowState = FormWindowState.Minimized;
             Form_Resize(null, null);
             RefreshProfiles();
             for (int i = 0; i < 4; i++)
             {
-                Global.LoadProfile(i, true, rootHub);
+                Global.LoadProfile(i, true, Program.rootHub);
             }
             LoadP();
             Global.ControllerStatusChange += ControllerStatusChange;
@@ -216,13 +227,6 @@ namespace DS4Windows
             Enable_Controls(1, false);
             Enable_Controls(2, false);
             Enable_Controls(3, false);
-            bool start = true;
-            foreach (string s in arguements)
-                if (s == "stop")
-                {
-                    start = false;
-                    break;
-                }
             if (btnStartStop.Enabled && start)
                 btnStartStop_Clicked();
             startToolStripMenuItem.Text = btnStartStop.Text;
@@ -261,9 +265,17 @@ namespace DS4Windows
             test.Tick += test_Tick;
             if (!System.IO.Directory.Exists(Global.appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
-            StartWindowsCheckBox.Checked = File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk"))
+            {
+                StartWindowsCheckBox.Checked = true;
+                string lnkpath = WinProgs.ResolveShortcutAndArgument(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
+                if (lnkpath.EndsWith("-m"))
+                {
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
+                    appShortcutToStartup();
+                }
+            }
         }
-
 
         protected override void SetVisibleCore(bool value)
         {
@@ -323,14 +335,14 @@ namespace DS4Windows
         private void test_Tick(object sender, EventArgs e)
         {
             lBTest.Visible = true;
-            lBTest.Text = rootHub.oldtouchvalue[0].ToString();
+            lBTest.Text = Program.rootHub.oldtouchvalue[0].ToString();
         }
         void Hotkeys(object sender, EventArgs e)
         {
             if (Global.getSwipeProfiles())
                 for (int i = 0; i < 4; i++)
                 {
-                    string slide = rootHub.TouchpadSlide(i);
+                    string slide = Program.rootHub.TouchpadSlide(i);
                     if (slide == "left")
                         if (cbs[i].SelectedIndex <= 0)
                             cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
@@ -355,7 +367,7 @@ namespace DS4Windows
                         for (int j = 0; j < 4; j++)
                             if (proprofiles[j][i] != "(none)" && proprofiles[j][i] != Properties.Resources.noneProfile)
                             {
-                                Global.LoadTempProfile(j, proprofiles[j][i], true, rootHub); //j is controller index, i is filename
+                                Global.LoadTempProfile(j, proprofiles[j][i], true, Program.rootHub); //j is controller index, i is filename
                                 if (Global.getLaunchProgram(j) != string.Empty) Process.Start(Global.getLaunchProgram(j));
                             }
                         tempprofile = name;
@@ -367,7 +379,7 @@ namespace DS4Windows
                 {
                     tempprofile = "null";
                     for (int j = 0; j < 4; j++)
-                        Global.LoadProfile(j, false, rootHub);
+                        Global.LoadProfile(j, false, Program.rootHub);
                 }
             }
             GC.Collect();
@@ -621,14 +633,14 @@ namespace DS4Windows
         {
             if (btnStartStop.Text == Properties.Resources.StartText)
             {
-                rootHub.Start(log);
+                Program.rootHub.Start(log);
                 hotkeysTimer.Start();
                 btnStartStop.Text = Properties.Resources.StopText;
             }
 
             else if (btnStartStop.Text == Properties.Resources.StopText)
             {                
-                rootHub.Stop(log);
+                Program.rootHub.Stop(log);
                 hotkeysTimer.Stop();
                 btnStartStop.Text = Properties.Resources.StartText;
             }
@@ -652,7 +664,7 @@ namespace DS4Windows
                     Int32 Type = m.WParam.ToInt32();
                     lock (this)
                     {
-                        rootHub.HotPlug();
+                        Program.rootHub.HotPlug();
                     }
                 }
             }
@@ -677,20 +689,20 @@ namespace DS4Windows
             String tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
             for (Int32 Index = 0; Index < Pads.Length; Index++)
             {
-                Pads[Index].Text = rootHub.getDS4MacAddress(Index);
-                DS4Device d = rootHub.DS4Controllers[Index];
+                Pads[Index].Text = Program.rootHub.getDS4MacAddress(Index);
+                DS4Device d = Program.rootHub.DS4Controllers[Index];
                 if (d != null && Global.getQuickCharge() && d.ConnectionType == ConnectionType.BT && d.Charging)
                 {
                     d.DisconnectBT();
                     return;
                 }
-                switch (rootHub.getDS4Status(Index))
+                switch (Program.rootHub.getDS4Status(Index))
                 {
                     case "USB": statPB[Index].Image = Properties.Resources.USB; tt.SetToolTip(statPB[Index], ""); break;
                     case "BT": statPB[Index].Image = Properties.Resources.BT; tt.SetToolTip(statPB[Index], "Right click to disconnect"); break;
                     default: statPB[Index].Image = Properties.Resources.none; tt.SetToolTip(statPB[Index], ""); break;
                 }
-                Batteries[Index].Text = rootHub.getDS4Battery(Index);
+                Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
                 if (Pads[Index].Text != String.Empty)
                 {
                     Pads[Index].Enabled = true;
@@ -710,10 +722,10 @@ namespace DS4Windows
                     Enable_Controls(Index, false);
                     shortcuts[Index].Enabled = false;
                 }
-                //if (((Index + 1) + ": " + rootHub.getShortDS4ControllerInfo(Index)).Length > 50)
-                //MessageBox.Show(((Index + 1) + ": " + rootHub.getShortDS4ControllerInfo(Index)).Length.ToString());
-                if (rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
-                    tooltip += "\n" + (Index + 1) + ": " + rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
+                //if (((Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index)).Length > 50)
+                //MessageBox.Show(((Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index)).Length.ToString());
+                if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
+                    tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
             }
             btnClear.Enabled = lvDebug.Items.Count > 0;
             if (tooltip.Length > 63)
@@ -725,8 +737,8 @@ namespace DS4Windows
         private void pBStatus_MouseClick(object sender, MouseEventArgs e)
         {
             int i = Int32.Parse(((PictureBox)sender).Tag.ToString());
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && rootHub.getDS4Status(i) == "BT" && !rootHub.DS4Controllers[i].Charging)
-                rootHub.DS4Controllers[i].DisconnectBT();
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && Program.rootHub.getDS4Status(i) == "BT" && !Program.rootHub.DS4Controllers[i].Charging)
+                Program.rootHub.DS4Controllers[i].DisconnectBT();
         }
 
         private void Enable_Controls(int device, bool on)
@@ -884,7 +896,7 @@ namespace DS4Windows
                 tSTBProfile.Text = profile;
             else
                 tSTBProfile.Text = "<" + Properties.Resources.TypeProfileName + ">";
-            opt = new Options(rootHub, devID, profile, this);
+            opt = new Options(devID, profile, this);
             opt.Text = "Options for Controller " + (devID + 1);
             opt.Icon = this.Icon;
             opt.TopLevel = false;
@@ -940,6 +952,9 @@ namespace DS4Windows
 
         private void editMenu_Click(object sender, EventArgs e)
         {
+            mAllowVisible = true;
+            this.Show();
+            WindowState = FormWindowState.Normal;
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
             int i = Int32.Parse(em.Tag.ToString());
                 if (em.Text == Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString()))
@@ -998,7 +1013,7 @@ namespace DS4Windows
                     shortcuts[tdevice].Text = Properties.Resources.ContextEdit.Replace("*number*", (tdevice + 1).ToString());
                     Global.setAProfile(tdevice, cb.Items[cb.SelectedIndex].ToString());
                     Global.Save();
-                    Global.LoadProfile(tdevice, true, rootHub);
+                    Global.LoadProfile(tdevice, true, Program.rootHub);
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
                     ShowOptions(tdevice, "");
@@ -1023,6 +1038,7 @@ namespace DS4Windows
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            contextclose = true;
             this.Close();
         }
 
@@ -1046,7 +1062,10 @@ namespace DS4Windows
                 WindowState = FormWindowState.Normal;
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Middle)
+            {
+                contextclose = true;
                 this.Close();
+            }
         }
         private void notifyIcon1_BalloonTipClicked(object sender, EventArgs e)
         {
@@ -1082,6 +1101,7 @@ namespace DS4Windows
                 {
                     string app = Assembly.GetExecutingAssembly().Location;
                     lnk.TargetPath = Assembly.GetExecutingAssembly().Location;
+                    lnk.Arguments = "-m";
                     lnk.IconLocation = app.Replace('\\', '/');
                     lnk.Save();
                 }
@@ -1131,6 +1151,10 @@ namespace DS4Windows
                 case "cBSwipeProfiles": lbLastMessage.Text = Properties.Resources.TwoFingerSwipe; break;
                 case "cBQuickCharge": lbLastMessage.Text = Properties.Resources.QuickCharge; break;
                 case "pnlXIPorts": lbLastMessage.Text = Properties.Resources.XinputPorts; break;
+                case "lbUseXIPorts": lbLastMessage.Text = Properties.Resources.XinputPorts; break;
+                case "nUDXIPorts": lbLastMessage.Text = Properties.Resources.XinputPorts; break;
+                case "lbLastXIPort": lbLastMessage.Text = Properties.Resources.XinputPorts; break;
+                case "cBCloseMini": lbLastMessage.Text = Properties.Resources.CloseMinimize; break;
                 default: lbLastMessage.Text = "Hover over items to see description or more about"; break;
             }
             if (lbLastMessage.Text != "Hover over items to see description or more about")
@@ -1236,6 +1260,7 @@ namespace DS4Windows
         {
             if (opt != null)
             {
+                opt.saving = true;
                 opt.Set();
 
                 if (tSTBProfile.Text != null && tSTBProfile.Text != "" && !tSTBProfile.Text.Contains("\\") && !tSTBProfile.Text.Contains("/") && !tSTBProfile.Text.Contains(":") && !tSTBProfile.Text.Contains("*") && !tSTBProfile.Text.Contains("?") && !tSTBProfile.Text.Contains("\"") && !tSTBProfile.Text.Contains("<") && !tSTBProfile.Text.Contains(">") && !tSTBProfile.Text.Contains("|"))
@@ -1380,7 +1405,7 @@ namespace DS4Windows
         {
             Process p = new Process();
             p.StartInfo.FileName = Assembly.GetExecutingAssembly().Location;
-            p.StartInfo.Arguments = "driverinstall";
+            p.StartInfo.Arguments = "-driverinstall";
             p.StartInfo.Verb = "runas";
             try { p.Start(); }
             catch { }
@@ -1395,6 +1420,12 @@ namespace DS4Windows
             if (opt != null)
             {
                 opt.Close();
+                e.Cancel = true;
+                return;
+            }
+            if (cBCloseMini.Checked && !contextclose)
+            {
+                this.WindowState = FormWindowState.Minimized;
                 e.Cancel = true;
                 return;
             }
@@ -1418,7 +1449,7 @@ namespace DS4Windows
             if (!String.IsNullOrEmpty(Global.appdatapath))
             {
                 Global.Save();
-                rootHub.Stop();
+                Program.rootHub.Stop();
             }
         }
 
@@ -1463,7 +1494,7 @@ namespace DS4Windows
            {
                oldxiport = (int)Math.Round(nUDXIPorts.Value, 0);
                Global.setFirstXinputPort(oldxiport);
-               rootHub.x360Bus.FirstController = oldxiport;
+               Program.rootHub.x360Bus.FirstController = oldxiport;
                btnStartStop_Click(sender, e);
                btnStartStop_Click(sender, e);
            }
@@ -1472,6 +1503,11 @@ namespace DS4Windows
         private void nUDXIPorts_Enter(object sender, EventArgs e)
         {
             oldxiport = (int)Math.Round(nUDXIPorts.Value, 0);
+        }
+
+        private void cBCloseMini_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.setCloseMini(cBCloseMini.Checked);
         }
     }
 

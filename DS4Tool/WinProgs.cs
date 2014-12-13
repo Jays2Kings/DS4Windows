@@ -427,7 +427,7 @@ namespace DS4Windows
             return url;
         }
 
-        static string ResolveShortcut(string filePath)
+        public static string ResolveShortcut(string filePath)
         {
             // IWshRuntimeLibrary is in the COM library "Windows Script Host Object Model"
             IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShell();
@@ -444,7 +444,24 @@ namespace DS4Windows
             }
         }
 
-        static string ResolveMsiShortcut(string file)
+        public static string ResolveShortcutAndArgument(string filePath)
+        {
+            // IWshRuntimeLibrary is in the COM library "Windows Script Host Object Model"
+            IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShell();
+
+            try
+            {
+                IWshRuntimeLibrary.IWshShortcut shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(filePath);
+                return shortcut.TargetPath + " " + shortcut.Arguments;
+            }
+            catch (COMException)
+            {
+                // A COMException is thrown if the file is not a valid shortcut (.lnk) file 
+                return null;
+            }
+        }
+
+        public static string ResolveMsiShortcut(string file)
         {
             StringBuilder product = new StringBuilder(NativeMethods.MaxGuidLength + 1);
             StringBuilder feature = new StringBuilder(NativeMethods.MaxFeatureLength + 1);

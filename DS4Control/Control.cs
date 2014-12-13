@@ -407,17 +407,17 @@ namespace DS4Control
                     Global.ControllerStatusChanged(this);
                 CheckForHotkeys(ind, cState, pState);
                 GetInputkeys(ind);
-
-                if (Global.getHasCustomKeysorButtons(ind) || Global.getHasShiftCustomKeysorButtons(ind))
+                if (Global.getLSCurve(ind) + Global.getRSCurve(ind) + Global.getLSDeadzone(ind) + Global.getRSDeadzone(ind) +
+                    Global.getL2Deadzone(ind) + Global.getR2Deadzone(ind) > 0) //if a curve or deadzone is in place
+                    cState = Mapping.SetCurveAndDeadzone(ind, cState);
+                if (!recordingMacro && (!string.IsNullOrEmpty(Global.tempprofilename[ind]) ||
+                    Global.getHasCustomKeysorButtons(ind) || Global.getHasShiftCustomKeysorButtons(ind)))
                 {
-                    if (!recordingMacro)
-                    Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind]);
+                    Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
                     cState = MappedState[ind];
                 }
                 if (Global.getHasCustomExtras(ind))
-                {
                     DoExtras(ind);
-                }
 
                 // Update the GUI/whatever.
                 DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);

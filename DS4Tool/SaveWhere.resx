@@ -176,8 +176,8 @@
   <data name="bnPrgmFolder.Location" type="System.Drawing.Point, System.Drawing">
     <value>32, 63</value>
   </data>
-  <data name="&gt;&gt;bnPrgmFolder.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbMultiSaves.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -200,6 +200,9 @@ other settings yet</value>
   </data>
   <data name="&gt;&gt;bnAppdataFolder.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lbPickWhere.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -225,14 +228,14 @@ other settings yet</value>
   <data name="label3.Text" xml:space="preserve">
     <value>For those who prefer a portable program Note: this option does not work if in an admin folder w/o UAC</value>
   </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="bnPrgmFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="cBDeleteOther.Location" type="System.Drawing.Point, System.Drawing">
     <value>281, 0</value>
@@ -252,11 +255,14 @@ other settings yet</value>
   <data name="cBDeleteOther.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="bnPrgmFolder.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="lbMultiSaves.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
-  <data name="&gt;&gt;lbPickWhere.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>DS4Windows</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 69</value>
   </data>
   <data name="bnAppdataFolder.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -267,17 +273,14 @@ other settings yet</value>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="lbMultiSaves.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>206, 89</value>
   </data>
   <data name="&gt;&gt;lbPickWhere.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 69</value>
+  <data name="&gt;&gt;bnPrgmFolder.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;cBDeleteOther.Parent" xml:space="preserve">
     <value>$this</value>
@@ -287,9 +290,6 @@ other settings yet</value>
   </data>
   <data name="&gt;&gt;lbPickWhere.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>DS4Windows</value>
   </data>
   <data name="&gt;&gt;lbMultiSaves.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -331,6 +331,6 @@ other settings yet</value>
     <value>True</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>fr-FR</value>
+    <value>es</value>
   </metadata>
 </root>

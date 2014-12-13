@@ -91,6 +91,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name of this action already exists.
+        /// </summary>
+        internal static string ActionExists {
+            get {
+                return ResourceManager.GetString("ActionExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adding to list....
         /// </summary>
         internal static string AddingToList {
@@ -216,6 +225,15 @@ namespace DS4Windows.Properties {
         internal static string Charging {
             get {
                 return ResourceManager.GetString("Charging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close DS4Windows via the notification icon.
+        /// </summary>
+        internal static string CloseMinimize {
+            get {
+                return ResourceManager.GetString("CloseMinimize", resourceCulture);
             }
         }
         
@@ -652,6 +670,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Launch *program*.
+        /// </summary>
+        internal static string LaunchProgram {
+            get {
+                return ResourceManager.GetString("LaunchProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap LB {
@@ -687,6 +714,15 @@ namespace DS4Windows.Properties {
         internal static string Loading {
             get {
                 return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load *profile*.
+        /// </summary>
+        internal static string LoadProfile {
+            get {
+                return ResourceManager.GetString("LoadProfile", resourceCulture);
             }
         }
         
@@ -1107,6 +1143,24 @@ namespace DS4Windows.Properties {
         internal static string SelectActionTitle {
             get {
                 return ResourceManager.GetString("SelectActionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Regular Trigger.
+        /// </summary>
+        internal static string SetRegularTrigger {
+            get {
+                return ResourceManager.GetString("SetRegularTrigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Unload Trigger.
+        /// </summary>
+        internal static string SetUnloadTrigger {
+            get {
+                return ResourceManager.GetString("SetUnloadTrigger", resourceCulture);
             }
         }
         

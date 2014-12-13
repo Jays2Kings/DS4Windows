@@ -6,14 +6,13 @@ using DS4Control;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Xml;
 namespace DS4Windows
 {
     public partial class Options : Form
     {
-        private DS4Control.Control scpDevice;
         public int device;
         public string filename;
-        Byte[] oldLedColor, oldLowLedColor, oldChargingColor;
         public Timer inputtimer = new Timer(), sixaxisTimer = new Timer();
         public List<Button> buttons = new List<Button>(), subbuttons = new List<Button>();
         private Button lastSelected;
@@ -21,7 +20,7 @@ namespace DS4Windows
         private Color reg, full;
         private Image colored, greyscale;
         ToolTip tp = new ToolTip();
-        DS4Form root;
+        public DS4Form root;
         bool olddinputcheck = false;
         Image L = Properties.Resources.LeftTouch;
         Image R = Properties.Resources.RightTouch;
@@ -29,12 +28,11 @@ namespace DS4Windows
         Image U = Properties.Resources.UpperTouch;
         private float dpix;
         private float dpiy;
-
-        public Options(DS4Control.Control bus_device, int deviceNum, string name, DS4Form rt)
+        public bool saving;
+        public Options(int deviceNum, string name, DS4Form rt)
         {
             InitializeComponent();
             device = deviceNum;
-            scpDevice = bus_device;
             filename = name;
             colored = pBRainbow.Image;
             root = rt;
@@ -105,7 +103,7 @@ namespace DS4Windows
             {
                 if (device == 4) //if temp device is called
                     Global.setAProfile(4, name);
-                Global.LoadProfile(device, buttons.ToArray(), subbuttons.ToArray(), false, scpDevice);
+                Global.LoadProfile(device, buttons.ToArray(), subbuttons.ToArray(), false, Program.rootHub);
                 DS4Color color = Global.loadColor(device);
                 tBRedBar.Value = color.red;
                 tBGreenBar.Value = color.green;
@@ -145,8 +143,8 @@ namespace DS4Windows
                 nUDTap.Value = Global.getTapSensitivity(device);
                 cBTap.Checked = Global.getTapSensitivity(device) > 0;
                 cBDoubleTap.Checked = Global.getDoubleTap(device);
-                nUDL2.Value = (decimal)Global.getLeftTriggerMiddle(device) / 255;
-                nUDR2.Value = (decimal)Global.getRightTriggerMiddle(device) / 255;
+                nUDL2.Value = (decimal)Global.getL2Deadzone(device) / 255;
+                nUDR2.Value = (decimal)Global.getR2Deadzone(device) / 255;
                 cBTouchpadJitterCompensation.Checked = Global.getTouchpadJitterCompensation(device);
                 cBlowerRCOn.Checked = Global.getLowerRCOn(device);
                 cBFlushHIDQueue.Checked = Global.getFlushHIDQueue(device);
@@ -197,6 +195,8 @@ namespace DS4Windows
                 olddinputcheck = cBDinput.Checked;
                 cbStartTouchpadOff.Checked = Global.getStartTouchpadOff(device);
                 cBTPforControls.Checked = Global.getUseTPforControls(device);
+                nUDLSCurve.Value = Global.getLSCurve(device);
+                nUDRSCurve.Value = Global.getRSCurve(device);
                 cBControllerInput.Checked = Global.getDS4Mapping();
             }
             else
@@ -225,16 +225,42 @@ namespace DS4Windows
             UpdateLists();
             inputtimer.Start();
             inputtimer.Tick += InputDS4;
-            sixaxisTimer.Tick += sixaxisTimer_Tick;
+            sixaxisTimer.Tick += ControllerReadout_Tick;
             sixaxisTimer.Interval = 1000 / 60;
-            
+            LoadActions();
         }
-        void sixaxisTimer_Tick(object sender, EventArgs e)
+
+        public void LoadActions()
+        {
+            List<string> pactions = Global.GetProfileActions(device);
+            //Global.LoadActions();
+            foreach (SpecialAction action in Global.GetActions())
+            {
+                ListViewItem lvi = new ListViewItem(action.name);
+                lvi.SubItems.Add(action.controls.Replace("/", ", "));
+                string type = action.type;
+                switch (type)
+                {
+                    case "Macro": lvi.SubItems.Add("Macro"); break;
+                    case "Program": lvi.SubItems.Add(Properties.Resources.LaunchProgram.Replace("*program*", Path.GetFileNameWithoutExtension(action.details))); break;
+                    case "Profile": lvi.SubItems.Add(Properties.Resources.LoadProfile.Replace("*profile*", action.details)); break;
+                }
+                foreach (string s in pactions)
+                    if (s == action.name)
+                    {
+                        lvi.Checked = true;
+                        break;
+                    }
+                lVActions.Items.Add(lvi);
+            }
+        }
+
+        void ControllerReadout_Tick(object sender, EventArgs e)
         {            
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
             // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
             // We should try to indicate setpoints of the calibration when exposing this measurement....
-            if (scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1] == null)
+            if (Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1] == null)
             {
                 tPController.Enabled = false;
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", Properties.Resources.NA).Replace("*ms*", "ms");
@@ -243,22 +269,86 @@ namespace DS4Windows
             else
             {
                 tPController.Enabled = true;
-                SetDynamicTrackBarValue(tBsixaxisGyroX, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroY, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroY + tBsixaxisGyroY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelX, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelY, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelY + tBsixaxisAccelY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelZ, (scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
-                int x = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).LX;
-                int y = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).LY;
+                SetDynamicTrackBarValue(tBsixaxisGyroX, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroY, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroY + tBsixaxisGyroY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroZ, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelX, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelY, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelY + tBsixaxisAccelY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelZ, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
+
+                int x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LX;
+                int y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LY;
+                //else
+                //double hypot = Math.Min(127.5f, Math.Sqrt(Math.Pow(x - 127.5f, 2) + Math.Pow(y - 127.5f, 2)));
+                if (nUDLSCurve.Value > 0)
+                {
+                    float max = x + y;
+                    double curvex;
+                    double curvey;
+                    double multimax = TValue(382.5, max, (double)nUDLSCurve.Value);
+                    double multimin = TValue(127.5, max, (double)nUDLSCurve.Value);
+                    if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
+                    {
+                        curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
+                        curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
+                        btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbLSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbLSTrack.Location.Y));
+                    }
+                    else
+                    {
+                        if (x < 127.5f)
+                        {
+                            curvex = Math.Min(x, (x / max) * multimax);
+                            curvey = Math.Min(y, (-(y / max) * multimax + 510));
+                        }
+                        else
+                        {
+                            curvex = Math.Min(x, (-(x / max) * multimax + 510));
+                            curvey = Math.Min(y, (y / max) * multimax);
+                        }
+                        btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbLSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbLSTrack.Location.Y));
+                    }
+                }
+                else
                 btnLSTrack.Location = new Point((int)(dpix * x / 2.09 + lbLSTrack.Location.X), (int)(dpiy * y / 2.09 + lbLSTrack.Location.Y));
-                x = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).RX;
-                y = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).RY;
-                btnRSTrack.Location = new Point((int)(dpix * x / 2.09 + lbRSTrack.Location.X), (int)(dpiy * y / 2.09 + lbRSTrack.Location.Y));
-                x = -scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroX / 62 + 127;
-                y = scpDevice.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ / 62 + 127;
+                //*/
+                x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RX;
+                y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RY;
+                if (nUDRSCurve.Value > 0)
+                {
+                    float max = x + y;
+                    double curvex;
+                    double curvey;
+                    double multimax = TValue(382.5, max, (double)nUDRSCurve.Value);
+                    double multimin = TValue(127.5, max, (double)nUDRSCurve.Value);
+                    if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
+                    {
+                        curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
+                        curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
+                        btnRSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbRSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbRSTrack.Location.Y));
+                    }
+                    else
+                    {
+                        if (x < 127.5f)
+                        {
+                            curvex = Math.Min(x, (x / max) * multimax);
+                            curvey = Math.Min(y, (-(y / max) * multimax + 510));
+                        }
+                        else
+                        {
+                            curvex = Math.Min(x, (-(x / max) * multimax + 510));
+                            curvey = Math.Min(y, (y / max) * multimax);
+                        }
+                        btnRSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbRSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbRSTrack.Location.Y));
+                    }
+                }
+                else
+                    btnRSTrack.Location = new Point((int)(dpix * x / 2.09 + lbRSTrack.Location.X), (int)(dpiy * y / 2.09 + lbRSTrack.Location.Y));
+                x = -Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX / 62 + 127;
+                y = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ / 62 + 127;
                 btnSATrack.Location = new Point((int)(dpix * x / 2.09 + lbSATrack.Location.X), (int)(dpiy * y / 2.09 + lbSATrack.Location.Y));
-                tBL2.Value = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).L2;
+
+
+                tBL2.Value = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).L2;
                 lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 15), (int)((dpix * (24 - tBL2.Value / 10.625) + 10)));
                 if (tBL2.Value == 255)
                     lbL2Track.ForeColor = Color.Green;
@@ -266,7 +356,8 @@ namespace DS4Windows
                     lbL2Track.ForeColor = Color.Red;
                 else
                     lbL2Track.ForeColor = Color.Black;
-                tBR2.Value = scpDevice.getDS4State((int)nUDSixaxis.Value - 1).R2;
+
+                tBR2.Value = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).R2;
                 lbR2Track.Location = new Point(tBR2.Location.X + (int)(dpix * 20), (int)((dpix * (24 - tBR2.Value / 10.625) + 10)));
                 if (tBR2.Value == 255)
                     lbR2Track.ForeColor = Color.Green;
@@ -274,7 +365,9 @@ namespace DS4Windows
                     lbR2Track.ForeColor = Color.Red;
                 else
                     lbR2Track.ForeColor = Color.Black;
-                double latency = scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1].Latency;
+
+
+                double latency = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1].Latency;
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", latency.ToString()).Replace("*ms*", "ms");
                 if (latency > 10)
                     pBDelayTracker.BackColor = Color.Red;
@@ -284,11 +377,16 @@ namespace DS4Windows
                     pBDelayTracker.BackColor = Color.Green;
             }
         }
+
+        double TValue(double value1, double value2, double percent)
+        {
+            percent /= 100f;
+            return value1 * percent + value2 * (1 - percent);
+        }
         private void InputDS4(object sender, EventArgs e)
         {
-            #region DS4Input
-            if (Form.ActiveForm == root && cBControllerInput.Checked && tabControls.SelectedIndex != 2)
-            switch (scpDevice.GetInputkeys((int)nUDSixaxis.Value - 1))
+            if (Form.ActiveForm == root && cBControllerInput.Checked && tabControls.SelectedIndex < 2)
+            switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
                 {
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
                     case ("Circle"): Show_ControlsBn(bnCircle, e); break;
@@ -324,7 +422,6 @@ namespace DS4Windows
                     case ("GyroZP"): Show_ControlsBn(bnGyroZP, e); break;
                     case ("GyroZN"): Show_ControlsBn(bnGyroZN, e); break;
                 }
-            #endregion
         }
         private void button_MouseHover(object sender, EventArgs e)
         {
@@ -430,8 +527,8 @@ namespace DS4Windows
             Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             Global.saveFlashColor(device, lbFlashAt.ForeColor.R, lbFlashAt.ForeColor.G, lbFlashAt.ForeColor.B);
-            Global.setLeftTriggerMiddle(device, (byte)Math.Round((nUDL2.Value * 255), 0));
-            Global.setRightTriggerMiddle(device, (byte)Math.Round((nUDR2.Value * 255), 0));
+            Global.setL2Deadzone(device, (byte)Math.Round((nUDL2.Value * 255), 0));
+            Global.setR2Deadzone(device, (byte)Math.Round((nUDR2.Value * 255), 0));
             Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
             Global.setTouchSensitivity(device, (byte)nUDTouch.Value);
             Global.setTouchpadJitterCompensation(device, cBTouchpadJitterCompensation.Checked);
@@ -453,7 +550,13 @@ namespace DS4Windows
             Global.setStartTouchpadOff(device, cbStartTouchpadOff.Checked);
             Global.setUseTPforControls(device, cBTPforControls.Checked);
             Global.setDS4Mapping(cBControllerInput.Checked);
-
+            Global.setLSCurve(device, (int)Math.Round(nUDLSCurve.Value, 0));
+            Global.setRSCurve(device, (int)Math.Round(nUDRSCurve.Value, 0));
+            List<string> pactions = new List<string>();
+            foreach (ListViewItem lvi in lVActions.Items)
+                if (lvi.Checked)
+                    pactions.Add(lvi.Text);
+            Global.SetProfileAtions(device, pactions);
             gBTouchpad.Enabled = !cBTPforControls.Checked;
             if (cBTPforControls.Checked)
                 tabControls.Size = new Size(tabControls.Size.Width, (int)(282 * dpiy));
@@ -468,7 +571,7 @@ namespace DS4Windows
         private void Show_ControlsBn(object sender, EventArgs e)
         {
             lastSelected = (Button)sender;
-            kbm360 = new KBM360(scpDevice, device, this, lastSelected);
+            kbm360 = new KBM360(device, this, lastSelected);
             kbm360.Icon = this.Icon;
             kbm360.ShowDialog();
         }
@@ -590,9 +693,7 @@ namespace DS4Windows
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
-            //if (g.DpiX == 120)
-                //tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            //else
+            if (!saving)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(dpix * 100), 0, 2000);
         }
         private void greenBar_ValueChanged(object sender, EventArgs e)
@@ -606,9 +707,7 @@ namespace DS4Windows
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
-            //if (g.DpiX == 120)
-                //tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), 125, 0, 2000);
-            //else
+            if (!saving)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100*dpix), 0, 2000);
         }
         private void blueBar_ValueChanged(object sender, EventArgs e)
@@ -622,7 +721,8 @@ namespace DS4Windows
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
-            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            if (!saving)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void lowRedBar_ValueChanged(object sender, EventArgs e)
@@ -636,7 +736,8 @@ namespace DS4Windows
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            if (!saving)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void lowGreenBar_ValueChanged(object sender, EventArgs e)
@@ -650,7 +751,8 @@ namespace DS4Windows
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            if (!saving)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void lowBlueBar_ValueChanged(object sender, EventArgs e)
@@ -664,7 +766,8 @@ namespace DS4Windows
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            if (!saving)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void shiftRedBar_ValueChanged(object sender, EventArgs e)
@@ -678,7 +781,8 @@ namespace DS4Windows
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            if (!saving)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void shiftGreenBar_ValueChanged(object sender, EventArgs e)
@@ -692,7 +796,8 @@ namespace DS4Windows
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            if (!saving)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void shiftBlueBar_ValueChanged(object sender, EventArgs e)
@@ -706,7 +811,8 @@ namespace DS4Windows
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            if (!saving)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         public Color HuetoRGB(float hue, float light, Color rgb)
@@ -716,8 +822,8 @@ namespace DS4Windows
             float X = (C * (1 - Math.Abs((hue / 60) % 2 - 1)));
             float m = L - C / 2;
             float R =0, G=0, B=0;
-            if (light == 1) return Color.FromName("White");
-            else if (rgb.R == rgb.G && rgb.G == rgb.B) return Color.FromName("White");
+            if (light == 1) return Color.White;
+            else if (rgb.R == rgb.G && rgb.G == rgb.B) return Color.White;
             else if (0 <= hue && hue < 60)    { R = C; G = X; }
             else if (60 <= hue && hue < 120)  { R = X; G = C; }
             else if (120 <= hue && hue < 180) { G = C; B = X; }
@@ -733,35 +839,35 @@ namespace DS4Windows
             byte l = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
             bool hB = btnRumbleHeavyTest.Text == Properties.Resources.TestLText;
             bool lB = btnRumbleLightTest.Text == Properties.Resources.TestLText;
-            scpDevice.setRumble((byte)(hB ? h : 0), (byte)(lB ? l : 0), device);
+            Program.rootHub.setRumble((byte)(hB ? h : 0), (byte)(lB ? l : 0), device);
         }
 
         private void btnRumbleHeavyTest_Click(object sender, EventArgs e)
         {
-            DS4Device d = scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1];
+            DS4Device d = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
             if (((Button)sender).Text == Properties.Resources.TestHText)
             {
-                scpDevice.setRumble((byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), d.RightLightFastRumble, (int)nUDSixaxis.Value - 1);
+                Program.rootHub.setRumble((byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), d.RightLightFastRumble, (int)nUDSixaxis.Value - 1);
                 ((Button)sender).Text = Properties.Resources.StopHText;
             }
             else
             {
-                scpDevice.setRumble(0, d.RightLightFastRumble, (int)nUDSixaxis.Value - 1);
+                Program.rootHub.setRumble(0, d.RightLightFastRumble, (int)nUDSixaxis.Value - 1);
                 ((Button)sender).Text = Properties.Resources.TestHText;
             }                
         }
 
         private void btnRumbleLightTest_Click(object sender, EventArgs e)
         {
-            DS4Device d = scpDevice.DS4Controllers[(int)nUDSixaxis.Value - 1];
+            DS4Device d = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
             if (((Button)sender).Text == Properties.Resources.TestLText)
             {
-                scpDevice.setRumble(d.LeftHeavySlowRumble, (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), (int)nUDSixaxis.Value - 1);
+                Program.rootHub.setRumble(d.LeftHeavySlowRumble, (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), (int)nUDSixaxis.Value - 1);
                 ((Button)sender).Text = Properties.Resources.StopLText;
             }
             else
             {
-                scpDevice.setRumble(d.LeftHeavySlowRumble, 0, (int)nUDSixaxis.Value - 1);
+                Program.rootHub.setRumble(d.LeftHeavySlowRumble, 0, (int)nUDSixaxis.Value - 1);
                 ((Button)sender).Text = Properties.Resources.TestLText;
             }
         }
@@ -822,14 +928,14 @@ namespace DS4Windows
         private void Options_Closed(object sender, FormClosedEventArgs e)
         {
             for (int i = 0; i < 4; i++)
-                Global.LoadProfile(i, false, scpDevice); //Refreshes all profiles in case other controllers are using the same profile
+                Global.LoadProfile(i, false, Program.rootHub); //Refreshes all profiles in case other controllers are using the same profile
             if (olddinputcheck != cBDinput.Checked)
             {
                 root.btnStartStop_Clicked(false);
                 root.btnStartStop_Clicked(false);
             }
             if (btnRumbleHeavyTest.Text == Properties.Resources.StopText)
-                scpDevice.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
+                Program.rootHub.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
             inputtimer.Stop();
             sixaxisTimer.Stop();
         }
@@ -975,14 +1081,14 @@ namespace DS4Windows
         {
             if (button.Tag is String && (String)button.Tag == "Unbound")
                 return "Unbound";
-            else if (button.Tag is IEnumerable<int> || button.Tag is Int32[] || button.Tag is UInt16[])
+            else if (button.Tag is KeyValuePair<Int32[], string>)
                 return "Macro";
-            else if (button.Tag is Int32)
-                return ((Keys)(Int32)button.Tag).ToString();
-            else if (button.Tag is UInt16)
-                return ((Keys)(UInt16)button.Tag).ToString();
-            else if (button.Tag is string)
-                return button.Tag.ToString();
+            else if (button.Tag is KeyValuePair<int, string>)
+                return ((Keys)((KeyValuePair<int, string>)button.Tag).Key).ToString();
+            else if (button.Tag is KeyValuePair<UInt16, string>)
+                return ((Keys)((KeyValuePair<UInt16, string>)button.Tag).Key).ToString();
+            else if (button.Tag is KeyValuePair<string, string>)
+                return ((KeyValuePair<string, string>)button.Tag).Key;
             else if (button.Name.StartsWith("s") && ((Button)Controls.Find(button.Name.Remove(2, 5), true)[0]).Tag != null && button.Tag == null)
                 return "Fall Back to " + UpdateRegButtonList(((Button)Controls.Find(button.Name.Remove(2, 5), true)[0]));
             else
@@ -1164,12 +1270,12 @@ namespace DS4Windows
 
         private void numUDL2_ValueChanged(object sender, EventArgs e)
         {
-            Global.setLeftTriggerMiddle(device, (byte)(nUDL2.Value * 255));
+            Global.setL2Deadzone(device, (byte)(nUDL2.Value * 255));
         }
 
         private void numUDR2_ValueChanged(object sender, EventArgs e)
         {
-            Global.setRightTriggerMiddle(device, (byte)(nUDR2.Value * 255));
+            Global.setR2Deadzone(device, (byte)(nUDR2.Value * 255));
         }
 
         private void nUDSX_ValueChanged(object sender, EventArgs e)
@@ -1256,7 +1362,8 @@ namespace DS4Windows
 
         private void LightBar_MouseDown(object sender, MouseEventArgs e)
         {
-            tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            if (!saving)
+                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
         private void Lightbar_MouseUp(object sender, MouseEventArgs e)
@@ -1314,7 +1421,7 @@ namespace DS4Windows
 
         private void tabControls_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControls.SelectedIndex == 2)
+            if (tabControls.SelectedIndex == 3)
                 sixaxisTimer.Start();
             else
                 sixaxisTimer.Stop();
@@ -1427,7 +1534,6 @@ namespace DS4Windows
         private void lbFlashAt_Click(object sender, EventArgs e)
         {
             advColorDialog.Color = lbFlashAt.ForeColor;
-            advColorDialog.Color = lbPercentFlashBar.ForeColor;
             advColorDialog_OnUpdateColor(lbPercentFlashBar.ForeColor, e);
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
@@ -1435,10 +1541,8 @@ namespace DS4Windows
                 lbPercentFlashBar.ForeColor = advColorDialog.Color;
                 Global.saveFlashColor(device, advColorDialog.Color.R, advColorDialog.Color.G, advColorDialog.Color.B);
             }
-            //else Global.saveChargingColor(device, oldChargingColor[0], oldChargingColor[1], oldChargingColor[2]);
-            //Global.saveLowColor(device, oldLowLedColor[0], oldLowLedColor[1], oldLowLedColor[2]);
-            Global.saveColor(device, oldLedColor[0], oldLedColor[1], oldLedColor[2]);
-            oldLedColor = null;
+            if (device < 4)
+                DS4Control.DS4LightBar.forcelight[device] = false;
             if (lbFlashAt.ForeColor.GetBrightness() > .5f)
             {
                 lbFlashAt.BackColor = Color.Black;
@@ -1449,8 +1553,6 @@ namespace DS4Windows
                 lbFlashAt.BackColor = Color.White;
                 lbPercentFlashBar.BackColor = Color.White;
             }
-            //oldChargingColor = null;
-            //oldLowLedColor = null;
         }
 
         private void cbStartTouchpadOff_CheckedChanged(object sender, EventArgs e)
@@ -1537,6 +1639,61 @@ namespace DS4Windows
         private void cBControllerInput_CheckedChanged(object sender, EventArgs e)
         {
             Global.setDS4Mapping(cBControllerInput.Checked);
+        }
+
+        private void btnAddAction_Click(object sender, EventArgs e)
+        {
+            SpecActions sA = new SpecActions(this);
+            sA.TopLevel = false;
+            sA.Dock = DockStyle.Fill;
+            sA.Visible = true;
+            tPSpecial.Controls.Add(sA);
+            sA.BringToFront();
+        }
+
+        private void btnEditAction_Click(object sender, EventArgs e)
+        {
+            if (lVActions.SelectedIndices.Count > 0 && lVActions.SelectedIndices[0] >= 0)
+            {
+                SpecActions sA = new SpecActions(this, lVActions.SelectedItems[0].Text, lVActions.SelectedIndices[0]);
+                sA.TopLevel = false;
+                sA.Dock = DockStyle.Fill;
+                sA.Visible = true;
+                tPSpecial.Controls.Add(sA);
+                sA.BringToFront();
+            }
+        }
+
+        private void btnRemAction_Click(object sender, EventArgs e)
+        {
+            if (lVActions.SelectedIndices.Count > 0 && lVActions.SelectedIndices[0] >= 0)
+            {
+                Global.RemoveAction(lVActions.SelectedItems[0].Text);
+                lVActions.Items.Remove(lVActions.SelectedItems[0]);
+            }
+        }
+
+        private void lVActions_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            List<string> pactions = new List<string>();
+            foreach (ListViewItem lvi in lVActions.Items)
+                if (lvi.Checked)
+                    pactions.Add(lvi.Text);
+            Global.SetProfileAtions(device, pactions);
+            if (lVActions.Items.Count >= 50)
+            {
+                btnNewAction.Enabled = false;
+            }
+        }
+
+        private void nUDLSCurve_ValueChanged(object sender, EventArgs e)
+        {
+            Global.setLSCurve(device, (int)Math.Round(nUDLSCurve.Value, 0));
+        }
+
+        private void nUDRSCurve_ValueChanged(object sender, EventArgs e)
+        {
+            Global.setRSCurve(device, (int)Math.Round(nUDRSCurve.Value, 0));
         }
     }
 }

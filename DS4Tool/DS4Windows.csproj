@@ -155,6 +155,12 @@
       <DependentUpon>DS4Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="SpecActions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpecActions.Designer.cs">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </Compile>
     <Compile Include="WelcomeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,11 +176,20 @@
     <EmbeddedResource Include="Alreadyrunning.resx">
       <DependentUpon>Alreadyrunning.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Form.es.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hotkeys.es.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hotkeys.fr-FR.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hotkeys.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KBM360.es.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KBM360.fr-FR.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
@@ -183,6 +198,9 @@
       <DependentUpon>KBM360.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="MessageTextBox.es.resx">
+      <DependentUpon>MessageTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MessageTextBox.fr-FR.resx">
       <DependentUpon>MessageTextBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +208,9 @@
       <DependentUpon>MessageTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.cs.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options.es.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.fr-FR.resx">
@@ -206,6 +227,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecordBox.es.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecordBox.fr-FR.resx">
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,15 +238,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.es.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
+    <EmbeddedResource Include="SaveWhere.es.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaveWhere.fr-FR.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveWhere.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DS4Form.es.resx">
-      <DependentUpon>DS4Form.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Form.fr-FR.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
@@ -230,11 +253,23 @@
     <EmbeddedResource Include="DS4Form.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SpecActions.fr-FR.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpecActions.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WelcomeDialog.es.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WelcomeDialog.fr-FR.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeDialog.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinProgs.es.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinProgs.fr-FR.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>

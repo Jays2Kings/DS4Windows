@@ -111,7 +111,7 @@
             this.btnNUM2 = new System.Windows.Forms.Button();
             this.btnAPOSTROPHE = new System.Windows.Forms.Button();
             this.btnNUM3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbFlashRate = new System.Windows.Forms.Label();
             this.lbRumble = new System.Windows.Forms.Label();
             this.lbHeavy = new System.Windows.Forms.Label();
             this.lbLight = new System.Windows.Forms.Label();
@@ -873,10 +873,10 @@
             this.btnNUM3.Tag = "99";
             this.btnNUM3.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lbFlashRate
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.lbFlashRate, "lbFlashRate");
+            this.lbFlashRate.Name = "lbFlashRate";
             // 
             // lbRumble
             // 
@@ -1621,7 +1621,7 @@
             this.gBExtras.Controls.Add(this.cBLightbar);
             this.gBExtras.Controls.Add(this.lbRumble);
             this.gBExtras.Controls.Add(this.nUDMouse);
-            this.gBExtras.Controls.Add(this.label1);
+            this.gBExtras.Controls.Add(this.lbFlashRate);
             this.gBExtras.Controls.Add(this.lbHeavy);
             this.gBExtras.Controls.Add(this.bnColor);
             this.gBExtras.Controls.Add(this.lbBlueV);
@@ -1945,7 +1945,7 @@
         private System.Windows.Forms.Button btnNUM2;
         private System.Windows.Forms.Button btnAPOSTROPHE;
         private System.Windows.Forms.Button btnNUM3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbFlashRate;
         private System.Windows.Forms.Label lbRumble;
         private System.Windows.Forms.Label lbHeavy;
         private System.Windows.Forms.Label lbLight;

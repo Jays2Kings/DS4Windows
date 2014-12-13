@@ -90,6 +90,7 @@ namespace DS4Control
         {
             appdatapath = path;
             m_Config.m_Profile = appdatapath + "\\Profiles.xml";
+            m_Config.m_Actions = appdatapath + "\\Actions.xml";
         }
         /// <summary>
         /// Check if Admin Rights are needed to write in Appliplation Directory
@@ -147,11 +148,11 @@ namespace DS4Control
 
         public static byte loadRumbleBoost(int device)
         {
-            return m_Config.m_Rumble[device];
+            return m_Config.rumble[device];
         }
         public static void saveRumbleBoost(int device, byte boost)
         {
-            m_Config.m_Rumble[device] = boost;
+            m_Config.rumble[device] = boost;
 
         }
         public static double getRainbow(int device)
@@ -338,7 +339,15 @@ namespace DS4Control
         public static int getFirstXinputPort()
         {
             return m_Config.firstXinputPort;
-        }  
+        }
+        public static void setCloseMini(bool data)
+        {
+            m_Config.closeMini = data;
+        }
+        public static bool getCloseMini()
+        {
+            return m_Config.closeMini;
+        }
         public static void saveLowColor(int device, byte red, byte green, byte blue)
         {
             m_Config.m_LowLeds[device][0] = red;
@@ -475,21 +484,21 @@ namespace DS4Control
             return m_Config.formHeight;
         }
 
-        public static double getLeftTriggerMiddle(int device)
+        public static double getL2Deadzone(int device)
         {
-            return m_Config.m_LeftTriggerMiddle[device];
+            return m_Config.l2Deadzone[device];
         }
-        public static void setLeftTriggerMiddle(int device, byte value)
+        public static void setL2Deadzone(int device, byte value)
         {
-            m_Config.m_LeftTriggerMiddle[device] = value;
+            m_Config.l2Deadzone[device] = value;
         }
-        public static double getRightTriggerMiddle(int device)
+        public static double getR2Deadzone(int device)
         {
-            return m_Config.m_RightTriggerMiddle[device];
+            return m_Config.r2Deadzone[device];
         }
-        public static void setRightTriggerMiddle(int device, byte value)
+        public static void setR2Deadzone(int device, byte value)
         {
-            m_Config.m_RightTriggerMiddle[device] = value;
+            m_Config.r2Deadzone[device] = value;
         }
         public static double getSXDeadzone(int device)
         {
@@ -522,6 +531,22 @@ namespace DS4Control
         public static void setRSDeadzone(int device, byte value)
         {
             m_Config.RSDeadzone[device] = value;
+        }
+        public static int getLSCurve(int device)
+        {
+            return m_Config.lsCurve[device];
+        }
+        public static void setLSCurve(int device, int value)
+        {
+            m_Config.lsCurve[device] = value;
+        }
+        public static int getRSCurve(int device)
+        {
+            return m_Config.rsCurve[device];
+        }
+        public static void setRSCurve(int device, int value)
+        {
+            m_Config.rsCurve[device] = value;
         }
         public static bool getMouseAccel(int device)
         {
@@ -753,6 +778,52 @@ namespace DS4Control
             R *= 255; G *= 255; B *= 255;
             return Color.FromArgb((int)R, (int)G, (int)B);
         }
+
+        public static List<String> GetProfileActions(int device)
+        {
+            return m_Config.profileActions[device];
+        }
+
+        public static void SetProfileAtions(int device, List<String> pactions)
+        {
+            m_Config.profileActions[device] = pactions;
+        }
+
+        public static void SaveAction(string name, string controls, int mode, string details, bool edit, string ucontrols = "")
+        {
+            m_Config.SaveAction(name, controls, mode, details, edit, ucontrols);
+        }
+
+        public static void RemoveAction(string name)
+        {
+            m_Config.RemoveAction(name);
+        }
+
+        public static void LoadActions()
+        {
+            m_Config.LoadActions();
+        }
+
+        public static List<SpecialAction> GetActions()
+        {
+            return m_Config.actions;
+        }
+
+        public static int GetActionIndexOf(string name)
+        {
+            for (int i = 0; i < m_Config.actions.Count; i++)
+                if (m_Config.actions[i].name == name)
+                    return i;
+            return -1;
+        }
+
+        public static SpecialAction GetAction(string name)
+        {
+            foreach (SpecialAction sA in m_Config.actions)
+                if (sA.name == name)
+                    return sA;
+            return new SpecialAction("null", "null", "null", "null");
+        }
     }
 
 
@@ -761,6 +832,8 @@ namespace DS4Control
     {
         //public String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + "\\Profiles.xml";
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
+        public String m_Actions = Global.appdatapath + "\\Actions.xml";
+
         protected XmlDocument m_Xdoc = new XmlDocument();
         //fifth value used to for options, not fifth controller
         public int[] buttonMouseSensitivity = { 25, 25, 25, 25, 25 };
@@ -771,9 +844,9 @@ namespace DS4Control
         public Boolean[] lowerRCOn = { false, false, false, false, false };
         public Boolean[] ledAsBattery = { false, false, false, false, false };
         public Boolean[] flashLedLowBattery = { false, false, false, false, false };
-        public Byte[] m_LeftTriggerMiddle = { 0, 0, 0, 0, 0}, m_RightTriggerMiddle = { 0, 0, 0, 0, 0};
+        public Byte[] l2Deadzone = { 0, 0, 0, 0, 0}, r2Deadzone = { 0, 0, 0, 0, 0};
         public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty, String.Empty };
-        public Byte[] m_Rumble = { 100, 100, 100, 100, 100 };
+        public Byte[] rumble = { 100, 100, 100, 100, 100 };
         public Byte[] touchSensitivity = { 100, 100, 100, 100, 100 };
         public Byte[] LSDeadzone = { 0, 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0, 0 };
         public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
@@ -830,6 +903,8 @@ namespace DS4Control
         public bool[] dinputOnly = { false, false, false, false, false };
         public bool[] startTouchpadOff = { false, false, false, false, false };
         public bool[] useTPforControls = { false, false, false, false, false };
+        public int[] lsCurve = { 0, 0, 0, 0, 0 };
+        public int[] rsCurve = { 0, 0, 0, 0, 0 };
         public Boolean useExclusiveMode = false;
         public Int32 formWidth = 782;
         public Int32 formHeight = 550;
@@ -842,6 +917,8 @@ namespace DS4Control
         public bool ds4Mapping = true;
         public bool quickCharge = false;
         public int firstXinputPort = 1;
+        public bool closeMini = false;
+        public List<SpecialAction> actions = new List<SpecialAction>();
         public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = { null, null, null, null, null };
         public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null, null };
@@ -853,7 +930,7 @@ namespace DS4Control
         public Dictionary<DS4Controls, String>[] shiftCustomMapMacros = { null, null, null, null, null };
         public Dictionary<DS4Controls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] shiftCustomMapExtras = { null, null, null, null, null };
-
+        public List<String>[] profileActions = { null, null, null, null, null };
         public BackingStore()
         {
             for (int i = 0; i < 5; i++)
@@ -869,6 +946,7 @@ namespace DS4Control
                 shiftCustomMapMacros[i] = new Dictionary<DS4Controls, String>();
                 shiftCustomMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
                 shiftCustomMapExtras[i] = new Dictionary<DS4Controls, string>();
+                profileActions[i] = new List<string>();
             }
         }
 
@@ -969,7 +1047,7 @@ namespace DS4Control
                 XmlNode xmlColor = m_Xdoc.CreateNode(XmlNodeType.Element, "Color", null);
                 xmlColor.InnerText = m_Leds[device][0].ToString() + "," + m_Leds[device][1].ToString() + "," + m_Leds[device][2].ToString(); 
                 Node.AppendChild(xmlColor);
-                XmlNode xmlRumbleBoost = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); xmlRumbleBoost.InnerText = m_Rumble[device].ToString(); Node.AppendChild(xmlRumbleBoost);
+                XmlNode xmlRumbleBoost = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); xmlRumbleBoost.InnerText = rumble[device].ToString(); Node.AppendChild(xmlRumbleBoost);
                 XmlNode xmlLedAsBatteryIndicator = m_Xdoc.CreateNode(XmlNodeType.Element, "ledAsBatteryIndicator", null); xmlLedAsBatteryIndicator.InnerText = ledAsBattery[device].ToString(); Node.AppendChild(xmlLedAsBatteryIndicator);
                 XmlNode xmlLowBatteryFlash = m_Xdoc.CreateNode(XmlNodeType.Element, "lowBatteryFlash", null); xmlLowBatteryFlash.InnerText = flashLedLowBattery[device].ToString(); Node.AppendChild(xmlLowBatteryFlash);
                 XmlNode xmlFlashBatterAt = m_Xdoc.CreateNode(XmlNodeType.Element, "flashBatteryAt", null); xmlFlashBatterAt.InnerText = flashAt[device].ToString(); Node.AppendChild(xmlFlashBatterAt);
@@ -992,8 +1070,8 @@ namespace DS4Control
                 XmlNode xmlTapSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "tapSensitivity", null); xmlTapSensitivity.InnerText = tapSensitivity[device].ToString(); Node.AppendChild(xmlTapSensitivity);
                 XmlNode xmlDouble = m_Xdoc.CreateNode(XmlNodeType.Element, "doubleTap", null); xmlDouble.InnerText = doubleTap[device].ToString(); Node.AppendChild(xmlDouble);
                 XmlNode xmlScrollSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "scrollSensitivity", null); xmlScrollSensitivity.InnerText = scrollSensitivity[device].ToString(); Node.AppendChild(xmlScrollSensitivity);
-                XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = m_LeftTriggerMiddle[device].ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
-                XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = m_RightTriggerMiddle[device].ToString(); Node.AppendChild(xmlRightTriggerMiddle);
+                XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = l2Deadzone[device].ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
+                XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = r2Deadzone[device].ToString(); Node.AppendChild(xmlRightTriggerMiddle);
                 XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
                 XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
                 XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = LSDeadzone[device].ToString(); Node.AppendChild(xmlLSD);
@@ -1007,6 +1085,9 @@ namespace DS4Control
                 XmlNode xmlDinput = m_Xdoc.CreateNode(XmlNodeType.Element, "DinputOnly", null); xmlDinput.InnerText = dinputOnly[device].ToString(); Node.AppendChild(xmlDinput);
                 XmlNode xmlStartTouchpadOff = m_Xdoc.CreateNode(XmlNodeType.Element, "StartTouchpadOff", null); xmlStartTouchpadOff.InnerText = startTouchpadOff[device].ToString(); Node.AppendChild(xmlStartTouchpadOff);
                 XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null); xmlUseTPforControls.InnerText = useTPforControls[device].ToString(); Node.AppendChild(xmlUseTPforControls);
+                XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
+                XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
+                XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -1245,7 +1326,10 @@ namespace DS4Control
                 case "bnGyroZP": return DS4Controls.GyroZPos;
                 case "bnGyroZN": return DS4Controls.GyroZNeg;
 
-
+                case "bnSwipeUp": return DS4Controls.SwipeUp;
+                case "bnSwipeDown": return DS4Controls.SwipeDown;
+                case "bnSwipeLeft": return DS4Controls.SwipeLeft;
+                case "bnSwipeRight": return DS4Controls.SwipeRight;
 
                 #region OldShiftname
                 case "sbnShare": return DS4Controls.Share;
@@ -1286,11 +1370,6 @@ namespace DS4Control
                 case "sbnGyroZP": return DS4Controls.GyroZPos;
                 case "sbnGyroZN": return DS4Controls.GyroZNeg;
 #endregion
-
-                case "bnSwipeUp": return DS4Controls.SwipeUp;
-                case "bnSwipeDown": return DS4Controls.SwipeDown;
-                case "bnSwipeLeft": return DS4Controls.SwipeLeft;
-                case "bnSwipeRight": return DS4Controls.SwipeRight;
 
                 case "bnShiftShare": return DS4Controls.Share;
                 case "bnShiftL3": return DS4Controls.L3;
@@ -1447,7 +1526,7 @@ namespace DS4Control
                     try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[device][2]); }
                     catch { missingSetting = true; }
                 }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RumbleBoost"); Byte.TryParse(Item.InnerText, out m_Rumble[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RumbleBoost"); Byte.TryParse(Item.InnerText, out rumble[device]); }
                 catch { missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery[device]); }
@@ -1542,9 +1621,9 @@ namespace DS4Control
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/scrollSensitivity"); Int32.TryParse(Item.InnerText, out scrollSensitivity[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LeftTriggerMiddle"); Byte.TryParse(Item.InnerText, out m_LeftTriggerMiddle[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LeftTriggerMiddle"); Byte.TryParse(Item.InnerText, out l2Deadzone[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RightTriggerMiddle"); Byte.TryParse(Item.InnerText, out m_RightTriggerMiddle[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RightTriggerMiddle"); Byte.TryParse(Item.InnerText, out r2Deadzone[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseSensitivity"); Int32.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                 catch { missingSetting = true; }
@@ -1592,6 +1671,18 @@ namespace DS4Control
                 try
                 { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls"); Boolean.TryParse(Item.InnerText, out useTPforControls[device]); }
                 catch { useTPforControls[device] = false; missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
+                catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSCurve"); int.TryParse(Item.InnerText, out rsCurve[device]); }
+                catch { missingSetting = true; }
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ProfileActions"); 
+                    profileActions[device].Clear();
+                    if (!string.IsNullOrEmpty(Item.InnerText))
+                        profileActions[device].AddRange(Item.InnerText.Split('/')); }
+                catch { profileActions[device].Clear(); missingSetting = true; }
+               
                 DS4KeyType keyType;
                 UInt16 wvk;
                 if (buttons == null)
@@ -1848,6 +1939,8 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/FirstXinputPort"); Int32.TryParse(Item.InnerText, out firstXinputPort); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/CloseMinimizes"); Boolean.TryParse(Item.InnerText, out closeMini); }
+                    catch { missingSetting = true; }
                 }
             }
             catch { }
@@ -1893,11 +1986,207 @@ namespace DS4Control
             XmlNode xmlDS4Mapping = m_Xdoc.CreateNode(XmlNodeType.Element, "UseDS4ForMapping", null); xmlDS4Mapping.InnerText = ds4Mapping.ToString(); Node.AppendChild(xmlDS4Mapping);
             XmlNode xmlQuickCharge = m_Xdoc.CreateNode(XmlNodeType.Element, "QuickCharge", null); xmlQuickCharge.InnerText = quickCharge.ToString(); Node.AppendChild(xmlQuickCharge);
             XmlNode xmlFirstXinputPort = m_Xdoc.CreateNode(XmlNodeType.Element, "FirstXinputPort", null); xmlFirstXinputPort.InnerText = firstXinputPort.ToString(); Node.AppendChild(xmlFirstXinputPort);
+            XmlNode xmlCloseMini = m_Xdoc.CreateNode(XmlNodeType.Element, "CloseMinimizes", null); xmlCloseMini.InnerText = closeMini.ToString(); Node.AppendChild(xmlCloseMini);            
             m_Xdoc.AppendChild(Node);
 
             try { m_Xdoc.Save(m_Profile); }
             catch (UnauthorizedAccessException) { Saved = false; }
             return Saved;
+        }
+
+
+
+        private void CreateAction()
+        {
+            XmlDocument m_Xdoc = new XmlDocument();
+            XmlNode Node;
+
+            Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", String.Empty);
+            m_Xdoc.AppendChild(Node);
+
+            Node = m_Xdoc.CreateComment(String.Format(" Special Actions Configuration Data. {0} ", DateTime.Now));
+            m_Xdoc.AppendChild(Node);
+
+            Node = m_Xdoc.CreateWhitespace("\r\n");
+            m_Xdoc.AppendChild(Node);
+
+            Node = m_Xdoc.CreateNode(XmlNodeType.Element, "Actions", "");
+            m_Xdoc.AppendChild(Node);
+            m_Xdoc.Save(m_Actions);
+        }
+
+        public bool SaveAction(string name, string controls, int mode, string details, bool edit, string ucontrols = "")
+        {
+            bool saved = true;
+            if (!File.Exists(m_Actions))
+                CreateAction();
+            m_Xdoc.Load(m_Actions);
+            XmlNode Node;
+
+            Node = m_Xdoc.CreateComment(String.Format(" Special Actions Configuration Data. {0} ", DateTime.Now));
+            foreach (XmlNode node in m_Xdoc.SelectNodes("//comment()"))
+                node.ParentNode.ReplaceChild(Node, node);
+
+            Node = m_Xdoc.SelectSingleNode("Actions");
+            XmlElement el = m_Xdoc.CreateElement("Action");
+            el.SetAttribute("Name", name);
+            el.AppendChild(m_Xdoc.CreateElement("Trigger")).InnerText = controls;
+            switch (mode)
+            {
+                case 1:
+                    el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Macro";
+                    el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
+                    break;
+                case 2:
+                    el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Program";
+                    el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
+                    break;
+                case 3:
+                    el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Profile";
+                    el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
+                    el.AppendChild(m_Xdoc.CreateElement("UnloadTrigger")).InnerText = ucontrols;
+                    break;
+            }
+            if (edit)
+            {
+                XmlNode oldxmlprocess = m_Xdoc.SelectSingleNode("/Actions/Action[@Name=\"" + name + "\"]");
+                Node.ReplaceChild(el, oldxmlprocess);
+            }
+            else { Node.AppendChild(el); }
+            m_Xdoc.AppendChild(Node);
+            try { m_Xdoc.Save(m_Actions); }
+            catch { saved = false; }
+            LoadActions();
+            return saved;
+        }
+
+        public void RemoveAction(string name)
+        {
+            m_Xdoc.Load(m_Actions);
+            XmlNode Node = m_Xdoc.SelectSingleNode("Actions");
+            XmlNode Item = m_Xdoc.SelectSingleNode("/Actions/Action[@Name=\"" + name + "\"]");
+            if (Item != null)
+                Node.RemoveChild(Item);
+            m_Xdoc.AppendChild(Node);
+            m_Xdoc.Save(m_Actions);
+            LoadActions();
+        }
+
+        public bool LoadActions()
+        {
+            bool saved = true;
+            if (!File.Exists(Global.appdatapath + "\\Actions.xml"))
+                return false;
+            try
+            {
+                actions.Clear();
+                XmlDocument doc = new XmlDocument();
+                doc.Load(Global.appdatapath + "\\Actions.xml");
+                XmlNodeList actionslist = doc.SelectNodes("Actions/Action");
+                string name, controls, type, details, ucontrols;
+                foreach (XmlNode x in actionslist)
+                {
+                    name = x.Attributes["Name"].Value;
+                    controls = x.ChildNodes[0].InnerText;
+                    type = x.ChildNodes[1].InnerText;
+                    details = x.ChildNodes[2].InnerText;
+                    if (type == "Profile")
+                    {
+                        ucontrols = x.ChildNodes[3].InnerText;
+                        actions.Add(new SpecialAction(name, controls, type, details, ucontrols));
+                    }
+                    else
+                        actions.Add(new SpecialAction(name, controls, type, details));
+                }
+            }
+            catch { saved = false; }
+            return saved;
+        }
+    }
+
+    public class SpecialAction
+    {
+        public string name;
+        public List<DS4Controls> trigger = new List<DS4Controls>();
+        public string type;
+        public string controls;
+        public List<int> macro = new List<int>();
+        public string details;
+        public List<DS4Controls> uTrigger = new List<DS4Controls>();
+        public string ucontrols;
+        public SpecialAction(string name, string controls, string type, string details, string ucontrols = "")
+        {
+            this.name = name;
+            this.type = type;
+            this.controls = controls;
+            string[] ctrls = controls.Split('/');
+            foreach (string s in ctrls)
+                trigger.Add(getDS4ControlsByName(s));
+            if (type == "Macro")
+            {
+                string[] macs = details.Split('/');
+                foreach (string s in macs)
+                {
+                    int v;
+                    if (int.TryParse(s, out v))
+                        macro.Add(v);
+                }
+            }
+            else
+                this.details = details;
+            if (!string.IsNullOrEmpty(ucontrols))
+            {
+                this.ucontrols = ucontrols;
+                string[] uctrls = ucontrols.Split('/');
+                foreach (string s in uctrls)
+                    uTrigger.Add(getDS4ControlsByName(s));
+            }
+        }
+
+        private DS4Controls getDS4ControlsByName(string key)
+        {
+            switch (key)
+            {
+                case "Share": return DS4Controls.Share;
+                case "L3": return DS4Controls.L3;
+                case "R3": return DS4Controls.R3;
+                case "Options": return DS4Controls.Options;
+                case "Up": return DS4Controls.DpadUp;
+                case "Right": return DS4Controls.DpadRight;
+                case "Down": return DS4Controls.DpadDown;
+                case "Left": return DS4Controls.DpadLeft;
+
+                case "L1": return DS4Controls.L1;
+                case "R1": return DS4Controls.R1;
+                case "Triangle": return DS4Controls.Triangle;
+                case "Circle": return DS4Controls.Circle;
+                case "Cross": return DS4Controls.Cross;
+                case "Square": return DS4Controls.Square;
+
+                case "PS": return DS4Controls.PS;
+                case "Left Stick Left": return DS4Controls.LXNeg;
+                case "Left Stick Up": return DS4Controls.LYNeg;
+                case "Right Stick Left": return DS4Controls.RXNeg;
+                case "Right Stick Up": return DS4Controls.RYNeg;
+
+                case "Left Stick Right": return DS4Controls.LXPos;
+                case "Left Stick Down": return DS4Controls.LYPos;
+                case "Right Stick Right": return DS4Controls.RXPos;
+                case "Right Stick Down": return DS4Controls.RYPos;
+                case "L2": return DS4Controls.L2;
+                case "R2": return DS4Controls.R2;
+
+                case "Left Touch": return DS4Controls.TouchLeft;
+                case "Multitouch": return DS4Controls.TouchMulti;
+                case "Upper Touch": return DS4Controls.TouchUpper;
+                case "Right Touch": return DS4Controls.TouchRight;
+
+                case "Swipe Up": return DS4Controls.SwipeUp;
+                case "Swipe Down": return DS4Controls.SwipeDown;
+                case "Swipe Left": return DS4Controls.SwipeLeft;
+                case "Swipe Right": return DS4Controls.SwipeRight;
+            }
+            return 0;
         }
     }
 }

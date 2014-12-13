@@ -589,4 +589,22 @@
   <data name="XinputPorts" xml:space="preserve">
     <value>Use higher ports if you get conflicts in other emulating X360 programs, such as SCP's tool</value>
   </data>
+  <data name="ActionExists" xml:space="preserve">
+    <value>Name of this action already exists</value>
+  </data>
+  <data name="LaunchProgram" xml:space="preserve">
+    <value>Launch *program*</value>
+  </data>
+  <data name="LoadProfile" xml:space="preserve">
+    <value>Load *profile*</value>
+  </data>
+  <data name="SetRegularTrigger" xml:space="preserve">
+    <value>Set Regular Trigger</value>
+  </data>
+  <data name="SetUnloadTrigger" xml:space="preserve">
+    <value>Set Unload Trigger</value>
+  </data>
+  <data name="CloseMinimize" xml:space="preserve">
+    <value>Close DS4Windows via the notification icon</value>
+  </data>
 </root>

@@ -183,11 +183,11 @@
   <data name="lVMacros.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
+  <data name="cHMacro.Text" xml:space="preserve">
     <value>Macro Order</value>
   </data>
-  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
-    <value>525</value>
+  <data name="cHMacro.Width" type="System.Int32, mscorlib">
+    <value>200</value>
   </data>
   <metadata name="iLKeys.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -197,7 +197,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAQ
-        CgAAAk1TRnQBSQFMAgEBAwEAAcgBAAHIAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CgAAAk1TRnQBSQFMAgEBAwEAAeABAAHgAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -414,54 +414,6 @@
   <data name="pnlMouseButtons.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;btn5th.Name" xml:space="preserve">
-    <value>btn5th</value>
-  </data>
-  <data name="&gt;&gt;btn5th.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn5th.Parent" xml:space="preserve">
-    <value>pnlMouseButtons</value>
-  </data>
-  <data name="&gt;&gt;btn5th.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btn4th.Name" xml:space="preserve">
-    <value>btn4th</value>
-  </data>
-  <data name="&gt;&gt;btn4th.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn4th.Parent" xml:space="preserve">
-    <value>pnlMouseButtons</value>
-  </data>
-  <data name="&gt;&gt;btn4th.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pnlMouseButtons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>539, 198</value>
-  </data>
-  <data name="pnlMouseButtons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 74</value>
-  </data>
-  <data name="pnlMouseButtons.TabIndex" type="System.Int32, mscorlib">
-    <value>331</value>
-  </data>
-  <data name="pnlMouseButtons.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;pnlMouseButtons.Name" xml:space="preserve">
-    <value>pnlMouseButtons</value>
-  </data>
-  <data name="&gt;&gt;pnlMouseButtons.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlMouseButtons.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnlMouseButtons.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
   <data name="btn5th.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -515,6 +467,30 @@
   </data>
   <data name="&gt;&gt;btn4th.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="pnlMouseButtons.Location" type="System.Drawing.Point, System.Drawing">
+    <value>539, 225</value>
+  </data>
+  <data name="pnlMouseButtons.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 74</value>
+  </data>
+  <data name="pnlMouseButtons.TabIndex" type="System.Int32, mscorlib">
+    <value>331</value>
+  </data>
+  <data name="pnlMouseButtons.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;pnlMouseButtons.Name" xml:space="preserve">
+    <value>pnlMouseButtons</value>
+  </data>
+  <data name="&gt;&gt;pnlMouseButtons.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlMouseButtons.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlMouseButtons.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
   <data name="btnLoadP.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -621,6 +597,9 @@
   <data name="&gt;&gt;lbDelayTip.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>es</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -636,10 +615,10 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Record a Macro</value>
   </data>
-  <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
-    <value>columnHeader1</value>
+  <data name="&gt;&gt;cHMacro.Name" xml:space="preserve">
+    <value>cHMacro</value>
   </data>
-  <data name="&gt;&gt;columnHeader1.Type" xml:space="preserve">
+  <data name="&gt;&gt;cHMacro.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;iLKeys.Name" xml:space="preserve">

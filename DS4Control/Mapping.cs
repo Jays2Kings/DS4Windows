@@ -5,6 +5,7 @@ using System.Text;
 using DS4Library;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 namespace DS4Control
 {
     public class Mapping
@@ -331,14 +332,112 @@ namespace DS4Control
             }
             return 0; 
         }
+
+        static double TValue(double value1, double value2, double percent)
+        {
+            percent /= 100f;
+            return value1 * percent + value2 * (1 - percent);
+        }
+
+        public static DS4State SetCurveAndDeadzone(int device, DS4State cState)
+        {
+            DS4State dState = new DS4State(cState);
+            int x;
+            int y;
+            int curve;
+            if (Global.getLSCurve(device) > 0)
+            {
+                x = cState.LX;
+                y = cState.LY;
+                float max = x + y;
+                double curvex;
+                double curvey;
+                curve = Global.getLSCurve(device);
+                double multimax = TValue(382.5, max, curve);
+                double multimin = TValue(127.5, max, curve);
+                if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
+                {
+                    curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
+                    curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
+                    //btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbLSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbLSTrack.Location.Y));
+                }
+                else
+                {
+                    if (x < 127.5f)
+                    {
+                        curvex = Math.Min(x, (x / max) * multimax);
+                        curvey = Math.Min(y, (-(y / max) * multimax + 510));
+                    }
+                    else
+                    {
+                        curvex = Math.Min(x, (-(x / max) * multimax + 510));
+                        curvey = Math.Min(y, (y / max) * multimax);
+                    }
+                }
+                dState.LX = (byte)Math.Round(curvex, 0);
+                dState.LY = (byte)Math.Round(curvey, 0);
+            }
+            if (Global.getRSCurve(device) > 0)
+            {
+                x = cState.RX;
+                y = cState.RY;
+                float max = x + y;
+                double curvex;
+                double curvey;
+                curve = Global.getRSCurve(device);
+                double multimax = TValue(382.5, max, curve);
+                double multimin = TValue(127.5, max, curve);
+                if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
+                {
+                    curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
+                    curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
+                }
+                else
+                {
+                    if (x < 127.5f)
+                    {
+                        curvex = Math.Min(x, (x / max) * multimax);
+                        curvey = Math.Min(y, (-(y / max) * multimax + 510));
+                    }
+                    else
+                    {
+                        curvex = Math.Min(x, (-(x / max) * multimax + 510));
+                        curvey = Math.Min(y, (y / max) * multimax);
+                    }
+                }
+                dState.RX = (byte)Math.Round(curvex, 0);
+                dState.RY = (byte)Math.Round(curvey, 0);
+            }
+            if (Global.getLSDeadzone(device) > 0 &&
+                Math.Sqrt(Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2)) < Global.getLSDeadzone(device))
+            {
+                dState.LX = 127;
+                dState.LY = 127;
+            }
+            if (Global.getRSDeadzone(device) > 0
+                && Math.Sqrt(Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2)) < Global.getLSDeadzone(device))
+            {
+                dState.RX = 127;
+                dState.RY = 127;
+            }
+            if (Global.getL2Deadzone(device) > 0 && cState.L2 < Global.getL2Deadzone(device))
+                dState.L2 = 0;
+            if (Global.getR2Deadzone(device) > 0 && cState.R2 < Global.getR2Deadzone(device))
+                dState.R2 = 0;
+            return dState;
+        }
+
         public static bool[] pressedonce = new bool[261], macrodone = new bool[34];
         public static int test = 0;
         static bool[] macroControl = new bool[25];
         /** Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons. */
-        public static async void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp)
+        public static async void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, Control ctrl)
         {
             bool shift;
             SyntheticState deviceState = Mapping.deviceState[device];
+            if (Global.GetActions().Count > 0 && (Global.GetProfileActions(device).Count > 0 || 
+                !string.IsNullOrEmpty(Global.tempprofilename[device])))
+                MapCustomAction(device, cState, MappedState, eState, tp, ctrl);
             switch (Global.getShiftModifier(device))
             {
                 case 1: shift = getBoolMapping(DS4Controls.Cross, cState, eState, tp); break;
@@ -371,8 +470,7 @@ namespace DS4Control
             }
             cState.CopyTo(MappedState);
             if (shift)
-                MapShiftCustom(device, cState, MappedState, eState, tp);
-
+                MapShiftCustom(device, cState, MappedState, eState, tp);           
             foreach (KeyValuePair<DS4Controls, string> customKey in Global.getCustomMacros(device))
             {
                 if (shift == false ||
@@ -894,7 +992,7 @@ namespace DS4Control
                     }
                     for (int i = 0; i < keys.Length; i++)
                         keys[i] = ushort.Parse(skeys[i]);
-                    bool[] keydown = new bool[278];
+                    bool[] keydown = new bool[286];
                     if (!macrodone[DS4ControltoInt(customKey.Key)])
                     {
                         macrodone[DS4ControltoInt(customKey.Key)] = true;
@@ -1346,6 +1444,236 @@ namespace DS4Control
             InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
         }
 
+        public static bool[,] actionDone = new bool[4,50];
+        public static SpecialAction[] untriggeraction = new SpecialAction[4];
+        public static int[] untriggerindex = new int[4];
+        public static async void MapCustomAction(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, Control ctrl)
+        {
+            foreach (string actionname in Global.GetProfileActions(device))
+            {
+                //DS4KeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
+                SpecialAction action = Global.GetAction(actionname);
+                int index = Global.GetActionIndexOf(actionname);
+                if (action.name == "null" || index < 0)
+                    return;
+                bool triggeractivated = true;
+                foreach (DS4Controls dc in action.trigger)
+                {
+                    if (!getBoolMapping(dc, cState, eState, tp))
+                    {
+                        triggeractivated = false;
+                        break;
+                    }
+                }
+                //if (triggeractivated)
+                if (triggeractivated && action.type == "Program")
+                {
+                    if (!actionDone[device,index])
+                    {
+                        actionDone[device,index] = true;
+                        Process.Start(action.details);
+                    }
+                }
+                else if (triggeractivated && action.type == "Profile")
+                {
+                    if (!actionDone[device,index] && string.IsNullOrEmpty(Global.tempprofilename[device]))
+                    {
+                        actionDone[device, index] = true;
+                        untriggeraction[device] = action;
+                        untriggerindex[device] = index;
+                        foreach (DS4Controls dc in action.trigger)
+                        {
+                            InputMethods.performKeyRelease(Global.getCustomKey(0, dc));
+                            string[] skeys = Global.getCustomMacro(0, dc).Split('/');
+                            ushort[] keys = new ushort[skeys.Length];
+                            for (int i = 0; i < keys.Length; i++)
+                            {
+                                keys[i] = ushort.Parse(skeys[i]);
+                                InputMethods.performKeyRelease(keys[i]);
+                            }
+                        }
+                        Global.LoadTempProfile(device, action.details, true, ctrl);
+                        return;
+                    }
+                }                
+                else if (triggeractivated && action.type == "Macro")
+                {
+                    if (!actionDone[device,index])
+                    {
+                        actionDone[device,index] = true;
+                        foreach (DS4Controls dc in action.trigger)
+                            resetToDefaultValue(dc, MappedState);
+                        bool[] keydown = new bool[286];
+                        //for (int i = 0; i < keys.Length; i++)
+                        foreach (int i in action.macro)
+                        {
+                            if (i >= 300) //ints over 300 used to delay
+                                await Task.Delay(i - 300);
+                            else if (!keydown[i])
+                            {
+                                if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
+                                else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
+                                else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
+                                else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
+                                else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
+                                else if (i == 261) macroControl[0] = true;
+                                else if (i == 262) macroControl[1] = true;
+                                else if (i == 263) macroControl[2] = true;
+                                else if (i == 264) macroControl[3] = true;
+                                else if (i == 265) macroControl[4] = true;
+                                else if (i == 266) macroControl[5] = true;
+                                else if (i == 267) macroControl[6] = true;
+                                else if (i == 268) macroControl[7] = true;
+                                else if (i == 269) macroControl[8] = true;
+                                else if (i == 270) macroControl[9] = true;
+                                else if (i == 271) macroControl[10] = true;
+                                else if (i == 272) macroControl[11] = true;
+                                else if (i == 273) macroControl[12] = true;
+                                else if (i == 274) macroControl[13] = true;
+                                else if (i == 275) macroControl[14] = true;
+                                else if (i == 276) macroControl[15] = true;
+                                else if (i == 277) macroControl[16] = true;
+                                else if (i == 278) macroControl[17] = true;
+                                else if (i == 279) macroControl[18] = true;
+                                else if (i == 280) macroControl[19] = true;
+                                else if (i == 281) macroControl[20] = true;
+                                else if (i == 282) macroControl[21] = true;
+                                else if (i == 283) macroControl[22] = true;
+                                else if (i == 284) macroControl[23] = true;
+                                else if (i == 285) macroControl[24] = true;
+                                //else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    //InputMethods.performSCKeyPress((ushort)i);
+                                else
+                                    InputMethods.performKeyPress((ushort)i);
+                                keydown[i] = true;
+                            }
+                            else
+                            {
+                                if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
+                                else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                                else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                                else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                                else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                                else if (i == 261) macroControl[0] = false;
+                                else if (i == 262) macroControl[1] = false;
+                                else if (i == 263) macroControl[2] = false;
+                                else if (i == 264) macroControl[3] = false;
+                                else if (i == 265) macroControl[4] = false;
+                                else if (i == 266) macroControl[5] = false;
+                                else if (i == 267) macroControl[6] = false;
+                                else if (i == 268) macroControl[7] = false;
+                                else if (i == 269) macroControl[8] = false;
+                                else if (i == 270) macroControl[9] = false;
+                                else if (i == 271) macroControl[10] = false;
+                                else if (i == 272) macroControl[11] = false;
+                                else if (i == 273) macroControl[12] = false;
+                                else if (i == 274) macroControl[13] = false;
+                                else if (i == 275) macroControl[14] = false;
+                                else if (i == 276) macroControl[15] = false;
+                                else if (i == 277) macroControl[16] = false;
+                                else if (i == 278) macroControl[17] = false;
+                                else if (i == 279) macroControl[18] = false;
+                                else if (i == 280) macroControl[19] = false;
+                                else if (i == 281) macroControl[20] = false;
+                                else if (i == 282) macroControl[21] = false;
+                                else if (i == 283) macroControl[22] = false;
+                                else if (i == 284) macroControl[23] = false;
+                                else if (i == 285) macroControl[24] = false;
+                                //else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    //InputMethods.performSCKeyRelease((ushort)i);
+                                else
+                                    InputMethods.performKeyRelease((ushort)i);
+                                keydown[i] = false;
+                            }
+                        }
+                        for (ushort i = 0; i < keydown.Length; i++)
+                        {
+                            if (keydown[i])
+                                if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
+                                else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
+                                else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
+                                else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
+                                else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
+                                else if (i == 261) macroControl[0] = false;
+                                else if (i == 262) macroControl[1] = false;
+                                else if (i == 263) macroControl[2] = false;
+                                else if (i == 264) macroControl[3] = false;
+                                else if (i == 265) macroControl[4] = false;
+                                else if (i == 266) macroControl[5] = false;
+                                else if (i == 267) macroControl[6] = false;
+                                else if (i == 268) macroControl[7] = false;
+                                else if (i == 269) macroControl[8] = false;
+                                else if (i == 270) macroControl[9] = false;
+                                else if (i == 271) macroControl[10] = false;
+                                else if (i == 272) macroControl[11] = false;
+                                else if (i == 273) macroControl[12] = false;
+                                else if (i == 274) macroControl[13] = false;
+                                else if (i == 275) macroControl[14] = false;
+                                else if (i == 276) macroControl[15] = false;
+                                else if (i == 277) macroControl[16] = false;
+                                else if (i == 278) macroControl[17] = false;
+                                else if (i == 279) macroControl[18] = false;
+                                else if (i == 280) macroControl[19] = false;
+                                else if (i == 281) macroControl[20] = false;
+                                else if (i == 282) macroControl[21] = false;
+                                else if (i == 283) macroControl[22] = false;
+                                else if (i == 284) macroControl[23] = false;
+                                else if (i == 285) macroControl[24] = false;
+                                //else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    //InputMethods.performSCKeyRelease(i);
+                                else
+                                    InputMethods.performKeyRelease(i);
+                        }
+                        /*if (keyType.HasFlag(DS4KeyType.HoldMacro))
+                        {
+                            await Task.Delay(50);
+                            macrodoneA[index] = false;
+                        }*/
+                    }
+                }
+                else
+                    actionDone[device,index] = false;
+            }
+            if (untriggeraction[device] != null)
+            {
+                SpecialAction action = untriggeraction[device];
+                int index = untriggerindex[device];
+                bool utriggeractivated = true;
+                foreach (DS4Controls dc in action.uTrigger)
+                {
+                    if (!getBoolMapping(dc, cState, eState, tp))
+                    {
+                        utriggeractivated = false;
+                        break;
+                    }
+                }
+
+                if (utriggeractivated && action.type == "Profile")
+                {
+                    if ((action.controls == action.ucontrols && !actionDone[device, index]) || //if trigger and end trigger are the same
+                    action.controls != action.ucontrols)
+                        if (!string.IsNullOrEmpty(Global.tempprofilename[device]))
+                        {
+                            foreach (DS4Controls dc in action.uTrigger)
+                            {
+                                actionDone[device, index] = true;
+                                InputMethods.performKeyRelease(Global.getCustomKey(0, dc));
+                                string[] skeys = Global.getCustomMacro(0, dc).Split('/');
+                                ushort[] keys = new ushort[skeys.Length];
+                                for (int i = 0; i < keys.Length; i++)
+                                {
+                                    keys[i] = ushort.Parse(skeys[i]);
+                                    InputMethods.performKeyRelease(keys[i]);
+                                }
+                            }
+                            untriggeraction[device] = null;
+                            Global.LoadProfile(device, false, ctrl);
+                        }
+                }
+                else
+                    actionDone[device, index] = false;
+            }
+        }
         public static DateTime[] mousenow = { DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow };
         public static double mvalue = 0;
         public static int[] mouseaccel = new int[34];
@@ -1355,8 +1683,12 @@ namespace DS4Control
             int controlnum = DS4ControltoInt(control);
             double SXD = Global.getSXDeadzone(device);
             double SZD = Global.getSZDeadzone(device);
-            int deadzoneL = Math.Max((byte)10, Global.getLSDeadzone(device));
-            int deadzoneR = Math.Max((byte)10, Global.getRSDeadzone(device));
+            int deadzoneL = 10;
+            int deadzoneR = 10;
+            if (Global.getLSDeadzone(device) >= 10)
+                deadzoneL = 0;
+            if (Global.getRSDeadzone(device) >= 10)
+                deadzoneR = 0;
             double value = 0;
             int speed = Global.getButtonMouseSensitivity(device)+15;
             double root = 1.002;
@@ -1413,19 +1745,15 @@ namespace DS4Control
                 case DS4Controls.Circle: value = (cState.Circle ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
                 case DS4Controls.L2: value = Math.Pow(root + speed / divide, cState.L2 / 2d) - 1; break;
                 case DS4Controls.R2: value = Math.Pow(root + speed / divide, cState.R2 / 2d) - 1; break;
+                case DS4Controls.GyroXPos: return (byte)(eState.GyroX > SXD * 7500 ?
+                    Math.Pow(root + speed / divide, eState.GyroX / 62) : 0);
+                case DS4Controls.GyroXNeg: return (byte)(eState.GyroX < -SXD * 7500 ?
+                    Math.Pow(root + speed / divide, -eState.GyroX / 48) : 0);
+                case DS4Controls.GyroZPos: return (byte)(eState.GyroZ > SZD * 7500 ?
+                    Math.Pow(root + speed / divide, eState.GyroZ / 62) : 0);
+                case DS4Controls.GyroZNeg: return (byte)(eState.GyroZ < -SZD * 7500 ?
+                    Math.Pow(root + speed / divide, -eState.GyroZ / 62) : 0);
             }
-            if (eState != null)
-                switch (control)
-                {
-                    case DS4Controls.GyroXPos: return (byte)(eState.GyroX > SXD * 7500 ? 
-                        Math.Pow(root + speed / divide, eState.GyroX / 62) : 0);
-                    case DS4Controls.GyroXNeg: return (byte)(eState.GyroX < -SXD * 7500 ? 
-                        Math.Pow(root + speed / divide, -eState.GyroX / 48) : 0);
-                    case DS4Controls.GyroZPos: return (byte)(eState.GyroZ > SZD * 7500 ? 
-                        Math.Pow(root + speed / divide, eState.GyroZ / 62) : 0);
-                    case DS4Controls.GyroZNeg: return (byte)(eState.GyroZ < -SZD * 7500 ?
-                        Math.Pow(root + speed / divide, -eState.GyroZ / 62) : 0);
-                }
             bool LXChanged = (Math.Abs(127 - cState.LX) < deadzoneL);
             bool LYChanged = (Math.Abs(127 - cState.LY) < deadzoneL);
             bool RXChanged = (Math.Abs(127 - cState.RX) < deadzoneR);
@@ -1677,47 +2005,6 @@ namespace DS4Control
                 case DS4Controls.L2: cState.L2 = 0; break;
                 case DS4Controls.R2: cState.R2 = 0; break;
             }
-        }
-
-
-        // Arthritis mode, compensate for cumulative pressure F=kx on the triggers by allowing the user to remap the entire trigger to just the initial portion.
-        private static byte[,]  leftTriggerMap = new byte[4,256], rightTriggerMap = new byte[4,256];
-        private static double[] leftTriggerMiddle = new double[4], // linear trigger remapping, 0.5 is in the middle of 0 and 255 from the native controller.
-            oldLeftTriggerMiddle = new double[4],
-            rightTriggerMiddle = new double[4], oldRightTriggerMiddle = new double[4];
-        private static void initializeTriggerMap(byte[,] map, double triggerMiddle, int deviceNum)
-        {
-            double midpoint = 256.0 * triggerMiddle;
-            for (uint x = 0; x <= 255; x++)
-            {
-                double mapped;
-                if (x < midpoint) // i.e. with standard 0.5, 0..127->0..127, etc.; with 0.25, 0..63->0..127 and 64..255->128..255\
-                    mapped = (x * 0.5 / triggerMiddle);
-                else
-                    mapped = 128.0 + 128.0 * (x - midpoint) / (256.0 - midpoint);
-                map[deviceNum, x] = (byte)mapped;
-            }
-
-        }
-        public static byte mapLeftTrigger(byte orig, int deviceNum)
-        {
-            leftTriggerMiddle[deviceNum] = Global.getLeftTriggerMiddle(deviceNum);
-            if (leftTriggerMiddle[deviceNum] != oldLeftTriggerMiddle[deviceNum])
-            {
-                oldLeftTriggerMiddle[deviceNum] = leftTriggerMiddle[deviceNum];
-                initializeTriggerMap(leftTriggerMap, leftTriggerMiddle[deviceNum],deviceNum);
-            }
-            return leftTriggerMap[deviceNum, orig];
-        }
-        public static byte mapRightTrigger(byte orig, int deviceNum)
-        {
-            rightTriggerMiddle[deviceNum] = Global.getRightTriggerMiddle(deviceNum);
-            if (rightTriggerMiddle[deviceNum] != oldRightTriggerMiddle[deviceNum])
-            {
-                oldRightTriggerMiddle[deviceNum] = rightTriggerMiddle[deviceNum];
-                initializeTriggerMap(rightTriggerMap, rightTriggerMiddle[deviceNum], deviceNum);
-            }
-            return rightTriggerMap[deviceNum,orig];
         }
     }
 }

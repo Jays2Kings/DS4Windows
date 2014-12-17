@@ -59,6 +59,8 @@ namespace DS4Windows
             ds4.Tick += ds4_Tick;
             ds4.Interval = 1;
             lbRecordTip.Visible = false;
+            cBStyle.Visible = false;
+            pnlMouseButtons.Location = new Point(pnlMouseButtons.Location.X, pnlMouseButtons.Location.Y - 75);
             if (sA.macrostag.Count > 0)
             {
                 macros.AddRange(sA.macrostag);

@@ -55,7 +55,12 @@ namespace DS4Windows
                     }
             switch (act.type)
             {
-                case "Macro": cBActions.SelectedIndex = 1; macrostag = act.macro; lbMacroRecorded.Text = "Macro Recored"; break;
+                case "Macro":
+                    cBActions.SelectedIndex = 1; 
+                    macrostag = act.macro; 
+                    lbMacroRecorded.Text = "Macro Recored";
+                    cBMacroScanCode.Checked = act.keyType.HasFlag(DS4KeyType.ScanCode);
+                    break;
                 case "Program": cBActions.SelectedIndex = 2; LoadProgram(act.details); break;
                 case "Profile": 
                     cBActions.SelectedIndex = 3;
@@ -130,11 +135,11 @@ namespace DS4Windows
                     case 1:
                         if (macrostag.Count > 0)
                         {
-                            action = "Macro";                            
+                            action = "Macro" + (cBMacroScanCode.Checked ? " (Scan Code)" : "");                            
                             actRe = true;
                             if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
                                 Global.RemoveAction(oldprofilename);
-                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, String.Join("/", macrostag), edit);
+                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, String.Join("/", macrostag), edit, (cBMacroScanCode.Checked ? "Scan Code" : ""));
                         }
                         break;
                     case 2:

@@ -1255,7 +1255,7 @@ namespace DS4Control
                                         hasvalue = true;
                                         break;
                                     }
-                                if (hasvalue)
+                                if (hasvalue && !string.IsNullOrEmpty(String.Join(",", extras)))
                                 {
                                     XmlNode extraNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
                                     extraNode.InnerText = String.Join(",", extras);
@@ -1701,9 +1701,12 @@ namespace DS4Control
                             if (UInt16.TryParse(item.InnerText, out wvk))
                                 customMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Extras");
-                    if (ParentItem != null) 
+                    if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
-                            customMapExtras.Add(getDS4ControlsByName(item.Name), item.InnerText);
+                            if (item.InnerText != string.Empty)
+                                customMapExtras.Add(getDS4ControlsByName(item.Name), item.InnerText);
+                            else
+                                ParentItem.RemoveChild(item);
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/KeyType");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
@@ -1840,8 +1843,16 @@ namespace DS4Control
                     Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Extras/{0}", button.Name));
                     if (Item != null)
                     {
-                        extras = Item.InnerText;
-                        customMapExtras.Add(getDS4ControlsByName(button.Name), Item.InnerText);
+                        if (Item.InnerText != string.Empty)
+                        {
+                            extras = Item.InnerText;
+                            customMapExtras.Add(getDS4ControlsByName(button.Name), Item.InnerText);
+                        }
+                        else
+                        {
+                            m_Xdoc.RemoveChild(Item);
+                            extras = "0,0,0,0,0,0,0,0";
+                        }
                     }
                     else
                         extras = "0,0,0,0,0,0,0,0";
@@ -2015,7 +2026,7 @@ namespace DS4Control
             m_Xdoc.Save(m_Actions);
         }
 
-        public bool SaveAction(string name, string controls, int mode, string details, bool edit, string ucontrols = "")
+        public bool SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
         {
             bool saved = true;
             if (!File.Exists(m_Actions))
@@ -2036,6 +2047,8 @@ namespace DS4Control
                 case 1:
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Macro";
                     el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
+                    if (extras != string.Empty)
+                    el.AppendChild(m_Xdoc.CreateElement("Extras")).InnerText = extras;
                     break;
                 case 2:
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Program";
@@ -2044,7 +2057,7 @@ namespace DS4Control
                 case 3:
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Profile";
                     el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
-                    el.AppendChild(m_Xdoc.CreateElement("UnloadTrigger")).InnerText = ucontrols;
+                    el.AppendChild(m_Xdoc.CreateElement("UnloadTrigger")).InnerText = extras;
                     break;
             }
             if (edit)
@@ -2083,7 +2096,7 @@ namespace DS4Control
                 XmlDocument doc = new XmlDocument();
                 doc.Load(Global.appdatapath + "\\Actions.xml");
                 XmlNodeList actionslist = doc.SelectNodes("Actions/Action");
-                string name, controls, type, details, ucontrols;
+                string name, controls, type, details, extras;
                 foreach (XmlNode x in actionslist)
                 {
                     name = x.Attributes["Name"].Value;
@@ -2092,11 +2105,15 @@ namespace DS4Control
                     details = x.ChildNodes[2].InnerText;
                     if (type == "Profile")
                     {
-                        ucontrols = x.ChildNodes[3].InnerText;
-                        actions.Add(new SpecialAction(name, controls, type, details, ucontrols));
+                        extras = x.ChildNodes[3].InnerText;
+                        actions.Add(new SpecialAction(name, controls, type, details, extras));
                     }
-                    else
-                        actions.Add(new SpecialAction(name, controls, type, details));
+                    else if (type == "Macro")
+                    {
+                        if (x.ChildNodes[3] != null) extras = x.ChildNodes[3].InnerText;
+                        else extras = string.Empty;
+                        actions.Add(new SpecialAction(name, controls, type, details, extras));
+                    }
                 }
             }
             catch { saved = false; }
@@ -2114,7 +2131,8 @@ namespace DS4Control
         public string details;
         public List<DS4Controls> uTrigger = new List<DS4Controls>();
         public string ucontrols;
-        public SpecialAction(string name, string controls, string type, string details, string ucontrols = "")
+        public DS4KeyType keyType;
+        public SpecialAction(string name, string controls, string type, string details, string extras = "")
         {
             this.name = name;
             this.type = type;
@@ -2131,13 +2149,15 @@ namespace DS4Control
                     if (int.TryParse(s, out v))
                         macro.Add(v);
                 }
+                if (extras.Contains("Scan Code"))
+                    keyType |= DS4KeyType.ScanCode;
             }
             else
                 this.details = details;
-            if (!string.IsNullOrEmpty(ucontrols))
+            if (!string.IsNullOrEmpty(extras))
             {
-                this.ucontrols = ucontrols;
-                string[] uctrls = ucontrols.Split('/');
+                this.ucontrols = extras;
+                string[] uctrls = extras.Split('/');
                 foreach (string s in uctrls)
                     uTrigger.Add(getDS4ControlsByName(s));
             }

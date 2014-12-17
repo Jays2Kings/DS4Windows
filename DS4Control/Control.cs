@@ -399,6 +399,10 @@ namespace DS4Control
             {
                 if (Global.getFlushHIDQueue(ind))
                     device.FlushHID();
+                if (!string.IsNullOrEmpty(device.error))
+                {
+                    LogDebug(device.error);
+                }
                 device.getExposedState(ExposedState[ind], CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
                 device.getPreviousState(PreviousState[ind]);

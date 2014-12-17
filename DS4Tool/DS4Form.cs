@@ -15,6 +15,7 @@ using System.Xml;
 using System.Text;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.ServiceProcess;
 namespace DS4Windows
 {
     public partial class DS4Form : Form
@@ -51,7 +52,9 @@ namespace DS4Windows
         protected XmlDocument m_Xdoc = new XmlDocument();
         public bool mAllowVisible;
         bool contextclose;
-
+        string logFile = Global.appdatapath + @"\DS4Service.log";
+        StreamWriter logWriter;
+        //bool outputlog = false;
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
@@ -80,7 +83,6 @@ namespace DS4Windows
             cbs = new ComboBox[4] { cBController1, cBController2, cBController3, cBController4 };
             ebns = new Button[4] { bnEditC1, bnEditC2, bnEditC3, bnEditC4 };
             statPB = new PictureBox[4] { pBStatus1, pBStatus2, pBStatus3, pBStatus4 };
-
             shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[0],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
@@ -148,7 +150,10 @@ namespace DS4Windows
             Icon = Properties.Resources.DS4W;
             notifyIcon1.Icon = Properties.Resources.DS4W;
             Program.rootHub.Debug += On_Debug;
+            
             Log.GuiLog += On_Debug;
+            logFile = Global.appdatapath + "\\DS4Windows.log";
+            //logWriter = File.AppendText(logFile);
             Log.TrayIconLog += ShowNotification;
             // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
 
@@ -760,6 +765,8 @@ namespace DS4Windows
 
         protected void On_Debug(object sender, DS4Control.DebugEventArgs e)
         {
+            //logWriter.WriteLine(e.Time + ":\t" + e.Data);
+            //logWriter.Flush();
             LogDebug(e.Time, e.Data);
         }
 

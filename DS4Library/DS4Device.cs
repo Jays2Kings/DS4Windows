@@ -280,6 +280,7 @@ namespace DS4Library
         private byte priorInputReport30 = 0xff;
         public double Latency = 0;
         bool warn;
+        public string error;
         private void performDs4Input()
         {
             System.Timers.Timer readTimeout = new System.Timers.Timer(); // Await 30 seconds for the initial packet, then 3 seconds thereafter.
@@ -290,6 +291,7 @@ namespace DS4Library
             sw.Start();
             while (true)
             {
+                string currerror = string.Empty;
                 Latency.Add(sw.ElapsedMilliseconds - oldtime);
                 oldtime = sw.ElapsedMilliseconds;
 
@@ -408,28 +410,36 @@ namespace DS4Library
                 Array.Copy(inputReport, 14, accel, 0, 6);
                 Array.Copy(inputReport, 20, gyro, 0, 6);
 
+
+                try
+                {
                 charging = (inputReport[30] & 0x10) != 0;
                 battery = (inputReport[30] & 0x0f) * 10;
                 cState.Battery = (byte)battery;
-                if (inputReport[30] != priorInputReport30)
-                {
-                    priorInputReport30 = inputReport[30];
-                    Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
+                    if (inputReport[30] != priorInputReport30)
+                    {
+                        priorInputReport30 = inputReport[30];
+                        Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
+                    }
                 }
-
+                catch { currerror = "Index out ofr bounds: battery"; }
                 // XXX DS4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
-                for (int touches = inputReport[-1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET - 1], touchOffset = 0; touches > 0; touches--, touchOffset += 9)
+                try
                 {
-                    cState.TouchPacketCounter = inputReport[-1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset];
-                    cState.Touch1 = (inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // >= 1 touch detected
-                    cState.Touch1Identifier = (byte)(inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
-                    cState.Touch2 = (inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // 2 touches detected
-                    cState.Touch2Identifier = (byte)(inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
-                    cState.TouchLeft = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) >= 1920 * 2 / 5) ? false : true;
-                    cState.TouchRight = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) < 1920 * 2 / 5) ? false : true;
+                    for (int touches = inputReport[-1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET - 1], touchOffset = 0; touches > 0; touches--, touchOffset += 9)
+                    {
+                        cState.TouchPacketCounter = inputReport[-1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset];
+                        cState.Touch1 = (inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // >= 1 touch detected
+                        cState.Touch1Identifier = (byte)(inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
+                        cState.Touch2 = (inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // 2 touches detected
+                        cState.Touch2Identifier = (byte)(inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
+                        cState.TouchLeft = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) >= 1920 * 2 / 5) ? false : true;
+                        cState.TouchRight = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) < 1920 * 2 / 5) ? false : true;
                         // Even when idling there is still a touch packet indicating no touch 1 or 2
-                    touchpad.handleTouchpad(inputReport, cState, touchOffset); 
+                        touchpad.handleTouchpad(inputReport, cState, touchOffset);
+                    }
                 }
+                catch { currerror = "Index out ofr bounds: touchpad"; }
                 
                 /* Debug output of incoming HID data:
                 if (cState.L2 == 0xff && cState.R2 == 0xff)
@@ -444,12 +454,6 @@ namespace DS4Library
                 if (conType == ConnectionType.BT)
                 {
                     bool shouldDisconnect = false;
-                    /*if ((!pState.PS || !pState.Options) && cState.PS && cState.Options)
-                    {
-                        shouldDisconnect = true;
-                        for (int i = 0; i < 255; i++)
-                            ReleaseKeys(i);
-                    }*/
                     if (IdleTimeout > 0)
                     {
                         if (isNonSixaxisIdle())
@@ -466,7 +470,10 @@ namespace DS4Library
                 if (Report != null)
                     Report(this, EventArgs.Empty);
                 sendOutputReport(false);
-
+                if (!string.IsNullOrEmpty(error))
+                    error = string.Empty;
+                if (!string.IsNullOrEmpty(currerror))
+                    error = currerror;                
                 cState.CopyTo(pState);
             }
         }

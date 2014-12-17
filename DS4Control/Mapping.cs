@@ -173,7 +173,6 @@ namespace DS4Control
                         gkp.current = kvp.Value.current;
                         globalState.keyPresses[kvp.Key] = gkp;
                     }
-
                     if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && gkp.current.toggle)
                     {
                         if (gkp.current.scanCodeCount != 0)
@@ -236,7 +235,7 @@ namespace DS4Control
                             }
                         }
                     }
-                    else if ((gkp.current.toggleCount == 0 && gkp.previous.toggleCount == 0) && gkp.current.vkCount + gkp.current.scanCodeCount == 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount != 0)
+                    if ((gkp.current.toggleCount == 0 && gkp.previous.toggleCount == 0) && gkp.current.vkCount + gkp.current.scanCodeCount == 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount != 0)
                     {
                         if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
                         {
@@ -421,7 +420,9 @@ namespace DS4Control
         public static bool[] pressedonce = new bool[261], macrodone = new bool[34];
         public static int test = 0;
         static bool[] macroControl = new bool[25];
-        /** Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons. */
+        /// <summary>
+        /// Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons.
+        /// </summary>
         public static async void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, Control ctrl)
         {
             bool shift;
@@ -1491,6 +1492,7 @@ namespace DS4Control
                 {
                     if (!actionDone[device,index])
                     {
+                        DS4KeyType keyType = action.keyType;
                         actionDone[device,index] = true;
                         foreach (DS4Controls dc in action.trigger)
                             resetToDefaultValue(dc, MappedState);
@@ -1532,8 +1534,8 @@ namespace DS4Control
                                 else if (i == 283) macroControl[22] = true;
                                 else if (i == 284) macroControl[23] = true;
                                 else if (i == 285) macroControl[24] = true;
-                                //else if (keyType.HasFlag(DS4KeyType.ScanCode))
-                                    //InputMethods.performSCKeyPress((ushort)i);
+                                else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    InputMethods.performSCKeyPress((ushort)i);
                                 else
                                     InputMethods.performKeyPress((ushort)i);
                                 keydown[i] = true;
@@ -1570,8 +1572,8 @@ namespace DS4Control
                                 else if (i == 283) macroControl[22] = false;
                                 else if (i == 284) macroControl[23] = false;
                                 else if (i == 285) macroControl[24] = false;
-                                //else if (keyType.HasFlag(DS4KeyType.ScanCode))
-                                    //InputMethods.performSCKeyRelease((ushort)i);
+                                else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    InputMethods.performSCKeyRelease((ushort)i);
                                 else
                                     InputMethods.performKeyRelease((ushort)i);
                                 keydown[i] = false;
@@ -1610,15 +1612,15 @@ namespace DS4Control
                                 else if (i == 283) macroControl[22] = false;
                                 else if (i == 284) macroControl[23] = false;
                                 else if (i == 285) macroControl[24] = false;
-                                //else if (keyType.HasFlag(DS4KeyType.ScanCode))
-                                    //InputMethods.performSCKeyRelease(i);
+                                else if (keyType.HasFlag(DS4KeyType.ScanCode))
+                                    InputMethods.performSCKeyRelease(i);
                                 else
                                     InputMethods.performKeyRelease(i);
                         }
                         /*if (keyType.HasFlag(DS4KeyType.HoldMacro))
                         {
                             await Task.Delay(50);
-                            macrodoneA[index] = false;
+                            actionDone[device,index] = false;
                         }*/
                     }
                 }
@@ -1839,8 +1841,6 @@ namespace DS4Control
 
         public static bool getBoolMapping(DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
-            //if (control == DS4Controls.Up)
-            //Cons
             switch (control)
             {
                 case DS4Controls.Share: return cState.Share;

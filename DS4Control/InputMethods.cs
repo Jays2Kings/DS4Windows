@@ -181,6 +181,7 @@ namespace DS4Control
 
         public static void performSCKeyRelease(ushort key)
         {
+            Console.WriteLine((System.Windows.Forms.Keys)key);
             lock (lockob)
             {
                 sendInputs[0].Type = INPUT_KEYBOARD;
@@ -188,7 +189,7 @@ namespace DS4Control
                 sendInputs[0].Data.Keyboard.Flags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
                 sendInputs[0].Data.Keyboard.Scan = MapVirtualKey(key, MAPVK_VK_TO_VSC);
                 sendInputs[0].Data.Keyboard.Time = 0;
-                sendInputs[0].Data.Keyboard.Vk = key;
+                //sendInputs[0].Data.Keyboard.Vk = MapVirtualKey(key, MAPVK_VK_TO_VSC);
                 uint result = SendInput(1, sendInputs, Marshal.SizeOf(sendInputs[0]));
             }
         }

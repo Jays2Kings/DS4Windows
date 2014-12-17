@@ -1040,6 +1040,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Right Click to set presets for a set of controls.
+        /// </summary>
+        internal static string RightClickPresets {
+            get {
+                return ResourceManager.GetString("RightClickPresets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap RightTouch {

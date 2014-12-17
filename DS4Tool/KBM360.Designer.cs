@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KBM360));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pBX360 = new System.Windows.Forms.PictureBox();
+            this.pBMouse = new System.Windows.Forms.PictureBox();
             this.btnF6 = new System.Windows.Forms.Button();
             this.btnF5 = new System.Windows.Forms.Button();
             this.btnF7 = new System.Windows.Forms.Button();
@@ -138,7 +138,7 @@
             this.bnColor = new System.Windows.Forms.Button();
             this.btnNUMDOT = new System.Windows.Forms.Button();
             this.btnG = new System.Windows.Forms.Button();
-            this.cbScanCode = new System.Windows.Forms.CheckBox();
+            this.cBScanCode = new System.Windows.Forms.CheckBox();
             this.btnF = new System.Windows.Forms.Button();
             this.lBTip = new System.Windows.Forms.Label();
             this.btnD = new System.Windows.Forms.Button();
@@ -198,7 +198,7 @@
             this.btnQ = new System.Windows.Forms.Button();
             this.btnLSU = new System.Windows.Forms.Button();
             this.btnLS = new System.Windows.Forms.Button();
-            this.cbToggle = new System.Windows.Forms.CheckBox();
+            this.cBToggle = new System.Windows.Forms.CheckBox();
             this.btnFallBack = new System.Windows.Forms.Button();
             this.btnUNBOUND2 = new System.Windows.Forms.Button();
             this.btnESC = new System.Windows.Forms.Button();
@@ -209,8 +209,8 @@
             this.lbGreenV = new System.Windows.Forms.Label();
             this.lbRedV = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBX360)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBMouse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHeavy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLightFlash)).BeginInit();
@@ -221,18 +221,18 @@
             this.gBExtras.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pBX360
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
+            resources.ApplyResources(this.pBX360, "pBX360");
+            this.pBX360.Name = "pBX360";
+            this.pBX360.TabStop = false;
             // 
-            // pictureBox2
+            // pBMouse
             // 
-            this.pictureBox2.Image = global::DS4Windows.Properties.Resources.mouse;
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
+            this.pBMouse.Image = global::DS4Windows.Properties.Resources.mouse;
+            resources.ApplyResources(this.pBMouse, "pBMouse");
+            this.pBMouse.Name = "pBMouse";
+            this.pBMouse.TabStop = false;
             // 
             // btnF6
             // 
@@ -1092,12 +1092,12 @@
             this.btnG.Tag = "71";
             this.btnG.UseVisualStyleBackColor = true;
             // 
-            // cbScanCode
+            // cBScanCode
             // 
-            resources.ApplyResources(this.cbScanCode, "cbScanCode");
-            this.cbScanCode.Name = "cbScanCode";
-            this.cbScanCode.TabStop = false;
-            this.cbScanCode.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.cBScanCode, "cBScanCode");
+            this.cBScanCode.Name = "cBScanCode";
+            this.cBScanCode.TabStop = false;
+            this.cBScanCode.UseVisualStyleBackColor = true;
             // 
             // btnF
             // 
@@ -1584,13 +1584,13 @@
             this.btnLS.Tag = "X360Left Stick";
             this.btnLS.UseVisualStyleBackColor = true;
             // 
-            // cbToggle
+            // cBToggle
             // 
-            resources.ApplyResources(this.cbToggle, "cbToggle");
-            this.cbToggle.Name = "cbToggle";
-            this.cbToggle.TabStop = false;
-            this.cbToggle.UseVisualStyleBackColor = true;
-            this.cbToggle.CheckedChanged += new System.EventHandler(this.cbToggle_CheckedChanged);
+            resources.ApplyResources(this.cBToggle, "cBToggle");
+            this.cBToggle.Name = "cBToggle";
+            this.cBToggle.TabStop = false;
+            this.cBToggle.UseVisualStyleBackColor = true;
+            this.cBToggle.CheckedChanged += new System.EventHandler(this.cbToggle_CheckedChanged);
             // 
             // btnFallBack
             // 
@@ -1685,7 +1685,7 @@
             this.Controls.Add(this.btnUNBOUND2);
             this.Controls.Add(this.lBMacroOn);
             this.Controls.Add(this.btnFallBack);
-            this.Controls.Add(this.cbToggle);
+            this.Controls.Add(this.cBToggle);
             this.Controls.Add(this.btnLS);
             this.Controls.Add(this.btnF6);
             this.Controls.Add(this.btnLSU);
@@ -1803,7 +1803,7 @@
             this.Controls.Add(this.btnNUMSTAR);
             this.Controls.Add(this.btnF);
             this.Controls.Add(this.btnX);
-            this.Controls.Add(this.cbScanCode);
+            this.Controls.Add(this.cBScanCode);
             this.Controls.Add(this.btnNUM9);
             this.Controls.Add(this.btnG);
             this.Controls.Add(this.btnZ);
@@ -1836,8 +1836,8 @@
             this.Controls.Add(this.btnRETURN);
             this.Controls.Add(this.btnCAPS);
             this.Controls.Add(this.btnNUM0);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pBMouse);
+            this.Controls.Add(this.pBX360);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -1845,8 +1845,8 @@
             this.Name = "KBM360";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finalMeasure);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down_Action);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBX360)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBMouse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHeavy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLightFlash)).EndInit();
@@ -1863,8 +1863,8 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pBX360;
+        private System.Windows.Forms.PictureBox pBMouse;
         private System.Windows.Forms.Button btnF6;
         private System.Windows.Forms.Button btnF5;
         private System.Windows.Forms.Button btnF7;
@@ -1972,7 +1972,7 @@
         private System.Windows.Forms.Button bnColor;
         private System.Windows.Forms.Button btnNUMDOT;
         private System.Windows.Forms.Button btnG;
-        private System.Windows.Forms.CheckBox cbScanCode;
+        private System.Windows.Forms.CheckBox cBScanCode;
         private System.Windows.Forms.Button btnF;
         private System.Windows.Forms.Label lBTip;
         private System.Windows.Forms.Button btnD;
@@ -2032,7 +2032,7 @@
         private System.Windows.Forms.Button btnQ;
         private System.Windows.Forms.Button btnLSU;
         private System.Windows.Forms.Button btnLS;
-        private System.Windows.Forms.CheckBox cbToggle;
+        private System.Windows.Forms.CheckBox cBToggle;
         private System.Windows.Forms.Button btnFallBack;
         private System.Windows.Forms.Button btnUNBOUND2;
         private System.Windows.Forms.Button btnESC;

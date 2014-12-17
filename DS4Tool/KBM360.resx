@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pBX360.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAx4AAAEYCAYAAADS/CAKAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
         DwAAjA8AAP1SAACBQAAAfXkAAOmLAAA85QAAGcxzPIV3AAAKOWlDQ1BQaG90b3Nob3AgSUNDIHByb2Zp
@@ -3649,59 +3649,59 @@
 </value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="pBX360.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="pBX360.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 213</value>
   </data>
-  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="pBX360.Size" type="System.Drawing.Size, System.Drawing">
     <value>798, 280</value>
   </data>
-  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+  <data name="pBX360.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="pBX360.TabIndex" type="System.Int32, mscorlib">
     <value>322</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
-    <value>pictureBox1</value>
+  <data name="&gt;&gt;pBX360.Name" xml:space="preserve">
+    <value>pBX360</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;pBX360.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pBX360.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;pBX360.ZOrder" xml:space="preserve">
     <value>157</value>
   </data>
-  <data name="pictureBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="pBMouse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="pBMouse.Location" type="System.Drawing.Point, System.Drawing">
     <value>760, 44</value>
   </data>
-  <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="pBMouse.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 140</value>
   </data>
-  <data name="pictureBox2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+  <data name="pBMouse.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
   </data>
-  <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
+  <data name="pBMouse.TabIndex" type="System.Int32, mscorlib">
     <value>290</value>
   </data>
-  <data name="&gt;&gt;pictureBox2.Name" xml:space="preserve">
-    <value>pictureBox2</value>
+  <data name="&gt;&gt;pBMouse.Name" xml:space="preserve">
+    <value>pBMouse</value>
   </data>
-  <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
+  <data name="&gt;&gt;pBMouse.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pictureBox2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pBMouse.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;pBMouse.ZOrder" xml:space="preserve">
     <value>156</value>
   </data>
   <data name="btnF6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
@@ -6878,37 +6878,37 @@
   <data name="&gt;&gt;btnG.ZOrder" xml:space="preserve">
     <value>125</value>
   </data>
-  <data name="cbScanCode.AutoSize" type="System.Boolean, mscorlib">
+  <data name="cBScanCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="cbScanCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="cBScanCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="cbScanCode.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cBScanCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>663, 8</value>
   </data>
-  <data name="cbScanCode.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+  <data name="cBScanCode.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
   </data>
-  <data name="cbScanCode.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="cBScanCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 17</value>
   </data>
-  <data name="cbScanCode.TabIndex" type="System.Int32, mscorlib">
+  <data name="cBScanCode.TabIndex" type="System.Int32, mscorlib">
     <value>288</value>
   </data>
-  <data name="cbScanCode.Text" xml:space="preserve">
+  <data name="cBScanCode.Text" xml:space="preserve">
     <value>Scan Code</value>
   </data>
-  <data name="&gt;&gt;cbScanCode.Name" xml:space="preserve">
-    <value>cbScanCode</value>
+  <data name="&gt;&gt;cBScanCode.Name" xml:space="preserve">
+    <value>cBScanCode</value>
   </data>
-  <data name="&gt;&gt;cbScanCode.Type" xml:space="preserve">
+  <data name="&gt;&gt;cBScanCode.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cbScanCode.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cBScanCode.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;cbScanCode.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cBScanCode.ZOrder" xml:space="preserve">
     <value>123</value>
   </data>
   <data name="btnF.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
@@ -8538,37 +8538,37 @@ a key by typing it</value>
   <data name="&gt;&gt;btnLS.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="cbToggle.AutoSize" type="System.Boolean, mscorlib">
+  <data name="cBToggle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="cbToggle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="cBToggle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="cbToggle.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cBToggle.Location" type="System.Drawing.Point, System.Drawing">
     <value>598, 8</value>
   </data>
-  <data name="cbToggle.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+  <data name="cBToggle.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
   </data>
-  <data name="cbToggle.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="cBToggle.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 17</value>
   </data>
-  <data name="cbToggle.TabIndex" type="System.Int32, mscorlib">
+  <data name="cBToggle.TabIndex" type="System.Int32, mscorlib">
     <value>287</value>
   </data>
-  <data name="cbToggle.Text" xml:space="preserve">
+  <data name="cBToggle.Text" xml:space="preserve">
     <value>Toggle</value>
   </data>
-  <data name="&gt;&gt;cbToggle.Name" xml:space="preserve">
-    <value>cbToggle</value>
+  <data name="&gt;&gt;cBToggle.Name" xml:space="preserve">
+    <value>cBToggle</value>
   </data>
-  <data name="&gt;&gt;cbToggle.Type" xml:space="preserve">
+  <data name="&gt;&gt;cBToggle.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cbToggle.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cBToggle.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;cbToggle.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cBToggle.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="btnFallBack.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -8865,7 +8865,7 @@ Sensitivity</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.2.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.21.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>KBM360</value>

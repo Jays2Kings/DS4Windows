@@ -19,14 +19,17 @@ namespace DS4Windows
         public bool macrorepeat, newaction;
         RecordBox rb;
         object oldtag;
+        bool scanavail, toggleavil;
+        string keyname;
+        object keytag;
         public KBM360(int deviceNum, Options ooo, Button buton)
         {
             InitializeComponent();
             device = deviceNum;
             ops = ooo;
             button = buton;
-            cbToggle.Checked = button.Font.Italic;
-            cbScanCode.Checked = button.Font.Bold;
+            cBToggle.Checked = button.Font.Italic;
+            cBScanCode.Checked = button.Font.Bold;
             if (button.Tag != null)
             {
                 string[] extras;
@@ -34,12 +37,14 @@ namespace DS4Windows
                 {
                     KeyValuePair<int, string> tag = (KeyValuePair<int, string>)button.Tag;
                     oldtag = tag.Key;
+                    keytag = tag.Key;
                     extras = tag.Value.Split(',');
                 }
                 else if (button.Tag is KeyValuePair<Int32[], string>)
                 {
                     KeyValuePair<Int32[], string> tag = (KeyValuePair<Int32[], string>)button.Tag;
                     oldtag = tag.Key;
+                    keytag = tag.Key;
                     if (button.Font.Underline)
                     {
                         lBMacroOn.Visible = true;
@@ -54,6 +59,7 @@ namespace DS4Windows
                 {
                     KeyValuePair<string, string> tag = (KeyValuePair<string, string>)button.Tag;
                     oldtag = tag.Key;
+                    keytag = tag.Key;
                     extras = tag.Value.Split(',');
                 }
                 else
@@ -115,7 +121,7 @@ namespace DS4Windows
             if (rb == null && sender is Button && ((Button)sender).Name != "bnMacro" && ((Button)sender).Name != "bnTest")
             {
                 Button bn = ((Button)sender);
-                string keyname;
+                macrostag.Clear();
                 if (((Button)sender).Text.Contains('↑') || ((Button)sender).Text.Contains('↓') || ((Button)sender).Text.Contains('→') || ((Button)sender).Text.Contains('←') || ((Button)sender).Text.Contains('Ø'))
                     keyname = ((Button)sender).Text.Substring(1);
                 else if (((Button)sender).Font.Name == "Webdings")
@@ -134,15 +140,17 @@ namespace DS4Windows
                 else if (((Button)sender).Tag == null)
                     keyname = ((Button)sender).Text;
                 else if (((Button)sender).Tag.ToString().Contains("X360"))
+                {
                     keyname = ((Button)sender).Tag.ToString().Substring(4);
+                }
                 else
                     keyname = ((Button)sender).Text;
 
-                object keytag;
                 if (((Button)sender).Tag != null && ((Button)sender).Tag.ToString().Contains("X360"))
                     keytag = ((Button)sender).Tag.ToString().Substring(4);
                 else
                     keytag = ((Button)sender).Tag;
+
                 lBMacroOn.Visible = false;
                 string extras = GetExtras();
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(keytag, extras);
@@ -170,6 +178,7 @@ namespace DS4Windows
             if (lBMacroOn.Visible)
             {
                 string extras = GetExtras();
+                keytag = null;
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(macrostag.ToArray(), extras);
                 ops.ChangeButtonText("Macro", tag);
                 //ops.ChangeButtonText("Macro", macrostag.ToArray());
@@ -180,7 +189,11 @@ namespace DS4Windows
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(oldtag, extras);
                 ops.ChangeButtonText(button.Text, tag);
             }
-            ops.Toggle_Bn(cbScanCode.Checked, cbToggle.Checked, lBMacroOn.Visible, macrorepeat);
+            int value;
+            bool tagisint = keytag != null && Int32.TryParse(keytag.ToString(), out value);
+            scanavail = lBMacroOn.Visible || tagisint;
+            toggleavil = tagisint;
+            ops.Toggle_Bn((scanavail ? cBScanCode.Checked : false), (toggleavil ? cBToggle.Checked : false), lBMacroOn.Visible, macrorepeat);
             ops.UpdateLists();
         }
 
@@ -212,21 +225,20 @@ namespace DS4Windows
 
         private void cbToggle_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbToggle.Checked)
-                lBMacroOn.Visible = false;
+         
         }
 
         private void btnMacro_Click(object sender, EventArgs e)
         {
+            gBExtras.Controls.Add(cBScanCode);
+            cBScanCode.Location = new Point(20, 320);
             rb = new RecordBox(this);
             rb.TopLevel = false;
             rb.Dock = DockStyle.Fill;
             rb.Visible = true;
             Controls.Add(rb);
             rb.BringToFront();
-            //rb.StartPosition = FormStartPosition.Manual;
-            //rb.Location = new Point(this.Location.X + 580, this.Location.Y+ 55);
-            //rb.Show();
+            rb.FormClosed += delegate { Controls.Add(cBScanCode); cBScanCode.Location = new Point(663, 8); ActiveControl = lBMacroOn; };
         }
 
         protected override bool IsInputKey(Keys keyData)

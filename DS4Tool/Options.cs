@@ -28,6 +28,7 @@ namespace DS4Windows
         Image U = Properties.Resources.UpperTouch;
         private float dpix;
         private float dpiy;
+        public Dictionary<string, string> defaults = new Dictionary<string, string>();
         public bool saving;
         public Options(int deviceNum, string name, DS4Form rt)
         {
@@ -54,6 +55,8 @@ namespace DS4Windows
             foreach (System.Windows.Forms.Control control in pnlSticks.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
+            foreach (Button b in buttons)
+                defaults.Add(b.Name, b.Text);
             foreach (System.Windows.Forms.Control control in fLPTiltControls.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
@@ -72,9 +75,8 @@ namespace DS4Windows
             foreach (System.Windows.Forms.Control control in fLPShiftTouchSwipe.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                     subbuttons.Add((Button)control);
-            string butts = "";
-            foreach (Button b in buttons)
-                butts += "\n" + b.Name;
+            //string butts = "";
+                //butts += "\n" + b.Name;
             //MessageBox.Show(butts);
 
             root.lbLastMessage.ForeColor = Color.Black;
@@ -233,7 +235,6 @@ namespace DS4Windows
         public void LoadActions()
         {
             List<string> pactions = Global.GetProfileActions(device);
-            //Global.LoadActions();
             foreach (SpecialAction action in Global.GetActions())
             {
                 ListViewItem lvi = new ListViewItem(action.name);
@@ -241,7 +242,7 @@ namespace DS4Windows
                 string type = action.type;
                 switch (type)
                 {
-                    case "Macro": lvi.SubItems.Add("Macro"); break;
+                    case "Macro": lvi.SubItems.Add("Macro" + (action.keyType.HasFlag(DS4KeyType.ScanCode) ? " (Scan Code)" : "")); break;
                     case "Program": lvi.SubItems.Add(Properties.Resources.LaunchProgram.Replace("*program*", Path.GetFileNameWithoutExtension(action.details))); break;
                     case "Profile": lvi.SubItems.Add(Properties.Resources.LoadProfile.Replace("*profile*", action.details)); break;
                 }
@@ -589,11 +590,29 @@ namespace DS4Windows
             else
                 lastSelected.Tag = new KeyValuePair<string, string>(tag.Key.ToString(), tag.Value);    
         }
+        public void ChangeButtonText(string controlname, KeyValuePair<object, string> tag, System.Windows.Forms.Control ctrl)
+        {
+            if (ctrl is Button)
+            {
+                Button btn = (Button)ctrl;
+                btn.Text = controlname;
+                int value;
+                if (tag.Key == null)
+                    btn.Tag = tag;
+                else if (Int32.TryParse(tag.Key.ToString(), out value))
+                    btn.Tag = new KeyValuePair<int, string>(value, tag.Value);
+                else if (tag.Key is Int32[])
+                    btn.Tag = new KeyValuePair<Int32[], string>((Int32[])tag.Key, tag.Value);
+                else
+                    btn.Tag = new KeyValuePair<string, string>(tag.Key.ToString(), tag.Value);
+            }
+        }
         public void ChangeButtonText(string controlname)
         {
             lastSelected.Text = controlname;
             lastSelected.Tag = controlname;
         }
+
         public void Toggle_Bn(bool SC, bool TG, bool MC,  bool MR)
         {
             if (lastSelected.Tag is KeyValuePair<int, string> || lastSelected.Tag is KeyValuePair<UInt16, string> || lastSelected.Tag is KeyValuePair<int[], string>)
@@ -606,6 +625,23 @@ namespace DS4Windows
             else
                 lastSelected.Font = new Font(lastSelected.Font, FontStyle.Regular);
         }
+        public void Toggle_Bn(bool SC, bool TG, bool MC, bool MR, System.Windows.Forms.Control ctrl)
+        {
+            if (ctrl is Button)
+            {
+                Button btn = (Button)ctrl;
+                if (btn.Tag is KeyValuePair<int, string> || btn.Tag is KeyValuePair<UInt16, string> || btn.Tag is KeyValuePair<int[], string>)
+                    btn.Font = new Font(btn.Font,
+                        (SC ? FontStyle.Bold : FontStyle.Regular) | (TG ? FontStyle.Italic : FontStyle.Regular) |
+                        (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
+                else if (btn.Tag is KeyValuePair<string, string>)
+                    if (btn.Tag.ToString().Contains("Mouse Button"))
+                        btn.Font = new Font(btn.Font, TG ? FontStyle.Italic : FontStyle.Regular);
+                    else
+                        btn.Font = new Font(btn.Font, FontStyle.Regular);
+            }
+        }
+
         private void btnSticks_Enter(object sender, EventArgs e)
         {
             pnlSticks.Visible = true;
@@ -975,35 +1011,35 @@ namespace DS4Windows
 
         public void UpdateLists()
         {
-            lBControls.Items[0] = "Cross : " + bnCross.Text;
-            lBControls.Items[1] = "Circle : " + bnCircle.Text;
-            lBControls.Items[2] = "Square : " + bnSquare.Text;
-            lBControls.Items[3] = "Triangle : " + bnTriangle.Text;
-            lBControls.Items[4] = "Options : " + bnOptions.Text;
-            lBControls.Items[5] = "Share : " + bnShare.Text;
-            lBControls.Items[6] = "Up : " + bnUp.Text;
-            lBControls.Items[7] = "Down : " + bnDown.Text;
-            lBControls.Items[8] = "Left : " + bnLeft.Text;
-            lBControls.Items[9] = "Right : " + bnRight.Text;
-            lBControls.Items[10] = "PS : " + bnPS.Text;
-            lBControls.Items[11] = "L1 : " + bnL1.Text;
-            lBControls.Items[12] = "R1 : " + bnR1.Text;
-            lBControls.Items[13] = "L2 : " + bnL2.Text;
-            lBControls.Items[14] = "R2 : " + bnR2.Text;
-            lBControls.Items[15] = "L3 : " + bnL3.Text;
-            lBControls.Items[16] = "R3 : " + bnR3.Text;
-            lBControls.Items[17] = "Left Touch : " + bnTouchLeft.Text;
-            lBControls.Items[18] = "Right Touch : " + bnTouchRight.Text;
-            lBControls.Items[19] = "Multitouch : " + bnTouchMulti.Text;
-            lBControls.Items[20] = "Upper Touch : " + bnTouchUpper.Text;
-            lBControls.Items[21] = "LS Up : " + bnLSUp.Text;
-            lBControls.Items[22] = "LS Down : " + bnLSDown.Text;
-            lBControls.Items[23] = "LS Left : " + bnLSLeft.Text;
-            lBControls.Items[24] = "LS Right : " + bnLSRight.Text;
-            lBControls.Items[25] = "RS Up : " + bnRSUp.Text;
-            lBControls.Items[26] = "RS Down : " + bnRSDown.Text;
-            lBControls.Items[27] = "RS Left : " + bnRSLeft.Text;
-            lBControls.Items[28] = "RS Right : " + bnRSRight.Text;
+            lBControls.Items[0] = "Cross : " + UpdateRegButtonList(bnCross);
+            lBControls.Items[1] = "Circle : " + UpdateRegButtonList(bnCircle);
+            lBControls.Items[2] = "Square : " + UpdateRegButtonList(bnSquare);
+            lBControls.Items[3] = "Triangle : " + UpdateRegButtonList(bnTriangle);
+            lBControls.Items[4] = "Options : " + UpdateRegButtonList(bnOptions);
+            lBControls.Items[5] = "Share : " + UpdateRegButtonList(bnShare);
+            lBControls.Items[6] = "Up : " + UpdateRegButtonList(bnUp);
+            lBControls.Items[7] = "Down : " + UpdateRegButtonList(bnDown);
+            lBControls.Items[8] = "Left : " + UpdateRegButtonList(bnLeft);
+            lBControls.Items[9] = "Right : " + UpdateRegButtonList(bnRight);
+            lBControls.Items[10] = "PS : " + UpdateRegButtonList(bnPS);
+            lBControls.Items[11] = "L1 : " + UpdateRegButtonList(bnL1);
+            lBControls.Items[12] = "R1 : " + UpdateRegButtonList(bnR1);
+            lBControls.Items[13] = "L2 : " + UpdateRegButtonList(bnL2);
+            lBControls.Items[14] = "R2 : " + UpdateRegButtonList(bnR2);
+            lBControls.Items[15] = "L3 : " + UpdateRegButtonList(bnL3);
+            lBControls.Items[16] = "R3 : " + UpdateRegButtonList(bnR3);
+            lBControls.Items[17] = "Left Touch : " + UpdateRegButtonList(bnTouchLeft);
+            lBControls.Items[18] = "Right Touch : " + UpdateRegButtonList(bnTouchRight);
+            lBControls.Items[19] = "Multitouch : " + UpdateRegButtonList(bnTouchMulti);
+            lBControls.Items[20] = "Upper Touch : " + UpdateRegButtonList(bnTouchUpper);
+            lBControls.Items[21] = "LS Up : " + UpdateRegButtonList(bnLSUp);
+            lBControls.Items[22] = "LS Down : " + UpdateRegButtonList(bnLSDown);
+            lBControls.Items[23] = "LS Left : " + UpdateRegButtonList(bnLSLeft);
+            lBControls.Items[24] = "LS Right : " + UpdateRegButtonList(bnLSRight);
+            lBControls.Items[25] = "RS Up : " + UpdateRegButtonList(bnRSUp);
+            lBControls.Items[26] = "RS Down : " + UpdateRegButtonList(bnRSDown);
+            lBControls.Items[27] = "RS Left : " + UpdateRegButtonList(bnRSLeft);
+            lBControls.Items[28] = "RS Right : " + UpdateRegButtonList(bnRSRight);
             lBControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateRegButtonList(bnGyroZN);
             lBControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateRegButtonList(bnGyroZP);
             lBControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateRegButtonList(bnGyroXP);
@@ -1024,38 +1060,38 @@ namespace DS4Windows
                 bnSwipeRight.Text = Properties.Resources.SwipeRight;
             }
 
-            foreach (Button b in subbuttons)
+            /*foreach (Button b in subbuttons)
                 if (b.Tag == null)
-                    b.Text = "Fall Back to " + ((Button)Controls.Find(b.Name.Remove(2,5), true)[0]).Text;
-            lBShiftControls.Items[0] = "Cross : " + bnShiftCross.Text;
-            lBShiftControls.Items[1] = "Circle : " + bnShiftCircle.Text;
-            lBShiftControls.Items[2] = "Square : " + bnShiftSquare.Text;
-            lBShiftControls.Items[3] = "Triangle : " + bnShiftTriangle.Text;
-            lBShiftControls.Items[4] = "Options : " + bnShiftOptions.Text;
-            lBShiftControls.Items[5] = "Share : " + bnShiftShare.Text;
-            lBShiftControls.Items[6] = "Up : " + bnShiftUp.Text;
-            lBShiftControls.Items[7] = "Down : " + bnShiftDown.Text;
-            lBShiftControls.Items[8] = "Left : " + bnShiftLeft.Text;
-            lBShiftControls.Items[9] = "Right : " + bnShiftRight.Text;
-            lBShiftControls.Items[10] = "PS : " + bnShiftPS.Text;
-            lBShiftControls.Items[11] = "L1 : " + bnShiftL1.Text;
-            lBShiftControls.Items[12] = "R1 : " + bnShiftR1.Text;
-            lBShiftControls.Items[13] = "L2 : " + bnShiftL2.Text;
-            lBShiftControls.Items[14] = "R2 : " + bnShiftR2.Text;
-            lBShiftControls.Items[15] = "L3 : " + bnShiftL3.Text;
-            lBShiftControls.Items[16] = "R3 : " + bnShiftR3.Text;
-            lBShiftControls.Items[17] = "Left Touch : " + bnShiftTouchLeft.Text;
-            lBShiftControls.Items[18] = "Right Touch : " + bnShiftTouchRight.Text;
-            lBShiftControls.Items[19] = "Multitouch : " + bnShiftTouchMulti.Text;
-            lBShiftControls.Items[20] = "Upper Touch : " + bnShiftTouchUpper.Text;
-            lBShiftControls.Items[21] = "LS Up : " + bnShiftLSUp.Text;
-            lBShiftControls.Items[22] = "LS Down : " + bnShiftLSDown.Text;
-            lBShiftControls.Items[23] = "LS Left : " + bnShiftLSLeft.Text;
-            lBShiftControls.Items[24] = "LS Right : " + bnShiftLSRight.Text;
-            lBShiftControls.Items[25] = "RS Up : " + bnShiftRSUp.Text;
-            lBShiftControls.Items[26] = "RS Down : " + bnShiftRSDown.Text;
-            lBShiftControls.Items[27] = "RS Left : " + bnShiftRSLeft.Text;
-            lBShiftControls.Items[28] = "RS Right : " + bnShiftRSRight.Text;
+                    b.Text = "Fall Back to " + ((Button)Controls.Find(b.Name.Remove(2,5), true)[0]).Text;*/
+            lBShiftControls.Items[0] = "Cross : " + UpdateRegButtonList(bnShiftCross);
+            lBShiftControls.Items[1] = "Circle : " + UpdateRegButtonList(bnShiftCircle);
+            lBShiftControls.Items[2] = "Square : " + UpdateRegButtonList(bnShiftSquare);
+            lBShiftControls.Items[3] = "Triangle : " + UpdateRegButtonList(bnShiftTriangle);
+            lBShiftControls.Items[4] = "Options : " + UpdateRegButtonList(bnShiftOptions);
+            lBShiftControls.Items[5] = "Share : " + UpdateRegButtonList(bnShiftShare);
+            lBShiftControls.Items[6] = "Up : " + UpdateRegButtonList(bnShiftUp);
+            lBShiftControls.Items[7] = "Down : " + UpdateRegButtonList(bnShiftDown);
+            lBShiftControls.Items[8] = "Left : " + UpdateRegButtonList(bnShiftLeft);
+            lBShiftControls.Items[9] = "Right : " + UpdateRegButtonList(bnShiftRight);
+            lBShiftControls.Items[10] = "PS : " + UpdateRegButtonList(bnShiftPS);
+            lBShiftControls.Items[11] = "L1 : " + UpdateRegButtonList(bnShiftL1);
+            lBShiftControls.Items[12] = "R1 : " + UpdateRegButtonList(bnShiftR1);
+            lBShiftControls.Items[13] = "L2 : " + UpdateRegButtonList(bnShiftL2);
+            lBShiftControls.Items[14] = "R2 : " + UpdateRegButtonList(bnShiftR2);
+            lBShiftControls.Items[15] = "L3 : " + UpdateRegButtonList(bnShiftL3);
+            lBShiftControls.Items[16] = "R3 : " + UpdateRegButtonList(bnShiftR3);
+            lBShiftControls.Items[17] = "Left Touch : " + UpdateRegButtonList(bnShiftTouchLeft);
+            lBShiftControls.Items[18] = "Right Touch : " + UpdateRegButtonList(bnShiftTouchRight);
+            lBShiftControls.Items[19] = "Multitouch : " + UpdateRegButtonList(bnShiftTouchMulti);
+            lBShiftControls.Items[20] = "Upper Touch : " + UpdateRegButtonList(bnShiftTouchUpper);
+            lBShiftControls.Items[21] = "LS Up : " + UpdateRegButtonList(bnShiftLSUp);
+            lBShiftControls.Items[22] = "LS Down : " + UpdateRegButtonList(bnShiftLSDown);
+            lBShiftControls.Items[23] = "LS Left : " + UpdateRegButtonList(bnShiftLSLeft);
+            lBShiftControls.Items[24] = "LS Right : " + UpdateRegButtonList(bnShiftLSRight);
+            lBShiftControls.Items[25] = "RS Up : " + UpdateRegButtonList(bnShiftRSUp);
+            lBShiftControls.Items[26] = "RS Down : " + UpdateRegButtonList(bnShiftRSDown);
+            lBShiftControls.Items[27] = "RS Left : " + UpdateRegButtonList(bnShiftRSLeft);
+            lBShiftControls.Items[28] = "RS Right : " + UpdateRegButtonList(bnShiftRSRight);
             lBShiftControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateRegButtonList(bnShiftGyroZN);
             lBShiftControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateRegButtonList(bnShiftGyroZP);
             lBShiftControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateRegButtonList(bnShiftGyroXP);
@@ -1079,18 +1115,28 @@ namespace DS4Windows
 
         private string UpdateRegButtonList(Button button)
         {
+            Button regbutton = null;
+            bool shift = button.Name.Contains("Shift");
+            if (shift)
+                regbutton = ((Button)Controls.Find(button.Name.Remove(2, 5), true)[0]);
+            bool extracontrol = button.Name.Contains("Gyro") || button.Name.Contains("Swipe");
             if (button.Tag is String && (String)button.Tag == "Unbound")
                 return "Unbound";
             else if (button.Tag is KeyValuePair<Int32[], string>)
-                return "Macro";
+                return "Macro"  + (button.Font.Bold ? " (Scan Code)" : "");
             else if (button.Tag is KeyValuePair<int, string>)
-                return ((Keys)((KeyValuePair<int, string>)button.Tag).Key).ToString();
+                return ((Keys)((KeyValuePair<int, string>)button.Tag).Key).ToString() + (button.Font.Bold ? " (Scan Code)" : "");
             else if (button.Tag is KeyValuePair<UInt16, string>)
-                return ((Keys)((KeyValuePair<UInt16, string>)button.Tag).Key).ToString();
+                return ((Keys)((KeyValuePair<UInt16, string>)button.Tag).Key).ToString() + (button.Font.Bold ? " (Scan Code)" : "");
             else if (button.Tag is KeyValuePair<string, string>)
                 return ((KeyValuePair<string, string>)button.Tag).Key;
-            else if (button.Name.StartsWith("s") && ((Button)Controls.Find(button.Name.Remove(2, 5), true)[0]).Tag != null && button.Tag == null)
-                return "Fall Back to " + UpdateRegButtonList(((Button)Controls.Find(button.Name.Remove(2, 5), true)[0]));
+            else if (shift && extracontrol && !(regbutton.Tag is KeyValuePair<object, string>) 
+                && ((KeyValuePair<object, string>)button.Tag).Key == null)
+                return "Fall Back to " + UpdateRegButtonList(regbutton);
+            else if (shift && !extracontrol && ((KeyValuePair<object, string>)button.Tag).Key == null)
+                return "Fall Back to " + UpdateRegButtonList(regbutton);
+            else if (!shift && !extracontrol)
+                return defaults[button.Name];
             else
                 return string.Empty;
         }
@@ -1559,12 +1605,7 @@ namespace DS4Windows
         {
             Global.setStartTouchpadOff(device, cbStartTouchpadOff.Checked);
         }
-
-        private void cBDinput_MouseHover(object sender, EventArgs e)
-        {
-            root.lbLastMessage.Text = Properties.Resources.DinputOnly;
-        }
-
+        
         private void Items_MouseHover(object sender, EventArgs e)
         {
             switch (((System.Windows.Forms.Control)sender).Name)
@@ -1591,6 +1632,48 @@ namespace DS4Windows
                 case "cbStartTouchpadOff": root.lbLastMessage.Text = "Re-enable by pressing PS+Touchpad"; break;
                 case "cBTPforControls": root.lbLastMessage.Text = "This disables the Touchpad as a mouse"; break;
                 default: root.lbLastMessage.Text = "Hover over items to see description or more about"; break;
+
+                case "bnUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnRight": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "btnLeftStick": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "btnRightStick": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;                        
+                case "bnCross": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnCircle": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnSquare": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnTriangle": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "lbGyro": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnGyroZN": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnGyroZP": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnGyroXN": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnGyroXP": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "lbTPSwipes": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnSwipeUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnSwipeLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnSwipeRight": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnSwipeDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+
+                case "bnShiftUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftRight": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "btnShiftLeftStick": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "btnShiftRightStick": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftCross": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftCircle": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftSquare": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftTriangle": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "lbShiftGyro": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftGyroZN": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftGyroZP": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftGyroXN": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftGyroXP": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "lbShiftTPSwipes": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftSwipeUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftSwipeLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftSwipeRight": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnShiftSwipeDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
             }
             if (root.lbLastMessage.Text != "Hover over items to see description or more about")
                 root.lbLastMessage.ForeColor = Color.Black;
@@ -1694,6 +1777,1046 @@ namespace DS4Windows
         private void nUDRSCurve_ValueChanged(object sender, EventArgs e)
         {
             Global.setRSCurve(device, (int)Math.Round(nUDRSCurve.Value, 0));
+        }
+        
+        private void cMSPresets_Opened(object sender, EventArgs e)
+        {
+            string name = cMSPresets.SourceControl.Name;
+            if (name == "bnUp" || name == "bnLeft" || name == "bnRight" || name == "bnDown")
+                controlToolStripMenuItem.Text = "Dpad";
+            else if (name == "btnLeftStick")
+                controlToolStripMenuItem.Text = "Left Stick";
+            else if (name == "btnRightStick")
+                controlToolStripMenuItem.Text = "Right Stick";
+            else if (name == "bnCross" || name == "bnCircle" || name == "bnSquare" || name == "bnTriangle")
+                controlToolStripMenuItem.Text = "Face Buttons";
+            else if (name == "lbGyro" || name.StartsWith("bnGyro"))
+                controlToolStripMenuItem.Text = "Sixaxis";
+            else if (name == "lbTPSwipes" || name.StartsWith("bnSwipe"))
+                controlToolStripMenuItem.Text = "Touchpad Swipes";
+            else if (name == "bnShiftUp" || name == "bnShiftLeft" || name == "bnShiftRight" || name == "bnShiftDown")
+                controlToolStripMenuItem.Text = "Dpad (Shift)";
+            else if (name == "btnShiftLeftStick")
+                controlToolStripMenuItem.Text = "Left Stick (Shift)";
+            else if (name == "btnShiftRightStick")
+                controlToolStripMenuItem.Text = "Right Stick (Shift)";
+            else if (name == "bnShiftCross" || name == "bnShiftCircle" || name == "bnShiftSquare" || name == "bnShiftTriangle")
+                controlToolStripMenuItem.Text = "Face Buttons (Shift)";
+            else if (name == "lbShiftGyro" || name.StartsWith("bnShiftGyro"))
+                controlToolStripMenuItem.Text = "Sixaxis (Shift)";
+            else if (name == "lbShiftTPSwipes" || name.StartsWith("bnShiftSwipe"))
+                controlToolStripMenuItem.Text = "Touchpad Swipes (Shift)";
+            else
+                controlToolStripMenuItem.Text = "Select another control";
+            mouseToolStripMenuItem.Visible = !(name == "lbTPSwipes" || name.StartsWith("bnSwipe") || name == "lbShiftTPSwipes" || name.StartsWith("bnShiftSwipe"));
+        }
+
+        private void BatchToggle_Bn(bool scancode, Button button1, Button button2, Button button3, Button button4)
+        {
+            Toggle_Bn(scancode, false, false, false, button1);
+            Toggle_Bn(scancode, false, false, false, button2);
+            Toggle_Bn(scancode, false, false, false, button3);
+            Toggle_Bn(scancode, false, false, false, button4);
+        }
+
+        private void defaultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KeyValuePair<object, string> tag = new KeyValuePair<object, string>(null, "0,0,0,0,0,0,0,0");
+            Button button1, button2, button3, button4;
+            if (controlToolStripMenuItem.Text == "Dpad")
+            {
+                button1 = bnUp;
+                button2 = bnLeft;
+                button3 = bnRight;
+                button4 = bnDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick")
+            {
+                button1 = bnLSUp;
+                button2 = bnLSLeft;
+                button3 = bnLSRight;
+                button4 = bnLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick")
+            {
+                button1 = bnRSUp;
+                button2 = bnRSLeft;
+                button3 = bnRSRight;
+                button4 = bnRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons")
+            {
+                button1 = bnTriangle;
+                button2 = bnSquare;
+                button3 = bnCircle;
+                button4 = bnCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis")
+            {
+                button1 = bnGyroZN;
+                button2 = bnGyroXP;
+                button3 = bnGyroXN;
+                button4 = bnGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes")
+            {
+                button1 = bnSwipeUp;
+                button2 = bnSwipeLeft;
+                button3 = bnSwipeRight;
+                button4 = bnSwipeDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Dpad (Shift)")
+            {
+                button1 = bnShiftUp;
+                button2 = bnShiftLeft;
+                button3 = bnShiftRight;
+                button4 = bnShiftDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick (Shift)")
+            {
+                button1 = bnShiftLSUp;
+                button2 = bnShiftLSLeft;
+                button3 = bnShiftLSRight;
+                button4 = bnShiftLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick (Shift)")
+            {
+                button1 = bnShiftRSUp;
+                button2 = bnShiftRSLeft;
+                button3 = bnShiftRSRight;
+                button4 = bnShiftRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons (Shift)")
+            {
+                button1 = bnShiftTriangle;
+                button2 = bnShiftSquare;
+                button3 = bnShiftCircle;
+                button4 = bnShiftCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis (Shift)")
+            {
+                button1 = bnShiftGyroZN;
+                button2 = bnShiftGyroXP;
+                button3 = bnShiftGyroXN;
+                button4 = bnShiftGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes (Shift)")
+            {
+                button1 = bnShiftSwipeUp;
+                button2 = bnShiftSwipeLeft;
+                button3 = bnShiftSwipeRight;
+                button4 = bnShiftSwipeDown;
+            }
+            else
+                button1 = button2 = button3 = button4 = null;
+            ChangeButtonText("Default", tag, button1);
+            ChangeButtonText("Default", tag, button2);
+            ChangeButtonText("Default", tag, button3);
+            ChangeButtonText("Default", tag, button4);
+            BatchToggle_Bn(false, button1, button2, button3, button4);
+            UpdateLists();
+            cMSPresets.Hide();
+        }
+
+
+
+        private void tSMIDPadInverted_Click(object sender, EventArgs e)
+        {
+            dpadToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tSMIDPadInvertedX_Click(object sender, EventArgs e)
+        {
+            dpadToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tSMIDPadInvertedY_Click(object sender, EventArgs e)
+        {
+            dpadToolStripMenuItem_Click(sender, e);
+        }
+
+        private void dpadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KeyValuePair<object, string> tagU;
+            KeyValuePair<object, string> tagL;
+            KeyValuePair<object, string> tagR; 
+            KeyValuePair<object, string> tagD;
+            switch (sender.ToString())
+            {
+                case "Inverted":
+                    tagU = new KeyValuePair<object, string>("Down Button", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Right Button", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Left Button", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Up Button", "0,0,0,0,0,0,0,0");
+                    break;
+                case "Inverted X": 
+                    tagU = new KeyValuePair<object, string>("Up Button", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Right Button", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Left Button", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Down Button", "0,0,0,0,0,0,0,0");
+                    break;
+                case "Inverted Y": 
+                    tagU = new KeyValuePair<object, string>("Down Button", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Left Button", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Right Button", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Up Button", "0,0,0,0,0,0,0,0");
+                    break;            
+                default:
+                    tagU = new KeyValuePair<object, string>("Up Button", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Left Button", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Right Button", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Down Button", "0,0,0,0,0,0,0,0");
+                    break;
+            }
+            Button button1, button2, button3, button4;
+            if (controlToolStripMenuItem.Text == "Dpad")
+            {
+                button1 = bnUp;
+                button2 = bnLeft;
+                button3 = bnRight;
+                button4 = bnDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick")
+            {
+                button1 = bnLSUp;
+                button2 = bnLSLeft;
+                button3 = bnLSRight;
+                button4 = bnLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick")
+            {
+                button1 = bnRSUp;
+                button2 = bnRSLeft;
+                button3 = bnRSRight;
+                button4 = bnRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons")
+            {
+                button1 = bnTriangle;
+                button2 = bnSquare;
+                button3 = bnCircle;
+                button4 = bnCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis")
+            {
+                button1 = bnGyroZN;
+                button2 = bnGyroXP;
+                button3 = bnGyroXN;
+                button4 = bnGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes")
+            {
+                button1 = bnSwipeUp;
+                button2 = bnSwipeLeft;
+                button3 = bnSwipeRight;
+                button4 = bnSwipeDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Dpad (Shift)")
+            {
+                button1 = bnShiftUp;
+                button2 = bnShiftLeft;
+                button3 = bnShiftRight;
+                button4 = bnShiftDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick (Shift)")
+            {
+                button1 = bnShiftLSUp;
+                button2 = bnShiftLSLeft;
+                button3 = bnShiftLSRight;
+                button4 = bnShiftLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick (Shift)")
+            {
+                button1 = bnShiftRSUp;
+                button2 = bnShiftRSLeft;
+                button3 = bnShiftRSRight;
+                button4 = bnShiftRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons (Shift)")
+            {
+                button1 = bnShiftTriangle;
+                button2 = bnShiftSquare;
+                button3 = bnShiftCircle;
+                button4 = bnShiftCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis (Shift)")
+            {
+                button1 = bnShiftGyroZN;
+                button2 = bnShiftGyroXP;
+                button3 = bnShiftGyroXN;
+                button4 = bnShiftGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes (Shift)")
+            {
+                button1 = bnShiftSwipeUp;
+                button2 = bnShiftSwipeLeft;
+                button3 = bnShiftSwipeRight;
+                button4 = bnShiftSwipeDown;
+            }
+            else
+                button1 = button2 = button3 = button4 = null;
+            ChangeButtonText("Up Button", tagU, button1);
+            ChangeButtonText("Left Button", tagL, button2);
+            ChangeButtonText("Right Button", tagR, button3);
+            ChangeButtonText("Down Button", tagD, button4);
+            BatchToggle_Bn(false, button1, button2, button3, button4);
+
+            UpdateLists();
+            cMSPresets.Hide();
+        }
+
+        private void tSMILSInverted_Click(object sender, EventArgs e)
+        {
+            leftStickToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tSMILSInvertedX_Click(object sender, EventArgs e)
+        {
+            leftStickToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tSMILSInvertedY_Click(object sender, EventArgs e)
+        {
+            leftStickToolStripMenuItem_Click(sender, e);
+        }
+
+        private void leftStickToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KeyValuePair<object, string> tagU;
+            KeyValuePair<object, string> tagL;
+            KeyValuePair<object, string> tagR;
+            KeyValuePair<object, string> tagD;
+            switch (sender.ToString())
+            {
+                case "Inverted":
+                    tagU = new KeyValuePair<object, string>("Left Y-Axis+", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Left X-Axis+", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Left X-Axis-", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Left Y-Axis-", "0,0,0,0,0,0,0,0");
+                    break;
+                case "Inverted X":
+                    tagU = new KeyValuePair<object, string>("Left Y-Axis-", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Left X-Axis+", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Left X-Axis-", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Left Y-Axis+", "0,0,0,0,0,0,0,0");
+                    break;
+                case "Inverted Y":
+                    tagU = new KeyValuePair<object, string>("Left Y-Axis+", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Left X-Axis-", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Left X-Axis+", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Left Y-Axis-", "0,0,0,0,0,0,0,0");
+                    break;
+                default:
+                    tagU = new KeyValuePair<object, string>("Left Y-Axis-", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Left X-Axis-", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Left X-Axis+", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Left Y-Axis+", "0,0,0,0,0,0,0,0");
+                    break;
+            }            
+            Button button1, button2, button3, button4;
+            if (controlToolStripMenuItem.Text == "Dpad")
+            {
+                button1 = bnUp;
+                button2 = bnLeft;
+                button3 = bnRight;
+                button4 = bnDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick")
+            {
+                button1 = bnLSUp;
+                button2 = bnLSLeft;
+                button3 = bnLSRight;
+                button4 = bnLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick")
+            {
+                button1 = bnRSUp;
+                button2 = bnRSLeft;
+                button3 = bnRSRight;
+                button4 = bnRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons")
+            {
+                button1 = bnTriangle;
+                button2 = bnSquare;
+                button3 = bnCircle;
+                button4 = bnCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis")
+            {
+                button1 = bnGyroZN;
+                button2 = bnGyroXP;
+                button3 = bnGyroXN;
+                button4 = bnGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes")
+            {
+                button1 = bnSwipeUp;
+                button2 = bnSwipeLeft;
+                button3 = bnSwipeRight;
+                button4 = bnSwipeDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Dpad (Shift)")
+            {
+                button1 = bnShiftUp;
+                button2 = bnShiftLeft;
+                button3 = bnShiftRight;
+                button4 = bnShiftDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick (Shift)")
+            {
+                button1 = bnShiftLSUp;
+                button2 = bnShiftLSLeft;
+                button3 = bnShiftLSRight;
+                button4 = bnShiftLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick (Shift)")
+            {
+                button1 = bnShiftRSUp;
+                button2 = bnShiftRSLeft;
+                button3 = bnShiftRSRight;
+                button4 = bnShiftRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons (Shift)")
+            {
+                button1 = bnShiftTriangle;
+                button2 = bnShiftSquare;
+                button3 = bnShiftCircle;
+                button4 = bnShiftCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis (Shift)")
+            {
+                button1 = bnShiftGyroZN;
+                button2 = bnShiftGyroXP;
+                button3 = bnShiftGyroXN;
+                button4 = bnShiftGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes (Shift)")
+            {
+                button1 = bnShiftSwipeUp;
+                button2 = bnShiftSwipeLeft;
+                button3 = bnShiftSwipeRight;
+                button4 = bnShiftSwipeDown;
+            }
+            else
+                button1 = button2 = button3 = button4 = null;
+            ChangeButtonText("Left Y-Axis-", tagU, button1);
+            ChangeButtonText("Left X-Axis-", tagL, button2);
+            ChangeButtonText("Left X-Axis+", tagR, button3);
+            ChangeButtonText("Left Y-Axis+", tagD, button4);
+            BatchToggle_Bn(false, button1, button2, button3, button4);
+            UpdateLists();
+            cMSPresets.Hide();
+        }
+
+        private void tSMIRSInverted_Click(object sender, EventArgs e)
+        {
+            rightStickToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tSMIRSInvertedX_Click(object sender, EventArgs e)
+        {
+            rightStickToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tSMIRSInvertedY_Click(object sender, EventArgs e)
+        {
+            rightStickToolStripMenuItem_Click(sender, e);
+        }
+
+        private void rightStickToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KeyValuePair<object, string> tagU;
+            KeyValuePair<object, string> tagL;
+            KeyValuePair<object, string> tagR;
+            KeyValuePair<object, string> tagD;
+            switch (sender.ToString())
+            {
+                case "Inverted":
+                    tagU = new KeyValuePair<object, string>("Right Y-Axis+", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Right X-Axis+", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Right X-Axis-", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Right Y-Axis-", "0,0,0,0,0,0,0,0");
+                    break;
+                case "Inverted X":
+                    tagU = new KeyValuePair<object, string>("Right Y-Axis-", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Right X-Axis+", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Right X-Axis-", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Right Y-Axis+", "0,0,0,0,0,0,0,0");
+                    break;
+                case "Inverted Y":
+                    tagU = new KeyValuePair<object, string>("Right Y-Axis+", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Right X-Axis-", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Right X-Axis+", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Right Y-Axis-", "0,0,0,0,0,0,0,0");
+                    break;
+                default:
+                    tagU = new KeyValuePair<object, string>("Right Y-Axis-", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Right X-Axis-", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Right X-Axis+", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Right Y-Axis+", "0,0,0,0,0,0,0,0");
+                    break;
+            }     
+            Button button1, button2, button3, button4;
+            if (controlToolStripMenuItem.Text == "Dpad")
+            {
+                button1 = bnUp;
+                button2 = bnLeft;
+                button3 = bnRight;
+                button4 = bnDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick")
+            {
+                button1 = bnLSUp;
+                button2 = bnLSLeft;
+                button3 = bnLSRight;
+                button4 = bnLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick")
+            {
+                button1 = bnRSUp;
+                button2 = bnRSLeft;
+                button3 = bnRSRight;
+                button4 = bnRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons")
+            {
+                button1 = bnTriangle;
+                button2 = bnSquare;
+                button3 = bnCircle;
+                button4 = bnCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis")
+            {
+                button1 = bnGyroZN;
+                button2 = bnGyroXP;
+                button3 = bnGyroXN;
+                button4 = bnGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes")
+            {
+                button1 = bnSwipeUp;
+                button2 = bnSwipeLeft;
+                button3 = bnSwipeRight;
+                button4 = bnSwipeDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Dpad (Shift)")
+            {
+                button1 = bnShiftUp;
+                button2 = bnShiftLeft;
+                button3 = bnShiftRight;
+                button4 = bnShiftDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick (Shift)")
+            {
+                button1 = bnShiftLSUp;
+                button2 = bnShiftLSLeft;
+                button3 = bnShiftLSRight;
+                button4 = bnShiftLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick (Shift)")
+            {
+                button1 = bnShiftRSUp;
+                button2 = bnShiftRSLeft;
+                button3 = bnShiftRSRight;
+                button4 = bnShiftRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons (Shift)")
+            {
+                button1 = bnShiftTriangle;
+                button2 = bnShiftSquare;
+                button3 = bnShiftCircle;
+                button4 = bnShiftCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis (Shift)")
+            {
+                button1 = bnShiftGyroZN;
+                button2 = bnShiftGyroXP;
+                button3 = bnShiftGyroXN;
+                button4 = bnShiftGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes (Shift)")
+            {
+                button1 = bnShiftSwipeUp;
+                button2 = bnShiftSwipeLeft;
+                button3 = bnShiftSwipeRight;
+                button4 = bnShiftSwipeDown;
+            }
+            else
+                button1 = button2 = button3 = button4 = null;
+            ChangeButtonText("Right Y-Axis-", tagU, button1);
+            ChangeButtonText("Right X-Axis-", tagL, button2);
+            ChangeButtonText("Right X-Axis+", tagR, button3);
+            ChangeButtonText("Right Y-Axis+", tagD, button4);
+            BatchToggle_Bn(false, button1, button2, button3, button4);
+            UpdateLists();
+            cMSPresets.Hide();
+        }
+
+        private void aBXYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KeyValuePair<object, string> tagU = new KeyValuePair<object, string>("Y Button", "0,0,0,0,0,0,0,0");
+            KeyValuePair<object, string> tagL = new KeyValuePair<object, string>("X Button", "0,0,0,0,0,0,0,0");
+            KeyValuePair<object, string> tagR = new KeyValuePair<object, string>("B Button", "0,0,0,0,0,0,0,0");
+            KeyValuePair<object, string> tagD = new KeyValuePair<object, string>("A Button", "0,0,0,0,0,0,0,0");
+            Button button1, button2, button3, button4;
+            if (controlToolStripMenuItem.Text == "Dpad")
+            {
+                button1 = bnUp;
+                button2 = bnLeft;
+                button3 = bnRight;
+                button4 = bnDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick")
+            {
+                button1 = bnLSUp;
+                button2 = bnLSLeft;
+                button3 = bnLSRight;
+                button4 = bnLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick")
+            {
+                button1 = bnRSUp;
+                button2 = bnRSLeft;
+                button3 = bnRSRight;
+                button4 = bnRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons")
+            {
+                button1 = bnTriangle;
+                button2 = bnSquare;
+                button3 = bnCircle;
+                button4 = bnCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis")
+            {
+                button1 = bnGyroZN;
+                button2 = bnGyroXP;
+                button3 = bnGyroXN;
+                button4 = bnGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes")
+            {
+                button1 = bnSwipeUp;
+                button2 = bnSwipeLeft;
+                button3 = bnSwipeRight;
+                button4 = bnSwipeDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Dpad (Shift)")
+            {
+                button1 = bnShiftUp;
+                button2 = bnShiftLeft;
+                button3 = bnShiftRight;
+                button4 = bnShiftDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick (Shift)")
+            {
+                button1 = bnShiftLSUp;
+                button2 = bnShiftLSLeft;
+                button3 = bnShiftLSRight;
+                button4 = bnShiftLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick (Shift)")
+            {
+                button1 = bnShiftRSUp;
+                button2 = bnShiftRSLeft;
+                button3 = bnShiftRSRight;
+                button4 = bnShiftRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons (Shift)")
+            {
+                button1 = bnShiftTriangle;
+                button2 = bnShiftSquare;
+                button3 = bnShiftCircle;
+                button4 = bnShiftCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis (Shift)")
+            {
+                button1 = bnShiftGyroZN;
+                button2 = bnShiftGyroXP;
+                button3 = bnShiftGyroXN;
+                button4 = bnShiftGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes (Shift)")
+            {
+                button1 = bnShiftSwipeUp;
+                button2 = bnShiftSwipeLeft;
+                button3 = bnShiftSwipeRight;
+                button4 = bnShiftSwipeDown;
+            }
+            else
+                button1 = button2 = button3 = button4 = null;
+            ChangeButtonText("Y Button", tagU, button1);
+            ChangeButtonText("X Button", tagL, button2);
+            ChangeButtonText("B Button", tagR, button3);
+            ChangeButtonText("A Button", tagD, button4);
+            BatchToggle_Bn(false, button1, button2, button3, button4);
+            UpdateLists();
+            cMSPresets.Hide();
+        }
+
+        private void wASDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool scancode = false;
+            if (sender.ToString().Contains("Scan Code"))
+                scancode = true;
+            KeyValuePair<object, string> tagU = new KeyValuePair<object, string>((int)Keys.W, "0,0,0,0,0,0,0,0");
+            KeyValuePair<object, string> tagL = new KeyValuePair<object, string>((int)Keys.A, "0,0,0,0,0,0,0,0");
+            KeyValuePair<object, string> tagR = new KeyValuePair<object, string>((int)Keys.D, "0,0,0,0,0,0,0,0");
+            KeyValuePair<object, string> tagD = new KeyValuePair<object, string>((int)Keys.S, "0,0,0,0,0,0,0,0");
+            Button button1, button2, button3, button4;
+            if (controlToolStripMenuItem.Text == "Dpad")
+            {
+                button1 = bnUp;
+                button2 = bnLeft;
+                button3 = bnRight;
+                button4 = bnDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick")
+            {
+                button1 = bnLSUp;
+                button2 = bnLSLeft;
+                button3 = bnLSRight;
+                button4 = bnLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick")
+            {
+                button1 = bnRSUp;
+                button2 = bnRSLeft;
+                button3 = bnRSRight;
+                button4 = bnRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons")
+            {
+                button1 = bnTriangle;
+                button2 = bnSquare;
+                button3 = bnCircle;
+                button4 = bnCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis")
+            {
+                button1 = bnGyroZN;
+                button2 = bnGyroXP;
+                button3 = bnGyroXN;
+                button4 = bnGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes")
+            {
+                button1 = bnSwipeUp;
+                button2 = bnSwipeLeft;
+                button3 = bnSwipeRight;
+                button4 = bnSwipeDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Dpad (Shift)")
+            {
+                button1 = bnShiftUp;
+                button2 = bnShiftLeft;
+                button3 = bnShiftRight;
+                button4 = bnShiftDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick (Shift)")
+            {
+                button1 = bnShiftLSUp;
+                button2 = bnShiftLSLeft;
+                button3 = bnShiftLSRight;
+                button4 = bnShiftLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick (Shift)")
+            {
+                button1 = bnShiftRSUp;
+                button2 = bnShiftRSLeft;
+                button3 = bnShiftRSRight;
+                button4 = bnShiftRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons (Shift)")
+            {
+                button1 = bnShiftTriangle;
+                button2 = bnShiftSquare;
+                button3 = bnShiftCircle;
+                button4 = bnShiftCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis (Shift)")
+            {
+                button1 = bnShiftGyroZN;
+                button2 = bnShiftGyroXP;
+                button3 = bnShiftGyroXN;
+                button4 = bnShiftGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes (Shift)")
+            {
+                button1 = bnShiftSwipeUp;
+                button2 = bnShiftSwipeLeft;
+                button3 = bnShiftSwipeRight;
+                button4 = bnShiftSwipeDown;
+            }
+            else
+                button1 = button2 = button3 = button4 = null;
+            ChangeButtonText("W", tagU, button1);
+            ChangeButtonText("A", tagL, button2);
+            ChangeButtonText("D", tagR, button3);
+            ChangeButtonText("S", tagD, button4);
+            BatchToggle_Bn(scancode, button1, button2, button3, button4);
+            UpdateLists();
+            cMSPresets.Hide();
+        }
+
+        private void wScanCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            wASDToolStripMenuItem_Click(sender, e);
+        }
+
+        private void arrowKeysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool scancode = false;
+            if (sender.ToString().Contains("Scan Code"))
+                scancode = true;
+            KeyValuePair<object, string> tagU = new KeyValuePair<object, string>((int)Keys.Up, "0,0,0,0,0,0,0,0");
+            KeyValuePair<object, string> tagL = new KeyValuePair<object, string>((int)Keys.Left, "0,0,0,0,0,0,0,0");
+            KeyValuePair<object, string> tagR = new KeyValuePair<object, string>((int)Keys.Right, "0,0,0,0,0,0,0,0");
+            KeyValuePair<object, string> tagD = new KeyValuePair<object, string>((int)Keys.Down, "0,0,0,0,0,0,0,0");
+            Button button1, button2, button3, button4;
+            if (controlToolStripMenuItem.Text == "Dpad")
+            {
+                button1 = bnUp;
+                button2 = bnLeft;
+                button3 = bnRight;
+                button4 = bnDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick")
+            {
+                button1 = bnLSUp;
+                button2 = bnLSLeft;
+                button3 = bnLSRight;
+                button4 = bnLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick")
+            {
+                button1 = bnRSUp;
+                button2 = bnRSLeft;
+                button3 = bnRSRight;
+                button4 = bnRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons")
+            {
+                button1 = bnTriangle;
+                button2 = bnSquare;
+                button3 = bnCircle;
+                button4 = bnCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis")
+            {
+                button1 = bnGyroZN;
+                button2 = bnGyroXP;
+                button3 = bnGyroXN;
+                button4 = bnGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes")
+            {
+                button1 = bnSwipeUp;
+                button2 = bnSwipeLeft;
+                button3 = bnSwipeRight;
+                button4 = bnSwipeDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Dpad (Shift)")
+            {
+                button1 = bnShiftUp;
+                button2 = bnShiftLeft;
+                button3 = bnShiftRight;
+                button4 = bnShiftDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick (Shift)")
+            {
+                button1 = bnShiftLSUp;
+                button2 = bnShiftLSLeft;
+                button3 = bnShiftLSRight;
+                button4 = bnShiftLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick (Shift)")
+            {
+                button1 = bnShiftRSUp;
+                button2 = bnShiftRSLeft;
+                button3 = bnShiftRSRight;
+                button4 = bnShiftRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons (Shift)")
+            {
+                button1 = bnShiftTriangle;
+                button2 = bnShiftSquare;
+                button3 = bnShiftCircle;
+                button4 = bnShiftCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis (Shift)")
+            {
+                button1 = bnShiftGyroZN;
+                button2 = bnShiftGyroXP;
+                button3 = bnShiftGyroXN;
+                button4 = bnShiftGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes (Shift)")
+            {
+                button1 = bnShiftSwipeUp;
+                button2 = bnShiftSwipeLeft;
+                button3 = bnShiftSwipeRight;
+                button4 = bnShiftSwipeDown;
+            }
+            else
+                button1 = button2 = button3 = button4 = null;
+            ChangeButtonText("Up", tagU, button1);
+            ChangeButtonText("Left", tagL, button2);
+            ChangeButtonText("Right", tagR, button3);
+            ChangeButtonText("Down", tagD, button4);
+            BatchToggle_Bn(scancode, button1, button2, button3, button4);
+            UpdateLists();
+            cMSPresets.Hide();
+        }
+
+        private void wScanCodeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            arrowKeysToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tSMIMouseInverted_Click(object sender, EventArgs e)
+        {
+            mouseToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tSMIMouseInvertedX_Click(object sender, EventArgs e)
+        {
+            mouseToolStripMenuItem_Click(sender, e);
+        }
+
+        private void tSMIMouseInvertedY_Click(object sender, EventArgs e)
+        {
+            mouseToolStripMenuItem_Click(sender, e);
+        }
+
+        private void mouseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KeyValuePair<object, string> tagU;
+            KeyValuePair<object, string> tagL;
+            KeyValuePair<object, string> tagR;
+            KeyValuePair<object, string> tagD;
+            switch (sender.ToString())
+            {
+                case "Inverted":
+                    tagU = new KeyValuePair<object, string>("Mouse Down", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Mouse Right", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Mouse Left", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Mouse Up", "0,0,0,0,0,0,0,0");
+                    break;
+                case "Inverted X":
+                    tagU = new KeyValuePair<object, string>("Mouse Up", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Mouse Right", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Mouse Left", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Mouse Down", "0,0,0,0,0,0,0,0");
+                    break;
+                case "Inverted Y":
+                    tagU = new KeyValuePair<object, string>("Mouse Down", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Mouse Left", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Mouse Right", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Mouse Up", "0,0,0,0,0,0,0,0");
+                    break;
+                default:
+                    tagU = new KeyValuePair<object, string>("Mouse Up", "0,0,0,0,0,0,0,0");
+                    tagL = new KeyValuePair<object, string>("Mouse Left", "0,0,0,0,0,0,0,0");
+                    tagR = new KeyValuePair<object, string>("Mouse Right", "0,0,0,0,0,0,0,0");
+                    tagD = new KeyValuePair<object, string>("Mouse Down", "0,0,0,0,0,0,0,0");
+                    break;
+            } 
+            Button button1, button2, button3, button4;
+            if (controlToolStripMenuItem.Text == "Dpad")
+            {
+                button1 = bnUp;
+                button2 = bnLeft;
+                button3 = bnRight;
+                button4 = bnDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick")
+            {
+                button1 = bnLSUp;
+                button2 = bnLSLeft;
+                button3 = bnLSRight;
+                button4 = bnLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick")
+            {
+                button1 = bnRSUp;
+                button2 = bnRSLeft;
+                button3 = bnRSRight;
+                button4 = bnRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons")
+            {
+                button1 = bnTriangle;
+                button2 = bnSquare;
+                button3 = bnCircle;
+                button4 = bnCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis")
+            {
+                button1 = bnGyroZN;
+                button2 = bnGyroXP;
+                button3 = bnGyroXN;
+                button4 = bnGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes")
+            {
+                button1 = bnSwipeUp;
+                button2 = bnSwipeLeft;
+                button3 = bnSwipeRight;
+                button4 = bnSwipeDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Dpad (Shift)")
+            {
+                button1 = bnShiftUp;
+                button2 = bnShiftLeft;
+                button3 = bnShiftRight;
+                button4 = bnShiftDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Left Stick (Shift)")
+            {
+                button1 = bnShiftLSUp;
+                button2 = bnShiftLSLeft;
+                button3 = bnShiftLSRight;
+                button4 = bnShiftLSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Right Stick (Shift)")
+            {
+                button1 = bnShiftRSUp;
+                button2 = bnShiftRSLeft;
+                button3 = bnShiftRSRight;
+                button4 = bnShiftRSDown;
+            }
+            else if (controlToolStripMenuItem.Text == "Face Buttons (Shift)")
+            {
+                button1 = bnShiftTriangle;
+                button2 = bnShiftSquare;
+                button3 = bnShiftCircle;
+                button4 = bnShiftCross;
+            }
+            else if (controlToolStripMenuItem.Text == "Sixaxis (Shift)")
+            {
+                button1 = bnShiftGyroZN;
+                button2 = bnShiftGyroXP;
+                button3 = bnShiftGyroXN;
+                button4 = bnShiftGyroZP;
+            }
+            else if (controlToolStripMenuItem.Text == "Touchpad Swipes (Shift)")
+            {
+                button1 = bnShiftSwipeUp;
+                button2 = bnShiftSwipeLeft;
+                button3 = bnShiftSwipeRight;
+                button4 = bnShiftSwipeDown;
+            }
+            else
+                button1 = button2 = button3 = button4 = null;
+            ChangeButtonText("Mouse Up", tagU, button1);
+            ChangeButtonText("Mouse Left", tagL, button2);
+            ChangeButtonText("Mouse Right", tagR, button3);
+            ChangeButtonText("Mouse Down", tagD, button4);
+            BatchToggle_Bn(false, button1, button2, button3, button4);
+            UpdateLists();
+            cMSPresets.Hide();
         }
     }
 }

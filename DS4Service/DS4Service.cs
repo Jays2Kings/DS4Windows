@@ -20,6 +20,14 @@ namespace DS4Service
             logWriter = File.AppendText(logFile);
         }
 
+        public DS4Service(Control scpdevice)
+        {
+            InitializeComponent();
+            rootHub = scpdevice;
+            rootHub.Debug += On_Debug;
+            logWriter = File.AppendText(logFile);
+        }
+
         protected override void OnStart(string[] args)
         {
             rootHub.Start();

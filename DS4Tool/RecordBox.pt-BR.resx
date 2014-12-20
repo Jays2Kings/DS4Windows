@@ -117,80 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Adicionar Programas</value>
+  <data name="btn4th.Text" xml:space="preserve">
+    <value>4ª Mouse Com Botão Para Baixo</value>
   </data>
-  <data name="bnSave.Text" xml:space="preserve">
-    <value>Guardar</value>
+  <data name="btn5th.Text" xml:space="preserve">
+    <value>5ª Mouse Com Botão Para Baixo</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
   </data>
-  <data name="lBController1.Text" xml:space="preserve">
-    <value>Controlador 1</value>
+  <data name="btnLoadP.Text" xml:space="preserve">
+    <value>Carga Padrão</value>
   </data>
-  <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="btnRecord.Text" xml:space="preserve">
+    <value>Gravar</value>
   </data>
-  <data name="lBController2.Text" xml:space="preserve">
-    <value>Controlador 2</value>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Salvar</value>
   </data>
-  <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="btnSaveP.Text" xml:space="preserve">
+    <value>Save Padrão</value>
   </data>
-  <data name="lBController3.Text" xml:space="preserve">
-    <value>Controlador 3</value>
+  <data name="cBRecordDelays.Text" xml:space="preserve">
+    <value>Gravar Atrasos</value>
   </data>
-  <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="cBStyle.Items" xml:space="preserve">
+    <value>Jogar Uma Vez</value>
   </data>
-  <data name="lBController4.Text" xml:space="preserve">
-    <value>Controlador 4</value>
+  <data name="cBStyle.Items1" xml:space="preserve">
+    <value>Repetir Enquanto Mantem</value>
   </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Quitar</value>
+  <data name="lbDelayTip.Text" xml:space="preserve">
+    <value>Duplo Clique Para Mudar o Tempo</value>
   </data>
-  <data name="nameHeader.Text" xml:space="preserve">
-    <value>Nombre</value>
+  <data name="lbMacroOrder.Text" xml:space="preserve">
+    <value>Ordem De Macro</value>
   </data>
-  <data name="PathHeader.Text" xml:space="preserve">
-    <value>Ruta</value>
-  </data>
-  <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 13</value>
-  </data>
-  <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Elegir Perfiles aqui</value>
-  </data>
-  <data name="bnHideUnchecked.Text" xml:space="preserve">
-    <value>Ocultar desmarcados</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Programas del menu de Inicio</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Juegos de "Steam"</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Juegos de "Origin"</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Explorar para Otros Programas</value>
-  </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 92</value>
+  <data name="lbRecordTip.Text" xml:space="preserve">
+    <value>Usar Teclado/Mouse + Controle 1 para Gravar</value>
   </data>
 </root>

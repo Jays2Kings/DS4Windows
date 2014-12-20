@@ -120,28 +120,98 @@
   <data name="btnDone.Text" xml:space="preserve">
     <value>Hecho</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Tocar Touchpad + PS</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Desconectar Controlador (Solo Bluetooth)</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>PS + Options o mantener PS por 10 segundos</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Creditos/Codigo Fuente:</value>
   </data>
-  <data name="label25.Text" xml:space="preserve">
-    <value>Macro</value>
+  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 263</value>
+  </data>
+  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 301</value>
+  </data>
+  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 282</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 108</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 13</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Desconectar Controlador (Solo Bluetooth)</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 146</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 89</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 13</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>PS + Options o mantener PS por 10 segundos</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 184</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 70</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 165</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 51</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 32</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 127</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 13</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Tocar Touchpad + PS</value>
+  </data>
+  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 203</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>560, 318</value>
+  </data>
+  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 13</value>
   </data>
   <data name="label30.Text" xml:space="preserve">
     <value>Ocultar Controlador DS4</value>
   </data>
-  <data name="linkDonate.Text" xml:space="preserve">
-    <value>Donar via Paypal</value>
+  <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 3</value>
+  </data>
+  <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 225</value>
+  </data>
+  <data name="lLChangelog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 13</value>
   </data>
   <data name="lLChangelog.Text" xml:space="preserve">
     <value>Registro de cambios</value>
+  </data>
+  <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 13</value>
+  </data>
+  <data name="linkDonate.Text" xml:space="preserve">
+    <value>Donar via Paypal</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>571, 434</value>
   </data>
 </root>

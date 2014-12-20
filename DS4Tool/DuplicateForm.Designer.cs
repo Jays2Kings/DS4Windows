@@ -1,6 +1,6 @@
 ﻿namespace DS4Windows
 {
-    partial class MessageTextBox
+    partial class DuplicateForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageTextBox));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DuplicateForm));
             this.btnSave = new System.Windows.Forms.Button();
             this.tBProfile = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -58,7 +58,7 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.button2_Click);
             // 
-            // MessageTextBox
+            // DuplicateForm
             // 
             this.AcceptButton = this.btnSave;
             resources.ApplyResources(this, "$this");
@@ -71,7 +71,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "MessageTextBox";
+            this.Name = "DuplicateForm";
             this.ShowInTaskbar = false;
             this.ResumeLayout(false);
             this.PerformLayout();

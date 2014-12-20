@@ -50,10 +50,10 @@
             this.cHUnloadTrigger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlProgram = new System.Windows.Forms.Panel();
             this.pnlMacro = new System.Windows.Forms.Panel();
+            this.cBMacroScanCode = new System.Windows.Forms.CheckBox();
             this.lbMacroRecorded = new System.Windows.Forms.Label();
             this.pnlProfile = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.cBMacroScanCode = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             this.pnlProgram.SuspendLayout();
             this.pnlMacro.SuspendLayout();
@@ -132,9 +132,9 @@
             // 
             // cBProfiles
             // 
+            resources.ApplyResources(this.cBProfiles, "cBProfiles");
             this.cBProfiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBProfiles.FormattingEnabled = true;
-            resources.ApplyResources(this.cBProfiles, "cBProfiles");
             this.cBProfiles.Name = "cBProfiles";
             this.cBProfiles.SelectedIndexChanged += new System.EventHandler(this.lVUnloadTrigger_SelectedIndexChanged);
             // 
@@ -165,6 +165,7 @@
             // 
             // cBActions
             // 
+            resources.ApplyResources(this.cBActions, "cBActions");
             this.cBActions.Cursor = System.Windows.Forms.Cursors.Default;
             this.cBActions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBActions.FormattingEnabled = true;
@@ -173,9 +174,12 @@
             resources.GetString("cBActions.Items1"),
             resources.GetString("cBActions.Items2"),
             resources.GetString("cBActions.Items3")});
-            resources.ApplyResources(this.cBActions, "cBActions");
             this.cBActions.Name = "cBActions";
             this.cBActions.SelectedIndexChanged += new System.EventHandler(this.cBActions_SelectedIndexChanged);
+            // 
+            // openFileDialog1
+            // 
+            resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
             // 
             // imageList1
             // 
@@ -267,19 +271,25 @@
             // 
             // pnlProgram
             // 
+            resources.ApplyResources(this.pnlProgram, "pnlProgram");
             this.pnlProgram.Controls.Add(this.btnBrowse);
             this.pnlProgram.Controls.Add(this.lbProgram);
             this.pnlProgram.Controls.Add(this.pBProgram);
-            resources.ApplyResources(this.pnlProgram, "pnlProgram");
             this.pnlProgram.Name = "pnlProgram";
             // 
             // pnlMacro
             // 
+            resources.ApplyResources(this.pnlMacro, "pnlMacro");
             this.pnlMacro.Controls.Add(this.cBMacroScanCode);
             this.pnlMacro.Controls.Add(this.btnRecordMacro);
             this.pnlMacro.Controls.Add(this.lbMacroRecorded);
-            resources.ApplyResources(this.pnlMacro, "pnlMacro");
             this.pnlMacro.Name = "pnlMacro";
+            // 
+            // cBMacroScanCode
+            // 
+            resources.ApplyResources(this.cBMacroScanCode, "cBMacroScanCode");
+            this.cBMacroScanCode.Name = "cBMacroScanCode";
+            this.cBMacroScanCode.UseVisualStyleBackColor = true;
             // 
             // lbMacroRecorded
             // 
@@ -288,10 +298,10 @@
             // 
             // pnlProfile
             // 
+            resources.ApplyResources(this.pnlProfile, "pnlProfile");
             this.pnlProfile.Controls.Add(this.label1);
             this.pnlProfile.Controls.Add(this.cBProfiles);
             this.pnlProfile.Controls.Add(this.btnSetUTrigger);
-            resources.ApplyResources(this.pnlProfile, "pnlProfile");
             this.pnlProfile.Name = "pnlProfile";
             // 
             // label1
@@ -299,20 +309,11 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // cBMacroScanCode
-            // 
-            resources.ApplyResources(this.cBMacroScanCode, "cBMacroScanCode");
-            this.cBMacroScanCode.Name = "cBMacroScanCode";
-            this.cBMacroScanCode.UseVisualStyleBackColor = true;
-            // 
             // SpecActions
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.pnlMacro);
-            this.Controls.Add(this.pnlProfile);
-            this.Controls.Add(this.pnlProgram);
             this.Controls.Add(this.tBName);
             this.Controls.Add(this.cBActions);
             this.Controls.Add(this.btnCancel);
@@ -321,6 +322,9 @@
             this.Controls.Add(this.lVTrigger);
             this.Controls.Add(this.lVUnloadTrigger);
             this.Controls.Add(this.btnBorder);
+            this.Controls.Add(this.pnlMacro);
+            this.Controls.Add(this.pnlProfile);
+            this.Controls.Add(this.pnlProgram);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SpecActions";
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).EndInit();

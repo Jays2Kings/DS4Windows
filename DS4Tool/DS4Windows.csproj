@@ -118,11 +118,11 @@
     <Compile Include="KBM360.Designer.cs">
       <DependentUpon>KBM360.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageTextBox.cs">
+    <Compile Include="DuplicateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MessageTextBox.Designer.cs">
-      <DependentUpon>MessageTextBox.cs</DependentUpon>
+    <Compile Include="DuplicateForm.Designer.cs">
+      <DependentUpon>DuplicateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Options.cs">
       <SubType>Form</SubType>
@@ -180,10 +180,19 @@
     <EmbeddedResource Include="DS4Form.es.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Form.pt-BR.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DuplicateForm.pt-BR.resx">
+      <DependentUpon>DuplicateForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hotkeys.es.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hotkeys.fr-FR.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hotkeys.pt-BR.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hotkeys.resx">
@@ -195,18 +204,21 @@
     <EmbeddedResource Include="KBM360.fr-FR.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KBM360.pt-BR.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KBM360.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessageTextBox.es.resx">
-      <DependentUpon>MessageTextBox.cs</DependentUpon>
+    <EmbeddedResource Include="DuplicateForm.es.resx">
+      <DependentUpon>DuplicateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessageTextBox.fr-FR.resx">
-      <DependentUpon>MessageTextBox.cs</DependentUpon>
+    <EmbeddedResource Include="DuplicateForm.fr-FR.resx">
+      <DependentUpon>DuplicateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessageTextBox.resx">
-      <DependentUpon>MessageTextBox.cs</DependentUpon>
+    <EmbeddedResource Include="DuplicateForm.resx">
+      <DependentUpon>DuplicateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.cs.resx">
       <DependentUpon>Options.cs</DependentUpon>
@@ -218,6 +230,9 @@
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.fr.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options.pt-BR.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.resx">
@@ -234,15 +249,22 @@
     <EmbeddedResource Include="RecordBox.fr-FR.resx">
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecordBox.pt-BR.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecordBox.resx">
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.es.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
+    <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
     <EmbeddedResource Include="SaveWhere.es.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveWhere.fr-FR.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveWhere.pt-BR.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveWhere.resx">
@@ -257,6 +279,12 @@
     <EmbeddedResource Include="SpecActions.fr-FR.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SpecActions.pt-BR.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpecActions.pt-PT.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SpecActions.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
@@ -266,6 +294,9 @@
     <EmbeddedResource Include="WelcomeDialog.fr-FR.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WelcomeDialog.pt-BR.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WelcomeDialog.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +304,9 @@
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinProgs.fr-FR.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinProgs.pt-BR.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinProgs.resx">

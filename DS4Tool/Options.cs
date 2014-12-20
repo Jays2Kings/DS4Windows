@@ -1131,9 +1131,9 @@ namespace DS4Windows
             else if (button.Tag is KeyValuePair<string, string>)
                 return ((KeyValuePair<string, string>)button.Tag).Key;
             else if (shift && extracontrol && !(regbutton.Tag is KeyValuePair<object, string>) 
-                && ((KeyValuePair<object, string>)button.Tag).Key == null)
+                && (button.Tag == null ||((KeyValuePair<object, string>)button.Tag).Key == null))
                 return "Fall Back to " + UpdateRegButtonList(regbutton);
-            else if (shift && !extracontrol && ((KeyValuePair<object, string>)button.Tag).Key == null)
+            else if (shift && !extracontrol && (button.Tag == null || ((KeyValuePair<object, string>)button.Tag).Key == null))
                 return "Fall Back to " + UpdateRegButtonList(regbutton);
             else if (!shift && !extracontrol)
                 return defaults[button.Name];

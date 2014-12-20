@@ -117,80 +117,112 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Adicionar Programas</value>
-  </data>
-  <data name="bnSave.Text" xml:space="preserve">
-    <value>Guardar</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tBProfile.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
   </data>
-  <data name="lBController1.Text" xml:space="preserve">
-    <value>Controlador 1</value>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>276, 5</value>
   </data>
-  <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="lBController2.Text" xml:space="preserve">
-    <value>Controlador 2</value>
+  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
   </data>
-  <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="btnSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 5</value>
   </data>
-  <data name="lBController3.Text" xml:space="preserve">
-    <value>Controlador 3</value>
+  <data name="&gt;&gt;tBProfile.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lBController4.Text" xml:space="preserve">
-    <value>Controlador 4</value>
+  <data name="&gt;&gt;btnSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Quitar</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>DuplicateForm</value>
   </data>
-  <data name="nameHeader.Text" xml:space="preserve">
-    <value>Nombre</value>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="PathHeader.Text" xml:space="preserve">
-    <value>Ruta</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnSave.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 13</value>
+  <data name="tBProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 7</value>
   </data>
-  <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Elegir Perfiles aqui</value>
+  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnHideUnchecked.Text" xml:space="preserve">
-    <value>Ocultar desmarcados</value>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>240</value>
   </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Programas del menu de Inicio</value>
+  <data name="tBProfile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
   </data>
-  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+  <data name="&gt;&gt;tBProfile.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Juegos de "Steam"</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>359, 35</value>
   </data>
-  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+  <data name="tBProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 20</value>
   </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Juegos de "Origin"</value>
+  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
+    <value>btnCancel</value>
   </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Explorar para Otros Programas</value>
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 92</value>
+  <data name="&gt;&gt;btnSave.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;btnSave.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnSave.Name" xml:space="preserve">
+    <value>btnSave</value>
+  </data>
+  <data name="tBProfile.Text" xml:space="preserve">
+    <value>&lt;type new name here&gt;</value>
+  </data>
+  <data name="btnSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="tBProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>239</value>
+  </data>
+  <data name="&gt;&gt;tBProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Type name of New Profile</value>
+  </data>
+  <data name="&gt;&gt;tBProfile.Name" xml:space="preserve">
+    <value>tBProfile</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>pt-BR</value>
+  </metadata>
 </root>

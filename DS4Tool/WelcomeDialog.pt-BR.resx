@@ -117,80 +117,82 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Adicionar Programas</value>
-  </data>
-  <data name="bnSave.Text" xml:space="preserve">
-    <value>Guardar</value>
+  <data name="bnStep1.Text" xml:space="preserve">
+    <value>Passo 1: Instalar Driver DS4</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>29, 77</value>
   </data>
-  <data name="lBController1.Text" xml:space="preserve">
-    <value>Controlador 1</value>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Passo 2: Windows 7 ou Inferior, Instalar Driver 360</value>
   </data>
-  <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 224</value>
   </data>
-  <data name="lBController2.Text" xml:space="preserve">
-    <value>Controlador 2</value>
+  <data name="labelBluetooth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 181</value>
   </data>
-  <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="labelBluetooth.Text" xml:space="preserve">
+    <value>Para configurar Bluetooth (opcional):
+Segure o botões PS e Share por 3 segundos
+A barra de luzes começara a piscar</value>
   </data>
-  <data name="lBController3.Text" xml:space="preserve">
-    <value>Controlador 3</value>
+  <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 132</value>
   </data>
-  <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="labelUSB.Text" xml:space="preserve">
+    <value>Passo 3: Ligue o controle DualShock 4
+Para configurar wired / usb:
+Basta ligar um micro USB no seu PC e DualShock 4 </value>
   </data>
-  <data name="lBController4.Text" xml:space="preserve">
-    <value>Controlador 4</value>
+  <data name="labelBluetooth2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 359</value>
   </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Quitar</value>
+  <data name="labelBluetooth2.Text" xml:space="preserve">
+    <value>Uma vez que piscar vá para Configurações de Bluetooth
+e conecte " Wireless Controller "
+Se solicitado, digite o código par " 0000 "
+Uma vez emparelhado, você está pronto. Diverta-se! </value>
   </data>
-  <data name="nameHeader.Text" xml:space="preserve">
-    <value>Nombre</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>314, 42</value>
   </data>
-  <data name="PathHeader.Text" xml:space="preserve">
-    <value>Ruta</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Se esta janela reaparece após a instalação, você pode precisar reiniciar seu pc ou esperar 10-15min para Windows Reconhecer os Drivers</value>
   </data>
-  <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 13</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 103</value>
   </data>
-  <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Elegir Perfiles aqui</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>315, 29</value>
   </data>
-  <data name="bnHideUnchecked.Text" xml:space="preserve">
-    <value>Ocultar desmarcados</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Se você já usou um controlador 360 neste PC, você pode pular esta parte</value>
   </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+  <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 413</value>
   </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Programas del menu de Inicio</value>
+  <data name="bnFinish.Text" xml:space="preserve">
+    <value>Finalizar</value>
   </data>
-  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="linkBluetoothSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Juegos de "Steam"</value>
+  <data name="linkBluetoothSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 359</value>
   </data>
-  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+  <data name="linkBluetoothSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 13</value>
   </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Juegos de "Origin"</value>
+  <data name="linkBluetoothSettings.Text" xml:space="preserve">
+    <value>Configurações de Bluetooth</value>
   </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>315, 439</value>
   </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Explorar para Otros Programas</value>
-  </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 92</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Bem Vindo ao DS4</value>
   </data>
 </root>

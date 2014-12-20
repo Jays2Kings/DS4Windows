@@ -274,7 +274,7 @@ namespace DS4Windows
             {
                 StartWindowsCheckBox.Checked = true;
                 string lnkpath = WinProgs.ResolveShortcutAndArgument(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
-                if (lnkpath.EndsWith("-m"))
+                if (!lnkpath.EndsWith("-m"))
                 {
                     File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
                     appShortcutToStartup();
@@ -843,7 +843,7 @@ namespace DS4Windows
             if (lBProfiles.SelectedIndex >= 0)
             { 
                 filename = lBProfiles.SelectedItem.ToString();
-                MessageTextBox MTB = new MessageTextBox(filename, this);
+                DuplicateForm MTB = new DuplicateForm(filename, this);
                 MTB.TopLevel = false;
                 MTB.Dock = DockStyle.Top;
                 MTB.Visible = true;

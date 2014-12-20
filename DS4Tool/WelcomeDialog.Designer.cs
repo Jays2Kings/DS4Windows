@@ -35,10 +35,10 @@
             this.labelBluetooth = new System.Windows.Forms.Label();
             this.labelUSB = new System.Windows.Forms.Label();
             this.labelBluetooth2 = new System.Windows.Forms.Label();
-            this.linkBluetoothSettings = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.bnFinish = new System.Windows.Forms.Button();
+            this.linkBluetoothSettings = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,8 +58,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::DS4Windows.Properties.Resources.Pairmode;
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Image = global::DS4Windows.Properties.Resources.Pairmode;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
@@ -78,13 +78,6 @@
             resources.ApplyResources(this.labelBluetooth2, "labelBluetooth2");
             this.labelBluetooth2.Name = "labelBluetooth2";
             // 
-            // linkBluetoothSettings
-            // 
-            resources.ApplyResources(this.linkBluetoothSettings, "linkBluetoothSettings");
-            this.linkBluetoothSettings.Name = "linkBluetoothSettings";
-            this.linkBluetoothSettings.TabStop = true;
-            this.linkBluetoothSettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkBluetoothSettings_LinkClicked);
-            // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
@@ -101,6 +94,13 @@
             this.bnFinish.Name = "bnFinish";
             this.bnFinish.UseVisualStyleBackColor = true;
             this.bnFinish.Click += new System.EventHandler(this.bnFinish_Click);
+            // 
+            // linkBluetoothSettings
+            // 
+            resources.ApplyResources(this.linkBluetoothSettings, "linkBluetoothSettings");
+            this.linkBluetoothSettings.Name = "linkBluetoothSettings";
+            this.linkBluetoothSettings.TabStop = true;
+            this.linkBluetoothSettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkBluetoothSettings_LinkClicked);
             // 
             // WelcomeDialog
             // 
@@ -132,9 +132,9 @@
         private System.Windows.Forms.Label labelBluetooth;
         private System.Windows.Forms.Label labelUSB;
         private System.Windows.Forms.Label labelBluetooth2;
-        private System.Windows.Forms.LinkLabel linkBluetoothSettings;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button bnFinish;
+        private System.Windows.Forms.LinkLabel linkBluetoothSettings;
     }
 }

@@ -117,80 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Adicionar Programas</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Para aqueles que preferem a Instalação regular as configurações salvas estão em % appdata% / ds4tool</value>
   </data>
-  <data name="bnSave.Text" xml:space="preserve">
-    <value>Guardar</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Para aqueles que preferem um programa portátil Nota: esta opção não funciona se a pasta requisitar privilegios de administrador</value>
+  </data>
+  <data name="bnAppdataFolder.Text" xml:space="preserve">
+    <value>AppData</value>
+  </data>
+  <data name="bnPrgmFolder.Text" xml:space="preserve">
+    <value>Pasta do Programa</value>
+  </data>
+  <data name="lbPickWhere.Text" xml:space="preserve">
+    <value>Escolha Onde Você Quer Salvar os Perfis</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="lbMultiSaves.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 13</value>
   </data>
-  <data name="lBController1.Text" xml:space="preserve">
-    <value>Controlador 1</value>
+  <data name="lbMultiSaves.Text" xml:space="preserve">
+    <value>Multiplos Localizações de Saves Detectado</value>
   </data>
-  <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="cBDeleteOther.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 0</value>
   </data>
-  <data name="lBController2.Text" xml:space="preserve">
-    <value>Controlador 2</value>
+  <data name="cBDeleteOther.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 30</value>
   </data>
-  <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="cBDeleteOther.Text" xml:space="preserve">
+    <value>Não apague as outras 
+definições ainda</value>
   </data>
-  <data name="lBController3.Text" xml:space="preserve">
-    <value>Controlador 3</value>
-  </data>
-  <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
-  </data>
-  <data name="lBController4.Text" xml:space="preserve">
-    <value>Controlador 4</value>
-  </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Quitar</value>
-  </data>
-  <data name="nameHeader.Text" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="PathHeader.Text" xml:space="preserve">
-    <value>Ruta</value>
-  </data>
-  <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 13</value>
-  </data>
-  <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Elegir Perfiles aqui</value>
-  </data>
-  <data name="bnHideUnchecked.Text" xml:space="preserve">
-    <value>Ocultar desmarcados</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Programas del menu de Inicio</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Juegos de "Steam"</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Juegos de "Origin"</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Explorar para Otros Programas</value>
-  </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 92</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>389, 148</value>
   </data>
 </root>

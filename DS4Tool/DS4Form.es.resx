@@ -6882,6 +6882,18 @@
   <data name="startMinimizedCheckBox.Text" xml:space="preserve">
     <value>Iniciar minimizado</value>
   </data>
+  <data name="cBNotifications.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 17</value>
+  </data>
+  <data name="cBNotifications.Text" xml:space="preserve">
+    <value>Mostrar notificaciones</value>
+  </data>
+  <data name="cBDisconnectBT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 17</value>
+  </data>
+  <data name="cBDisconnectBT.Text" xml:space="preserve">
+    <value>Desconectar de BT cuando se detenga</value>
+  </data>
   <data name="cBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 17</value>
   </data>
@@ -6909,17 +6921,8 @@
   <data name="pNUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 22</value>
   </data>
-  <data name="cBNotifications.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 17</value>
-  </data>
-  <data name="cBNotifications.Text" xml:space="preserve">
-    <value>Mostrar notificaciones</value>
-  </data>
-  <data name="cBDisconnectBT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 17</value>
-  </data>
-  <data name="cBDisconnectBT.Text" xml:space="preserve">
-    <value>Desconectar de BT cuando se detenga</value>
+  <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
   </data>
   <data name="linkProfiles.Text" xml:space="preserve">
     <value>Carpeta de perfil</value>
@@ -6927,17 +6930,17 @@
   <data name="linkProfiles.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="lLBUpdate.Text" xml:space="preserve">
-    <value>Comprobar actualizacion ahora</value>
+  <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 13</value>
   </data>
-  <data name="lLBUpdate.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="lnkControllers.Text" xml:space="preserve">
+    <value>Panel de Control</value>
+  </data>
+  <data name="lnkControllers.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="linkSetup.Text" xml:space="preserve">
-    <value>Controlador/Configuracion de Driver</value>
-  </data>
-  <data name="linkSetup.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 13</value>
   </data>
   <data name="linkUninstall.Text" xml:space="preserve">
     <value>Desinstalar VBus Driver</value>
@@ -6945,11 +6948,26 @@
   <data name="linkUninstall.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="lnkControllers.Text" xml:space="preserve">
-    <value>Panel de Control</value>
+  <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 13</value>
   </data>
-  <data name="lnkControllers.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="linkSetup.Text" xml:space="preserve">
+    <value>Controlador/Configuracion de Driver</value>
+  </data>
+  <data name="linkSetup.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
+  </data>
+  <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 13</value>
+  </data>
+  <data name="lLBUpdate.Text" xml:space="preserve">
+    <value>Comprobar actualizacion ahora</value>
+  </data>
+  <data name="lLBUpdate.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 65</value>
   </data>
   <data name="tabSettings.Text" xml:space="preserve">
     <value>Ajustes</value>

@@ -11,11 +11,11 @@ using DS4Control;
 
 namespace DS4Windows
 {
-    public partial class MessageTextBox : Form
+    public partial class DuplicateForm : Form
     {
         public string oldfilename;
         DS4Form yes;
-        public MessageTextBox(string name, DS4Form mainwindow)
+        public DuplicateForm(string name, DS4Form mainwindow)
         {
             InitializeComponent();
             oldfilename = name;

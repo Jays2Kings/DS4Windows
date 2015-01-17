@@ -5,6 +5,7 @@ using System.Text;
 using DS4Library;
 using System.IO;
 using System.Reflection;
+using System.Media;
 namespace DS4Control
 {
     public class Control
@@ -20,6 +21,13 @@ namespace DS4Control
         public DS4StateExposed[] ExposedState = new DS4StateExposed[4];
         public bool recordingMacro = false;
         public event EventHandler<DebugEventArgs> Debug = null;
+        public bool eastertime = false;
+        private int eCode = 0;
+        bool[] buttonsdown = { false, false, false, false };
+        List<DS4Controls> dcs = new List<DS4Controls>();
+        bool[] held = new bool[4];
+        int[] oldmouse = new int[4] { -1, -1, -1, -1 };
+        SoundPlayer sp = new SoundPlayer();
 
         private class X360Data
         {
@@ -30,7 +38,9 @@ namespace DS4Control
 
         public Control()
         {
+            sp.Stream = Properties.Resources.EE;
             x360Bus = new X360Device();
+            AddtoDS4List();
             for (int i = 0; i < DS4Controllers.Length; i++)
             {
                 processingData[i] = new X360Data();
@@ -41,12 +51,47 @@ namespace DS4Control
             }
         }
 
-        private void WarnExclusiveModeFailure(DS4Device device)
+        void AddtoDS4List()
+        {
+            dcs.Add(DS4Controls.Cross);
+            dcs.Add(DS4Controls.Cross);
+            dcs.Add(DS4Controls.Circle);
+            dcs.Add(DS4Controls.Square);
+            dcs.Add(DS4Controls.Triangle);
+            dcs.Add(DS4Controls.Options);
+            dcs.Add(DS4Controls.Share);
+            dcs.Add(DS4Controls.DpadUp);
+            dcs.Add(DS4Controls.DpadDown);
+            dcs.Add(DS4Controls.DpadLeft);
+            dcs.Add(DS4Controls.DpadRight);
+            dcs.Add(DS4Controls.PS);
+            dcs.Add(DS4Controls.L1);
+            dcs.Add(DS4Controls.R1);
+            dcs.Add(DS4Controls.L2);
+            dcs.Add(DS4Controls.R2);
+            dcs.Add(DS4Controls.L3);
+            dcs.Add(DS4Controls.R3);
+            dcs.Add(DS4Controls.LXPos);
+            dcs.Add(DS4Controls.LXNeg);
+            dcs.Add(DS4Controls.LYPos);
+            dcs.Add(DS4Controls.LYNeg);
+            dcs.Add(DS4Controls.RXPos);
+            dcs.Add(DS4Controls.RXNeg);
+            dcs.Add(DS4Controls.RYPos);
+            dcs.Add(DS4Controls.RYNeg);
+            dcs.Add(DS4Controls.SwipeUp);
+            dcs.Add(DS4Controls.SwipeDown);
+            dcs.Add(DS4Controls.SwipeLeft);
+            dcs.Add(DS4Controls.SwipeRight);
+        }
+
+        private async void WarnExclusiveModeFailure(DS4Device device)
         {
             if (DS4Devices.isExclusiveMode && !device.IsExclusive)
             {
+                await System.Threading.Tasks.Task.Delay(5);
                 String message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.MacAddress) + " " + Properties.Resources.QuitOtherPrograms;
-                LogDebug(message);
+                LogDebug(message, true);
                 Log.LogToTray(message);
             }
         }        
@@ -410,12 +455,14 @@ namespace DS4Control
                 if (pState.Battery != cState.Battery)
                     Global.ControllerStatusChanged(this);
                 CheckForHotkeys(ind, cState, pState);
+                if (eastertime)
+                    EasterTime(ind);
                 GetInputkeys(ind);
                 if (Global.getLSCurve(ind) + Global.getRSCurve(ind) + Global.getLSDeadzone(ind) + Global.getRSDeadzone(ind) +
                     Global.getL2Deadzone(ind) + Global.getR2Deadzone(ind) > 0) //if a curve or deadzone is in place
                     cState = Mapping.SetCurveAndDeadzone(ind, cState);
                 if (!recordingMacro && (!string.IsNullOrEmpty(Global.tempprofilename[ind]) ||
-                    Global.getHasCustomKeysorButtons(ind) || Global.getHasShiftCustomKeysorButtons(ind)))
+                    Global.getHasCustomKeysorButtons(ind) || Global.getHasShiftCustomKeysorButtons(ind) || Global.GetProfileActions(ind).Count > 0))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
                     cState = MappedState[ind];
@@ -446,8 +493,7 @@ namespace DS4Control
                 device.IdleTimeout = Global.getIdleDisconnectTimeout(ind);
             }
         }
-        bool[] held = new bool[4];
-        int[] oldmouse = new int[4] {-1,-1,-1,-1};
+
         private void DoExtras(int ind)
         {
             DS4State cState = CurrentState[ind];
@@ -504,6 +550,84 @@ namespace DS4Control
                 setRumble(0, 0, ind);
                 held[ind] = false;
             }
+        }
+
+
+
+        public void EasterTime(int ind)
+        {
+            DS4State cState = CurrentState[ind];
+            DS4StateExposed eState = ExposedState[ind];
+            Mouse tp = touchPad[ind];
+
+            bool pb = false;
+            foreach (DS4Controls dc in dcs)
+            {
+                if (Mapping.getBoolMapping(dc, cState, eState, tp))
+                {
+                    pb = true;
+                    break;
+                }
+            }
+            int temp = eCode;
+            //Looks like you found the easter egg code, since you're already cheating,
+            //I scrambled the code for you :)
+            if (pb && !buttonsdown[ind])
+            {
+                if (cState.Cross && eCode == 9)
+                    eCode++;
+                else if (!cState.Cross && eCode == 9)
+                    eCode = 0;
+                else if (cState.DpadLeft && eCode == 6)
+                    eCode++;
+                else if (!cState.DpadLeft && eCode == 6)
+                    eCode = 0;
+                else if (cState.DpadRight && eCode == 7)
+                    eCode++;
+                else if (!cState.DpadRight && eCode == 7)
+                    eCode = 0;
+                else if (cState.DpadLeft && eCode == 4)
+                    eCode++;
+                else if (!cState.DpadLeft && eCode == 4)
+                    eCode = 0;
+                else if (cState.DpadDown && eCode == 2)
+                    eCode++;
+                else if (!cState.DpadDown && eCode == 2)
+                    eCode = 0;
+                else if (cState.DpadRight && eCode == 5)
+                    eCode++;
+                else if (!cState.DpadRight && eCode == 5)
+                    eCode = 0;
+                else if (cState.DpadUp && eCode == 1)
+                    eCode++;
+                else if (!cState.DpadUp && eCode == 1)
+                    eCode = 0;
+                else if (cState.DpadDown && eCode == 3)
+                    eCode++;
+                else if (!cState.DpadDown && eCode == 3)
+                    eCode = 0;
+                else if (cState.Circle && eCode == 8)
+                    eCode++;
+                else if (!cState.Circle && eCode == 8)
+                    eCode = 0;
+
+                if (cState.DpadUp && eCode == 0)
+                    eCode++;
+
+                if (eCode == 10)
+                {
+                    string message = "(!)";
+                    sp.Play();
+                    LogDebug(message, true);
+                    eCode = 0;
+                }
+
+                if (temp != eCode)
+                    Console.WriteLine(eCode);
+                buttonsdown[ind] = true;
+            }
+            else if (!pb)
+                buttonsdown[ind] = false;
         }
 
         public string GetInputkeys(int ind)
@@ -587,22 +711,6 @@ namespace DS4Control
         public int[] oldscrollvalue = { 0, 0, 0, 0 };
         protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
         {
-            DS4Device d = DS4Controllers[deviceID];
-            if ((!pState.PS || !pState.Options) && cState.PS && cState.Options)
-            {
-                if (!d.Charging)
-                {
-                    d.DisconnectBT(); InputMethods.performKeyRelease(Global.getCustomKey(0, DS4Controls.PS));
-                    string[] skeys = Global.getCustomMacro(0, DS4Controls.PS).Split('/');
-                    ushort[] keys = new ushort[skeys.Length];
-                    for (int i = 0; i < keys.Length; i++)
-                    {
-                        keys[i] = ushort.Parse(skeys[i]);
-                        InputMethods.performKeyRelease(keys[i]);
-                    }
-                    d = null;
-                }
-            }
             if (!Global.getUseTPforControls(deviceID) && cState.Touch1 && pState.PS)
             {
                 if (Global.getTouchSensitivity(deviceID) > 0 && touchreleased[deviceID])
@@ -630,10 +738,13 @@ namespace DS4Control
 
         public virtual void StartTPOff(int deviceID)
         {
-            oldtouchvalue[deviceID] = Global.getTouchSensitivity(deviceID);
-            oldscrollvalue[deviceID] = Global.getScrollSensitivity(deviceID);
-            Global.setTouchSensitivity(deviceID, 0);
-            Global.setScrollSensitivity(deviceID, 0);
+            if (deviceID > 4)
+            {
+                oldtouchvalue[deviceID] = Global.getTouchSensitivity(deviceID);
+                oldscrollvalue[deviceID] = Global.getScrollSensitivity(deviceID);
+                Global.setTouchSensitivity(deviceID, 0);
+                Global.setScrollSensitivity(deviceID, 0);
+            }
         }
             
         public virtual string TouchpadSlide(int ind)
@@ -660,12 +771,12 @@ namespace DS4Control
                         }
             return slidedir;
         }
-        public virtual void LogDebug(String Data)
+        public virtual void LogDebug(String Data, bool warning = false)
         {
             Console.WriteLine(System.DateTime.Now.ToString("G") + "> " + Data);
             if (Debug != null)
             {
-                DebugEventArgs args = new DebugEventArgs(Data);
+                DebugEventArgs args = new DebugEventArgs(Data, warning);
                 OnDebug(this, args);
             }
         }

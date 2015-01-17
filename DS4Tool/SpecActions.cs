@@ -29,9 +29,11 @@ namespace DS4Windows
         {
             InitializeComponent();
             this.opt = opt;
-            cBProfiles.Items.Add("[none]");
+            cBProfiles.Items.Add(Properties.Resources.noneProfile);
             cBProfiles.SelectedIndex = 0;
+            //cBPressToggleKeys.SelectedIndex = 0;
             cBActions.SelectedIndex = 0;
+            cBPressRelease.SelectedIndex = 0;
             foreach (object s in opt.root.lBProfiles.Items)
                 cBProfiles.Items.Add(s.ToString());
             editIndex = editindex;
@@ -73,6 +75,33 @@ namespace DS4Windows
                                 break;
                             }
                     break;
+                case "Key":
+                    cBActions.SelectedIndex = 4;
+                    int key = int.Parse(act.details);
+                    btnSelectKey.Text = ((Keys)key).ToString() +
+                        (act.keyType.HasFlag(DS4KeyType.ScanCode) ? " (SC)" : "") + 
+                        (!string.IsNullOrEmpty(act.ucontrols) ? " (Toggle)" : "");
+                    btnSelectKey.Tag = key;
+                    if (act.pressRelease)
+                        cBPressRelease.SelectedIndex = 1;
+                    if (!string.IsNullOrEmpty(act.ucontrols))
+                    {
+                        //cBPressToggleKeys.SelectedIndex = 1;
+                        foreach (string s in act.ucontrols.Split('/'))
+                            foreach (ListViewItem lvi in lVUnloadTrigger.Items)
+                                if (lvi.Text == s)
+                                {
+                                    lvi.Checked = true;
+                                    break;
+                                }
+                    }
+                    break;
+                case "DisconnectBT":
+                    cBActions.SelectedIndex = 5;
+                    decimal d = 0;
+                    decimal.TryParse(act.details, out d);
+                    nUDDCBT.Value = d;
+                    break;
             }
         }
 
@@ -90,11 +119,11 @@ namespace DS4Windows
         {
             if (cBProfiles.SelectedIndex > 0)
             {
-                btnSetUTrigger.Enabled = true;
+                btnSetUTriggerProfile.Enabled = true;
             }
             else
             {
-                btnSetUTrigger.Enabled = false;
+                btnSetUTriggerProfile.Enabled = false;
             }
         }
 
@@ -119,12 +148,9 @@ namespace DS4Windows
             foreach (ListViewItem lvi in lVTrigger.Items)
                     if (lvi.Checked)
                         controls.Add(lvi.Text);
-            if (cBActions.SelectedIndex == 3)
-            {
                 foreach (ListViewItem lvi in lVUnloadTrigger.Items)
                     if (lvi.Checked)
                         ucontrols.Add(lvi.Text);
-            }
             if (!string.IsNullOrEmpty(tBName.Text) && controls.Count > 0 && cBActions.SelectedIndex > 0)
             {      
                 bool actRe = false;
@@ -135,7 +161,7 @@ namespace DS4Windows
                     case 1:
                         if (macrostag.Count > 0)
                         {
-                            action = "Macro" + (cBMacroScanCode.Checked ? " (Scan Code)" : "");                            
+                            action = Properties.Resources.Macro + (cBMacroScanCode.Checked ? " (" + Properties.Resources.ScanCode + ")" : "");
                             actRe = true;
                             if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
                                 Global.RemoveAction(oldprofilename);
@@ -162,9 +188,40 @@ namespace DS4Windows
                             Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, cBProfiles.Text, edit, String.Join("/", ucontrols));
                         }
                         else
+                            btnSetUTriggerProfile.ForeColor = Color.Red;
+                        break;
+                    case 4:
+                        if (btnSelectKey.Tag != null &&
+                            (!btnSelectKey.Text.Contains("(Toggle)") || (btnSelectKey.Text.Contains("(Toggle)") && ucontrols.Count > 0)))
                         {
-                            btnSetUTrigger.ForeColor = Color.Red;
+                            action = ((Keys)int.Parse(btnSelectKey.Tag.ToString())).ToString() + ((btnSelectKey.Text.Contains("(Toggle)") ? " (Toggle)" : ""));
+                            actRe = true;
+                            if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
+                                Global.RemoveAction(oldprofilename);
+                            if (btnSelectKey.Text.Contains("(Toggle)") && ucontrols.Count > 0)
+                            {
+                                string uaction;
+                                if (cBPressRelease.SelectedIndex == 1)
+                                    uaction = "Release";
+                                else
+                                    uaction = "Press";
+                                Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, btnSelectKey.Tag.ToString() + (btnSelectKey.Text.Contains("(SC)") ? " Scan Code" : ""),
+                                    edit, uaction + '\n' + String.Join("/", ucontrols));
+                            }
+                            else
+                                Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, btnSelectKey.Tag.ToString() + (btnSelectKey.Text.Contains("(SC)") ? " Scan Code" : ""), edit);
                         }
+                        else if (btnSelectKey.Tag == null)
+                            btnSelectKey.ForeColor = Color.Red;
+                        else if (ucontrols.Count == 0)
+                            btnSetUTriggerKeys.ForeColor = Color.Red;
+                        break;
+                    case 5:
+                        action = Properties.Resources.DisconnectBT;
+                        actRe = true;
+                        if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
+                            Global.RemoveAction(oldprofilename);
+                        Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, Math.Round(nUDDCBT.Value, 1).ToString(), edit);
                         break;
                 }
                 if (actRe)
@@ -198,33 +255,13 @@ namespace DS4Windows
 
         private void cBActions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (cBActions.SelectedIndex)
-            {
-                default:
-                    pnlMacro.Visible = false;
-                    pnlProgram.Visible = false;
-                    pnlProfile.Visible = false;
-                    btnSave.Enabled = false;
-                    break;
-                case 1:
-                    pnlMacro.Visible = true;
-                    pnlProgram.Visible = false;
-                    pnlProfile.Visible = false;
-                    btnSave.Enabled = true; 
-                    break;
-                case 2:
-                    pnlMacro.Visible = false;
-                    pnlProgram.Visible = true;
-                    pnlProfile.Visible = false;
-                    btnSave.Enabled = true;
-                    break;
-                case 3:
-                    pnlMacro.Visible = false;
-                    pnlProgram.Visible = false;
-                    pnlProfile.Visible = true;
-                    btnSave.Enabled = true;
-                    break;
-            }
+            int i = cBActions.SelectedIndex;
+            pnlMacro.Visible = i == 1;
+            pnlProgram.Visible = i == 2;
+            pnlProfile.Visible = i == 3;
+            pnlKeys.Visible = i == 4;
+            pnlDisconnectBT.Visible = i == 5;
+            btnSave.Enabled = i > 0;
         }
 
         private void btnBroswe_Click(object sender, EventArgs e)
@@ -247,16 +284,35 @@ namespace DS4Windows
 
         private void btnSetUTrigger_Click(object sender, EventArgs e)
         {
+            Button button = (Button)sender;
             lVTrigger.Visible = !lVTrigger.Visible;
             if (lVTrigger.Visible)
-                btnSetUTrigger.Text = "Set Unload Trigger";
+                button.Text = Properties.Resources.SetUnloadTrigger;
             else
-                btnSetUTrigger.Text = "Set Regular Trigger";
+                button.Text = Properties.Resources.SetRegularTrigger;
         }
 
         private void lVUnloadTrigger_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            btnSetUTrigger.ForeColor = Color.Black;
+            btnSetUTriggerProfile.ForeColor = Color.Black;
+            btnSetUTriggerKeys.ForeColor = Color.Black;
+        }
+
+        private void btnSelectKey_Click(object sender, EventArgs e)
+        {
+            new KBM360(this, btnSelectKey).ShowDialog();
+        }
+
+        private void btnSelectKey_TextChanged(object sender, EventArgs e)
+        {
+            btnSetUTriggerKeys.Visible = btnSelectKey.Text.Contains("(Toggle)");
+            lbUnloadTipKey.Visible = btnSelectKey.Text.Contains("(Toggle)");
+            cBPressRelease.Visible = btnSelectKey.Text.Contains("(Toggle)");
+            if (!btnSelectKey.Text.Contains("(Toggle)"))
+            {
+                lVTrigger.Visible = true;
+                btnSetUTriggerKeys.Text = "Set Unload Trigger";
+            }
         }
     }
 }

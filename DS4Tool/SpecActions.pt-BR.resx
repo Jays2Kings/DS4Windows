@@ -745,7 +745,7 @@
     <value>Definir Gatilho de Tiro</value>
   </data>
   <data name="cHUnloadTrigger.Text" xml:space="preserve">
-    <value>Perfil de Gatilho de Tiro</value>
+    <value>Gatilho de Tiro</value>
   </data>
   <data name="lVUnloadTrigger.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>

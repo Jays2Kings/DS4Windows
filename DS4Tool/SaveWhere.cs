@@ -26,7 +26,7 @@ namespace DS4Windows
             lbMultiSaves.Visible = multisaves;
             cBDeleteOther.Visible = multisaves;
             if (multisaves)
-                lbPickWhere.Text += ", other location files will be deleted";
+                lbPickWhere.Text += Properties.Resources.OtherFileLocation;
             if (Global.AdminNeeded())
                 bnPrgmFolder.Enabled = false;
         }
@@ -94,7 +94,7 @@ namespace DS4Windows
         private void SaveWhere_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (String.IsNullOrEmpty(Global.appdatapath))
-                if (MessageBox.Show("Close DS4Windows?\nA location must be picked to continue", "DS4Windows",
+                if (MessageBox.Show(Properties.Resources.ALocactionNeeded, Properties.Resources.CloseDS4W,
              MessageBoxButtons.YesNo) == DialogResult.No)
                     e.Cancel = true;
         }

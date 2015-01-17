@@ -402,4 +402,7 @@
   <data name="FullLightText" xml:space="preserve">
     <value>Plein:</value>
   </data>
+  <data name="PlusNewProfile" xml:space="preserve">
+    <value>Nouveau Profil</value>
+  </data>
 </root>

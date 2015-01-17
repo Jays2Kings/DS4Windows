@@ -12,9 +12,9 @@ namespace DS4Control
        
         public event EventHandler<ReportEventArgs>  Report  = null;
 
-        protected virtual Boolean LogDebug(String Data) 
+        protected virtual Boolean LogDebug(String Data, bool warning) 
         {
-            DebugEventArgs args = new DebugEventArgs(Data);
+            DebugEventArgs args = new DebugEventArgs(Data, warning);
 
             On_Debug(this, args);
 

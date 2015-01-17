@@ -284,7 +284,7 @@
     <value>Charging: *number*%</value>
   </data>
   <data name="ColorByBattery" xml:space="preserve">
-    <value>Color by Battey %</value>
+    <value>Color by Battery %</value>
   </data>
   <data name="Connecting" xml:space="preserve">
     <value>Connecting...</value>
@@ -506,7 +506,7 @@
     <value>Down</value>
   </data>
   <data name="InputDelay" xml:space="preserve">
-    <value>Input Delay: *number**ms*</value>
+    <value>Input Delay: *number*ms</value>
   </data>
   <data name="KeepThisSize" xml:space="preserve">
     <value>Keep this window size after closing</value>
@@ -524,7 +524,7 @@
     <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off</value>
   </data>
   <data name="InstallDriver" xml:space="preserve">
-    <value>Instal Drivers here</value>
+    <value>Install Drivers here</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
     <value>Tilt Down</value>
@@ -574,9 +574,6 @@
   <data name="TestLText" xml:space="preserve">
     <value>Test Light</value>
   </data>
-  <data name="FullLightText" xml:space="preserve">
-    <value>Plein:</value>
-  </data>
   <data name="QuickCharge" xml:space="preserve">
     <value>EXPERIMENTAL: Auto-Disable BT when conencting to USB</value>
   </data>
@@ -609,5 +606,74 @@
   </data>
   <data name="RightClickPresets" xml:space="preserve">
     <value>Right Click to set presets for a set of controls</value>
+  </data>
+  <data name="DisconnectBT" xml:space="preserve">
+    <value>Disconnect BT</value>
+  </data>
+  <data name="PlusNewProfile" xml:space="preserve">
+    <value>New Profile</value>
+  </data>
+  <data name="FallBackTo" xml:space="preserve">
+    <value>Fall Back to *button*</value>
+  </data>
+  <data name="FlashAtTip" xml:space="preserve">
+    <value>Click to change flash color. Black = default color</value>
+  </data>
+  <data name="FlushHIDTip" xml:space="preserve">
+    <value>Flush HID Queue after each reading</value>
+  </data>
+  <data name="GyroReadout" xml:space="preserve">
+    <value>Click to see readout of Sixaxis Gyro</value>
+  </data>
+  <data name="GyroX" xml:space="preserve">
+    <value>GyroX, Left and Right Tilt</value>
+  </data>
+  <data name="GyroY" xml:space="preserve">
+    <value>GyroY, Forward and Back Tilt</value>
+  </data>
+  <data name="GyroZ" xml:space="preserve">
+    <value>GyroZ, Up and Down Tilt</value>
+  </data>
+  <data name="HoverOverItems" xml:space="preserve">
+    <value>Hover over items to see description or more about</value>
+  </data>
+  <data name="Jitter" xml:space="preserve">
+    <value>Use Sixaxis to help calculate touchpad movement</value>
+  </data>
+  <data name="LightByBatteryTip" xml:space="preserve">
+    <value>Also dim light by idle timeout if on</value>
+  </data>
+  <data name="Macro" xml:space="preserve">
+    <value>Macro</value>
+  </data>
+  <data name="Programs" xml:space="preserve">
+    <value>Programs</value>
+  </data>
+  <data name="ScanCode" xml:space="preserve">
+    <value>Scan Code</value>
+  </data>
+  <data name="Shortcuts" xml:space="preserve">
+    <value>Shortcuts</value>
+  </data>
+  <data name="SixAxisReading" xml:space="preserve">
+    <value>Click for advanced Sixaxis reading</value>
+  </data>
+  <data name="TouchpadOffTip" xml:space="preserve">
+    <value>Re-enable by pressing PS+Touchpad</value>
+  </data>
+  <data name="UsingTPSwipes" xml:space="preserve">
+    <value>This disables the Touchpad as a mouse</value>
+  </data>
+  <data name="FallBack" xml:space="preserve">
+    <value>Fall Back</value>
+  </data>
+  <data name="ALocactionNeeded" xml:space="preserve">
+    <value>A location must be picked to continue.</value>
+  </data>
+  <data name="CloseDS4W" xml:space="preserve">
+    <value>Close DS4Windows?</value>
+  </data>
+  <data name="OtherFileLocation" xml:space="preserve">
+    <value>, other location files will be deleted</value>
   </data>
 </root>

@@ -387,4 +387,7 @@
   <data name="WillKeep" xml:space="preserve">
     <value>Se mantendrá</value>
   </data>
+  <data name="PlusNewProfile" xml:space="preserve">
+    <value>Nuevo Perfil</value>
+  </data>
 </root>

@@ -11,11 +11,11 @@ using DS4Control;
 
 namespace DS4Windows
 {
-    public partial class DuplicateForm : Form
+    public partial class DupBox : Form
     {
         public string oldfilename;
         DS4Form yes;
-        public DuplicateForm(string name, DS4Form mainwindow)
+        public DupBox(string name, DS4Form mainwindow)
         {
             InitializeComponent();
             oldfilename = name;

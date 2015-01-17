@@ -36,16 +36,16 @@ namespace DS4Windows
         {
             Process.Start("control", "bthprops.cpl");
         }
-
+        bool driverinstalling = false;
         private void bnStep1_Click(object sender, EventArgs e)
         {
-            //Application.Run(new DS4Driver(ref bnStep1));
             WebClient wb = new WebClient();
-            if (bnStep1.Text == Properties.Resources.Step1)
+            if (!driverinstalling)
             {
                 wb.DownloadFileAsync(new Uri("http://ds4windows.com/Files/Virtual Bus Driver.zip"), exepath + "\\VBus.zip");
                 wb.DownloadProgressChanged += wb_DownloadProgressChanged;
-                wb.DownloadFileCompleted += wb_DownloadFileCompleted;               
+                wb.DownloadFileCompleted += wb_DownloadFileCompleted;
+                driverinstalling = true;
             }
         }
 
@@ -85,7 +85,6 @@ namespace DS4Windows
             timer.Tick += timer_Tick;
         }
 
-        bool running = false;
         private void timer_Tick(object sender, EventArgs e)
         {
             Process[] processes = Process.GetProcessesByName("ScpDriver");

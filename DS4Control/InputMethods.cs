@@ -181,7 +181,6 @@ namespace DS4Control
 
         public static void performSCKeyRelease(ushort key)
         {
-            Console.WriteLine((System.Windows.Forms.Keys)key);
             lock (lockob)
             {
                 sendInputs[0].Type = INPUT_KEYBOARD;

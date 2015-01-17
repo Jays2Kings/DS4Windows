@@ -10,11 +10,11 @@ namespace DS4Control
         public static event EventHandler<DebugEventArgs> TrayIconLog;
         public static event EventHandler<DebugEventArgs> GuiLog;
 
-        public static void LogToGui(string data)
+        public static void LogToGui(string data, bool warning)
         {
             if (GuiLog != null)
             {
-                GuiLog(null, new DebugEventArgs(data));
+                GuiLog(null, new DebugEventArgs(data, warning));
             }
         }
 
@@ -22,7 +22,7 @@ namespace DS4Control
         {
             if (TrayIconLog != null)
             {
-                TrayIconLog(null, new DebugEventArgs(data));
+                TrayIconLog(null, new DebugEventArgs(data, false));
             }
         }
     }

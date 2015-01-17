@@ -20,10 +20,11 @@ namespace DS4Control
     {
         protected DateTime m_Time = DateTime.Now;
         protected String m_Data = String.Empty;
-
-        public DebugEventArgs(String Data)
+        protected bool warning = false;
+        public DebugEventArgs(String Data, bool warn)
         {
             m_Data = Data;
+            warning = warn;
         }
 
         public DateTime Time
@@ -34,6 +35,10 @@ namespace DS4Control
         public String Data
         {
             get { return m_Data; }
+        }
+        public bool Warning
+        {
+            get { return warning; }
         }
     }
 
@@ -799,9 +804,9 @@ namespace DS4Control
             m_Config.RemoveAction(name);
         }
 
-        public static void LoadActions()
+        public static bool LoadActions()
         {
-            m_Config.LoadActions();
+            return m_Config.LoadActions();
         }
 
         public static List<SpecialAction> GetActions()
@@ -947,6 +952,7 @@ namespace DS4Control
                 shiftCustomMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
                 shiftCustomMapExtras[i] = new Dictionary<DS4Controls, string>();
                 profileActions[i] = new List<string>();
+                profileActions[i].Add("Disconnect Controller");
             }
         }
 
@@ -2048,7 +2054,7 @@ namespace DS4Control
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Macro";
                     el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
                     if (extras != string.Empty)
-                    el.AppendChild(m_Xdoc.CreateElement("Extras")).InnerText = extras;
+                        el.AppendChild(m_Xdoc.CreateElement("Extras")).InnerText = extras;
                     break;
                 case 2:
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Program";
@@ -2058,6 +2064,20 @@ namespace DS4Control
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Profile";
                     el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
                     el.AppendChild(m_Xdoc.CreateElement("UnloadTrigger")).InnerText = extras;
+                    break;
+                case 4:
+                    el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Key";
+                    el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
+                    if (!String.IsNullOrEmpty(extras))
+                    {
+                        string[] exts = extras.Split('\n');
+                        el.AppendChild(m_Xdoc.CreateElement("UnloadTrigger")).InnerText = exts[1];
+                        el.AppendChild(m_Xdoc.CreateElement("UnloadStyle")).InnerText = exts[0];
+                    }
+                    break;
+                case 5:
+                    el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "DisconnectBT";
+                    el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
                     break;
             }
             if (edit)
@@ -2089,14 +2109,17 @@ namespace DS4Control
         {
             bool saved = true;
             if (!File.Exists(Global.appdatapath + "\\Actions.xml"))
-                return false;
+            {
+                SaveAction("Disconnect Controller", "PS/Options", 5, "0", false);
+                saved = false;
+            }
             try
             {
                 actions.Clear();
                 XmlDocument doc = new XmlDocument();
                 doc.Load(Global.appdatapath + "\\Actions.xml");
                 XmlNodeList actionslist = doc.SelectNodes("Actions/Action");
-                string name, controls, type, details, extras;
+                string name, controls, type, details, extras, extras2;
                 foreach (XmlNode x in actionslist)
                 {
                     name = x.Attributes["Name"].Value;
@@ -2114,6 +2137,25 @@ namespace DS4Control
                         else extras = string.Empty;
                         actions.Add(new SpecialAction(name, controls, type, details, extras));
                     }
+                    else if (type == "Key")
+                    {
+                        if (x.ChildNodes[3] != null)
+                        {
+                            extras = x.ChildNodes[3].InnerText;
+                            extras2 = x.ChildNodes[4].InnerText;
+                        }
+                        else
+                        {
+                            extras = string.Empty;
+                            extras2 = string.Empty;
+                        }
+                        if (!string.IsNullOrEmpty(extras))
+                            actions.Add(new SpecialAction(name, controls, type, details, extras2 + '\n' + extras));
+                        else
+                            actions.Add(new SpecialAction(name, controls, type, details));
+                    }
+                    else
+                        actions.Add(new SpecialAction(name, controls, type, details));
                 }
             }
             catch { saved = false; }
@@ -2131,6 +2173,7 @@ namespace DS4Control
         public string details;
         public List<DS4Controls> uTrigger = new List<DS4Controls>();
         public string ucontrols;
+        public bool pressRelease = false;
         public DS4KeyType keyType;
         public SpecialAction(string name, string controls, string type, string details, string extras = "")
         {
@@ -2152,9 +2195,25 @@ namespace DS4Control
                 if (extras.Contains("Scan Code"))
                     keyType |= DS4KeyType.ScanCode;
             }
+            else if (type == "Key")
+            {
+                this.details = details.Split(' ')[0];
+                if (!string.IsNullOrEmpty(extras))
+                {
+                    string[] exts = extras.Split('\n');
+                    pressRelease = exts[0] == "Release";
+                    this.ucontrols = exts[1];
+                    string[] uctrls = exts[1].Split('/');
+                    foreach (string s in uctrls)
+                        uTrigger.Add(getDS4ControlsByName(s));
+                }
+                if (details.Contains("Scan Code"))
+                    keyType |= DS4KeyType.ScanCode;
+            }
             else
                 this.details = details;
-            if (!string.IsNullOrEmpty(extras))
+
+            if (type != "Key" && !string.IsNullOrEmpty(extras))
             {
                 this.ucontrols = extras;
                 string[] uctrls = extras.Split('/');

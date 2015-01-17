@@ -118,6 +118,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A location must be picked to continue..
+        /// </summary>
+        internal static string ALocactionNeeded {
+            get {
+                return ResourceManager.GetString("ALocactionNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Always Rainbow Mode.
         /// </summary>
         internal static string AlwaysRainbow {
@@ -229,6 +238,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close DS4Windows?.
+        /// </summary>
+        internal static string CloseDS4W {
+            get {
+                return ResourceManager.GetString("CloseDS4W", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close DS4Windows via the notification icon.
         /// </summary>
         internal static string CloseMinimize {
@@ -247,7 +265,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Color by Battey %.
+        ///   Looks up a localized string similar to Color by Battery %.
         /// </summary>
         internal static string ColorByBattery {
             get {
@@ -384,6 +402,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disconnect BT.
+        /// </summary>
+        internal static string DisconnectBT {
+            get {
+                return ResourceManager.GetString("DisconnectBT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disconnected.
         /// </summary>
         internal static string Disconnected {
@@ -507,6 +534,24 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fall Back.
+        /// </summary>
+        internal static string FallBack {
+            get {
+                return ResourceManager.GetString("FallBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fall Back to *button*.
+        /// </summary>
+        internal static string FallBackTo {
+            get {
+                return ResourceManager.GetString("FallBackTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 5th Mouse Button Down.
         /// </summary>
         internal static string FifthMouseDown {
@@ -525,11 +570,29 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to change flash color. Black = default color.
+        /// </summary>
+        internal static string FlashAtTip {
+            get {
+                return ResourceManager.GetString("FlashAtTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Flush HID.
         /// </summary>
         internal static string FlushHID {
             get {
                 return ResourceManager.GetString("FlushHID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flush HID Queue after each reading.
+        /// </summary>
+        internal static string FlushHIDTip {
+            get {
+                return ResourceManager.GetString("FlushHIDTip", resourceCulture);
             }
         }
         
@@ -570,11 +633,38 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Plein:.
+        ///   Looks up a localized string similar to Click to see readout of Sixaxis Gyro.
         /// </summary>
-        internal static string FullLightText {
+        internal static string GyroReadout {
             get {
-                return ResourceManager.GetString("FullLightText", resourceCulture);
+                return ResourceManager.GetString("GyroReadout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GyroX, Left and Right Tilt.
+        /// </summary>
+        internal static string GyroX {
+            get {
+                return ResourceManager.GetString("GyroX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GyroY, Forward and Back Tilt.
+        /// </summary>
+        internal static string GyroY {
+            get {
+                return ResourceManager.GetString("GyroY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GyroZ, Up and Down Tilt.
+        /// </summary>
+        internal static string GyroZ {
+            get {
+                return ResourceManager.GetString("GyroZ", resourceCulture);
             }
         }
         
@@ -593,6 +683,15 @@ namespace DS4Windows.Properties {
         internal static string Hours {
             get {
                 return ResourceManager.GetString("Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hover over items to see description or more about.
+        /// </summary>
+        internal static string HoverOverItems {
+            get {
+                return ResourceManager.GetString("HoverOverItems", resourceCulture);
             }
         }
         
@@ -616,7 +715,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input Delay: *number**ms*.
+        ///   Looks up a localized string similar to Input Delay: *number*ms.
         /// </summary>
         internal static string InputDelay {
             get {
@@ -634,7 +733,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Instal Drivers here.
+        ///   Looks up a localized string similar to Install Drivers here.
         /// </summary>
         internal static string InstallDriver {
             get {
@@ -657,6 +756,15 @@ namespace DS4Windows.Properties {
         internal static string Installing {
             get {
                 return ResourceManager.GetString("Installing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Sixaxis to help calculate touchpad movement.
+        /// </summary>
+        internal static string Jitter {
+            get {
+                return ResourceManager.GetString("Jitter", resourceCulture);
             }
         }
         
@@ -705,6 +813,15 @@ namespace DS4Windows.Properties {
             get {
                 object obj = ResourceManager.GetObject("LeftTouch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also dim light by idle timeout if on.
+        /// </summary>
+        internal static string LightByBatteryTip {
+            get {
+                return ResourceManager.GetString("LightByBatteryTip", resourceCulture);
             }
         }
         
@@ -783,6 +900,15 @@ namespace DS4Windows.Properties {
             get {
                 object obj = ResourceManager.GetObject("LT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Macro.
+        /// </summary>
+        internal static string Macro {
+            get {
+                return ResourceManager.GetString("Macro", resourceCulture);
             }
         }
         
@@ -917,6 +1043,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to , other location files will be deleted.
+        /// </summary>
+        internal static string OtherFileLocation {
+            get {
+                return ResourceManager.GetString("OtherFileLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Pairmode {
@@ -945,6 +1080,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Profile.
+        /// </summary>
+        internal static string PlusNewProfile {
+            get {
+                return ResourceManager.GetString("PlusNewProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to *Profile name* cannot be restored..
         /// </summary>
         internal static string ProfileCannotRestore {
@@ -959,6 +1103,15 @@ namespace DS4Windows.Properties {
         internal static string ProfileFolderMoved {
             get {
                 return ResourceManager.GetString("ProfileFolderMoved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Programs.
+        /// </summary>
+        internal static string Programs {
+            get {
+                return ResourceManager.GetString("Programs", resourceCulture);
             }
         }
         
@@ -1138,6 +1291,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scan Code.
+        /// </summary>
+        internal static string ScanCode {
+            get {
+                return ResourceManager.GetString("ScanCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Searching for controllers….
         /// </summary>
         internal static string SearchingController {
@@ -1170,6 +1332,24 @@ namespace DS4Windows.Properties {
         internal static string SetUnloadTrigger {
             get {
                 return ResourceManager.GetString("SetUnloadTrigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shortcuts.
+        /// </summary>
+        internal static string Shortcuts {
+            get {
+                return ResourceManager.GetString("Shortcuts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click for advanced Sixaxis reading.
+        /// </summary>
+        internal static string SixAxisReading {
+            get {
+                return ResourceManager.GetString("SixAxisReading", resourceCulture);
             }
         }
         
@@ -1420,6 +1600,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Re-enable by pressing PS+Touchpad.
+        /// </summary>
+        internal static string TouchpadOffTip {
+            get {
+                return ResourceManager.GetString("TouchpadOffTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 2 finger touchpad swipe left or right.
         /// </summary>
         internal static string TwoFingerSwipe {
@@ -1527,6 +1716,15 @@ namespace DS4Windows.Properties {
         internal static string UsingShared {
             get {
                 return ResourceManager.GetString("UsingShared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This disables the Touchpad as a mouse.
+        /// </summary>
+        internal static string UsingTPSwipes {
+            get {
+                return ResourceManager.GetString("UsingTPSwipes", resourceCulture);
             }
         }
         

@@ -79,6 +79,7 @@
             this.pBStatus2 = new System.Windows.Forms.PictureBox();
             this.pBStatus3 = new System.Windows.Forms.PictureBox();
             this.pBStatus4 = new System.Windows.Forms.PictureBox();
+            this.lbNoControlers = new System.Windows.Forms.Label();
             this.tabProfiles = new System.Windows.Forms.TabPage();
             this.lBProfiles = new System.Windows.Forms.ListBox();
             this.cMProfile = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -327,6 +328,7 @@
             // 
             resources.ApplyResources(this.tabControllers, "tabControllers");
             this.tabControllers.Controls.Add(this.tLPControllers);
+            this.tabControllers.Controls.Add(this.lbNoControlers);
             this.tabControllers.Name = "tabControllers";
             this.tabControllers.UseVisualStyleBackColor = true;
             // 
@@ -522,6 +524,11 @@
             this.pBStatus4.TabStop = false;
             this.pBStatus4.Tag = "3";
             this.pBStatus4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pBStatus_MouseClick);
+            // 
+            // lbNoControlers
+            // 
+            resources.ApplyResources(this.lbNoControlers, "lbNoControlers");
+            this.lbNoControlers.Name = "lbNoControlers";
             // 
             // tabProfiles
             // 
@@ -1112,6 +1119,7 @@
         public System.Windows.Forms.ListBox lBProfiles;
         private System.Windows.Forms.CheckBox cBCloseMini;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label lbNoControlers;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

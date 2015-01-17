@@ -144,7 +144,7 @@
             this.btnD = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnS = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
+            this.btnGuide = new System.Windows.Forms.Button();
             this.btnA = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.btnTAB = new System.Windows.Forms.Button();
@@ -199,8 +199,8 @@
             this.btnLSU = new System.Windows.Forms.Button();
             this.btnLS = new System.Windows.Forms.Button();
             this.cBToggle = new System.Windows.Forms.CheckBox();
-            this.btnFallBack = new System.Windows.Forms.Button();
-            this.btnUNBOUND2 = new System.Windows.Forms.Button();
+            this.btnDefault = new System.Windows.Forms.Button();
+            this.btnUNBOUND = new System.Windows.Forms.Button();
             this.btnESC = new System.Windows.Forms.Button();
             this.gBExtras = new System.Windows.Forms.GroupBox();
             this.cBMouse = new System.Windows.Forms.CheckBox();
@@ -229,8 +229,8 @@
             // 
             // pBMouse
             // 
-            resources.ApplyResources(this.pBMouse, "pBMouse");
             this.pBMouse.Image = global::DS4Windows.Properties.Resources.mouse;
+            resources.ApplyResources(this.pBMouse, "pBMouse");
             this.pBMouse.Name = "pBMouse";
             this.pBMouse.TabStop = false;
             // 
@@ -1070,8 +1070,8 @@
             // 
             // bnColor
             // 
-            resources.ApplyResources(this.bnColor, "bnColor");
             this.bnColor.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.bnColor, "bnColor");
             this.bnColor.Name = "bnColor";
             this.bnColor.UseVisualStyleBackColor = false;
             this.bnColor.Click += new System.EventHandler(this.bnColor_Click);
@@ -1123,8 +1123,8 @@
             // 
             // button3
             // 
-            resources.ApplyResources(this.button3, "button3");
             this.button3.Image = global::DS4Windows.Properties.Resources.A;
+            resources.ApplyResources(this.button3, "button3");
             this.button3.Name = "button3";
             this.button3.TabStop = false;
             this.button3.Tag = "X360A Button";
@@ -1138,13 +1138,13 @@
             this.btnS.Tag = "83";
             this.btnS.UseVisualStyleBackColor = true;
             // 
-            // button21
+            // btnGuide
             // 
-            resources.ApplyResources(this.button21, "button21");
-            this.button21.Name = "button21";
-            this.button21.TabStop = false;
-            this.button21.Tag = "X360Guide";
-            this.button21.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnGuide, "btnGuide");
+            this.btnGuide.Name = "btnGuide";
+            this.btnGuide.TabStop = false;
+            this.btnGuide.Tag = "X360Guide";
+            this.btnGuide.UseVisualStyleBackColor = true;
             // 
             // btnA
             // 
@@ -1156,8 +1156,8 @@
             // 
             // button22
             // 
-            resources.ApplyResources(this.button22, "button22");
             this.button22.Image = global::DS4Windows.Properties.Resources.START;
+            resources.ApplyResources(this.button22, "button22");
             this.button22.Name = "button22";
             this.button22.TabStop = false;
             this.button22.Tag = "X360Start";
@@ -1173,8 +1173,8 @@
             // 
             // button23
             // 
-            resources.ApplyResources(this.button23, "button23");
             this.button23.Image = global::DS4Windows.Properties.Resources.BACK;
+            resources.ApplyResources(this.button23, "button23");
             this.button23.Name = "button23";
             this.button23.TabStop = false;
             this.button23.Tag = "X360Back";
@@ -1190,8 +1190,8 @@
             // 
             // button8
             // 
-            resources.ApplyResources(this.button8, "button8");
             this.button8.Image = global::DS4Windows.Properties.Resources.B;
+            resources.ApplyResources(this.button8, "button8");
             this.button8.Name = "button8";
             this.button8.TabStop = false;
             this.button8.Tag = "X360B Button";
@@ -1207,8 +1207,8 @@
             // 
             // button9
             // 
-            resources.ApplyResources(this.button9, "button9");
             this.button9.Image = global::DS4Windows.Properties.Resources.X;
+            resources.ApplyResources(this.button9, "button9");
             this.button9.Name = "button9";
             this.button9.TabStop = false;
             this.button9.Tag = "X360X Button";
@@ -1224,8 +1224,8 @@
             // 
             // button10
             // 
-            resources.ApplyResources(this.button10, "button10");
             this.button10.Image = global::DS4Windows.Properties.Resources.Y;
+            resources.ApplyResources(this.button10, "button10");
             this.button10.Name = "button10";
             this.button10.TabStop = false;
             this.button10.Tag = "X360Y Button";
@@ -1241,8 +1241,8 @@
             // 
             // button11
             // 
-            resources.ApplyResources(this.button11, "button11");
             this.button11.Image = global::DS4Windows.Properties.Resources.LB;
+            resources.ApplyResources(this.button11, "button11");
             this.button11.Name = "button11";
             this.button11.TabStop = false;
             this.button11.Tag = "X360Left Bumper";
@@ -1258,8 +1258,8 @@
             // 
             // button17
             // 
-            resources.ApplyResources(this.button17, "button17");
             this.button17.Image = global::DS4Windows.Properties.Resources.RIGHT;
+            resources.ApplyResources(this.button17, "button17");
             this.button17.Name = "button17";
             this.button17.TabStop = false;
             this.button17.Tag = "X360Right Button";
@@ -1275,8 +1275,8 @@
             // 
             // button18
             // 
-            resources.ApplyResources(this.button18, "button18");
             this.button18.Image = global::DS4Windows.Properties.Resources.UP;
+            resources.ApplyResources(this.button18, "button18");
             this.button18.Name = "button18";
             this.button18.TabStop = false;
             this.button18.Tag = "X360Up Button";
@@ -1292,8 +1292,8 @@
             // 
             // button20
             // 
-            resources.ApplyResources(this.button20, "button20");
             this.button20.Image = global::DS4Windows.Properties.Resources.DOWN;
+            resources.ApplyResources(this.button20, "button20");
             this.button20.Name = "button20";
             this.button20.TabStop = false;
             this.button20.Tag = "X360Down Button";
@@ -1309,8 +1309,8 @@
             // 
             // button19
             // 
-            resources.ApplyResources(this.button19, "button19");
             this.button19.Image = global::DS4Windows.Properties.Resources.LEFT;
+            resources.ApplyResources(this.button19, "button19");
             this.button19.Name = "button19";
             this.button19.TabStop = false;
             this.button19.Tag = "X360Left Button";
@@ -1326,8 +1326,8 @@
             // 
             // button13
             // 
-            resources.ApplyResources(this.button13, "button13");
             this.button13.Image = global::DS4Windows.Properties.Resources.LT;
+            resources.ApplyResources(this.button13, "button13");
             this.button13.Name = "button13";
             this.button13.TabStop = false;
             this.button13.Tag = "X360Left Trigger";
@@ -1398,8 +1398,8 @@
             // 
             // btnRSL
             // 
-            resources.ApplyResources(this.btnRSL, "btnRSL");
             this.btnRSL.Image = global::DS4Windows.Properties.Resources.RSL;
+            resources.ApplyResources(this.btnRSL, "btnRSL");
             this.btnRSL.Name = "btnRSL";
             this.btnRSL.TabStop = false;
             this.btnRSL.Tag = "X360Right X-Axis-";
@@ -1415,8 +1415,8 @@
             // 
             // btnRSD
             // 
-            resources.ApplyResources(this.btnRSD, "btnRSD");
             this.btnRSD.Image = global::DS4Windows.Properties.Resources.RSD;
+            resources.ApplyResources(this.btnRSD, "btnRSD");
             this.btnRSD.Name = "btnRSD";
             this.btnRSD.TabStop = false;
             this.btnRSD.Tag = "X360Right Y-Axis+";
@@ -1432,8 +1432,8 @@
             // 
             // btnRSR
             // 
-            resources.ApplyResources(this.btnRSR, "btnRSR");
             this.btnRSR.Image = global::DS4Windows.Properties.Resources.RSR;
+            resources.ApplyResources(this.btnRSR, "btnRSR");
             this.btnRSR.Name = "btnRSR";
             this.btnRSR.TabStop = false;
             this.btnRSR.Tag = "X360Right X-Axis+";
@@ -1449,8 +1449,8 @@
             // 
             // btnRB
             // 
-            resources.ApplyResources(this.btnRB, "btnRB");
             this.btnRB.Image = global::DS4Windows.Properties.Resources.RB;
+            resources.ApplyResources(this.btnRB, "btnRB");
             this.btnRB.Name = "btnRB";
             this.btnRB.TabStop = false;
             this.btnRB.Tag = "X360Right Bumper";
@@ -1466,8 +1466,8 @@
             // 
             // btnLSL
             // 
-            resources.ApplyResources(this.btnLSL, "btnLSL");
             this.btnLSL.Image = global::DS4Windows.Properties.Resources.LSL;
+            resources.ApplyResources(this.btnLSL, "btnLSL");
             this.btnLSL.Name = "btnLSL";
             this.btnLSL.TabStop = false;
             this.btnLSL.Tag = "X360Left X-Axis-";
@@ -1483,8 +1483,8 @@
             // 
             // btnRSU
             // 
-            resources.ApplyResources(this.btnRSU, "btnRSU");
             this.btnRSU.Image = global::DS4Windows.Properties.Resources.RSU;
+            resources.ApplyResources(this.btnRSU, "btnRSU");
             this.btnRSU.Name = "btnRSU";
             this.btnRSU.TabStop = false;
             this.btnRSU.Tag = "X360Right Y-Axis-";
@@ -1500,8 +1500,8 @@
             // 
             // btnLSD
             // 
-            resources.ApplyResources(this.btnLSD, "btnLSD");
             this.btnLSD.Image = global::DS4Windows.Properties.Resources.LSD;
+            resources.ApplyResources(this.btnLSD, "btnLSD");
             this.btnLSD.Name = "btnLSD";
             this.btnLSD.TabStop = false;
             this.btnLSD.Tag = "X360Left Y-Axis+";
@@ -1517,8 +1517,8 @@
             // 
             // button2
             // 
-            resources.ApplyResources(this.button2, "button2");
             this.button2.Image = global::DS4Windows.Properties.Resources.RT;
+            resources.ApplyResources(this.button2, "button2");
             this.button2.Name = "button2";
             this.button2.TabStop = false;
             this.button2.Tag = "X360Right Trigger";
@@ -1534,8 +1534,8 @@
             // 
             // btnLSR
             // 
-            resources.ApplyResources(this.btnLSR, "btnLSR");
             this.btnLSR.Image = global::DS4Windows.Properties.Resources.LSR;
+            resources.ApplyResources(this.btnLSR, "btnLSR");
             this.btnLSR.Name = "btnLSR";
             this.btnLSR.TabStop = false;
             this.btnLSR.Tag = "X360Left X-Axis+";
@@ -1551,8 +1551,8 @@
             // 
             // btnRS
             // 
-            resources.ApplyResources(this.btnRS, "btnRS");
             this.btnRS.Image = global::DS4Windows.Properties.Resources.RS;
+            resources.ApplyResources(this.btnRS, "btnRS");
             this.btnRS.Name = "btnRS";
             this.btnRS.TabStop = false;
             this.btnRS.Tag = "X360Right Stick";
@@ -1568,8 +1568,8 @@
             // 
             // btnLSU
             // 
-            resources.ApplyResources(this.btnLSU, "btnLSU");
             this.btnLSU.Image = global::DS4Windows.Properties.Resources.LSU;
+            resources.ApplyResources(this.btnLSU, "btnLSU");
             this.btnLSU.Name = "btnLSU";
             this.btnLSU.TabStop = false;
             this.btnLSU.Tag = "X360Left Y-Axis-";
@@ -1577,8 +1577,8 @@
             // 
             // btnLS
             // 
-            resources.ApplyResources(this.btnLS, "btnLS");
             this.btnLS.Image = global::DS4Windows.Properties.Resources.LS;
+            resources.ApplyResources(this.btnLS, "btnLS");
             this.btnLS.Name = "btnLS";
             this.btnLS.TabStop = false;
             this.btnLS.Tag = "X360Left Stick";
@@ -1592,20 +1592,20 @@
             this.cBToggle.UseVisualStyleBackColor = true;
             this.cBToggle.CheckedChanged += new System.EventHandler(this.cbToggle_CheckedChanged);
             // 
-            // btnFallBack
+            // btnDefault
             // 
-            resources.ApplyResources(this.btnFallBack, "btnFallBack");
-            this.btnFallBack.Name = "btnFallBack";
-            this.btnFallBack.TabStop = false;
-            this.btnFallBack.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnDefault, "btnDefault");
+            this.btnDefault.Name = "btnDefault";
+            this.btnDefault.TabStop = false;
+            this.btnDefault.UseVisualStyleBackColor = true;
             // 
-            // btnUNBOUND2
+            // btnUNBOUND
             // 
-            resources.ApplyResources(this.btnUNBOUND2, "btnUNBOUND2");
-            this.btnUNBOUND2.Name = "btnUNBOUND2";
-            this.btnUNBOUND2.TabStop = false;
-            this.btnUNBOUND2.Tag = "X360Unbound";
-            this.btnUNBOUND2.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnUNBOUND, "btnUNBOUND");
+            this.btnUNBOUND.Name = "btnUNBOUND";
+            this.btnUNBOUND.TabStop = false;
+            this.btnUNBOUND.Tag = "X360Unbound";
+            this.btnUNBOUND.UseVisualStyleBackColor = true;
             // 
             // btnESC
             // 
@@ -1617,11 +1617,10 @@
             // 
             // gBExtras
             // 
-            resources.ApplyResources(this.gBExtras, "gBExtras");
+            this.gBExtras.Controls.Add(this.nUDMouse);
             this.gBExtras.Controls.Add(this.cBMouse);
             this.gBExtras.Controls.Add(this.cBLightbar);
             this.gBExtras.Controls.Add(this.lbRumble);
-            this.gBExtras.Controls.Add(this.nUDMouse);
             this.gBExtras.Controls.Add(this.lbFlashRate);
             this.gBExtras.Controls.Add(this.lbHeavy);
             this.gBExtras.Controls.Add(this.bnColor);
@@ -1640,6 +1639,7 @@
             this.gBExtras.Controls.Add(this.tBGreenBar);
             this.gBExtras.Controls.Add(this.tBRedBar);
             this.gBExtras.Controls.Add(this.lBTip);
+            resources.ApplyResources(this.gBExtras, "gBExtras");
             this.gBExtras.Name = "gBExtras";
             this.gBExtras.TabStop = false;
             // 
@@ -1683,9 +1683,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.gBExtras);
             this.Controls.Add(this.btnESC);
-            this.Controls.Add(this.btnUNBOUND2);
+            this.Controls.Add(this.btnUNBOUND);
             this.Controls.Add(this.lBMacroOn);
-            this.Controls.Add(this.btnFallBack);
+            this.Controls.Add(this.btnDefault);
             this.Controls.Add(this.cBToggle);
             this.Controls.Add(this.btnLS);
             this.Controls.Add(this.btnF6);
@@ -1792,7 +1792,7 @@
             this.Controls.Add(this.btnNUM7);
             this.Controls.Add(this.btnA);
             this.Controls.Add(this.btnB);
-            this.Controls.Add(this.button21);
+            this.Controls.Add(this.btnGuide);
             this.Controls.Add(this.btnNUMSLASH);
             this.Controls.Add(this.btnS);
             this.Controls.Add(this.btnV);
@@ -1978,7 +1978,7 @@
         private System.Windows.Forms.Button btnD;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnS;
-        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button btnGuide;
         private System.Windows.Forms.Button btnA;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Button btnTAB;
@@ -2033,8 +2033,8 @@
         private System.Windows.Forms.Button btnLSU;
         private System.Windows.Forms.Button btnLS;
         private System.Windows.Forms.CheckBox cBToggle;
-        private System.Windows.Forms.Button btnFallBack;
-        private System.Windows.Forms.Button btnUNBOUND2;
+        private System.Windows.Forms.Button btnDefault;
+        private System.Windows.Forms.Button btnUNBOUND;
         private System.Windows.Forms.Button btnESC;
         private System.Windows.Forms.GroupBox gBExtras;
         private System.Windows.Forms.Label lbBlueV;

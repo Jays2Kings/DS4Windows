@@ -342,6 +342,7 @@ namespace DS4Windows
 
         private void browseForOtherProgramsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            openProgram.Filter =  Properties.Resources.Programs+"|*.exe|" + Properties.Resources.Shortcuts + "|*.lnk";
             if (openProgram.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string file = openProgram.FileName;

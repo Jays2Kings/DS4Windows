@@ -115,6 +115,15 @@ namespace DS4Control.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream EE {
+            get {
+                return ResourceManager.GetStream("EE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Found Controller: .
         /// </summary>
         internal static string FoundController {

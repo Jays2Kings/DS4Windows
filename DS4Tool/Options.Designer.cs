@@ -89,6 +89,12 @@
             this.cBControllerInput = new System.Windows.Forms.CheckBox();
             this.cBIdleDisconnect = new System.Windows.Forms.CheckBox();
             this.gBLightbar = new System.Windows.Forms.GroupBox();
+            this.cBWhileCharging = new System.Windows.Forms.ComboBox();
+            this.btnChargingColor = new System.Windows.Forms.Button();
+            this.lbWhileCharging = new System.Windows.Forms.Label();
+            this.lbPercentFlashBar = new System.Windows.Forms.Label();
+            this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
+            this.lbFlashAt = new System.Windows.Forms.Label();
             this.pnlShift = new System.Windows.Forms.Panel();
             this.cBShiftLight = new System.Windows.Forms.CheckBox();
             this.lbShift = new System.Windows.Forms.Label();
@@ -98,15 +104,6 @@
             this.tBShiftRedBar = new System.Windows.Forms.TrackBar();
             this.tBShiftGreenBar = new System.Windows.Forms.TrackBar();
             this.tBShiftBlueBar = new System.Windows.Forms.TrackBar();
-            this.btnChargingColor = new System.Windows.Forms.Button();
-            this.rBColor = new System.Windows.Forms.RadioButton();
-            this.rBFade = new System.Windows.Forms.RadioButton();
-            this.rBNormal = new System.Windows.Forms.RadioButton();
-            this.rBRainbow = new System.Windows.Forms.RadioButton();
-            this.lbWhileCharging = new System.Windows.Forms.Label();
-            this.lbPercentFlashBar = new System.Windows.Forms.Label();
-            this.nUDflashLED = new System.Windows.Forms.NumericUpDown();
-            this.lbFlashAt = new System.Windows.Forms.Label();
             this.gBRumble = new System.Windows.Forms.GroupBox();
             this.lbPercentRumble = new System.Windows.Forms.Label();
             this.btnRumbleLightTest = new System.Windows.Forms.Button();
@@ -149,24 +146,24 @@
             this.controlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.defaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dpadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DpadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMIDPadInverted = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMIDPadInvertedX = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMIDPadInvertedY = new System.Windows.Forms.ToolStripMenuItem();
-            this.leftStickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMILSInverted = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMILSInvertedX = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMILSInvertedY = new System.Windows.Forms.ToolStripMenuItem();
-            this.rightStickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMIRSInverted = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMIRSInvertedX = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMIRSInvertedY = new System.Windows.Forms.ToolStripMenuItem();
-            this.aBXYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wASDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wScanCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.arrowKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wScanCodeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ABXYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WASDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wScanCodeWASDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ArrowKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wScanCodeArrowKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMIMouseInverted = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMIMouseInvertedX = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMIMouseInvertedY = new System.Windows.Forms.ToolStripMenuItem();
@@ -286,7 +283,7 @@
             this.btnNewAction = new System.Windows.Forms.Button();
             this.btnEditAction = new System.Windows.Forms.Button();
             this.btnRemAction = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tCSens = new System.Windows.Forms.TabControl();
             this.tPDeadzone = new System.Windows.Forms.TabPage();
             this.tPCurve = new System.Windows.Forms.TabPage();
             this.nUDLSCurve = new System.Windows.Forms.NumericUpDown();
@@ -321,11 +318,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
             this.gBLightbar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.pnlShift.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tBShiftRedBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBShiftGreenBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBShiftBlueBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.gBRumble.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).BeginInit();
@@ -362,7 +359,7 @@
             this.tPSpecial.SuspendLayout();
             this.pnlActions.SuspendLayout();
             this.fLPActionButtons.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tCSens.SuspendLayout();
             this.tPDeadzone.SuspendLayout();
             this.tPCurve.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
@@ -944,12 +941,8 @@
             // gBLightbar
             // 
             resources.ApplyResources(this.gBLightbar, "gBLightbar");
-            this.gBLightbar.Controls.Add(this.pnlShift);
+            this.gBLightbar.Controls.Add(this.cBWhileCharging);
             this.gBLightbar.Controls.Add(this.btnChargingColor);
-            this.gBLightbar.Controls.Add(this.rBColor);
-            this.gBLightbar.Controls.Add(this.rBFade);
-            this.gBLightbar.Controls.Add(this.rBNormal);
-            this.gBLightbar.Controls.Add(this.rBRainbow);
             this.gBLightbar.Controls.Add(this.lbWhileCharging);
             this.gBLightbar.Controls.Add(this.lbPercentFlashBar);
             this.gBLightbar.Controls.Add(this.pBRainbow);
@@ -958,10 +951,59 @@
             this.gBLightbar.Controls.Add(this.lbspc);
             this.gBLightbar.Controls.Add(this.cBLightbyBattery);
             this.gBLightbar.Controls.Add(this.lbFlashAt);
-            this.gBLightbar.Controls.Add(this.pnlLowBattery);
+            this.gBLightbar.Controls.Add(this.pnlShift);
             this.gBLightbar.Controls.Add(this.pnlFull);
+            this.gBLightbar.Controls.Add(this.pnlLowBattery);
             this.gBLightbar.Name = "gBLightbar";
             this.gBLightbar.TabStop = false;
+            // 
+            // cBWhileCharging
+            // 
+            resources.ApplyResources(this.cBWhileCharging, "cBWhileCharging");
+            this.cBWhileCharging.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBWhileCharging.FormattingEnabled = true;
+            this.cBWhileCharging.Items.AddRange(new object[] {
+            resources.GetString("cBWhileCharging.Items"),
+            resources.GetString("cBWhileCharging.Items1"),
+            resources.GetString("cBWhileCharging.Items2"),
+            resources.GetString("cBWhileCharging.Items3")});
+            this.cBWhileCharging.Name = "cBWhileCharging";
+            this.cBWhileCharging.SelectedIndexChanged += new System.EventHandler(this.cBWhileCharging_SelectedIndexChanged);
+            // 
+            // btnChargingColor
+            // 
+            resources.ApplyResources(this.btnChargingColor, "btnChargingColor");
+            this.btnChargingColor.BackColor = System.Drawing.Color.White;
+            this.btnChargingColor.Name = "btnChargingColor";
+            this.btnChargingColor.UseVisualStyleBackColor = false;
+            this.btnChargingColor.Click += new System.EventHandler(this.btnChargingColor_Click);
+            // 
+            // lbWhileCharging
+            // 
+            resources.ApplyResources(this.lbWhileCharging, "lbWhileCharging");
+            this.lbWhileCharging.Name = "lbWhileCharging";
+            // 
+            // lbPercentFlashBar
+            // 
+            resources.ApplyResources(this.lbPercentFlashBar, "lbPercentFlashBar");
+            this.lbPercentFlashBar.Name = "lbPercentFlashBar";
+            // 
+            // nUDflashLED
+            // 
+            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
+            this.nUDflashLED.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDflashLED.Name = "nUDflashLED";
+            this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
+            // 
+            // lbFlashAt
+            // 
+            resources.ApplyResources(this.lbFlashAt, "lbFlashAt");
+            this.lbFlashAt.Name = "lbFlashAt";
+            this.lbFlashAt.Click += new System.EventHandler(this.lbFlashAt_Click);
             // 
             // pnlShift
             // 
@@ -1044,72 +1086,6 @@
             this.tBShiftBlueBar.ValueChanged += new System.EventHandler(this.shiftBlueBar_ValueChanged);
             this.tBShiftBlueBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LightBar_MouseDown);
             this.tBShiftBlueBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Lightbar_MouseUp);
-            // 
-            // btnChargingColor
-            // 
-            resources.ApplyResources(this.btnChargingColor, "btnChargingColor");
-            this.btnChargingColor.BackColor = System.Drawing.Color.White;
-            this.btnChargingColor.Name = "btnChargingColor";
-            this.btnChargingColor.UseVisualStyleBackColor = false;
-            this.btnChargingColor.Click += new System.EventHandler(this.btnChargingColor_Click);
-            // 
-            // rBColor
-            // 
-            resources.ApplyResources(this.rBColor, "rBColor");
-            this.rBColor.Name = "rBColor";
-            this.rBColor.TabStop = true;
-            this.rBColor.UseVisualStyleBackColor = true;
-            this.rBColor.CheckedChanged += new System.EventHandler(this.rBColor_CheckedChanged);
-            // 
-            // rBFade
-            // 
-            resources.ApplyResources(this.rBFade, "rBFade");
-            this.rBFade.Name = "rBFade";
-            this.rBFade.UseVisualStyleBackColor = true;
-            this.rBFade.CheckedChanged += new System.EventHandler(this.rBFade_CheckedChanged);
-            // 
-            // rBNormal
-            // 
-            resources.ApplyResources(this.rBNormal, "rBNormal");
-            this.rBNormal.Checked = true;
-            this.rBNormal.Name = "rBNormal";
-            this.rBNormal.TabStop = true;
-            this.rBNormal.UseVisualStyleBackColor = true;
-            this.rBNormal.CheckedChanged += new System.EventHandler(this.rBNormal_CheckedChanged);
-            // 
-            // rBRainbow
-            // 
-            resources.ApplyResources(this.rBRainbow, "rBRainbow");
-            this.rBRainbow.Name = "rBRainbow";
-            this.rBRainbow.UseVisualStyleBackColor = true;
-            this.rBRainbow.CheckedChanged += new System.EventHandler(this.rBRainbow_CheckedChanged);
-            // 
-            // lbWhileCharging
-            // 
-            resources.ApplyResources(this.lbWhileCharging, "lbWhileCharging");
-            this.lbWhileCharging.Name = "lbWhileCharging";
-            // 
-            // lbPercentFlashBar
-            // 
-            resources.ApplyResources(this.lbPercentFlashBar, "lbPercentFlashBar");
-            this.lbPercentFlashBar.Name = "lbPercentFlashBar";
-            // 
-            // nUDflashLED
-            // 
-            resources.ApplyResources(this.nUDflashLED, "nUDflashLED");
-            this.nUDflashLED.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDflashLED.Name = "nUDflashLED";
-            this.nUDflashLED.ValueChanged += new System.EventHandler(this.nUDflashLED_ValueChanged);
-            // 
-            // lbFlashAt
-            // 
-            resources.ApplyResources(this.lbFlashAt, "lbFlashAt");
-            this.lbFlashAt.Name = "lbFlashAt";
-            this.lbFlashAt.Click += new System.EventHandler(this.lbFlashAt_Click);
             // 
             // gBRumble
             // 
@@ -1440,13 +1416,13 @@
             this.controlToolStripMenuItem,
             this.toolStripSeparator1,
             this.defaultToolStripMenuItem,
-            this.dpadToolStripMenuItem,
-            this.leftStickToolStripMenuItem,
-            this.rightStickToolStripMenuItem,
-            this.aBXYToolStripMenuItem,
-            this.wASDToolStripMenuItem,
-            this.arrowKeysToolStripMenuItem,
-            this.mouseToolStripMenuItem});
+            this.DpadToolStripMenuItem,
+            this.LSToolStripMenuItem,
+            this.RSToolStripMenuItem,
+            this.ABXYToolStripMenuItem,
+            this.WASDToolStripMenuItem,
+            this.ArrowKeysToolStripMenuItem,
+            this.MouseToolStripMenuItem});
             this.cMSPresets.Name = "contextMenuStrip1";
             this.cMSPresets.ShowImageMargin = false;
             this.cMSPresets.Opened += new System.EventHandler(this.cMSPresets_Opened);
@@ -1465,154 +1441,154 @@
             // 
             resources.ApplyResources(this.defaultToolStripMenuItem, "defaultToolStripMenuItem");
             this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
-            this.defaultToolStripMenuItem.Click += new System.EventHandler(this.defaultToolStripMenuItem_Click);
+            this.defaultToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
-            // dpadToolStripMenuItem
+            // DpadToolStripMenuItem
             // 
-            resources.ApplyResources(this.dpadToolStripMenuItem, "dpadToolStripMenuItem");
-            this.dpadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.DpadToolStripMenuItem, "DpadToolStripMenuItem");
+            this.DpadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tSMIDPadInverted,
             this.tSMIDPadInvertedX,
             this.tSMIDPadInvertedY});
-            this.dpadToolStripMenuItem.Name = "dpadToolStripMenuItem";
-            this.dpadToolStripMenuItem.Click += new System.EventHandler(this.dpadToolStripMenuItem_Click);
+            this.DpadToolStripMenuItem.Name = "DpadToolStripMenuItem";
+            this.DpadToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIDPadInverted
             // 
             resources.ApplyResources(this.tSMIDPadInverted, "tSMIDPadInverted");
             this.tSMIDPadInverted.Name = "tSMIDPadInverted";
-            this.tSMIDPadInverted.Click += new System.EventHandler(this.tSMIDPadInverted_Click);
+            this.tSMIDPadInverted.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIDPadInvertedX
             // 
             resources.ApplyResources(this.tSMIDPadInvertedX, "tSMIDPadInvertedX");
             this.tSMIDPadInvertedX.Name = "tSMIDPadInvertedX";
-            this.tSMIDPadInvertedX.Click += new System.EventHandler(this.tSMIDPadInvertedX_Click);
+            this.tSMIDPadInvertedX.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIDPadInvertedY
             // 
             resources.ApplyResources(this.tSMIDPadInvertedY, "tSMIDPadInvertedY");
             this.tSMIDPadInvertedY.Name = "tSMIDPadInvertedY";
-            this.tSMIDPadInvertedY.Click += new System.EventHandler(this.tSMIDPadInvertedY_Click);
+            this.tSMIDPadInvertedY.Click += new System.EventHandler(this.SetPreset);
             // 
-            // leftStickToolStripMenuItem
+            // LSToolStripMenuItem
             // 
-            resources.ApplyResources(this.leftStickToolStripMenuItem, "leftStickToolStripMenuItem");
-            this.leftStickToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.LSToolStripMenuItem, "LSToolStripMenuItem");
+            this.LSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tSMILSInverted,
             this.tSMILSInvertedX,
             this.tSMILSInvertedY});
-            this.leftStickToolStripMenuItem.Name = "leftStickToolStripMenuItem";
-            this.leftStickToolStripMenuItem.Click += new System.EventHandler(this.leftStickToolStripMenuItem_Click);
+            this.LSToolStripMenuItem.Name = "LSToolStripMenuItem";
+            this.LSToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMILSInverted
             // 
             resources.ApplyResources(this.tSMILSInverted, "tSMILSInverted");
             this.tSMILSInverted.Name = "tSMILSInverted";
-            this.tSMILSInverted.Click += new System.EventHandler(this.tSMILSInverted_Click);
+            this.tSMILSInverted.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMILSInvertedX
             // 
             resources.ApplyResources(this.tSMILSInvertedX, "tSMILSInvertedX");
             this.tSMILSInvertedX.Name = "tSMILSInvertedX";
-            this.tSMILSInvertedX.Click += new System.EventHandler(this.tSMILSInvertedX_Click);
+            this.tSMILSInvertedX.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMILSInvertedY
             // 
             resources.ApplyResources(this.tSMILSInvertedY, "tSMILSInvertedY");
             this.tSMILSInvertedY.Name = "tSMILSInvertedY";
-            this.tSMILSInvertedY.Click += new System.EventHandler(this.tSMILSInvertedY_Click);
+            this.tSMILSInvertedY.Click += new System.EventHandler(this.SetPreset);
             // 
-            // rightStickToolStripMenuItem
+            // RSToolStripMenuItem
             // 
-            resources.ApplyResources(this.rightStickToolStripMenuItem, "rightStickToolStripMenuItem");
-            this.rightStickToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.RSToolStripMenuItem, "RSToolStripMenuItem");
+            this.RSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tSMIRSInverted,
             this.tSMIRSInvertedX,
             this.tSMIRSInvertedY});
-            this.rightStickToolStripMenuItem.Name = "rightStickToolStripMenuItem";
-            this.rightStickToolStripMenuItem.Click += new System.EventHandler(this.rightStickToolStripMenuItem_Click);
+            this.RSToolStripMenuItem.Name = "RSToolStripMenuItem";
+            this.RSToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIRSInverted
             // 
             resources.ApplyResources(this.tSMIRSInverted, "tSMIRSInverted");
             this.tSMIRSInverted.Name = "tSMIRSInverted";
-            this.tSMIRSInverted.Click += new System.EventHandler(this.tSMIRSInverted_Click);
+            this.tSMIRSInverted.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIRSInvertedX
             // 
             resources.ApplyResources(this.tSMIRSInvertedX, "tSMIRSInvertedX");
             this.tSMIRSInvertedX.Name = "tSMIRSInvertedX";
-            this.tSMIRSInvertedX.Click += new System.EventHandler(this.tSMIRSInvertedX_Click);
+            this.tSMIRSInvertedX.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIRSInvertedY
             // 
             resources.ApplyResources(this.tSMIRSInvertedY, "tSMIRSInvertedY");
             this.tSMIRSInvertedY.Name = "tSMIRSInvertedY";
-            this.tSMIRSInvertedY.Click += new System.EventHandler(this.tSMIRSInvertedY_Click);
+            this.tSMIRSInvertedY.Click += new System.EventHandler(this.SetPreset);
             // 
-            // aBXYToolStripMenuItem
+            // ABXYToolStripMenuItem
             // 
-            resources.ApplyResources(this.aBXYToolStripMenuItem, "aBXYToolStripMenuItem");
-            this.aBXYToolStripMenuItem.Name = "aBXYToolStripMenuItem";
-            this.aBXYToolStripMenuItem.Click += new System.EventHandler(this.aBXYToolStripMenuItem_Click);
+            resources.ApplyResources(this.ABXYToolStripMenuItem, "ABXYToolStripMenuItem");
+            this.ABXYToolStripMenuItem.Name = "ABXYToolStripMenuItem";
+            this.ABXYToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
-            // wASDToolStripMenuItem
+            // WASDToolStripMenuItem
             // 
-            resources.ApplyResources(this.wASDToolStripMenuItem, "wASDToolStripMenuItem");
-            this.wASDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.wScanCodeToolStripMenuItem});
-            this.wASDToolStripMenuItem.Name = "wASDToolStripMenuItem";
-            this.wASDToolStripMenuItem.Click += new System.EventHandler(this.wASDToolStripMenuItem_Click);
+            resources.ApplyResources(this.WASDToolStripMenuItem, "WASDToolStripMenuItem");
+            this.WASDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wScanCodeWASDToolStripMenuItem});
+            this.WASDToolStripMenuItem.Name = "WASDToolStripMenuItem";
+            this.WASDToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
-            // wScanCodeToolStripMenuItem
+            // wScanCodeWASDToolStripMenuItem
             // 
-            resources.ApplyResources(this.wScanCodeToolStripMenuItem, "wScanCodeToolStripMenuItem");
-            this.wScanCodeToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.wScanCodeToolStripMenuItem.Name = "wScanCodeToolStripMenuItem";
-            this.wScanCodeToolStripMenuItem.Click += new System.EventHandler(this.wScanCodeToolStripMenuItem_Click);
+            resources.ApplyResources(this.wScanCodeWASDToolStripMenuItem, "wScanCodeWASDToolStripMenuItem");
+            this.wScanCodeWASDToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.wScanCodeWASDToolStripMenuItem.Name = "wScanCodeWASDToolStripMenuItem";
+            this.wScanCodeWASDToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
-            // arrowKeysToolStripMenuItem
+            // ArrowKeysToolStripMenuItem
             // 
-            resources.ApplyResources(this.arrowKeysToolStripMenuItem, "arrowKeysToolStripMenuItem");
-            this.arrowKeysToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.wScanCodeToolStripMenuItem1});
-            this.arrowKeysToolStripMenuItem.Name = "arrowKeysToolStripMenuItem";
-            this.arrowKeysToolStripMenuItem.Click += new System.EventHandler(this.arrowKeysToolStripMenuItem_Click);
+            resources.ApplyResources(this.ArrowKeysToolStripMenuItem, "ArrowKeysToolStripMenuItem");
+            this.ArrowKeysToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wScanCodeArrowKeysToolStripMenuItem});
+            this.ArrowKeysToolStripMenuItem.Name = "ArrowKeysToolStripMenuItem";
+            this.ArrowKeysToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
-            // wScanCodeToolStripMenuItem1
+            // wScanCodeArrowKeysToolStripMenuItem
             // 
-            resources.ApplyResources(this.wScanCodeToolStripMenuItem1, "wScanCodeToolStripMenuItem1");
-            this.wScanCodeToolStripMenuItem1.Name = "wScanCodeToolStripMenuItem1";
-            this.wScanCodeToolStripMenuItem1.Click += new System.EventHandler(this.wScanCodeToolStripMenuItem1_Click);
+            resources.ApplyResources(this.wScanCodeArrowKeysToolStripMenuItem, "wScanCodeArrowKeysToolStripMenuItem");
+            this.wScanCodeArrowKeysToolStripMenuItem.Name = "wScanCodeArrowKeysToolStripMenuItem";
+            this.wScanCodeArrowKeysToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
-            // mouseToolStripMenuItem
+            // MouseToolStripMenuItem
             // 
-            resources.ApplyResources(this.mouseToolStripMenuItem, "mouseToolStripMenuItem");
-            this.mouseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.MouseToolStripMenuItem, "MouseToolStripMenuItem");
+            this.MouseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tSMIMouseInverted,
             this.tSMIMouseInvertedX,
             this.tSMIMouseInvertedY});
-            this.mouseToolStripMenuItem.Name = "mouseToolStripMenuItem";
-            this.mouseToolStripMenuItem.Click += new System.EventHandler(this.mouseToolStripMenuItem_Click);
+            this.MouseToolStripMenuItem.Name = "MouseToolStripMenuItem";
+            this.MouseToolStripMenuItem.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIMouseInverted
             // 
             resources.ApplyResources(this.tSMIMouseInverted, "tSMIMouseInverted");
             this.tSMIMouseInverted.Name = "tSMIMouseInverted";
-            this.tSMIMouseInverted.Click += new System.EventHandler(this.tSMIMouseInverted_Click);
+            this.tSMIMouseInverted.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIMouseInvertedX
             // 
             resources.ApplyResources(this.tSMIMouseInvertedX, "tSMIMouseInvertedX");
             this.tSMIMouseInvertedX.Name = "tSMIMouseInvertedX";
-            this.tSMIMouseInvertedX.Click += new System.EventHandler(this.tSMIMouseInvertedX_Click);
+            this.tSMIMouseInvertedX.Click += new System.EventHandler(this.SetPreset);
             // 
             // tSMIMouseInvertedY
             // 
             resources.ApplyResources(this.tSMIMouseInvertedY, "tSMIMouseInvertedY");
             this.tSMIMouseInvertedY.Name = "tSMIMouseInvertedY";
-            this.tSMIMouseInvertedY.Click += new System.EventHandler(this.tSMIMouseInvertedY_Click);
+            this.tSMIMouseInvertedY.Click += new System.EventHandler(this.SetPreset);
             // 
             // fLPShiftTouchSwipe
             // 
@@ -3090,13 +3066,13 @@
             this.btnRemAction.UseVisualStyleBackColor = true;
             this.btnRemAction.Click += new System.EventHandler(this.btnRemAction_Click);
             // 
-            // tabControl1
+            // tCSens
             // 
-            resources.ApplyResources(this.tabControl1, "tabControl1");
-            this.tabControl1.Controls.Add(this.tPDeadzone);
-            this.tabControl1.Controls.Add(this.tPCurve);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
+            resources.ApplyResources(this.tCSens, "tCSens");
+            this.tCSens.Controls.Add(this.tPDeadzone);
+            this.tCSens.Controls.Add(this.tPCurve);
+            this.tCSens.Name = "tCSens";
+            this.tCSens.SelectedIndex = 0;
             // 
             // tPDeadzone
             // 
@@ -3181,7 +3157,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tCSens);
             this.Controls.Add(this.tabControls);
             this.Controls.Add(this.gBRumble);
             this.Controls.Add(this.gBLightbar);
@@ -3221,12 +3197,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).EndInit();
             this.gBLightbar.ResumeLayout(false);
             this.gBLightbar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
             this.pnlShift.ResumeLayout(false);
             this.pnlShift.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tBShiftRedBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBShiftGreenBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBShiftBlueBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
             this.gBRumble.ResumeLayout(false);
             this.gBRumble.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZ)).EndInit();
@@ -3268,7 +3244,7 @@
             this.tPSpecial.ResumeLayout(false);
             this.pnlActions.ResumeLayout(false);
             this.fLPActionButtons.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.tCSens.ResumeLayout(false);
             this.tPDeadzone.ResumeLayout(false);
             this.tPDeadzone.PerformLayout();
             this.tPCurve.ResumeLayout(false);
@@ -3338,12 +3314,8 @@
         private System.Windows.Forms.NumericUpDown nUDflashLED;
         private System.Windows.Forms.Label lbPercentFlashBar;
         private System.Windows.Forms.Label lbFlashAt;
-        private System.Windows.Forms.RadioButton rBFade;
-        private System.Windows.Forms.RadioButton rBNormal;
-        private System.Windows.Forms.RadioButton rBRainbow;
         private System.Windows.Forms.Label lbWhileCharging;
         private System.Windows.Forms.Button btnChargingColor;
-        private System.Windows.Forms.RadioButton rBColor;
         private System.Windows.Forms.CheckBox cBIdleDisconnect;
         private System.Windows.Forms.Label lbSixaxisX;
         private System.Windows.Forms.Label lbSixaxisZ;
@@ -3515,7 +3487,7 @@
         private System.Windows.Forms.Label lbTPSwipes;
         public System.Windows.Forms.ListView lVActions;
         private System.Windows.Forms.Label lbActionsTip;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tCSens;
         private System.Windows.Forms.TabPage tPDeadzone;
         private System.Windows.Forms.TabPage tPCurve;
         private System.Windows.Forms.NumericUpDown nUDLSCurve;
@@ -3526,16 +3498,15 @@
         private System.Windows.Forms.Label lbLSCurve;
         private System.Windows.Forms.ContextMenuStrip cMSPresets;
         private System.Windows.Forms.ToolStripMenuItem defaultToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wASDToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dpadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem leftStickToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rightStickToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem arrowKeysToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mouseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aBXYToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wScanCodeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wScanCodeToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem WASDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DpadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ArrowKeysToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MouseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ABXYToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wScanCodeWASDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wScanCodeArrowKeysToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem controlToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem tSMIDPadInverted;
@@ -3550,5 +3521,6 @@
         private System.Windows.Forms.ToolStripMenuItem tSMIMouseInverted;
         private System.Windows.Forms.ToolStripMenuItem tSMIMouseInvertedX;
         private System.Windows.Forms.ToolStripMenuItem tSMIMouseInvertedY;
+        private System.Windows.Forms.ComboBox cBWhileCharging;
     }
 }

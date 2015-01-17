@@ -45,7 +45,7 @@
             this.pBProgram = new System.Windows.Forms.PictureBox();
             this.lbProgram = new System.Windows.Forms.Label();
             this.btnBorder = new System.Windows.Forms.Button();
-            this.btnSetUTrigger = new System.Windows.Forms.Button();
+            this.btnSetUTriggerProfile = new System.Windows.Forms.Button();
             this.lVUnloadTrigger = new System.Windows.Forms.ListView();
             this.cHUnloadTrigger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlProgram = new System.Windows.Forms.Panel();
@@ -53,11 +53,23 @@
             this.cBMacroScanCode = new System.Windows.Forms.CheckBox();
             this.lbMacroRecorded = new System.Windows.Forms.Label();
             this.pnlProfile = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbUnloadTip = new System.Windows.Forms.Label();
+            this.pnlDisconnectBT = new System.Windows.Forms.Panel();
+            this.nUDDCBT = new System.Windows.Forms.NumericUpDown();
+            this.lbHoldFor = new System.Windows.Forms.Label();
+            this.lbSecs = new System.Windows.Forms.Label();
+            this.pnlKeys = new System.Windows.Forms.Panel();
+            this.btnSelectKey = new System.Windows.Forms.Button();
+            this.cBPressRelease = new System.Windows.Forms.ComboBox();
+            this.btnSetUTriggerKeys = new System.Windows.Forms.Button();
+            this.lbUnloadTipKey = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             this.pnlProgram.SuspendLayout();
             this.pnlMacro.SuspendLayout();
             this.pnlProfile.SuspendLayout();
+            this.pnlDisconnectBT.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDDCBT)).BeginInit();
+            this.pnlKeys.SuspendLayout();
             this.SuspendLayout();
             // 
             // lVTrigger
@@ -173,7 +185,9 @@
             resources.GetString("cBActions.Items"),
             resources.GetString("cBActions.Items1"),
             resources.GetString("cBActions.Items2"),
-            resources.GetString("cBActions.Items3")});
+            resources.GetString("cBActions.Items3"),
+            resources.GetString("cBActions.Items4"),
+            resources.GetString("cBActions.Items5")});
             this.cBActions.Name = "cBActions";
             this.cBActions.SelectedIndexChanged += new System.EventHandler(this.cBActions_SelectedIndexChanged);
             // 
@@ -206,12 +220,12 @@
             this.btnBorder.Name = "btnBorder";
             this.btnBorder.UseVisualStyleBackColor = false;
             // 
-            // btnSetUTrigger
+            // btnSetUTriggerProfile
             // 
-            resources.ApplyResources(this.btnSetUTrigger, "btnSetUTrigger");
-            this.btnSetUTrigger.Name = "btnSetUTrigger";
-            this.btnSetUTrigger.UseVisualStyleBackColor = true;
-            this.btnSetUTrigger.Click += new System.EventHandler(this.btnSetUTrigger_Click);
+            resources.ApplyResources(this.btnSetUTriggerProfile, "btnSetUTriggerProfile");
+            this.btnSetUTriggerProfile.Name = "btnSetUTriggerProfile";
+            this.btnSetUTriggerProfile.UseVisualStyleBackColor = true;
+            this.btnSetUTriggerProfile.Click += new System.EventHandler(this.btnSetUTrigger_Click);
             // 
             // lVUnloadTrigger
             // 
@@ -299,15 +313,83 @@
             // pnlProfile
             // 
             resources.ApplyResources(this.pnlProfile, "pnlProfile");
-            this.pnlProfile.Controls.Add(this.label1);
+            this.pnlProfile.Controls.Add(this.lbUnloadTip);
             this.pnlProfile.Controls.Add(this.cBProfiles);
-            this.pnlProfile.Controls.Add(this.btnSetUTrigger);
+            this.pnlProfile.Controls.Add(this.btnSetUTriggerProfile);
             this.pnlProfile.Name = "pnlProfile";
             // 
-            // label1
+            // lbUnloadTip
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.lbUnloadTip, "lbUnloadTip");
+            this.lbUnloadTip.Name = "lbUnloadTip";
+            // 
+            // pnlDisconnectBT
+            // 
+            resources.ApplyResources(this.pnlDisconnectBT, "pnlDisconnectBT");
+            this.pnlDisconnectBT.Controls.Add(this.nUDDCBT);
+            this.pnlDisconnectBT.Controls.Add(this.lbHoldFor);
+            this.pnlDisconnectBT.Controls.Add(this.lbSecs);
+            this.pnlDisconnectBT.Name = "pnlDisconnectBT";
+            // 
+            // nUDDCBT
+            // 
+            resources.ApplyResources(this.nUDDCBT, "nUDDCBT");
+            this.nUDDCBT.DecimalPlaces = 1;
+            this.nUDDCBT.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDDCBT.Name = "nUDDCBT";
+            // 
+            // lbHoldFor
+            // 
+            resources.ApplyResources(this.lbHoldFor, "lbHoldFor");
+            this.lbHoldFor.Name = "lbHoldFor";
+            // 
+            // lbSecs
+            // 
+            resources.ApplyResources(this.lbSecs, "lbSecs");
+            this.lbSecs.Name = "lbSecs";
+            // 
+            // pnlKeys
+            // 
+            resources.ApplyResources(this.pnlKeys, "pnlKeys");
+            this.pnlKeys.Controls.Add(this.btnSelectKey);
+            this.pnlKeys.Controls.Add(this.cBPressRelease);
+            this.pnlKeys.Controls.Add(this.btnSetUTriggerKeys);
+            this.pnlKeys.Controls.Add(this.lbUnloadTipKey);
+            this.pnlKeys.Name = "pnlKeys";
+            // 
+            // btnSelectKey
+            // 
+            resources.ApplyResources(this.btnSelectKey, "btnSelectKey");
+            this.btnSelectKey.Name = "btnSelectKey";
+            this.btnSelectKey.UseVisualStyleBackColor = true;
+            this.btnSelectKey.TextChanged += new System.EventHandler(this.btnSelectKey_TextChanged);
+            this.btnSelectKey.Click += new System.EventHandler(this.btnSelectKey_Click);
+            // 
+            // cBPressRelease
+            // 
+            resources.ApplyResources(this.cBPressRelease, "cBPressRelease");
+            this.cBPressRelease.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBPressRelease.FormattingEnabled = true;
+            this.cBPressRelease.Items.AddRange(new object[] {
+            resources.GetString("cBPressRelease.Items"),
+            resources.GetString("cBPressRelease.Items1")});
+            this.cBPressRelease.Name = "cBPressRelease";
+            // 
+            // btnSetUTriggerKeys
+            // 
+            resources.ApplyResources(this.btnSetUTriggerKeys, "btnSetUTriggerKeys");
+            this.btnSetUTriggerKeys.Name = "btnSetUTriggerKeys";
+            this.btnSetUTriggerKeys.UseVisualStyleBackColor = true;
+            this.btnSetUTriggerKeys.Click += new System.EventHandler(this.btnSetUTrigger_Click);
+            // 
+            // lbUnloadTipKey
+            // 
+            resources.ApplyResources(this.lbUnloadTipKey, "lbUnloadTipKey");
+            this.lbUnloadTipKey.Name = "lbUnloadTipKey";
             // 
             // SpecActions
             // 
@@ -322,9 +404,11 @@
             this.Controls.Add(this.lVTrigger);
             this.Controls.Add(this.lVUnloadTrigger);
             this.Controls.Add(this.btnBorder);
+            this.Controls.Add(this.pnlKeys);
+            this.Controls.Add(this.pnlProgram);
+            this.Controls.Add(this.pnlDisconnectBT);
             this.Controls.Add(this.pnlMacro);
             this.Controls.Add(this.pnlProfile);
-            this.Controls.Add(this.pnlProgram);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SpecActions";
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).EndInit();
@@ -332,6 +416,9 @@
             this.pnlMacro.ResumeLayout(false);
             this.pnlMacro.PerformLayout();
             this.pnlProfile.ResumeLayout(false);
+            this.pnlDisconnectBT.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nUDDCBT)).EndInit();
+            this.pnlKeys.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,14 +441,23 @@
         private System.Windows.Forms.PictureBox pBProgram;
         private System.Windows.Forms.Label lbProgram;
         private System.Windows.Forms.Button btnBorder;
-        private System.Windows.Forms.Button btnSetUTrigger;
+        private System.Windows.Forms.Button btnSetUTriggerProfile;
         private System.Windows.Forms.ListView lVUnloadTrigger;
         private System.Windows.Forms.ColumnHeader cHUnloadTrigger;
         private System.Windows.Forms.Panel pnlProgram;
         private System.Windows.Forms.Panel pnlMacro;
         private System.Windows.Forms.Panel pnlProfile;
         public System.Windows.Forms.Label lbMacroRecorded;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbUnloadTip;
         private System.Windows.Forms.CheckBox cBMacroScanCode;
+        private System.Windows.Forms.Panel pnlDisconnectBT;
+        private System.Windows.Forms.NumericUpDown nUDDCBT;
+        private System.Windows.Forms.Label lbSecs;
+        private System.Windows.Forms.Label lbHoldFor;
+        private System.Windows.Forms.Panel pnlKeys;
+        private System.Windows.Forms.Label lbUnloadTipKey;
+        private System.Windows.Forms.Button btnSetUTriggerKeys;
+        private System.Windows.Forms.Button btnSelectKey;
+        private System.Windows.Forms.ComboBox cBPressRelease;
     }
 }

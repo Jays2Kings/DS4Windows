@@ -14,6 +14,7 @@ namespace DS4Windows
         private int device;
         private Button button;
         private Options ops;
+        private SpecActions sA;
         public List<string> macros = new List<string>();
         public List<int> macrostag = new List<int>();
         public bool macrorepeat, newaction;
@@ -91,18 +92,14 @@ namespace DS4Windows
                 }
                 catch { }
             }
-            if (button.Name.StartsWith("bn"))
-                Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(2));
-            else if (button.Name.StartsWith("bnHold"))
+            if (button.Name.StartsWith("bnShift"))
             {
-                Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(6));
-                btnFallBack.Text = "Disable";
-            }
-            else if (button.Name.StartsWith("bnShift"))
-            {
+                Console.Write("shift");
                 Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(7));
-                btnFallBack.Text = "Fall Back";
+                btnDefault.Text = Properties.Resources.FallBack;
             }
+            else if (button.Name.StartsWith("bn"))
+                Text = Properties.Resources.SelectActionTitle.Replace("*action*", button.Name.Substring(2));
             foreach (System.Windows.Forms.Control control in Controls)
                 if (control is Button)
                     ((Button)control).Click += anybtn_Click;
@@ -113,6 +110,27 @@ namespace DS4Windows
                 btnMOUSERIGHT.Visible = false;
                 btnMOUSEUP.Visible = false;
             }
+            ActiveControl = lBMacroOn;
+        }
+
+        public KBM360(SpecActions ooo, Button buton)
+        {
+            InitializeComponent();
+            sA = ooo;
+            button = buton;
+            Size = new System.Drawing.Size(763, 244);
+            cBScanCode.Checked = button.Text.Contains("(SC)");
+            cBToggle.Checked = button.Text.Contains("(Toggle)");
+            gBExtras.Visible = false;
+            bnMacro.Visible = false;
+            Text = Properties.Resources.SelectActionTitle.Replace("*action*", "Trigger");
+            foreach (System.Windows.Forms.Control control in Controls)
+                if (control is Button)
+                    ((Button)control).Click += anybtn_Click;
+            btnMOUSEDOWN.Visible = false;
+            btnMOUSELEFT.Visible = false;
+            btnMOUSERIGHT.Visible = false;
+            btnMOUSEUP.Visible = false;
             ActiveControl = lBMacroOn;
         }
 
@@ -155,7 +173,14 @@ namespace DS4Windows
                 string extras = GetExtras();
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(keytag, extras);
                 newaction = true;
-                ops.ChangeButtonText(keyname, tag);
+                if (ops != null)
+                    ops.ChangeButtonText(keyname, tag);
+                else if (sA != null)
+                {
+                    button.Text = keyname;
+                    button.Tag = keytag;
+                    button.ForeColor = Color.Black;
+                }
                 this.Close();
             }
         }
@@ -167,34 +192,50 @@ namespace DS4Windows
                    (cBMouse.Checked ? "1" + "," + (byte)nUDMouse.Value : "0,0");
             return t;
         }
+
         private void finalMeasure(object sender, FormClosedEventArgs e)
         {
-            if (rb != null) //if record macro is open
+            if (ops != null)
             {
-                if (!rb.saved && rb.macros.Count > 0)
-                    if (MessageBox.Show(Properties.Resources.SaveRecordedMacro, "DS4Windows", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                        rb.btnSave_Click(this, null);
+                if (rb != null) //if record macro is open
+                {
+                    if (!rb.saved && rb.macros.Count > 0)
+                        if (MessageBox.Show(Properties.Resources.SaveRecordedMacro, "DS4Windows", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                            rb.btnSave_Click(this, null);
+                }
+                if (lBMacroOn.Visible)
+                {
+                    string extras = GetExtras();
+                    keytag = null;
+                    KeyValuePair<object, string> tag = new KeyValuePair<object, string>(macrostag.ToArray(), extras);
+                    ops.ChangeButtonText("Macro", tag);
+                    //ops.ChangeButtonText("Macro", macrostag.ToArray());
+                }
+                else if (!newaction)
+                {
+                    string extras = GetExtras();
+                    KeyValuePair<object, string> tag = new KeyValuePair<object, string>(oldtag, extras);
+                    ops.ChangeButtonText(button.Text, tag);
+                }
+                int value;
+                bool tagisint = keytag != null && Int32.TryParse(keytag.ToString(), out value);
+                scanavail = lBMacroOn.Visible || tagisint;
+                toggleavil = tagisint;
+                ops.Toggle_Bn((scanavail ? cBScanCode.Checked : false), (toggleavil ? cBToggle.Checked : false), lBMacroOn.Visible, macrorepeat);
+                ops.UpdateLists();
             }
-            if (lBMacroOn.Visible)
+            else if (sA != null)
             {
-                string extras = GetExtras();
-                keytag = null;
-                KeyValuePair<object, string> tag = new KeyValuePair<object, string>(macrostag.ToArray(), extras);
-                ops.ChangeButtonText("Macro", tag);
-                //ops.ChangeButtonText("Macro", macrostag.ToArray());
+                if (button.Tag != null)
+                {
+                    int key;
+                    if (int.TryParse(button.Tag.ToString(), out key))
+                        button.Text = ((Keys)key).ToString() +
+                            (cBScanCode.Checked ? " (SC)" : "") +
+                            (cBToggle.Checked ? " (Toggle)" : "");
+                }
+                //button.Font = new Font(button.Font, (cBScanCode.Checked ? FontStyle.Bold : FontStyle.Regular) | (cBToggle.Checked ? FontStyle.Italic : FontStyle.Regular));
             }
-            else if (!newaction)
-            {
-                string extras = GetExtras();
-                KeyValuePair<object, string> tag = new KeyValuePair<object, string>(oldtag, extras);
-                ops.ChangeButtonText(button.Text, tag);
-            }
-            int value;
-            bool tagisint = keytag != null && Int32.TryParse(keytag.ToString(), out value);
-            scanavail = lBMacroOn.Visible || tagisint;
-            toggleavil = tagisint;
-            ops.Toggle_Bn((scanavail ? cBScanCode.Checked : false), (toggleavil ? cBToggle.Checked : false), lBMacroOn.Visible, macrorepeat);
-            ops.UpdateLists();
         }
 
         private void Key_Down_Action(object sender, KeyEventArgs e)
@@ -205,7 +246,14 @@ namespace DS4Windows
                 string extras = GetExtras();
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(e.KeyValue, extras);
                 newaction = true;
-                ops.ChangeButtonText(e.KeyCode.ToString(), tag);
+                if (ops != null)
+                    ops.ChangeButtonText(keyname, tag);
+                else if (sA != null)
+                {
+                    button.Text = e.KeyCode.ToString();
+                    button.Tag = e.KeyValue;
+                    button.ForeColor = Color.Black;
+                }
                 this.Close();
             }
         }
@@ -218,7 +266,14 @@ namespace DS4Windows
                 string extras = GetExtras();
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(e.KeyValue, extras);
                 newaction = true;
-                ops.ChangeButtonText(e.KeyCode.ToString(), tag);
+                if (ops != null)
+                    ops.ChangeButtonText(keyname, tag);
+                else if (sA != null)
+                {
+                    button.Text = e.KeyCode.ToString();
+                    button.Tag = e.KeyValue;
+                    button.ForeColor = Color.Black;
+                }
                 this.Close();
             }
         }

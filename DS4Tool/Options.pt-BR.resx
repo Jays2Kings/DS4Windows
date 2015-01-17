@@ -306,6 +306,18 @@ Com Perfil</value>
   <data name="gBOther.Text" xml:space="preserve">
     <value>Outros</value>
   </data>
+  <data name="cBWhileCharging.Items1" xml:space="preserve">
+    <value>Desvanecer e Esgotado</value>
+  </data>
+  <data name="cBWhileCharging.Items2" xml:space="preserve">
+    <value>Arco</value>
+  </data>
+  <data name="cBWhileCharging.Items3" xml:space="preserve">
+    <value>Cor</value>
+  </data>
+  <data name="cBWhileCharging.Location" type="System.Drawing.Point, System.Drawing">
+    <value>102, 105</value>
+  </data>
   <data name="cBShiftLight.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 17</value>
   </data>
@@ -339,23 +351,8 @@ Com Perfil</value>
   <data name="tBShiftBlueBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>332, 31</value>
   </data>
-  <data name="rBColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 17</value>
-  </data>
-  <data name="rBColor.Text" xml:space="preserve">
-    <value>Cor</value>
-  </data>
-  <data name="rBFade.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 17</value>
-  </data>
-  <data name="rBFade.Text" xml:space="preserve">
-    <value>Desvanecer e Esgotado</value>
-  </data>
-  <data name="rBRainbow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 17</value>
-  </data>
-  <data name="rBRainbow.Text" xml:space="preserve">
-    <value>Arco</value>
+  <data name="btnChargingColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 108</value>
   </data>
   <data name="lbWhileCharging.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 13</value>

@@ -223,38 +223,26 @@ avec le profil</value>
   <data name="gBLightbar.Text" xml:space="preserve">
     <value>Barre lumineuse</value>
   </data>
-  <data name="btnChargingColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 107</value>
-  </data>
-  <data name="rBColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>293, 105</value>
-  </data>
-  <data name="rBColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 17</value>
-  </data>
-  <data name="rBColor.Text" xml:space="preserve">
-    <value>Couleur</value>
-  </data>
-  <data name="rBFade.Location" type="System.Drawing.Point, System.Drawing">
-    <value>138, 105</value>
-  </data>
-  <data name="rBFade.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 17</value>
-  </data>
-  <data name="rBFade.Text" xml:space="preserve">
+  <data name="cBWhileCharging.Items1" xml:space="preserve">
     <value>Pulsation</value>
   </data>
-  <data name="rBNormal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 105</value>
-  </data>
-  <data name="rBRainbow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 105</value>
-  </data>
-  <data name="rBRainbow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 17</value>
-  </data>
-  <data name="rBRainbow.Text" xml:space="preserve">
+  <data name="cBWhileCharging.Items2" xml:space="preserve">
     <value>Arc-en-ciel</value>
+  </data>
+  <data name="cBWhileCharging.Items3" xml:space="preserve">
+    <value>Couleur</value>
+  </data>
+  <data name="cBWhileCharging.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 105</value>
+  </data>
+  <data name="lbShiftGreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="lbShiftGreen.Text" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="btnChargingColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>202, 108</value>
   </data>
   <data name="lbWhileCharging.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
@@ -274,17 +262,8 @@ avec le profil</value>
   <data name="lbFlashAt.Text" xml:space="preserve">
     <value>Clignoter à</value>
   </data>
-  <data name="lbShiftGreen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 13</value>
-  </data>
-  <data name="lbShiftGreen.Text" xml:space="preserve">
-    <value>V</value>
-  </data>
   <data name="gBRumble.Text" xml:space="preserve">
     <value>Vibrer</value>
-  </data>
-  <data name="gBDeadzone.Text" xml:space="preserve">
-    <value>Zone morte</value>
   </data>
   <data name="pBSADeadzone.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

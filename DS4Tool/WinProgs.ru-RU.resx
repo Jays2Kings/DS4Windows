@@ -117,13 +117,81 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancelar</value>
+  <data name="bnAddPrograms.Text" xml:space="preserve">
+    <value>Добавить программы</value>
   </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Salvar</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bnSave.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;Escreva Novo Nome Aqui&gt;</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bnSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>653, 2</value>
+  </data>
+  <data name="bnSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 23</value>
+  </data>
+  <data name="bnSave.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
+  </data>
+  <data name="lBController1.Text" xml:space="preserve">
+    <value>1-й контроллер</value>
+  </data>
+  <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
+  </data>
+  <data name="lBController2.Text" xml:space="preserve">
+    <value>2-й контроллер</value>
+  </data>
+  <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
+  </data>
+  <data name="lBController3.Text" xml:space="preserve">
+    <value>3-й контроллер</value>
+  </data>
+  <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
+  </data>
+  <data name="lBController4.Text" xml:space="preserve">
+    <value>4-й контроллер</value>
+  </data>
+  <data name="bnDelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>580, 2</value>
+  </data>
+  <data name="bnDelete.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="nameHeader.Text" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="PathHeader.Text" xml:space="preserve">
+    <value>Путь</value>
+  </data>
+  <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 13</value>
+  </data>
+  <data name="pBProfilesTip.Text" xml:space="preserve">
+    <value>Выберите профиль</value>
+  </data>
+  <data name="bnHideUnchecked.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 23</value>
+  </data>
+  <data name="bnHideUnchecked.Text" xml:space="preserve">
+    <value>Спрятать не выбранное</value>
+  </data>
+  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Добавить из меню Пуск</value>
+  </data>
+  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Добавить игры из Steam</value>
+  </data>
+  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Добавить игры из Origin</value>
+  </data>
+  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Обзор других программ...</value>
   </data>
 </root>

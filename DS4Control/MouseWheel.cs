@@ -42,30 +42,14 @@ namespace DS4Control
 
             // Collect rounding errors instead of losing motion.
             double xMotion = coefficient * (currentMidX - lastMidX);
-            if (xMotion > 0.0)
-            {
-                if (horizontalRemainder > 0.0)
+            if ((xMotion > 0.0 &&horizontalRemainder > 0.0) || (xMotion < 0.0 &&horizontalRemainder < 0.0))
                     xMotion += horizontalRemainder;
-            }
-            else if (xMotion < 0.0)
-            {
-                if (horizontalRemainder < 0.0)
-                    xMotion += horizontalRemainder;
-            }
             int xAction = (int)xMotion;
             horizontalRemainder = xMotion - xAction;
 
             double yMotion = coefficient * (lastMidY - currentMidY);
-            if (yMotion > 0.0)
-            {
-                if (verticalRemainder > 0.0)
+            if ((yMotion > 0.0 && verticalRemainder > 0.0) || (yMotion < 0.0 && verticalRemainder < 0.0))
                     yMotion += verticalRemainder;
-            }
-            else if (yMotion < 0.0)
-            {
-                if (verticalRemainder < 0.0)
-                    yMotion += verticalRemainder;
-            }
             int yAction = (int)yMotion;
             verticalRemainder = yMotion - yAction;
 

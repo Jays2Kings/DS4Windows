@@ -123,10 +123,16 @@
   <data name="&gt;&gt;lBProgramPath.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bnAddPrograms.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 23</value>
+  </data>
   <data name="&gt;&gt;cBProfile2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="&gt;&gt;bnAddPrograms.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 13</value>
   </data>
@@ -135,9 +141,6 @@
   </data>
   <data name="&gt;&gt;cBProfile4.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lBController1.Name" xml:space="preserve">
-    <value>lBController1</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="bnDelete.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -198,8 +201,11 @@
   <data name="cBProfile4.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="lBProgramPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>519, 195</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Auto-Profiles</value>
+  </data>
+  <data name="&gt;&gt;lBController4.Name" xml:space="preserve">
+    <value>lBController4</value>
   </data>
   <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
     <value>Add Start Menu Programs</value>
@@ -222,8 +228,8 @@
   <data name="&gt;&gt;bnAddPrograms.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;bnAddPrograms.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;iLIcons.Name" xml:space="preserve">
+    <value>iLIcons</value>
   </data>
   <data name="cBProfile2.Location" type="System.Drawing.Point, System.Drawing">
     <value>609, 55</value>
@@ -252,14 +258,8 @@
   <data name="&gt;&gt;bnSave.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;iLIcons.Name" xml:space="preserve">
-    <value>iLIcons</value>
-  </data>
   <data name="cBProfile3.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 21</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Add Origin Games</value>
   </data>
   <data name="&gt;&gt;bnHideUnchecked.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -270,8 +270,8 @@
   <data name="&gt;&gt;PathHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lBController4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="&gt;&gt;addProgramsFromStartMenuToolStripMenuItem.Name" xml:space="preserve">
+    <value>addProgramsFromStartMenuToolStripMenuItem</value>
   </data>
   <data name="lBController1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -306,9 +306,6 @@
   <data name="pBProfilesTip.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;addProgramsFromStartMenuToolStripMenuItem.Name" xml:space="preserve">
-    <value>addProgramsFromStartMenuToolStripMenuItem</value>
-  </data>
   <data name="lVPrograms.Size" type="System.Drawing.Size, System.Drawing">
     <value>505, 190</value>
   </data>
@@ -321,17 +318,14 @@
   <data name="&gt;&gt;cBProfile3.Name" xml:space="preserve">
     <value>cBProfile3</value>
   </data>
-  <data name="&gt;&gt;nameHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;lBController2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bnHideUnchecked.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pBProfilesTip.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;lBController1.Name" xml:space="preserve">
+    <value>lBController1</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>WinProgs</value>
@@ -372,8 +366,8 @@
   <data name="openProgram.Filter" xml:space="preserve">
     <value>Programs|*.exe|Shortcuts|*.lnk</value>
   </data>
-  <data name="&gt;&gt;lBController4.Name" xml:space="preserve">
-    <value>lBController4</value>
+  <data name="&gt;&gt;nameHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;openProgram.Name" xml:space="preserve">
     <value>openProgram</value>
@@ -405,8 +399,8 @@
   <data name="&gt;&gt;bnSave.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="bnAddPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 23</value>
+  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Add Origin Games</value>
   </data>
   <data name="&gt;&gt;bnSave.Name" xml:space="preserve">
     <value>bnSave</value>
@@ -422,9 +416,6 @@
   </data>
   <data name="&gt;&gt;bnDelete.Name" xml:space="preserve">
     <value>bnDelete</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Auto-Profiles</value>
   </data>
   <data name="&gt;&gt;pBProfilesTip.Name" xml:space="preserve">
     <value>pBProfilesTip</value>
@@ -515,6 +506,9 @@
   </data>
   <data name="PathHeader.Width" type="System.Int32, mscorlib">
     <value>358</value>
+  </data>
+  <data name="lBController4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="bnDelete.Text" xml:space="preserve">
     <value>Remove</value>
@@ -630,25 +624,31 @@
   <data name="bnHideUnchecked.Text" xml:space="preserve">
     <value>Hide unchecked</value>
   </data>
+  <data name="lBProgramPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>519, 195</value>
+  </data>
   <data name="bnSave.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 23</value>
+  </data>
+  <data name="&gt;&gt;pBProfilesTip.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;PathHeader.Name" xml:space="preserve">
     <value>PathHeader</value>
   </data>
-  <metadata name="openProgram.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>de-DE</value>
   </metadata>
   <metadata name="iLIcons.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>143, 17</value>
   </metadata>
+  <metadata name="openProgram.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="cMSPrograms.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>232, 17</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>pt-BR</value>
   </metadata>
 </root>

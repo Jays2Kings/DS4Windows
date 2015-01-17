@@ -190,6 +190,9 @@
   <data name="numUDMouseSens.Location" type="System.Drawing.Point, System.Drawing">
     <value>124, 15</value>
   </data>
+  <data name="gBOther.Text" xml:space="preserve">
+    <value>Otro</value>
+  </data>
   <data name="cBTPforControls.Location" type="System.Drawing.Point, System.Drawing">
     <value>280, 37</value>
   </data>
@@ -237,8 +240,14 @@ con perfil</value>
   <data name="cBIdleDisconnect.Text" xml:space="preserve">
     <value>Desconectado Inactivo</value>
   </data>
-  <data name="gBOther.Text" xml:space="preserve">
-    <value>Otro</value>
+  <data name="gBLightbar.Text" xml:space="preserve">
+    <value>Barra de luz</value>
+  </data>
+  <data name="cBWhileCharging.Items2" xml:space="preserve">
+    <value>Arcoiris</value>
+  </data>
+  <data name="cBWhileCharging.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 105</value>
   </data>
   <data name="lbShiftGreen.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -249,17 +258,11 @@ con perfil</value>
   <data name="lbShiftBlue.Text" xml:space="preserve">
     <value>A</value>
   </data>
-  <data name="rBRainbow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 17</value>
-  </data>
-  <data name="rBRainbow.Text" xml:space="preserve">
-    <value>Arcoiris</value>
-  </data>
-  <data name="gBLightbar.Text" xml:space="preserve">
-    <value>Barra de luz</value>
-  </data>
   <data name="gBRumble.Text" xml:space="preserve">
     <value>Vibracion</value>
+  </data>
+  <data name="tPController.Text" xml:space="preserve">
+    <value>Lecturas del Controlador</value>
   </data>
   <data name="lb6Accel.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 13</value>
@@ -546,16 +549,13 @@ con perfil</value>
         AElFTkSuQmCC
 </value>
   </data>
-  <data name="tPController.Text" xml:space="preserve">
-    <value>Lecturas del Controlador</value>
-  </data>
   <data name="btnShiftFullView.Text" xml:space="preserve">
-    <value>&lt;- Regresar a vista completa</value>
-  </data>
-  <data name="btnFullView.Text" xml:space="preserve">
     <value>&lt;- Regresar a vista completa</value>
   </data>
   <data name="tPControls.Text" xml:space="preserve">
     <value>Controles</value>
+  </data>
+  <data name="btnFullView.Text" xml:space="preserve">
+    <value>&lt;- Regresar a vista completa</value>
   </data>
 </root>

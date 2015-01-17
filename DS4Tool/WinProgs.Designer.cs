@@ -131,7 +131,6 @@
             // 
             // openProgram
             // 
-            this.openProgram.FileName = "openFileDialog1";
             resources.ApplyResources(this.openProgram, "openProgram");
             // 
             // bnDelete

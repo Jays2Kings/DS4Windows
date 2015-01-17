@@ -429,4 +429,7 @@
   <data name="WillKeep" xml:space="preserve">
     <value>Manter</value>
   </data>
+  <data name="PlusNewProfile" xml:space="preserve">
+    <value>Novo Perfil</value>
+  </data>
 </root>

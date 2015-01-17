@@ -353,8 +353,8 @@ namespace DS4Windows
                             }
                     }
                     catch { }
-                    finally { File.Delete(exepath + "\\1.4.22.ds4w"); }
                 }
+                File.Delete(exepath + "\\1.4.22.ds4w");
             }
         }
 

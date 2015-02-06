@@ -1491,6 +1491,7 @@ namespace DS4Windows
 
         private Point CalculateDeadzoneLocation(Label track, PictureBox deadzone)
         {
+
             return new Point(track.Location.X + (int)(dpix * 63) - deadzone.Size.Width / 2, track.Location.Y + (int)(dpix * 63) - deadzone.Size.Height / 2);
         }
 
@@ -1553,27 +1554,13 @@ namespace DS4Windows
         private void numUDRS_ValueChanged(object sender, EventArgs e)
         {
             Global.setRSDeadzone(device, (byte)Math.Round((nUDRS.Value * 127),0));
-            if (nUDRS.Value <= 0)
-                pBRSDeadzone.Visible = false;
-            else
-            {
-                pBRSDeadzone.Visible = true;
-                pBRSDeadzone.Size = new Size((int)(nUDRS.Value * 125), (int)(nUDRS.Value * 125));
-                pBRSDeadzone.Location = new Point(lbRSTrack.Location.X + (int)(dpix * 63) - pBRSDeadzone.Size.Width / 2, lbRSTrack.Location.Y + (int)(dpiy * 63) - pBRSDeadzone.Size.Width / 2);
-            }
+            ProcessDeadZomeValueChange(lbRSTrack, pBRSDeadzone, nUDRS, nUDRS);
         }
 
         private void numUDLS_ValueChanged(object sender, EventArgs e)
         {
             Global.setLSDeadzone(device, (byte)Math.Round((nUDLS.Value * 127),0));
-            if (nUDLS.Value <= 0)
-                pBLSDeadzone.Visible = false;
-            else
-            {
-                pBLSDeadzone.Visible = true;
-                pBLSDeadzone.Size = new Size((int)(nUDLS.Value*125), (int)(nUDLS.Value*125));
-                pBLSDeadzone.Location = new Point(lbLSTrack.Location.X + (int)(dpix * 63) - pBLSDeadzone.Size.Width / 2, lbLSTrack.Location.Y + (int)(dpiy * 63) - pBLSDeadzone.Size.Width / 2);
-            }
+            ProcessDeadZomeValueChange(lbLSTrack, pBLSDeadzone, nUDLS, nUDLS);
         }
 
         private void numUDMouseSens_ValueChanged(object sender, EventArgs e)

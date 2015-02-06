@@ -1,0 +1,22 @@
+﻿<Window x:Class="DS4WCF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:DS4WCF"
+        Title="MainWindow" Height="656" Width="884.25">
+    <Grid>
+        <Grid x:Name="ControllerGrid" HorizontalAlignment="Left" Height="600" Margin="10,10,0,0" VerticalAlignment="Top" Width="604">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <local:ControllerInputGrid x:Name="ControllerPanel0" Grid.Column="0" Grid.Row="0"  />
+            <local:ControllerInputGrid x:Name="ControllerPanel1" Grid.Column="1" Grid.Row="0"  />
+            <local:ControllerInputGrid x:Name="ControllerPanel2" Grid.Column="0" Grid.Row="1"  />
+            <local:ControllerInputGrid x:Name="ControllerPanel3" Grid.Column="1" Grid.Row="1"  />
+        </Grid>
+    </Grid>
+</Window>

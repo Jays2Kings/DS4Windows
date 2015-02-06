@@ -11,22 +11,51 @@ using System.Linq;
 
 namespace DS4Windows
 {
-    public static class OptionsUIUtilities
-    {
-        public static void AddButtonsToButtonCollection(System.Windows.Forms.Control.ControlCollection controls, List<Button> buttonCollection, string contains)
-        {
-             foreach (System.Windows.Forms.Control control in controls)
-             {
-                 if (control is Button && !((Button)control).Name.Contains(contains))
-                 {
-                     buttonCollection.Add((Button)control);
-                 }
-             }
-        }
-    }
 
     public partial class Options : Form
     {
+        public static class OptionsUIUtilities
+        {
+            public static void AddButtonsToButtonCollection(System.Windows.Forms.Control.ControlCollection controls, List<Button> buttonCollection, string contains)
+            {
+                foreach (System.Windows.Forms.Control control in controls)
+                {
+                    if (control is Button && !((Button)control).Name.Contains(contains))
+                    {
+                        buttonCollection.Add((Button)control);
+                    }
+                }
+            }
+
+            public static void ApplyMouseHoverEventToControls(System.Windows.Forms.Control.ControlCollection controls, EventHandler handler )
+            {
+                foreach (System.Windows.Forms.Control control in controls)
+                {
+                    if (control.HasChildren)
+                    {
+                        ApplyMouseHoverEventToControls(control.Controls, handler);
+                    }
+
+                    control.MouseHover += handler;
+                }
+            }
+
+            public static void ApplyMouseHoverEventToButtonList(List<Button> buttons, EventHandler handler)
+            {
+                foreach (var button in buttons)
+                {
+                    button.MouseHover += handler;
+                }
+            }
+
+            public static void InitializeColorTrackBar(TrackBar bar, DS4Color color)
+            {
+                bar.Value = color.red;
+                bar.Value = color.green;
+                bar.Value = color.blue;
+            }
+        }
+
         public int device;
         public string filename;
         public Timer inputtimer = new Timer(), sixaxisTimer = new Timer();
@@ -56,6 +85,8 @@ namespace DS4Windows
             root = rt;
 
             Graphics g = this.CreateGraphics();
+
+            //Serguei: This will never throw, you are not ever dividing by zero
             try
             {
                 dpix = g.DpiX / 100f * 1.041666666667f;
@@ -127,30 +158,47 @@ namespace DS4Windows
 
             root.lbLastMessage.ForeColor = Color.Black;
             root.lbLastMessage.Text = "Hover over items to see description or more about";
+
+            OptionsUIUtilities.ApplyMouseHoverEventToControls(Controls, Items_MouseHover);
+            OptionsUIUtilities.ApplyMouseHoverEventToButtonList(buttons, button_MouseHover);
+
+            /*
             foreach (System.Windows.Forms.Control control in Controls)
             {
                 if (control.HasChildren)
+                {
                     foreach (System.Windows.Forms.Control ctrl in control.Controls)
                     {
                         if (ctrl.HasChildren)
+                        {
                             foreach (System.Windows.Forms.Control ctrl2 in ctrl.Controls)
                             {
                                 if (ctrl2.HasChildren)
+                                {
                                     foreach (System.Windows.Forms.Control ctrl3 in ctrl2.Controls)
+                                    {
                                         ctrl3.MouseHover += Items_MouseHover;
+                                    }
+                                }
                                 ctrl2.MouseHover += Items_MouseHover;
                             }
+                        }
                         ctrl.MouseHover += Items_MouseHover;
                     }
+                }
                 control.MouseHover += Items_MouseHover;
-            }
+            }*/
 
             if (device < 4)
-            nUDSixaxis.Value = deviceNum + 1;
+            {
+                nUDSixaxis.Value = deviceNum + 1;
+            }
+
             if (filename != "")
             {
                 if (device == 4) //if temp device is called
                     Global.setAProfile(4, name);
+
                 Global.LoadProfile(device, buttons.ToArray(), subbuttons.ToArray(), false, Program.rootHub);
                 DS4Color color = Global.loadColor(device);
                 tBRedBar.Value = color.red;
@@ -163,15 +211,19 @@ namespace DS4Windows
                 lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
                 pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, (int)(dpix * 42)) : new Point(pnlFull.Location.X, (int)(dpiy * 48)));
 
+                
                 DS4Color lowColor = Global.loadLowColor(device);
                 tBLowRedBar.Value = lowColor.red;
                 tBLowGreenBar.Value = lowColor.green;
                 tBLowBlueBar.Value = lowColor.blue;
 
+                //OptionsUIUtilities.InitializeColorTrackBar(tBLowRedBar, Global.loadLowColor(device));
+
                 DS4Color shiftColor = Global.loadShiftColor(device);
                 tBShiftRedBar.Value = shiftColor.red;
                 tBShiftGreenBar.Value = shiftColor.green;
                 tBShiftBlueBar.Value = shiftColor.blue;
+
                 cBShiftLight.Checked = Global.getShiftColorOn(device);
 
                 DS4Color cColor = Global.loadChargingColor(device);
@@ -180,7 +232,10 @@ namespace DS4Windows
                 DS4Color fColor = Global.loadFlashColor(device);
                 lbFlashAt.ForeColor = Color.FromArgb(fColor.red, fColor.green, fColor.blue);
                 if (lbFlashAt.ForeColor.GetBrightness() > .5f)
+                {
                     lbFlashAt.BackColor = Color.Black;
+                }
+
                 lbPercentFlashBar.ForeColor = lbFlashAt.ForeColor;
                 lbPercentFlashBar.BackColor = lbFlashAt.BackColor;
                 nUDRumbleBoost.Value = Global.loadRumbleBoost(device);
@@ -223,6 +278,8 @@ namespace DS4Windows
                     pBRainbow.Image = colored;
                     ToggleRainbow(true);
                 }
+
+                //Double is 64 bit, byte is 32. Right now this is byte / double, which are not even the same size
                 nUDLS.Value = Math.Round((decimal)(Global.getLSDeadzone(device) / 127d), 3);
                 nUDRS.Value = Math.Round((decimal)(Global.getRSDeadzone(device) / 127d), 3);
                 nUDSX.Value = (decimal)Global.getSXDeadzone(device);
@@ -234,6 +291,7 @@ namespace DS4Windows
                     pBProgram.Image = Icon.ExtractAssociatedIcon(Global.getLaunchProgram(device)).ToBitmap();
                     btnBrowse.Text = Path.GetFileNameWithoutExtension(Global.getLaunchProgram(device));
                 }
+
                 cBDinput.Checked = Global.getDinputOnly(device);
                 olddinputcheck = cBDinput.Checked;
                 cbStartTouchpadOff.Checked = Global.getStartTouchpadOff(device);
@@ -254,10 +312,17 @@ namespace DS4Windows
                     case 4: tBRedBar.Value = 0; tBGreenBar.Value = 0; break;
                 }
             }
+
+            /*
             foreach (Button b in buttons)
+            {
                 b.MouseHover += button_MouseHover;
+            }
+
             foreach (Button b in subbuttons)
+            {
                 b.MouseHover += button_MouseHover;
+            }*/
            
             
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
@@ -267,15 +332,17 @@ namespace DS4Windows
             btnShiftRightStick.Enter += btnShiftSticks_Enter;
             UpdateLists();
             inputtimer.Start();
+
             inputtimer.Tick += InputDS4;
             sixaxisTimer.Tick += ControllerReadout_Tick;
             sixaxisTimer.Interval = 1000 / 60;
+
             LoadActions(string.IsNullOrEmpty(filename));
         }
 
         public void LoadActions(bool newp)
         {
-            List<string> pactions = Global.GetProfileActions(device);
+            IEnumerable<string> pactions = Global.GetProfileActions(device);
             foreach (SpecialAction action in Global.GetActions())
             {
                 ListViewItem lvi = new ListViewItem(action.name);
@@ -298,11 +365,13 @@ namespace DS4Windows
                 if (newp && action.type == "DisconnectBT")
                     lvi.Checked = true;
                 foreach (string s in pactions)
+                {
                     if (s == action.name)
                     {
                         lvi.Checked = true;
                         break;
                     }
+                }
                 lVActions.Items.Add(lvi);
             }
         }
@@ -337,6 +406,7 @@ namespace DS4Windows
                     float max = x + y;
                     double curvex;
                     double curvey;
+
                     double multimax = TValue(382.5, max, (double)nUDLSCurve.Value);
                     double multimin = TValue(127.5, max, (double)nUDLSCurve.Value);
                     if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
@@ -361,7 +431,10 @@ namespace DS4Windows
                     }
                 }
                 else
-                btnLSTrack.Location = new Point((int)(dpix * x / 2.09 + lbLSTrack.Location.X), (int)(dpiy * y / 2.09 + lbLSTrack.Location.Y));
+                {
+                    btnLSTrack.Location = new Point((int)(dpix * x / 2.09 + lbLSTrack.Location.X), (int)(dpiy * y / 2.09 + lbLSTrack.Location.Y));
+                }
+
                 //*/
                 x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RX;
                 y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RY;
@@ -394,7 +467,10 @@ namespace DS4Windows
                     }
                 }
                 else
+                {
                     btnRSTrack.Location = new Point((int)(dpix * x / 2.09 + lbRSTrack.Location.X), (int)(dpiy * y / 2.09 + lbRSTrack.Location.Y));
+                }
+
                 x = -Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX / 62 + 127;
                 y = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ / 62 + 127;
                 btnSATrack.Location = new Point((int)(dpix * x / 2.09 + lbSATrack.Location.X), (int)(dpiy * y / 2.09 + lbSATrack.Location.Y));

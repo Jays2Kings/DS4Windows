@@ -1032,6 +1032,7 @@ namespace DS4Windows
             else if (300 <= hue && hue < 360) { R = C; B = X; }
             return Color.FromArgb((int)((R + m) * 255), (int)((G + m) * 255), (int)((B + m) * 255));
         }
+
         private void rumbleBoostBar_ValueChanged(object sender, EventArgs e)
         {
             Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
@@ -1488,30 +1489,40 @@ namespace DS4Windows
             Global.setR2Deadzone(device, (byte)(nUDR2.Value * 255));
         }
 
+        private Point CalculateDeadzoneLocation(Label track, PictureBox deadzone)
+        {
+            return new Point(track.Location.X + (int)(dpix * 63) - deadzone.Size.Width / 2, track.Location.Y + (int)(dpix * 63) - deadzone.Size.Height / 2);
+        }
+
+        private Size CalculateDeadzoneSize(NumericUpDown SX, NumericUpDown SZ)
+        {
+            return new Size((int)(SX.Value * 125), (int)(SZ.Value * 125));
+        }
+
+        private void ProcessDeadZomeValueChange(Label track, PictureBox deadzone, NumericUpDown SX, NumericUpDown SZ)
+        {
+            if (SX.Value <= 0 && SZ.Value <= 0)
+            {
+                deadzone.Visible = false;
+            }
+            else
+            {
+                deadzone.Visible = true;
+                deadzone.Size = CalculateDeadzoneSize(SX, SZ);
+                deadzone.Location = CalculateDeadzoneLocation(track, deadzone);
+            }
+        }
+
         private void nUDSX_ValueChanged(object sender, EventArgs e)
         {
             Global.setSXDeadzone(device, (double)nUDSX.Value);
-            if (nUDSX.Value <= 0 && nUDSZ.Value <= 0)
-                pBSADeadzone.Visible = false;
-            else
-            {
-                pBSADeadzone.Visible = true;
-                pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
-                pBSADeadzone.Location = new Point(lbSATrack.Location.X + (int)(dpix * 63) - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + (int)(dpix * 63) - pBSADeadzone.Size.Height / 2);
-            }
+            ProcessDeadZomeValueChange(lbSATrack, pBSADeadzone, nUDSX, nUDSZ);
         }
 
         private void nUDSZ_ValueChanged(object sender, EventArgs e)
         {
             Global.setSZDeadzone(device, (double)nUDSZ.Value);
-            if (nUDSX.Value <= 0 && nUDSZ.Value <= 0)
-                pBSADeadzone.Visible = false;
-            else
-            {
-                pBSADeadzone.Visible = true;
-                pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
-                pBSADeadzone.Location = new Point(lbSATrack.Location.X + (int)(dpix * 63) - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + (int)(dpiy * 63) - pBSADeadzone.Size.Height / 2);
-            }
+            ProcessDeadZomeValueChange(lbSATrack, pBSADeadzone, nUDSX, nUDSZ);
         }
 
         private void bnTouchLeft_MouseHover(object sender, EventArgs e)

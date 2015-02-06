@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\TouchpadSlideDirections.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="MouseCursor.cs" />
     <Compile Include="MouseWheel.cs" />

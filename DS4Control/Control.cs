@@ -6,6 +6,7 @@ using DS4Library;
 using System.IO;
 using System.Reflection;
 using System.Media;
+using DS4Control.Enums;
 namespace DS4Control
 {
     public class Control
@@ -746,8 +747,8 @@ namespace DS4Control
                 Global.setScrollSensitivity(deviceID, 0);
             }
         }
-            
-        public virtual string TouchpadSlide(int ind)
+  
+        public virtual string TouchpadSlideString(int ind)
         {
             DS4State cState = CurrentState[ind];
             string slidedir = "none";
@@ -771,6 +772,32 @@ namespace DS4Control
                         }
             return slidedir;
         }
+
+        public virtual TouchpadSlideDirections TouchpadSlideEnum(int ind)
+        {
+            DS4State cState = CurrentState[ind];
+            TouchpadSlideDirections slidedir = TouchpadSlideDirections.none;
+            if (DS4Controllers[ind] != null)
+                if (cState.Touch2)
+                    if (DS4Controllers[ind] != null)
+                        if (touchPad[ind].slideright && !touchslid[ind])
+                        {
+                            slidedir = TouchpadSlideDirections.right;
+                            touchslid[ind] = true;
+                        }
+                        else if (touchPad[ind].slideleft && !touchslid[ind])
+                        {
+                            slidedir = TouchpadSlideDirections.left;
+                            touchslid[ind] = true;
+                        }
+                        else if (!touchPad[ind].slideleft && !touchPad[ind].slideright)
+                        {
+                            slidedir = TouchpadSlideDirections.none;
+                            touchslid[ind] = false;
+                        }
+            return slidedir;
+        }
+
         public virtual void LogDebug(String Data, bool warning = false)
         {
             Console.WriteLine(System.DateTime.Now.ToString("G") + "> " + Data);

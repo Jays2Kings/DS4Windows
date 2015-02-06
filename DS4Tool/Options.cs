@@ -711,10 +711,16 @@ namespace DS4Windows
             Global.setDS4Mapping(cBControllerInput.Checked);
             Global.setLSCurve(device, (int)Math.Round(nUDLSCurve.Value, 0));
             Global.setRSCurve(device, (int)Math.Round(nUDRSCurve.Value, 0));
+
             List<string> pactions = new List<string>();
             foreach (ListViewItem lvi in lVActions.Items)
+            {
                 if (lvi.Checked)
+                {
                     pactions.Add(lvi.Text);
+                }
+            }
+
             Global.SetProfileAtions(device, pactions);
             gBTouchpad.Enabled = !cBTPforControls.Checked;
             if (cBTPforControls.Checked)
@@ -740,13 +746,21 @@ namespace DS4Windows
             lastSelected.Text = controlname;
             int value;
             if (tag.Key == null)
+            {
                 lastSelected.Tag = tag;
+            }
             else if (Int32.TryParse(tag.Key.ToString(), out value))
+            {
                 lastSelected.Tag = new KeyValuePair<int, string>(value, tag.Value);
+            }
             else if (tag.Key is Int32[])
+            {
                 lastSelected.Tag = new KeyValuePair<Int32[], string>((Int32[])tag.Key, tag.Value);
+            }
             else
-                lastSelected.Tag = new KeyValuePair<string, string>(tag.Key.ToString(), tag.Value);    
+            {
+                lastSelected.Tag = new KeyValuePair<string, string>(tag.Key.ToString(), tag.Value);
+            }
         }
         public void ChangeButtonText(string controlname, KeyValuePair<object, string> tag, System.Windows.Forms.Control ctrl)
         {
@@ -864,149 +878,141 @@ namespace DS4Windows
             if (device < 4)
                 DS4Control.DS4LightBar.forcelight[device] = false;            
         }
+
         private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
         {
             if (sender is Color && device < 4)
             {
                 Color color = (Color)sender;
-                DS4Library.DS4Color dcolor = new DS4Library.DS4Color { red = color.R, green = color.G, blue = color.B };
+
+                DS4Library.DS4Color dcolor = new DS4Library.DS4Color
+                {
+                    red = color.R,
+                    green = color.G, 
+                    blue = color.B 
+                };
+
                 DS4Control.DS4LightBar.forcedColor[device] = dcolor;
                 DS4Control.DS4LightBar.forcedFlash[device] = 0;
                 DS4Control.DS4LightBar.forcelight[device] = true;
             }
         }
-        int bgc = 255; //Color of the form background, If greyscale color
-        private void redBar_ValueChanged(object sender, EventArgs e)
+
+        struct SatSomPair
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
+            public int sat;
+            public int som;
+        }
+
+        private SatSomPair ProcessBarValueChange(TrackBar bar)
+        {
+            int value = bar.Value;
+
+            SatSomPair pair;
+            pair.sat = bgc - (value < bgc ? value : bgc);
+            pair.som = bgc + 11 * (int)(value * 0.0039215); ;
+
+            //bar.BackColor = Color.FromArgb(som, sat, sat);
             alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
             reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
             if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(dpix * 100), 0, 2000);
+                tp.Show((bar).Value.ToString(), (bar), (int)(dpix * 100), 0, 2000);
+
+            return pair;
+        }
+
+        const int bgc = 255; //Color of the form background, If greyscale color
+        private void redBar_ValueChanged(object sender, EventArgs e)
+        {
+            SatSomPair pair = ProcessBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.som, pair.sat, pair.sat);
         }
         private void greenBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
-            alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
-            reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100*dpix), 0, 2000);
+            SatSomPair pair = ProcessBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.som, pair.sat);
         }
         private void blueBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
-            alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
-            reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
+            SatSomPair pair = ProcessBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.sat, pair.som);
+        }
+
+        private SatSomPair ProcessLowBarValueChange(TrackBar bar)
+        {
+            int value = ((TrackBar)bar).Value;
+
+            SatSomPair pair;
+            pair.sat = bgc - (value < bgc ? value : bgc);
+            pair.som = bgc + 11 * (int)(value * 0.0039215); ;
+
+            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
+            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
+            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
             if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+                tp.Show(((TrackBar)bar).Value.ToString(), ((TrackBar)bar), (int)(100 * dpix), 0, 2000);
+
+            return pair;
         }
 
         private void lowRedBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
-            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
-            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            SatSomPair pair = ProcessLowBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.som, pair.sat, pair.sat);
         }
 
         private void lowGreenBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
-            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
-            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            SatSomPair pair = ProcessLowBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.som, pair.sat);
         }
 
         private void lowBlueBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
-            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
-            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
+            SatSomPair pair = ProcessLowBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.sat, pair.som);
+        }
+
+        private SatSomPair ProcessShiftBarValueChange(TrackBar bar)
+        {
+            int value = ((TrackBar)bar).Value;
+
+            SatSomPair pair;
+            pair.sat = bgc - (value < bgc ? value : bgc);
+            pair.som = bgc + 11 * (int)(value * 0.0039215); ;
+
+            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
+            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
+            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+                tp.Show(((TrackBar)bar).Value.ToString(), ((TrackBar)bar), (int)(100 * dpix), 0, 2000);
+
+            return pair;
         }
 
         private void shiftRedBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
-            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
-            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            SatSomPair pair = ProcessShiftBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.som, pair.sat, pair.sat);
         }
 
         private void shiftGreenBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
-            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
-            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            SatSomPair pair = ProcessShiftBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.som, pair.sat);
         }
 
         private void shiftBlueBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
-            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
-            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            SatSomPair pair = ProcessShiftBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.sat, pair.som);
         }
 
         public Color HuetoRGB(float hue, float light, Color rgb)

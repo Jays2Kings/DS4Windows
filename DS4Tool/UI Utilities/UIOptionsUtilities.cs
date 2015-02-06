@@ -147,5 +147,32 @@ namespace DS4Windows.UI_Utilities
                 barLabel.ForeColor = Color.Black;
             }
         }
+
+        private static Point CalculateDeadzoneLocation(Label track, PictureBox deadzone, double dpix)
+        {
+
+            return new Point(track.Location.X + (int)(dpix * 63) - deadzone.Size.Width / 2, track.Location.Y + (int)(dpix * 63) - deadzone.Size.Height / 2);
+        }
+
+        private static Size CalculateDeadzoneSize(NumericUpDown SX, NumericUpDown SZ)
+        {
+            return new Size((int)(SX.Value * 125), (int)(SZ.Value * 125));
+        }
+
+
+        public static void ProcessDeadZomeValueChange(Label track, PictureBox deadzone, NumericUpDown SX, NumericUpDown SZ, double dpix)
+        {
+            if (SX.Value <= 0 && SZ.Value <= 0)
+            {
+                deadzone.Visible = false;
+            }
+            else
+            {
+                deadzone.Visible = true;
+                deadzone.Size = CalculateDeadzoneSize(SX, SZ);
+                deadzone.Location = CalculateDeadzoneLocation(track, deadzone, dpix);
+            }
+        }
+
     }
 }

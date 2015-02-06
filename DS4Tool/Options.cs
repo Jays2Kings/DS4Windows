@@ -29,6 +29,7 @@ namespace DS4Windows
         Image R = Properties.Resources.RightTouch;
         Image M = Properties.Resources.MultiTouch;
         Image U = Properties.Resources.UpperTouch;
+
         private float dpix;
         private float dpiy;
         public Dictionary<string, string> defaults = new Dictionary<string, string>();
@@ -1267,41 +1268,16 @@ namespace DS4Windows
             Global.setR2Deadzone(device, (byte)(nUDR2.Value * 255));
         }
 
-        private Point CalculateDeadzoneLocation(Label track, PictureBox deadzone)
-        {
-
-            return new Point(track.Location.X + (int)(dpix * 63) - deadzone.Size.Width / 2, track.Location.Y + (int)(dpix * 63) - deadzone.Size.Height / 2);
-        }
-
-        private Size CalculateDeadzoneSize(NumericUpDown SX, NumericUpDown SZ)
-        {
-            return new Size((int)(SX.Value * 125), (int)(SZ.Value * 125));
-        }
-
-        private void ProcessDeadZomeValueChange(Label track, PictureBox deadzone, NumericUpDown SX, NumericUpDown SZ)
-        {
-            if (SX.Value <= 0 && SZ.Value <= 0)
-            {
-                deadzone.Visible = false;
-            }
-            else
-            {
-                deadzone.Visible = true;
-                deadzone.Size = CalculateDeadzoneSize(SX, SZ);
-                deadzone.Location = CalculateDeadzoneLocation(track, deadzone);
-            }
-        }
-
         private void nUDSX_ValueChanged(object sender, EventArgs e)
         {
             Global.setSXDeadzone(device, (double)nUDSX.Value);
-            ProcessDeadZomeValueChange(lbSATrack, pBSADeadzone, nUDSX, nUDSZ);
+            UIOptionsUtilities.ProcessDeadZomeValueChange(lbSATrack, pBSADeadzone, nUDSX, nUDSZ, dpix);
         }
 
         private void nUDSZ_ValueChanged(object sender, EventArgs e)
         {
             Global.setSZDeadzone(device, (double)nUDSZ.Value);
-            ProcessDeadZomeValueChange(lbSATrack, pBSADeadzone, nUDSX, nUDSZ);
+            UIOptionsUtilities.ProcessDeadZomeValueChange(lbSATrack, pBSADeadzone, nUDSX, nUDSZ, dpix);
         }
 
         private void bnTouchLeft_MouseHover(object sender, EventArgs e)
@@ -1332,13 +1308,13 @@ namespace DS4Windows
         private void numUDRS_ValueChanged(object sender, EventArgs e)
         {
             Global.setRSDeadzone(device, (byte)Math.Round((nUDRS.Value * 127),0));
-            ProcessDeadZomeValueChange(lbRSTrack, pBRSDeadzone, nUDRS, nUDRS);
+            UIOptionsUtilities.ProcessDeadZomeValueChange(lbRSTrack, pBRSDeadzone, nUDRS, nUDRS, dpix);
         }
 
         private void numUDLS_ValueChanged(object sender, EventArgs e)
         {
             Global.setLSDeadzone(device, (byte)Math.Round((nUDLS.Value * 127),0));
-            ProcessDeadZomeValueChange(lbLSTrack, pBLSDeadzone, nUDLS, nUDLS);
+            UIOptionsUtilities.ProcessDeadZomeValueChange(lbLSTrack, pBLSDeadzone, nUDLS, nUDLS, dpix);
         }
 
         private void numUDMouseSens_ValueChanged(object sender, EventArgs e)

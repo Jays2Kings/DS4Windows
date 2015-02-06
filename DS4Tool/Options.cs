@@ -7,8 +7,24 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Xml;
+using System.Linq;
+
 namespace DS4Windows
 {
+    public static class OptionsUIUtilities
+    {
+        public static void AddButtonsToButtonCollection(System.Windows.Forms.Control.ControlCollection controls, List<Button> buttonCollection, string contains)
+        {
+             foreach (System.Windows.Forms.Control control in controls)
+             {
+                 if (control is Button && !((Button)control).Name.Contains(contains))
+                 {
+                     buttonCollection.Add((Button)control);
+                 }
+             }
+        }
+    }
+
     public partial class Options : Form
     {
         public int device;
@@ -30,6 +46,7 @@ namespace DS4Windows
         private float dpiy;
         public Dictionary<string, string> defaults = new Dictionary<string, string>();
         public bool saving;
+
         public Options(int deviceNum, string name, DS4Form rt)
         {
             InitializeComponent();
@@ -37,6 +54,7 @@ namespace DS4Windows
             filename = name;
             colored = pBRainbow.Image;
             root = rt;
+
             Graphics g = this.CreateGraphics();
             try
             {
@@ -49,32 +67,60 @@ namespace DS4Windows
             }
 
             greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
+
+            /*
             foreach (System.Windows.Forms.Control control in pnlMain.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                         buttons.Add((Button)control);
+
             foreach (System.Windows.Forms.Control control in pnlSticks.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btn"))
-                        buttons.Add((Button)control);
+                        buttons.Add((Button)control);*/
+
+            OptionsUIUtilities.AddButtonsToButtonCollection(pnlMain.Controls, buttons, "btn");
+            OptionsUIUtilities.AddButtonsToButtonCollection(pnlSticks.Controls, buttons, "btn");
+
             foreach (Button b in buttons)
                 defaults.Add(b.Name, b.Text);
-            foreach (System.Windows.Forms.Control control in fLPTiltControls.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btn"))
-                        buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in fLPTouchSwipe.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btn"))
-                    buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in pnlShiftMain.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btnShift"))
-                        subbuttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in pnlShiftSticks.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btnShift"))
-                        subbuttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in fLPShiftTiltControls.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btnShift"))
-                    subbuttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in fLPShiftTouchSwipe.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btn"))
-                    subbuttons.Add((Button)control);
+
+
+
+            //foreach (System.Windows.Forms.Control control in fLPTiltControls.Controls)
+            //    if (control is Button && !((Button)control).Name.Contains("btn"))
+            //            buttons.Add((Button)control);
+
+            OptionsUIUtilities.AddButtonsToButtonCollection(fLPTiltControls.Controls, buttons, "btn");
+
+            //foreach (System.Windows.Forms.Control control in fLPTouchSwipe.Controls)
+            //    if (control is Button && !((Button)control).Name.Contains("btn"))
+            //        buttons.Add((Button)control);
+
+            OptionsUIUtilities.AddButtonsToButtonCollection(fLPTouchSwipe.Controls, buttons, "btn");
+
+            //foreach (System.Windows.Forms.Control control in pnlShiftMain.Controls)
+            //    if (control is Button && !((Button)control).Name.Contains("btnShift"))
+            //            subbuttons.Add((Button)control);
+
+            OptionsUIUtilities.AddButtonsToButtonCollection(pnlShiftMain.Controls, buttons, "btnShift");
+
+            //foreach (System.Windows.Forms.Control control in pnlShiftSticks.Controls)
+            //    if (control is Button && !((Button)control).Name.Contains("btnShift"))
+            //            subbuttons.Add((Button)control);
+
+            OptionsUIUtilities.AddButtonsToButtonCollection(pnlShiftSticks.Controls, buttons, "btnShift");
+
+            //foreach (System.Windows.Forms.Control control in fLPShiftTiltControls.Controls)
+            //    if (control is Button && !((Button)control).Name.Contains("btnShift"))
+            //        subbuttons.Add((Button)control);
+
+            OptionsUIUtilities.AddButtonsToButtonCollection(fLPShiftTiltControls.Controls, buttons, "btnShift");
+
+            //foreach (System.Windows.Forms.Control control in fLPShiftTouchSwipe.Controls)
+            //    if (control is Button && !((Button)control).Name.Contains("btn"))
+            //        subbuttons.Add((Button)control);
+
+            OptionsUIUtilities.AddButtonsToButtonCollection(fLPShiftTouchSwipe.Controls, buttons, "btnShift");
+
             //string butts = "";
                 //butts += "\n" + b.Name;
             //MessageBox.Show(butts);

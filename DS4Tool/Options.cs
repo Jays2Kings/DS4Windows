@@ -376,6 +376,76 @@ namespace DS4Windows
             }
         }
 
+        struct XY
+        {
+            public double x;
+            public double y;
+        }
+
+        struct MinMax
+        {
+            public double min;
+            public double max;
+        }
+
+        private MinMax FindCurveMixMan(NumericUpDown upDown, double maxValue)
+        {
+            MinMax minMax;
+            minMax.max = TValue(382.5d, maxValue, (double)upDown.Value);
+            minMax.min = TValue(127.5d, maxValue, (double)upDown.Value);
+
+            return minMax;
+        }
+
+        private Point ConvertAxisToUIPoint(XY axis, Label track)
+        {
+            return new Point((int)(dpix * axis.x / 2.09 + track.Location.X), (int)(dpiy * axis.y / 2.09 + track.Location.Y));
+        }
+
+        private XY CalculateCurve(XY axisXY, MinMax minMax, double max)
+        {
+            XY curve;
+
+            curve.x = (axisXY.x > 127.5f ? Math.Min(axisXY.x, (axisXY.x / max) * minMax.max) : Math.Max(axisXY.x, (axisXY.x / max) * minMax.min));
+            curve.y = (axisXY.y > 127.5f ? Math.Min(axisXY.y, (axisXY.y / max) * minMax.max) : Math.Max(axisXY.y, (axisXY.y / max) * minMax.min));
+            return curve;
+        }
+
+        private void ProcessCurve(XY axisXY, Button stickTrack, Label labelTrack, NumericUpDown stickCurve)
+        {
+            if (stickCurve.Value > 0)
+            {
+                double max = axisXY.x + axisXY.y;
+
+                XY curve;
+
+                MinMax minMax = FindCurveMixMan(stickCurve, max);
+                if ((axisXY.x > 127.5d && axisXY.y > 127.5d) || (axisXY.x < 127.5d && axisXY.y < 127.5d))
+                {
+                    curve = CalculateCurve(axisXY, minMax, max);
+                    stickTrack.Location = ConvertAxisToUIPoint(curve, labelTrack);
+                }
+                else
+                {
+                    if (axisXY.x < 127.5d)
+                    {
+                        curve.x = Math.Min(axisXY.x, (axisXY.x / max) * minMax.max);
+                        curve.y = Math.Min(axisXY.y, (-(axisXY.y / max) * minMax.max + 510));
+                    }
+                    else
+                    {
+                        curve.x = Math.Min(axisXY.x, (-(axisXY.x / max) * minMax.max + 510));
+                        curve.y = Math.Min(axisXY.y, (axisXY.y / max) * minMax.max);
+                    }
+                    stickTrack.Location = ConvertAxisToUIPoint(curve, labelTrack);
+                }
+            }
+            else
+            {
+                stickTrack.Location = ConvertAxisToUIPoint(axisXY, labelTrack);
+            }
+        }
+
         void ControllerReadout_Tick(object sender, EventArgs e)
         {            
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
@@ -389,90 +459,30 @@ namespace DS4Windows
             }
             else
             {
+                DS4StateExposed exposedState = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1];
+
                 tPController.Enabled = true;
-                SetDynamicTrackBarValue(tBsixaxisGyroX, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroY, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroY + tBsixaxisGyroY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroZ, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelX, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelY, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelY + tBsixaxisAccelY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelZ, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroX, (exposedState.GyroX + tBsixaxisGyroX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroY, (exposedState.GyroY + tBsixaxisGyroY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroZ, (exposedState.GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelX, (exposedState.AccelX + tBsixaxisAccelX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelY, (exposedState.AccelY + tBsixaxisAccelY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelZ, (exposedState.AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
 
-                int x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LX;
-                int y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LY;
-                //else
-                //double hypot = Math.Min(127.5f, Math.Sqrt(Math.Pow(x - 127.5f, 2) + Math.Pow(y - 127.5f, 2)));
-                if (nUDLSCurve.Value > 0)
-                {
-                    float max = x + y;
-                    double curvex;
-                    double curvey;
+                XY axisValues;
+                axisValues.x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LX;
+                axisValues.y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LY; 
 
-                    double multimax = TValue(382.5, max, (double)nUDLSCurve.Value);
-                    double multimin = TValue(127.5, max, (double)nUDLSCurve.Value);
-                    if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
-                    {
-                        curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
-                        curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
-                        btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbLSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbLSTrack.Location.Y));
-                    }
-                    else
-                    {
-                        if (x < 127.5f)
-                        {
-                            curvex = Math.Min(x, (x / max) * multimax);
-                            curvey = Math.Min(y, (-(y / max) * multimax + 510));
-                        }
-                        else
-                        {
-                            curvex = Math.Min(x, (-(x / max) * multimax + 510));
-                            curvey = Math.Min(y, (y / max) * multimax);
-                        }
-                        btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbLSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbLSTrack.Location.Y));
-                    }
-                }
-                else
-                {
-                    btnLSTrack.Location = new Point((int)(dpix * x / 2.09 + lbLSTrack.Location.X), (int)(dpiy * y / 2.09 + lbLSTrack.Location.Y));
-                }
+                ProcessCurve(axisValues, btnLSTrack, lbLSTrack, nUDLSCurve);
 
-                //*/
-                x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RX;
-                y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RY;
-                if (nUDRSCurve.Value > 0)
-                {
-                    float max = x + y;
-                    double curvex;
-                    double curvey;
-                    double multimax = TValue(382.5, max, (double)nUDRSCurve.Value);
-                    double multimin = TValue(127.5, max, (double)nUDRSCurve.Value);
-                    if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
-                    {
-                        curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
-                        curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
-                        btnRSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbRSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbRSTrack.Location.Y));
-                    }
-                    else
-                    {
-                        if (x < 127.5f)
-                        {
-                            curvex = Math.Min(x, (x / max) * multimax);
-                            curvey = Math.Min(y, (-(y / max) * multimax + 510));
-                        }
-                        else
-                        {
-                            curvex = Math.Min(x, (-(x / max) * multimax + 510));
-                            curvey = Math.Min(y, (y / max) * multimax);
-                        }
-                        btnRSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbRSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbRSTrack.Location.Y));
-                    }
-                }
-                else
-                {
-                    btnRSTrack.Location = new Point((int)(dpix * x / 2.09 + lbRSTrack.Location.X), (int)(dpiy * y / 2.09 + lbRSTrack.Location.Y));
-                }
+                axisValues.x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RX;
+                axisValues.y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RY;
 
-                x = -Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX / 62 + 127;
-                y = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ / 62 + 127;
+                ProcessCurve(axisValues, btnRSTrack, lbRSTrack, nUDRSCurve);
+
+
+                float x = -Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX / 62 + 127;
+                float y = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ / 62 + 127;
                 btnSATrack.Location = new Point((int)(dpix * x / 2.09 + lbSATrack.Location.X), (int)(dpiy * y / 2.09 + lbSATrack.Location.Y));
 
 
@@ -514,7 +524,8 @@ namespace DS4Windows
         private void InputDS4(object sender, EventArgs e)
         {
             if (Form.ActiveForm == root && cBControllerInput.Checked && tabControls.SelectedIndex < 2)
-            switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
+            {
+                switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
                 {
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
                     case ("Circle"): Show_ControlsBn(bnCircle, e); break;
@@ -550,6 +561,7 @@ namespace DS4Windows
                     case ("GyroZP"): Show_ControlsBn(bnGyroZP, e); break;
                     case ("GyroZN"): Show_ControlsBn(bnGyroZN, e); break;
                 }
+            }
         }
         private void button_MouseHover(object sender, EventArgs e)
         {

@@ -167,6 +167,7 @@
     <Compile Include="SpecActions.Designer.cs">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI Utilities\UIOptionsUtilities.cs" />
     <Compile Include="WelcomeDialog.cs">
       <SubType>Form</SubType>
     </Compile>

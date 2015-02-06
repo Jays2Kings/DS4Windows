@@ -8,54 +8,12 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 using System.Linq;
+using DS4Windows.UI_Utilities;
 
 namespace DS4Windows
 {
-
     public partial class Options : Form
     {
-        public static class OptionsUIUtilities
-        {
-            public static void AddButtonsToButtonCollection(System.Windows.Forms.Control.ControlCollection controls, List<Button> buttonCollection, string contains)
-            {
-                foreach (System.Windows.Forms.Control control in controls)
-                {
-                    if (control is Button && !((Button)control).Name.Contains(contains))
-                    {
-                        buttonCollection.Add((Button)control);
-                    }
-                }
-            }
-
-            public static void ApplyMouseHoverEventToControls(System.Windows.Forms.Control.ControlCollection controls, EventHandler handler )
-            {
-                foreach (System.Windows.Forms.Control control in controls)
-                {
-                    if (control.HasChildren)
-                    {
-                        ApplyMouseHoverEventToControls(control.Controls, handler);
-                    }
-
-                    control.MouseHover += handler;
-                }
-            }
-
-            public static void ApplyMouseHoverEventToButtonList(List<Button> buttons, EventHandler handler)
-            {
-                foreach (var button in buttons)
-                {
-                    button.MouseHover += handler;
-                }
-            }
-
-            public static void InitializeColorTrackBar(TrackBar bar, DS4Color color)
-            {
-                bar.Value = color.red;
-                bar.Value = color.green;
-                bar.Value = color.blue;
-            }
-        }
-
         public int device;
         public string filename;
         public Timer inputtimer = new Timer(), sixaxisTimer = new Timer();
@@ -86,7 +44,6 @@ namespace DS4Windows
 
             Graphics g = this.CreateGraphics();
 
-            //Serguei: This will never throw, you are not ever dividing by zero
             try
             {
                 dpix = g.DpiX / 100f * 1.041666666667f;
@@ -99,95 +56,24 @@ namespace DS4Windows
 
             greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
 
-            /*
-            foreach (System.Windows.Forms.Control control in pnlMain.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btn"))
-                        buttons.Add((Button)control);
-
-            foreach (System.Windows.Forms.Control control in pnlSticks.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btn"))
-                        buttons.Add((Button)control);*/
-
-            OptionsUIUtilities.AddButtonsToButtonCollection(pnlMain.Controls, buttons, "btn");
-            OptionsUIUtilities.AddButtonsToButtonCollection(pnlSticks.Controls, buttons, "btn");
+            UIOptionsUtilities.AddButtonsToButtonCollection(pnlMain.Controls, buttons, "btn");
+            UIOptionsUtilities.AddButtonsToButtonCollection(pnlSticks.Controls, buttons, "btn");
 
             foreach (Button b in buttons)
                 defaults.Add(b.Name, b.Text);
 
-
-
-            //foreach (System.Windows.Forms.Control control in fLPTiltControls.Controls)
-            //    if (control is Button && !((Button)control).Name.Contains("btn"))
-            //            buttons.Add((Button)control);
-
-            OptionsUIUtilities.AddButtonsToButtonCollection(fLPTiltControls.Controls, buttons, "btn");
-
-            //foreach (System.Windows.Forms.Control control in fLPTouchSwipe.Controls)
-            //    if (control is Button && !((Button)control).Name.Contains("btn"))
-            //        buttons.Add((Button)control);
-
-            OptionsUIUtilities.AddButtonsToButtonCollection(fLPTouchSwipe.Controls, buttons, "btn");
-
-            //foreach (System.Windows.Forms.Control control in pnlShiftMain.Controls)
-            //    if (control is Button && !((Button)control).Name.Contains("btnShift"))
-            //            subbuttons.Add((Button)control);
-
-            OptionsUIUtilities.AddButtonsToButtonCollection(pnlShiftMain.Controls, buttons, "btnShift");
-
-            //foreach (System.Windows.Forms.Control control in pnlShiftSticks.Controls)
-            //    if (control is Button && !((Button)control).Name.Contains("btnShift"))
-            //            subbuttons.Add((Button)control);
-
-            OptionsUIUtilities.AddButtonsToButtonCollection(pnlShiftSticks.Controls, buttons, "btnShift");
-
-            //foreach (System.Windows.Forms.Control control in fLPShiftTiltControls.Controls)
-            //    if (control is Button && !((Button)control).Name.Contains("btnShift"))
-            //        subbuttons.Add((Button)control);
-
-            OptionsUIUtilities.AddButtonsToButtonCollection(fLPShiftTiltControls.Controls, buttons, "btnShift");
-
-            //foreach (System.Windows.Forms.Control control in fLPShiftTouchSwipe.Controls)
-            //    if (control is Button && !((Button)control).Name.Contains("btn"))
-            //        subbuttons.Add((Button)control);
-
-            OptionsUIUtilities.AddButtonsToButtonCollection(fLPShiftTouchSwipe.Controls, buttons, "btnShift");
-
-            //string butts = "";
-                //butts += "\n" + b.Name;
-            //MessageBox.Show(butts);
+            UIOptionsUtilities.AddButtonsToButtonCollection(fLPTiltControls.Controls, buttons, "btn");
+            UIOptionsUtilities.AddButtonsToButtonCollection(fLPTouchSwipe.Controls, buttons, "btn");
+            UIOptionsUtilities.AddButtonsToButtonCollection(pnlShiftMain.Controls, buttons, "btnShift");
+            UIOptionsUtilities.AddButtonsToButtonCollection(pnlShiftSticks.Controls, buttons, "btnShift");
+            UIOptionsUtilities.AddButtonsToButtonCollection(fLPShiftTiltControls.Controls, buttons, "btnShift");
+            UIOptionsUtilities.AddButtonsToButtonCollection(fLPShiftTouchSwipe.Controls, buttons, "btnShift");
 
             root.lbLastMessage.ForeColor = Color.Black;
             root.lbLastMessage.Text = "Hover over items to see description or more about";
 
-            OptionsUIUtilities.ApplyMouseHoverEventToControls(Controls, Items_MouseHover);
-            OptionsUIUtilities.ApplyMouseHoverEventToButtonList(buttons, button_MouseHover);
-
-            /*
-            foreach (System.Windows.Forms.Control control in Controls)
-            {
-                if (control.HasChildren)
-                {
-                    foreach (System.Windows.Forms.Control ctrl in control.Controls)
-                    {
-                        if (ctrl.HasChildren)
-                        {
-                            foreach (System.Windows.Forms.Control ctrl2 in ctrl.Controls)
-                            {
-                                if (ctrl2.HasChildren)
-                                {
-                                    foreach (System.Windows.Forms.Control ctrl3 in ctrl2.Controls)
-                                    {
-                                        ctrl3.MouseHover += Items_MouseHover;
-                                    }
-                                }
-                                ctrl2.MouseHover += Items_MouseHover;
-                            }
-                        }
-                        ctrl.MouseHover += Items_MouseHover;
-                    }
-                }
-                control.MouseHover += Items_MouseHover;
-            }*/
+            UIOptionsUtilities.ApplyMouseHoverEventToControls(Controls, Items_MouseHover);
+            UIOptionsUtilities.ApplyMouseHoverEventToButtonList(buttons, button_MouseHover);
 
             if (device < 4)
             {
@@ -312,19 +198,7 @@ namespace DS4Windows
                     case 4: tBRedBar.Value = 0; tBGreenBar.Value = 0; break;
                 }
             }
-
-            /*
-            foreach (Button b in buttons)
-            {
-                b.MouseHover += button_MouseHover;
-            }
-
-            foreach (Button b in subbuttons)
-            {
-                b.MouseHover += button_MouseHover;
-            }*/
            
-            
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
@@ -376,97 +250,6 @@ namespace DS4Windows
             }
         }
 
-        struct XY
-        {
-            public double x;
-            public double y;
-        }
-
-        struct MinMax
-        {
-            public double min;
-            public double max;
-        }
-
-        private MinMax FindCurveMixMan(NumericUpDown upDown, double maxValue)
-        {
-            MinMax minMax;
-            minMax.max = TValue(382.5d, maxValue, (double)upDown.Value);
-            minMax.min = TValue(127.5d, maxValue, (double)upDown.Value);
-
-            return minMax;
-        }
-
-        private Point ConvertAxisToUIPoint(XY axis, Label track)
-        {
-            return new Point((int)(dpix * axis.x / 2.09 + track.Location.X), (int)(dpiy * axis.y / 2.09 + track.Location.Y));
-        }
-
-        private XY CalculateCurve(XY axisXY, MinMax minMax, double max)
-        {
-            XY curve;
-
-            curve.x = (axisXY.x > 127.5f ? Math.Min(axisXY.x, (axisXY.x / max) * minMax.max) : Math.Max(axisXY.x, (axisXY.x / max) * minMax.min));
-            curve.y = (axisXY.y > 127.5f ? Math.Min(axisXY.y, (axisXY.y / max) * minMax.max) : Math.Max(axisXY.y, (axisXY.y / max) * minMax.min));
-            return curve;
-        }
-
-        private void ProcessCurve(XY axisXY, Button stickTrack, Label labelTrack, NumericUpDown stickCurve)
-        {
-            if (stickCurve.Value > 0)
-            {
-                double max = axisXY.x + axisXY.y;
-
-                XY curve;
-
-                MinMax minMax = FindCurveMixMan(stickCurve, max);
-                if ((axisXY.x > 127.5d && axisXY.y > 127.5d) || (axisXY.x < 127.5d && axisXY.y < 127.5d))
-                {
-                    curve = CalculateCurve(axisXY, minMax, max);
-                    stickTrack.Location = ConvertAxisToUIPoint(curve, labelTrack);
-                }
-                else
-                {
-                    if (axisXY.x < 127.5d)
-                    {
-                        curve.x = Math.Min(axisXY.x, (axisXY.x / max) * minMax.max);
-                        curve.y = Math.Min(axisXY.y, (-(axisXY.y / max) * minMax.max + 510));
-                    }
-                    else
-                    {
-                        curve.x = Math.Min(axisXY.x, (-(axisXY.x / max) * minMax.max + 510));
-                        curve.y = Math.Min(axisXY.y, (axisXY.y / max) * minMax.max);
-                    }
-                    stickTrack.Location = ConvertAxisToUIPoint(curve, labelTrack);
-                }
-            }
-            else
-            {
-                stickTrack.Location = ConvertAxisToUIPoint(axisXY, labelTrack);
-            }
-        }
-
-        private Point CalculateTrackBarPoint(TrackBar trackBar)
-        {
-            return new Point(trackBar.Location.X - (int)(dpix * 15), (int)((dpix * (24 - trackBar.Value / 10.625) + 10)));
-        }
-
-        private void ProcessBumperTrackPositionAndColor(TrackBar bar, Label barLabel, NumericUpDown upDown)
-        {
-            if (bar.Value == 255)
-            {
-                barLabel.ForeColor = Color.Green;
-            }
-            else if (bar.Value < (double)upDown.Value * 255.0d)
-            {
-                barLabel.ForeColor = Color.Red;
-            }
-            else
-            {
-                barLabel.ForeColor = Color.Black;
-            }
-        }
-
         void ControllerReadout_Tick(object sender, EventArgs e)
         {            
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
@@ -494,29 +277,29 @@ namespace DS4Windows
 
                 XY axisValues;
                 axisValues.x = controllerState.LX;
-                axisValues.y = controllerState.LY; 
+                axisValues.y = controllerState.LY;
 
-                ProcessCurve(axisValues, btnLSTrack, lbLSTrack, nUDLSCurve);
+                UIOptionsUtilities.ProcessCurve(axisValues, btnLSTrack, lbLSTrack, nUDLSCurve, dpix, dpiy);
 
                 axisValues.x = controllerState.RX;
                 axisValues.y = controllerState.RY;
 
-                ProcessCurve(axisValues, btnRSTrack, lbRSTrack, nUDRSCurve);
+                UIOptionsUtilities.ProcessCurve(axisValues, btnRSTrack, lbRSTrack, nUDRSCurve, dpix, dpiy);
 
                 axisValues.x = -exposedState.GyroX / 62 + 127;
                 axisValues.y = exposedState.GyroZ / 62 + 127;
 
-                btnSATrack.Location = ConvertAxisToUIPoint(axisValues, lbSATrack);
+                btnSATrack.Location = UIOptionsUtilities.ConvertAxisToUIPoint(axisValues, lbSATrack, dpix, dpiy);
 
                 tBL2.Value = controllerState.L2;
-                lbL2Track.Location = CalculateTrackBarPoint(tBL2);
+                lbL2Track.Location = UIOptionsUtilities.CalculateTrackBarPoint(tBL2, dpix, dpiy);
 
-                ProcessBumperTrackPositionAndColor(tBL2, lbL2Track, nUDL2);
+                UIOptionsUtilities.ProcessBumperTrackPositionAndColor(tBL2, lbL2Track, nUDL2);
 
                 tBR2.Value = controllerState.R2;
-                lbR2Track.Location = CalculateTrackBarPoint(tBR2);
+                lbR2Track.Location = UIOptionsUtilities.CalculateTrackBarPoint(tBR2, dpix, dpiy);
 
-                ProcessBumperTrackPositionAndColor(tBR2, lbR2Track, nUDR2);
+                UIOptionsUtilities.ProcessBumperTrackPositionAndColor(tBR2, lbR2Track, nUDR2);
 
                 double latency = device.Latency;
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", latency.ToString()).Replace("*ms*", "ms");
@@ -535,11 +318,6 @@ namespace DS4Windows
             }
         }
 
-        double TValue(double value1, double value2, double percent)
-        {
-            percent /= 100f;
-            return value1 * percent + value2 * (1 - percent);
-        }
         private void InputDS4(object sender, EventArgs e)
         {
             if (Form.ActiveForm == root && cBControllerInput.Checked && tabControls.SelectedIndex < 2)

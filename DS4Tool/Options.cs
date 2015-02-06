@@ -446,6 +446,27 @@ namespace DS4Windows
             }
         }
 
+        private Point CalculateTrackBarPoint(TrackBar trackBar)
+        {
+            return new Point(trackBar.Location.X - (int)(dpix * 15), (int)((dpix * (24 - trackBar.Value / 10.625) + 10)));
+        }
+
+        private void ProcessBumperTrackPositionAndColor(TrackBar bar, Label barLabel, NumericUpDown upDown)
+        {
+            if (bar.Value == 255)
+            {
+                barLabel.ForeColor = Color.Green;
+            }
+            else if (bar.Value < (double)upDown.Value * 255.0d)
+            {
+                barLabel.ForeColor = Color.Red;
+            }
+            else
+            {
+                barLabel.ForeColor = Color.Black;
+            }
+        }
+
         void ControllerReadout_Tick(object sender, EventArgs e)
         {            
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
@@ -460,6 +481,8 @@ namespace DS4Windows
             else
             {
                 DS4StateExposed exposedState = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1];
+                DS4State controllerState = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1);
+                DS4Device device = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
 
                 tPController.Enabled = true;
                 SetDynamicTrackBarValue(tBsixaxisGyroX, (exposedState.GyroX + tBsixaxisGyroX.Value * 2) / 3);
@@ -470,49 +493,45 @@ namespace DS4Windows
                 SetDynamicTrackBarValue(tBsixaxisAccelZ, (exposedState.AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
 
                 XY axisValues;
-                axisValues.x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LX;
-                axisValues.y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LY; 
+                axisValues.x = controllerState.LX;
+                axisValues.y = controllerState.LY; 
 
                 ProcessCurve(axisValues, btnLSTrack, lbLSTrack, nUDLSCurve);
 
-                axisValues.x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RX;
-                axisValues.y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RY;
+                axisValues.x = controllerState.RX;
+                axisValues.y = controllerState.RY;
 
                 ProcessCurve(axisValues, btnRSTrack, lbRSTrack, nUDRSCurve);
 
+                axisValues.x = -exposedState.GyroX / 62 + 127;
+                axisValues.y = exposedState.GyroZ / 62 + 127;
 
-                float x = -Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX / 62 + 127;
-                float y = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ / 62 + 127;
-                btnSATrack.Location = new Point((int)(dpix * x / 2.09 + lbSATrack.Location.X), (int)(dpiy * y / 2.09 + lbSATrack.Location.Y));
+                btnSATrack.Location = ConvertAxisToUIPoint(axisValues, lbSATrack);
 
+                tBL2.Value = controllerState.L2;
+                lbL2Track.Location = CalculateTrackBarPoint(tBL2);
 
-                tBL2.Value = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).L2;
-                lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 15), (int)((dpix * (24 - tBL2.Value / 10.625) + 10)));
-                if (tBL2.Value == 255)
-                    lbL2Track.ForeColor = Color.Green;
-                else if (tBL2.Value < (double)nUDL2.Value * 255)
-                    lbL2Track.ForeColor = Color.Red;
-                else
-                    lbL2Track.ForeColor = Color.Black;
+                ProcessBumperTrackPositionAndColor(tBL2, lbL2Track, nUDL2);
 
-                tBR2.Value = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).R2;
-                lbR2Track.Location = new Point(tBR2.Location.X + (int)(dpix * 20), (int)((dpix * (24 - tBR2.Value / 10.625) + 10)));
-                if (tBR2.Value == 255)
-                    lbR2Track.ForeColor = Color.Green;
-                else if (tBR2.Value < (double)nUDR2.Value * 255)
-                    lbR2Track.ForeColor = Color.Red;
-                else
-                    lbR2Track.ForeColor = Color.Black;
+                tBR2.Value = controllerState.R2;
+                lbR2Track.Location = CalculateTrackBarPoint(tBR2);
 
+                ProcessBumperTrackPositionAndColor(tBR2, lbR2Track, nUDR2);
 
-                double latency = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1].Latency;
+                double latency = device.Latency;
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", latency.ToString()).Replace("*ms*", "ms");
-                if (latency > 10)
+                if (latency > 10.0d)
+                {
                     pBDelayTracker.BackColor = Color.Red;
-                else if (latency > 5)
+                }
+                else if (latency > 5.0d)
+                {
                     pBDelayTracker.BackColor = Color.Yellow;
+                }
                 else
+                {
                     pBDelayTracker.BackColor = Color.Green;
+                }
             }
         }
 

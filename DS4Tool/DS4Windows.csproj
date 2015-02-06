@@ -62,10 +62,10 @@
     <StartupObject>DS4Windows.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5F2A5A97E42A73158D79996F7F3BE738271F5047</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>CE06663A796157539135CFA51C654D2E3422F0D9</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>DS4Tool_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>DS4Windows_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -411,6 +411,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="DS4Tool_TemporaryKey.pfx" />
+    <None Include="DS4Windows_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -535,7 +536,8 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>ilmerge /targetplatform:"v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319" /out:Build\DS4Windows.exe DS4Windows.exe HidLibrary.dll DS4Control.dll DS4Library.dll</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

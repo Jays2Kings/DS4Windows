@@ -1029,152 +1029,90 @@ namespace DS4Control
             catch { return 0; }
         }
 
+        private void CreateXMLNode(XmlNode parentNode, XmlDocument document, string name, string textData)
+        {
+            XmlNode newNode = m_Xdoc.CreateNode(XmlNodeType.Element, name, null);
+            newNode.InnerText = textData;
+            parentNode.AppendChild(newNode);
+        }
+
         public Boolean SaveProfile(int device, String propath, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons)
         {
             Boolean Saved = true;
             String path = Global.appdatapath + @"\Profiles\" + Path.GetFileNameWithoutExtension(propath) + ".xml";
 
-            ProfileXML file = new ProfileXML
-            {
-                flushHIDQueue = flushHIDQueue[device],
-                idleDisconnectTimeout = idleDisconnectTimeout[device],
-                color = new DS4Color
-                {
-                    red = m_Leds[device][0],
-                    green = m_Leds[device][1],
-                    blue = m_Leds[device][2]
-                },
-                RumbleBoost = rumble[device],
-                ledAsBatteryIndicator = ledAsBattery[device],
-                lowBatteryFlash = flashLedLowBattery[device],
-                flashBatteryAt = flashAt[device],
-                touchSensitivity = touchSensitivity[device],
-                LowColor = new DS4Color
-                {
-                    red = m_LowLeds[device][0],
-                    green = m_LowLeds[device][1],
-                    blue = m_LowLeds[device][2]
-                },
-                ChargingColor = new DS4Color
-                {
-                    red = m_ChargingLeds[device][0],
-                    green = m_ChargingLeds[device][1],
-                    blue = m_ChargingLeds[device][2]
-                },
-                ShiftColor = new DS4Color
-                {
-                    red = m_ShiftLeds[device][0],
-                    green = m_ShiftLeds[device][1],
-                    blue = m_ShiftLeds[device][2]
-                },
-                ShiftColorOn = shiftColorOn[device],
-                FlashColor = new DS4Color
-                {
-                    red = m_FlashLeds[device][0],
-                    green = m_FlashLeds[device][1],
-                    blue = m_FlashLeds[device][2]
-                },
-                touchpadJitterCompensation = touchpadJitterCompensation[device],
-                lowerRCOn = lowerRCOn[device],
-                tapSensitivity = tapSensitivity[device],
-                doubleTap = doubleTap[device],
-                scrollSensitivity = scrollSensitivity[device],
-                LeftTriggerMiddle = l2Deadzone[device],
-                RightTriggerMiddle = r2Deadzone[device],
-                ButtonMouseSensitivity = buttonMouseSensitivity[device],
-                Rainbow = rainbow[device],
-                LSDeadZone = LSDeadzone[device],
-                RSDeadZone = RSDeadzone[device],
-                SXDeadZone = SXDeadzone[device],
-                SZDeadZone = SZDeadzone[device],
-                ChargingType = chargingType[device],
-                MouseAcceleration = mouseAccel[device],
-                ShiftModifier = shiftModifier[device],
-                LaunchProgram = launchProgram[device],
-                DinputOnly = dinputOnly[device],
-                StartTouchpadOff = startTouchpadOff[device],
-                UseTPforControls = useTPforControls[device],
-                LSCurve = lsCurve[device],
-                RSCurve = rsCurve[device],
-                ProfileActions = profileActions[device],
-                Controls = new List<XML_FIles.ControlXML>()
-            };
+            //New System to replace save. Right now this is on hold while I clean up the existing implementation
+            //ProfileXML file = new ProfileXML
+            //{
+            //    flushHIDQueue = flushHIDQueue[device],
+            //    idleDisconnectTimeout = idleDisconnectTimeout[device],
+            //    color = new DS4Color
+            //    {
+            //        red = m_Leds[device][0],
+            //        green = m_Leds[device][1],
+            //        blue = m_Leds[device][2]
+            //    },
+            //    RumbleBoost = rumble[device],
+            //    ledAsBatteryIndicator = ledAsBattery[device],
+            //    lowBatteryFlash = flashLedLowBattery[device],
+            //    flashBatteryAt = flashAt[device],
+            //    touchSensitivity = touchSensitivity[device],
+            //    LowColor = new DS4Color
+            //    {
+            //        red = m_LowLeds[device][0],
+            //        green = m_LowLeds[device][1],
+            //        blue = m_LowLeds[device][2]
+            //    },
+            //    ChargingColor = new DS4Color
+            //    {
+            //        red = m_ChargingLeds[device][0],
+            //        green = m_ChargingLeds[device][1],
+            //        blue = m_ChargingLeds[device][2]
+            //    },
+            //    ShiftColor = new DS4Color
+            //    {
+            //        red = m_ShiftLeds[device][0],
+            //        green = m_ShiftLeds[device][1],
+            //        blue = m_ShiftLeds[device][2]
+            //    },
+            //    ShiftColorOn = shiftColorOn[device],
+            //    FlashColor = new DS4Color
+            //    {
+            //        red = m_FlashLeds[device][0],
+            //        green = m_FlashLeds[device][1],
+            //        blue = m_FlashLeds[device][2]
+            //    },
+            //    touchpadJitterCompensation = touchpadJitterCompensation[device],
+            //    lowerRCOn = lowerRCOn[device],
+            //    tapSensitivity = tapSensitivity[device],
+            //    doubleTap = doubleTap[device],
+            //    scrollSensitivity = scrollSensitivity[device],
+            //    LeftTriggerMiddle = l2Deadzone[device],
+            //    RightTriggerMiddle = r2Deadzone[device],
+            //    ButtonMouseSensitivity = buttonMouseSensitivity[device],
+            //    Rainbow = rainbow[device],
+            //    LSDeadZone = LSDeadzone[device],
+            //    RSDeadZone = RSDeadzone[device],
+            //    SXDeadZone = SXDeadzone[device],
+            //    SZDeadZone = SZDeadzone[device],
+            //    ChargingType = chargingType[device],
+            //    MouseAcceleration = mouseAccel[device],
+            //    ShiftModifier = shiftModifier[device],
+            //    LaunchProgram = launchProgram[device],
+            //    DinputOnly = dinputOnly[device],
+            //    StartTouchpadOff = startTouchpadOff[device],
+            //    UseTPforControls = useTPforControls[device],
+            //    LSCurve = lsCurve[device],
+            //    RSCurve = rsCurve[device],
+            //    ProfileActions = profileActions[device],
+            //    Controls = new List<XML_FIles.ControlXML>()
+            //};
 
-            if (buttons != null)
-            {
-                ControlXML control = new ControlXML();
-
-                foreach (var button in buttons)
-                {
-                    // Save even if string (for xbox controller buttons)
-                    if (button.Tag != null)
-                    {
-                        DS4KeyType keyType = DS4KeyType.None;
-
-                        if (button.Tag is KeyValuePair<string, string>)
-                        {
-                            if (((KeyValuePair<string, string>)button.Tag).Key == "Unbound")
-                            {
-                                keyType |= DS4KeyType.Unbound;
-                            }
-                        }
-
-                        if (button.Font.Strikeout)
-                            keyType |= DS4KeyType.HoldMacro;
-                        if (button.Font.Underline)
-                            keyType |= DS4KeyType.Macro;
-                        if (button.Font.Italic)
-                            keyType |= DS4KeyType.Toggle;
-                        if (button.Font.Bold)
-                            keyType |= DS4KeyType.ScanCode;
-
-                        control.Name = button.Name;
-                        control.KeyType = (int)keyType;
-                        if (button.Tag is KeyValuePair<string, string>)
-                        {
-                            KeyValuePair<string, string> tag = (KeyValuePair<string, string>)button.Tag;
-                            control.Button = tag.Key;
-                        }
-
-                        if (button.Tag is KeyValuePair<Int32, string> || button.Tag is KeyValuePair<UInt16, string> || button.Tag is KeyValuePair<byte, string>)
-                        {
-                            KeyValuePair<int, string> tag = (KeyValuePair<int, string>)button.Tag;
-                            control.Key = tag.Key;
-                        }
-
-                        if (button.Tag is KeyValuePair<IEnumerable<int>, string> || button.Tag is KeyValuePair<Int32[], string> || button.Tag is KeyValuePair<UInt16[], string>)
-                        {
-                            KeyValuePair<Int32[], string> tag = (KeyValuePair<Int32[], string>)button.Tag;
-                            foreach(Int32 macro in tag.Key)
-                            {
-                                control.Macro.Add(macro);
-                            }
-                        }
-
-                        file.Controls.Add(control);
-
-                        /*
-                        //string[] extras;
-                        //buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
-                        if (button.Tag is KeyValuePair<IEnumerable<int>, string> || button.Tag is KeyValuePair<Int32[], string> || button.Tag is KeyValuePair<UInt16[], string>)
-                        {
-                            KeyValuePair<Int32[], string> tag = (KeyValuePair<Int32[], string>)button.Tag;
-                            int[] ii = tag.Key;
-                            buttonNode.InnerText = string.Join("/", ii);
-                            Macro.AppendChild(buttonNode);
-                            extras = tag.Value.Split(',');
-                        }
-                        */
-                    }
-                }
-            }
-
-
-            using (FileStream stream = new FileStream("testXML.xml", FileMode.Create))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(ProfileXML));
-                serializer.Serialize(stream, file);
-            }
+            //using (FileStream stream = new FileStream("testXML.xml", FileMode.Create))
+            //{
+            //    XmlSerializer serializer = new XmlSerializer(typeof(ProfileXML));
+            //    serializer.Serialize(stream, file);
+            //}
 
             try
             {
@@ -1194,6 +1132,44 @@ namespace DS4Control
 
                 Node = m_Xdoc.CreateNode(XmlNodeType.Element, "DS4Windows", null);
 
+                this.CreateXMLNode(Node, m_Xdoc, "flushHIDQueue", flushHIDQueue[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "idleDisconnectTimeout", idleDisconnectTimeout[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "Color", m_Leds[device][0].ToString() + "," + m_Leds[device][1].ToString() + "," + m_Leds[device][2].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "RumbleBoost", rumble[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "ledAsBatteryIndicator", ledAsBattery[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "lowBatteryFlash", flashLedLowBattery[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "flashBatteryAt", flashAt[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "touchSensitivity", touchSensitivity[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "LowColor", m_LowLeds[device][0].ToString() + "," + m_LowLeds[device][1].ToString() + "," + m_LowLeds[device][2].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "ChargingColor", m_ChargingLeds[device][0].ToString() + "," + m_ChargingLeds[device][1].ToString() + "," + m_ChargingLeds[device][2].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "ShiftColor", m_ShiftLeds[device][0].ToString() + "," + m_ShiftLeds[device][1].ToString() + "," + m_ShiftLeds[device][2].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "ShiftColorOn", shiftColorOn[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "FlashColor", m_FlashLeds[device][0].ToString() + "," + m_FlashLeds[device][1].ToString() + "," + m_FlashLeds[device][2].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "touchpadJitterCompensation", touchpadJitterCompensation[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "lowerRCOn", lowerRCOn[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "tapSensitivity", tapSensitivity[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "doubleTap", doubleTap[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "scrollSensitivity", scrollSensitivity[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "LeftTriggerMiddle", l2Deadzone[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "RightTriggerMiddle", r2Deadzone[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "ButtonMouseSensitivity", buttonMouseSensitivity[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "Rainbow", rainbow[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "LSDeadZone", LSDeadzone[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "RSDeadZone", RSDeadzone[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "SXDeadZone", SXDeadzone[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "SZDeadZone", SZDeadzone[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "ChargingType", chargingType[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "MouseAcceleration", mouseAccel[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "ShiftModifier", shiftModifier[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "LaunchProgram", launchProgram[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "DinputOnly", dinputOnly[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "StartTouchpadOff", startTouchpadOff[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "UseTPforControls", useTPforControls[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "LSCurve", lsCurve[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "RSCurve", rsCurve[device].ToString());
+                this.CreateXMLNode(Node, m_Xdoc, "ProfileActions", string.Join("/", profileActions[device]));
+
+                /*
                 XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); 
                 xmlFlushHIDQueue.InnerText = flushHIDQueue[device].ToString();
                 Node.AppendChild(xmlFlushHIDQueue);
@@ -1337,6 +1313,7 @@ namespace DS4Control
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null);
                 xmlProfileActions.InnerText = string.Join("/", profileActions[device]); 
                 Node.AppendChild(xmlProfileActions);
+                 */
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
@@ -1348,6 +1325,9 @@ namespace DS4Control
 
                 if (buttons != null)
                 {
+                    SaveButtons(shiftbuttons, Node, NodeControl, Key, Macro, KeyType, Button, Extras);
+
+                    /*
                     foreach (var button in buttons)
                     {
                         // Save even if string (for xbox controller buttons)
@@ -1435,6 +1415,7 @@ namespace DS4Control
                         NodeControl.AppendChild(Extras);
                     if (KeyType.HasChildNodes)
                         NodeControl.AppendChild(KeyType);
+                     */
                 }
                 else if (xmlControls != null)
                     Node.AppendChild(xmlControls);
@@ -1449,6 +1430,9 @@ namespace DS4Control
                     XmlNode ShiftExtras = m_Xdoc.CreateNode(XmlNodeType.Element, "Extras", null);
                     if (shiftbuttons != null)
                     {
+                        SaveButtons(shiftbuttons, Node, NodeShiftControl, ShiftKey, ShiftMacro, ShiftKeyType, ShiftButton, ShiftExtras);
+
+                        /*
                         foreach (var button in shiftbuttons)
                         {
                             // Save even if string (for xbox controller buttons)
@@ -1527,7 +1511,9 @@ namespace DS4Control
                         if (ShiftKey.HasChildNodes)
                             NodeShiftControl.AppendChild(ShiftKey);
                         if (ShiftKeyType.HasChildNodes)
-                            NodeShiftControl.AppendChild(ShiftKeyType);
+                            NodeShiftControl.AppendChild(ShiftKeyType);*/
+
+
                     }
                     else if (xmlShiftControls != null)
                         Node.AppendChild(xmlShiftControls);
@@ -1540,6 +1526,90 @@ namespace DS4Control
             catch { Saved = false; }
             return Saved;
         }
+
+        private void SaveButtons(System.Windows.Forms.Control[] buttons, XmlNode node, XmlNode control, XmlNode Key, XmlNode Macro, XmlNode KeyType, XmlNode Button, XmlNode Extras)
+        {
+            foreach (var button in buttons)
+            {
+                if (button.Tag != null)
+                {
+                    XmlNode buttonNode;
+                    string keyType = String.Empty;
+                    if (button.Tag is KeyValuePair<string, string>)
+                        if (((KeyValuePair<string, string>)button.Tag).Key == "Unbound")
+                            keyType += DS4KeyType.Unbound;
+
+                    if (button.Font.Strikeout)
+                        keyType += DS4KeyType.HoldMacro;
+                    if (button.Font.Underline)
+                        keyType += DS4KeyType.Macro;
+                    if (button.Font.Italic)
+                        keyType += DS4KeyType.Toggle;
+                    if (button.Font.Bold)
+                        keyType += DS4KeyType.ScanCode;
+                    if (keyType != String.Empty)
+                    {
+                        buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
+                        buttonNode.InnerText = keyType;
+                        KeyType.AppendChild(buttonNode);
+                    }
+
+                    string[] extras;
+                    buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
+                    if (button.Tag is KeyValuePair<IEnumerable<int>, string> || button.Tag is KeyValuePair<Int32[], string> || button.Tag is KeyValuePair<UInt16[], string>)
+                    {
+                        KeyValuePair<Int32[], string> tag = (KeyValuePair<Int32[], string>)button.Tag;
+                        int[] ii = tag.Key;
+                        buttonNode.InnerText = string.Join("/", ii);
+                        Macro.AppendChild(buttonNode);
+                        extras = tag.Value.Split(',');
+                    }
+                    else if (button.Tag is KeyValuePair<Int32, string> || button.Tag is KeyValuePair<UInt16, string> || button.Tag is KeyValuePair<byte, string>)
+                    {
+                        KeyValuePair<int, string> tag = (KeyValuePair<int, string>)button.Tag;
+                        buttonNode.InnerText = tag.Key.ToString();
+                        Key.AppendChild(buttonNode);
+                        extras = tag.Value.Split(',');
+                    }
+                    else if (button.Tag is KeyValuePair<string, string>)
+                    {
+                        KeyValuePair<string, string> tag = (KeyValuePair<string, string>)button.Tag;
+                        buttonNode.InnerText = tag.Key;
+                        Button.AppendChild(buttonNode);
+                        extras = tag.Value.Split(',');
+                    }
+                    else
+                    {
+                        KeyValuePair<object, string> tag = (KeyValuePair<object, string>)button.Tag;
+                        extras = tag.Value.Split(',');
+                    }
+                    bool hasvalue = false;
+                    foreach (string s in extras)
+                        if (s != "0")
+                        {
+                            hasvalue = true;
+                            break;
+                        }
+                    if (hasvalue && !string.IsNullOrEmpty(String.Join(",", extras)))
+                    {
+                        XmlNode extraNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
+                        extraNode.InnerText = String.Join(",", extras);
+                        Extras.AppendChild(extraNode);
+                    }
+                }
+            }
+
+            node.AppendChild(control);
+            if (Button.HasChildNodes)
+                control.AppendChild(Button);
+            if (Macro.HasChildNodes)
+                control.AppendChild(Macro);
+            if (Key.HasChildNodes)
+                control.AppendChild(Key);
+            if (KeyType.HasChildNodes)
+                control.AppendChild(KeyType);
+        }
+
         private DS4Controls getDS4ControlsByName(string key)
         {
             switch (key)

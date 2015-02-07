@@ -181,6 +181,8 @@
     <Compile Include="WinProgs.Designer.cs">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </Compile>
+    <Compile Include="XML Files\AutoProfileXML.cs" />
+    <Compile Include="XML Files\ProfilesDirectory.cs" />
     <EmbeddedResource Include="Alreadyrunning.resx">
       <DependentUpon>Alreadyrunning.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,6 +8,9 @@ using System.Xml;
 using System.Drawing;
 using DS4Library;
 using System.Security.Principal;
+using DS4Windows.XML_Files;
+using System.Xml.Serialization;
+using DS4Control.XML_FIles;
 namespace DS4Control
 {
     [Flags]
@@ -1030,6 +1033,149 @@ namespace DS4Control
         {
             Boolean Saved = true;
             String path = Global.appdatapath + @"\Profiles\" + Path.GetFileNameWithoutExtension(propath) + ".xml";
+
+            ProfileXML file = new ProfileXML
+            {
+                flushHIDQueue = flushHIDQueue[device],
+                idleDisconnectTimeout = idleDisconnectTimeout[device],
+                color = new DS4Color
+                {
+                    red = m_Leds[device][0],
+                    green = m_Leds[device][1],
+                    blue = m_Leds[device][2]
+                },
+                RumbleBoost = rumble[device],
+                ledAsBatteryIndicator = ledAsBattery[device],
+                lowBatteryFlash = flashLedLowBattery[device],
+                flashBatteryAt = flashAt[device],
+                touchSensitivity = touchSensitivity[device],
+                LowColor = new DS4Color
+                {
+                    red = m_LowLeds[device][0],
+                    green = m_LowLeds[device][1],
+                    blue = m_LowLeds[device][2]
+                },
+                ChargingColor = new DS4Color
+                {
+                    red = m_ChargingLeds[device][0],
+                    green = m_ChargingLeds[device][1],
+                    blue = m_ChargingLeds[device][2]
+                },
+                ShiftColor = new DS4Color
+                {
+                    red = m_ShiftLeds[device][0],
+                    green = m_ShiftLeds[device][1],
+                    blue = m_ShiftLeds[device][2]
+                },
+                ShiftColorOn = shiftColorOn[device],
+                FlashColor = new DS4Color
+                {
+                    red = m_FlashLeds[device][0],
+                    green = m_FlashLeds[device][1],
+                    blue = m_FlashLeds[device][2]
+                },
+                touchpadJitterCompensation = touchpadJitterCompensation[device],
+                lowerRCOn = lowerRCOn[device],
+                tapSensitivity = tapSensitivity[device],
+                doubleTap = doubleTap[device],
+                scrollSensitivity = scrollSensitivity[device],
+                LeftTriggerMiddle = l2Deadzone[device],
+                RightTriggerMiddle = r2Deadzone[device],
+                ButtonMouseSensitivity = buttonMouseSensitivity[device],
+                Rainbow = rainbow[device],
+                LSDeadZone = LSDeadzone[device],
+                RSDeadZone = RSDeadzone[device],
+                SXDeadZone = SXDeadzone[device],
+                SZDeadZone = SZDeadzone[device],
+                ChargingType = chargingType[device],
+                MouseAcceleration = mouseAccel[device],
+                ShiftModifier = shiftModifier[device],
+                LaunchProgram = launchProgram[device],
+                DinputOnly = dinputOnly[device],
+                StartTouchpadOff = startTouchpadOff[device],
+                UseTPforControls = useTPforControls[device],
+                LSCurve = lsCurve[device],
+                RSCurve = rsCurve[device],
+                ProfileActions = profileActions[device],
+                Controls = new List<XML_FIles.ControlXML>()
+            };
+
+            if (buttons != null)
+            {
+                ControlXML control = new ControlXML();
+
+                foreach (var button in buttons)
+                {
+                    // Save even if string (for xbox controller buttons)
+                    if (button.Tag != null)
+                    {
+                        DS4KeyType keyType = DS4KeyType.None;
+
+                        if (button.Tag is KeyValuePair<string, string>)
+                        {
+                            if (((KeyValuePair<string, string>)button.Tag).Key == "Unbound")
+                            {
+                                keyType |= DS4KeyType.Unbound;
+                            }
+                        }
+
+                        if (button.Font.Strikeout)
+                            keyType |= DS4KeyType.HoldMacro;
+                        if (button.Font.Underline)
+                            keyType |= DS4KeyType.Macro;
+                        if (button.Font.Italic)
+                            keyType |= DS4KeyType.Toggle;
+                        if (button.Font.Bold)
+                            keyType |= DS4KeyType.ScanCode;
+
+                        control.Name = button.Name;
+                        control.KeyType = (int)keyType;
+                        if (button.Tag is KeyValuePair<string, string>)
+                        {
+                            KeyValuePair<string, string> tag = (KeyValuePair<string, string>)button.Tag;
+                            control.Button = tag.Key;
+                        }
+
+                        if (button.Tag is KeyValuePair<Int32, string> || button.Tag is KeyValuePair<UInt16, string> || button.Tag is KeyValuePair<byte, string>)
+                        {
+                            KeyValuePair<int, string> tag = (KeyValuePair<int, string>)button.Tag;
+                            control.Key = tag.Key;
+                        }
+
+                        if (button.Tag is KeyValuePair<IEnumerable<int>, string> || button.Tag is KeyValuePair<Int32[], string> || button.Tag is KeyValuePair<UInt16[], string>)
+                        {
+                            KeyValuePair<Int32[], string> tag = (KeyValuePair<Int32[], string>)button.Tag;
+                            foreach(Int32 macro in tag.Key)
+                            {
+                                control.Macro.Add(macro);
+                            }
+                        }
+
+                        file.Controls.Add(control);
+
+                        /*
+                        //string[] extras;
+                        //buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
+                        if (button.Tag is KeyValuePair<IEnumerable<int>, string> || button.Tag is KeyValuePair<Int32[], string> || button.Tag is KeyValuePair<UInt16[], string>)
+                        {
+                            KeyValuePair<Int32[], string> tag = (KeyValuePair<Int32[], string>)button.Tag;
+                            int[] ii = tag.Key;
+                            buttonNode.InnerText = string.Join("/", ii);
+                            Macro.AppendChild(buttonNode);
+                            extras = tag.Value.Split(',');
+                        }
+                        */
+                    }
+                }
+            }
+
+
+            using (FileStream stream = new FileStream("testXML.xml", FileMode.Create))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(ProfileXML));
+                serializer.Serialize(stream, file);
+            }
+
             try
             {
                 XmlNode Node;
@@ -1048,52 +1194,150 @@ namespace DS4Control
 
                 Node = m_Xdoc.CreateNode(XmlNodeType.Element, "DS4Windows", null);
 
-                XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); xmlFlushHIDQueue.InnerText = flushHIDQueue[device].ToString(); Node.AppendChild(xmlFlushHIDQueue);
-                XmlNode xmlIdleDisconnectTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "idleDisconnectTimeout", null); xmlIdleDisconnectTimeout.InnerText = idleDisconnectTimeout[device].ToString(); Node.AppendChild(xmlIdleDisconnectTimeout);
+                XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); 
+                xmlFlushHIDQueue.InnerText = flushHIDQueue[device].ToString();
+                Node.AppendChild(xmlFlushHIDQueue);
+
+                XmlNode xmlIdleDisconnectTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "idleDisconnectTimeout", null); 
+                xmlIdleDisconnectTimeout.InnerText = idleDisconnectTimeout[device].ToString(); 
+                Node.AppendChild(xmlIdleDisconnectTimeout);
+
                 XmlNode xmlColor = m_Xdoc.CreateNode(XmlNodeType.Element, "Color", null);
                 xmlColor.InnerText = m_Leds[device][0].ToString() + "," + m_Leds[device][1].ToString() + "," + m_Leds[device][2].ToString(); 
                 Node.AppendChild(xmlColor);
-                XmlNode xmlRumbleBoost = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); xmlRumbleBoost.InnerText = rumble[device].ToString(); Node.AppendChild(xmlRumbleBoost);
-                XmlNode xmlLedAsBatteryIndicator = m_Xdoc.CreateNode(XmlNodeType.Element, "ledAsBatteryIndicator", null); xmlLedAsBatteryIndicator.InnerText = ledAsBattery[device].ToString(); Node.AppendChild(xmlLedAsBatteryIndicator);
-                XmlNode xmlLowBatteryFlash = m_Xdoc.CreateNode(XmlNodeType.Element, "lowBatteryFlash", null); xmlLowBatteryFlash.InnerText = flashLedLowBattery[device].ToString(); Node.AppendChild(xmlLowBatteryFlash);
-                XmlNode xmlFlashBatterAt = m_Xdoc.CreateNode(XmlNodeType.Element, "flashBatteryAt", null); xmlFlashBatterAt.InnerText = flashAt[device].ToString(); Node.AppendChild(xmlFlashBatterAt);
-                XmlNode xmlTouchSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "touchSensitivity", null); xmlTouchSensitivity.InnerText = touchSensitivity[device].ToString(); Node.AppendChild(xmlTouchSensitivity);
+
+                XmlNode xmlRumbleBoost = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); 
+                xmlRumbleBoost.InnerText = rumble[device].ToString(); 
+                Node.AppendChild(xmlRumbleBoost);
+
+                XmlNode xmlLedAsBatteryIndicator = m_Xdoc.CreateNode(XmlNodeType.Element, "ledAsBatteryIndicator", null); 
+                xmlLedAsBatteryIndicator.InnerText = ledAsBattery[device].ToString(); 
+                Node.AppendChild(xmlLedAsBatteryIndicator);
+
+                XmlNode xmlLowBatteryFlash = m_Xdoc.CreateNode(XmlNodeType.Element, "lowBatteryFlash", null); 
+                xmlLowBatteryFlash.InnerText = flashLedLowBattery[device].ToString(); 
+                Node.AppendChild(xmlLowBatteryFlash);
+
+                XmlNode xmlFlashBatterAt = m_Xdoc.CreateNode(XmlNodeType.Element, "flashBatteryAt", null); 
+                xmlFlashBatterAt.InnerText = flashAt[device].ToString(); 
+                Node.AppendChild(xmlFlashBatterAt);
+
+                XmlNode xmlTouchSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "touchSensitivity", null); 
+                xmlTouchSensitivity.InnerText = touchSensitivity[device].ToString(); 
+                Node.AppendChild(xmlTouchSensitivity);
+
                 XmlNode xmlLowColor = m_Xdoc.CreateNode(XmlNodeType.Element, "LowColor", null);
                 xmlLowColor.InnerText = m_LowLeds[device][0].ToString() + "," + m_LowLeds[device][1].ToString() + "," + m_LowLeds[device][2].ToString();
                 Node.AppendChild(xmlLowColor);
+
                 XmlNode xmlChargingColor = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingColor", null);
                 xmlChargingColor.InnerText = m_ChargingLeds[device][0].ToString() + "," + m_ChargingLeds[device][1].ToString() + "," + m_ChargingLeds[device][2].ToString();
                 Node.AppendChild(xmlChargingColor);
+
                 XmlNode xmlShiftColor = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftColor", null);
                 xmlShiftColor.InnerText = m_ShiftLeds[device][0].ToString() + "," + m_ShiftLeds[device][1].ToString() + "," + m_ShiftLeds[device][2].ToString();
                 Node.AppendChild(xmlShiftColor);
-                XmlNode xmlShiftColorOn = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftColorOn", null); xmlShiftColorOn.InnerText = shiftColorOn[device].ToString(); Node.AppendChild(xmlShiftColorOn);
+
+                XmlNode xmlShiftColorOn = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftColorOn", null); 
+                xmlShiftColorOn.InnerText = shiftColorOn[device].ToString(); 
+                Node.AppendChild(xmlShiftColorOn);
+
                 XmlNode xmlFlashColor = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashColor", null);
                 xmlFlashColor.InnerText = m_FlashLeds[device][0].ToString() + "," + m_FlashLeds[device][1].ToString() + "," + m_FlashLeds[device][2].ToString();
                 Node.AppendChild(xmlFlashColor);
-                XmlNode xmlTouchpadJitterCompensation = m_Xdoc.CreateNode(XmlNodeType.Element, "touchpadJitterCompensation", null); xmlTouchpadJitterCompensation.InnerText = touchpadJitterCompensation[device].ToString(); Node.AppendChild(xmlTouchpadJitterCompensation);
-                XmlNode xmlLowerRCOn = m_Xdoc.CreateNode(XmlNodeType.Element, "lowerRCOn", null); xmlLowerRCOn.InnerText = lowerRCOn[device].ToString(); Node.AppendChild(xmlLowerRCOn);
-                XmlNode xmlTapSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "tapSensitivity", null); xmlTapSensitivity.InnerText = tapSensitivity[device].ToString(); Node.AppendChild(xmlTapSensitivity);
-                XmlNode xmlDouble = m_Xdoc.CreateNode(XmlNodeType.Element, "doubleTap", null); xmlDouble.InnerText = doubleTap[device].ToString(); Node.AppendChild(xmlDouble);
-                XmlNode xmlScrollSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "scrollSensitivity", null); xmlScrollSensitivity.InnerText = scrollSensitivity[device].ToString(); Node.AppendChild(xmlScrollSensitivity);
-                XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = l2Deadzone[device].ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
-                XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = r2Deadzone[device].ToString(); Node.AppendChild(xmlRightTriggerMiddle);
-                XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
-                XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
-                XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = LSDeadzone[device].ToString(); Node.AppendChild(xmlLSD);
-                XmlNode xmlRSD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZone", null); xmlRSD.InnerText = RSDeadzone[device].ToString(); Node.AppendChild(xmlRSD);
-                XmlNode xmlSXD = m_Xdoc.CreateNode(XmlNodeType.Element, "SXDeadZone", null); xmlSXD.InnerText = SXDeadzone[device].ToString(); Node.AppendChild(xmlSXD);
-                XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); Node.AppendChild(xmlSZD);
-                XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null); xmlChargingType.InnerText = chargingType[device].ToString(); Node.AppendChild(xmlChargingType);
-                XmlNode xmlMouseAccel = m_Xdoc.CreateNode(XmlNodeType.Element, "MouseAcceleration", null); xmlMouseAccel.InnerText = mouseAccel[device].ToString(); Node.AppendChild(xmlMouseAccel);
-                XmlNode xmlShiftMod = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftModifier", null); xmlShiftMod.InnerText = shiftModifier[device].ToString(); Node.AppendChild(xmlShiftMod);
-                XmlNode xmlLaunchProgram = m_Xdoc.CreateNode(XmlNodeType.Element, "LaunchProgram", null); xmlLaunchProgram.InnerText = launchProgram[device].ToString(); Node.AppendChild(xmlLaunchProgram);
-                XmlNode xmlDinput = m_Xdoc.CreateNode(XmlNodeType.Element, "DinputOnly", null); xmlDinput.InnerText = dinputOnly[device].ToString(); Node.AppendChild(xmlDinput);
-                XmlNode xmlStartTouchpadOff = m_Xdoc.CreateNode(XmlNodeType.Element, "StartTouchpadOff", null); xmlStartTouchpadOff.InnerText = startTouchpadOff[device].ToString(); Node.AppendChild(xmlStartTouchpadOff);
-                XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null); xmlUseTPforControls.InnerText = useTPforControls[device].ToString(); Node.AppendChild(xmlUseTPforControls);
-                XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
-                XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
-                XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
+
+                XmlNode xmlTouchpadJitterCompensation = m_Xdoc.CreateNode(XmlNodeType.Element, "touchpadJitterCompensation", null); 
+                xmlTouchpadJitterCompensation.InnerText = touchpadJitterCompensation[device].ToString(); 
+                Node.AppendChild(xmlTouchpadJitterCompensation);
+
+                XmlNode xmlLowerRCOn = m_Xdoc.CreateNode(XmlNodeType.Element, "lowerRCOn", null); 
+                xmlLowerRCOn.InnerText = lowerRCOn[device].ToString(); 
+                Node.AppendChild(xmlLowerRCOn);
+
+                XmlNode xmlTapSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "tapSensitivity", null); 
+                xmlTapSensitivity.InnerText = tapSensitivity[device].ToString(); 
+                Node.AppendChild(xmlTapSensitivity);
+
+                XmlNode xmlDouble = m_Xdoc.CreateNode(XmlNodeType.Element, "doubleTap", null); 
+                xmlDouble.InnerText = doubleTap[device].ToString();
+                Node.AppendChild(xmlDouble);
+
+                XmlNode xmlScrollSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "scrollSensitivity", null); 
+                xmlScrollSensitivity.InnerText = scrollSensitivity[device].ToString(); 
+                Node.AppendChild(xmlScrollSensitivity);
+
+                XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); 
+                xmlLeftTriggerMiddle.InnerText = l2Deadzone[device].ToString(); 
+                Node.AppendChild(xmlLeftTriggerMiddle);
+
+                XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null);
+                xmlRightTriggerMiddle.InnerText = r2Deadzone[device].ToString(); 
+                Node.AppendChild(xmlRightTriggerMiddle);
+
+                XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); 
+                xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); 
+                Node.AppendChild(xmlButtonMouseSensitivity);
+
+                XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null);
+                xmlRainbow.InnerText = rainbow[device].ToString(); 
+                Node.AppendChild(xmlRainbow);
+
+                XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); 
+                xmlLSD.InnerText = LSDeadzone[device].ToString();
+                Node.AppendChild(xmlLSD);
+
+                XmlNode xmlRSD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZone", null); 
+                xmlRSD.InnerText = RSDeadzone[device].ToString();
+                Node.AppendChild(xmlRSD);
+
+                XmlNode xmlSXD = m_Xdoc.CreateNode(XmlNodeType.Element, "SXDeadZone", null); 
+                xmlSXD.InnerText = SXDeadzone[device].ToString();
+                Node.AppendChild(xmlSXD);
+
+                XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); 
+                xmlSZD.InnerText = SZDeadzone[device].ToString();
+                Node.AppendChild(xmlSZD);
+
+                XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null);
+                xmlChargingType.InnerText = chargingType[device].ToString();
+                Node.AppendChild(xmlChargingType);
+
+                XmlNode xmlMouseAccel = m_Xdoc.CreateNode(XmlNodeType.Element, "MouseAcceleration", null); 
+                xmlMouseAccel.InnerText = mouseAccel[device].ToString();
+                Node.AppendChild(xmlMouseAccel);
+
+                XmlNode xmlShiftMod = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftModifier", null);
+                xmlShiftMod.InnerText = shiftModifier[device].ToString();
+                Node.AppendChild(xmlShiftMod);
+
+                XmlNode xmlLaunchProgram = m_Xdoc.CreateNode(XmlNodeType.Element, "LaunchProgram", null);
+                xmlLaunchProgram.InnerText = launchProgram[device].ToString();
+                Node.AppendChild(xmlLaunchProgram);
+
+                XmlNode xmlDinput = m_Xdoc.CreateNode(XmlNodeType.Element, "DinputOnly", null); 
+                xmlDinput.InnerText = dinputOnly[device].ToString();
+                Node.AppendChild(xmlDinput);
+
+                XmlNode xmlStartTouchpadOff = m_Xdoc.CreateNode(XmlNodeType.Element, "StartTouchpadOff", null); 
+                xmlStartTouchpadOff.InnerText = startTouchpadOff[device].ToString();
+                Node.AppendChild(xmlStartTouchpadOff);
+
+                XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null);
+                xmlUseTPforControls.InnerText = useTPforControls[device].ToString();
+                Node.AppendChild(xmlUseTPforControls);
+
+                XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null);
+                xmlLSC.InnerText = lsCurve[device].ToString(); 
+                Node.AppendChild(xmlLSC);
+
+                XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); 
+                xmlRSC.InnerText = rsCurve[device].ToString();
+                Node.AppendChild(xmlRSC);
+
+                XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null);
+                xmlProfileActions.InnerText = string.Join("/", profileActions[device]); 
+                Node.AppendChild(xmlProfileActions);
+
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
 
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -1101,6 +1345,7 @@ namespace DS4Control
                 XmlNode KeyType = m_Xdoc.CreateNode(XmlNodeType.Element, "KeyType", null);
                 XmlNode Button = m_Xdoc.CreateNode(XmlNodeType.Element, "Button", null);
                 XmlNode Extras = m_Xdoc.CreateNode(XmlNodeType.Element, "Extras", null);
+
                 if (buttons != null)
                 {
                     foreach (var button in buttons)
@@ -1112,8 +1357,12 @@ namespace DS4Control
                             string keyType = String.Empty;
 
                             if (button.Tag is KeyValuePair<string, string>)
+                            {
                                 if (((KeyValuePair<string, string>)button.Tag).Key == "Unbound")
+                                {
                                     keyType += DS4KeyType.Unbound;
+                                }
+                            }
 
                             if (button.Font.Strikeout)
                                 keyType += DS4KeyType.HoldMacro;
@@ -1123,6 +1372,7 @@ namespace DS4Control
                                 keyType += DS4KeyType.Toggle;
                             if (button.Font.Bold)
                                 keyType += DS4KeyType.ScanCode;
+
                             if (keyType != String.Empty)
                             {
                                 buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);

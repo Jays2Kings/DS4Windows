@@ -285,20 +285,23 @@ namespace DS4Library
         {
             System.Timers.Timer readTimeout = new System.Timers.Timer(); // Await 30 seconds for the initial packet, then 3 seconds thereafter.
             readTimeout.Elapsed += delegate { HidDevice.CancelIO(); };
-            List<long> Latency = new List<long>();
+
+            //List<long> Latency = new List<long>();
             long oldtime = 0;
             Stopwatch sw = new Stopwatch();
             sw.Start();
+
+            LatencyCounter latencyCounter = new LatencyCounter(200);
+
+            //OK you should never have a while(true) statement. A condition should still allow it to exit
             while (true)
             {
                 string currerror = string.Empty;
-                Latency.Add(sw.ElapsedMilliseconds - oldtime);
+                latencyCounter.PushLatencyReading(sw.ElapsedMilliseconds - oldtime);
+                this.Latency = latencyCounter.Latency;
                 oldtime = sw.ElapsedMilliseconds;
 
-                if (Latency.Count > 100)
-                    Latency.RemoveAt(0);
-
-                this.Latency = Latency.Average();
+                //this.Latency = Latency.Average();
 
                 if (this.Latency > 10 && !warn && sw.ElapsedMilliseconds > 4000)
                 {
@@ -468,12 +471,21 @@ namespace DS4Library
                 }
                 // XXX fix initialization ordering so the null checks all go away
                 if (Report != null)
+                {
                     Report(this, EventArgs.Empty);
+                }
+
                 sendOutputReport(false);
+
                 if (!string.IsNullOrEmpty(error))
+                {
                     error = string.Empty;
+                }
                 if (!string.IsNullOrEmpty(currerror))
-                    error = currerror;                
+                {
+                    error = currerror;
+                }
+
                 cState.CopyTo(pState);
             }
         }

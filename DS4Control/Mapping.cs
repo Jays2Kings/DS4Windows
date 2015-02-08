@@ -55,6 +55,7 @@ namespace DS4Control
         public static DateTime oldnow = DateTime.UtcNow;
         private static bool pressagain = false;
         private static int wheel = 0, keyshelddown = 0;
+
         public static void Commit(int device)
         {
             SyntheticState state = deviceState[device];
@@ -329,20 +330,59 @@ namespace DS4Control
             return value1 * percent + value2 * (1 - percent);
         }
 
+        private static void ProccessCurveState(int curve, DS4State cState, DS4State dState)
+        {
+            int x = cState.LX;
+            int y = cState.LY;
+
+            float max = x + y;
+            double curvex;
+            double curvey;
+            //curve = Global.getLSCurve(device);
+            double multimax = TValue(382.5, max, curve);
+            double multimin = TValue(127.5, max, curve);
+            if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
+            {
+                curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
+                curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
+                //btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbLSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbLSTrack.Location.Y));
+            }
+            else
+            {
+                if (x < 127.5f)
+                {
+                    curvex = Math.Min(x, (x / max) * multimax);
+                    curvey = Math.Min(y, (-(y / max) * multimax + 510));
+                }
+                else
+                {
+                    curvex = Math.Min(x, (-(x / max) * multimax + 510));
+                    curvey = Math.Min(y, (y / max) * multimax);
+                }
+            }
+
+            dState.LX = (byte)Math.Round(curvex, 0);
+            dState.LY = (byte)Math.Round(curvey, 0);
+        }
+
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState)
         {
+            //Copy constructor...
             DS4State dState = new DS4State(cState);
-            int x;
-            int y;
+
+            //int x;
+            //int y;
             int curve;
-            if (Global.getLSCurve(device) > 0)
+            if ((curve = Global.getLSCurve(device)) > 0)
             {
+
+                /*
                 x = cState.LX;
                 y = cState.LY;
                 float max = x + y;
                 double curvex;
                 double curvey;
-                curve = Global.getLSCurve(device);
+                //curve = Global.getLSCurve(device);
                 double multimax = TValue(382.5, max, curve);
                 double multimin = TValue(127.5, max, curve);
                 if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
@@ -365,10 +405,15 @@ namespace DS4Control
                     }
                 }
                 dState.LX = (byte)Math.Round(curvex, 0);
-                dState.LY = (byte)Math.Round(curvey, 0);
+                dState.LY = (byte)Math.Round(curvey, 0);*/
+
+                ProccessCurveState(curve, cState, dState);
             }
-            if (Global.getRSCurve(device) > 0)
+
+            if ((curve = Global.getRSCurve(device)) > 0)
             {
+
+                /*
                 x = cState.RX;
                 y = cState.RY;
                 float max = x + y;
@@ -377,6 +422,7 @@ namespace DS4Control
                 curve = Global.getRSCurve(device);
                 double multimax = TValue(382.5, max, curve);
                 double multimin = TValue(127.5, max, curve);
+
                 if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
                 {
                     curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
@@ -396,30 +442,37 @@ namespace DS4Control
                     }
                 }
                 dState.RX = (byte)Math.Round(curvex, 0);
-                dState.RY = (byte)Math.Round(curvey, 0);
+                dState.RY = (byte)Math.Round(curvey, 0);*/
+
+                ProccessCurveState(curve, cState, dState);
             }
+
             if (Global.getLSDeadzone(device) > 0 &&
                 Math.Sqrt(Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2)) < Global.getLSDeadzone(device))
             {
                 dState.LX = 127;
                 dState.LY = 127;
             }
+
             if (Global.getRSDeadzone(device) > 0
                 && Math.Sqrt(Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2)) < Global.getLSDeadzone(device))
             {
                 dState.RX = 127;
                 dState.RY = 127;
             }
+
             if (Global.getL2Deadzone(device) > 0 && cState.L2 < Global.getL2Deadzone(device))
                 dState.L2 = 0;
             if (Global.getR2Deadzone(device) > 0 && cState.R2 < Global.getR2Deadzone(device))
                 dState.R2 = 0;
+
             return dState;
         }
 
         public static bool[] pressedonce = new bool[261], macrodone = new bool[34];
         public static int test = 0;
         static bool[] macroControl = new bool[25];
+
         /// <summary>
         /// Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons.
         /// </summary>
@@ -463,7 +516,10 @@ namespace DS4Control
             }
             cState.CopyTo(MappedState);
             if (shift)
-                MapShiftCustom(device, cState, MappedState, eState, tp);           
+            {
+                MapShiftCustom(device, cState, MappedState, eState, tp);
+            }
+
             foreach (KeyValuePair<DS4Controls, string> customKey in Global.getCustomMacros(device))
             {
                 if (shift == false ||
@@ -497,27 +553,34 @@ namespace DS4Control
                         if (!macrodone[DS4ControltoInt(customKey.Key)])
                         {
                             macrodone[DS4ControltoInt(customKey.Key)] = true;
+
                             for (int i = 0; i < keys.Length; i++)
                             {
                                 if (keys[i] >= 300) //ints over 300 used to delay
+                                {
                                     await Task.Delay(keys[i] - 300);
+                                }
                                 else if (!keydown[keys[i]])
                                 {
-                                    if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
+                                    if (keys[i] == 256)
+                                    {
+                                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTDOWN); //anything above 255 is not a keyvalue
+                                    }
+
                                     else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTDOWN);
                                     else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
                                     else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
                                     else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
-                                    else if (keys[i] == 261) macroControl[0] = true; 
-                                    else if (keys[i] == 262) macroControl[1] = true; 
-                                    else if (keys[i] == 263) macroControl[2] = true; 
-                                    else if (keys[i] == 264) macroControl[3] = true; 
-                                    else if (keys[i] == 265) macroControl[4] = true; 
-                                    else if (keys[i] == 266) macroControl[5] = true; 
-                                    else if (keys[i] == 267) macroControl[6] = true; 
-                                    else if (keys[i] == 268) macroControl[7] = true; 
-                                    else if (keys[i] == 269) macroControl[8] = true; 
-                                    else if (keys[i] == 270) macroControl[9] = true; 
+                                    else if (keys[i] == 261) macroControl[0] = true;
+                                    else if (keys[i] == 262) macroControl[1] = true;
+                                    else if (keys[i] == 263) macroControl[2] = true;
+                                    else if (keys[i] == 264) macroControl[3] = true;
+                                    else if (keys[i] == 265) macroControl[4] = true;
+                                    else if (keys[i] == 266) macroControl[5] = true;
+                                    else if (keys[i] == 267) macroControl[6] = true;
+                                    else if (keys[i] == 268) macroControl[7] = true;
+                                    else if (keys[i] == 269) macroControl[8] = true;
+                                    else if (keys[i] == 270) macroControl[9] = true;
                                     else if (keys[i] == 271) macroControl[10] = true;
                                     else if (keys[i] == 272) macroControl[11] = true;
                                     else if (keys[i] == 273) macroControl[12] = true;
@@ -541,21 +604,25 @@ namespace DS4Control
                                 }
                                 else
                                 {
-                                    if (keys[i] == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
+                                    if (keys[i] == 256)
+                                    {
+                                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
+                                    }
+
                                     else if (keys[i] == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
                                     else if (keys[i] == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
                                     else if (keys[i] == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
                                     else if (keys[i] == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
-                                    else if (keys[i] == 261) macroControl[0] = false; 
-                                    else if (keys[i] == 262) macroControl[1] = false; 
-                                    else if (keys[i] == 263) macroControl[2] = false; 
-                                    else if (keys[i] == 264) macroControl[3] = false; 
-                                    else if (keys[i] == 265) macroControl[4] = false; 
-                                    else if (keys[i] == 266) macroControl[5] = false; 
-                                    else if (keys[i] == 267) macroControl[6] = false; 
-                                    else if (keys[i] == 268) macroControl[7] = false; 
-                                    else if (keys[i] == 269) macroControl[8] = false; 
-                                    else if (keys[i] == 270) macroControl[9] = false; 
+                                    else if (keys[i] == 261) macroControl[0] = false;
+                                    else if (keys[i] == 262) macroControl[1] = false;
+                                    else if (keys[i] == 263) macroControl[2] = false;
+                                    else if (keys[i] == 264) macroControl[3] = false;
+                                    else if (keys[i] == 265) macroControl[4] = false;
+                                    else if (keys[i] == 266) macroControl[5] = false;
+                                    else if (keys[i] == 267) macroControl[6] = false;
+                                    else if (keys[i] == 268) macroControl[7] = false;
+                                    else if (keys[i] == 269) macroControl[8] = false;
+                                    else if (keys[i] == 270) macroControl[9] = false;
                                     else if (keys[i] == 271) macroControl[10] = false;
                                     else if (keys[i] == 272) macroControl[11] = false;
                                     else if (keys[i] == 273) macroControl[12] = false;
@@ -695,6 +762,7 @@ namespace DS4Control
             List<DS4Controls> RXP = new List<DS4Controls>();
             List<DS4Controls> RYN = new List<DS4Controls>();
             List<DS4Controls> RYP = new List<DS4Controls>();
+
             foreach (KeyValuePair<DS4Controls, X360Controls> customButton in Global.getCustomButtons(device))
             {
                 if (shift == false ||

@@ -453,15 +453,27 @@ namespace DS4Control
                 DS4State cState = CurrentState[ind];
                 device.getPreviousState(PreviousState[ind]);
                 DS4State pState = PreviousState[ind];
+
                 if (pState.Battery != cState.Battery)
+                {
                     Global.ControllerStatusChanged(this);
+                }
+
                 CheckForHotkeys(ind, cState, pState);
                 if (eastertime)
+                {
                     EasterTime(ind);
+                }
+
                 GetInputkeys(ind);
+
                 if (Global.getLSCurve(ind) + Global.getRSCurve(ind) + Global.getLSDeadzone(ind) + Global.getRSDeadzone(ind) +
-                    Global.getL2Deadzone(ind) + Global.getR2Deadzone(ind) > 0) //if a curve or deadzone is in place
+                    Global.getL2Deadzone(ind) + Global.getR2Deadzone(ind) > 0)
+                {
+                    //if a curve or deadzone is in place
                     cState = Mapping.SetCurveAndDeadzone(ind, cState);
+                }
+
                 if (!recordingMacro && (!string.IsNullOrEmpty(Global.tempprofilename[ind]) ||
                     Global.getHasCustomKeysorButtons(ind) || Global.getHasShiftCustomKeysorButtons(ind) || Global.GetProfileActions(ind).Count > 0))
                 {
@@ -734,7 +746,9 @@ namespace DS4Control
                 }
             }
             else
-                touchreleased[deviceID] = true;            
+            {
+                touchreleased[deviceID] = true;
+            }
         }
 
         public virtual void StartTPOff(int deviceID)

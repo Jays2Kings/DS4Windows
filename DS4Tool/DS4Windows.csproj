@@ -414,8 +414,6 @@
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="DS4Tool_TemporaryKey.pfx" />
-    <None Include="DS4Windows_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

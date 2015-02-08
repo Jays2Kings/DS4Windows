@@ -277,16 +277,116 @@ namespace DS4Library
         {
             return priorInputReport30 != 0xff;
         }
+
         private byte priorInputReport30 = 0xff;
-        public double Latency = 0;
+        public double Latency = 0.0d;
         bool warn;
-        public string error;
+        public List<string> currentErrors = new List<string>();
+        const double LATENCY_THRESHOLD = 10.0d;
+
+        public void BuildCurrentState(byte[] inputReport)
+        {
+            DateTime utcNow = System.DateTime.UtcNow; 
+
+            cState.ReportTimeStamp = utcNow;
+            cState.LX = inputReport[1];
+            cState.LY = inputReport[2];
+            cState.RX = inputReport[3];
+            cState.RY = inputReport[4];
+            cState.L2 = inputReport[8];
+            cState.R2 = inputReport[9];
+
+            cState.Triangle = ((byte)inputReport[5] & (1 << 7)) != 0;
+            cState.Circle = ((byte)inputReport[5] & (1 << 6)) != 0;
+            cState.Cross = ((byte)inputReport[5] & (1 << 5)) != 0;
+            cState.Square = ((byte)inputReport[5] & (1 << 4)) != 0;
+            cState.DpadUp = ((byte)inputReport[5] & (1 << 3)) != 0;
+            cState.DpadDown = ((byte)inputReport[5] & (1 << 2)) != 0;
+            cState.DpadLeft = ((byte)inputReport[5] & (1 << 1)) != 0;
+            cState.DpadRight = ((byte)inputReport[5] & (1 << 0)) != 0;
+
+            //Convert dpad into individual On/Off bits instead of a clock representation
+            byte dpad_state = 0;
+
+            dpad_state = (byte)(
+            ((cState.DpadRight ? 1 : 0) << 0) |
+            ((cState.DpadLeft ? 1 : 0) << 1) |
+            ((cState.DpadDown ? 1 : 0) << 2) |
+            ((cState.DpadUp ? 1 : 0) << 3));
+
+            switch (dpad_state)
+            {
+                case 0: cState.DpadUp = true; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = false; break;
+                case 1: cState.DpadUp = true; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = true; break;
+                case 2: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = true; break;
+                case 3: cState.DpadUp = false; cState.DpadDown = true; cState.DpadLeft = false; cState.DpadRight = true; break;
+                case 4: cState.DpadUp = false; cState.DpadDown = true; cState.DpadLeft = false; cState.DpadRight = false; break;
+                case 5: cState.DpadUp = false; cState.DpadDown = true; cState.DpadLeft = true; cState.DpadRight = false; break;
+                case 6: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = true; cState.DpadRight = false; break;
+                case 7: cState.DpadUp = true; cState.DpadDown = false; cState.DpadLeft = true; cState.DpadRight = false; break;
+                case 8: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = false; break;
+            }
+
+            cState.R3 = ((byte)inputReport[6] & (1 << 7)) != 0;
+            cState.L3 = ((byte)inputReport[6] & (1 << 6)) != 0;
+            cState.Options = ((byte)inputReport[6] & (1 << 5)) != 0;
+            cState.Share = ((byte)inputReport[6] & (1 << 4)) != 0;
+            cState.R1 = ((byte)inputReport[6] & (1 << 1)) != 0;
+            cState.L1 = ((byte)inputReport[6] & (1 << 0)) != 0;
+
+            cState.PS = ((byte)inputReport[7] & (1 << 0)) != 0;
+            cState.TouchButton = (inputReport[7] & (1 << 2 - 1)) != 0;
+            cState.FrameCounter = (byte)(inputReport[7] >> 2);
+
+            // Store Gyro and Accel values
+            Array.Copy(inputReport, 14, accel, 0, 6);
+            Array.Copy(inputReport, 20, gyro, 0, 6);
+
+            try
+            {
+                charging = (inputReport[30] & 0x10) != 0;
+                battery = (inputReport[30] & 0x0f) * 10;
+                cState.Battery = (byte)battery;
+                if (inputReport[30] != priorInputReport30)
+                {
+                    priorInputReport30 = inputReport[30];
+                    Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
+                }
+            }
+            catch
+            {
+                currentErrors.Add("Index out of bounds: battery");
+            }
+
+            // XXX DS4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
+            try
+            {
+
+                for (int touches = inputReport[-1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET - 1], touchOffset = 0; touches > 0; touches--, touchOffset += 9)
+                {
+                    cState.TouchPacketCounter = inputReport[-1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset];
+                    cState.Touch1 = (inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // >= 1 touch detected
+                    cState.Touch1Identifier = (byte)(inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
+                    cState.Touch2 = (inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // 2 touches detected
+                    cState.Touch2Identifier = (byte)(inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
+                    cState.TouchLeft = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) >= 1920 * 2 / 5) ? false : true;
+                    cState.TouchRight = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) < 1920 * 2 / 5) ? false : true;
+                    // Even when idling there is still a touch packet indicating no touch 1 or 2
+                    touchpad.handleTouchpad(inputReport, cState, touchOffset);
+                }
+            }
+            catch
+            {
+                currentErrors.Add("Index out of bounds: touchpad");
+            }
+        }
+
         private void performDs4Input()
         {
             System.Timers.Timer readTimeout = new System.Timers.Timer(); // Await 30 seconds for the initial packet, then 3 seconds thereafter.
             readTimeout.Elapsed += delegate { HidDevice.CancelIO(); };
+            readTimeout.Interval = 3000.0d;
 
-            //List<long> Latency = new List<long>();
             long oldtime = 0;
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -301,39 +401,35 @@ namespace DS4Library
                 this.Latency = latencyCounter.Latency;
                 oldtime = sw.ElapsedMilliseconds;
 
-                //this.Latency = Latency.Average();
-
-                if (this.Latency > 10 && !warn && sw.ElapsedMilliseconds > 4000)
+                warn = false;
+                if (this.Latency > LATENCY_THRESHOLD)
                 {
                     warn = true;
-                    //System.Diagnostics.Trace.WriteLine(System.DateTime.UtcNow.ToString("o") + "> " + "Controller " + /*this.DeviceNum*/ + 1 + " (" + this.MacAddress + ") is experiencing latency issues. Currently at " + Math.Round(this.Latency, 2).ToString() + "ms of recomended maximum 10ms");
                 }
-                else if (this.Latency <= 10 && warn) warn = false;
 
-                if (readTimeout.Interval != 3000.0)
-                {
-                    if (readTimeout.Interval != 30000.0)
-                        readTimeout.Interval = 30000.0;
-                    else
-                        readTimeout.Interval = 3000.0;
-                }
                 readTimeout.Enabled = true;
                 if (conType != ConnectionType.USB)
                 {
                     HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
                     readTimeout.Enabled = false;
+
                     if (res == HidDevice.ReadStatus.Success)
                     {
                         Array.Copy(btInputReport, 2, inputReport, 0, inputReport.Length);
                     }
                     else
                     {
-                        Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
-                        sendOutputReport(true); // Kick Windows into noticing the disconnection.
+                        this.currentErrors.Add(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
+                        
+                        sendOutputReport(synchronous:true); // Kick Windows into noticing the disconnection.
                         StopOutputUpdate();
                         IsDisconnecting = true;
+
                         if (Removal != null)
+                        {
                             Removal(this, EventArgs.Empty);
+                        }
+
                         return;
 
                     }
@@ -344,116 +440,34 @@ namespace DS4Library
                     readTimeout.Enabled = false;
                     if (res != HidDevice.ReadStatus.Success)
                     {
-                        Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
+                        //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
+                        this.currentErrors.Add(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
+                        
                         StopOutputUpdate();
                         IsDisconnecting = true;
                         if (Removal != null)
+                        {
                             Removal(this, EventArgs.Empty);
+                        }
+
                         return;
                     }
                 }
+
                 if (ConnectionType == ConnectionType.BT && btInputReport[0] != 0x11)
 	            {
 	                //Received incorrect report, skip it
 	                continue;
 	            }
-                DateTime utcNow = System.DateTime.UtcNow; // timestamp with UTC in case system time zone changes
-                resetHapticState();
-                cState.ReportTimeStamp = utcNow;
-                cState.LX = inputReport[1];
-                cState.LY = inputReport[2];
-                cState.RX = inputReport[3];
-                cState.RY = inputReport[4];
-                cState.L2 = inputReport[8];
-                cState.R2 = inputReport[9];
 
-                cState.Triangle = ((byte)inputReport[5] & (1 << 7)) != 0;
-                cState.Circle = ((byte)inputReport[5] & (1 << 6)) != 0;
-                cState.Cross = ((byte)inputReport[5] & (1 << 5)) != 0;
-                cState.Square = ((byte)inputReport[5] & (1 << 4)) != 0;
-                cState.DpadUp = ((byte)inputReport[5] & (1 << 3)) != 0;
-                cState.DpadDown = ((byte)inputReport[5] & (1 << 2)) != 0;
-                cState.DpadLeft = ((byte)inputReport[5] & (1 << 1)) != 0;
-                cState.DpadRight = ((byte)inputReport[5] & (1 << 0)) != 0;
+                this.resetHapticState();
+                this.BuildCurrentState(inputReport);
 
-                //Convert dpad into individual On/Off bits instead of a clock representation
-                byte dpad_state = 0;
-
-                dpad_state = (byte)(
-                ((cState.DpadRight ? 1 : 0) << 0) |
-                ((cState.DpadLeft ? 1 : 0) << 1) |
-	            ((cState.DpadDown ? 1 : 0) << 2) |
-                ((cState.DpadUp ? 1 : 0) << 3));
-
-                switch (dpad_state)
-                {
-                    case 0: cState.DpadUp = true; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = false; break;
-                    case 1: cState.DpadUp = true; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = true; break;
-                    case 2: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = true; break;
-                    case 3: cState.DpadUp = false; cState.DpadDown = true; cState.DpadLeft = false; cState.DpadRight = true; break;
-                    case 4: cState.DpadUp = false; cState.DpadDown = true; cState.DpadLeft = false; cState.DpadRight = false; break;
-                    case 5: cState.DpadUp = false; cState.DpadDown = true; cState.DpadLeft = true; cState.DpadRight = false; break;
-                    case 6: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = true; cState.DpadRight = false; break;
-                    case 7: cState.DpadUp = true; cState.DpadDown = false; cState.DpadLeft = true; cState.DpadRight = false; break;
-                    case 8: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = false; break;
-                }
-
-                cState.R3 = ((byte)inputReport[6] & (1 << 7)) != 0;
-                cState.L3 = ((byte)inputReport[6] & (1 << 6)) != 0;
-                cState.Options = ((byte)inputReport[6] & (1 << 5)) != 0;
-                cState.Share = ((byte)inputReport[6] & (1 << 4)) != 0;
-                cState.R1 = ((byte)inputReport[6] & (1 << 1)) != 0;
-                cState.L1 = ((byte)inputReport[6] & (1 << 0)) != 0;
-
-                cState.PS = ((byte)inputReport[7] & (1 << 0)) != 0;
-                cState.TouchButton = (inputReport[7] & (1 << 2 - 1)) != 0;
-                cState.FrameCounter = (byte)(inputReport[7] >> 2);
-
-                // Store Gyro and Accel values
-                Array.Copy(inputReport, 14, accel, 0, 6);
-                Array.Copy(inputReport, 20, gyro, 0, 6);
-
-
-                try
-                {
-                charging = (inputReport[30] & 0x10) != 0;
-                battery = (inputReport[30] & 0x0f) * 10;
-                cState.Battery = (byte)battery;
-                    if (inputReport[30] != priorInputReport30)
-                    {
-                        priorInputReport30 = inputReport[30];
-                        Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
-                    }
-                }
-                catch { currerror = "Index out ofr bounds: battery"; }
-                // XXX DS4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
-                try
-                {
-                    for (int touches = inputReport[-1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET - 1], touchOffset = 0; touches > 0; touches--, touchOffset += 9)
-                    {
-                        cState.TouchPacketCounter = inputReport[-1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset];
-                        cState.Touch1 = (inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // >= 1 touch detected
-                        cState.Touch1Identifier = (byte)(inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
-                        cState.Touch2 = (inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // 2 touches detected
-                        cState.Touch2Identifier = (byte)(inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
-                        cState.TouchLeft = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) >= 1920 * 2 / 5) ? false : true;
-                        cState.TouchRight = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) < 1920 * 2 / 5) ? false : true;
-                        // Even when idling there is still a touch packet indicating no touch 1 or 2
-                        touchpad.handleTouchpad(inputReport, cState, touchOffset);
-                    }
-                }
-                catch { currerror = "Index out ofr bounds: touchpad"; }
-                
-                /* Debug output of incoming HID data:
-                if (cState.L2 == 0xff && cState.R2 == 0xff)
-                {
-                    Console.Write(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + ">");
-                    for (int i = 0; i < inputReport.Length; i++)
-                        Console.Write(" " + inputReport[i].ToString("x2"));
-                    Console.WriteLine();
-                } */
+                DateTime utcNow = System.DateTime.UtcNow;
                 if (!isNonSixaxisIdle())
+                {
                     lastActive = utcNow;
+                }
                 if (conType == ConnectionType.BT)
                 {
                     bool shouldDisconnect = false;
@@ -463,11 +477,15 @@ namespace DS4Library
                         {
                             DateTime timeout = lastActive + TimeSpan.FromSeconds(IdleTimeout);
                             if (!Charging)
+                            {
                                 shouldDisconnect = utcNow >= timeout;
+                            }
                         }
                     }
                     if (shouldDisconnect && DisconnectBT())
+                    {
                         return; // all done
+                    }
                 }
                 // XXX fix initialization ordering so the null checks all go away
                 if (Report != null)
@@ -476,15 +494,6 @@ namespace DS4Library
                 }
 
                 sendOutputReport(false);
-
-                if (!string.IsNullOrEmpty(error))
-                {
-                    error = string.Empty;
-                }
-                if (!string.IsNullOrEmpty(currerror))
-                {
-                    error = currerror;
-                }
 
                 cState.CopyTo(pState);
             }

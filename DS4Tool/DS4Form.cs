@@ -16,6 +16,9 @@ using System.Text;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.ServiceProcess;
+using DS4Control.Enums;
+using DS4Windows.Tools;
+using DS4Windows.XML_Files;
 namespace DS4Windows
 {
     public partial class DS4Form : Form
@@ -33,7 +36,7 @@ namespace DS4Windows
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         string appdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
         string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
-        string tempProfileProgram = "null";
+        string tempProfileProgram = null;
         float dpix, dpiy;
         List<string> profilenames= new List<string>();
         List<string> programpaths = new List<string>();
@@ -74,8 +77,10 @@ namespace DS4Windows
         public DS4Form(string[] args)
         {
             InitializeComponent();
+
             arguements = args;
             ThemeUtil.SetTheme(lvDebug);
+
             Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
             Batteries = new Label[4] { lBBatt1, lBBatt2, lBBatt3, lBBatt4 };
             cbs = new ComboBox[4] { cBController1, cBController2, cBController3, cBController4 };
@@ -85,44 +90,43 @@ namespace DS4Windows
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
+
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
             bool firstrun = false;
-            if (File.Exists(exepath + "\\Auto Profiles.xml")
-                && File.Exists(appdatapath + "\\Auto Profiles.xml"))
+
+            string profileFileName = "\\Auto Profiles.xml";
+
+            string executionPathAutoProfile = exepath + profileFileName;
+            string appDataPathAutoProfile = appdatapath + profileFileName;
+
+            ProfileFileSystem profileLocations = new ProfileFileSystem(exepath, appdatapath, oldappdatapath);
+
+            ProfileDirectories existingProfileLocations = profileLocations.CheckForFileInProfileDirectories(profileFileName);
+            ProfileDirectories saveLocation = profileLocations.GetCurrentSaveLocation(profileFileName);
+
+            if (saveLocation == ProfileDirectories.None)
             {
-                firstrun = true;
-                new SaveWhere(true).ShowDialog();
-            }
-            else if (File.Exists(exepath + "\\Auto Profiles.xml"))
-                Global.SaveWhere(exepath);
-            else if (File.Exists(appdatapath + "\\Auto Profiles.xml"))
-                Global.SaveWhere(appdatapath);
-            else if (File.Exists(oldappdatapath + "\\Auto Profiles.xml"))
-            {
-                try
+                if (profileLocations.GetProfileExistsInOldLocation(profileFileName))
                 {
-                    if (Directory.Exists(appdatapath))
-                        Directory.Move(appdatapath, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows Old");
-                    Directory.Move(oldappdatapath, appdatapath);
-                    Global.SaveWhere(appdatapath);
+                    profileLocations.MigrateToNewFileLocation(profileFileName, ProfileDirectories.OldFilePath, ProfileDirectories.AppDataPath);
+                    Global.SaveWhere(profileLocations.GetDirectoryString(ProfileDirectories.AppDataPath));
                 }
-                catch
+                else
                 {
-                    MessageBox.Show(Properties.Resources.CannotMoveFiles, "DS4Windows");
-                    Process.Start("explorer.exe", @"/select, " + appdatapath);
-                    Close(); 
-                    return;
+                    firstrun = true;
+                    new SaveWhere(true).ShowDialog();
                 }
             }
-            else if (!File.Exists(exepath + "\\Auto Profiles.xml")
-                && !File.Exists(appdatapath + "\\Auto Profiles.xml"))
+            else
             {
-                firstrun = true;
-                new SaveWhere(false).ShowDialog();
+                Global.SaveWhere(profileLocations.GetCurrentSaveLocationDirectory(profileFileName));
             }
+
             if (firstrun)
+            {
                 CheckDrivers();
+            }
             else
             {
                 var AppCollectionThread = new System.Threading.Thread(() => CheckDrivers());
@@ -135,6 +139,7 @@ namespace DS4Windows
                 Close();
                 return;
             }
+
             Graphics g = this.CreateGraphics();
             try
             {
@@ -145,6 +150,7 @@ namespace DS4Windows
             {
                 g.Dispose();
             }
+
             Icon = Properties.Resources.DS4W;
             notifyIcon1.Icon = Properties.Resources.DS4W;
             Program.rootHub.Debug += On_Debug;
@@ -187,6 +193,7 @@ namespace DS4Windows
                 }
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
+
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
             hideDS4CheckBox.Checked = Global.getUseExclusiveMode();
             hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
@@ -208,6 +215,7 @@ namespace DS4Windows
                 {
                     string[] profiles = Directory.GetFiles(Global.appdatapath + @"\Profiles\");
                     foreach (String s in profiles)
+                    {
                         if (Path.GetExtension(s) == ".xml")
                         {
                             xDoc.Load(s);
@@ -227,9 +235,11 @@ namespace DS4Windows
                             xDoc.Save(s);
                             Global.LoadActions();
                         }
+                    }
                 }
                 catch { }
-            }            
+            }
+
             bool start = true;
             bool mini = false;
             for (int i = 0; i < arguements.Length; i++)
@@ -279,7 +289,6 @@ namespace DS4Windows
                 nUDUpdateTime.Value = checkwhen;
             }
             Uri url = new Uri("http://ds4windows.com/Files/Builds/newest.txt"); //Sorry other devs, gonna have to find your own server
-
 
             if (checkwhen > 0 && DateTime.Now >= Global.getLastChecked() + TimeSpan.FromHours(checkwhen))
             {
@@ -420,26 +429,33 @@ namespace DS4Windows
         }
         void Hotkeys(object sender, EventArgs e)
         {
+
             if (Global.getSwipeProfiles())
+            {
                 for (int i = 0; i < 4; i++)
                 {
-                    string slide = Program.rootHub.TouchpadSlide(i);
-                    if (slide == "left")
+                    //string slide = Program.rootHub.TouchpadSlideString(i);
+
+                    TouchpadSlideDirections slide = Program.rootHub.TouchpadSlideEnum(i);
+
+                    if (slide == TouchpadSlideDirections.left)
                         if (cbs[i].SelectedIndex <= 0)
                             cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
                         else
                             cbs[i].SelectedIndex--;
-                    else if (slide == "right")
+                    else if (slide == TouchpadSlideDirections.right)
                         if (cbs[i].SelectedIndex == cbs[i].Items.Count - 2)
                             cbs[i].SelectedIndex = 0;
                         else
                             cbs[i].SelectedIndex++;
-                    if (slide.Contains("t"))
+                    if (slide != TouchpadSlideDirections.none)
                         ShowNotification(this, Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", cbs[i].Text));
                 }
+            }
 
             //Check for process for auto profiles
-            if (tempProfileProgram == "null")
+            if (tempProfileProgram == null)
+            {
                 for (int i = 0; i < programpaths.Count; i++)
                 {
                     string name = programpaths[i].ToLower().Replace('/', '\\');
@@ -454,11 +470,12 @@ namespace DS4Windows
                         tempProfileProgram = name;
                     }
                 }
+            }
             else
             {
                 if (tempProfileProgram != GetTopWindowName().ToLower().Replace('/', '\\'))
                 {
-                    tempProfileProgram = "null";
+                    tempProfileProgram = null;
                     for (int j = 0; j < 4; j++)
                         Global.LoadProfile(j, false, Program.rootHub);
                 }
@@ -468,30 +485,24 @@ namespace DS4Windows
         
         public void LoadP()
         {
-            XmlDocument doc = new XmlDocument();
-            proprofiles = new List<string>[4] { new List<string>(), new List<string>(),
-                new List<string>(), new List<string>() };
             programpaths.Clear();
-            if (!File.Exists(Global.appdatapath + "\\Auto Profiles.xml"))
-                return;
-            doc.Load(Global.appdatapath + "\\Auto Profiles.xml");
-            XmlNodeList programslist = doc.SelectNodes("Programs/Program");
-            foreach (XmlNode x in programslist)
-                    programpaths.Add(x.Attributes["path"].Value);
-            foreach (string s in programpaths)
-                for (int i = 0; i < 4; i++)
-                {
-                    proprofiles[i].Add(doc.SelectSingleNode("/Programs/Program[@path=\"" + s + "\"]"
-                        + "/Controller" + (i + 1)).InnerText);
-                }
+
+            if (File.Exists(Global.appdatapath + "\\Auto Profiles.xml"))
+            {
+                AutoProfileXML profiles = new AutoProfileXML(Global.appdatapath + "\\Auto Profiles.xml");
+                proprofiles = profiles.Profiles;
+
+                //Does this need to be... closed? XMLDocument has no close function
+            }
         }
+
         string originalsettingstext;
         private void CheckDrivers()
         {
             bool deriverinstalled = false;
             try
             {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPSignedDriver");
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPSignedDriver");
             
                 foreach (ManagementObject obj in searcher.Get())
                 {
@@ -503,7 +514,10 @@ namespace DS4Windows
                             break;
                         }
                     }
-                    catch { }
+                    catch
+                    {
+                        deriverinstalled = false;
+                    }
                 }
 
                 if (!deriverinstalled)
@@ -569,19 +583,20 @@ namespace DS4Windows
             try
             {
                 profilenames.Clear();
-                string[] profiles = Directory.GetFiles(Global.appdatapath + @"\Profiles\");
-                foreach (String s in profiles)
-                    if (s.EndsWith(".xml"))
-                        profilenames.Add(Path.GetFileNameWithoutExtension(s));
-                lBProfiles.Items.Clear();
-                lBProfiles.Items.AddRange(profilenames.ToArray());
-                if (lBProfiles.Items.Count == 0)
+
+                profilenames = new ProfilesDirectory(Global.appdatapath + @"\Profiles\");
+
+                if (profilenames.Count == 0)
                 {
                     Global.SaveProfile(0, "Default", null, null);
                     Global.setAProfile(0, "Default");
                     RefreshProfiles();
                     return;
                 }
+
+                lBProfiles.Items.Clear();
+                lBProfiles.Items.AddRange(profilenames.ToArray());
+
                 for (int i = 0; i < 4; i++)
                 {
                     cbs[i].Items.Clear();
@@ -590,6 +605,7 @@ namespace DS4Windows
                     foreach (string s in profilenames)
                         shortcuts[i].DropDownItems.Add(s);
                     for (int j = 0; j < cbs[i].Items.Count; j++)
+                    {
                         if (cbs[i].Items[j].ToString() == Path.GetFileNameWithoutExtension(Global.getAProfile(i)))
                         {
                             cbs[i].SelectedIndex = j;
@@ -605,6 +621,7 @@ namespace DS4Windows
                             shortcuts[i].Text = Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString());
                             ebns[i].Text = Properties.Resources.New;
                         }
+                    }
                 }
             }
             catch (DirectoryNotFoundException)

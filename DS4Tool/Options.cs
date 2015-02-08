@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Xml;
+using System.Linq;
+using DS4Windows.UI_Utilities;
+
 namespace DS4Windows
 {
     public partial class Options : Form
@@ -26,10 +29,12 @@ namespace DS4Windows
         Image R = Properties.Resources.RightTouch;
         Image M = Properties.Resources.MultiTouch;
         Image U = Properties.Resources.UpperTouch;
+
         private float dpix;
         private float dpiy;
         public Dictionary<string, string> defaults = new Dictionary<string, string>();
         public bool saving;
+
         public Options(int deviceNum, string name, DS4Form rt)
         {
             InitializeComponent();
@@ -37,7 +42,9 @@ namespace DS4Windows
             filename = name;
             colored = pBRainbow.Image;
             root = rt;
+
             Graphics g = this.CreateGraphics();
+
             try
             {
                 dpix = g.DpiX / 100f * 1.041666666667f;
@@ -49,62 +56,36 @@ namespace DS4Windows
             }
 
             greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
-            foreach (System.Windows.Forms.Control control in pnlMain.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btn"))
-                        buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in pnlSticks.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btn"))
-                        buttons.Add((Button)control);
+
+            UIOptionsUtilities.AddButtonsToButtonCollection(pnlMain.Controls, buttons, "btn");
+            UIOptionsUtilities.AddButtonsToButtonCollection(pnlSticks.Controls, buttons, "btn");
+
             foreach (Button b in buttons)
                 defaults.Add(b.Name, b.Text);
-            foreach (System.Windows.Forms.Control control in fLPTiltControls.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btn"))
-                        buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in fLPTouchSwipe.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btn"))
-                    buttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in pnlShiftMain.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btnShift"))
-                        subbuttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in pnlShiftSticks.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btnShift"))
-                        subbuttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in fLPShiftTiltControls.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btnShift"))
-                    subbuttons.Add((Button)control);
-            foreach (System.Windows.Forms.Control control in fLPShiftTouchSwipe.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btn"))
-                    subbuttons.Add((Button)control);
-            //string butts = "";
-                //butts += "\n" + b.Name;
-            //MessageBox.Show(butts);
+
+            UIOptionsUtilities.AddButtonsToButtonCollection(fLPTiltControls.Controls, buttons, "btn");
+            UIOptionsUtilities.AddButtonsToButtonCollection(fLPTouchSwipe.Controls, buttons, "btn");
+            UIOptionsUtilities.AddButtonsToButtonCollection(pnlShiftMain.Controls, buttons, "btnShift");
+            UIOptionsUtilities.AddButtonsToButtonCollection(pnlShiftSticks.Controls, buttons, "btnShift");
+            UIOptionsUtilities.AddButtonsToButtonCollection(fLPShiftTiltControls.Controls, buttons, "btnShift");
+            UIOptionsUtilities.AddButtonsToButtonCollection(fLPShiftTouchSwipe.Controls, buttons, "btnShift");
 
             root.lbLastMessage.ForeColor = Color.Black;
             root.lbLastMessage.Text = "Hover over items to see description or more about";
-            foreach (System.Windows.Forms.Control control in Controls)
-            {
-                if (control.HasChildren)
-                    foreach (System.Windows.Forms.Control ctrl in control.Controls)
-                    {
-                        if (ctrl.HasChildren)
-                            foreach (System.Windows.Forms.Control ctrl2 in ctrl.Controls)
-                            {
-                                if (ctrl2.HasChildren)
-                                    foreach (System.Windows.Forms.Control ctrl3 in ctrl2.Controls)
-                                        ctrl3.MouseHover += Items_MouseHover;
-                                ctrl2.MouseHover += Items_MouseHover;
-                            }
-                        ctrl.MouseHover += Items_MouseHover;
-                    }
-                control.MouseHover += Items_MouseHover;
-            }
+
+            UIOptionsUtilities.ApplyMouseHoverEventToControls(Controls, Items_MouseHover);
+            UIOptionsUtilities.ApplyMouseHoverEventToButtonList(buttons, button_MouseHover);
 
             if (device < 4)
-            nUDSixaxis.Value = deviceNum + 1;
+            {
+                nUDSixaxis.Value = deviceNum + 1;
+            }
+
             if (filename != "")
             {
                 if (device == 4) //if temp device is called
                     Global.setAProfile(4, name);
+
                 Global.LoadProfile(device, buttons.ToArray(), subbuttons.ToArray(), false, Program.rootHub);
                 DS4Color color = Global.loadColor(device);
                 tBRedBar.Value = color.red;
@@ -117,15 +98,19 @@ namespace DS4Windows
                 lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
                 pnlFull.Location = (cBLightbyBattery.Checked ? new Point(pnlFull.Location.X, (int)(dpix * 42)) : new Point(pnlFull.Location.X, (int)(dpiy * 48)));
 
+                
                 DS4Color lowColor = Global.loadLowColor(device);
                 tBLowRedBar.Value = lowColor.red;
                 tBLowGreenBar.Value = lowColor.green;
                 tBLowBlueBar.Value = lowColor.blue;
 
+                //OptionsUIUtilities.InitializeColorTrackBar(tBLowRedBar, Global.loadLowColor(device));
+
                 DS4Color shiftColor = Global.loadShiftColor(device);
                 tBShiftRedBar.Value = shiftColor.red;
                 tBShiftGreenBar.Value = shiftColor.green;
                 tBShiftBlueBar.Value = shiftColor.blue;
+
                 cBShiftLight.Checked = Global.getShiftColorOn(device);
 
                 DS4Color cColor = Global.loadChargingColor(device);
@@ -134,7 +119,10 @@ namespace DS4Windows
                 DS4Color fColor = Global.loadFlashColor(device);
                 lbFlashAt.ForeColor = Color.FromArgb(fColor.red, fColor.green, fColor.blue);
                 if (lbFlashAt.ForeColor.GetBrightness() > .5f)
+                {
                     lbFlashAt.BackColor = Color.Black;
+                }
+
                 lbPercentFlashBar.ForeColor = lbFlashAt.ForeColor;
                 lbPercentFlashBar.BackColor = lbFlashAt.BackColor;
                 nUDRumbleBoost.Value = Global.loadRumbleBoost(device);
@@ -177,6 +165,8 @@ namespace DS4Windows
                     pBRainbow.Image = colored;
                     ToggleRainbow(true);
                 }
+
+                //Double is 64 bit, byte is 32. Right now this is byte / double, which are not even the same size
                 nUDLS.Value = Math.Round((decimal)(Global.getLSDeadzone(device) / 127d), 3);
                 nUDRS.Value = Math.Round((decimal)(Global.getRSDeadzone(device) / 127d), 3);
                 nUDSX.Value = (decimal)Global.getSXDeadzone(device);
@@ -188,6 +178,7 @@ namespace DS4Windows
                     pBProgram.Image = Icon.ExtractAssociatedIcon(Global.getLaunchProgram(device)).ToBitmap();
                     btnBrowse.Text = Path.GetFileNameWithoutExtension(Global.getLaunchProgram(device));
                 }
+
                 cBDinput.Checked = Global.getDinputOnly(device);
                 olddinputcheck = cBDinput.Checked;
                 cbStartTouchpadOff.Checked = Global.getStartTouchpadOff(device);
@@ -208,12 +199,7 @@ namespace DS4Windows
                     case 4: tBRedBar.Value = 0; tBGreenBar.Value = 0; break;
                 }
             }
-            foreach (Button b in buttons)
-                b.MouseHover += button_MouseHover;
-            foreach (Button b in subbuttons)
-                b.MouseHover += button_MouseHover;
            
-            
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             btnLeftStick.Enter += btnSticks_Enter;
             btnRightStick.Enter += btnSticks_Enter;
@@ -221,15 +207,17 @@ namespace DS4Windows
             btnShiftRightStick.Enter += btnShiftSticks_Enter;
             UpdateLists();
             inputtimer.Start();
+
             inputtimer.Tick += InputDS4;
             sixaxisTimer.Tick += ControllerReadout_Tick;
             sixaxisTimer.Interval = 1000 / 60;
+
             LoadActions(string.IsNullOrEmpty(filename));
         }
 
         public void LoadActions(bool newp)
         {
-            List<string> pactions = Global.GetProfileActions(device);
+            IEnumerable<string> pactions = Global.GetProfileActions(device);
             foreach (SpecialAction action in Global.GetActions())
             {
                 ListViewItem lvi = new ListViewItem(action.name);
@@ -252,11 +240,13 @@ namespace DS4Windows
                 if (newp && action.type == "DisconnectBT")
                     lvi.Checked = true;
                 foreach (string s in pactions)
+                {
                     if (s == action.name)
                     {
                         lvi.Checked = true;
                         break;
                     }
+                }
                 lVActions.Items.Add(lvi);
             }
         }
@@ -274,125 +264,66 @@ namespace DS4Windows
             }
             else
             {
+                DS4StateExposed exposedState = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1];
+                DS4State controllerState = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1);
+                DS4Device device = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
+
                 tPController.Enabled = true;
-                SetDynamicTrackBarValue(tBsixaxisGyroX, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroY, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroY + tBsixaxisGyroY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroZ, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelX, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelY, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelY + tBsixaxisAccelY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelZ, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroX, (exposedState.GyroX + tBsixaxisGyroX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroY, (exposedState.GyroY + tBsixaxisGyroY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroZ, (exposedState.GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelX, (exposedState.AccelX + tBsixaxisAccelX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelY, (exposedState.AccelY + tBsixaxisAccelY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelZ, (exposedState.AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
 
-                int x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LX;
-                int y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LY;
-                //else
-                //double hypot = Math.Min(127.5f, Math.Sqrt(Math.Pow(x - 127.5f, 2) + Math.Pow(y - 127.5f, 2)));
-                if (nUDLSCurve.Value > 0)
-                {
-                    float max = x + y;
-                    double curvex;
-                    double curvey;
-                    double multimax = TValue(382.5, max, (double)nUDLSCurve.Value);
-                    double multimin = TValue(127.5, max, (double)nUDLSCurve.Value);
-                    if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
-                    {
-                        curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
-                        curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
-                        btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbLSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbLSTrack.Location.Y));
-                    }
-                    else
-                    {
-                        if (x < 127.5f)
-                        {
-                            curvex = Math.Min(x, (x / max) * multimax);
-                            curvey = Math.Min(y, (-(y / max) * multimax + 510));
-                        }
-                        else
-                        {
-                            curvex = Math.Min(x, (-(x / max) * multimax + 510));
-                            curvey = Math.Min(y, (y / max) * multimax);
-                        }
-                        btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbLSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbLSTrack.Location.Y));
-                    }
-                }
-                else
-                btnLSTrack.Location = new Point((int)(dpix * x / 2.09 + lbLSTrack.Location.X), (int)(dpiy * y / 2.09 + lbLSTrack.Location.Y));
-                //*/
-                x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RX;
-                y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RY;
-                if (nUDRSCurve.Value > 0)
-                {
-                    float max = x + y;
-                    double curvex;
-                    double curvey;
-                    double multimax = TValue(382.5, max, (double)nUDRSCurve.Value);
-                    double multimin = TValue(127.5, max, (double)nUDRSCurve.Value);
-                    if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
-                    {
-                        curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
-                        curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
-                        btnRSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbRSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbRSTrack.Location.Y));
-                    }
-                    else
-                    {
-                        if (x < 127.5f)
-                        {
-                            curvex = Math.Min(x, (x / max) * multimax);
-                            curvey = Math.Min(y, (-(y / max) * multimax + 510));
-                        }
-                        else
-                        {
-                            curvex = Math.Min(x, (-(x / max) * multimax + 510));
-                            curvey = Math.Min(y, (y / max) * multimax);
-                        }
-                        btnRSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbRSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbRSTrack.Location.Y));
-                    }
-                }
-                else
-                    btnRSTrack.Location = new Point((int)(dpix * x / 2.09 + lbRSTrack.Location.X), (int)(dpiy * y / 2.09 + lbRSTrack.Location.Y));
-                x = -Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX / 62 + 127;
-                y = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ / 62 + 127;
-                btnSATrack.Location = new Point((int)(dpix * x / 2.09 + lbSATrack.Location.X), (int)(dpiy * y / 2.09 + lbSATrack.Location.Y));
+                XY axisValues;
+                axisValues.x = controllerState.LX;
+                axisValues.y = controllerState.LY;
 
+                UIOptionsUtilities.ProcessCurve(axisValues, btnLSTrack, lbLSTrack, nUDLSCurve, dpix, dpiy);
 
-                tBL2.Value = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).L2;
-                lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 15), (int)((dpix * (24 - tBL2.Value / 10.625) + 10)));
-                if (tBL2.Value == 255)
-                    lbL2Track.ForeColor = Color.Green;
-                else if (tBL2.Value < (double)nUDL2.Value * 255)
-                    lbL2Track.ForeColor = Color.Red;
-                else
-                    lbL2Track.ForeColor = Color.Black;
+                axisValues.x = controllerState.RX;
+                axisValues.y = controllerState.RY;
 
-                tBR2.Value = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).R2;
-                lbR2Track.Location = new Point(tBR2.Location.X + (int)(dpix * 20), (int)((dpix * (24 - tBR2.Value / 10.625) + 10)));
-                if (tBR2.Value == 255)
-                    lbR2Track.ForeColor = Color.Green;
-                else if (tBR2.Value < (double)nUDR2.Value * 255)
-                    lbR2Track.ForeColor = Color.Red;
-                else
-                    lbR2Track.ForeColor = Color.Black;
+                UIOptionsUtilities.ProcessCurve(axisValues, btnRSTrack, lbRSTrack, nUDRSCurve, dpix, dpiy);
 
+                axisValues.x = -exposedState.GyroX / 62 + 127;
+                axisValues.y = exposedState.GyroZ / 62 + 127;
 
-                double latency = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1].Latency;
+                btnSATrack.Location = UIOptionsUtilities.ConvertAxisToUIPoint(axisValues, lbSATrack, dpix, dpiy);
+
+                tBL2.Value = controllerState.L2;
+                lbL2Track.Location = UIOptionsUtilities.CalculateTrackBarPoint(tBL2, dpix, dpiy);
+
+                UIOptionsUtilities.ProcessBumperTrackPositionAndColor(tBL2, lbL2Track, nUDL2);
+
+                tBR2.Value = controllerState.R2;
+                lbR2Track.Location = UIOptionsUtilities.CalculateTrackBarPoint(tBR2, dpix, dpiy);
+
+                UIOptionsUtilities.ProcessBumperTrackPositionAndColor(tBR2, lbR2Track, nUDR2);
+
+                double latency = device.Latency;
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", latency.ToString()).Replace("*ms*", "ms");
-                if (latency > 10)
+                if (latency > 10.0d)
+                {
                     pBDelayTracker.BackColor = Color.Red;
-                else if (latency > 5)
+                }
+                else if (latency > 5.0d)
+                {
                     pBDelayTracker.BackColor = Color.Yellow;
+                }
                 else
+                {
                     pBDelayTracker.BackColor = Color.Green;
+                }
             }
         }
 
-        double TValue(double value1, double value2, double percent)
-        {
-            percent /= 100f;
-            return value1 * percent + value2 * (1 - percent);
-        }
         private void InputDS4(object sender, EventArgs e)
         {
             if (Form.ActiveForm == root && cBControllerInput.Checked && tabControls.SelectedIndex < 2)
-            switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
+            {
+                switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
                 {
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
                     case ("Circle"): Show_ControlsBn(bnCircle, e); break;
@@ -428,6 +359,7 @@ namespace DS4Windows
                     case ("GyroZP"): Show_ControlsBn(bnGyroZP, e); break;
                     case ("GyroZN"): Show_ControlsBn(bnGyroZN, e); break;
                 }
+            }
         }
         private void button_MouseHover(object sender, EventArgs e)
         {
@@ -558,10 +490,16 @@ namespace DS4Windows
             Global.setDS4Mapping(cBControllerInput.Checked);
             Global.setLSCurve(device, (int)Math.Round(nUDLSCurve.Value, 0));
             Global.setRSCurve(device, (int)Math.Round(nUDRSCurve.Value, 0));
+
             List<string> pactions = new List<string>();
             foreach (ListViewItem lvi in lVActions.Items)
+            {
                 if (lvi.Checked)
+                {
                     pactions.Add(lvi.Text);
+                }
+            }
+
             Global.SetProfileAtions(device, pactions);
             gBTouchpad.Enabled = !cBTPforControls.Checked;
             if (cBTPforControls.Checked)
@@ -587,13 +525,21 @@ namespace DS4Windows
             lastSelected.Text = controlname;
             int value;
             if (tag.Key == null)
+            {
                 lastSelected.Tag = tag;
+            }
             else if (Int32.TryParse(tag.Key.ToString(), out value))
+            {
                 lastSelected.Tag = new KeyValuePair<int, string>(value, tag.Value);
+            }
             else if (tag.Key is Int32[])
+            {
                 lastSelected.Tag = new KeyValuePair<Int32[], string>((Int32[])tag.Key, tag.Value);
+            }
             else
-                lastSelected.Tag = new KeyValuePair<string, string>(tag.Key.ToString(), tag.Value);    
+            {
+                lastSelected.Tag = new KeyValuePair<string, string>(tag.Key.ToString(), tag.Value);
+            }
         }
         public void ChangeButtonText(string controlname, KeyValuePair<object, string> tag, System.Windows.Forms.Control ctrl)
         {
@@ -711,149 +657,141 @@ namespace DS4Windows
             if (device < 4)
                 DS4Control.DS4LightBar.forcelight[device] = false;            
         }
+
         private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
         {
             if (sender is Color && device < 4)
             {
                 Color color = (Color)sender;
-                DS4Library.DS4Color dcolor = new DS4Library.DS4Color { red = color.R, green = color.G, blue = color.B };
+
+                DS4Library.DS4Color dcolor = new DS4Library.DS4Color
+                {
+                    red = color.R,
+                    green = color.G, 
+                    blue = color.B 
+                };
+
                 DS4Control.DS4LightBar.forcedColor[device] = dcolor;
                 DS4Control.DS4LightBar.forcedFlash[device] = 0;
                 DS4Control.DS4LightBar.forcelight[device] = true;
             }
         }
-        int bgc = 255; //Color of the form background, If greyscale color
-        private void redBar_ValueChanged(object sender, EventArgs e)
+
+        struct SatSomPair
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
+            public int sat;
+            public int som;
+        }
+
+        private SatSomPair ProcessBarValueChange(TrackBar bar)
+        {
+            int value = bar.Value;
+
+            SatSomPair pair;
+            pair.sat = bgc - (value < bgc ? value : bgc);
+            pair.som = bgc + 11 * (int)(value * 0.0039215); ;
+
+            //bar.BackColor = Color.FromArgb(som, sat, sat);
             alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
             reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
             pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
             Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
             if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(dpix * 100), 0, 2000);
+                tp.Show((bar).Value.ToString(), (bar), (int)(dpix * 100), 0, 2000);
+
+            return pair;
+        }
+
+        const int bgc = 255; //Color of the form background, If greyscale color
+        private void redBar_ValueChanged(object sender, EventArgs e)
+        {
+            SatSomPair pair = ProcessBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.som, pair.sat, pair.sat);
         }
         private void greenBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
-            alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
-            reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100*dpix), 0, 2000);
+            SatSomPair pair = ProcessBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.som, pair.sat);
         }
         private void blueBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
-            alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
-            reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
+            SatSomPair pair = ProcessBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.sat, pair.som);
+        }
+
+        private SatSomPair ProcessLowBarValueChange(TrackBar bar)
+        {
+            int value = ((TrackBar)bar).Value;
+
+            SatSomPair pair;
+            pair.sat = bgc - (value < bgc ? value : bgc);
+            pair.som = bgc + 11 * (int)(value * 0.0039215); ;
+
+            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
+            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            pBController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveColor(device, (byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
+            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
             if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+                tp.Show(((TrackBar)bar).Value.ToString(), ((TrackBar)bar), (int)(100 * dpix), 0, 2000);
+
+            return pair;
         }
 
         private void lowRedBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
-            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
-            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            SatSomPair pair = ProcessLowBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.som, pair.sat, pair.sat);
         }
 
         private void lowGreenBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
-            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
-            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            SatSomPair pair = ProcessLowBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.som, pair.sat);
         }
 
         private void lowBlueBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
-            alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBLowGreenBar.Value, tBLowBlueBar.Value));
-            reg = Color.FromArgb(tBLowRedBar.Value, tBLowGreenBar.Value, tBLowBlueBar.Value);
+            SatSomPair pair = ProcessLowBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.sat, pair.som);
+        }
+
+        private SatSomPair ProcessShiftBarValueChange(TrackBar bar)
+        {
+            int value = ((TrackBar)bar).Value;
+
+            SatSomPair pair;
+            pair.sat = bgc - (value < bgc ? value : bgc);
+            pair.som = bgc + 11 * (int)(value * 0.0039215); ;
+
+            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
+            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
             full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveLowColor(device, (byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
+            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+                tp.Show(((TrackBar)bar).Value.ToString(), ((TrackBar)bar), (int)(100 * dpix), 0, 2000);
+
+            return pair;
         }
 
         private void shiftRedBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(som, sat, sat);
-            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
-            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            SatSomPair pair = ProcessShiftBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.som, pair.sat, pair.sat);
         }
 
         private void shiftGreenBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, som, sat);
-            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
-            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            SatSomPair pair = ProcessShiftBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.som, pair.sat);
         }
 
         private void shiftBlueBar_ValueChanged(object sender, EventArgs e)
         {
-            int value = ((TrackBar)sender).Value;
-            int sat = bgc - (value < bgc ? value : bgc);
-            int som = bgc + 11 * (int)(value * 0.0039215);
-            ((TrackBar)sender).BackColor = Color.FromArgb(sat, sat, som);
-            alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
-            reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
-            full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-            pBShiftController.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-            Global.saveShiftColor(device, (byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
-            if (!saving)
-                tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
+            SatSomPair pair = ProcessShiftBarValueChange(sender as TrackBar);
+            (sender as TrackBar).BackColor = Color.FromArgb(pair.sat, pair.sat, pair.som);
         }
 
         public Color HuetoRGB(float hue, float light, Color rgb)
@@ -873,6 +811,7 @@ namespace DS4Windows
             else if (300 <= hue && hue < 360) { R = C; B = X; }
             return Color.FromArgb((int)((R + m) * 255), (int)((G + m) * 255), (int)((B + m) * 255));
         }
+
         private void rumbleBoostBar_ValueChanged(object sender, EventArgs e)
         {
             Global.saveRumbleBoost(device, (byte)nUDRumbleBoost.Value);
@@ -1332,27 +1271,13 @@ namespace DS4Windows
         private void nUDSX_ValueChanged(object sender, EventArgs e)
         {
             Global.setSXDeadzone(device, (double)nUDSX.Value);
-            if (nUDSX.Value <= 0 && nUDSZ.Value <= 0)
-                pBSADeadzone.Visible = false;
-            else
-            {
-                pBSADeadzone.Visible = true;
-                pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
-                pBSADeadzone.Location = new Point(lbSATrack.Location.X + (int)(dpix * 63) - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + (int)(dpix * 63) - pBSADeadzone.Size.Height / 2);
-            }
+            UIOptionsUtilities.ProcessDeadZomeValueChange(lbSATrack, pBSADeadzone, nUDSX, nUDSZ, dpix);
         }
 
         private void nUDSZ_ValueChanged(object sender, EventArgs e)
         {
             Global.setSZDeadzone(device, (double)nUDSZ.Value);
-            if (nUDSX.Value <= 0 && nUDSZ.Value <= 0)
-                pBSADeadzone.Visible = false;
-            else
-            {
-                pBSADeadzone.Visible = true;
-                pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
-                pBSADeadzone.Location = new Point(lbSATrack.Location.X + (int)(dpix * 63) - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + (int)(dpiy * 63) - pBSADeadzone.Size.Height / 2);
-            }
+            UIOptionsUtilities.ProcessDeadZomeValueChange(lbSATrack, pBSADeadzone, nUDSX, nUDSZ, dpix);
         }
 
         private void bnTouchLeft_MouseHover(object sender, EventArgs e)
@@ -1383,27 +1308,13 @@ namespace DS4Windows
         private void numUDRS_ValueChanged(object sender, EventArgs e)
         {
             Global.setRSDeadzone(device, (byte)Math.Round((nUDRS.Value * 127),0));
-            if (nUDRS.Value <= 0)
-                pBRSDeadzone.Visible = false;
-            else
-            {
-                pBRSDeadzone.Visible = true;
-                pBRSDeadzone.Size = new Size((int)(nUDRS.Value * 125), (int)(nUDRS.Value * 125));
-                pBRSDeadzone.Location = new Point(lbRSTrack.Location.X + (int)(dpix * 63) - pBRSDeadzone.Size.Width / 2, lbRSTrack.Location.Y + (int)(dpiy * 63) - pBRSDeadzone.Size.Width / 2);
-            }
+            UIOptionsUtilities.ProcessDeadZomeValueChange(lbRSTrack, pBRSDeadzone, nUDRS, nUDRS, dpix);
         }
 
         private void numUDLS_ValueChanged(object sender, EventArgs e)
         {
             Global.setLSDeadzone(device, (byte)Math.Round((nUDLS.Value * 127),0));
-            if (nUDLS.Value <= 0)
-                pBLSDeadzone.Visible = false;
-            else
-            {
-                pBLSDeadzone.Visible = true;
-                pBLSDeadzone.Size = new Size((int)(nUDLS.Value*125), (int)(nUDLS.Value*125));
-                pBLSDeadzone.Location = new Point(lbLSTrack.Location.X + (int)(dpix * 63) - pBLSDeadzone.Size.Width / 2, lbLSTrack.Location.Y + (int)(dpiy * 63) - pBLSDeadzone.Size.Width / 2);
-            }
+            UIOptionsUtilities.ProcessDeadZomeValueChange(lbLSTrack, pBLSDeadzone, nUDLS, nUDLS, dpix);
         }
 
         private void numUDMouseSens_ValueChanged(object sender, EventArgs e)

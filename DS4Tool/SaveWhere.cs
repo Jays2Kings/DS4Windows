@@ -48,15 +48,33 @@ namespace DS4Windows
         {
 
             if (multisaves && !cBDeleteOther.Checked)
+            {
                 try
                 {
-                    Directory.Delete(exepath + "\\Profiles", true);
-                    File.Delete(exepath + "\\Profiles.xml");
-                    File.Delete(exepath + "\\Auto Profiles.xml");
+                    if (Directory.Exists(exepath + "\\Profiles"))
+                    {
+                        Directory.Delete(exepath + "\\Profiles", true);
+                    }
+
+                    if (File.Exists(exepath + "\\Profiles.xml"))
+                    {
+                        File.Delete(exepath + "\\Profiles.xml");
+                    }
+
+                    if (File.Exists(exepath + "\\Auto Profiles.xml"))
+                    {
+                        File.Delete(exepath + "\\Auto Profiles.xml");
+                    }
                 }
-                catch (UnauthorizedAccessException) { MessageBox.Show("Cannot Delete old settings, please manaully delete", "DS4Windows"); }
+                catch (UnauthorizedAccessException) 
+                { 
+                    MessageBox.Show("Cannot Delete old settings, please manaully delete", "DS4Windows"); 
+                }
+            }
             else if (!multisaves)
+            {
                 Save(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows\\Profiles.xml");
+            }
             Global.SaveWhere(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows");
             Close();
         }

@@ -6,6 +6,7 @@ using DS4Library;
 using System.IO;
 using System.Reflection;
 using System.Media;
+using DS4Control.Enums;
 namespace DS4Control
 {
     public class Control
@@ -444,23 +445,40 @@ namespace DS4Control
             {
                 if (Global.getFlushHIDQueue(ind))
                     device.FlushHID();
-                if (!string.IsNullOrEmpty(device.error))
+
+                //This shouldn't be altering the collection from outside.
+                //something to fix
+                while (device.currentErrors.Count() > 0)
                 {
-                    LogDebug(device.error);
+                    LogDebug(device.currentErrors[0]);
+                    device.currentErrors.RemoveAt(0);
                 }
+
                 device.getExposedState(ExposedState[ind], CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
                 device.getPreviousState(PreviousState[ind]);
                 DS4State pState = PreviousState[ind];
+
                 if (pState.Battery != cState.Battery)
+                {
                     Global.ControllerStatusChanged(this);
+                }
+
                 CheckForHotkeys(ind, cState, pState);
                 if (eastertime)
+                {
                     EasterTime(ind);
+                }
+
                 GetInputkeys(ind);
+
                 if (Global.getLSCurve(ind) + Global.getRSCurve(ind) + Global.getLSDeadzone(ind) + Global.getRSDeadzone(ind) +
-                    Global.getL2Deadzone(ind) + Global.getR2Deadzone(ind) > 0) //if a curve or deadzone is in place
+                    Global.getL2Deadzone(ind) + Global.getR2Deadzone(ind) > 0)
+                {
+                    //if a curve or deadzone is in place
                     cState = Mapping.SetCurveAndDeadzone(ind, cState);
+                }
+
                 if (!recordingMacro && (!string.IsNullOrEmpty(Global.tempprofilename[ind]) ||
                     Global.getHasCustomKeysorButtons(ind) || Global.getHasShiftCustomKeysorButtons(ind) || Global.GetProfileActions(ind).Count > 0))
                 {
@@ -733,7 +751,9 @@ namespace DS4Control
                 }
             }
             else
-                touchreleased[deviceID] = true;            
+            {
+                touchreleased[deviceID] = true;
+            }
         }
 
         public virtual void StartTPOff(int deviceID)
@@ -746,8 +766,8 @@ namespace DS4Control
                 Global.setScrollSensitivity(deviceID, 0);
             }
         }
-            
-        public virtual string TouchpadSlide(int ind)
+  
+        public virtual string TouchpadSlideString(int ind)
         {
             DS4State cState = CurrentState[ind];
             string slidedir = "none";
@@ -771,6 +791,32 @@ namespace DS4Control
                         }
             return slidedir;
         }
+
+        public virtual TouchpadSlideDirections TouchpadSlideEnum(int ind)
+        {
+            DS4State cState = CurrentState[ind];
+            TouchpadSlideDirections slidedir = TouchpadSlideDirections.none;
+            if (DS4Controllers[ind] != null)
+                if (cState.Touch2)
+                    if (DS4Controllers[ind] != null)
+                        if (touchPad[ind].slideright && !touchslid[ind])
+                        {
+                            slidedir = TouchpadSlideDirections.right;
+                            touchslid[ind] = true;
+                        }
+                        else if (touchPad[ind].slideleft && !touchslid[ind])
+                        {
+                            slidedir = TouchpadSlideDirections.left;
+                            touchslid[ind] = true;
+                        }
+                        else if (!touchPad[ind].slideleft && !touchPad[ind].slideright)
+                        {
+                            slidedir = TouchpadSlideDirections.none;
+                            touchslid[ind] = false;
+                        }
+            return slidedir;
+        }
+
         public virtual void LogDebug(String Data, bool warning = false)
         {
             Console.WriteLine(System.DateTime.Now.ToString("G") + "> " + Data);

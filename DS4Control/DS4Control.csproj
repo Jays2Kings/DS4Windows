@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\TouchpadSlideDirections.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="MouseCursor.cs" />
     <Compile Include="MouseWheel.cs" />
@@ -57,6 +58,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tools\XMLFile.cs" />
     <Compile Include="X360Device.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -79,6 +81,9 @@
       <DependentUpon>ScpHub.cs</DependentUpon>
     </Compile>
     <Compile Include="ScpUtil.cs" />
+    <Compile Include="XML FIles\ControlXML.cs" />
+    <Compile Include="XML FIles\KeyXML.cs" />
+    <Compile Include="XML FIles\ProfileXML.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DS4Library\DS4Library.csproj">

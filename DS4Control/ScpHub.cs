@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace DS4Control 
+namespace DS4Windows 
 {
     public partial class ScpHub : Component 
     {

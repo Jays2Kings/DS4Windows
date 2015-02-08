@@ -1,10 +1,32 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles; 
-namespace HidLibrary
+namespace DS4Windows
 {
     internal static class NativeMethods
     {
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct BLUETOOTH_FIND_RADIO_PARAMS
+        {
+            [MarshalAs(UnmanagedType.U4)]
+            public int dwSize;
+        }
+
+        [DllImport("bthprops.cpl", CharSet = CharSet.Auto)]
+        internal extern static IntPtr BluetoothFindFirstRadio(ref BLUETOOTH_FIND_RADIO_PARAMS pbtfrp, ref IntPtr phRadio);
+
+        [DllImport("bthprops.cpl", CharSet = CharSet.Auto)]
+        internal extern static bool BluetoothFindNextRadio(IntPtr hFind, ref IntPtr phRadio);
+
+        [DllImport("bthprops.cpl", CharSet = CharSet.Auto)]
+        internal extern static bool BluetoothFindRadioClose(IntPtr hFind);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        internal static extern Boolean DeviceIoControl(IntPtr DeviceHandle, Int32 IoControlCode, ref long InBuffer, Int32 InBufferSize, IntPtr OutBuffer, Int32 OutBufferSize, ref Int32 BytesReturned, IntPtr Overlapped);
+
+        [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
+        internal static extern bool CloseHandle(IntPtr hObject);
+
 	    internal const int FILE_FLAG_OVERLAPPED = 0x40000000;
 	    internal const short FILE_SHARE_READ = 0x1;
 	    internal const short FILE_SHARE_WRITE = 0x2;
@@ -44,9 +66,6 @@ namespace HidLibrary
 
         [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
         static internal extern bool CancelIoEx(IntPtr hFile, IntPtr lpOverlapped);
-
-	    [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
-	    static internal extern bool CloseHandle(IntPtr hObject);
 
         [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
         static internal extern bool CancelSynchronousIo(IntPtr hObject);

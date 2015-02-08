@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DS4Library;
-namespace DS4Control
+
+namespace DS4Windows
 {
     interface ITouchpadBehaviour
     {

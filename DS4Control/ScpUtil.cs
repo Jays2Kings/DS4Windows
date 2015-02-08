@@ -6,9 +6,9 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 using System.Drawing;
-using DS4Library;
+
 using System.Security.Principal;
-namespace DS4Control
+namespace DS4Windows
 {
     [Flags]
     public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; //Increment by exponents of 2*, starting at 2^0
@@ -128,463 +128,272 @@ namespace DS4Control
             if (ControllerStatusChange != null)
                 ControllerStatusChange(sender, EventArgs.Empty);
         }
-        public static void setButtonMouseSensitivity(int device, int data)
+
+        //general values
+        public static bool UseExclusiveMode
         {
-            m_Config.buttonMouseSensitivity[device] = data;
-        }
-        public static int getButtonMouseSensitivity(int device)
-        {
-            return m_Config.buttonMouseSensitivity[device];
-        }
-        public static DS4Color loadColor(int device)
-        {
-            DS4Color color = new DS4Color();
-            color.red = m_Config.m_Leds[device][0];
-            color.green = m_Config.m_Leds[device][1];
-            color.blue = m_Config.m_Leds[device][2];
-            return color;
-        }
-        public static void saveColor(int device, byte red, byte green, byte blue)
-        {
-            m_Config.m_Leds[device][0] = red;
-            m_Config.m_Leds[device][1] = green;
-            m_Config.m_Leds[device][2] = blue;
+            set { m_Config.useExclusiveMode = value; }
+            get { return m_Config.useExclusiveMode; }
         }
 
-        public static byte loadRumbleBoost(int device)
+        public static DateTime LastChecked
         {
-            return m_Config.rumble[device];
-        }
-        public static void saveRumbleBoost(int device, byte boost)
-        {
-            m_Config.rumble[device] = boost;
-
-        }
-        public static double getRainbow(int device)
-        {
-            return m_Config.rainbow[device];
-        }
-        public static void setRainbow(int device, double speed)
-        {
-            m_Config.rainbow[device] = speed;
-        }
-        public static bool getFlushHIDQueue(int device)
-        {
-            return m_Config.flushHIDQueue[device];
-        }
-        public static void setFlushHIDQueue(int device, bool setting)
-        {
-            m_Config.flushHIDQueue[device] = setting;
+            set { m_Config.lastChecked = value; }
+            get { return m_Config.lastChecked; }
         }
 
-        public static int getIdleDisconnectTimeout(int device)
+        public static int CheckWhen
         {
-            return m_Config.idleDisconnectTimeout[device];
+            set { m_Config.CheckWhen = value; }
+            get { return m_Config.CheckWhen; }
         }
-        public static void setIdleDisconnectTimeout(int device, int seconds)
+        public static bool Notifications
         {
-            m_Config.idleDisconnectTimeout[device] = seconds;
+            set { m_Config.notifications = value; }
+            get { return m_Config.notifications; }
         }
-
-        public static byte getTouchSensitivity(int device)
+        public static bool DCBTatStop
         {
-            return m_Config.touchSensitivity[device];
+            set { m_Config.disconnectBTAtStop = value; }
+            get { return m_Config.disconnectBTAtStop; }
         }
-        public static void setTouchSensitivity(int device, byte sen)
+        public static bool SwipeProfiles
         {
-            m_Config.touchSensitivity[device] = sen;
-        }       
-
-        public static void setFlashWhenLowBattery(int device, bool flash)
-        {
-            m_Config.flashLedLowBattery[device] = flash;
-
+            set { m_Config.swipeProfiles = value; }
+            get { return m_Config.swipeProfiles; }
         }
-        public static bool getFlashWhenLowBattery(int device)
+        public static bool DS4Mapping
         {
-            return m_Config.flashLedLowBattery[device];
-
+            set { m_Config.ds4Mapping = value; }
+            get { return m_Config.ds4Mapping; }
         }
-
-        public static void setFlashAt(int device, int when)
+        public static bool QuickCharge
         {
-            m_Config.flashAt[device] = when;
-
+            set { m_Config.quickCharge = value; }
+            get { return m_Config.quickCharge; }
         }
-        public static int getFlashAt(int device)
+        public static int FirstXinputPort
         {
-            return m_Config.flashAt[device];
-
+            set { m_Config.firstXinputPort = value; }
+            get { return m_Config.firstXinputPort; }
         }
-
-        public static void setLedAsBatteryIndicator(int device, bool ledAsBattery)
+        public static bool CloseMini
         {
-            m_Config.ledAsBattery[device] = ledAsBattery;
-
+            set { m_Config.closeMini = value; }
+            get { return m_Config.closeMini; }
         }
-        public static bool getLedAsBatteryIndicator(int device)
+        public static bool StartMinimized
         {
-            return m_Config.ledAsBattery[device];
+            set { m_Config.startMinimized = value; }
+            get { return m_Config.startMinimized; }
         }
-
-        public static void setChargingType(int device, int type)
+        public static int FormWidth
         {
-            m_Config.chargingType[device] = type;
-
+            set { m_Config.formWidth = value; }
+             get { return m_Config.formWidth;}
         }
-        public static int getChargingType(int device)
+        public static int FormHeight
         {
-            return m_Config.chargingType[device];
-
+            set { m_Config.formHeight = value; }
+            get { return m_Config.formHeight; }
         }
-        
-        public static void setDinputOnly(int device, bool dinput)
+        public static bool DownloadLang
         {
-            m_Config.dinputOnly[device] = dinput;
-        }
-        public static bool getDinputOnly(int device)
-        {
-            return m_Config.dinputOnly[device];
-        }
-        public static void setStartTouchpadOff(int device, bool off)
-        {
-            m_Config.startTouchpadOff[device] = off;
-        }
-        public static bool getStartTouchpadOff(int device)
-        {
-            return m_Config.startTouchpadOff[device];
+            set { m_Config.downloadLang = value; }
+            get { return m_Config.downloadLang; }
         }
 
-        public static void setUseTPforControls(int device, bool data)
+        //controller/profile specfic values
+        public static int[] ButtonMouseSensitivity
         {
-            m_Config.useTPforControls[device] = data;
-        }
-        public static bool getUseTPforControls(int device)
-        {
-            return m_Config.useTPforControls[device];
-        }
-        public static void setUseExclusiveMode(bool exclusive)
-        {
-            m_Config.useExclusiveMode = exclusive;
-        }
-        public static bool getUseExclusiveMode()
-        {
-            return m_Config.useExclusiveMode;
+            get {return m_Config.buttonMouseSensitivity;}
         }
 
-        public static void setLastChecked(DateTime data)
+        public static byte[] RumbleBoost
         {
-            m_Config.lastChecked = data;
+            get { return m_Config.rumble; }
+        }
+        public static double[] Rainbow
+        {
+            get { return m_Config.rainbow; }
+        }
+        public static bool[] FlushHIDQueue
+        {
+            get { return m_Config.flushHIDQueue; }
+        }
+        public static int[] IdleDisconnectTimeout
+        {
+            get { return m_Config.idleDisconnectTimeout; }
+        }
+        public static byte[] TouchSensitivity
+        {
+            get { return m_Config.touchSensitivity; }
+        }   
+        public static byte[] FlashType
+        {
+           get {  return m_Config.flashType;}
+        }
+        public static int[] FlashAt
+        {
+           get { return m_Config.flashAt;}
+        }
+        public static bool[] LedAsBatteryIndicator
+        {
+           get {  return m_Config.ledAsBattery;}
+        }
+        public static int[] ChargingType
+        {
+            get { return m_Config.chargingType; }
+        }
+        public static bool[] DinputOnly
+        {
+            get { return m_Config.dinputOnly; }
+        }
+        public static bool[] StartTouchpadOff
+        {
+            get { return m_Config.startTouchpadOff; }
+        }
+        public static bool[] UseTPforControls
+        {
+            get { return m_Config.useTPforControls; }
+        }
+        public static DS4Color[] MainColor
+        {
+            get { return m_Config.m_Leds; }
+        }
+        public static DS4Color[] LowColor
+        {
+            get { return m_Config.m_LowLeds; }
+        }
+        public static DS4Color[] ChargingColor
+        {
+            get { return  m_Config.m_ChargingLeds;}
         }
 
-        public static DateTime getLastChecked()
+        public static  DS4Color[]  FlashColor
         {
-            return m_Config.lastChecked;
+           get { return  m_Config.m_FlashLeds;}
+        }
+        public static DS4Color[] ShiftColor
+        {
+            get { return m_Config.m_ShiftLeds; }
+        }
+        public static bool[] ShiftColorOn
+        {
+           get{ return m_Config.shiftColorOn; }
+        }
+        public static byte[] TapSensitivity
+        {
+            get { return m_Config.tapSensitivity; }
+        }
+        public static bool[] DoubleTap
+        {
+            get { return m_Config.doubleTap; }
+        }
+        public static int[] ScrollSensitivity
+        {
+            get{ return m_Config.scrollSensitivity;}
+        }
+        public static bool[] LowerRCOn
+        {
+           get{  return m_Config.lowerRCOn;}
+        }
+        public static bool[] TouchpadJitterCompensation
+        {
+            get { return m_Config.touchpadJitterCompensation; }
+        }
+       
+
+        public static byte[] L2Deadzone
+        {
+            get { return m_Config.l2Deadzone; }
+        }
+        public static byte[] R2Deadzone
+        {
+            get { return m_Config.r2Deadzone;}
+        }
+        public static double[] SXDeadzone
+        {
+            get { return m_Config.SXDeadzone;}
+        }
+        public static double[] SZDeadzone
+        {
+            get { return m_Config.SZDeadzone;}
+        }
+        public static byte[] LSDeadzone
+        {
+            get { return m_Config.LSDeadzone;}
+        }
+        public static byte[] RSDeadzone
+        {
+            get { return m_Config.RSDeadzone;}
+        }
+        public static int[] LSCurve
+        {
+            get { return m_Config.lsCurve;}
+        }
+        public static int[] RSCurve
+        {
+            get { return m_Config.rsCurve;}
+        }
+        public static bool[] MouseAccel
+        {
+            get { return m_Config.mouseAccel;}
+        }
+        public static int[] ShiftModifier 
+        {
+            get { return m_Config.shiftModifier;}
+        }
+        public static string[] LaunchProgram
+        {
+            get { return m_Config.launchProgram;}
+        }
+        public static string[] ProfilePath
+        {
+            get { return m_Config.profilePath; }
+        }
+        public static List<String>[] ProfileActions
+        {
+           get{ return m_Config.profileActions;}
         }
 
-        public static void setCheckWhen(int data)
+        public static void SaveAction(string name, string controls, int mode, string details, bool edit, string ucontrols = "")
         {
-            m_Config.CheckWhen = data;
+            m_Config.SaveAction(name, controls, mode, details, edit, ucontrols);
         }
 
-        public static int getCheckWhen()
+        public static void RemoveAction(string name)
         {
-            return m_Config.CheckWhen;
+            m_Config.RemoveAction(name);
         }
 
-        public static void setNotifications(bool data)
+        public static bool LoadActions()
         {
-            m_Config.notifications = data;
+            return m_Config.LoadActions();
         }
 
-        public static bool getNotifications()
+        public static List<SpecialAction> GetActions()
         {
-            return m_Config.notifications;
+            return m_Config.actions;
         }
 
-        public static void setDCBTatStop(bool data)
+        public static int GetActionIndexOf(string name)
         {
-            m_Config.disconnectBTAtStop = data;
+            for (int i = 0; i < m_Config.actions.Count; i++)
+                if (m_Config.actions[i].name == name)
+                    return i;
+            return -1;
         }
 
-        public static bool getDCBTatStop()
+        public static SpecialAction GetAction(string name)
         {
-            return m_Config.disconnectBTAtStop;
+            foreach (SpecialAction sA in m_Config.actions)
+                if (sA.name == name)
+                    return sA;
+            return new SpecialAction("null", "null", "null", "null");
         }
 
-        public static void setSwipeProfiles(bool data)
-        {
-            m_Config.swipeProfiles = data;
-        }
 
-        public static bool getSwipeProfiles()
-        {
-            return m_Config.swipeProfiles;
-        }
-        public static void setDS4Mapping(bool data)
-        {
-            m_Config.ds4Mapping = data;
-        }
-        public static bool getDS4Mapping()
-        {
-            return m_Config.ds4Mapping;
-        }
-        public static void setQuickCharge(bool data)
-        {
-            m_Config.quickCharge = data;
-        }
-        public static bool getQuickCharge()
-        {
-            return m_Config.quickCharge;
-        }
-        public static void setFirstXinputPort(int data)
-        {
-            m_Config.firstXinputPort = data;
-        }
-        public static int getFirstXinputPort()
-        {
-            return m_Config.firstXinputPort;
-        }
-        public static void setCloseMini(bool data)
-        {
-            m_Config.closeMini = data;
-        }
-        public static bool getCloseMini()
-        {
-            return m_Config.closeMini;
-        }
-        public static void saveLowColor(int device, byte red, byte green, byte blue)
-        {
-            m_Config.m_LowLeds[device][0] = red;
-            m_Config.m_LowLeds[device][1] = green;
-            m_Config.m_LowLeds[device][2] = blue;
-        }
-        public static DS4Color loadLowColor(int device)
-        {
-            DS4Color color = new DS4Color();
-            color.red = m_Config.m_LowLeds[device][0];
-            color.green = m_Config.m_LowLeds[device][1];
-            color.blue = m_Config.m_LowLeds[device][2];
-            return color;
-        }
-        public static void saveChargingColor(int device, byte red, byte green, byte blue)
-        {
-            m_Config.m_ChargingLeds[device][0] = red;
-            m_Config.m_ChargingLeds[device][1] = green;
-            m_Config.m_ChargingLeds[device][2] = blue;
-        }
-        public static DS4Color loadChargingColor(int device)
-        {
-            DS4Color color = new DS4Color();
-            color.red = m_Config.m_ChargingLeds[device][0];
-            color.green = m_Config.m_ChargingLeds[device][1];
-            color.blue = m_Config.m_ChargingLeds[device][2];
-            return color;
-        }
-        public static void saveShiftColor(int device, byte red, byte green, byte blue)
-        {
-            m_Config.m_ShiftLeds[device][0] = red;
-            m_Config.m_ShiftLeds[device][1] = green;
-            m_Config.m_ShiftLeds[device][2] = blue;
-        }
-        public static DS4Color loadShiftColor(int device)
-        {
-            DS4Color color = new DS4Color();
-            color.red = m_Config.m_ShiftLeds[device][0];
-            color.green = m_Config.m_ShiftLeds[device][1];
-            color.blue = m_Config.m_ShiftLeds[device][2];
-            return color;
-        }
-        public static void setShiftColorOn(int device, bool on)
-        {
-            m_Config.shiftColorOn[device] = on;
-        }
-        public static bool getShiftColorOn(int device)
-        {
-            return m_Config.shiftColorOn[device];
-        }
-        public static void saveFlashColor(int device, byte red, byte green, byte blue)
-        {
-            m_Config.m_FlashLeds[device][0] = red;
-            m_Config.m_FlashLeds[device][1] = green;
-            m_Config.m_FlashLeds[device][2] = blue;
-        }
-        public static DS4Color loadFlashColor(int device)
-        {
-            DS4Color color = new DS4Color();
-            color.red = m_Config.m_FlashLeds[device][0];
-            color.green = m_Config.m_FlashLeds[device][1];
-            color.blue = m_Config.m_FlashLeds[device][2];
-            return color;
-        }
-        public static void setTapSensitivity(int device, byte sen)
-        {
-            m_Config.tapSensitivity[device] = sen;
-        }
-        public static byte getTapSensitivity(int device)
-        {
-            return m_Config.tapSensitivity[device];
-        }
-        public static void setDoubleTap(int device, bool on)
-        {
-            m_Config.doubleTap[device] = on;
-        }
-        public static bool getDoubleTap(int device)
-        {
-            return m_Config.doubleTap[device];
-        }
-        public static bool getTap(int device)
-        {
-            if (m_Config.tapSensitivity[device] == 0)
-                return false;
-            else
-                return true;
-        }
-        public static void setScrollSensitivity(int device, int sen)
-        {
-            m_Config.scrollSensitivity[device] = sen;
-        }
-        public static int getScrollSensitivity(int device)
-        {
-            return m_Config.scrollSensitivity[device];
-        }
-        public static void setLowerRCOn(int device, bool twoFingerRC)
-        {
-            m_Config.lowerRCOn[device] = twoFingerRC;
-        }
-        public static bool getLowerRCOn(int device)
-        {
-            return m_Config.lowerRCOn[device];
-        }
-        public static void setTouchpadJitterCompensation(int device, bool enabled)
-        {
-            m_Config.touchpadJitterCompensation[device] = enabled;
-        }
-        public static bool getTouchpadJitterCompensation(int device)
-        {
-            return m_Config.touchpadJitterCompensation[device];
-        }
-        public static void setStartMinimized(bool startMinimized)
-        {
-            m_Config.startMinimized = startMinimized;
-        }
-        public static bool getStartMinimized()
-        {
-            return m_Config.startMinimized;
-        }
-        public static void setFormWidth(int size)
-        {
-            m_Config.formWidth = size;
-        }
-        public static int getFormWidth()
-        {
-            return m_Config.formWidth;
-        }
-        public static void setFormHeight(int size)
-        {
-            m_Config.formHeight = size;
-        }
-        public static int getFormHeight()
-        {
-            return m_Config.formHeight;
-        }
-
-        public static double getL2Deadzone(int device)
-        {
-            return m_Config.l2Deadzone[device];
-        }
-        public static void setL2Deadzone(int device, byte value)
-        {
-            m_Config.l2Deadzone[device] = value;
-        }
-        public static double getR2Deadzone(int device)
-        {
-            return m_Config.r2Deadzone[device];
-        }
-        public static void setR2Deadzone(int device, byte value)
-        {
-            m_Config.r2Deadzone[device] = value;
-        }
-        public static double getSXDeadzone(int device)
-        {
-            return m_Config.SXDeadzone[device];
-        }
-        public static void setSXDeadzone(int device, double value)
-        {
-            m_Config.SXDeadzone[device] = value;
-        }
-        public static double getSZDeadzone(int device)
-        {
-            return m_Config.SZDeadzone[device];
-        }
-        public static void setSZDeadzone(int device, double value)
-        {
-            m_Config.SZDeadzone[device] = value;
-        }
-        public static byte getLSDeadzone(int device)
-        {
-            return m_Config.LSDeadzone[device];
-        }
-        public static void setLSDeadzone(int device, byte value)
-        {
-            m_Config.LSDeadzone[device] = value;
-        }
-        public static byte getRSDeadzone(int device)
-        {
-            return m_Config.RSDeadzone[device];
-        }
-        public static void setRSDeadzone(int device, byte value)
-        {
-            m_Config.RSDeadzone[device] = value;
-        }
-        public static int getLSCurve(int device)
-        {
-            return m_Config.lsCurve[device];
-        }
-        public static void setLSCurve(int device, int value)
-        {
-            m_Config.lsCurve[device] = value;
-        }
-        public static int getRSCurve(int device)
-        {
-            return m_Config.rsCurve[device];
-        }
-        public static void setRSCurve(int device, int value)
-        {
-            m_Config.rsCurve[device] = value;
-        }
-        public static bool getMouseAccel(int device)
-        {
-            return m_Config.mouseAccel[device];
-        }
-        public static void setMouseAccel(int device, bool value)
-        {
-            m_Config.mouseAccel[device] = value;
-        }
-        public static int getShiftModifier (int device)
-        {
-            return m_Config.shiftModifier[device];
-        }
-        public static void setShiftModifier(int device, int value)
-        {
-            m_Config.shiftModifier[device] = value;
-        }
-        public static string getLaunchProgram(int device)
-        {
-            return m_Config.launchProgram[device];
-        }
-        public static void setLaunchProgram(int device, string value)
-        {
-            m_Config.launchProgram[device] = value;
-        }
-        public static void setAProfile(int device, string filepath)
-        {
-            m_Config.profilePath[device] = appdatapath + @"\Profiles\" + filepath + ".xml";
-        }
-        public static string getAProfile(int device)
-        {
-            return m_Config.profilePath[device];
-        }
         public static X360Controls getCustomButton(int device, DS4Controls controlName)
         {
             return m_Config.GetCustomButton(device, controlName);
@@ -688,18 +497,18 @@ namespace DS4Control
         {
             return m_Config.Load();
         }
-        public static void LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons, bool launchprogram, Control control)
+        public static void LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons, bool launchprogram, ControlService control)
         {
             m_Config.LoadProfile(device, buttons, shiftbuttons, launchprogram, control);
             tempprofilename[device] = string.Empty;
         }
-        public static void LoadProfile(int device, bool launchprogram, Control control)
+        public static void LoadProfile(int device, bool launchprogram, ControlService control)
         {
             m_Config.LoadProfile(device, null, null, launchprogram, control);
             tempprofilename[device] = string.Empty;
 
         }
-        public static void LoadTempProfile(int device, string name, bool launchprogram, Control control)
+        public static void LoadTempProfile(int device, string name, bool launchprogram, ControlService control)
         {
             m_Config.LoadProfile(device, null, null, launchprogram, control, appdatapath + @"\Profiles\" + name + ".xml");
             tempprofilename[device] = name;
@@ -720,15 +529,8 @@ namespace DS4Control
                 r = 100;
             else if (r < 0)
                 r = 0;
-            uint ratio = (uint)r;
-            if (b1 > b2)
-            {
-                ratio = 100 - (uint)r;
-            }
-            byte bmax = Math.Max(b1, b2);
-            byte bmin = Math.Min(b1, b2);
-            byte bdif = (byte)(bmax - bmin);
-            return (byte)(bmin + (bdif * ratio / 100));
+            r /= 100f;
+            return (byte)(b1 * r + b2 * (1 - r));
         }
         public static DS4Color getTransitionedColor(DS4Color c1, DS4Color c2, double ratio)
         {//;
@@ -784,51 +586,6 @@ namespace DS4Control
             return Color.FromArgb((int)R, (int)G, (int)B);
         }
 
-        public static List<String> GetProfileActions(int device)
-        {
-            return m_Config.profileActions[device];
-        }
-
-        public static void SetProfileAtions(int device, List<String> pactions)
-        {
-            m_Config.profileActions[device] = pactions;
-        }
-
-        public static void SaveAction(string name, string controls, int mode, string details, bool edit, string ucontrols = "")
-        {
-            m_Config.SaveAction(name, controls, mode, details, edit, ucontrols);
-        }
-
-        public static void RemoveAction(string name)
-        {
-            m_Config.RemoveAction(name);
-        }
-
-        public static bool LoadActions()
-        {
-            return m_Config.LoadActions();
-        }
-
-        public static List<SpecialAction> GetActions()
-        {
-            return m_Config.actions;
-        }
-
-        public static int GetActionIndexOf(string name)
-        {
-            for (int i = 0; i < m_Config.actions.Count; i++)
-                if (m_Config.actions[i].name == name)
-                    return i;
-            return -1;
-        }
-
-        public static SpecialAction GetAction(string name)
-        {
-            foreach (SpecialAction sA in m_Config.actions)
-                if (sA.name == name)
-                    return sA;
-            return new SpecialAction("null", "null", "null", "null");
-        }
     }
 
 
@@ -848,8 +605,8 @@ namespace DS4Control
         public Boolean[] touchpadJitterCompensation = { true, true, true, true, true };
         public Boolean[] lowerRCOn = { false, false, false, false, false };
         public Boolean[] ledAsBattery = { false, false, false, false, false };
-        public Boolean[] flashLedLowBattery = { false, false, false, false, false };
-        public Byte[] l2Deadzone = { 0, 0, 0, 0, 0}, r2Deadzone = { 0, 0, 0, 0, 0};
+        public Byte[] flashType = { 0, 0, 0, 0, 0 };
+        public Byte[] l2Deadzone = { 0, 0, 0, 0, 0 }, r2Deadzone = { 0, 0, 0, 0, 0 };
         public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty, String.Empty };
         public Byte[] rumble = { 100, 100, 100, 100, 100 };
         public Byte[] touchSensitivity = { 100, 100, 100, 100, 100 };
@@ -862,45 +619,45 @@ namespace DS4Control
         public int[] flashAt = { 0, 0, 0, 0, 0 };
         public int[] shiftModifier = { 0, 0, 0, 0, 0 };
         public bool[] mouseAccel = { true, true, true, true, true };
-        public Byte[][] m_LowLeds = new Byte[][]
+        public DS4Color[] m_LowLeds = new DS4Color[]
         {
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0}
+             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black)
         };
-        public Byte[][] m_Leds = new Byte[][]
+        public DS4Color[] m_Leds = new DS4Color[]
         {
-            new Byte[] {0,0,255},
-            new Byte[] {255,0,0},
-            new Byte[] {0,255,0},
-            new Byte[] {255,0,255},
-            new Byte[] {255,255,255}
+            new DS4Color(Color.Blue),
+            new DS4Color(Color.Red),
+            new DS4Color(Color.Green),
+            new DS4Color(Color.Pink),
+            new DS4Color(Color.White)
         };
-        public Byte[][] m_ChargingLeds = new Byte[][]
+        public DS4Color[] m_ChargingLeds = new DS4Color[] 
         {
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0}
+             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black)
         };
-        public Byte[][] m_ShiftLeds = new Byte[][]
+        public DS4Color[] m_ShiftLeds = new DS4Color[]
         {
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0}
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black)
         };
-        public Byte[][] m_FlashLeds = new Byte[][]
+        public DS4Color[] m_FlashLeds = new DS4Color[] 
         {
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0},
-            new Byte[] {0,0,0}
+             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black)
         };
         public bool[] shiftColorOn = { false, false, false, false, false };
         public int[] chargingType = { 0, 0, 0, 0, 0 };
@@ -936,6 +693,7 @@ namespace DS4Control
         public Dictionary<DS4Controls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] shiftCustomMapExtras = { null, null, null, null, null };
         public List<String>[] profileActions = { null, null, null, null, null };
+        public bool downloadLang = true;
         public BackingStore()
         {
             for (int i = 0; i < 5; i++)
@@ -1051,25 +809,25 @@ namespace DS4Control
                 XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); xmlFlushHIDQueue.InnerText = flushHIDQueue[device].ToString(); Node.AppendChild(xmlFlushHIDQueue);
                 XmlNode xmlIdleDisconnectTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "idleDisconnectTimeout", null); xmlIdleDisconnectTimeout.InnerText = idleDisconnectTimeout[device].ToString(); Node.AppendChild(xmlIdleDisconnectTimeout);
                 XmlNode xmlColor = m_Xdoc.CreateNode(XmlNodeType.Element, "Color", null);
-                xmlColor.InnerText = m_Leds[device][0].ToString() + "," + m_Leds[device][1].ToString() + "," + m_Leds[device][2].ToString(); 
+                xmlColor.InnerText = m_Leds[device].red.ToString() + "," + m_Leds[device].green.ToString() + "," + m_Leds[device].blue.ToString(); 
                 Node.AppendChild(xmlColor);
                 XmlNode xmlRumbleBoost = m_Xdoc.CreateNode(XmlNodeType.Element, "RumbleBoost", null); xmlRumbleBoost.InnerText = rumble[device].ToString(); Node.AppendChild(xmlRumbleBoost);
                 XmlNode xmlLedAsBatteryIndicator = m_Xdoc.CreateNode(XmlNodeType.Element, "ledAsBatteryIndicator", null); xmlLedAsBatteryIndicator.InnerText = ledAsBattery[device].ToString(); Node.AppendChild(xmlLedAsBatteryIndicator);
-                XmlNode xmlLowBatteryFlash = m_Xdoc.CreateNode(XmlNodeType.Element, "lowBatteryFlash", null); xmlLowBatteryFlash.InnerText = flashLedLowBattery[device].ToString(); Node.AppendChild(xmlLowBatteryFlash);
+                XmlNode xmlLowBatteryFlash = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashType", null); xmlLowBatteryFlash.InnerText = flashType[device].ToString(); Node.AppendChild(xmlLowBatteryFlash);
                 XmlNode xmlFlashBatterAt = m_Xdoc.CreateNode(XmlNodeType.Element, "flashBatteryAt", null); xmlFlashBatterAt.InnerText = flashAt[device].ToString(); Node.AppendChild(xmlFlashBatterAt);
                 XmlNode xmlTouchSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "touchSensitivity", null); xmlTouchSensitivity.InnerText = touchSensitivity[device].ToString(); Node.AppendChild(xmlTouchSensitivity);
                 XmlNode xmlLowColor = m_Xdoc.CreateNode(XmlNodeType.Element, "LowColor", null);
-                xmlLowColor.InnerText = m_LowLeds[device][0].ToString() + "," + m_LowLeds[device][1].ToString() + "," + m_LowLeds[device][2].ToString();
+                xmlLowColor.InnerText = m_LowLeds[device].red.ToString() + "," + m_LowLeds[device].green.ToString() + "," + m_LowLeds[device].blue.ToString();
                 Node.AppendChild(xmlLowColor);
                 XmlNode xmlChargingColor = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingColor", null);
-                xmlChargingColor.InnerText = m_ChargingLeds[device][0].ToString() + "," + m_ChargingLeds[device][1].ToString() + "," + m_ChargingLeds[device][2].ToString();
+                xmlChargingColor.InnerText = m_ChargingLeds[device].red.ToString() + "," + m_ChargingLeds[device].green.ToString() + "," + m_ChargingLeds[device].blue.ToString();
                 Node.AppendChild(xmlChargingColor);
                 XmlNode xmlShiftColor = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftColor", null);
-                xmlShiftColor.InnerText = m_ShiftLeds[device][0].ToString() + "," + m_ShiftLeds[device][1].ToString() + "," + m_ShiftLeds[device][2].ToString();
+                xmlShiftColor.InnerText = m_ShiftLeds[device].red.ToString() + "," + m_ShiftLeds[device].green.ToString() + "," + m_ShiftLeds[device].blue.ToString();
                 Node.AppendChild(xmlShiftColor);
                 XmlNode xmlShiftColorOn = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftColorOn", null); xmlShiftColorOn.InnerText = shiftColorOn[device].ToString(); Node.AppendChild(xmlShiftColorOn);
                 XmlNode xmlFlashColor = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashColor", null);
-                xmlFlashColor.InnerText = m_FlashLeds[device][0].ToString() + "," + m_FlashLeds[device][1].ToString() + "," + m_FlashLeds[device][2].ToString();
+                xmlFlashColor.InnerText = m_FlashLeds[device].red.ToString() + "," + m_FlashLeds[device].green.ToString() + "," + m_FlashLeds[device].blue.ToString();
                 Node.AppendChild(xmlFlashColor);
                 XmlNode xmlTouchpadJitterCompensation = m_Xdoc.CreateNode(XmlNodeType.Element, "touchpadJitterCompensation", null); xmlTouchpadJitterCompensation.InnerText = touchpadJitterCompensation[device].ToString(); Node.AppendChild(xmlTouchpadJitterCompensation);
                 XmlNode xmlLowerRCOn = m_Xdoc.CreateNode(XmlNodeType.Element, "lowerRCOn", null); xmlLowerRCOn.InnerText = lowerRCOn[device].ToString(); Node.AppendChild(xmlLowerRCOn);
@@ -1473,7 +1231,7 @@ namespace DS4Control
             return X360Controls.Unbound;
         }
 
-        public Boolean LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons, bool launchprogram, Control control, string propath = "")
+        public Boolean LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons, bool launchprogram, ControlService control, string propath = "")
         {
             Boolean Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
@@ -1490,7 +1248,7 @@ namespace DS4Control
             Boolean missingSetting = false;
             string profilepath;
             if (propath == "")
-                profilepath = profilePath[device];
+                profilepath = Global.appdatapath + @"\Profiles\" + profilePath[device] + ".xml";
             else
                 profilepath = propath;
             if (File.Exists(profilepath))
@@ -1517,19 +1275,20 @@ namespace DS4Control
                         colors = Item.InnerText.Split(',');
                     else
                         colors = new string[0];
-                    for (int i = 0; i < colors.Length; i++)
-                        m_Leds[device][i] = byte.Parse(colors[i]);
+                    m_Leds[device].red = byte.Parse(colors[0]);
+                    m_Leds[device].green = byte.Parse(colors[1]);
+                    m_Leds[device].blue = byte.Parse(colors[2]);
                 }
                 catch { missingSetting = true; }
                 if (m_Xdoc.SelectSingleNode("/" + rootname + "/Color") == null)
                 {
                     //Old method of color saving
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Red"); Byte.TryParse(Item.InnerText, out m_Leds[device][0]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Red"); Byte.TryParse(Item.InnerText, out m_Leds[device].red); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Green"); Byte.TryParse(Item.InnerText, out m_Leds[device][1]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Green"); Byte.TryParse(Item.InnerText, out m_Leds[device].green); }
                     catch { missingSetting = true; }
 
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[device][2]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[device].blue); }
                     catch { missingSetting = true; }
                 }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RumbleBoost"); Byte.TryParse(Item.InnerText, out rumble[device]); }
@@ -1538,7 +1297,7 @@ namespace DS4Control
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ledAsBatteryIndicator"); Boolean.TryParse(Item.InnerText, out ledAsBattery[device]); }
                 catch { missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/lowBatteryFlash"); Boolean.TryParse(Item.InnerText, out flashLedLowBattery[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/FlashType"); Byte.TryParse(Item.InnerText, out flashType[device]); }
                 catch { missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/flashBatteryAt"); Int32.TryParse(Item.InnerText, out flashAt[device]); }
@@ -1555,18 +1314,19 @@ namespace DS4Control
                         colors = Item.InnerText.Split(',');
                     else
                         colors = new string[0];
-                    for (int i = 0; i < colors.Length; i++)
-                        m_LowLeds[device][i] = byte.Parse(colors[i]);
+                    m_LowLeds[device].red = byte.Parse(colors[0]);
+                    m_LowLeds[device].green = byte.Parse(colors[1]);
+                    m_LowLeds[device].blue = byte.Parse(colors[2]);
                 }
                 catch { missingSetting = true; }
                 if (m_Xdoc.SelectSingleNode("/" + rootname + "/LowColor") == null)
                 {
                     //Old method of color saving
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][0]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[device].red); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][1]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[device].green); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[device][2]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[device].blue); }
                     catch { missingSetting = true; }
                 }
                 //New method for saving color
@@ -1578,17 +1338,19 @@ namespace DS4Control
                         colors = Item.InnerText.Split(',');
                     else
                         colors = new string[0];
-                    for (int i = 0; i < colors.Length; i++)
-                        m_ChargingLeds[device][i] = byte.Parse(colors[i]);
+
+                    m_ChargingLeds[device].red = byte.Parse(colors[0]);
+                    m_ChargingLeds[device].green = byte.Parse(colors[1]);
+                    m_ChargingLeds[device].blue = byte.Parse(colors[2]);
                 }
                 catch { missingSetting = true; }
                 if (m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingColor") == null)
                 {
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingRed"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][0]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingRed"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device].red); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingGreen"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][1]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingGreen"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device].green); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingBlue"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device][2]); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingBlue"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device].blue); }
                     catch { missingSetting = true; }
                 }
                 try
@@ -1599,8 +1361,9 @@ namespace DS4Control
                         colors = Item.InnerText.Split(',');
                     else
                         colors = new string[0];
-                    for (int i = 0; i < colors.Length; i++)
-                        m_ShiftLeds[device][i] = byte.Parse(colors[i]);
+                    m_ShiftLeds[device].red = byte.Parse(colors[0]);
+                    m_ShiftLeds[device].green = byte.Parse(colors[1]);
+                    m_ShiftLeds[device].blue = byte.Parse(colors[2]);
                 }
                 catch { m_ShiftLeds[device] = m_Leds[device]; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftColorOn"); Boolean.TryParse(Item.InnerText, out shiftColorOn[device]); }
@@ -1613,8 +1376,9 @@ namespace DS4Control
                         colors = Item.InnerText.Split(',');
                     else
                         colors = new string[0];
-                    for (int i = 0; i < colors.Length; i++)
-                        m_FlashLeds[device][i] = byte.Parse(colors[i]);
+                    m_FlashLeds[device].red = byte.Parse(colors[0]);
+                    m_FlashLeds[device].green = byte.Parse(colors[1]);
+                    m_FlashLeds[device].blue = byte.Parse(colors[2]);
                 }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/touchpadJitterCompensation"); Boolean.TryParse(Item.InnerText, out touchpadJitterCompensation[device]); }
@@ -1958,6 +1722,8 @@ namespace DS4Control
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CloseMinimizes"); Boolean.TryParse(Item.InnerText, out closeMini); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/DownloadLang"); Boolean.TryParse(Item.InnerText, out downloadLang); }
+                    catch { missingSetting = true; }
                 }
             }
             catch { }
@@ -2003,7 +1769,8 @@ namespace DS4Control
             XmlNode xmlDS4Mapping = m_Xdoc.CreateNode(XmlNodeType.Element, "UseDS4ForMapping", null); xmlDS4Mapping.InnerText = ds4Mapping.ToString(); Node.AppendChild(xmlDS4Mapping);
             XmlNode xmlQuickCharge = m_Xdoc.CreateNode(XmlNodeType.Element, "QuickCharge", null); xmlQuickCharge.InnerText = quickCharge.ToString(); Node.AppendChild(xmlQuickCharge);
             XmlNode xmlFirstXinputPort = m_Xdoc.CreateNode(XmlNodeType.Element, "FirstXinputPort", null); xmlFirstXinputPort.InnerText = firstXinputPort.ToString(); Node.AppendChild(xmlFirstXinputPort);
-            XmlNode xmlCloseMini = m_Xdoc.CreateNode(XmlNodeType.Element, "CloseMinimizes", null); xmlCloseMini.InnerText = closeMini.ToString(); Node.AppendChild(xmlCloseMini);            
+            XmlNode xmlCloseMini = m_Xdoc.CreateNode(XmlNodeType.Element, "CloseMinimizes", null); xmlCloseMini.InnerText = closeMini.ToString(); Node.AppendChild(xmlCloseMini);
+            XmlNode xmlDownloadLang = m_Xdoc.CreateNode(XmlNodeType.Element, "DownloadLang", null); xmlDownloadLang.InnerText = downloadLang.ToString(); Node.AppendChild(xmlDownloadLang);            
             m_Xdoc.AppendChild(Node);
 
             try { m_Xdoc.Save(m_Profile); }

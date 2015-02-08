@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
-using DS4Library;
-namespace DS4Control
+
+namespace DS4Windows
 {
     public class Mouse : ITouchpadBehaviour
     {
@@ -39,7 +39,7 @@ namespace DS4Control
 
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
-            if (!Global.getUseTPforControls(deviceNum))
+            if (!Global.UseTPforControls[deviceNum])
             {
                 cursor.touchesMoved(arg);
                 wheel.touchesMoved(arg);
@@ -48,10 +48,10 @@ namespace DS4Control
             {
                 if (!(swipeUp || swipeDown || swipeLeft || swipeRight) && arg.touches.Length == 1)
                 {
-                    if (arg.touches[0].hwX - firstTouch.hwX > 200) swipeRight = true;
-                    if (arg.touches[0].hwX - firstTouch.hwX < -200) swipeLeft = true;
-                    if (arg.touches[0].hwY - firstTouch.hwY > 150) swipeDown = true;
-                    if (arg.touches[0].hwY - firstTouch.hwY < -150) swipeUp = true;
+                    if (arg.touches[0].hwX - firstTouch.hwX > 400) swipeRight = true;
+                    if (arg.touches[0].hwX - firstTouch.hwX < -400) swipeLeft = true;
+                    if (arg.touches[0].hwY - firstTouch.hwY > 300) swipeDown = true;
+                    if (arg.touches[0].hwY - firstTouch.hwY < -300) swipeUp = true;
                 }
                 swipeUpB = (byte)Math.Min(255, Math.Max(0, (firstTouch.hwY - arg.touches[0].hwY) * 1.5f));
                 swipeDownB = (byte)Math.Min(255, Math.Max(0, (arg.touches[0].hwY - firstTouch.hwY) * 1.5f));
@@ -68,17 +68,17 @@ namespace DS4Control
         }
         public virtual void touchesBegan(object sender, TouchpadEventArgs arg)
         {
-            if (!Global.getUseTPforControls(deviceNum))
+            if (!Global.UseTPforControls[deviceNum])
             {
                 cursor.touchesBegan(arg);
                 wheel.touchesBegan(arg);
             }
             pastTime = arg.timeStamp;
             firstTouch = arg.touches[0];
-            if (Global.getDoubleTap(deviceNum))
+            if (Global.DoubleTap[deviceNum])
             {
                 DateTime test = arg.timeStamp;
-                if (test <= (firstTap + TimeSpan.FromMilliseconds((double)Global.getTapSensitivity(deviceNum) * 1.5)) && !arg.touchButtonPressed)
+                if (test <= (firstTap + TimeSpan.FromMilliseconds((double)Global.TapSensitivity[deviceNum] * 1.5)) && !arg.touchButtonPressed)
                     secondtouchbegin = true;
             }
             dev.getCurrentState(s);
@@ -89,7 +89,7 @@ namespace DS4Control
             slideright = slideleft = false;
             swipeUp = swipeDown = swipeLeft = swipeRight = false;
             swipeUpB = swipeDownB = swipeLeftB = swipeRightB = 0;
-            if (Global.getTapSensitivity(deviceNum) != 0 && !Global.getUseTPforControls(deviceNum))
+            if (Global.TapSensitivity[deviceNum] != 0 && !Global.UseTPforControls[deviceNum])
             {
 
                 if (secondtouchbegin)
@@ -98,9 +98,9 @@ namespace DS4Control
                     secondtouchbegin = false;
                 }
                 DateTime test = arg.timeStamp;
-                if (test <= (pastTime + TimeSpan.FromMilliseconds((double)Global.getTapSensitivity(deviceNum) * 2)) && !arg.touchButtonPressed && !tappedOnce)
+                if (test <= (pastTime + TimeSpan.FromMilliseconds((double)Global.TapSensitivity[deviceNum] * 2)) && !arg.touchButtonPressed && !tappedOnce)
                     if (Math.Abs(firstTouch.hwX - arg.touches[0].hwX) < 10 && Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 10)
-                        if (Global.getDoubleTap(deviceNum))
+                        if (Global.DoubleTap[deviceNum])
                         {
                             tappedOnce = true;
                             firstTap = arg.timeStamp;
@@ -153,12 +153,12 @@ namespace DS4Control
                     Global.getCustomKey(deviceNum, DS4Controls.TouchMulti) == 0 &&
                 multiDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
-            if (!Global.getUseTPforControls(deviceNum))
+            if (!Global.UseTPforControls[deviceNum])
             {
                 if (tappedOnce)
                 {
                     DateTime tester = DateTime.Now;
-                    if (tester > (TimeofEnd + TimeSpan.FromMilliseconds((double)(Global.getTapSensitivity(deviceNum)) * 1.5)))
+                    if (tester > (TimeofEnd + TimeSpan.FromMilliseconds((double)(Global.TapSensitivity[deviceNum]) * 1.5)))
                     {
                         Mapping.MapClick(deviceNum, Mapping.Click.Left);
                         tappedOnce = false;
@@ -190,7 +190,7 @@ namespace DS4Control
                 multiDown = true;
             else
             {
-                if ((Global.getLowerRCOn(deviceNum) && arg.touches[0].hwX > (1920 * 3) / 4 && arg.touches[0].hwY > (960 * 3) / 4))
+                if ((Global.LowerRCOn[deviceNum] && arg.touches[0].hwX > (1920 * 3) / 4 && arg.touches[0].hwY > (960 * 3) / 4))
                     Mapping.MapClick(deviceNum, Mapping.Click.Right);
                 if (isLeft(arg.touches[0]))
                     leftDown = true;

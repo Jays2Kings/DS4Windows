@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HidLibrary;
-namespace DS4Library
+
+namespace DS4Windows
 {
     public class DS4Devices
     {

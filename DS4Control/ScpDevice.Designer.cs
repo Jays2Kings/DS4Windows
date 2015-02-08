@@ -1,4 +1,4 @@
-﻿namespace DS4Control
+﻿namespace DS4Windows
 {
     partial class ScpDevice
     {

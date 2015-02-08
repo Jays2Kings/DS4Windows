@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DS4Library;
 
-namespace DS4Control
+
+namespace DS4Windows
 {
     class MouseCursor
     {
@@ -43,7 +43,7 @@ namespace DS4Control
                 horizontalDirection = verticalDirection = Direction.Neutral;
                 lastTouchID = arg.touches[0].touchID;
             }
-            else if (Global.getTouchpadJitterCompensation(deviceNumber))
+            else if (Global.TouchpadJitterCompensation[deviceNumber])
             {
                 // Often the DS4's internal jitter compensation kicks in and starts hiding changes, ironically creating jitter...
                 deltaX = arg.touches[0].deltaX;
@@ -90,7 +90,7 @@ namespace DS4Control
                 deltaY = arg.touches[0].deltaY;
             }
 
-            double coefficient = Global.getTouchSensitivity(deviceNumber) / 100.0;
+            double coefficient = Global.TouchSensitivity[deviceNumber] / 100.0;
             // Collect rounding errors instead of losing motion.
             double xMotion = coefficient * deltaX;
             if (xMotion > 0.0)

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DS4Library;
+
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-namespace DS4Control
+namespace DS4Windows
 {
     public class Mapping
     {
@@ -335,14 +335,14 @@ namespace DS4Control
             int x;
             int y;
             int curve;
-            if (Global.getLSCurve(device) > 0)
+            if (Global.LSCurve[device] > 0)
             {
                 x = cState.LX;
                 y = cState.LY;
                 float max = x + y;
                 double curvex;
                 double curvey;
-                curve = Global.getLSCurve(device);
+                curve = Global.LSCurve[device];
                 double multimax = TValue(382.5, max, curve);
                 double multimin = TValue(127.5, max, curve);
                 if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
@@ -367,14 +367,14 @@ namespace DS4Control
                 dState.LX = (byte)Math.Round(curvex, 0);
                 dState.LY = (byte)Math.Round(curvey, 0);
             }
-            if (Global.getRSCurve(device) > 0)
+            if (Global.RSCurve[device] > 0)
             {
                 x = cState.RX;
                 y = cState.RY;
                 float max = x + y;
                 double curvex;
                 double curvey;
-                curve = Global.getRSCurve(device);
+                curve = Global.RSCurve[device];
                 double multimax = TValue(382.5, max, curve);
                 double multimin = TValue(127.5, max, curve);
                 if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
@@ -398,21 +398,21 @@ namespace DS4Control
                 dState.RX = (byte)Math.Round(curvex, 0);
                 dState.RY = (byte)Math.Round(curvey, 0);
             }
-            if (Global.getLSDeadzone(device) > 0 &&
-                Math.Sqrt(Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2)) < Global.getLSDeadzone(device))
+            if (Global.LSDeadzone[device] > 0 &&
+                Math.Sqrt(Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2)) < Global.LSDeadzone[device])
             {
                 dState.LX = 127;
                 dState.LY = 127;
             }
-            if (Global.getRSDeadzone(device) > 0
-                && Math.Sqrt(Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2)) < Global.getLSDeadzone(device))
+            if (Global.RSDeadzone[device] > 0
+                && Math.Sqrt(Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2)) < Global.LSDeadzone[device])
             {
                 dState.RX = 127;
                 dState.RY = 127;
             }
-            if (Global.getL2Deadzone(device) > 0 && cState.L2 < Global.getL2Deadzone(device))
+            if (Global.L2Deadzone[device] > 0 && cState.L2 < Global.L2Deadzone[device])
                 dState.L2 = 0;
-            if (Global.getR2Deadzone(device) > 0 && cState.R2 < Global.getR2Deadzone(device))
+            if (Global.R2Deadzone[device] > 0 && cState.R2 < Global.R2Deadzone[device])
                 dState.R2 = 0;
             return dState;
         }
@@ -423,15 +423,15 @@ namespace DS4Control
         /// <summary>
         /// Map DS4 Buttons/Axes to other DS4 Buttons/Axes (largely the same as Xinput ones) and to keyboard and mouse buttons.
         /// </summary>
-        public static async void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, Control ctrl)
+        public static async void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, ControlService ctrl)
         {
             bool shift;
             SyntheticState deviceState = Mapping.deviceState[device];
-            if (Global.GetActions().Count > 0 && (Global.GetProfileActions(device).Count > 0 || 
+            if (Global.GetActions().Count > 0 && (Global.ProfileActions[device].Count > 0 || 
                 !string.IsNullOrEmpty(Global.tempprofilename[device])))
                 MapCustomAction(device, cState, MappedState, eState, tp, ctrl);
             if (ctrl.DS4Controllers[device] == null) return;
-            switch (Global.getShiftModifier(device))
+            switch (Global.ShiftModifier[device])
             {
                 case 1: shift = getBoolMapping(DS4Controls.Cross, cState, eState, tp); break;
                 case 2: shift = getBoolMapping(DS4Controls.Circle, cState, eState, tp); break;
@@ -830,7 +830,7 @@ namespace DS4Control
                     }
                 }
             }
-            if (macroControl[0]) MappedState.Cross = true;
+            if (macroControl[00]) MappedState.Cross = true;
             if (macroControl[01]) MappedState.Circle = true;
             if (macroControl[02]) MappedState.Square = true;
             if (macroControl[03]) MappedState.Triangle = true;
@@ -1454,9 +1454,9 @@ namespace DS4Control
         public static DateTime[] oldnowAction = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
         public static int[] untriggerindex = { -1, -1, -1, -1 };
         public static DateTime[] oldnowKeyAct = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
-        public static async void MapCustomAction(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, Control ctrl)
+        public static async void MapCustomAction(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, ControlService ctrl)
         {
-            foreach (string actionname in Global.GetProfileActions(device))
+            foreach (string actionname in Global.ProfileActions[device])
             {
                 //DS4KeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
                 SpecialAction action = Global.GetAction(actionname);
@@ -1846,16 +1846,16 @@ namespace DS4Control
         private static int getMouseMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, int mnum)
         {
             int controlnum = DS4ControltoInt(control);
-            double SXD = Global.getSXDeadzone(device);
-            double SZD = Global.getSZDeadzone(device);
+            double SXD = Global.SXDeadzone[device];
+            double SZD = Global.SZDeadzone[device];
             int deadzoneL = 3;
             int deadzoneR = 3;
-            if (Global.getLSDeadzone(device) >= 3)
+            if (Global.LSDeadzone[device] >= 3)
                 deadzoneL = 0;
-            if (Global.getRSDeadzone(device) >= 3)
+            if (Global.RSDeadzone[device] >= 3)
                 deadzoneR = 0;
             double value = 0;
-            int speed = Global.getButtonMouseSensitivity(device) + 15;
+            int speed = Global.ButtonMouseSensitivity[device] + 15;
             double root = 1.002;
             double divide = 10000d;
             //DateTime now = mousenow[mnum];
@@ -1927,7 +1927,7 @@ namespace DS4Control
                 control.ToString().Contains("LY") ||
                 control.ToString().Contains("RX") ||
                     control.ToString().Contains("RY"));
-            if (Global.getMouseAccel(device))
+            if (Global.MouseAccel[device])
             {
                 if (value > 0)
                 {
@@ -1975,8 +1975,8 @@ namespace DS4Control
 
         public static byte getByteMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
-            double SXD = Global.getSXDeadzone(device);
-            double SZD = Global.getSZDeadzone(device);
+            double SXD = Global.SXDeadzone[device];
+            double SZD = Global.SZDeadzone[device];
             switch (control)
             {
                 case DS4Controls.Share: return (byte)(cState.Share ? 255 : 0);
@@ -2069,8 +2069,8 @@ namespace DS4Control
         {
             byte trueVal = 0;
             byte falseVal = 127;
-            double SXD = Global.getSXDeadzone(device);
-            double SZD = Global.getSZDeadzone(device);
+            double SXD = Global.SXDeadzone[device];
+            double SZD = Global.SZDeadzone[device];
             if (alt)
                 trueVal = 255;
             switch (control)

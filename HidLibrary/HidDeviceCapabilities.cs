@@ -1,4 +1,4 @@
-﻿namespace HidLibrary
+﻿namespace DS4Windows
 {
     public class HidDeviceCapabilities
     {

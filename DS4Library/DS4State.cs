@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DS4Library
+namespace DS4Windows
 {
     public class DS4State
     {

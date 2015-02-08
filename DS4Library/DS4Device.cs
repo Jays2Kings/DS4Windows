@@ -6,7 +6,6 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 using System.Diagnostics;
-using HidLibrary;
 using System.Threading.Tasks;
 
 
@@ -14,13 +13,25 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Collections;
-namespace DS4Library
+namespace DS4Windows
 {
     public struct DS4Color
     {
         public byte red;
         public byte green;
         public byte blue;
+        public DS4Color(System.Drawing.Color c)
+        {
+            red = c.R;
+            green = c.G;
+            blue = c.B;
+        }
+        public DS4Color(byte r, byte g, byte b)
+        {
+            red = r;
+            green = g;
+            blue = b;
+        }
         public override bool Equals(object obj)
         {
             if (obj is DS4Color)
@@ -82,6 +93,7 @@ namespace DS4Library
         private Thread ds4Input, ds4Output;
         private int battery;
         public DateTime lastActive = DateTime.UtcNow;
+        public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
@@ -283,6 +295,7 @@ namespace DS4Library
         public string error;
         private void performDs4Input()
         {
+            firstActive = DateTime.UtcNow;
             System.Timers.Timer readTimeout = new System.Timers.Timer(); // Await 30 seconds for the initial packet, then 3 seconds thereafter.
             readTimeout.Elapsed += delegate { HidDevice.CancelIO(); };
             List<long> Latency = new List<long>();
@@ -422,7 +435,7 @@ namespace DS4Library
                         Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
                     }
                 }
-                catch { currerror = "Index out ofr bounds: battery"; }
+                catch { currerror = "Index out of bounds: battery"; }
                 // XXX DS4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
                 try
                 {
@@ -439,7 +452,7 @@ namespace DS4Library
                         touchpad.handleTouchpad(inputReport, cState, touchOffset);
                     }
                 }
-                catch { currerror = "Index out ofr bounds: touchpad"; }
+                catch { currerror = "Index out of bounds: touchpad"; }
                 
                 /* Debug output of incoming HID data:
                 if (cState.L2 == 0xff && cState.R2 == 0xff)

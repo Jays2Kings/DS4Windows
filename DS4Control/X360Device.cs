@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
-using DS4Library;
+
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
-namespace DS4Control
+namespace DS4Windows
 {
     public partial class X360Device : ScpDevice
     {

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
-namespace DS4Control 
+namespace DS4Windows 
 {
     public partial class ScpDevice : Component 
     {

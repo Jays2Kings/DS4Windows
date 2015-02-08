@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using DS4Library;
-namespace DS4Control
+
+namespace DS4Windows
 {
     public class DS4LightBar
     {
@@ -33,80 +33,82 @@ namespace DS4Control
             DS4Color color;
             if (!defualtLight && !forcelight[deviceNum])
             {
-                if (Global.getShiftColorOn(deviceNum) && Global.getShiftModifier(deviceNum) > 0 && shiftMod(device, deviceNum, cState, eState, tp))
+                if (Global.ShiftColorOn[deviceNum] && Global.ShiftModifier[deviceNum] > 0 && shiftMod(device, deviceNum, cState, eState, tp))
                 {
-                    color = Global.loadShiftColor(deviceNum);
+                    color = Global.ShiftColor[deviceNum];
                 }
                 else
                 {
-                    if (Global.getRainbow(deviceNum) > 0)
+                    if (Global.Rainbow[deviceNum] > 0)
                     {// Display rainbow
                         DateTime now = DateTime.UtcNow;
                         if (now >= oldnow + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
                         {
                             oldnow = now;
                             if (device.Charging)
-                                counters[deviceNum] -= 1.5 * 3 / Global.getRainbow(deviceNum);
+                                counters[deviceNum] -= 1.5 * 3 / Global.Rainbow[deviceNum];
                             else
-                                counters[deviceNum] += 1.5 * 3 / Global.getRainbow(deviceNum);
+                                counters[deviceNum] += 1.5 * 3 / Global.Rainbow[deviceNum];
                         }
                         if (counters[deviceNum] < 0)
                             counters[deviceNum] = 180000;
-                        if (Global.getLedAsBatteryIndicator(deviceNum))
+                        if (counters[deviceNum] > 180000)
+                            counters[deviceNum] = 0;
+                        if (Global.LedAsBatteryIndicator[deviceNum])
                             color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(2.55 * device.Battery));
                         else
                             color = HuetoRGB((float)counters[deviceNum] % 360, 255);
 
                     }
-                    else if (Global.getLedAsBatteryIndicator(deviceNum))
+                    else if (Global.LedAsBatteryIndicator[deviceNum])
                     {
                         //if (device.Charging == false || device.Battery >= 100) // when charged, don't show the charging animation
                         {
-                            DS4Color fullColor = new DS4Color
-                            {
-                                red = Global.loadColor(deviceNum).red,
-                                green = Global.loadColor(deviceNum).green,
-                                blue = Global.loadColor(deviceNum).blue
-                            };
-
-                            color = Global.loadLowColor(deviceNum);
-                            DS4Color lowColor = new DS4Color
-                            {
-                                red = color.red,
-                                green = color.green,
-                                blue = color.blue
-                            };
+                            DS4Color fullColor = Global.MainColor[deviceNum];
+                            DS4Color lowColor =  Global.LowColor[deviceNum];
 
                             color = Global.getTransitionedColor(lowColor, fullColor, (uint)device.Battery);
                         }
                     }
                     else
                     {
-                        color = Global.loadColor(deviceNum);
+                        color = Global.MainColor[deviceNum];
                     }
 
 
-                    if (device.Battery <= Global.getFlashAt(deviceNum) && !defualtLight && !device.Charging)
+                    if (device.Battery <= Global.FlashAt[deviceNum] && !defualtLight && !device.Charging)
                     {
-                        if (!(Global.loadFlashColor(deviceNum).red == 0 &&
-                            Global.loadFlashColor(deviceNum).green == 0 &&
-                            Global.loadFlashColor(deviceNum).blue == 0))
-                            color = Global.loadFlashColor(deviceNum);
+                        if (!(Global.FlashColor[deviceNum].red == 0 &&
+                            Global.FlashColor[deviceNum].green == 0 &&
+                            Global.FlashColor[deviceNum].blue == 0))
+                            color = Global.FlashColor[deviceNum];
+                        if (Global.FlashType[deviceNum] == 1)
+                        {
+                            if (fadetimer[deviceNum] <= 0)
+                                fadedirection[deviceNum] = true;
+                            else if (fadetimer[deviceNum] >= 100)
+                                fadedirection[deviceNum] = false;
+                            if (fadedirection[deviceNum])
+                                fadetimer[deviceNum] += 1;
+                            else
+                                fadetimer[deviceNum] -= 1;
+                            color = Global.getTransitionedColor(color, new DS4Color(0,0,0), fadetimer[deviceNum]);
+                        }
                     }
 
-                    if (Global.getIdleDisconnectTimeout(deviceNum) > 0 && Global.getLedAsBatteryIndicator(deviceNum) && (!device.Charging || device.Battery >= 100))
+                    if (Global.IdleDisconnectTimeout[deviceNum] > 0 && Global.LedAsBatteryIndicator[deviceNum] && (!device.Charging || device.Battery >= 100))
                     {//Fade lightbar by idle time
                         TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
                         double botratio = timeratio.TotalMilliseconds;
-                        double topratio = TimeSpan.FromSeconds(Global.getIdleDisconnectTimeout(deviceNum)).TotalMilliseconds;
+                        double topratio = TimeSpan.FromSeconds(Global.IdleDisconnectTimeout[deviceNum]).TotalMilliseconds;
                         double ratio = ((botratio / topratio) * 100);
                         if (ratio >= 50 && ratio <= 100)
-                            color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, (uint)((ratio - 50) * 2));
+                            color = Global.getTransitionedColor(color, new DS4Color(0, 0, 0), (uint)((ratio - 50) * 2));
                         else if (ratio >= 100)
-                            color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, 100);
+                            color = Global.getTransitionedColor(color, new DS4Color(0, 0, 0), 100);
                     }
                     if (device.Charging && device.Battery < 100)
-                        switch (Global.getChargingType(deviceNum))
+                        switch (Global.ChargingType[deviceNum])
                         {
                             case 1:
                                 if (fadetimer[deviceNum] <= 0)
@@ -117,14 +119,14 @@ namespace DS4Control
                                     fadetimer[deviceNum] += .1;
                                 else
                                     fadetimer[deviceNum] -= .1;
-                                color = Global.getTransitionedColor(color, new DS4Color { red = 0, green = 0, blue = 0 }, fadetimer[deviceNum]);
+                                color = Global.getTransitionedColor(color, new DS4Color(0, 0, 0), fadetimer[deviceNum]);
                                 break;
                             case 2:
                                 counters[deviceNum] += .167;
                                 color = HuetoRGB((float)counters[deviceNum] % 360, 255);
                                 break;
                             case 3:
-                                color = Global.loadChargingColor(deviceNum);
+                                color = Global.ChargingColor[deviceNum];
                                 break;
                             default:
                                 break;
@@ -136,23 +138,23 @@ namespace DS4Control
                 color = forcedColor[deviceNum];
             }
             else if (shuttingdown)
-                color = new DS4Color { red = 0, green = 0, blue = 0 };
+                color = new DS4Color(0, 0, 0);
             else
             {
                 if (device.ConnectionType == ConnectionType.BT)
-                    color = new DS4Color { red = 32, green = 64, blue = 64 };
+                    color = new DS4Color(0, 0, 0);
                 else
-                    color = new DS4Color { red = 0, green = 0, blue = 0 };
+                    color = new DS4Color(0, 0, 0);
             }
-            bool distanceprofile = (Global.getAProfile(deviceNum).ToLower().Contains("distance") || Global.tempprofilename[deviceNum].ToLower().Contains("distance"));
+            bool distanceprofile = (Global.ProfilePath[deviceNum].ToLower().Contains("distance") || Global.tempprofilename[deviceNum].ToLower().Contains("distance"));
             if (distanceprofile && !defualtLight)
             { //Thing I did for Distance
                 float rumble = device.LeftHeavySlowRumble / 2.55f;
-                byte max= Math.Max(color.red, Math.Max(color.green, color.blue));
+                byte max = Math.Max(color.red, Math.Max(color.green, color.blue));
                 if (device.LeftHeavySlowRumble > 100)
-                    color = getTransitionedColor(new DS4Color { green = max, red = max }, rumble, new DS4Color { red = 255 });
+                    color = Global.getTransitionedColor(new DS4Color(max, max, 0), new DS4Color(255, 0, 0), rumble);
                 else
-                    color = getTransitionedColor(color, device.LeftHeavySlowRumble, getTransitionedColor(new DS4Color { green = max, red = max }, 39.6078f, new DS4Color { red = 255 }));
+                    color = Global.getTransitionedColor(color, Global.getTransitionedColor(new DS4Color(max, max, 0), new DS4Color(255, 0, 0), 39.6078f), device.LeftHeavySlowRumble);
             }
             DS4HapticState haptics = new DS4HapticState
             {
@@ -165,7 +167,7 @@ namespace DS4Control
                     haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
                     haptics.LightBarExplicitlyOff = true;
                 }
-                else if (device.Battery <= Global.getFlashAt(deviceNum) && !defualtLight && !device.Charging)
+                else if (device.Battery <= Global.FlashAt[deviceNum] && Global.FlashType[deviceNum] == 0 && !defualtLight && !device.Charging)
                 {
                     int level = device.Battery / 10;
                     //if (level >= 10)
@@ -201,7 +203,7 @@ namespace DS4Control
         public static bool shiftMod(DS4Device device, int deviceNum, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
             bool shift;
-            switch (Global.getShiftModifier(deviceNum))
+            switch (Global.ShiftModifier[deviceNum])
             {
                 case 1: shift = Mapping.getBoolMapping(DS4Controls.Cross, cState, eState, tp); break;
                 case 2: shift = Mapping.getBoolMapping(DS4Controls.Circle, cState, eState, tp); break;
@@ -238,44 +240,19 @@ namespace DS4Control
             byte C = sat;
             int X = (int)((C * (float)(1 - Math.Abs((hue / 60) % 2 - 1))));
             if (0 <= hue && hue < 60)
-                return new DS4Color { red = C, green = (byte)X, blue = 0 };
+                return new DS4Color(C, (byte)X, 0);
             else if (60 <= hue && hue < 120)
-                return new DS4Color { red = (byte)X, green = C, blue = 0 };
+                return new DS4Color((byte)X, C, 0);
             else if (120 <= hue && hue < 180)
-                return new DS4Color { red = 0, green = C, blue = (byte)X };
+                return new DS4Color(0, C, (byte)X);
             else if (180 <= hue && hue < 240)
-                return new DS4Color { red = 0, green = (byte)X, blue = C };
+                return new DS4Color(0, (byte)X, C);
             else if (240 <= hue && hue < 300)
-                return new DS4Color { red = (byte)X, green = 0, blue = C };
+                return new DS4Color((byte)X, 0, C);
             else if (300 <= hue && hue < 360)
-                return new DS4Color { red = C, green = 0, blue = (byte)X };
+                return new DS4Color(C, 0, (byte)X);
             else
-                return new DS4Color { red = 255, green = 0, blue = 0 };
-        }
-
-        public static DS4Color getTransitionedColor(DS4Color c1, double ratio, DS4Color c2)
-        {
-            c1.red = applyRatio(c1.red, c2.red, ratio);
-            c1.green = applyRatio(c1.green, c2.green, ratio);
-            c1.blue = applyRatio(c1.blue, c2.blue, ratio);
-            return c1;
-        }
-
-        private static byte applyRatio(byte b1, byte b2, double r)
-        {
-            if (r > 100)
-                r = 100;
-            else if (r < 0)
-                r = 0;
-            uint ratio = (uint)r;
-            if (b1 > b2)// b2 == 255)
-            {
-                ratio = 100 - (uint)r;
-            }
-            byte bmax = Math.Max(b1, b2);
-            byte bmin = Math.Min(b1, b2);
-            byte bdif = (byte)(bmax - bmin);
-            return (byte)(bmin + (bdif * ratio / 100));
+                return new DS4Color(Color.Red);
         }
     }
 }

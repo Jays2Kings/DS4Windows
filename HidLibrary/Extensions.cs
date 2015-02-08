@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace HidLibrary
+namespace DS4Windows
 {
     public static class Extensions
     {

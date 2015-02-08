@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace HidLibrary
+namespace DS4Windows
 {
     public class HidDevices
     {

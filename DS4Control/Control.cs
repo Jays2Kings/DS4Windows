@@ -445,10 +445,15 @@ namespace DS4Control
             {
                 if (Global.getFlushHIDQueue(ind))
                     device.FlushHID();
-                if (!string.IsNullOrEmpty(device.error))
+
+                //This shouldn't be altering the collection from outside.
+                //something to fix
+                while (device.currentErrors.Count() > 0)
                 {
-                    LogDebug(device.error);
+                    LogDebug(device.currentErrors[0]);
+                    device.currentErrors.RemoveAt(0);
                 }
+
                 device.getExposedState(ExposedState[ind], CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
                 device.getPreviousState(PreviousState[ind]);

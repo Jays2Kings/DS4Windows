@@ -723,7 +723,10 @@ namespace DS4Windows
                 btnChargingColor.BackColor = advColorDialog.Color;
             }
             if (device < 4)
-                DS4LightBar.forcelight[device] = false;            
+            {
+                DS4LightBar.forcelight[device] = false;
+                Global.ChargingColor[device] = new DS4Color(btnChargingColor.BackColor);
+            }
         }
         private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
         {

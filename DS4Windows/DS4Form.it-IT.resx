@@ -120,38 +120,84 @@
   <data name="chTime.Text" xml:space="preserve">
     <value>Ora</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lBTest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>468, 8</value>
+  <data name="lvDebug.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lBTest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 13</value>
-  </data>
-  <data name="lBTest.Text" xml:space="preserve">
-    <value>Usato per testare i valori</value>
+  <data name="lbTest.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnStartStop.Text" xml:space="preserve">
     <value>Inizia</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lbHelp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="btnStartStop.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lbHelp.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="lbLastMessage.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lbHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 13</value>
+  <data name="llbHelp.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lbHelp.Text" xml:space="preserve">
-    <value>Hotkeys/About</value>
+  <data name="pnlButton.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnClear.Text" xml:space="preserve">
     <value>Pulisci</value>
   </data>
+  <data name="btnClear.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Modifica Profilo per Controller 1</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Modifica Profilo per Controller 2</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Modifica Profilo per Controller 3</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Modifica Profilo per Controller 4</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>241, 6</value>
+  </data>
+  <data name="startToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="startToolStripMenuItem.Text" xml:space="preserve">
+    <value>Inizia</value>
+  </data>
+  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Apri</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Esci (Mouse Centrale)</value>
+  </data>
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 164</value>
+  </data>
+  <data name="cMTaskbar.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="notifyIcon1.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6325,54 +6371,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
   </data>
-  <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Modifica Profilo per Controller 1</value>
-  </data>
-  <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Modifica Profilo per Controller 2</value>
-  </data>
-  <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Modifica Profilo per Controller 3</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Modifica Profilo per Controller 4</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 6</value>
-  </data>
-  <data name="startToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="startToolStripMenuItem.Text" xml:space="preserve">
-    <value>Inizia</value>
-  </data>
-  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>Apri</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Esci (Mouse Centrale)</value>
-  </data>
-  <data name="tabControllers.Text" xml:space="preserve">
-    <value>Controller</value>
-  </data>
   <data name="pBStatus1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACcAAAAUCAYAAAAOTSQ2AAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
@@ -6430,10 +6428,19 @@
 </value>
   </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 19</value>
+    <value>412, 19</value>
+  </data>
+  <data name="pBStatus1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbPad1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbPad2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>836, 74</value>
+    <value>835, 74</value>
   </data>
   <data name="bnEditC3.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 22</value>
@@ -6441,8 +6448,11 @@
   <data name="bnEditC3.Text" xml:space="preserve">
     <value>Modifica</value>
   </data>
+  <data name="bnEditC3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>836, 103</value>
+    <value>835, 103</value>
   </data>
   <data name="bnEditC4.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 23</value>
@@ -6450,11 +6460,23 @@
   <data name="bnEditC4.Text" xml:space="preserve">
     <value>Modifica</value>
   </data>
+  <data name="bnEditC4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbPad3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbPad4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>710, 18</value>
+    <value>718, 18</value>
+  </data>
+  <data name="cBController1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>836, 46</value>
+    <value>835, 46</value>
   </data>
   <data name="bnEditC2.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 22</value>
@@ -6462,14 +6484,23 @@
   <data name="bnEditC2.Text" xml:space="preserve">
     <value>Modifica</value>
   </data>
+  <data name="bnEditC2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>710, 46</value>
+    <value>718, 46</value>
+  </data>
+  <data name="cBController2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>710, 74</value>
+    <value>718, 74</value>
+  </data>
+  <data name="cBController3.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>836, 18</value>
+    <value>835, 18</value>
   </data>
   <data name="bnEditC1.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 22</value>
@@ -6477,47 +6508,59 @@
   <data name="bnEditC1.Text" xml:space="preserve">
     <value>Modifica</value>
   </data>
+  <data name="bnEditC1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>710, 104</value>
+    <value>718, 104</value>
   </data>
-  <data name="lBSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>701, 0</value>
+  <data name="cBController4.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lBSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 15</value>
+  <data name="lbSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>719, 0</value>
   </data>
-  <data name="lBSelectedProfile.Text" xml:space="preserve">
-    <value>Profilo Selezionato</value>
+  <data name="lbSelectedProfile.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lBStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>401, 0</value>
+  <data name="lbID.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lBStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 15</value>
+  <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>408, 0</value>
   </data>
-  <data name="lBStatus.Text" xml:space="preserve">
-    <value>Stato</value>
+  <data name="lbStatus.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lBBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>580, 0</value>
+  <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
+    <value>598, 0</value>
   </data>
-  <data name="lBBattery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 15</value>
+  <data name="lbBattery.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lBBattery.Text" xml:space="preserve">
-    <value>Batteria</value>
+  <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>604, 21</value>
   </data>
-  <data name="lBBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 21</value>
+  <data name="lbBatt1.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lBBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 49</value>
+  <data name="lbBatt2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>604, 49</value>
   </data>
-  <data name="lBBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 77</value>
+  <data name="lbBatt2.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lBBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 107</value>
+  <data name="lbBatt3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>604, 77</value>
+  </data>
+  <data name="lbBatt3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>604, 107</value>
+  </data>
+  <data name="lbBatt4.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="pBStatus2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6576,7 +6619,10 @@
 </value>
   </data>
   <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 47</value>
+    <value>412, 47</value>
+  </data>
+  <data name="pBStatus2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="pBStatus3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6635,7 +6681,10 @@
 </value>
   </data>
   <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 75</value>
+    <value>412, 75</value>
+  </data>
+  <data name="pBStatus3.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="pBStatus4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6694,16 +6743,22 @@
 </value>
   </data>
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 104</value>
+    <value>412, 104</value>
   </data>
-  <data name="lbNoControlers.Text" xml:space="preserve">
-    <value>Nessun Controller Connesso (Max 4)</value>
+  <data name="pBStatus4.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="tabProfiles.Text" xml:space="preserve">
-    <value>Profili</value>
+  <data name="tLPControllers.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 224</value>
+  <data name="lbNoControllers.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabControllers.Text" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="tabControllers.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 22</value>
@@ -6765,8 +6820,14 @@
   <data name="exportToolStripMenuItem.Text" xml:space="preserve">
     <value>Esporta</value>
   </data>
-  <data name="tSOptions.Text" xml:space="preserve">
-    <value>Opzioni Profilo</value>
+  <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 224</value>
+  </data>
+  <data name="cMProfile.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lBProfiles.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 22</value>
@@ -6794,6 +6855,12 @@
   </data>
   <data name="tSBKeepSize.Text" xml:space="preserve">
     <value>Mantieni questa dimensione della finestra dopo la chiusura</value>
+  </data>
+  <data name="tSOptions.Text" xml:space="preserve">
+    <value>Opzioni Profilo</value>
+  </data>
+  <data name="tSOptions.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="tsBNewProfle.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 22</value>
@@ -6884,11 +6951,20 @@
   <data name="tSBExportProfile.ToolTipText" xml:space="preserve">
     <value>Esporta Profilo Selezionato</value>
   </data>
+  <data name="toolStrip1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabProfiles.Text" xml:space="preserve">
+    <value>Profili</value>
+  </data>
+  <data name="tabProfiles.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="tabAutoProfiles.Text" xml:space="preserve">
     <value>Profili Automatici</value>
   </data>
-  <data name="tabSettings.Text" xml:space="preserve">
-    <value>Impostazioni</value>
+  <data name="tabAutoProfiles.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="hideDS4CheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 17</value>
@@ -6896,11 +6972,17 @@
   <data name="hideDS4CheckBox.Text" xml:space="preserve">
     <value>Nascondi Controller DS4</value>
   </data>
+  <data name="hideDS4CheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBSwipeProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 17</value>
   </data>
   <data name="cBSwipeProfiles.Text" xml:space="preserve">
     <value>Swipe sul Touchpad per cambiare profili</value>
+  </data>
+  <data name="cBSwipeProfiles.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="StartWindowsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>
@@ -6908,11 +6990,17 @@
   <data name="StartWindowsCheckBox.Text" xml:space="preserve">
     <value>Apri all'Avvio</value>
   </data>
+  <data name="StartWindowsCheckBox.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="startMinimizedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 17</value>
   </data>
   <data name="startMinimizedCheckBox.Text" xml:space="preserve">
     <value>Apri Minimizzato</value>
+  </data>
+  <data name="startMinimizedCheckBox.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBNotifications.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 17</value>
@@ -6920,11 +7008,17 @@
   <data name="cBNotifications.Text" xml:space="preserve">
     <value>Mostra Notifiche</value>
   </data>
+  <data name="cBNotifications.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBDisconnectBT.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 17</value>
   </data>
   <data name="cBDisconnectBT.Text" xml:space="preserve">
     <value>Disconnetti da BT durante l'Arresto</value>
+  </data>
+  <data name="cBDisconnectBT.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBCloseMini.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 17</value>
@@ -6932,11 +7026,17 @@
   <data name="cBCloseMini.Text" xml:space="preserve">
     <value>Chiudi Minimizzando</value>
   </data>
+  <data name="cBCloseMini.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBQuickCharge.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 17</value>
   </data>
   <data name="cBQuickCharge.Text" xml:space="preserve">
     <value>Carica Veloce</value>
+  </data>
+  <data name="cBQuickCharge.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 17</value>
@@ -6944,17 +7044,35 @@
   <data name="cBUpdate.Text" xml:space="preserve">
     <value>Controlla Aggiornamenti all'Avvio</value>
   </data>
+  <data name="cBUpdate.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cBDownloadLangauge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 17</value>
+  </data>
+  <data name="cBDownloadLangauge.Text" xml:space="preserve">
+    <value>Scarica Pacchetto Lingua con Aggiornamento</value>
+  </data>
+  <data name="cBDownloadLangauge.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBUpdateTime.Items" xml:space="preserve">
     <value>ore</value>
   </data>
   <data name="cBUpdateTime.Items1" xml:space="preserve">
     <value>giorni</value>
   </data>
-  <data name="lBCheckEvery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
+  <data name="cBUpdateTime.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="lBCheckEvery.Text" xml:space="preserve">
-    <value>Controlla ogni</value>
+  <data name="lbCheckEvery.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDUpdateTime.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pNUpdate.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="lbUseXIPorts.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 13</value>
@@ -6962,8 +7080,17 @@
   <data name="lbUseXIPorts.Text" xml:space="preserve">
     <value>Usa Porte Xinput</value>
   </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 65</value>
+  <data name="lbUseXIPorts.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDXIPorts.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbLastXIPort.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlXIPorts.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 13</value>
@@ -6971,11 +7098,17 @@
   <data name="linkProfiles.Text" xml:space="preserve">
     <value>Cartella Profili</value>
   </data>
+  <data name="linkProfiles.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 13</value>
   </data>
   <data name="lnkControllers.Text" xml:space="preserve">
     <value>Pannello di Controllo</value>
+  </data>
+  <data name="lnkControllers.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 13</value>
@@ -6983,16 +7116,52 @@
   <data name="linkUninstall.Text" xml:space="preserve">
     <value>Disinstalla Driver VBus</value>
   </data>
+  <data name="linkUninstall.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 13</value>
   </data>
   <data name="linkSetup.Text" xml:space="preserve">
     <value>Configurazione Controller/Driver</value>
   </data>
+  <data name="linkSetup.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 13</value>
   </data>
   <data name="lLBUpdate.Text" xml:space="preserve">
     <value>Controlla Aggiornamenti Ora</value>
+  </data>
+  <data name="lLBUpdate.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>260, 10</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 65</value>
+  </data>
+  <data name="flowLayoutPanel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="fLPSettings.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabSettings.Text" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="tabSettings.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabLog.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabMain.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

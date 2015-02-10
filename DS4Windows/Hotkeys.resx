@@ -171,8 +171,8 @@
   <data name="linkDonate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lbTranslators.Text" xml:space="preserve">
-    <value>Translators:</value>
+  <data name="&gt;&gt;lbGerman.Parent" xml:space="preserve">
+    <value>tLPTranslators</value>
   </data>
   <data name="&gt;&gt;lbHotkeys.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -354,8 +354,8 @@
   <data name="lbTranslators.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Hotkeys</value>
+  <data name="lbLinkText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 13</value>
   </data>
   <data name="linkInhexSTER.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -368,9 +368,6 @@
   </data>
   <data name="linkElectro.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
-  </data>
-  <data name="&gt;&gt;lbItalianT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
   </data>
   <data name="lbLinkText.Text" xml:space="preserve">
     <value>Links displayed here</value>
@@ -392,9 +389,6 @@
   </data>
   <data name="tPHotkeys.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="lbLinkText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 13</value>
   </data>
   <data name="&gt;&gt;lbRussian.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -429,6 +423,9 @@
   <data name="linkJays2Kings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Hotkeys</value>
+  </data>
   <data name="lbAbout.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -449,6 +446,9 @@
   </data>
   <data name="&gt;&gt;linkInhexSTER.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>507, 428</value>
   </data>
   <data name="lbRussian.Text" xml:space="preserve">
     <value>Russian/ру́сский язы́к</value>
@@ -558,8 +558,8 @@
   <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
     <value>559, 383</value>
   </data>
-  <data name="lbRussian.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;lbItalianT.Parent" xml:space="preserve">
+    <value>tLPTranslators</value>
   </data>
   <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>567, 409</value>
@@ -567,11 +567,11 @@
   <data name="&gt;&gt;lbGerman.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="lbRussian.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
   <data name="&gt;&gt;lbRussian.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tLPTranslators.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 109</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -633,14 +633,14 @@
   <data name="linkDonate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;lbGerman.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lbTranslators.Text" xml:space="preserve">
+    <value>Translators:</value>
   </data>
   <data name="linkSourceCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 13</value>
   </data>
-  <data name="&gt;&gt;lbGerman.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
+  <data name="tLPTranslators.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 109</value>
   </data>
   <data name="&gt;&gt;linkJays2Kings.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -782,13 +782,13 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;linkSourceCode.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>507, 428</value>
+  <data name="&gt;&gt;lbGerman.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>de-DE</value>
+    <value>it-IT</value>
   </metadata>
 </root>

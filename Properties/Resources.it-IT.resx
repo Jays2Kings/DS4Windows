@@ -513,4 +513,13 @@
   <data name="XinputPorts" xml:space="preserve">
     <value>Usa porte più alte se ricevi conflitti in altri programmi emulatori X360, come il tool SCP</value>
   </data>
+  <data name="LatencyNotOverTen" xml:space="preserve">
+    <value>Latenza del Controller *number* ora inferiore a 10ms</value>
+  </data>
+  <data name="LatencyOverTen" xml:space="preserve">
+    <value>Latenza del Controller *number* superiore a 10ms</value>
+  </data>
+  <data name="NotUsingProfile" xml:space="preserve">
+    <value>Il Controller *number* non sta utilizzando alcun profilo</value>
+  </data>
 </root>

@@ -142,30 +142,6 @@
   <data name="linkDonate.Text" xml:space="preserve">
     <value>Spenden via Paypal</value>
   </data>
-  <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>574, 352</value>
-  </data>
-  <data name="tPHotkeys.Text" xml:space="preserve">
-    <value>Makros</value>
-  </data>
-  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
-  </data>
-  <data name="lbTranslators.Text" xml:space="preserve">
-    <value>Übersetzer:</value>
-  </data>
-  <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 336</value>
-  </data>
-  <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>574, 352</value>
-  </data>
-  <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 19</value>
-  </data>
-  <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>582, 378</value>
-  </data>
   <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>551, 458</value>
   </data>
@@ -203,6 +179,30 @@ Makro: Weise mehrere Tasten einer Eingabe zu
 Scan Code: Tasten werden unterschiedlich interpretiert. Nur für manche Spiele nötig.
 
 *Falls aktiviert</value>
+  </data>
+  <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>574, 352</value>
+  </data>
+  <data name="tPHotkeys.Text" xml:space="preserve">
+    <value>Makros</value>
+  </data>
+  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="lbTranslators.Text" xml:space="preserve">
+    <value>Übersetzer:</value>
+  </data>
+  <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 336</value>
+  </data>
+  <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
+    <value>574, 352</value>
+  </data>
+  <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 19</value>
+  </data>
+  <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>582, 378</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>582, 397</value>

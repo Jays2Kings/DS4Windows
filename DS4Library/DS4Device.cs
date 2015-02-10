@@ -62,6 +62,8 @@ namespace DS4Library
     
     public class DS4Device
     {
+        private enum InputLoopStatus { OK, DISCONNECTED };
+
         private const int BT_OUTPUT_REPORT_LENGTH = 78;
         private const int BT_INPUT_REPORT_LENGTH = 547;
         private HidDevice hDevice;
@@ -166,6 +168,7 @@ namespace DS4Library
             hDevice = hidDevice;
             conType = HidConnectionType(hDevice);
             Mac = hDevice.readSerial();
+
             if (conType == ConnectionType.USB)
             {
                 inputReport = new byte[64];
@@ -196,7 +199,9 @@ namespace DS4Library
                 ds4Input.Start();
             }
             else
+            {
                 Console.WriteLine("Thread already running for DS4: " + Mac);
+            }
         }
 
         public void StopUpdate()
@@ -393,8 +398,10 @@ namespace DS4Library
 
             LatencyCounter latencyCounter = new LatencyCounter(200);
 
+            InputLoopStatus status = InputLoopStatus.OK;
+
             //OK you should never have a while(true) statement. A condition should still allow it to exit
-            while (true)
+            while (status == InputLoopStatus.OK)
             {
                 string currerror = string.Empty;
                 latencyCounter.PushLatencyReading(sw.ElapsedMilliseconds - oldtime);
@@ -430,8 +437,8 @@ namespace DS4Library
                             Removal(this, EventArgs.Empty);
                         }
 
-                        return;
-
+                        status = InputLoopStatus.DISCONNECTED;
+                        continue;
                     }
                 }
                 else
@@ -450,7 +457,8 @@ namespace DS4Library
                             Removal(this, EventArgs.Empty);
                         }
 
-                        return;
+                        status = InputLoopStatus.DISCONNECTED;
+                        continue;
                     }
                 }
 
@@ -484,6 +492,7 @@ namespace DS4Library
                     }
                     if (shouldDisconnect && DisconnectBT())
                     {
+                        status = InputLoopStatus.DISCONNECTED;
                         return; // all done
                     }
                 }
@@ -532,6 +541,7 @@ namespace DS4Library
                 outputReportBuffer[9] = ledFlashOn; //flash on duration
                 outputReportBuffer[10] = ledFlashOff; //flash off duration
             }
+
             lock (outputReport)
             {
                 if (synchronous)
@@ -586,20 +596,27 @@ namespace DS4Library
                 p.dwSize = Marshal.SizeOf(typeof(NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS));
                 IntPtr searchHandle = NativeMethods.BluetoothFindFirstRadio(ref p, ref btHandle);
                 int bytesReturned = 0;
+
                 bool success = false;
                 while (!success && btHandle != IntPtr.Zero)
                 {
                     success = NativeMethods.DeviceIoControl(btHandle, IOCTL_BTH_DISCONNECT_DEVICE, ref lbtAddr, 8, IntPtr.Zero, 0, ref bytesReturned, IntPtr.Zero);
                     NativeMethods.CloseHandle(btHandle);
                     if (!success)
+                    {
                         if (!NativeMethods.BluetoothFindNextRadio(searchHandle, ref btHandle))
+                        {
                             btHandle = IntPtr.Zero;
+                        }
+                    }
 
                 }
+
                 NativeMethods.BluetoothFindRadioClose(searchHandle);
                 Console.WriteLine("Disconnect successful: " + success);
+
                 success = true; // XXX return value indicates failure, but it still works?
-                if(success)
+                if (success)
                 {
                     IsDisconnecting = true;
                     StopOutputUpdate();

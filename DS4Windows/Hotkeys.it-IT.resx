@@ -136,15 +136,6 @@
   <data name="linkDonate.Text" xml:space="preserve">
     <value>Donazioni via Paypal</value>
   </data>
-  <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 19</value>
-  </data>
-  <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>563, 412</value>
-  </data>
-  <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>555, 386</value>
-  </data>
   <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>532, 476</value>
   </data>
@@ -183,14 +174,31 @@ Scansiona Codice: I Tasti sono interpretati differentemente. Potrebbe essere nec
 
 *Se abilitato</value>
   </data>
+  <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>555, 386</value>
+  </data>
+  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
+  </data>
+  <data name="lbTranslators.Text" xml:space="preserve">
+    <value>Traduttori</value>
+  </data>
+  <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 370</value>
+  </data>
   <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
     <value>555, 386</value>
   </data>
+  <data name="tPCredits.Text" xml:space="preserve">
+    <value>Crediti</value>
+  </data>
+  <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 19</value>
+  </data>
+  <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>563, 412</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>563, 431</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
 </root>

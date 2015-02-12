@@ -542,6 +542,7 @@ namespace DS4Windows
             Global.MainColor[device] = new DS4Color((byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
             Global.LowColor[device] = new DS4Color((byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
             Global.ShiftColor[device] = new DS4Color((byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
+            Global.ChargingColor[device] = new DS4Color(btnChargingColor.BackColor);
             Global.FlashType[device] = (byte)cBFlashType.SelectedIndex;
             if (btnFlashColor.BackColor != pBController.BackColor)
                 Global.FlashColor[device] = new DS4Color(btnFlashColor.BackColor);
@@ -723,10 +724,8 @@ namespace DS4Windows
                 btnChargingColor.BackColor = advColorDialog.Color;
             }
             if (device < 4)
-            {
                 DS4LightBar.forcelight[device] = false;
-                Global.ChargingColor[device] = new DS4Color(btnChargingColor.BackColor);
-            }
+            Global.ChargingColor[device] = new DS4Color(btnChargingColor.BackColor);
         }
         private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
         {

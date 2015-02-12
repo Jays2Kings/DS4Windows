@@ -125,15 +125,11 @@
   <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>890, 25</value>
   </data>
-  <data name="lLBUpdate.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
   <data name="cBUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 0</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cBNotifications.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="fLPSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="importToolStripMenuItem.Text" xml:space="preserve">
     <value>Import</value>
@@ -147,6 +143,7 @@
   <data name="tabMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lbNoControllers.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -156,8 +153,8 @@
   <data name="&gt;&gt;lbBatt2.Parent" xml:space="preserve">
     <value>tLPControllers</value>
   </data>
-  <data name="startMinimizedCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="toolStrip1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 13</value>
@@ -177,8 +174,8 @@
   <data name="&gt;&gt;cMTaskbar.Name" xml:space="preserve">
     <value>cMTaskbar</value>
   </data>
-  <data name="notifyIcon1.BalloonTipTitle" xml:space="preserve">
-    <value>Scp server</value>
+  <data name="lbLastXIPort.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;tSBKeepSize.Name" xml:space="preserve">
     <value>tSBKeepSize</value>
@@ -240,9 +237,6 @@
   <data name="&gt;&gt;cBDisconnectBT.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnEditC3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 22</value>
-  </data>
   <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -279,14 +273,11 @@
   <data name="tSOptions.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;linkUninstall.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;linkSetup.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="cBController2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="lbCheckEvery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
+  <data name="chTime.Text" xml:space="preserve">
+    <value>Time</value>
   </data>
   <data name="cBUpdateTime.Items1" xml:space="preserve">
     <value>days</value>
@@ -309,8 +300,8 @@
   <data name="&gt;&gt;startMinimizedCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="startMinimizedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 17</value>
+  <data name="cMProfile.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;lbLastMessage.Parent" xml:space="preserve">
     <value>pnlButton</value>
@@ -333,8 +324,8 @@
   <data name="&gt;&gt;tsBNewProfle.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbBatt2.Name" xml:space="preserve">
-    <value>lbBatt2</value>
+  <data name="&gt;&gt;tSBKeepSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tabProfiles.ToolTip" xml:space="preserve">
     <value />
@@ -360,6 +351,9 @@
   <data name="lbLastXIPort.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="cBController2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="&gt;&gt;nUDUpdateTime.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -381,23 +375,17 @@
   <data name="lbUseXIPorts.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;StartWindowsCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lvDebug.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
   </data>
-  <data name="cBQuickCharge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 17</value>
-  </data>
-  <data name="lLBUpdate.ToolTip" xml:space="preserve">
-    <value />
+  <data name="lbPad4.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
   </data>
   <data name="&gt;&gt;tSBExportProfile.Name" xml:space="preserve">
     <value>tSBExportProfile</value>
   </data>
-  <data name="&gt;&gt;cBUpdateTime.Name" xml:space="preserve">
-    <value>cBUpdateTime</value>
-  </data>
-  <data name="&gt;&gt;lbBatt2.ZOrder" xml:space="preserve">
-    <value>18</value>
+  <data name="lLBUpdate.Text" xml:space="preserve">
+    <value>Check for Update Now</value>
   </data>
   <data name="tSOptions.ToolTip" xml:space="preserve">
     <value />
@@ -411,14 +399,11 @@
   <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;linkSetup.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
     <value>toolTip1</value>
   </data>
-  <data name="&gt;&gt;lbBatt2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;importToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbPad4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -429,14 +414,8 @@
   <data name="&gt;&gt;lbPad1.Parent" xml:space="preserve">
     <value>tLPControllers</value>
   </data>
-  <data name="lbLastXIPort.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tabMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>904, 385</value>
-  </data>
-  <data name="lvDebug.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;editProfileForController2ToolStripMenuItem.Name" xml:space="preserve">
+    <value>editProfileForController2ToolStripMenuItem</value>
   </data>
   <data name="lbBatt1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
@@ -446,9 +425,6 @@
   </data>
   <data name="&gt;&gt;lbPad4.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="cBCloseMini.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 17</value>
   </data>
   <data name="&gt;&gt;cBController4.Name" xml:space="preserve">
     <value>cBController4</value>
@@ -483,6 +459,9 @@
   <data name="&gt;&gt;pBStatus4.Parent" xml:space="preserve">
     <value>tLPControllers</value>
   </data>
+  <data name="&gt;&gt;lbBattery.Parent" xml:space="preserve">
+    <value>tLPControllers</value>
+  </data>
   <data name="&gt;&gt;cBDownloadLangauge.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
@@ -513,14 +492,17 @@
   <data name="&gt;&gt;bnEditC3.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="pNUpdate.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="bnEditC2.Text" xml:space="preserve">
     <value>Edit</value>
   </data>
   <data name="lbBatt2.TabIndex" type="System.Int32, mscorlib">
     <value>44</value>
   </data>
-  <data name="lvDebug.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="&gt;&gt;lbUseXIPorts.Parent" xml:space="preserve">
+    <value>pnlXIPorts</value>
   </data>
   <data name="&gt;&gt;nUDUpdateTime.Name" xml:space="preserve">
     <value>nUDUpdateTime</value>
@@ -555,20 +537,17 @@
   <data name="btnClear.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;cBCloseMini.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;lLBUpdate.Name" xml:space="preserve">
+    <value>lLBUpdate</value>
   </data>
   <data name="&gt;&gt;assignToController3ToolStripMenuItem.Name" xml:space="preserve">
     <value>assignToController3ToolStripMenuItem</value>
   </data>
-  <data name="lbBatt3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="lbSelectedProfile.TabIndex" type="System.Int32, mscorlib">
     <value>45</value>
   </data>
-  <data name="cBController3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+  <data name="cBSwipeProfiles.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
   </data>
   <data name="tsBDeleteProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -579,8 +558,8 @@
   <data name="lbPad3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
   </data>
-  <data name="&gt;&gt;StartWindowsCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="tabProfiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
   </data>
   <data name="&gt;&gt;cBDownloadLangauge.Name" xml:space="preserve">
     <value>cBDownloadLangauge</value>
@@ -594,17 +573,14 @@
   <data name="&gt;&gt;cBController3.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;tsBNewProfle.Name" xml:space="preserve">
-    <value>tsBNewProfle</value>
-  </data>
   <data name="&gt;&gt;pnlButton.Name" xml:space="preserve">
     <value>pnlButton</value>
   </data>
   <data name="bnEditC1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cBNotifications.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 17</value>
+  <data name="bnEditC4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 23</value>
   </data>
   <data name="bnEditC2.ToolTip" xml:space="preserve">
     <value />
@@ -618,8 +594,8 @@
   <data name="lbCheckEvery.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lbLastXIPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 13</value>
+  <data name="linkUninstall.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="lbTest.Text" xml:space="preserve">
     <value>Used to test values</value>
@@ -627,14 +603,11 @@
   <data name="&gt;&gt;tabMain.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="tabProfiles.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="cBController4.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="&gt;&gt;cBController4.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;tabLog.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="openProfiles.Filter" xml:space="preserve">
+    <value>XML Files (*.xml)|*.xml</value>
   </data>
   <data name="tsBEditProfile.ToolTipText" xml:space="preserve">
     <value>Edit Selected Profile (Enter)</value>
@@ -645,26 +618,20 @@
   <data name="&gt;&gt;cBSwipeProfiles.Parent" xml:space="preserve">
     <value>fLPSettings</value>
   </data>
-  <data name="&gt;&gt;chTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="lbBatt1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="&gt;&gt;tabMain.Name" xml:space="preserve">
     <value>tabMain</value>
   </data>
-  <data name="&gt;&gt;tSTBProfile.Name" xml:space="preserve">
-    <value>tSTBProfile</value>
+  <data name="lbCheckEvery.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
   </data>
   <data name="&gt;&gt;bnEditC2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tSBCancel.Name" xml:space="preserve">
     <value>tSBCancel</value>
-  </data>
-  <data name="fLPSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
   </data>
   <data name="tSBCancel.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -674,9 +641,6 @@
   </data>
   <data name="&gt;&gt;tabSettings.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cBSwipeProfiles.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
   </data>
   <data name="lbStatus.TabIndex" type="System.Int32, mscorlib">
     <value>45</value>
@@ -701,6 +665,9 @@
   </data>
   <data name="lbPad2.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="cBController2.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
   </data>
   <data name="lbBatt4.Text" xml:space="preserve">
     <value>100%</value>
@@ -768,11 +735,8 @@
   <data name="tsBDeleteProfile.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
-    <value>exitToolStripMenuItem</value>
-  </data>
-  <data name="lbPad1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+  <data name="&gt;&gt;chTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
     <value>No Controllers Connected (Max 4)</value>
@@ -801,8 +765,8 @@
   <data name="&gt;&gt;tabProfiles.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lBProfiles.Parent" xml:space="preserve">
-    <value>tabProfiles</value>
+  <data name="&gt;&gt;cBController4.ZOrder" xml:space="preserve">
+    <value>12</value>
   </data>
   <data name="lnkControllers.ToolTip" xml:space="preserve">
     <value />
@@ -828,11 +792,14 @@
   <data name="&gt;&gt;tabAutoProfiles.Parent" xml:space="preserve">
     <value>tabMain</value>
   </data>
-  <data name="&gt;&gt;tSBExportProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cBCloseMini.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="bnEditC4.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
+  </data>
+  <data name="cBCloseMini.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
   </data>
   <data name="&gt;&gt;lbBatt1.Parent" xml:space="preserve">
     <value>tLPControllers</value>
@@ -840,11 +807,14 @@
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
   </data>
-  <data name="&gt;&gt;tSBDupProfile.Name" xml:space="preserve">
-    <value>tSBDupProfile</value>
+  <data name="pnlButton.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="lbLastMessage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 9</value>
+  </data>
+  <data name="lbPad3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -861,8 +831,8 @@
   <data name="&gt;&gt;lbID.Parent" xml:space="preserve">
     <value>tLPControllers</value>
   </data>
-  <data name="lbStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 15</value>
+  <data name="&gt;&gt;tSBDupProfile.Name" xml:space="preserve">
+    <value>tSBDupProfile</value>
   </data>
   <data name="lbTest.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -873,8 +843,8 @@
   <data name="cBUpdate.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;lBProfiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;StartWindowsCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbLastMessage.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -888,8 +858,8 @@
   <data name="tSBDupProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 22</value>
   </data>
-  <data name="&gt;&gt;tabAutoProfiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tSBImportProfile.ToolTipText" xml:space="preserve">
     <value>Import Profile or Profiles</value>
@@ -897,14 +867,8 @@
   <data name="cBQuickCharge.TabIndex" type="System.Int32, mscorlib">
     <value>55</value>
   </data>
-  <data name="&gt;&gt;tsBDeleteProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="bnEditC3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
-  </data>
-  <data name="&gt;&gt;lbUseXIPorts.Parent" xml:space="preserve">
-    <value>pnlXIPorts</value>
   </data>
   <data name="flowLayoutPanel1.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
     <value>TopDown</value>
@@ -915,8 +879,8 @@
   <data name="&gt;&gt;cBCloseMini.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lbTest.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
+  <data name="tabLog.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;editToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -924,17 +888,11 @@
   <data name="&gt;&gt;cBDisconnectBT.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="lbPad1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="&gt;&gt;tSOptions.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnEditC1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="lbUseXIPorts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 13</value>
+  <data name="bnEditC3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 22</value>
   </data>
   <data name="cBController3.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
@@ -944,9 +902,6 @@
   </data>
   <data name="&gt;&gt;cBController4.Parent" xml:space="preserve">
     <value>tLPControllers</value>
-  </data>
-  <data name="toolStrip1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="&gt;&gt;lbPad1.Name" xml:space="preserve">
     <value>lbPad1</value>
@@ -960,9 +915,6 @@
   <data name="&gt;&gt;lbPad3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="tLPControllers.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -972,14 +924,8 @@
   <data name="lvDebug.Font" type="System.Drawing.Font, System.Drawing">
     <value>Lucida Console, 9.75pt</value>
   </data>
-  <data name="tabAutoProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>896, 359</value>
-  </data>
   <data name="&gt;&gt;tabControllers.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tabProfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>DS4Windows</value>
@@ -987,8 +933,8 @@
   <data name="cMTaskbar.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lbBatt4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+  <data name="linkUninstall.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 26</value>
   </data>
   <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
     <value>tabProfiles</value>
@@ -1020,11 +966,8 @@
   <data name="tabSettings.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="btnStartStop.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="lbSelectedProfile.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="lbStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 15</value>
   </data>
   <data name="lnkControllers.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1059,38 +1002,32 @@
   <data name="&gt;&gt;pBStatus3.Parent" xml:space="preserve">
     <value>tLPControllers</value>
   </data>
-  <data name="linkUninstall.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="fLPSettings.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
     <value>TopDown</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
     <value>737, 74</value>
   </data>
-  <data name="lbTest.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="&gt;&gt;tLPControllers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="startMinimizedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 17</value>
   </data>
   <data name="tabMain.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lbPad2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 15</value>
-  </data>
   <data name="&gt;&gt;lbPad2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="startMinimizedCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+  <data name="&gt;&gt;nUDXIPorts.Parent" xml:space="preserve">
+    <value>pnlXIPorts</value>
   </data>
   <data name="lbNoControllers.TabIndex" type="System.Int32, mscorlib">
     <value>47</value>
   </data>
   <data name="lbBatt2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
-  </data>
-  <data name="pNUpdate.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
     <value>Edit Profile for Controller 2</value>
@@ -1110,11 +1047,11 @@
   <data name="cBDownloadLangauge.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="&gt;&gt;linkSetup.Name" xml:space="preserve">
+    <value>linkSetup</value>
+  </data>
   <data name="pNUpdate.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
-  </data>
-  <data name="&gt;&gt;openProfiles.Name" xml:space="preserve">
-    <value>openProfiles</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1146,6 +1083,9 @@
   <data name="&gt;&gt;assignToController3ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="btnClear.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 333</value>
+  </data>
   <data name="saveProfiles.Filter" xml:space="preserve">
     <value>XML Files (*.xml)|*.xml</value>
   </data>
@@ -1160,9 +1100,6 @@
   </data>
   <data name="&gt;&gt;tabControllers.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;lLBUpdate.Name" xml:space="preserve">
-    <value>lLBUpdate</value>
   </data>
   <data name="&gt;&gt;cBDisconnectBT.Parent" xml:space="preserve">
     <value>fLPSettings</value>
@@ -1194,12 +1131,6 @@
   <data name="cBDisconnectBT.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 125</value>
   </data>
-  <data name="lbPad3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
-  </data>
-  <data name="lbBattery.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
   <data name="cBUpdate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1214,6 +1145,12 @@
   </data>
   <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
     <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;tabAutoProfiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBController1.Parent" xml:space="preserve">
+    <value>tLPControllers</value>
   </data>
   <data name="&gt;&gt;lbPad1.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1230,17 +1167,14 @@
   <data name="&gt;&gt;cBUpdate.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;lbBatt4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="lbTest.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="&gt;&gt;pNUpdate.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pNUpdate.Name" xml:space="preserve">
-    <value>pNUpdate</value>
+  <data name="llbHelp.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;lbTest.Name" xml:space="preserve">
     <value>lbTest</value>
@@ -1260,11 +1194,11 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>904, 415</value>
   </data>
-  <data name="lbLastXIPort.Text" xml:space="preserve">
-    <value>- 4</value>
+  <data name="&gt;&gt;tsBNewProfle.Name" xml:space="preserve">
+    <value>tsBNewProfle</value>
   </data>
-  <data name="cBUpdateTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 21</value>
+  <data name="cBCloseMini.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 17</value>
   </data>
   <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 224</value>
@@ -1275,11 +1209,8 @@
   <data name="&gt;&gt;tabProfiles.Name" xml:space="preserve">
     <value>tabProfiles</value>
   </data>
-  <data name="cBSwipeProfiles.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbUseXIPorts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="&gt;&gt;lBProfiles.Parent" xml:space="preserve">
+    <value>tabProfiles</value>
   </data>
   <data name="&gt;&gt;tabMain.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1287,8 +1218,8 @@
   <data name="cBNotifications.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="assignToController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+  <data name="&gt;&gt;deleteToolStripMenuItem.Name" xml:space="preserve">
+    <value>deleteToolStripMenuItem</value>
   </data>
   <data name="fLPSettings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1299,8 +1230,14 @@
   <data name="cBUpdateTime.Items" xml:space="preserve">
     <value>hours</value>
   </data>
+  <data name="&gt;&gt;StartWindowsCheckBox.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
   <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
     <value>Assign to Controller 4</value>
+  </data>
+  <data name="&gt;&gt;lbBatt4.Parent" xml:space="preserve">
+    <value>tLPControllers</value>
   </data>
   <data name="tabLog.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1313,6 +1250,9 @@
   </data>
   <data name="lLBUpdate.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 52</value>
+  </data>
+  <data name="lbLastXIPort.Text" xml:space="preserve">
+    <value>- 4</value>
   </data>
   <data name="&gt;&gt;lbBatt1.Name" xml:space="preserve">
     <value>lbBatt1</value>
@@ -1332,8 +1272,8 @@
   <data name="lbBatt4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="cBController2.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+  <data name="lbBatt3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pBStatus2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>AutoSize</value>
@@ -1348,29 +1288,32 @@
         YII=
 </value>
   </data>
-  <data name="llbHelp.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;lLBUpdate.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="bnEditC2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
   </data>
-  <data name="tabProfiles.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="lbPad4.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBCloseMini.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="pBStatus2.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;tSTBProfile.Name" xml:space="preserve">
+    <value>tSTBProfile</value>
+  </data>
+  <data name="pnlXIPorts.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
   </data>
   <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
     <value>Edit Profile for Controller 4</value>
   </data>
-  <data name="&gt;&gt;lbPad3.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
   </data>
-  <data name="&gt;&gt;pnlButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;cBUpdateTime.Name" xml:space="preserve">
+    <value>cBUpdateTime</value>
   </data>
   <data name="&gt;&gt;linkProfiles.Parent" xml:space="preserve">
     <value>flowLayoutPanel1</value>
@@ -1381,8 +1324,8 @@
   <data name="tabAutoProfiles.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 22</value>
+  <data name="lbStatus.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;duplicateToolStripMenuItem.Name" xml:space="preserve">
     <value>duplicateToolStripMenuItem</value>
@@ -1393,8 +1336,8 @@
   <data name="tSBExportProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="lnkControllers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 13</value>
+  <data name="pnlXIPorts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 268</value>
   </data>
   <data name="hideDS4CheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1405,8 +1348,8 @@
   <data name="&gt;&gt;lbTest.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;StartWindowsCheckBox.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
+  <data name="&gt;&gt;tabSettings.Name" xml:space="preserve">
+    <value>tabSettings</value>
   </data>
   <data name="lbBatt2.Text" xml:space="preserve">
     <value>100%</value>
@@ -1438,8 +1381,8 @@
   <data name="pBStatus2.TabIndex" type="System.Int32, mscorlib">
     <value>47</value>
   </data>
-  <data name="btnClear.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 333</value>
+  <data name="btnStartStop.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;lbBattery.ZOrder" xml:space="preserve">
     <value>16</value>
@@ -1450,8 +1393,11 @@
   <data name="lbBattery.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 15</value>
   </data>
-  <data name="bnEditC3.Text" xml:space="preserve">
-    <value>Edit</value>
+  <data name="&gt;&gt;openProfiles.Name" xml:space="preserve">
+    <value>openProfiles</value>
+  </data>
+  <data name="tabMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>904, 385</value>
   </data>
   <data name="&gt;&gt;pNUpdate.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -1459,29 +1405,23 @@
   <data name="&gt;&gt;toolStripLabel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabSettings.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
   </data>
   <data name="lvDebug.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;lLBUpdate.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 22</value>
   </data>
-  <data name="&gt;&gt;lbBatt4.Name" xml:space="preserve">
-    <value>lbBatt4</value>
+  <data name="assignToController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 22</value>
   </data>
   <data name="lBProfiles.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
-  <data name="lbStatus.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt, style=Bold</value>
+  <data name="lbUseXIPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
   </data>
   <data name="tabLog.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -1495,10 +1435,10 @@
   <data name="fLPSettings.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;pBStatus1.Name" xml:space="preserve">
-    <value>pBStatus1</value>
+  <data name="lbUseXIPorts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
   </data>
-  <data name="&gt;&gt;tabAutoProfiles.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;linkUninstall.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="&gt;&gt;lbSelectedProfile.Name" xml:space="preserve">
@@ -1517,6 +1457,9 @@
         honhNGS9kzVYMyiw7qV6ovgZpAkkBpK7k+yOPRrX2Jv/v5fpD/Y7tgADGQKSA+H5+lrYXQHywjwdNeyS
         QACSwyc/EICBAQCCn9usx9GsUgAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="lnkControllers.Text" xml:space="preserve">
+    <value>Control Panel</value>
   </data>
   <data name="&gt;&gt;lbTest.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1551,11 +1494,11 @@
   <data name="linkSetup.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
   </data>
+  <data name="cBDisconnectBT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lbBattery.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="&gt;&gt;openProfiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pBStatus4.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1566,14 +1509,11 @@
   <data name="&gt;&gt;cBUpdate.Name" xml:space="preserve">
     <value>cBUpdate</value>
   </data>
-  <data name="&gt;&gt;lbBatt3.ZOrder" xml:space="preserve">
-    <value>19</value>
+  <data name="&gt;&gt;lbBatt2.Name" xml:space="preserve">
+    <value>lbBatt2</value>
   </data>
   <data name="tLPControllers.ToolTip" xml:space="preserve">
     <value />
-  </data>
-  <data name="&gt;&gt;deleteToolStripMenuItem.Name" xml:space="preserve">
-    <value>deleteToolStripMenuItem</value>
   </data>
   <data name="lbID.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt, style=Bold</value>
@@ -1608,8 +1548,11 @@
   <data name="tLPControllers.TabIndex" type="System.Int32, mscorlib">
     <value>46</value>
   </data>
-  <data name="lbPad3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="lvDebug.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cBNotifications.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;llbHelp.Parent" xml:space="preserve">
     <value>pnlButton</value>
@@ -1628,6 +1571,9 @@
   </data>
   <data name="lbPad4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="lBProfiles.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
   </data>
   <data name="tSBImportProfile.Text" xml:space="preserve">
     <value>Import</value>
@@ -1703,9 +1649,6 @@
   <data name="bnEditC3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;tabSettings.Name" xml:space="preserve">
-    <value>tabSettings</value>
-  </data>
   <data name="cBDownloadLangauge.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1721,11 +1664,8 @@
   <data name="cBDownloadLangauge.Text" xml:space="preserve">
     <value>Download Language Pack with Update</value>
   </data>
-  <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 13</value>
-  </data>
-  <data name="&gt;&gt;editProfileForController2ToolStripMenuItem.Name" xml:space="preserve">
-    <value>editProfileForController2ToolStripMenuItem</value>
+  <data name="lbBatt4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lbBatt4.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -1733,11 +1673,11 @@
   <data name="&gt;&gt;cBController3.Name" xml:space="preserve">
     <value>cBController3</value>
   </data>
-  <data name="pnlXIPorts.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+  <data name="lbPad1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
-  <data name="pnlXIPorts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 268</value>
+  <data name="&gt;&gt;tSTBProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbBatt2.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -1787,26 +1727,20 @@
   <data name="&gt;&gt;chData.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="startMinimizedCheckBox.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="lbUseXIPorts.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="toolStripLabel1.Text" xml:space="preserve">
     <value>Profile Name: </value>
   </data>
-  <data name="&gt;&gt;cBController1.Parent" xml:space="preserve">
-    <value>tLPControllers</value>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;openToolStripMenuItem.Name" xml:space="preserve">
     <value>openToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
     <value>12</value>
-  </data>
-  <data name="&gt;&gt;tSTBProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="linkProfiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1900,8 +1834,8 @@
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
     <value>Duplicate (Ctrl+C)</value>
   </data>
-  <data name="&gt;&gt;lbSelectedProfile.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="&gt;&gt;pBStatus1.Name" xml:space="preserve">
+    <value>pBStatus1</value>
   </data>
   <data name="lbID.Text" xml:space="preserve">
     <value>ID</value>
@@ -1912,11 +1846,11 @@
   <data name="&gt;&gt;tmrUpdate.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lbID.ToolTip" xml:space="preserve">
-    <value />
+  <data name="cBUpdateTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 21</value>
   </data>
-  <data name="&gt;&gt;tLPControllers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tabProfiles.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;cBDownloadLangauge.Parent" xml:space="preserve">
     <value>fLPSettings</value>
@@ -1939,11 +1873,17 @@
   <data name="&gt;&gt;tSBSaveProfile.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="pBStatus2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnEditC4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 23</value>
+  <data name="&gt;&gt;StartWindowsCheckBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lLBUpdate.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;assignToController1ToolStripMenuItem.Name" xml:space="preserve">
     <value>assignToController1ToolStripMenuItem</value>
@@ -1951,20 +1891,14 @@
   <data name="&gt;&gt;lbStatus.Parent" xml:space="preserve">
     <value>tLPControllers</value>
   </data>
-  <data name="llbHelp.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="lbPad4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="flowLayoutPanel1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="pNUpdate.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
-    <value>toolStripSeparator2</value>
+  <data name="&gt;&gt;pNUpdate.Name" xml:space="preserve">
+    <value>pNUpdate</value>
   </data>
   <data name="lbStatus.Text" xml:space="preserve">
     <value>Status</value>
@@ -1972,7 +1906,7 @@
   <data name="fLPSettings.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="cMProfile.ToolTip" xml:space="preserve">
+  <data name="lLBUpdate.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
@@ -1996,8 +1930,8 @@
   <data name="cBQuickCharge.Text" xml:space="preserve">
     <value>Quick Charge</value>
   </data>
-  <data name="&gt;&gt;lvDebug.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lnkControllers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 13</value>
   </data>
   <data name="notifyIcon1.Text" xml:space="preserve">
     <value>DS4 Xinput Tool</value>
@@ -8219,9 +8153,6 @@
   <data name="&gt;&gt;lnkControllers.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="cBController4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnStartStop.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 23</value>
   </data>
@@ -8246,9 +8177,6 @@
   <data name="cBNotifications.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 102</value>
   </data>
-  <data name="lbPad4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="linkUninstall.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -8258,14 +8186,14 @@
   <data name="&gt;&gt;llbHelp.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lLBUpdate.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+  <data name="&gt;&gt;tsBDeleteProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbPad2.Text" xml:space="preserve">
     <value>Controller 2</value>
   </data>
-  <data name="importToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 22</value>
+  <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 13</value>
   </data>
   <data name="lLBUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -8341,9 +8269,6 @@
         1WDefQHxFbbcLCQjmgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="tSTBProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 25</value>
   </data>
@@ -8352,9 +8277,6 @@
   </data>
   <data name="btnStartStop.Text" xml:space="preserve">
     <value>Start</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>DS4Form</value>
   </data>
   <data name="&gt;&gt;pBStatus1.Parent" xml:space="preserve">
     <value>tLPControllers</value>
@@ -8368,11 +8290,14 @@
   <data name="lbCheckEvery.Text" xml:space="preserve">
     <value>Check every</value>
   </data>
-  <data name="lbPad4.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+  <data name="&gt;&gt;pnlButton.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;newProfileToolStripMenuItem.Name" xml:space="preserve">
     <value>newProfileToolStripMenuItem</value>
+  </data>
+  <data name="bnEditC1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
   </data>
   <data name="pBStatus3.TabIndex" type="System.Int32, mscorlib">
     <value>47</value>
@@ -8385,6 +8310,9 @@
   </data>
   <data name="linkProfiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 0</value>
+  </data>
+  <data name="&gt;&gt;lbBatt2.ZOrder" xml:space="preserve">
+    <value>18</value>
   </data>
   <data name="&gt;&gt;lbBatt1.ZOrder" xml:space="preserve">
     <value>17</value>
@@ -8415,9 +8343,6 @@
   </data>
   <data name="&gt;&gt;editProfileForController3ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tabLog.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="&gt;&gt;tSBImportProfile.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -8499,11 +8424,11 @@
   <data name="nUDXIPorts.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
   </data>
-  <data name="openProfiles.Filter" xml:space="preserve">
-    <value>XML Files (*.xml)|*.xml</value>
+  <data name="lbBattery.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
   </data>
-  <data name="&gt;&gt;nUDXIPorts.Parent" xml:space="preserve">
-    <value>pnlXIPorts</value>
+  <data name="&gt;&gt;lbBatt4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pBStatus3.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -8511,8 +8436,8 @@
   <data name="lbPad2.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 49</value>
   </data>
-  <data name="lvDebug.Size" type="System.Drawing.Size, System.Drawing">
-    <value>890, 330</value>
+  <data name="&gt;&gt;tSBExportProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbPad2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
@@ -8520,11 +8445,8 @@
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
   </data>
-  <data name="&gt;&gt;pBStatus3.Name" xml:space="preserve">
-    <value>pBStatus3</value>
-  </data>
-  <data name="linkUninstall.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 26</value>
+  <data name="lbPad1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="lbPad4.Text" xml:space="preserve">
     <value>Controller 4</value>
@@ -8534,9 +8456,6 @@
   </data>
   <data name="&gt;&gt;cBCloseMini.Name" xml:space="preserve">
     <value>cBCloseMini</value>
-  </data>
-  <data name="lLBUpdate.Text" xml:space="preserve">
-    <value>Check for Update Now</value>
   </data>
   <data name="cBController1.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -8571,6 +8490,9 @@
   <data name="&gt;&gt;assignToController4ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;pnlXIPorts.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
   <data name="cBDisconnectBT.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -8586,8 +8508,11 @@
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
   </data>
-  <data name="lBProfiles.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
+  <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>424, 104</value>
+  </data>
+  <data name="&gt;&gt;tabLog.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;lbLastXIPort.Parent" xml:space="preserve">
     <value>pnlXIPorts</value>
@@ -8604,8 +8529,8 @@
   <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 13</value>
   </data>
-  <data name="cBUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 17</value>
+  <data name="&gt;&gt;tabSettings.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Text" xml:space="preserve">
     <value>Assign to Controller 2</value>
@@ -8613,8 +8538,8 @@
   <data name="&gt;&gt;saveProfiles.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+  <data name="&gt;&gt;lbBatt2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cMProfile.Name" xml:space="preserve">
     <value>cMProfile</value>
@@ -8628,6 +8553,9 @@
   <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
     <value>621, 107</value>
   </data>
+  <data name="cBQuickCharge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 17</value>
+  </data>
   <data name="assignToController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
   </data>
@@ -8637,8 +8565,8 @@
   <data name="&gt;&gt;tLPControllers.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;importToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 22</value>
   </data>
   <data name="&gt;&gt;cBDownloadLangauge.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -8655,14 +8583,17 @@
   <data name="exportToolStripMenuItem.Text" xml:space="preserve">
     <value>Export</value>
   </data>
-  <data name="cBUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="&gt;&gt;editProfileForController3ToolStripMenuItem.Name" xml:space="preserve">
     <value>editProfileForController3ToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;lbID.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pBStatus3.Name" xml:space="preserve">
+    <value>pBStatus3</value>
+  </data>
+  <data name="lbSelectedProfile.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="lbCheckEvery.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -8670,11 +8601,14 @@
   <data name="fLPSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>890, 353</value>
   </data>
-  <data name="&gt;&gt;tSBSaveProfile.Name" xml:space="preserve">
-    <value>tSBSaveProfile</value>
+  <data name="startMinimizedCheckBox.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;lbStatus.Name" xml:space="preserve">
     <value>lbStatus</value>
+  </data>
+  <data name="notifyIcon1.BalloonTipTitle" xml:space="preserve">
+    <value>Scp server</value>
   </data>
   <data name="cBCloseMini.Text" xml:space="preserve">
     <value>Close Minimizes</value>
@@ -8694,11 +8628,14 @@
   <data name="lbBattery.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt, style=Bold</value>
   </data>
-  <data name="&gt;&gt;lbBatt4.Parent" xml:space="preserve">
-    <value>tLPControllers</value>
+  <data name="&gt;&gt;tabAutoProfiles.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;pnlXIPorts.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="cBController3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
   </data>
   <data name="tabProfiles.Text" xml:space="preserve">
     <value>Profiles</value>
@@ -8706,8 +8643,8 @@
   <data name="tSBDupProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="lbTest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 13</value>
+  <data name="&gt;&gt;openProfiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbLastXIPort.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 3</value>
@@ -8715,8 +8652,8 @@
   <data name="linkUninstall.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;lbBattery.Parent" xml:space="preserve">
-    <value>tLPControllers</value>
+  <data name="lbPad2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 15</value>
   </data>
   <data name="linkUninstall.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -8724,8 +8661,8 @@
   <data name="lbBatt4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="tabAutoProfiles.Text" xml:space="preserve">
-    <value>Auto Profiles</value>
+  <data name="&gt;&gt;lbBatt3.ZOrder" xml:space="preserve">
+    <value>19</value>
   </data>
   <data name="lbID.Size" type="System.Drawing.Size, System.Drawing">
     <value>21, 15</value>
@@ -8754,6 +8691,9 @@
   <data name="&gt;&gt;tabProfiles.Parent" xml:space="preserve">
     <value>tabMain</value>
   </data>
+  <data name="tabAutoProfiles.Text" xml:space="preserve">
+    <value>Auto Profiles</value>
+  </data>
   <data name="&gt;&gt;bnEditC4.Name" xml:space="preserve">
     <value>bnEditC4</value>
   </data>
@@ -8766,8 +8706,11 @@
   <data name="lbLastMessage.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
   </data>
-  <data name="cBCloseMini.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
+  <data name="cBUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="importToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 22</value>
   </data>
   <data name="StartWindowsCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8781,8 +8724,8 @@
   <data name="&gt;&gt;tabControllers.Parent" xml:space="preserve">
     <value>tabMain</value>
   </data>
-  <data name="chTime.Text" xml:space="preserve">
-    <value>Time</value>
+  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
+    <value>toolStripSeparator2</value>
   </data>
   <data name="assignToController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
@@ -8799,11 +8742,11 @@
   <data name="&gt;&gt;bnEditC4.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;linkSetup.Name" xml:space="preserve">
-    <value>linkSetup</value>
+  <data name="lbID.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="cBController4.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+  <data name="startMinimizedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
   </data>
   <data name="lLBUpdate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8811,8 +8754,8 @@
   <data name="&gt;&gt;lbNoControllers.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cBController3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 21</value>
+  <data name="lbPad3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="lbPad3.Text" xml:space="preserve">
     <value>Controller 3</value>
@@ -8844,8 +8787,17 @@
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
     <value>737, 104</value>
   </data>
+  <data name="cBSwipeProfiles.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tSBSaveProfile.Name" xml:space="preserve">
+    <value>tSBSaveProfile</value>
+  </data>
   <data name="&gt;&gt;lbStatus.ZOrder" xml:space="preserve">
     <value>15</value>
+  </data>
+  <data name="lbTest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 13</value>
   </data>
   <data name="cBDisconnectBT.ToolTip" xml:space="preserve">
     <value />
@@ -8862,11 +8814,17 @@
   <data name="&gt;&gt;bnEditC1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="cBUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 17</value>
+  </data>
   <data name="cBNotifications.Text" xml:space="preserve">
     <value>Show Notifications</value>
   </data>
   <data name="lbNoControllers.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbPad3.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="cBCloseMini.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -8886,6 +8844,9 @@
   <data name="&gt;&gt;lnkControllers.Name" xml:space="preserve">
     <value>lnkControllers</value>
   </data>
+  <data name="lbTest.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
   <data name="&gt;&gt;cBNotifications.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -8898,8 +8859,8 @@
   <data name="lbPad3.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;btnStartStop.Name" xml:space="preserve">
-    <value>btnStartStop</value>
+  <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
+    <value>exitToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;openToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -8919,8 +8880,8 @@
   <data name="lvDebug.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="cBDisconnectBT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="lbTest.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
     <value>854, 74</value>
@@ -8931,8 +8892,8 @@
   <data name="pnlButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 385</value>
   </data>
-  <data name="startMinimizedCheckBox.Text" xml:space="preserve">
-    <value>Start Minimized</value>
+  <data name="&gt;&gt;lBProfiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="hideDS4CheckBox.ToolTip" xml:space="preserve">
     <value />
@@ -8946,8 +8907,14 @@
   <data name="&gt;&gt;editProfileForController1ToolStripMenuItem.Name" xml:space="preserve">
     <value>editProfileForController1ToolStripMenuItem</value>
   </data>
+  <data name="lvDebug.Size" type="System.Drawing.Size, System.Drawing">
+    <value>890, 330</value>
+  </data>
   <data name="tSBExportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 22</value>
+  </data>
+  <data name="bnEditC3.Text" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="nUDUpdateTime.ToolTip" xml:space="preserve">
     <value />
@@ -8961,17 +8928,14 @@
   <data name="startMinimizedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>424, 104</value>
+  <data name="lLBUpdate.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
   <data name="btnStartStop.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="&gt;&gt;cBSwipeProfiles.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pnlButton.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="&gt;&gt;startMinimizedCheckBox.Name" xml:space="preserve">
     <value>startMinimizedCheckBox</value>
@@ -8988,8 +8952,8 @@
   <data name="&gt;&gt;btnStartStop.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;hideDS4CheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="tabAutoProfiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>896, 359</value>
   </data>
   <data name="lBProfiles.ToolTip" xml:space="preserve">
     <value />
@@ -9006,9 +8970,6 @@
   <data name="&gt;&gt;lbLastMessage.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pnlXIPorts.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="hideDS4CheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
@@ -9018,20 +8979,23 @@
   <data name="assignToController3ToolStripMenuItem.Text" xml:space="preserve">
     <value>Assign to Controller 3</value>
   </data>
+  <data name="startMinimizedCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBController4.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
   <data name="cBController2.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lnkControllers.Text" xml:space="preserve">
-    <value>Control Panel</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>DS4Form</value>
   </data>
   <data name="lbCheckEvery.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="tabControllers.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
-  </data>
-  <data name="cBController3.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
     <value>toolStripSeparator1</value>
@@ -9041,6 +9005,9 @@
   </data>
   <data name="&gt;&gt;tLPControllers.Name" xml:space="preserve">
     <value>tLPControllers</value>
+  </data>
+  <data name="cBController3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
   </data>
   <data name="cBDownloadLangauge.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 17</value>
@@ -9072,6 +9039,9 @@
   <data name="&gt;&gt;linkProfiles.Name" xml:space="preserve">
     <value>linkProfiles</value>
   </data>
+  <data name="&gt;&gt;lbSelectedProfile.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
   <data name="lbSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 15</value>
   </data>
@@ -9093,6 +9063,9 @@
   <data name="&gt;&gt;tabControllers.Name" xml:space="preserve">
     <value>tabControllers</value>
   </data>
+  <data name="&gt;&gt;lbBatt4.Name" xml:space="preserve">
+    <value>lbBatt4</value>
+  </data>
   <data name="&gt;&gt;linkUninstall.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -9104,6 +9077,9 @@
   </data>
   <data name="lbPad1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
+  </data>
+  <data name="&gt;&gt;lvDebug.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbTest.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -9132,6 +9108,9 @@
   <data name="cBDownloadLangauge.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 217</value>
   </data>
+  <data name="tabProfiles.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
   <data name="&gt;&gt;bnEditC3.Parent" xml:space="preserve">
     <value>tLPControllers</value>
   </data>
@@ -9150,6 +9129,9 @@
   </data>
   <data name="&gt;&gt;bnEditC2.Name" xml:space="preserve">
     <value>bnEditC2</value>
+  </data>
+  <data name="cBController3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 21</value>
   </data>
   <data name="&gt;&gt;cBNotifications.Name" xml:space="preserve">
     <value>cBNotifications</value>
@@ -9193,17 +9175,29 @@
   <data name="lbBattery.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lbUseXIPorts.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left</value>
+  <data name="llbHelp.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="startMinimizedCheckBox.Text" xml:space="preserve">
+    <value>Start Minimized</value>
   </data>
   <data name="&gt;&gt;cBCloseMini.Parent" xml:space="preserve">
     <value>fLPSettings</value>
   </data>
+  <data name="&gt;&gt;hideDS4CheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="nUDXIPorts.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;tSBKeepSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lbLastXIPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 13</value>
+  </data>
+  <data name="pnlXIPorts.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;btnStartStop.Name" xml:space="preserve">
+    <value>btnStartStop</value>
   </data>
   <data name="lbBatt3.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -9223,8 +9217,8 @@
   <data name="tSBSaveProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 22</value>
   </data>
-  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
+  <data name="pNUpdate.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBUpdate.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -9232,8 +9226,14 @@
   <data name="linkUninstall.Text" xml:space="preserve">
     <value>Uninstall VBus Driver</value>
   </data>
+  <data name="cBNotifications.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 17</value>
+  </data>
   <data name="&gt;&gt;cBController1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lbUseXIPorts.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
   </data>
   <data name="lbBatt4.ToolTip" xml:space="preserve">
     <value />
@@ -9246,9 +9246,6 @@
   </metadata>
   <metadata name="cMTaskbar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>339, 17</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>it-IT</value>
   </metadata>
   <metadata name="openProfiles.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>449, 17</value>

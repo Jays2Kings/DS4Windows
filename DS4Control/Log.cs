@@ -18,11 +18,14 @@ namespace DS4Windows
             }
         }
 
-        public static void LogToTray(string data)
+        public static void LogToTray(string data, bool ignoreSettings = false)
         {
             if (TrayIconLog != null)
             {
-                TrayIconLog(null, new DebugEventArgs(data, false));
+                if (ignoreSettings)
+                    TrayIconLog(ignoreSettings, new DebugEventArgs(data, false));
+                else
+                    TrayIconLog(null, new DebugEventArgs(data, false));
             }
         }
     }

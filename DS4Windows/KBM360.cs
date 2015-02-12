@@ -286,7 +286,7 @@ namespace DS4Windows
         private void btnMacro_Click(object sender, EventArgs e)
         {
             gBExtras.Controls.Add(cBScanCode);
-            cBScanCode.Location = new Point(20, 320);
+            cBScanCode.Location = new Point(20, 300);
             rb = new RecordBox(this);
             rb.TopLevel = false;
             rb.Dock = DockStyle.Fill;

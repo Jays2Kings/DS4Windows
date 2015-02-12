@@ -13,7 +13,6 @@ namespace DS4Windows
     {
         public X360Device x360Bus;
         public DS4Device[] DS4Controllers = new DS4Device[4];
-        //TPadModeSwitcher[] modeSwitcher = new TPadModeSwitcher[4];
         public Mouse[] touchPad = new Mouse[4];
         private bool running = false;
         private DS4State[] MappedState = new DS4State[4];
@@ -574,8 +573,7 @@ namespace DS4Windows
             else if (held[ind])
             {
                 DS4LightBar.forcelight[ind] = false;
-                DS4LightBar.forcedFlash[ind] = 0;
-                //Console.WriteLine(p.Key + " is done");                
+                DS4LightBar.forcedFlash[ind] = 0;                
                 Global.ButtonMouseSensitivity[ind] = oldmouse[ind];
                 oldmouse[ind] = -1;
                 setRumble(0, 0, ind);

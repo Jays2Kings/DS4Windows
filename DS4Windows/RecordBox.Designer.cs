@@ -48,7 +48,11 @@
             this.openPresets = new System.Windows.Forms.OpenFileDialog();
             this.lbMacroOrder = new System.Windows.Forms.Label();
             this.lbDelayTip = new System.Windows.Forms.Label();
+            this.cMSLoadPresets = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.altTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMouseButtons.SuspendLayout();
+            this.cMSLoadPresets.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRecord
@@ -85,6 +89,7 @@
             this.lVMacros.TileSize = new System.Drawing.Size(180, 30);
             this.lVMacros.UseCompatibleStateImageBehavior = false;
             this.lVMacros.View = System.Windows.Forms.View.Details;
+            this.lVMacros.SelectedIndexChanged += new System.EventHandler(this.lVMacros_SelectedIndexChanged);
             this.lVMacros.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
             this.lVMacros.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
             this.lVMacros.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lVMacros_MouseDoubleClick);
@@ -193,6 +198,27 @@
             resources.ApplyResources(this.lbDelayTip, "lbDelayTip");
             this.lbDelayTip.Name = "lbDelayTip";
             // 
+            // cMSLoadPresets
+            // 
+            this.cMSLoadPresets.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.altTabToolStripMenuItem,
+            this.fromFileToolStripMenuItem});
+            this.cMSLoadPresets.Name = "cMSLoadPresets";
+            this.cMSLoadPresets.ShowImageMargin = false;
+            resources.ApplyResources(this.cMSLoadPresets, "cMSLoadPresets");
+            // 
+            // altTabToolStripMenuItem
+            // 
+            this.altTabToolStripMenuItem.Name = "altTabToolStripMenuItem";
+            resources.ApplyResources(this.altTabToolStripMenuItem, "altTabToolStripMenuItem");
+            this.altTabToolStripMenuItem.Click += new System.EventHandler(this.altTabToolStripMenuItem_Click);
+            // 
+            // fromFileToolStripMenuItem
+            // 
+            this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
+            resources.ApplyResources(this.fromFileToolStripMenuItem, "fromFileToolStripMenuItem");
+            this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.fromFileToolStripMenuItem_Click);
+            // 
             // RecordBox
             // 
             resources.ApplyResources(this, "$this");
@@ -222,6 +248,7 @@
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
             this.Resize += new System.EventHandler(this.RecordBox_Resize);
             this.pnlMouseButtons.ResumeLayout(false);
+            this.cMSLoadPresets.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,5 +274,8 @@
         private System.Windows.Forms.OpenFileDialog openPresets;
         private System.Windows.Forms.Label lbMacroOrder;
         private System.Windows.Forms.Label lbDelayTip;
+        private System.Windows.Forms.ContextMenuStrip cMSLoadPresets;
+        private System.Windows.Forms.ToolStripMenuItem altTabToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromFileToolStripMenuItem;
     }
 }

@@ -530,7 +530,7 @@ namespace DS4Windows
             else if (r < 0)
                 r = 0;
             r /= 100f;
-            return (byte)(b1 * r + b2 * (1 - r));
+            return (byte)Math.Round((b1 * (1 - r) + b2 *r),0);
         }
         public static DS4Color getTransitionedColor(DS4Color c1, DS4Color c2, double ratio)
         {//;
@@ -1846,6 +1846,10 @@ namespace DS4Windows
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "DisconnectBT";
                     el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
                     break;
+                case 6:
+                    el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "BatteryCheck";
+                    el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
+                    break;
             }
             if (edit)
             {
@@ -2031,6 +2035,11 @@ namespace DS4Windows
                 case "Swipe Down": return DS4Controls.SwipeDown;
                 case "Swipe Left": return DS4Controls.SwipeLeft;
                 case "Swipe Right": return DS4Controls.SwipeRight;
+
+                case "Tilt Up": return DS4Controls.GyroZNeg;
+                case "Tilt Down": return DS4Controls.GyroZPos;
+                case "Tilt Left": return DS4Controls.GyroXPos;
+                case "Tilt Right": return DS4Controls.GyroXNeg;
             }
             return 0;
         }

@@ -238,6 +238,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Battery.
+        /// </summary>
+        internal static string CheckBattery {
+            get {
+                return ResourceManager.GetString("CheckBattery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close DS4Windows?.
         /// </summary>
         internal static string CloseDS4W {

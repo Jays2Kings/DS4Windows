@@ -243,11 +243,10 @@ namespace DS4Windows
                     case "Profile": lvi.SubItems.Add(Properties.Resources.LoadProfile.Replace("*profile*", action.details)); break;
                     case "Key": lvi.SubItems.Add(((Keys)int.Parse(action.details)).ToString() + (action.uTrigger.Count > 0 ? " (Toggle)" : "")); break;
                     case "DisconnectBT":
-                        double d = 0;
-                        if (double.TryParse(action.details, out d) && d > 0)
-                            lvi.SubItems.Add(Properties.Resources.DisconnectBT + " after " + action.details + "s");
-                        else
-                            lvi.SubItems.Add(Properties.Resources.DisconnectBT);
+                        lvi.SubItems.Add(Properties.Resources.DisconnectBT);
+                        break;
+                    case "BatteryCheck":
+                        lvi.SubItems.Add(Properties.Resources.CheckBattery);
                         break;
                 }
                 if (newp && action.type == "DisconnectBT")

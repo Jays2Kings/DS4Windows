@@ -16,6 +16,7 @@ namespace DS4Windows
     {
         Options opt;
         RecordBox rb;
+        int device;
         public List<string> macros = new List<string>();
         public List<string> controls = new List<string>();
         public List<string> ucontrols = new List<string>();
@@ -29,6 +30,9 @@ namespace DS4Windows
         {
             InitializeComponent();
             this.opt = opt;
+            lbHoldForBatt.Text = lbHoldFor.Text;
+            lbSecsBatt.Text = lbSecsBatt.Text;
+            device = opt.device;
             cBProfiles.Items.Add(Properties.Resources.noneProfile);
             cBProfiles.SelectedIndex = 0;
             //cBPressToggleKeys.SelectedIndex = 0;
@@ -101,6 +105,17 @@ namespace DS4Windows
                     decimal d = 0;
                     decimal.TryParse(act.details, out d);
                     nUDDCBT.Value = d;
+                    break;
+                case "BatteryCheck":
+                    cBActions.SelectedIndex = 6;
+                    string[] dets = act.details.Split(',');
+                    d = 0;
+                    decimal.TryParse(dets[0], out d);
+                    nUDDCBatt.Value = d;
+                    cBNotificationBatt.Checked = bool.Parse(dets[1]);
+                    cbLightbarBatt.Checked = bool.Parse(dets[2]);
+                    bnEmptyColor.BackColor = Color.FromArgb(byte.Parse(dets[3]), byte.Parse(dets[4]), byte.Parse(dets[5]));
+                    bnFullColor.BackColor = Color.FromArgb(byte.Parse(dets[6]), byte.Parse(dets[7]), byte.Parse(dets[8]));
                     break;
             }
         }
@@ -221,6 +236,24 @@ namespace DS4Windows
                             Global.RemoveAction(oldprofilename);
                         Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, Math.Round(nUDDCBT.Value, 1).ToString(), edit);
                         break;
+                    case 6:
+                        if (cbLightbarBatt.Checked || cBNotificationBatt.Checked)
+                        {
+                            action = Properties.Resources.CheckBattery;
+                            actRe = true;
+                            if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
+                                Global.RemoveAction(oldprofilename);
+                            string dets = Math.Round(nUDDCBatt.Value, 1).ToString() + "," + cBNotificationBatt.Checked + "," + cbLightbarBatt.Checked + "," +
+                                bnEmptyColor.BackColor.R + "," + bnEmptyColor.BackColor.G + "," + bnEmptyColor.BackColor.B + "," +
+                                bnFullColor.BackColor.R + "," + bnFullColor.BackColor.G + "," + bnFullColor.BackColor.B;
+                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, dets, edit);
+                        }
+                        else
+                        {
+                            cbLightbarBatt.ForeColor = Color.Red;
+                            cBNotificationBatt.ForeColor = Color.Red;
+                        }
+                        break;
                 }
                 if (actRe)
                 {                    
@@ -259,6 +292,7 @@ namespace DS4Windows
             pnlProfile.Visible = i == 3;
             pnlKeys.Visible = i == 4;
             pnlDisconnectBT.Visible = i == 5;
+            pnlBatteryCheck.Visible = i == 6;
             btnSave.Enabled = i > 0;
         }
 
@@ -311,6 +345,65 @@ namespace DS4Windows
                 lVTrigger.Visible = true;
                 btnSetUTriggerKeys.Text = "Set Unload Trigger";
             }
+        }
+
+        private void bnEmptyColor_Click(object sender, EventArgs e)
+        {
+            advColorDialog.Color = bnEmptyColor.BackColor;
+            if (advColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                cbLightbarBatt.Checked = true;
+                bnEmptyColor.BackColor = advColorDialog.Color;
+                pBGraident.Refresh();
+            }
+            if (device < 4)
+                DS4LightBar.forcelight[device] = false;
+        }
+
+        private void bnFullColor_Click(object sender, EventArgs e)
+        {
+            advColorDialog.Color = bnFullColor.BackColor;
+            if (advColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                cbLightbarBatt.Checked = true;
+                bnFullColor.BackColor = advColorDialog.Color;
+                pBGraident.Refresh();
+            }
+            if (device < 4)
+                DS4LightBar.forcelight[device] = false;
+        }
+
+        private void pBGraident_Paint(object sender, PaintEventArgs e)
+        {
+
+            System.Drawing.Drawing2D.LinearGradientBrush linGrBrush = new System.Drawing.Drawing2D.LinearGradientBrush(
+   new Point(0, pBGraident.Height),
+   new Point(pBGraident.Width, pBGraident.Height),
+   bnEmptyColor.BackColor,   // Opaque red
+   bnFullColor.BackColor);  // Opaque blue
+
+            Pen pen = new Pen(linGrBrush);
+            // e.Graphics.DrawLine(pen, 0, 10, 200, 10);
+            //e.Graphics.FillEllipse(linGrBrush, 0, 30, 200, 100);
+            e.Graphics.FillRectangle(linGrBrush, 0, 0, pBGraident.Width, pBGraident.Height);
+        }
+
+        private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
+        {
+            if (sender is Color && device < 4)
+            {
+                Color color = (Color)sender;
+                DS4Color dcolor = new DS4Color { red = color.R, green = color.G, blue = color.B };
+                DS4LightBar.forcedColor[device] = dcolor;
+                DS4LightBar.forcedFlash[device] = 0;
+                DS4LightBar.forcelight[device] = true;
+            }
+        }
+
+        private void cBBatt_CheckedChanged(object sender, EventArgs e)
+        {
+            cbLightbarBatt.ForeColor = Color.Black;
+            cBNotificationBatt.ForeColor = Color.Black;
         }
     }
 }

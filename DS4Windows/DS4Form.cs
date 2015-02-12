@@ -517,9 +517,6 @@ namespace DS4Windows
                     p.StartInfo.Verb = "runas";
                     try { p.Start(); }
                     catch { }
-                    //WelcomeDialog wd = new WelcomeDialog();
-                    //wd.ShowDialog();
-                    //wd.FormClosed += delegate { btnStartStop_Clicked(false); btnStartStop_Clicked(false); };
                 }
             }
             catch
@@ -670,7 +667,7 @@ namespace DS4Windows
 
         protected void ShowNotification(object sender, DebugEventArgs args)
         {
-            if (Form.ActiveForm != this && cBNotifications.Checked)
+            if (Form.ActiveForm != this && (cBNotifications.Checked || sender != null))
             {
                 this.notifyIcon1.BalloonTipText = args.Data;
                 notifyIcon1.BalloonTipTitle = "DS4Windows";

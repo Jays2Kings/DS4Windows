@@ -469,9 +469,6 @@
   <data name="UsingExclusive" xml:space="preserve">
     <value>Using Exclusive Mode</value>
   </data>
-  <data name="UsingProfile" xml:space="preserve">
-    <value>Controller *number* is using Profile “*Profile name*"</value>
-  </data>
   <data name="UsingShared" xml:space="preserve">
     <value>Using Shared Mode</value>
   </data>
@@ -690,5 +687,11 @@
   </data>
   <data name="NotUsingProfile" xml:space="preserve">
     <value>Controller *number* is not using a profile</value>
+  </data>
+  <data name="CheckBattery" xml:space="preserve">
+    <value>Check Battery</value>
+  </data>
+  <data name="UsingProfile" xml:space="preserve">
+    <value>Controller *number* is using Profile “*Profile name*"</value>
   </data>
 </root>

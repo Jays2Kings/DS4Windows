@@ -67,7 +67,7 @@ namespace DS4Windows
                             DS4Color fullColor = Global.MainColor[deviceNum];
                             DS4Color lowColor =  Global.LowColor[deviceNum];
 
-                            color = Global.getTransitionedColor(lowColor, fullColor, (uint)device.Battery);
+                            color = Global.getTransitionedColor(fullColor, lowColor, (uint)device.Battery);
                         }
                     }
                     else

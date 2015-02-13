@@ -89,6 +89,8 @@
             this.cBControllerInput = new System.Windows.Forms.CheckBox();
             this.cBIdleDisconnect = new System.Windows.Forms.CheckBox();
             this.gBLightbar = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.nUDRainbowB = new System.Windows.Forms.NumericUpDown();
             this.cBFlashType = new System.Windows.Forms.ComboBox();
             this.cBWhileCharging = new System.Windows.Forms.ComboBox();
             this.btnFlashColor = new System.Windows.Forms.Button();
@@ -294,8 +296,6 @@
             this.lbLSCurvePercent = new System.Windows.Forms.Label();
             this.lbLSCurve = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.nUDRainbowB = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -321,6 +321,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).BeginInit();
             this.gBLightbar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).BeginInit();
             this.pnlShift.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tBShiftRedBar)).BeginInit();
@@ -367,7 +368,6 @@
             this.tPCurve.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -963,6 +963,27 @@
             resources.ApplyResources(this.gBLightbar, "gBLightbar");
             this.gBLightbar.Name = "gBLightbar";
             this.gBLightbar.TabStop = false;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // nUDRainbowB
+            // 
+            resources.ApplyResources(this.nUDRainbowB, "nUDRainbowB");
+            this.nUDRainbowB.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.nUDRainbowB.Name = "nUDRainbowB";
+            this.nUDRainbowB.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nUDRainbowB.ValueChanged += new System.EventHandler(this.nUDRainbowB_ValueChanged);
             // 
             // cBFlashType
             // 
@@ -3170,27 +3191,6 @@
             this.advColorDialog.Color = System.Drawing.Color.Blue;
             this.advColorDialog.FullOpen = true;
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // nUDRainbowB
-            // 
-            resources.ApplyResources(this.nUDRainbowB, "nUDRainbowB");
-            this.nUDRainbowB.Maximum = new decimal(new int[] {
-            150,
-            0,
-            0,
-            0});
-            this.nUDRainbowB.Name = "nUDRainbowB";
-            this.nUDRainbowB.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.nUDRainbowB.ValueChanged += new System.EventHandler(this.nUDRainbowB_ValueChanged);
-            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3236,6 +3236,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxis)).EndInit();
             this.gBLightbar.ResumeLayout(false);
             this.gBLightbar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDflashLED)).EndInit();
             this.pnlShift.ResumeLayout(false);
             this.pnlShift.PerformLayout();
@@ -3290,7 +3291,6 @@
             this.tPCurve.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRainbowB)).EndInit();
             this.ResumeLayout(false);
 
         }

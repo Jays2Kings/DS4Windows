@@ -1073,7 +1073,7 @@ namespace DS4Windows
         {
             ComboBox cb = (ComboBox)sender;
             int tdevice = Int32.Parse(cb.Tag.ToString());
-            if (cb.Items[cb.Items.Count - 1].ToString() == "+New Profile")
+            if (cb.Items[cb.Items.Count - 1].ToString() == "+" + Properties.Resources.PlusNewProfile)
             {
                 if (cb.SelectedIndex < cb.Items.Count - 1)
                 {

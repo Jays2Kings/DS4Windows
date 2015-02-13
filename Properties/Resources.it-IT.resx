@@ -522,4 +522,7 @@
   <data name="NotUsingProfile" xml:space="preserve">
     <value>Il Controller *number* non sta utilizzando alcun profilo</value>
   </data>
+  <data name="CheckBattery" xml:space="preserve">
+    <value>Controlla Batteria</value>
+  </data>
 </root>

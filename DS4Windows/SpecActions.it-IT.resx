@@ -1372,4 +1372,13 @@
   <data name="lbUnloadTipKey.Text" xml:space="preserve">
     <value>Tasto Untoggle per</value>
   </data>
+  <data name="cBActions.Items6" xml:space="preserve">
+    <value>Controlla Durata Batteria</value>
+  </data>
+  <data name="cbLightbarBatt.Text" xml:space="preserve">
+    <value>via barra luminosa</value>
+  </data>
+  <data name="cBNotificationBatt.Text" xml:space="preserve">
+    <value>via notifica</value>
+  </data>
 </root>

@@ -228,6 +228,9 @@
     <EmbeddedResource Include="DS4Windows\DS4Form.pt-BR.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.ro-RO.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\DS4Form.ru-RU.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>

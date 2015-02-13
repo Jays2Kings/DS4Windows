@@ -135,7 +135,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAQ
-        CgAAAk1TRnQBSQFMAgEBAwEAASgBAQEoAQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CgAAAk1TRnQBSQFMAgEBAwEAASgBAQEsAQEBEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -177,7 +177,7 @@
         AUIBTQE+BwABPgMAASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/8BAAT/AYcB4QIAAf4BfwH+AT8BgAEB
         AgAB/AE/Af4BPwHAAQMCAAH4AR8B/gE/AcABAwIAAfABDwH+AT8BgAEBAgAB8AEHAf4BPwGAAQECAAHy
         AQcB/gE/AYABAQIAAfYBJwH2ATcBgAEBAgAB/gE/AfIBJwGAAQECAAH+AT8B8AEHAYABAQIAAf4BPwHw
-        AQcBgAEBAgAB/gE/AfgBDwQAAf4BPwH8AR8EAAH+AT8B/gE/BAAB/gE/Af8BfwEAAQECAAT/AYMBwwIA
+        AQcBgAEBAgAB/gE/AfgBDwQAAf4BPwH8AR8EAAH+AT8B/gE/BAAB/gE/Af8BfwEAAQECAAT/AYMBwxgA
         Cw==
 </value>
   </data>
@@ -225,5 +225,14 @@
   </data>
   <data name="lbDelayTip.Text" xml:space="preserve">
     <value>Doppio click per modificare il tempo</value>
+  </data>
+  <data name="altTabToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cicla Programmi</value>
+  </data>
+  <data name="altTabToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Modifica l'Attesa per cambiare il rateo del ciclo</value>
+  </data>
+  <data name="fromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Da File...</value>
   </data>
 </root>

@@ -814,7 +814,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lVTrigger.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="btnRecordMacro.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -847,7 +847,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+    <value>1, 27</value>
   </data>
   <data name="btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 23</value>
@@ -868,7 +868,7 @@
     <value>pnlProgram</value>
   </data>
   <data name="&gt;&gt;btnBrowse.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="cBProfiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -922,7 +922,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSave.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -952,7 +952,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="lbName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -982,7 +982,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbName.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="tBName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1006,7 +1006,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tBName.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="cBActions.Items" xml:space="preserve">
     <value>-Select an Action-</value>
@@ -1048,7 +1048,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cBActions.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -1063,7 +1063,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 26</value>
+    <value>130, 53</value>
   </data>
   <data name="pBProgram.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 23</value>
@@ -1084,16 +1084,16 @@
     <value>pnlProgram</value>
   </data>
   <data name="&gt;&gt;pBProgram.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>7</value>
   </data>
   <data name="lbProgram.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lbProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 26</value>
+    <value>3, 53</value>
   </data>
   <data name="lbProgram.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 23</value>
+    <value>122, 23</value>
   </data>
   <data name="lbProgram.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1111,7 +1111,7 @@
     <value>pnlProgram</value>
   </data>
   <data name="&gt;&gt;lbProgram.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>6</value>
   </data>
   <data name="btnBorder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -1141,7 +1141,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnBorder.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="btnSetUTriggerProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1864,13 +1864,148 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lVUnloadTrigger.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
+  </data>
+  <data name="tBArg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 91</value>
+  </data>
+  <data name="tBArg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 20</value>
+  </data>
+  <data name="tBArg.TabIndex" type="System.Int32, mscorlib">
+    <value>264</value>
+  </data>
+  <data name="&gt;&gt;tBArg.Name" xml:space="preserve">
+    <value>tBArg</value>
+  </data>
+  <data name="&gt;&gt;tBArg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBArg.Parent" xml:space="preserve">
+    <value>pnlProgram</value>
+  </data>
+  <data name="&gt;&gt;tBArg.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="nUDProg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>56, 3</value>
+  </data>
+  <data name="nUDProg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="nUDProg.TabIndex" type="System.Int32, mscorlib">
+    <value>263</value>
+  </data>
+  <data name="&gt;&gt;nUDProg.Name" xml:space="preserve">
+    <value>nUDProg</value>
+  </data>
+  <data name="&gt;&gt;nUDProg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDProg.Parent" xml:space="preserve">
+    <value>pnlProgram</value>
+  </data>
+  <data name="&gt;&gt;nUDProg.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbArg.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbArg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbArg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 76</value>
+  </data>
+  <data name="lbArg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="lbArg.TabIndex" type="System.Int32, mscorlib">
+    <value>261</value>
+  </data>
+  <data name="lbArg.Text" xml:space="preserve">
+    <value>Arguments</value>
+  </data>
+  <data name="lbArg.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="&gt;&gt;lbArg.Name" xml:space="preserve">
+    <value>lbArg</value>
+  </data>
+  <data name="&gt;&gt;lbArg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbArg.Parent" xml:space="preserve">
+    <value>pnlProgram</value>
+  </data>
+  <data name="&gt;&gt;lbArg.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbHoldForProg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbHoldForProg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 5</value>
+  </data>
+  <data name="lbHoldForProg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 18</value>
+  </data>
+  <data name="lbHoldForProg.TabIndex" type="System.Int32, mscorlib">
+    <value>261</value>
+  </data>
+  <data name="lbHoldForProg.Text" xml:space="preserve">
+    <value>Hold for</value>
+  </data>
+  <data name="lbHoldForProg.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="&gt;&gt;lbHoldForProg.Name" xml:space="preserve">
+    <value>lbHoldForProg</value>
+  </data>
+  <data name="&gt;&gt;lbHoldForProg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbHoldForProg.Parent" xml:space="preserve">
+    <value>pnlProgram</value>
+  </data>
+  <data name="&gt;&gt;lbHoldForProg.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lbSecsProg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbSecsProg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 5</value>
+  </data>
+  <data name="lbSecsProg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 18</value>
+  </data>
+  <data name="lbSecsProg.TabIndex" type="System.Int32, mscorlib">
+    <value>262</value>
+  </data>
+  <data name="lbSecsProg.Text" xml:space="preserve">
+    <value>secs</value>
+  </data>
+  <data name="lbSecsProg.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="&gt;&gt;lbSecsProg.Name" xml:space="preserve">
+    <value>lbSecsProg</value>
+  </data>
+  <data name="&gt;&gt;lbSecsProg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbSecsProg.Parent" xml:space="preserve">
+    <value>pnlProgram</value>
+  </data>
+  <data name="&gt;&gt;lbSecsProg.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="pnlProgram.Location" type="System.Drawing.Point, System.Drawing">
     <value>206, 58</value>
   </data>
   <data name="pnlProgram.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 62</value>
+    <value>162, 124</value>
   </data>
   <data name="pnlProgram.TabIndex" type="System.Int32, mscorlib">
     <value>260</value>
@@ -1888,7 +2023,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlProgram.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>8</value>
   </data>
   <data name="cBMacroScanCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1969,7 +2104,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlMacro.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="lbUnloadTipProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2017,7 +2152,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlProfile.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="nUDDCBT.Location" type="System.Drawing.Point, System.Drawing">
     <value>56, 3</value>
@@ -2122,7 +2257,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlDisconnectBT.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="btnSelectKey.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2266,7 +2401,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlKeys.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="pBGraident.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2566,7 +2701,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlBatteryCheck.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>9</value>
   </data>
   <metadata name="advColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>267, 17</value>
@@ -2574,14 +2709,14 @@
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>it-IT</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>402, 264</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>SpecActions</value>
@@ -2614,7 +2749,7 @@
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.241.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.244.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SpecActions</value>

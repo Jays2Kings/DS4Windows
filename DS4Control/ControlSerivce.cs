@@ -510,10 +510,13 @@ namespace DS4Windows
             {
                 lag[ind] = true;
                 LogDebug(Properties.Resources.LatencyOverTen.Replace("*number*", (ind + 1).ToString()), true);
-                DS4Color color = new DS4Color { red = 50, green = 0, blue = 0 };
-                DS4LightBar.forcedColor[ind] = color;
-                DS4LightBar.forcedFlash[ind] = 2;
-                DS4LightBar.forcelight[ind] = true;
+                if (Global.FlashWhenLate)
+                {
+                    DS4Color color = new DS4Color { red = 50, green = 0, blue = 0 };
+                    DS4LightBar.forcedColor[ind] = color;
+                    DS4LightBar.forcedFlash[ind] = 2;
+                    DS4LightBar.forcelight[ind] = true;
+                }
             }
             else
             {
@@ -767,7 +770,7 @@ namespace DS4Windows
 
         public virtual void StartTPOff(int deviceID)
         {
-            if (deviceID > 4)
+            if (deviceID < 4)
             {
                 oldtouchvalue[deviceID] = Global.TouchSensitivity[deviceID];
                 oldscrollvalue[deviceID] = Global.ScrollSensitivity[deviceID];

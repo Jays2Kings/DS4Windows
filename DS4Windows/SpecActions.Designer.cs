@@ -74,6 +74,11 @@
             this.lbFullBatt = new System.Windows.Forms.Label();
             this.lbEmptyBatt = new System.Windows.Forms.Label();
             this.lbSecsBatt = new System.Windows.Forms.Label();
+            this.nUDProg = new System.Windows.Forms.NumericUpDown();
+            this.lbHoldForProg = new System.Windows.Forms.Label();
+            this.lbSecsProg = new System.Windows.Forms.Label();
+            this.lbArg = new System.Windows.Forms.Label();
+            this.tBArg = new System.Windows.Forms.TextBox();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             this.pnlProgram.SuspendLayout();
@@ -85,6 +90,7 @@
             this.pnlBatteryCheck.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBGraident)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDCBatt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDProg)).BeginInit();
             this.SuspendLayout();
             // 
             // lVTrigger
@@ -305,6 +311,11 @@
             // 
             // pnlProgram
             // 
+            this.pnlProgram.Controls.Add(this.tBArg);
+            this.pnlProgram.Controls.Add(this.nUDProg);
+            this.pnlProgram.Controls.Add(this.lbArg);
+            this.pnlProgram.Controls.Add(this.lbHoldForProg);
+            this.pnlProgram.Controls.Add(this.lbSecsProg);
             this.pnlProgram.Controls.Add(this.btnBrowse);
             this.pnlProgram.Controls.Add(this.lbProgram);
             this.pnlProgram.Controls.Add(this.pBProgram);
@@ -495,6 +506,37 @@
             resources.ApplyResources(this.lbSecsBatt, "lbSecsBatt");
             this.lbSecsBatt.Name = "lbSecsBatt";
             // 
+            // nUDProg
+            // 
+            this.nUDProg.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDProg, "nUDProg");
+            this.nUDProg.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDProg.Name = "nUDProg";
+            // 
+            // lbHoldForProg
+            // 
+            resources.ApplyResources(this.lbHoldForProg, "lbHoldForProg");
+            this.lbHoldForProg.Name = "lbHoldForProg";
+            // 
+            // lbSecsProg
+            // 
+            resources.ApplyResources(this.lbSecsProg, "lbSecsProg");
+            this.lbSecsProg.Name = "lbSecsProg";
+            // 
+            // lbArg
+            // 
+            resources.ApplyResources(this.lbArg, "lbArg");
+            this.lbArg.Name = "lbArg";
+            // 
+            // tBArg
+            // 
+            resources.ApplyResources(this.tBArg, "tBArg");
+            this.tBArg.Name = "tBArg";
+            // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
@@ -507,7 +549,6 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.pnlBatteryCheck);
             this.Controls.Add(this.tBName);
             this.Controls.Add(this.cBActions);
             this.Controls.Add(this.btnCancel);
@@ -516,15 +557,17 @@
             this.Controls.Add(this.lVTrigger);
             this.Controls.Add(this.lVUnloadTrigger);
             this.Controls.Add(this.btnBorder);
+            this.Controls.Add(this.pnlProgram);
+            this.Controls.Add(this.pnlBatteryCheck);
             this.Controls.Add(this.pnlDisconnectBT);
             this.Controls.Add(this.pnlKeys);
             this.Controls.Add(this.pnlMacro);
             this.Controls.Add(this.pnlProfile);
-            this.Controls.Add(this.pnlProgram);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SpecActions";
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).EndInit();
             this.pnlProgram.ResumeLayout(false);
+            this.pnlProgram.PerformLayout();
             this.pnlMacro.ResumeLayout(false);
             this.pnlMacro.PerformLayout();
             this.pnlProfile.ResumeLayout(false);
@@ -535,6 +578,7 @@
             this.pnlBatteryCheck.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBGraident)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDCBatt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDProg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -587,5 +631,10 @@
         private System.Windows.Forms.Label lbEmptyBatt;
         private System.Windows.Forms.Label lbSecsBatt;
         private AdvancedColorDialog advColorDialog;
+        private System.Windows.Forms.TextBox tBArg;
+        private System.Windows.Forms.NumericUpDown nUDProg;
+        private System.Windows.Forms.Label lbArg;
+        private System.Windows.Forms.Label lbHoldForProg;
+        private System.Windows.Forms.Label lbSecsProg;
     }
 }

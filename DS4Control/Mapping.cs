@@ -1200,7 +1200,7 @@ namespace DS4Windows
                 if (!(action.name == "null" || index < 0))
                 {
                     bool triggeractivated = true;
-                    if ((action.type == "DisconnectBT" && double.Parse(action.details) > 0) || (action.type == "BatteryCheck" && double.Parse(action.details.Split(',')[0]) > 0))
+                    if (action.delayTime > 0)
                     {
                         triggeractivated = false;
                         bool subtriggeractivated = true;
@@ -1214,10 +1214,7 @@ namespace DS4Windows
                         }
                         if (subtriggeractivated)
                         {
-                            if (action.type == "DisconnectBT")
-                                time = double.Parse(action.details);
-                            else
-                                time = double.Parse(action.details.Split(',')[0]);
+                            time = action.delayTime;
                             nowAction[device] = DateTime.UtcNow;
                             if (nowAction[device] >= oldnowAction[device] + TimeSpan.FromSeconds(time))
                                 triggeractivated = true;
@@ -1293,7 +1290,10 @@ namespace DS4Windows
                         if (!actionDone[device, index])
                         {
                             actionDone[device, index] = true;
-                            Process.Start(action.details);
+                            if (!string.IsNullOrEmpty(action.extra))
+                                Process.Start(action.details, action.extra);
+                            else
+                                Process.Start(action.details);
                         }
                     }
                     else if (triggeractivated && action.type == "Profile")
@@ -1620,14 +1620,14 @@ namespace DS4Windows
                             else if (i == 275) macroControl[14] = false;
                             else if (i == 276) macroControl[15] = false;
                             else if (i == 277) macroControl[16] = false;
-                            else if (keys[i] == 278) macroControl[17] = false;
-                            else if (keys[i] == 279) macroControl[18] = false;
-                            else if (keys[i] == 280) macroControl[19] = false;
-                            else if (keys[i] == 281) macroControl[20] = false;
-                            else if (keys[i] == 282) macroControl[21] = false;
-                            else if (keys[i] == 283) macroControl[22] = false;
-                            else if (keys[i] == 284) macroControl[23] = false;
-                            else if (keys[i] == 285) macroControl[24] = false;
+                            else if (i == 278) macroControl[17] = false;
+                            else if (i == 279) macroControl[18] = false;
+                            else if (i == 280) macroControl[19] = false;
+                            else if (i == 281) macroControl[20] = false;
+                            else if (i == 282) macroControl[21] = false;
+                            else if (i == 283) macroControl[22] = false;
+                            else if (i == 284) macroControl[23] = false;
+                            else if (i == 285) macroControl[24] = false;
                             else if (keyType.HasFlag(DS4KeyType.ScanCode))
                                 InputMethods.performSCKeyRelease(i);
                             else

@@ -202,6 +202,11 @@ namespace DS4Windows
             set { m_Config.downloadLang = value; }
             get { return m_Config.downloadLang; }
         }
+        public static bool FlashWhenLate
+        {
+            set { m_Config.flashWhenLate = value; }
+            get { return m_Config.flashWhenLate; }
+        }
 
         //controller/profile specfic values
         public static int[] ButtonMouseSensitivity
@@ -354,12 +359,12 @@ namespace DS4Windows
         }
         public static List<String>[] ProfileActions
         {
-           get{ return m_Config.profileActions;}
+            get { return m_Config.profileActions; }
         }
 
-        public static void SaveAction(string name, string controls, int mode, string details, bool edit, string ucontrols = "")
+        public static void SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
         {
-            m_Config.SaveAction(name, controls, mode, details, edit, ucontrols);
+            m_Config.SaveAction(name, controls, mode, details, edit, extras);
         }
 
         public static void RemoveAction(string name)
@@ -694,6 +699,7 @@ namespace DS4Windows
         public Dictionary<DS4Controls, String>[] shiftCustomMapExtras = { null, null, null, null, null };
         public List<String>[] profileActions = { null, null, null, null, null };
         public bool downloadLang = true;
+        public bool flashWhenLate = true;
         public BackingStore()
         {
             for (int i = 0; i < 5; i++)
@@ -1261,6 +1267,11 @@ namespace DS4Windows
                     rootname = "ScpControl";
                     missingSetting = true;
                 }
+                if (device < 4)
+                {
+                    DS4LightBar.forcelight[device] = false;
+                    DS4LightBar.forcedFlash[device] = 0;
+                }
                 try { Item = m_Xdoc.SelectSingleNode("/"+ rootname + "/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
                 catch { missingSetting = true; }//rootname = }
 
@@ -1724,6 +1735,8 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/DownloadLang"); Boolean.TryParse(Item.InnerText, out downloadLang); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/FlashWhenLate"); Boolean.TryParse(Item.InnerText, out flashWhenLate); }
+                    catch { missingSetting = true; }
                 }
             }
             catch { }
@@ -1770,7 +1783,9 @@ namespace DS4Windows
             XmlNode xmlQuickCharge = m_Xdoc.CreateNode(XmlNodeType.Element, "QuickCharge", null); xmlQuickCharge.InnerText = quickCharge.ToString(); Node.AppendChild(xmlQuickCharge);
             XmlNode xmlFirstXinputPort = m_Xdoc.CreateNode(XmlNodeType.Element, "FirstXinputPort", null); xmlFirstXinputPort.InnerText = firstXinputPort.ToString(); Node.AppendChild(xmlFirstXinputPort);
             XmlNode xmlCloseMini = m_Xdoc.CreateNode(XmlNodeType.Element, "CloseMinimizes", null); xmlCloseMini.InnerText = closeMini.ToString(); Node.AppendChild(xmlCloseMini);
-            XmlNode xmlDownloadLang = m_Xdoc.CreateNode(XmlNodeType.Element, "DownloadLang", null); xmlDownloadLang.InnerText = downloadLang.ToString(); Node.AppendChild(xmlDownloadLang);            
+            XmlNode xmlDownloadLang = m_Xdoc.CreateNode(XmlNodeType.Element, "DownloadLang", null); xmlDownloadLang.InnerText = downloadLang.ToString(); Node.AppendChild(xmlDownloadLang);
+            XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); Node.AppendChild(xmlFlashWhenLate);            
+
             m_Xdoc.AppendChild(Node);
 
             try { m_Xdoc.Save(m_Profile); }
@@ -1825,7 +1840,9 @@ namespace DS4Windows
                     break;
                 case 2:
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Program";
-                    el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
+                    el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details.Split('?')[0];
+                    el.AppendChild(m_Xdoc.CreateElement("Arguements")).InnerText = extras;
+                    el.AppendChild(m_Xdoc.CreateElement("Delay")).InnerText = details.Split('?')[1];
                     break;
                 case 3:
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Profile";
@@ -1900,13 +1917,13 @@ namespace DS4Windows
                     if (type == "Profile")
                     {
                         extras = x.ChildNodes[3].InnerText;
-                        actions.Add(new SpecialAction(name, controls, type, details, extras));
+                        actions.Add(new SpecialAction(name, controls, type, details, 0, extras));
                     }
                     else if (type == "Macro")
                     {
                         if (x.ChildNodes[3] != null) extras = x.ChildNodes[3].InnerText;
                         else extras = string.Empty;
-                        actions.Add(new SpecialAction(name, controls, type, details, extras));
+                        actions.Add(new SpecialAction(name, controls, type, details, 0, extras));
                     }
                     else if (type == "Key")
                     {
@@ -1921,12 +1938,42 @@ namespace DS4Windows
                             extras2 = string.Empty;
                         }
                         if (!string.IsNullOrEmpty(extras))
-                            actions.Add(new SpecialAction(name, controls, type, details, extras2 + '\n' + extras));
+                            actions.Add(new SpecialAction(name, controls, type, details, 0, extras2 + '\n' + extras));
                         else
                             actions.Add(new SpecialAction(name, controls, type, details));
                     }
-                    else
-                        actions.Add(new SpecialAction(name, controls, type, details));
+                    else if (type == "DisconnectBT")
+                    {
+                        double doub;
+                        if (double.TryParse(details, out doub))
+                            actions.Add(new SpecialAction(name, controls, type, "", doub));
+                        else
+                            actions.Add(new SpecialAction(name, controls, type, ""));
+                    }
+                    else if (type == "BatteryCheck")
+                    {
+                        double doub;
+                        if (double.TryParse(details.Split(',')[0], out doub))
+                            actions.Add(new SpecialAction(name, controls, type, details, doub));
+                        else
+                            actions.Add(new SpecialAction(name, controls, type, details));
+                    }
+                    else if (type == "Program")
+                    {
+                        double doub;
+                        if (x.ChildNodes[3] != null)
+                        {
+                            extras = x.ChildNodes[3].InnerText;
+                            if (double.TryParse(x.ChildNodes[4].InnerText, out doub))
+                                actions.Add(new SpecialAction(name, controls, type, details, doub, extras));
+                            else
+                                actions.Add(new SpecialAction(name, controls, type, details, 0, extras));
+                        }
+                        else
+                        {
+                            actions.Add(new SpecialAction(name, controls, type, details));
+                        }
+                    }
                 }
             }
             catch { saved = false; }
@@ -1944,13 +1991,16 @@ namespace DS4Windows
         public string details;
         public List<DS4Controls> uTrigger = new List<DS4Controls>();
         public string ucontrols;
+        public double delayTime = 0;
+        public string extra;
         public bool pressRelease = false;
         public DS4KeyType keyType;
-        public SpecialAction(string name, string controls, string type, string details, string extras = "")
+        public SpecialAction(string name, string controls, string type, string details, double delay = 0, string extras = "")
         {
             this.name = name;
             this.type = type;
             this.controls = controls;
+            delayTime = delay;
             string[] ctrls = controls.Split('/');
             foreach (string s in ctrls)
                 trigger.Add(getDS4ControlsByName(s));
@@ -1980,6 +2030,12 @@ namespace DS4Windows
                 }
                 if (details.Contains("Scan Code"))
                     keyType |= DS4KeyType.ScanCode;
+            }
+            else if (type == "Program")
+            {
+                this.details = details;
+                if (extras != string.Empty)
+                    extra = extras;
             }
             else
                 this.details = details;

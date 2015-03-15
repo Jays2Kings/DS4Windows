@@ -442,6 +442,9 @@
     <EmbeddedResource Include="DS4Windows\WinProgs.ru-RU.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="DS4Windows\app.config" />
     <None Include="DS4Windows\DS4Tool_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">

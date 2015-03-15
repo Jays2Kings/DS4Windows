@@ -71,6 +71,7 @@ namespace DS4Windows
 
         public DS4Form(string[] args)
         {
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
             InitializeComponent();
             arguements = args;
             ThemeUtil.SetTheme(lvDebug);
@@ -203,6 +204,7 @@ namespace DS4Windows
             if (lang.StartsWith("en"))
                 cBDownloadLangauge.Visible = false;
             cBDownloadLangauge.Checked = Global.DownloadLang;
+            cBFlashWhenLate.Checked = Global.FlashWhenLate;
             if (!Global.LoadActions()) //if first no actions have been made yet, create PS+Option to D/C and save it to every profile
             {
                 XmlDocument xDoc = new XmlDocument();
@@ -491,6 +493,7 @@ namespace DS4Windows
         string originalsettingstext;
         private void CheckDrivers()
         {
+            originalsettingstext = tabSettings.Text;
             bool deriverinstalled = false;
             try
             {
@@ -524,7 +527,6 @@ namespace DS4Windows
                 if (!File.Exists(exepath + "\\Auto Profiles.xml") && !File.Exists(appdatapath + "\\Auto Profiles.xml"))
                 {
                     linkSetup.LinkColor = Color.Green;
-                    originalsettingstext = tabSettings.Text;
                     tabSettings.Text += " (" + Properties.Resources.InstallDriver + ")";
                 }
             }
@@ -553,7 +555,7 @@ namespace DS4Windows
                     }
                     Process p = new Process();
                     p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                    if (cBDownloadLangauge.Checked)
+                    if (!cBDownloadLangauge.Checked)
                         p.StartInfo.Arguments = "-skipLang";
                     if (Global.AdminNeeded())
                         p.StartInfo.Verb = "runas";
@@ -1442,7 +1444,7 @@ namespace DS4Windows
                     }
                     Process p = new Process();
                     p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                    if (cBDownloadLangauge.Checked)
+                    if (!cBDownloadLangauge.Checked)
                         p.StartInfo.Arguments = "-skipLang";
                     if (Global.AdminNeeded())
                         p.StartInfo.Verb = "runas";
@@ -1603,6 +1605,11 @@ namespace DS4Windows
         private void cBDownloadLangauge_CheckedChanged(object sender, EventArgs e)
         {
             Global.DownloadLang = cBDownloadLangauge.Checked;
+        }
+
+        private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)
+        {
+            Global.FlashWhenLate = cBFlashWhenLate.Checked;
         }
     }
 

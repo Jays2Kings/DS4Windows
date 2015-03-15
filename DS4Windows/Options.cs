@@ -129,7 +129,10 @@ namespace DS4Windows
 
                 DS4Color cColor = Global.ChargingColor[device];
                 btnChargingColor.BackColor = Color.FromArgb(cColor.red, cColor.green, cColor.blue);
-                cBFlashType.SelectedIndex = Global.FlashType[device];
+                if (Global.FlashType[device] > cBFlashType.Items.Count - 1)
+                    cBFlashType.SelectedIndex = 0;
+                else
+                    cBFlashType.SelectedIndex = Global.FlashType[device];
                 DS4Color fColor = Global.FlashColor[device];
                 if (fColor.Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
                     if (Global.Rainbow[device] == 0)
@@ -166,8 +169,10 @@ namespace DS4Windows
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
                 nUDRainbow.Value = (decimal)Global.Rainbow[device];
-                try { cBWhileCharging.SelectedIndex = Global.ChargingType[device]; }
-                catch { cBWhileCharging.SelectedIndex = 0; }
+                if (Global.ChargingType[device] > cBWhileCharging.Items.Count - 1)
+                    cBWhileCharging.SelectedIndex = 0; 
+                else
+                    cBWhileCharging.SelectedIndex = Global.ChargingType[device]; 
                 if (Global.Rainbow[device] == 0)
                 {
                     pBRainbow.Image = greyscale;
@@ -199,6 +204,8 @@ namespace DS4Windows
             }
             else
             {
+                cBFlashType.SelectedIndex = 0;
+                cBWhileCharging.SelectedIndex = 0;
                 Set();
                 switch (device)
                 {

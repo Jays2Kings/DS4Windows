@@ -30,12 +30,11 @@ namespace DS4Windows
         {
             InitializeComponent();
             this.opt = opt;
-            lbHoldForBatt.Text = lbHoldFor.Text;
-            lbSecsBatt.Text = lbSecsBatt.Text;
+            lbHoldForBatt.Text = lbHoldForProg.Text = lbHoldFor.Text;
+            lbSecsBatt.Text = lbSecsBatt.Text = lbSecsBatt.Text;
             device = opt.device;
             cBProfiles.Items.Add(Properties.Resources.noneProfile);
             cBProfiles.SelectedIndex = 0;
-            //cBPressToggleKeys.SelectedIndex = 0;
             cBActions.SelectedIndex = 0;
             cBPressRelease.SelectedIndex = 0;
             foreach (object s in opt.root.lBProfiles.Items)
@@ -67,7 +66,13 @@ namespace DS4Windows
                     lbMacroRecorded.Text = "Macro Recored";
                     cBMacroScanCode.Checked = act.keyType.HasFlag(DS4KeyType.ScanCode);
                     break;
-                case "Program": cBActions.SelectedIndex = 2; LoadProgram(act.details); break;
+                case "Program": 
+                    cBActions.SelectedIndex = 2; 
+                    LoadProgram(act.details);
+                    nUDProg.Value = (decimal)act.delayTime;
+                    tBArg.Text = act.extra;
+                    break;
+
                 case "Profile": 
                     cBActions.SelectedIndex = 3;
                     cBProfiles.Text = act.details;
@@ -102,16 +107,12 @@ namespace DS4Windows
                     break;
                 case "DisconnectBT":
                     cBActions.SelectedIndex = 5;
-                    decimal d = 0;
-                    decimal.TryParse(act.details, out d);
-                    nUDDCBT.Value = d;
+                    nUDDCBT.Value = (decimal)act.delayTime;
                     break;
                 case "BatteryCheck":
                     cBActions.SelectedIndex = 6;
                     string[] dets = act.details.Split(',');
-                    d = 0;
-                    decimal.TryParse(dets[0], out d);
-                    nUDDCBatt.Value = d;
+                    nUDDCBatt.Value = (decimal)act.delayTime;
                     cBNotificationBatt.Checked = bool.Parse(dets[1]);
                     cbLightbarBatt.Checked = bool.Parse(dets[2]);
                     bnEmptyColor.BackColor = Color.FromArgb(byte.Parse(dets[3]), byte.Parse(dets[4]), byte.Parse(dets[5]));
@@ -188,7 +189,7 @@ namespace DS4Windows
                             actRe = true;
                             if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
                                 Global.RemoveAction(oldprofilename);
-                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, program, edit);
+                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, program + "?" + nUDProg.Value, edit, tBArg.Text);
                         }
                         break;
                     case 3:

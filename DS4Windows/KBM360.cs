@@ -293,7 +293,7 @@ namespace DS4Windows
             rb.Visible = true;
             Controls.Add(rb);
             rb.BringToFront();
-            rb.FormClosed += delegate { Controls.Add(cBScanCode); cBScanCode.Location = new Point(663, 8); ActiveControl = lBMacroOn; };
+            rb.FormClosed += delegate { Controls.Add(cBScanCode); cBScanCode.Location = new Point(663, 8); ActiveControl = lBMacroOn; rb = null; };
         }
 
         protected override bool IsInputKey(Keys keyData)

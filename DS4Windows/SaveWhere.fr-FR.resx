@@ -117,24 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Pour ceux préférant une installation normale, les paramètres sont sauvegardés à %appdata%/ds4tool</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Pour ceux qui préfèrent une application portable Note: Cette option ne fonctionne point si dans un dossier admin sans UAC (contrôle de compte d'utilisateur)</value>
-  </data>
-  <data name="bnPrgmFolder.Text" xml:space="preserve">
-    <value>Dossier de l'application</value>
-  </data>
-  <data name="lbPickWhere.Text" xml:space="preserve">
-    <value>Choisissez l'emplacement auquel vous voulez que vos paramètres et profiles soient sauvegardes</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbMultiSaves.Size" type="System.Drawing.Size, System.Drawing">
     <value>243, 13</value>
-  </data>
-  <data name="lbMultiSaves.Text" xml:space="preserve">
-    <value>Multiples emplacements de sauvegarde supprimés</value>
   </data>
   <data name="cBDeleteOther.Location" type="System.Drawing.Point, System.Drawing">
     <value>243, 0</value>
@@ -142,11 +127,26 @@
   <data name="cBDeleteOther.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 30</value>
   </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>389, 157</value>
+  </data>
+  <data name="bnPrgmFolder.Text" xml:space="preserve">
+    <value>Dossier de l'application</value>
+  </data>
   <data name="cBDeleteOther.Text" xml:space="preserve">
     <value>Ne pas encore supprimer
 les autres paramètres</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>389, 157</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Pour ceux qui préfèrent une application portable Note: Cette option ne fonctionne point si dans un dossier admin sans UAC (contrôle de compte d'utilisateur)</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Pour ceux préférant une installation normale, les paramètres sont sauvegardés à %appdata%/ds4tool</value>
+  </data>
+  <data name="lbMultiSaves.Text" xml:space="preserve">
+    <value>Multiples emplacements de sauvegarde supprimés</value>
+  </data>
+  <data name="lbPickWhere.Text" xml:space="preserve">
+    <value>Choisissez l'emplacement auquel vous voulez que vos paramètres et profiles soient sauvegardes</value>
   </data>
 </root>

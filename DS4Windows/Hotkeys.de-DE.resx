@@ -134,50 +134,34 @@
     <value>Änderungen</value>
   </data>
   <data name="linkDonate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>476, 3</value>
+    <value>475, 3</value>
   </data>
   <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 13</value>
+    <value>107, 13</value>
   </data>
   <data name="linkDonate.Text" xml:space="preserve">
-    <value>Spenden via Paypal</value>
+    <value>über Paypal spenden</value>
   </data>
   <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>551, 458</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
     <value>Verstecke DS4 Controller: Verstecke DS4's Standard Eingabemethode (Dinput) vor anderen Programmen. Überprüfe ob du Doppeleingaben in Spielen bekommst oder R2 das Spiel pausiert.
-
 Drücke die Linke Seite des Touchpads: Linker Touch
-
 Drücke die Rechte Seite des Touchpads: Right Touch
-
 Drücke das Touchpad mit 2 Fingern: Multitouch
-
 Drücke den oberen Teil des Touchpads: Upper Touch
-
 PS + Options oder halte PS für 10 Sekunden: Trenne Controller (nur bei Bluetooth)
-
 Berühre Touchpad + PS: Schalte Touchpadbewegung aus (Klicken funktioniert weiterhin)
-
 Pad Unten Rechts drücken*: Rechtsklick (Am besten benutzt wenn Rechte Seite als Maustaste verwendet wird.)
-
 Zwei Finger hoch/runter auf dem Touchpad*: Hoch/Runter blättern
-
 Drücke und halte Touchpad*: Ziehe Maus Links
-
 2 Finger Wischgeste auf dem Touchpad nach Links oder Rechts*: Blättere durch die Profile
-
 Umschalter Modifikator: Halte eine Aktion um ein anderes Steuerungsprofil auszuwählen.
-
 Wenn Maus und Tastatur Zuordung:
-
 Wechseln: Taste bleibt im "Gedrückt" Status, bis sie erneut gedrückt wird
-
 Makro: Weise mehrere Tasten einer Eingabe zu
-
-Scan Code: Tasten werden unterschiedlich interpretiert. Nur für manche Spiele nötig.
-
+Scancode: Tasten werden unterschiedlich interpretiert. Nur für manche Spiele nötig.
 *Falls aktiviert</value>
   </data>
   <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
@@ -185,6 +169,39 @@ Scan Code: Tasten werden unterschiedlich interpretiert. Nur für manche Spiele n
   </data>
   <data name="tPHotkeys.Text" xml:space="preserve">
     <value>Makros</value>
+  </data>
+  <data name="lbGermanT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>436, 22</value>
+  </data>
+  <data name="lbItalianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 22</value>
+  </data>
+  <data name="lbItalianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>436, 22</value>
+  </data>
+  <data name="lbItalian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 22</value>
+  </data>
+  <data name="lbRussian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 44</value>
+  </data>
+  <data name="lbRussianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 44</value>
+  </data>
+  <data name="lbRussianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>436, 22</value>
+  </data>
+  <data name="lbRomanian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 66</value>
+  </data>
+  <data name="lbRomanianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 66</value>
+  </data>
+  <data name="lbRomanianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>436, 22</value>
+  </data>
+  <data name="tLPTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>568, 227</value>
   </data>
   <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 13</value>

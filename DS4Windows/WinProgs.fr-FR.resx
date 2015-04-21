@@ -121,59 +121,29 @@
   <data name="bnAddPrograms.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 23</value>
   </data>
-  <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Ajouter des programmes</value>
-  </data>
   <data name="bnSave.Location" type="System.Drawing.Point, System.Drawing">
     <value>649, 2</value>
   </data>
   <data name="bnSave.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 23</value>
   </data>
-  <data name="bnSave.Text" xml:space="preserve">
-    <value>Sauvegarder</value>
-  </data>
   <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
-  </data>
-  <data name="lBController1.Text" xml:space="preserve">
-    <value>Manette 1</value>
   </data>
   <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
   </data>
-  <data name="lBController2.Text" xml:space="preserve">
-    <value>Manette 2</value>
-  </data>
   <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
-  </data>
-  <data name="lBController3.Text" xml:space="preserve">
-    <value>Manette 3</value>
   </data>
   <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
   </data>
-  <data name="lBController4.Text" xml:space="preserve">
-    <value>Manette 4</value>
-  </data>
   <data name="bnDelete.Location" type="System.Drawing.Point, System.Drawing">
     <value>576, 2</value>
   </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
-  <data name="nameHeader.Text" xml:space="preserve">
-    <value>Nom</value>
-  </data>
-  <data name="PathHeader.Text" xml:space="preserve">
-    <value>Chemin</value>
-  </data>
   <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 13</value>
-  </data>
-  <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Choisir profiles ici</value>
   </data>
   <data name="bnHideUnchecked.Location" type="System.Drawing.Point, System.Drawing">
     <value>140, 2</value>
@@ -181,34 +151,64 @@
   <data name="bnHideUnchecked.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 23</value>
   </data>
-  <data name="bnHideUnchecked.Text" xml:space="preserve">
-    <value>Cacher les non sélectionnés</value>
-  </data>
   <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>283, 22</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ajouter des programmes du Menu Démarrer</value>
   </data>
   <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>283, 22</value>
   </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ajouter des programmes Steam</value>
-  </data>
   <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>283, 22</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ajouter des programmes Origin</value>
   </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>283, 22</value>
   </data>
+  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
+    <value>284, 92</value>
+  </data>
+  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ajouter des programmes Origin</value>
+  </data>
+  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ajouter des programmes du Menu Démarrer</value>
+  </data>
+  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ajouter des programmes Steam</value>
+  </data>
+  <data name="bnAddPrograms.Text" xml:space="preserve">
+    <value>Ajouter des programmes</value>
+  </data>
+  <data name="bnDelete.Text" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="bnHideUnchecked.Text" xml:space="preserve">
+    <value>Cacher les non sélectionnés</value>
+  </data>
+  <data name="bnSave.Text" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
     <value>Parcourir pour d'autres programmes</value>
   </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 92</value>
+  <data name="lBController1.Text" xml:space="preserve">
+    <value>Manette 1</value>
+  </data>
+  <data name="lBController2.Text" xml:space="preserve">
+    <value>Manette 2</value>
+  </data>
+  <data name="lBController3.Text" xml:space="preserve">
+    <value>Manette 3</value>
+  </data>
+  <data name="lBController4.Text" xml:space="preserve">
+    <value>Manette 4</value>
+  </data>
+  <data name="nameHeader.Text" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="PathHeader.Text" xml:space="preserve">
+    <value>Chemin</value>
+  </data>
+  <data name="pBProfilesTip.Text" xml:space="preserve">
+    <value>Choisir profiles ici</value>
   </data>
 </root>

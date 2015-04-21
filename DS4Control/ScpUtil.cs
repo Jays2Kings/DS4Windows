@@ -325,11 +325,11 @@ namespace DS4Windows
         {
             get { return m_Config.SZDeadzone;}
         }
-        public static byte[] LSDeadzone
+        public static int[] LSDeadzone
         {
             get { return m_Config.LSDeadzone;}
         }
-        public static byte[] RSDeadzone
+        public static int[] RSDeadzone
         {
             get { return m_Config.RSDeadzone;}
         }
@@ -615,7 +615,7 @@ namespace DS4Windows
         public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty, String.Empty };
         public Byte[] rumble = { 100, 100, 100, 100, 100 };
         public Byte[] touchSensitivity = { 100, 100, 100, 100, 100 };
-        public Byte[] LSDeadzone = { 0, 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0, 0 };
+        public int[] LSDeadzone = { 0, 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0, 0 };
         public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
         public Byte[] tapSensitivity = { 0, 0, 0, 0, 0 };
         public bool[] doubleTap = { false, false, false, false, false };
@@ -1410,9 +1410,9 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); Double.TryParse(Item.InnerText, out rainbow[device]); }
                 catch { rainbow[device] = 0; missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone"); Byte.TryParse(Item.InnerText, out LSDeadzone[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone"); int.TryParse(Item.InnerText, out LSDeadzone[device]); }
                 catch { missingSetting = true; }
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone"); Byte.TryParse(Item.InnerText, out RSDeadzone[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone"); int.TryParse(Item.InnerText, out RSDeadzone[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); Double.TryParse(Item.InnerText, out SXDeadzone[device]); }
                 catch { missingSetting = true; }

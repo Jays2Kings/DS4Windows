@@ -243,6 +243,9 @@
     <EmbeddedResource Include="DS4Windows\DupBox.pt-BR.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.ro-RO.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\DupBox.ru-RU.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +265,9 @@
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\Hotkeys.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.ro-RO.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\Hotkeys.ru-RU.resx">
@@ -295,6 +301,9 @@
     <EmbeddedResource Include="DS4Windows\DupBox.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.ro-RO.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\KBM360.ru-RU.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
@@ -316,8 +325,26 @@
     <EmbeddedResource Include="DS4Windows\Options.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.ro-RO.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\Options.ru-RU.resx">
       <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.ro-RO.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.ro-RO.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SpecActions.ro-RO.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.ro-RO.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.ro-RO.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -391,9 +418,6 @@
     <EmbeddedResource Include="DS4Windows\SpecActions.pt-BR.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DS4Windows\SpecActions.pt-PT.resx">
-      <DependentUpon>SpecActions.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\SpecActions.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
@@ -442,6 +466,7 @@
     <EmbeddedResource Include="DS4Windows\WinProgs.ru-RU.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ro-RO.resx" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>

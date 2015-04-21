@@ -21,7 +21,6 @@ namespace DS4Windows
     {
         public string[] arguements;
         delegate void LogDebugDelegate(DateTime Time, String Data, bool warning);
-
         protected Label[] Pads, Batteries;
         protected ComboBox[] cbs;
         protected Button[] ebns;
@@ -71,7 +70,7 @@ namespace DS4Windows
 
         public DS4Form(string[] args)
         {
-            //System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
             InitializeComponent();
             arguements = args;
             ThemeUtil.SetTheme(lvDebug);
@@ -263,6 +262,7 @@ namespace DS4Windows
             Enable_Controls(1, false);
             Enable_Controls(2, false);
             Enable_Controls(3, false);
+            btnStartStop.Text = Properties.Resources.StartText;
             if (btnStartStop.Enabled && start)
                 btnStartStop_Clicked();
             startToolStripMenuItem.Text = btnStartStop.Text;

@@ -468,8 +468,8 @@ namespace DS4Windows
                 if (eastertime)
                     EasterTime(ind);
                 GetInputkeys(ind);
-                if (Global.LSCurve[ind] + Global.RSCurve[ind] + Global.LSDeadzone[ind] + Global.RSDeadzone[ind] +
-                    Global.L2Deadzone[ind] + Global.R2Deadzone[ind] > 0) //if a curve or deadzone is in place
+                if (Global.LSCurve[ind] != 0 || Global.RSCurve[ind] != 0 || Global.LSDeadzone[ind] != 0 || Global.RSDeadzone[ind] != 0 ||
+                    Global.L2Deadzone[ind] != 0 || Global.R2Deadzone[ind] != 0) //if a curve or deadzone is in place
                     cState = Mapping.SetCurveAndDeadzone(ind, cState);
                 if (!recordingMacro && (!string.IsNullOrEmpty(Global.tempprofilename[ind]) ||
                     Global.getHasCustomKeysorButtons(ind) || Global.getHasShiftCustomKeysorButtons(ind) || Global.ProfileActions[ind].Count > 0))

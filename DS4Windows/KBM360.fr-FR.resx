@@ -118,53 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lBTip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 110</value>
-  </data>
-  <data name="lBTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 26</value>
-  </data>
-  <data name="lBTip.Text" xml:space="preserve">
-    <value>Vous pouvez aussi sélect-
-ionner une clé en la tapant</value>
-  </data>
-  <data name="cbScanCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>640, 5</value>
-  </data>
-  <data name="cbScanCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 17</value>
-  </data>
-  <data name="cbScanCode.Text" xml:space="preserve">
-    <value>Scanner le code</value>
-  </data>
-  <data name="cbToggle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>575, 5</value>
-  </data>
-  <data name="X360Label.Location" type="System.Drawing.Point, System.Drawing">
-    <value>378, 210</value>
-  </data>
-  <data name="X360Label.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 13</value>
-  </data>
-  <data name="X360Label.Text" xml:space="preserve">
-    <value>Commandes X360</value>
-  </data>
-  <data name="KBMlabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>471, 5</value>
-  </data>
-  <data name="KBMlabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 13</value>
-  </data>
-  <data name="KBMlabel.Text" xml:space="preserve">
-    <value>Clavier et Souris</value>
-  </data>
-  <data name="lBMacroOn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>413, 13</value>
-  </data>
-  <data name="lBMacroOn.Text" xml:space="preserve">
-    <value>Macro activé, choisir une touche pour désactiver, fermer cette page pour sauvegarder</value>
-  </data>
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pBX360.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAx4AAAEYCAYAAADS/CAKAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
         DwAAjA8AAP1SAACBQAAAfXkAAOmLAAA85QAAGcxzPIV3AAAKOWlDQ1BQaG90b3Nob3AgSUNDIHByb2Zp
@@ -3693,5 +3647,74 @@ ionner une clé en la tapant</value>
         Pvn0k9NFHr4tAnL9B4c+eEDEYdj7H3xggOTNIRELAMHQvRu8DY59dPjw8I6Ojge7urpu6u7uPtd9jv88
         nyX8/xpnf/6euewgAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="lbFlashRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 26</value>
+  </data>
+  <data name="lbFlashRate.Text" xml:space="preserve">
+    <value>Rythme du 
+flash lumineux</value>
+  </data>
+  <data name="lbRumble.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="lbRumble.Text" xml:space="preserve">
+    <value>vibration</value>
+  </data>
+  <data name="lbHeavy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lbHeavy.Text" xml:space="preserve">
+    <value>Fort</value>
+  </data>
+  <data name="lbLight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="lbLight.Text" xml:space="preserve">
+    <value>Léger</value>
+  </data>
+  <data name="nUDLightFlash.Location" type="System.Drawing.Point, System.Drawing">
+    <value>107, 218</value>
+  </data>
+  <data name="lBTip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>448, 110</value>
+  </data>
+  <data name="X360Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>378, 210</value>
+  </data>
+  <data name="X360Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 13</value>
+  </data>
+  <data name="X360Label.Text" xml:space="preserve">
+    <value>Controles X360</value>
+  </data>
+  <data name="KBMlabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>471, 5</value>
+  </data>
+  <data name="KBMlabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 13</value>
+  </data>
+  <data name="KBMlabel.Text" xml:space="preserve">
+    <value>Clavier et souris</value>
+  </data>
+  <data name="bnMacro.Text" xml:space="preserve">
+    <value>Enregistrer une macro</value>
+  </data>
+  <data name="btnDefault.Text" xml:space="preserve">
+    <value>Defaut</value>
+  </data>
+  <data name="cBMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 43</value>
+  </data>
+  <data name="cBMouse.Text" xml:space="preserve">
+    <value>Changer la 
+sensibilité 
+de la souris</value>
+  </data>
+  <data name="cBLightbar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 17</value>
+  </data>
+  <data name="cBLightbar.Text" xml:space="preserve">
+    <value>Changer lumière</value>
   </data>
 </root>

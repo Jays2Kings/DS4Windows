@@ -424,17 +424,31 @@ namespace DS4Windows
                 dState.RX = (byte)Math.Round(curvex, 0);
                 dState.RY = (byte)Math.Round(curvey, 0);
             }
-            if (Global.LSDeadzone[device] > 0 &&
-                Math.Sqrt(Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2)) < Global.LSDeadzone[device])
+            double ls = Math.Sqrt(Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2));
+            //deadzones
+            if (Global.LSDeadzone[device] > 0 && ls < Global.LSDeadzone[device])
             {
                 dState.LX = 127;
                 dState.LY = 127;
             }
-            if (Global.RSDeadzone[device] > 0
-                && Math.Sqrt(Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2)) < Global.LSDeadzone[device])
+            else if (Global.LSDeadzone[device] < 0 && ls > 127.5f + Global.LSDeadzone[device])
+            {
+                double r = Math.Atan2((dState.LY - 127.5f), (dState.LX - 127.5f));
+                dState.LX = (byte)(Math.Cos(r) * (127.5f + Global.LSDeadzone[device]) + 127.5f);
+                dState.LY = (byte)(Math.Sin(r) * (127.5f + Global.LSDeadzone[device]) + 127.5f);
+            }
+            //Console.WriteLine
+            double rs = Math.Sqrt(Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2));
+            if (Global.RSDeadzone[device] > 0 && rs < Global.LSDeadzone[device])
             {
                 dState.RX = 127;
                 dState.RY = 127;
+            }
+            else if (Global.RSDeadzone[device] < 0 && rs > 127.5f + Global.RSDeadzone[device])
+            {
+                double r = Math.Atan2((dState.RY - 127.5f), (dState.RX - 127.5f));
+                dState.RX = (byte)(Math.Cos(r) * (127.5f + Global.RSDeadzone[device]) + 127.5f);
+                dState.RY = (byte)(Math.Sin(r) * (127.5f + Global.RSDeadzone[device]) + 127.5f);
             }
             if (Global.L2Deadzone[device] > 0 && cState.L2 < Global.L2Deadzone[device])
                 dState.L2 = 0;
@@ -449,8 +463,16 @@ namespace DS4Windows
         public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, ControlService ctrl)
         {
             bool shift;
+            
+            MappedState.LX = 127;
+            MappedState.LY = 127;
+            MappedState.RX = 127;
+            MappedState.RY = 127;
+            int MouseDeltaX = 0;
+            int MouseDeltaY = 0;
+            
             SyntheticState deviceState = Mapping.deviceState[device];
-            if (Global.GetActions().Count > 0 && (Global.ProfileActions[device].Count > 0 || 
+            if (Global.GetActions().Count > 0 && (Global.ProfileActions[device].Count > 0 ||
                 !string.IsNullOrEmpty(Global.tempprofilename[device])))
                 MapCustomAction(device, cState, MappedState, eState, tp, ctrl);
             if (ctrl.DS4Controllers[device] == null) return;
@@ -486,7 +508,7 @@ namespace DS4Windows
             }
             cState.CopyTo(MappedState);
             if (shift)
-                MapShiftCustom(device, cState, MappedState, eState, tp);           
+                MapShiftCustom(device, cState, MappedState, eState, tp);
             foreach (KeyValuePair<DS4Controls, string> customKey in Global.getCustomMacros(device))
             {
                 if (shift == false ||
@@ -539,13 +561,6 @@ namespace DS4Windows
                         pressedonce[customKey.Value] = false;
                 }
             }
-
-            MappedState.LX = 127;
-            MappedState.LY = 127;
-            MappedState.RX = 127;
-            MappedState.RY = 127;
-            int MouseDeltaX = 0;
-            int MouseDeltaY = 0;
 
             //Dictionary<DS4Controls, X360Controls> customButtons = Global.getCustomButtons(device);
             //foreach (KeyValuePair<DS4Controls, X360Controls> customButton in customButtons)
@@ -668,14 +683,14 @@ namespace DS4Windows
                                 if (isAnalog)
                                     getMouseWheelMapping(device, customButton.Key, cState, eState, tp, false);
                                 else
-                                deviceState.currentClicks.wUpCount++;
+                                    deviceState.currentClicks.wUpCount++;
                             break;
                         case X360Controls.WDOWN:
                             if (getBoolMapping(customButton.Key, cState, eState, tp))
                                 if (isAnalog)
                                     getMouseWheelMapping(device, customButton.Key, cState, eState, tp, true);
                                 else
-                                deviceState.currentClicks.wDownCount++;
+                                    deviceState.currentClicks.wDownCount++;
                             break;
                         case X360Controls.MouseUp:
                             if (MouseDeltaY == 0)
@@ -715,7 +730,7 @@ namespace DS4Windows
             if (macroControl[04]) MappedState.Options = true;
             if (macroControl[05]) MappedState.Share = true;
             if (macroControl[06]) MappedState.DpadUp = true;
-            if (macroControl[07]) MappedState.DpadDown =true;
+            if (macroControl[07]) MappedState.DpadDown = true;
             if (macroControl[08]) MappedState.DpadLeft = true;
             if (macroControl[09]) MappedState.DpadRight = true;
             if (macroControl[10]) MappedState.PS = true;
@@ -723,7 +738,7 @@ namespace DS4Windows
             if (macroControl[12]) MappedState.R1 = true;
             if (macroControl[13]) MappedState.L2 = 255;
             if (macroControl[14]) MappedState.R2 = 255;
-            if (macroControl[15])  MappedState.L3 = true;
+            if (macroControl[15]) MappedState.L3 = true;
             if (macroControl[16]) MappedState.R3 = true;
             if (macroControl[17]) MappedState.LX = 255;
             if (macroControl[18]) MappedState.LX = 0;
@@ -801,50 +816,54 @@ namespace DS4Windows
                 RYN.Add(DS4Controls.RYNeg);
             if (Global.getCustomButton(device, DS4Controls.RYPos) == X360Controls.None)
                 RYP.Add(DS4Controls.RYPos);
-            if (LXN.Count > 0 || LXP.Count > 0)
-            {
-                foreach (DS4Controls dc in LXP)
-                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
-                        MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                foreach (DS4Controls dc in LXN)
-                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
-                        MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp);
-            }
-            else
-                MappedState.LX = cState.LX;
-            if (LYN.Count > 0 || LYP.Count > 0)
-            {
-                foreach (DS4Controls dc in LYN)
-                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
-                        MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp);
-                foreach (DS4Controls dc in LYP)
-                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
-                        MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp, true);
-            }
-            else
-                MappedState.LY = cState.LY;
-            if (RXN.Count > 0 || RXP.Count > 0)
-            {
-                foreach (DS4Controls dc in RXN)
-                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
-                        MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp);
-                foreach (DS4Controls dc in RXP)
-                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
-                        MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp, true);
-            }
-            else
-                MappedState.RX = cState.RX;
-            if (RYN.Count > 0 || RYP.Count > 0)
-            {
-                foreach (DS4Controls dc in RYN)
-                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
-                        MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp);
-                foreach (DS4Controls dc in RYP)
-                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
-                        MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp, true);
-            }
-            else
-                MappedState.RY = cState.RY;
+            if ((shift && MappedState.LX == 127) || !shift)
+                if (LXN.Count > 0 || LXP.Count > 0)
+                {
+                    foreach (DS4Controls dc in LXP)
+                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
+                            MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp, true);
+                    foreach (DS4Controls dc in LXN)
+                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
+                            MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp);
+                }
+                else
+                    MappedState.LX = cState.LX;
+            if ((shift && MappedState.LY == 127) || !shift)
+                if (LYN.Count > 0 || LYP.Count > 0)
+                {
+                    foreach (DS4Controls dc in LYN)
+                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
+                            MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp);
+                    foreach (DS4Controls dc in LYP)
+                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
+                            MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp, true);
+                }
+                else
+                    MappedState.LY = cState.LY;
+            if ((shift && MappedState.RX == 127) || !shift)
+                if (RXN.Count > 0 || RXP.Count > 0)
+                {
+                    foreach (DS4Controls dc in RXN)
+                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
+                            MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp);
+                    foreach (DS4Controls dc in RXP)
+                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
+                            MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp, true);
+                }
+                else
+                    MappedState.RX = cState.RX;
+            if ((shift && MappedState.RY == 127) || !shift)
+                if (RYN.Count > 0 || RYP.Count > 0)
+                {
+                    foreach (DS4Controls dc in RYN)
+                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
+                            MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp);
+                    foreach (DS4Controls dc in RYP)
+                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
+                            MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp, true);
+                }
+                else
+                    MappedState.RY = cState.RY;
             InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
         }
 
@@ -1161,8 +1180,12 @@ namespace DS4Windows
             if (RXN.Count > 0 || RXP.Count > 0)
             {
                 foreach (DS4Controls dc in RXN)
+                {
                     if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
+                    {
                         MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp);
+                    }
+                }
                 foreach (DS4Controls dc in RXP)
                     if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                         MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp, true);

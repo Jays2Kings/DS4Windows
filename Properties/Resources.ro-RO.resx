@@ -118,411 +118,402 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionExists" xml:space="preserve">
-    <value>Имя данного действия уже существует</value>
+    <value>Numele acestei acțiuni există deja</value>
   </data>
   <data name="AddingToList" xml:space="preserve">
-    <value>Добавить в список...</value>
+    <value>Se adugă în listă...</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
-    <value>Добавить программы</value>
+    <value>Adaugă programe</value>
   </data>
   <data name="ALocactionNeeded" xml:space="preserve">
-    <value>Для продолжения выберите место для сохранения настроек.</value>
+    <value>O locație trebuie aleasă pentru a continua</value>
   </data>
   <data name="AlwaysRainbow" xml:space="preserve">
-    <value>Всегда режим радуги</value>
+    <value>Modul mereu curcubeu</value>
   </data>
   <data name="AssignProfile" xml:space="preserve">
-    <value>Назначить *number*-му контроллеру</value>
+    <value>Atribuie manetei *number*</value>
   </data>
   <data name="Battery" xml:space="preserve">
-    <value>Уровень заряда: *number*%</value>
+    <value>Baterie: *number*%</value>
   </data>
   <data name="BestUsedRightSide" xml:space="preserve">
-    <value>Удобно использовать правую часть тачпада как кнопку мыши</value>
+    <value>Folosit cel mai bine cu partea din dreapta ca funcția de mouse</value>
   </data>
   <data name="Browse" xml:space="preserve">
-    <value>Обзор…</value>
+    <value>Caută</value>
   </data>
   <data name="CannotWriteHere" xml:space="preserve">
-    <value>Невозможно записать в текущее местоположение. Скопировать настройки в AppData?</value>
+    <value>Nu poate fi scris în locația curentă. Copiez setările în appdata?</value>
   </data>
   <data name="Charged" xml:space="preserve">
-    <value>Заряжена</value>
+    <value>Încărcat</value>
   </data>
   <data name="Charging" xml:space="preserve">
-    <value>Зарядка: *number*%</value>
+    <value>Se încarcă</value>
   </data>
   <data name="CheckBattery" xml:space="preserve">
-    <value>Проверить аккумулятор</value>
+    <value>Verifică bateria</value>
   </data>
   <data name="CloseDS4W" xml:space="preserve">
-    <value>Закрыть DS4Windows?</value>
+    <value>Închide DS4Windows?</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
-    <value>Закрыть через значок уведомления</value>
+    <value>Închideți DS4Windows prin icoana de notificări</value>
   </data>
   <data name="Color" xml:space="preserve">
-    <value>Цвет</value>
+    <value>Culoare</value>
   </data>
   <data name="ColorByBattery" xml:space="preserve">
-    <value>Цвет от заряда %</value>
+    <value>Culoare în funcție de % bateriei</value>
   </data>
   <data name="Connecting" xml:space="preserve">
-    <value>Подключение...</value>
+    <value>Se conectează...</value>
   </data>
   <data name="ContextEdit" xml:space="preserve">
-    <value>Редактировать профиль контроллера *number*</value>
+    <value>Editează profilul pentru maneta *number*</value>
   </data>
   <data name="ContextNew" xml:space="preserve">
-    <value>Создать профиль контроллера *number*</value>
+    <value>Creează profilul pentru maneta *number*</value>
   </data>
   <data name="ControllerWasRemoved" xml:space="preserve">
-    <value>Контроллер *Mac address* отключён или связь утеряна!</value>
+    <value>Maneta *Mac address* a fost deconectată sau conexiunea a fost pierdută</value>
   </data>
   <data name="CopyComplete" xml:space="preserve">
-    <value>Копирование завершено, пожалуйста перезапустите DS4Windows и удалите настройки из папки программы</value>
+    <value>Copiere completă, vă rugăm să deschideți DS4Windows și să ștergeți setările din Program Directory</value>
   </data>
   <data name="CopyFullColor" xml:space="preserve">
-    <value>Нажмите для копирования полного цвета</value>
+    <value>Click pentru a copia întreaga culoare</value>
   </data>
   <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Внимание: Не удалось открыть DS4 *Mac adress* в приоритетном режиме</value>
+    <value>Avertizare: Nu s-a reușit pornirea DS4 *Mac address* în modul exclusiv</value>
   </data>
   <data name="Day" xml:space="preserve">
-    <value>день</value>
+    <value>zi</value>
   </data>
   <data name="Days" xml:space="preserve">
-    <value>дней</value>
+    <value>zile</value>
   </data>
   <data name="DeleteProfile" xml:space="preserve">
-    <value>Удалить профиль?</value>
+    <value>Șterge profilul?</value>
   </data>
   <data name="DimByBattery" xml:space="preserve">
-    <value>Затемнение от заряда %</value>
+    <value>Întunecă în funție de % bateriei</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Выключить режим XInput и использовать только DInput. Настройка "Скрыть контроллер DS4" должна быть выключена!</value>
+    <value>Opriți X360 metodă de introducere și folosiți doar metoda de introducere prestabilită a DS4-ului, ascundeți DS4 trebuie să fie off (Doar pentru Cablu) </value>
   </data>
   <data name="DisconnectBT" xml:space="preserve">
-    <value>Отключить Bluetooth</value>
+    <value>Deconectare BT</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
-    <value>Отключен</value>
+    <value>Deconectat</value>
   </data>
   <data name="Downloading" xml:space="preserve">
-    <value>Загрузка *number*%</value>
+    <value>Descărcare *number*%</value>
   </data>
   <data name="DownloadVersion" xml:space="preserve">
-    <value>Загрузить версию *number* ?</value>
+    <value>Doriți descărcarea versiunii *number* acum?</value>
   </data>
   <data name="DownText" xml:space="preserve">
-    <value>Вниз</value>
+    <value>Jos</value>
   </data>
   <data name="DS4Update" xml:space="preserve">
-    <value>Доступна новая версия DS4Windows!</value>
+    <value>Actualizare la DS4Windows disponibilă!</value>
   </data>
   <data name="DS4WindowsCannotEditHere" xml:space="preserve">
-    <value>DS4Windows не может изменить настройки! Это приведёт сейчас к закрытию!</value>
+    <value>DS4Windows nu poate edita setările aici, acum se va închide</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
-    <value>Редактировать</value>
+    <value>Editează</value>
   </data>
   <data name="FallBack" xml:space="preserve">
-    <value>Вернуть</value>
+    <value>Rămâi in urma</value>
   </data>
   <data name="FifthMouseDown" xml:space="preserve">
-    <value>5-я кнопка мыши Вниз</value>
+    <value>Butonul 5 de pe mouse în jos</value>
   </data>
   <data name="FifthMouseUp" xml:space="preserve">
-    <value>5-я кнопка мыши Вверх</value>
+    <value>Butonul 5 de pe mouse Buton în sus</value>
   </data>
   <data name="FlashAtTip" xml:space="preserve">
-    <value>Нажмите для изменения цвета вспышки. Чёрный = стандартный цвет</value>
+    <value>Click pentru a schimba culoarea luminării intense. Negru = culoarea implicită</value>
   </data>
   <data name="FlushHID" xml:space="preserve">
-    <value>Очищать запросы HID</value>
+    <value>Golește HID</value>
   </data>
   <data name="FlushHIDTip" xml:space="preserve">
-    <value>Очищать очереди HID после каждого считывания</value>
+    <value>Golește coada HID după fiecare citire</value>
   </data>
   <data name="FoundController" xml:space="preserve">
-    <value>Найден контроллер:</value>
+    <value>Manetă găsită</value>
   </data>
   <data name="FourthMouseDown" xml:space="preserve">
-    <value>4-я кнопка мыши Вниз</value>
+    <value>Butonul 4 de pe mouse în jos</value>
   </data>
   <data name="FourthMouseUp" xml:space="preserve">
-    <value>4-я кнопка мыши Вверх</value>
+    <value>Butonul 4 de pe mouse în jos</value>
   </data>
   <data name="Full" xml:space="preserve">
-    <value>Заряжена</value>
+    <value>Plin</value>
   </data>
   <data name="GyroReadout" xml:space="preserve">
-    <value>Нажмите для просмотра текущих назначений гироскопа</value>
+    <value>Click pentru a vedea citirea de la giroscopul Sixaxis</value>
   </data>
   <data name="GyroX" xml:space="preserve">
-    <value>Гиро X, наклон влево и вправо</value>
+    <value>GyroX, înclinare spre stânga și dreapta</value>
   </data>
   <data name="GyroY" xml:space="preserve">
-    <value>Гиро Y, наклон вперёд и назад</value>
+    <value>GyroY, înclinare în față și în spate</value>
   </data>
   <data name="GyroZ" xml:space="preserve">
-    <value>Гиро Z, наклон вверх и вниз</value>
+    <value>GyroZ, înclinare în sus și în jos</value>
   </data>
   <data name="Hour" xml:space="preserve">
-    <value>час</value>
+    <value>oră</value>
   </data>
   <data name="Hours" xml:space="preserve">
-    <value>часов</value>
+    <value>ore</value>
   </data>
   <data name="HoverOverItems" xml:space="preserve">
-    <value>Наведите указатель мыши на пункты для получения подробного описания</value>
+    <value>Țineți cursorul deasupra obiectelor pentru a vedea o descriere sau mai multe despre</value>
   </data>
   <data name="IfRemovingDS4Windows" xml:space="preserve">
-    <value>При удалении DS4Windows, вы можете удалить параметры настройки в папке профиля программы</value>
+    <value>Dacă ștergeți DS4Windows, puteți șterge setările urmărind profilul folderului link</value>
   </data>
   <data name="InputDelay" xml:space="preserve">
-    <value>Задержка ввода: *number*мс</value>
+    <value>Întârziere la intrare: *number*ms</value>
   </data>
   <data name="InstallComplete" xml:space="preserve">
-    <value>Установка завершена!</value>
+    <value>Instalare completă</value>
   </data>
   <data name="InstallDriver" xml:space="preserve">
-    <value>Установите этот драйвер</value>
+    <value>Instalează drivere-le aici</value>
   </data>
   <data name="Installing" xml:space="preserve">
-    <value>Установка...</value>
+    <value>Se instalează...</value>
   </data>
   <data name="Jitter" xml:space="preserve">
-    <value>Использовать Sixaxis для помощи в вычислении движений тачпада</value>
+    <value>Folosește Sixaxis pentru a ajuta calculul mișcării pe touchpad</value>
   </data>
   <data name="KeepThisSize" xml:space="preserve">
-    <value>Запоминать размер окна после закрытия</value>
+    <value>Păstreză această mărime a ferestrei după închidere</value>
   </data>
   <data name="LatencyNotOverTen" xml:space="preserve">
-    <value>Задержка *number*-го контроллера сейчас меньше 10 мс</value>
+    <value>Latența manetei *number* este acum sub 10ms</value>
   </data>
   <data name="LatencyOverTen" xml:space="preserve">
-    <value>Задержка *number*-го контроллера больше 10 мс</value>
+    <value>Latența manetei *number* este peste 10ms</value>
   </data>
   <data name="LaunchProgram" xml:space="preserve">
-    <value>Запустить *program*</value>
-  </data>
-  <data name="LightByBatteryTip" xml:space="preserve">
-    <value>Также затенять по времени простоя</value>
+    <value>Lansează *program*</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Загрузка...</value>
+    <value>Se încarcă...</value>
   </data>
   <data name="LoadProfile" xml:space="preserve">
-    <value>Загрузить *profile*</value>
+    <value>Încarcă *profile*</value>
   </data>
   <data name="Macro" xml:space="preserve">
-    <value>Макрос</value>
+    <value>Macro</value>
   </data>
   <data name="MakeNewProfile" xml:space="preserve">
-    <value>Создать новый профиль</value>
+    <value>Creează un profil nou</value>
   </data>
   <data name="NA" xml:space="preserve">
-    <value>Н/Д</value>
+    <value>N/A</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>Создать</value>
+    <value>Nou</value>
   </data>
   <data name="NoMacroRecorded" xml:space="preserve">
-    <value>Нет макросов</value>
+    <value>Niciun Macro nu a fost înregistrat</value>
   </data>
   <data name="noneProfile" xml:space="preserve">
-    <value>(отсутствует)</value>
+    <value>(niciun)</value>
   </data>
   <data name="NoneText" xml:space="preserve">
-    <value>отсутствует</value>
+    <value>niciun</value>
   </data>
   <data name="NoProfileLoaded" xml:space="preserve">
-    <value>Профиль не загружен</value>
+    <value>Niciun profil încărcat</value>
   </data>
   <data name="NotUsingProfile" xml:space="preserve">
-    <value>*number*-й контроллер не использует профиль</value>
+    <value>Maneta *number* nu folosește niciun profil</value>
   </data>
   <data name="NotValid" xml:space="preserve">
-    <value>Недопустимая операция</value>
+    <value>Invalid</value>
   </data>
   <data name="OpeningInstaller" xml:space="preserve">
-    <value>Открытие установщика</value>
+    <value>Se deschide programul de instalare</value>
   </data>
   <data name="OpenScpDriver" xml:space="preserve">
-    <value>Запустите SCPDrivers.exe</value>
+    <value>Vă rog să deschideți ScpDriver.exe</value>
   </data>
   <data name="OtherFileLocation" xml:space="preserve">
-    <value>, старые настройки из другой папки будут удалены</value>
+    <value>, fișierele din altă locație for fi șterse</value>
   </data>
   <data name="PleaseDownloadUpdater" xml:space="preserve">
-    <value>Скачайте Updater, поместите его в папку с программой и запустите</value>
+    <value>Vă rog să descărcați Actualizatorul acum, și plasați-l in folderul cu programe, apoi verficați din nou pentru actualizări</value>
   </data>
   <data name="PleaseImport" xml:space="preserve">
-    <value>Импортируйте или создайте профиль</value>
+    <value>Vă rog să importați sau creați un profil</value>
   </data>
   <data name="PlusNewProfile" xml:space="preserve">
-    <value>Новый профиль</value>
+    <value>Profil nou</value>
   </data>
   <data name="ProfileCannotRestore" xml:space="preserve">
-    <value>*Profile name* невозможно будет восстановить.</value>
+    <value>*Profile name* nu poate fi reface</value>
   </data>
   <data name="ProfileFolderMoved" xml:space="preserve">
-    <value>Профили хранятся в папке с программой</value>
+    <value>Folderul cu profile mutat în folderul programului</value>
   </data>
   <data name="Programs" xml:space="preserve">
-    <value>Программы</value>
+    <value>Programe</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>Автоотключение Bluetooth при подключении по USB</value>
-  </data>
-  <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>Перед активацией функции "Спрятать контроллер DS4" вы должны выйти из: Steam, Uplay, Origin</value>
+    <value>EXPERIMENTAL: Deazactivare automată a BT la conectarea la USB</value>
   </data>
   <data name="RecordText" xml:space="preserve">
-    <value>Запись</value>
+    <value>Înregistrează</value>
   </data>
   <data name="RightClickPresets" xml:space="preserve">
-    <value>Правый клик для выбора пресета</value>
+    <value>Click dreapta pentru a seta presetările pentru un set de controale</value>
   </data>
   <data name="SaveRecordedMacro" xml:space="preserve">
-    <value>Сохранить записанный макрос?</value>
+    <value>Salvează Macro-ul înregistrat?</value>
   </data>
   <data name="ScanCode" xml:space="preserve">
-    <value>Скан-код</value>
+    <value>Scanează codul</value>
   </data>
   <data name="SearchingController" xml:space="preserve">
-    <value>Поиск контроллеров...</value>
+    <value>Caut manete...</value>
   </data>
   <data name="SelectActionTitle" xml:space="preserve">
-    <value>Выберите действие для *action*</value>
+    <value>Selectează o acțiune pentru *action*</value>
   </data>
   <data name="SetRegularTrigger" xml:space="preserve">
-    <value>Назначить регулярный триггер</value>
+    <value>Setare declanșator normal</value>
   </data>
   <data name="SetUnloadTrigger" xml:space="preserve">
-    <value>Назначить выгружаемый триггер</value>
+    <value>Setare declanșator de descărcare</value>
   </data>
   <data name="Shortcuts" xml:space="preserve">
-    <value>Ярлыки</value>
+    <value>Scurtături</value>
   </data>
   <data name="SixAxisReading" xml:space="preserve">
-    <value>Нажмите для считывания дополнительных возможностей Sixaxis</value>
+    <value>Click pentru citire avansată de la Sixaxis</value>
   </data>
   <data name="Starting" xml:space="preserve">
-    <value>Запуск...</value>
+    <value>În curs de pornire...</value>
   </data>
   <data name="StartText" xml:space="preserve">
-    <value>Запустить</value>
+    <value>Pornește</value>
   </data>
   <data name="Step1" xml:space="preserve">
-    <value>Шаг 1: Установите драйвер DS4</value>
+    <value>Pasul 1: Instalează driver-ul DS4</value>
   </data>
   <data name="StopHText" xml:space="preserve">
-    <value>Ост. тяжёлый</value>
+    <value>Oprește Intens</value>
   </data>
   <data name="StopLText" xml:space="preserve">
-    <value>Ост. лёгкий</value>
+    <value>Oprește Slab</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Остановлена работа DS4Windows</value>
+    <value>DS4Windows a fost oprit</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
-    <value>Остановка контроллеров DS4</value>
+    <value>Se opresc manetele DS4</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
-    <value>Остановка контроллеров X360</value>
+    <value>Se opresc manetele X360</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Остановить</value>
+    <value>Oprire</value>
   </data>
   <data name="SwipeDown" xml:space="preserve">
-    <value>Ск-ж. вниз</value>
+    <value>Glisare în jos</value>
   </data>
   <data name="SwipeLeft" xml:space="preserve">
-    <value>Ск-ж. влево</value>
+    <value>Glisare spre stânga</value>
   </data>
   <data name="SwipeRight" xml:space="preserve">
-    <value>Ск-ж. вправо</value>
+    <value>Glisare spre dreapta</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Проведите пальцем по тачпаду для смены профиля</value>
+    <value>Glisați pe touchpad pentru a schimba profilele</value>
   </data>
   <data name="SwipeUp" xml:space="preserve">
-    <value>Ск-ж. вверх</value>
+    <value>Glisare în sus</value>
   </data>
   <data name="TapAndHold" xml:space="preserve">
-    <value>Коснитесь и удерживайте для перетаскивания, задержка с одним касанием</value>
+    <value>Apasă și ține apăsat pentru a trage, puțină întârziere cu apăsări individuale</value>
   </data>
   <data name="TestHText" xml:space="preserve">
-    <value>Тест. тяжёлого</value>
+    <value>Testează intens</value>
   </data>
   <data name="TestLText" xml:space="preserve">
-    <value>Тест. лёгкого</value>
+    <value>Testează slab</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>Накл. вниз</value>
+    <value>Înclinare în jos</value>
   </data>
   <data name="TiltLeft" xml:space="preserve">
-    <value>Накл. влево</value>
+    <value>Înclinare la stânga</value>
   </data>
   <data name="TiltRight" xml:space="preserve">
-    <value>Накл. вправо</value>
+    <value>Înclinare la dreapta</value>
   </data>
   <data name="TiltUp" xml:space="preserve">
-    <value>Накл. вверх</value>
+    <value>Înclinare în sus</value>
   </data>
   <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Движения тачпадом выключены</value>
+    <value>Mișcare pe touchpad oprită</value>
   </data>
   <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>Движения тачпадом включены</value>
+    <value>Mișcare pe touchpad pornită</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Повторное включение нажатием PS + Touchpad</value>
+    <value>Reactivează apăsând PS+Touchpad</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>Проведение двумя пальцами по тачпаду влево или вправо</value>
+    <value>Glisare spre stânga sau dreapta cu 2 degete pe touchpad </value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
-    <value>задайте новое имя</value>
+    <value>scrie noul nume aici</value>
   </data>
   <data name="TypeProfileName" xml:space="preserve">
-    <value>задайте имя профиля</value>
+    <value>scrie numele profilului aici</value>
   </data>
   <data name="UpText" xml:space="preserve">
-    <value>Вверх</value>
+    <value>Sus</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>Обновления программы не найдены!</value>
+    <value>Actualizările sunt la zi!</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
-    <value>Используйте контроллер для изменения назначений</value>
+    <value>Puteți folosi și maneta pentru a schimba controalele</value>
   </data>
   <data name="UsingExclusive" xml:space="preserve">
-    <value>Включен приоритетный режим</value>
+    <value>Folosind modul exclusiv</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Для *number*-го контроллера задействован профиль "*Profile name*"</value>
+    <value>Maneta *number* folosește profilul "*Profile name*"</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
-    <value>Включен совместный режим</value>
+    <value>Folosind modul partajat</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Это отключит возможность использования тачпада как мышь</value>
+    <value>Acesta dezactivează touchpad-ul ca mouse</value>
   </data>
   <data name="ValidName" xml:space="preserve">
-    <value>Пожалуйста, введите допустимое имя</value>
+    <value>Vă rog, introduceți un nume valid</value>
   </data>
   <data name="WaitMS" xml:space="preserve">
-    <value>Задержка *number**ms*</value>
+    <value>Asteaptă *number*ms</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
-    <value>Удержание</value>
-  </data>
-  <data name="XinputPorts" xml:space="preserve">
-    <value>Используйте более высокий порт, если у вас возник конфликт с другим эмулятором контроллера X360</value>
+    <value>Se va păstra</value>
   </data>
 </root>

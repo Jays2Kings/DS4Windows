@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cHTrigger.Text" xml:space="preserve">
-    <value>Gâchette</value>
-  </data>
   <data name="lVTrigger.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
@@ -714,15 +711,6 @@
         AAgDAAAAAwAAAAs=
 </value>
   </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Sauvegarder</value>
-  </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
-  <data name="lbName.Text" xml:space="preserve">
-    <value>Nom</value>
-  </data>
   <data name="lVUnloadTrigger.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
@@ -1316,5 +1304,44 @@
         bHVlX18ACAMAAAAAAAAABfb///8bU3lzdGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9f
         AAgDAAAAAwAAAAs=
 </value>
+  </data>
+  <data name="btnBrowse.Text" xml:space="preserve">
+    <value>Parcourir</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="btnRecordMacro.Text" xml:space="preserve">
+    <value>Enregistrer une macro</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="cBActions.Items2" xml:space="preserve">
+    <value>Charger un programme</value>
+  </data>
+  <data name="cBActions.Items3" xml:space="preserve">
+    <value>Charger un profil</value>
+  </data>
+  <data name="cBActions.Items5" xml:space="preserve">
+    <value>Déconnexion du bluetooth</value>
+  </data>
+  <data name="cBActions.Items6" xml:space="preserve">
+    <value>Verifier batterie</value>
+  </data>
+  <data name="cbLightbarBatt.Text" xml:space="preserve">
+    <value>Via barre lumineuse</value>
+  </data>
+  <data name="cBMacroScanCode.Text" xml:space="preserve">
+    <value>Scanner le code</value>
+  </data>
+  <data name="cBNotificationBatt.Text" xml:space="preserve">
+    <value>Via notification bureau</value>
+  </data>
+  <data name="cHTrigger.Text" xml:space="preserve">
+    <value>Déclencheur</value>
+  </data>
+  <data name="lbName.Text" xml:space="preserve">
+    <value>Nom</value>
   </data>
 </root>

@@ -135,7 +135,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAQ
-        CgAAAk1TRnQBSQFMAgEBAwEAAQwBAQEMAQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CgAAAk1TRnQBSQFMAgEBAwEAARgBAQEYAQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -182,10 +182,10 @@
 </value>
   </data>
   <data name="cBStyle.Items" xml:space="preserve">
-    <value>Einmalig abspielen</value>
+    <value>einmalig</value>
   </data>
   <data name="cBStyle.Items1" xml:space="preserve">
-    <value>Bei gedrückt halten Wiederholen</value>
+    <value>autofeuer</value>
   </data>
   <data name="btnSave.Text" xml:space="preserve">
     <value>Speichern</value>
@@ -206,10 +206,10 @@
     <value>Benutze Tastatur/Maus + Controller 1 zum aufzeichnen</value>
   </data>
   <data name="btn5th.Text" xml:space="preserve">
-    <value>5. Maustaste runter</value>
+    <value>5. Maustaste gedrückt</value>
   </data>
   <data name="btn4th.Text" xml:space="preserve">
-    <value>4. Maustaste runter</value>
+    <value>4. Maustaste gedrückt</value>
   </data>
   <data name="btnLoadP.Text" xml:space="preserve">
     <value>Lade Voreinstellungen</value>
@@ -221,13 +221,31 @@
     <value>Makro Reihenfolge</value>
   </data>
   <data name="lbDelayTip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>562, 130</value>
+    <value>564, 130</value>
   </data>
   <data name="lbDelayTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 26</value>
+    <value>145, 26</value>
   </data>
   <data name="lbDelayTip.Text" xml:space="preserve">
-    <value>Klicke Verzögerung doppelt an,
- um die Zeit zu bearbeiten</value>
+    <value>zum bearbeiten der Zeiten 
+einfach auf sie doppelklicken</value>
+  </data>
+  <data name="altTabToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
+  </data>
+  <data name="altTabToolStripMenuItem.Text" xml:space="preserve">
+    <value>Alt + Tab emulieren</value>
+  </data>
+  <data name="altTabToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Das Warten bearbeiten, um die Taktrate zu ändern</value>
+  </data>
+  <data name="fromFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
+  </data>
+  <data name="fromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aus Datei...</value>
+  </data>
+  <data name="cMSLoadPresets.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 48</value>
   </data>
 </root>

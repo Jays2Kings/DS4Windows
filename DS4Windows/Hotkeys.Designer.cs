@@ -47,6 +47,8 @@
             this.lbItalian = new System.Windows.Forms.Label();
             this.lbRussian = new System.Windows.Forms.Label();
             this.lbRussianT = new System.Windows.Forms.Label();
+            this.lbRomanian = new System.Windows.Forms.Label();
+            this.lbRomanianT = new System.Windows.Forms.Label();
             this.lbTranslators = new System.Windows.Forms.Label();
             this.linkSourceCode = new System.Windows.Forms.LinkLabel();
             this.lbLinkText = new System.Windows.Forms.Label();
@@ -105,9 +107,9 @@
             // 
             // tCAbout
             // 
-            resources.ApplyResources(this.tCAbout, "tCAbout");
             this.tCAbout.Controls.Add(this.tPHotkeys);
             this.tCAbout.Controls.Add(this.tPCredits);
+            resources.ApplyResources(this.tCAbout, "tCAbout");
             this.tCAbout.Name = "tCAbout";
             this.tCAbout.SelectedIndex = 0;
             // 
@@ -125,7 +127,6 @@
             // 
             // tPCredits
             // 
-            resources.ApplyResources(this.tPCredits, "tPCredits");
             this.tPCredits.Controls.Add(this.tLPTranslators);
             this.tPCredits.Controls.Add(this.lbTranslators);
             this.tPCredits.Controls.Add(this.linkElectro);
@@ -134,6 +135,7 @@
             this.tPCredits.Controls.Add(this.linkJays2Kings);
             this.tPCredits.Controls.Add(this.linkJhebbel);
             this.tPCredits.Controls.Add(this.linkInhexSTER);
+            resources.ApplyResources(this.tPCredits, "tPCredits");
             this.tPCredits.Name = "tPCredits";
             this.tPCredits.UseVisualStyleBackColor = true;
             // 
@@ -146,6 +148,8 @@
             this.tLPTranslators.Controls.Add(this.lbItalian, 0, 1);
             this.tLPTranslators.Controls.Add(this.lbRussian, 0, 2);
             this.tLPTranslators.Controls.Add(this.lbRussianT, 1, 2);
+            this.tLPTranslators.Controls.Add(this.lbRomanian, 0, 3);
+            this.tLPTranslators.Controls.Add(this.lbRomanianT, 1, 3);
             this.tLPTranslators.Name = "tLPTranslators";
             // 
             // lbGerman
@@ -177,6 +181,16 @@
             // 
             resources.ApplyResources(this.lbRussianT, "lbRussianT");
             this.lbRussianT.Name = "lbRussianT";
+            // 
+            // lbRomanian
+            // 
+            resources.ApplyResources(this.lbRomanian, "lbRomanian");
+            this.lbRomanian.Name = "lbRomanian";
+            // 
+            // lbRomanianT
+            // 
+            resources.ApplyResources(this.lbRomanianT, "lbRomanianT");
+            this.lbRomanianT.Name = "lbRomanianT";
             // 
             // lbTranslators
             // 
@@ -240,5 +254,7 @@
         private System.Windows.Forms.Label lbRussian;
         private System.Windows.Forms.Label lbRussianT;
         private System.Windows.Forms.Label lbLinkText;
+        private System.Windows.Forms.Label lbRomanian;
+        private System.Windows.Forms.Label lbRomanianT;
     }
 }

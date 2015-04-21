@@ -1220,16 +1220,6 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Red_Circle {
-            get {
-                object obj = ResourceManager.GetObject("Red_Circle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap RIGHT {
             get {
                 object obj = ResourceManager.GetObject("RIGHT", resourceCulture);

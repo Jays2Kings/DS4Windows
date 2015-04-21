@@ -117,18 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="chTime.Text" xml:space="preserve">
-    <value>Temps</value>
-  </data>
-  <data name="chData.Text" xml:space="preserve">
-    <value>Données</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lBTest.Location" type="System.Drawing.Point, System.Drawing">
     <value>637, 9</value>
-  </data>
-  <data name="btnStartStop.Text" xml:space="preserve">
-    <value>Démarrer</value>
   </data>
   <data name="lbLastMessage.Size" type="System.Drawing.Size, System.Drawing">
     <value>731, 18</value>
@@ -139,35 +130,17 @@
   <data name="llbHelp.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
   </data>
-  <data name="llbHelp.Text" xml:space="preserve">
-    <value>Hotkeys/À propos</value>
-  </data>
-  <data name="btnClear.Text" xml:space="preserve">
-    <value>Effacer</value>
-  </data>
   <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
-  </data>
-  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Éditer le Profil de la Manette 1</value>
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
   </data>
-  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Éditer le Profil de la Manette 2</value>
-  </data>
   <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
   </data>
-  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Éditer le Profil de la Manette 3</value>
-  </data>
   <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Éditer le Profil de la Manette 4</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>228, 6</value>
@@ -175,14 +148,8 @@
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
   </data>
-  <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ouvrir</value>
-  </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sortir (Souris du Milieu)</value>
   </data>
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 142</value>
@@ -6421,17 +6388,11 @@
   <data name="lbPad2.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 15</value>
   </data>
-  <data name="lbPad2.Text" xml:space="preserve">
-    <value>Manette 2</value>
-  </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
     <value>829, 76</value>
   </data>
   <data name="bnEditC3.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 23</value>
-  </data>
-  <data name="bnEditC3.Text" xml:space="preserve">
-    <value>Éditer</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
     <value>829, 105</value>
@@ -6439,20 +6400,11 @@
   <data name="bnEditC4.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 23</value>
   </data>
-  <data name="bnEditC4.Text" xml:space="preserve">
-    <value>Éditer</value>
-  </data>
   <data name="lbPad3.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 15</value>
   </data>
-  <data name="lbPad3.Text" xml:space="preserve">
-    <value>Manette 3</value>
-  </data>
   <data name="lbPad4.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 15</value>
-  </data>
-  <data name="lbPad4.Text" xml:space="preserve">
-    <value>Manette 4</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
     <value>707, 19</value>
@@ -6462,9 +6414,6 @@
   </data>
   <data name="bnEditC2.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 23</value>
-  </data>
-  <data name="bnEditC2.Text" xml:space="preserve">
-    <value>Éditer</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
     <value>707, 48</value>
@@ -6478,9 +6427,6 @@
   <data name="bnEditC1.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 23</value>
   </data>
-  <data name="bnEditC1.Text" xml:space="preserve">
-    <value>Éditer</value>
-  </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
     <value>707, 106</value>
   </data>
@@ -6490,26 +6436,17 @@
   <data name="lBSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 15</value>
   </data>
-  <data name="lBSelectedProfile.Text" xml:space="preserve">
-    <value>Profil Sélectionné</value>
-  </data>
   <data name="lBStatus.Location" type="System.Drawing.Point, System.Drawing">
     <value>406, 0</value>
   </data>
   <data name="lBStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 15</value>
   </data>
-  <data name="lBStatus.Text" xml:space="preserve">
-    <value>État</value>
-  </data>
   <data name="lBBattery.Location" type="System.Drawing.Point, System.Drawing">
     <value>581, 0</value>
   </data>
   <data name="lBBattery.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 15</value>
-  </data>
-  <data name="lBBattery.Text" xml:space="preserve">
-    <value>Batterie</value>
   </data>
   <data name="lBBatt1.Location" type="System.Drawing.Point, System.Drawing">
     <value>590, 22</value>
@@ -6700,14 +6637,8 @@
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
     <value>403, 106</value>
   </data>
-  <data name="tabControllers.Text" xml:space="preserve">
-    <value>Manettes</value>
-  </data>
   <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 22</value>
-  </data>
-  <data name="toolStripLabel1.Text" xml:space="preserve">
-    <value>Nom de Profil:</value>
   </data>
   <data name="tSTBProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 25</value>
@@ -6715,136 +6646,81 @@
   <data name="tSBSaveProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 22</value>
   </data>
-  <data name="tSBSaveProfile.Text" xml:space="preserve">
-    <value>Sauvegarder Profil</value>
-  </data>
   <data name="tSBCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 22</value>
-  </data>
-  <data name="tSBCancel.Text" xml:space="preserve">
-    <value>Annuler</value>
   </data>
   <data name="tSBKeepSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>297, 22</value>
   </data>
-  <data name="tSBKeepSize.Text" xml:space="preserve">
-    <value>Garder les dimensions de la fenêtre après fermeture</value>
-  </data>
   <data name="tsBNewProfle.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 22</value>
-  </data>
-  <data name="tsBNewProfle.Text" xml:space="preserve">
-    <value>Nouveau</value>
   </data>
   <data name="tsBEditProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 22</value>
   </data>
-  <data name="tsBEditProfile.Text" xml:space="preserve">
-    <value>Éditer</value>
-  </data>
   <data name="tsBDeleteProfile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEpSURBVDhPYxhc4GJ69P+zyRH/oVwMsMXX/f9GL2fs8ucS
-        gv9/XDnz/8eZHf932ZtgKFqgp/7/9YJJ/193F/1faqaPacipaL//76c2/P8+p/X/x96y/xvN9eCKQJpB
-        hn+bWgs2YKGhNnZXgGx+3ZD6/0Nb1v+Xdcn/V+ir/wdpfregDy42Q0Eau2YYANn8NMf3//OSULAGkI3P
-        C4PAYtPlpfBrhgGQzQ/S3P4/SLD7fyfEAIwJ2owMQM5+mBv0/6a/FhwTbTtYc2Mm3GYYvuavR9gQkOZH
-        7cVgp9+KsgY7G6QJxIaJ4TRkvZM1WDMosO6leqL4GaQJJAaSu5Psjj0a19ib/7+X6Q/2O7YAAxkCkgPh
-        +fpa2F0B8sI8HTXskkAAksMnPxCAgQEAgp/brMfRrFIAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAASlJREFUOE9jGFzgYnr0/7PJEf+hXAywxdf9/0YvZ+zy5xKC/39cOfP/x5kd/3fZ
+        m2AoWqCn/v/1gkn/X3cX/V9qpo9pyKlov//vpzb8/z6n9f/H3rL/G8314IpAmkGGf5taCzZgoaE2dleA
+        bH7dkPr/Q1vW/5d1yf9X6Kv/B2l+t6APLjZDQRq7ZhgA2fw0x/f/85JQsAaQjc8Lg8Bi0+Wl8GuGAZDN
+        D9Lc/j9IsPt/J8QAjAnajAxAzn6YG/T/pr8WHBNtO1hzYybcZhi+5q9H2BCQ5kftxWCn34qyBjsbpAnE
+        honhNGS9kzVYMyiw7qV6ovgZpAkkBpK7k+yOPRrX2Jv/v5fpD/Y7tgADGQKSA+H5+lrYXQHywjwdNeyS
+        QACSwyc/EICBAQCCn9usx9GsUgAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="tsBDeleteProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 22</value>
   </data>
-  <data name="tsBDeleteProfile.Text" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
   <data name="tSBDupProfile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADQSURBVDhPlZCxCsIwEIbziO76CL6CXYNjJl1dMnQpLobu
-        Lm7ViuCkUwW1jtItcmdPbXoh8YOflHD5+nNCa225iFhg2AXu8jyPk/gEQJSEhsvz3a6PV/yGh8aYT9pR
-        Hq4BkCQJm14rEuxON2ywKi423VQ47EKS9ukbt0HTPPH0CQCl1FcSajBdHuwk3aNYSomPKR2BC9cAqB81
-        picINRgvSjucb+1AFXj/dwPaDZ0dgZssy9gGoxnTwAcsjIC//gYICmAACO7ABwl8RAlCEUKIFyWXYHlY
-        K643AAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAANBJREFUOE+VkLEKwjAQhvOI7voIvoJdg2MmXV0ydCkuhu4ubtWK4KRTBbWO0i1y
+        Z09teiHxg5+UcPn6c0JrbbmIWGDYBe7yPI+T+ARAlISGy/Pdro9X/IaHxphP2lEergGQJAmbXisS7E43
+        bLAqLjbdVDjsQpL26Ru3QdM88fQJAKXUVxJqMF0e7CTdo1hKiY8pHYEL1wCoHzWmJwg1GC9KO5xv7UAV
+        eP93A9oNnR2BmyzL2AajGdPAByyMgL/+BggKYAAI7sAHCXxECUIRQogXJZdgeVgrrjcAAAAASUVORK5C
+        YII=
 </value>
   </data>
   <data name="tSBDupProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 22</value>
   </data>
-  <data name="tSBDupProfile.Text" xml:space="preserve">
-    <value>Dupliquer</value>
-  </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 22</value>
   </data>
-  <data name="tSBImportProfile.Text" xml:space="preserve">
-    <value>Importer</value>
-  </data>
   <data name="tSBExportProfile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAG7SURBVDhPjZNNSwJRFIbd9AVFLfoV/pQW0qagdcuIFolF
-        kK0SpTQkosTogyaIYHITRhkZiEaSVARRmhliSlBYfhRRdvI9zr2ZCHXgcGfu3Oc5Z+7c0SEeow5Cpi8s
-        nLdhI+Vj43QdNPE18iwwxCMDtQHoLb0kBYXUPN2dO+k9G6KvVy+PyI+cp74EEBZiAfLpxs4V4xEbPd/v
-        SRGeBT39fwuQp75Bih5PsKR6Purv/p8AlSBw7y6S3hEgvfuS2ifDPMosz0tBKbfJYDGjcKJS+GiaAvtm
-        Urc3eHHbygM1KUXq3PrkEcJfAoCll3XexJDax6+BxJ7YvQo1uzIMipQdJE7MsnI+ucwCdIDXgACdYHE1
-        jG6kAN8coIBRER2INNhWf1UH3OqM/QjwbXEOcolZeaDQwYHSSzPKMDWMHUoYYOOASh2mHRZLQSG5wJWz
-        cSufQsC+tR4yWKcYQtUWS4RhzIODRApQVSTuIUAXEIiWAadifimQIQSojA3FPWBtIX9zwKNzI9TlUvlZ
-        hdQCQDUsOoAAEGDROmBsrIZW4ipgrBzd8kNcYxQCZK1Aw+oH/kLIaqtgx+WmydDpvgHDWmdFLR8MQgAA
-        AABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAbtJREFUOE+Nk01LAlEUht30BUUt+hX+lBbSpqB1y4gWiUWQrRKlNCSixOiDJohg
+        chNGGRmIRpJUBFGaGWJKUFh+FFF28j3OvZkIdeBwZ+7c5zln7tzRIR6jDkKmLyyct2Ej5WPjdB008TXy
+        LDDEIwO1AegtvSQFhdQ83Z076T0boq9XL4/Ij5ynvgQQFmIB8unGzhXjERs93+9JEZ4FPf1/C5CnvkGK
+        Hk+wpHo+6u/+nwCVIHDvLpLeESC9+5LaJ8M8yizPS0Ept8lgMaNwolL4aJoC+2ZStzd4cdvKAzUpRerc
+        +uQRwl8CgKWXdd7EkNrHr4HEnti9CjW7MgyKlB0kTsyycj65zAJ0gNeAAJ1gcTWMbqQA3xyggFERHYg0
+        2FZ/VQfc6oz9CPBtcQ5yiVl5oNDBgdJLM8owNYwdShhg44BKHaYdFktBIbnAlbNxK59CwL61HjJYpxhC
+        1RZLhGHMg4NEClBVJO4hQBcQiJYBp2J+KZAhBKiMDcU9YG0hf3PAo3Mj1OVS+VmF1AJANSw6gAAQYNE6
+        YGyshlbiKmCsHN3yQ1xjFAJkrUDD6gf+Qshqq2DH5abJ0Om+AcNaZ0UtHwxCAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="tSBExportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 22</value>
   </data>
-  <data name="tSBExportProfile.Text" xml:space="preserve">
-    <value>Exporter</value>
-  </data>
-  <data name="tabProfiles.Text" xml:space="preserve">
-    <value>Profils</value>
-  </data>
-  <data name="tabAutoProfiles.Text" xml:space="preserve">
-    <value>Profils Auto</value>
-  </data>
   <data name="hideDS4CheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 17</value>
-  </data>
-  <data name="hideDS4CheckBox.Text" xml:space="preserve">
-    <value>Cacher la Manette DS4</value>
   </data>
   <data name="StartWindowsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 17</value>
   </data>
-  <data name="StartWindowsCheckBox.Text" xml:space="preserve">
-    <value>Lancer au Démarrage</value>
-  </data>
   <data name="startMinimizedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 17</value>
   </data>
-  <data name="startMinimizedCheckBox.Text" xml:space="preserve">
-    <value>Minimiser au Démarrage</value>
-  </data>
   <data name="cBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 17</value>
-  </data>
-  <data name="cBUpdate.Text" xml:space="preserve">
-    <value>Vérifier les Mises à Jour au Démarrage</value>
-  </data>
-  <data name="cBUpdateTime.Items" xml:space="preserve">
-    <value>heures</value>
-  </data>
-  <data name="cBUpdateTime.Items1" xml:space="preserve">
-    <value>jours</value>
   </data>
   <data name="cBUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>135, 0</value>
   </data>
   <data name="lBCheckEvery.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 13</value>
-  </data>
-  <data name="lBCheckEvery.Text" xml:space="preserve">
-    <value>Vérifier chaque</value>
   </data>
   <data name="nUDUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>85, 1</value>
@@ -6855,20 +6731,11 @@
   <data name="cBNotifications.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 17</value>
   </data>
-  <data name="cBNotifications.Text" xml:space="preserve">
-    <value>Afficher les Notifications</value>
-  </data>
   <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 13</value>
   </data>
-  <data name="linkProfiles.Text" xml:space="preserve">
-    <value>Dossier de Profil</value>
-  </data>
   <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 13</value>
-  </data>
-  <data name="lLBUpdate.Text" xml:space="preserve">
-    <value>Vérifier les Mises à Jour</value>
   </data>
   <data name="lLBUpdate.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopLeft</value>
@@ -6876,14 +6743,8 @@
   <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 13</value>
   </data>
-  <data name="linkSetup.Text" xml:space="preserve">
-    <value>Installation de la Manette</value>
-  </data>
   <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 13</value>
-  </data>
-  <data name="linkUninstall.Text" xml:space="preserve">
-    <value>Désinstaller le pilote (driver) VBus</value>
   </data>
   <data name="linkUninstall.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopLeft</value>
@@ -6891,10 +6752,214 @@
   <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 13</value>
   </data>
+  <data name="assignToController1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Choisir manette 1</value>
+  </data>
+  <data name="assignToController2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Choisir manette 2</value>
+  </data>
+  <data name="assignToController3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Choisir manette 3</value>
+  </data>
+  <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Choisir manette 4</value>
+  </data>
+  <data name="bnEditC1.Text" xml:space="preserve">
+    <value>Éditer</value>
+  </data>
+  <data name="bnEditC2.Text" xml:space="preserve">
+    <value>Éditer</value>
+  </data>
+  <data name="bnEditC3.Text" xml:space="preserve">
+    <value>Éditer</value>
+  </data>
+  <data name="bnEditC4.Text" xml:space="preserve">
+    <value>Éditer</value>
+  </data>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>Effacer</value>
+  </data>
+  <data name="btnStartStop.Text" xml:space="preserve">
+    <value>Démarrer</value>
+  </data>
+  <data name="cBDisconnectBT.Text" xml:space="preserve">
+    <value>Déconnecter du Bluetooth à l'arrêt</value>
+  </data>
+  <data name="cBDownloadLangauge.Text" xml:space="preserve">
+    <value>Télécharger le pack de langues avec Maj</value>
+  </data>
+  <data name="cBNotifications.Text" xml:space="preserve">
+    <value>Afficher les Notifications</value>
+  </data>
+  <data name="cBQuickCharge.Text" xml:space="preserve">
+    <value>Charge Rapide</value>
+  </data>
+  <data name="cBSwipeProfiles.Text" xml:space="preserve">
+    <value>heures</value>
+  </data>
+  <data name="cBUpdate.Text" xml:space="preserve">
+    <value>Vérifier les mises à jour au démarrage</value>
+  </data>
+  <data name="cBUpdateTime.Items" xml:space="preserve">
+    <value>heures</value>
+  </data>
+  <data name="cBUpdateTime.Items1" xml:space="preserve">
+    <value>jours</value>
+  </data>
+  <data name="chData.Text" xml:space="preserve">
+    <value>Données</value>
+  </data>
+  <data name="chTime.Text" xml:space="preserve">
+    <value>Temps</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Effacer (Del)</value>
+  </data>
+  <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dupliquer (Ctrl+C)</value>
+  </data>
+  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Éditer le Profil de la Manette 1</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Éditer le Profil de la Manette 2</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Éditer le Profil de la Manette 3</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Éditer le Profil de la Manette 4</value>
+  </data>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>Edition</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sortir (Souris du Milieu)</value>
+  </data>
+  <data name="exportToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exporter</value>
+  </data>
+  <data name="hideDS4CheckBox.Text" xml:space="preserve">
+    <value>Cacher la Manette DS4</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>État</value>
+  </data>
+  <data name="lbBattery.Text" xml:space="preserve">
+    <value>Batterie</value>
+  </data>
+  <data name="lbCheckEvery.Text" xml:space="preserve">
+    <value>Vérifier chaque</value>
+  </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="lbNoControllers.Text" xml:space="preserve">
+    <value>Aucune manette connectée</value>
+  </data>
+  <data name="lbSelectedProfile.Text" xml:space="preserve">
+    <value>Profil Sélectionné</value>
+  </data>
+  <data name="lbStatus.Text" xml:space="preserve">
+    <value>État</value>
+  </data>
+  <data name="linkProfiles.Text" xml:space="preserve">
+    <value>Dossier de Profil</value>
+  </data>
+  <data name="linkSetup.Text" xml:space="preserve">
+    <value>Installation de la Manette</value>
+  </data>
+  <data name="linkUninstall.Text" xml:space="preserve">
+    <value>Désinstaller le pilote (driver) VBus</value>
+  </data>
+  <data name="llbHelp.Text" xml:space="preserve">
+    <value>Hotkeys/À propos</value>
+  </data>
+  <data name="lLBUpdate.Text" xml:space="preserve">
+    <value>Vérifier les Mises à Jour</value>
+  </data>
   <data name="lnkControllers.Text" xml:space="preserve">
     <value>Panneau de Configuration</value>
   </data>
+  <data name="newProfileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nouveau Profil</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ouvrir</value>
+  </data>
+  <data name="startMinimizedCheckBox.Text" xml:space="preserve">
+    <value>Minimiser au Démarrage</value>
+  </data>
+  <data name="startToolStripMenuItem.Text" xml:space="preserve">
+    <value>Démarrer</value>
+  </data>
+  <data name="StartWindowsCheckBox.Text" xml:space="preserve">
+    <value>Lancer au Démarrage</value>
+  </data>
+  <data name="tabAutoProfiles.Text" xml:space="preserve">
+    <value>Profils Auto</value>
+  </data>
+  <data name="tabControllers.Text" xml:space="preserve">
+    <value>Manettes</value>
+  </data>
+  <data name="tabLog.Text" xml:space="preserve">
+    <value>Fichier Log</value>
+  </data>
+  <data name="tabProfiles.Text" xml:space="preserve">
+    <value>Profils</value>
+  </data>
   <data name="tabSettings.Text" xml:space="preserve">
     <value>Paramètres</value>
+  </data>
+  <data name="toolStripLabel1.Text" xml:space="preserve">
+    <value>Nom de Profil:</value>
+  </data>
+  <data name="tSBCancel.Text" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="tsBDeleteProfile.Text" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="tsBDeleteProfile.ToolTipText" xml:space="preserve">
+    <value>Effacer le profil choisi</value>
+  </data>
+  <data name="tSBDupProfile.Text" xml:space="preserve">
+    <value>Dupliquer</value>
+  </data>
+  <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
+    <value>Dupliquer le profil choisi</value>
+  </data>
+  <data name="tsBEditProfile.Text" xml:space="preserve">
+    <value>Éditer</value>
+  </data>
+  <data name="tsBEditProfile.ToolTipText" xml:space="preserve">
+    <value>Editer le profil choisi</value>
+  </data>
+  <data name="tSBExportProfile.Text" xml:space="preserve">
+    <value>Exporter</value>
+  </data>
+  <data name="tSBExportProfile.ToolTipText" xml:space="preserve">
+    <value>Exporter le profil choisi</value>
+  </data>
+  <data name="tSBImportProfile.Text" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="tSBImportProfile.ToolTipText" xml:space="preserve">
+    <value>Importer profil ou profils</value>
+  </data>
+  <data name="tSBKeepSize.Text" xml:space="preserve">
+    <value>Garder les dimensions de la fenêtre après fermeture</value>
+  </data>
+  <data name="tsBNewProfle.Text" xml:space="preserve">
+    <value>Nouveau</value>
+  </data>
+  <data name="tsBNewProfle.ToolTipText" xml:space="preserve">
+    <value>Créer un nouveau profil</value>
+  </data>
+  <data name="tSBSaveProfile.Text" xml:space="preserve">
+    <value>Sauvegarder Profil</value>
+  </data>
+  <data name="tSOptions.Text" xml:space="preserve">
+    <value>Options du profil</value>
   </data>
 </root>

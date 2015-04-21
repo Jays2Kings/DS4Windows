@@ -121,12 +121,6 @@
   <data name="lbAbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>528, 19</value>
   </data>
-  <data name="linkInhexSTER.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 13</value>
-  </data>
-  <data name="linkInhexSTER.Text" xml:space="preserve">
-    <value>InhexSTER (Démarreur de DS4Tool)</value>
-  </data>
   <data name="lLChangelog.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 3</value>
   </data>
@@ -137,54 +131,53 @@
     <value>Liste de nouveautés</value>
   </data>
   <data name="linkDonate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>429, 3</value>
+    <value>421, 3</value>
   </data>
   <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 13</value>
+    <value>103, 13</value>
   </data>
   <data name="linkDonate.Text" xml:space="preserve">
-    <value>Donner via PayPal</value>
+    <value>Donation via PayPal</value>
   </data>
   <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>497, 505</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
     <value>Cacher manette DS4: Cacher les entrées de base (Dinput) de la DS4 de la vérification des autres programmes si vous observez des entrées doubles en plein jeu ou si R2 met le jeu en pause
-
 Cliquez sur le côté gauche du pavé tactile: Left Touch
-
 Cliquez sur le côté droit du pavé tactile: Right Touch
-
 Cliquez sur le pavé tactile avec 2 doigts: Multitouch
-
 Cliquez sur la partie supérieure du pavé tactile: Upper Touch
-
 PS + Options ou maintenir PS pendant 10 secondes: Déconnecter la manette (Bluetooth seulement)
-
 Pavé tactile + PS: Désactiver les glissements sur le pavé tactile (le clique fonctionne toujours)
-
 Clic sur la partie inférieure et droite du pavé tactile*: Clic droit (conseillé d'utiliser quand le côté droit est utilisé comme bouton de souris)
-
 Deux doigts haut/bas sur la pavé tactile*: Défiler vers le Haut/Bas
-
 Appuyer puis maintenir le pavé tactile*: Glisser du clic gauche de la souris
-
 Glisser gauche ou droit avec 2 doigts sur le pavé tactile*: Cycle through profiles
-
 Shift Modifer: Maintenir une action pour utiliser un autre ensemble de commandes
-
 When mapping keyboard and mouse:
-
 Toggle: The key will remain in a "held down" state until pressed again
-
 Macro: Assigner plusieurs touches à une entrée
-
 Scan du code: Les touches sont interprétées différemment. Peut-être nécessaire pour certains jeux
-
 *si Activé</value>
   </data>
   <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>520, 384</value>
+  </data>
+  <data name="tLPTranslators.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 110</value>
+  </data>
+  <data name="tLPTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>514, 258</value>
+  </data>
+  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="lbTranslators.Text" xml:space="preserve">
+    <value>Traducteurs</value>
+  </data>
+  <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 368</value>
   </data>
   <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
     <value>520, 384</value>
@@ -197,9 +190,5 @@ Scan du code: Les touches sont interprétées différemment. Peut-être nécessa
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>528, 429</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
 </root>

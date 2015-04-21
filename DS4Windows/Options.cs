@@ -33,6 +33,8 @@ namespace DS4Windows
         public Options(int deviceNum, string name, DS4Form rt)
         {
             InitializeComponent();
+            btnRumbleHeavyTest.Text = Properties.Resources.TestHText;
+            btnRumbleLightTest.Text = Properties.Resources.TestLText;
             device = deviceNum;
             filename = name;
             colored = pBRainbow.Image;
@@ -149,8 +151,8 @@ namespace DS4Windows
                 nUDTap.Value = Global.TapSensitivity[device];
                 cBTap.Checked = Global.TapSensitivity[device] > 0;
                 cBDoubleTap.Checked = Global.DoubleTap[device];
-                nUDL2.Value = (decimal)Global.L2Deadzone[device] / 255;
-                nUDR2.Value = (decimal)Global.R2Deadzone[device] / 255;
+                nUDL2.Value = Math.Round((decimal)Global.L2Deadzone[device] / 255, 2);
+                nUDR2.Value = Math.Round((decimal)Global.R2Deadzone[device] / 255, 2);
                 cBTouchpadJitterCompensation.Checked = Global.TouchpadJitterCompensation[device];
                 cBlowerRCOn.Checked = Global.LowerRCOn[device];
                 cBFlushHIDQueue.Checked = Global.FlushHIDQueue[device];
@@ -565,8 +567,8 @@ namespace DS4Windows
             Global.TapSensitivity[device] = (byte)nUDTap.Value;
             Global.IdleDisconnectTimeout[device] = (int)(nUDIdleDisconnect.Value * 60);
             Global.Rainbow[device] = (int)nUDRainbow.Value;
-            Global.RSDeadzone[device] = (byte)Math.Round((nUDRS.Value * 127), 0);
-            Global.LSDeadzone[device] = (byte)Math.Round((nUDLS.Value * 127), 0);
+            Global.RSDeadzone[device] = (int)Math.Round((nUDRS.Value * 127), 0);
+            Global.LSDeadzone[device] = (int)Math.Round((nUDLS.Value * 127), 0);
             Global.ButtonMouseSensitivity[device] = (int)numUDMouseSens.Value;
             Global.FlashAt[device] = (int)nUDflashLED.Value;
             Global.SXDeadzone[device] = (double)nUDSX.Value;
@@ -1161,7 +1163,7 @@ namespace DS4Windows
                 return ((KeyValuePair<string, string>)button.Tag).Key;
             else if (shift && extracontrol && !(regbutton.Tag is KeyValuePair<object, string>) 
                 && (button.Tag == null ||((KeyValuePair<object, string>)button.Tag).Key == null))
-                return Properties.Resources.FallBackTo.Replace("button*", UpdateRegButtonList(regbutton));
+                return Properties.Resources.FallBackTo.Replace("*button*", UpdateRegButtonList(regbutton));
             else if (shift && !extracontrol && (button.Tag == null || ((KeyValuePair<object, string>)button.Tag).Key == null))
                 return Properties.Resources.FallBackTo.Replace("button*", UpdateRegButtonList(regbutton));
             else if (!shift && !extracontrol)
@@ -1356,26 +1358,23 @@ namespace DS4Windows
         private void nUDSX_ValueChanged(object sender, EventArgs e)
         {
             Global.SXDeadzone[device] = (double)nUDSX.Value;
-            if (nUDSX.Value <= 0 && nUDSZ.Value <= 0)
-                pBSADeadzone.Visible = false;
-            else
-            {
-                pBSADeadzone.Visible = true;
-                pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
-                pBSADeadzone.Location = new Point(lbSATrack.Location.X + (int)(dpix * 63) - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + (int)(dpix * 63) - pBSADeadzone.Size.Height / 2);
-            }
+            lbSATrack.Refresh();            
         }
 
         private void nUDSZ_ValueChanged(object sender, EventArgs e)
         {
             Global.SZDeadzone[device] = (double)nUDSZ.Value;
-            if (nUDSX.Value <= 0 && nUDSZ.Value <= 0)
-                pBSADeadzone.Visible = false;
-            else
+            lbSATrack.Refresh();
+        }
+
+        private void lbSATrack_Paint(object sender, PaintEventArgs e)
+        {
+            if (nUDSX.Value > 0 || nUDSZ.Value > 0)
             {
-                pBSADeadzone.Visible = true;
-                pBSADeadzone.Size = new Size((int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
-                pBSADeadzone.Location = new Point(lbSATrack.Location.X + (int)(dpix * 63) - pBSADeadzone.Size.Width / 2, lbSATrack.Location.Y + (int)(dpiy * 63) - pBSADeadzone.Size.Height / 2);
+                e.Graphics.FillEllipse(Brushes.Red,
+                    (int)(dpix * 63) - (int)(nUDSX.Value * 125) / 2,
+                    (int)(dpix * 63) - (int)(nUDSZ.Value * 125) / 2,
+                    (int)(nUDSX.Value * 125), (int)(nUDSZ.Value * 125));
             }
         }
 
@@ -1406,27 +1405,57 @@ namespace DS4Windows
 
         private void numUDRS_ValueChanged(object sender, EventArgs e)
         {
-            Global.RSDeadzone[device] = (byte)Math.Round((nUDRS.Value * 127),0);
-            if (nUDRS.Value <= 0)
-                pBRSDeadzone.Visible = false;
-            else
+            nUDRS.Value = Math.Round(nUDRS.Value, 2);
+            Global.RSDeadzone[device] = (int)Math.Round((nUDRS.Value * 127),0);
+            lbRSTrack.BackColor = nUDRS.Value >= 0 ? Color.White : Color.Red;
+            lbRSTrack.Refresh();
+        }
+
+        private void lbRSTrack_Paint(object sender, PaintEventArgs e)
+        {
+            if (nUDRS.Value > 0)
             {
-                pBRSDeadzone.Visible = true;
-                pBRSDeadzone.Size = new Size((int)(nUDRS.Value * 125), (int)(nUDRS.Value * 125));
-                pBRSDeadzone.Location = new Point(lbRSTrack.Location.X + (int)(dpix * 63) - pBRSDeadzone.Size.Width / 2, lbRSTrack.Location.Y + (int)(dpiy * 63) - pBRSDeadzone.Size.Width / 2);
+                int value = (int)(nUDRS.Value * 125);
+                e.Graphics.FillEllipse(Brushes.Red,
+                    (int)(dpix * 63) - value / 2,
+                    (int)(dpix * 63) - value / 2,
+                    value, value);
+            }
+            else if (nUDRS.Value < 0)
+            {
+                int value = (int)((1 + nUDRS.Value) * 125);
+                e.Graphics.FillEllipse(Brushes.White,
+                    (int)(dpix * 63) - value / 2,
+                    (int)(dpix * 63) - value / 2,
+                    value, value);
             }
         }
 
         private void numUDLS_ValueChanged(object sender, EventArgs e)
         {
-            Global.LSDeadzone[device] = (byte)Math.Round((nUDLS.Value * 127),0);
-            if (nUDLS.Value <= 0)
-                pBLSDeadzone.Visible = false;
-            else
+            nUDLS.Value = Math.Round(nUDLS.Value, 2);
+            Global.LSDeadzone[device] = (int)Math.Round((nUDLS.Value * 127), 0);
+            lbLSTrack.BackColor = nUDLS.Value >= 0 ? Color.White : Color.Red;
+            lbLSTrack.Refresh();
+        }
+
+        private void lbLSTrack_Paint(object sender, PaintEventArgs e)
+        {
+            if (nUDLS.Value > 0)
             {
-                pBLSDeadzone.Visible = true;
-                pBLSDeadzone.Size = new Size((int)(nUDLS.Value*125), (int)(nUDLS.Value*125));
-                pBLSDeadzone.Location = new Point(lbLSTrack.Location.X + (int)(dpix * 63) - pBLSDeadzone.Size.Width / 2, lbLSTrack.Location.Y + (int)(dpiy * 63) - pBLSDeadzone.Size.Width / 2);
+                int value = (int)(nUDLS.Value * 125);
+                e.Graphics.FillEllipse(Brushes.Red,
+                    (int)(dpix * 63) - value / 2,
+                    (int)(dpix * 63) - value / 2,
+                    value, value);
+            }
+            else if (nUDLS.Value < 0)
+            {
+                int value = (int)((1 + nUDLS.Value) * 125);
+                e.Graphics.FillEllipse(Brushes.White,
+                    (int)(dpix * 63) - value / 2,
+                    (int)(dpix * 63) - value / 2,
+                    value, value);
             }
         }
 
@@ -1512,7 +1541,6 @@ namespace DS4Windows
         private void lbSATip_Click(object sender, EventArgs e)
         {
             pnlSixaxis.Visible = !pnlSixaxis.Visible;
-            pBSADeadzone.Visible = !pBSADeadzone.Visible;
             btnSATrack.Visible = !btnSATrack.Visible;
         }
 

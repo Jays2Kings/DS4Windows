@@ -127,6 +127,12 @@
   <data name="cBLightbyBattery.Text" xml:space="preserve">
     <value>Couleur selon le % de batterie</value>
   </data>
+  <data name="lbGreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>V</value>
+  </data>
   <data name="cBDoubleTap.Location" type="System.Drawing.Point, System.Drawing">
     <value>119, 41</value>
   </data>
@@ -179,11 +185,29 @@ deux fois</value>
   <data name="lbButtonMouseSens.Text" xml:space="preserve">
     <value>Sensibilité de la souris:</value>
   </data>
+  <data name="lbIdleMinutes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 46</value>
+  </data>
+  <data name="lbIdleMinutes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 13</value>
+  </data>
+  <data name="lbIdleMinutes.Text" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="nUDIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 44</value>
+  </data>
   <data name="lbFull.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 13</value>
   </data>
   <data name="lbFull.Text" xml:space="preserve">
     <value>Plein:</value>
+  </data>
+  <data name="lbLowGreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>V</value>
   </data>
   <data name="lbEmpty.Size" type="System.Drawing.Size, System.Drawing">
     <value>31, 13</value>
@@ -192,16 +216,28 @@ deux fois</value>
     <value>Vide:</value>
   </data>
   <data name="numUDMouseSens.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 16</value>
-  </data>
-  <data name="gBTouchpad.Text" xml:space="preserve">
-    <value>Pavé tactile</value>
+    <value>123, 15</value>
   </data>
   <data name="cbStartTouchpadOff.Location" type="System.Drawing.Point, System.Drawing">
     <value>253, 20</value>
   </data>
-  <data name="gBOther.Text" xml:space="preserve">
-    <value>Autre</value>
+  <data name="cbStartTouchpadOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 17</value>
+  </data>
+  <data name="cbStartTouchpadOff.Text" xml:space="preserve">
+    <value>Démarrer avec le scroll off</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Pavé tactile</value>
+  </data>
+  <data name="cBDinput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>288, 102</value>
+  </data>
+  <data name="cBDinput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 17</value>
+  </data>
+  <data name="cBDinput.Text" xml:space="preserve">
+    <value>Utiliser Dinput seulement</value>
   </data>
   <data name="pBProgram.Location" type="System.Drawing.Point, System.Drawing">
     <value>209, 96</value>
@@ -216,11 +252,38 @@ avec le profil</value>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
     <value>137, 98</value>
   </data>
+  <data name="btnBrowse.Text" xml:space="preserve">
+    <value>Parcourir...</value>
+  </data>
+  <data name="lbUseController.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 13</value>
+  </data>
+  <data name="lbUseController.Text" xml:space="preserve">
+    <value>Utiliser manette</value>
+  </data>
   <data name="cBMouseAccel.Location" type="System.Drawing.Point, System.Drawing">
     <value>178, 17</value>
   </data>
-  <data name="gBLightbar.Text" xml:space="preserve">
-    <value>Barre lumineuse</value>
+  <data name="cBMouseAccel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 17</value>
+  </data>
+  <data name="cBMouseAccel.Text" xml:space="preserve">
+    <value>Accéleration de la souris</value>
+  </data>
+  <data name="nUDSixaxis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 73</value>
+  </data>
+  <data name="cBControllerInput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>123, 74</value>
+  </data>
+  <data name="cBControllerInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 17</value>
+  </data>
+  <data name="cBControllerInput.Text" xml:space="preserve">
+    <value>Pour mappage et lecture valeurs</value>
+  </data>
+  <data name="gBOther.Text" xml:space="preserve">
+    <value>Autre</value>
   </data>
   <data name="cBFlashType.Items" xml:space="preserve">
     <value>Clignoter à</value>
@@ -230,9 +293,6 @@ avec le profil</value>
   </data>
   <data name="cBFlashType.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 21</value>
-  </data>
-  <data name="cBFlashType.Text" xml:space="preserve">
-    <value>Clignoter à</value>
   </data>
   <data name="cBWhileCharging.Items1" xml:space="preserve">
     <value>Pulsation</value>
@@ -264,14 +324,32 @@ avec le profil</value>
   <data name="nUDflashLED.Location" type="System.Drawing.Point, System.Drawing">
     <value>88, 16</value>
   </data>
+  <data name="cBShiftLight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 17</value>
+  </data>
+  <data name="cBShiftLight.Text" xml:space="preserve">
+    <value>Utiliser une autre couleur pour le mode Shift</value>
+  </data>
   <data name="lbShiftGreen.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
   </data>
   <data name="lbShiftGreen.Text" xml:space="preserve">
     <value>V</value>
   </data>
+  <data name="gBLightbar.Text" xml:space="preserve">
+    <value>Barre lumineuse</value>
+  </data>
+  <data name="btnRumbleLightTest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 23</value>
+  </data>
   <data name="gBRumble.Text" xml:space="preserve">
     <value>Vibrer</value>
+  </data>
+  <data name="lbRSTip.Text" xml:space="preserve">
+    <value>Stick Droit</value>
+  </data>
+  <data name="lbLSTip.Text" xml:space="preserve">
+    <value>Stick Gauche</value>
   </data>
   <data name="pBSADeadzone.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -537,6 +615,108 @@ avec le profil</value>
         AElFTkSuQmCC
 </value>
   </data>
+  <data name="lb6Accel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 13</value>
+  </data>
+  <data name="lb6Accel.Text" xml:space="preserve">
+    <value>Accéleration</value>
+  </data>
+  <data name="lb6Gryo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 13</value>
+  </data>
+  <data name="lb6Gryo.Text" xml:space="preserve">
+    <value>Gyroscope</value>
+  </data>
+  <data name="tPController.Text" xml:space="preserve">
+    <value>Visualisation des commandes</value>
+  </data>
+  <data name="defaultToolStripMenuItem.Text" xml:space="preserve">
+    <value>Par défaut</value>
+  </data>
+  <data name="tSMIDPadInverted.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMIDPadInverted.Text" xml:space="preserve">
+    <value>Inversé</value>
+  </data>
+  <data name="tSMIDPadInvertedX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMIDPadInvertedX.Text" xml:space="preserve">
+    <value>X Inversé</value>
+  </data>
+  <data name="tSMIDPadInvertedY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMIDPadInvertedY.Text" xml:space="preserve">
+    <value>Y inversé</value>
+  </data>
+  <data name="tSMILSInverted.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMILSInverted.Text" xml:space="preserve">
+    <value>Inversé</value>
+  </data>
+  <data name="tSMILSInvertedX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMILSInvertedX.Text" xml:space="preserve">
+    <value>X Inversé</value>
+  </data>
+  <data name="tSMILSInvertedY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMILSInvertedY.Text" xml:space="preserve">
+    <value>Y inversé</value>
+  </data>
+  <data name="LSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Stick Gauche</value>
+  </data>
+  <data name="tSMIRSInverted.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMIRSInverted.Text" xml:space="preserve">
+    <value>Inversé</value>
+  </data>
+  <data name="tSMIRSInvertedX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMIRSInvertedX.Text" xml:space="preserve">
+    <value>X Inversé</value>
+  </data>
+  <data name="tSMIRSInvertedY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMIRSInvertedY.Text" xml:space="preserve">
+    <value>Y inversé</value>
+  </data>
+  <data name="RSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Stick Droit</value>
+  </data>
+  <data name="ArrowKeysToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fleches</value>
+  </data>
+  <data name="tSMIMouseInverted.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMIMouseInverted.Text" xml:space="preserve">
+    <value>Inversé</value>
+  </data>
+  <data name="tSMIMouseInvertedX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMIMouseInvertedX.Text" xml:space="preserve">
+    <value>X Inversé</value>
+  </data>
+  <data name="tSMIMouseInvertedY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 22</value>
+  </data>
+  <data name="tSMIMouseInvertedY.Text" xml:space="preserve">
+    <value>Y inversé</value>
+  </data>
+  <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Souris</value>
+  </data>
   <data name="cBShiftControl.Items" xml:space="preserve">
     <value>(rien)/shift off</value>
   </data>
@@ -558,6 +738,12 @@ avec le profil</value>
   <data name="lbtoUse.Text" xml:space="preserve">
     <value>pour utiliser ces commandes</value>
   </data>
+  <data name="btnShiftFullView.Text" xml:space="preserve">
+    <value>Retour vue complète</value>
+  </data>
+  <data name="btnFullView.Text" xml:space="preserve">
+    <value>Retour vue complète</value>
+  </data>
   <data name="lbControlTip.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 2</value>
   </data>
@@ -566,5 +752,26 @@ avec le profil</value>
   </data>
   <data name="lbControlTip.Text" xml:space="preserve">
     <value>Cliquer sur une touche de la manette pour changer l'action. Utiliser une DS4 pour paramétrer les touches</value>
+  </data>
+  <data name="tPControls.Text" xml:space="preserve">
+    <value>Commandes</value>
+  </data>
+  <data name="cHName.Text" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="cHTrigger.Text" xml:space="preserve">
+    <value>Gachette</value>
+  </data>
+  <data name="btnNewAction.Text" xml:space="preserve">
+    <value>Nouvelle Action</value>
+  </data>
+  <data name="btnEditAction.Text" xml:space="preserve">
+    <value>Modifier action</value>
+  </data>
+  <data name="btnRemAction.Text" xml:space="preserve">
+    <value>Effacer action</value>
+  </data>
+  <data name="tPSpecial.Text" xml:space="preserve">
+    <value>Actions spéciale</value>
   </data>
 </root>

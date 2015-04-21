@@ -119,17 +119,13 @@
             this.lbL2Track = new System.Windows.Forms.Label();
             this.pBDelayTracker = new System.Windows.Forms.PictureBox();
             this.btnSATrack = new System.Windows.Forms.Button();
-            this.btnRSTrack = new System.Windows.Forms.Button();
             this.lbRSTip = new System.Windows.Forms.Label();
             this.lbInputDelay = new System.Windows.Forms.Label();
             this.lbR2Track = new System.Windows.Forms.Label();
             this.lbLSTip = new System.Windows.Forms.Label();
             this.lbSATip = new System.Windows.Forms.Label();
             this.btnLSTrack = new System.Windows.Forms.Button();
-            this.pBSADeadzone = new System.Windows.Forms.PictureBox();
-            this.pBRSDeadzone = new System.Windows.Forms.PictureBox();
             this.lbRSTrack = new System.Windows.Forms.Label();
-            this.pBLSDeadzone = new System.Windows.Forms.PictureBox();
             this.lbLSTrack = new System.Windows.Forms.Label();
             this.tBR2 = new System.Windows.Forms.TrackBar();
             this.tBL2 = new System.Windows.Forms.TrackBar();
@@ -296,6 +292,7 @@
             this.lbLSCurvePercent = new System.Windows.Forms.Label();
             this.lbLSCurve = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
+            this.btnRSTrack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -332,9 +329,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSX)).BeginInit();
             this.tPController.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBDelayTracker)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBSADeadzone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBRSDeadzone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBLSDeadzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBR2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBL2)).BeginInit();
             this.pnlSixaxis.SuspendLayout();
@@ -761,6 +755,11 @@
             0,
             0,
             0});
+            this.nUDRS.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.nUDRS.Name = "nUDRS";
             this.nUDRS.ValueChanged += new System.EventHandler(this.numUDRS_ValueChanged);
             // 
@@ -794,6 +793,11 @@
             0,
             0,
             0});
+            this.nUDLS.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.nUDLS.Name = "nUDLS";
             this.nUDLS.ValueChanged += new System.EventHandler(this.numUDLS_ValueChanged);
             // 
@@ -1216,10 +1220,7 @@
             this.tPController.Controls.Add(this.lbLSTip);
             this.tPController.Controls.Add(this.lbSATip);
             this.tPController.Controls.Add(this.btnLSTrack);
-            this.tPController.Controls.Add(this.pBSADeadzone);
-            this.tPController.Controls.Add(this.pBRSDeadzone);
             this.tPController.Controls.Add(this.lbRSTrack);
-            this.tPController.Controls.Add(this.pBLSDeadzone);
             this.tPController.Controls.Add(this.lbLSTrack);
             this.tPController.Controls.Add(this.tBR2);
             this.tPController.Controls.Add(this.tBL2);
@@ -1246,13 +1247,6 @@
             resources.ApplyResources(this.btnSATrack, "btnSATrack");
             this.btnSATrack.Name = "btnSATrack";
             this.btnSATrack.UseVisualStyleBackColor = false;
-            // 
-            // btnRSTrack
-            // 
-            this.btnRSTrack.BackColor = System.Drawing.Color.Black;
-            resources.ApplyResources(this.btnRSTrack, "btnRSTrack");
-            this.btnRSTrack.Name = "btnRSTrack";
-            this.btnRSTrack.UseVisualStyleBackColor = false;
             // 
             // lbRSTip
             // 
@@ -1287,39 +1281,19 @@
             this.btnLSTrack.Name = "btnLSTrack";
             this.btnLSTrack.UseVisualStyleBackColor = false;
             // 
-            // pBSADeadzone
-            // 
-            this.pBSADeadzone.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.pBSADeadzone, "pBSADeadzone");
-            this.pBSADeadzone.Name = "pBSADeadzone";
-            this.pBSADeadzone.TabStop = false;
-            this.pBSADeadzone.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawCircle);
-            // 
-            // pBRSDeadzone
-            // 
-            this.pBRSDeadzone.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.pBRSDeadzone, "pBRSDeadzone");
-            this.pBRSDeadzone.Name = "pBRSDeadzone";
-            this.pBRSDeadzone.TabStop = false;
-            // 
             // lbRSTrack
             // 
             this.lbRSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.lbRSTrack, "lbRSTrack");
             this.lbRSTrack.Name = "lbRSTrack";
-            // 
-            // pBLSDeadzone
-            // 
-            this.pBLSDeadzone.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.pBLSDeadzone, "pBLSDeadzone");
-            this.pBLSDeadzone.Name = "pBLSDeadzone";
-            this.pBLSDeadzone.TabStop = false;
+            this.lbRSTrack.Paint += new System.Windows.Forms.PaintEventHandler(this.lbRSTrack_Paint);
             // 
             // lbLSTrack
             // 
             this.lbLSTrack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.lbLSTrack, "lbLSTrack");
             this.lbLSTrack.Name = "lbLSTrack";
+            this.lbLSTrack.Paint += new System.Windows.Forms.PaintEventHandler(this.lbLSTrack_Paint);
             // 
             // tBR2
             // 
@@ -1345,6 +1319,7 @@
             resources.ApplyResources(this.lbSATrack, "lbSATrack");
             this.lbSATrack.Name = "lbSATrack";
             this.lbSATrack.Click += new System.EventHandler(this.lbSATrack_Click);
+            this.lbSATrack.Paint += new System.Windows.Forms.PaintEventHandler(this.lbSATrack_Paint);
             // 
             // pnlSixaxis
             // 
@@ -3191,6 +3166,13 @@
             this.advColorDialog.Color = System.Drawing.Color.Blue;
             this.advColorDialog.FullOpen = true;
             // 
+            // btnRSTrack
+            // 
+            this.btnRSTrack.BackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.btnRSTrack, "btnRSTrack");
+            this.btnRSTrack.Name = "btnRSTrack";
+            this.btnRSTrack.UseVisualStyleBackColor = false;
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3250,9 +3232,6 @@
             this.tPController.ResumeLayout(false);
             this.tPController.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBDelayTracker)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBSADeadzone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBRSDeadzone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBLSDeadzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBR2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBL2)).EndInit();
             this.pnlSixaxis.ResumeLayout(false);
@@ -3391,17 +3370,13 @@
         private System.Windows.Forms.Label lbL2Track;
         private System.Windows.Forms.PictureBox pBDelayTracker;
         private System.Windows.Forms.Button btnSATrack;
-        private System.Windows.Forms.Button btnRSTrack;
         private System.Windows.Forms.Label lbRSTip;
         private System.Windows.Forms.Label lbInputDelay;
         private System.Windows.Forms.Label lbR2Track;
         private System.Windows.Forms.Label lbLSTip;
         private System.Windows.Forms.Label lbSATip;
         private System.Windows.Forms.Button btnLSTrack;
-        private System.Windows.Forms.PictureBox pBSADeadzone;
-        private System.Windows.Forms.PictureBox pBRSDeadzone;
         private System.Windows.Forms.Label lbRSTrack;
-        private System.Windows.Forms.PictureBox pBLSDeadzone;
         private System.Windows.Forms.Label lbLSTrack;
         private System.Windows.Forms.TrackBar tBR2;
         private System.Windows.Forms.TrackBar tBL2;
@@ -3565,5 +3540,6 @@
         private System.Windows.Forms.ComboBox cBFlashType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nUDRainbowB;
+        private System.Windows.Forms.Button btnRSTrack;
     }
 }

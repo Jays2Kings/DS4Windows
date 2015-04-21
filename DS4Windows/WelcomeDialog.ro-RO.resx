@@ -117,84 +117,75 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="bnStep1.Text" xml:space="preserve">
+    <value>Pasul 1: Instalează driver-ul DS4</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="bnAddPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 23</value>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 36</value>
   </data>
-  <data name="pBProfilesTip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>614, 133</value>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Pasul 2: Dacă aveți Windows 7 sau mai vechi, instalați driver-ul 360</value>
   </data>
-  <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 13</value>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 239</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="bnHideUnchecked.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="labelBluetooth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 191</value>
   </data>
-  <data name="bnHideUnchecked.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 2</value>
+  <data name="labelBluetooth.Text" xml:space="preserve">
+    <value>Pentru a seta bluetooth (opțional):
+Ține apăsat butoanele PS și Share pentru 3 secunde
+Bara de lumină va începe să lumineze cu blițuri duble</value>
   </data>
-  <data name="bnHideUnchecked.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 23</value>
+  <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 142</value>
   </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+  <data name="labelUSB.Text" xml:space="preserve">
+    <value>Pasul 3: Conectarea manetei DualShock 4
+Pentru a seta cu fir/usb:
+Conectați micro usb-ul la PC și la DualShock 4</value>
   </data>
-  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+  <data name="labelBluetooth2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 374</value>
   </data>
-  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+  <data name="labelBluetooth2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 70</value>
   </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
+  <data name="labelBluetooth2.Text" xml:space="preserve">
+    <value>Odată ce blițurile încep, mergeți la setările Bluetooth
+și conectațivă la "maneta fără fir"
+Dacă este cerut, scrieți codul de împerechere "0000"
+După împerechere, maneta este gata de folosire. Distracție placută!</value>
   </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 92</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 102</value>
   </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Origin Spiel hinzufügen</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>315, 31</value>
   </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Startmenü Programm hinzufügen</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Dacă ați folosit în trecut maneta 360 pe acest PC, puteți sări peste acest pas</value>
   </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Steam Spiel hinzufügen</value>
+  <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
+    <value>117, 448</value>
   </data>
-  <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Programme hinzufügen</value>
+  <data name="bnFinish.Text" xml:space="preserve">
+    <value>Încheiere</value>
   </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Entfernen</value>
+  <data name="linkBluetoothSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>169, 386</value>
   </data>
-  <data name="bnHideUnchecked.Text" xml:space="preserve">
-    <value>Abgewählte verstecken</value>
+  <data name="linkBluetoothSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 13</value>
   </data>
-  <data name="bnSave.Text" xml:space="preserve">
-    <value>Speichern</value>
+  <data name="linkBluetoothSettings.Text" xml:space="preserve">
+    <value>Setări Bluetooth</value>
   </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Suche nach anderen Programmen</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>315, 476</value>
   </data>
-  <data name="lBController1.Text" xml:space="preserve">
-    <value>Controller 1</value>
-  </data>
-  <data name="lBController2.Text" xml:space="preserve">
-    <value>Controller 2</value>
-  </data>
-  <data name="lBController3.Text" xml:space="preserve">
-    <value>Controller 3</value>
-  </data>
-  <data name="lBController4.Text" xml:space="preserve">
-    <value>Controller 4</value>
-  </data>
-  <data name="nameHeader.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="PathHeader.Text" xml:space="preserve">
-    <value>Verzeichnis</value>
-  </data>
-  <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Profile hier auswählen</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Bine ai venit la DS4Windows</value>
   </data>
 </root>

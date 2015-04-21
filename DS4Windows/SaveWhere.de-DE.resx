@@ -124,24 +124,27 @@
     <value>Für die, die ein portables Programm bevorzugen. Beachte: Diese Option funktioniert nicht in einem Administratorverzeichnis ohne Benutzerkontensteuerung.</value>
   </data>
   <data name="bnPrgmFolder.Text" xml:space="preserve">
-    <value>Programmverzeichnis</value>
+    <value>Programm Verzeichnis</value>
   </data>
   <data name="lbPickWhere.Text" xml:space="preserve">
-    <value>Wähle aus wo du die Einstellungen und Profile speichern möchtest.</value>
+    <value>Wähle aus wo du die Einstellungen und Profile speichern möchtest</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbMultiSaves.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 13</value>
+    <value>154, 13</value>
   </data>
   <data name="lbMultiSaves.Text" xml:space="preserve">
-    <value>Mehrere Speicherorte entdeckt.</value>
+    <value>Mehrere Speicherorte entdeckt</value>
+  </data>
+  <data name="cBDeleteOther.Location" type="System.Drawing.Point, System.Drawing">
+    <value>275, 0</value>
   </data>
   <data name="cBDeleteOther.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 30</value>
+    <value>142, 30</value>
   </data>
   <data name="cBDeleteOther.Text" xml:space="preserve">
-    <value>Noch nicht die anderen 
-Einstellungen löschen.</value>
+    <value>Lösche die anderen 
+Einstellungen noch nicht</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>418, 159</value>

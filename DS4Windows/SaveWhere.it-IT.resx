@@ -117,36 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Per quelli che preferiscono un'installazione regolare Impostazioni salvate in %appdata%/ds4tool</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Per quelli che preferiscono un programma portatile Nota: questa opzione non funziona se in una cartella admin senza UAC</value>
+  </data>
+  <data name="bnPrgmFolder.Text" xml:space="preserve">
+    <value>Cartella Programma</value>
+  </data>
+  <data name="lbPickWhere.Text" xml:space="preserve">
+    <value>Scegli dove vuoi che le impostazioni ed i profili vengano salvati</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbMultiSaves.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 13</value>
   </data>
+  <data name="lbMultiSaves.Text" xml:space="preserve">
+    <value>Locazioni di salvataggio multiple rilevate</value>
+  </data>
   <data name="cBDeleteOther.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 30</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>420, 145</value>
-  </data>
-  <data name="bnAppdataFolder.Text" xml:space="preserve">
-    <value>Appdata</value>
-  </data>
-  <data name="bnPrgmFolder.Text" xml:space="preserve">
-    <value>Cartella Programma</value>
   </data>
   <data name="cBDeleteOther.Text" xml:space="preserve">
     <value>Non Cancellare le
 altre impostazioni ancora</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Per quelli che preferiscono un programma portatile Nota: questa opzione non funziona se in una cartella admin senza UAC</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Per quelli che preferiscono un'installazione regolare Impostazioni salvate in %appdata%/ds4tool</value>
-  </data>
-  <data name="lbMultiSaves.Text" xml:space="preserve">
-    <value>Locazioni di salvataggio multiple rilevate</value>
-  </data>
-  <data name="lbPickWhere.Text" xml:space="preserve">
-    <value>Scegli dove vuoi che le impostazioni ed i profili vengano salvati</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>420, 145</value>
   </data>
 </root>

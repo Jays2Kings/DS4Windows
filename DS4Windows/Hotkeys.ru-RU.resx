@@ -142,15 +142,6 @@
   <data name="linkDonate.Text" xml:space="preserve">
     <value>Сделать пожертвование</value>
   </data>
-  <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 19</value>
-  </data>
-  <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>608, 427</value>
-  </data>
-  <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>600, 401</value>
-  </data>
   <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>577, 454</value>
   </data>
@@ -189,8 +180,32 @@ Pad click on lower right*: Правый клик (удобно, если пра�
 
 * Если включено</value>
   </data>
+  <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>600, 401</value>
+  </data>
+  <data name="tPHotkeys.Text" xml:space="preserve">
+    <value>Горячие клавиши</value>
+  </data>
+  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 13</value>
+  </data>
+  <data name="lbTranslators.Text" xml:space="preserve">
+    <value>Переводчики</value>
+  </data>
+  <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 385</value>
+  </data>
   <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
     <value>600, 401</value>
+  </data>
+  <data name="tPCredits.Text" xml:space="preserve">
+    <value>Титры</value>
+  </data>
+  <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 19</value>
+  </data>
+  <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>608, 427</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>608, 446</value>

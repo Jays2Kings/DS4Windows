@@ -200,23 +200,23 @@
             // 
             // cMSLoadPresets
             // 
+            resources.ApplyResources(this.cMSLoadPresets, "cMSLoadPresets");
             this.cMSLoadPresets.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.altTabToolStripMenuItem,
             this.fromFileToolStripMenuItem});
             this.cMSLoadPresets.Name = "cMSLoadPresets";
             this.cMSLoadPresets.ShowImageMargin = false;
-            resources.ApplyResources(this.cMSLoadPresets, "cMSLoadPresets");
             // 
             // altTabToolStripMenuItem
             // 
-            this.altTabToolStripMenuItem.Name = "altTabToolStripMenuItem";
             resources.ApplyResources(this.altTabToolStripMenuItem, "altTabToolStripMenuItem");
+            this.altTabToolStripMenuItem.Name = "altTabToolStripMenuItem";
             this.altTabToolStripMenuItem.Click += new System.EventHandler(this.altTabToolStripMenuItem_Click);
             // 
             // fromFileToolStripMenuItem
             // 
-            this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
             resources.ApplyResources(this.fromFileToolStripMenuItem, "fromFileToolStripMenuItem");
+            this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
             this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.fromFileToolStripMenuItem_Click);
             // 
             // RecordBox

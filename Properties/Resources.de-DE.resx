@@ -121,13 +121,16 @@
     <value>Name der Aktion existiert bereits</value>
   </data>
   <data name="AddingToList" xml:space="preserve">
-    <value>Zur Liste hinzufügen...</value>
+    <value>zur Liste Hinzufügen...</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
-    <value>Neue Programme Hinzufügen</value>
+    <value>Programme Hinzufügen</value>
+  </data>
+  <data name="ALocactionNeeded" xml:space="preserve">
+    <value>Ein Ort muss angegeben werden, um fortzufahren</value>
   </data>
   <data name="AlwaysRainbow" xml:space="preserve">
-    <value>Immer Regenbogen Modus</value>
+    <value>permanenter Regenbogen Modus</value>
   </data>
   <data name="AssignProfile" xml:space="preserve">
     <value>Controller *number* zuweisen</value>
@@ -139,16 +142,22 @@
     <value>Am besten mit der rechten Seite als Mausfunktion verwendet.</value>
   </data>
   <data name="Browse" xml:space="preserve">
-    <value>Durchsuchen</value>
+    <value>Durchsuchen...</value>
   </data>
   <data name="CannotWriteHere" xml:space="preserve">
-    <value>Kann im aktuellen Verzeichnis nicht speichern. Sollen Einstellungen nach appdata kopiert werden?</value>
+    <value>Kann im aktuellen Verzeichnis nicht speichern. Sollen die Einstellungen nach Appdata kopiert werden?</value>
   </data>
   <data name="Charged" xml:space="preserve">
     <value>Aufgeladen</value>
   </data>
   <data name="Charging" xml:space="preserve">
     <value>Lade: *number*%</value>
+  </data>
+  <data name="CheckBattery" xml:space="preserve">
+    <value>Batterie prüfen</value>
+  </data>
+  <data name="CloseDS4W" xml:space="preserve">
+    <value>DS4Windows schließen?</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
     <value>Beende DS4Windows über das Benachrichtigungssymbol</value>
@@ -171,6 +180,9 @@
   <data name="ControllerWasRemoved" xml:space="preserve">
     <value>Controller *Mac address* wurde entfernt oder hat die Verbindung verloren</value>
   </data>
+  <data name="CopyComplete" xml:space="preserve">
+    <value>Kopieren abgeschlossen, bitte DS4Windows neustarten und Einstellungen aus dem Programmverzeichnis entfernen.</value>
+  </data>
   <data name="CopyFullColor" xml:space="preserve">
     <value>Klicken um Farbe zu kopieren</value>
   </data>
@@ -187,10 +199,13 @@
     <value>Profil löschen?</value>
   </data>
   <data name="DimByBattery" xml:space="preserve">
-    <value>Bei Batterie % dimmen.</value>
+    <value>Bei % Batterie dimmen.</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Schalte X360 Eingabemethode aus und benutze nur DS4's systemeingene Eingabemethode. Verstecke DS4 muss deaktiviert sein.</value>
+    <value>Schalte X360 Eingabemethode aus und benutze nur DS4's systemeigene Eingabemethode. Verstecke DS4 muss deaktiviert sein.</value>
+  </data>
+  <data name="DisconnectBT" xml:space="preserve">
+    <value>Bluetooth-Verbindung trennen</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
     <value>Getrennt</value>
@@ -208,10 +223,14 @@
     <value>DS4Windows Update verfügbar!</value>
   </data>
   <data name="DS4WindowsCannotEditHere" xml:space="preserve">
-    <value>DS4Windows kann Einstellung hier nicht bearbeiten. Fenster wird nun geschlossen.</value>
+    <value>DS4Windows kann hier nicht die Einstellungen bearbeiten. Fenster wird nun geschlossen.</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
-    <value>Bearbeiten</value>
+    <value>Ändern
+</value>
+  </data>
+  <data name="FallBack" xml:space="preserve">
+    <value>Zurückfallen</value>
   </data>
   <data name="FifthMouseDown" xml:space="preserve">
     <value>5. Maustaste runter</value>
@@ -219,11 +238,17 @@
   <data name="FifthMouseUp" xml:space="preserve">
     <value>5. Maustaste hoch</value>
   </data>
+  <data name="FlashAtTip" xml:space="preserve">
+    <value>Klicken um Flash Color zu ändern. Schwarz = Standardfarbe</value>
+  </data>
   <data name="FlushHID" xml:space="preserve">
     <value>Leere HID</value>
   </data>
+  <data name="FlushHIDTip" xml:space="preserve">
+    <value>HID Queue nach jeder Auslesung leeren</value>
+  </data>
   <data name="FoundController" xml:space="preserve">
-    <value>Controller gefunden</value>
+    <value>Controller gefunden: </value>
   </data>
   <data name="FourthMouseDown" xml:space="preserve">
     <value>4. Maustaste unten</value>
@@ -234,11 +259,26 @@
   <data name="Full" xml:space="preserve">
     <value>Voll</value>
   </data>
+  <data name="GyroReadout" xml:space="preserve">
+    <value>Klicken um Sixaxis Gyro Auslesung anzuzeigen</value>
+  </data>
+  <data name="GyroX" xml:space="preserve">
+    <value>GyroX, Links und Rechts Neigen</value>
+  </data>
+  <data name="GyroY" xml:space="preserve">
+    <value>GyroY, Vorwärts und Rückwärts Neigen</value>
+  </data>
+  <data name="GyroZ" xml:space="preserve">
+    <value>GyroZ, Hoch und Runter Neigen</value>
+  </data>
   <data name="Hour" xml:space="preserve">
     <value>Stunde</value>
   </data>
   <data name="Hours" xml:space="preserve">
     <value>Stunden</value>
+  </data>
+  <data name="HoverOverItems" xml:space="preserve">
+    <value>Fahre über die Elemente, um die Beschreibung zu sehen</value>
   </data>
   <data name="IfRemovingDS4Windows" xml:space="preserve">
     <value>Wenn du DS4Windows entfernst, kannst du die Einstellungen löschen. Folge dazu dem Link zum Profilordner.</value>
@@ -253,31 +293,46 @@
     <value>Treiber hier installieren</value>
   </data>
   <data name="Installing" xml:space="preserve">
-    <value>Installiere...</value>
+    <value>Installiere ...</value>
+  </data>
+  <data name="Jitter" xml:space="preserve">
+    <value>Sixaxis verwenden, um die Berechnung der Touchpad-Bewegung zu verbessern.</value>
   </data>
   <data name="KeepThisSize" xml:space="preserve">
     <value>Fenstergröße speichern</value>
   </data>
+  <data name="LatencyNotOverTen" xml:space="preserve">
+    <value>Latenz von Controller *number* ist nun unter 10ms</value>
+  </data>
+  <data name="LatencyOverTen" xml:space="preserve">
+    <value>Latenz von Controller *number* ist über 10ms</value>
+  </data>
   <data name="LaunchProgram" xml:space="preserve">
     <value>Starte *program*</value>
   </data>
+  <data name="LightByBatteryTip" xml:space="preserve">
+    <value>Bei Leerlauf Licht dimmen EIN</value>
+  </data>
   <data name="Loading" xml:space="preserve">
-    <value>Lade...</value>
+    <value>lade...</value>
   </data>
   <data name="LoadProfile" xml:space="preserve">
     <value>Lade *profile*</value>
   </data>
+  <data name="Macro" xml:space="preserve">
+    <value>Makro</value>
+  </data>
   <data name="MakeNewProfile" xml:space="preserve">
-    <value>Erstelle neues Profil</value>
+    <value>erstelle neues Profil</value>
   </data>
   <data name="NA" xml:space="preserve">
-    <value>Nicht verfügbar</value>
+    <value>nicht angegeben</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>Neu</value>
+    <value>neu</value>
   </data>
   <data name="NoMacroRecorded" xml:space="preserve">
-    <value>Es wurde kein Macro aufgezeichnet</value>
+    <value>es wurde kein Makro aufgezeichnet</value>
   </data>
   <data name="noneProfile" xml:space="preserve">
     <value>(leer)</value>
@@ -286,19 +341,25 @@
     <value>leer</value>
   </data>
   <data name="NoProfileLoaded" xml:space="preserve">
-    <value>Kein Profil geladen</value>
+    <value>kein Profil geladen</value>
+  </data>
+  <data name="NotUsingProfile" xml:space="preserve">
+    <value>Controller *number* benutzt kein Profil</value>
   </data>
   <data name="NotValid" xml:space="preserve">
-    <value>Ungültig</value>
+    <value>ungültig</value>
   </data>
   <data name="OpeningInstaller" xml:space="preserve">
-    <value>Öffne Installer</value>
+    <value>starte Installationsroutine</value>
   </data>
   <data name="OpenScpDriver" xml:space="preserve">
-    <value>Bitte ScpDrivers.exe starten</value>
+    <value>bitte ScpDrivers.exe starten</value>
+  </data>
+  <data name="OtherFileLocation" xml:space="preserve">
+    <value>andere Ortsdateien werden gelöscht</value>
   </data>
   <data name="PleaseDownloadUpdater" xml:space="preserve">
-    <value>Lade bitte den Updater herunter und kopiere ihn in dein Programmverzeichnis. Prüfe anschließend erneut nach einem Update.</value>
+    <value>Lade bitte den Updater herunter und kopiere ihn in dein Programmverzeichnis. Suche anschließend erneut nach einem Update.</value>
   </data>
   <data name="PleaseImport" xml:space="preserve">
     <value>Bitte Profil erstellen oder importieren</value>
@@ -312,6 +373,12 @@
   <data name="ProfileFolderMoved" xml:space="preserve">
     <value>Profilordner in den Programmordner verschoben.</value>
   </data>
+  <data name="Programs" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>Experimentell: BT deaktivieren wenn per USB verbunden</value>
+  </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
     <value>Du musst Programme wie Steam oder Uplay beenden, bevor du die Option, "Verstecke DS4 Controller" aktivierst.</value>
   </data>
@@ -319,13 +386,16 @@
     <value>Aufnehmen</value>
   </data>
   <data name="RightClickPresets" xml:space="preserve">
-    <value>Klicke Rechts um eine Voreinstellung für eine Reihe von Steuerungen zu setzen.</value>
+    <value>Rechtsklick, um eine Voreinstellung für eine Reihe von Steuerungen zu setzen.</value>
   </data>
   <data name="SaveRecordedMacro" xml:space="preserve">
     <value>Aufgezeichnetes Makro speichern?</value>
   </data>
+  <data name="ScanCode" xml:space="preserve">
+    <value>Scancode</value>
+  </data>
   <data name="SearchingController" xml:space="preserve">
-    <value>Suche nach Controllern...</value>
+    <value>Suche nach Controllern ...</value>
   </data>
   <data name="SelectActionTitle" xml:space="preserve">
     <value>Wähle eine Aktion für *action*</value>
@@ -333,20 +403,29 @@
   <data name="SetRegularTrigger" xml:space="preserve">
     <value>Normalen Auslöser einstellen</value>
   </data>
+  <data name="SetUnloadTrigger" xml:space="preserve">
+    <value>Löschen Auslöser einstellen</value>
+  </data>
+  <data name="Shortcuts" xml:space="preserve">
+    <value>Tastenkürzel</value>
+  </data>
+  <data name="SixAxisReading" xml:space="preserve">
+    <value>Für erweiterterte Sixaxis Auslesung klicken</value>
+  </data>
   <data name="Starting" xml:space="preserve">
     <value>Starte...</value>
   </data>
   <data name="StartText" xml:space="preserve">
-    <value>Start</value>
+    <value>Starten</value>
   </data>
   <data name="Step1" xml:space="preserve">
     <value>Schritt 1: Installiere den DS4 Treiber</value>
   </data>
   <data name="StopHText" xml:space="preserve">
-    <value>Stop Stark</value>
+    <value>stark stoppen</value>
   </data>
   <data name="StopLText" xml:space="preserve">
-    <value>Stop Schwach</value>
+    <value>leicht stoppen</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
     <value>DS4Windows beendet</value>
@@ -358,19 +437,31 @@
     <value>Beende X360 Controller</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Stop</value>
+    <value>Stoppen</value>
+  </data>
+  <data name="SwipeDown" xml:space="preserve">
+    <value>nach unten wischen</value>
+  </data>
+  <data name="SwipeLeft" xml:space="preserve">
+    <value>nach links wischen</value>
+  </data>
+  <data name="SwipeRight" xml:space="preserve">
+    <value>nach rechts wischen</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Über das Touchpad streichen, um Profil zu wechseln</value>
+    <value>Streiche über das Touchpad, um das Profil zu wechseln</value>
+  </data>
+  <data name="SwipeUp" xml:space="preserve">
+    <value>nach oben wischen</value>
   </data>
   <data name="TapAndHold" xml:space="preserve">
     <value>Zum Ziehen tippen und halten. Leichte Verzögerung bei einzelnen Karteireitern.</value>
   </data>
   <data name="TestHText" xml:space="preserve">
-    <value>Test Stark</value>
+    <value>stark testen</value>
   </data>
   <data name="TestLText" xml:space="preserve">
-    <value>Test Schwach</value>
+    <value>leicht testen</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
     <value>Neigung nach Unten</value>
@@ -390,6 +481,9 @@
   <data name="TouchpadMovementOn" xml:space="preserve">
     <value>Touchpad Bewegung ist jetzt An</value>
   </data>
+  <data name="TouchpadOffTip" xml:space="preserve">
+    <value>Drücke PS+Touchpad zum Reaktivieren</value>
+  </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
     <value>Wischgeste mit 2 Fingern nach Links oder Rechts</value>
   </data>
@@ -397,13 +491,13 @@
     <value>Neuen Namen hier eingeben</value>
   </data>
   <data name="TypeProfileName" xml:space="preserve">
-    <value>Hier Profilnamen eingeben</value>
+    <value>Profilnamen hier eingeben</value>
   </data>
   <data name="UpText" xml:space="preserve">
     <value>Hoch</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>Du bist auf dem aktuellsten Stand</value>
+    <value>Du befindest dich auf dem neuesten Stand</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
     <value>Um die Bedienung zu ändern, kannst du auch den Controller verwenden.</value>
@@ -412,10 +506,13 @@
     <value>Benutze exklusiven Modus</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Controller *number* benutzt jetzt Profil "*Profil name*"</value>
+    <value>Controller *number* benutzt jetzt Profil "*Profile name*"</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
     <value>Benutze geteilten Modus</value>
+  </data>
+  <data name="UsingTPSwipes" xml:space="preserve">
+    <value>Dadurch wird das Touchpad als Mouse deaktiviert</value>
   </data>
   <data name="ValidName" xml:space="preserve">
     <value>Bitte gültigen Namen eingeben</value>
@@ -426,13 +523,7 @@
   <data name="WillKeep" xml:space="preserve">
     <value>Wird gehalten</value>
   </data>
-  <data name="LatencyNotOverTen" xml:space="preserve">
-    <value>Latenz von Controller *number* ist nun unter 10ms</value>
-  </data>
-  <data name="LatencyOverTen" xml:space="preserve">
-    <value>Latenz von Controller *number* über 10ms</value>
-  </data>
-  <data name="NotUsingProfile" xml:space="preserve">
-    <value>Controller *number* is not using a Profile</value>
+  <data name="XinputPorts" xml:space="preserve">
+    <value>Verwende höher liegende Ports, wenn Konflikte mit anderen X360 Emulationsprogrammen, wie SCP's tool, auftreten.</value>
   </data>
 </root>

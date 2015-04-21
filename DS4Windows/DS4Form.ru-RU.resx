@@ -124,15 +124,6 @@
     <value>Событие</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lBTest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>386, 9</value>
-  </data>
-  <data name="lBTest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 13</value>
-  </data>
-  <data name="lBTest.Text" xml:space="preserve">
-    <value>Используется для тестовых значений</value>
-  </data>
   <data name="btnStartStop.Location" type="System.Drawing.Point, System.Drawing">
     <value>809, 4</value>
   </data>
@@ -156,6 +147,51 @@
   </data>
   <data name="btnClear.Text" xml:space="preserve">
     <value>Очистить журнал</value>
+  </data>
+  <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Редактировать профиль 1-го контроллера</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Редактировать профиль 2-го контроллера</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Редактировать профиль 3-го контроллера</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Редактировать профиль 4-го контроллера</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>305, 6</value>
+  </data>
+  <data name="startToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="startToolStripMenuItem.Text" xml:space="preserve">
+    <value>Запустить</value>
+  </data>
+  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Выход</value>
   </data>
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>309, 164</value>
@@ -6332,54 +6368,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
   </data>
-  <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактировать профиль 1-го контроллера</value>
-  </data>
-  <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактировать профиль 2-го контроллера</value>
-  </data>
-  <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактировать профиль 3-го контроллера</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактировать профиль 4-го контроллера</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>305, 6</value>
-  </data>
-  <data name="startToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="startToolStripMenuItem.Text" xml:space="preserve">
-    <value>Запустить</value>
-  </data>
-  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>Открыть</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Выход</value>
-  </data>
-  <data name="tabControllers.Text" xml:space="preserve">
-    <value>Контроллеры</value>
-  </data>
   <data name="pBStatus1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACcAAAAUCAYAAAAOTSQ2AAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
@@ -6437,7 +6425,7 @@
 </value>
   </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>365, 19</value>
+    <value>390, 19</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
     <value>798, 74</value>
@@ -6458,7 +6446,7 @@
     <value>Редактировать</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>660, 18</value>
+    <value>681, 18</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
     <value>798, 46</value>
@@ -6470,10 +6458,10 @@
     <value>Редактировать</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>660, 46</value>
+    <value>681, 46</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>660, 74</value>
+    <value>681, 74</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
     <value>798, 18</value>
@@ -6485,52 +6473,28 @@
     <value>Редактировать</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>660, 104</value>
+    <value>681, 104</value>
   </data>
-  <data name="lBSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>640, 0</value>
+  <data name="lbSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>682, 0</value>
   </data>
-  <data name="lBSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 15</value>
+  <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 0</value>
   </data>
-  <data name="lBSelectedProfile.Text" xml:space="preserve">
-    <value>Выбранный профиль:</value>
+  <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
+    <value>566, 0</value>
   </data>
-  <data name="lBID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 15</value>
+  <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>572, 21</value>
   </data>
-  <data name="lBID.Text" xml:space="preserve">
-    <value>ID устройства:</value>
+  <data name="lbBatt2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>572, 49</value>
   </data>
-  <data name="lBStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>321, 0</value>
+  <data name="lbBatt3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>572, 77</value>
   </data>
-  <data name="lBStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 15</value>
-  </data>
-  <data name="lBStatus.Text" xml:space="preserve">
-    <value>Тип подключения:</value>
-  </data>
-  <data name="lBBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>484, 0</value>
-  </data>
-  <data name="lBBattery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 15</value>
-  </data>
-  <data name="lBBattery.Text" xml:space="preserve">
-    <value>Заряд аккумулятора</value>
-  </data>
-  <data name="lBBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>536, 21</value>
-  </data>
-  <data name="lBBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>536, 49</value>
-  </data>
-  <data name="lBBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>536, 77</value>
-  </data>
-  <data name="lBBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>536, 107</value>
+  <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>572, 107</value>
   </data>
   <data name="pBStatus2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6589,7 +6553,7 @@
 </value>
   </data>
   <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>365, 47</value>
+    <value>390, 47</value>
   </data>
   <data name="pBStatus3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6648,7 +6612,7 @@
 </value>
   </data>
   <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>365, 75</value>
+    <value>390, 75</value>
   </data>
   <data name="pBStatus4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6707,16 +6671,13 @@
 </value>
   </data>
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>365, 104</value>
+    <value>390, 104</value>
   </data>
-  <data name="lbNoControlers.Text" xml:space="preserve">
-    <value>Контроллеры не подключены (не больше 4-х)</value>
+  <data name="lbNoControllers.Text" xml:space="preserve">
+    <value>Контроллеры не подключены (не больше четырёх)</value>
   </data>
-  <data name="tabProfiles.Text" xml:space="preserve">
-    <value>Профили</value>
-  </data>
-  <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>239, 224</value>
+  <data name="tabControllers.Text" xml:space="preserve">
+    <value>Контроллеры</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
@@ -6778,8 +6739,8 @@
   <data name="exportToolStripMenuItem.Text" xml:space="preserve">
     <value>Экспорт</value>
   </data>
-  <data name="tSOptions.Text" xml:space="preserve">
-    <value>Настройки профиля</value>
+  <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 224</value>
   </data>
   <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 22</value>
@@ -6807,6 +6768,9 @@
   </data>
   <data name="tSBKeepSize.Text" xml:space="preserve">
     <value>Запоминать размер окна после закрытия</value>
+  </data>
+  <data name="tSOptions.Text" xml:space="preserve">
+    <value>Настройки профиля</value>
   </data>
   <data name="tsBNewProfle.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 22</value>
@@ -6897,11 +6861,11 @@
   <data name="tSBExportProfile.ToolTipText" xml:space="preserve">
     <value>Экспорт выбранного профиля</value>
   </data>
+  <data name="tabProfiles.Text" xml:space="preserve">
+    <value>Профили</value>
+  </data>
   <data name="tabAutoProfiles.Text" xml:space="preserve">
     <value>Автоматические профили</value>
-  </data>
-  <data name="tabSettings.Text" xml:space="preserve">
-    <value>Настройки</value>
   </data>
   <data name="hideDS4CheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 17</value>
@@ -6939,6 +6903,12 @@
   <data name="cBDisconnectBT.Text" xml:space="preserve">
     <value>Отключать от Bluetooth во время остановки</value>
   </data>
+  <data name="cBFlashWhenLate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 17</value>
+  </data>
+  <data name="cBFlashWhenLate.Text" xml:space="preserve">
+    <value>Вспышка световой панели при высокой задержке</value>
+  </data>
   <data name="cBCloseMini.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 17</value>
   </data>
@@ -6957,8 +6927,11 @@
   <data name="cBUpdate.Text" xml:space="preserve">
     <value>Проверять обновления при запуске:</value>
   </data>
-  <data name="pNUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+  <data name="cBDownloadLangauge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 17</value>
+  </data>
+  <data name="cBDownloadLangauge.Text" xml:space="preserve">
+    <value>Скачать языковой пакет с обновлением</value>
   </data>
   <data name="cBUpdateTime.Items" xml:space="preserve">
     <value>часов</value>
@@ -6969,17 +6942,11 @@
   <data name="cBUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>164, 0</value>
   </data>
-  <data name="lBCheckEvery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 13</value>
-  </data>
-  <data name="lBCheckEvery.Text" xml:space="preserve">
-    <value>Интервал проверки</value>
-  </data>
   <data name="nUDUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>114, 1</value>
   </data>
-  <data name="pnlXIPorts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+  <data name="pNUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
   </data>
   <data name="lbUseXIPorts.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 13</value>
@@ -6993,8 +6960,8 @@
   <data name="lbLastXIPort.Location" type="System.Drawing.Point, System.Drawing">
     <value>195, 3</value>
   </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 65</value>
+  <data name="pnlXIPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 22</value>
   </data>
   <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>158, 13</value>
@@ -7025,6 +6992,15 @@
   </data>
   <data name="lLBUpdate.Text" xml:space="preserve">
     <value>Проверить наличие обновлений</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>334, 10</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 65</value>
+  </data>
+  <data name="tabSettings.Text" xml:space="preserve">
+    <value>Настройки</value>
   </data>
   <data name="tabLog.Text" xml:space="preserve">
     <value>Журнал</value>

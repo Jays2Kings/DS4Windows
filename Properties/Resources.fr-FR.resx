@@ -117,17 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActionExists" xml:space="preserve">
+    <value>Le nom de cette action existe déja</value>
+  </data>
+  <data name="AddingToList" xml:space="preserve">
+    <value>Ajout à la liste...</value>
+  </data>
+  <data name="AddPrograms" xml:space="preserve">
+    <value>Ajouter des programmes</value>
+  </data>
+  <data name="ALocactionNeeded" xml:space="preserve">
+    <value>Un emplacement est obligatoire pour continuer</value>
+  </data>
   <data name="AlwaysRainbow" xml:space="preserve">
     <value>Mode Arc-en-ciel</value>
   </data>
   <data name="AssignProfile" xml:space="preserve">
     <value>Assigner à la Manette *number*</value>
   </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Batterie: *number*%</value>
+  </data>
   <data name="BestUsedRightSide" xml:space="preserve">
     <value>Conseillé d'utiliser avec le côté droit telle une souris</value>
   </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Feuilleter...</value>
+  </data>
   <data name="CannotWriteHere" xml:space="preserve">
     <value>Écriture impossible ici. Copier les paramètres vers Appdata?</value>
+  </data>
+  <data name="Charged" xml:space="preserve">
+    <value>Chargée</value>
+  </data>
+  <data name="Charging" xml:space="preserve">
+    <value>En charge: *number*%</value>
+  </data>
+  <data name="CheckBattery" xml:space="preserve">
+    <value>Verifiez la batterie</value>
+  </data>
+  <data name="CloseDS4W" xml:space="preserve">
+    <value>Fermer DS4Windows ?</value>
+  </data>
+  <data name="CloseMinimize" xml:space="preserve">
+    <value>Fermer DS4Windows via l'icone de notification</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Couleur</value>
   </data>
   <data name="ColorByBattery" xml:space="preserve">
     <value>Couleur selon le %*nl*de batterie</value>
@@ -141,11 +177,17 @@
   <data name="ContextNew" xml:space="preserve">
     <value>Faire le Profil de la Manette *number*</value>
   </data>
+  <data name="ControllerWasRemoved" xml:space="preserve">
+    <value>La manette *Mac address* a été déconnectée ou la connexion a été perdue</value>
+  </data>
   <data name="CopyComplete" xml:space="preserve">
     <value>Copie terminée, merci de relancer DS4Windows et supprimer les paramètres du répertoire de l'application</value>
   </data>
   <data name="CopyFullColor" xml:space="preserve">
     <value>Cliquer pour copier la couleur complète</value>
+  </data>
+  <data name="CouldNotOpenDS4" xml:space="preserve">
+    <value>Attention: Ouverture impossible de la DS4 *Mac Address*</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>jour</value>
@@ -159,14 +201,26 @@
   <data name="DimByBattery" xml:space="preserve">
     <value>Assombrir selon le %*nl*de batterie</value>
   </data>
+  <data name="DinputOnly" xml:space="preserve">
+    <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off</value>
+  </data>
+  <data name="DisconnectBT" xml:space="preserve">
+    <value>Déconnecter Bluetooth</value>
+  </data>
   <data name="Disconnected" xml:space="preserve">
     <value>Coupé</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>Downloading *number*%</value>
   </data>
   <data name="DownloadVersion" xml:space="preserve">
     <value>Télécharger la version *number* maintenant ?</value>
   </data>
+  <data name="DownText" xml:space="preserve">
+    <value>Haut</value>
+  </data>
   <data name="DS4Update" xml:space="preserve">
-    <value>Mise à Jour de DS4Windows Disponible!</value>
+    <value>Mise à jour de DS4Windows disponible !</value>
   </data>
   <data name="DS4WindowsCannotEditHere" xml:space="preserve">
     <value>DS4Windows ne peut editer les paramètres ici, fermeture imminente.</value>
@@ -180,8 +234,17 @@
   <data name="FifthMouseUp" xml:space="preserve">
     <value>5ème Bouton de Souris Bas</value>
   </data>
+  <data name="FlashAtTip" xml:space="preserve">
+    <value>Clickez pour changer la couleur du clignotement. Noir = couleur par défaut</value>
+  </data>
   <data name="FlushHID" xml:space="preserve">
     <value>Flush HID</value>
+  </data>
+  <data name="FlushHIDTip" xml:space="preserve">
+    <value>Vider la file d'attente HID aprés chaque lecture</value>
+  </data>
+  <data name="FoundController" xml:space="preserve">
+    <value>Manette trouvée:</value>
   </data>
   <data name="FourthMouseDown" xml:space="preserve">
     <value>4ème Bouton de Souris Haut</value>
@@ -189,17 +252,77 @@
   <data name="FourthMouseUp" xml:space="preserve">
     <value>4ème Bouton de Souris Bas</value>
   </data>
+  <data name="Full" xml:space="preserve">
+    <value>Complète</value>
+  </data>
+  <data name="GyroReadout" xml:space="preserve">
+    <value>Clickez pour voir les valeurs du Sixaxis</value>
+  </data>
+  <data name="GyroX" xml:space="preserve">
+    <value>GyroX, Gauche et droite inclinaison</value>
+  </data>
+  <data name="GyroY" xml:space="preserve">
+    <value>GyroY, Avant et arriere inclinaison</value>
+  </data>
+  <data name="GyroZ" xml:space="preserve">
+    <value>GyroZ, Haut et bas inclinaison</value>
+  </data>
   <data name="Hour" xml:space="preserve">
     <value>heure</value>
   </data>
   <data name="Hours" xml:space="preserve">
-    <value>hueres</value>
+    <value>heures</value>
+  </data>
+  <data name="HoverOverItems" xml:space="preserve">
+    <value>Survol souris pour voir la description ou plus d'infos</value>
   </data>
   <data name="IfRemovingDS4Windows" xml:space="preserve">
     <value>Si suppression de DS4Windows, vous pouvez supprimer les paramètres suivant le lien du dossier de profil</value>
   </data>
+  <data name="InputDelay" xml:space="preserve">
+    <value>Input Delay: *number*ms</value>
+  </data>
+  <data name="InstallComplete" xml:space="preserve">
+    <value>Installation terminée</value>
+  </data>
+  <data name="InstallDriver" xml:space="preserve">
+    <value>Installer les pilotes ici</value>
+  </data>
+  <data name="Installing" xml:space="preserve">
+    <value>l'installation de ...</value>
+  </data>
+  <data name="Jitter" xml:space="preserve">
+    <value>Utiliser Sixaxis pour aider au calcul des mouvements du pad tactile</value>
+  </data>
+  <data name="KeepThisSize" xml:space="preserve">
+    <value>Garder les dimensions de la fenêtre après fermeture</value>
+  </data>
+  <data name="LatencyNotOverTen" xml:space="preserve">
+    <value>Manette *number* latence inférieur à 10 ms</value>
+  </data>
+  <data name="LatencyOverTen" xml:space="preserve">
+    <value>Manette *number* latence supérieura à 10 ms</value>
+  </data>
+  <data name="LaunchProgram" xml:space="preserve">
+    <value>Lancer *program*</value>
+  </data>
+  <data name="LightByBatteryTip" xml:space="preserve">
+    <value>Baisser la luminosité lors de la mise en veille</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Chargement...</value>
+  </data>
+  <data name="LoadProfile" xml:space="preserve">
+    <value>Charger *profile*</value>
+  </data>
+  <data name="Macro" xml:space="preserve">
+    <value>Macro</value>
+  </data>
   <data name="MakeNewProfile" xml:space="preserve">
     <value>Créer un nouveau profil</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>Nouveau</value>
@@ -207,98 +330,20 @@
   <data name="NoMacroRecorded" xml:space="preserve">
     <value>Aucun macro enregistré</value>
   </data>
-  <data name="NoProfileLoaded" xml:space="preserve">
-    <value>Pas de profil chargé</value>
-  </data>
-  <data name="NotValid" xml:space="preserve">
-    <value>Invalide</value>
-  </data>
-  <data name="PleaseDownloadUpdater" xml:space="preserve">
-    <value>Veuillez télécharger le centre de mises à jour maintenant, le placer dans le dossier de l'application puis vérifier de nouveau la disponibilité de mises à jour</value>
-  </data>
-  <data name="PleaseImport" xml:space="preserve">
-    <value>Veuillez importer ou créer un profil</value>
-  </data>
-  <data name="ProfileCannotRestore" xml:space="preserve">
-    <value>*Profile Name* ne peut être restauré</value>
-  </data>
-  <data name="ProfileFolderMoved" xml:space="preserve">
-    <value>Dossier de profil déplacé vers le dossier de l'application</value>
-  </data>
-  <data name="SaveRecordedMacro" xml:space="preserve">
-    <value>Sauvegarder le macro enregistré</value>
-  </data>
-  <data name="StartText" xml:space="preserve">
-    <value>Démarrer</value>
-  </data>
-  <data name="StopText" xml:space="preserve">
-    <value>Arrêter</value>
-  </data>
-  <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Glisser sur la pavé tactile pour changer de profil</value>
-  </data>
-  <data name="TapAndHold" xml:space="preserve">
-    <value>Appuyer et maintenir pour glisser, léger retard avec les simples pressions</value>
-  </data>
-  <data name="TypeNewName" xml:space="preserve">
-    <value>écrire un nouveau nom ici</value>
-  </data>
-  <data name="TypeProfileName" xml:space="preserve">
-    <value>écrire un nom de profil ici</value>
-  </data>
-  <data name="UseControllerForMapping" xml:space="preserve">
-    <value>Vous pouvez également utiliser votre manette pour changer les commandes</value>
-  </data>
-  <data name="ValidName" xml:space="preserve">
-    <value>Veuillez insérer un nom valide</value>
-  </data>
-  <data name="WaitMS" xml:space="preserve">
-    <value>Attendre *number**ms*</value>
-  </data>
-  <data name="WillKeep" xml:space="preserve">
-    <value>Gardera</value>
-  </data>
-  <data name="SelectActionTitle" xml:space="preserve">
-    <value>Sélectionner une action pour *action*</value>
-  </data>
-  <data name="Battery" xml:space="preserve">
-    <value>Batterie: *number*%</value>
-  </data>
-  <data name="Charged" xml:space="preserve">
-    <value>Chargée</value>
-  </data>
-  <data name="Charging" xml:space="preserve">
-    <value>En charge: *number*%</value>
-  </data>
-  <data name="ControllerWasRemoved" xml:space="preserve">
-    <value>La manette *Mac address* a été déconnectée ou la connexion a été perdue</value>
-  </data>
-  <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Attention: Ouverture impossible de la DS4 *Mac Address*</value>
-  </data>
-  <data name="Downloading" xml:space="preserve">
-    <value>Downloading *number*%</value>
-  </data>
-  <data name="FoundController" xml:space="preserve">
-    <value>Manette trouvée:</value>
-  </data>
-  <data name="Full" xml:space="preserve">
-    <value>Complète</value>
-  </data>
-  <data name="InstallComplete" xml:space="preserve">
-    <value>Installation terminée</value>
-  </data>
-  <data name="Loading" xml:space="preserve">
-    <value>Chargement...</value>
-  </data>
-  <data name="NA" xml:space="preserve">
-    <value>N/A</value>
-  </data>
   <data name="noneProfile" xml:space="preserve">
     <value>(aucun)</value>
   </data>
   <data name="NoneText" xml:space="preserve">
     <value>aucune</value>
+  </data>
+  <data name="NoProfileLoaded" xml:space="preserve">
+    <value>Pas de profil chargé</value>
+  </data>
+  <data name="NotUsingProfile" xml:space="preserve">
+    <value>Manette *number* n'utilise pas de profile</value>
+  </data>
+  <data name="NotValid" xml:space="preserve">
+    <value>Invalide</value>
   </data>
   <data name="OpeningInstaller" xml:space="preserve">
     <value>Ouverture de l'installateur</value>
@@ -306,17 +351,74 @@
   <data name="OpenScpDriver" xml:space="preserve">
     <value>Veuillez ouvrir ScpDriver.exe</value>
   </data>
+  <data name="OtherFileLocation" xml:space="preserve">
+    <value>, les fichiers à un autre endroit seront effacés !</value>
+  </data>
+  <data name="PleaseDownloadUpdater" xml:space="preserve">
+    <value>Veuillez télécharger le centre de mises à jour maintenant, le placer dans le dossier de l'application puis vérifier de nouveau la disponibilité de mises à jour</value>
+  </data>
+  <data name="PleaseImport" xml:space="preserve">
+    <value>Veuillez importer ou créer un profil</value>
+  </data>
+  <data name="PlusNewProfile" xml:space="preserve">
+    <value>Nouveau Profile</value>
+  </data>
+  <data name="ProfileCannotRestore" xml:space="preserve">
+    <value>*Profile Name* ne peut être restauré</value>
+  </data>
+  <data name="ProfileFolderMoved" xml:space="preserve">
+    <value>Dossier de profil déplacé vers le dossier de l'application</value>
+  </data>
+  <data name="Programs" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>Experimental : Déconnexion auto BT quand branchement par USB</value>
+  </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
     <value>Vous devez quitter les autres applications telles que Steam, Uplay avant d'activer l'option "Cacher la manette DS4"</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="RightClickPresets" xml:space="preserve">
+    <value>Click droit pour choisir les pré-réglages</value>
+  </data>
+  <data name="SaveRecordedMacro" xml:space="preserve">
+    <value>Sauvegarder le macro enregistré</value>
+  </data>
+  <data name="ScanCode" xml:space="preserve">
+    <value>Scannez le code</value>
   </data>
   <data name="SearchingController" xml:space="preserve">
     <value>Recherche de manettes...</value>
   </data>
+  <data name="SelectActionTitle" xml:space="preserve">
+    <value>Sélectionner une action pour *action*</value>
+  </data>
+  <data name="Shortcuts" xml:space="preserve">
+    <value>Raccourcis</value>
+  </data>
+  <data name="SixAxisReading" xml:space="preserve">
+    <value>Clickez pour les valeurs avancées</value>
+  </data>
   <data name="Starting" xml:space="preserve">
     <value>Ouverture...</value>
   </data>
-  <data name="StoppedDS4Tool" xml:space="preserve">
-    <value>Arrêt de DS4 Tool</value>
+  <data name="StartText" xml:space="preserve">
+    <value>Démarrer</value>
+  </data>
+  <data name="Step1" xml:space="preserve">
+    <value>Étape 1: Installez les pilotes DS4</value>
+  </data>
+  <data name="StopHText" xml:space="preserve">
+    <value>Arrêtez fort</value>
+  </data>
+  <data name="StopLText" xml:space="preserve">
+    <value>Arrêtez léger</value>
+  </data>
+  <data name="StoppedDS4Windows" xml:space="preserve">
+    <value>Arrêt de DS4Windows</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
     <value>Arrêt des manettes DS4</value>
@@ -324,65 +426,32 @@
   <data name="StoppingX360" xml:space="preserve">
     <value>Arrêt des manettes X360</value>
   </data>
-  <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Reconnaissance de mouvement du pavé tactile est Désactivée</value>
+  <data name="StopText" xml:space="preserve">
+    <value>Arrêter</value>
   </data>
-  <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>Reconnaissance de mouvement du pavé tactile est Activée</value>
+  <data name="SwipeDown" xml:space="preserve">
+    <value>Balayer vers le bas</value>
   </data>
-  <data name="UsingExclusive" xml:space="preserve">
-    <value>Utilisation du mode Exclusif</value>
+  <data name="SwipeLeft" xml:space="preserve">
+    <value>Balayer vers la gauche</value>
   </data>
-  <data name="UsingProfile" xml:space="preserve">
-    <value>La manette *number* utilise le profil "*Profile name*"</value>
+  <data name="SwipeRight" xml:space="preserve">
+    <value>Balayer vers la droite</value>
   </data>
-  <data name="UsingShared" xml:space="preserve">
-    <value>Utilisation du mode Partagé</value>
+  <data name="SwipeTouchpad" xml:space="preserve">
+    <value>Glisser sur la pavé tactile pour changer de profil</value>
   </data>
-  <data name="AddingToList" xml:space="preserve">
-    <value>Ajout à la liste...</value>
+  <data name="SwipeUp" xml:space="preserve">
+    <value>Balayer vers le haut</value>
   </data>
-  <data name="AddPrograms" xml:space="preserve">
-    <value>Ajouter des programmes</value>
+  <data name="TapAndHold" xml:space="preserve">
+    <value>Appuyer et maintenir pour glisser, léger retard avec les simples pressions</value>
   </data>
-  <data name="Browse" xml:space="preserve">
-    <value>Feuilleter...</value>
+  <data name="TestHText" xml:space="preserve">
+    <value>Test fort</value>
   </data>
-  <data name="Color" xml:space="preserve">
-    <value>Couleur</value>
-  </data>
-  <data name="DownText" xml:space="preserve">
-    <value>Haut</value>
-  </data>
-  <data name="InputDelay" xml:space="preserve">
-    <value>Input Delay: *number*ms</value>
-  </data>
-  <data name="KeepThisSize" xml:space="preserve">
-    <value>Garder les dimensions de la fenêtre après fermeture</value>
-  </data>
-  <data name="RecordText" xml:space="preserve">
-    <value>Enregistrer</value>
-  </data>
-  <data name="Step1" xml:space="preserve">
-    <value>Étape 1: Installez les pilotes DS4</value>
-  </data>
-  <data name="TestText" xml:space="preserve">
-    <value>Test</value>
-  </data>
-  <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>Glisser gauche ou droit avec 2 doigts sur le pavé tactile</value>
-  </data>
-  <data name="UpText" xml:space="preserve">
-    <value>Bas</value>
-  </data>
-  <data name="UpToDate" xml:space="preserve">
-    <value>Votre version de DS4Windows est à jour</value>
-  </data>
-  <data name="DinputOnly" xml:space="preserve">
-    <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off</value>
-  </data>
-  <data name="InstallDriver" xml:space="preserve">
-    <value>Installer les pilotes ici</value>
+  <data name="TestLText" xml:space="preserve">
+    <value>Test léger</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
     <value>Tilt Bas</value>
@@ -396,13 +465,52 @@
   <data name="TiltUp" xml:space="preserve">
     <value>Tilt Haut</value>
   </data>
-  <data name="Installing" xml:space="preserve">
-    <value>l'installation de ...</value>
+  <data name="TouchpadMovementOff" xml:space="preserve">
+    <value>Reconnaissance de mouvement du pavé tactile est Désactivée</value>
   </data>
-  <data name="FullLightText" xml:space="preserve">
-    <value>Plein:</value>
+  <data name="TouchpadMovementOn" xml:space="preserve">
+    <value>Reconnaissance de mouvement du pavé tactile est Activée</value>
   </data>
-  <data name="PlusNewProfile" xml:space="preserve">
-    <value>Nouveau Profil</value>
+  <data name="TouchpadOffTip" xml:space="preserve">
+    <value>Relancez en appuyant sur PS + Pad tactile</value>
+  </data>
+  <data name="TwoFingerSwipe" xml:space="preserve">
+    <value>Glisser gauche ou droit avec 2 doigts sur le pavé tactile</value>
+  </data>
+  <data name="TypeNewName" xml:space="preserve">
+    <value>écrire un nouveau nom ici</value>
+  </data>
+  <data name="TypeProfileName" xml:space="preserve">
+    <value>écrire un nom de profil ici</value>
+  </data>
+  <data name="UpText" xml:space="preserve">
+    <value>Bas</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>Votre version de DS4Windows est à jour</value>
+  </data>
+  <data name="UseControllerForMapping" xml:space="preserve">
+    <value>Vous pouvez également utiliser votre manette pour changer les commandes</value>
+  </data>
+  <data name="UsingExclusive" xml:space="preserve">
+    <value>Utilisation du mode Exclusif</value>
+  </data>
+  <data name="UsingProfile" xml:space="preserve">
+    <value>La manette *number* utilise le profil "*Profile name*"</value>
+  </data>
+  <data name="UsingShared" xml:space="preserve">
+    <value>Utilisation du mode Partagé</value>
+  </data>
+  <data name="UsingTPSwipes" xml:space="preserve">
+    <value>Desactivation du pad tactile comme souris</value>
+  </data>
+  <data name="ValidName" xml:space="preserve">
+    <value>Veuillez insérer un nom valide</value>
+  </data>
+  <data name="WaitMS" xml:space="preserve">
+    <value>Attendre *number**ms*</value>
+  </data>
+  <data name="WillKeep" xml:space="preserve">
+    <value>Gardera</value>
   </data>
 </root>

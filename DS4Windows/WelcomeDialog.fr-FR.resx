@@ -128,17 +128,11 @@
   <data name="bnStep1.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 23</value>
   </data>
-  <data name="bnStep1.Text" xml:space="preserve">
-    <value>Étape 1: Installez les pilotes DS4</value>
-  </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 48</value>
   </data>
   <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
     <value>309, 45</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Étape 2: Si vous êtes sous Windows 7 ou antérieur, installez les pilotes 360</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>36, 227</value>
@@ -146,29 +140,14 @@
   <data name="labelBluetooth.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 185</value>
   </data>
-  <data name="labelBluetooth.Text" xml:space="preserve">
-    <value>Pour paramétrer l'installation bluetooth
-Maintenir les boutons PS et SHARE pendant 3 secondes
-La barre lumineuse va commencer à doublement clignoter</value>
-  </data>
   <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
     <value>-1, 126</value>
   </data>
   <data name="labelUSB.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 59</value>
   </data>
-  <data name="labelUSB.Text" xml:space="preserve">
-    <value>Étape 3: Connecter la manette DualShock 4
-Pour paramétrer l'installation filaire/usb:
-Brancher simplement le câble mini usb dans votre PC et votre DualShock 4</value>
-  </data>
   <data name="labelBluetooth2.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 362</value>
-  </data>
-  <data name="labelBluetooth2.Text" xml:space="preserve">
-    <value>Une fois le clignotement débuté, rendez vous aux paramètres Bluetooth
-puis connectez sur "Wireless Controller"
-Une fois appareillée, vous êtes prêt. Amusez-vous bien !</value>
   </data>
   <data name="linkBluetoothSettings.Location" type="System.Drawing.Point, System.Drawing">
     <value>132, 375</value>
@@ -176,31 +155,49 @@ Une fois appareillée, vous êtes prêt. Amusez-vous bien !</value>
   <data name="linkBluetoothSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 13</value>
   </data>
-  <data name="linkBluetoothSettings.Text" xml:space="preserve">
-    <value>Bluetooth</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Veillez à cocher Force Install</value>
-  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 96</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>315, 31</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Si vous avez déjà utilisé une manette 360 sur votre PC, passez cette étape</value>
-  </data>
   <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
     <value>117, 424</value>
-  </data>
-  <data name="bnFinish.Text" xml:space="preserve">
-    <value>Fini</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>315, 446</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Bienvenue à DS4Windows</value>
+  </data>
+  <data name="bnFinish.Text" xml:space="preserve">
+    <value>Fini</value>
+  </data>
+  <data name="bnStep1.Text" xml:space="preserve">
+    <value>Étape 1: Installez les pilotes DS4</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Étape 2: Si vous êtes sous Windows 7 ou antérieur, installez les pilotes 360</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Si vous avez déjà utilisé une manette 360 sur votre PC, passez cette étape</value>
+  </data>
+  <data name="labelBluetooth.Text" xml:space="preserve">
+    <value>Pour paramétrer l'installation bluetooth
+Maintenir les boutons PS et SHARE pendant 3 secondes
+La barre lumineuse va commencer à doublement clignoter</value>
+  </data>
+  <data name="labelBluetooth2.Text" xml:space="preserve">
+    <value>Une fois le clignotement débuté, rendez vous aux paramètres Bluetooth
+puis connectez sur "Wireless Controller"
+Une fois appareillée, vous êtes prêt. Amusez-vous bien !</value>
+  </data>
+  <data name="labelUSB.Text" xml:space="preserve">
+    <value>Étape 3: Connecter la manette DualShock 4
+Pour paramétrer l'installation filaire/usb:
+Brancher simplement le câble mini usb dans votre PC et votre DualShock 4</value>
+  </data>
+  <data name="linkBluetoothSettings.Text" xml:space="preserve">
+    <value>Bluetooth Réglages</value>
   </data>
 </root>

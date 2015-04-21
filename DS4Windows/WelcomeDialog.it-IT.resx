@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="bnStep1.Text" xml:space="preserve">
+    <value>Passo 1: Installa il Driver DS4</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>29, 77</value>
@@ -124,11 +127,19 @@
   <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
     <value>259, 35</value>
   </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Passo 2: Se si è su Windows 7 o precedenti, Installa Driver 360</value>
+  </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>37, 252</value>
   </data>
   <data name="labelBluetooth.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 210</value>
+  </data>
+  <data name="labelBluetooth.Text" xml:space="preserve">
+    <value>Per configurare il bluetooth (opzionale):
+Premi i tasti PS e Share per 3 secondi
+La barra luminosa comincerà a lampeggiare</value>
   </data>
   <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 147</value>
@@ -136,11 +147,25 @@
   <data name="labelUSB.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 53</value>
   </data>
+  <data name="labelUSB.Text" xml:space="preserve">
+    <value>Passo 3: Connettere il controller DualShock 4
+Per configurare cavo/usb:
+Semplicemente inserisci un cavo micro usb nel tuo PC e DualShock 4</value>
+  </data>
   <data name="labelBluetooth2.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 387</value>
   </data>
+  <data name="labelBluetooth2.Text" xml:space="preserve">
+    <value>Quando lampeggerà vai sulle Impostazioni del tuo Bluetooth
+e connetti a "Controller Wireless"
+Se richiesto inserire il codice "0000"
+Una volta accoppiato, sei pronto. Buon divertimento!</value>
+  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>314, 42</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Se questa finestra riappare dopo l'installazione, potresti aver bisogno di riavviare il tuo pc o attendere 10-15 minuti perchè Windows noti il driver</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -152,53 +177,28 @@
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>315, 32</value>
   </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Se hai già usato un Controller 360 su questo PC, puoi saltare questo passaggio</value>
+  </data>
   <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
     <value>118, 449</value>
+  </data>
+  <data name="bnFinish.Text" xml:space="preserve">
+    <value>Fine</value>
   </data>
   <data name="linkBluetoothSettings.Location" type="System.Drawing.Point, System.Drawing">
     <value>154, 387</value>
   </data>
   <data name="linkBluetoothSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 13</value>
+    <value>113, 13</value>
+  </data>
+  <data name="linkBluetoothSettings.Text" xml:space="preserve">
+    <value>Impostazioni Bluetooth</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>315, 477</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Benvenuto su DS4Windows</value>
-  </data>
-  <data name="bnFinish.Text" xml:space="preserve">
-    <value>Fine</value>
-  </data>
-  <data name="bnStep1.Text" xml:space="preserve">
-    <value>Passo 1: Installa il Driver DS4</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Passo 2: Se si è su Windows 7 o precedenti, Installa Driver 360</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Se questa finestra riappare dopo l'installazione, potresti aver bisogno di riavviare il tuo pc o attendere 10-15 minuti perchè Windows noti il driver</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Se hai già usato un Controller 360 su questo PC, puoi saltare questo passaggio</value>
-  </data>
-  <data name="labelBluetooth.Text" xml:space="preserve">
-    <value>Per configurare il bluetooth (opzionale):
-Premi i tasti PS e Share per 3 secondi
-La barra luminosa comincerà a lampeggiare</value>
-  </data>
-  <data name="labelBluetooth2.Text" xml:space="preserve">
-    <value>Quando lampeggerà vai sulle Impostazioni del tuo Bluetooth
-e connetti a "Controller Wireless"
-Se richiesto inserire il codice "0000"
-Una volta accoppiato, sei pronto. Buon divertimento!</value>
-  </data>
-  <data name="labelUSB.Text" xml:space="preserve">
-    <value>Passo 3: Connettere il controller DualShock 4
-Per configurare cavo/usb:
-Semplicemente inserisci un cavo micro usb nel tuo PC e DualShock 4</value>
-  </data>
-  <data name="linkBluetoothSettings.Text" xml:space="preserve">
-    <value>Impostazioni Bluetooth</value>
   </data>
 </root>

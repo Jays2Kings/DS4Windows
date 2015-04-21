@@ -1363,24 +1363,6 @@
   <data name="&gt;&gt;nUDL2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="cbStartTouchpadOff.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cbStartTouchpadOff.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbStartTouchpadOff.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 20</value>
-  </data>
-  <data name="cbStartTouchpadOff.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 17</value>
-  </data>
-  <data name="cbStartTouchpadOff.TabIndex" type="System.Int32, mscorlib">
-    <value>233</value>
-  </data>
-  <data name="cbStartTouchpadOff.Text" xml:space="preserve">
-    <value>Start with Slide/Scroll off</value>
-  </data>
   <data name="&gt;&gt;cbStartTouchpadOff.Name" xml:space="preserve">
     <value>cbStartTouchpadOff</value>
   </data>
@@ -1416,6 +1398,180 @@
   </data>
   <data name="&gt;&gt;gBTouchpad.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="cbStartTouchpadOff.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbStartTouchpadOff.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbStartTouchpadOff.Location" type="System.Drawing.Point, System.Drawing">
+    <value>209, 20</value>
+  </data>
+  <data name="cbStartTouchpadOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 17</value>
+  </data>
+  <data name="cbStartTouchpadOff.TabIndex" type="System.Int32, mscorlib">
+    <value>233</value>
+  </data>
+  <data name="cbStartTouchpadOff.Text" xml:space="preserve">
+    <value>Start with Slide/Scroll off</value>
+  </data>
+  <data name="&gt;&gt;cbStartTouchpadOff.Name" xml:space="preserve">
+    <value>cbStartTouchpadOff</value>
+  </data>
+  <data name="&gt;&gt;cbStartTouchpadOff.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbStartTouchpadOff.Parent" xml:space="preserve">
+    <value>gBTouchpad</value>
+  </data>
+  <data name="&gt;&gt;cbStartTouchpadOff.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cBTPforControls.Name" xml:space="preserve">
+    <value>cBTPforControls</value>
+  </data>
+  <data name="&gt;&gt;cBTPforControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBTPforControls.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;cBTPforControls.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cBDinput.Name" xml:space="preserve">
+    <value>cBDinput</value>
+  </data>
+  <data name="&gt;&gt;cBDinput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBDinput.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;cBDinput.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;pBProgram.Name" xml:space="preserve">
+    <value>pBProgram</value>
+  </data>
+  <data name="&gt;&gt;pBProgram.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pBProgram.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;pBProgram.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;cBLaunchProgram.Name" xml:space="preserve">
+    <value>cBLaunchProgram</value>
+  </data>
+  <data name="&gt;&gt;cBLaunchProgram.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBLaunchProgram.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;cBLaunchProgram.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnBrowse.Name" xml:space="preserve">
+    <value>btnBrowse</value>
+  </data>
+  <data name="&gt;&gt;btnBrowse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnBrowse.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;btnBrowse.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lbUseController.Name" xml:space="preserve">
+    <value>lbUseController</value>
+  </data>
+  <data name="&gt;&gt;lbUseController.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbUseController.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;lbUseController.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;cBMouseAccel.Name" xml:space="preserve">
+    <value>cBMouseAccel</value>
+  </data>
+  <data name="&gt;&gt;cBMouseAccel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBMouseAccel.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;cBMouseAccel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;nUDSixaxis.Name" xml:space="preserve">
+    <value>nUDSixaxis</value>
+  </data>
+  <data name="&gt;&gt;nUDSixaxis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSixaxis.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;nUDSixaxis.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;cBControllerInput.Name" xml:space="preserve">
+    <value>cBControllerInput</value>
+  </data>
+  <data name="&gt;&gt;cBControllerInput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBControllerInput.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;cBControllerInput.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;cBIdleDisconnect.Name" xml:space="preserve">
+    <value>cBIdleDisconnect</value>
+  </data>
+  <data name="&gt;&gt;cBIdleDisconnect.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBIdleDisconnect.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;cBIdleDisconnect.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="gBOther.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 225</value>
+  </data>
+  <data name="gBOther.Size" type="System.Drawing.Size, System.Drawing">
+    <value>438, 132</value>
+  </data>
+  <data name="gBOther.TabIndex" type="System.Int32, mscorlib">
+    <value>247</value>
+  </data>
+  <data name="gBOther.Text" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="&gt;&gt;gBOther.Name" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;gBOther.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBOther.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gBOther.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="cBTPforControls.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1726,29 +1882,149 @@ with profile</value>
   <data name="&gt;&gt;cBIdleDisconnect.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="gBOther.Location" type="System.Drawing.Point, System.Drawing">
-    <value>443, 225</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
-  <data name="gBOther.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 132</value>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="gBOther.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;nUDRainbowB.Name" xml:space="preserve">
+    <value>nUDRainbowB</value>
+  </data>
+  <data name="&gt;&gt;nUDRainbowB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDRainbowB.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;nUDRainbowB.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;cBFlashType.Name" xml:space="preserve">
+    <value>cBFlashType</value>
+  </data>
+  <data name="&gt;&gt;cBFlashType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBFlashType.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;cBFlashType.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;cBWhileCharging.Name" xml:space="preserve">
+    <value>cBWhileCharging</value>
+  </data>
+  <data name="&gt;&gt;cBWhileCharging.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBWhileCharging.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;cBWhileCharging.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnFlashColor.Name" xml:space="preserve">
+    <value>btnFlashColor</value>
+  </data>
+  <data name="&gt;&gt;btnFlashColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnFlashColor.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;btnFlashColor.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnChargingColor.Name" xml:space="preserve">
+    <value>btnChargingColor</value>
+  </data>
+  <data name="&gt;&gt;btnChargingColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnChargingColor.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;btnChargingColor.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lbWhileCharging.Name" xml:space="preserve">
+    <value>lbWhileCharging</value>
+  </data>
+  <data name="&gt;&gt;lbWhileCharging.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbWhileCharging.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;lbWhileCharging.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;lbPercentFlashBar.Name" xml:space="preserve">
+    <value>lbPercentFlashBar</value>
+  </data>
+  <data name="&gt;&gt;lbPercentFlashBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbPercentFlashBar.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;lbPercentFlashBar.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;nUDflashLED.Name" xml:space="preserve">
+    <value>nUDflashLED</value>
+  </data>
+  <data name="&gt;&gt;nUDflashLED.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDflashLED.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;nUDflashLED.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;pnlShift.Name" xml:space="preserve">
+    <value>pnlShift</value>
+  </data>
+  <data name="&gt;&gt;pnlShift.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlShift.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;pnlShift.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="gBLightbar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 85</value>
+  </data>
+  <data name="gBLightbar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>439, 129</value>
+  </data>
+  <data name="gBLightbar.TabIndex" type="System.Int32, mscorlib">
     <value>247</value>
   </data>
-  <data name="gBOther.Text" xml:space="preserve">
-    <value>Other</value>
+  <data name="gBLightbar.Text" xml:space="preserve">
+    <value>Lightbar</value>
   </data>
-  <data name="&gt;&gt;gBOther.Name" xml:space="preserve">
-    <value>gBOther</value>
+  <data name="&gt;&gt;gBLightbar.Name" xml:space="preserve">
+    <value>gBLightbar</value>
   </data>
-  <data name="&gt;&gt;gBOther.Type" xml:space="preserve">
+  <data name="&gt;&gt;gBLightbar.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gBOther.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gBLightbar.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;gBOther.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;gBLightbar.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2005,6 +2281,126 @@ with profile</value>
   <data name="&gt;&gt;nUDflashLED.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="&gt;&gt;cBShiftLight.Name" xml:space="preserve">
+    <value>cBShiftLight</value>
+  </data>
+  <data name="&gt;&gt;cBShiftLight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBShiftLight.Parent" xml:space="preserve">
+    <value>pnlShift</value>
+  </data>
+  <data name="&gt;&gt;cBShiftLight.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lbShift.Name" xml:space="preserve">
+    <value>lbShift</value>
+  </data>
+  <data name="&gt;&gt;lbShift.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbShift.Parent" xml:space="preserve">
+    <value>pnlShift</value>
+  </data>
+  <data name="&gt;&gt;lbShift.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lbShiftRed.Name" xml:space="preserve">
+    <value>lbShiftRed</value>
+  </data>
+  <data name="&gt;&gt;lbShiftRed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbShiftRed.Parent" xml:space="preserve">
+    <value>pnlShift</value>
+  </data>
+  <data name="&gt;&gt;lbShiftRed.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lbShiftGreen.Name" xml:space="preserve">
+    <value>lbShiftGreen</value>
+  </data>
+  <data name="&gt;&gt;lbShiftGreen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbShiftGreen.Parent" xml:space="preserve">
+    <value>pnlShift</value>
+  </data>
+  <data name="&gt;&gt;lbShiftGreen.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lbShiftBlue.Name" xml:space="preserve">
+    <value>lbShiftBlue</value>
+  </data>
+  <data name="&gt;&gt;lbShiftBlue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbShiftBlue.Parent" xml:space="preserve">
+    <value>pnlShift</value>
+  </data>
+  <data name="&gt;&gt;lbShiftBlue.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;tBShiftRedBar.Name" xml:space="preserve">
+    <value>tBShiftRedBar</value>
+  </data>
+  <data name="&gt;&gt;tBShiftRedBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBShiftRedBar.Parent" xml:space="preserve">
+    <value>pnlShift</value>
+  </data>
+  <data name="&gt;&gt;tBShiftRedBar.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;tBShiftGreenBar.Name" xml:space="preserve">
+    <value>tBShiftGreenBar</value>
+  </data>
+  <data name="&gt;&gt;tBShiftGreenBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBShiftGreenBar.Parent" xml:space="preserve">
+    <value>pnlShift</value>
+  </data>
+  <data name="&gt;&gt;tBShiftGreenBar.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;tBShiftBlueBar.Name" xml:space="preserve">
+    <value>tBShiftBlueBar</value>
+  </data>
+  <data name="&gt;&gt;tBShiftBlueBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBShiftBlueBar.Parent" xml:space="preserve">
+    <value>pnlShift</value>
+  </data>
+  <data name="&gt;&gt;tBShiftBlueBar.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="pnlShift.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 41</value>
+  </data>
+  <data name="pnlShift.Size" type="System.Drawing.Size, System.Drawing">
+    <value>435, 60</value>
+  </data>
+  <data name="pnlShift.TabIndex" type="System.Int32, mscorlib">
+    <value>235</value>
+  </data>
+  <data name="pnlShift.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;pnlShift.Name" xml:space="preserve">
+    <value>pnlShift</value>
+  </data>
+  <data name="&gt;&gt;pnlShift.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlShift.Parent" xml:space="preserve">
+    <value>gBLightbar</value>
+  </data>
+  <data name="&gt;&gt;pnlShift.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
   <data name="cBShiftLight.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2236,53 +2632,53 @@ with profile</value>
   <data name="&gt;&gt;tBShiftBlueBar.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="pnlShift.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 41</value>
+  <data name="&gt;&gt;lbPercentRumble.Name" xml:space="preserve">
+    <value>lbPercentRumble</value>
   </data>
-  <data name="pnlShift.Size" type="System.Drawing.Size, System.Drawing">
-    <value>435, 60</value>
+  <data name="&gt;&gt;lbPercentRumble.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pnlShift.TabIndex" type="System.Int32, mscorlib">
-    <value>235</value>
+  <data name="&gt;&gt;lbPercentRumble.Parent" xml:space="preserve">
+    <value>gBRumble</value>
   </data>
-  <data name="pnlShift.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;lbPercentRumble.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;pnlShift.Name" xml:space="preserve">
-    <value>pnlShift</value>
+  <data name="&gt;&gt;btnRumbleLightTest.Name" xml:space="preserve">
+    <value>btnRumbleLightTest</value>
   </data>
-  <data name="&gt;&gt;pnlShift.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnRumbleLightTest.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlShift.Parent" xml:space="preserve">
-    <value>gBLightbar</value>
+  <data name="&gt;&gt;btnRumbleLightTest.Parent" xml:space="preserve">
+    <value>gBRumble</value>
   </data>
-  <data name="&gt;&gt;pnlShift.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="&gt;&gt;btnRumbleLightTest.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="gBLightbar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>443, 85</value>
+  <data name="gBRumble.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 12</value>
   </data>
-  <data name="gBLightbar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>439, 129</value>
+  <data name="gBRumble.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 67</value>
   </data>
-  <data name="gBLightbar.TabIndex" type="System.Int32, mscorlib">
+  <data name="gBRumble.TabIndex" type="System.Int32, mscorlib">
     <value>247</value>
   </data>
-  <data name="gBLightbar.Text" xml:space="preserve">
-    <value>Lightbar</value>
+  <data name="gBRumble.Text" xml:space="preserve">
+    <value>Rumble</value>
   </data>
-  <data name="&gt;&gt;gBLightbar.Name" xml:space="preserve">
-    <value>gBLightbar</value>
+  <data name="&gt;&gt;gBRumble.Name" xml:space="preserve">
+    <value>gBRumble</value>
   </data>
-  <data name="&gt;&gt;gBLightbar.Type" xml:space="preserve">
+  <data name="&gt;&gt;gBRumble.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gBLightbar.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gBRumble.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;gBLightbar.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;gBRumble.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="lbPercentRumble.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2340,30 +2736,6 @@ with profile</value>
   </data>
   <data name="&gt;&gt;btnRumbleLightTest.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="gBRumble.Location" type="System.Drawing.Point, System.Drawing">
-    <value>443, 12</value>
-  </data>
-  <data name="gBRumble.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 67</value>
-  </data>
-  <data name="gBRumble.TabIndex" type="System.Int32, mscorlib">
-    <value>247</value>
-  </data>
-  <data name="gBRumble.Text" xml:space="preserve">
-    <value>Rumble</value>
-  </data>
-  <data name="&gt;&gt;gBRumble.Name" xml:space="preserve">
-    <value>gBRumble</value>
-  </data>
-  <data name="&gt;&gt;gBRumble.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gBRumble.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gBRumble.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="lbSixaxisX.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2785,239 +3157,6 @@ with profile</value>
   <data name="&gt;&gt;btnLSTrack.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="pBSADeadzone.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAAA8AXHiAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
-        DwAAjA8AAP1SAACBQAAAfXkAAOmLAAA85QAAGcxzPIV3AAAKOWlDQ1BQaG90b3Nob3AgSUNDIHByb2Zp
-        bGUAAEjHnZZ3VFTXFofPvXd6oc0wAlKG3rvAANJ7k15FYZgZYCgDDjM0sSGiAhFFRJoiSFDEgNFQJFZE
-        sRAUVLAHJAgoMRhFVCxvRtaLrqy89/Ly++Osb+2z97n77L3PWhcAkqcvl5cGSwGQyhPwgzyc6RGRUXTs
-        AIABHmCAKQBMVka6X7B7CBDJy82FniFyAl8EAfB6WLwCcNPQM4BOB/+fpFnpfIHomAARm7M5GSwRF4g4
-        JUuQLrbPipgalyxmGCVmvihBEcuJOWGRDT77LLKjmNmpPLaIxTmns1PZYu4V8bZMIUfEiK+ICzO5nCwR
-        3xKxRoowlSviN+LYVA4zAwAUSWwXcFiJIjYRMYkfEuQi4uUA4EgJX3HcVyzgZAvEl3JJS8/hcxMSBXQd
-        li7d1NqaQffkZKVwBALDACYrmcln013SUtOZvBwAFu/8WTLi2tJFRbY0tba0NDQzMv2qUP91829K3NtF
-        ehn4uWcQrf+L7a/80hoAYMyJarPziy2uCoDOLQDI3fti0zgAgKSobx3Xv7oPTTwviQJBuo2xcVZWlhGX
-        wzISF/QP/U+Hv6GvvmckPu6P8tBdOfFMYYqALq4bKy0lTcinZ6QzWRy64Z+H+B8H/nUeBkGceA6fwxNF
-        hImmjMtLELWbx+YKuGk8Opf3n5r4D8P+pMW5FonS+BFQY4yA1HUqQH7tBygKESDR+8Vd/6NvvvgwIH55
-        4SqTi3P/7zf9Z8Gl4iWDm/A5ziUohM4S8jMX98TPEqABAUgCKpAHykAd6ABDYAasgC1wBG7AG/iDEBAJ
-        VgMWSASpgA+yQB7YBApBMdgJ9oBqUAcaQTNoBcdBJzgFzoNL4Bq4AW6D+2AUTIBnYBa8BgsQBGEhMkSB
-        5CEVSBPSh8wgBmQPuUG+UBAUCcVCCRAPEkJ50GaoGCqDqqF6qBn6HjoJnYeuQIPQXWgMmoZ+h97BCEyC
-        qbASrAUbwwzYCfaBQ+BVcAK8Bs6FC+AdcCXcAB+FO+Dz8DX4NjwKP4PnEIAQERqiihgiDMQF8UeikHiE
-        j6xHipAKpAFpRbqRPuQmMorMIG9RGBQFRUcZomxRnqhQFAu1BrUeVYKqRh1GdaB6UTdRY6hZ1Ec0Ga2I
-        1kfboL3QEegEdBa6EF2BbkK3oy+ib6Mn0K8xGAwNo42xwnhiIjFJmLWYEsw+TBvmHGYQM46Zw2Kx8lh9
-        rB3WH8vECrCF2CrsUexZ7BB2AvsGR8Sp4Mxw7rgoHA+Xj6vAHcGdwQ3hJnELeCm8Jt4G749n43PwpfhG
-        fDf+On4Cv0CQJmgT7AghhCTCJkIloZVwkfCA8JJIJKoRrYmBRC5xI7GSeIx4mThGfEuSIemRXEjRJCFp
-        B+kQ6RzpLuklmUzWIjuSo8gC8g5yM/kC+RH5jQRFwkjCS4ItsUGiRqJDYkjiuSReUlPSSXK1ZK5kheQJ
-        yeuSM1J4KS0pFymm1HqpGqmTUiNSc9IUaVNpf+lU6RLpI9JXpKdksDJaMm4ybJkCmYMyF2TGKQhFneJC
-        YVE2UxopFykTVAxVm+pFTaIWU7+jDlBnZWVkl8mGyWbL1sielh2lITQtmhcthVZKO04bpr1borTEaQln
-        yfYlrUuGlszLLZVzlOPIFcm1yd2WeydPl3eTT5bfJd8p/1ABpaCnEKiQpbBf4aLCzFLqUtulrKVFS48v
-        vacIK+opBimuVTyo2K84p6Ss5KGUrlSldEFpRpmm7KicpFyufEZ5WoWiYq/CVSlXOavylC5Ld6Kn0Cvp
-        vfRZVUVVT1Whar3qgOqCmrZaqFq+WpvaQ3WCOkM9Xr1cvUd9VkNFw08jT6NF454mXpOhmai5V7NPc15L
-        Wytca6tWp9aUtpy2l3audov2Ax2yjoPOGp0GnVu6GF2GbrLuPt0berCehV6iXo3edX1Y31Kfq79Pf9AA
-        bWBtwDNoMBgxJBk6GWYathiOGdGMfI3yjTqNnhtrGEcZ7zLuM/5oYmGSYtJoct9UxtTbNN+02/R3Mz0z
-        llmN2S1zsrm7+QbzLvMXy/SXcZbtX3bHgmLhZ7HVosfig6WVJd+y1XLaSsMq1qrWaoRBZQQwShiXrdHW
-        ztYbrE9Zv7WxtBHYHLf5zdbQNtn2iO3Ucu3lnOWNy8ft1OyYdvV2o/Z0+1j7A/ajDqoOTIcGh8eO6o5s
-        xybHSSddpySno07PnU2c+c7tzvMuNi7rXM65Iq4erkWuA24ybqFu1W6P3NXcE9xb3Gc9LDzWepzzRHv6
-        eO7yHPFS8mJ5NXvNelt5r/Pu9SH5BPtU+zz21fPl+3b7wX7efrv9HqzQXMFb0ekP/L38d/s/DNAOWBPw
-        YyAmMCCwJvBJkGlQXlBfMCU4JvhI8OsQ55DSkPuhOqHC0J4wybDosOaw+XDX8LLw0QjjiHUR1yIVIrmR
-        XVHYqLCopqi5lW4r96yciLaILoweXqW9KnvVldUKq1NWn46RjGHGnIhFx4bHHol9z/RnNjDn4rziauNm
-        WS6svaxnbEd2OXuaY8cp40zG28WXxU8l2CXsTphOdEisSJzhunCruS+SPJPqkuaT/ZMPJX9KCU9pS8Wl
-        xqae5Mnwknm9acpp2WmD6frphemja2zW7Fkzy/fhN2VAGasyugRU0c9Uv1BHuEU4lmmfWZP5Jiss60S2
-        dDYvuz9HL2d7zmSue+63a1FrWWt78lTzNuWNrXNaV78eWh+3vmeD+oaCDRMbPTYe3kTYlLzpp3yT/LL8
-        V5vDN3cXKBVsLBjf4rGlpVCikF84stV2a9021DbutoHt5turtn8sYhddLTYprih+X8IqufqN6TeV33za
-        Eb9joNSydP9OzE7ezuFdDrsOl0mX5ZaN7/bb3VFOLy8qf7UnZs+VimUVdXsJe4V7Ryt9K7uqNKp2Vr2v
-        Tqy+XeNc01arWLu9dn4fe9/Qfsf9rXVKdcV17w5wD9yp96jvaNBqqDiIOZh58EljWGPft4xvm5sUmoqb
-        PhziHRo9HHS4t9mqufmI4pHSFrhF2DJ9NProje9cv+tqNWytb6O1FR8Dx4THnn4f+/3wcZ/jPScYJ1p/
-        0Pyhtp3SXtQBdeR0zHYmdo52RXYNnvQ+2dNt293+o9GPh06pnqo5LXu69AzhTMGZT2dzz86dSz83cz7h
-        /HhPTM/9CxEXbvUG9g5c9Ll4+ZL7pQt9Tn1nL9tdPnXF5srJq4yrndcsr3X0W/S3/2TxU/uA5UDHdavr
-        XTesb3QPLh88M+QwdP6m681Lt7xuXbu94vbgcOjwnZHokdE77DtTd1PuvriXeW/h/sYH6AdFD6UeVjxS
-        fNTws+7PbaOWo6fHXMf6Hwc/vj/OGn/2S8Yv7ycKnpCfVEyqTDZPmU2dmnafvvF05dOJZ+nPFmYKf5X+
-        tfa5zvMffnP8rX82YnbiBf/Fp99LXsq/PPRq2aueuYC5R69TXy/MF72Rf3P4LeNt37vwd5MLWe+x7ys/
-        6H7o/ujz8cGn1E+f/gUDmPP8usTo0wAAAAlwSFlzAAALEwAACxMBAJqcGAAACK5JREFUeF7t3T2P1FYU
-        xvFNlSWpaWkokLamIBISigTN5gPwDdACQqkRJVJICdTbRqKggZY6K0WiodrQIBFp6ZeOFEvO38xOZuzH
-        M3659tiep/hJy2F2fH3PYRjb92Xn687OttoNe2E/HITH4TC8DkfhOJyE0/AlnM3wMzH+jtfwWn6H3+U9
-        eC/ek/fmGOrYkyeDE/RD+CncCc/Dm/BP+NoxjsGxOCbHpg20RbVxUmRwAr4LJPHX8Ef4O6jEbwJtoU20
-        jTbSVnUOoyaDI/Vj+CX8Hv4MKqlDRFtpM23nHNS5jY4MjszP4bfwV1CJGxPOgXPhnNS5joYMjsClcDfw
-        pfnfoJI0ZpwT58Y5cq6qDwZNBgfsauDK611QCZkizpVz5txVnwySDA7Q9fA09HElN1ScO31AX6g+GhQZ
-        HJBrgc78FFRnbyP6gj6hb1SfDYIMDsCVwMf/h6A61771DX1EX6k+3CgZ3CBuHt4LU7jC6wt9RZ8N6sar
-        DG7IrfAiqM6z9eg7+lD1be9ksGcXw6PwMagOs+roQ/qSPlV93RsZ7NHN8DKoTrLm6FP6VvV5L2SwBzwf
-        exDeB9Ux1h59Sx9v5FmkDHbscngWVGdYevQ1fa5y0RkZ7NCN8CqoDrDu0Of0vcpJJ2SwI7fD26BO3LpH
-        35MDlZvkZLAD94Ov+jaPHJALlaOkZDCxh+FzUCdq/SMX5ETlKhkZTOT7wCMHdXK2eeSGHKnctSaDCVwI
-        T4I6IRsOckSuVA5bkcGW+FfgohoPcpX8k0sGW/J/f+NDzlQuG5PBFvhSqBpuw5f0C70MNsRlrK/+xovc
-        JbsVIYMNcOPN96nGjxwmuYkqgzXxqMB31KeDXLZ+/CODNfBw08/+poectnpwLYMVMRzDoxSmi9w2HnIj
-        gxUx1kc1yKaDHKvcryWDFTA60YP0po8cNxqJKoNrMJ7aw4m3B7muPYZeBtdgsL5qgE0XOVe1UEoGV2B6
-        ke9XbR9yXmtqmQyWYEKk5/1tL3JfeVKsDJZgtq06oG0PakDVRoEMCqwP4GnvRg1UWitCBgUPhbFzlYbY
-        yGAOy+V41Rc7Ry2sXUJJBnNYi0kdwLYXNaFqZU4GF7B6nBc9szxqYuXKgjK4wJ9WVmblp5YMzrCY6jav
-        +WmrURulC+7K4IyvBG2d0itEGQysLb5NS15bM9SIXIe+EJhh4Xr1RmZ51EqhhgqBGXZFUG9ilketFGqo
-        EAjs4zLFbUSsG9RKYe+fpT/MsEmQegOzMtTMUh0t/SGwrZkfNltd1MzSlniLRQX2zFO/aLYOtTOvpcWi
-        Ahsyql8yW4famdfSYlExh2xMO5PasFA783mIi4XF/sTqF8yqooYKhcXm1+rFZlVRQ4XCYmd19WKzqqih
-        pcJi9gXb9qsXm1VFDWUzec4Ly9+vLJXse9Z5Yd2ZBc3aopbip2+ez4JmbVFL8dM3b2ZBs7aopfhpZ2c3
-        eAiypUIt7VJYewtBsxT2KKz9XNCsrX0K6yAXNGvrgMLybBxL7TGFdZgLmrV1SGF54oSl9prCOsoFzdo6
-        orCOc0Gzto4prJNc0KytEwrrNBc0a+uUwvqSC5q19YXCOssFzdo6c2FZF7LC8n+Fllr2X6G/vFtq2Zd3
-        326w1LLbDb5BaqllN0j9SMdSyx7p+CG0pZY9hPawGUstGzbjgX6WWjbQz0OTLbVsaLInU1hq2WQKT/+y
-        1LLpX56wainNJ6zCU+wtlfkUe3hREEtlaVEQL2NkqSwtY+SF1yyVpYXXvFSkpVBYKhJe3NbaKixuCy/H
-        bW3J5bj9Pcvayr5fYbGwvOWJtVG65Qm8SZM1VbpJE7ytnDW1cls5b4RpTazdCBPeutfqWrt1L7zZuNVR
-        ebNxeIKFVUWtFGqoEJi5G9SbmOVRK4UaKgRmLoV3Qb2R2TlqhFop1FAhsMCzd2wdakTVjg7OXA0esmxl
-        qA1qRNWODi54GtSbmlEbqmYyMrjgevgU1Bvb9qImqA1VMxkZzPGnluWt/LSCDOZcCx+COoBtH2qBmlC1
-        MieDgq8Q7VzpleAiGRSuBD+cNmqAWlA1skQGS9wL6mC2PagBVRsFMliC2RcvgjqgTR+5z2bgVCGDK9wK
-        H4M6sE0XOSf3qiYkGVzjUVAHt+ki56oWSsngGhfDy6AaYNNDrsm5qoVSMljBzfA+qIbYdJBjcq1qYCUZ
-        rOhBUI2x6SDHKvdryWBFzCF7FlSDbPzI7XyeYF0yWMPl8Cqohtl4kVNyq3JeiQzWdCO8DaqBNj7kkpyq
-        XFcmgw3cDr6/NX7kkFyqHNcigw3dD5+DarANH7kjhyq3tclgCw+DarQNH7lTOW1EBlvyEJvxqTQUpg4Z
-        bOn78CSoE7DhIVfkTOWyMRlM4EJwcQ0fOSJXKoetyGAi/Cvwf4vDRW6Sf1Kdk8HE+FLoq8XhIBdJv6gr
-        MtgBLmN9n2vzyEGyWwqryGBHuPHmO/SbQ98nuflZhQx2iEcFfrbYP/q89WOaOmSwYzzc9KiI/tDXrR4o
-        NyGDPWA4BmN9PFiwO/Qtfdx46EsbMtgjRid6mHN69GmjkZ+pyGDPGE/NYH1fNbZHH9KXtceopyaDG8L0
-        Is9bbI6+qzVFq0syuEFMiGS2rafzV0df0WeVJ5P2QQYHgPUBeOTgVW7K0Tf0UaW1FPomgwPCcjmsxeTF
-        3/5HX9Ana5cS2iQZHCBWj6Mzt3lNVM6dPli5kt5QyOCAsZgqH//btFQ458o5ly4kO0QyOAKsLc7C9eyK
-        MMXtWTgnzo1zlOuoD50Mjgz7uLBJ0BSuJDkHzqWwN83YyOBIsa0Ze+axIeOYdoqlrbSZti9tzTZmMjgB
-        PB9jf2I2v2ZndbbtV0ndBNpCm2gbbdzIs7yuyeAEcfOQJN4Jz8Ob0McVJsfgWByTY9OGQd3I7IoMbond
-        sBf2w0Hgyusw8KX5KByHk3AavoSzGX4mxt/xGl7L7/C7vAfvxXvy3hxDHXvidnb+AyTfWAn9iVGiAAAA
-        AElFTkSuQmCC
-</value>
-  </data>
-  <data name="pBSADeadzone.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pBSADeadzone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>348, 136</value>
-  </data>
-  <data name="pBSADeadzone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 31</value>
-  </data>
-  <data name="pBSADeadzone.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
-  </data>
-  <data name="pBSADeadzone.TabIndex" type="System.Int32, mscorlib">
-    <value>242</value>
-  </data>
-  <data name="&gt;&gt;pBSADeadzone.Name" xml:space="preserve">
-    <value>pBSADeadzone</value>
-  </data>
-  <data name="&gt;&gt;pBSADeadzone.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pBSADeadzone.Parent" xml:space="preserve">
-    <value>tPController</value>
-  </data>
-  <data name="&gt;&gt;pBSADeadzone.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="pBRSDeadzone.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        AElFTkSuQmCC
-</value>
-  </data>
-  <data name="pBRSDeadzone.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pBRSDeadzone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 145</value>
-  </data>
-  <data name="pBRSDeadzone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>9, 9</value>
-  </data>
-  <data name="pBRSDeadzone.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
-  </data>
-  <data name="pBRSDeadzone.TabIndex" type="System.Int32, mscorlib">
-    <value>241</value>
-  </data>
-  <data name="pBRSDeadzone.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;pBRSDeadzone.Name" xml:space="preserve">
-    <value>pBRSDeadzone</value>
-  </data>
-  <data name="&gt;&gt;pBRSDeadzone.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pBRSDeadzone.Parent" xml:space="preserve">
-    <value>tPController</value>
-  </data>
-  <data name="&gt;&gt;pBRSDeadzone.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
   <data name="lbRSTrack.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -3043,125 +3182,7 @@ with profile</value>
     <value>tPController</value>
   </data>
   <data name="&gt;&gt;lbRSTrack.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="pBLSDeadzone.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        AElFTkSuQmCC
-</value>
-  </data>
-  <data name="pBLSDeadzone.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pBLSDeadzone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>63, 145</value>
-  </data>
-  <data name="pBLSDeadzone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>9, 9</value>
-  </data>
-  <data name="pBLSDeadzone.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
-  </data>
-  <data name="pBLSDeadzone.TabIndex" type="System.Int32, mscorlib">
-    <value>240</value>
-  </data>
-  <data name="pBLSDeadzone.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;pBLSDeadzone.Name" xml:space="preserve">
-    <value>pBLSDeadzone</value>
-  </data>
-  <data name="&gt;&gt;pBLSDeadzone.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pBLSDeadzone.Parent" xml:space="preserve">
-    <value>tPController</value>
-  </data>
-  <data name="&gt;&gt;pBLSDeadzone.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>10</value>
   </data>
   <data name="lbLSTrack.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3188,7 +3209,7 @@ with profile</value>
     <value>tPController</value>
   </data>
   <data name="&gt;&gt;lbLSTrack.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>11</value>
   </data>
   <data name="tBR2.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -3224,7 +3245,7 @@ with profile</value>
     <value>tPController</value>
   </data>
   <data name="&gt;&gt;tBR2.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>12</value>
   </data>
   <data name="tBL2.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -3263,7 +3284,7 @@ with profile</value>
     <value>tPController</value>
   </data>
   <data name="&gt;&gt;tBL2.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>13</value>
   </data>
   <data name="lbSATrack.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3290,7 +3311,154 @@ with profile</value>
     <value>tPController</value>
   </data>
   <data name="&gt;&gt;lbSATrack.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelX.Name" xml:space="preserve">
+    <value>tBsixaxisAccelX</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelX.Parent" xml:space="preserve">
+    <value>pnlSixaxis</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelX.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lb6Accel.Name" xml:space="preserve">
+    <value>lb6Accel</value>
+  </data>
+  <data name="&gt;&gt;lb6Accel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lb6Accel.Parent" xml:space="preserve">
+    <value>pnlSixaxis</value>
+  </data>
+  <data name="&gt;&gt;lb6Accel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroX.Name" xml:space="preserve">
+    <value>tBsixaxisGyroX</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroX.Parent" xml:space="preserve">
+    <value>pnlSixaxis</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroX.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lb6Gryo.Name" xml:space="preserve">
+    <value>lb6Gryo</value>
+  </data>
+  <data name="&gt;&gt;lb6Gryo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lb6Gryo.Parent" xml:space="preserve">
+    <value>pnlSixaxis</value>
+  </data>
+  <data name="&gt;&gt;lb6Gryo.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroY.Name" xml:space="preserve">
+    <value>tBsixaxisGyroY</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroY.Parent" xml:space="preserve">
+    <value>pnlSixaxis</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroY.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroZ.Name" xml:space="preserve">
+    <value>tBsixaxisGyroZ</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroZ.Parent" xml:space="preserve">
+    <value>pnlSixaxis</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisGyroZ.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelY.Name" xml:space="preserve">
+    <value>tBsixaxisAccelY</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelY.Parent" xml:space="preserve">
+    <value>pnlSixaxis</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelY.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelZ.Name" xml:space="preserve">
+    <value>tBsixaxisAccelZ</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelZ.Parent" xml:space="preserve">
+    <value>pnlSixaxis</value>
+  </data>
+  <data name="&gt;&gt;tBsixaxisAccelZ.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="pnlSixaxis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 88</value>
+  </data>
+  <data name="pnlSixaxis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 125</value>
+  </data>
+  <data name="pnlSixaxis.TabIndex" type="System.Int32, mscorlib">
+    <value>236</value>
+  </data>
+  <data name="pnlSixaxis.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;pnlSixaxis.Name" xml:space="preserve">
+    <value>pnlSixaxis</value>
+  </data>
+  <data name="&gt;&gt;pnlSixaxis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlSixaxis.Parent" xml:space="preserve">
+    <value>tPController</value>
+  </data>
+  <data name="&gt;&gt;pnlSixaxis.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="tPController.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tPController.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tPController.Size" type="System.Drawing.Size, System.Drawing">
+    <value>428, 216</value>
+  </data>
+  <data name="tPController.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tPController.Text" xml:space="preserve">
+    <value>Controller Readings</value>
+  </data>
+  <data name="&gt;&gt;tPController.Name" xml:space="preserve">
+    <value>tPController</value>
+  </data>
+  <data name="&gt;&gt;tPController.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tPController.Parent" xml:space="preserve">
+    <value>tabControls</value>
+  </data>
+  <data name="&gt;&gt;tPController.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="tBsixaxisAccelX.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -3514,56 +3682,152 @@ with profile</value>
   <data name="&gt;&gt;tBsixaxisAccelZ.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="pnlSixaxis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, 88</value>
+  <data name="&gt;&gt;lbShiftTPSwipes.Name" xml:space="preserve">
+    <value>lbShiftTPSwipes</value>
   </data>
-  <data name="pnlSixaxis.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 125</value>
+  <data name="&gt;&gt;lbShiftTPSwipes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pnlSixaxis.TabIndex" type="System.Int32, mscorlib">
-    <value>236</value>
+  <data name="&gt;&gt;lbShiftTPSwipes.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
   </data>
-  <data name="pnlSixaxis.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;lbShiftTPSwipes.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;pnlSixaxis.Name" xml:space="preserve">
-    <value>pnlSixaxis</value>
+  <data name="&gt;&gt;fLPShiftTouchSwipe.Name" xml:space="preserve">
+    <value>fLPShiftTouchSwipe</value>
   </data>
-  <data name="&gt;&gt;pnlSixaxis.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;fLPShiftTouchSwipe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlSixaxis.Parent" xml:space="preserve">
-    <value>tPController</value>
+  <data name="&gt;&gt;fLPShiftTouchSwipe.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
   </data>
-  <data name="&gt;&gt;pnlSixaxis.ZOrder" xml:space="preserve">
-    <value>18</value>
+  <data name="&gt;&gt;fLPShiftTouchSwipe.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="tPController.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="&gt;&gt;lbShiftGryo.Name" xml:space="preserve">
+    <value>lbShiftGryo</value>
   </data>
-  <data name="tPController.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="&gt;&gt;lbShiftGryo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tPController.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 216</value>
+  <data name="&gt;&gt;lbShiftGryo.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
   </data>
-  <data name="tPController.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;lbShiftGryo.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="tPController.Text" xml:space="preserve">
-    <value>Controller Readings</value>
+  <data name="&gt;&gt;fLPShiftTiltControls.Name" xml:space="preserve">
+    <value>fLPShiftTiltControls</value>
   </data>
-  <data name="&gt;&gt;tPController.Name" xml:space="preserve">
-    <value>tPController</value>
+  <data name="&gt;&gt;fLPShiftTiltControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tPController.Type" xml:space="preserve">
+  <data name="&gt;&gt;fLPShiftTiltControls.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;fLPShiftTiltControls.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;cBShiftControl.Name" xml:space="preserve">
+    <value>cBShiftControl</value>
+  </data>
+  <data name="&gt;&gt;cBShiftControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBShiftControl.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;cBShiftControl.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lBShiftControls.Name" xml:space="preserve">
+    <value>lBShiftControls</value>
+  </data>
+  <data name="&gt;&gt;lBShiftControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lBShiftControls.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;lBShiftControls.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lbHold.Name" xml:space="preserve">
+    <value>lbHold</value>
+  </data>
+  <data name="&gt;&gt;lbHold.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbHold.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;lbHold.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;lbtoUse.Name" xml:space="preserve">
+    <value>lbtoUse</value>
+  </data>
+  <data name="&gt;&gt;lbtoUse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbtoUse.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;lbtoUse.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftMain.Name" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftMain.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftMain.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftSticks.Name" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftSticks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftSticks.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftSticks.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="tPShiftMod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tPShiftMod.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tPShiftMod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>428, 216</value>
+  </data>
+  <data name="tPShiftMod.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tPShiftMod.Text" xml:space="preserve">
+    <value>Shift Modifier</value>
+  </data>
+  <data name="&gt;&gt;tPShiftMod.Name" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;tPShiftMod.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tPController.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tPShiftMod.Parent" xml:space="preserve">
     <value>tabControls</value>
   </data>
-  <data name="&gt;&gt;tPController.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;tPShiftMod.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="lbShiftTPSwipes.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3571,153 +3835,6 @@ with profile</value>
   <metadata name="cMSPresets.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>293, 17</value>
   </metadata>
-  <data name="controlToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="controlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="controlToolStripMenuItem.Text" xml:space="preserve">
-    <value>Control</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 6</value>
-  </data>
-  <data name="defaultToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="defaultToolStripMenuItem.Text" xml:space="preserve">
-    <value>Default</value>
-  </data>
-  <data name="tSMIDPadInverted.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMIDPadInverted.Text" xml:space="preserve">
-    <value>Inverted</value>
-  </data>
-  <data name="tSMIDPadInvertedX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMIDPadInvertedX.Text" xml:space="preserve">
-    <value>Inverted X</value>
-  </data>
-  <data name="tSMIDPadInvertedY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMIDPadInvertedY.Text" xml:space="preserve">
-    <value>Inverted Y</value>
-  </data>
-  <data name="DpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dpad</value>
-  </data>
-  <data name="tSMILSInverted.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMILSInverted.Text" xml:space="preserve">
-    <value>Inverted</value>
-  </data>
-  <data name="tSMILSInvertedX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMILSInvertedX.Text" xml:space="preserve">
-    <value>Inverted X</value>
-  </data>
-  <data name="tSMILSInvertedY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMILSInvertedY.Text" xml:space="preserve">
-    <value>Inverted Y</value>
-  </data>
-  <data name="LSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="LSToolStripMenuItem.Text" xml:space="preserve">
-    <value>Left Stick</value>
-  </data>
-  <data name="tSMIRSInverted.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMIRSInverted.Text" xml:space="preserve">
-    <value>Inverted</value>
-  </data>
-  <data name="tSMIRSInvertedX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMIRSInvertedX.Text" xml:space="preserve">
-    <value>Inverted X</value>
-  </data>
-  <data name="tSMIRSInvertedY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMIRSInvertedY.Text" xml:space="preserve">
-    <value>Inverted Y</value>
-  </data>
-  <data name="RSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="RSToolStripMenuItem.Text" xml:space="preserve">
-    <value>Right Stick</value>
-  </data>
-  <data name="ABXYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="ABXYToolStripMenuItem.Text" xml:space="preserve">
-    <value>Face Buttons</value>
-  </data>
-  <data name="wScanCodeWASDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 22</value>
-  </data>
-  <data name="wScanCodeWASDToolStripMenuItem.Text" xml:space="preserve">
-    <value>w/ Scan Code</value>
-  </data>
-  <data name="WASDToolStripMenuItem.ShowShortcutKeys" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="WASDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="WASDToolStripMenuItem.Text" xml:space="preserve">
-    <value>WASD</value>
-  </data>
-  <data name="wScanCodeArrowKeysToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 22</value>
-  </data>
-  <data name="wScanCodeArrowKeysToolStripMenuItem.Text" xml:space="preserve">
-    <value>w/ Scan Code</value>
-  </data>
-  <data name="ArrowKeysToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="ArrowKeysToolStripMenuItem.Text" xml:space="preserve">
-    <value>Arrow Keys</value>
-  </data>
-  <data name="tSMIMouseInverted.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMIMouseInverted.Text" xml:space="preserve">
-    <value>Inverted</value>
-  </data>
-  <data name="tSMIMouseInvertedX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMIMouseInvertedX.Text" xml:space="preserve">
-    <value>Inverted X</value>
-  </data>
-  <data name="tSMIMouseInvertedY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 22</value>
-  </data>
-  <data name="tSMIMouseInvertedY.Text" xml:space="preserve">
-    <value>Inverted Y</value>
-  </data>
-  <data name="MouseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mouse</value>
-  </data>
   <data name="cMSPresets.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 208</value>
   </data>
@@ -3754,6 +3871,222 @@ Swipes:</value>
   </data>
   <data name="&gt;&gt;lbShiftTPSwipes.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="controlToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="controlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="controlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Control</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 6</value>
+  </data>
+  <data name="defaultToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="defaultToolStripMenuItem.Text" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dpad</value>
+  </data>
+  <data name="tSMIDPadInverted.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMIDPadInverted.Text" xml:space="preserve">
+    <value>Inverted</value>
+  </data>
+  <data name="tSMIDPadInvertedX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMIDPadInvertedX.Text" xml:space="preserve">
+    <value>Inverted X</value>
+  </data>
+  <data name="tSMIDPadInvertedY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMIDPadInvertedY.Text" xml:space="preserve">
+    <value>Inverted Y</value>
+  </data>
+  <data name="LSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="LSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Left Stick</value>
+  </data>
+  <data name="tSMILSInverted.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMILSInverted.Text" xml:space="preserve">
+    <value>Inverted</value>
+  </data>
+  <data name="tSMILSInvertedX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMILSInvertedX.Text" xml:space="preserve">
+    <value>Inverted X</value>
+  </data>
+  <data name="tSMILSInvertedY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMILSInvertedY.Text" xml:space="preserve">
+    <value>Inverted Y</value>
+  </data>
+  <data name="RSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="RSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Right Stick</value>
+  </data>
+  <data name="tSMIRSInverted.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMIRSInverted.Text" xml:space="preserve">
+    <value>Inverted</value>
+  </data>
+  <data name="tSMIRSInvertedX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMIRSInvertedX.Text" xml:space="preserve">
+    <value>Inverted X</value>
+  </data>
+  <data name="tSMIRSInvertedY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMIRSInvertedY.Text" xml:space="preserve">
+    <value>Inverted Y</value>
+  </data>
+  <data name="ABXYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="ABXYToolStripMenuItem.Text" xml:space="preserve">
+    <value>Face Buttons</value>
+  </data>
+  <data name="WASDToolStripMenuItem.ShowShortcutKeys" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="WASDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="WASDToolStripMenuItem.Text" xml:space="preserve">
+    <value>WASD</value>
+  </data>
+  <data name="wScanCodeWASDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 22</value>
+  </data>
+  <data name="wScanCodeWASDToolStripMenuItem.Text" xml:space="preserve">
+    <value>w/ Scan Code</value>
+  </data>
+  <data name="ArrowKeysToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="ArrowKeysToolStripMenuItem.Text" xml:space="preserve">
+    <value>Arrow Keys</value>
+  </data>
+  <data name="wScanCodeArrowKeysToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 22</value>
+  </data>
+  <data name="wScanCodeArrowKeysToolStripMenuItem.Text" xml:space="preserve">
+    <value>w/ Scan Code</value>
+  </data>
+  <data name="MouseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mouse</value>
+  </data>
+  <data name="tSMIMouseInverted.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMIMouseInverted.Text" xml:space="preserve">
+    <value>Inverted</value>
+  </data>
+  <data name="tSMIMouseInvertedX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMIMouseInvertedX.Text" xml:space="preserve">
+    <value>Inverted X</value>
+  </data>
+  <data name="tSMIMouseInvertedY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 22</value>
+  </data>
+  <data name="tSMIMouseInvertedY.Text" xml:space="preserve">
+    <value>Inverted Y</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeUp.Name" xml:space="preserve">
+    <value>bnShiftSwipeUp</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeUp.Parent" xml:space="preserve">
+    <value>fLPShiftTouchSwipe</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeUp.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeDown.Name" xml:space="preserve">
+    <value>bnShiftSwipeDown</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeDown.Parent" xml:space="preserve">
+    <value>fLPShiftTouchSwipe</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeLeft.Name" xml:space="preserve">
+    <value>bnShiftSwipeLeft</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeLeft.Parent" xml:space="preserve">
+    <value>fLPShiftTouchSwipe</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeLeft.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeRight.Name" xml:space="preserve">
+    <value>bnShiftSwipeRight</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeRight.Parent" xml:space="preserve">
+    <value>fLPShiftTouchSwipe</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSwipeRight.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="fLPShiftTouchSwipe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 219</value>
+  </data>
+  <data name="fLPShiftTouchSwipe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>351, 31</value>
+  </data>
+  <data name="fLPShiftTouchSwipe.TabIndex" type="System.Int32, mscorlib">
+    <value>258</value>
+  </data>
+  <data name="&gt;&gt;fLPShiftTouchSwipe.Name" xml:space="preserve">
+    <value>fLPShiftTouchSwipe</value>
+  </data>
+  <data name="&gt;&gt;fLPShiftTouchSwipe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fLPShiftTouchSwipe.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;fLPShiftTouchSwipe.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="bnShiftSwipeUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3863,27 +4196,6 @@ Swipes:</value>
   <data name="&gt;&gt;bnShiftSwipeRight.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="fLPShiftTouchSwipe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 219</value>
-  </data>
-  <data name="fLPShiftTouchSwipe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>351, 31</value>
-  </data>
-  <data name="fLPShiftTouchSwipe.TabIndex" type="System.Int32, mscorlib">
-    <value>258</value>
-  </data>
-  <data name="&gt;&gt;fLPShiftTouchSwipe.Name" xml:space="preserve">
-    <value>fLPShiftTouchSwipe</value>
-  </data>
-  <data name="&gt;&gt;fLPShiftTouchSwipe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fLPShiftTouchSwipe.Parent" xml:space="preserve">
-    <value>tPShiftMod</value>
-  </data>
-  <data name="&gt;&gt;fLPShiftTouchSwipe.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="lbShiftGryo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3913,6 +4225,75 @@ Swipes:</value>
   </data>
   <data name="&gt;&gt;lbShiftGryo.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroZN.Name" xml:space="preserve">
+    <value>bnShiftGyroZN</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroZN.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroZN.Parent" xml:space="preserve">
+    <value>fLPShiftTiltControls</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroZN.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroZP.Name" xml:space="preserve">
+    <value>bnShiftGyroZP</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroZP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroZP.Parent" xml:space="preserve">
+    <value>fLPShiftTiltControls</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroZP.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroXP.Name" xml:space="preserve">
+    <value>bnShiftGyroXP</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroXP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroXP.Parent" xml:space="preserve">
+    <value>fLPShiftTiltControls</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroXP.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroXN.Name" xml:space="preserve">
+    <value>bnShiftGyroXN</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroXN.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroXN.Parent" xml:space="preserve">
+    <value>fLPShiftTiltControls</value>
+  </data>
+  <data name="&gt;&gt;bnShiftGyroXN.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="fLPShiftTiltControls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 185</value>
+  </data>
+  <data name="fLPShiftTiltControls.Size" type="System.Drawing.Size, System.Drawing">
+    <value>351, 31</value>
+  </data>
+  <data name="fLPShiftTiltControls.TabIndex" type="System.Int32, mscorlib">
+    <value>256</value>
+  </data>
+  <data name="&gt;&gt;fLPShiftTiltControls.Name" xml:space="preserve">
+    <value>fLPShiftTiltControls</value>
+  </data>
+  <data name="&gt;&gt;fLPShiftTiltControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fLPShiftTiltControls.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;fLPShiftTiltControls.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="bnShiftGyroZN.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -4020,27 +4401,6 @@ Swipes:</value>
     <value>fLPShiftTiltControls</value>
   </data>
   <data name="&gt;&gt;bnShiftGyroXN.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="fLPShiftTiltControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 185</value>
-  </data>
-  <data name="fLPShiftTiltControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>351, 31</value>
-  </data>
-  <data name="fLPShiftTiltControls.TabIndex" type="System.Int32, mscorlib">
-    <value>256</value>
-  </data>
-  <data name="&gt;&gt;fLPShiftTiltControls.Name" xml:space="preserve">
-    <value>fLPShiftTiltControls</value>
-  </data>
-  <data name="&gt;&gt;fLPShiftTiltControls.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fLPShiftTiltControls.Parent" xml:space="preserve">
-    <value>tPShiftMod</value>
-  </data>
-  <data name="&gt;&gt;fLPShiftTiltControls.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="cBShiftControl.Items" xml:space="preserve">
@@ -4330,6 +4690,303 @@ Swipes:</value>
   </data>
   <data name="&gt;&gt;lbtoUse.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="&gt;&gt;pBShiftController.Name" xml:space="preserve">
+    <value>pBShiftController</value>
+  </data>
+  <data name="&gt;&gt;pBShiftController.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pBShiftController.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;pBShiftController.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchUpper.Name" xml:space="preserve">
+    <value>bnShiftTouchUpper</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchUpper.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchUpper.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchUpper.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchLeft.Name" xml:space="preserve">
+    <value>bnShiftTouchLeft</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchLeft.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchLeft.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchRight.Name" xml:space="preserve">
+    <value>bnShiftTouchRight</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchRight.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchRight.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchMulti.Name" xml:space="preserve">
+    <value>bnShiftTouchMulti</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchMulti.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchMulti.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTouchMulti.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR1.Name" xml:space="preserve">
+    <value>bnShiftR1</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR1.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;bnShiftCross.Name" xml:space="preserve">
+    <value>bnShiftCross</value>
+  </data>
+  <data name="&gt;&gt;bnShiftCross.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftCross.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftCross.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;bnShiftCircle.Name" xml:space="preserve">
+    <value>bnShiftCircle</value>
+  </data>
+  <data name="&gt;&gt;bnShiftCircle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftCircle.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftCircle.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btnShiftRightStick.Name" xml:space="preserve">
+    <value>btnShiftRightStick</value>
+  </data>
+  <data name="&gt;&gt;btnShiftRightStick.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnShiftRightStick.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;btnShiftRightStick.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSquare.Name" xml:space="preserve">
+    <value>bnShiftSquare</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSquare.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSquare.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftSquare.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;btnShiftLightbar.Name" xml:space="preserve">
+    <value>btnShiftLightbar</value>
+  </data>
+  <data name="&gt;&gt;btnShiftLightbar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnShiftLightbar.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;btnShiftLightbar.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTriangle.Name" xml:space="preserve">
+    <value>bnShiftTriangle</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTriangle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTriangle.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftTriangle.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;bnShiftUp.Name" xml:space="preserve">
+    <value>bnShiftUp</value>
+  </data>
+  <data name="&gt;&gt;bnShiftUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftUp.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftUp.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;btnShiftLeftStick.Name" xml:space="preserve">
+    <value>btnShiftLeftStick</value>
+  </data>
+  <data name="&gt;&gt;btnShiftLeftStick.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnShiftLeftStick.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;btnShiftLeftStick.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;bnShiftDown.Name" xml:space="preserve">
+    <value>bnShiftDown</value>
+  </data>
+  <data name="&gt;&gt;bnShiftDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftDown.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftDown.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL2.Name" xml:space="preserve">
+    <value>bnShiftL2</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL2.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL2.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRight.Name" xml:space="preserve">
+    <value>bnShiftRight</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRight.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRight.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR2.Name" xml:space="preserve">
+    <value>bnShiftR2</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR2.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR2.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLeft.Name" xml:space="preserve">
+    <value>bnShiftLeft</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLeft.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLeft.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL1.Name" xml:space="preserve">
+    <value>bnShiftL1</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL1.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL1.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;bnShiftOptions.Name" xml:space="preserve">
+    <value>bnShiftOptions</value>
+  </data>
+  <data name="&gt;&gt;bnShiftOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftOptions.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftOptions.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;bnShiftPS.Name" xml:space="preserve">
+    <value>bnShiftPS</value>
+  </data>
+  <data name="&gt;&gt;bnShiftPS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftPS.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftPS.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;bnShiftShare.Name" xml:space="preserve">
+    <value>bnShiftShare</value>
+  </data>
+  <data name="&gt;&gt;bnShiftShare.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftShare.Parent" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;bnShiftShare.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="pnlShiftMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 41</value>
+  </data>
+  <data name="pnlShiftMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 137</value>
+  </data>
+  <data name="pnlShiftMain.TabIndex" type="System.Int32, mscorlib">
+    <value>190</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftMain.Name" xml:space="preserve">
+    <value>pnlShiftMain</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftMain.Parent" xml:space="preserve">
+    <value>tPShiftMod</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftMain.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="pBShiftController.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -5090,26 +5747,173 @@ Swipes:</value>
   <data name="&gt;&gt;bnShiftShare.ZOrder" xml:space="preserve">
     <value>22</value>
   </data>
-  <data name="pnlShiftMain.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="&gt;&gt;btnShiftFullView.Name" xml:space="preserve">
+    <value>btnShiftFullView</value>
+  </data>
+  <data name="&gt;&gt;btnShiftFullView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnShiftFullView.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;btnShiftFullView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;pBShiftSticks.Name" xml:space="preserve">
+    <value>pBShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;pBShiftSticks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pBShiftSticks.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;pBShiftSticks.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL3.Name" xml:space="preserve">
+    <value>bnShiftL3</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL3.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;bnShiftL3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSDown.Name" xml:space="preserve">
+    <value>bnShiftRSDown</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSDown.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSDown.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSUp.Name" xml:space="preserve">
+    <value>bnShiftLSUp</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSUp.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSUp.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSUp.Name" xml:space="preserve">
+    <value>bnShiftRSUp</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSUp.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSUp.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSLeft.Name" xml:space="preserve">
+    <value>bnShiftLSLeft</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSLeft.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSLeft.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSRight.Name" xml:space="preserve">
+    <value>bnShiftRSRight</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSRight.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSRight.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSRight.Name" xml:space="preserve">
+    <value>bnShiftLSRight</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSRight.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSRight.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSLeft.Name" xml:space="preserve">
+    <value>bnShiftRSLeft</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSLeft.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;bnShiftRSLeft.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSDown.Name" xml:space="preserve">
+    <value>bnShiftLSDown</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSDown.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;bnShiftLSDown.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR3.Name" xml:space="preserve">
+    <value>bnShiftR3</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR3.Parent" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;bnShiftR3.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="pnlShiftSticks.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 41</value>
   </data>
-  <data name="pnlShiftMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 137</value>
+  <data name="pnlShiftSticks.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 143</value>
   </data>
-  <data name="pnlShiftMain.TabIndex" type="System.Int32, mscorlib">
-    <value>190</value>
+  <data name="pnlShiftSticks.TabIndex" type="System.Int32, mscorlib">
+    <value>191</value>
   </data>
-  <data name="&gt;&gt;pnlShiftMain.Name" xml:space="preserve">
-    <value>pnlShiftMain</value>
+  <data name="pnlShiftSticks.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;pnlShiftMain.Type" xml:space="preserve">
+  <data name="&gt;&gt;pnlShiftSticks.Name" xml:space="preserve">
+    <value>pnlShiftSticks</value>
+  </data>
+  <data name="&gt;&gt;pnlShiftSticks.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlShiftMain.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlShiftSticks.Parent" xml:space="preserve">
     <value>tPShiftMod</value>
   </data>
-  <data name="&gt;&gt;pnlShiftMain.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;pnlShiftSticks.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="btnShiftFullView.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5498,56 +6302,128 @@ Swipes:</value>
   <data name="&gt;&gt;bnShiftR3.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="pnlShiftSticks.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 41</value>
+  <data name="&gt;&gt;lbTPSwipes.Name" xml:space="preserve">
+    <value>lbTPSwipes</value>
   </data>
-  <data name="pnlShiftSticks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 143</value>
+  <data name="&gt;&gt;lbTPSwipes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pnlShiftSticks.TabIndex" type="System.Int32, mscorlib">
-    <value>191</value>
+  <data name="&gt;&gt;lbTPSwipes.Parent" xml:space="preserve">
+    <value>tPControls</value>
   </data>
-  <data name="pnlShiftSticks.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;lbTPSwipes.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;pnlShiftSticks.Name" xml:space="preserve">
-    <value>pnlShiftSticks</value>
+  <data name="&gt;&gt;fLPTouchSwipe.Name" xml:space="preserve">
+    <value>fLPTouchSwipe</value>
   </data>
-  <data name="&gt;&gt;pnlShiftSticks.Type" xml:space="preserve">
+  <data name="&gt;&gt;fLPTouchSwipe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fLPTouchSwipe.Parent" xml:space="preserve">
+    <value>tPControls</value>
+  </data>
+  <data name="&gt;&gt;fLPTouchSwipe.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lbGyro.Name" xml:space="preserve">
+    <value>lbGyro</value>
+  </data>
+  <data name="&gt;&gt;lbGyro.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbGyro.Parent" xml:space="preserve">
+    <value>tPControls</value>
+  </data>
+  <data name="&gt;&gt;lbGyro.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;fLPTiltControls.Name" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;fLPTiltControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fLPTiltControls.Parent" xml:space="preserve">
+    <value>tPControls</value>
+  </data>
+  <data name="&gt;&gt;fLPTiltControls.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lBControls.Name" xml:space="preserve">
+    <value>lBControls</value>
+  </data>
+  <data name="&gt;&gt;lBControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lBControls.Parent" xml:space="preserve">
+    <value>tPControls</value>
+  </data>
+  <data name="&gt;&gt;lBControls.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;pnlMain.Name" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;pnlMain.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlShiftSticks.Parent" xml:space="preserve">
-    <value>tPShiftMod</value>
+  <data name="&gt;&gt;pnlMain.Parent" xml:space="preserve">
+    <value>tPControls</value>
   </data>
-  <data name="&gt;&gt;pnlShiftSticks.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;pnlMain.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="tPShiftMod.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="&gt;&gt;pnlSticks.Name" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;pnlSticks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlSticks.Parent" xml:space="preserve">
+    <value>tPControls</value>
+  </data>
+  <data name="&gt;&gt;pnlSticks.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;lbControlTip.Name" xml:space="preserve">
+    <value>lbControlTip</value>
+  </data>
+  <data name="&gt;&gt;lbControlTip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbControlTip.Parent" xml:space="preserve">
+    <value>tPControls</value>
+  </data>
+  <data name="&gt;&gt;lbControlTip.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="tPControls.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="tPShiftMod.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="tPControls.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="tPShiftMod.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tPControls.Size" type="System.Drawing.Size, System.Drawing">
     <value>428, 216</value>
   </data>
-  <data name="tPShiftMod.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="tPControls.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="tPShiftMod.Text" xml:space="preserve">
-    <value>Shift Modifier</value>
+  <data name="tPControls.Text" xml:space="preserve">
+    <value>Controls</value>
   </data>
-  <data name="&gt;&gt;tPShiftMod.Name" xml:space="preserve">
-    <value>tPShiftMod</value>
+  <data name="&gt;&gt;tPControls.Name" xml:space="preserve">
+    <value>tPControls</value>
   </data>
-  <data name="&gt;&gt;tPShiftMod.Type" xml:space="preserve">
+  <data name="&gt;&gt;tPControls.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tPShiftMod.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tPControls.Parent" xml:space="preserve">
     <value>tabControls</value>
   </data>
-  <data name="&gt;&gt;tPShiftMod.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;tPControls.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="lbTPSwipes.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5579,6 +6455,75 @@ Swipes:</value>
   </data>
   <data name="&gt;&gt;lbTPSwipes.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeUp.Name" xml:space="preserve">
+    <value>bnSwipeUp</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeUp.Parent" xml:space="preserve">
+    <value>fLPTouchSwipe</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeUp.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeDown.Name" xml:space="preserve">
+    <value>bnSwipeDown</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeDown.Parent" xml:space="preserve">
+    <value>fLPTouchSwipe</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeLeft.Name" xml:space="preserve">
+    <value>bnSwipeLeft</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeLeft.Parent" xml:space="preserve">
+    <value>fLPTouchSwipe</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeLeft.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeRight.Name" xml:space="preserve">
+    <value>bnSwipeRight</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeRight.Parent" xml:space="preserve">
+    <value>fLPTouchSwipe</value>
+  </data>
+  <data name="&gt;&gt;bnSwipeRight.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="fLPTouchSwipe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 219</value>
+  </data>
+  <data name="fLPTouchSwipe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>351, 31</value>
+  </data>
+  <data name="fLPTouchSwipe.TabIndex" type="System.Int32, mscorlib">
+    <value>256</value>
+  </data>
+  <data name="&gt;&gt;fLPTouchSwipe.Name" xml:space="preserve">
+    <value>fLPTouchSwipe</value>
+  </data>
+  <data name="&gt;&gt;fLPTouchSwipe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fLPTouchSwipe.Parent" xml:space="preserve">
+    <value>tPControls</value>
+  </data>
+  <data name="&gt;&gt;fLPTouchSwipe.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="bnSwipeUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5688,27 +6633,6 @@ Swipes:</value>
   <data name="&gt;&gt;bnSwipeRight.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="fLPTouchSwipe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 219</value>
-  </data>
-  <data name="fLPTouchSwipe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>351, 31</value>
-  </data>
-  <data name="fLPTouchSwipe.TabIndex" type="System.Int32, mscorlib">
-    <value>256</value>
-  </data>
-  <data name="&gt;&gt;fLPTouchSwipe.Name" xml:space="preserve">
-    <value>fLPTouchSwipe</value>
-  </data>
-  <data name="&gt;&gt;fLPTouchSwipe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fLPTouchSwipe.Parent" xml:space="preserve">
-    <value>tPControls</value>
-  </data>
-  <data name="&gt;&gt;fLPTouchSwipe.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="lbGyro.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -5738,6 +6662,75 @@ Swipes:</value>
   </data>
   <data name="&gt;&gt;lbGyro.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="&gt;&gt;bnGyroZN.Name" xml:space="preserve">
+    <value>bnGyroZN</value>
+  </data>
+  <data name="&gt;&gt;bnGyroZN.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnGyroZN.Parent" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;bnGyroZN.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;bnGyroZP.Name" xml:space="preserve">
+    <value>bnGyroZP</value>
+  </data>
+  <data name="&gt;&gt;bnGyroZP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnGyroZP.Parent" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;bnGyroZP.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;bnGyroXP.Name" xml:space="preserve">
+    <value>bnGyroXP</value>
+  </data>
+  <data name="&gt;&gt;bnGyroXP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnGyroXP.Parent" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;bnGyroXP.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;bnGyroXN.Name" xml:space="preserve">
+    <value>bnGyroXN</value>
+  </data>
+  <data name="&gt;&gt;bnGyroXN.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnGyroXN.Parent" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;bnGyroXN.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="fLPTiltControls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 185</value>
+  </data>
+  <data name="fLPTiltControls.Size" type="System.Drawing.Size, System.Drawing">
+    <value>351, 31</value>
+  </data>
+  <data name="fLPTiltControls.TabIndex" type="System.Int32, mscorlib">
+    <value>254</value>
+  </data>
+  <data name="&gt;&gt;fLPTiltControls.Name" xml:space="preserve">
+    <value>fLPTiltControls</value>
+  </data>
+  <data name="&gt;&gt;fLPTiltControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fLPTiltControls.Parent" xml:space="preserve">
+    <value>tPControls</value>
+  </data>
+  <data name="&gt;&gt;fLPTiltControls.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="bnGyroZN.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5845,27 +6838,6 @@ Swipes:</value>
     <value>fLPTiltControls</value>
   </data>
   <data name="&gt;&gt;bnGyroXN.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="fLPTiltControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 185</value>
-  </data>
-  <data name="fLPTiltControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>351, 31</value>
-  </data>
-  <data name="fLPTiltControls.TabIndex" type="System.Int32, mscorlib">
-    <value>254</value>
-  </data>
-  <data name="&gt;&gt;fLPTiltControls.Name" xml:space="preserve">
-    <value>fLPTiltControls</value>
-  </data>
-  <data name="&gt;&gt;fLPTiltControls.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fLPTiltControls.Parent" xml:space="preserve">
-    <value>tPControls</value>
-  </data>
-  <data name="&gt;&gt;fLPTiltControls.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="lBControls.Items" xml:space="preserve">
@@ -5987,6 +6959,303 @@ Swipes:</value>
   </data>
   <data name="&gt;&gt;lBControls.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="&gt;&gt;pBController.Name" xml:space="preserve">
+    <value>pBController</value>
+  </data>
+  <data name="&gt;&gt;pBController.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pBController.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;pBController.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;bnTouchUpper.Name" xml:space="preserve">
+    <value>bnTouchUpper</value>
+  </data>
+  <data name="&gt;&gt;bnTouchUpper.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnTouchUpper.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnTouchUpper.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;bnTouchLeft.Name" xml:space="preserve">
+    <value>bnTouchLeft</value>
+  </data>
+  <data name="&gt;&gt;bnTouchLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnTouchLeft.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnTouchLeft.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;bnTouchRight.Name" xml:space="preserve">
+    <value>bnTouchRight</value>
+  </data>
+  <data name="&gt;&gt;bnTouchRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnTouchRight.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnTouchRight.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;bnTouchMulti.Name" xml:space="preserve">
+    <value>bnTouchMulti</value>
+  </data>
+  <data name="&gt;&gt;bnTouchMulti.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnTouchMulti.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnTouchMulti.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;bnR1.Name" xml:space="preserve">
+    <value>bnR1</value>
+  </data>
+  <data name="&gt;&gt;bnR1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnR1.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnR1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;bnCross.Name" xml:space="preserve">
+    <value>bnCross</value>
+  </data>
+  <data name="&gt;&gt;bnCross.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnCross.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnCross.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;bnCircle.Name" xml:space="preserve">
+    <value>bnCircle</value>
+  </data>
+  <data name="&gt;&gt;bnCircle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnCircle.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnCircle.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btnRightStick.Name" xml:space="preserve">
+    <value>btnRightStick</value>
+  </data>
+  <data name="&gt;&gt;btnRightStick.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRightStick.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;btnRightStick.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;bnSquare.Name" xml:space="preserve">
+    <value>bnSquare</value>
+  </data>
+  <data name="&gt;&gt;bnSquare.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnSquare.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnSquare.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;btnLightbar.Name" xml:space="preserve">
+    <value>btnLightbar</value>
+  </data>
+  <data name="&gt;&gt;btnLightbar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLightbar.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;btnLightbar.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;bnTriangle.Name" xml:space="preserve">
+    <value>bnTriangle</value>
+  </data>
+  <data name="&gt;&gt;bnTriangle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnTriangle.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnTriangle.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;bnUp.Name" xml:space="preserve">
+    <value>bnUp</value>
+  </data>
+  <data name="&gt;&gt;bnUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnUp.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnUp.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;btnLeftStick.Name" xml:space="preserve">
+    <value>btnLeftStick</value>
+  </data>
+  <data name="&gt;&gt;btnLeftStick.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLeftStick.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;btnLeftStick.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;bnDown.Name" xml:space="preserve">
+    <value>bnDown</value>
+  </data>
+  <data name="&gt;&gt;bnDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnDown.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnDown.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;bnRight.Name" xml:space="preserve">
+    <value>bnRight</value>
+  </data>
+  <data name="&gt;&gt;bnRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnRight.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnRight.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;bnLeft.Name" xml:space="preserve">
+    <value>bnLeft</value>
+  </data>
+  <data name="&gt;&gt;bnLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnLeft.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnLeft.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;bnL1.Name" xml:space="preserve">
+    <value>bnL1</value>
+  </data>
+  <data name="&gt;&gt;bnL1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnL1.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnL1.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;bnOptions.Name" xml:space="preserve">
+    <value>bnOptions</value>
+  </data>
+  <data name="&gt;&gt;bnOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnOptions.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnOptions.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;bnPS.Name" xml:space="preserve">
+    <value>bnPS</value>
+  </data>
+  <data name="&gt;&gt;bnPS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnPS.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnPS.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;bnShare.Name" xml:space="preserve">
+    <value>bnShare</value>
+  </data>
+  <data name="&gt;&gt;bnShare.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnShare.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnShare.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;bnL2.Name" xml:space="preserve">
+    <value>bnL2</value>
+  </data>
+  <data name="&gt;&gt;bnL2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnL2.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnL2.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;bnR2.Name" xml:space="preserve">
+    <value>bnR2</value>
+  </data>
+  <data name="&gt;&gt;bnR2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnR2.Parent" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;bnR2.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="pnlMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 41</value>
+  </data>
+  <data name="pnlMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 137</value>
+  </data>
+  <data name="pnlMain.TabIndex" type="System.Int32, mscorlib">
+    <value>185</value>
+  </data>
+  <data name="&gt;&gt;pnlMain.Name" xml:space="preserve">
+    <value>pnlMain</value>
+  </data>
+  <data name="&gt;&gt;pnlMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlMain.Parent" xml:space="preserve">
+    <value>tPControls</value>
+  </data>
+  <data name="&gt;&gt;pnlMain.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="pBController.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -6747,26 +8016,173 @@ Swipes:</value>
   <data name="&gt;&gt;bnR2.ZOrder" xml:space="preserve">
     <value>22</value>
   </data>
-  <data name="pnlMain.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="&gt;&gt;btnFullView.Name" xml:space="preserve">
+    <value>btnFullView</value>
+  </data>
+  <data name="&gt;&gt;btnFullView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnFullView.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;btnFullView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;pBSticks.Name" xml:space="preserve">
+    <value>pBSticks</value>
+  </data>
+  <data name="&gt;&gt;pBSticks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pBSticks.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;pBSticks.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;bnL3.Name" xml:space="preserve">
+    <value>bnL3</value>
+  </data>
+  <data name="&gt;&gt;bnL3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnL3.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;bnL3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;bnRSDown.Name" xml:space="preserve">
+    <value>bnRSDown</value>
+  </data>
+  <data name="&gt;&gt;bnRSDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnRSDown.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;bnRSDown.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;bnLSUp.Name" xml:space="preserve">
+    <value>bnLSUp</value>
+  </data>
+  <data name="&gt;&gt;bnLSUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnLSUp.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;bnLSUp.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;bnRSUp.Name" xml:space="preserve">
+    <value>bnRSUp</value>
+  </data>
+  <data name="&gt;&gt;bnRSUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnRSUp.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;bnRSUp.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;bnLSLeft.Name" xml:space="preserve">
+    <value>bnLSLeft</value>
+  </data>
+  <data name="&gt;&gt;bnLSLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnLSLeft.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;bnLSLeft.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;bnRSRight.Name" xml:space="preserve">
+    <value>bnRSRight</value>
+  </data>
+  <data name="&gt;&gt;bnRSRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnRSRight.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;bnRSRight.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;bnLSRight.Name" xml:space="preserve">
+    <value>bnLSRight</value>
+  </data>
+  <data name="&gt;&gt;bnLSRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnLSRight.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;bnLSRight.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;bnRSLeft.Name" xml:space="preserve">
+    <value>bnRSLeft</value>
+  </data>
+  <data name="&gt;&gt;bnRSLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnRSLeft.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;bnRSLeft.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;bnLSDown.Name" xml:space="preserve">
+    <value>bnLSDown</value>
+  </data>
+  <data name="&gt;&gt;bnLSDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnLSDown.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;bnLSDown.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;bnR3.Name" xml:space="preserve">
+    <value>bnR3</value>
+  </data>
+  <data name="&gt;&gt;bnR3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnR3.Parent" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;bnR3.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="pnlSticks.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 41</value>
   </data>
-  <data name="pnlMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 137</value>
+  <data name="pnlSticks.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 143</value>
   </data>
-  <data name="pnlMain.TabIndex" type="System.Int32, mscorlib">
-    <value>185</value>
+  <data name="pnlSticks.TabIndex" type="System.Int32, mscorlib">
+    <value>187</value>
   </data>
-  <data name="&gt;&gt;pnlMain.Name" xml:space="preserve">
-    <value>pnlMain</value>
+  <data name="pnlSticks.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;pnlMain.Type" xml:space="preserve">
+  <data name="&gt;&gt;pnlSticks.Name" xml:space="preserve">
+    <value>pnlSticks</value>
+  </data>
+  <data name="&gt;&gt;pnlSticks.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlMain.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlSticks.Parent" xml:space="preserve">
     <value>tPControls</value>
   </data>
-  <data name="&gt;&gt;pnlMain.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;pnlSticks.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="btnFullView.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -7155,30 +8571,6 @@ Swipes:</value>
   <data name="&gt;&gt;bnR3.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="pnlSticks.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 41</value>
-  </data>
-  <data name="pnlSticks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 143</value>
-  </data>
-  <data name="pnlSticks.TabIndex" type="System.Int32, mscorlib">
-    <value>187</value>
-  </data>
-  <data name="pnlSticks.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;pnlSticks.Name" xml:space="preserve">
-    <value>pnlSticks</value>
-  </data>
-  <data name="&gt;&gt;pnlSticks.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlSticks.Parent" xml:space="preserve">
-    <value>tPControls</value>
-  </data>
-  <data name="&gt;&gt;pnlSticks.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="lbControlTip.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -7210,50 +8602,110 @@ Click the lightbar for color picker</value>
   <data name="&gt;&gt;lbControlTip.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="tPControls.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="&gt;&gt;pnlActions.Name" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.Parent" xml:space="preserve">
+    <value>tPSpecial</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tPSpecial.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="tPControls.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tPControls.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tPSpecial.Size" type="System.Drawing.Size, System.Drawing">
     <value>428, 216</value>
   </data>
-  <data name="tPControls.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="tPSpecial.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="tPControls.Text" xml:space="preserve">
-    <value>Controls</value>
+  <data name="tPSpecial.Text" xml:space="preserve">
+    <value>Special Actions</value>
   </data>
-  <data name="&gt;&gt;tPControls.Name" xml:space="preserve">
-    <value>tPControls</value>
+  <data name="&gt;&gt;tPSpecial.Name" xml:space="preserve">
+    <value>tPSpecial</value>
   </data>
-  <data name="&gt;&gt;tPControls.Type" xml:space="preserve">
+  <data name="&gt;&gt;tPSpecial.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tPControls.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tPSpecial.Parent" xml:space="preserve">
     <value>tabControls</value>
   </data>
-  <data name="&gt;&gt;tPControls.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tPSpecial.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabControls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="tabControls.Size" type="System.Drawing.Size, System.Drawing">
+    <value>436, 242</value>
+  </data>
+  <data name="tabControls.TabIndex" type="System.Int32, mscorlib">
+    <value>253</value>
+  </data>
+  <data name="&gt;&gt;tabControls.Name" xml:space="preserve">
+    <value>tabControls</value>
+  </data>
+  <data name="&gt;&gt;tabControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControls.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControls.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lVActions.Name" xml:space="preserve">
+    <value>lVActions</value>
+  </data>
+  <data name="&gt;&gt;lVActions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lVActions.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;lVActions.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="cHName.Text" xml:space="preserve">
-    <value>Name</value>
+  <data name="&gt;&gt;fLPActionButtons.Name" xml:space="preserve">
+    <value>fLPActionButtons</value>
   </data>
-  <data name="cHName.Width" type="System.Int32, mscorlib">
-    <value>140</value>
+  <data name="&gt;&gt;fLPActionButtons.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cHTrigger.Text" xml:space="preserve">
-    <value>Trigger</value>
+  <data name="&gt;&gt;fLPActionButtons.Parent" xml:space="preserve">
+    <value>pnlActions</value>
   </data>
-  <data name="cHTrigger.Width" type="System.Int32, mscorlib">
-    <value>105</value>
+  <data name="&gt;&gt;fLPActionButtons.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="cHAction.Text" xml:space="preserve">
-    <value>Action</value>
+  <data name="pnlActions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
-  <data name="cHAction.Width" type="System.Int32, mscorlib">
-    <value>100</value>
+  <data name="pnlActions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pnlActions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>428, 216</value>
+  </data>
+  <data name="pnlActions.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.Name" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.Parent" xml:space="preserve">
+    <value>tPSpecial</value>
+  </data>
+  <data name="&gt;&gt;pnlActions.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="lVActions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -7278,6 +8730,96 @@ Click the lightbar for color picker</value>
   </data>
   <data name="&gt;&gt;lVActions.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="cHName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="cHName.Width" type="System.Int32, mscorlib">
+    <value>140</value>
+  </data>
+  <data name="cHTrigger.Text" xml:space="preserve">
+    <value>Trigger</value>
+  </data>
+  <data name="cHTrigger.Width" type="System.Int32, mscorlib">
+    <value>105</value>
+  </data>
+  <data name="cHAction.Text" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="cHAction.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="&gt;&gt;lbActionsTip.Name" xml:space="preserve">
+    <value>lbActionsTip</value>
+  </data>
+  <data name="&gt;&gt;lbActionsTip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbActionsTip.Parent" xml:space="preserve">
+    <value>fLPActionButtons</value>
+  </data>
+  <data name="&gt;&gt;lbActionsTip.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnNewAction.Name" xml:space="preserve">
+    <value>btnNewAction</value>
+  </data>
+  <data name="&gt;&gt;btnNewAction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnNewAction.Parent" xml:space="preserve">
+    <value>fLPActionButtons</value>
+  </data>
+  <data name="&gt;&gt;btnNewAction.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnEditAction.Name" xml:space="preserve">
+    <value>btnEditAction</value>
+  </data>
+  <data name="&gt;&gt;btnEditAction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnEditAction.Parent" xml:space="preserve">
+    <value>fLPActionButtons</value>
+  </data>
+  <data name="&gt;&gt;btnEditAction.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnRemAction.Name" xml:space="preserve">
+    <value>btnRemAction</value>
+  </data>
+  <data name="&gt;&gt;btnRemAction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRemAction.Parent" xml:space="preserve">
+    <value>fLPActionButtons</value>
+  </data>
+  <data name="&gt;&gt;btnRemAction.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="fLPActionButtons.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="fLPActionButtons.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="fLPActionButtons.Size" type="System.Drawing.Size, System.Drawing">
+    <value>428, 65</value>
+  </data>
+  <data name="fLPActionButtons.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;fLPActionButtons.Name" xml:space="preserve">
+    <value>fLPActionButtons</value>
+  </data>
+  <data name="&gt;&gt;fLPActionButtons.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fLPActionButtons.Parent" xml:space="preserve">
+    <value>pnlActions</value>
+  </data>
+  <data name="&gt;&gt;fLPActionButtons.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="lbActionsTip.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -7390,98 +8932,50 @@ Click the lightbar for color picker</value>
   <data name="&gt;&gt;btnRemAction.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="fLPActionButtons.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
+  <data name="&gt;&gt;tPDeadzone.Name" xml:space="preserve">
+    <value>tPDeadzone</value>
   </data>
-  <data name="fLPActionButtons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="fLPActionButtons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 65</value>
-  </data>
-  <data name="fLPActionButtons.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;fLPActionButtons.Name" xml:space="preserve">
-    <value>fLPActionButtons</value>
-  </data>
-  <data name="&gt;&gt;fLPActionButtons.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fLPActionButtons.Parent" xml:space="preserve">
-    <value>pnlActions</value>
-  </data>
-  <data name="&gt;&gt;fLPActionButtons.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pnlActions.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="pnlActions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="pnlActions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 216</value>
-  </data>
-  <data name="pnlActions.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;pnlActions.Name" xml:space="preserve">
-    <value>pnlActions</value>
-  </data>
-  <data name="&gt;&gt;pnlActions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlActions.Parent" xml:space="preserve">
-    <value>tPSpecial</value>
-  </data>
-  <data name="&gt;&gt;pnlActions.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tPSpecial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tPSpecial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 216</value>
-  </data>
-  <data name="tPSpecial.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tPSpecial.Text" xml:space="preserve">
-    <value>Special Actions</value>
-  </data>
-  <data name="&gt;&gt;tPSpecial.Name" xml:space="preserve">
-    <value>tPSpecial</value>
-  </data>
-  <data name="&gt;&gt;tPSpecial.Type" xml:space="preserve">
+  <data name="&gt;&gt;tPDeadzone.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tPSpecial.Parent" xml:space="preserve">
-    <value>tabControls</value>
+  <data name="&gt;&gt;tPDeadzone.Parent" xml:space="preserve">
+    <value>tCSens</value>
   </data>
-  <data name="&gt;&gt;tPSpecial.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;tPDeadzone.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="tabControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="&gt;&gt;tPCurve.Name" xml:space="preserve">
+    <value>tPCurve</value>
   </data>
-  <data name="tabControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 242</value>
+  <data name="&gt;&gt;tPCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tabControls.TabIndex" type="System.Int32, mscorlib">
-    <value>253</value>
+  <data name="&gt;&gt;tPCurve.Parent" xml:space="preserve">
+    <value>tCSens</value>
   </data>
-  <data name="&gt;&gt;tabControls.Name" xml:space="preserve">
-    <value>tabControls</value>
+  <data name="&gt;&gt;tPCurve.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;tabControls.Type" xml:space="preserve">
+  <data name="tCSens.Location" type="System.Drawing.Point, System.Drawing">
+    <value>601, 3</value>
+  </data>
+  <data name="tCSens.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 78</value>
+  </data>
+  <data name="tCSens.TabIndex" type="System.Int32, mscorlib">
+    <value>234</value>
+  </data>
+  <data name="&gt;&gt;tCSens.Name" xml:space="preserve">
+    <value>tCSens</value>
+  </data>
+  <data name="&gt;&gt;tCSens.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabControls.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tCSens.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;tabControls.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;tCSens.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="tPDeadzone.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -7509,6 +9003,105 @@ Click the lightbar for color picker</value>
   </data>
   <data name="&gt;&gt;tPDeadzone.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.Name" xml:space="preserve">
+    <value>nUDLSCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.Name" xml:space="preserve">
+    <value>nUDRSCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.Name" xml:space="preserve">
+    <value>lbRSCurve</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.Name" xml:space="preserve">
+    <value>lbRSCurvePercent</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.Name" xml:space="preserve">
+    <value>lbLSCurvePercent</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.Name" xml:space="preserve">
+    <value>lbLSCurve</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tPCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tPCurve.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tPCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 52</value>
+  </data>
+  <data name="tPCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tPCurve.Text" xml:space="preserve">
+    <value>Curve</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.Name" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.Parent" xml:space="preserve">
+    <value>tCSens</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="nUDLSCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>29, 2</value>
@@ -7678,54 +9271,6 @@ Click the lightbar for color picker</value>
   <data name="&gt;&gt;lbLSCurve.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="tPCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tPCurve.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tPCurve.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 52</value>
-  </data>
-  <data name="tPCurve.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tPCurve.Text" xml:space="preserve">
-    <value>Curve</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Name" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Parent" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tCSens.Location" type="System.Drawing.Point, System.Drawing">
-    <value>601, 3</value>
-  </data>
-  <data name="tCSens.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 78</value>
-  </data>
-  <data name="tCSens.TabIndex" type="System.Int32, mscorlib">
-    <value>234</value>
-  </data>
-  <data name="&gt;&gt;tCSens.Name" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;tCSens.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tCSens.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tCSens.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <metadata name="advColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -7740,9 +9285,6 @@ Click the lightbar for color picker</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>890, 361</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>906, 400</value>
@@ -7925,7 +9467,7 @@ Click the lightbar for color picker</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.241.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.25.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

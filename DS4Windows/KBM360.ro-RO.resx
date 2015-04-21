@@ -3648,106 +3648,102 @@
         nyX8/xpnf/6euewgAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="lbFlashRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 212</value>
-  </data>
   <data name="lbFlashRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 13</value>
+    <value>73, 26</value>
   </data>
   <data name="lbFlashRate.Text" xml:space="preserve">
-    <value>Blinkgeschwindigkeit</value>
+    <value>Rata luminării 
+intense</value>
   </data>
   <data name="lbRumble.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
+    <value>42, 13</value>
   </data>
   <data name="lbRumble.Text" xml:space="preserve">
-    <value>Vibration</value>
+    <value>Vibrație</value>
   </data>
   <data name="lbHeavy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 13</value>
+    <value>36, 13</value>
   </data>
   <data name="lbHeavy.Text" xml:space="preserve">
-    <value>Stark</value>
+    <value>Intens</value>
   </data>
   <data name="lbLight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 13</value>
+    <value>28, 13</value>
   </data>
   <data name="lbLight.Text" xml:space="preserve">
-    <value>Schwach</value>
-  </data>
-  <data name="nUDHeavy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 44</value>
-  </data>
-  <data name="nUDLight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 71</value>
+    <value>Slab</value>
   </data>
   <data name="nUDLightFlash.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 210</value>
+    <value>95, 218</value>
   </data>
-  <data name="nUDMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 286</value>
+  <data name="bnTest.Text" xml:space="preserve">
+    <value>Testează</value>
+  </data>
+  <data name="cBScanCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>652, 7</value>
+  </data>
+  <data name="lBTip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 326</value>
   </data>
   <data name="lBTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 39</value>
+    <value>83, 39</value>
   </data>
   <data name="lBTip.Text" xml:space="preserve">
-    <value>Du kannst auch eine 
-Taste auswählen, 
-indem du sie eingibst.</value>
+    <value>Puteți selecta o 
+tastă prin 
+scierea ei</value>
   </data>
   <data name="btnGuide.Text" xml:space="preserve">
-    <value>Wegweiser</value>
+    <value>Ghid</value>
   </data>
   <data name="X360Label.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 13</value>
+    <value>88, 13</value>
   </data>
   <data name="X360Label.Text" xml:space="preserve">
-    <value>X360 Steuerung</value>
+    <value>Controalele X360</value>
   </data>
   <data name="KBMlabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 13</value>
   </data>
   <data name="KBMlabel.Text" xml:space="preserve">
-    <value>Tastatur und Maus</value>
+    <value>Tastatură și mouse</value>
   </data>
-  <data name="lBMacroOn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>480, 13</value>
+  <data name="bnMacro.Location" type="System.Drawing.Point, System.Drawing">
+    <value>737, 4</value>
   </data>
-  <data name="lBMacroOn.Text" xml:space="preserve">
-    <value>Makro An. Wähle eine Taste zum deaktivieren, ansonsten schließe dieses Fenster, um zu speichern.</value>
+  <data name="bnMacro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 23</value>
   </data>
   <data name="bnMacro.Text" xml:space="preserve">
-    <value>Makro aufzeichnen</value>
+    <value>Înregistrează un Macro</value>
   </data>
-  <data name="btnDefault.Location" type="System.Drawing.Point, System.Drawing">
-    <value>321, 380</value>
-  </data>
-  <data name="btnDefault.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 23</value>
+  <data name="cBToggle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>587, 7</value>
   </data>
   <data name="btnDefault.Text" xml:space="preserve">
-    <value>Standarteinstellungen</value>
-  </data>
-  <data name="btnUNBOUND.Location" type="System.Drawing.Point, System.Drawing">
-    <value>458, 380</value>
+    <value>Implicit</value>
   </data>
   <data name="btnUNBOUND.Text" xml:space="preserve">
-    <value>loslösen</value>
+    <value>Neasociat</value>
   </data>
   <data name="cBMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 247</value>
+    <value>6, 249</value>
   </data>
   <data name="cBMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 30</value>
+    <value>90, 43</value>
   </data>
   <data name="cBMouse.Text" xml:space="preserve">
-    <value>Ändere 
-Mausempfindlichkeit</value>
+    <value>Schimbă 
+sensitivitatea 
+mouse-ului</value>
   </data>
   <data name="cBLightbar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 17</value>
+    <value>100, 17</value>
   </data>
   <data name="cBLightbar.Text" xml:space="preserve">
-    <value>Wechsle Licht</value>
+    <value>Schimbă lumina</value>
+  </data>
+  <data name="gBExtras.Text" xml:space="preserve">
+    <value>Extra</value>
   </data>
 </root>

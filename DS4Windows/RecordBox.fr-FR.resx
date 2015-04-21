@@ -117,15 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnRecord.Text" xml:space="preserve">
-    <value>Enregistrer</value>
-  </data>
   <data name="iLKeys.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAQ
-        CgAAAk1TRnQBSQFMAgEBAwEAAXgBAAF4AQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CgAAAk1TRnQBSQFMAgEBAwEAAXgBAAF8AQABEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -167,25 +164,13 @@
         AUIBTQE+BwABPgMAASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/8BAAT/AYcB4QIAAf4BfwH+AT8BgAEB
         AgAB/AE/Af4BPwHAAQMCAAH4AR8B/gE/AcABAwIAAfABDwH+AT8BgAEBAgAB8AEHAf4BPwGAAQECAAHy
         AQcB/gE/AYABAQIAAfYBJwH2ATcBgAEBAgAB/gE/AfIBJwGAAQECAAH+AT8B8AEHAYABAQIAAf4BPwHw
-        AQcBgAEBAgAB/gE/AfgBDwQAAf4BPwH8AR8EAAH+AT8B/gE/BAAB/gE/Af8BfwEAAQECAAT/AYMBwwIA
+        AQcBgAEBAgAB/gE/AfgBDwQAAf4BPwH8AR8EAAH+AT8B/gE/BAAB/gE/Af8BfwEAAQECAAT/AYMBwxgA
         Cw==
 </value>
-  </data>
-  <data name="cBStyle.Items" xml:space="preserve">
-    <value>Jouer une fois</value>
-  </data>
-  <data name="cBStyle.Items1" xml:space="preserve">
-    <value>Répéter tant que maintenu</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 23</value>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Sauvegarder</value>
-  </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Annuler</value>
   </data>
   <data name="lBHoldX360.Location" type="System.Drawing.Point, System.Drawing">
     <value>-3, 25</value>
@@ -193,18 +178,11 @@
   <data name="lBHoldX360.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 26</value>
   </data>
-  <data name="lBHoldX360.Text" xml:space="preserve">
-    <value>Maintenir également les 
-contrôles de X360:</value>
-  </data>
   <data name="btn5th.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 42</value>
   </data>
   <data name="btn5th.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 23</value>
-  </data>
-  <data name="btn5th.Text" xml:space="preserve">
-    <value>5ème Bouton de Souris Haut</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btn4th.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -218,5 +196,38 @@ contrôles de X360:</value>
   </data>
   <data name="btn4th.Text" xml:space="preserve">
     <value>4ème Bouton de Souris Haut</value>
+  </data>
+  <data name="btn5th.Text" xml:space="preserve">
+    <value>5ème Bouton de Souris Haut</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="btnLoadP.Text" xml:space="preserve">
+    <value>Charger réglages</value>
+  </data>
+  <data name="btnRecord.Text" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="btnSaveP.Text" xml:space="preserve">
+    <value>Sauvegarder réglages</value>
+  </data>
+  <data name="cBRecordDelays.Text" xml:space="preserve">
+    <value>Enregistrer délais</value>
+  </data>
+  <data name="cBStyle.Items" xml:space="preserve">
+    <value>Jouer une fois</value>
+  </data>
+  <data name="cBStyle.Items1" xml:space="preserve">
+    <value>Répéter tant que maintenu</value>
+  </data>
+  <data name="lbMacroOrder.Text" xml:space="preserve">
+    <value>Ordre des macros</value>
+  </data>
+  <data name="lbRecordTip.Text" xml:space="preserve">
+    <value>Utiliser Clavier/Souris + Manette 1 pour enregister</value>
   </data>
 </root>

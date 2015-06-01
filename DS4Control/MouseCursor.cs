@@ -33,7 +33,7 @@ namespace DS4Windows
         private byte lastTouchID;
         public void touchesMoved(TouchpadEventArgs arg, bool dragging)
         {
-            if ((!dragging && arg.touches.Length != 0) || (dragging && arg.touches.Length < 1))
+            if ((!dragging && arg.touches.Length != 1) || (dragging && arg.touches.Length < 1))
                 return;
             int deltaX, deltaY;
             if (arg.touches[0].touchID != lastTouchID)

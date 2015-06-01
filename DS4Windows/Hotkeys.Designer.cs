@@ -52,6 +52,8 @@
             this.lbTranslators = new System.Windows.Forms.Label();
             this.linkSourceCode = new System.Windows.Forms.LinkLabel();
             this.lbLinkText = new System.Windows.Forms.Label();
+            this.lbTurkish = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
@@ -150,6 +152,8 @@
             this.tLPTranslators.Controls.Add(this.lbRussianT, 1, 2);
             this.tLPTranslators.Controls.Add(this.lbRomanian, 0, 3);
             this.tLPTranslators.Controls.Add(this.lbRomanianT, 1, 3);
+            this.tLPTranslators.Controls.Add(this.lbTurkish, 0, 4);
+            this.tLPTranslators.Controls.Add(this.label2, 1, 4);
             this.tLPTranslators.Name = "tLPTranslators";
             // 
             // lbGerman
@@ -209,6 +213,16 @@
             resources.ApplyResources(this.lbLinkText, "lbLinkText");
             this.lbLinkText.Name = "lbLinkText";
             // 
+            // lbTurkish
+            // 
+            resources.ApplyResources(this.lbTurkish, "lbTurkish");
+            this.lbTurkish.Name = "lbTurkish";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
             // Hotkeys
             // 
             resources.ApplyResources(this, "$this");
@@ -256,5 +270,7 @@
         private System.Windows.Forms.Label lbLinkText;
         private System.Windows.Forms.Label lbRomanian;
         private System.Windows.Forms.Label lbRomanianT;
+        private System.Windows.Forms.Label lbTurkish;
+        private System.Windows.Forms.Label label2;
     }
 }

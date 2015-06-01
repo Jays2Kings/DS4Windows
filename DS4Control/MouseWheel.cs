@@ -23,9 +23,9 @@ namespace DS4Windows
                 horizontalRemainder = verticalRemainder = 0.0;
         }
 
-        public void touchesMoved(TouchpadEventArgs arg)
+        public void touchesMoved(TouchpadEventArgs arg, bool dragging)
         {
-            if (arg.touches.Length != 2)
+            if (arg.touches.Length != 2 || dragging)
                 return;
             Touch lastT0 = arg.touches[0].previousTouch;
             Touch lastT1 = arg.touches[1].previousTouch;

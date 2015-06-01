@@ -152,8 +152,8 @@
   <data name="lbMacroOrder.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 8</value>
   </data>
-  <data name="lbRecordTip.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+  <data name="lbDelayTip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>548, 142</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pnlMouseButtons.Visible" type="System.Boolean, mscorlib">
@@ -186,8 +186,8 @@
   <data name="&gt;&gt;btnRecord.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="lbDelayTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 13</value>
+  <data name="btnSaveP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>646, 81</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Record a Macro</value>
@@ -206,6 +206,9 @@
   </data>
   <data name="btnSaveP.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 23</value>
+  </data>
+  <data name="btn5th.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 23</value>
   </data>
   <data name="&gt;&gt;btn5th.Name" xml:space="preserve">
     <value>btn5th</value>
@@ -227,9 +230,6 @@
   </data>
   <data name="&gt;&gt;lbRecordTip.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btn4th.Text" xml:space="preserve">
-    <value>4th Mouse Button Down</value>
   </data>
   <data name="lbDelayTip.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -273,9 +273,6 @@
   <data name="cBRecordDelays.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="btn5th.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="cBStyle.Items1" xml:space="preserve">
     <value>Repeat while held</value>
   </data>
@@ -315,11 +312,11 @@
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>260, 205</value>
   </data>
-  <data name="btnSave.TabIndex" type="System.Int32, mscorlib">
-    <value>328</value>
-  </data>
   <data name="cBStyle.Location" type="System.Drawing.Point, System.Drawing">
     <value>578, 171</value>
+  </data>
+  <data name="lbMacroOrder.Text" xml:space="preserve">
+    <value>Macro Order</value>
   </data>
   <data name="lVMacros.Size" type="System.Drawing.Size, System.Drawing">
     <value>527, 342</value>
@@ -341,6 +338,9 @@
   </data>
   <data name="lbRecordTip.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;cBStyle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cHMacro.Width" type="System.Int32, mscorlib">
     <value>200</value>
@@ -372,6 +372,9 @@
   <data name="&gt;&gt;cMSLoadPresets.Name" xml:space="preserve">
     <value>cMSLoadPresets</value>
   </data>
+  <data name="btnSave.TabIndex" type="System.Int32, mscorlib">
+    <value>328</value>
+  </data>
   <data name="altTabToolStripMenuItem.Text" xml:space="preserve">
     <value>Cycle Programs</value>
   </data>
@@ -389,6 +392,9 @@
   </data>
   <data name="&gt;&gt;openPresets.Name" xml:space="preserve">
     <value>openPresets</value>
+  </data>
+  <data name="btn4th.Text" xml:space="preserve">
+    <value>4th Mouse Button Down</value>
   </data>
   <data name="btnLoadP.TabIndex" type="System.Int32, mscorlib">
     <value>332</value>
@@ -432,6 +438,9 @@
   <data name="lbDelayTip.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 23</value>
+  </data>
   <data name="lVMacros.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 29</value>
   </data>
@@ -461,9 +470,6 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lbRecordTip.Text" xml:space="preserve">
-    <value>Use Keyboard/Mouse + Controller 1 to record</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 23</value>
@@ -498,9 +504,6 @@
   <data name="&gt;&gt;btn5th.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="lbDelayTip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>548, 142</value>
-  </data>
   <data name="&gt;&gt;iLKeys.Name" xml:space="preserve">
     <value>iLKeys</value>
   </data>
@@ -516,11 +519,14 @@
   <data name="&gt;&gt;btnRecord.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lbDelayTip.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="lbRecordTip.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;cBRecordDelays.Name" xml:space="preserve">
     <value>cBRecordDelays</value>
+  </data>
+  <data name="&gt;&gt;lbDelayTip.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="cBRecordDelays.TabIndex" type="System.Int32, mscorlib">
     <value>324</value>
@@ -534,17 +540,11 @@
   <data name="lbDelayTip.Text" xml:space="preserve">
     <value>Double click on a wait to edit the time</value>
   </data>
-  <data name="&gt;&gt;btnSaveP.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;btnLoadP.Name" xml:space="preserve">
     <value>btnLoadP</value>
   </data>
   <data name="&gt;&gt;altTabToolStripMenuItem.Name" xml:space="preserve">
     <value>altTabToolStripMenuItem</value>
-  </data>
-  <data name="lbMacroOrder.Text" xml:space="preserve">
-    <value>Macro Order</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>750, 375</value>
@@ -561,8 +561,8 @@
   <data name="cBRecordDelays.Text" xml:space="preserve">
     <value>Record Delays</value>
   </data>
-  <data name="&gt;&gt;cBStyle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btn5th.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>646, 2</value>
@@ -573,15 +573,15 @@
   <data name="&gt;&gt;lVMacros.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="btnSaveP.Location" type="System.Drawing.Point, System.Drawing">
-    <value>646, 81</value>
+  <data name="lbRecordTip.Text" xml:space="preserve">
+    <value>Use Keyboard/Mouse + Controller 1 to record</value>
   </data>
   <data name="iLKeys.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAQ
-        CgAAAk1TRnQBSQFMAgEBAwEAATwBAQFUAQEBEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CgAAAk1TRnQBSQFMAgEBAwEAATwBAQFgAQEBEAEAARABAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -630,8 +630,8 @@
   <data name="&gt;&gt;cBRecordDelays.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btn5th.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 23</value>
+  <data name="&gt;&gt;btnSaveP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;savePresets.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -642,8 +642,8 @@
   <data name="lbDelayTip.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 23</value>
+  <data name="lbDelayTip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 13</value>
   </data>
   <data name="pnlMouseButtons.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 74</value>
@@ -685,6 +685,6 @@
     <value>True</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>de-DE</value>
+    <value>tr</value>
   </metadata>
 </root>

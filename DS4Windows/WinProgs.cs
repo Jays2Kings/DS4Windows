@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 
 using System.Xml;
 using System.Runtime.InteropServices;
+using Ookii.Dialogs;
 
 namespace DS4Windows
 {
@@ -136,10 +137,33 @@ namespace DS4Windows
         private void GetApps(string path)
         {
             lodsf.Clear();
-            lodsf.AddRange(Directory.GetFiles(path, "*.exe", SearchOption.AllDirectories));
+            lodsf.AddRange(Directory.GetFiles(path, "*.exe", SearchOption.TopDirectoryOnly));
+            foreach (string s in Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly))
+            {
+                try
+                {
+                    lodsf.AddRange(Directory.GetFiles(s, "*.exe", SearchOption.TopDirectoryOnly));
+                    lodsf.AddRange(GetAppsR(s));
+                }
+                catch { }
+            }
             appsloaded = true;
         }
 
+        private List<string> GetAppsR(string path)
+        {
+            List<string> lods = new List<string>();
+            foreach (string s in Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly))
+            {
+                try
+                {
+                    lods.AddRange(Directory.GetFiles(s, "*.exe", SearchOption.TopDirectoryOnly));
+                    lods.AddRange(GetAppsR(s));
+                }
+                catch { }
+            }
+            return lods;
+        }
         private void GetShortcuts(string path)
         {
             lodsf.Clear();
@@ -338,6 +362,26 @@ namespace DS4Windows
             Timer appstimer = new Timer();
             appstimer.Start();
             appstimer.Tick += appstimer_Tick;
+        }
+        
+        private void addDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VistaFolderBrowserDialog fbd = new VistaFolderBrowserDialog();
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    var AppCollectionThread = new System.Threading.Thread(() => GetApps(fbd.SelectedPath));
+                    AppCollectionThread.IsBackground = true;
+                    AppCollectionThread.Start();
+                }
+                catch { }
+                bnAddPrograms.Text = Properties.Resources.Loading;
+                bnAddPrograms.Enabled = false;
+                Timer appstimer = new Timer();
+                appstimer.Start();
+                appstimer.Tick += appstimer_Tick;
+            }
         }
 
         private void browseForOtherProgramsToolStripMenuItem_Click(object sender, EventArgs e)

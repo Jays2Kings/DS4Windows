@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS4Windows", "DS4Windows.csproj", "{B1081607-B630-4F57-9580-8A4897145890}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ookii.Dialogs", "..\..\..\Downloads\Ookii.Dialogs\src\Ookii.Dialogs\Ookii.Dialogs.csproj", "{779E62B3-C5A6-494D-9D87-96C0DEC7FFB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B1081607-B630-4F57-9580-8A4897145890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1081607-B630-4F57-9580-8A4897145890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1081607-B630-4F57-9580-8A4897145890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{779E62B3-C5A6-494D-9D87-96C0DEC7FFB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{779E62B3-C5A6-494D-9D87-96C0DEC7FFB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{779E62B3-C5A6-494D-9D87-96C0DEC7FFB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{779E62B3-C5A6-494D-9D87-96C0DEC7FFB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

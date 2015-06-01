@@ -117,41 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adaugă jocuri din Origin</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adaugă programe din meniul Start</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adaugă jocuri din Steam</value>
-  </data>
   <data name="bnAddPrograms.Text" xml:space="preserve">
     <value>Adaugă programe</value>
-  </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Înlătură</value>
-  </data>
-  <data name="bnHideUnchecked.Text" xml:space="preserve">
-    <value>Ascunde ceea ce este nebifat</value>
   </data>
   <data name="bnSave.Text" xml:space="preserve">
     <value>Salvează</value>
   </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Răsfoiește pentru alte programe</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
   </data>
   <data name="lBController1.Text" xml:space="preserve">
     <value>Maneta 1</value>
   </data>
+  <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
+  </data>
   <data name="lBController2.Text" xml:space="preserve">
     <value>Maneta 2</value>
+  </data>
+  <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
   </data>
   <data name="lBController3.Text" xml:space="preserve">
     <value>Maneta 3</value>
   </data>
+  <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
+  </data>
   <data name="lBController4.Text" xml:space="preserve">
     <value>Maneta 4</value>
+  </data>
+  <data name="bnDelete.Text" xml:space="preserve">
+    <value>Înlătură</value>
   </data>
   <data name="nameHeader.Text" xml:space="preserve">
     <value>Nume</value>
@@ -159,7 +157,40 @@
   <data name="PathHeader.Text" xml:space="preserve">
     <value>Locație</value>
   </data>
+  <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 13</value>
+  </data>
   <data name="pBProfilesTip.Text" xml:space="preserve">
     <value>Alege profilele aici</value>
+  </data>
+  <data name="bnHideUnchecked.Text" xml:space="preserve">
+    <value>Ascunde ceea ce este nebifat</value>
+  </data>
+  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Adaugă programe din meniul Start</value>
+  </data>
+  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Adaugă jocuri din Steam</value>
+  </data>
+  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Adaugă jocuri din Origin</value>
+  </data>
+  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Răsfoiește pentru alte programe</value>
+  </data>
+  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 92</value>
   </data>
 </root>

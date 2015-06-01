@@ -32,17 +32,12 @@ namespace DS4Windows
             wheel = new MouseWheel(deviceNum);
         }
 
-        public override string ToString()
-        {
-            return "Standard Mode";
-        }
-
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
             if (!Global.UseTPforControls[deviceNum])
             {
-                cursor.touchesMoved(arg);
-                wheel.touchesMoved(arg);
+                cursor.touchesMoved(arg, dragging || dragging2);
+                wheel.touchesMoved(arg, dragging || dragging2);
             }
             else
             {
@@ -131,13 +126,19 @@ namespace DS4Windows
         }
 
         private DS4State remapped = new DS4State();
+        public bool dragging, dragging2;
         private void synthesizeMouseButtons()
         {
             if (Global.getCustomButton(deviceNum, DS4Controls.TouchLeft) == X360Controls.None &&
                 Global.getCustomMacro(deviceNum, DS4Controls.TouchLeft) == "0" &&
                     Global.getCustomKey(deviceNum, DS4Controls.TouchLeft) == 0 &&
                 leftDown)
+            {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
+                dragging2 = true;
+            }
+            else
+                dragging2 = false;
             if (Global.getCustomButton(deviceNum, DS4Controls.TouchUpper) == X360Controls.None &&
                 Global.getCustomMacro(deviceNum, DS4Controls.TouchUpper) == "0" &&
                     Global.getCustomKey(deviceNum, DS4Controls.TouchUpper) == 0 &&
@@ -166,7 +167,12 @@ namespace DS4Windows
                     //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
                 }
                 if (secondtouchbegin) //if tap and hold (also works as double tap)
+                {
                     Mapping.MapClick(deviceNum, Mapping.Click.Left);
+                    dragging = true;
+                }
+                else
+                    dragging = false;
             }
             s = remapped;
             //remapped.CopyTo(s);

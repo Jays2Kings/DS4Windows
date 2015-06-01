@@ -423,8 +423,12 @@ namespace DS4Windows
             {
                 CurrentState[ind].Battery = PreviousState[ind].Battery = 0; // Reset for the next connection's initial status change.
                 x360Bus.Unplug(ind);
-                LogDebug(Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", device.MacAddress));
-                Log.LogToTray(Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", device.MacAddress));
+                string removed = Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", (ind +1).ToString());
+                if (DS4Controllers[ind].Battery <= 20 &&
+                    DS4Controllers[ind].ConnectionType == ConnectionType.BT && !DS4Controllers[ind].Charging)
+                    removed += ". " + Properties.Resources.ChargeController;
+                LogDebug(removed);
+                Log.LogToTray(removed);
                 System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 DS4Controllers[ind] = null;
                 touchPad[ind] = null;
@@ -778,29 +782,27 @@ namespace DS4Windows
                 Global.ScrollSensitivity[deviceID] = 0;
             }
         }
-            
+
         public virtual string TouchpadSlide(int ind)
         {
             DS4State cState = CurrentState[ind];
             string slidedir = "none";
-            if (DS4Controllers[ind] != null)
-                if (cState.Touch2)
-                    if (DS4Controllers[ind] != null)
-                        if (touchPad[ind].slideright && !touchslid[ind])
-                        {
-                            slidedir = "right";
-                            touchslid[ind] = true;
-                        }
-                        else if (touchPad[ind].slideleft && !touchslid[ind])
-                        {
-                            slidedir = "left";
-                            touchslid[ind] = true;
-                        }
-                        else if (!touchPad[ind].slideleft && !touchPad[ind].slideright)
-                        {
-                            slidedir = "";
-                            touchslid[ind] = false;
-                        }
+            if (DS4Controllers[ind] != null && cState.Touch2 && !(touchPad[ind].dragging || touchPad[ind].dragging2))
+                if (touchPad[ind].slideright && !touchslid[ind])
+                {
+                    slidedir = "right";
+                    touchslid[ind] = true;
+                }
+                else if (touchPad[ind].slideleft && !touchslid[ind])
+                {
+                    slidedir = "left";
+                    touchslid[ind] = true;
+                }
+                else if (!touchPad[ind].slideleft && !touchPad[ind].slideright)
+                {
+                    slidedir = "";
+                    touchslid[ind] = false;
+                }
             return slidedir;
         }
         public virtual void LogDebug(String Data, bool warning = false)

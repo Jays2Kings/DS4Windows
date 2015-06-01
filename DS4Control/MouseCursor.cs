@@ -31,9 +31,9 @@ namespace DS4Windows
         }
 
         private byte lastTouchID;
-        public void touchesMoved(TouchpadEventArgs arg)
+        public void touchesMoved(TouchpadEventArgs arg, bool dragging)
         {
-            if (arg.touches.Length != 1)
+            if ((!dragging && arg.touches.Length != 0) || (dragging && arg.touches.Length < 1))
                 return;
             int deltaX, deltaY;
             if (arg.touches[0].touchID != lastTouchID)
@@ -46,8 +46,17 @@ namespace DS4Windows
             else if (Global.TouchpadJitterCompensation[deviceNumber])
             {
                 // Often the DS4's internal jitter compensation kicks in and starts hiding changes, ironically creating jitter...
-                deltaX = arg.touches[0].deltaX;
-                deltaY = arg.touches[0].deltaY;
+
+                if (dragging && arg.touches.Length > 1)
+                {
+                    deltaX = arg.touches[1].deltaX;
+                    deltaY = arg.touches[1].deltaY;
+                }
+                else
+                {
+                    deltaX = arg.touches[0].deltaX;
+                    deltaY = arg.touches[0].deltaY;
+                }
                 // allow only very fine, slow motions, when changing direction, even from neutral
                 // TODO maybe just consume it completely?
                 if (deltaX <= -1)
@@ -86,8 +95,16 @@ namespace DS4Windows
             }
             else
             {
-                deltaX = arg.touches[0].deltaX;
-                deltaY = arg.touches[0].deltaY;
+                if (dragging && arg.touches.Length > 1)
+                {
+                    deltaX = arg.touches[1].deltaX;
+                    deltaY = arg.touches[1].deltaY;
+                }
+                else
+                {
+                    deltaX = arg.touches[0].deltaX;
+                    deltaY = arg.touches[0].deltaY;
+                }
             }
 
             double coefficient = Global.TouchSensitivity[deviceNumber] / 100.0;

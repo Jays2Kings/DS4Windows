@@ -220,6 +220,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Charge the battery.
+        /// </summary>
+        internal static string ChargeController {
+            get {
+                return ResourceManager.GetString("ChargeController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Charged.
         /// </summary>
         internal static string Charged {

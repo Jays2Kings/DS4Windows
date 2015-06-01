@@ -70,7 +70,7 @@ namespace DS4Windows
 
         public DS4Form(string[] args)
         {
-            //System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("tr");
             InitializeComponent();
             arguements = args;
             ThemeUtil.SetTheme(lvDebug);

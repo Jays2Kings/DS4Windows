@@ -691,4 +691,7 @@
   <data name="UsingProfile" xml:space="preserve">
     <value>Controller *number* is using Profile “*Profile name*"</value>
   </data>
+  <data name="ChargeController" xml:space="preserve">
+    <value>Charge the battery</value>
+  </data>
 </root>

@@ -62,10 +62,10 @@
     <StartupObject>DS4Windows.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5F2A5A97E42A73158D79996F7F3BE738271F5047</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>2F336030801042E29CD1F9E43E2FEC00D9702E66</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>DS4Tool_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>DS4Windows_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -213,6 +213,9 @@
     <Compile Include="DS4Windows\WinProgs.Designer.cs">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DS4Windows\DS4Form.tr.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\Alreadyrunning.resx">
       <DependentUpon>Alreadyrunning.cs</DependentUpon>
     </EmbeddedResource>
@@ -249,6 +252,9 @@
     <EmbeddedResource Include="DS4Windows\DupBox.ru-RU.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.tr.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\Hotkeys.de-DE.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +277,9 @@
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\Hotkeys.ru-RU.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.tr.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\KBM360.de-DE.resx">
@@ -307,6 +316,9 @@
     <EmbeddedResource Include="DS4Windows\KBM360.ru-RU.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.tr.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\Options.de-DE.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
@@ -331,19 +343,37 @@
     <EmbeddedResource Include="DS4Windows\Options.ru-RU.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.tr.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\RecordBox.ro-RO.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.tr.resx">
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\SaveWhere.ro-RO.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.tr.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\SpecActions.ro-RO.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SpecActions.tr.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\WelcomeDialog.ro-RO.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.tr.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Windows\WinProgs.ro-RO.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.tr.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
@@ -467,11 +497,13 @@
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ro-RO.resx" />
+    <EmbeddedResource Include="Properties\Resources.tr.resx" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="DS4Windows\app.config" />
     <None Include="DS4Windows\DS4Tool_TemporaryKey.pfx" />
+    <None Include="DS4Windows_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -582,14 +614,19 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Downloads\Ookii.Dialogs\src\Ookii.Dialogs\Ookii.Dialogs.csproj">
+      <Project>{779e62b3-c5a6-494d-9d87-96c0dec7ffb0}</Project>
+      <Name>Ookii.Dialogs</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>ilmerge /targetplatform:"v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319" /out:Build\DS4Windows.exe DS4Windows.exe Ookii.Dialogs.dll</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

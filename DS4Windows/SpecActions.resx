@@ -151,6 +151,10 @@
   <data name="&gt;&gt;pnlBatteryCheck.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnSetUTriggerProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lbSecs.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -200,9 +204,6 @@
   <data name="&gt;&gt;cBNotificationBatt.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="nUDProg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
-  </data>
   <data name="lbUnloadTipProfile.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 55</value>
   </data>
@@ -236,7 +237,6 @@
   <data name="cBActions.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnBorder.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -468,9 +468,6 @@
   <data name="btnSetUTriggerProfile.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 27</value>
   </data>
-  <data name="lbHoldForBatt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 5</value>
-  </data>
   <data name="bnFullColor.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 71</value>
   </data>
@@ -567,8 +564,8 @@
   <data name="&gt;&gt;lbArg.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;lbHoldForProg.Name" xml:space="preserve">
-    <value>lbHoldForProg</value>
+  <data name="btnBorder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lbUnloadTipKey.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
@@ -618,11 +615,20 @@
   <data name="tBArg.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 91</value>
   </data>
+  <data name="lbName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;cBPressRelease.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="&gt;&gt;lbArg.Parent" xml:space="preserve">
     <value>pnlProgram</value>
+  </data>
+  <data name="&gt;&gt;btnBorder.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="pBGraident.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;cBPressRelease.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -633,8 +639,8 @@
   <data name="&gt;&gt;btnSelectKey.Parent" xml:space="preserve">
     <value>pnlKeys</value>
   </data>
-  <data name="&gt;&gt;lbFullBatt.Name" xml:space="preserve">
-    <value>lbFullBatt</value>
+  <data name="&gt;&gt;lbName.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="lVTrigger.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -766,7 +772,7 @@
     <value>pnlMacro</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.25.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.26.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="btnBorder.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 31</value>
@@ -1221,9 +1227,6 @@
         AAs=
 </value>
   </data>
-  <data name="cBActions.Items6" xml:space="preserve">
-    <value>Check Battery Life</value>
-  </data>
   <data name="cBMacroScanCode.Text" xml:space="preserve">
     <value>Scan Code</value>
   </data>
@@ -1311,6 +1314,9 @@
   <data name="&gt;&gt;pnlProgram.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="lVTrigger.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
   <data name="&gt;&gt;tBName.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
@@ -1362,8 +1368,8 @@
   <data name="&gt;&gt;lbEmptyBatt.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="lbArg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 13</value>
+  <data name="&gt;&gt;tBArg.Name" xml:space="preserve">
+    <value>tBArg</value>
   </data>
   <data name="lbProgram.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1374,11 +1380,14 @@
   <data name="&gt;&gt;cBPressRelease.Name" xml:space="preserve">
     <value>cBPressRelease</value>
   </data>
-  <data name="pBGraident.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;lbFullBatt.Name" xml:space="preserve">
+    <value>lbFullBatt</value>
   </data>
   <data name="lVUnloadTrigger.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
+  </data>
+  <data name="&gt;&gt;nUDDCBatt.Parent" xml:space="preserve">
+    <value>pnlBatteryCheck</value>
   </data>
   <data name="pnlBatteryCheck.TabIndex" type="System.Int32, mscorlib">
     <value>264</value>
@@ -1409,9 +1418,6 @@
   </data>
   <data name="btnSave.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
-  </data>
-  <data name="cbLightbarBatt.Text" xml:space="preserve">
-    <value>via lightbar</value>
   </data>
   <data name="cBActions.Items3" xml:space="preserve">
     <value>Load a profile</value>
@@ -1479,8 +1485,8 @@
   <data name="&gt;&gt;cBActions.Name" xml:space="preserve">
     <value>cBActions</value>
   </data>
-  <data name="&gt;&gt;tBArg.Name" xml:space="preserve">
-    <value>tBArg</value>
+  <data name="lbHoldForBatt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 5</value>
   </data>
   <data name="lbHoldForProg.Text" xml:space="preserve">
     <value>Hold for</value>
@@ -1490,6 +1496,9 @@
   </data>
   <data name="&gt;&gt;pnlMacro.ZOrder" xml:space="preserve">
     <value>12</value>
+  </data>
+  <data name="lbArg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
   </data>
   <data name="&gt;&gt;lbHoldFor.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1632,8 +1641,8 @@
   <data name="pBGraident.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 13</value>
   </data>
-  <data name="btnSetUTriggerProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="&gt;&gt;cBMacroScanCode.Name" xml:space="preserve">
     <value>cBMacroScanCode</value>
@@ -1683,23 +1692,8 @@
         AAs=
 </value>
   </data>
-  <data name="lVTrigger.Items11" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkMAwAAAFFTeXN0
-        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
-        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0HAAAA
-        BFRleHQKSW1hZ2VJbmRleAlCYWNrQ29sb3IHQ2hlY2tlZARGb250CUZvcmVDb2xvchdVc2VJdGVtU3R5
-        bGVGb3JTdWJJdGVtcwEABAAEBAAIFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAETU3lzdGVtLkRyYXdp
-        bmcuRm9udAMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAAQIAAAAGBAAAAAJMMf////8F+////xRT
-        eXN0ZW0uRHJhd2luZy5Db2xvcgQAAAAEbmFtZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwMA
-        AAAKAAAAAAAAAAAYAAEAAAkGAAAAAfn////7////CgAAAAAAAAAAGgABAAEFBgAAABNTeXN0ZW0uRHJh
-        d2luZy5Gb250BAAAAAROYW1lBFNpemUFU3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRT
-        dHlsZQMAAAAbU3lzdGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AwAAAAMAAAAGCAAAABRNaWNyb3NvZnQg
-        U2FucyBTZXJpZgAABEEF9////xhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMA
-        AAAAAAAABfb///8bU3lzdGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAA
-        AAs=
-</value>
+  <data name="&gt;&gt;lbHoldForProg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBProfiles.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1917,8 +1911,8 @@
   <data name="lbMacroRecorded.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 23</value>
   </data>
-  <data name="&gt;&gt;btnBorder.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;lbProgram.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="lVUnloadTrigger.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 33</value>
@@ -1935,8 +1929,23 @@
   <data name="tBName.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <data name="&gt;&gt;nUDDCBatt.Parent" xml:space="preserve">
-    <value>pnlBatteryCheck</value>
+  <data name="lVTrigger.Items11" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkMAwAAAFFTeXN0
+        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
+        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0HAAAA
+        BFRleHQKSW1hZ2VJbmRleAlCYWNrQ29sb3IHQ2hlY2tlZARGb250CUZvcmVDb2xvchdVc2VJdGVtU3R5
+        bGVGb3JTdWJJdGVtcwEABAAEBAAIFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAETU3lzdGVtLkRyYXdp
+        bmcuRm9udAMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAAQIAAAAGBAAAAAJMMf////8F+////xRT
+        eXN0ZW0uRHJhd2luZy5Db2xvcgQAAAAEbmFtZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwMA
+        AAAKAAAAAAAAAAAYAAEAAAkGAAAAAfn////7////CgAAAAAAAAAAGgABAAEFBgAAABNTeXN0ZW0uRHJh
+        d2luZy5Gb250BAAAAAROYW1lBFNpemUFU3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRT
+        dHlsZQMAAAAbU3lzdGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AwAAAAMAAAAGCAAAABRNaWNyb3NvZnQg
+        U2FucyBTZXJpZgAABEEF9////xhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMA
+        AAAAAAAABfb///8bU3lzdGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAA
+        AAs=
+</value>
   </data>
   <data name="lVTrigger.Items10" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -1974,8 +1983,23 @@
         AAs=
 </value>
   </data>
-  <data name="&gt;&gt;lbHoldForProg.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lVTrigger.Items12" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkMAwAAAFFTeXN0
+        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
+        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0HAAAA
+        BFRleHQKSW1hZ2VJbmRleAlCYWNrQ29sb3IHQ2hlY2tlZARGb250CUZvcmVDb2xvchdVc2VJdGVtU3R5
+        bGVGb3JTdWJJdGVtcwEABAAEBAAIFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAETU3lzdGVtLkRyYXdp
+        bmcuRm9udAMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAAQIAAAAGBAAAAAJSMf////8F+////xRT
+        eXN0ZW0uRHJhd2luZy5Db2xvcgQAAAAEbmFtZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwMA
+        AAAKAAAAAAAAAAAYAAEAAAkGAAAAAfn////7////CgAAAAAAAAAAGgABAAEFBgAAABNTeXN0ZW0uRHJh
+        d2luZy5Gb250BAAAAAROYW1lBFNpemUFU3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRT
+        dHlsZQMAAAAbU3lzdGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AwAAAAMAAAAGCAAAABRNaWNyb3NvZnQg
+        U2FucyBTZXJpZgAABEEF9////xhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMA
+        AAAAAAAABfb///8bU3lzdGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAA
+        AAs=
+</value>
   </data>
   <data name="lVTrigger.Items15" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -2097,9 +2121,6 @@
   <data name="pnlKeys.TabIndex" type="System.Int32, mscorlib">
     <value>263</value>
   </data>
-  <data name="&gt;&gt;lVUnloadTrigger.Name" xml:space="preserve">
-    <value>lVUnloadTrigger</value>
-  </data>
   <data name="btnCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -2112,8 +2133,8 @@
   <data name="nUDDCBT.TabIndex" type="System.Int32, mscorlib">
     <value>260</value>
   </data>
-  <data name="lbName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="cbLightbarBatt.Text" xml:space="preserve">
+    <value>via lightbar</value>
   </data>
   <data name="&gt;&gt;nUDDCBT.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -2484,9 +2505,6 @@
   <data name="&gt;&gt;cbLightbarBatt.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnSave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="btnSetUTriggerProfile.TabIndex" type="System.Int32, mscorlib">
     <value>258</value>
   </data>
@@ -2499,8 +2517,8 @@
   <data name="lbHoldForBatt.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
   </data>
-  <data name="&gt;&gt;lbProgram.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;lbHoldForProg.Name" xml:space="preserve">
+    <value>lbHoldForProg</value>
   </data>
   <data name="&gt;&gt;lbMacroRecorded.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2511,8 +2529,23 @@
   <data name="&gt;&gt;pnlDisconnectBT.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="lVTrigger.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+  <data name="lVUnloadTrigger.Items22" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkMAwAAAFFTeXN0
+        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
+        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0HAAAA
+        BFRleHQKSW1hZ2VJbmRleAlCYWNrQ29sb3IHQ2hlY2tlZARGb250CUZvcmVDb2xvchdVc2VJdGVtU3R5
+        bGVGb3JTdWJJdGVtcwEABAAEBAAIFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAETU3lzdGVtLkRyYXdp
+        bmcuRm9udAMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAAQIAAAAGBAAAAA9MZWZ0IFN0aWNrIERv
+        d27/////Bfv///8UU3lzdGVtLkRyYXdpbmcuQ29sb3IEAAAABG5hbWUFdmFsdWUKa25vd25Db2xvcgVz
+        dGF0ZQEAAAAJBwcDAAAACgAAAAAAAAAAGAABAAAJBgAAAAH5////+////woAAAAAAAAAABoAAQABBQYA
+        AAATU3lzdGVtLkRyYXdpbmcuRm9udAQAAAAETmFtZQRTaXplBVN0eWxlBFVuaXQBAAQECxhTeXN0ZW0u
+        RHJhd2luZy5Gb250U3R5bGUDAAAAG1N5c3RlbS5EcmF3aW5nLkdyYXBoaWNzVW5pdAMAAAADAAAABggA
+        AAAUTWljcm9zb2Z0IFNhbnMgU2VyaWYAAARBBff///8YU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAQAA
+        AAd2YWx1ZV9fAAgDAAAAAAAAAAX2////G1N5c3RlbS5EcmF3aW5nLkdyYXBoaWNzVW5pdAEAAAAHdmFs
+        dWVfXwAIAwAAAAMAAAAL
+</value>
   </data>
   <data name="tBName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -2616,23 +2649,8 @@
   <data name="&gt;&gt;btnBorder.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="lVUnloadTrigger.Items22" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkMAwAAAFFTeXN0
-        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
-        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0HAAAA
-        BFRleHQKSW1hZ2VJbmRleAlCYWNrQ29sb3IHQ2hlY2tlZARGb250CUZvcmVDb2xvchdVc2VJdGVtU3R5
-        bGVGb3JTdWJJdGVtcwEABAAEBAAIFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAETU3lzdGVtLkRyYXdp
-        bmcuRm9udAMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAAQIAAAAGBAAAAA9MZWZ0IFN0aWNrIERv
-        d27/////Bfv///8UU3lzdGVtLkRyYXdpbmcuQ29sb3IEAAAABG5hbWUFdmFsdWUKa25vd25Db2xvcgVz
-        dGF0ZQEAAAAJBwcDAAAACgAAAAAAAAAAGAABAAAJBgAAAAH5////+////woAAAAAAAAAABoAAQABBQYA
-        AAATU3lzdGVtLkRyYXdpbmcuRm9udAQAAAAETmFtZQRTaXplBVN0eWxlBFVuaXQBAAQECxhTeXN0ZW0u
-        RHJhd2luZy5Gb250U3R5bGUDAAAAG1N5c3RlbS5EcmF3aW5nLkdyYXBoaWNzVW5pdAMAAAADAAAABggA
-        AAAUTWljcm9zb2Z0IFNhbnMgU2VyaWYAAARBBff///8YU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAQAA
-        AAd2YWx1ZV9fAAgDAAAAAAAAAAX2////G1N5c3RlbS5EcmF3aW5nLkdyYXBoaWNzVW5pdAEAAAAHdmFs
-        dWVfXwAIAwAAAAMAAAAL
-</value>
+  <data name="&gt;&gt;btnSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;nUDDCBT.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2667,24 +2685,6 @@
   <data name="&gt;&gt;pBGraident.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="lVTrigger.Items12" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkMAwAAAFFTeXN0
-        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
-        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACFTeXN0ZW0uV2luZG93cy5Gb3Jtcy5MaXN0Vmlld0l0ZW0HAAAA
-        BFRleHQKSW1hZ2VJbmRleAlCYWNrQ29sb3IHQ2hlY2tlZARGb250CUZvcmVDb2xvchdVc2VJdGVtU3R5
-        bGVGb3JTdWJJdGVtcwEABAAEBAAIFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAAAAETU3lzdGVtLkRyYXdp
-        bmcuRm9udAMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAAQIAAAAGBAAAAAJSMf////8F+////xRT
-        eXN0ZW0uRHJhd2luZy5Db2xvcgQAAAAEbmFtZQV2YWx1ZQprbm93bkNvbG9yBXN0YXRlAQAAAAkHBwMA
-        AAAKAAAAAAAAAAAYAAEAAAkGAAAAAfn////7////CgAAAAAAAAAAGgABAAEFBgAAABNTeXN0ZW0uRHJh
-        d2luZy5Gb250BAAAAAROYW1lBFNpemUFU3R5bGUEVW5pdAEABAQLGFN5c3RlbS5EcmF3aW5nLkZvbnRT
-        dHlsZQMAAAAbU3lzdGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AwAAAAMAAAAGCAAAABRNaWNyb3NvZnQg
-        U2FucyBTZXJpZgAABEEF9////xhTeXN0ZW0uRHJhd2luZy5Gb250U3R5bGUBAAAAB3ZhbHVlX18ACAMA
-        AAAAAAAABfb///8bU3lzdGVtLkRyYXdpbmcuR3JhcGhpY3NVbml0AQAAAAd2YWx1ZV9fAAgDAAAAAwAA
-        AAs=
-</value>
-  </data>
   <data name="btnRecordMacro.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -2715,17 +2715,17 @@
   <data name="lbUnloadTipKey.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="btnBorder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="nUDProg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
   </data>
   <data name="cBActions.Location" type="System.Drawing.Point, System.Drawing">
     <value>206, 31</value>
   </data>
-  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+  <data name="&gt;&gt;lVUnloadTrigger.Name" xml:space="preserve">
+    <value>lVUnloadTrigger</value>
   </data>
-  <data name="&gt;&gt;lbName.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="cBActions.Items6" xml:space="preserve">
+    <value>Check Battery Life</value>
   </data>
   <data name="&gt;&gt;lbSecsBatt.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -2746,7 +2746,7 @@
     <value>157, 17</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>de-DE</value>
+    <value>tr</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

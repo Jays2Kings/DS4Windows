@@ -53,6 +53,7 @@
             this.addProgramsFromStartMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSteamGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addOriginGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.browseForOtherProgramsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cMSPrograms.SuspendLayout();
             this.SuspendLayout();
@@ -189,37 +190,44 @@
             // 
             // cMSPrograms
             // 
-            resources.ApplyResources(this.cMSPrograms, "cMSPrograms");
             this.cMSPrograms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addProgramsFromStartMenuToolStripMenuItem,
             this.addSteamGamesToolStripMenuItem,
             this.addOriginGamesToolStripMenuItem,
+            this.addDirectoryToolStripMenuItem,
             this.browseForOtherProgramsToolStripMenuItem});
             this.cMSPrograms.Name = "contextMenuStrip1";
             this.cMSPrograms.ShowImageMargin = false;
+            resources.ApplyResources(this.cMSPrograms, "cMSPrograms");
             // 
             // addProgramsFromStartMenuToolStripMenuItem
             // 
-            resources.ApplyResources(this.addProgramsFromStartMenuToolStripMenuItem, "addProgramsFromStartMenuToolStripMenuItem");
             this.addProgramsFromStartMenuToolStripMenuItem.Name = "addProgramsFromStartMenuToolStripMenuItem";
+            resources.ApplyResources(this.addProgramsFromStartMenuToolStripMenuItem, "addProgramsFromStartMenuToolStripMenuItem");
             this.addProgramsFromStartMenuToolStripMenuItem.Click += new System.EventHandler(this.addProgramsFromStartMenuToolStripMenuItem_Click);
             // 
             // addSteamGamesToolStripMenuItem
             // 
-            resources.ApplyResources(this.addSteamGamesToolStripMenuItem, "addSteamGamesToolStripMenuItem");
             this.addSteamGamesToolStripMenuItem.Name = "addSteamGamesToolStripMenuItem";
+            resources.ApplyResources(this.addSteamGamesToolStripMenuItem, "addSteamGamesToolStripMenuItem");
             this.addSteamGamesToolStripMenuItem.Click += new System.EventHandler(this.addSteamGamesToolStripMenuItem_Click);
             // 
             // addOriginGamesToolStripMenuItem
             // 
-            resources.ApplyResources(this.addOriginGamesToolStripMenuItem, "addOriginGamesToolStripMenuItem");
             this.addOriginGamesToolStripMenuItem.Name = "addOriginGamesToolStripMenuItem";
+            resources.ApplyResources(this.addOriginGamesToolStripMenuItem, "addOriginGamesToolStripMenuItem");
             this.addOriginGamesToolStripMenuItem.Click += new System.EventHandler(this.addOriginGamesToolStripMenuItem_Click);
+            // 
+            // addDirectoryToolStripMenuItem
+            // 
+            this.addDirectoryToolStripMenuItem.Name = "addDirectoryToolStripMenuItem";
+            resources.ApplyResources(this.addDirectoryToolStripMenuItem, "addDirectoryToolStripMenuItem");
+            this.addDirectoryToolStripMenuItem.Click += new System.EventHandler(this.addDirectoryToolStripMenuItem_Click);
             // 
             // browseForOtherProgramsToolStripMenuItem
             // 
-            resources.ApplyResources(this.browseForOtherProgramsToolStripMenuItem, "browseForOtherProgramsToolStripMenuItem");
             this.browseForOtherProgramsToolStripMenuItem.Name = "browseForOtherProgramsToolStripMenuItem";
+            resources.ApplyResources(this.browseForOtherProgramsToolStripMenuItem, "browseForOtherProgramsToolStripMenuItem");
             this.browseForOtherProgramsToolStripMenuItem.Click += new System.EventHandler(this.browseForOtherProgramsToolStripMenuItem_Click);
             // 
             // WinProgs
@@ -275,5 +283,6 @@
         private System.Windows.Forms.ToolStripMenuItem addSteamGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addOriginGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem browseForOtherProgramsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addDirectoryToolStripMenuItem;
     }
 }

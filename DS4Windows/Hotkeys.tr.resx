@@ -117,101 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lbAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>582, 19</value>
-  </data>
   <data name="lbAbout.Text" xml:space="preserve">
-    <value>DS4Windows - Jays2Kings Build (Version</value>
+    <value>DS4Windows - Jay2Kings Yapı (Versiyon</value>
   </data>
-  <data name="lLChangelog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 3</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lLChangelog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+    <value>49, 13</value>
   </data>
   <data name="lLChangelog.Text" xml:space="preserve">
-    <value>Änderungen</value>
-  </data>
-  <data name="linkDonate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>475, 3</value>
+    <value>Yenilikler</value>
   </data>
   <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 13</value>
+    <value>80, 13</value>
   </data>
   <data name="linkDonate.Text" xml:space="preserve">
-    <value>über Paypal spenden</value>
+    <value>Paypal ile bağış</value>
   </data>
   <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>551, 458</value>
+    <value>536, 474</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Verstecke DS4 Controller: Verstecke DS4's Standard Eingabemethode (Dinput) vor anderen Programmen. Überprüfe, ob du Doppeleingaben in Spielen bekommst oder R2 das Spiel pausiert.
+    <value>"DS4 Kontrol Cihazını Gizle: DS4'ün norman girişini(Dinput) diğer programlardan gizle, eğer oyunlardan ikili giriş(bir basmada iki kere basıyorsa) alıyorsanız veya R2 tuşu oyunu durduruyorsa seçin
 
-Drücke die linke Seite des Touchpads: Linker Touch
-Drücke die rechte Seite des Touchpads: Right Touch
-Drücke das Touchpad mit 2 Fingern: Multitouch
-Drücke den oberen Teil des Touchpads: Upper Touch
+Touchpad'in sol tarafına tıkla: Sol Dokunma
 
-PS + Options oder halte PS für 10 Sekunden: Trenne Controller (nur bei Bluetooth)
-Berühre Touchpad + PS: Schalte Touchpadbewegung aus (Klicken funktioniert weiterhin)
+Touchpad'in sağ tarafına tıkla: Sağ Dokunma
 
-Touchpad unten rechts drücken*: Rechtsklick (Wird am besten mit der rechten Seite als Mausfunktion verwendet.)
-Zwei Finger hoch/runter auf dem Touchpad*: Hoch/Runter blättern
-Drücke und halte Touchpad*: Linke Maustaste ziehen
-2 Finger Streichgeste auf dem Touchpad nach links oder rechts*: Blättere durch die Profile
+Touchpad'e 2 parmak ile dokunma: Multitouch
 
-Umschalt Modifikator: Halte eine Aktion, um ein anderes Steuerungsprofil auszuwählen.
-Wenn Maus und Tastatur Zuordung:
-Wechseln: Taste bleibt im ""Gedrückt"" Status, bis sie erneut gedrückt wird.
-Makro: Weise mehrere Tasten einer Eingabe zu.
-Scancode: Tasten werden unterschiedlich interpretiert. Kann für bestimmte Spiele notwendig sein.
+Touchpad'in üst tarafına tıkla: Yukarı Dokunma
 
-*falls aktiviert</value>
-  </data>
-  <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>574, 352</value>
+PS + Options veya PS butonuna 10 saniye basılı tut: Kontrol Cihazı Bağlantısını Keser(Sadece Bluetooth ile Çalışır)
+
+Touchpad'e dokun + PS: Touchpad hareketi kapat (Tıklama hala çalışır)
+
+Touchpad'in sağ altına tıkla: Sağ Tık(Sağ tarafı en verimli fare işlevi olarak kullanın)
+
+Touchpad'de 2 parmakla kaydır: Yukarı/Aşağı Kaydır
+
+Touchpad bas ve uzun tut: Sol tık sürüklemesi
+
+2 parmak sağ/sol touchpad kaydırması : Profiller arası geçiş yap
+
+Shift Düzenleyici: Başka bir kontrol düzeni kullanmak için bir eylemi tut
+
+Klave ve Fare tuş eşlemesi yaparken:
+
+Geçiş: Tuş tekrar basılana kadar ""Aşağı Basılı"" durumunda kalacaktır
+
+Makro: Bir girişe çoklu tuş atama
+
+Tara Kodu: Tuşlar farklı şekilde yorumlanır. Belirli oyunlar için gereklidir
+
+*Eğer açıksa"</value>
   </data>
   <data name="tPHotkeys.Text" xml:space="preserve">
-    <value>Makros</value>
-  </data>
-  <data name="lbGermanT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 22</value>
-  </data>
-  <data name="lbItalianT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 22</value>
-  </data>
-  <data name="lbRussianT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 22</value>
-  </data>
-  <data name="lbRomanianT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 22</value>
-  </data>
-  <data name="tLPTranslators.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 109</value>
-  </data>
-  <data name="tLPTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>568, 227</value>
-  </data>
-  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
+    <value>Tuşlar</value>
   </data>
   <data name="lbTranslators.Text" xml:space="preserve">
-    <value>Übersetzer:</value>
+    <value>Çevirmenler</value>
   </data>
-  <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 336</value>
-  </data>
-  <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>574, 352</value>
-  </data>
-  <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 19</value>
-  </data>
-  <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>582, 378</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>582, 397</value>
+  <data name="tPCredits.Text" xml:space="preserve">
+    <value>Jenerik</value>
   </data>
 </root>

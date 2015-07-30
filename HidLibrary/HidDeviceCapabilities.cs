@@ -1,4 +1,4 @@
-﻿namespace DS4Windows
+﻿namespace EAll4Windows
 {
     public class HidDeviceCapabilities
     {

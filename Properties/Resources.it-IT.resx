@@ -153,11 +153,11 @@
   <data name="Charging" xml:space="preserve">
     <value>In carica: *number*%</value>
   </data>
-  <data name="CloseDS4W" xml:space="preserve">
-    <value>Chiudere DS4Windows?</value>
+  <data name="CloseEAll4W" xml:space="preserve">
+    <value>Chiudere EAll4Windows?</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
-    <value>Chiudi DS4Windows via icona di notifica</value>
+    <value>Chiudi EAll4Windows via icona di notifica</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Colore</value>
@@ -178,13 +178,13 @@
     <value>Il Controller *Mac address* è stato rimosso oppure ha perso la connessione</value>
   </data>
   <data name="CopyComplete" xml:space="preserve">
-    <value>Copia completa, per favore rilancia DS4Windows e rimuovi le impostazioni dalla Directory del Programma</value>
+    <value>Copia completa, per favore rilancia EAll4Windows e rimuovi le impostazioni dalla Directory del Programma</value>
   </data>
   <data name="CopyFullColor" xml:space="preserve">
     <value>Clicca per copiare il colore</value>
   </data>
-  <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Attenzione: Non è stato possibile aprire DS4 *Mac address* esclusivamente</value>
+  <data name="CouldNotOpenEAll4" xml:space="preserve">
+    <value>Attenzione: Non è stato possibile aprire EAll4 *Mac address* esclusivamente</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>giorno</value>
@@ -199,7 +199,7 @@
     <value>Ottenuare quando % Batteria</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Spegnere X360 input e usare solo l'input nativo di DS4, nascondi ds4 deve essere disattivato</value>
+    <value>Spegnere X360 input e usare solo l'input nativo di EAll4, nascondi eall4 deve essere disattivato</value>
   </data>
   <data name="DisconnectBT" xml:space="preserve">
     <value>Disconnetti BT</value>
@@ -216,11 +216,11 @@
   <data name="DownText" xml:space="preserve">
     <value>Giù</value>
   </data>
-  <data name="DS4Update" xml:space="preserve">
-    <value>Aggiornamento DS4Windows Disponibile!</value>
+  <data name="EAll4Update" xml:space="preserve">
+    <value>Aggiornamento EAll4Windows Disponibile!</value>
   </data>
-  <data name="DS4WindowsCannotEditHere" xml:space="preserve">
-    <value>DS4Windows non può modificare le impostazioni qui, Questo verrà ora chiuso</value>
+  <data name="EAll4WindowsCannotEditHere" xml:space="preserve">
+    <value>EAll4Windows non può modificare le impostazioni qui, Questo verrà ora chiuso</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Modifica</value>
@@ -276,8 +276,8 @@
   <data name="HoverOverItems" xml:space="preserve">
     <value>Passa sopra le voci per vederne la descrizione o più dettagli</value>
   </data>
-  <data name="IfRemovingDS4Windows" xml:space="preserve">
-    <value>Se rimuovi DS4Windows, puoi cancellare le impostazioni seguendo il link alla cartella profilo</value>
+  <data name="IfRemovingEAll4Windows" xml:space="preserve">
+    <value>Se rimuovi EAll4Windows, puoi cancellare le impostazioni seguendo il link alla cartella profilo</value>
   </data>
   <data name="InputDelay" xml:space="preserve">
     <value>Ritardo Input: *number*ms</value>
@@ -367,7 +367,7 @@
     <value>SPERIMENTALE: Auto-Disabilita BT quando ci si connette con USB</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>Devi chiudere le altre applicazioni come Steam, Uplay prima di attivare l'opzione 'Nascondi Controller DS4'.</value>
+    <value>Devi chiudere le altre applicazioni come Steam, Uplay prima di attivare l'opzione 'Nascondi Controller EAll4'.</value>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>Registra</value>
@@ -406,7 +406,7 @@
     <value>Inizia</value>
   </data>
   <data name="Step1" xml:space="preserve">
-    <value>Passo 1: Installa il Driver DS4</value>
+    <value>Passo 1: Installa il Driver EAll4</value>
   </data>
   <data name="StopHText" xml:space="preserve">
     <value>Arresto Pesante</value>
@@ -414,11 +414,11 @@
   <data name="StopLText" xml:space="preserve">
     <value>Arresto Leggero</value>
   </data>
-  <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>DS4Windows Arrestato</value>
+  <data name="StoppedEAll4Windows" xml:space="preserve">
+    <value>EAll4Windows Arrestato</value>
   </data>
-  <data name="StoppingDS4" xml:space="preserve">
-    <value>Controller DS4 in arresto</value>
+  <data name="StoppingEAll4" xml:space="preserve">
+    <value>Controller EAll4 in arresto</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
     <value>X360 Controller in arresto</value>

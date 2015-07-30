@@ -4,7 +4,7 @@ using System.Threading;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Win32.SafeHandles;
-namespace DS4Windows
+namespace EAll4Windows
 {
     public class HidDevice : IDisposable
     {

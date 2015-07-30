@@ -156,11 +156,11 @@
   <data name="CheckBattery" xml:space="preserve">
     <value>Verifică bateria</value>
   </data>
-  <data name="CloseDS4W" xml:space="preserve">
-    <value>Închide DS4Windows?</value>
+  <data name="CloseEAll4W" xml:space="preserve">
+    <value>Închide EAll4Windows?</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
-    <value>Închideți DS4Windows prin icoana de notificări</value>
+    <value>Închideți EAll4Windows prin icoana de notificări</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Culoare</value>
@@ -181,13 +181,13 @@
     <value>Maneta *Mac address* a fost deconectată sau conexiunea a fost pierdută</value>
   </data>
   <data name="CopyComplete" xml:space="preserve">
-    <value>Copiere completă, vă rugăm să deschideți DS4Windows și să ștergeți setările din Program Directory</value>
+    <value>Copiere completă, vă rugăm să deschideți EAll4Windows și să ștergeți setările din Program Directory</value>
   </data>
   <data name="CopyFullColor" xml:space="preserve">
     <value>Click pentru a copia întreaga culoare</value>
   </data>
-  <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Avertizare: Nu s-a reușit pornirea DS4 *Mac address* în modul exclusiv</value>
+  <data name="CouldNotOpenEAll4" xml:space="preserve">
+    <value>Avertizare: Nu s-a reușit pornirea EAll4 *Mac address* în modul exclusiv</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>zi</value>
@@ -202,7 +202,7 @@
     <value>Întunecă în funție de % bateriei</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Opriți X360 metodă de introducere și folosiți doar metoda de introducere prestabilită a DS4-ului, ascundeți DS4 trebuie să fie off (Doar pentru Cablu) </value>
+    <value>Opriți X360 metodă de introducere și folosiți doar metoda de introducere prestabilită a EAll4-ului, ascundeți EAll4 trebuie să fie off (Doar pentru Cablu) </value>
   </data>
   <data name="DisconnectBT" xml:space="preserve">
     <value>Deconectare BT</value>
@@ -219,11 +219,11 @@
   <data name="DownText" xml:space="preserve">
     <value>Jos</value>
   </data>
-  <data name="DS4Update" xml:space="preserve">
-    <value>Actualizare la DS4Windows disponibilă!</value>
+  <data name="EAll4Update" xml:space="preserve">
+    <value>Actualizare la EAll4Windows disponibilă!</value>
   </data>
-  <data name="DS4WindowsCannotEditHere" xml:space="preserve">
-    <value>DS4Windows nu poate edita setările aici, acum se va închide</value>
+  <data name="EAll4WindowsCannotEditHere" xml:space="preserve">
+    <value>EAll4Windows nu poate edita setările aici, acum se va închide</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Editează</value>
@@ -279,8 +279,8 @@
   <data name="HoverOverItems" xml:space="preserve">
     <value>Țineți cursorul deasupra obiectelor pentru a vedea o descriere sau mai multe despre</value>
   </data>
-  <data name="IfRemovingDS4Windows" xml:space="preserve">
-    <value>Dacă ștergeți DS4Windows, puteți șterge setările urmărind profilul folderului link</value>
+  <data name="IfRemovingEAll4Windows" xml:space="preserve">
+    <value>Dacă ștergeți EAll4Windows, puteți șterge setările urmărind profilul folderului link</value>
   </data>
   <data name="InputDelay" xml:space="preserve">
     <value>Întârziere la intrare: *number*ms</value>
@@ -412,7 +412,7 @@
     <value>Pornește</value>
   </data>
   <data name="Step1" xml:space="preserve">
-    <value>Pasul 1: Instalează driver-ul DS4</value>
+    <value>Pasul 1: Instalează driver-ul EAll4</value>
   </data>
   <data name="StopHText" xml:space="preserve">
     <value>Oprește Intens</value>
@@ -420,11 +420,11 @@
   <data name="StopLText" xml:space="preserve">
     <value>Oprește Slab</value>
   </data>
-  <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>DS4Windows a fost oprit</value>
+  <data name="StoppedEAll4Windows" xml:space="preserve">
+    <value>EAll4Windows a fost oprit</value>
   </data>
-  <data name="StoppingDS4" xml:space="preserve">
-    <value>Se opresc manetele DS4</value>
+  <data name="StoppingEAll4" xml:space="preserve">
+    <value>Se opresc manetele EAll4</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
     <value>Se opresc manetele X360</value>

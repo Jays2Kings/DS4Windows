@@ -156,11 +156,11 @@
   <data name="CheckBattery" xml:space="preserve">
     <value>Verifiez la batterie</value>
   </data>
-  <data name="CloseDS4W" xml:space="preserve">
-    <value>Fermer DS4Windows ?</value>
+  <data name="CloseEAll4W" xml:space="preserve">
+    <value>Fermer EAll4Windows ?</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
-    <value>Fermer DS4Windows via l'icone de notification</value>
+    <value>Fermer EAll4Windows via l'icone de notification</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Couleur</value>
@@ -181,13 +181,13 @@
     <value>La manette *Mac address* a été déconnectée ou la connexion a été perdue</value>
   </data>
   <data name="CopyComplete" xml:space="preserve">
-    <value>Copie terminée, merci de relancer DS4Windows et supprimer les paramètres du répertoire de l'application</value>
+    <value>Copie terminée, merci de relancer EAll4Windows et supprimer les paramètres du répertoire de l'application</value>
   </data>
   <data name="CopyFullColor" xml:space="preserve">
     <value>Cliquer pour copier la couleur complète</value>
   </data>
-  <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Attention: Ouverture impossible de la DS4 *Mac Address*</value>
+  <data name="CouldNotOpenEAll4" xml:space="preserve">
+    <value>Attention: Ouverture impossible de la EAll4 *Mac Address*</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>jour</value>
@@ -202,7 +202,7 @@
     <value>Assombrir selon le %*nl*de batterie</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off</value>
+    <value>Turn off X360 input and only use the EAll4's native input, hide eall4 must be off</value>
   </data>
   <data name="DisconnectBT" xml:space="preserve">
     <value>Déconnecter Bluetooth</value>
@@ -219,11 +219,11 @@
   <data name="DownText" xml:space="preserve">
     <value>Haut</value>
   </data>
-  <data name="DS4Update" xml:space="preserve">
-    <value>Mise à jour de DS4Windows disponible !</value>
+  <data name="EAll4Update" xml:space="preserve">
+    <value>Mise à jour de EAll4Windows disponible !</value>
   </data>
-  <data name="DS4WindowsCannotEditHere" xml:space="preserve">
-    <value>DS4Windows ne peut editer les paramètres ici, fermeture imminente.</value>
+  <data name="EAll4WindowsCannotEditHere" xml:space="preserve">
+    <value>EAll4Windows ne peut editer les paramètres ici, fermeture imminente.</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Éditer</value>
@@ -276,8 +276,8 @@
   <data name="HoverOverItems" xml:space="preserve">
     <value>Survol souris pour voir la description ou plus d'infos</value>
   </data>
-  <data name="IfRemovingDS4Windows" xml:space="preserve">
-    <value>Si suppression de DS4Windows, vous pouvez supprimer les paramètres suivant le lien du dossier de profil</value>
+  <data name="IfRemovingEAll4Windows" xml:space="preserve">
+    <value>Si suppression de EAll4Windows, vous pouvez supprimer les paramètres suivant le lien du dossier de profil</value>
   </data>
   <data name="InputDelay" xml:space="preserve">
     <value>Input Delay: *number*ms</value>
@@ -376,7 +376,7 @@
     <value>Experimental : Déconnexion auto BT quand branchement par USB</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>Vous devez quitter les autres applications telles que Steam, Uplay avant d'activer l'option "Cacher la manette DS4"</value>
+    <value>Vous devez quitter les autres applications telles que Steam, Uplay avant d'activer l'option "Cacher la manette EAll4"</value>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>Enregistrer</value>
@@ -409,7 +409,7 @@
     <value>Démarrer</value>
   </data>
   <data name="Step1" xml:space="preserve">
-    <value>Étape 1: Installez les pilotes DS4</value>
+    <value>Étape 1: Installez les pilotes EAll4</value>
   </data>
   <data name="StopHText" xml:space="preserve">
     <value>Arrêtez fort</value>
@@ -417,11 +417,11 @@
   <data name="StopLText" xml:space="preserve">
     <value>Arrêtez léger</value>
   </data>
-  <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Arrêt de DS4Windows</value>
+  <data name="StoppedEAll4Windows" xml:space="preserve">
+    <value>Arrêt de EAll4Windows</value>
   </data>
-  <data name="StoppingDS4" xml:space="preserve">
-    <value>Arrêt des manettes DS4</value>
+  <data name="StoppingEAll4" xml:space="preserve">
+    <value>Arrêt des manettes EAll4</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
     <value>Arrêt des manettes X360</value>
@@ -487,7 +487,7 @@
     <value>Bas</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>Votre version de DS4Windows est à jour</value>
+    <value>Votre version de EAll4Windows est à jour</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
     <value>Vous pouvez également utiliser votre manette pour changer les commandes</value>

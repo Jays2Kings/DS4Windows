@@ -127,8 +127,8 @@
   <data name="rainbowC" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rainbowC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DS4_Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4 Controller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EAll4_Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EAll4 Controller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LeftTouch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LeftTouch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -296,13 +296,13 @@
     <value>Controller *Mac address* was removed or lost connection</value>
   </data>
   <data name="CopyComplete" xml:space="preserve">
-    <value>Copy complete, please relaunch DS4Windows and remove settings from Program Directory</value>
+    <value>Copy complete, please relaunch EAll4Windows and remove settings from Program Directory</value>
   </data>
   <data name="CopyFullColor" xml:space="preserve">
     <value>Click to copy the full color</value>
   </data>
-  <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Warning: Could not open DS4 *Mac address* exclusively.</value>
+  <data name="CouldNotOpenEAll4" xml:space="preserve">
+    <value>Warning: Could not open EAll4 *Mac address* exclusively.</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>day</value>
@@ -325,11 +325,11 @@
   <data name="DownloadVersion" xml:space="preserve">
     <value>Download Version *number* now?</value>
   </data>
-  <data name="DS4Update" xml:space="preserve">
-    <value>DS4Windows Update Available!</value>
+  <data name="EAll4Update" xml:space="preserve">
+    <value>EAll4Windows Update Available!</value>
   </data>
-  <data name="DS4WindowsCannotEditHere" xml:space="preserve">
-    <value>DS4Windows cannot edit settings here, This will now close</value>
+  <data name="EAll4WindowsCannotEditHere" xml:space="preserve">
+    <value>EAll4Windows cannot edit settings here, This will now close</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Edit</value>
@@ -361,8 +361,8 @@
   <data name="Hours" xml:space="preserve">
     <value>hours</value>
   </data>
-  <data name="IfRemovingDS4Windows" xml:space="preserve">
-    <value>If removing DS4Windows, You can delete the settings following the profile folder link</value>
+  <data name="IfRemovingEAll4Windows" xml:space="preserve">
+    <value>If removing EAll4Windows, You can delete the settings following the profile folder link</value>
   </data>
   <data name="InstallComplete" xml:space="preserve">
     <value>Install Complete</value>
@@ -413,7 +413,7 @@
     <value>Profile Folder Moved to program folder</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>You must quit other applications like Steam, Uplay before activating the 'Hide DS4 Controller' option."</value>
+    <value>You must quit other applications like Steam, Uplay before activating the 'Hide EAll4 Controller' option."</value>
   </data>
   <data name="SaveRecordedMacro" xml:space="preserve">
     <value>Save Recorded Macro?</value>
@@ -430,11 +430,11 @@
   <data name="StartText" xml:space="preserve">
     <value>Start</value>
   </data>
-  <data name="StoppedDS4Tool" xml:space="preserve">
-    <value>Stopped DS4 Tool</value>
+  <data name="StoppedEAll4Tool" xml:space="preserve">
+    <value>Stopped EAll4 Tool</value>
   </data>
-  <data name="StoppingDS4" xml:space="preserve">
-    <value>Stopping DS4 Controllers</value>
+  <data name="StoppingEAll4" xml:space="preserve">
+    <value>Stopping EAll4 Controllers</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
     <value>Stopping X360 Controllers</value>
@@ -509,13 +509,13 @@
     <value>Record</value>
   </data>
   <data name="Step1" xml:space="preserve">
-    <value>Step 1: Install the DS4 Driver</value>
+    <value>Step 1: Install the EAll4 Driver</value>
   </data>
   <data name="UpText" xml:space="preserve">
     <value>Up</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off (Wired Only)</value>
+    <value>Turn off X360 input and only use the EAll4's native input, hide eall4 must be off (Wired Only)</value>
   </data>
   <data name="InstallDriver" xml:space="preserve">
     <value>Install Drivers here</value>
@@ -535,11 +535,11 @@
   <data name="Installing" xml:space="preserve">
     <value>Installing...</value>
   </data>
-  <data name="DS4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EAll4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EAll4.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DS4W" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DS4W.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EAll4W" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EAll4W.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="InstallFailed" xml:space="preserve">
     <value>Install Failed, Please Retry</value>
@@ -575,7 +575,7 @@
     <value>Test</value>
   </data>
   <data name="CannotMoveFiles" xml:space="preserve">
-    <value>Cannot move files to new location, Please rename the DS4Tool folder to "DS4Windows"</value>
+    <value>Cannot move files to new location, Please rename the EAll4Tool folder to "EAll4Windows"</value>
   </data>
   <data name="XinputPorts" xml:space="preserve">
     <value>Use higher ports if you get conflicts in other emulating X360 programs, such as SCP's tool</value>
@@ -596,7 +596,7 @@
     <value>Set Unload Trigger</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
-    <value>Close DS4Windows via the notification icon</value>
+    <value>Close EAll4Windows via the notification icon</value>
   </data>
   <data name="RightClickPresets" xml:space="preserve">
     <value>Right Click to set presets for a set of controls</value>
@@ -664,8 +664,8 @@
   <data name="ALocactionNeeded" xml:space="preserve">
     <value>A location must be picked to continue.</value>
   </data>
-  <data name="CloseDS4W" xml:space="preserve">
-    <value>Close DS4Windows?</value>
+  <data name="CloseEAll4W" xml:space="preserve">
+    <value>Close EAll4Windows?</value>
   </data>
   <data name="OtherFileLocation" xml:space="preserve">
     <value>, other location files will be deleted</value>
@@ -673,8 +673,8 @@
   <data name="EE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EE.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Stopped DS4Windows</value>
+  <data name="StoppedEAll4Windows" xml:space="preserve">
+    <value>Stopped EAll4Windows</value>
   </data>
   <data name="LatencyNotOverTen" xml:space="preserve">
     <value>Controller *number*'s latency now under 10ms</value>

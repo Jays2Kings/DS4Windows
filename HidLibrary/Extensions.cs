@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace DS4Windows
+namespace EAll4Windows
 {
     public static class Extensions
     {

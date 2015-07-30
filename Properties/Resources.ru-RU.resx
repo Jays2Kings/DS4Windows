@@ -156,8 +156,8 @@
   <data name="CheckBattery" xml:space="preserve">
     <value>Проверить аккумулятор</value>
   </data>
-  <data name="CloseDS4W" xml:space="preserve">
-    <value>Закрыть DS4Windows?</value>
+  <data name="CloseEAll4W" xml:space="preserve">
+    <value>Закрыть EAll4Windows?</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
     <value>Закрыть через значок уведомления</value>
@@ -181,13 +181,13 @@
     <value>Контроллер *Mac address* отключён или связь утеряна!</value>
   </data>
   <data name="CopyComplete" xml:space="preserve">
-    <value>Копирование завершено, пожалуйста перезапустите DS4Windows и удалите настройки из папки программы</value>
+    <value>Копирование завершено, пожалуйста перезапустите EAll4Windows и удалите настройки из папки программы</value>
   </data>
   <data name="CopyFullColor" xml:space="preserve">
     <value>Нажмите для копирования полного цвета</value>
   </data>
-  <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Внимание: Не удалось открыть DS4 *Mac adress* в приоритетном режиме</value>
+  <data name="CouldNotOpenEAll4" xml:space="preserve">
+    <value>Внимание: Не удалось открыть EAll4 *Mac adress* в приоритетном режиме</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>день</value>
@@ -202,7 +202,7 @@
     <value>Затемнение от заряда %</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Выключить режим XInput и использовать только DInput. Настройка "Скрыть контроллер DS4" должна быть выключена!</value>
+    <value>Выключить режим XInput и использовать только DInput. Настройка "Скрыть контроллер EAll4" должна быть выключена!</value>
   </data>
   <data name="DisconnectBT" xml:space="preserve">
     <value>Отключить Bluetooth</value>
@@ -219,11 +219,11 @@
   <data name="DownText" xml:space="preserve">
     <value>Вниз</value>
   </data>
-  <data name="DS4Update" xml:space="preserve">
-    <value>Доступна новая версия DS4Windows!</value>
+  <data name="EAll4Update" xml:space="preserve">
+    <value>Доступна новая версия EAll4Windows!</value>
   </data>
-  <data name="DS4WindowsCannotEditHere" xml:space="preserve">
-    <value>DS4Windows не может изменить настройки! Это приведёт сейчас к закрытию!</value>
+  <data name="EAll4WindowsCannotEditHere" xml:space="preserve">
+    <value>EAll4Windows не может изменить настройки! Это приведёт сейчас к закрытию!</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Редактировать</value>
@@ -279,8 +279,8 @@
   <data name="HoverOverItems" xml:space="preserve">
     <value>Наведите указатель мыши на пункты для получения подробного описания</value>
   </data>
-  <data name="IfRemovingDS4Windows" xml:space="preserve">
-    <value>При удалении DS4Windows, вы можете удалить параметры настройки в папке профиля программы</value>
+  <data name="IfRemovingEAll4Windows" xml:space="preserve">
+    <value>При удалении EAll4Windows, вы можете удалить параметры настройки в папке профиля программы</value>
   </data>
   <data name="InputDelay" xml:space="preserve">
     <value>Задержка ввода: *number*мс</value>
@@ -379,7 +379,7 @@
     <value>Автоотключение Bluetooth при подключении по USB</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>Перед активацией функции "Спрятать контроллер DS4" вы должны выйти из: Steam, Uplay, Origin</value>
+    <value>Перед активацией функции "Спрятать контроллер EAll4" вы должны выйти из: Steam, Uplay, Origin</value>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>Запись</value>
@@ -418,7 +418,7 @@
     <value>Запустить</value>
   </data>
   <data name="Step1" xml:space="preserve">
-    <value>Шаг 1: Установите драйвер DS4</value>
+    <value>Шаг 1: Установите драйвер EAll4</value>
   </data>
   <data name="StopHText" xml:space="preserve">
     <value>Ост. тяжёлый</value>
@@ -426,11 +426,11 @@
   <data name="StopLText" xml:space="preserve">
     <value>Ост. лёгкий</value>
   </data>
-  <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Остановлена работа DS4Windows</value>
+  <data name="StoppedEAll4Windows" xml:space="preserve">
+    <value>Остановлена работа EAll4Windows</value>
   </data>
-  <data name="StoppingDS4" xml:space="preserve">
-    <value>Остановка контроллеров DS4</value>
+  <data name="StoppingEAll4" xml:space="preserve">
+    <value>Остановка контроллеров EAll4</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
     <value>Остановка контроллеров X360</value>

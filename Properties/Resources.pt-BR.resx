@@ -151,7 +151,7 @@
     <value>Carregando: *number*%</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
-    <value>Fechar DS4Windows Através do Ícone de Notificação</value>
+    <value>Fechar EAll4Windows Através do Ícone de Notificação</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Cor</value>
@@ -172,13 +172,13 @@
     <value>Conexão do Controle *Mac address* Foi Perdida ou Removida</value>
   </data>
   <data name="CopyComplete" xml:space="preserve">
-    <value>Copia Completa, execute DS4 e Remova as Configurações do Diretorio</value>
+    <value>Copia Completa, execute EAll4 e Remova as Configurações do Diretorio</value>
   </data>
   <data name="CopyFullColor" xml:space="preserve">
     <value>Clica Para Copiar Toda Cor</value>
   </data>
-  <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Atenção: Não Foi Possivel Conectar o Controle DS4 *Mac address*.</value>
+  <data name="CouldNotOpenEAll4" xml:space="preserve">
+    <value>Atenção: Não Foi Possivel Conectar o Controle EAll4 *Mac address*.</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>Dia</value>
@@ -193,7 +193,7 @@
     <value>Bateria: Nivel %</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Desligue a Entrada X360 e Deixa Apenas o DS4, Função Esconder DS4 Deve Estar Ativa</value>
+    <value>Desligue a Entrada X360 e Deixa Apenas o EAll4, Função Esconder EAll4 Deve Estar Ativa</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
     <value>Desconectado</value>
@@ -207,10 +207,10 @@
   <data name="DownText" xml:space="preserve">
     <value>Para Baixo</value>
   </data>
-  <data name="DS4Update" xml:space="preserve">
+  <data name="EAll4Update" xml:space="preserve">
     <value>Atualização Disponivel</value>
   </data>
-  <data name="DS4WindowsCannotEditHere" xml:space="preserve">
+  <data name="EAll4WindowsCannotEditHere" xml:space="preserve">
     <value>Impossivel Editar Configurações, Ira Fechar Agora</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
@@ -243,8 +243,8 @@
   <data name="Hours" xml:space="preserve">
     <value>Horas</value>
   </data>
-  <data name="IfRemovingDS4Windows" xml:space="preserve">
-    <value>Removendo DS4, Você Pode Deletar Configurações Usando o Seguinte Linl</value>
+  <data name="IfRemovingEAll4Windows" xml:space="preserve">
+    <value>Removendo EAll4, Você Pode Deletar Configurações Usando o Seguinte Linl</value>
   </data>
   <data name="InputDelay" xml:space="preserve">
     <value>Atraso De Entreda: *number*mg</value>
@@ -313,7 +313,7 @@
     <value>Pasta de Perfil Movida Para Pasta do Programa</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>Você deve encerrar outras aplicações como o Steam, Uplay antes de ativar a opção "Ocultar DS4 Controller '."</value>
+    <value>Você deve encerrar outras aplicações como o Steam, Uplay antes de ativar a opção "Ocultar EAll4 Controller '."</value>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>Gravar</value>
@@ -343,7 +343,7 @@
     <value>Iniciar</value>
   </data>
   <data name="Step1" xml:space="preserve">
-    <value>Passo 1: Instalar Driver DS4</value>
+    <value>Passo 1: Instalar Driver EAll4</value>
   </data>
   <data name="StopHText" xml:space="preserve">
     <value>Para de Carregar</value>
@@ -351,11 +351,11 @@
   <data name="StopLText" xml:space="preserve">
     <value>Encerrar Leve</value>
   </data>
-  <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>DS4Windows Parou</value>
+  <data name="StoppedEAll4Windows" xml:space="preserve">
+    <value>EAll4Windows Parou</value>
   </data>
-  <data name="StoppingDS4" xml:space="preserve">
-    <value>Parando Controle DS4</value>
+  <data name="StoppingEAll4" xml:space="preserve">
+    <value>Parando Controle EAll4</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
     <value>Parando Controle X360</value>

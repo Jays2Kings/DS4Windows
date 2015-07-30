@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DS4Windows")]
+[assembly: AssemblyTitle("EAll4Windows")]
 [assembly: AssemblyDescription("Sony DualShock 4 to Microsoft Xinput controller mapper")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DS4Windows")]
+[assembly: AssemblyProduct("EAll4Windows")]
 [assembly: AssemblyCopyright("Copyright © Scarlet.Crush Productions 2012, 2013; InhexSTER, HecticSeptic, electrobrains 2013, 2014; Jays2Kings 2013, 2014, 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

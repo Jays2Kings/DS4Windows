@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DS4Windows.Properties {
+namespace EAll4Windows.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DS4Windows.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DS4Windows.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EAll4Windows.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -202,7 +202,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot move files to new location, Please rename the DS4Tool folder to &quot;DS4Windows&quot;.
+        ///   Looks up a localized string similar to Cannot move files to new location, Please rename the EAll4Tool folder to &quot;EAll4Windows&quot;.
         /// </summary>
         internal static string CannotMoveFiles {
             get {
@@ -247,16 +247,16 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close DS4Windows?.
+        ///   Looks up a localized string similar to Close EAll4Windows?.
         /// </summary>
-        internal static string CloseDS4W {
+        internal static string CloseEAll4W {
             get {
-                return ResourceManager.GetString("CloseDS4W", resourceCulture);
+                return ResourceManager.GetString("CloseEAll4W", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close DS4Windows via the notification icon.
+        ///   Looks up a localized string similar to Close EAll4Windows via the notification icon.
         /// </summary>
         internal static string CloseMinimize {
             get {
@@ -329,7 +329,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy complete, please relaunch DS4Windows and remove settings from Program Directory.
+        ///   Looks up a localized string similar to Copy complete, please relaunch EAll4Windows and remove settings from Program Directory.
         /// </summary>
         internal static string CopyComplete {
             get {
@@ -347,11 +347,11 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning: Could not open DS4 *Mac address* exclusively..
+        ///   Looks up a localized string similar to Warning: Could not open EAll4 *Mac address* exclusively..
         /// </summary>
-        internal static string CouldNotOpenDS4 {
+        internal static string CouldNotOpenEAll4 {
             get {
-                return ResourceManager.GetString("CouldNotOpenDS4", resourceCulture);
+                return ResourceManager.GetString("CouldNotOpenEAll4", resourceCulture);
             }
         }
         
@@ -402,7 +402,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turn off X360 input and only use the DS4&apos;s native input, hide ds4 must be off (Wired Only).
+        ///   Looks up a localized string similar to Turn off X360 input and only use the EAll4&apos;s native input, hide eall4 must be off (Wired Only).
         /// </summary>
         internal static string DinputOnly {
             get {
@@ -468,9 +468,9 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon DS4 {
+        internal static System.Drawing.Icon EAll4 {
             get {
-                object obj = ResourceManager.GetObject("DS4", resourceCulture);
+                object obj = ResourceManager.GetObject("EAll4", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -478,38 +478,38 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DS4_Controller {
+        internal static System.Drawing.Bitmap EAll4_Controller {
             get {
-                object obj = ResourceManager.GetObject("DS4_Controller", resourceCulture);
+                object obj = ResourceManager.GetObject("EAll4_Controller", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DS4Windows Update Available!.
+        ///   Looks up a localized string similar to EAll4Windows Update Available!.
         /// </summary>
-        internal static string DS4Update {
+        internal static string EAll4Update {
             get {
-                return ResourceManager.GetString("DS4Update", resourceCulture);
+                return ResourceManager.GetString("EAll4Update", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon DS4W {
+        internal static System.Drawing.Icon EAll4W {
             get {
-                object obj = ResourceManager.GetObject("DS4W", resourceCulture);
+                object obj = ResourceManager.GetObject("EAll4W", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DS4Windows cannot edit settings here, This will now close.
+        ///   Looks up a localized string similar to EAll4Windows cannot edit settings here, This will now close.
         /// </summary>
-        internal static string DS4WindowsCannotEditHere {
+        internal static string EAll4WindowsCannotEditHere {
             get {
-                return ResourceManager.GetString("DS4WindowsCannotEditHere", resourceCulture);
+                return ResourceManager.GetString("EAll4WindowsCannotEditHere", resourceCulture);
             }
         }
         
@@ -714,11 +714,11 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If removing DS4Windows, You can delete the settings following the profile folder link.
+        ///   Looks up a localized string similar to If removing EAll4Windows, You can delete the settings following the profile folder link.
         /// </summary>
-        internal static string IfRemovingDS4Windows {
+        internal static string IfRemovingEAll4Windows {
             get {
-                return ResourceManager.GetString("IfRemovingDS4Windows", resourceCulture);
+                return ResourceManager.GetString("IfRemovingEAll4Windows", resourceCulture);
             }
         }
         
@@ -1170,7 +1170,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must quit other applications like Steam, Uplay before activating the &apos;Hide DS4 Controller&apos; option.&quot;.
+        ///   Looks up a localized string similar to You must quit other applications like Steam, Uplay before activating the &apos;Hide EAll4 Controller&apos; option.&quot;.
         /// </summary>
         internal static string QuitOtherPrograms {
             get {
@@ -1427,7 +1427,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Step 1: Install the DS4 Driver.
+        ///   Looks up a localized string similar to Step 1: Install the EAll4 Driver.
         /// </summary>
         internal static string Step1 {
             get {
@@ -1464,29 +1464,29 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopped DS4 Tool.
+        ///   Looks up a localized string similar to Stopped EAll4 Tool.
         /// </summary>
-        internal static string StoppedDS4Tool {
+        internal static string StoppedEAll4Tool {
             get {
-                return ResourceManager.GetString("StoppedDS4Tool", resourceCulture);
+                return ResourceManager.GetString("StoppedEAll4Tool", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopped DS4Windows.
+        ///   Looks up a localized string similar to Stopped EAll4Windows.
         /// </summary>
-        internal static string StoppedDS4Windows {
+        internal static string StoppedEAll4Windows {
             get {
-                return ResourceManager.GetString("StoppedDS4Windows", resourceCulture);
+                return ResourceManager.GetString("StoppedEAll4Windows", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopping DS4 Controllers.
+        ///   Looks up a localized string similar to Stopping EAll4 Controllers.
         /// </summary>
-        internal static string StoppingDS4 {
+        internal static string StoppingEAll4 {
             get {
-                return ResourceManager.GetString("StoppingDS4", resourceCulture);
+                return ResourceManager.GetString("StoppingEAll4", resourceCulture);
             }
         }
         

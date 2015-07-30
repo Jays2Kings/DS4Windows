@@ -24,6 +24,8 @@ namespace EAll4Windows
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return EAll4Device.HidConnectionType(d); }).ToList();
                 //Detect Miui Controllers
                 hDevices.AddRange(HidDevices.Enumerate(0x2717, 0x3144));
+                //Detect iPega Controllers 
+                hDevices.AddRange(HidDevices.Enumerate(0x1949, 0x0402));
 
                 foreach (HidDevice hDevice in hDevices)
                 {

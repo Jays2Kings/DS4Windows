@@ -247,7 +247,7 @@ namespace EAll4Windows
                 //string type = action.type;
                 switch (action.type)
                 {
-                    case "Macro": lvi.SubItems.Add(Properties.Resources.Macro + (action.keyType.HasFlag(EAll4KeyType.ScanCode) ? " (" + Properties.Resources.ScanCode + ")" : "")); break;
+                    case "Macro": lvi.SubItems.Add(Properties.Resources.Macro + (action.keyType.HasFlag(GenericKeyType.ScanCode) ? " (" + Properties.Resources.ScanCode + ")" : "")); break;
                     case "Program": lvi.SubItems.Add(Properties.Resources.LaunchProgram.Replace("*program*", Path.GetFileNameWithoutExtension(action.details))); break;
                     case "Profile": lvi.SubItems.Add(Properties.Resources.LoadProfile.Replace("*profile*", action.details)); break;
                     case "Key": lvi.SubItems.Add(((Keys)int.Parse(action.details)).ToString() + (action.uTrigger.Count > 0 ? " (Toggle)" : "")); break;

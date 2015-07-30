@@ -64,7 +64,7 @@ namespace EAll4Windows
                     cBActions.SelectedIndex = 1;
                     macrostag = act.macro;
                     lbMacroRecorded.Text = "Macro Recorded";
-                    cBMacroScanCode.Checked = act.keyType.HasFlag(EAll4KeyType.ScanCode);
+                    cBMacroScanCode.Checked = act.keyType.HasFlag(GenericKeyType.ScanCode);
                     break;
                 case "Program":
                     cBActions.SelectedIndex = 2;
@@ -88,7 +88,7 @@ namespace EAll4Windows
                     cBActions.SelectedIndex = 4;
                     int key = int.Parse(act.details);
                     btnSelectKey.Text = ((Keys)key).ToString() +
-                        (act.keyType.HasFlag(EAll4KeyType.ScanCode) ? " (SC)" : "") +
+                        (act.keyType.HasFlag(GenericKeyType.ScanCode) ? " (SC)" : "") +
                         (!string.IsNullOrEmpty(act.ucontrols) ? " (Toggle)" : "");
                     btnSelectKey.Tag = key;
                     if (act.pressRelease)

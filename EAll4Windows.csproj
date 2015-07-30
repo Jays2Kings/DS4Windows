@@ -99,6 +99,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EAll4ControlCommon\GenericControls.cs" />
+    <Compile Include="EAll4ControlCommon\GenericKeyType.cs" />
+    <Compile Include="EAll4ControlCommon\PadId.cs" />
+    <Compile Include="EAll4ControlCommon\X360Controls.cs" />
     <Compile Include="EAll4Windows\AdvancedColorDialog.cs" />
     <Compile Include="EAll4Windows\Alreadyrunning.cs">
       <SubType>Form</SubType>

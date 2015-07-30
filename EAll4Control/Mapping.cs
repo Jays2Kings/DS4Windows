@@ -516,7 +516,7 @@ namespace EAll4Windows
                     Global.getShiftCustomKey(device, customKey.Key) == 0 &&
                     Global.getShiftCustomButton(device, customKey.Key) == X360Controls.None))
                 {
-                    EAll4KeyType keyType = Global.getCustomKeyType(device, customKey.Key);
+                    GenericKeyType keyType = Global.getCustomKeyType(device, customKey.Key);
                     if (getBoolMapping(customKey.Key, cState, eState, tp))
                     {
                         resetToDefaultValue(customKey.Key, MappedState);
@@ -535,18 +535,18 @@ namespace EAll4Windows
                     Global.getShiftCustomKey(device, customKey.Key) == 0 &&
                     Global.getShiftCustomButton(device, customKey.Key) == X360Controls.None))
                 {
-                    EAll4KeyType keyType = Global.getCustomKeyType(device, customKey.Key);
+                    GenericKeyType keyType = Global.getCustomKeyType(device, customKey.Key);
                     if (getBoolMapping(customKey.Key, cState, eState, tp))
                     {
                         resetToDefaultValue(customKey.Key, MappedState);
                         SyntheticState.KeyPresses kp;
                         if (!deviceState.keyPresses.TryGetValue(customKey.Value, out kp))
                             deviceState.keyPresses[customKey.Value] = kp = new SyntheticState.KeyPresses();
-                        if (keyType.HasFlag(EAll4KeyType.ScanCode))
+                        if (keyType.HasFlag(GenericKeyType.ScanCode))
                             kp.current.scanCodeCount++;
                         else
                             kp.current.vkCount++;
-                        if (keyType.HasFlag(EAll4KeyType.Toggle))
+                        if (keyType.HasFlag(GenericKeyType.Toggle))
                         {
                             if (!pressedonce[customKey.Value])
                             {
@@ -596,7 +596,7 @@ namespace EAll4Windows
                     Global.getShiftCustomKey(device, customButton.Key) == 0 &&
                     Global.getShiftCustomButton(device, customButton.Key) == X360Controls.None))
                 {
-                    EAll4KeyType keyType = Global.getCustomKeyType(device, customButton.Key);
+                    GenericKeyType keyType = Global.getCustomKeyType(device, customButton.Key);
                     int keyvalue = 0;
                     switch (customButton.Value)
                     {
@@ -606,7 +606,7 @@ namespace EAll4Windows
                         case X360Controls.FourthMouse: keyvalue = 259; break;
                         case X360Controls.FifthMouse: keyvalue = 260; break;
                     }
-                    if (keyType.HasFlag(EAll4KeyType.Toggle))
+                    if (keyType.HasFlag(GenericKeyType.Toggle))
                     {
                         if (getBoolMapping(customButton.Key, cState, eState, tp))
                         {
@@ -873,7 +873,7 @@ namespace EAll4Windows
             SyntheticState deviceState = Mapping.deviceState[device];
             foreach (KeyValuePair<GenericControls, string> customKey in Global.getShiftCustomMacros(device)) //with delays
             {
-                EAll4KeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
+                GenericKeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
                 if (getBoolMapping(customKey.Key, cState, eState, tp))
                 {
                     resetToDefaultValue(customKey.Key, MappedState);
@@ -886,18 +886,18 @@ namespace EAll4Windows
             }
             foreach (KeyValuePair<GenericControls, ushort> customKey in Global.getShiftCustomKeys(device))
             {
-                EAll4KeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
+                GenericKeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
                 if (getBoolMapping(customKey.Key, cState, eState, tp))
                 {
                     resetToDefaultValue(customKey.Key, MappedState);
                     SyntheticState.KeyPresses kp;
                     if (!deviceState.keyPresses.TryGetValue(customKey.Value, out kp))
                         deviceState.keyPresses[customKey.Value] = kp = new SyntheticState.KeyPresses();
-                    if (keyType.HasFlag(EAll4KeyType.ScanCode))
+                    if (keyType.HasFlag(GenericKeyType.ScanCode))
                         kp.current.scanCodeCount++;
                     else
                         kp.current.vkCount++;
-                    if (keyType.HasFlag(EAll4KeyType.Toggle))
+                    if (keyType.HasFlag(GenericKeyType.Toggle))
                     {
                         if (!pressedonce[customKey.Value])
                         {
@@ -951,7 +951,7 @@ namespace EAll4Windows
             foreach (KeyValuePair<GenericControls, X360Controls> customButton in customButtons)
             {
                 resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
-                EAll4KeyType keyType = Global.getShiftCustomKeyType(device, customButton.Key);
+                GenericKeyType keyType = Global.getShiftCustomKeyType(device, customButton.Key);
                 int keyvalue = 0;
                 switch (customButton.Value)
                 {
@@ -961,7 +961,7 @@ namespace EAll4Windows
                     case X360Controls.FourthMouse: keyvalue = 259; break;
                     case X360Controls.FifthMouse: keyvalue = 260; break;
                 }
-                if (keyType.HasFlag(EAll4KeyType.Toggle))
+                if (keyType.HasFlag(GenericKeyType.Toggle))
                 {
                     if (getBoolMapping(customButton.Key, cState, eState, tp))
                     {
@@ -1210,7 +1210,7 @@ namespace EAll4Windows
         {
             foreach (string actionname in Global.ProfileActions[device])
             {
-                //EAll4KeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
+                //GenericKeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
                 SpecialAction action = Global.GetAction(actionname);
                 int index = Global.GetActionIndexOf(actionname);
                 double time;
@@ -1345,7 +1345,7 @@ namespace EAll4Windows
                     {
                         if (!actionDone[device, index])
                         {
-                            EAll4KeyType keyType = action.keyType;
+                            GenericKeyType keyType = action.keyType;
                             actionDone[device, index] = true;
                             foreach (GenericControls dc in action.trigger)
                                 resetToDefaultValue(dc, MappedState);
@@ -1367,13 +1367,13 @@ namespace EAll4Windows
                                 SyntheticState.KeyPresses kp;
                                 if (!deviceState[device].keyPresses.TryGetValue(key, out kp))
                                     deviceState[device].keyPresses[key] = kp = new SyntheticState.KeyPresses();
-                                if (action.keyType.HasFlag(EAll4KeyType.ScanCode))
+                                if (action.keyType.HasFlag(GenericKeyType.ScanCode))
                                     kp.current.scanCodeCount++;
                                 else
                                     kp.current.vkCount++;
                                 kp.current.repeatCount++;
                             }
-                            else if (action.keyType.HasFlag(EAll4KeyType.ScanCode))
+                            else if (action.keyType.HasFlag(GenericKeyType.ScanCode))
                                 InputMethods.performSCKeyPress(key);
                             else
                                 InputMethods.performKeyPress(key);
@@ -1387,7 +1387,7 @@ namespace EAll4Windows
                             untriggerindex[device] = -1;
                             ushort key;
                             ushort.TryParse(action.details, out key);
-                            if (action.keyType.HasFlag(EAll4KeyType.ScanCode))
+                            if (action.keyType.HasFlag(GenericKeyType.ScanCode))
                                 InputMethods.performSCKeyRelease(key);
                             else
                                 InputMethods.performKeyRelease(key);
@@ -1499,7 +1499,7 @@ namespace EAll4Windows
             }
         }
 
-        private static async void PlayMacro(int device, bool[] macrocontrol, string macro, GenericControls control, EAll4KeyType keyType)
+        private static async void PlayMacro(int device, bool[] macrocontrol, string macro, GenericControls control, GenericKeyType keyType)
         {
             if (macro.StartsWith("164/9/9/164") || macro.StartsWith("18/9/9/18"))
             {
@@ -1573,7 +1573,7 @@ namespace EAll4Windows
                             else if (i == 283) macroControl[22] = true;
                             else if (i == 284) macroControl[23] = true;
                             else if (i == 285) macroControl[24] = true;
-                            else if (keyType.HasFlag(EAll4KeyType.ScanCode))
+                            else if (keyType.HasFlag(GenericKeyType.ScanCode))
                                 InputMethods.performSCKeyPress((ushort)i);
                             else
                                 InputMethods.performKeyPress((ushort)i);
@@ -1611,7 +1611,7 @@ namespace EAll4Windows
                             else if (i == 283) macroControl[22] = false;
                             else if (i == 284) macroControl[23] = false;
                             else if (i == 285) macroControl[24] = false;
-                            else if (keyType.HasFlag(EAll4KeyType.ScanCode))
+                            else if (keyType.HasFlag(GenericKeyType.ScanCode))
                                 InputMethods.performSCKeyRelease((ushort)i);
                             else
                                 InputMethods.performKeyRelease((ushort)i);
@@ -1651,12 +1651,12 @@ namespace EAll4Windows
                             else if (i == 283) macroControl[22] = false;
                             else if (i == 284) macroControl[23] = false;
                             else if (i == 285) macroControl[24] = false;
-                            else if (keyType.HasFlag(EAll4KeyType.ScanCode))
+                            else if (keyType.HasFlag(GenericKeyType.ScanCode))
                                 InputMethods.performSCKeyRelease(i);
                             else
                                 InputMethods.performKeyRelease(i);
                     }
-                    if (keyType.HasFlag(EAll4KeyType.HoldMacro))
+                    if (keyType.HasFlag(GenericKeyType.HoldMacro))
                     {
                         await Task.Delay(50);
                         if (control != GenericControls.None)

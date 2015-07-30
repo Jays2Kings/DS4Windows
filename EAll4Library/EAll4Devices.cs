@@ -16,10 +16,14 @@ namespace EAll4Windows
         {
             lock (Devices)
             {
+                //TODO Move to frontend to allow any controller
+                //Detect DS4 Controllers
                 int[] pid = { 0x5C4 };
-                IEnumerable<HidDevice> hDevices = HidDevices.Enumerate(0x054C, pid);
+                List<HidDevice> hDevices = HidDevices.Enumerate(0x054C, pid).ToList();
                 // Sort Bluetooth first in case USB is also connected on the same controller.
-                hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return EAll4Device.HidConnectionType(d); });
+                hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return EAll4Device.HidConnectionType(d); }).ToList();
+                //Detect Miui Controllers
+                hDevices.AddRange(HidDevices.Enumerate(0x2717, 0x3144));
 
                 foreach (HidDevice hDevice in hDevices)
                 {
@@ -32,21 +36,17 @@ namespace EAll4Windows
                         if (isExclusiveMode && !hDevice.IsOpen)
                             hDevice.OpenDevice(false);
                     }
-                    if (hDevice.IsOpen)
-                    {
-                        if (Devices.ContainsKey(hDevice.readSerial()))
-                            continue; // happens when the BT endpoint already is open and the USB is plugged into the same host
-                        else
-                        {
-                            EAll4Device eall4Device = new EAll4Device(hDevice);
-                            eall4Device.Removal += On_Removal;
-                            Devices.Add(eall4Device.MacAddress, eall4Device);
-                            DevicePaths.Add(hDevice.DevicePath);
-                            eall4Device.StartUpdate();
-                        }
-                    }
+                    if (!hDevice.IsOpen) continue;
+                    if (Devices.ContainsKey(hDevice.readSerial()))
+                        continue; // happens when the BT endpoint already is open and the USB is plugged into the same host
+
+                    EAll4Device eall4Device = new EAll4Device(hDevice);
+                    eall4Device.Removal += On_Removal;
+                    Devices.Add(eall4Device.MacAddress, eall4Device);
+                    DevicePaths.Add(hDevice.DevicePath);
+                    eall4Device.StartUpdate();
                 }
-                
+
             }
         }
 
@@ -65,7 +65,7 @@ namespace EAll4Windows
                 return device;
             }
         }
-        
+
         //returns EAll4 controllers that were found and are running
         public static IEnumerable<EAll4Device> getEAll4Controllers()
         {

@@ -10,11 +10,6 @@ using System.Drawing;
 using System.Security.Principal;
 namespace EAll4Windows
 {
-    [Flags]
-    public enum EAll4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; //Increment by exponents of 2*, starting at 2^0
-    public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
-    public enum GenericControls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, TouchLeft, TouchUpper, TouchMulti, TouchRight, Back, Start, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown };
-    public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
     public class DebugEventArgs : EventArgs
     {
@@ -59,19 +54,19 @@ namespace EAll4Windows
 
     public class ReportEventArgs : EventArgs
     {
-        protected Ds3PadId m_Pad = Ds3PadId.None;
+        protected PadId m_Pad = PadId.None;
         protected Byte[] m_Report = new Byte[64];
 
         public ReportEventArgs()
         {
         }
 
-        public ReportEventArgs(Ds3PadId Pad)
+        public ReportEventArgs(PadId Pad)
         {
             m_Pad = Pad;
         }
 
-        public Ds3PadId Pad
+        public PadId Pad
         {
             get { return m_Pad; }
             set { m_Pad = value; }
@@ -415,7 +410,7 @@ namespace EAll4Windows
         {
             return m_Config.GetCustomExtras(device, controlName);
         }
-        public static EAll4KeyType getCustomKeyType(int device, GenericControls controlName)
+        public static GenericKeyType getCustomKeyType(int device, GenericControls controlName)
         {
             return m_Config.GetCustomKeyType(device, controlName);
         }
@@ -444,7 +439,7 @@ namespace EAll4Windows
         {
             return m_Config.customMapExtras[device];
         }
-        public static Dictionary<GenericControls, EAll4KeyType> getCustomKeyTypes(int device)
+        public static Dictionary<GenericControls, GenericKeyType> getCustomKeyTypes(int device)
         {
             return m_Config.customMapKeyTypes[device];
         }
@@ -465,7 +460,7 @@ namespace EAll4Windows
         {
             return m_Config.GetShiftCustomExtras(device, controlName);
         }
-        public static EAll4KeyType getShiftCustomKeyType(int device, GenericControls controlName)
+        public static GenericKeyType getShiftCustomKeyType(int device, GenericControls controlName)
         {
             return m_Config.GetShiftCustomKeyType(device, controlName);
         }
@@ -494,7 +489,7 @@ namespace EAll4Windows
         {
             return m_Config.shiftCustomMapExtras[device];
         }
-        public static Dictionary<GenericControls, EAll4KeyType> getShiftCustomKeyTypes(int device)
+        public static Dictionary<GenericControls, GenericKeyType> getShiftCustomKeyTypes(int device)
         {
             return m_Config.shiftCustomMapKeyTypes[device];
         }
@@ -686,13 +681,13 @@ namespace EAll4Windows
         public int firstXinputPort = 1;
         public bool closeMini = false;
         public List<SpecialAction> actions = new List<SpecialAction>();
-        public Dictionary<GenericControls, EAll4KeyType>[] customMapKeyTypes = { null, null, null, null, null };
+        public Dictionary<GenericControls, GenericKeyType>[] customMapKeyTypes = { null, null, null, null, null };
         public Dictionary<GenericControls, UInt16>[] customMapKeys = { null, null, null, null, null };
         public Dictionary<GenericControls, String>[] customMapMacros = { null, null, null, null, null };
         public Dictionary<GenericControls, X360Controls>[] customMapButtons = { null, null, null, null, null };
         public Dictionary<GenericControls, String>[] customMapExtras = { null, null, null, null, null };
 
-        public Dictionary<GenericControls, EAll4KeyType>[] shiftCustomMapKeyTypes = { null, null, null, null, null };
+        public Dictionary<GenericControls, GenericKeyType>[] shiftCustomMapKeyTypes = { null, null, null, null, null };
         public Dictionary<GenericControls, UInt16>[] shiftCustomMapKeys = { null, null, null, null, null };
         public Dictionary<GenericControls, String>[] shiftCustomMapMacros = { null, null, null, null, null };
         public Dictionary<GenericControls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
@@ -704,13 +699,13 @@ namespace EAll4Windows
         {
             for (int i = 0; i < 5; i++)
             {
-                customMapKeyTypes[i] = new Dictionary<GenericControls, EAll4KeyType>();
+                customMapKeyTypes[i] = new Dictionary<GenericControls, GenericKeyType>();
                 customMapKeys[i] = new Dictionary<GenericControls, UInt16>();
                 customMapMacros[i] = new Dictionary<GenericControls, String>();
                 customMapButtons[i] = new Dictionary<GenericControls, X360Controls>();
                 customMapExtras[i] = new Dictionary<GenericControls, string>();
 
-                shiftCustomMapKeyTypes[i] = new Dictionary<GenericControls, EAll4KeyType>();
+                shiftCustomMapKeyTypes[i] = new Dictionary<GenericControls, GenericKeyType>();
                 shiftCustomMapKeys[i] = new Dictionary<GenericControls, UInt16>();
                 shiftCustomMapMacros[i] = new Dictionary<GenericControls, String>();
                 shiftCustomMapButtons[i] = new Dictionary<GenericControls, X360Controls>();
@@ -744,7 +739,7 @@ namespace EAll4Windows
                 return customMapExtras[device][controlName];
             else return "0";
         }
-        public EAll4KeyType GetCustomKeyType(int device, GenericControls controlName)
+        public GenericKeyType GetCustomKeyType(int device, GenericControls controlName)
         {
             try
             {
@@ -779,7 +774,7 @@ namespace EAll4Windows
                 return customMapExtras[device][controlName];
             else return "0";
         }
-        public EAll4KeyType GetShiftCustomKeyType(int device, GenericControls controlName)
+        public GenericKeyType GetShiftCustomKeyType(int device, GenericControls controlName)
         {
             try
             {
@@ -877,16 +872,16 @@ namespace EAll4Windows
 
                             if (button.Tag is KeyValuePair<string, string>)
                                 if (((KeyValuePair<string, string>)button.Tag).Key == "Unbound")
-                                    keyType += EAll4KeyType.Unbound;
+                                    keyType += GenericKeyType.Unbound;
 
                             if (button.Font.Strikeout)
-                                keyType += EAll4KeyType.HoldMacro;
+                                keyType += GenericKeyType.HoldMacro;
                             if (button.Font.Underline)
-                                keyType += EAll4KeyType.Macro;
+                                keyType += GenericKeyType.Macro;
                             if (button.Font.Italic)
-                                keyType += EAll4KeyType.Toggle;
+                                keyType += GenericKeyType.Toggle;
                             if (button.Font.Bold)
-                                keyType += EAll4KeyType.ScanCode;
+                                keyType += GenericKeyType.ScanCode;
                             if (keyType != String.Empty)
                             {
                                 buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
@@ -972,16 +967,16 @@ namespace EAll4Windows
                                 string keyType = String.Empty;
                                 if (button.Tag is KeyValuePair<string, string>)
                                     if (((KeyValuePair<string, string>)button.Tag).Key == "Unbound")
-                                        keyType += EAll4KeyType.Unbound;
+                                        keyType += GenericKeyType.Unbound;
 
                                 if (button.Font.Strikeout)
-                                    keyType += EAll4KeyType.HoldMacro;
+                                    keyType += GenericKeyType.HoldMacro;
                                 if (button.Font.Underline)
-                                    keyType += EAll4KeyType.Macro;
+                                    keyType += GenericKeyType.Macro;
                                 if (button.Font.Italic)
-                                    keyType += EAll4KeyType.Toggle;
+                                    keyType += GenericKeyType.Toggle;
                                 if (button.Font.Bold)
-                                    keyType += EAll4KeyType.ScanCode;
+                                    keyType += GenericKeyType.ScanCode;
                                 if (keyType != String.Empty)
                                 {
                                     buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
@@ -1240,12 +1235,12 @@ namespace EAll4Windows
         public Boolean LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons, bool launchprogram, ControlService control, string propath = "")
         {
             Boolean Loaded = true;
-            Dictionary<GenericControls, EAll4KeyType> customMapKeyTypes = new Dictionary<GenericControls, EAll4KeyType>();
+            Dictionary<GenericControls, GenericKeyType> customMapKeyTypes = new Dictionary<GenericControls, GenericKeyType>();
             Dictionary<GenericControls, UInt16> customMapKeys = new Dictionary<GenericControls, UInt16>();
             Dictionary<GenericControls, X360Controls> customMapButtons = new Dictionary<GenericControls, X360Controls>();
             Dictionary<GenericControls, String> customMapMacros = new Dictionary<GenericControls, String>();
             Dictionary<GenericControls, String> customMapExtras = new Dictionary<GenericControls, String>();
-            Dictionary<GenericControls, EAll4KeyType> shiftCustomMapKeyTypes = new Dictionary<GenericControls, EAll4KeyType>();
+            Dictionary<GenericControls, GenericKeyType> shiftCustomMapKeyTypes = new Dictionary<GenericControls, GenericKeyType>();
             Dictionary<GenericControls, UInt16> shiftCustomMapKeys = new Dictionary<GenericControls, UInt16>();
             Dictionary<GenericControls, X360Controls> shiftCustomMapButtons = new Dictionary<GenericControls, X360Controls>();
             Dictionary<GenericControls, String> shiftCustomMapMacros = new Dictionary<GenericControls, String>();
@@ -1465,7 +1460,7 @@ namespace EAll4Windows
                 }
                 catch { profileActions[device].Clear(); missingSetting = true; }
 
-                EAll4KeyType keyType;
+                GenericKeyType keyType;
                 UInt16 wvk;
                 if (buttons == null)
                 {
@@ -1494,18 +1489,18 @@ namespace EAll4Windows
                         foreach (XmlNode item in ParentItem.ChildNodes)
                             if (item != null)
                             {
-                                keyType = EAll4KeyType.None;
-                                if (item.InnerText.Contains(EAll4KeyType.ScanCode.ToString()))
-                                    keyType |= EAll4KeyType.ScanCode;
-                                if (item.InnerText.Contains(EAll4KeyType.Toggle.ToString()))
-                                    keyType |= EAll4KeyType.Toggle;
-                                if (item.InnerText.Contains(EAll4KeyType.Macro.ToString()))
-                                    keyType |= EAll4KeyType.Macro;
-                                if (item.InnerText.Contains(EAll4KeyType.HoldMacro.ToString()))
-                                    keyType |= EAll4KeyType.HoldMacro;
-                                if (item.InnerText.Contains(EAll4KeyType.Unbound.ToString()))
-                                    keyType |= EAll4KeyType.Unbound;
-                                if (keyType != EAll4KeyType.None)
+                                keyType = GenericKeyType.None;
+                                if (item.InnerText.Contains(GenericKeyType.ScanCode.ToString()))
+                                    keyType |= GenericKeyType.ScanCode;
+                                if (item.InnerText.Contains(GenericKeyType.Toggle.ToString()))
+                                    keyType |= GenericKeyType.Toggle;
+                                if (item.InnerText.Contains(GenericKeyType.Macro.ToString()))
+                                    keyType |= GenericKeyType.Macro;
+                                if (item.InnerText.Contains(GenericKeyType.HoldMacro.ToString()))
+                                    keyType |= GenericKeyType.HoldMacro;
+                                if (item.InnerText.Contains(GenericKeyType.Unbound.ToString()))
+                                    keyType |= GenericKeyType.Unbound;
+                                if (keyType != GenericKeyType.None)
                                     customMapKeyTypes.Add(getGenericControlsByName(item.Name), keyType);
                             }
                     if (shiftModifier[device] > 0)
@@ -1532,18 +1527,18 @@ namespace EAll4Windows
                             foreach (XmlNode item in ParentItem.ChildNodes)
                                 if (item != null)
                                 {
-                                    keyType = EAll4KeyType.None;
-                                    if (item.InnerText.Contains(EAll4KeyType.ScanCode.ToString()))
-                                        keyType |= EAll4KeyType.ScanCode;
-                                    if (item.InnerText.Contains(EAll4KeyType.Toggle.ToString()))
-                                        keyType |= EAll4KeyType.Toggle;
-                                    if (item.InnerText.Contains(EAll4KeyType.Macro.ToString()))
-                                        keyType |= EAll4KeyType.Macro;
-                                    if (item.InnerText.Contains(EAll4KeyType.HoldMacro.ToString()))
-                                        keyType |= EAll4KeyType.HoldMacro;
-                                    if (item.InnerText.Contains(EAll4KeyType.Unbound.ToString()))
-                                        keyType |= EAll4KeyType.Unbound;
-                                    if (keyType != EAll4KeyType.None)
+                                    keyType = GenericKeyType.None;
+                                    if (item.InnerText.Contains(GenericKeyType.ScanCode.ToString()))
+                                        keyType |= GenericKeyType.ScanCode;
+                                    if (item.InnerText.Contains(GenericKeyType.Toggle.ToString()))
+                                        keyType |= GenericKeyType.Toggle;
+                                    if (item.InnerText.Contains(GenericKeyType.Macro.ToString()))
+                                        keyType |= GenericKeyType.Macro;
+                                    if (item.InnerText.Contains(GenericKeyType.HoldMacro.ToString()))
+                                        keyType |= GenericKeyType.HoldMacro;
+                                    if (item.InnerText.Contains(GenericKeyType.Unbound.ToString()))
+                                        keyType |= GenericKeyType.Unbound;
+                                    if (keyType != GenericKeyType.None)
                                         shiftCustomMapKeyTypes.Add(getGenericControlsByName(item.Name), keyType);
                                 }
                     }
@@ -1576,11 +1571,11 @@ namespace EAll4Windows
             return Loaded;
         }
 
-        public void LoadButtons(System.Windows.Forms.Control[] buttons, string control, Dictionary<GenericControls, EAll4KeyType> customMapKeyTypes,
+        public void LoadButtons(System.Windows.Forms.Control[] buttons, string control, Dictionary<GenericControls, GenericKeyType> customMapKeyTypes,
            Dictionary<GenericControls, UInt16> customMapKeys, Dictionary<GenericControls, X360Controls> customMapButtons, Dictionary<GenericControls, String> customMapMacros, Dictionary<GenericControls, String> customMapExtras)
         {
             XmlNode Item;
-            EAll4KeyType keyType;
+            GenericKeyType keyType;
             UInt16 wvk;
             string rootname = "EAll4Windows";
             foreach (var button in buttons)
@@ -1595,30 +1590,30 @@ namespace EAll4Windows
                     if (Item != null)
                     {
                         //foundBinding = true;
-                        keyType = EAll4KeyType.None;
-                        if (Item.InnerText.Contains(EAll4KeyType.Unbound.ToString()))
+                        keyType = GenericKeyType.None;
+                        if (Item.InnerText.Contains(GenericKeyType.Unbound.ToString()))
                         {
-                            keyType = EAll4KeyType.Unbound;
+                            keyType = GenericKeyType.Unbound;
                             button.Tag = "Unbound";
                             button.Text = "Unbound";
                         }
                         else
                         {
-                            bool SC = Item.InnerText.Contains(EAll4KeyType.ScanCode.ToString());
-                            bool TG = Item.InnerText.Contains(EAll4KeyType.Toggle.ToString());
-                            bool MC = Item.InnerText.Contains(EAll4KeyType.Macro.ToString());
-                            bool MR = Item.InnerText.Contains(EAll4KeyType.HoldMacro.ToString());
+                            bool SC = Item.InnerText.Contains(GenericKeyType.ScanCode.ToString());
+                            bool TG = Item.InnerText.Contains(GenericKeyType.Toggle.ToString());
+                            bool MC = Item.InnerText.Contains(GenericKeyType.Macro.ToString());
+                            bool MR = Item.InnerText.Contains(GenericKeyType.HoldMacro.ToString());
                             button.Font = new Font(button.Font,
                                 (SC ? FontStyle.Bold : FontStyle.Regular) | (TG ? FontStyle.Italic : FontStyle.Regular) |
                                 (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
-                            if (Item.InnerText.Contains(EAll4KeyType.ScanCode.ToString()))
-                                keyType |= EAll4KeyType.ScanCode;
-                            if (Item.InnerText.Contains(EAll4KeyType.Toggle.ToString()))
-                                keyType |= EAll4KeyType.Toggle;
-                            if (Item.InnerText.Contains(EAll4KeyType.Macro.ToString()))
-                                keyType |= EAll4KeyType.Macro;
+                            if (Item.InnerText.Contains(GenericKeyType.ScanCode.ToString()))
+                                keyType |= GenericKeyType.ScanCode;
+                            if (Item.InnerText.Contains(GenericKeyType.Toggle.ToString()))
+                                keyType |= GenericKeyType.Toggle;
+                            if (Item.InnerText.Contains(GenericKeyType.Macro.ToString()))
+                                keyType |= GenericKeyType.Macro;
                         }
-                        if (keyType != EAll4KeyType.None)
+                        if (keyType != GenericKeyType.None)
                             customMapKeyTypes.Add(getGenericControlsByName(Item.Name), keyType);
                     }
                     string extras;
@@ -1995,7 +1990,7 @@ namespace EAll4Windows
         public double delayTime = 0;
         public string extra;
         public bool pressRelease = false;
-        public EAll4KeyType keyType;
+        public GenericKeyType keyType;
         public SpecialAction(string name, string controls, string type, string details, double delay = 0, string extras = "")
         {
             this.name = name;
@@ -2015,7 +2010,7 @@ namespace EAll4Windows
                         macro.Add(v);
                 }
                 if (extras.Contains("Scan Code"))
-                    keyType |= EAll4KeyType.ScanCode;
+                    keyType |= GenericKeyType.ScanCode;
             }
             else if (type == "Key")
             {
@@ -2030,7 +2025,7 @@ namespace EAll4Windows
                         uTrigger.Add(getGenericControlsByName(s));
                 }
                 if (details.Contains("Scan Code"))
-                    keyType |= EAll4KeyType.ScanCode;
+                    keyType |= GenericKeyType.ScanCode;
             }
             else if (type == "Program")
             {

@@ -201,7 +201,7 @@ namespace EAll4Windows
             synthesizeMouseButtons();
         }
 
-        public ControllerState getEAll4State()
+        public ControllerState getControllerState()
         {
             return s;
         }

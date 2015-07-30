@@ -99,7 +99,7 @@ namespace EAll4Windows
         }
 
 
-        public void Parse(EAll4State state, Byte[] Output, int device)
+        public void Parse(ControllerState state, Byte[] Output, int device)
         {
             Output[0] = 0x1C;
             Output[4] = (Byte)(device + firstController);
@@ -109,35 +109,35 @@ namespace EAll4Windows
             {
                 Output[i] = 0;
             }
-            if (state.Share) Output[10] |= (Byte)(1 << 5); // Back
-            if (state.L3) Output[10] |= (Byte)(1 << 6); // Left  Thumb
-            if (state.R3) Output[10] |= (Byte)(1 << 7); // Right Thumb
-            if (state.Options) Output[10] |= (Byte)(1 << 4); // Start
+            if (state.Back) Output[10] |= (Byte)(1 << 5); // Back
+            if (state.LS) Output[10] |= (Byte)(1 << 6); // Left  Thumb
+            if (state.RS) Output[10] |= (Byte)(1 << 7); // Right Thumb
+            if (state.Start) Output[10] |= (Byte)(1 << 4); // Start
 
             if (state.DpadUp) Output[10] |= (Byte)(1 << 0); // Up
             if (state.DpadRight) Output[10] |= (Byte)(1 << 3); // Down
             if (state.DpadDown) Output[10] |= (Byte)(1 << 1); // Right
             if (state.DpadLeft) Output[10] |= (Byte)(1 << 2); // Left
 
-            if (state.L1) Output[11] |= (Byte)(1 << 0); // Left  Shoulder
-            if (state.R1) Output[11] |= (Byte)(1 << 1); // Right Shoulder
+            if (state.LB) Output[11] |= (Byte)(1 << 0); // Left  Shoulder
+            if (state.RB) Output[11] |= (Byte)(1 << 1); // Right Shoulder
 
-            if (state.Triangle) Output[11] |= (Byte)(1 << 7); // Y
-            if (state.Circle) Output[11] |= (Byte)(1 << 5); // B
-            if (state.Cross) Output[11] |= (Byte)(1 << 4); // A
-            if (state.Square) Output[11] |= (Byte)(1 << 6); // X
+            if (state.Y) Output[11] |= (Byte)(1 << 7); // Y
+            if (state.B) Output[11] |= (Byte)(1 << 5); // B
+            if (state.A) Output[11] |= (Byte)(1 << 4); // A
+            if (state.X) Output[11] |= (Byte)(1 << 6); // X
 
-            if (state.PS) Output[11] |= (Byte)(1 << 2); // Guide     
+            if (state.Guide) Output[11] |= (Byte)(1 << 2); // Guide     
 
-            Output[12] = state.L2; // Left Trigger
-            Output[13] = state.R2; // Right Trigger
+            Output[12] = state.LT; // Left Trigger
+            Output[13] = state.RT; // Right Trigger
 
             Int32 ThumbLX = Scale(state.LX, false);
             Int32 ThumbLY = -Scale(state.LY, false);
             Int32 ThumbRX = Scale(state.RX, false);
             Int32 ThumbRY = -Scale(state.RY, false);
             Output[14] = (Byte)((ThumbLX >> 0) & 0xFF); // LX
-            Output[15] = (Byte)((ThumbLX >> 8) & 0xFF);            
+            Output[15] = (Byte)((ThumbLX >> 8) & 0xFF);
             Output[16] = (Byte)((ThumbLY >> 0) & 0xFF); // LY
             Output[17] = (Byte)((ThumbLY >> 8) & 0xFF);
             Output[18] = (Byte)((ThumbRX >> 0) & 0xFF); // RX

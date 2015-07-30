@@ -10,7 +10,7 @@ namespace EAll4Windows
     {
         protected DateTime pastTime, firstTap, TimeofEnd;
         protected Touch firstTouch, secondTouch;
-        private EAll4State s = new EAll4State();
+        private ControllerState s = new ControllerState();
         protected int deviceNum;
         private EAll4Device dev = null;
         private readonly MouseCursor cursor;
@@ -130,7 +130,7 @@ namespace EAll4Windows
             synthesizeMouseButtons();
         }
 
-        private EAll4State remapped = new EAll4State();
+        private ControllerState remapped = new ControllerState();
         private void synthesizeMouseButtons()
         {
             if (Global.getCustomButton(deviceNum, EAll4Controls.TouchLeft) == X360Controls.None &&
@@ -201,7 +201,7 @@ namespace EAll4Windows
             synthesizeMouseButtons();
         }
 
-        public EAll4State getEAll4State()
+        public ControllerState getEAll4State()
         {
             return s;
         }

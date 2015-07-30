@@ -28,7 +28,7 @@ namespace EAll4Windows
         public static bool[] forcelight = new bool[4] { false, false, false, false };
         public static EAll4Color[] forcedColor = new EAll4Color[4];
         public static byte[] forcedFlash = new byte[4];
-        public static void updateLightBar(EAll4Device device, int deviceNum, EAll4State cState, EAll4StateExposed eState, Mouse tp)
+        public static void updateLightBar(EAll4Device device, int deviceNum, ControllerState cState, EAll4StateExposed eState, Mouse tp)
         {
             EAll4Color color;
             if (!defualtLight && !forcelight[deviceNum])
@@ -200,7 +200,7 @@ namespace EAll4Windows
 
         public static bool defualtLight = false, shuttingdown = false;
 
-        public static bool shiftMod(EAll4Device device, int deviceNum, EAll4State cState, EAll4StateExposed eState, Mouse tp)
+        public static bool shiftMod(EAll4Device device, int deviceNum, ControllerState cState, EAll4StateExposed eState, Mouse tp)
         {
             bool shift;
             switch (Global.ShiftModifier[deviceNum])

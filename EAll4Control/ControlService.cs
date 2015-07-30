@@ -15,9 +15,9 @@ namespace EAll4Windows
         public EAll4Device[] EAll4Controllers = new EAll4Device[4];
         public Mouse[] touchPad = new Mouse[4];
         private bool running = false;
-        private EAll4State[] MappedState = new EAll4State[4];
-        private EAll4State[] CurrentState = new EAll4State[4];
-        private EAll4State[] PreviousState = new EAll4State[4];
+        private ControllerState[] MappedState = new ControllerState[4];
+        private ControllerState[] CurrentState = new ControllerState[4];
+        private ControllerState[] PreviousState = new ControllerState[4];
         public EAll4StateExposed[] ExposedState = new EAll4StateExposed[4];
         public bool recordingMacro = false;
         public event EventHandler<DebugEventArgs> Debug = null;
@@ -44,9 +44,9 @@ namespace EAll4Windows
             for (int i = 0; i < EAll4Controllers.Length; i++)
             {
                 processingData[i] = new X360Data();
-                MappedState[i] = new EAll4State();
-                CurrentState[i] = new EAll4State();
-                PreviousState[i] = new EAll4State();
+                MappedState[i] = new ControllerState();
+                CurrentState[i] = new ControllerState();
+                PreviousState[i] = new ControllerState();
                 ExposedState[i] = new EAll4StateExposed(CurrentState[i]);
             }
         }
@@ -459,9 +459,9 @@ namespace EAll4Windows
                         LagFlashWarning(ind, false);
                 }
                 device.getExposedState(ExposedState[ind], CurrentState[ind]);
-                EAll4State cState = CurrentState[ind];
+                ControllerState cState = CurrentState[ind];
                 device.getPreviousState(PreviousState[ind]);
-                EAll4State pState = PreviousState[ind];
+                ControllerState pState = PreviousState[ind];
                 if (pState.Battery != cState.Battery)
                     Global.ControllerStatusChanged(this);
                 CheckForHotkeys(ind, cState, pState);
@@ -529,7 +529,7 @@ namespace EAll4Windows
 
         private void DoExtras(int ind)
         {
-            EAll4State cState = CurrentState[ind];
+            ControllerState cState = CurrentState[ind];
             EAll4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
             EAll4Controls helddown = EAll4Controls.None;
@@ -588,7 +588,7 @@ namespace EAll4Windows
 
         public void EasterTime(int ind)
         {
-            EAll4State cState = CurrentState[ind];
+            ControllerState cState = CurrentState[ind];
             EAll4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
 
@@ -606,9 +606,9 @@ namespace EAll4Windows
             //I scrambled the code for you :)
             if (pb && !buttonsdown[ind])
             {
-                if (cState.Cross && eCode == 9)
+                if (cState.A && eCode == 9)
                     eCode++;
-                else if (!cState.Cross && eCode == 9)
+                else if (!cState.A && eCode == 9)
                     eCode = 0;
                 else if (cState.DpadLeft && eCode == 6)
                     eCode++;
@@ -638,9 +638,9 @@ namespace EAll4Windows
                     eCode++;
                 else if (!cState.DpadDown && eCode == 3)
                     eCode = 0;
-                else if (cState.Circle && eCode == 8)
+                else if (cState.B && eCode == 8)
                     eCode++;
-                else if (!cState.Circle && eCode == 8)
+                else if (!cState.B && eCode == 8)
                     eCode = 0;
 
                 if (cState.DpadUp && eCode == 0)
@@ -664,7 +664,7 @@ namespace EAll4Windows
 
         public string GetInputkeys(int ind)
         {
-            EAll4State cState = CurrentState[ind];
+            ControllerState cState = CurrentState[ind];
             EAll4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
             if (EAll4Controllers[ind] != null)
@@ -702,7 +702,7 @@ namespace EAll4Windows
 
         public EAll4Controls GetInputkeysEAll4(int ind)
         {
-            EAll4State cState = CurrentState[ind];
+            ControllerState cState = CurrentState[ind];
             EAll4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
             if (EAll4Controllers[ind] != null)
@@ -741,9 +741,9 @@ namespace EAll4Windows
         public bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };
         public byte[] oldtouchvalue = { 0, 0, 0, 0 };
         public int[] oldscrollvalue = { 0, 0, 0, 0 };
-        protected virtual void CheckForHotkeys(int deviceID, EAll4State cState, EAll4State pState)
+        protected virtual void CheckForHotkeys(int deviceID, ControllerState cState, ControllerState pState)
         {
-            if (!Global.UseTPforControls[deviceID] && cState.Touch1 && pState.PS)
+            if (!Global.UseTPforControls[deviceID] && cState.Touch1 && pState.Guide)
             {
                 if (Global.TouchSensitivity[deviceID] > 0 && touchreleased[deviceID])
                 {
@@ -781,7 +781,7 @@ namespace EAll4Windows
 
         public virtual string TouchpadSlide(int ind)
         {
-            EAll4State cState = CurrentState[ind];
+            ControllerState cState = CurrentState[ind];
             string slidedir = "none";
             if (EAll4Controllers[ind] != null)
                 if (cState.Touch2)
@@ -834,11 +834,11 @@ namespace EAll4Windows
                     EAll4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
         }
 
-        public EAll4State getEAll4State(int ind)
+        public ControllerState getEAll4State(int ind)
         {
             return CurrentState[ind];
         }
-        public EAll4State getEAll4StateMapped(int ind)
+        public ControllerState getEAll4StateMapped(int ind)
         {
             return MappedState[ind];
         }

@@ -63,7 +63,7 @@ namespace EAll4Windows
                 case "Macro":
                     cBActions.SelectedIndex = 1;
                     macrostag = act.macro;
-                    lbMacroRecorded.Text = "Macro Recored";
+                    lbMacroRecorded.Text = "Macro Recorded";
                     cBMacroScanCode.Checked = act.keyType.HasFlag(EAll4KeyType.ScanCode);
                     break;
                 case "Program":

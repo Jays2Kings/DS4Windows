@@ -11,8 +11,9 @@
     <AssemblyName>EAll4Windows</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -61,10 +62,10 @@
     <StartupObject>EAll4Windows.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5F2A5A97E42A73158D79996F7F3BE738271F5047</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>AC5BF5585E54346D943F1351DA8796CE904A1D0E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>EAll4Tool_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Eall4Windows_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -105,7 +106,7 @@
     <Compile Include="EAll4Windows\Alreadyrunning.Designer.cs">
       <DependentUpon>Alreadyrunning.cs</DependentUpon>
     </Compile>
-    <Compile Include="EAll4Control\ControlSerivce.cs" />
+    <Compile Include="EAll4Control\ControlService.cs" />
     <Compile Include="EAll4Control\EAll4LightBar.cs" />
     <Compile Include="EAll4Control\InputMethods.cs" />
     <Compile Include="EAll4Control\ITouchpadBehaviour.cs" />
@@ -470,7 +471,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="EAll4Windows\app.config" />
-    <None Include="EAll4Windows\EAll4Tool_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -480,72 +480,72 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\size.png" />
-    <None Include="Resources\xbox_360_controller.png" />
-    <None Include="Resources\Y.png" />
-    <None Include="Resources\X.png" />
-    <None Include="Resources\UP.png" />
-    <None Include="Resources\START.png" />
-    <None Include="Resources\x360test.png" />
-    <None Include="Resources\sticks.png" />
-    <None Include="Resources\UpperTouch.png" />
-    <None Include="Resources\shell32_export.png" />
-    <None Include="Resources\USB.png" />
-    <None Include="Resources\shell32_copy.png" />
-    <None Include="Resources\shell32_new.png" />
-    <None Include="Resources\shell32 delete.png" />
-    <None Include="Resources\Touch.png" />
-    <None Include="Resources\Touch states2.png" />
-    <None Include="Resources\sticks2.png" />
     <None Include="Resources\1401402547_menu-24.png" />
-    <None Include="Resources\delete.png" />
-    <None Include="Resources\BT.png" />
-    <None Include="Resources\EAll4 Controller.png" />
-    <None Include="Resources\Clock.png" />
+    <None Include="Resources\360 fades.png" />
     <None Include="Resources\360LS.png" />
     <None Include="Resources\360RS.png" />
     <None Include="Resources\A.PNG" />
     <None Include="Resources\B.png" />
     <None Include="Resources\BACK.png" />
-    <None Include="Resources\DOWN.png" />
-    <None Include="Resources\360 fades.png" />
+    <None Include="Resources\BT.png" />
     <None Include="Resources\checked.png" />
-    <Content Include="EAll4Windows\EAll4W.ico" />
-    <Content Include="HidLibrary\LICENSE.htm" />
-    <Content Include="Resources\EAll4.ico" />
-    <None Include="Resources\mouse.png" />
-    <None Include="Resources\rainbow.png" />
-    <None Include="Resources\rainbowC.png" />
-    <None Include="Resources\imageres_new.png" />
-    <None Include="Resources\none.png" />
+    <None Include="Resources\Clock.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\DOWN.png" />
+    <None Include="Resources\EAll4 Controller.png" />
+    <None Include="Resources\EAll4W.ico" />
+    <None Include="Resources\EE.wav" />
     <None Include="Resources\export.png" />
     <None Include="Resources\imageres_import.png" />
-    <None Include="Resources\saveprofile.png" />
-    <None Include="Resources\LeftTouch.png" />
-    <None Include="Resources\MultiTouch.png" />
-    <None Include="Resources\RightTouch.png" />
-    <None Include="Resources\Pairmode.png" />
+    <None Include="Resources\imageres_new.png" />
     <None Include="Resources\LB.png" />
     <None Include="Resources\LEFT.png" />
+    <None Include="Resources\LeftTouch.png" />
     <None Include="Resources\LS.png" />
     <None Include="Resources\LSD.png" />
     <None Include="Resources\LSL.png" />
     <None Include="Resources\LSR.png" />
     <None Include="Resources\LSU.png" />
     <None Include="Resources\LT.png" />
+    <None Include="Resources\mouse.png" />
+    <None Include="Resources\MultiTouch.png" />
+    <None Include="Resources\none.png" />
+    <None Include="Resources\Pairmode.png" />
+    <None Include="Resources\rainbow.png" />
+    <None Include="Resources\rainbowC.png" />
     <None Include="Resources\RB.png" />
+    <None Include="Resources\Red Circle.png" />
     <None Include="Resources\RIGHT.png" />
+    <None Include="Resources\RightTouch.png" />
     <None Include="Resources\RS.png" />
     <None Include="Resources\RSD.png" />
     <None Include="Resources\RSL.png" />
     <None Include="Resources\RSR.png" />
     <None Include="Resources\RSU.png" />
     <None Include="Resources\RT.png" />
-    <None Include="Resources\Red Circle.png" />
-    <None Include="Resources\EAll4W.ico" />
-    <None Include="Resources\EE.wav" />
+    <None Include="Resources\saveprofile.png" />
+    <None Include="Resources\shell32 delete.png" />
+    <None Include="Resources\shell32_copy.png" />
+    <None Include="Resources\shell32_export.png" />
+    <None Include="Resources\shell32_new.png" />
+    <None Include="Resources\size.png" />
+    <None Include="Resources\START.png" />
+    <None Include="Resources\sticks.png" />
+    <None Include="Resources\sticks2.png" />
+    <None Include="Resources\Touch states2.png" />
+    <None Include="Resources\Touch.png" />
+    <None Include="Resources\UP.png" />
+    <None Include="Resources\UpperTouch.png" />
+    <None Include="Resources\USB.png" />
+    <None Include="Resources\X.png" />
+    <None Include="Resources\x360test.png" />
+    <None Include="Resources\xbox_360_controller.png" />
+    <None Include="Resources\Y.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EAll4Windows\EAll4W.ico" />
+    <Content Include="HidLibrary\LICENSE.htm" />
+    <Content Include="Resources\EAll4.ico" />
     <Content Include="Resources\Scp_All.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -581,6 +581,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

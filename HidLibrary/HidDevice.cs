@@ -23,7 +23,7 @@ namespace EAll4Windows
         private readonly HidDeviceAttributes _deviceAttributes;
 
         private readonly HidDeviceCapabilities _deviceCapabilities;
-        private bool _monitorDeviceEvents;
+        //private bool _monitorDeviceEvents;
         private string serial = null;
         internal HidDevice(string devicePath, string description = null)
         {
@@ -340,8 +340,8 @@ namespace EAll4Windows
             {
                 byte[] buffer = new byte[16];
                 buffer[0] = 18;
-                readFeatureData(buffer);                
-                serial =  String.Format("{0:X02}:{1:X02}:{2:X02}:{3:X02}:{4:X02}:{5:X02}", buffer[6], buffer[5], buffer[4], buffer[3], buffer[2], buffer[1]);
+                readFeatureData(buffer);
+                serial = String.Format("{0:X02}:{1:X02}:{2:X02}:{3:X02}:{4:X02}:{5:X02}", buffer[6], buffer[5], buffer[4], buffer[3], buffer[2], buffer[1]);
                 return serial;
             }
             else

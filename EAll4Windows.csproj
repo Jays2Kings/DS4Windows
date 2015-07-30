@@ -106,37 +106,37 @@
     <Compile Include="EAll4Windows\Alreadyrunning.Designer.cs">
       <DependentUpon>Alreadyrunning.cs</DependentUpon>
     </Compile>
-    <Compile Include="EAll4Control\ControlService.cs" />
-    <Compile Include="EAll4Control\EAll4LightBar.cs" />
-    <Compile Include="EAll4Control\InputMethods.cs" />
-    <Compile Include="EAll4Control\ITouchpadBehaviour.cs" />
-    <Compile Include="EAll4Control\Log.cs" />
+    <Compile Include="EAll4ControlCommon\ControlService.cs" />
+    <Compile Include="EAll4ControlCommon\EAll4LightBar.cs" />
+    <Compile Include="EAll4ControlCommon\InputMethods.cs" />
+    <Compile Include="EAll4ControlCommon\ITouchpadBehaviour.cs" />
+    <Compile Include="EAll4ControlCommon\Log.cs" />
     <Compile Include="EAll4Control\Mapping.cs" />
     <Compile Include="EAll4Control\Mouse.cs" />
-    <Compile Include="EAll4Control\MouseCursor.cs" />
-    <Compile Include="EAll4Control\MouseWheel.cs" />
-    <Compile Include="EAll4Control\ScpDevice.cs">
+    <Compile Include="EAll4ControlCommon\MouseCursor.cs" />
+    <Compile Include="EAll4ControlCommon\MouseWheel.cs" />
+    <Compile Include="EAll4ControlCommon\ScpDevice.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EAll4Control\ScpDevice.Designer.cs">
+    <Compile Include="EAll4ControlCommon\ScpDevice.Designer.cs">
       <DependentUpon>ScpDevice.cs</DependentUpon>
     </Compile>
-    <Compile Include="EAll4Control\ScpHub.cs">
+    <Compile Include="EAll4ControlCommon\ScpHub.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EAll4Control\ScpHub.Designer.cs">
+    <Compile Include="EAll4ControlCommon\ScpHub.Designer.cs">
       <DependentUpon>ScpHub.cs</DependentUpon>
     </Compile>
     <Compile Include="EAll4Control\ScpUtil.cs" />
-    <Compile Include="EAll4Control\X360Device.cs">
+    <Compile Include="EAll4ControlCommon\X360Device.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EAll4Control\X360Device.designer.cs">
+    <Compile Include="EAll4ControlCommon\X360Device.designer.cs">
       <DependentUpon>X360Device.cs</DependentUpon>
     </Compile>
     <Compile Include="EAll4Library\EAll4Device.cs" />
     <Compile Include="EAll4Library\EAll4Devices.cs" />
-    <Compile Include="EAll4Library\EAll4State.cs" />
+    <Compile Include="EAll4Library\ControllerState.cs" />
     <Compile Include="EAll4Library\EAll4StateExposed.cs" />
     <Compile Include="EAll4Library\EAll4Touchpad.cs" />
     <Compile Include="EAll4Windows\Hotkeys.cs">

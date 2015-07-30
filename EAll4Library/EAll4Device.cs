@@ -96,8 +96,8 @@ namespace EAll4Windows
         private const int BT_INPUT_REPORT_LENGTH = 547;
         private HidDevice hDevice;
         private string Mac;
-        private EAll4State cState = new EAll4State();
-        private EAll4State pState = new EAll4State();
+        private ControllerState cState = new ControllerState();
+        private ControllerState pState = new ControllerState();
         private ConnectionType conType;
         private byte[] accel = new byte[6];
         private byte[] gyro = new byte[6];
@@ -393,13 +393,13 @@ namespace EAll4Windows
                 cState.LY = inputReport[2];
                 cState.RX = inputReport[3];
                 cState.RY = inputReport[4];
-                cState.L2 = inputReport[8];
-                cState.R2 = inputReport[9];
+                cState.LT = inputReport[8];
+                cState.RT = inputReport[9];
 
-                cState.Triangle = ((byte)inputReport[5] & (1 << 7)) != 0;
-                cState.Circle = ((byte)inputReport[5] & (1 << 6)) != 0;
-                cState.Cross = ((byte)inputReport[5] & (1 << 5)) != 0;
-                cState.Square = ((byte)inputReport[5] & (1 << 4)) != 0;
+                cState.Y = ((byte)inputReport[5] & (1 << 7)) != 0;
+                cState.B = ((byte)inputReport[5] & (1 << 6)) != 0;
+                cState.A = ((byte)inputReport[5] & (1 << 5)) != 0;
+                cState.X = ((byte)inputReport[5] & (1 << 4)) != 0;
                 cState.DpadUp = ((byte)inputReport[5] & (1 << 3)) != 0;
                 cState.DpadDown = ((byte)inputReport[5] & (1 << 2)) != 0;
                 cState.DpadLeft = ((byte)inputReport[5] & (1 << 1)) != 0;
@@ -427,14 +427,14 @@ namespace EAll4Windows
                     case 8: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = false; break;
                 }
 
-                cState.R3 = ((byte)inputReport[6] & (1 << 7)) != 0;
-                cState.L3 = ((byte)inputReport[6] & (1 << 6)) != 0;
-                cState.Options = ((byte)inputReport[6] & (1 << 5)) != 0;
-                cState.Share = ((byte)inputReport[6] & (1 << 4)) != 0;
-                cState.R1 = ((byte)inputReport[6] & (1 << 1)) != 0;
-                cState.L1 = ((byte)inputReport[6] & (1 << 0)) != 0;
+                cState.RS = ((byte)inputReport[6] & (1 << 7)) != 0;
+                cState.LS = ((byte)inputReport[6] & (1 << 6)) != 0;
+                cState.Start = ((byte)inputReport[6] & (1 << 5)) != 0;
+                cState.Back = ((byte)inputReport[6] & (1 << 4)) != 0;
+                cState.RB = ((byte)inputReport[6] & (1 << 1)) != 0;
+                cState.LB = ((byte)inputReport[6] & (1 << 0)) != 0;
 
-                cState.PS = ((byte)inputReport[7] & (1 << 0)) != 0;
+                cState.Guide = ((byte)inputReport[7] & (1 << 0)) != 0;
                 cState.TouchButton = (inputReport[7] & (1 << 2 - 1)) != 0;
                 cState.FrameCounter = (byte)(inputReport[7] >> 2);
 
@@ -455,7 +455,7 @@ namespace EAll4Windows
                     }
                 }
                 catch { currerror = "Index out of bounds: battery"; }
-                // XXX EAll4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
+                // XXX ControllerState mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
                 try
                 {
                     for (int touches = inputReport[-1 + EAll4Touchpad.TOUCHPAD_DATA_OFFSET - 1], touchOffset = 0; touches > 0; touches--, touchOffset += 9)
@@ -640,42 +640,42 @@ namespace EAll4Windows
             }
         }
 
-        public EAll4State getCurrentState()
+        public ControllerState getCurrentState()
         {
             return cState.Clone();
         }
 
-        public EAll4State getPreviousState()
+        public ControllerState getPreviousState()
         {
             return pState.Clone();
         }
 
-        public void getExposedState(EAll4StateExposed expState, EAll4State state)
+        public void getExposedState(EAll4StateExposed expState, ControllerState state)
         {
             cState.CopyTo(state);
             expState.Accel = accel;
             expState.Gyro = gyro;
         }
 
-        public void getCurrentState(EAll4State state)
+        public void getCurrentState(ControllerState state)
         {
             cState.CopyTo(state);
         }
 
-        public void getPreviousState(EAll4State state)
+        public void getPreviousState(ControllerState state)
         {
             pState.CopyTo(state);
         }
 
         private bool isNonSixaxisIdle()
         {
-            if (cState.Square || cState.Cross || cState.Circle || cState.Triangle)
+            if (cState.X || cState.A || cState.B || cState.Y)
                 return false;
             if (cState.DpadUp || cState.DpadLeft || cState.DpadDown || cState.DpadRight)
                 return false;
-            if (cState.L3 || cState.R3 || cState.L1 || cState.R1 || cState.Share || cState.Options)
+            if (cState.LS || cState.RS || cState.LB || cState.RB || cState.Back || cState.Start)
                 return false;
-            if (cState.L2 != 0 || cState.R2 != 0)
+            if (cState.LT != 0 || cState.RT != 0)
                 return false;
             // TODO calibrate to get an accurate jitter and center-play range and centered position
             const int slop = 64;

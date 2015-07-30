@@ -24,7 +24,7 @@ namespace EAll4Windows
         public List<string> macronames = new List<string>();
         SpecActions sA;
         KBM360 kbm;
-        EAll4State cState;
+        ControllerState cState;
         public bool saved = false;
         List<EAll4Controls> dcs = new List<EAll4Controls>();
         public RecordBox(KBM360 op)

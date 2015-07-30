@@ -372,7 +372,7 @@ namespace EAll4Windows
                 btnSATrack.Location = new Point((int)(dpix * Clamp(0, x / 2.09, lbSATrack.Size.Width) + lbSATrack.Location.X), (int)(dpiy * Clamp(0, y / 2.09, lbSATrack.Size.Height) + lbSATrack.Location.Y));
 
 
-                tBL2.Value = Program.rootHub.getEAll4State((int)nUDSixaxis.Value - 1).L2;
+                tBL2.Value = Program.rootHub.getEAll4State((int)nUDSixaxis.Value - 1).LT;
                 lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 15), (int)((dpix * (24 - tBL2.Value / 10.625) + 10)));
                 if (tBL2.Value == 255)
                     lbL2Track.ForeColor = Color.Green;
@@ -381,7 +381,7 @@ namespace EAll4Windows
                 else
                     lbL2Track.ForeColor = Color.Black;
 
-                tBR2.Value = Program.rootHub.getEAll4State((int)nUDSixaxis.Value - 1).R2;
+                tBR2.Value = Program.rootHub.getEAll4State((int)nUDSixaxis.Value - 1).RT;
                 lbR2Track.Location = new Point(tBR2.Location.X + (int)(dpix * 20), (int)((dpix * (24 - tBR2.Value / 10.625) + 10)));
                 if (tBR2.Value == 255)
                     lbR2Track.ForeColor = Color.Green;

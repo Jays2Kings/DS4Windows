@@ -78,7 +78,7 @@ namespace EAll4Windows
             return changed;
         }
 
-        public void handleTouchpad(byte[] data, EAll4State sensors, int touchPacketOffset = 0)
+        public void handleTouchpad(byte[] data, ControllerState sensors, int touchPacketOffset = 0)
         {
             bool touchPadIsDown = sensors.TouchButton;
             if (!PacketChanged(data, touchPacketOffset) && touchPadIsDown == lastTouchPadIsDown)

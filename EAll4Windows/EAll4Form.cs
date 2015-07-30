@@ -47,7 +47,7 @@ namespace EAll4Windows
         public bool mAllowVisible;
         bool contextclose;
         string logFile = Global.appdatapath + @"\EAll4Service.log";
-        StreamWriter logWriter;
+        //StreamWriter logWriter;
         //bool outputlog = false;
 
         [DllImport("user32.dll")]
@@ -1261,9 +1261,9 @@ namespace EAll4Windows
                     assignToController2ToolStripMenuItem.Visible = true;
                     assignToController3ToolStripMenuItem.Visible = true;
                     assignToController4ToolStripMenuItem.Visible = true;
-                    ToolStripMenuItem[] assigns = { assignToController1ToolStripMenuItem, 
+                    ToolStripMenuItem[] assigns = { assignToController1ToolStripMenuItem,
                                                       assignToController2ToolStripMenuItem,
-                                                      assignToController3ToolStripMenuItem, 
+                                                      assignToController3ToolStripMenuItem,
                                                       assignToController4ToolStripMenuItem };
                     for (int i = 0; i < 4; i++)
                     {

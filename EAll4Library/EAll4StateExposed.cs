@@ -7,43 +7,43 @@ namespace EAll4Windows
 {
     public class EAll4StateExposed
     {
-        private EAll4State _state;
+        private ControllerState _state;
         private byte[] accel = new byte[] { 0, 0, 0, 0, 0, 0 },
             gyro = new byte[] { 0, 0, 0, 0, 0, 0 };
 
         public EAll4StateExposed()
         {
-            _state = new EAll4State();
+            _state = new ControllerState();
         }
-        public EAll4StateExposed(EAll4State state)
+        public EAll4StateExposed(ControllerState state)
         {
             _state = state;
         }
 
-        bool Square { get { return _state.Square; } }  
-        bool Triangle { get { return _state.Triangle; } }  
-        bool Circle { get { return _state.Circle; } }  
-        bool Cross { get { return _state.Cross; } } 
-        bool DpadUp { get { return _state.DpadUp; } }  
-        bool DpadDown { get { return _state.DpadDown; } }  
-        bool DpadLeft { get { return _state.DpadLeft; } }  
-        bool DpadRight { get { return _state.DpadRight; } } 
-        bool L1 { get { return _state.L1; } }  
-        bool L3 { get { return _state.L3; } }  
-        bool R1 { get { return _state.R1; } }  
-        bool R3 { get { return _state.R3; } } 
-        bool Share { get { return _state.Share; } }  
-        bool Options { get { return _state.Options; } }  
-        bool PS { get { return _state.PS; } }  
-        bool Touch1 { get { return _state.Touch1; } }  
-        bool Touch2 { get { return _state.Touch2; } }  
-        bool TouchButton { get { return _state.TouchButton; } } 
-        byte LX { get { return _state.LX; } }  
-        byte RX { get { return _state.RX; } }  
-        byte LY { get { return _state.LY; } }  
-        byte RY { get { return _state.RY; } }  
-        byte L2 { get { return _state.L2; } }  
-        byte R2 { get { return _state.R2; } } 
+        bool Square { get { return _state.X; } }
+        bool Triangle { get { return _state.Y; } }
+        bool Circle { get { return _state.B; } }
+        bool Cross { get { return _state.A; } }
+        bool DpadUp { get { return _state.DpadUp; } }
+        bool DpadDown { get { return _state.DpadDown; } }
+        bool DpadLeft { get { return _state.DpadLeft; } }
+        bool DpadRight { get { return _state.DpadRight; } }
+        bool L1 { get { return _state.LB; } }
+        bool L3 { get { return _state.LS; } }
+        bool R1 { get { return _state.RB; } }
+        bool R3 { get { return _state.RS; } }
+        bool Share { get { return _state.Back; } }
+        bool Options { get { return _state.Start; } }
+        bool PS { get { return _state.Guide; } }
+        bool Touch1 { get { return _state.Touch1; } }
+        bool Touch2 { get { return _state.Touch2; } }
+        bool TouchButton { get { return _state.TouchButton; } }
+        byte LX { get { return _state.LX; } }
+        byte RX { get { return _state.RX; } }
+        byte LY { get { return _state.LY; } }
+        byte RY { get { return _state.RY; } }
+        byte L2 { get { return _state.LT; } }
+        byte R2 { get { return _state.RT; } }
         int Battery { get { return _state.Battery; } }
 
         /// <summary> Holds raw EAll4 input data from 14 to 19 </summary>

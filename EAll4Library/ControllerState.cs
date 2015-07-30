@@ -5,52 +5,52 @@ using System.Text;
 
 namespace EAll4Windows
 {
-    public class EAll4State
+    public class ControllerState
     {
         public DateTime ReportTimeStamp;
-        public bool Square, Triangle, Circle, Cross;
+        public bool X, Y, B, A;
         public bool DpadUp, DpadDown, DpadLeft, DpadRight;
-        public bool L1, L3, R1, R3;
-        public bool Share, Options, PS, Touch1, Touch2, TouchButton, TouchRight, TouchLeft;
+        public bool LB, LS, RB, RS;
+        public bool Back, Start, Guide, Touch1, Touch2, TouchButton, TouchRight, TouchLeft;
         public byte Touch1Identifier, Touch2Identifier;
-        public byte LX, RX, LY, RY, L2, R2;
+        public byte LX, RX, LY, RY, LT, RT;
         public byte FrameCounter; // 0, 1, 2...62, 63, 0....
         public byte TouchPacketCounter; // we break these out automatically
         public byte Battery; // 0 for charging, 10/20/30/40/50/60/70/80/90/100 for percentage of full
 
-        public EAll4State()
+        public ControllerState()
         {
-            Square = Triangle = Circle = Cross = false;
+            X = Y = B = A = false;
             DpadUp = DpadDown = DpadLeft = DpadRight = false;
-            L1 = L3 = R1 = R3 = false;
-            Share = Options = PS = Touch1 = Touch2 = TouchButton =  TouchRight = TouchLeft = false;
+            LB = LS = RB = RS = false;
+            Back = Start = Guide = Touch1 = Touch2 = TouchButton = TouchRight = TouchLeft = false;
             LX = RX = LY = RY = 127;
-            L2 = R2 = 0;
+            LT = RT = 0;
             FrameCounter = 255; // only actually has 6 bits, so this is a null indicator
             TouchPacketCounter = 255; // 8 bits, no great junk value
             Battery = 0;
         }
 
-        public EAll4State(EAll4State state)
+        public ControllerState(ControllerState state)
         {
             ReportTimeStamp = state.ReportTimeStamp;
-            Square = state.Square;
-            Triangle = state.Triangle;
-            Circle = state.Circle;
-            Cross = state.Cross;
+            X = state.X;
+            Y = state.Y;
+            B = state.B;
+            A = state.A;
             DpadUp = state.DpadUp;
             DpadDown = state.DpadDown;
             DpadLeft = state.DpadLeft;
             DpadRight = state.DpadRight;
-            L1 = state.L1;
-            L2 = state.L2;
-            L3 = state.L3;
-            R1 = state.R1;
-            R2 = state.R2;
-            R3 = state.R3;
-            Share = state.Share;
-            Options = state.Options;
-            PS = state.PS;
+            LB = state.LB;
+            LT = state.LT;
+            LS = state.LS;
+            RB = state.RB;
+            RT = state.RT;
+            RS = state.RS;
+            Back = state.Back;
+            Start = state.Start;
+            Guide = state.Guide;
             Touch1 = state.Touch1;
             TouchRight = state.TouchRight;
             TouchLeft = state.TouchLeft;
@@ -67,31 +67,31 @@ namespace EAll4Windows
             Battery = state.Battery;
         }
 
-        public EAll4State Clone()
+        public ControllerState Clone()
         {
-            return new EAll4State(this);
+            return new ControllerState(this);
         }
 
-        public void CopyTo(EAll4State state)
+        public void CopyTo(ControllerState state)
         {
             state.ReportTimeStamp = ReportTimeStamp;
-            state.Square = Square;
-            state.Triangle = Triangle;
-            state.Circle = Circle;
-            state.Cross = Cross;
+            state.X = X;
+            state.Y = Y;
+            state.B = B;
+            state.A = A;
             state.DpadUp = DpadUp;
             state.DpadDown = DpadDown;
             state.DpadLeft = DpadLeft;
             state.DpadRight = DpadRight;
-            state.L1 = L1;
-            state.L2 = L2;
-            state.L3 = L3;
-            state.R1 = R1;
-            state.R2 = R2;
-            state.R3 = R3;
-            state.Share = Share;
-            state.Options = Options;
-            state.PS = PS;
+            state.LB = LB;
+            state.LT = LT;
+            state.LS = LS;
+            state.RB = RB;
+            state.RT = RT;
+            state.RS = RS;
+            state.Back = Back;
+            state.Start = Start;
+            state.Guide = Guide;
             state.Touch1 = Touch1;
             state.Touch1Identifier = Touch1Identifier;
             state.Touch2 = Touch2;

@@ -138,7 +138,7 @@
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>Um Bluetooth zu konfigurieren (optional):
-Halte die PS- und Share-Taste für 3 Sekunden.
+Halte die Guide- und Back-Taste für 3 Sekunden.
 Der Lichtbalken beginnt doppelt zu blinken.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />

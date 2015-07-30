@@ -653,7 +653,7 @@
     <value>Click for advanced Sixaxis reading</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Re-enable by pressing PS+Touchpad</value>
+    <value>Re-enable by pressing Guide+Touchpad</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
     <value>This disables the Touchpad as a mouse</value>

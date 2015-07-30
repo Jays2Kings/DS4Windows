@@ -472,7 +472,7 @@
     <value>Reconnaissance de mouvement du pavé tactile est Activée</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Relancez en appuyant sur PS + Pad tactile</value>
+    <value>Relancez en appuyant sur Guide + Pad tactile</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
     <value>Glisser gauche ou droit avec 2 doigts sur le pavé tactile</value>

@@ -26,16 +26,16 @@ namespace EAll4Windows
         KBM360 kbm;
         ControllerState cState;
         public bool saved = false;
-        List<EAll4Controls> dcs = new List<EAll4Controls>();
+        List<GenericControls> dcs = new List<GenericControls>();
         public RecordBox(KBM360 op)
         {
             kbm = op;
             InitializeComponent();
             if (op != null)
-            if (kbm.macrorepeat)
-                cBStyle.SelectedIndex = 1;
-            else
-                cBStyle.SelectedIndex = 0;
+                if (kbm.macrorepeat)
+                    cBStyle.SelectedIndex = 1;
+                else
+                    cBStyle.SelectedIndex = 0;
             AddtoEAll4List();
             eall4.Tick += eall4_Tick;
             eall4.Interval = 1;
@@ -71,32 +71,32 @@ namespace EAll4Windows
 
         void AddtoEAll4List()
         {
-            dcs.Add(EAll4Controls.Cross);
-            dcs.Add(EAll4Controls.Cross);
-            dcs.Add(EAll4Controls.Circle);
-            dcs.Add(EAll4Controls.Square);
-            dcs.Add(EAll4Controls.Triangle);
-            dcs.Add(EAll4Controls.Options);
-            dcs.Add(EAll4Controls.Share);
-            dcs.Add(EAll4Controls.DpadUp);
-            dcs.Add(EAll4Controls.DpadDown);
-            dcs.Add(EAll4Controls.DpadLeft);
-            dcs.Add(EAll4Controls.DpadRight);
-            dcs.Add(EAll4Controls.PS);
-            dcs.Add(EAll4Controls.L1);
-            dcs.Add(EAll4Controls.R1);
-            dcs.Add(EAll4Controls.L2);
-            dcs.Add(EAll4Controls.R2);
-            dcs.Add(EAll4Controls.L3);
-            dcs.Add(EAll4Controls.R3);
-            dcs.Add(EAll4Controls.LXPos);
-            dcs.Add(EAll4Controls.LXNeg);
-            dcs.Add(EAll4Controls.LYPos);
-            dcs.Add(EAll4Controls.LYNeg);
-            dcs.Add(EAll4Controls.RXPos);
-            dcs.Add(EAll4Controls.RXNeg);
-            dcs.Add(EAll4Controls.RYPos);
-            dcs.Add(EAll4Controls.RYNeg);
+            dcs.Add(GenericControls.A);
+            dcs.Add(GenericControls.A);
+            dcs.Add(GenericControls.B);
+            dcs.Add(GenericControls.X);
+            dcs.Add(GenericControls.Y);
+            dcs.Add(GenericControls.Start);
+            dcs.Add(GenericControls.Back);
+            dcs.Add(GenericControls.DpadUp);
+            dcs.Add(GenericControls.DpadDown);
+            dcs.Add(GenericControls.DpadLeft);
+            dcs.Add(GenericControls.DpadRight);
+            dcs.Add(GenericControls.Guide);
+            dcs.Add(GenericControls.LB);
+            dcs.Add(GenericControls.RB);
+            dcs.Add(GenericControls.LT);
+            dcs.Add(GenericControls.RT);
+            dcs.Add(GenericControls.LS);
+            dcs.Add(GenericControls.RS);
+            dcs.Add(GenericControls.LXPos);
+            dcs.Add(GenericControls.LXNeg);
+            dcs.Add(GenericControls.LYPos);
+            dcs.Add(GenericControls.LYNeg);
+            dcs.Add(GenericControls.RXPos);
+            dcs.Add(GenericControls.RXNeg);
+            dcs.Add(GenericControls.RYPos);
+            dcs.Add(GenericControls.RYNeg);
         }
 
         void AddMacroValue(int value)
@@ -112,7 +112,7 @@ namespace EAll4Windows
             {
                 cState = Program.rootHub.getEAll4State(0);
                 if (btnRecord.Text == Properties.Resources.StopText)
-                    foreach (EAll4Controls dc in dcs)
+                    foreach (GenericControls dc in dcs)
                         if (Mapping.getBoolMapping(dc, cState, null, null))
                         {
                             int value = EAll4ControltoInt(dc);
@@ -177,69 +177,69 @@ namespace EAll4Windows
                         }
             }
         }
-        
-        public static int EAll4ControltoInt(EAll4Controls ctrl)
+
+        public static int EAll4ControltoInt(GenericControls ctrl)
         {
             switch (ctrl)
             {
-                case EAll4Controls.Cross: return 261;
-                case EAll4Controls.Circle: return 262; 
-                case EAll4Controls.Square: return 263; 
-                case EAll4Controls.Triangle: return 264; 
-                case EAll4Controls.Options: return 265; 
-                case EAll4Controls.Share: return 266; 
-                case EAll4Controls.DpadUp: return 267; 
-                case EAll4Controls.DpadDown: return 268; 
-                case EAll4Controls.DpadLeft: return 269; 
-                case EAll4Controls.DpadRight: return 270; 
-                case EAll4Controls.PS: return 271; 
-                case EAll4Controls.L1: return 272; 
-                case EAll4Controls.R1: return 273; 
-                case EAll4Controls.L2: return 274; 
-                case EAll4Controls.R2: return 275; 
-                case EAll4Controls.L3: return 276;
-                case EAll4Controls.R3: return 277;
-                case EAll4Controls.LXPos: return 278;
-                case EAll4Controls.LXNeg: return 279;
-                case EAll4Controls.LYPos: return 280;
-                case EAll4Controls.LYNeg: return 281;
-                case EAll4Controls.RXPos: return 282;
-                case EAll4Controls.RXNeg: return 283;
-                case EAll4Controls.RYPos: return 284;
-                case EAll4Controls.RYNeg: return 285;
+                case GenericControls.A: return 261;
+                case GenericControls.B: return 262;
+                case GenericControls.X: return 263;
+                case GenericControls.Y: return 264;
+                case GenericControls.Start: return 265;
+                case GenericControls.Back: return 266;
+                case GenericControls.DpadUp: return 267;
+                case GenericControls.DpadDown: return 268;
+                case GenericControls.DpadLeft: return 269;
+                case GenericControls.DpadRight: return 270;
+                case GenericControls.Guide: return 271;
+                case GenericControls.LB: return 272;
+                case GenericControls.RB: return 273;
+                case GenericControls.LT: return 274;
+                case GenericControls.RT: return 275;
+                case GenericControls.LS: return 276;
+                case GenericControls.RS: return 277;
+                case GenericControls.LXPos: return 278;
+                case GenericControls.LXNeg: return 279;
+                case GenericControls.LYPos: return 280;
+                case GenericControls.LYNeg: return 281;
+                case GenericControls.RXPos: return 282;
+                case GenericControls.RXNeg: return 283;
+                case GenericControls.RYPos: return 284;
+                case GenericControls.RYNeg: return 285;
             }
             return 0;
         }
 
-        public static string EAll4ControltoX360(EAll4Controls ctrl)
+        public static string EAll4ControltoX360(GenericControls ctrl)
         {
             switch (ctrl)
             {
-                case EAll4Controls.Cross: return "A Button";
-                case EAll4Controls.Circle: return "B Button";
-                case EAll4Controls.Square: return "X Button";
-                case EAll4Controls.Triangle: return "Y Button";
-                case EAll4Controls.Options: return "Start";
-                case EAll4Controls.Share: return "Back";
-                case EAll4Controls.DpadUp: return "Up Button";
-                case EAll4Controls.DpadDown: return "Down Button";
-                case EAll4Controls.DpadLeft: return "Left Button";
-                case EAll4Controls.DpadRight: return "Right Button";
-                case EAll4Controls.PS: return "Guide";
-                case EAll4Controls.L1: return "Left Bumper";
-                case EAll4Controls.R1: return "Right Bumper";
-                case EAll4Controls.L2: return "Left Trigger";
-                case EAll4Controls.R2: return "Right Trigger";
-                case EAll4Controls.L3: return "Left Stick";
-                case EAll4Controls.R3: return "Right Stick";
-                case EAll4Controls.LXPos: return "LS Right";
-                case EAll4Controls.LXNeg: return "LS Left";
-                case EAll4Controls.LYPos: return "LS Down";
-                case EAll4Controls.LYNeg: return "LS Up";
-                case EAll4Controls.RXPos: return "RS Right";
-                case EAll4Controls.RXNeg: return "RS Left";
-                case EAll4Controls.RYPos: return "RS Down";
-                case EAll4Controls.RYNeg: return "RS Up";
+                case GenericControls.A: return "A Button";
+                case GenericControls.B: return "B Button";
+                case GenericControls.X: return "X Button";
+                case GenericControls.Y: return "Y Button";
+                case GenericControls.Start: return "Start";
+                case GenericControls.Back: return "Back";
+                case GenericControls.DpadUp: return "Up Button";
+                case GenericControls.DpadDown: return "Down Button";
+                case GenericControls.DpadLeft: return "Left Button";
+                case GenericControls.DpadRight: return "Right Button";
+                case GenericControls.Guide: return "Guide";
+                case GenericControls.LB: return "Left Bumper";
+                case GenericControls.RB: return "Right Bumper";
+                case GenericControls.LT: return "Left Trigger";
+                case GenericControls.RT: return "Right Trigger";
+                case GenericControls.LS: return "Left Stick";
+                case GenericControls.RS: return "Right Stick";
+                case GenericControls.LXPos: return "LS Right";
+                case GenericControls.LXNeg: return "LS Left";
+                case GenericControls.LYPos: return "LS Down";
+                case GenericControls.LYNeg: return "LS Up";
+                case GenericControls.RXPos: return "RS Right";
+                case GenericControls.RXNeg: return "RS Left";
+                case GenericControls.RYPos: return "RS Down";
+                case GenericControls.RYNeg: return "RS Up";
             }
             return "None";
         }
@@ -283,7 +283,7 @@ namespace EAll4Windows
                 if (cBRecordDelays.Checked)
                     lbDelayTip.Visible = true;
                 btnRecord.Text = Properties.Resources.RecordText;
-                EnableControls(true);                
+                EnableControls(true);
             }
         }
 
@@ -311,11 +311,11 @@ namespace EAll4Windows
                             count++;
                     }
                 else
-                foreach (int i in macros)
-                {
-                    if (i == value)
-                        count++;
-                }
+                    foreach (int i in macros)
+                    {
+                        if (i == value)
+                            count++;
+                    }
                 if (macros.Count == 0 || (recordAfter && macrosAfter.Count == 0))
                 {
                     AddMacroValue(value);
@@ -382,11 +382,11 @@ namespace EAll4Windows
                                 return 163;
                     }
                     else
-                    for (int i = macros.Count - 1; i >= 0; i--)
-                        if (macros[i] == 162)
-                            return 162;
-                        else if (macros[i] == 163)
-                            return 163;
+                        for (int i = macros.Count - 1; i >= 0; i--)
+                            if (macros[i] == 162)
+                                return 162;
+                            else if (macros[i] == 163)
+                                return 163;
                 }
                 else if (e.KeyCode == Keys.Menu)
                 {
@@ -409,28 +409,28 @@ namespace EAll4Windows
             }
             else
                 if (e.KeyCode == Keys.ShiftKey)
-                {
-                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.LShiftKey)))
-                        return 160;
-                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.RShiftKey)))
-                        return 161;
-                }
-                else if (e.KeyCode == Keys.ControlKey)
-                {
-                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.LControlKey)))
-                        return 162;
-                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.RControlKey)))
-                        return 163;
-                }
-                else if (e.KeyCode == Keys.Menu)
-                {
-                    e.Handled = true;
-                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.LMenu)))
-                        return 164;
-                    if (Convert.ToBoolean(GetAsyncKeyState(Keys.RMenu)))
-                        return 165;
+            {
+                if (Convert.ToBoolean(GetAsyncKeyState(Keys.LShiftKey)))
+                    return 160;
+                if (Convert.ToBoolean(GetAsyncKeyState(Keys.RShiftKey)))
+                    return 161;
+            }
+            else if (e.KeyCode == Keys.ControlKey)
+            {
+                if (Convert.ToBoolean(GetAsyncKeyState(Keys.LControlKey)))
+                    return 162;
+                if (Convert.ToBoolean(GetAsyncKeyState(Keys.RControlKey)))
+                    return 163;
+            }
+            else if (e.KeyCode == Keys.Menu)
+            {
+                e.Handled = true;
+                if (Convert.ToBoolean(GetAsyncKeyState(Keys.LMenu)))
+                    return 164;
+                if (Convert.ToBoolean(GetAsyncKeyState(Keys.RMenu)))
+                    return 165;
 
-                }
+            }
             return e.KeyValue;
         }
 
@@ -542,7 +542,7 @@ namespace EAll4Windows
                         sw.Start();
                     }
                 }
-                else if (macros.Count > 0 || (recordAfter && macrosAfter.Count >0))
+                else if (macros.Count > 0 || (recordAfter && macrosAfter.Count > 0))
                 {
                     if (cBRecordDelays.Checked)
                     {
@@ -649,7 +649,7 @@ namespace EAll4Windows
                         sA.macrorepeat = true;
                     saved = true;
                     //if (sender != sA)
-                       // sA.Close();
+                    // sA.Close();
                     Close();
                 }
                 else
@@ -691,7 +691,7 @@ namespace EAll4Windows
 
         private void btnLoadP_Click(object sender, EventArgs e)
         {
-            cMSLoadPresets.Show(btnLoadP, new Point(0, btnLoadP.Height));           
+            cMSLoadPresets.Show(btnLoadP, new Point(0, btnLoadP.Height));
         }
 
         private void altTabToolStripMenuItem_Click(object sender, EventArgs e)
@@ -739,8 +739,8 @@ namespace EAll4Windows
         {
             saved = true;
             Close();
-        }        
-       
+        }
+
         void LoadMacro()
         {
 
@@ -944,8 +944,8 @@ namespace EAll4Windows
         {
             TextBox tb = (TextBox)sender;
             for (int i = tb.Text.Length - 1; i >= 0; i--)
-                  if (!Char.IsDigit(tb.Text[i]))
-                      tb.Text = tb.Text.Remove(i, 1);
+                if (!Char.IsDigit(tb.Text[i]))
+                    tb.Text = tb.Text.Remove(i, 1);
         }
 
         void nud_LostFocus(object sender, EventArgs e)

@@ -135,7 +135,7 @@
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>Pentru a seta bluetooth (opțional):
-Ține apăsat butoanele PS și Share pentru 3 secunde
+Ține apăsat butoanele Guide și Back pentru 3 secunde
 Bara de lumină va începe să lumineze cu blițuri duble</value>
   </data>
   <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">

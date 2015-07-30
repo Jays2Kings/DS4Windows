@@ -9049,7 +9049,7 @@
     <value>pnlButton</value>
   </data>
   <data name="tSOptions.Text" xml:space="preserve">
-    <value>Profile Options</value>
+    <value>Profile Start</value>
   </data>
   <data name="&gt;&gt;linkUninstall.Parent" xml:space="preserve">
     <value>flowLayoutPanel1</value>

@@ -412,23 +412,23 @@ namespace EAll4Windows
             if (Form.ActiveForm == root && cBControllerInput.Checked && tabControls.SelectedIndex < 2)
                 switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
                 {
-                    case ("Cross"): Show_ControlsBn(bnCross, e); break;
-                    case ("Circle"): Show_ControlsBn(bnCircle, e); break;
-                    case ("Square"): Show_ControlsBn(bnSquare, e); break;
-                    case ("Triangle"): Show_ControlsBn(bnTriangle, e); break;
-                    case ("Options"): Show_ControlsBn(bnOptions, e); break;
-                    case ("Share"): Show_ControlsBn(bnShare, e); break;
+                    case ("A"): Show_ControlsBn(bnCross, e); break;
+                    case ("B"): Show_ControlsBn(bnCircle, e); break;
+                    case ("X"): Show_ControlsBn(bnSquare, e); break;
+                    case ("Y"): Show_ControlsBn(bnTriangle, e); break;
+                    case ("Start"): Show_ControlsBn(bnOptions, e); break;
+                    case ("Back"): Show_ControlsBn(bnShare, e); break;
                     case ("Up"): Show_ControlsBn(bnUp, e); break;
                     case ("Down"): Show_ControlsBn(bnDown, e); break;
                     case ("Left"): Show_ControlsBn(bnLeft, e); break;
                     case ("Right"): Show_ControlsBn(bnRight, e); break;
-                    case ("PS"): Show_ControlsBn(bnPS, e); break;
-                    case ("L1"): Show_ControlsBn(bnL1, e); break;
-                    case ("R1"): Show_ControlsBn(bnR1, e); break;
-                    case ("L2"): Show_ControlsBn(bnL2, e); break;
-                    case ("R2"): Show_ControlsBn(bnR2, e); break;
-                    case ("L3"): Show_ControlsBn(bnL3, e); break;
-                    case ("R3"): Show_ControlsBn(bnR3, e); break;
+                    case ("Guide"): Show_ControlsBn(bnPS, e); break;
+                    case ("LB"): Show_ControlsBn(bnL1, e); break;
+                    case ("RB"): Show_ControlsBn(bnR1, e); break;
+                    case ("LT"): Show_ControlsBn(bnL2, e); break;
+                    case ("RT"): Show_ControlsBn(bnR2, e); break;
+                    case ("LS"): Show_ControlsBn(bnL3, e); break;
+                    case ("RS"): Show_ControlsBn(bnR3, e); break;
                     case ("Touch Left"): Show_ControlsBn(bnTouchLeft, e); break;
                     case ("Touch Right"): Show_ControlsBn(bnTouchRight, e); break;
                     case ("Touch Multi"): Show_ControlsBn(bnTouchMulti, e); break;
@@ -1042,23 +1042,23 @@ namespace EAll4Windows
 
         public void UpdateLists()
         {
-            lBControls.Items[0] = "Cross : " + UpdateRegButtonList(bnCross);
-            lBControls.Items[1] = "Circle : " + UpdateRegButtonList(bnCircle);
-            lBControls.Items[2] = "Square : " + UpdateRegButtonList(bnSquare);
-            lBControls.Items[3] = "Triangle : " + UpdateRegButtonList(bnTriangle);
-            lBControls.Items[4] = "Options : " + UpdateRegButtonList(bnOptions);
-            lBControls.Items[5] = "Share : " + UpdateRegButtonList(bnShare);
+            lBControls.Items[0] = "A : " + UpdateRegButtonList(bnCross);
+            lBControls.Items[1] = "B : " + UpdateRegButtonList(bnCircle);
+            lBControls.Items[2] = "X : " + UpdateRegButtonList(bnSquare);
+            lBControls.Items[3] = "Y : " + UpdateRegButtonList(bnTriangle);
+            lBControls.Items[4] = "Start : " + UpdateRegButtonList(bnOptions);
+            lBControls.Items[5] = "Back : " + UpdateRegButtonList(bnShare);
             lBControls.Items[6] = "Up : " + UpdateRegButtonList(bnUp);
             lBControls.Items[7] = "Down : " + UpdateRegButtonList(bnDown);
             lBControls.Items[8] = "Left : " + UpdateRegButtonList(bnLeft);
             lBControls.Items[9] = "Right : " + UpdateRegButtonList(bnRight);
-            lBControls.Items[10] = "PS : " + UpdateRegButtonList(bnPS);
-            lBControls.Items[11] = "L1 : " + UpdateRegButtonList(bnL1);
-            lBControls.Items[12] = "R1 : " + UpdateRegButtonList(bnR1);
-            lBControls.Items[13] = "L2 : " + UpdateRegButtonList(bnL2);
-            lBControls.Items[14] = "R2 : " + UpdateRegButtonList(bnR2);
-            lBControls.Items[15] = "L3 : " + UpdateRegButtonList(bnL3);
-            lBControls.Items[16] = "R3 : " + UpdateRegButtonList(bnR3);
+            lBControls.Items[10] = "Guide : " + UpdateRegButtonList(bnPS);
+            lBControls.Items[11] = "LB : " + UpdateRegButtonList(bnL1);
+            lBControls.Items[12] = "RB : " + UpdateRegButtonList(bnR1);
+            lBControls.Items[13] = "LT : " + UpdateRegButtonList(bnL2);
+            lBControls.Items[14] = "RT : " + UpdateRegButtonList(bnR2);
+            lBControls.Items[15] = "LS : " + UpdateRegButtonList(bnL3);
+            lBControls.Items[16] = "RS : " + UpdateRegButtonList(bnR3);
             lBControls.Items[17] = "Left Touch : " + UpdateRegButtonList(bnTouchLeft);
             lBControls.Items[18] = "Right Touch : " + UpdateRegButtonList(bnTouchRight);
             lBControls.Items[19] = "Multitouch : " + UpdateRegButtonList(bnTouchMulti);
@@ -1094,23 +1094,23 @@ namespace EAll4Windows
             /*foreach (Button b in subbuttons)
                 if (b.Tag == null)
                     b.Text = "Fall Back to " + ((Button)Controls.Find(b.Name.Remove(2,5), true)[0]).Text;*/
-            lBShiftControls.Items[0] = "Cross : " + UpdateRegButtonList(bnShiftCross);
-            lBShiftControls.Items[1] = "Circle : " + UpdateRegButtonList(bnShiftCircle);
-            lBShiftControls.Items[2] = "Square : " + UpdateRegButtonList(bnShiftSquare);
-            lBShiftControls.Items[3] = "Triangle : " + UpdateRegButtonList(bnShiftTriangle);
-            lBShiftControls.Items[4] = "Options : " + UpdateRegButtonList(bnShiftOptions);
-            lBShiftControls.Items[5] = "Share : " + UpdateRegButtonList(bnShiftShare);
+            lBShiftControls.Items[0] = "A : " + UpdateRegButtonList(bnShiftCross);
+            lBShiftControls.Items[1] = "B : " + UpdateRegButtonList(bnShiftCircle);
+            lBShiftControls.Items[2] = "X : " + UpdateRegButtonList(bnShiftSquare);
+            lBShiftControls.Items[3] = "Y : " + UpdateRegButtonList(bnShiftTriangle);
+            lBShiftControls.Items[4] = "Start : " + UpdateRegButtonList(bnShiftOptions);
+            lBShiftControls.Items[5] = "Back : " + UpdateRegButtonList(bnShiftShare);
             lBShiftControls.Items[6] = "Up : " + UpdateRegButtonList(bnShiftUp);
             lBShiftControls.Items[7] = "Down : " + UpdateRegButtonList(bnShiftDown);
             lBShiftControls.Items[8] = "Left : " + UpdateRegButtonList(bnShiftLeft);
             lBShiftControls.Items[9] = "Right : " + UpdateRegButtonList(bnShiftRight);
-            lBShiftControls.Items[10] = "PS : " + UpdateRegButtonList(bnShiftPS);
-            lBShiftControls.Items[11] = "L1 : " + UpdateRegButtonList(bnShiftL1);
-            lBShiftControls.Items[12] = "R1 : " + UpdateRegButtonList(bnShiftR1);
-            lBShiftControls.Items[13] = "L2 : " + UpdateRegButtonList(bnShiftL2);
-            lBShiftControls.Items[14] = "R2 : " + UpdateRegButtonList(bnShiftR2);
-            lBShiftControls.Items[15] = "L3 : " + UpdateRegButtonList(bnShiftL3);
-            lBShiftControls.Items[16] = "R3 : " + UpdateRegButtonList(bnShiftR3);
+            lBShiftControls.Items[10] = "Guide : " + UpdateRegButtonList(bnShiftPS);
+            lBShiftControls.Items[11] = "LB : " + UpdateRegButtonList(bnShiftL1);
+            lBShiftControls.Items[12] = "RB : " + UpdateRegButtonList(bnShiftR1);
+            lBShiftControls.Items[13] = "LT : " + UpdateRegButtonList(bnShiftL2);
+            lBShiftControls.Items[14] = "RT : " + UpdateRegButtonList(bnShiftR2);
+            lBShiftControls.Items[15] = "LS : " + UpdateRegButtonList(bnShiftL3);
+            lBShiftControls.Items[16] = "RS : " + UpdateRegButtonList(bnShiftR3);
             lBShiftControls.Items[17] = "Left Touch : " + UpdateRegButtonList(bnShiftTouchLeft);
             lBShiftControls.Items[18] = "Right Touch : " + UpdateRegButtonList(bnShiftTouchRight);
             lBShiftControls.Items[19] = "Multitouch : " + UpdateRegButtonList(bnShiftTouchMulti);

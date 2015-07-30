@@ -796,7 +796,7 @@
     <value>3</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Hide EAll4 Controller: Hides the EAll4's regular input (Dinput) from other programs, check if you are getting double input in games or R2 pauses games
+    <value>Hide EAll4 Controller: Hides the EAll4's regular input (Dinput) from other programs, check if you are getting double input in games or RT pauses games
 
 Click left side of touchpad: Left Touch
 
@@ -806,9 +806,9 @@ Click touchpad with 2 fingers: Multitouch
 
 Click upper part of touchpad: Upper Touch
 
-PS + Options or hold PS for 10 secs: Disconnect Controller (Only on Bluetooth)
+Guide + Start or hold Guide for 10 secs: Disconnect Controller (Only on Bluetooth)
 
-Touch Touchpad + PS: Turn off touchpad movement (clicking still works)
+Touch Touchpad + Guide: Turn off touchpad movement (clicking still works)
 
 Pad click on lower right*: Right click (Best used when right side is used as a mouse button)
 

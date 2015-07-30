@@ -142,7 +142,7 @@
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>Для подключения по Bluetooth (по желанию): 
-Нажмите и удерживайте кнопки PS и Share в течение 
+Нажмите и удерживайте кнопки Guide и Back в течение 
 3-х секунд пока световая панель не начнёт мигать</value>
   </data>
   <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">

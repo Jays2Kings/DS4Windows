@@ -736,7 +736,7 @@
     <value>196</value>
   </data>
   <data name="lbL2.Text" xml:space="preserve">
-    <value>L2</value>
+    <value>LT</value>
   </data>
   <data name="&gt;&gt;lbL2.Name" xml:space="preserve">
     <value>lbL2</value>
@@ -766,7 +766,7 @@
     <value>197</value>
   </data>
   <data name="lbR2.Text" xml:space="preserve">
-    <value>R2</value>
+    <value>RT</value>
   </data>
   <data name="&gt;&gt;lbR2.Name" xml:space="preserve">
     <value>lbR2</value>
@@ -2861,7 +2861,7 @@ with profile</value>
     <value>216</value>
   </data>
   <data name="lbL2Track.Text" xml:space="preserve">
-    <value>L2</value>
+    <value>LT</value>
   </data>
   <data name="lbL2Track.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -3047,7 +3047,7 @@ with profile</value>
     <value>216</value>
   </data>
   <data name="lbR2Track.Text" xml:space="preserve">
-    <value>R2</value>
+    <value>RT</value>
   </data>
   <data name="lbR2Track.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -4407,22 +4407,22 @@ Swipes:</value>
     <value>(nothing)/shift off</value>
   </data>
   <data name="cBShiftControl.Items1" xml:space="preserve">
-    <value>Cross</value>
+    <value>A</value>
   </data>
   <data name="cBShiftControl.Items2" xml:space="preserve">
-    <value>Circle</value>
+    <value>B</value>
   </data>
   <data name="cBShiftControl.Items3" xml:space="preserve">
-    <value>Square</value>
+    <value>X</value>
   </data>
   <data name="cBShiftControl.Items4" xml:space="preserve">
-    <value>Triangle</value>
+    <value>Y</value>
   </data>
   <data name="cBShiftControl.Items5" xml:space="preserve">
-    <value>Options</value>
+    <value>Start</value>
   </data>
   <data name="cBShiftControl.Items6" xml:space="preserve">
-    <value>Share</value>
+    <value>Back</value>
   </data>
   <data name="cBShiftControl.Items7" xml:space="preserve">
     <value>Up</value>
@@ -4437,25 +4437,25 @@ Swipes:</value>
     <value>Right</value>
   </data>
   <data name="cBShiftControl.Items11" xml:space="preserve">
-    <value>PS</value>
+    <value>Guide</value>
   </data>
   <data name="cBShiftControl.Items12" xml:space="preserve">
-    <value>L1</value>
+    <value>LB</value>
   </data>
   <data name="cBShiftControl.Items13" xml:space="preserve">
-    <value>R1</value>
+    <value>RB</value>
   </data>
   <data name="cBShiftControl.Items14" xml:space="preserve">
-    <value>L2</value>
+    <value>LT</value>
   </data>
   <data name="cBShiftControl.Items15" xml:space="preserve">
-    <value>R2</value>
+    <value>RT</value>
   </data>
   <data name="cBShiftControl.Items16" xml:space="preserve">
-    <value>L3</value>
+    <value>LS</value>
   </data>
   <data name="cBShiftControl.Items17" xml:space="preserve">
-    <value>R3</value>
+    <value>RS</value>
   </data>
   <data name="cBShiftControl.Items18" xml:space="preserve">
     <value>Left Touch</value>
@@ -4506,22 +4506,22 @@ Swipes:</value>
     <value>4</value>
   </data>
   <data name="lBShiftControls.Items" xml:space="preserve">
-    <value>Cross :</value>
+    <value>A :</value>
   </data>
   <data name="lBShiftControls.Items1" xml:space="preserve">
-    <value>Circle :</value>
+    <value>B :</value>
   </data>
   <data name="lBShiftControls.Items2" xml:space="preserve">
     <value>Sqaure :</value>
   </data>
   <data name="lBShiftControls.Items3" xml:space="preserve">
-    <value>Triangle :</value>
+    <value>Y :</value>
   </data>
   <data name="lBShiftControls.Items4" xml:space="preserve">
-    <value>Options :</value>
+    <value>Start :</value>
   </data>
   <data name="lBShiftControls.Items5" xml:space="preserve">
-    <value>Share :</value>
+    <value>Back :</value>
   </data>
   <data name="lBShiftControls.Items6" xml:space="preserve">
     <value>Up :</value>
@@ -4536,25 +4536,25 @@ Swipes:</value>
     <value>Right :</value>
   </data>
   <data name="lBShiftControls.Items10" xml:space="preserve">
-    <value>PS :</value>
+    <value>Guide :</value>
   </data>
   <data name="lBShiftControls.Items11" xml:space="preserve">
-    <value>L1 :</value>
+    <value>LB :</value>
   </data>
   <data name="lBShiftControls.Items12" xml:space="preserve">
-    <value>R1 :</value>
+    <value>RB :</value>
   </data>
   <data name="lBShiftControls.Items13" xml:space="preserve">
-    <value>L2 :</value>
+    <value>LT :</value>
   </data>
   <data name="lBShiftControls.Items14" xml:space="preserve">
-    <value>R2 :</value>
+    <value>RT :</value>
   </data>
   <data name="lBShiftControls.Items15" xml:space="preserve">
-    <value>L3 :</value>
+    <value>LS :</value>
   </data>
   <data name="lBShiftControls.Items16" xml:space="preserve">
-    <value>R3 :</value>
+    <value>RS :</value>
   </data>
   <data name="lBShiftControls.Items17" xml:space="preserve">
     <value>Left Touch :</value>
@@ -6841,22 +6841,22 @@ Swipes:</value>
     <value>3</value>
   </data>
   <data name="lBControls.Items" xml:space="preserve">
-    <value>Cross :</value>
+    <value>A :</value>
   </data>
   <data name="lBControls.Items1" xml:space="preserve">
-    <value>Circle :</value>
+    <value>B :</value>
   </data>
   <data name="lBControls.Items2" xml:space="preserve">
-    <value>Square :</value>
+    <value>X :</value>
   </data>
   <data name="lBControls.Items3" xml:space="preserve">
-    <value>Triangle :</value>
+    <value>Y :</value>
   </data>
   <data name="lBControls.Items4" xml:space="preserve">
-    <value>Options :</value>
+    <value>Start :</value>
   </data>
   <data name="lBControls.Items5" xml:space="preserve">
-    <value>Share :</value>
+    <value>Back :</value>
   </data>
   <data name="lBControls.Items6" xml:space="preserve">
     <value>Up :</value>
@@ -6871,25 +6871,25 @@ Swipes:</value>
     <value>Right :</value>
   </data>
   <data name="lBControls.Items10" xml:space="preserve">
-    <value>PS :</value>
+    <value>Guide :</value>
   </data>
   <data name="lBControls.Items11" xml:space="preserve">
-    <value>L1 :</value>
+    <value>LB :</value>
   </data>
   <data name="lBControls.Items12" xml:space="preserve">
-    <value>R1 :</value>
+    <value>RB :</value>
   </data>
   <data name="lBControls.Items13" xml:space="preserve">
-    <value>L2 :</value>
+    <value>LT :</value>
   </data>
   <data name="lBControls.Items14" xml:space="preserve">
-    <value>R2 :</value>
+    <value>RT :</value>
   </data>
   <data name="lBControls.Items15" xml:space="preserve">
-    <value>L3 :</value>
+    <value>LS :</value>
   </data>
   <data name="lBControls.Items16" xml:space="preserve">
-    <value>R3 :</value>
+    <value>RS :</value>
   </data>
   <data name="lBControls.Items17" xml:space="preserve">
     <value>Left Touch :</value>
@@ -9293,7 +9293,7 @@ Click the lightbar for color picker</value>
     <value>99, 96</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Profile Options</value>
+    <value>Profile Start</value>
   </data>
   <data name="&gt;&gt;openFileDialog1.Name" xml:space="preserve">
     <value>openFileDialog1</value>

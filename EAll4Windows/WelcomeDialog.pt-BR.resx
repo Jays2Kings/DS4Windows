@@ -135,7 +135,7 @@
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>Para configurar Bluetooth (opcional):
-Segure o botões PS e Share por 3 segundos
+Segure o botões Guide e Back por 3 segundos
 A barra de luzes começara a piscar</value>
   </data>
   <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">

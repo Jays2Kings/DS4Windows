@@ -13,7 +13,7 @@ namespace EAll4Windows
     [Flags]
     public enum EAll4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; //Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
-    public enum EAll4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown };
+    public enum GenericControls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, TouchLeft, TouchUpper, TouchMulti, TouchRight, Back, Start, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
 
     public class DebugEventArgs : EventArgs
@@ -399,23 +399,23 @@ namespace EAll4Windows
         }
 
 
-        public static X360Controls getCustomButton(int device, EAll4Controls controlName)
+        public static X360Controls getCustomButton(int device, GenericControls controlName)
         {
             return m_Config.GetCustomButton(device, controlName);
         }
-        public static ushort getCustomKey(int device, EAll4Controls controlName)
+        public static ushort getCustomKey(int device, GenericControls controlName)
         {
             return m_Config.GetCustomKey(device, controlName);
         }
-        public static string getCustomMacro(int device, EAll4Controls controlName)
+        public static string getCustomMacro(int device, GenericControls controlName)
         {
             return m_Config.GetCustomMacro(device, controlName);
         }
-        public static string getCustomExtras(int device, EAll4Controls controlName)
+        public static string getCustomExtras(int device, GenericControls controlName)
         {
             return m_Config.GetCustomExtras(device, controlName);
         }
-        public static EAll4KeyType getCustomKeyType(int device, EAll4Controls controlName)
+        public static EAll4KeyType getCustomKeyType(int device, GenericControls controlName)
         {
             return m_Config.GetCustomKeyType(device, controlName);
         }
@@ -428,44 +428,44 @@ namespace EAll4Windows
         {
             return m_Config.customMapExtras[device].Count > 0;
         }
-        public static Dictionary<EAll4Controls, X360Controls> getCustomButtons(int device)
+        public static Dictionary<GenericControls, X360Controls> getCustomButtons(int device)
         {
             return m_Config.customMapButtons[device];
         }
-        public static Dictionary<EAll4Controls, ushort> getCustomKeys(int device)
+        public static Dictionary<GenericControls, ushort> getCustomKeys(int device)
         {
             return m_Config.customMapKeys[device];
         }
-        public static Dictionary<EAll4Controls, string> getCustomMacros(int device)
+        public static Dictionary<GenericControls, string> getCustomMacros(int device)
         {
             return m_Config.customMapMacros[device];
         }
-        public static Dictionary<EAll4Controls, string> getCustomExtras(int device)
+        public static Dictionary<GenericControls, string> getCustomExtras(int device)
         {
             return m_Config.customMapExtras[device];
         }
-        public static Dictionary<EAll4Controls, EAll4KeyType> getCustomKeyTypes(int device)
+        public static Dictionary<GenericControls, EAll4KeyType> getCustomKeyTypes(int device)
         {
             return m_Config.customMapKeyTypes[device];
         }
 
-        public static X360Controls getShiftCustomButton(int device, EAll4Controls controlName)
+        public static X360Controls getShiftCustomButton(int device, GenericControls controlName)
         {
             return m_Config.GetShiftCustomButton(device, controlName);
         }
-        public static ushort getShiftCustomKey(int device, EAll4Controls controlName)
+        public static ushort getShiftCustomKey(int device, GenericControls controlName)
         {
             return m_Config.GetShiftCustomKey(device, controlName);
         }
-        public static string getShiftCustomMacro(int device, EAll4Controls controlName)
+        public static string getShiftCustomMacro(int device, GenericControls controlName)
         {
             return m_Config.GetShiftCustomMacro(device, controlName);
         }
-        public static string getShiftCustomExtras(int device, EAll4Controls controlName)
+        public static string getShiftCustomExtras(int device, GenericControls controlName)
         {
             return m_Config.GetShiftCustomExtras(device, controlName);
         }
-        public static EAll4KeyType getShiftCustomKeyType(int device, EAll4Controls controlName)
+        public static EAll4KeyType getShiftCustomKeyType(int device, GenericControls controlName)
         {
             return m_Config.GetShiftCustomKeyType(device, controlName);
         }
@@ -478,23 +478,23 @@ namespace EAll4Windows
         {
             return m_Config.shiftCustomMapExtras[device].Count > 0;
         }
-        public static Dictionary<EAll4Controls, X360Controls> getShiftCustomButtons(int device)
+        public static Dictionary<GenericControls, X360Controls> getShiftCustomButtons(int device)
         {
             return m_Config.shiftCustomMapButtons[device];
         }
-        public static Dictionary<EAll4Controls, ushort> getShiftCustomKeys(int device)
+        public static Dictionary<GenericControls, ushort> getShiftCustomKeys(int device)
         {
             return m_Config.shiftCustomMapKeys[device];
         }
-        public static Dictionary<EAll4Controls, string> getShiftCustomMacros(int device)
+        public static Dictionary<GenericControls, string> getShiftCustomMacros(int device)
         {
             return m_Config.shiftCustomMapMacros[device];
         }
-        public static Dictionary<EAll4Controls, string> getShiftCustomExtras(int device)
+        public static Dictionary<GenericControls, string> getShiftCustomExtras(int device)
         {
             return m_Config.shiftCustomMapExtras[device];
         }
-        public static Dictionary<EAll4Controls, EAll4KeyType> getShiftCustomKeyTypes(int device)
+        public static Dictionary<GenericControls, EAll4KeyType> getShiftCustomKeyTypes(int device)
         {
             return m_Config.shiftCustomMapKeyTypes[device];
         }
@@ -686,17 +686,17 @@ namespace EAll4Windows
         public int firstXinputPort = 1;
         public bool closeMini = false;
         public List<SpecialAction> actions = new List<SpecialAction>();
-        public Dictionary<EAll4Controls, EAll4KeyType>[] customMapKeyTypes = { null, null, null, null, null };
-        public Dictionary<EAll4Controls, UInt16>[] customMapKeys = { null, null, null, null, null };
-        public Dictionary<EAll4Controls, String>[] customMapMacros = { null, null, null, null, null };
-        public Dictionary<EAll4Controls, X360Controls>[] customMapButtons = { null, null, null, null, null };
-        public Dictionary<EAll4Controls, String>[] customMapExtras = { null, null, null, null, null };
+        public Dictionary<GenericControls, EAll4KeyType>[] customMapKeyTypes = { null, null, null, null, null };
+        public Dictionary<GenericControls, UInt16>[] customMapKeys = { null, null, null, null, null };
+        public Dictionary<GenericControls, String>[] customMapMacros = { null, null, null, null, null };
+        public Dictionary<GenericControls, X360Controls>[] customMapButtons = { null, null, null, null, null };
+        public Dictionary<GenericControls, String>[] customMapExtras = { null, null, null, null, null };
 
-        public Dictionary<EAll4Controls, EAll4KeyType>[] shiftCustomMapKeyTypes = { null, null, null, null, null };
-        public Dictionary<EAll4Controls, UInt16>[] shiftCustomMapKeys = { null, null, null, null, null };
-        public Dictionary<EAll4Controls, String>[] shiftCustomMapMacros = { null, null, null, null, null };
-        public Dictionary<EAll4Controls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
-        public Dictionary<EAll4Controls, String>[] shiftCustomMapExtras = { null, null, null, null, null };
+        public Dictionary<GenericControls, EAll4KeyType>[] shiftCustomMapKeyTypes = { null, null, null, null, null };
+        public Dictionary<GenericControls, UInt16>[] shiftCustomMapKeys = { null, null, null, null, null };
+        public Dictionary<GenericControls, String>[] shiftCustomMapMacros = { null, null, null, null, null };
+        public Dictionary<GenericControls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
+        public Dictionary<GenericControls, String>[] shiftCustomMapExtras = { null, null, null, null, null };
         public List<String>[] profileActions = { null, null, null, null, null };
         public bool downloadLang = true;
         public bool flashWhenLate = true;
@@ -704,47 +704,47 @@ namespace EAll4Windows
         {
             for (int i = 0; i < 5; i++)
             {
-                customMapKeyTypes[i] = new Dictionary<EAll4Controls, EAll4KeyType>();
-                customMapKeys[i] = new Dictionary<EAll4Controls, UInt16>();
-                customMapMacros[i] = new Dictionary<EAll4Controls, String>();
-                customMapButtons[i] = new Dictionary<EAll4Controls, X360Controls>();
-                customMapExtras[i] = new Dictionary<EAll4Controls, string>();
+                customMapKeyTypes[i] = new Dictionary<GenericControls, EAll4KeyType>();
+                customMapKeys[i] = new Dictionary<GenericControls, UInt16>();
+                customMapMacros[i] = new Dictionary<GenericControls, String>();
+                customMapButtons[i] = new Dictionary<GenericControls, X360Controls>();
+                customMapExtras[i] = new Dictionary<GenericControls, string>();
 
-                shiftCustomMapKeyTypes[i] = new Dictionary<EAll4Controls, EAll4KeyType>();
-                shiftCustomMapKeys[i] = new Dictionary<EAll4Controls, UInt16>();
-                shiftCustomMapMacros[i] = new Dictionary<EAll4Controls, String>();
-                shiftCustomMapButtons[i] = new Dictionary<EAll4Controls, X360Controls>();
-                shiftCustomMapExtras[i] = new Dictionary<EAll4Controls, string>();
+                shiftCustomMapKeyTypes[i] = new Dictionary<GenericControls, EAll4KeyType>();
+                shiftCustomMapKeys[i] = new Dictionary<GenericControls, UInt16>();
+                shiftCustomMapMacros[i] = new Dictionary<GenericControls, String>();
+                shiftCustomMapButtons[i] = new Dictionary<GenericControls, X360Controls>();
+                shiftCustomMapExtras[i] = new Dictionary<GenericControls, string>();
                 profileActions[i] = new List<string>();
                 profileActions[i].Add("Disconnect Controller");
             }
         }
 
-        public X360Controls GetCustomButton(int device, EAll4Controls controlName)
+        public X360Controls GetCustomButton(int device, GenericControls controlName)
         {
             if (customMapButtons[device].ContainsKey(controlName))
                 return customMapButtons[device][controlName];
             else return X360Controls.None;
         }
-        public UInt16 GetCustomKey(int device, EAll4Controls controlName)
+        public UInt16 GetCustomKey(int device, GenericControls controlName)
         {
             if (customMapKeys[device].ContainsKey(controlName))
                 return customMapKeys[device][controlName];
             else return 0;
         }
-        public string GetCustomMacro(int device, EAll4Controls controlName)
+        public string GetCustomMacro(int device, GenericControls controlName)
         {
             if (customMapMacros[device].ContainsKey(controlName))
                 return customMapMacros[device][controlName];
             else return "0";
         }
-        public string GetCustomExtras(int device, EAll4Controls controlName)
+        public string GetCustomExtras(int device, GenericControls controlName)
         {
             if (customMapExtras[device].ContainsKey(controlName))
                 return customMapExtras[device][controlName];
             else return "0";
         }
-        public EAll4KeyType GetCustomKeyType(int device, EAll4Controls controlName)
+        public EAll4KeyType GetCustomKeyType(int device, GenericControls controlName)
         {
             try
             {
@@ -755,31 +755,31 @@ namespace EAll4Windows
             catch { return 0; }
         }
 
-        public X360Controls GetShiftCustomButton(int device, EAll4Controls controlName)
+        public X360Controls GetShiftCustomButton(int device, GenericControls controlName)
         {
             if (shiftCustomMapButtons[device].ContainsKey(controlName))
                 return shiftCustomMapButtons[device][controlName];
             else return X360Controls.None;
         }
-        public UInt16 GetShiftCustomKey(int device, EAll4Controls controlName)
+        public UInt16 GetShiftCustomKey(int device, GenericControls controlName)
         {
             if (shiftCustomMapKeys[device].ContainsKey(controlName))
                 return shiftCustomMapKeys[device][controlName];
             else return 0;
         }
-        public string GetShiftCustomMacro(int device, EAll4Controls controlName)
+        public string GetShiftCustomMacro(int device, GenericControls controlName)
         {
             if (shiftCustomMapMacros[device].ContainsKey(controlName))
                 return shiftCustomMapMacros[device][controlName];
             else return "0";
         }
-        public string GetShiftCustomExtras(int device, EAll4Controls controlName)
+        public string GetShiftCustomExtras(int device, GenericControls controlName)
         {
             if (customMapExtras[device].ContainsKey(controlName))
                 return customMapExtras[device][controlName];
             else return "0";
         }
-        public EAll4KeyType GetShiftCustomKeyType(int device, EAll4Controls controlName)
+        public EAll4KeyType GetShiftCustomKeyType(int device, GenericControls controlName)
         {
             try
             {
@@ -1054,135 +1054,135 @@ namespace EAll4Windows
             catch { Saved = false; }
             return Saved;
         }
-        private EAll4Controls getEAll4ControlsByName(string key)
+        private GenericControls getGenericControlsByName(string key)
         {
             switch (key)
             {
-                case "bnShare": return EAll4Controls.Share;
-                case "bnL3": return EAll4Controls.L3;
-                case "bnR3": return EAll4Controls.R3;
-                case "bnOptions": return EAll4Controls.Options;
-                case "bnUp": return EAll4Controls.DpadUp;
-                case "bnRight": return EAll4Controls.DpadRight;
-                case "bnDown": return EAll4Controls.DpadDown;
-                case "bnLeft": return EAll4Controls.DpadLeft;
+                case "bnShare": return GenericControls.Back;
+                case "bnL3": return GenericControls.LS;
+                case "bnR3": return GenericControls.RS;
+                case "bnOptions": return GenericControls.Start;
+                case "bnUp": return GenericControls.DpadUp;
+                case "bnRight": return GenericControls.DpadRight;
+                case "bnDown": return GenericControls.DpadDown;
+                case "bnLeft": return GenericControls.DpadLeft;
 
-                case "bnL1": return EAll4Controls.L1;
-                case "bnR1": return EAll4Controls.R1;
-                case "bnTriangle": return EAll4Controls.Triangle;
-                case "bnCircle": return EAll4Controls.Circle;
-                case "bnCross": return EAll4Controls.Cross;
-                case "bnSquare": return EAll4Controls.Square;
+                case "bnL1": return GenericControls.LB;
+                case "bnR1": return GenericControls.RB;
+                case "bnTriangle": return GenericControls.Y;
+                case "bnCircle": return GenericControls.B;
+                case "bnCross": return GenericControls.A;
+                case "bnSquare": return GenericControls.X;
 
-                case "bnPS": return EAll4Controls.PS;
-                case "bnLSLeft": return EAll4Controls.LXNeg;
-                case "bnLSUp": return EAll4Controls.LYNeg;
-                case "bnRSLeft": return EAll4Controls.RXNeg;
-                case "bnRSUp": return EAll4Controls.RYNeg;
+                case "bnPS": return GenericControls.Guide;
+                case "bnLSLeft": return GenericControls.LXNeg;
+                case "bnLSUp": return GenericControls.LYNeg;
+                case "bnRSLeft": return GenericControls.RXNeg;
+                case "bnRSUp": return GenericControls.RYNeg;
 
-                case "bnLSRight": return EAll4Controls.LXPos;
-                case "bnLSDown": return EAll4Controls.LYPos;
-                case "bnRSRight": return EAll4Controls.RXPos;
-                case "bnRSDown": return EAll4Controls.RYPos;
-                case "bnL2": return EAll4Controls.L2;
-                case "bnR2": return EAll4Controls.R2;
+                case "bnLSRight": return GenericControls.LXPos;
+                case "bnLSDown": return GenericControls.LYPos;
+                case "bnRSRight": return GenericControls.RXPos;
+                case "bnRSDown": return GenericControls.RYPos;
+                case "bnL2": return GenericControls.LT;
+                case "bnR2": return GenericControls.RT;
 
-                case "bnTouchLeft": return EAll4Controls.TouchLeft;
-                case "bnTouchMulti": return EAll4Controls.TouchMulti;
-                case "bnTouchUpper": return EAll4Controls.TouchUpper;
-                case "bnTouchRight": return EAll4Controls.TouchRight;
-                case "bnGyroXP": return EAll4Controls.GyroXPos;
-                case "bnGyroXN": return EAll4Controls.GyroXNeg;
-                case "bnGyroZP": return EAll4Controls.GyroZPos;
-                case "bnGyroZN": return EAll4Controls.GyroZNeg;
+                case "bnTouchLeft": return GenericControls.TouchLeft;
+                case "bnTouchMulti": return GenericControls.TouchMulti;
+                case "bnTouchUpper": return GenericControls.TouchUpper;
+                case "bnTouchRight": return GenericControls.TouchRight;
+                case "bnGyroXP": return GenericControls.GyroXPos;
+                case "bnGyroXN": return GenericControls.GyroXNeg;
+                case "bnGyroZP": return GenericControls.GyroZPos;
+                case "bnGyroZN": return GenericControls.GyroZNeg;
 
-                case "bnSwipeUp": return EAll4Controls.SwipeUp;
-                case "bnSwipeDown": return EAll4Controls.SwipeDown;
-                case "bnSwipeLeft": return EAll4Controls.SwipeLeft;
-                case "bnSwipeRight": return EAll4Controls.SwipeRight;
+                case "bnSwipeUp": return GenericControls.SwipeUp;
+                case "bnSwipeDown": return GenericControls.SwipeDown;
+                case "bnSwipeLeft": return GenericControls.SwipeLeft;
+                case "bnSwipeRight": return GenericControls.SwipeRight;
 
                 #region OldShiftname
-                case "sbnShare": return EAll4Controls.Share;
-                case "sbnL3": return EAll4Controls.L3;
-                case "sbnR3": return EAll4Controls.R3;
-                case "sbnOptions": return EAll4Controls.Options;
-                case "sbnUp": return EAll4Controls.DpadUp;
-                case "sbnRight": return EAll4Controls.DpadRight;
-                case "sbnDown": return EAll4Controls.DpadDown;
-                case "sbnLeft": return EAll4Controls.DpadLeft;
+                case "sbnShare": return GenericControls.Back;
+                case "sbnL3": return GenericControls.LS;
+                case "sbnR3": return GenericControls.RS;
+                case "sbnOptions": return GenericControls.Start;
+                case "sbnUp": return GenericControls.DpadUp;
+                case "sbnRight": return GenericControls.DpadRight;
+                case "sbnDown": return GenericControls.DpadDown;
+                case "sbnLeft": return GenericControls.DpadLeft;
 
-                case "sbnL1": return EAll4Controls.L1;
-                case "sbnR1": return EAll4Controls.R1;
-                case "sbnTriangle": return EAll4Controls.Triangle;
-                case "sbnCircle": return EAll4Controls.Circle;
-                case "sbnCross": return EAll4Controls.Cross;
-                case "sbnSquare": return EAll4Controls.Square;
+                case "sbnL1": return GenericControls.LB;
+                case "sbnR1": return GenericControls.RB;
+                case "sbnTriangle": return GenericControls.Y;
+                case "sbnCircle": return GenericControls.B;
+                case "sbnCross": return GenericControls.A;
+                case "sbnSquare": return GenericControls.X;
 
-                case "sbnPS": return EAll4Controls.PS;
-                case "sbnLSLeft": return EAll4Controls.LXNeg;
-                case "sbnLSUp": return EAll4Controls.LYNeg;
-                case "sbnRSLeft": return EAll4Controls.RXNeg;
-                case "sbnRSUp": return EAll4Controls.RYNeg;
+                case "sbnPS": return GenericControls.Guide;
+                case "sbnLSLeft": return GenericControls.LXNeg;
+                case "sbnLSUp": return GenericControls.LYNeg;
+                case "sbnRSLeft": return GenericControls.RXNeg;
+                case "sbnRSUp": return GenericControls.RYNeg;
 
-                case "sbnLSRight": return EAll4Controls.LXPos;
-                case "sbnLSDown": return EAll4Controls.LYPos;
-                case "sbnRSRight": return EAll4Controls.RXPos;
-                case "sbnRSDown": return EAll4Controls.RYPos;
-                case "sbnL2": return EAll4Controls.L2;
-                case "sbnR2": return EAll4Controls.R2;
+                case "sbnLSRight": return GenericControls.LXPos;
+                case "sbnLSDown": return GenericControls.LYPos;
+                case "sbnRSRight": return GenericControls.RXPos;
+                case "sbnRSDown": return GenericControls.RYPos;
+                case "sbnL2": return GenericControls.LT;
+                case "sbnR2": return GenericControls.RT;
 
-                case "sbnTouchLeft": return EAll4Controls.TouchLeft;
-                case "sbnTouchMulti": return EAll4Controls.TouchMulti;
-                case "sbnTouchUpper": return EAll4Controls.TouchUpper;
-                case "sbnTouchRight": return EAll4Controls.TouchRight;
-                case "sbnGsyroXP": return EAll4Controls.GyroXPos;
-                case "sbnGyroXN": return EAll4Controls.GyroXNeg;
-                case "sbnGyroZP": return EAll4Controls.GyroZPos;
-                case "sbnGyroZN": return EAll4Controls.GyroZNeg;
+                case "sbnTouchLeft": return GenericControls.TouchLeft;
+                case "sbnTouchMulti": return GenericControls.TouchMulti;
+                case "sbnTouchUpper": return GenericControls.TouchUpper;
+                case "sbnTouchRight": return GenericControls.TouchRight;
+                case "sbnGsyroXP": return GenericControls.GyroXPos;
+                case "sbnGyroXN": return GenericControls.GyroXNeg;
+                case "sbnGyroZP": return GenericControls.GyroZPos;
+                case "sbnGyroZN": return GenericControls.GyroZNeg;
                 #endregion
 
-                case "bnShiftShare": return EAll4Controls.Share;
-                case "bnShiftL3": return EAll4Controls.L3;
-                case "bnShiftR3": return EAll4Controls.R3;
-                case "bnShiftOptions": return EAll4Controls.Options;
-                case "bnShiftUp": return EAll4Controls.DpadUp;
-                case "bnShiftRight": return EAll4Controls.DpadRight;
-                case "bnShiftDown": return EAll4Controls.DpadDown;
-                case "bnShiftLeft": return EAll4Controls.DpadLeft;
+                case "bnShiftShare": return GenericControls.Back;
+                case "bnShiftL3": return GenericControls.LS;
+                case "bnShiftR3": return GenericControls.RS;
+                case "bnShiftOptions": return GenericControls.Start;
+                case "bnShiftUp": return GenericControls.DpadUp;
+                case "bnShiftRight": return GenericControls.DpadRight;
+                case "bnShiftDown": return GenericControls.DpadDown;
+                case "bnShiftLeft": return GenericControls.DpadLeft;
 
-                case "bnShiftL1": return EAll4Controls.L1;
-                case "bnShiftR1": return EAll4Controls.R1;
-                case "bnShiftTriangle": return EAll4Controls.Triangle;
-                case "bnShiftCircle": return EAll4Controls.Circle;
-                case "bnShiftCross": return EAll4Controls.Cross;
-                case "bnShiftSquare": return EAll4Controls.Square;
+                case "bnShiftL1": return GenericControls.LB;
+                case "bnShiftR1": return GenericControls.RB;
+                case "bnShiftTriangle": return GenericControls.Y;
+                case "bnShiftCircle": return GenericControls.B;
+                case "bnShiftCross": return GenericControls.A;
+                case "bnShiftSquare": return GenericControls.X;
 
-                case "bnShiftPS": return EAll4Controls.PS;
-                case "bnShiftLSLeft": return EAll4Controls.LXNeg;
-                case "bnShiftLSUp": return EAll4Controls.LYNeg;
-                case "bnShiftRSLeft": return EAll4Controls.RXNeg;
-                case "bnShiftRSUp": return EAll4Controls.RYNeg;
+                case "bnShiftPS": return GenericControls.Guide;
+                case "bnShiftLSLeft": return GenericControls.LXNeg;
+                case "bnShiftLSUp": return GenericControls.LYNeg;
+                case "bnShiftRSLeft": return GenericControls.RXNeg;
+                case "bnShiftRSUp": return GenericControls.RYNeg;
 
-                case "bnShiftLSRight": return EAll4Controls.LXPos;
-                case "bnShiftLSDown": return EAll4Controls.LYPos;
-                case "bnShiftRSRight": return EAll4Controls.RXPos;
-                case "bnShiftRSDown": return EAll4Controls.RYPos;
-                case "bnShiftL2": return EAll4Controls.L2;
-                case "bnShiftR2": return EAll4Controls.R2;
+                case "bnShiftLSRight": return GenericControls.LXPos;
+                case "bnShiftLSDown": return GenericControls.LYPos;
+                case "bnShiftRSRight": return GenericControls.RXPos;
+                case "bnShiftRSDown": return GenericControls.RYPos;
+                case "bnShiftL2": return GenericControls.LT;
+                case "bnShiftR2": return GenericControls.RT;
 
-                case "bnShiftTouchLeft": return EAll4Controls.TouchLeft;
-                case "bnShiftTouchMulti": return EAll4Controls.TouchMulti;
-                case "bnShiftTouchUpper": return EAll4Controls.TouchUpper;
-                case "bnShiftTouchRight": return EAll4Controls.TouchRight;
-                case "bnShiftGyroXP": return EAll4Controls.GyroXPos;
-                case "bnShiftGyroXN": return EAll4Controls.GyroXNeg;
-                case "bnShiftGyroZP": return EAll4Controls.GyroZPos;
-                case "bnShiftGyroZN": return EAll4Controls.GyroZNeg;
+                case "bnShiftTouchLeft": return GenericControls.TouchLeft;
+                case "bnShiftTouchMulti": return GenericControls.TouchMulti;
+                case "bnShiftTouchUpper": return GenericControls.TouchUpper;
+                case "bnShiftTouchRight": return GenericControls.TouchRight;
+                case "bnShiftGyroXP": return GenericControls.GyroXPos;
+                case "bnShiftGyroXN": return GenericControls.GyroXNeg;
+                case "bnShiftGyroZP": return GenericControls.GyroZPos;
+                case "bnShiftGyroZN": return GenericControls.GyroZNeg;
 
-                case "bnShiftSwipeUp": return EAll4Controls.SwipeUp;
-                case "bnShiftSwipeDown": return EAll4Controls.SwipeDown;
-                case "bnShiftSwipeLeft": return EAll4Controls.SwipeLeft;
-                case "bnShiftSwipeRight": return EAll4Controls.SwipeRight;
+                case "bnShiftSwipeUp": return GenericControls.SwipeUp;
+                case "bnShiftSwipeDown": return GenericControls.SwipeDown;
+                case "bnShiftSwipeLeft": return GenericControls.SwipeLeft;
+                case "bnShiftSwipeRight": return GenericControls.SwipeRight;
             }
             return 0;
         }
@@ -1240,16 +1240,16 @@ namespace EAll4Windows
         public Boolean LoadProfile(int device, System.Windows.Forms.Control[] buttons, System.Windows.Forms.Control[] shiftbuttons, bool launchprogram, ControlService control, string propath = "")
         {
             Boolean Loaded = true;
-            Dictionary<EAll4Controls, EAll4KeyType> customMapKeyTypes = new Dictionary<EAll4Controls, EAll4KeyType>();
-            Dictionary<EAll4Controls, UInt16> customMapKeys = new Dictionary<EAll4Controls, UInt16>();
-            Dictionary<EAll4Controls, X360Controls> customMapButtons = new Dictionary<EAll4Controls, X360Controls>();
-            Dictionary<EAll4Controls, String> customMapMacros = new Dictionary<EAll4Controls, String>();
-            Dictionary<EAll4Controls, String> customMapExtras = new Dictionary<EAll4Controls, String>();
-            Dictionary<EAll4Controls, EAll4KeyType> shiftCustomMapKeyTypes = new Dictionary<EAll4Controls, EAll4KeyType>();
-            Dictionary<EAll4Controls, UInt16> shiftCustomMapKeys = new Dictionary<EAll4Controls, UInt16>();
-            Dictionary<EAll4Controls, X360Controls> shiftCustomMapButtons = new Dictionary<EAll4Controls, X360Controls>();
-            Dictionary<EAll4Controls, String> shiftCustomMapMacros = new Dictionary<EAll4Controls, String>();
-            Dictionary<EAll4Controls, String> shiftCustomMapExtras = new Dictionary<EAll4Controls, String>();
+            Dictionary<GenericControls, EAll4KeyType> customMapKeyTypes = new Dictionary<GenericControls, EAll4KeyType>();
+            Dictionary<GenericControls, UInt16> customMapKeys = new Dictionary<GenericControls, UInt16>();
+            Dictionary<GenericControls, X360Controls> customMapButtons = new Dictionary<GenericControls, X360Controls>();
+            Dictionary<GenericControls, String> customMapMacros = new Dictionary<GenericControls, String>();
+            Dictionary<GenericControls, String> customMapExtras = new Dictionary<GenericControls, String>();
+            Dictionary<GenericControls, EAll4KeyType> shiftCustomMapKeyTypes = new Dictionary<GenericControls, EAll4KeyType>();
+            Dictionary<GenericControls, UInt16> shiftCustomMapKeys = new Dictionary<GenericControls, UInt16>();
+            Dictionary<GenericControls, X360Controls> shiftCustomMapButtons = new Dictionary<GenericControls, X360Controls>();
+            Dictionary<GenericControls, String> shiftCustomMapMacros = new Dictionary<GenericControls, String>();
+            Dictionary<GenericControls, String> shiftCustomMapExtras = new Dictionary<GenericControls, String>();
             string rootname = "EAll4Windows";
             Boolean missingSetting = false;
             string profilepath;
@@ -1472,21 +1472,21 @@ namespace EAll4Windows
                     XmlNode ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Button");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
-                            customMapButtons.Add(getEAll4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
+                            customMapButtons.Add(getGenericControlsByName(item.Name), getX360ControlsByName(item.InnerText));
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Macro");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
-                            customMapMacros.Add(getEAll4ControlsByName(item.Name), item.InnerText);
+                            customMapMacros.Add(getGenericControlsByName(item.Name), item.InnerText);
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Key");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
                             if (UInt16.TryParse(item.InnerText, out wvk))
-                                customMapKeys.Add(getEAll4ControlsByName(item.Name), wvk);
+                                customMapKeys.Add(getGenericControlsByName(item.Name), wvk);
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Extras");
                     if (ParentItem != null)
                         foreach (XmlNode item in ParentItem.ChildNodes)
                             if (item.InnerText != string.Empty)
-                                customMapExtras.Add(getEAll4ControlsByName(item.Name), item.InnerText);
+                                customMapExtras.Add(getGenericControlsByName(item.Name), item.InnerText);
                             else
                                 ParentItem.RemoveChild(item);
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/KeyType");
@@ -1506,27 +1506,27 @@ namespace EAll4Windows
                                 if (item.InnerText.Contains(EAll4KeyType.Unbound.ToString()))
                                     keyType |= EAll4KeyType.Unbound;
                                 if (keyType != EAll4KeyType.None)
-                                    customMapKeyTypes.Add(getEAll4ControlsByName(item.Name), keyType);
+                                    customMapKeyTypes.Add(getGenericControlsByName(item.Name), keyType);
                             }
                     if (shiftModifier[device] > 0)
                     {
                         ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Button");
                         if (ParentItem != null)
                             foreach (XmlNode item in ParentItem.ChildNodes)
-                                shiftCustomMapButtons.Add(getEAll4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
+                                shiftCustomMapButtons.Add(getGenericControlsByName(item.Name), getX360ControlsByName(item.InnerText));
                         ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Macro");
                         if (ParentItem != null)
                             foreach (XmlNode item in ParentItem.ChildNodes)
-                                shiftCustomMapMacros.Add(getEAll4ControlsByName(item.Name), item.InnerText);
+                                shiftCustomMapMacros.Add(getGenericControlsByName(item.Name), item.InnerText);
                         ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Key");
                         if (ParentItem != null)
                             foreach (XmlNode item in ParentItem.ChildNodes)
                                 if (UInt16.TryParse(item.InnerText, out wvk))
-                                    shiftCustomMapKeys.Add(getEAll4ControlsByName(item.Name), wvk);
+                                    shiftCustomMapKeys.Add(getGenericControlsByName(item.Name), wvk);
                         ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Extras");
                         if (ParentItem != null)
                             foreach (XmlNode item in ParentItem.ChildNodes)
-                                shiftCustomMapExtras.Add(getEAll4ControlsByName(item.Name), item.InnerText);
+                                shiftCustomMapExtras.Add(getGenericControlsByName(item.Name), item.InnerText);
                         ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/KeyType");
                         if (ParentItem != null)
                             foreach (XmlNode item in ParentItem.ChildNodes)
@@ -1544,7 +1544,7 @@ namespace EAll4Windows
                                     if (item.InnerText.Contains(EAll4KeyType.Unbound.ToString()))
                                         keyType |= EAll4KeyType.Unbound;
                                     if (keyType != EAll4KeyType.None)
-                                        shiftCustomMapKeyTypes.Add(getEAll4ControlsByName(item.Name), keyType);
+                                        shiftCustomMapKeyTypes.Add(getGenericControlsByName(item.Name), keyType);
                                 }
                     }
                 }
@@ -1576,8 +1576,8 @@ namespace EAll4Windows
             return Loaded;
         }
 
-        public void LoadButtons(System.Windows.Forms.Control[] buttons, string control, Dictionary<EAll4Controls, EAll4KeyType> customMapKeyTypes,
-           Dictionary<EAll4Controls, UInt16> customMapKeys, Dictionary<EAll4Controls, X360Controls> customMapButtons, Dictionary<EAll4Controls, String> customMapMacros, Dictionary<EAll4Controls, String> customMapExtras)
+        public void LoadButtons(System.Windows.Forms.Control[] buttons, string control, Dictionary<GenericControls, EAll4KeyType> customMapKeyTypes,
+           Dictionary<GenericControls, UInt16> customMapKeys, Dictionary<GenericControls, X360Controls> customMapButtons, Dictionary<GenericControls, String> customMapMacros, Dictionary<GenericControls, String> customMapExtras)
         {
             XmlNode Item;
             EAll4KeyType keyType;
@@ -1619,7 +1619,7 @@ namespace EAll4Windows
                                 keyType |= EAll4KeyType.Macro;
                         }
                         if (keyType != EAll4KeyType.None)
-                            customMapKeyTypes.Add(getEAll4ControlsByName(Item.Name), keyType);
+                            customMapKeyTypes.Add(getGenericControlsByName(Item.Name), keyType);
                     }
                     string extras;
                     Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Extras/{0}", button.Name));
@@ -1628,7 +1628,7 @@ namespace EAll4Windows
                         if (Item.InnerText != string.Empty)
                         {
                             extras = Item.InnerText;
-                            customMapExtras.Add(getEAll4ControlsByName(button.Name), Item.InnerText);
+                            customMapExtras.Add(getGenericControlsByName(button.Name), Item.InnerText);
                         }
                         else
                         {
@@ -1656,7 +1656,7 @@ namespace EAll4Windows
                         }
                         button.Text = "Macro";
                         button.Tag = new KeyValuePair<int[], string>(keys, extras);
-                        customMapMacros.Add(getEAll4ControlsByName(button.Name), Item.InnerText);
+                        customMapMacros.Add(getGenericControlsByName(button.Name), Item.InnerText);
                     }
                     else if (m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Key/{0}", button.Name)) != null)
                     {
@@ -1664,7 +1664,7 @@ namespace EAll4Windows
                         if (UInt16.TryParse(Item.InnerText, out wvk))
                         {
                             //foundBinding = true;
-                            customMapKeys.Add(getEAll4ControlsByName(Item.Name), wvk);
+                            customMapKeys.Add(getGenericControlsByName(Item.Name), wvk);
                             button.Tag = new KeyValuePair<int, string>(wvk, extras);
                             button.Text = ((System.Windows.Forms.Keys)wvk).ToString();
                         }
@@ -1675,7 +1675,7 @@ namespace EAll4Windows
                         //foundBinding = true;
                         button.Tag = new KeyValuePair<string, string>(Item.InnerText, extras);
                         button.Text = Item.InnerText;
-                        customMapButtons.Add(getEAll4ControlsByName(button.Name), getX360ControlsByName(Item.InnerText));
+                        customMapButtons.Add(getGenericControlsByName(button.Name), getX360ControlsByName(Item.InnerText));
                     }
                     else
                     {
@@ -1899,7 +1899,7 @@ namespace EAll4Windows
             bool saved = true;
             if (!File.Exists(Global.appdatapath + "\\Actions.xml"))
             {
-                SaveAction("Disconnect Controller", "PS/Options", 5, "0", false);
+                SaveAction("Disconnect Controller", "Guide/Start", 5, "0", false);
                 saved = false;
             }
             try
@@ -1985,12 +1985,12 @@ namespace EAll4Windows
     public class SpecialAction
     {
         public string name;
-        public List<EAll4Controls> trigger = new List<EAll4Controls>();
+        public List<GenericControls> trigger = new List<GenericControls>();
         public string type;
         public string controls;
         public List<int> macro = new List<int>();
         public string details;
-        public List<EAll4Controls> uTrigger = new List<EAll4Controls>();
+        public List<GenericControls> uTrigger = new List<GenericControls>();
         public string ucontrols;
         public double delayTime = 0;
         public string extra;
@@ -2004,7 +2004,7 @@ namespace EAll4Windows
             delayTime = delay;
             string[] ctrls = controls.Split('/');
             foreach (string s in ctrls)
-                trigger.Add(getEAll4ControlsByName(s));
+                trigger.Add(getGenericControlsByName(s));
             if (type == "Macro")
             {
                 string[] macs = details.Split('/');
@@ -2027,7 +2027,7 @@ namespace EAll4Windows
                     this.ucontrols = exts[1];
                     string[] uctrls = exts[1].Split('/');
                     foreach (string s in uctrls)
-                        uTrigger.Add(getEAll4ControlsByName(s));
+                        uTrigger.Add(getGenericControlsByName(s));
                 }
                 if (details.Contains("Scan Code"))
                     keyType |= EAll4KeyType.ScanCode;
@@ -2046,57 +2046,57 @@ namespace EAll4Windows
                 this.ucontrols = extras;
                 string[] uctrls = extras.Split('/');
                 foreach (string s in uctrls)
-                    uTrigger.Add(getEAll4ControlsByName(s));
+                    uTrigger.Add(getGenericControlsByName(s));
             }
         }
 
-        private EAll4Controls getEAll4ControlsByName(string key)
+        private GenericControls getGenericControlsByName(string key)
         {
             switch (key)
             {
-                case "Share": return EAll4Controls.Share;
-                case "L3": return EAll4Controls.L3;
-                case "R3": return EAll4Controls.R3;
-                case "Options": return EAll4Controls.Options;
-                case "Up": return EAll4Controls.DpadUp;
-                case "Right": return EAll4Controls.DpadRight;
-                case "Down": return EAll4Controls.DpadDown;
-                case "Left": return EAll4Controls.DpadLeft;
+                case "Back": return GenericControls.Back;
+                case "LS": return GenericControls.LS;
+                case "RS": return GenericControls.RS;
+                case "Start": return GenericControls.Start;
+                case "Up": return GenericControls.DpadUp;
+                case "Right": return GenericControls.DpadRight;
+                case "Down": return GenericControls.DpadDown;
+                case "Left": return GenericControls.DpadLeft;
 
-                case "L1": return EAll4Controls.L1;
-                case "R1": return EAll4Controls.R1;
-                case "Triangle": return EAll4Controls.Triangle;
-                case "Circle": return EAll4Controls.Circle;
-                case "Cross": return EAll4Controls.Cross;
-                case "Square": return EAll4Controls.Square;
+                case "LB": return GenericControls.LB;
+                case "RB": return GenericControls.RB;
+                case "Y": return GenericControls.Y;
+                case "B": return GenericControls.B;
+                case "A": return GenericControls.A;
+                case "X": return GenericControls.X;
 
-                case "PS": return EAll4Controls.PS;
-                case "Left Stick Left": return EAll4Controls.LXNeg;
-                case "Left Stick Up": return EAll4Controls.LYNeg;
-                case "Right Stick Left": return EAll4Controls.RXNeg;
-                case "Right Stick Up": return EAll4Controls.RYNeg;
+                case "Guide": return GenericControls.Guide;
+                case "Left Stick Left": return GenericControls.LXNeg;
+                case "Left Stick Up": return GenericControls.LYNeg;
+                case "Right Stick Left": return GenericControls.RXNeg;
+                case "Right Stick Up": return GenericControls.RYNeg;
 
-                case "Left Stick Right": return EAll4Controls.LXPos;
-                case "Left Stick Down": return EAll4Controls.LYPos;
-                case "Right Stick Right": return EAll4Controls.RXPos;
-                case "Right Stick Down": return EAll4Controls.RYPos;
-                case "L2": return EAll4Controls.L2;
-                case "R2": return EAll4Controls.R2;
+                case "Left Stick Right": return GenericControls.LXPos;
+                case "Left Stick Down": return GenericControls.LYPos;
+                case "Right Stick Right": return GenericControls.RXPos;
+                case "Right Stick Down": return GenericControls.RYPos;
+                case "LT": return GenericControls.LT;
+                case "RT": return GenericControls.RT;
 
-                case "Left Touch": return EAll4Controls.TouchLeft;
-                case "Multitouch": return EAll4Controls.TouchMulti;
-                case "Upper Touch": return EAll4Controls.TouchUpper;
-                case "Right Touch": return EAll4Controls.TouchRight;
+                case "Left Touch": return GenericControls.TouchLeft;
+                case "Multitouch": return GenericControls.TouchMulti;
+                case "Upper Touch": return GenericControls.TouchUpper;
+                case "Right Touch": return GenericControls.TouchRight;
 
-                case "Swipe Up": return EAll4Controls.SwipeUp;
-                case "Swipe Down": return EAll4Controls.SwipeDown;
-                case "Swipe Left": return EAll4Controls.SwipeLeft;
-                case "Swipe Right": return EAll4Controls.SwipeRight;
+                case "Swipe Up": return GenericControls.SwipeUp;
+                case "Swipe Down": return GenericControls.SwipeDown;
+                case "Swipe Left": return GenericControls.SwipeLeft;
+                case "Swipe Right": return GenericControls.SwipeRight;
 
-                case "Tilt Up": return EAll4Controls.GyroZNeg;
-                case "Tilt Down": return EAll4Controls.GyroZPos;
-                case "Tilt Left": return EAll4Controls.GyroXPos;
-                case "Tilt Right": return EAll4Controls.GyroXNeg;
+                case "Tilt Up": return GenericControls.GyroZNeg;
+                case "Tilt Down": return GenericControls.GyroZPos;
+                case "Tilt Left": return GenericControls.GyroXPos;
+                case "Tilt Right": return GenericControls.GyroXNeg;
             }
             return 0;
         }

@@ -482,7 +482,7 @@
     <value>Touchpad Bewegung ist jetzt An</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Drücke PS+Touchpad zum Reaktivieren</value>
+    <value>Drücke Guide+Touchpad zum Reaktivieren</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
     <value>Wischgeste mit 2 Fingern nach Links oder Rechts</value>

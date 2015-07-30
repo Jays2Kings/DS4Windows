@@ -143,13 +143,13 @@
     <value>497, 505</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Cacher manette EAll4: Cacher les entrées de base (Dinput) de la EAll4 de la vérification des autres programmes si vous observez des entrées doubles en plein jeu ou si R2 met le jeu en pause
+    <value>Cacher manette EAll4: Cacher les entrées de base (Dinput) de la EAll4 de la vérification des autres programmes si vous observez des entrées doubles en plein jeu ou si RT met le jeu en pause
 Cliquez sur le côté gauche du pavé tactile: Left Touch
 Cliquez sur le côté droit du pavé tactile: Right Touch
 Cliquez sur le pavé tactile avec 2 doigts: Multitouch
 Cliquez sur la partie supérieure du pavé tactile: Upper Touch
-PS + Options ou maintenir PS pendant 10 secondes: Déconnecter la manette (Bluetooth seulement)
-Pavé tactile + PS: Désactiver les glissements sur le pavé tactile (le clique fonctionne toujours)
+Guide + Start ou maintenir Guide pendant 10 secondes: Déconnecter la manette (Bluetooth seulement)
+Pavé tactile + Guide: Désactiver les glissements sur le pavé tactile (le clique fonctionne toujours)
 Clic sur la partie inférieure et droite du pavé tactile*: Clic droit (conseillé d'utiliser quand le côté droit est utilisé comme bouton de souris)
 Deux doigts haut/bas sur la pavé tactile*: Défiler vers le Haut/Bas
 Appuyer puis maintenir le pavé tactile*: Glisser du clic gauche de la souris

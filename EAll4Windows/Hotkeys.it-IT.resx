@@ -140,7 +140,7 @@
     <value>532, 476</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Nascondi Controller EAll4: "Nasconde l'input regolare del EAll4 (Dinput) da altri programmi spunta se stai avendo input doppio nei giochi o R2 pausa i giochi."
+    <value>Nascondi Controller EAll4: "Nasconde l'input regolare del EAll4 (Dinput) da altri programmi spunta se stai avendo input doppio nei giochi o RT pausa i giochi."
 
 Clicca parte sinistra del touchpad: Tocco Sinistro
 
@@ -150,9 +150,9 @@ Clicca sul touchpad con 2 dita: Tocco Multiplo
 
 Clicca parte superiore del touchpad: Tocco Superiore
 
-PS + Options oppure tieni premuto PS per 10 secondi: Disconnetti Controller (Solo su Bluetooth)
+Guide + Start oppure tieni premuto Guide per 10 secondi: Disconnetti Controller (Solo su Bluetooth)
 
-Tocca Touchpad + PS: Disattiva movimento touchpad (cliccare funziona ancora)
+Tocca Touchpad + Guide: Disattiva movimento touchpad (cliccare funziona ancora)
 
 Click inferiore destro sul Pad*: Click Destro (Meglio usato quando la parte destra è usata come bottone mouse)
 

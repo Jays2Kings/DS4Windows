@@ -308,43 +308,43 @@ namespace EAll4Windows
             }
         }
 
-        public static int EAll4ControltoInt(EAll4Controls ctrl)
+        public static int EAll4ControltoInt(GenericControls ctrl)
         {
             switch (ctrl)
             {
-                case EAll4Controls.Share: return 1;
-                case EAll4Controls.Options: return 2;
-                case EAll4Controls.L1: return 3;
-                case EAll4Controls.R1: return 4;
-                case EAll4Controls.L3: return 5;
-                case EAll4Controls.R3: return 6;
-                case EAll4Controls.DpadUp: return 7;
-                case EAll4Controls.DpadDown: return 8;
-                case EAll4Controls.DpadLeft: return 9;
-                case EAll4Controls.DpadRight: return 10;
-                case EAll4Controls.PS: return 11;
-                case EAll4Controls.Cross: return 12;
-                case EAll4Controls.Square: return 13;
-                case EAll4Controls.Triangle: return 14;
-                case EAll4Controls.Circle: return 15;
-                case EAll4Controls.LXNeg: return 16;
-                case EAll4Controls.LYNeg: return 17;
-                case EAll4Controls.RXNeg: return 18;
-                case EAll4Controls.RYNeg: return 19;
-                case EAll4Controls.LXPos: return 20;
-                case EAll4Controls.LYPos: return 21;
-                case EAll4Controls.RXPos: return 22;
-                case EAll4Controls.RYPos: return 23;
-                case EAll4Controls.L2: return 24;
-                case EAll4Controls.R2: return 25;
-                case EAll4Controls.TouchMulti: return 26;
-                case EAll4Controls.TouchLeft: return 27;
-                case EAll4Controls.TouchRight: return 28;
-                case EAll4Controls.TouchUpper: return 29;
-                case EAll4Controls.GyroXNeg: return 30;
-                case EAll4Controls.GyroXPos: return 31;
-                case EAll4Controls.GyroZNeg: return 32;
-                case EAll4Controls.GyroZPos: return 33;
+                case GenericControls.Back: return 1;
+                case GenericControls.Start: return 2;
+                case GenericControls.LB: return 3;
+                case GenericControls.RB: return 4;
+                case GenericControls.LS: return 5;
+                case GenericControls.RS: return 6;
+                case GenericControls.DpadUp: return 7;
+                case GenericControls.DpadDown: return 8;
+                case GenericControls.DpadLeft: return 9;
+                case GenericControls.DpadRight: return 10;
+                case GenericControls.Guide: return 11;
+                case GenericControls.A: return 12;
+                case GenericControls.X: return 13;
+                case GenericControls.Y: return 14;
+                case GenericControls.B: return 15;
+                case GenericControls.LXNeg: return 16;
+                case GenericControls.LYNeg: return 17;
+                case GenericControls.RXNeg: return 18;
+                case GenericControls.RYNeg: return 19;
+                case GenericControls.LXPos: return 20;
+                case GenericControls.LYPos: return 21;
+                case GenericControls.RXPos: return 22;
+                case GenericControls.RYPos: return 23;
+                case GenericControls.LT: return 24;
+                case GenericControls.RT: return 25;
+                case GenericControls.TouchMulti: return 26;
+                case GenericControls.TouchLeft: return 27;
+                case GenericControls.TouchRight: return 28;
+                case GenericControls.TouchUpper: return 29;
+                case GenericControls.GyroXNeg: return 30;
+                case GenericControls.GyroXPos: return 31;
+                case GenericControls.GyroZNeg: return 32;
+                case GenericControls.GyroZPos: return 33;
             }
             return 0;
         }
@@ -478,38 +478,38 @@ namespace EAll4Windows
             if (ctrl.EAll4Controllers[device] == null) return;
             switch (Global.ShiftModifier[device])
             {
-                case 1: shift = getBoolMapping(EAll4Controls.Cross, cState, eState, tp); break;
-                case 2: shift = getBoolMapping(EAll4Controls.Circle, cState, eState, tp); break;
-                case 3: shift = getBoolMapping(EAll4Controls.Square, cState, eState, tp); break;
-                case 4: shift = getBoolMapping(EAll4Controls.Triangle, cState, eState, tp); break;
-                case 5: shift = getBoolMapping(EAll4Controls.Options, cState, eState, tp); break;
-                case 6: shift = getBoolMapping(EAll4Controls.Share, cState, eState, tp); break;
-                case 7: shift = getBoolMapping(EAll4Controls.DpadUp, cState, eState, tp); break;
-                case 8: shift = getBoolMapping(EAll4Controls.DpadDown, cState, eState, tp); break;
-                case 9: shift = getBoolMapping(EAll4Controls.DpadLeft, cState, eState, tp); break;
-                case 10: shift = getBoolMapping(EAll4Controls.DpadRight, cState, eState, tp); break;
-                case 11: shift = getBoolMapping(EAll4Controls.PS, cState, eState, tp); break;
-                case 12: shift = getBoolMapping(EAll4Controls.L1, cState, eState, tp); break;
-                case 13: shift = getBoolMapping(EAll4Controls.R1, cState, eState, tp); break;
-                case 14: shift = getBoolMapping(EAll4Controls.L2, cState, eState, tp); break;
-                case 15: shift = getBoolMapping(EAll4Controls.R2, cState, eState, tp); break;
-                case 16: shift = getBoolMapping(EAll4Controls.L3, cState, eState, tp); break;
-                case 17: shift = getBoolMapping(EAll4Controls.R3, cState, eState, tp); break;
-                case 18: shift = getBoolMapping(EAll4Controls.TouchLeft, cState, eState, tp); break;
-                case 19: shift = getBoolMapping(EAll4Controls.TouchUpper, cState, eState, tp); break;
-                case 20: shift = getBoolMapping(EAll4Controls.TouchMulti, cState, eState, tp); break;
-                case 21: shift = getBoolMapping(EAll4Controls.TouchRight, cState, eState, tp); break;
-                case 22: shift = getBoolMapping(EAll4Controls.GyroZNeg, cState, eState, tp); break;
-                case 23: shift = getBoolMapping(EAll4Controls.GyroZPos, cState, eState, tp); break;
-                case 24: shift = getBoolMapping(EAll4Controls.GyroXPos, cState, eState, tp); break;
-                case 25: shift = getBoolMapping(EAll4Controls.GyroXNeg, cState, eState, tp); break;
+                case 1: shift = getBoolMapping(GenericControls.A, cState, eState, tp); break;
+                case 2: shift = getBoolMapping(GenericControls.B, cState, eState, tp); break;
+                case 3: shift = getBoolMapping(GenericControls.X, cState, eState, tp); break;
+                case 4: shift = getBoolMapping(GenericControls.Y, cState, eState, tp); break;
+                case 5: shift = getBoolMapping(GenericControls.Start, cState, eState, tp); break;
+                case 6: shift = getBoolMapping(GenericControls.Back, cState, eState, tp); break;
+                case 7: shift = getBoolMapping(GenericControls.DpadUp, cState, eState, tp); break;
+                case 8: shift = getBoolMapping(GenericControls.DpadDown, cState, eState, tp); break;
+                case 9: shift = getBoolMapping(GenericControls.DpadLeft, cState, eState, tp); break;
+                case 10: shift = getBoolMapping(GenericControls.DpadRight, cState, eState, tp); break;
+                case 11: shift = getBoolMapping(GenericControls.Guide, cState, eState, tp); break;
+                case 12: shift = getBoolMapping(GenericControls.LB, cState, eState, tp); break;
+                case 13: shift = getBoolMapping(GenericControls.RB, cState, eState, tp); break;
+                case 14: shift = getBoolMapping(GenericControls.LT, cState, eState, tp); break;
+                case 15: shift = getBoolMapping(GenericControls.RT, cState, eState, tp); break;
+                case 16: shift = getBoolMapping(GenericControls.LS, cState, eState, tp); break;
+                case 17: shift = getBoolMapping(GenericControls.RS, cState, eState, tp); break;
+                case 18: shift = getBoolMapping(GenericControls.TouchLeft, cState, eState, tp); break;
+                case 19: shift = getBoolMapping(GenericControls.TouchUpper, cState, eState, tp); break;
+                case 20: shift = getBoolMapping(GenericControls.TouchMulti, cState, eState, tp); break;
+                case 21: shift = getBoolMapping(GenericControls.TouchRight, cState, eState, tp); break;
+                case 22: shift = getBoolMapping(GenericControls.GyroZNeg, cState, eState, tp); break;
+                case 23: shift = getBoolMapping(GenericControls.GyroZPos, cState, eState, tp); break;
+                case 24: shift = getBoolMapping(GenericControls.GyroXPos, cState, eState, tp); break;
+                case 25: shift = getBoolMapping(GenericControls.GyroXNeg, cState, eState, tp); break;
                 case 26: shift = cState.Touch1; break;
                 default: shift = false; break;
             }
             cState.CopyTo(MappedState);
             if (shift)
                 MapShiftCustom(device, cState, MappedState, eState, tp);
-            foreach (KeyValuePair<EAll4Controls, string> customKey in Global.getCustomMacros(device))
+            foreach (KeyValuePair<GenericControls, string> customKey in Global.getCustomMacros(device))
             {
                 if (shift == false ||
                     (Global.getShiftCustomMacro(device, customKey.Key) == "0" &&
@@ -528,7 +528,7 @@ namespace EAll4Windows
                     }
                 }
             }
-            foreach (KeyValuePair<EAll4Controls, ushort> customKey in Global.getCustomKeys(device))
+            foreach (KeyValuePair<GenericControls, ushort> customKey in Global.getCustomKeys(device))
             {
                 if (shift == false ||
                     (Global.getShiftCustomMacro(device, customKey.Key) == "0" &&
@@ -562,34 +562,34 @@ namespace EAll4Windows
                 }
             }
 
-            //Dictionary<EAll4Controls, X360Controls> customButtons = Global.getCustomButtons(device);
-            //foreach (KeyValuePair<EAll4Controls, X360Controls> customButton in customButtons)
-            List<EAll4Controls> Cross = new List<EAll4Controls>();
-            List<EAll4Controls> Circle = new List<EAll4Controls>();
-            List<EAll4Controls> Square = new List<EAll4Controls>();
-            List<EAll4Controls> Triangle = new List<EAll4Controls>();
-            List<EAll4Controls> Options = new List<EAll4Controls>();
-            List<EAll4Controls> Share = new List<EAll4Controls>();
-            List<EAll4Controls> DpadUp = new List<EAll4Controls>();
-            List<EAll4Controls> DpadDown = new List<EAll4Controls>();
-            List<EAll4Controls> DpadLeft = new List<EAll4Controls>();
-            List<EAll4Controls> DpadRight = new List<EAll4Controls>();
-            List<EAll4Controls> PS = new List<EAll4Controls>();
-            List<EAll4Controls> L1 = new List<EAll4Controls>();
-            List<EAll4Controls> R1 = new List<EAll4Controls>();
-            List<EAll4Controls> L2 = new List<EAll4Controls>();
-            List<EAll4Controls> R2 = new List<EAll4Controls>();
-            List<EAll4Controls> L3 = new List<EAll4Controls>();
-            List<EAll4Controls> R3 = new List<EAll4Controls>();
-            List<EAll4Controls> LXN = new List<EAll4Controls>();
-            List<EAll4Controls> LXP = new List<EAll4Controls>();
-            List<EAll4Controls> LYN = new List<EAll4Controls>();
-            List<EAll4Controls> LYP = new List<EAll4Controls>();
-            List<EAll4Controls> RXN = new List<EAll4Controls>();
-            List<EAll4Controls> RXP = new List<EAll4Controls>();
-            List<EAll4Controls> RYN = new List<EAll4Controls>();
-            List<EAll4Controls> RYP = new List<EAll4Controls>();
-            foreach (KeyValuePair<EAll4Controls, X360Controls> customButton in Global.getCustomButtons(device))
+            //Dictionary<GenericControls, X360Controls> customButtons = Global.getCustomButtons(device);
+            //foreach (KeyValuePair<GenericControls, X360Controls> customButton in customButtons)
+            List<GenericControls> Cross = new List<GenericControls>();
+            List<GenericControls> Circle = new List<GenericControls>();
+            List<GenericControls> Square = new List<GenericControls>();
+            List<GenericControls> Triangle = new List<GenericControls>();
+            List<GenericControls> Options = new List<GenericControls>();
+            List<GenericControls> Share = new List<GenericControls>();
+            List<GenericControls> DpadUp = new List<GenericControls>();
+            List<GenericControls> DpadDown = new List<GenericControls>();
+            List<GenericControls> DpadLeft = new List<GenericControls>();
+            List<GenericControls> DpadRight = new List<GenericControls>();
+            List<GenericControls> PS = new List<GenericControls>();
+            List<GenericControls> L1 = new List<GenericControls>();
+            List<GenericControls> R1 = new List<GenericControls>();
+            List<GenericControls> L2 = new List<GenericControls>();
+            List<GenericControls> R2 = new List<GenericControls>();
+            List<GenericControls> L3 = new List<GenericControls>();
+            List<GenericControls> R3 = new List<GenericControls>();
+            List<GenericControls> LXN = new List<GenericControls>();
+            List<GenericControls> LXP = new List<GenericControls>();
+            List<GenericControls> LYN = new List<GenericControls>();
+            List<GenericControls> LYP = new List<GenericControls>();
+            List<GenericControls> RXN = new List<GenericControls>();
+            List<GenericControls> RXP = new List<GenericControls>();
+            List<GenericControls> RYN = new List<GenericControls>();
+            List<GenericControls> RYP = new List<GenericControls>();
+            foreach (KeyValuePair<GenericControls, X360Controls> customButton in Global.getCustomButtons(device))
             {
                 if (shift == false ||
                     (Global.getShiftCustomMacro(device, customButton.Key) == "0" &&
@@ -628,8 +628,8 @@ namespace EAll4Windows
                                     customButton.Key.ToString().Contains("RX") ||
                                     customButton.Key.ToString().Contains("LY") ||
                                     customButton.Key.ToString().Contains("LY") ||
-                                    customButton.Key.ToString().Contains("R2") ||
-                                    customButton.Key.ToString().Contains("L2") ||
+                                    customButton.Key.ToString().Contains("RT") ||
+                                    customButton.Key.ToString().Contains("LT") ||
                                     customButton.Key.ToString().Contains("Gyro");
                     switch (customButton.Value)
                     {
@@ -748,81 +748,81 @@ namespace EAll4Windows
             if (macroControl[22]) MappedState.RX = 0;
             if (macroControl[23]) MappedState.RY = 255;
             if (macroControl[24]) MappedState.RY = 0;
-            foreach (EAll4Controls dc in Cross)
+            foreach (GenericControls dc in Cross)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.A = true;
-            foreach (EAll4Controls dc in Circle)
+            foreach (GenericControls dc in Circle)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.B = true;
-            foreach (EAll4Controls dc in Square)
+            foreach (GenericControls dc in Square)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.X = true;
-            foreach (EAll4Controls dc in Triangle)
+            foreach (GenericControls dc in Triangle)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Y = true;
-            foreach (EAll4Controls dc in L1)
+            foreach (GenericControls dc in L1)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.LB = true;
-            foreach (EAll4Controls dc in L2)
+            foreach (GenericControls dc in L2)
                 if (getByteMapping(device, dc, cState, eState, tp) > 5)
                     MappedState.LT = getByteMapping(device, dc, cState, eState, tp);
-            foreach (EAll4Controls dc in L3)
+            foreach (GenericControls dc in L3)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.LS = true;
-            foreach (EAll4Controls dc in R1)
+            foreach (GenericControls dc in R1)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.RB = true;
-            foreach (EAll4Controls dc in R2)
+            foreach (GenericControls dc in R2)
                 if (getByteMapping(device, dc, cState, eState, tp) > 5)
                     MappedState.RT = getByteMapping(device, dc, cState, eState, tp);
-            foreach (EAll4Controls dc in R3)
+            foreach (GenericControls dc in R3)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.RS = true;
-            foreach (EAll4Controls dc in DpadUp)
+            foreach (GenericControls dc in DpadUp)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.DpadUp = true;
-            foreach (EAll4Controls dc in DpadRight)
+            foreach (GenericControls dc in DpadRight)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.DpadRight = true;
-            foreach (EAll4Controls dc in DpadLeft)
+            foreach (GenericControls dc in DpadLeft)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.DpadLeft = true;
-            foreach (EAll4Controls dc in DpadDown)
+            foreach (GenericControls dc in DpadDown)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.DpadDown = true;
-            foreach (EAll4Controls dc in Options)
+            foreach (GenericControls dc in Options)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Start = true;
-            foreach (EAll4Controls dc in Share)
+            foreach (GenericControls dc in Share)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Back = true;
-            foreach (EAll4Controls dc in PS)
+            foreach (GenericControls dc in PS)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Guide = true;
 
-            if (Global.getCustomButton(device, EAll4Controls.LXNeg) == X360Controls.None)
-                LXN.Add(EAll4Controls.LXNeg);
-            if (Global.getCustomButton(device, EAll4Controls.LXPos) == X360Controls.None)
-                LXP.Add(EAll4Controls.LXPos);
-            if (Global.getCustomButton(device, EAll4Controls.LYNeg) == X360Controls.None)
-                LYN.Add(EAll4Controls.LYNeg);
-            if (Global.getCustomButton(device, EAll4Controls.LYPos) == X360Controls.None)
-                LYP.Add(EAll4Controls.LYPos);
-            if (Global.getCustomButton(device, EAll4Controls.RXNeg) == X360Controls.None)
-                RXN.Add(EAll4Controls.RXNeg);
-            if (Global.getCustomButton(device, EAll4Controls.RXPos) == X360Controls.None)
-                RXP.Add(EAll4Controls.RXPos);
-            if (Global.getCustomButton(device, EAll4Controls.RYNeg) == X360Controls.None)
-                RYN.Add(EAll4Controls.RYNeg);
-            if (Global.getCustomButton(device, EAll4Controls.RYPos) == X360Controls.None)
-                RYP.Add(EAll4Controls.RYPos);
+            if (Global.getCustomButton(device, GenericControls.LXNeg) == X360Controls.None)
+                LXN.Add(GenericControls.LXNeg);
+            if (Global.getCustomButton(device, GenericControls.LXPos) == X360Controls.None)
+                LXP.Add(GenericControls.LXPos);
+            if (Global.getCustomButton(device, GenericControls.LYNeg) == X360Controls.None)
+                LYN.Add(GenericControls.LYNeg);
+            if (Global.getCustomButton(device, GenericControls.LYPos) == X360Controls.None)
+                LYP.Add(GenericControls.LYPos);
+            if (Global.getCustomButton(device, GenericControls.RXNeg) == X360Controls.None)
+                RXN.Add(GenericControls.RXNeg);
+            if (Global.getCustomButton(device, GenericControls.RXPos) == X360Controls.None)
+                RXP.Add(GenericControls.RXPos);
+            if (Global.getCustomButton(device, GenericControls.RYNeg) == X360Controls.None)
+                RYN.Add(GenericControls.RYNeg);
+            if (Global.getCustomButton(device, GenericControls.RYPos) == X360Controls.None)
+                RYP.Add(GenericControls.RYPos);
             if ((shift && MappedState.LX == 127) || !shift)
                 if (LXN.Count > 0 || LXP.Count > 0)
                 {
-                    foreach (EAll4Controls dc in LXP)
+                    foreach (GenericControls dc in LXP)
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                             MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                    foreach (EAll4Controls dc in LXN)
+                    foreach (GenericControls dc in LXN)
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
                             MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp);
                 }
@@ -831,10 +831,10 @@ namespace EAll4Windows
             if ((shift && MappedState.LY == 127) || !shift)
                 if (LYN.Count > 0 || LYP.Count > 0)
                 {
-                    foreach (EAll4Controls dc in LYN)
+                    foreach (GenericControls dc in LYN)
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
                             MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp);
-                    foreach (EAll4Controls dc in LYP)
+                    foreach (GenericControls dc in LYP)
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                             MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp, true);
                 }
@@ -843,10 +843,10 @@ namespace EAll4Windows
             if ((shift && MappedState.RX == 127) || !shift)
                 if (RXN.Count > 0 || RXP.Count > 0)
                 {
-                    foreach (EAll4Controls dc in RXN)
+                    foreach (GenericControls dc in RXN)
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
                             MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp);
-                    foreach (EAll4Controls dc in RXP)
+                    foreach (GenericControls dc in RXP)
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                             MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp, true);
                 }
@@ -855,10 +855,10 @@ namespace EAll4Windows
             if ((shift && MappedState.RY == 127) || !shift)
                 if (RYN.Count > 0 || RYP.Count > 0)
                 {
-                    foreach (EAll4Controls dc in RYN)
+                    foreach (GenericControls dc in RYN)
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
                             MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp);
-                    foreach (EAll4Controls dc in RYP)
+                    foreach (GenericControls dc in RYP)
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                             MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp, true);
                 }
@@ -871,7 +871,7 @@ namespace EAll4Windows
         {
             //cState.CopyTo(MappedState);
             SyntheticState deviceState = Mapping.deviceState[device];
-            foreach (KeyValuePair<EAll4Controls, string> customKey in Global.getShiftCustomMacros(device)) //with delays
+            foreach (KeyValuePair<GenericControls, string> customKey in Global.getShiftCustomMacros(device)) //with delays
             {
                 EAll4KeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
                 if (getBoolMapping(customKey.Key, cState, eState, tp))
@@ -884,7 +884,7 @@ namespace EAll4Windows
                     EndMacro(device, macroControl, customKey.Value, customKey.Key);
                 }
             }
-            foreach (KeyValuePair<EAll4Controls, ushort> customKey in Global.getShiftCustomKeys(device))
+            foreach (KeyValuePair<GenericControls, ushort> customKey in Global.getShiftCustomKeys(device))
             {
                 EAll4KeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
                 if (getBoolMapping(customKey.Key, cState, eState, tp))
@@ -919,36 +919,36 @@ namespace EAll4Windows
             int MouseDeltaX = 0;
             int MouseDeltaY = 0;
 
-            Dictionary<EAll4Controls, X360Controls> customButtons = Global.getShiftCustomButtons(device);
-            //foreach (KeyValuePair<EAll4Controls, X360Controls> customButton in customButtons)
+            Dictionary<GenericControls, X360Controls> customButtons = Global.getShiftCustomButtons(device);
+            //foreach (KeyValuePair<GenericControls, X360Controls> customButton in customButtons)
             // resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
 
-            List<EAll4Controls> Cross = new List<EAll4Controls>();
-            List<EAll4Controls> Circle = new List<EAll4Controls>();
-            List<EAll4Controls> Square = new List<EAll4Controls>();
-            List<EAll4Controls> Triangle = new List<EAll4Controls>();
-            List<EAll4Controls> Options = new List<EAll4Controls>();
-            List<EAll4Controls> Share = new List<EAll4Controls>();
-            List<EAll4Controls> DpadUp = new List<EAll4Controls>();
-            List<EAll4Controls> DpadDown = new List<EAll4Controls>();
-            List<EAll4Controls> DpadLeft = new List<EAll4Controls>();
-            List<EAll4Controls> DpadRight = new List<EAll4Controls>();
-            List<EAll4Controls> PS = new List<EAll4Controls>();
-            List<EAll4Controls> L1 = new List<EAll4Controls>();
-            List<EAll4Controls> R1 = new List<EAll4Controls>();
-            List<EAll4Controls> L2 = new List<EAll4Controls>();
-            List<EAll4Controls> R2 = new List<EAll4Controls>();
-            List<EAll4Controls> L3 = new List<EAll4Controls>();
-            List<EAll4Controls> R3 = new List<EAll4Controls>();
-            List<EAll4Controls> LXN = new List<EAll4Controls>();
-            List<EAll4Controls> LXP = new List<EAll4Controls>();
-            List<EAll4Controls> LYN = new List<EAll4Controls>();
-            List<EAll4Controls> LYP = new List<EAll4Controls>();
-            List<EAll4Controls> RXN = new List<EAll4Controls>();
-            List<EAll4Controls> RXP = new List<EAll4Controls>();
-            List<EAll4Controls> RYN = new List<EAll4Controls>();
-            List<EAll4Controls> RYP = new List<EAll4Controls>();
-            foreach (KeyValuePair<EAll4Controls, X360Controls> customButton in customButtons)
+            List<GenericControls> Cross = new List<GenericControls>();
+            List<GenericControls> Circle = new List<GenericControls>();
+            List<GenericControls> Square = new List<GenericControls>();
+            List<GenericControls> Triangle = new List<GenericControls>();
+            List<GenericControls> Options = new List<GenericControls>();
+            List<GenericControls> Share = new List<GenericControls>();
+            List<GenericControls> DpadUp = new List<GenericControls>();
+            List<GenericControls> DpadDown = new List<GenericControls>();
+            List<GenericControls> DpadLeft = new List<GenericControls>();
+            List<GenericControls> DpadRight = new List<GenericControls>();
+            List<GenericControls> PS = new List<GenericControls>();
+            List<GenericControls> L1 = new List<GenericControls>();
+            List<GenericControls> R1 = new List<GenericControls>();
+            List<GenericControls> L2 = new List<GenericControls>();
+            List<GenericControls> R2 = new List<GenericControls>();
+            List<GenericControls> L3 = new List<GenericControls>();
+            List<GenericControls> R3 = new List<GenericControls>();
+            List<GenericControls> LXN = new List<GenericControls>();
+            List<GenericControls> LXP = new List<GenericControls>();
+            List<GenericControls> LYN = new List<GenericControls>();
+            List<GenericControls> LYP = new List<GenericControls>();
+            List<GenericControls> RXN = new List<GenericControls>();
+            List<GenericControls> RXP = new List<GenericControls>();
+            List<GenericControls> RYN = new List<GenericControls>();
+            List<GenericControls> RYP = new List<GenericControls>();
+            foreach (KeyValuePair<GenericControls, X360Controls> customButton in customButtons)
             {
                 resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
                 EAll4KeyType keyType = Global.getShiftCustomKeyType(device, customButton.Key);
@@ -1087,80 +1087,80 @@ namespace EAll4Windows
             if (macroControl[22]) MappedState.RX = 0;
             if (macroControl[23]) MappedState.RY = 255;
             if (macroControl[24]) MappedState.RY = 0;
-            foreach (EAll4Controls dc in Cross)
+            foreach (GenericControls dc in Cross)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.A = true;
-            foreach (EAll4Controls dc in Circle)
+            foreach (GenericControls dc in Circle)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.B = true;
-            foreach (EAll4Controls dc in Square)
+            foreach (GenericControls dc in Square)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.X = true;
-            foreach (EAll4Controls dc in Triangle)
+            foreach (GenericControls dc in Triangle)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Y = true;
-            foreach (EAll4Controls dc in L1)
+            foreach (GenericControls dc in L1)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.LB = true;
-            foreach (EAll4Controls dc in L2)
+            foreach (GenericControls dc in L2)
                 if (getByteMapping(device, dc, cState, eState, tp) != 0)
                     MappedState.LT = getByteMapping(device, dc, cState, eState, tp);
-            foreach (EAll4Controls dc in L3)
+            foreach (GenericControls dc in L3)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.LS = true;
-            foreach (EAll4Controls dc in R1)
+            foreach (GenericControls dc in R1)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.RB = true;
-            foreach (EAll4Controls dc in R2)
+            foreach (GenericControls dc in R2)
                 if (getByteMapping(device, dc, cState, eState, tp) != 0)
                     MappedState.RT = getByteMapping(device, dc, cState, eState, tp);
-            foreach (EAll4Controls dc in R3)
+            foreach (GenericControls dc in R3)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.RS = true;
-            foreach (EAll4Controls dc in DpadUp)
+            foreach (GenericControls dc in DpadUp)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.DpadUp = true;
-            foreach (EAll4Controls dc in DpadRight)
+            foreach (GenericControls dc in DpadRight)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.DpadRight = true;
-            foreach (EAll4Controls dc in DpadLeft)
+            foreach (GenericControls dc in DpadLeft)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.DpadLeft = true;
-            foreach (EAll4Controls dc in DpadDown)
+            foreach (GenericControls dc in DpadDown)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.DpadDown = true;
-            foreach (EAll4Controls dc in Options)
+            foreach (GenericControls dc in Options)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Start = true;
-            foreach (EAll4Controls dc in Share)
+            foreach (GenericControls dc in Share)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Back = true;
-            foreach (EAll4Controls dc in PS)
+            foreach (GenericControls dc in PS)
                 if (getBoolMapping(dc, cState, eState, tp))
                     MappedState.Guide = true;
 
-            if (Global.getShiftCustomButton(device, EAll4Controls.LXNeg) == X360Controls.None)
-                LXN.Add(EAll4Controls.LXNeg);
-            if (Global.getShiftCustomButton(device, EAll4Controls.LXPos) == X360Controls.None)
-                LXP.Add(EAll4Controls.LXPos);
-            if (Global.getShiftCustomButton(device, EAll4Controls.LYNeg) == X360Controls.None)
-                LYN.Add(EAll4Controls.LYNeg);
-            if (Global.getShiftCustomButton(device, EAll4Controls.LYPos) == X360Controls.None)
-                LYP.Add(EAll4Controls.LYPos);
-            if (Global.getShiftCustomButton(device, EAll4Controls.RXNeg) == X360Controls.None)
-                RXN.Add(EAll4Controls.RXNeg);
-            if (Global.getShiftCustomButton(device, EAll4Controls.RXPos) == X360Controls.None)
-                RXP.Add(EAll4Controls.RXPos);
-            if (Global.getShiftCustomButton(device, EAll4Controls.RYNeg) == X360Controls.None)
-                RYN.Add(EAll4Controls.RYNeg);
-            if (Global.getShiftCustomButton(device, EAll4Controls.RYPos) == X360Controls.None)
-                RYP.Add(EAll4Controls.RYPos);
+            if (Global.getShiftCustomButton(device, GenericControls.LXNeg) == X360Controls.None)
+                LXN.Add(GenericControls.LXNeg);
+            if (Global.getShiftCustomButton(device, GenericControls.LXPos) == X360Controls.None)
+                LXP.Add(GenericControls.LXPos);
+            if (Global.getShiftCustomButton(device, GenericControls.LYNeg) == X360Controls.None)
+                LYN.Add(GenericControls.LYNeg);
+            if (Global.getShiftCustomButton(device, GenericControls.LYPos) == X360Controls.None)
+                LYP.Add(GenericControls.LYPos);
+            if (Global.getShiftCustomButton(device, GenericControls.RXNeg) == X360Controls.None)
+                RXN.Add(GenericControls.RXNeg);
+            if (Global.getShiftCustomButton(device, GenericControls.RXPos) == X360Controls.None)
+                RXP.Add(GenericControls.RXPos);
+            if (Global.getShiftCustomButton(device, GenericControls.RYNeg) == X360Controls.None)
+                RYN.Add(GenericControls.RYNeg);
+            if (Global.getShiftCustomButton(device, GenericControls.RYPos) == X360Controls.None)
+                RYP.Add(GenericControls.RYPos);
             if (LXN.Count > 0 || LXP.Count > 0)
             {
-                foreach (EAll4Controls dc in LXP)
+                foreach (GenericControls dc in LXP)
                     if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                         MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                foreach (EAll4Controls dc in LXN)
+                foreach (GenericControls dc in LXN)
                     if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
                         MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp);
             }
@@ -1168,10 +1168,10 @@ namespace EAll4Windows
                 MappedState.LX = cState.LX;
             if (LYN.Count > 0 || LYP.Count > 0)
             {
-                foreach (EAll4Controls dc in LYN)
+                foreach (GenericControls dc in LYN)
                     if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
                         MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp);
-                foreach (EAll4Controls dc in LYP)
+                foreach (GenericControls dc in LYP)
                     if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                         MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp, true);
             }
@@ -1179,14 +1179,14 @@ namespace EAll4Windows
                 MappedState.LY = cState.LY;
             if (RXN.Count > 0 || RXP.Count > 0)
             {
-                foreach (EAll4Controls dc in RXN)
+                foreach (GenericControls dc in RXN)
                 {
                     if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
                     {
                         MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp);
                     }
                 }
-                foreach (EAll4Controls dc in RXP)
+                foreach (GenericControls dc in RXP)
                     if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                         MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp, true);
             }
@@ -1194,10 +1194,10 @@ namespace EAll4Windows
                 MappedState.RX = cState.RX;
             if (RYN.Count > 0 || RYP.Count > 0)
             {
-                foreach (EAll4Controls dc in RYN)
+                foreach (GenericControls dc in RYN)
                     if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
                         MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp);
-                foreach (EAll4Controls dc in RYP)
+                foreach (GenericControls dc in RYP)
                     if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                         MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp, true);
             }
@@ -1227,7 +1227,7 @@ namespace EAll4Windows
                     {
                         triggeractivated = false;
                         bool subtriggeractivated = true;
-                        foreach (EAll4Controls dc in action.trigger)
+                        foreach (GenericControls dc in action.trigger)
                         {
                             if (!getBoolMapping(dc, cState, eState, tp))
                             {
@@ -1249,7 +1249,7 @@ namespace EAll4Windows
                     {
                         triggeractivated = false;
                         bool subtriggeractivated = true;
-                        foreach (EAll4Controls dc in action.trigger)
+                        foreach (GenericControls dc in action.trigger)
                         {
                             if (!getBoolMapping(dc, cState, eState, tp))
                             {
@@ -1266,7 +1266,7 @@ namespace EAll4Windows
                     {
                         triggeractivated = false;
                         bool subtriggeractivated = true;
-                        foreach (EAll4Controls dc in action.trigger)
+                        foreach (GenericControls dc in action.trigger)
                         {
                             if (!getBoolMapping(dc, cState, eState, tp))
                             {
@@ -1285,7 +1285,7 @@ namespace EAll4Windows
                             oldnowKeyAct[device] = DateTime.MinValue;
                     }
                     else
-                        foreach (EAll4Controls dc in action.trigger)
+                        foreach (GenericControls dc in action.trigger)
                         {
                             if (!getBoolMapping(dc, cState, eState, tp))
                             {
@@ -1297,7 +1297,7 @@ namespace EAll4Windows
                     bool utriggeractivated = true;
                     if (action.type == "Key" && action.uTrigger.Count > 0)
                     {
-                        foreach (EAll4Controls dc in action.uTrigger)
+                        foreach (GenericControls dc in action.uTrigger)
                         {
                             if (!getBoolMapping(dc, cState, eState, tp))
                             {
@@ -1326,7 +1326,7 @@ namespace EAll4Windows
                             actionDone[device, index] = true;
                             untriggeraction[device] = action;
                             untriggerindex[device] = index;
-                            foreach (EAll4Controls dc in action.trigger)
+                            foreach (GenericControls dc in action.trigger)
                             {
                                 InputMethods.performKeyRelease(Global.getCustomKey(0, dc));
                                 string[] skeys = Global.getCustomMacro(0, dc).Split('/');
@@ -1347,12 +1347,12 @@ namespace EAll4Windows
                         {
                             EAll4KeyType keyType = action.keyType;
                             actionDone[device, index] = true;
-                            foreach (EAll4Controls dc in action.trigger)
+                            foreach (GenericControls dc in action.trigger)
                                 resetToDefaultValue(dc, MappedState);
-                            PlayMacro(device, macroControl, String.Join("/", action.macro), EAll4Controls.None, keyType);
+                            PlayMacro(device, macroControl, String.Join("/", action.macro), GenericControls.None, keyType);
                         }
                         else
-                            EndMacro(device, macroControl, String.Join("/", action.macro), EAll4Controls.None);
+                            EndMacro(device, macroControl, String.Join("/", action.macro), GenericControls.None);
                     }
                     else if (triggeractivated && action.type == "Key")
                     {
@@ -1399,7 +1399,7 @@ namespace EAll4Windows
                         if (!d.Charging)
                         {
                             d.DisconnectBT();
-                            foreach (EAll4Controls dc in action.trigger)
+                            foreach (GenericControls dc in action.trigger)
                             {
                                 InputMethods.performKeyRelease(Global.getCustomKey(0, dc));
                                 string[] skeys = Global.getCustomMacro(0, dc).Split('/');
@@ -1463,7 +1463,7 @@ namespace EAll4Windows
                 SpecialAction action = untriggeraction[device];
                 int index = untriggerindex[device];
                 bool utriggeractivated = true;
-                foreach (EAll4Controls dc in action.uTrigger)
+                foreach (GenericControls dc in action.uTrigger)
                 {
                     if (!getBoolMapping(dc, cState, eState, tp))
                     {
@@ -1478,7 +1478,7 @@ namespace EAll4Windows
                     action.controls != action.ucontrols)
                         if (!string.IsNullOrEmpty(Global.tempprofilename[device]))
                         {
-                            foreach (EAll4Controls dc in action.uTrigger)
+                            foreach (GenericControls dc in action.uTrigger)
                             {
                                 actionDone[device, index] = true;
                                 InputMethods.performKeyRelease(Global.getCustomKey(0, dc));
@@ -1499,7 +1499,7 @@ namespace EAll4Windows
             }
         }
 
-        private static async void PlayMacro(int device, bool[] macrocontrol, string macro, EAll4Controls control, EAll4KeyType keyType)
+        private static async void PlayMacro(int device, bool[] macrocontrol, string macro, GenericControls control, EAll4KeyType keyType)
         {
             if (macro.StartsWith("164/9/9/164") || macro.StartsWith("18/9/9/18"))
             {
@@ -1513,7 +1513,7 @@ namespace EAll4Windows
                         wait = delay - 300;
                 }
                 AltTabSwapping(wait, device);
-                if (control != EAll4Controls.None)
+                if (control != GenericControls.None)
                     macrodone[EAll4ControltoInt(control)] = true;
             }
             else
@@ -1533,9 +1533,9 @@ namespace EAll4Windows
                 for (int i = 0; i < keys.Length; i++)
                     keys[i] = ushort.Parse(skeys[i]);
                 bool[] keydown = new bool[286];
-                if (control == EAll4Controls.None || !macrodone[EAll4ControltoInt(control)])
+                if (control == GenericControls.None || !macrodone[EAll4ControltoInt(control)])
                 {
-                    if (control != EAll4Controls.None)
+                    if (control != GenericControls.None)
                         macrodone[EAll4ControltoInt(control)] = true;
                     foreach (int i in keys)
                     {
@@ -1659,18 +1659,18 @@ namespace EAll4Windows
                     if (keyType.HasFlag(EAll4KeyType.HoldMacro))
                     {
                         await Task.Delay(50);
-                        if (control != EAll4Controls.None)
+                        if (control != GenericControls.None)
                             macrodone[EAll4ControltoInt(control)] = false;
                     }
                 }
             }
         }
 
-        private static void EndMacro(int device, bool[] macrocontrol, string macro, EAll4Controls control)
+        private static void EndMacro(int device, bool[] macrocontrol, string macro, GenericControls control)
         {
             if ((macro.StartsWith("164/9/9/164") || macro.StartsWith("18/9/9/18")) && !altTabDone)
                 AltTabSwappingRelease();
-            if (control != EAll4Controls.None)
+            if (control != GenericControls.None)
                 macrodone[EAll4ControltoInt(control)] = false;
         }
         private static void AltTabSwapping(int wait, int device)
@@ -1704,7 +1704,7 @@ namespace EAll4Windows
             }
         }
 
-        private static void getMouseWheelMapping(int device, EAll4Controls control, ControllerState cState, EAll4StateExposed eState, Mouse tp, bool down)
+        private static void getMouseWheelMapping(int device, GenericControls control, ControllerState cState, EAll4StateExposed eState, Mouse tp, bool down)
         {
             DateTime now = DateTime.UtcNow;
             if (now >= oldnow + TimeSpan.FromMilliseconds(10) && !pressagain)
@@ -1714,7 +1714,7 @@ namespace EAll4Windows
             }
         }
 
-        private static int getMouseMapping(int device, EAll4Controls control, ControllerState cState, EAll4StateExposed eState, int mnum)
+        private static int getMouseMapping(int device, GenericControls control, ControllerState cState, EAll4StateExposed eState, int mnum)
         {
             int controlnum = EAll4ControltoInt(control);
             double SXD = Global.SXDeadzone[device];
@@ -1732,65 +1732,65 @@ namespace EAll4Windows
             //DateTime now = mousenow[mnum];
             switch (control)
             {
-                case EAll4Controls.LXNeg:
+                case GenericControls.LXNeg:
                     if (cState.LX - 127.5f < -deadzoneL)
                         value = -(cState.LX - 127.5f) / 2550d * speed;
                     break;
-                case EAll4Controls.LXPos:
+                case GenericControls.LXPos:
                     if (cState.LX - 127.5f > deadzoneL)
                         value = (cState.LX - 127.5f) / 2550d * speed;
                     break;
-                case EAll4Controls.RXNeg:
+                case GenericControls.RXNeg:
                     if (cState.RX - 127.5f < -deadzoneR)
                         value = -(cState.RX - 127.5f) / 2550d * speed;
                     break;
-                case EAll4Controls.RXPos:
+                case GenericControls.RXPos:
                     if (cState.RX - 127.5f > deadzoneR)
                         value = (cState.RX - 127.5f) / 2550d * speed;
                     break;
-                case EAll4Controls.LYNeg:
+                case GenericControls.LYNeg:
                     if (cState.LY - 127.5f < -deadzoneL)
                         value = -(cState.LY - 127.5f) / 2550d * speed;
                     break;
-                case EAll4Controls.LYPos:
+                case GenericControls.LYPos:
                     if (cState.LY - 127.5f > deadzoneL)
                         value = (cState.LY - 127.5f) / 2550d * speed;
                     break;
-                case EAll4Controls.RYNeg:
+                case GenericControls.RYNeg:
                     if (cState.RY - 127.5f < -deadzoneR)
                         value = -(cState.RY - 127.5f) / 2550d * speed;
                     break;
-                case EAll4Controls.RYPos:
+                case GenericControls.RYPos:
                     if (cState.RY - 127.5f > deadzoneR)
                         value = (cState.RY - 127.5f) / 2550d * speed;
                     break;
-                case EAll4Controls.Share: value = (cState.Back ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.Options: value = (cState.Start ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.L1: value = (cState.LB ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.R1: value = (cState.RB ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.L3: value = (cState.LS ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.R3: value = (cState.RS ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.DpadUp: value = (cState.DpadUp ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.DpadDown: value = (cState.DpadDown ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.DpadLeft: value = (cState.DpadLeft ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.DpadRight: value = (cState.DpadRight ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.PS: value = (cState.Guide ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.Cross: value = (cState.A ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.Square: value = (cState.X ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.Triangle: value = (cState.Y ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.Circle: value = (cState.B ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
-                case EAll4Controls.L2: value = Math.Pow(root + speed / divide, cState.LT / 2d) - 1; break;
-                case EAll4Controls.R2: value = Math.Pow(root + speed / divide, cState.RT / 2d) - 1; break;
-                case EAll4Controls.GyroXPos:
+                case GenericControls.Back: value = (cState.Back ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.Start: value = (cState.Start ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.LB: value = (cState.LB ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.RB: value = (cState.RB ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.LS: value = (cState.LS ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.RS: value = (cState.RS ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.DpadUp: value = (cState.DpadUp ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.DpadDown: value = (cState.DpadDown ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.DpadLeft: value = (cState.DpadLeft ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.DpadRight: value = (cState.DpadRight ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.Guide: value = (cState.Guide ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.A: value = (cState.A ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.X: value = (cState.X ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.Y: value = (cState.Y ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.B: value = (cState.B ? Math.Pow(root + speed / divide, 100) - 1 : 0); break;
+                case GenericControls.LT: value = Math.Pow(root + speed / divide, cState.LT / 2d) - 1; break;
+                case GenericControls.RT: value = Math.Pow(root + speed / divide, cState.RT / 2d) - 1; break;
+                case GenericControls.GyroXPos:
                     return (byte)(eState.GyroX > SXD * 7500 ?
 Math.Pow(root + speed / divide, eState.GyroX / 62) : 0);
-                case EAll4Controls.GyroXNeg:
+                case GenericControls.GyroXNeg:
                     return (byte)(eState.GyroX < -SXD * 7500 ?
 Math.Pow(root + speed / divide, -eState.GyroX / 48) : 0);
-                case EAll4Controls.GyroZPos:
+                case GenericControls.GyroZPos:
                     return (byte)(eState.GyroZ > SZD * 7500 ?
 Math.Pow(root + speed / divide, eState.GyroZ / 62) : 0);
-                case EAll4Controls.GyroZNeg:
+                case GenericControls.GyroZNeg:
                     return (byte)(eState.GyroZ < -SZD * 7500 ?
 Math.Pow(root + speed / divide, -eState.GyroZ / 62) : 0);
             }
@@ -1848,99 +1848,99 @@ Math.Pow(root + speed / divide, -eState.GyroZ / 62) : 0);
             return true;
         }
 
-        public static byte getByteMapping(int device, EAll4Controls control, ControllerState cState, EAll4StateExposed eState, Mouse tp)
+        public static byte getByteMapping(int device, GenericControls control, ControllerState cState, EAll4StateExposed eState, Mouse tp)
         {
             double SXD = Global.SXDeadzone[device];
             double SZD = Global.SZDeadzone[device];
             switch (control)
             {
-                case EAll4Controls.Share: return (byte)(cState.Back ? 255 : 0);
-                case EAll4Controls.Options: return (byte)(cState.Start ? 255 : 0);
-                case EAll4Controls.L1: return (byte)(cState.LB ? 255 : 0);
-                case EAll4Controls.R1: return (byte)(cState.RB ? 255 : 0);
-                case EAll4Controls.L3: return (byte)(cState.LS ? 255 : 0);
-                case EAll4Controls.R3: return (byte)(cState.RS ? 255 : 0);
-                case EAll4Controls.DpadUp: return (byte)(cState.DpadUp ? 255 : 0);
-                case EAll4Controls.DpadDown: return (byte)(cState.DpadDown ? 255 : 0);
-                case EAll4Controls.DpadLeft: return (byte)(cState.DpadLeft ? 255 : 0);
-                case EAll4Controls.DpadRight: return (byte)(cState.DpadRight ? 255 : 0);
-                case EAll4Controls.PS: return (byte)(cState.Guide ? 255 : 0);
-                case EAll4Controls.Cross: return (byte)(cState.A ? 255 : 0);
-                case EAll4Controls.Square: return (byte)(cState.X ? 255 : 0);
-                case EAll4Controls.Triangle: return (byte)(cState.Y ? 255 : 0);
-                case EAll4Controls.Circle: return (byte)(cState.B ? 255 : 0);
-                case EAll4Controls.TouchLeft: return (byte)(tp != null && tp.leftDown ? 255 : 0);
-                case EAll4Controls.TouchRight: return (byte)(tp != null && tp.rightDown ? 255 : 0);
-                case EAll4Controls.TouchMulti: return (byte)(tp != null && tp.multiDown ? 255 : 0);
-                case EAll4Controls.TouchUpper: return (byte)(tp != null && tp.upperDown ? 255 : 0);
-                case EAll4Controls.LXNeg: return (byte)(cState.LX - 127.5f > 0 ? 0 : -(cState.LX - 127.5f) * 2);
-                case EAll4Controls.LYNeg: return (byte)(cState.LY - 127.5f > 0 ? 0 : -(cState.LY - 127.5f) * 2);
-                case EAll4Controls.RXNeg: return (byte)(cState.RX - 127.5f > 0 ? 0 : -(cState.RX - 127.5f) * 2);
-                case EAll4Controls.RYNeg: return (byte)(cState.RY - 127.5f > 0 ? 0 : -(cState.RY - 127.5f) * 2);
-                case EAll4Controls.LXPos: return (byte)(cState.LX - 127.5f < 0 ? 0 : (cState.LX - 127.5f) * 2);
-                case EAll4Controls.LYPos: return (byte)(cState.LY - 127.5f < 0 ? 0 : (cState.LY - 127.5f) * 2);
-                case EAll4Controls.RXPos: return (byte)(cState.RX - 127.5f < 0 ? 0 : (cState.RX - 127.5f) * 2);
-                case EAll4Controls.RYPos: return (byte)(cState.RY - 127.5f < 0 ? 0 : (cState.RY - 127.5f) * 2);
-                case EAll4Controls.L2: return cState.LT;
-                case EAll4Controls.R2: return cState.RT;
-                case EAll4Controls.GyroXPos: return (byte)(eState.GyroX > SXD * 7500 ? Math.Min(255, eState.GyroX / 31) : 0);
-                case EAll4Controls.GyroXNeg: return (byte)(eState.GyroX < -SXD * 7500 ? Math.Min(255, -eState.GyroX / 31) : 0);
-                case EAll4Controls.GyroZPos: return (byte)(eState.GyroZ > SZD * 7500 ? Math.Min(255, eState.GyroZ / 31) : 0);
-                case EAll4Controls.GyroZNeg: return (byte)(eState.GyroZ < -SZD * 7500 ? Math.Min(255, -eState.GyroZ / 31) : 0);
-                case EAll4Controls.SwipeUp: return (byte)(tp != null ? tp.swipeUpB : 0);
-                case EAll4Controls.SwipeDown: return (byte)(tp != null ? tp.swipeDownB : 0);
-                case EAll4Controls.SwipeLeft: return (byte)(tp != null ? tp.swipeLeftB : 0);
-                case EAll4Controls.SwipeRight: return (byte)(tp != null ? tp.swipeRightB : 0);
+                case GenericControls.Back: return (byte)(cState.Back ? 255 : 0);
+                case GenericControls.Start: return (byte)(cState.Start ? 255 : 0);
+                case GenericControls.LB: return (byte)(cState.LB ? 255 : 0);
+                case GenericControls.RB: return (byte)(cState.RB ? 255 : 0);
+                case GenericControls.LS: return (byte)(cState.LS ? 255 : 0);
+                case GenericControls.RS: return (byte)(cState.RS ? 255 : 0);
+                case GenericControls.DpadUp: return (byte)(cState.DpadUp ? 255 : 0);
+                case GenericControls.DpadDown: return (byte)(cState.DpadDown ? 255 : 0);
+                case GenericControls.DpadLeft: return (byte)(cState.DpadLeft ? 255 : 0);
+                case GenericControls.DpadRight: return (byte)(cState.DpadRight ? 255 : 0);
+                case GenericControls.Guide: return (byte)(cState.Guide ? 255 : 0);
+                case GenericControls.A: return (byte)(cState.A ? 255 : 0);
+                case GenericControls.X: return (byte)(cState.X ? 255 : 0);
+                case GenericControls.Y: return (byte)(cState.Y ? 255 : 0);
+                case GenericControls.B: return (byte)(cState.B ? 255 : 0);
+                case GenericControls.TouchLeft: return (byte)(tp != null && tp.leftDown ? 255 : 0);
+                case GenericControls.TouchRight: return (byte)(tp != null && tp.rightDown ? 255 : 0);
+                case GenericControls.TouchMulti: return (byte)(tp != null && tp.multiDown ? 255 : 0);
+                case GenericControls.TouchUpper: return (byte)(tp != null && tp.upperDown ? 255 : 0);
+                case GenericControls.LXNeg: return (byte)(cState.LX - 127.5f > 0 ? 0 : -(cState.LX - 127.5f) * 2);
+                case GenericControls.LYNeg: return (byte)(cState.LY - 127.5f > 0 ? 0 : -(cState.LY - 127.5f) * 2);
+                case GenericControls.RXNeg: return (byte)(cState.RX - 127.5f > 0 ? 0 : -(cState.RX - 127.5f) * 2);
+                case GenericControls.RYNeg: return (byte)(cState.RY - 127.5f > 0 ? 0 : -(cState.RY - 127.5f) * 2);
+                case GenericControls.LXPos: return (byte)(cState.LX - 127.5f < 0 ? 0 : (cState.LX - 127.5f) * 2);
+                case GenericControls.LYPos: return (byte)(cState.LY - 127.5f < 0 ? 0 : (cState.LY - 127.5f) * 2);
+                case GenericControls.RXPos: return (byte)(cState.RX - 127.5f < 0 ? 0 : (cState.RX - 127.5f) * 2);
+                case GenericControls.RYPos: return (byte)(cState.RY - 127.5f < 0 ? 0 : (cState.RY - 127.5f) * 2);
+                case GenericControls.LT: return cState.LT;
+                case GenericControls.RT: return cState.RT;
+                case GenericControls.GyroXPos: return (byte)(eState.GyroX > SXD * 7500 ? Math.Min(255, eState.GyroX / 31) : 0);
+                case GenericControls.GyroXNeg: return (byte)(eState.GyroX < -SXD * 7500 ? Math.Min(255, -eState.GyroX / 31) : 0);
+                case GenericControls.GyroZPos: return (byte)(eState.GyroZ > SZD * 7500 ? Math.Min(255, eState.GyroZ / 31) : 0);
+                case GenericControls.GyroZNeg: return (byte)(eState.GyroZ < -SZD * 7500 ? Math.Min(255, -eState.GyroZ / 31) : 0);
+                case GenericControls.SwipeUp: return (byte)(tp != null ? tp.swipeUpB : 0);
+                case GenericControls.SwipeDown: return (byte)(tp != null ? tp.swipeDownB : 0);
+                case GenericControls.SwipeLeft: return (byte)(tp != null ? tp.swipeLeftB : 0);
+                case GenericControls.SwipeRight: return (byte)(tp != null ? tp.swipeRightB : 0);
             }
             return 0;
         }
 
-        public static bool getBoolMapping(EAll4Controls control, ControllerState cState, EAll4StateExposed eState, Mouse tp)
+        public static bool getBoolMapping(GenericControls control, ControllerState cState, EAll4StateExposed eState, Mouse tp)
         {
             switch (control)
             {
-                case EAll4Controls.Share: return cState.Back;
-                case EAll4Controls.Options: return cState.Start;
-                case EAll4Controls.L1: return cState.LB;
-                case EAll4Controls.R1: return cState.RB;
-                case EAll4Controls.L3: return cState.LS;
-                case EAll4Controls.R3: return cState.RS;
-                case EAll4Controls.DpadUp: return cState.DpadUp;
-                case EAll4Controls.DpadDown: return cState.DpadDown;
-                case EAll4Controls.DpadLeft: return cState.DpadLeft;
-                case EAll4Controls.DpadRight: return cState.DpadRight;
-                case EAll4Controls.PS: return cState.Guide;
-                case EAll4Controls.Cross: return cState.A;
-                case EAll4Controls.Square: return cState.X;
-                case EAll4Controls.Triangle: return cState.Y;
-                case EAll4Controls.Circle: return cState.B;
-                case EAll4Controls.TouchLeft: return (tp != null ? tp.leftDown : false);
-                case EAll4Controls.TouchRight: return (tp != null ? tp.rightDown : false);
-                case EAll4Controls.TouchMulti: return (tp != null ? tp.multiDown : false);
-                case EAll4Controls.TouchUpper: return (tp != null ? tp.upperDown : false);
-                case EAll4Controls.LXNeg: return cState.LX < 127 - 55;
-                case EAll4Controls.LYNeg: return cState.LY < 127 - 55;
-                case EAll4Controls.RXNeg: return cState.RX < 127 - 55;
-                case EAll4Controls.RYNeg: return cState.RY < 127 - 55;
-                case EAll4Controls.LXPos: return cState.LX > 127 + 55;
-                case EAll4Controls.LYPos: return cState.LY > 127 + 55;
-                case EAll4Controls.RXPos: return cState.RX > 127 + 55;
-                case EAll4Controls.RYPos: return cState.RY > 127 + 55;
-                case EAll4Controls.L2: return cState.LT > 100;
-                case EAll4Controls.R2: return cState.RT > 100;
-                case EAll4Controls.GyroXPos: return eState.GyroX > 5000;
-                case EAll4Controls.GyroXNeg: return eState.GyroX < -5000;
-                case EAll4Controls.GyroZPos: return eState.GyroZ > 5000;
-                case EAll4Controls.GyroZNeg: return eState.GyroZ < -5000;
-                case EAll4Controls.SwipeUp: return (tp != null && tp.swipeUp);
-                case EAll4Controls.SwipeDown: return (tp != null && tp.swipeDown);
-                case EAll4Controls.SwipeLeft: return (tp != null && tp.swipeLeft);
-                case EAll4Controls.SwipeRight: return (tp != null && tp.swipeRight);
+                case GenericControls.Back: return cState.Back;
+                case GenericControls.Start: return cState.Start;
+                case GenericControls.LB: return cState.LB;
+                case GenericControls.RB: return cState.RB;
+                case GenericControls.LS: return cState.LS;
+                case GenericControls.RS: return cState.RS;
+                case GenericControls.DpadUp: return cState.DpadUp;
+                case GenericControls.DpadDown: return cState.DpadDown;
+                case GenericControls.DpadLeft: return cState.DpadLeft;
+                case GenericControls.DpadRight: return cState.DpadRight;
+                case GenericControls.Guide: return cState.Guide;
+                case GenericControls.A: return cState.A;
+                case GenericControls.X: return cState.X;
+                case GenericControls.Y: return cState.Y;
+                case GenericControls.B: return cState.B;
+                case GenericControls.TouchLeft: return (tp != null ? tp.leftDown : false);
+                case GenericControls.TouchRight: return (tp != null ? tp.rightDown : false);
+                case GenericControls.TouchMulti: return (tp != null ? tp.multiDown : false);
+                case GenericControls.TouchUpper: return (tp != null ? tp.upperDown : false);
+                case GenericControls.LXNeg: return cState.LX < 127 - 55;
+                case GenericControls.LYNeg: return cState.LY < 127 - 55;
+                case GenericControls.RXNeg: return cState.RX < 127 - 55;
+                case GenericControls.RYNeg: return cState.RY < 127 - 55;
+                case GenericControls.LXPos: return cState.LX > 127 + 55;
+                case GenericControls.LYPos: return cState.LY > 127 + 55;
+                case GenericControls.RXPos: return cState.RX > 127 + 55;
+                case GenericControls.RYPos: return cState.RY > 127 + 55;
+                case GenericControls.LT: return cState.LT > 100;
+                case GenericControls.RT: return cState.RT > 100;
+                case GenericControls.GyroXPos: return eState.GyroX > 5000;
+                case GenericControls.GyroXNeg: return eState.GyroX < -5000;
+                case GenericControls.GyroZPos: return eState.GyroZ > 5000;
+                case GenericControls.GyroZNeg: return eState.GyroZ < -5000;
+                case GenericControls.SwipeUp: return (tp != null && tp.swipeUp);
+                case GenericControls.SwipeDown: return (tp != null && tp.swipeDown);
+                case GenericControls.SwipeLeft: return (tp != null && tp.swipeLeft);
+                case GenericControls.SwipeRight: return (tp != null && tp.swipeRight);
             }
             return false;
         }
 
-        public static byte getXYAxisMapping(int device, EAll4Controls control, ControllerState cState, EAll4StateExposed eState, Mouse tp, bool alt = false)
+        public static byte getXYAxisMapping(int device, GenericControls control, ControllerState cState, EAll4StateExposed eState, Mouse tp, bool alt = false)
         {
             byte trueVal = 0;
             byte falseVal = 127;
@@ -1950,44 +1950,44 @@ Math.Pow(root + speed / divide, -eState.GyroZ / 62) : 0);
                 trueVal = 255;
             switch (control)
             {
-                case EAll4Controls.Share: return (byte)(cState.Back ? trueVal : falseVal);
-                case EAll4Controls.Options: return (byte)(cState.Start ? trueVal : falseVal);
-                case EAll4Controls.L1: return (byte)(cState.LB ? trueVal : falseVal);
-                case EAll4Controls.R1: return (byte)(cState.RB ? trueVal : falseVal);
-                case EAll4Controls.L3: return (byte)(cState.LS ? trueVal : falseVal);
-                case EAll4Controls.R3: return (byte)(cState.RS ? trueVal : falseVal);
-                case EAll4Controls.DpadUp: return (byte)(cState.DpadUp ? trueVal : falseVal);
-                case EAll4Controls.DpadDown: return (byte)(cState.DpadDown ? trueVal : falseVal);
-                case EAll4Controls.DpadLeft: return (byte)(cState.DpadLeft ? trueVal : falseVal);
-                case EAll4Controls.DpadRight: return (byte)(cState.DpadRight ? trueVal : falseVal);
-                case EAll4Controls.PS: return (byte)(cState.Guide ? trueVal : falseVal);
-                case EAll4Controls.Cross: return (byte)(cState.A ? trueVal : falseVal);
-                case EAll4Controls.Square: return (byte)(cState.X ? trueVal : falseVal);
-                case EAll4Controls.Triangle: return (byte)(cState.Y ? trueVal : falseVal);
-                case EAll4Controls.Circle: return (byte)(cState.B ? trueVal : falseVal);
-                case EAll4Controls.TouchLeft: return (byte)(tp != null && tp.leftDown ? trueVal : falseVal);
-                case EAll4Controls.TouchRight: return (byte)(tp != null && tp.rightDown ? trueVal : falseVal);
-                case EAll4Controls.TouchMulti: return (byte)(tp != null && tp.multiDown ? trueVal : falseVal);
-                case EAll4Controls.TouchUpper: return (byte)(tp != null && tp.upperDown ? trueVal : falseVal);
-                case EAll4Controls.L2: if (alt) return (byte)(127.5f + cState.LT / 2f); else return (byte)(127.5f - cState.LT / 2f);
-                case EAll4Controls.R2: if (alt) return (byte)(127.5f + cState.RT / 2f); else return (byte)(127.5f - cState.RT / 2f);
-                case EAll4Controls.SwipeUp: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeUpB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeUpB / 2f : 0);
-                case EAll4Controls.SwipeDown: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeDownB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeDownB / 2f : 0);
-                case EAll4Controls.SwipeLeft: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeLeftB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeLeftB / 2f : 0);
-                case EAll4Controls.SwipeRight: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeRightB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeRightB / 2f : 0);
-                case EAll4Controls.GyroXPos:
+                case GenericControls.Back: return (byte)(cState.Back ? trueVal : falseVal);
+                case GenericControls.Start: return (byte)(cState.Start ? trueVal : falseVal);
+                case GenericControls.LB: return (byte)(cState.LB ? trueVal : falseVal);
+                case GenericControls.RB: return (byte)(cState.RB ? trueVal : falseVal);
+                case GenericControls.LS: return (byte)(cState.LS ? trueVal : falseVal);
+                case GenericControls.RS: return (byte)(cState.RS ? trueVal : falseVal);
+                case GenericControls.DpadUp: return (byte)(cState.DpadUp ? trueVal : falseVal);
+                case GenericControls.DpadDown: return (byte)(cState.DpadDown ? trueVal : falseVal);
+                case GenericControls.DpadLeft: return (byte)(cState.DpadLeft ? trueVal : falseVal);
+                case GenericControls.DpadRight: return (byte)(cState.DpadRight ? trueVal : falseVal);
+                case GenericControls.Guide: return (byte)(cState.Guide ? trueVal : falseVal);
+                case GenericControls.A: return (byte)(cState.A ? trueVal : falseVal);
+                case GenericControls.X: return (byte)(cState.X ? trueVal : falseVal);
+                case GenericControls.Y: return (byte)(cState.Y ? trueVal : falseVal);
+                case GenericControls.B: return (byte)(cState.B ? trueVal : falseVal);
+                case GenericControls.TouchLeft: return (byte)(tp != null && tp.leftDown ? trueVal : falseVal);
+                case GenericControls.TouchRight: return (byte)(tp != null && tp.rightDown ? trueVal : falseVal);
+                case GenericControls.TouchMulti: return (byte)(tp != null && tp.multiDown ? trueVal : falseVal);
+                case GenericControls.TouchUpper: return (byte)(tp != null && tp.upperDown ? trueVal : falseVal);
+                case GenericControls.LT: if (alt) return (byte)(127.5f + cState.LT / 2f); else return (byte)(127.5f - cState.LT / 2f);
+                case GenericControls.RT: if (alt) return (byte)(127.5f + cState.RT / 2f); else return (byte)(127.5f - cState.RT / 2f);
+                case GenericControls.SwipeUp: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeUpB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeUpB / 2f : 0);
+                case GenericControls.SwipeDown: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeDownB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeDownB / 2f : 0);
+                case GenericControls.SwipeLeft: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeLeftB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeLeftB / 2f : 0);
+                case GenericControls.SwipeRight: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeRightB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeRightB / 2f : 0);
+                case GenericControls.GyroXPos:
                     if (eState.GyroX > SXD * 7500)
                         if (alt) return (byte)Math.Min(255, 127 + eState.GyroX / 62); else return (byte)Math.Max(0, 127 - eState.GyroX / 62);
                     else return falseVal;
-                case EAll4Controls.GyroXNeg:
+                case GenericControls.GyroXNeg:
                     if (eState.GyroX < -SXD * 7500)
                         if (alt) return (byte)Math.Min(255, 127 + -eState.GyroX / 62); else return (byte)Math.Max(0, 127 - -eState.GyroX / 62);
                     else return falseVal;
-                case EAll4Controls.GyroZPos:
+                case GenericControls.GyroZPos:
                     if (eState.GyroZ > SZD * 7500)
                         if (alt) return (byte)Math.Min(255, 127 + eState.GyroZ / 62); else return (byte)Math.Max(0, 127 - eState.GyroZ / 62);
                     else return falseVal;
-                case EAll4Controls.GyroZNeg:
+                case GenericControls.GyroZNeg:
                     if (eState.GyroZ < -SZD * 7500)
                         if (alt) return (byte)Math.Min(255, 127 + -eState.GyroZ / 62); else return (byte)Math.Max(0, 127 - -eState.GyroZ / 62);
                     else return falseVal;
@@ -1996,28 +1996,28 @@ Math.Pow(root + speed / divide, -eState.GyroZ / 62) : 0);
             {
                 switch (control)
                 {
-                    case EAll4Controls.LXNeg: return cState.LX;
-                    case EAll4Controls.LYNeg: return cState.LY;
-                    case EAll4Controls.RXNeg: return cState.RX;
-                    case EAll4Controls.RYNeg: return cState.RY;
-                    case EAll4Controls.LXPos: return (byte)(255 - cState.LX);
-                    case EAll4Controls.LYPos: return (byte)(255 - cState.LY);
-                    case EAll4Controls.RXPos: return (byte)(255 - cState.RX);
-                    case EAll4Controls.RYPos: return (byte)(255 - cState.RY);
+                    case GenericControls.LXNeg: return cState.LX;
+                    case GenericControls.LYNeg: return cState.LY;
+                    case GenericControls.RXNeg: return cState.RX;
+                    case GenericControls.RYNeg: return cState.RY;
+                    case GenericControls.LXPos: return (byte)(255 - cState.LX);
+                    case GenericControls.LYPos: return (byte)(255 - cState.LY);
+                    case GenericControls.RXPos: return (byte)(255 - cState.RX);
+                    case GenericControls.RYPos: return (byte)(255 - cState.RY);
                 }
             }
             else
             {
                 switch (control)
                 {
-                    case EAll4Controls.LXNeg: return (byte)(255 - cState.LX);
-                    case EAll4Controls.LYNeg: return (byte)(255 - cState.LY);
-                    case EAll4Controls.RXNeg: return (byte)(255 - cState.RX);
-                    case EAll4Controls.RYNeg: return (byte)(255 - cState.RY);
-                    case EAll4Controls.LXPos: return cState.LX;
-                    case EAll4Controls.LYPos: return cState.LY;
-                    case EAll4Controls.RXPos: return cState.RX;
-                    case EAll4Controls.RYPos: return cState.RY;
+                    case GenericControls.LXNeg: return (byte)(255 - cState.LX);
+                    case GenericControls.LYNeg: return (byte)(255 - cState.LY);
+                    case GenericControls.RXNeg: return (byte)(255 - cState.RX);
+                    case GenericControls.RYNeg: return (byte)(255 - cState.RY);
+                    case GenericControls.LXPos: return cState.LX;
+                    case GenericControls.LYPos: return cState.LY;
+                    case GenericControls.RXPos: return cState.RX;
+                    case GenericControls.RYPos: return cState.RY;
                 }
             }
             return 0;
@@ -2026,35 +2026,35 @@ Math.Pow(root + speed / divide, -eState.GyroZ / 62) : 0);
         //Returns false for any bool, 
         //if control is one of the xy axis returns 127
         //if its a trigger returns 0
-        public static void resetToDefaultValue(EAll4Controls control, ControllerState cState)
+        public static void resetToDefaultValue(GenericControls control, ControllerState cState)
         {
             switch (control)
             {
-                case EAll4Controls.Share: cState.Back = false; break;
-                case EAll4Controls.Options: cState.Start = false; break;
-                case EAll4Controls.L1: cState.LB = false; break;
-                case EAll4Controls.R1: cState.RB = false; break;
-                case EAll4Controls.L3: cState.LS = false; break;
-                case EAll4Controls.R3: cState.RS = false; break;
-                case EAll4Controls.DpadUp: cState.DpadUp = false; break;
-                case EAll4Controls.DpadDown: cState.DpadDown = false; break;
-                case EAll4Controls.DpadLeft: cState.DpadLeft = false; break;
-                case EAll4Controls.DpadRight: cState.DpadRight = false; break;
-                case EAll4Controls.PS: cState.Guide = false; break;
-                case EAll4Controls.Cross: cState.A = false; break;
-                case EAll4Controls.Square: cState.X = false; break;
-                case EAll4Controls.Triangle: cState.Y = false; break;
-                case EAll4Controls.Circle: cState.B = false; break;
-                case EAll4Controls.LXNeg: cState.LX = 127; break;
-                case EAll4Controls.LYNeg: cState.LY = 127; break;
-                case EAll4Controls.RXNeg: cState.RX = 127; break;
-                case EAll4Controls.RYNeg: cState.RY = 127; break;
-                case EAll4Controls.LXPos: cState.LX = 127; break;
-                case EAll4Controls.LYPos: cState.LY = 127; break;
-                case EAll4Controls.RXPos: cState.RX = 127; break;
-                case EAll4Controls.RYPos: cState.RY = 127; break;
-                case EAll4Controls.L2: cState.LT = 0; break;
-                case EAll4Controls.R2: cState.RT = 0; break;
+                case GenericControls.Back: cState.Back = false; break;
+                case GenericControls.Start: cState.Start = false; break;
+                case GenericControls.LB: cState.LB = false; break;
+                case GenericControls.RB: cState.RB = false; break;
+                case GenericControls.LS: cState.LS = false; break;
+                case GenericControls.RS: cState.RS = false; break;
+                case GenericControls.DpadUp: cState.DpadUp = false; break;
+                case GenericControls.DpadDown: cState.DpadDown = false; break;
+                case GenericControls.DpadLeft: cState.DpadLeft = false; break;
+                case GenericControls.DpadRight: cState.DpadRight = false; break;
+                case GenericControls.Guide: cState.Guide = false; break;
+                case GenericControls.A: cState.A = false; break;
+                case GenericControls.X: cState.X = false; break;
+                case GenericControls.Y: cState.Y = false; break;
+                case GenericControls.B: cState.B = false; break;
+                case GenericControls.LXNeg: cState.LX = 127; break;
+                case GenericControls.LYNeg: cState.LY = 127; break;
+                case GenericControls.RXNeg: cState.RX = 127; break;
+                case GenericControls.RYNeg: cState.RY = 127; break;
+                case GenericControls.LXPos: cState.LX = 127; break;
+                case GenericControls.LYPos: cState.LY = 127; break;
+                case GenericControls.RXPos: cState.RX = 127; break;
+                case GenericControls.RYPos: cState.RY = 127; break;
+                case GenericControls.LT: cState.LT = 0; break;
+                case GenericControls.RT: cState.RT = 0; break;
             }
         }
     }

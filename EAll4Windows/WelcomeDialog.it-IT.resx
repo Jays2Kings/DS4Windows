@@ -138,7 +138,7 @@
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>Per configurare il bluetooth (opzionale):
-Premi i tasti PS e Share per 3 secondi
+Premi i tasti Guide e Back per 3 secondi
 La barra luminosa comincerà a lampeggiare</value>
   </data>
   <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">

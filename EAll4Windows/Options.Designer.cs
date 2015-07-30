@@ -3173,7 +3173,7 @@
             this.btnRSTrack.Name = "btnRSTrack";
             this.btnRSTrack.UseVisualStyleBackColor = false;
             // 
-            // Options
+            // Start
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;

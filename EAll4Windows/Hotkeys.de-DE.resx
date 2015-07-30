@@ -146,13 +146,13 @@
     <value>551, 458</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Verstecke EAll4 Controller: Verstecke EAll4's Standard Eingabemethode (Dinput) vor anderen Programmen. Überprüfe ob du Doppeleingaben in Spielen bekommst oder R2 das Spiel pausiert.
+    <value>Verstecke EAll4 Controller: Verstecke EAll4's Standard Eingabemethode (Dinput) vor anderen Programmen. Überprüfe ob du Doppeleingaben in Spielen bekommst oder RT das Spiel pausiert.
 Drücke die Linke Seite des Touchpads: Linker Touch
 Drücke die Rechte Seite des Touchpads: Right Touch
 Drücke das Touchpad mit 2 Fingern: Multitouch
 Drücke den oberen Teil des Touchpads: Upper Touch
-PS + Options oder halte PS für 10 Sekunden: Trenne Controller (nur bei Bluetooth)
-Berühre Touchpad + PS: Schalte Touchpadbewegung aus (Klicken funktioniert weiterhin)
+Guide + Start oder halte Guide für 10 Sekunden: Trenne Controller (nur bei Bluetooth)
+Berühre Touchpad + Guide: Schalte Touchpadbewegung aus (Klicken funktioniert weiterhin)
 Pad Unten Rechts drücken*: Rechtsklick (Am besten benutzt wenn Rechte Seite als Maustaste verwendet wird.)
 Zwei Finger hoch/runter auf dem Touchpad*: Hoch/Runter blättern
 Drücke und halte Touchpad*: Ziehe Maus Links

@@ -21,7 +21,7 @@ namespace EAll4Windows
         public bool slideleft, slideright;
         // touch area stuff
         public bool leftDown, rightDown, upperDown, multiDown;
-        protected EAll4Controls pushed = EAll4Controls.None;
+        protected GenericControls pushed = GenericControls.None;
         protected Mapping.Click clicked = Mapping.Click.None;
 
         public Mouse(int deviceID, EAll4Device d)
@@ -133,24 +133,24 @@ namespace EAll4Windows
         private ControllerState remapped = new ControllerState();
         private void synthesizeMouseButtons()
         {
-            if (Global.getCustomButton(deviceNum, EAll4Controls.TouchLeft) == X360Controls.None &&
-                Global.getCustomMacro(deviceNum, EAll4Controls.TouchLeft) == "0" &&
-                    Global.getCustomKey(deviceNum, EAll4Controls.TouchLeft) == 0 &&
+            if (Global.getCustomButton(deviceNum, GenericControls.TouchLeft) == X360Controls.None &&
+                Global.getCustomMacro(deviceNum, GenericControls.TouchLeft) == "0" &&
+                    Global.getCustomKey(deviceNum, GenericControls.TouchLeft) == 0 &&
                 leftDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
-            if (Global.getCustomButton(deviceNum, EAll4Controls.TouchUpper) == X360Controls.None &&
-                Global.getCustomMacro(deviceNum, EAll4Controls.TouchUpper) == "0" &&
-                    Global.getCustomKey(deviceNum, EAll4Controls.TouchUpper) == 0 &&
+            if (Global.getCustomButton(deviceNum, GenericControls.TouchUpper) == X360Controls.None &&
+                Global.getCustomMacro(deviceNum, GenericControls.TouchUpper) == "0" &&
+                    Global.getCustomKey(deviceNum, GenericControls.TouchUpper) == 0 &&
                 upperDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Middle);
-            if (Global.getCustomButton(deviceNum, EAll4Controls.TouchRight) == X360Controls.None &&
-                Global.getCustomMacro(deviceNum, EAll4Controls.TouchRight) == "0" &&
-                    Global.getCustomKey(deviceNum, EAll4Controls.TouchRight) == 0 &&
+            if (Global.getCustomButton(deviceNum, GenericControls.TouchRight) == X360Controls.None &&
+                Global.getCustomMacro(deviceNum, GenericControls.TouchRight) == "0" &&
+                    Global.getCustomKey(deviceNum, GenericControls.TouchRight) == 0 &&
                 rightDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
-            if (Global.getCustomButton(deviceNum, EAll4Controls.TouchMulti) == X360Controls.None &&
-                Global.getCustomMacro(deviceNum, EAll4Controls.TouchMulti) == "0" &&
-                    Global.getCustomKey(deviceNum, EAll4Controls.TouchMulti) == 0 &&
+            if (Global.getCustomButton(deviceNum, GenericControls.TouchMulti) == X360Controls.None &&
+                Global.getCustomMacro(deviceNum, GenericControls.TouchMulti) == "0" &&
+                    Global.getCustomKey(deviceNum, GenericControls.TouchMulti) == 0 &&
                 multiDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
             if (!Global.UseTPforControls[deviceNum])
@@ -174,7 +174,7 @@ namespace EAll4Windows
 
         public virtual void touchButtonUp(object sender, TouchpadEventArgs arg)
         {
-            pushed = EAll4Controls.None;
+            pushed = GenericControls.None;
             upperDown = leftDown = rightDown = multiDown = false;
             dev.setRumble(0, 0);
             dev.getCurrentState(s);

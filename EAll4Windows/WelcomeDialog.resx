@@ -356,7 +356,7 @@ Once paired, you're ready. Have fun!</value>
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>To set up bluetooth (optional):
-Hold the PS Button and Share for 3 seconds
+Hold the Guide Button and Back for 3 seconds
 The lightbar will begin to double flash</value>
   </data>
   <data name="linkBluetoothSettings.AutoSize" type="System.Boolean, mscorlib">

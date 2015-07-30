@@ -1644,7 +1644,7 @@ namespace EAll4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Re-enable by pressing PS+Touchpad.
+        ///   Looks up a localized string similar to Re-enable by pressing Guide+Touchpad.
         /// </summary>
         internal static string TouchpadOffTip {
             get {

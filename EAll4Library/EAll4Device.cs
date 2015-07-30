@@ -474,7 +474,7 @@ namespace EAll4Windows
                 catch { currerror = "Index out of bounds: touchpad"; }
 
                 /* Debug output of incoming HID data:
-                if (cState.L2 == 0xff && cState.R2 == 0xff)
+                if (cState.LT == 0xff && cState.RT == 0xff)
                 {
                     Console.Write(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + ">");
                     for (int i = 0; i < inputReport.Length; i++)

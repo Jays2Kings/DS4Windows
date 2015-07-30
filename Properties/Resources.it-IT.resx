@@ -469,7 +469,7 @@
     <value>Movimenti Touchpad sono ora Attivati </value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Ri-abilita premendo PS+Touchpad</value>
+    <value>Ri-abilita premendo Guide+Touchpad</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
     <value>Swipe Touchpad a 2 dita a sinistra o a destra</value>

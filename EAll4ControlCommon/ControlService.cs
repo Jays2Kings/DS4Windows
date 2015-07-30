@@ -24,7 +24,7 @@ namespace EAll4Windows
         public bool eastertime = false;
         private int eCode = 0;
         bool[] buttonsdown = { false, false, false, false };
-        List<EAll4Controls> dcs = new List<EAll4Controls>();
+        List<GenericControls> dcs = new List<GenericControls>();
         bool[] held = new bool[4];
         int[] oldmouse = new int[4] { -1, -1, -1, -1 };
         SoundPlayer sp = new SoundPlayer();
@@ -53,36 +53,35 @@ namespace EAll4Windows
 
         void AddtoEAll4List()
         {
-            dcs.Add(EAll4Controls.Cross);
-            dcs.Add(EAll4Controls.Cross);
-            dcs.Add(EAll4Controls.Circle);
-            dcs.Add(EAll4Controls.Square);
-            dcs.Add(EAll4Controls.Triangle);
-            dcs.Add(EAll4Controls.Options);
-            dcs.Add(EAll4Controls.Share);
-            dcs.Add(EAll4Controls.DpadUp);
-            dcs.Add(EAll4Controls.DpadDown);
-            dcs.Add(EAll4Controls.DpadLeft);
-            dcs.Add(EAll4Controls.DpadRight);
-            dcs.Add(EAll4Controls.PS);
-            dcs.Add(EAll4Controls.L1);
-            dcs.Add(EAll4Controls.R1);
-            dcs.Add(EAll4Controls.L2);
-            dcs.Add(EAll4Controls.R2);
-            dcs.Add(EAll4Controls.L3);
-            dcs.Add(EAll4Controls.R3);
-            dcs.Add(EAll4Controls.LXPos);
-            dcs.Add(EAll4Controls.LXNeg);
-            dcs.Add(EAll4Controls.LYPos);
-            dcs.Add(EAll4Controls.LYNeg);
-            dcs.Add(EAll4Controls.RXPos);
-            dcs.Add(EAll4Controls.RXNeg);
-            dcs.Add(EAll4Controls.RYPos);
-            dcs.Add(EAll4Controls.RYNeg);
-            dcs.Add(EAll4Controls.SwipeUp);
-            dcs.Add(EAll4Controls.SwipeDown);
-            dcs.Add(EAll4Controls.SwipeLeft);
-            dcs.Add(EAll4Controls.SwipeRight);
+            dcs.Add(GenericControls.A);
+            dcs.Add(GenericControls.B);
+            dcs.Add(GenericControls.X);
+            dcs.Add(GenericControls.Y);
+            dcs.Add(GenericControls.Start);
+            dcs.Add(GenericControls.Back);
+            dcs.Add(GenericControls.DpadUp);
+            dcs.Add(GenericControls.DpadDown);
+            dcs.Add(GenericControls.DpadLeft);
+            dcs.Add(GenericControls.DpadRight);
+            dcs.Add(GenericControls.Guide);
+            dcs.Add(GenericControls.LB);
+            dcs.Add(GenericControls.RB);
+            dcs.Add(GenericControls.LT);
+            dcs.Add(GenericControls.RT);
+            dcs.Add(GenericControls.LS);
+            dcs.Add(GenericControls.RS);
+            dcs.Add(GenericControls.LXPos);
+            dcs.Add(GenericControls.LXNeg);
+            dcs.Add(GenericControls.LYPos);
+            dcs.Add(GenericControls.LYNeg);
+            dcs.Add(GenericControls.RXPos);
+            dcs.Add(GenericControls.RXNeg);
+            dcs.Add(GenericControls.RYPos);
+            dcs.Add(GenericControls.RYNeg);
+            dcs.Add(GenericControls.SwipeUp);
+            dcs.Add(GenericControls.SwipeDown);
+            dcs.Add(GenericControls.SwipeLeft);
+            dcs.Add(GenericControls.SwipeRight);
         }
 
         private async void WarnExclusiveModeFailure(EAll4Device device)
@@ -532,8 +531,8 @@ namespace EAll4Windows
             ControllerState cState = CurrentState[ind];
             EAll4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
-            EAll4Controls helddown = EAll4Controls.None;
-            foreach (KeyValuePair<EAll4Controls, string> p in Global.getCustomExtras(ind))
+            GenericControls helddown = GenericControls.None;
+            foreach (KeyValuePair<GenericControls, string> p in Global.getCustomExtras(ind))
             {
                 if (Mapping.getBoolMapping(p.Key, cState, eState, tp))
                 {
@@ -541,7 +540,7 @@ namespace EAll4Windows
                     break;
                 }
             }
-            if (helddown != EAll4Controls.None)
+            if (helddown != GenericControls.None)
             {
                 string p = Global.getCustomExtras(ind)[helddown];
                 string[] extraS = p.Split(',');
@@ -593,7 +592,7 @@ namespace EAll4Windows
             Mouse tp = touchPad[ind];
 
             bool pb = false;
-            foreach (EAll4Controls dc in dcs)
+            foreach (GenericControls dc in dcs)
             {
                 if (Mapping.getBoolMapping(dc, cState, eState, tp))
                 {
@@ -668,74 +667,74 @@ namespace EAll4Windows
             EAll4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
             if (EAll4Controllers[ind] != null)
-                if (Mapping.getBoolMapping(EAll4Controls.Cross, cState, eState, tp)) return "Cross";
-                else if (Mapping.getBoolMapping(EAll4Controls.Circle, cState, eState, tp)) return "Circle";
-                else if (Mapping.getBoolMapping(EAll4Controls.Triangle, cState, eState, tp)) return "Triangle";
-                else if (Mapping.getBoolMapping(EAll4Controls.Square, cState, eState, tp)) return "Square";
-                else if (Mapping.getBoolMapping(EAll4Controls.L1, cState, eState, tp)) return "L1";
-                else if (Mapping.getBoolMapping(EAll4Controls.R1, cState, eState, tp)) return "R1";
-                else if (Mapping.getBoolMapping(EAll4Controls.L2, cState, eState, tp)) return "L2";
-                else if (Mapping.getBoolMapping(EAll4Controls.R2, cState, eState, tp)) return "R2";
-                else if (Mapping.getBoolMapping(EAll4Controls.L3, cState, eState, tp)) return "L3";
-                else if (Mapping.getBoolMapping(EAll4Controls.R3, cState, eState, tp)) return "R3";
-                else if (Mapping.getBoolMapping(EAll4Controls.DpadUp, cState, eState, tp)) return "Up";
-                else if (Mapping.getBoolMapping(EAll4Controls.DpadDown, cState, eState, tp)) return "Down";
-                else if (Mapping.getBoolMapping(EAll4Controls.DpadLeft, cState, eState, tp)) return "Left";
-                else if (Mapping.getBoolMapping(EAll4Controls.DpadRight, cState, eState, tp)) return "Right";
-                else if (Mapping.getBoolMapping(EAll4Controls.Share, cState, eState, tp)) return "Share";
-                else if (Mapping.getBoolMapping(EAll4Controls.Options, cState, eState, tp)) return "Options";
-                else if (Mapping.getBoolMapping(EAll4Controls.PS, cState, eState, tp)) return "PS";
-                else if (Mapping.getBoolMapping(EAll4Controls.LXPos, cState, eState, tp)) return "LS Right";
-                else if (Mapping.getBoolMapping(EAll4Controls.LXNeg, cState, eState, tp)) return "LS Left";
-                else if (Mapping.getBoolMapping(EAll4Controls.LYPos, cState, eState, tp)) return "LS Down";
-                else if (Mapping.getBoolMapping(EAll4Controls.LYNeg, cState, eState, tp)) return "LS Up";
-                else if (Mapping.getBoolMapping(EAll4Controls.RXPos, cState, eState, tp)) return "RS Right";
-                else if (Mapping.getBoolMapping(EAll4Controls.RXNeg, cState, eState, tp)) return "RS Left";
-                else if (Mapping.getBoolMapping(EAll4Controls.RYPos, cState, eState, tp)) return "RS Down";
-                else if (Mapping.getBoolMapping(EAll4Controls.RYNeg, cState, eState, tp)) return "RS Up";
-                else if (Mapping.getBoolMapping(EAll4Controls.TouchLeft, cState, eState, tp)) return "Touch Left";
-                else if (Mapping.getBoolMapping(EAll4Controls.TouchRight, cState, eState, tp)) return "Touch Right";
-                else if (Mapping.getBoolMapping(EAll4Controls.TouchMulti, cState, eState, tp)) return "Touch Multi";
-                else if (Mapping.getBoolMapping(EAll4Controls.TouchUpper, cState, eState, tp)) return "Touch Upper";
+                if (Mapping.getBoolMapping(GenericControls.A, cState, eState, tp)) return "A";
+                else if (Mapping.getBoolMapping(GenericControls.B, cState, eState, tp)) return "B";
+                else if (Mapping.getBoolMapping(GenericControls.Y, cState, eState, tp)) return "Y";
+                else if (Mapping.getBoolMapping(GenericControls.X, cState, eState, tp)) return "X";
+                else if (Mapping.getBoolMapping(GenericControls.LB, cState, eState, tp)) return "LB";
+                else if (Mapping.getBoolMapping(GenericControls.RB, cState, eState, tp)) return "RB";
+                else if (Mapping.getBoolMapping(GenericControls.LT, cState, eState, tp)) return "LT";
+                else if (Mapping.getBoolMapping(GenericControls.RT, cState, eState, tp)) return "RT";
+                else if (Mapping.getBoolMapping(GenericControls.LS, cState, eState, tp)) return "LS";
+                else if (Mapping.getBoolMapping(GenericControls.RS, cState, eState, tp)) return "RS";
+                else if (Mapping.getBoolMapping(GenericControls.DpadUp, cState, eState, tp)) return "Up";
+                else if (Mapping.getBoolMapping(GenericControls.DpadDown, cState, eState, tp)) return "Down";
+                else if (Mapping.getBoolMapping(GenericControls.DpadLeft, cState, eState, tp)) return "Left";
+                else if (Mapping.getBoolMapping(GenericControls.DpadRight, cState, eState, tp)) return "Right";
+                else if (Mapping.getBoolMapping(GenericControls.Back, cState, eState, tp)) return "Back";
+                else if (Mapping.getBoolMapping(GenericControls.Start, cState, eState, tp)) return "Start";
+                else if (Mapping.getBoolMapping(GenericControls.Guide, cState, eState, tp)) return "Guide";
+                else if (Mapping.getBoolMapping(GenericControls.LXPos, cState, eState, tp)) return "LS Right";
+                else if (Mapping.getBoolMapping(GenericControls.LXNeg, cState, eState, tp)) return "LS Left";
+                else if (Mapping.getBoolMapping(GenericControls.LYPos, cState, eState, tp)) return "LS Down";
+                else if (Mapping.getBoolMapping(GenericControls.LYNeg, cState, eState, tp)) return "LS Up";
+                else if (Mapping.getBoolMapping(GenericControls.RXPos, cState, eState, tp)) return "RS Right";
+                else if (Mapping.getBoolMapping(GenericControls.RXNeg, cState, eState, tp)) return "RS Left";
+                else if (Mapping.getBoolMapping(GenericControls.RYPos, cState, eState, tp)) return "RS Down";
+                else if (Mapping.getBoolMapping(GenericControls.RYNeg, cState, eState, tp)) return "RS Up";
+                else if (Mapping.getBoolMapping(GenericControls.TouchLeft, cState, eState, tp)) return "Touch Left";
+                else if (Mapping.getBoolMapping(GenericControls.TouchRight, cState, eState, tp)) return "Touch Right";
+                else if (Mapping.getBoolMapping(GenericControls.TouchMulti, cState, eState, tp)) return "Touch Multi";
+                else if (Mapping.getBoolMapping(GenericControls.TouchUpper, cState, eState, tp)) return "Touch Upper";
             return "nothing";
         }
 
-        public EAll4Controls GetInputkeysEAll4(int ind)
+        public GenericControls GetInputkeysEAll4(int ind)
         {
             ControllerState cState = CurrentState[ind];
             EAll4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
             if (EAll4Controllers[ind] != null)
-                if (Mapping.getBoolMapping(EAll4Controls.Cross, cState, eState, tp)) return EAll4Controls.Cross;
-                else if (Mapping.getBoolMapping(EAll4Controls.Circle, cState, eState, tp)) return EAll4Controls.Circle;
-                else if (Mapping.getBoolMapping(EAll4Controls.Triangle, cState, eState, tp)) return EAll4Controls.Triangle;
-                else if (Mapping.getBoolMapping(EAll4Controls.Square, cState, eState, tp)) return EAll4Controls.Square;
-                else if (Mapping.getBoolMapping(EAll4Controls.L1, cState, eState, tp)) return EAll4Controls.L1;
-                else if (Mapping.getBoolMapping(EAll4Controls.R1, cState, eState, tp)) return EAll4Controls.R1;
-                else if (Mapping.getBoolMapping(EAll4Controls.L2, cState, eState, tp)) return EAll4Controls.L2;
-                else if (Mapping.getBoolMapping(EAll4Controls.R2, cState, eState, tp)) return EAll4Controls.R2;
-                else if (Mapping.getBoolMapping(EAll4Controls.L3, cState, eState, tp)) return EAll4Controls.L3;
-                else if (Mapping.getBoolMapping(EAll4Controls.R3, cState, eState, tp)) return EAll4Controls.R3;
-                else if (Mapping.getBoolMapping(EAll4Controls.DpadUp, cState, eState, tp)) return EAll4Controls.DpadUp;
-                else if (Mapping.getBoolMapping(EAll4Controls.DpadDown, cState, eState, tp)) return EAll4Controls.DpadDown;
-                else if (Mapping.getBoolMapping(EAll4Controls.DpadLeft, cState, eState, tp)) return EAll4Controls.DpadLeft;
-                else if (Mapping.getBoolMapping(EAll4Controls.DpadRight, cState, eState, tp)) return EAll4Controls.DpadRight;
-                else if (Mapping.getBoolMapping(EAll4Controls.Share, cState, eState, tp)) return EAll4Controls.Share;
-                else if (Mapping.getBoolMapping(EAll4Controls.Options, cState, eState, tp)) return EAll4Controls.Options;
-                else if (Mapping.getBoolMapping(EAll4Controls.PS, cState, eState, tp)) return EAll4Controls.PS;
-                else if (Mapping.getBoolMapping(EAll4Controls.LXPos, cState, eState, tp)) return EAll4Controls.LXPos;
-                else if (Mapping.getBoolMapping(EAll4Controls.LXNeg, cState, eState, tp)) return EAll4Controls.LXNeg;
-                else if (Mapping.getBoolMapping(EAll4Controls.LYPos, cState, eState, tp)) return EAll4Controls.LYPos;
-                else if (Mapping.getBoolMapping(EAll4Controls.LYNeg, cState, eState, tp)) return EAll4Controls.LYNeg;
-                else if (Mapping.getBoolMapping(EAll4Controls.RXPos, cState, eState, tp)) return EAll4Controls.RXPos;
-                else if (Mapping.getBoolMapping(EAll4Controls.RXNeg, cState, eState, tp)) return EAll4Controls.RXNeg;
-                else if (Mapping.getBoolMapping(EAll4Controls.RYPos, cState, eState, tp)) return EAll4Controls.RYPos;
-                else if (Mapping.getBoolMapping(EAll4Controls.RYNeg, cState, eState, tp)) return EAll4Controls.RYNeg;
-                else if (Mapping.getBoolMapping(EAll4Controls.TouchLeft, cState, eState, tp)) return EAll4Controls.TouchLeft;
-                else if (Mapping.getBoolMapping(EAll4Controls.TouchRight, cState, eState, tp)) return EAll4Controls.TouchRight;
-                else if (Mapping.getBoolMapping(EAll4Controls.TouchMulti, cState, eState, tp)) return EAll4Controls.TouchMulti;
-                else if (Mapping.getBoolMapping(EAll4Controls.TouchUpper, cState, eState, tp)) return EAll4Controls.TouchUpper;
-            return EAll4Controls.None;
+                if (Mapping.getBoolMapping(GenericControls.A, cState, eState, tp)) return GenericControls.A;
+                else if (Mapping.getBoolMapping(GenericControls.B, cState, eState, tp)) return GenericControls.B;
+                else if (Mapping.getBoolMapping(GenericControls.Y, cState, eState, tp)) return GenericControls.Y;
+                else if (Mapping.getBoolMapping(GenericControls.X, cState, eState, tp)) return GenericControls.X;
+                else if (Mapping.getBoolMapping(GenericControls.LB, cState, eState, tp)) return GenericControls.LB;
+                else if (Mapping.getBoolMapping(GenericControls.RB, cState, eState, tp)) return GenericControls.RB;
+                else if (Mapping.getBoolMapping(GenericControls.LT, cState, eState, tp)) return GenericControls.LT;
+                else if (Mapping.getBoolMapping(GenericControls.RT, cState, eState, tp)) return GenericControls.RT;
+                else if (Mapping.getBoolMapping(GenericControls.LS, cState, eState, tp)) return GenericControls.LS;
+                else if (Mapping.getBoolMapping(GenericControls.RS, cState, eState, tp)) return GenericControls.RS;
+                else if (Mapping.getBoolMapping(GenericControls.DpadUp, cState, eState, tp)) return GenericControls.DpadUp;
+                else if (Mapping.getBoolMapping(GenericControls.DpadDown, cState, eState, tp)) return GenericControls.DpadDown;
+                else if (Mapping.getBoolMapping(GenericControls.DpadLeft, cState, eState, tp)) return GenericControls.DpadLeft;
+                else if (Mapping.getBoolMapping(GenericControls.DpadRight, cState, eState, tp)) return GenericControls.DpadRight;
+                else if (Mapping.getBoolMapping(GenericControls.Back, cState, eState, tp)) return GenericControls.Back;
+                else if (Mapping.getBoolMapping(GenericControls.Start, cState, eState, tp)) return GenericControls.Start;
+                else if (Mapping.getBoolMapping(GenericControls.Guide, cState, eState, tp)) return GenericControls.Guide;
+                else if (Mapping.getBoolMapping(GenericControls.LXPos, cState, eState, tp)) return GenericControls.LXPos;
+                else if (Mapping.getBoolMapping(GenericControls.LXNeg, cState, eState, tp)) return GenericControls.LXNeg;
+                else if (Mapping.getBoolMapping(GenericControls.LYPos, cState, eState, tp)) return GenericControls.LYPos;
+                else if (Mapping.getBoolMapping(GenericControls.LYNeg, cState, eState, tp)) return GenericControls.LYNeg;
+                else if (Mapping.getBoolMapping(GenericControls.RXPos, cState, eState, tp)) return GenericControls.RXPos;
+                else if (Mapping.getBoolMapping(GenericControls.RXNeg, cState, eState, tp)) return GenericControls.RXNeg;
+                else if (Mapping.getBoolMapping(GenericControls.RYPos, cState, eState, tp)) return GenericControls.RYPos;
+                else if (Mapping.getBoolMapping(GenericControls.RYNeg, cState, eState, tp)) return GenericControls.RYNeg;
+                else if (Mapping.getBoolMapping(GenericControls.TouchLeft, cState, eState, tp)) return GenericControls.TouchLeft;
+                else if (Mapping.getBoolMapping(GenericControls.TouchRight, cState, eState, tp)) return GenericControls.TouchRight;
+                else if (Mapping.getBoolMapping(GenericControls.TouchMulti, cState, eState, tp)) return GenericControls.TouchMulti;
+                else if (Mapping.getBoolMapping(GenericControls.TouchUpper, cState, eState, tp)) return GenericControls.TouchUpper;
+            return GenericControls.None;
         }
 
         public bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };

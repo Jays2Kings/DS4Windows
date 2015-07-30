@@ -204,7 +204,7 @@ namespace EAll4Windows
                 cBDownloadLangauge.Visible = false;
             cBDownloadLangauge.Checked = Global.DownloadLang;
             cBFlashWhenLate.Checked = Global.FlashWhenLate;
-            if (!Global.LoadActions()) //if first no actions have been made yet, create PS+Option to D/C and save it to every profile
+            if (!Global.LoadActions()) //if first no actions have been made yet, create Guide+Option to D/C and save it to every profile
             {
                 XmlDocument xDoc = new XmlDocument();
                 try
@@ -333,7 +333,7 @@ namespace EAll4Windows
                     try
                     {
                         XmlDocument xDoc = new XmlDocument();
-                        Global.SaveAction("Disconnect Controller", "PS/Options", 5, "0", false);
+                        Global.SaveAction("Disconnect Controller", "Guide/Start", 5, "0", false);
                         string[] profiles = Directory.GetFiles(Global.appdatapath + @"\Profiles\");
                         foreach (String s in profiles)
                             if (Path.GetExtension(s) == ".xml")
@@ -980,7 +980,7 @@ namespace EAll4Windows
             else
                 tSTBProfile.Text = "<" + Properties.Resources.TypeProfileName + ">";
             opt = new Options(devID, profile, this);
-            opt.Text = "Options for Controller " + (devID + 1);
+            opt.Text = "Start for Controller " + (devID + 1);
             opt.Icon = this.Icon;
             opt.TopLevel = false;
             opt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

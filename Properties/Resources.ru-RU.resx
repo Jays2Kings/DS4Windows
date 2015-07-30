@@ -481,7 +481,7 @@
     <value>Движения тачпадом включены</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Повторное включение нажатием PS + Touchpad</value>
+    <value>Повторное включение нажатием Guide + Touchpad</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
     <value>Проведение двумя пальцами по тачпаду влево или вправо</value>

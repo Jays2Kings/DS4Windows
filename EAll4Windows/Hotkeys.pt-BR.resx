@@ -155,7 +155,7 @@
     <value>523, 472</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Esconder Controle EAll4: Esconde entrada regular do EAll4 (DINPUT) de outros programas verifique se você está recebendo dupla entrada em jogos ou R2 pausa jogos 
+    <value>Esconder Controle EAll4: Esconde entrada regular do EAll4 (DINPUT) de outros programas verifique se você está recebendo dupla entrada em jogos ou RT pausa jogos 
 
 Clique esquerdo do touchpad: Toque Esquerdo
 
@@ -165,9 +165,9 @@ Clique no TouchPad com 2 Dedos: Multitouch
 
 Clique na Parte Superiro do TouchPad: Upper Touch
 
-Opções PS + ou segurar PS durante 10 segundos: Desconectar Controle ( Apenas Bluetooth)
+Opções Guide + ou segurar Guide durante 10 segundos: Desconectar Controle ( Apenas Bluetooth)
 
-Toque Touchpad + PS: Desligue movimento touchpad (clicando ainda funciona)
+Toque Touchpad + Guide: Desligue movimento touchpad (clicando ainda funciona)
 
 Clique direito no Canto Superio Direito*: Botão direito do mouse (o melhor utilizada quando o lado direito é usado como um botão do mouse)
 

@@ -475,7 +475,7 @@
     <value>Mișcare pe touchpad pornită</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Reactivează apăsând PS+Touchpad</value>
+    <value>Reactivează apăsând Guide+Touchpad</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
     <value>Glisare spre stânga sau dreapta cu 2 degete pe touchpad </value>

@@ -366,8 +366,8 @@ namespace DS4Windows
         
         private void addDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*VistaFolderBrowserDialog fbd = new VistaFolderBrowserDialog();
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
@@ -381,13 +381,13 @@ namespace DS4Windows
                 Timer appstimer = new Timer();
                 appstimer.Start();
                 appstimer.Tick += appstimer_Tick;
-            }*/
+            }
         }
 
         private void browseForOtherProgramsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openProgram.Filter =  Properties.Resources.Programs+"|*.exe|" + Properties.Resources.Shortcuts + "|*.lnk";
-            if (openProgram.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openProgram.ShowDialog() == DialogResult.OK)
             {
                 string file = openProgram.FileName;
                 if (file.EndsWith(".lnk"))

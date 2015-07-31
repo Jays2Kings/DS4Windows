@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B9354BF-AF82-4CCB-A83D-4BEB1E9D8C96}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DS4Windows</RootNamespace>
+    <AssemblyName>DS4Windows</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DS4Windows.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\DS4W.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DS4Control\ControlSerivce.cs" />
+    <Compile Include="DS4Control\DS4LightBar.cs" />
+    <Compile Include="DS4Control\InputMethods.cs" />
+    <Compile Include="DS4Control\ITouchpadBehaviour.cs" />
+    <Compile Include="DS4Control\Log.cs" />
+    <Compile Include="DS4Control\Mapping.cs" />
+    <Compile Include="DS4Control\Mouse.cs" />
+    <Compile Include="DS4Control\MouseCursor.cs" />
+    <Compile Include="DS4Control\MouseWheel.cs" />
+    <Compile Include="DS4Control\ScpDevice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS4Control\ScpDevice.Designer.cs">
+      <DependentUpon>ScpDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Control\ScpHub.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS4Control\ScpHub.Designer.cs">
+      <DependentUpon>ScpHub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Control\ScpUtil.cs" />
+    <Compile Include="DS4Control\X360Device.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS4Control\X360Device.designer.cs">
+      <DependentUpon>X360Device.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Library\DS4Device.cs" />
+    <Compile Include="DS4Library\DS4Devices.cs" />
+    <Compile Include="DS4Library\DS4State.cs" />
+    <Compile Include="DS4Library\DS4StateExposed.cs" />
+    <Compile Include="DS4Library\DS4Touchpad.cs" />
+    <Compile Include="DS4Windows\AdvancedColorDialog.cs" />
+    <Compile Include="DS4Windows\AdvancedComboBox.cs" />
+    <Compile Include="DS4Windows\Alreadyrunning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\Alreadyrunning.Designer.cs">
+      <DependentUpon>Alreadyrunning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Windows\DS4Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\DS4Form.Designer.cs">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Windows\DS4Keyboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\DS4Keyboard.Designer.cs">
+      <DependentUpon>DS4Keyboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Windows\DupBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\DupBox.Designer.cs">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Windows\Hotkeys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\Hotkeys.Designer.cs">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Windows\KBM360.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\KBM360.Designer.cs">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Windows\Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\Options.Designer.cs">
+      <DependentUpon>Options.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="DS4Windows\RecordBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\RecordBox.Designer.cs">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Windows\SaveWhere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\SaveWhere.Designer.cs">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Windows\Settings.cs" />
+    <Compile Include="DS4Windows\SpecActions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\SpecActions.Designer.cs">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Windows\WelcomeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\WelcomeDialog.Designer.cs">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS4Windows\WinProgs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DS4Windows\WinProgs.Designer.cs">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HidLibrary\Extensions.cs" />
+    <Compile Include="HidLibrary\HidDevice.cs" />
+    <Compile Include="HidLibrary\HidDeviceAttributes.cs" />
+    <Compile Include="HidLibrary\HidDeviceCapabilities.cs" />
+    <Compile Include="HidLibrary\HidDevices.cs" />
+    <Compile Include="HidLibrary\NativeMethods.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DS4Windows\Alreadyrunning.resx">
+      <DependentUpon>Alreadyrunning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.de-DE.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.es.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.fr-FR.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.it-IT.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.pt-BR.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.quz-PE.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.ro-RO.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.ru-RU.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Form.tr.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DS4Keyboard.resx">
+      <DependentUpon>DS4Keyboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.de-DE.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.es.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.fr-FR.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.it-IT.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.pt-BR.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.ro-RO.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.ru-RU.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\DupBox.tr.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.de-DE.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.es.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.fr-FR.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.it-IT.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.pt-BR.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.ro-RO.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.ru-RU.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Hotkeys.tr.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.de-DE.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.es.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.fr-FR.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.it-IT.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.pt-BR.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.ro-RO.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.ru-RU.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\KBM360.tr.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.de-DE.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.es.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.fr-FR.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.it-IT.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.pt-BR.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.ro-RO.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.ru-RU.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\Options.tr.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.de-DE.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.es.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.fr-FR.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.it-IT.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.pt-BR.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.ro-RO.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.ru-RU.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\RecordBox.tr.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.de-DE.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.es.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.fr-FR.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.it-IT.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.pt-BR.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.ro-RO.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.ru-RU.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SaveWhere.tr.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SpecActions.de-DE.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SpecActions.fr-FR.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SpecActions.it-IT.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SpecActions.pt-BR.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SpecActions.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SpecActions.ro-RO.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SpecActions.ru-RU.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\SpecActions.tr.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.de-DE.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.es.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.fr-FR.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.it-IT.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.pt-BR.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.ro-RO.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.ru-RU.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WelcomeDialog.tr.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.de-DE.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.es.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.fr-FR.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.it-IT.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.pt-BR.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.ro-RO.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.ru-RU.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Windows\WinProgs.tr.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
+    <EmbeddedResource Include="Properties\Resources.es.resx" />
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
+    <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
+    <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ro-RO.resx" />
+    <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
+    <EmbeddedResource Include="Properties\Resources.tr.resx" />
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources1.Designer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HidLibrary\LICENSE.htm" />
+    <Content Include="Resources\1401402547_menu-24.png" />
+    <Content Include="Resources\360 fades.png" />
+    <Content Include="Resources\360LS.png" />
+    <Content Include="Resources\360RS.png" />
+    <Content Include="Resources\A.PNG" />
+    <Content Include="Resources\B.png" />
+    <Content Include="Resources\BACK.png" />
+    <Content Include="Resources\BT.png" />
+    <Content Include="Resources\checked.png" />
+    <Content Include="Resources\Clock.png" />
+    <Content Include="Resources\delete.png" />
+    <Content Include="Resources\DOWN.png" />
+    <Content Include="Resources\DS4 Controller.png" />
+    <Content Include="Resources\DS4.ico" />
+    <Content Include="Resources\DS4W.ico" />
+    <Content Include="Resources\EE.wav" />
+    <Content Include="Resources\export.png" />
+    <Content Include="Resources\imageres_import.png" />
+    <Content Include="Resources\imageres_new.png" />
+    <Content Include="Resources\LB.png" />
+    <Content Include="Resources\LEFT.png" />
+    <Content Include="Resources\LeftTouch.png" />
+    <Content Include="Resources\LS.png" />
+    <Content Include="Resources\LSD.png" />
+    <Content Include="Resources\LSL.png" />
+    <Content Include="Resources\LSR.png" />
+    <Content Include="Resources\LSU.png" />
+    <Content Include="Resources\LT.png" />
+    <Content Include="Resources\mouse.png" />
+    <Content Include="Resources\MultiTouch.png" />
+    <Content Include="Resources\none.png" />
+    <Content Include="Resources\Pairmode.png" />
+    <Content Include="Resources\rainbow.png" />
+    <Content Include="Resources\rainbowC.png" />
+    <Content Include="Resources\RB.png" />
+    <Content Include="Resources\Red Circle.png" />
+    <Content Include="Resources\RIGHT.png" />
+    <Content Include="Resources\RightTouch.png" />
+    <Content Include="Resources\RS.png" />
+    <Content Include="Resources\RSD.png" />
+    <Content Include="Resources\RSL.png" />
+    <Content Include="Resources\RSR.png" />
+    <Content Include="Resources\RSU.png" />
+    <Content Include="Resources\RT.png" />
+    <Content Include="Resources\saveprofile.png" />
+    <Content Include="Resources\Scp_All.ico" />
+    <Content Include="Resources\shell32 delete.png" />
+    <Content Include="Resources\shell32_copy.png" />
+    <Content Include="Resources\shell32_export.png" />
+    <Content Include="Resources\shell32_new.png" />
+    <Content Include="Resources\size.png" />
+    <Content Include="Resources\START.png" />
+    <Content Include="Resources\sticks.png" />
+    <Content Include="Resources\sticks2.png" />
+    <Content Include="Resources\Touch states2.png" />
+    <Content Include="Resources\Touch.png" />
+    <Content Include="Resources\UP.png" />
+    <Content Include="Resources\UpperTouch.png" />
+    <Content Include="Resources\USB.png" />
+    <Content Include="Resources\X.png" />
+    <Content Include="Resources\x360test.png" />
+    <Content Include="Resources\xbox_360_controller.png" />
+    <Content Include="Resources\Y.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -111,7 +111,7 @@ namespace EAll4Windows
                     EAll4Devices.findControllers();
                     IEnumerable<IEAll4Device> devices = EAll4Devices.getEAll4Controllers();
                     int ind = 0;
-                    EAll4LightBar.defualtLight = false;
+                    EAll4LightBar.defaultLight = false;
                     foreach (var device in devices)
                     {
                         if (showlog)
@@ -175,7 +175,7 @@ namespace EAll4Windows
                         {
                             EAll4LightBar.forcelight[i] = false;
                             EAll4LightBar.forcedFlash[i] = 0;
-                            EAll4LightBar.defualtLight = true;
+                            EAll4LightBar.defaultLight = true;
                             EAll4LightBar.updateLightBar(controllers[i], i, CurrentState[i], ExposedState[i], touchPad[i]);
                             System.Threading.Thread.Sleep(50);
                         }

@@ -32,7 +32,7 @@ namespace EAll4Windows
         public static void updateLightBar(IEAll4Device ieAll4Device, int deviceNum, ControllerState cState, EAll4StateExposed eState, Mouse tp)
         {
             EAll4Color color;
-            if (!defualtLight && !forcelight[deviceNum])
+            if (!defaultLight && !forcelight[deviceNum])
             {
                 if (Global.ShiftColorOn[deviceNum] && Global.ShiftModifier[deviceNum] > 0 && shiftMod(ieAll4Device, deviceNum, cState, eState, tp))
                 {
@@ -77,7 +77,7 @@ namespace EAll4Windows
                     }
 
 
-                    if (ieAll4Device.Battery <= Global.FlashAt[deviceNum] && !defualtLight && !ieAll4Device.Charging)
+                    if (ieAll4Device.Battery <= Global.FlashAt[deviceNum] && !defaultLight && !ieAll4Device.Charging)
                     {
                         if (!(Global.FlashColor[deviceNum].Red == 0 &&
                             Global.FlashColor[deviceNum].Green == 0 &&
@@ -148,7 +148,7 @@ namespace EAll4Windows
                     color = new EAll4Color(0, 0, 0);
             }
             bool distanceprofile = (Global.ProfilePath[deviceNum].ToLower().Contains("distance") || Global.tempprofilename[deviceNum].ToLower().Contains("distance"));
-            if (distanceprofile && !defualtLight)
+            if (distanceprofile && !defaultLight)
             { //Thing I did for Distance
                 float rumble = ieAll4Device.LeftHeavySlowRumble / 2.55f;
                 byte max = Math.Max(color.Red, Math.Max(color.Green, color.Blue));
@@ -168,7 +168,7 @@ namespace EAll4Windows
                     haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
                     haptics.LightBarExplicitlyOff = true;
                 }
-                else if (ieAll4Device.Battery <= Global.FlashAt[deviceNum] && Global.FlashType[deviceNum] == 0 && !defualtLight && !ieAll4Device.Charging)
+                else if (ieAll4Device.Battery <= Global.FlashAt[deviceNum] && Global.FlashType[deviceNum] == 0 && !defaultLight && !ieAll4Device.Charging)
                 {
                     int level = ieAll4Device.Battery / 10;
                     //if (level >= 10)
@@ -199,7 +199,7 @@ namespace EAll4Windows
             ieAll4Device.pushHapticState(haptics);
         }
 
-        public static bool defualtLight = false, shuttingdown = false;
+        public static bool defaultLight = false, shuttingdown = false;
 
         public static bool shiftMod(IEAll4Device ieAll4Device, int deviceNum, ControllerState cState, EAll4StateExposed eState, Mouse tp)
         {

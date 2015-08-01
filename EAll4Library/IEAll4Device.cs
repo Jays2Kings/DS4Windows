@@ -19,6 +19,10 @@ namespace EAll4Windows
         HidDevice HidDevice { get; }
         bool IsExclusive { get; }
         EAll4Touchpad Touchpad { get; }
+        bool IsDisconnecting { get; }
+        string error { get; }
+        DateTime firstActive { get; }
+        int IdleTimeout { get; set; }
 
         event EventHandler<EventArgs> Removal;
 
@@ -31,5 +35,8 @@ namespace EAll4Windows
         void StartUpdate();
         void StopUpdate();
         event EventHandler<EventArgs> Report;
+        void FlushHID();
+        void getExposedState(EAll4StateExposed eAll4StateExposed, ControllerState controllerState);
+        void getPreviousState(ControllerState controllerState);
     }
 }

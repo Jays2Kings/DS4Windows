@@ -39,7 +39,7 @@ namespace EAll4Windows
         private Thread eall4Input, eall4Output;
         private int battery;
         public DateTime lastActive { get; set; } = DateTime.UtcNow;
-        public DateTime firstActive = DateTime.UtcNow;
+        public DateTime firstActive { get; set; } = DateTime.UtcNow;
         private bool charging;
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
@@ -238,7 +238,8 @@ namespace EAll4Windows
         private byte priorInputReport30 = 0xff;
         public double Latency { get; set; } = 0;
         bool warn;
-        public string error;
+        public string error { get; set; }
+
         private void performEAll4Input()
         {
             firstActive = DateTime.UtcNow;

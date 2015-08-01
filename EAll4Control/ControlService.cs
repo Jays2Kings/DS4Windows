@@ -206,7 +206,7 @@ namespace EAll4Windows
             {
                 EAll4Devices.findControllers();
                 IEnumerable<IEAll4Device> devices = EAll4Devices.getEAll4Controllers();
-                foreach (Ds4Device device in devices)
+                foreach (var device in devices)
                 {
                     if (device.IsDisconnecting)
                         continue;
@@ -404,7 +404,7 @@ namespace EAll4Windows
         //Called when EAll4 is disconnected or timed out
         protected virtual void On_EAll4Removal(object sender, EventArgs e)
         {
-            Ds4Device ieAll4Device = (Ds4Device)sender;
+            var ieAll4Device = (IEAll4Device)sender;
             int ind = -1;
             for (int i = 0; i < controllers.Count; i++)
                 if (controllers[i] != null && ieAll4Device.MacAddress == controllers[i].MacAddress)
@@ -426,7 +426,7 @@ namespace EAll4Windows
         protected virtual void On_Report(object sender, EventArgs e)
         {
 
-            Ds4Device ieAll4Device = (Ds4Device)sender;
+            var ieAll4Device = (IEAll4Device)sender;
 
             int ind = -1;
             for (int i = 0; i < controllers.Count; i++)

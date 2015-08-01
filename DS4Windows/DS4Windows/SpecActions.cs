@@ -26,7 +26,7 @@ namespace DS4Windows
         int editIndex;
         protected String m_Actions = Global.appdatapath + "\\Actions.xml";
         string oldprofilename;
-        bool loadingThings;
+        bool loadingAction = true;
         public SpecActions(Options opt, string edit = "", int editindex = -1)
         {
             InitializeComponent();
@@ -53,12 +53,12 @@ namespace DS4Windows
                 oldprofilename = edit;
                 tBName.Text = edit;
                 LoadAction();
+                loadingAction = false;
             }
         }
 
         void LoadAction()
         {
-            loadingThings = true;
             SpecialAction act = Global.GetAction(oldprofilename);
             string[] dets;
             foreach (string s in act.controls.Split('/'))
@@ -131,7 +131,7 @@ namespace DS4Windows
                 case "XboxGameDVR":
                     cBActions.SelectedIndex = 7;
                     dets = act.details.Split(',');
-                    if (int.Parse(dets[0]) == 0)
+                    if (int.Parse(dets[3]) == 0)
                         btnCustomDVRKey.Text = "Custom Key";
                     else
                         btnCustomDVRKey.Text = ((Keys)(int.Parse(dets[3]))).ToString();
@@ -348,7 +348,7 @@ namespace DS4Windows
             if (cBActions.SelectedIndex == 7 && e.Item.Checked)
             {
                 foreach (ListViewItem lvi in lVTrigger.Items)
-                    if (lvi.Checked && lvi != e.Item)
+                    if (lvi != null && lvi.Checked && lvi != e.Item)
                         lvi.Checked = false;
             }
         }
@@ -442,7 +442,7 @@ namespace DS4Windows
         {
             if (((ComboBox)sender).SelectedIndex == 3)
             {
-                if (!loadingThings)
+                if (!loadingAction)
                     new KBM360(this, btnCustomDVRKey, false).ShowDialog();
                 cBTapDVR.Items.RemoveAt(3);
                 cBTapDVR.Items.Insert(3, "Take Screenshot (" + btnCustomDVRKey.Text + ")");

@@ -1433,7 +1433,7 @@ namespace EAll4Windows
                     if (device < 4)
                     {
                         if (dinputOnly[device] == true) control.x360Bus.Unplug(device);
-                        else if (control.EAll4Controllers[device] != null && control.EAll4Controllers[device].IsAlive()) control.x360Bus.Plugin(device);
+                        else if (control.controllers[device] != null && control.controllers[device].IsAlive()) control.x360Bus.Plugin(device);
                     }
                 }
                 catch { missingSetting = true; }

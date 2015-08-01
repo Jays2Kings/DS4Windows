@@ -108,7 +108,7 @@ namespace EAll4Windows
         }
         void eall4_Tick(object sender, EventArgs e)
         {
-            if (Program.rootHub.EAll4Controllers[0] != null)
+            if (Program.rootHub.controllers[0] != null)
             {
                 cState = Program.rootHub.getEAll4State(0);
                 if (btnRecord.Text == Properties.Resources.StopText)

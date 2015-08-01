@@ -284,7 +284,7 @@ namespace EAll4Windows
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
             // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
             // We should try to indicate setpoints of the calibration when exposing this measurement....
-            if (Program.rootHub.EAll4Controllers[(int)nUDSixaxis.Value - 1] == null)
+            if (Program.rootHub.controllers[(int)nUDSixaxis.Value - 1] == null)
             {
                 tPController.Enabled = false;
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", Properties.Resources.NA);
@@ -391,7 +391,7 @@ namespace EAll4Windows
                     lbR2Track.ForeColor = Color.Black;
 
 
-                double latency = Program.rootHub.EAll4Controllers[(int)nUDSixaxis.Value - 1].Latency;
+                double latency = Program.rootHub.controllers[(int)nUDSixaxis.Value - 1].Latency;
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", latency.ToString());
                 if (latency > 10)
                     pBDelayTracker.BackColor = Color.Red;
@@ -909,7 +909,7 @@ namespace EAll4Windows
 
         private void btnRumbleHeavyTest_Click(object sender, EventArgs e)
         {
-            EAll4Device d = Program.rootHub.EAll4Controllers[(int)nUDSixaxis.Value - 1];
+            var d = Program.rootHub.controllers[(int)nUDSixaxis.Value - 1];
             if (d != null)
                 if (((Button)sender).Text == Properties.Resources.TestHText)
                 {
@@ -925,7 +925,7 @@ namespace EAll4Windows
 
         private void btnRumbleLightTest_Click(object sender, EventArgs e)
         {
-            EAll4Device d = Program.rootHub.EAll4Controllers[(int)nUDSixaxis.Value - 1];
+            var d = Program.rootHub.controllers[(int)nUDSixaxis.Value - 1];
             if (d != null)
                 if (((Button)sender).Text == Properties.Resources.TestLText)
                 {

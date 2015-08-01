@@ -475,7 +475,7 @@ namespace EAll4Windows
             if (Global.GetActions().Count > 0 && (Global.ProfileActions[device].Count > 0 ||
                 !string.IsNullOrEmpty(Global.tempprofilename[device])))
                 MapCustomAction(device, cState, MappedState, eState, tp, ctrl);
-            if (ctrl.EAll4Controllers[device] == null) return;
+            if (ctrl.controllers[device] == null) return;
             switch (Global.ShiftModifier[device])
             {
                 case 1: shift = getBoolMapping(GenericControls.A, cState, eState, tp); break;
@@ -1395,7 +1395,7 @@ namespace EAll4Windows
                     }
                     else if (triggeractivated && action.type == "DisconnectBT")
                     {
-                        EAll4Device d = ctrl.EAll4Controllers[device];
+                        var d = ctrl.controllers[device];
                         if (!d.Charging)
                         {
                             d.DisconnectBT();
@@ -1423,7 +1423,7 @@ namespace EAll4Windows
                         }
                         if (bool.Parse(dets[2]))
                         {
-                            EAll4Device d = ctrl.EAll4Controllers[device];
+                            IEAll4Device d = ctrl.controllers[device];
                             if (!actionDone[device, index])
                             {
                                 lastColor[device] = d.LightBarColor;

@@ -769,7 +769,7 @@ namespace EAll4Windows
             for (Int32 Index = 0; Index < Pads.Length; Index++)
             {
                 Pads[Index].Text = Program.rootHub.getEAll4MacAddress(Index);
-                EAll4Device d = Program.rootHub.EAll4Controllers[Index];
+                var d = Program.rootHub.controllers[Index];
                 if (d != null && Global.QuickCharge && d.ConnectionType == ConnectionType.BT && d.Charging)
                 {
                     d.DisconnectBT();
@@ -818,8 +818,8 @@ namespace EAll4Windows
         private void pBStatus_MouseClick(object sender, MouseEventArgs e)
         {
             int i = Int32.Parse(((PictureBox)sender).Tag.ToString());
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && Program.rootHub.getEAll4Status(i) == "BT" && !Program.rootHub.EAll4Controllers[i].Charging)
-                Program.rootHub.EAll4Controllers[i].DisconnectBT();
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && Program.rootHub.getEAll4Status(i) == "BT" && !Program.rootHub.controllers[i].Charging)
+                Program.rootHub.controllers[i].DisconnectBT();
         }
 
         private void Enable_Controls(int device, bool on)
@@ -1590,9 +1590,9 @@ namespace EAll4Windows
         {
             Label lb = (Label)sender;
             int i = Int32.Parse(lb.Tag.ToString());
-            if (Program.rootHub.EAll4Controllers[i] != null && Program.rootHub.EAll4Controllers[i].ConnectionType == ConnectionType.BT)
+            if (Program.rootHub.controllers[i] != null && Program.rootHub.controllers[i].ConnectionType == ConnectionType.BT)
             {
-                double latency = Program.rootHub.EAll4Controllers[i].Latency;
+                double latency = Program.rootHub.controllers[i].Latency;
                 toolTip1.Hide(Pads[i]);
                 toolTip1.Show(Properties.Resources.InputDelay.Replace("*number*", latency.ToString()), lb, lb.Size.Width, 0);
             }

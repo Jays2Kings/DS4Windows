@@ -7,7 +7,7 @@ namespace EAll4Windows
 {
     public class EAll4Devices
     {
-        private static Dictionary<string, EAll4Device> Devices = new Dictionary<string, EAll4Device>();
+        private static Dictionary<string, IEAll4Device> Devices = new Dictionary<string, IEAll4Device>();
         private static HashSet<String> DevicePaths = new HashSet<String>();
         public static bool isExclusiveMode = false;
 
@@ -21,7 +21,7 @@ namespace EAll4Windows
                 int[] pid = { 0x5C4 };
                 List<HidDevice> hDevices = HidDevices.Enumerate(0x054C, pid).ToList();
                 // Sort Bluetooth first in case USB is also connected on the same controller.
-                hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return EAll4Device.HidConnectionType(d); }).ToList();
+                hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return Ds4Device.HidConnectionType(d); }).ToList();
                 //Detect Miui Controllers
                 hDevices.AddRange(HidDevices.Enumerate(0x2717, 0x3144));
                 //Detect iPega Controllers 
@@ -42,11 +42,12 @@ namespace EAll4Windows
                     if (Devices.ContainsKey(hDevice.readSerial()))
                         continue; // happens when the BT endpoint already is open and the USB is plugged into the same host
 
-                    EAll4Device eall4Device = new EAll4Device(hDevice);
-                    eall4Device.Removal += On_Removal;
-                    Devices.Add(eall4Device.MacAddress, eall4Device);
+                    IEAll4Device controller = new Ds4Device(); //TODO Load appropriate Device
+                    controller.Load(hDevice);
+                    controller.Removal += On_Removal;
+                    Devices.Add(controller.MacAddress, controller);
                     DevicePaths.Add(hDevice.DevicePath);
-                    eall4Device.StartUpdate();
+                    controller.StartUpdate();
                 }
 
             }
@@ -54,26 +55,26 @@ namespace EAll4Windows
 
         //allows to get EAll4Device by specifying unique MAC address
         //format for MAC address is XX:XX:XX:XX:XX:XX
-        public static EAll4Device getEAll4Controller(string mac)
+        public static IEAll4Device getEAll4Controller(string mac)
         {
             lock (Devices)
             {
-                EAll4Device device = null;
+                IEAll4Device ieAll4Device = null;
                 try
                 {
-                    Devices.TryGetValue(mac, out device);
+                    Devices.TryGetValue(mac, out ieAll4Device);
                 }
                 catch (ArgumentNullException) { }
-                return device;
+                return ieAll4Device;
             }
         }
 
         //returns EAll4 controllers that were found and are running
-        public static IEnumerable<EAll4Device> getEAll4Controllers()
+        public static IEnumerable<IEAll4Device> getEAll4Controllers()
         {
             lock (Devices)
             {
-                EAll4Device[] controllers = new EAll4Device[Devices.Count];
+                IEAll4Device[] controllers = new Ds4Device[Devices.Count]; //TODO Load appropriate device
                 Devices.Values.CopyTo(controllers, 0);
                 return controllers;
             }
@@ -83,8 +84,8 @@ namespace EAll4Windows
         {
             lock (Devices)
             {
-                IEnumerable<EAll4Device> devices = getEAll4Controllers();
-                foreach (EAll4Device device in devices)
+                IEnumerable<IEAll4Device> devices = getEAll4Controllers();
+                foreach (var device in devices)
                 {
                     device.StopUpdate();
                     device.HidDevice.CloseDevice();
@@ -99,10 +100,10 @@ namespace EAll4Windows
         {
             lock (Devices)
             {
-                EAll4Device device = (EAll4Device)sender;
-                device.HidDevice.CloseDevice();
-                Devices.Remove(device.MacAddress);
-                DevicePaths.Remove(device.HidDevice.DevicePath);
+                IEAll4Device ieAll4Device = (IEAll4Device)sender;
+                ieAll4Device.HidDevice.CloseDevice();
+                Devices.Remove(ieAll4Device.MacAddress);
+                DevicePaths.Remove(ieAll4Device.HidDevice.DevicePath);
             }
         }
     }

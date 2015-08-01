@@ -12,7 +12,7 @@ namespace EAll4Windows
     public class ControlService
     {
         public X360Device x360Bus;
-        public EAll4Device[] EAll4Controllers = new EAll4Device[4];
+        public List<IEAll4Device> controllers = new List<IEAll4Device>(4);
         public Mouse[] touchPad = new Mouse[4];
         private bool running = false;
         private ControllerState[] MappedState = new ControllerState[4];
@@ -41,7 +41,7 @@ namespace EAll4Windows
             sp.Stream = Properties.Resources.EE;
             x360Bus = new X360Device();
             AddtoEAll4List();
-            for (int i = 0; i < EAll4Controllers.Length; i++)
+            for (int i = 0; i < controllers.Count; i++)
             {
                 processingData[i] = new X360Data();
                 MappedState[i] = new ControllerState();
@@ -84,12 +84,12 @@ namespace EAll4Windows
             dcs.Add(GenericControls.SwipeRight);
         }
 
-        private async void WarnExclusiveModeFailure(EAll4Device device)
+        private async void WarnExclusiveModeFailure(IEAll4Device ieAll4Device)
         {
-            if (EAll4Devices.isExclusiveMode && !device.IsExclusive)
+            if (EAll4Devices.isExclusiveMode && !ieAll4Device.IsExclusive)
             {
                 await System.Threading.Tasks.Task.Delay(5);
-                String message = Properties.Resources.CouldNotOpenEAll4.Replace("*Mac address*", device.MacAddress) + " " + Properties.Resources.QuitOtherPrograms;
+                String message = Properties.Resources.CouldNotOpenEAll4.Replace("*Mac address*", ieAll4Device.MacAddress) + " " + Properties.Resources.QuitOtherPrograms;
                 LogDebug(message, true);
                 Log.LogToTray(message);
             }
@@ -109,15 +109,15 @@ namespace EAll4Windows
                 try
                 {
                     EAll4Devices.findControllers();
-                    IEnumerable<EAll4Device> devices = EAll4Devices.getEAll4Controllers();
+                    IEnumerable<IEAll4Device> devices = EAll4Devices.getEAll4Controllers();
                     int ind = 0;
                     EAll4LightBar.defualtLight = false;
-                    foreach (EAll4Device device in devices)
+                    foreach (var device in devices)
                     {
                         if (showlog)
                             LogDebug(Properties.Resources.FoundController + device.MacAddress + " (" + device.ConnectionType + ")");
                         WarnExclusiveModeFailure(device);
-                        EAll4Controllers[ind] = device;
+                        controllers[ind] = device;
                         device.Removal -= EAll4Devices.On_Removal;
                         device.Removal += this.On_EAll4Removal;
                         device.Removal += EAll4Devices.On_Removal;
@@ -165,24 +165,24 @@ namespace EAll4Windows
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingX360);
                 bool anyUnplugged = false;
-                for (int i = 0; i < EAll4Controllers.Length; i++)
+                for (int i = 0; i < controllers.Count; i++)
                 {
-                    if (EAll4Controllers[i] != null)
+                    if (controllers[i] != null)
                     {
-                        if (Global.DCBTatStop && !EAll4Controllers[i].Charging && showlog)
-                            EAll4Controllers[i].DisconnectBT();
+                        if (Global.DCBTatStop && !controllers[i].Charging && showlog)
+                            controllers[i].DisconnectBT();
                         else
                         {
                             EAll4LightBar.forcelight[i] = false;
                             EAll4LightBar.forcedFlash[i] = 0;
                             EAll4LightBar.defualtLight = true;
-                            EAll4LightBar.updateLightBar(EAll4Controllers[i], i, CurrentState[i], ExposedState[i], touchPad[i]);
+                            EAll4LightBar.updateLightBar(controllers[i], i, CurrentState[i], ExposedState[i], touchPad[i]);
                             System.Threading.Thread.Sleep(50);
                         }
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
                         x360Bus.Unplug(i);
                         anyUnplugged = true;
-                        EAll4Controllers[i] = null;
+                        controllers[i] = null;
                         touchPad[i] = null;
                     }
                 }
@@ -205,25 +205,25 @@ namespace EAll4Windows
             if (running)
             {
                 EAll4Devices.findControllers();
-                IEnumerable<EAll4Device> devices = EAll4Devices.getEAll4Controllers();
-                foreach (EAll4Device device in devices)
+                IEnumerable<IEAll4Device> devices = EAll4Devices.getEAll4Controllers();
+                foreach (Ds4Device device in devices)
                 {
                     if (device.IsDisconnecting)
                         continue;
                     if (((Func<bool>)delegate
                     {
-                        for (Int32 Index = 0; Index < EAll4Controllers.Length; Index++)
-                            if (EAll4Controllers[Index] != null && EAll4Controllers[Index].MacAddress == device.MacAddress)
+                        for (Int32 Index = 0; Index < controllers.Count; Index++)
+                            if (controllers[Index] != null && controllers[Index].MacAddress == device.MacAddress)
                                 return true;
                         return false;
                     })())
                         continue;
-                    for (Int32 Index = 0; Index < EAll4Controllers.Length; Index++)
-                        if (EAll4Controllers[Index] == null)
+                    for (Int32 Index = 0; Index < controllers.Count; Index++)
+                        if (controllers[Index] == null)
                         {
                             LogDebug(Properties.Resources.FoundController + device.MacAddress + " (" + device.ConnectionType + ")");
                             WarnExclusiveModeFailure(device);
-                            EAll4Controllers[Index] = device;
+                            controllers[Index] = device;
                             device.Removal -= EAll4Devices.On_Removal;
                             device.Removal += this.On_EAll4Removal;
                             device.Removal += EAll4Devices.On_Removal;
@@ -254,21 +254,21 @@ namespace EAll4Windows
             return true;
         }
 
-        public void TouchPadOn(int ind, EAll4Device device)
+        public void TouchPadOn(int ind, IEAll4Device ieAll4Device)
         {
             ITouchpadBehaviour tPad = touchPad[ind];
-            device.Touchpad.TouchButtonDown += tPad.touchButtonDown;
-            device.Touchpad.TouchButtonUp += tPad.touchButtonUp;
-            device.Touchpad.TouchesBegan += tPad.touchesBegan;
-            device.Touchpad.TouchesMoved += tPad.touchesMoved;
-            device.Touchpad.TouchesEnded += tPad.touchesEnded;
-            device.Touchpad.TouchUnchanged += tPad.touchUnchanged;
+            ieAll4Device.Touchpad.TouchButtonDown += tPad.touchButtonDown;
+            ieAll4Device.Touchpad.TouchButtonUp += tPad.touchButtonUp;
+            ieAll4Device.Touchpad.TouchesBegan += tPad.touchesBegan;
+            ieAll4Device.Touchpad.TouchesMoved += tPad.touchesMoved;
+            ieAll4Device.Touchpad.TouchesEnded += tPad.touchesEnded;
+            ieAll4Device.Touchpad.TouchUnchanged += tPad.touchUnchanged;
             //LogDebug("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
             //Log.LogToTray("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
             Global.ControllerStatusChanged(this);
         }
 
-        public void TimeoutConnection(EAll4Device d)
+        public void TimeoutConnection(IEAll4Device d)
         {
             try
             {
@@ -296,9 +296,9 @@ namespace EAll4Windows
 
         public string getEAll4ControllerInfo(int index)
         {
-            if (EAll4Controllers[index] != null)
+            if (controllers[index] != null)
             {
-                EAll4Device d = EAll4Controllers[index];
+                IEAll4Device d = controllers[index];
                 if (!d.IsAlive())
                 //return "Connecting..."; // awaiting the first battery charge indication
                 {
@@ -329,29 +329,23 @@ namespace EAll4Windows
 
         public string getEAll4MacAddress(int index)
         {
-            if (EAll4Controllers[index] != null)
+            if (controllers[index] == null) return String.Empty;
+            var d = controllers[index];
+            if (d.IsAlive()) return d.MacAddress;
+            var timeoutThread = new System.Threading.Thread(() => TimeoutConnection(d))
             {
-                EAll4Device d = EAll4Controllers[index];
-                if (!d.IsAlive())
-                //return "Connecting..."; // awaiting the first battery charge indication
-                {
-                    var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
-                    TimeoutThread.IsBackground = true;
-                    TimeoutThread.Name = "TimeoutFor" + d.MacAddress.ToString();
-                    TimeoutThread.Start();
-                    return Properties.Resources.Connecting;
-                }
-                return d.MacAddress;
-            }
-            else
-                return String.Empty;
+                IsBackground = true,
+                Name = "TimeoutFor" + d.MacAddress.ToString()
+            };
+            timeoutThread.Start();
+            return Properties.Resources.Connecting;
         }
 
         public string getShortEAll4ControllerInfo(int index)
         {
-            if (EAll4Controllers[index] != null)
+            if (controllers[index] != null)
             {
-                EAll4Device d = EAll4Controllers[index];
+                IEAll4Device d = controllers[index];
                 String battery;
                 if (!d.IsAlive())
                     battery = "...";
@@ -374,9 +368,9 @@ namespace EAll4Windows
 
         public string getEAll4Battery(int index)
         {
-            if (EAll4Controllers[index] != null)
+            if (controllers[index] != null)
             {
-                EAll4Device d = EAll4Controllers[index];
+                var d = controllers[index];
                 String battery;
                 if (!d.IsAlive())
                     battery = "...";
@@ -399,13 +393,10 @@ namespace EAll4Windows
 
         public string getEAll4Status(int index)
         {
-            if (EAll4Controllers[index] != null)
-            {
-                EAll4Device d = EAll4Controllers[index];
-                return d.ConnectionType + "";
-            }
-            else
+            if (controllers[index] == null)
                 return Properties.Resources.NoneText;
+            var d = controllers[index];
+            return d.ConnectionType + "";
         }
 
 
@@ -413,19 +404,19 @@ namespace EAll4Windows
         //Called when EAll4 is disconnected or timed out
         protected virtual void On_EAll4Removal(object sender, EventArgs e)
         {
-            EAll4Device device = (EAll4Device)sender;
+            Ds4Device ieAll4Device = (Ds4Device)sender;
             int ind = -1;
-            for (int i = 0; i < EAll4Controllers.Length; i++)
-                if (EAll4Controllers[i] != null && device.MacAddress == EAll4Controllers[i].MacAddress)
+            for (int i = 0; i < controllers.Count; i++)
+                if (controllers[i] != null && ieAll4Device.MacAddress == controllers[i].MacAddress)
                     ind = i;
             if (ind != -1)
             {
                 CurrentState[ind].Battery = PreviousState[ind].Battery = 0; // Reset for the next connection's initial status change.
                 x360Bus.Unplug(ind);
-                LogDebug(Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", device.MacAddress));
-                Log.LogToTray(Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", device.MacAddress));
+                LogDebug(Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", ieAll4Device.MacAddress));
+                Log.LogToTray(Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", ieAll4Device.MacAddress));
                 System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
-                EAll4Controllers[ind] = null;
+                controllers[ind] = null;
                 touchPad[ind] = null;
                 Global.ControllerStatusChanged(this);
             }
@@ -435,31 +426,31 @@ namespace EAll4Windows
         protected virtual void On_Report(object sender, EventArgs e)
         {
 
-            EAll4Device device = (EAll4Device)sender;
+            Ds4Device ieAll4Device = (Ds4Device)sender;
 
             int ind = -1;
-            for (int i = 0; i < EAll4Controllers.Length; i++)
-                if (device == EAll4Controllers[i])
+            for (int i = 0; i < controllers.Count; i++)
+                if (ieAll4Device == controllers[i])
                     ind = i;
 
             if (ind != -1)
             {
                 if (Global.FlushHIDQueue[ind])
-                    device.FlushHID();
-                if (!string.IsNullOrEmpty(device.error))
+                    ieAll4Device.FlushHID();
+                if (!string.IsNullOrEmpty(ieAll4Device.error))
                 {
-                    LogDebug(device.error);
+                    LogDebug(ieAll4Device.error);
                 }
-                if (DateTime.UtcNow - device.firstActive > TimeSpan.FromSeconds(5))
+                if (DateTime.UtcNow - ieAll4Device.firstActive > TimeSpan.FromSeconds(5))
                 {
-                    if (device.Latency >= 10 && !lag[ind])
+                    if (ieAll4Device.Latency >= 10 && !lag[ind])
                         LagFlashWarning(ind, true);
-                    else if (device.Latency < 10 && lag[ind])
+                    else if (ieAll4Device.Latency < 10 && lag[ind])
                         LagFlashWarning(ind, false);
                 }
-                device.getExposedState(ExposedState[ind], CurrentState[ind]);
+                ieAll4Device.getExposedState(ExposedState[ind], CurrentState[ind]);
                 ControllerState cState = CurrentState[ind];
-                device.getPreviousState(PreviousState[ind]);
+                ieAll4Device.getPreviousState(PreviousState[ind]);
                 ControllerState pState = PreviousState[ind];
                 if (pState.Battery != cState.Battery)
                     Global.ControllerStatusChanged(this);
@@ -480,7 +471,7 @@ namespace EAll4Windows
                     DoExtras(ind);
 
                 // Update the GUI/whatever.
-                EAll4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
+                EAll4LightBar.updateLightBar(ieAll4Device, ind, cState, ExposedState[ind], touchPad[ind]);
 
                 x360Bus.Parse(cState, processingData[ind].Report, ind);
                 // We push the translated Xinput state, and simultaneously we
@@ -499,7 +490,7 @@ namespace EAll4Windows
                 // Output any synthetic events.
                 Mapping.Commit(ind);
                 // Pull settings updates.
-                device.IdleTimeout = Global.IdleDisconnectTimeout[ind];
+                ieAll4Device.IdleTimeout = Global.IdleDisconnectTimeout[ind];
             }
         }
 
@@ -666,7 +657,7 @@ namespace EAll4Windows
             ControllerState cState = CurrentState[ind];
             EAll4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
-            if (EAll4Controllers[ind] != null)
+            if (controllers[ind] != null)
                 if (Mapping.getBoolMapping(GenericControls.A, cState, eState, tp)) return "A";
                 else if (Mapping.getBoolMapping(GenericControls.B, cState, eState, tp)) return "B";
                 else if (Mapping.getBoolMapping(GenericControls.Y, cState, eState, tp)) return "Y";
@@ -704,7 +695,7 @@ namespace EAll4Windows
             ControllerState cState = CurrentState[ind];
             EAll4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
-            if (EAll4Controllers[ind] != null)
+            if (controllers[ind] != null)
                 if (Mapping.getBoolMapping(GenericControls.A, cState, eState, tp)) return GenericControls.A;
                 else if (Mapping.getBoolMapping(GenericControls.B, cState, eState, tp)) return GenericControls.B;
                 else if (Mapping.getBoolMapping(GenericControls.Y, cState, eState, tp)) return GenericControls.Y;
@@ -782,9 +773,9 @@ namespace EAll4Windows
         {
             ControllerState cState = CurrentState[ind];
             string slidedir = "none";
-            if (EAll4Controllers[ind] != null)
+            if (controllers[ind] != null)
                 if (cState.Touch2)
-                    if (EAll4Controllers[ind] != null)
+                    if (controllers[ind] != null)
                         if (touchPad[ind].slideright && !touchslid[ind])
                         {
                             slidedir = "right";
@@ -829,8 +820,8 @@ namespace EAll4Windows
             if (heavyBoosted > 255)
                 heavyBoosted = 255;
             if (deviceNum < 4)
-                if (EAll4Controllers[deviceNum] != null)
-                    EAll4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
+                if (controllers[deviceNum] != null)
+                    controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
         }
 
         public ControllerState getEAll4State(int ind)

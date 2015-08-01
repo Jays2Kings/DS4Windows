@@ -12,7 +12,7 @@ namespace EAll4Windows
         protected Touch firstTouch, secondTouch;
         private ControllerState s = new ControllerState();
         protected int deviceNum;
-        private EAll4Device dev = null;
+        private IEAll4Device dev = null;
         private readonly MouseCursor cursor;
         private readonly MouseWheel wheel;
         private bool tappedOnce = false, secondtouchbegin = false;
@@ -24,7 +24,7 @@ namespace EAll4Windows
         protected GenericControls pushed = GenericControls.None;
         protected Mapping.Click clicked = Mapping.Click.None;
 
-        public Mouse(int deviceID, EAll4Device d)
+        public Mouse(int deviceID, IEAll4Device d)
         {
             deviceNum = deviceID;
             dev = d;

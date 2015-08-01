@@ -13,84 +13,11 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Collections;
+using EAll4Windows.EAll4Library;
+
 namespace EAll4Windows
 {
-    public struct EAll4Color
-    {
-        public byte Red;
-        public byte Green;
-        public byte Blue;
-        public EAll4Color(System.Drawing.Color c)
-        {
-            Red = c.R;
-            Green = c.G;
-            Blue = c.B;
-        }
-        public EAll4Color(byte r, byte g, byte b)
-        {
-            Red = r;
-            Green = g;
-            Blue = b;
-        }
-        public override bool Equals(object obj)
-        {
-            if (obj is EAll4Color)
-            {
-                EAll4Color dsc = ((EAll4Color)obj);
-                return (this.Red == dsc.Red && this.Green == dsc.Green && this.Blue == dsc.Blue);
-            }
-            else
-                return false;
-        }
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var result = 37; // prime
-
-                result *= 397; // also prime (see note)
-                result += Red.GetHashCode();
-
-                result *= 397;
-                result += Green.GetHashCode();
-
-                result *= 397;
-                result += Blue.GetHashCode();
-
-                return result;
-            }
-
-        }
-        public override string ToString()
-        {
-            return ("Red: " + Red + " Green: " + Green + " Blue: " + Blue);
-        }
-    }
-
-    public enum ConnectionType : byte { BT, USB }; // Prioritize Bluetooth when both are connected.
-
-    /**
-     * The haptics engine uses a stack of these states representing the light bar and rumble motor settings.
-     * It (will) handle composing them and the details of output report management.
-     */
-    public struct EAll4HapticState
-    {
-        public EAll4Color LightBarColor;
-        public bool LightBarExplicitlyOff;
-        public byte LightBarFlashDurationOn, LightBarFlashDurationOff;
-        public byte RumbleMotorStrengthLeftHeavySlow, RumbleMotorStrengthRightLightFast;
-        public bool RumbleMotorsExplicitlyOff;
-        public bool IsLightBarSet()
-        {
-            return LightBarExplicitlyOff || LightBarColor.Red != 0 || LightBarColor.Green != 0 || LightBarColor.Blue != 0;
-        }
-        public bool IsRumbleSet()
-        {
-            return RumbleMotorsExplicitlyOff || RumbleMotorStrengthLeftHeavySlow != 0 || RumbleMotorStrengthRightLightFast != 0;
-        }
-    }
-
-    public class EAll4Device
+    public class Ds4Device : IEAll4Device
     {
         private const int BT_OUTPUT_REPORT_LENGTH = 78;
         private const int BT_INPUT_REPORT_LENGTH = 547;
@@ -104,14 +31,14 @@ namespace EAll4Windows
         private byte[] inputReport;
         private byte[] btInputReport = null;
         private byte[] outputReportBuffer, outputReport;
-        private readonly EAll4Touchpad touchpad = null;
+        private EAll4Touchpad touchpad = null;
         private byte rightLightFastRumble;
         private byte leftHeavySlowRumble;
         private EAll4Color ligtBarColor;
         private byte ledFlashOn, ledFlashOff;
         private Thread eall4Input, eall4Output;
         private int battery;
-        public DateTime lastActive = DateTime.UtcNow;
+        public DateTime lastActive { get; set; } = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
         public event EventHandler<EventArgs> Report = null;
@@ -192,7 +119,7 @@ namespace EAll4Windows
             return hidDevice.Capabilities.InputReportByteLength == 64 ? ConnectionType.USB : ConnectionType.BT;
         }
 
-        public EAll4Device(HidDevice hidDevice)
+        public void Load(HidDevice hidDevice)
         {
             hDevice = hidDevice;
             conType = HidConnectionType(hDevice);
@@ -309,7 +236,7 @@ namespace EAll4Windows
             return priorInputReport30 != 0xff;
         }
         private byte priorInputReport30 = 0xff;
-        public double Latency = 0;
+        public double Latency { get; set; } = 0;
         bool warn;
         public string error;
         private void performEAll4Input()

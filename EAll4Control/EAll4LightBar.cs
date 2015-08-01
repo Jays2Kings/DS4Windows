@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using EAll4Windows.EAll4Library;
 
 namespace EAll4Windows
 {
@@ -28,12 +29,12 @@ namespace EAll4Windows
         public static bool[] forcelight = new bool[4] { false, false, false, false };
         public static EAll4Color[] forcedColor = new EAll4Color[4];
         public static byte[] forcedFlash = new byte[4];
-        public static void updateLightBar(EAll4Device device, int deviceNum, ControllerState cState, EAll4StateExposed eState, Mouse tp)
+        public static void updateLightBar(IEAll4Device ieAll4Device, int deviceNum, ControllerState cState, EAll4StateExposed eState, Mouse tp)
         {
             EAll4Color color;
             if (!defualtLight && !forcelight[deviceNum])
             {
-                if (Global.ShiftColorOn[deviceNum] && Global.ShiftModifier[deviceNum] > 0 && shiftMod(device, deviceNum, cState, eState, tp))
+                if (Global.ShiftColorOn[deviceNum] && Global.ShiftModifier[deviceNum] > 0 && shiftMod(ieAll4Device, deviceNum, cState, eState, tp))
                 {
                     color = Global.ShiftColor[deviceNum];
                 }
@@ -45,7 +46,7 @@ namespace EAll4Windows
                         if (now >= oldnow + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
                         {
                             oldnow = now;
-                            if (device.Charging)
+                            if (ieAll4Device.Charging)
                                 counters[deviceNum] -= 1.5 * 3 / Global.Rainbow[deviceNum];
                             else
                                 counters[deviceNum] += 1.5 * 3 / Global.Rainbow[deviceNum];
@@ -55,7 +56,7 @@ namespace EAll4Windows
                         if (counters[deviceNum] > 180000)
                             counters[deviceNum] = 0;
                         if (Global.LedAsBatteryIndicator[deviceNum])
-                            color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(2.55 * device.Battery));
+                            color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(2.55 * ieAll4Device.Battery));
                         else
                             color = HuetoRGB((float)counters[deviceNum] % 360, 255);
 
@@ -67,7 +68,7 @@ namespace EAll4Windows
                             EAll4Color fullColor = Global.MainColor[deviceNum];
                             EAll4Color lowColor = Global.LowColor[deviceNum];
 
-                            color = Global.getTransitionedColor(lowColor, fullColor, (uint)device.Battery);
+                            color = Global.getTransitionedColor(lowColor, fullColor, (uint)ieAll4Device.Battery);
                         }
                     }
                     else
@@ -76,7 +77,7 @@ namespace EAll4Windows
                     }
 
 
-                    if (device.Battery <= Global.FlashAt[deviceNum] && !defualtLight && !device.Charging)
+                    if (ieAll4Device.Battery <= Global.FlashAt[deviceNum] && !defualtLight && !ieAll4Device.Charging)
                     {
                         if (!(Global.FlashColor[deviceNum].Red == 0 &&
                             Global.FlashColor[deviceNum].Green == 0 &&
@@ -96,9 +97,9 @@ namespace EAll4Windows
                         }
                     }
 
-                    if (Global.IdleDisconnectTimeout[deviceNum] > 0 && Global.LedAsBatteryIndicator[deviceNum] && (!device.Charging || device.Battery >= 100))
+                    if (Global.IdleDisconnectTimeout[deviceNum] > 0 && Global.LedAsBatteryIndicator[deviceNum] && (!ieAll4Device.Charging || ieAll4Device.Battery >= 100))
                     {//Fade lightbar by idle time
-                        TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
+                        TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - ieAll4Device.lastActive.Ticks);
                         double botratio = timeratio.TotalMilliseconds;
                         double topratio = TimeSpan.FromSeconds(Global.IdleDisconnectTimeout[deviceNum]).TotalMilliseconds;
                         double ratio = ((botratio / topratio) * 100);
@@ -107,7 +108,7 @@ namespace EAll4Windows
                         else if (ratio >= 100)
                             color = Global.getTransitionedColor(color, new EAll4Color(0, 0, 0), 100);
                     }
-                    if (device.Charging && device.Battery < 100)
+                    if (ieAll4Device.Charging && ieAll4Device.Battery < 100)
                         switch (Global.ChargingType[deviceNum])
                         {
                             case 1:
@@ -141,7 +142,7 @@ namespace EAll4Windows
                 color = new EAll4Color(0, 0, 0);
             else
             {
-                if (device.ConnectionType == ConnectionType.BT)
+                if (ieAll4Device.ConnectionType == ConnectionType.BT)
                     color = new EAll4Color(32, 64, 64);
                 else
                     color = new EAll4Color(0, 0, 0);
@@ -149,12 +150,12 @@ namespace EAll4Windows
             bool distanceprofile = (Global.ProfilePath[deviceNum].ToLower().Contains("distance") || Global.tempprofilename[deviceNum].ToLower().Contains("distance"));
             if (distanceprofile && !defualtLight)
             { //Thing I did for Distance
-                float rumble = device.LeftHeavySlowRumble / 2.55f;
+                float rumble = ieAll4Device.LeftHeavySlowRumble / 2.55f;
                 byte max = Math.Max(color.Red, Math.Max(color.Green, color.Blue));
-                if (device.LeftHeavySlowRumble > 100)
+                if (ieAll4Device.LeftHeavySlowRumble > 100)
                     color = Global.getTransitionedColor(new EAll4Color(max, max, 0), new EAll4Color(255, 0, 0), rumble);
                 else
-                    color = Global.getTransitionedColor(color, Global.getTransitionedColor(new EAll4Color(max, max, 0), new EAll4Color(255, 0, 0), 39.6078f), device.LeftHeavySlowRumble);
+                    color = Global.getTransitionedColor(color, Global.getTransitionedColor(new EAll4Color(max, max, 0), new EAll4Color(255, 0, 0), 39.6078f), ieAll4Device.LeftHeavySlowRumble);
             }
             EAll4HapticState haptics = new EAll4HapticState
             {
@@ -167,17 +168,17 @@ namespace EAll4Windows
                     haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
                     haptics.LightBarExplicitlyOff = true;
                 }
-                else if (device.Battery <= Global.FlashAt[deviceNum] && Global.FlashType[deviceNum] == 0 && !defualtLight && !device.Charging)
+                else if (ieAll4Device.Battery <= Global.FlashAt[deviceNum] && Global.FlashType[deviceNum] == 0 && !defualtLight && !ieAll4Device.Charging)
                 {
-                    int level = device.Battery / 10;
+                    int level = ieAll4Device.Battery / 10;
                     //if (level >= 10)
                     //level = 0; // all values of ~0% or >~100% are rendered the same
                     haptics.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
                     haptics.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];
                 }
-                else if (distanceprofile && device.LeftHeavySlowRumble > 155) //also part of Distance
+                else if (distanceprofile && ieAll4Device.LeftHeavySlowRumble > 155) //also part of Distance
                 {
-                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)((-device.LeftHeavySlowRumble + 265));
+                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)((-ieAll4Device.LeftHeavySlowRumble + 265));
                     haptics.LightBarExplicitlyOff = true;
                 }
                 else
@@ -191,16 +192,16 @@ namespace EAll4Windows
             {
                 haptics.LightBarExplicitlyOff = true;
             }
-            if (device.LightBarOnDuration != haptics.LightBarFlashDurationOn && device.LightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
+            if (ieAll4Device.LightBarOnDuration != haptics.LightBarFlashDurationOn && ieAll4Device.LightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
                 haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
-            if (device.LightBarOnDuration == 1) //helps better reset the color
+            if (ieAll4Device.LightBarOnDuration == 1) //helps better reset the color
                 System.Threading.Thread.Sleep(5);
-            device.pushHapticState(haptics);
+            ieAll4Device.pushHapticState(haptics);
         }
 
         public static bool defualtLight = false, shuttingdown = false;
 
-        public static bool shiftMod(EAll4Device device, int deviceNum, ControllerState cState, EAll4StateExposed eState, Mouse tp)
+        public static bool shiftMod(IEAll4Device ieAll4Device, int deviceNum, ControllerState cState, EAll4StateExposed eState, Mouse tp)
         {
             bool shift;
             switch (Global.ShiftModifier[deviceNum])
@@ -230,7 +231,7 @@ namespace EAll4Windows
                 case 23: shift = Mapping.getBoolMapping(GenericControls.GyroZPos, cState, eState, tp); break;
                 case 24: shift = Mapping.getBoolMapping(GenericControls.GyroXPos, cState, eState, tp); break;
                 case 25: shift = Mapping.getBoolMapping(GenericControls.GyroXNeg, cState, eState, tp); break;
-                case 26: shift = device.getCurrentState().Touch1; break;
+                case 26: shift = ieAll4Device.getCurrentState().Touch1; break;
                 default: shift = false; break;
             }
             return shift;

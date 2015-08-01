@@ -2921,7 +2921,7 @@
         FATWfLCZDp+YM9DVJ+3MM8Bncx/Ni8C4mkhRGpjXmgsGx/amVpQhouvYiZxQOFgLwhoT1oRwP1rDoWl0
         bIyJiYsVOIQy+zDo++N753IUfuPDQkLNvj17pfaDgsQaK/bV+afEwxNnT59xbNm0uR1Fj8fIlKLHGrcv
         vvjCEg8c63XioTUeOIfOPxMPwvJ169aZz7/8wrz6+mvG+dRiM2rMSNOvXz8zYMAAXts1Tp8+bR2X1g79
-        U9e1l9sXXk+45+fAvb9ASlpqkcSU5KKQgfsBpeMhiMIjEAZKx2OILTiXWFlQAXCuEAll43xnnHaiFmqIN4
+        U9e1l9sXXk+45+fAvb9ASlpqkcSU5KKQgfsBpeMhiMIjEAZKx2OILTiXWFlQAXCuDs43xnnHaiFmqIN4
         oT5ijEaAEyQ3R0zRMjk1pQ1on5ic1DE+KbEzRKJbTEJ8j9jEhF7I90HaHwxEfjAYhvwIMAp5kQ7kZVZy
         pFOxPB1wwmdO/jwHzAPzsd+FcYkJixKSkxYDJzB4Lwb/3+C9iVzg2DzKCMu5nuCYZXtl/wGUgYSkFBle
         d9Mujsj6h3TwQfp6SAdZi9/IdYhvWe4bGDA8Oi72Yf1tu5XxWHizw05KO/buGcIPihJBZCxl/BgHQSwI
@@ -4262,7 +4262,7 @@
         z4bevi0bBrwl+yAktrR8RbY1by5ftm4th9q3Uxxr31HO9egkN0Z0l9BRb0joSAiMEV3k2nB2veqqxnyQ
         sJHd5NaYbhIzobskTe4rx99qK5vbtZB5TZ+TKW90UoRF3ZJUK95Fuu29UHhwnAeFhlF8MJyelyvpObmb
         KqvuqFXM2Zupbp75z1Bv5F/K/ybh4afTa5D5/H6DwkO1fvzGhQddu/hAOqP4YKvHBhxjPfZdi3OtgfBY
-        BWHhg/flDVbgfS4EAll4ASH4ibj+1zITxmY99ZOP4MiA4lPiA8PoHw+AgZYQo+/PchON4D7wIOiBtH8QHh
+        BWHhg/flDVbgfS4DS4ASH4ibj+1zITxmY99ZOP4MiA4lPiA8PoHw+AgZYQo+/PchON4D7wIOiBtH8QHh
         AfFROAIZZhiEhyeEhzuEhyuExxAIj4EQHW+DtyA83oTw6Anh0R3C4w0Ij9chPDpBeHSAYGgLWkN4tITw
         aA7h8SqER9Ma4dGECzdBcLxQIz6MwsMJhWfD37rw0PzTP/2Tw7fffvtiVVVVY4vF0vjWrVuNIRAaBwUF
         NT516lTj06dPNzl//nyTgICAJjAimsDIaQy3MQyMxsEhVxrD2GkMg6kxjI4mEBqNYYw0htGhwjBQGhtB
@@ -8112,7 +8112,7 @@ a key by typing it</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>EAll4Windows.AdvancedColorDialog, EAll4Windows, Version=1.4.25.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>MiWindows.AdvancedColorDialog, MiWindows, Version=1.4.25.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="button39.TabIndex" type="System.Int32, mscorlib">
     <value>249</value>
@@ -8870,13 +8870,13 @@ a key by typing it</value>
   <data name="btnM.Location" type="System.Drawing.Point, System.Drawing">
     <value>263, 145</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
     <value>fr-FR</value>
-  </metadata>
-  <metadata name="advColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="advColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
 </root>

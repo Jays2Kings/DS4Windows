@@ -95,7 +95,7 @@ namespace EAll4Windows
             //else
             //{
             btInputReport = new byte[InputReportByteLengthBT];
-            inputReport = new byte[btInputReport.Length - 2];
+            inputReport = new byte[btInputReport.Length];
             //outputReport = new byte[OutputReportByteLengthBT];
             //outputReportBuffer = new byte[OutputReportByteLengthBT];
             //}
@@ -134,27 +134,14 @@ namespace EAll4Windows
 
         private void StopOutputUpdate()
         {
-            if (eall4Output.ThreadState != System.Threading.ThreadState.Stopped || eall4Output.ThreadState != System.Threading.ThreadState.Aborted)
-            {
-                try
-                {
-                    eall4Output.Abort();
-                    eall4Output.Join();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
         }
 
         /** Is the device alive and receiving valid sensor input reports? */
         public bool IsAlive()
         {
-            return priorInputReport30 != 0xff;
+            return true;
         }
-        private byte priorInputReport30 = 0xff;
-        public double Latency { get; set; } = 0;
+        public double Latency => 0;
         bool warn;
         public string error { get; set; }
 
@@ -176,7 +163,7 @@ namespace EAll4Windows
                 if (Latency.Count > 100)
                     Latency.RemoveAt(0);
 
-                this.Latency = Latency.Average();
+                //this.Latency = Latency.Average();
 
                 if (this.Latency > 10 && !warn && sw.ElapsedMilliseconds > 4000)
                 {

@@ -256,15 +256,18 @@ namespace EAll4Windows
 
         public void TouchPadOn(int ind, IEAll4Device ieAll4Device)
         {
-            ITouchpadBehaviour tPad = touchPad[ind];
-            ieAll4Device.Touchpad.TouchButtonDown += tPad.touchButtonDown;
-            ieAll4Device.Touchpad.TouchButtonUp += tPad.touchButtonUp;
-            ieAll4Device.Touchpad.TouchesBegan += tPad.touchesBegan;
-            ieAll4Device.Touchpad.TouchesMoved += tPad.touchesMoved;
-            ieAll4Device.Touchpad.TouchesEnded += tPad.touchesEnded;
-            ieAll4Device.Touchpad.TouchUnchanged += tPad.touchUnchanged;
-            //LogDebug("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
-            //Log.LogToTray("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
+            if (ieAll4Device.Touchpad != null)
+            {
+                ITouchpadBehaviour tPad = touchPad[ind];
+                ieAll4Device.Touchpad.TouchButtonDown += tPad.touchButtonDown;
+                ieAll4Device.Touchpad.TouchButtonUp += tPad.touchButtonUp;
+                ieAll4Device.Touchpad.TouchesBegan += tPad.touchesBegan;
+                ieAll4Device.Touchpad.TouchesMoved += tPad.touchesMoved;
+                ieAll4Device.Touchpad.TouchesEnded += tPad.touchesEnded;
+                ieAll4Device.Touchpad.TouchUnchanged += tPad.touchUnchanged;
+                //LogDebug("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
+                //Log.LogToTray("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
+            }
             Global.ControllerStatusChanged(this);
         }
 

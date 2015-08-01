@@ -292,6 +292,30 @@
     <EmbeddedResource Include="EAll4Windows\DupBox.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EAll4Windows\KBM360.de-DE.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EAll4Windows\KBM360.es.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EAll4Windows\KBM360.fr-FR.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EAll4Windows\KBM360.it-IT.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EAll4Windows\KBM360.pt-BR.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EAll4Windows\KBM360.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EAll4Windows\KBM360.ro-RO.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EAll4Windows\KBM360.ru-RU.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EAll4Windows\Options.de-DE.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>

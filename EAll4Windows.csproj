@@ -99,6 +99,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Devices\Ipega28Device.cs" />
     <Compile Include="Devices\MiDevice.cs" />
     <Compile Include="EAll4Control\GenericControls.cs" />
     <Compile Include="EAll4Control\GenericKeyType.cs" />

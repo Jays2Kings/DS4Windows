@@ -31,7 +31,7 @@ namespace EAll4Windows
                     {
                         var devices = HidDevices.Enumerate(vid, pids).ToList();
                         // Sort Bluetooth first in case USB is also connected on the same controller.
-                        hDevices = devices.OrderBy(d => ConnectionType(d, type)).ToList();
+                        hDevices = devices.OrderBy(d => ConnectionType(d, helper)).ToList();
                         foreach (var hDevice in hDevices.Where(hDevice => !DevicePaths.Contains(hDevice.DevicePath)))
                         {
                             if (!hDevice.IsOpen)
@@ -53,17 +53,15 @@ namespace EAll4Windows
                         }
                     }
                 }
-                ////Detect iPega Controllers 
-                //hDevices.AddRange(HidDevices.Enumerate(0x1949, 0x0402));
 
 
 
             }
         }
 
-        private static ConnectionType ConnectionType(HidDevice d, Type type)
+        private static ConnectionType ConnectionType(HidDevice d, IEAll4Device helper)
         {
-            return d.Capabilities.InputReportByteLength == ((IEAll4Device)type).InputReportByteLengthUSB ? EAll4Windows.ConnectionType.USB : EAll4Windows.ConnectionType.BT;
+            return d.Capabilities.InputReportByteLength == helper.InputReportByteLengthUSB ? EAll4Windows.ConnectionType.USB : EAll4Windows.ConnectionType.BT;
         }
 
         //allows to get EAll4Device by specifying unique MAC address

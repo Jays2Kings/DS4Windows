@@ -34,7 +34,7 @@ namespace EAll4Windows
         private EAll4Touchpad touchpad = null;
         private byte rightLightFastRumble;
         private byte leftHeavySlowRumble;
-        private EAll4Color ligtBarColor;
+        private EAll4Color? lightBarColor;
         private byte ledFlashOn, ledFlashOff;
         private Thread eall4Input, eall4Output;
         private int battery;
@@ -81,15 +81,12 @@ namespace EAll4Windows
             }
         }
 
-        public EAll4Color LightBarColor
+        public EAll4Color? LightBarColor
         {
-            get { return ligtBarColor; }
+            get { return lightBarColor; }
             set
             {
-                if (ligtBarColor.Red != value.Red || ligtBarColor.Green != value.Green || ligtBarColor.Blue != value.Blue)
-                {
-                    ligtBarColor = value;
-                }
+                lightBarColor = value;
             }
         }
 
@@ -458,9 +455,9 @@ namespace EAll4Windows
                 outputReportBuffer[3] = 0xff;
                 outputReportBuffer[6] = rightLightFastRumble; //fast motor
                 outputReportBuffer[7] = leftHeavySlowRumble; //slow motor
-                outputReportBuffer[8] = LightBarColor.Red; //red
-                outputReportBuffer[9] = LightBarColor.Green; //green
-                outputReportBuffer[10] = LightBarColor.Blue; //blue
+                outputReportBuffer[8] = LightBarColor.Value.Red; //red
+                outputReportBuffer[9] = LightBarColor.Value.Green; //green
+                outputReportBuffer[10] = LightBarColor.Value.Blue; //blue
                 outputReportBuffer[11] = ledFlashOn; //flash on duration
                 outputReportBuffer[12] = ledFlashOff; //flash off duration
             }
@@ -470,9 +467,9 @@ namespace EAll4Windows
                 outputReportBuffer[1] = 0xff;
                 outputReportBuffer[4] = rightLightFastRumble; //fast motor
                 outputReportBuffer[5] = leftHeavySlowRumble; //slow  motor
-                outputReportBuffer[6] = LightBarColor.Red; //red
-                outputReportBuffer[7] = LightBarColor.Green; //green
-                outputReportBuffer[8] = LightBarColor.Blue; //blue
+                outputReportBuffer[6] = LightBarColor.Value.Red; //red
+                outputReportBuffer[7] = LightBarColor.Value.Green; //green
+                outputReportBuffer[8] = LightBarColor.Value.Blue; //blue
                 outputReportBuffer[9] = ledFlashOn; //flash on duration
                 outputReportBuffer[10] = ledFlashOff; //flash off duration
             }
@@ -632,7 +629,7 @@ namespace EAll4Windows
         private void setHapticState()
         {
             int i = 0;
-            EAll4Color lightBarColor = LightBarColor;
+            EAll4Color lightBarColor = LightBarColor.Value;
             byte lightBarFlashDurationOn = LightBarOnDuration, lightBarFlashDurationOff = LightBarOffDuration;
             byte rumbleMotorStrengthLeftHeavySlow = LeftHeavySlowRumble, rumbleMotorStrengthRightLightFast = rightLightFastRumble;
             foreach (EAll4HapticState haptic in hapticState)

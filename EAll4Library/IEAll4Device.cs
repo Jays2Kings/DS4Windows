@@ -15,7 +15,7 @@ namespace EAll4Windows
         byte LightBarOnDuration { get; }
         DateTime lastActive { get; }
         byte RightLightFastRumble { get; }
-        EAll4Color LightBarColor { get; set; }
+        EAll4Color? LightBarColor { get; set; }
         HidDevice HidDevice { get; }
         bool IsExclusive { get; }
         EAll4Touchpad Touchpad { get; }

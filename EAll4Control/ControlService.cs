@@ -12,7 +12,7 @@ namespace EAll4Windows
     public class ControlService
     {
         public X360Device x360Bus;
-        public List<IEAll4Device> controllers = new List<IEAll4Device>(4);
+        public IEAll4Device[] controllers = new IEAll4Device[4];
         public Mouse[] touchPad = new Mouse[4];
         private bool running = false;
         private ControllerState[] MappedState = new ControllerState[4];
@@ -41,7 +41,7 @@ namespace EAll4Windows
             sp.Stream = Properties.Resources.EE;
             x360Bus = new X360Device();
             AddtoEAll4List();
-            for (int i = 0; i < controllers.Count; i++)
+            for (int i = 0; i < controllers.Length; i++)
             {
                 processingData[i] = new X360Data();
                 MappedState[i] = new ControllerState();
@@ -165,7 +165,7 @@ namespace EAll4Windows
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingX360);
                 bool anyUnplugged = false;
-                for (int i = 0; i < controllers.Count; i++)
+                for (int i = 0; i < controllers.Length; i++)
                 {
                     if (controllers[i] != null)
                     {
@@ -212,13 +212,13 @@ namespace EAll4Windows
                         continue;
                     if (((Func<bool>)delegate
                     {
-                        for (Int32 Index = 0; Index < controllers.Count; Index++)
+                        for (Int32 Index = 0; Index < controllers.Length; Index++)
                             if (controllers[Index] != null && controllers[Index].MacAddress == device.MacAddress)
                                 return true;
                         return false;
                     })())
                         continue;
-                    for (Int32 Index = 0; Index < controllers.Count; Index++)
+                    for (Int32 Index = 0; Index < controllers.Length; Index++)
                         if (controllers[Index] == null)
                         {
                             LogDebug(Properties.Resources.FoundController + device.MacAddress + " (" + device.ConnectionType + ")");
@@ -406,7 +406,7 @@ namespace EAll4Windows
         {
             var ieAll4Device = (IEAll4Device)sender;
             int ind = -1;
-            for (int i = 0; i < controllers.Count; i++)
+            for (int i = 0; i < controllers.Length; i++)
                 if (controllers[i] != null && ieAll4Device.MacAddress == controllers[i].MacAddress)
                     ind = i;
             if (ind != -1)
@@ -429,7 +429,7 @@ namespace EAll4Windows
             var ieAll4Device = (IEAll4Device)sender;
 
             int ind = -1;
-            for (int i = 0; i < controllers.Count; i++)
+            for (int i = 0; i < controllers.Length; i++)
                 if (ieAll4Device == controllers[i])
                     ind = i;
 

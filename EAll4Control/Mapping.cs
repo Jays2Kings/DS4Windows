@@ -63,7 +63,7 @@ namespace EAll4Windows
         //actions
         public static int[] fadetimer = { 0, 0, 0, 0 };
         public static int[] prevFadetimer = { 0, 0, 0, 0 };
-        public static EAll4Color[] lastColor = new EAll4Color[4];
+        public static EAll4Color?[] lastColor = new EAll4Color?[4];
         public static bool[,] actionDone = new bool[4, 50];
         public static SpecialAction[] untriggeraction = new SpecialAction[4];
         public static DateTime[] nowAction = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
@@ -1432,8 +1432,8 @@ namespace EAll4Windows
                             EAll4Color empty = new EAll4Color(byte.Parse(dets[3]), byte.Parse(dets[4]), byte.Parse(dets[5]));
                             EAll4Color full = new EAll4Color(byte.Parse(dets[6]), byte.Parse(dets[7]), byte.Parse(dets[8]));
                             EAll4Color trans = Global.getTransitionedColor(empty, full, d.Battery);
-                            if (fadetimer[device] < 100)
-                                EAll4LightBar.forcedColor[device] = Global.getTransitionedColor(lastColor[device], trans, fadetimer[device] += 2);
+                            if (fadetimer[device] < 100 && lastColor[device].HasValue)
+                                EAll4LightBar.forcedColor[device] = Global.getTransitionedColor(lastColor[device].Value, trans, fadetimer[device] += 2);
                         }
                         actionDone[device, index] = true;
                     }

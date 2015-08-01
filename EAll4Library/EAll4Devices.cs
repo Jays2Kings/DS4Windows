@@ -24,8 +24,9 @@ namespace EAll4Windows
                 foreach (var type in types)
                 {
                     //Detect DS4 Controllers
-                    int[] pids = ((IEAll4Device)type).PIDs; //{ 0x5C4 };
-                    int[] vids = ((IEAll4Device)type).VIDs; //{ 0x54C };
+                    IEAll4Device helper = (IEAll4Device)Activator.CreateInstance(type);
+                    int[] pids = helper.PIDs;
+                    int[] vids = helper.VIDs;
                     foreach (var vid in vids)
                     {
                         var devices = HidDevices.Enumerate(vid, pids).ToList();
@@ -43,7 +44,7 @@ namespace EAll4Windows
                             if (!hDevice.IsOpen) continue;
                             if (Devices.ContainsKey(hDevice.readSerial()))
                                 continue; // happens when the BT endpoint already is open and the USB is plugged into the same host
-                            IEAll4Device controller = (IEAll4Device)Activator.CreateInstance(type); //TODO Load appropriate Device
+                            IEAll4Device controller = (IEAll4Device)Activator.CreateInstance(type);
                             controller.Load(hDevice);
                             controller.Removal += On_Removal;
                             Devices.Add(controller.MacAddress, controller);
@@ -52,8 +53,6 @@ namespace EAll4Windows
                         }
                     }
                 }
-                ////Detect Miui Controllers
-                //hDevices.AddRange(HidDevices.Enumerate(0x2717, 0x3144));
                 ////Detect iPega Controllers 
                 //hDevices.AddRange(HidDevices.Enumerate(0x1949, 0x0402));
 

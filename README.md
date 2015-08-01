@@ -1,13 +1,10 @@
 EAll4Windows
 ==========
+(Emulate All Controllers for Windows)
+==========
 
-A tool to give Sony's DualShock 4 Xinput and more
+A tool to emulate the xbox360 controller with multiple controllers, and applies system wide
 
-Built off Electrobrains build, but with different features, such as: 
-A profile system - Make Profiles with different settings and mapping for any event you would need it for. 
-Revamped touchpad - A single touchpad mode, with areas such as left side, right side, multitouch, and upperpad. 
-Auto-Updates - When a new update arrives EAll4Windows will tell you there's an update and update automatically
-More mapping options - You can assign mouse movement to all buttons and axis, 4th and 5th mouse button, and most keyboard keys.
-And other things I didn't care to list here.
+Built off Jay2Kings' version, which itself was based on Electrobrains' build, but supporting other controllers as well.
 
-This tool requires a driver to use, however I have not made the driver myself (but is downloaded when installing)
+Disabling the "Network List Service" may help with getting the exclusive access working.

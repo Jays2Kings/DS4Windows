@@ -38,6 +38,7 @@ namespace EAll4Windows
         private byte ledFlashOn, ledFlashOff;
         private Thread eall4Input, eall4Output;
         private int battery;
+        public short InputReportByteLengthUSB { get; } = 64;
         public DateTime lastActive { get; set; } = DateTime.UtcNow;
         public DateTime firstActive { get; set; } = DateTime.UtcNow;
         private bool charging;
@@ -51,7 +52,11 @@ namespace EAll4Windows
         public string MacAddress { get { return Mac; } }
 
         public ConnectionType ConnectionType { get { return conType; } }
-        public int IdleTimeout { get; set; } // behavior only active when > 0
+        public int IdleTimeout { get; set; }
+        public int[] PIDs { get; } = { 0x5C4 };
+        public int[] VIDs { get; } = { 0x54C };
+
+        // behavior only active when > 0
 
         public int Battery { get { return battery; } }
         public bool Charging { get { return charging; } }
@@ -114,9 +119,9 @@ namespace EAll4Windows
 
         public EAll4Touchpad Touchpad { get { return touchpad; } }
 
-        public static ConnectionType HidConnectionType(HidDevice hidDevice)
+        public ConnectionType HidConnectionType(HidDevice hidDevice)
         {
-            return hidDevice.Capabilities.InputReportByteLength == 64 ? ConnectionType.USB : ConnectionType.BT;
+            return hidDevice.Capabilities.InputReportByteLength == InputReportByteLengthUSB ? ConnectionType.USB : ConnectionType.BT;
         }
 
         public void Load(HidDevice hidDevice)

@@ -23,7 +23,8 @@ namespace EAll4Windows
         string error { get; }
         DateTime firstActive { get; }
         int IdleTimeout { get; set; }
-
+        int[] PIDs { get; }
+        int[] VIDs { get; }
         event EventHandler<EventArgs> Removal;
 
         bool DisconnectBT();
@@ -38,5 +39,6 @@ namespace EAll4Windows
         void FlushHID();
         void getExposedState(EAll4StateExposed eAll4StateExposed, ControllerState controllerState);
         void getPreviousState(ControllerState controllerState);
+        short InputReportByteLengthUSB { get; }
     }
 }

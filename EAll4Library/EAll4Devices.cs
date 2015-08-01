@@ -16,41 +16,55 @@ namespace EAll4Windows
         {
             lock (Devices)
             {
-                //TODO Move to frontend to allow any controller
-                //Detect DS4 Controllers
-                int[] pid = { 0x5C4 };
-                List<HidDevice> hDevices = HidDevices.Enumerate(0x054C, pid).ToList();
-                // Sort Bluetooth first in case USB is also connected on the same controller.
-                hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return Ds4Device.HidConnectionType(d); }).ToList();
-                //Detect Miui Controllers
-                hDevices.AddRange(HidDevices.Enumerate(0x2717, 0x3144));
-                //Detect iPega Controllers 
-                hDevices.AddRange(HidDevices.Enumerate(0x1949, 0x0402));
-
-                foreach (HidDevice hDevice in hDevices)
+                var typeOfInterface = typeof(IEAll4Device);
+                var types = AppDomain.CurrentDomain.GetAssemblies()
+                    .SelectMany(s => s.GetTypes())
+                    .Where(p => typeOfInterface.IsAssignableFrom(p) && !p.IsInterface);//.Select(p => (IEAll4Device)p).ToList();
+                var hDevices = new List<HidDevice>();
+                foreach (var type in types)
                 {
-                    if (DevicePaths.Contains(hDevice.DevicePath))
-                        continue; // BT/USB endpoint already open once
-                    if (!hDevice.IsOpen)
+                    //Detect DS4 Controllers
+                    int[] pids = ((IEAll4Device)type).PIDs; //{ 0x5C4 };
+                    int[] vids = ((IEAll4Device)type).VIDs; //{ 0x54C };
+                    foreach (var vid in vids)
                     {
-                        hDevice.OpenDevice(isExclusiveMode);
-                        // TODO in exclusive mode, try to hold both open when both are connected
-                        if (isExclusiveMode && !hDevice.IsOpen)
-                            hDevice.OpenDevice(false);
+                        var devices = HidDevices.Enumerate(vid, pids).ToList();
+                        // Sort Bluetooth first in case USB is also connected on the same controller.
+                        hDevices = devices.OrderBy(d => ConnectionType(d, type)).ToList();
+                        foreach (var hDevice in hDevices.Where(hDevice => !DevicePaths.Contains(hDevice.DevicePath)))
+                        {
+                            if (!hDevice.IsOpen)
+                            {
+                                hDevice.OpenDevice(isExclusiveMode);
+                                // TODO in exclusive mode, try to hold both open when both are connected
+                                if (isExclusiveMode && !hDevice.IsOpen)
+                                    hDevice.OpenDevice(false);
+                            }
+                            if (!hDevice.IsOpen) continue;
+                            if (Devices.ContainsKey(hDevice.readSerial()))
+                                continue; // happens when the BT endpoint already is open and the USB is plugged into the same host
+                            IEAll4Device controller = (IEAll4Device)Activator.CreateInstance(type); //TODO Load appropriate Device
+                            controller.Load(hDevice);
+                            controller.Removal += On_Removal;
+                            Devices.Add(controller.MacAddress, controller);
+                            DevicePaths.Add(hDevice.DevicePath);
+                            controller.StartUpdate();
+                        }
                     }
-                    if (!hDevice.IsOpen) continue;
-                    if (Devices.ContainsKey(hDevice.readSerial()))
-                        continue; // happens when the BT endpoint already is open and the USB is plugged into the same host
-
-                    IEAll4Device controller = new Ds4Device(); //TODO Load appropriate Device
-                    controller.Load(hDevice);
-                    controller.Removal += On_Removal;
-                    Devices.Add(controller.MacAddress, controller);
-                    DevicePaths.Add(hDevice.DevicePath);
-                    controller.StartUpdate();
                 }
+                ////Detect Miui Controllers
+                //hDevices.AddRange(HidDevices.Enumerate(0x2717, 0x3144));
+                ////Detect iPega Controllers 
+                //hDevices.AddRange(HidDevices.Enumerate(0x1949, 0x0402));
+
+
 
             }
+        }
+
+        private static ConnectionType ConnectionType(HidDevice d, Type type)
+        {
+            return d.Capabilities.InputReportByteLength == ((IEAll4Device)type).InputReportByteLengthUSB ? EAll4Windows.ConnectionType.USB : EAll4Windows.ConnectionType.BT;
         }
 
         //allows to get EAll4Device by specifying unique MAC address
@@ -74,7 +88,7 @@ namespace EAll4Windows
         {
             lock (Devices)
             {
-                IEAll4Device[] controllers = new Ds4Device[Devices.Count]; //TODO Load appropriate device
+                IEAll4Device[] controllers = new IEAll4Device[Devices.Count];
                 Devices.Values.CopyTo(controllers, 0);
                 return controllers;
             }

@@ -19,8 +19,8 @@ namespace EAll4Windows
 {
     public class Ds4Device : IEAll4Device
     {
-        private const int BT_OUTPUT_REPORT_LENGTH = 78;
-        private const int BT_INPUT_REPORT_LENGTH = 547;
+        private const int OutputReportByteLengthBT = 78;
+        private const int InputReportByteLengthBT = 547;
         private HidDevice hDevice;
         private string Mac;
         private ControllerState cState = new ControllerState();
@@ -137,10 +137,10 @@ namespace EAll4Windows
             }
             else
             {
-                btInputReport = new byte[BT_INPUT_REPORT_LENGTH];
+                btInputReport = new byte[InputReportByteLengthBT];
                 inputReport = new byte[btInputReport.Length - 2];
-                outputReport = new byte[BT_OUTPUT_REPORT_LENGTH];
-                outputReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
+                outputReport = new byte[OutputReportByteLengthBT];
+                outputReportBuffer = new byte[OutputReportByteLengthBT];
             }
             touchpad = new EAll4Touchpad();
         }

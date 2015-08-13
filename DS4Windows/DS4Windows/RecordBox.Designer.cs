@@ -41,6 +41,8 @@
             this.btnSaveP = new System.Windows.Forms.Button();
             this.lbRecordTip = new System.Windows.Forms.Label();
             this.pnlMouseButtons = new System.Windows.Forms.Panel();
+            this.btnLightbar = new System.Windows.Forms.Button();
+            this.btnRumble = new System.Windows.Forms.Button();
             this.btn5th = new System.Windows.Forms.Button();
             this.btn4th = new System.Windows.Forms.Button();
             this.btnLoadP = new System.Windows.Forms.Button();
@@ -51,8 +53,12 @@
             this.cMSLoadPresets = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.altTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pBLtouch = new System.Windows.Forms.PictureBox();
+            this.pBRtouch = new System.Windows.Forms.PictureBox();
             this.pnlMouseButtons.SuspendLayout();
             this.cMSLoadPresets.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBLtouch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBRtouch)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRecord
@@ -148,11 +154,33 @@
             // pnlMouseButtons
             // 
             resources.ApplyResources(this.pnlMouseButtons, "pnlMouseButtons");
+            this.pnlMouseButtons.Controls.Add(this.pBRtouch);
+            this.pnlMouseButtons.Controls.Add(this.pBLtouch);
+            this.pnlMouseButtons.Controls.Add(this.btnLightbar);
+            this.pnlMouseButtons.Controls.Add(this.btnRumble);
             this.pnlMouseButtons.Controls.Add(this.btn5th);
             this.pnlMouseButtons.Controls.Add(this.btn4th);
             this.pnlMouseButtons.Name = "pnlMouseButtons";
             this.pnlMouseButtons.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
             this.pnlMouseButtons.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
+            // 
+            // btnLightbar
+            // 
+            resources.ApplyResources(this.btnLightbar, "btnLightbar");
+            this.btnLightbar.Name = "btnLightbar";
+            this.btnLightbar.UseVisualStyleBackColor = true;
+            this.btnLightbar.Click += new System.EventHandler(this.btnLightbar_Click);
+            this.btnLightbar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
+            this.btnLightbar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
+            // 
+            // btnRumble
+            // 
+            resources.ApplyResources(this.btnRumble, "btnRumble");
+            this.btnRumble.Name = "btnRumble";
+            this.btnRumble.UseVisualStyleBackColor = true;
+            this.btnRumble.Click += new System.EventHandler(this.btnRumble_Click);
+            this.btnRumble.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
+            this.btnRumble.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
             // 
             // btn5th
             // 
@@ -200,24 +228,38 @@
             // 
             // cMSLoadPresets
             // 
-            resources.ApplyResources(this.cMSLoadPresets, "cMSLoadPresets");
             this.cMSLoadPresets.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.altTabToolStripMenuItem,
             this.fromFileToolStripMenuItem});
             this.cMSLoadPresets.Name = "cMSLoadPresets";
             this.cMSLoadPresets.ShowImageMargin = false;
+            resources.ApplyResources(this.cMSLoadPresets, "cMSLoadPresets");
             // 
             // altTabToolStripMenuItem
             // 
-            resources.ApplyResources(this.altTabToolStripMenuItem, "altTabToolStripMenuItem");
             this.altTabToolStripMenuItem.Name = "altTabToolStripMenuItem";
+            resources.ApplyResources(this.altTabToolStripMenuItem, "altTabToolStripMenuItem");
             this.altTabToolStripMenuItem.Click += new System.EventHandler(this.altTabToolStripMenuItem_Click);
             // 
             // fromFileToolStripMenuItem
             // 
-            resources.ApplyResources(this.fromFileToolStripMenuItem, "fromFileToolStripMenuItem");
             this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
+            resources.ApplyResources(this.fromFileToolStripMenuItem, "fromFileToolStripMenuItem");
             this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.fromFileToolStripMenuItem_Click);
+            // 
+            // pBLtouch
+            // 
+            this.pBLtouch.Image = global::DS4Windows.Properties.Resources.left_touch;
+            resources.ApplyResources(this.pBLtouch, "pBLtouch");
+            this.pBLtouch.Name = "pBLtouch";
+            this.pBLtouch.TabStop = false;
+            // 
+            // pBRtouch
+            // 
+            this.pBRtouch.Image = global::DS4Windows.Properties.Resources.right_touch;
+            resources.ApplyResources(this.pBRtouch, "pBRtouch");
+            this.pBRtouch.Name = "pBRtouch";
+            this.pBRtouch.TabStop = false;
             // 
             // RecordBox
             // 
@@ -249,6 +291,8 @@
             this.Resize += new System.EventHandler(this.RecordBox_Resize);
             this.pnlMouseButtons.ResumeLayout(false);
             this.cMSLoadPresets.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pBLtouch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBRtouch)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,5 +321,9 @@
         private System.Windows.Forms.ContextMenuStrip cMSLoadPresets;
         private System.Windows.Forms.ToolStripMenuItem altTabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromFileToolStripMenuItem;
+        private System.Windows.Forms.Button btnLightbar;
+        private System.Windows.Forms.Button btnRumble;
+        private System.Windows.Forms.PictureBox pBRtouch;
+        private System.Windows.Forms.PictureBox pBLtouch;
     }
 }

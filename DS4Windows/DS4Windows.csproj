@@ -461,6 +461,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ro-RO.resx" />
     <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
@@ -470,7 +471,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources1.Designer.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -513,6 +518,7 @@
     <Content Include="Resources\imageres_import.png" />
     <Content Include="Resources\imageres_new.png" />
     <Content Include="Resources\LB.png" />
+    <None Include="Resources\left touch.png" />
     <Content Include="Resources\LEFT.png" />
     <Content Include="Resources\LeftTouch.png" />
     <Content Include="Resources\LS.png" />
@@ -529,6 +535,7 @@
     <Content Include="Resources\rainbowC.png" />
     <Content Include="Resources\RB.png" />
     <Content Include="Resources\Red Circle.png" />
+    <None Include="Resources\right touch.png" />
     <Content Include="Resources\RIGHT.png" />
     <Content Include="Resources\RightTouch.png" />
     <Content Include="Resources\RS.png" />

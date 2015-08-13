@@ -854,6 +854,16 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap left_touch {
+            get {
+                object obj = ResourceManager.GetObject("left_touch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LeftTouch {
             get {
                 object obj = ResourceManager.GetObject("LeftTouch", resourceCulture);
@@ -1232,6 +1242,16 @@ namespace DS4Windows.Properties {
         internal static System.Drawing.Bitmap RIGHT {
             get {
                 object obj = ResourceManager.GetObject("RIGHT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap right_touch {
+            get {
+                object obj = ResourceManager.GetObject("right_touch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

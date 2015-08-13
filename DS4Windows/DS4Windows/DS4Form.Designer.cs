@@ -54,6 +54,7 @@
             this.openProfiles = new System.Windows.Forms.OpenFileDialog();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabControllers = new System.Windows.Forms.TabPage();
+            this.btnConnectDS4Win10 = new System.Windows.Forms.Button();
             this.tLPControllers = new System.Windows.Forms.TableLayoutPanel();
             this.pBStatus1 = new System.Windows.Forms.PictureBox();
             this.lbPad1 = new System.Windows.Forms.Label();
@@ -114,6 +115,9 @@
             this.cBSwipeProfiles = new System.Windows.Forms.CheckBox();
             this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
             this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbNotifications = new System.Windows.Forms.Label();
+            this.cBoxNotifications = new System.Windows.Forms.ComboBox();
             this.cBDisconnectBT = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.nUDLatency = new System.Windows.Forms.NumericUpDown();
@@ -121,11 +125,8 @@
             this.cBFlashWhenLate = new System.Windows.Forms.CheckBox();
             this.cBCloseMini = new System.Windows.Forms.CheckBox();
             this.cBQuickCharge = new System.Windows.Forms.CheckBox();
-            this.cBUpdate = new System.Windows.Forms.CheckBox();
             this.cBDownloadLangauge = new System.Windows.Forms.CheckBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lbNotifications = new System.Windows.Forms.Label();
-            this.cBoxNotifications = new System.Windows.Forms.ComboBox();
+            this.cBUpdate = new System.Windows.Forms.CheckBox();
             this.pNUpdate = new System.Windows.Forms.Panel();
             this.cBUpdateTime = new System.Windows.Forms.ComboBox();
             this.lbCheckEvery = new System.Windows.Forms.Label();
@@ -159,9 +160,9 @@
             this.toolStrip1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.fLPSettings.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLatency)).BeginInit();
-            this.panel1.SuspendLayout();
             this.pNUpdate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).BeginInit();
             this.pnlXIPorts.SuspendLayout();
@@ -339,11 +340,19 @@
             // 
             // tabControllers
             // 
+            this.tabControllers.Controls.Add(this.btnConnectDS4Win10);
             this.tabControllers.Controls.Add(this.tLPControllers);
             this.tabControllers.Controls.Add(this.lbNoControllers);
             resources.ApplyResources(this.tabControllers, "tabControllers");
             this.tabControllers.Name = "tabControllers";
             this.tabControllers.UseVisualStyleBackColor = true;
+            // 
+            // btnConnectDS4Win10
+            // 
+            resources.ApplyResources(this.btnConnectDS4Win10, "btnConnectDS4Win10");
+            this.btnConnectDS4Win10.Name = "btnConnectDS4Win10";
+            this.btnConnectDS4Win10.UseVisualStyleBackColor = true;
+            this.btnConnectDS4Win10.Click += new System.EventHandler(this.btnConnectDS4Win10_Click);
             // 
             // tLPControllers
             // 
@@ -824,6 +833,30 @@
             this.startMinimizedCheckBox.UseVisualStyleBackColor = true;
             this.startMinimizedCheckBox.CheckedChanged += new System.EventHandler(this.startMinimizedCheckBox_CheckedChanged);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbNotifications);
+            this.panel1.Controls.Add(this.cBoxNotifications);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
+            // 
+            // lbNotifications
+            // 
+            resources.ApplyResources(this.lbNotifications, "lbNotifications");
+            this.lbNotifications.Name = "lbNotifications";
+            // 
+            // cBoxNotifications
+            // 
+            resources.ApplyResources(this.cBoxNotifications, "cBoxNotifications");
+            this.cBoxNotifications.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBoxNotifications.FormattingEnabled = true;
+            this.cBoxNotifications.Items.AddRange(new object[] {
+            resources.GetString("cBoxNotifications.Items"),
+            resources.GetString("cBoxNotifications.Items1"),
+            resources.GetString("cBoxNotifications.Items2")});
+            this.cBoxNotifications.Name = "cBoxNotifications";
+            this.cBoxNotifications.SelectedIndexChanged += new System.EventHandler(this.cBoxNotifications_SelectedIndexChanged);
+            // 
             // cBDisconnectBT
             // 
             resources.ApplyResources(this.cBDisconnectBT, "cBDisconnectBT");
@@ -883,13 +916,6 @@
             this.cBQuickCharge.UseVisualStyleBackColor = true;
             this.cBQuickCharge.CheckedChanged += new System.EventHandler(this.cBQuickCharge_CheckedChanged);
             // 
-            // cBUpdate
-            // 
-            resources.ApplyResources(this.cBUpdate, "cBUpdate");
-            this.cBUpdate.Name = "cBUpdate";
-            this.cBUpdate.UseVisualStyleBackColor = true;
-            this.cBUpdate.CheckedChanged += new System.EventHandler(this.cBUpdate_CheckedChanged);
-            // 
             // cBDownloadLangauge
             // 
             resources.ApplyResources(this.cBDownloadLangauge, "cBDownloadLangauge");
@@ -899,29 +925,12 @@
             this.cBDownloadLangauge.UseVisualStyleBackColor = true;
             this.cBDownloadLangauge.CheckedChanged += new System.EventHandler(this.cBDownloadLangauge_CheckedChanged);
             // 
-            // panel1
+            // cBUpdate
             // 
-            this.panel1.Controls.Add(this.lbNotifications);
-            this.panel1.Controls.Add(this.cBoxNotifications);
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Name = "panel1";
-            // 
-            // lbNotifications
-            // 
-            resources.ApplyResources(this.lbNotifications, "lbNotifications");
-            this.lbNotifications.Name = "lbNotifications";
-            // 
-            // cBoxNotifications
-            // 
-            resources.ApplyResources(this.cBoxNotifications, "cBoxNotifications");
-            this.cBoxNotifications.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBoxNotifications.FormattingEnabled = true;
-            this.cBoxNotifications.Items.AddRange(new object[] {
-            resources.GetString("cBoxNotifications.Items"),
-            resources.GetString("cBoxNotifications.Items1"),
-            resources.GetString("cBoxNotifications.Items2")});
-            this.cBoxNotifications.Name = "cBoxNotifications";
-            this.cBoxNotifications.SelectedIndexChanged += new System.EventHandler(this.cBoxNotifications_SelectedIndexChanged);
+            resources.ApplyResources(this.cBUpdate, "cBUpdate");
+            this.cBUpdate.Name = "cBUpdate";
+            this.cBUpdate.UseVisualStyleBackColor = true;
+            this.cBUpdate.CheckedChanged += new System.EventHandler(this.cBUpdate_CheckedChanged);
             // 
             // pNUpdate
             // 
@@ -1099,11 +1108,11 @@
             this.tabSettings.ResumeLayout(false);
             this.fLPSettings.ResumeLayout(false);
             this.fLPSettings.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLatency)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.pNUpdate.ResumeLayout(false);
             this.pNUpdate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDUpdateTime)).EndInit();
@@ -1233,6 +1242,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.NumericUpDown nUDLatency;
         private System.Windows.Forms.Label lbMsLatency;
+        private System.Windows.Forms.Button btnConnectDS4Win10;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

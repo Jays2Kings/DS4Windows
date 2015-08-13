@@ -48,6 +48,7 @@ namespace DS4Windows
         bool contextclose;
         string logFile = appdatapath + @"\DS4Service.log";
         StreamWriter logWriter;
+        bool runningBat;
         //bool outputlog = false;
 
         [DllImport("user32.dll")]
@@ -186,12 +187,16 @@ namespace DS4Windows
             //MessageBox.Show(Environment.OSVersion.VersionString);
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
-                hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
-                hideDS4CheckBox.Checked = UseExclusiveMode;
-                hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
+            hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
+            hideDS4CheckBox.Checked = UseExclusiveMode;
+            hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
             if (Environment.OSVersion.Version.Major >= 10)
-                toolTip1.SetToolTip(hideDS4CheckBox, "Currently does not work on Windows 10");
-                cBDisconnectBT.Checked = DCBTatStop;
+            {
+                toolTip1.SetToolTip(hideDS4CheckBox, "For Windows 10, use button on the main tab to connect exclusivly");
+                btnConnectDS4Win10.Visible = hideDS4CheckBox.Checked;
+                toolTip1.SetToolTip(btnConnectDS4Win10, "This will temporarily kill the taskbar until you connect a controller");
+            }
+            cBDisconnectBT.Checked = DCBTatStop;
             cBQuickCharge.Checked = QuickCharge;
             nUDXIPorts.Value = FirstXinputPort;
             Program.rootHub.x360Bus.FirstController = FirstXinputPort;
@@ -320,6 +325,23 @@ namespace DS4Windows
                     appShortcutToStartup();
                 }
             }
+            UpdateTheUpdater();
+        }
+
+        private async void UpdateTheUpdater()
+        {
+            if (File.Exists(exepath + "\\Update Files\\DS4Updater.exe"))
+            {
+                Process[] processes = Process.GetProcessesByName("DS4Updater");
+                while (processes.Length > 0)
+                {
+                    await Task.Delay(500);
+                }
+                File.Delete(exepath + "\\DS4Updater.exe");
+                File.Move(exepath + "\\Update Files\\DS4Updater.exe", exepath + "\\DS4Updater.exe");
+                Directory.Delete(exepath + "\\Update Files");
+            }
+
         }
 
         void NewVersion()
@@ -475,6 +497,13 @@ namespace DS4Windows
                         LoadProfile(j, false, Program.rootHub);
                 }
             }
+            if (bat != null && bat.HasExited && runningBat)
+            {
+                Process.Start("explorer.exe");
+                bat = null;
+                runningBat = false;
+            }
+
             GC.Collect();
         }
 
@@ -791,6 +820,11 @@ namespace DS4Windows
                 Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
                 if (Pads[Index].Text != String.Empty)
                 {
+                    if (runningBat)
+                    {
+                        SendKeys.Send("A");
+                        runningBat = false;
+                    }
                     Pads[Index].Enabled = true;
                     nocontrollers = false;
                     if (Pads[Index].Text != Properties.Resources.Connecting)
@@ -1062,6 +1096,8 @@ namespace DS4Windows
                         module.Dispose();
 
             UseExclusiveMode = hideDS4CheckBox.Checked;
+            if (Environment.OSVersion.Version.Major >= 10)
+                btnConnectDS4Win10.Visible = hideDS4CheckBox.Checked;
             btnStartStop_Clicked(false);
             btnStartStop_Clicked(false);
             Save();
@@ -1614,6 +1650,22 @@ namespace DS4Windows
         private void Pads_MouseLeave(object sender, EventArgs e)
         {
             toolTip1.Hide((Label)sender);
+        }
+        Process bat;
+        private void btnConnectDS4Win10_Click(object sender, EventArgs e)
+        {
+            if (!runningBat)
+            {
+                StreamWriter w = new StreamWriter(exepath + "\\ConnectDS4.bat");
+                w.WriteLine("@echo off"); // Turn off echo
+                w.WriteLine("taskkill /IM explorer.exe /f");
+                w.WriteLine("echo Connect your DS4 controller"); //
+                w.WriteLine("pause");
+                w.WriteLine("start explorer.exe");
+                w.Close();
+                runningBat = true;
+                bat = Process.Start(exepath + "\\ConnectDS4.bat");
+            }
         }
 
         private void cBDownloadLangauge_CheckedChanged(object sender, EventArgs e)

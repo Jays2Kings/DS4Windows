@@ -1279,7 +1279,7 @@ namespace DS4Windows
                         DateTime now = DateTime.UtcNow;
                         if (!subtriggeractivated && now <= oldnowKeyAct[device] + TimeSpan.FromMilliseconds(250))
                         {
-                            await Task.Delay(3); //if the button is assigned to the same key use a delay so the keydown is the last action, not key up
+                            await Task.Delay(3); //if the button is assigned to the same key use a delay so the key down is the last action, not key up
                             triggeractivated = true;
                             oldnowKeyAct[device] = DateTime.MinValue;
                         }
@@ -1459,6 +1459,10 @@ namespace DS4Windows
                     {
                         if (Global.getCustomButton(device, action.trigger[0]) != X360Controls.Unbound)
                             Global.getCustomButtons(device)[action.trigger[0]] = X360Controls.Unbound;
+                        if (Global.getCustomMacro(device, action.trigger[0]) != "0")
+                            Global.getCustomMacros(device).Remove(action.trigger[0]);
+                        if (Global.getCustomKey(device, action.trigger[0]) != 0)
+                            Global.getCustomMacros(device).Remove(action.trigger[0]);
                         string[] dets = action.details.Split(',');
                         DS4Device d = ctrl.DS4Controllers[device];
                         //Global.cus
@@ -1493,7 +1497,7 @@ namespace DS4Windows
                         }
 
                         int type = 0;
-                        string macro = "91/71/71/91";
+                        string macro = "";
                         if (tappedOnce) //single tap
                         {
                             if (int.TryParse(dets[0], out type))
@@ -1625,7 +1629,7 @@ namespace DS4Windows
                     keys = new int[0];
                 }
                 for (int i = 0; i < keys.Length; i++)
-                    keys[i] = ushort.Parse(skeys[i]);
+                    keys[i] = int.Parse(skeys[i]);
                 bool[] keydown = new bool[286];
                 if (control == DS4Controls.None || !macrodone[DS4ControltoInt(control)])
                 {
@@ -1633,7 +1637,33 @@ namespace DS4Windows
                         macrodone[DS4ControltoInt(control)] = true;
                     foreach (int i in keys)
                     {
-                        if (i >= 300) //ints over 300 used to delay
+                        if (i >= 1000000000)
+                        {
+                            string lb = i.ToString().Substring(1);
+                            if (i > 1000000000)
+                            {
+                                byte r = (byte)(int.Parse(lb[0].ToString()) * 100 + int.Parse(lb[1].ToString()) * 10 + int.Parse(lb[2].ToString()));
+                                byte g = (byte)(int.Parse(lb[3].ToString()) * 100 + int.Parse(lb[4].ToString()) * 10 + int.Parse(lb[5].ToString()));
+                                byte b = (byte)(int.Parse(lb[6].ToString()) * 100 + int.Parse(lb[7].ToString()) * 10 + int.Parse(lb[8].ToString()));
+                                DS4LightBar.forcelight[device] = true;
+                                DS4LightBar.forcedFlash[device] = 0;
+                                DS4LightBar.forcedColor[device] = new DS4Color(r, g, b);
+                            }
+                            else
+                            {
+                                DS4LightBar.forcedFlash[device] = 0;
+                                DS4LightBar.forcelight[device] = false;
+                            }
+                        }
+                        else if (i >= 1000000)
+                        {
+                            DS4Device d = Program.rootHub.DS4Controllers[device];
+                            string r = i.ToString().Substring(1);
+                            byte heavy = (byte)(int.Parse(r[0].ToString()) * 100 + int.Parse(r[1].ToString()) * 10 + int.Parse(r[2].ToString()));
+                            byte light = (byte)(int.Parse(r[3].ToString()) * 100 + int.Parse(r[4].ToString()) * 10 + int.Parse(r[5].ToString()));
+                            d.setRumble(light, heavy);
+                        }
+                        else if (i >= 300) //ints over 300 used to delay
                             await Task.Delay(i - 300);
                         else if (!keydown[i])
                         {
@@ -1750,6 +1780,9 @@ namespace DS4Windows
                             else
                                 InputMethods.performKeyRelease(i);
                     }
+                    DS4LightBar.forcedFlash[device] = 0;
+                    DS4LightBar.forcelight[device] = false;
+                    Program.rootHub.DS4Controllers[device].setRumble(0, 0);
                     if (keyType.HasFlag(DS4KeyType.HoldMacro))
                     {
                         await Task.Delay(50);

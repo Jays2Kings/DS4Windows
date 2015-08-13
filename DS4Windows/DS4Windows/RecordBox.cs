@@ -27,6 +27,7 @@ namespace DS4Windows
         DS4State cState;
         public bool saved = false;
         List<DS4Controls> dcs = new List<DS4Controls>();
+        TextBox tb1, tb2;
         public RecordBox(KBM360 op)
         {
             kbm = op;
@@ -106,12 +107,32 @@ namespace DS4Windows
             else
                 macros.Add(value);
         }
+        bool[] pTP = new bool[4];
         void ds4_Tick(object sender, EventArgs e)
         {
             if (Program.rootHub.DS4Controllers[0] != null)
             {
                 cState = Program.rootHub.getDS4State(0);
                 if (btnRecord.Text == Properties.Resources.StopText)
+                {
+                    if (cBRecordDelays.Checked)
+                    {
+                        Mouse tP = Program.rootHub.touchPad[0];
+                        if (tP.leftDown && !pTP[0])
+                            if (!btnRumble.Text.Contains("Stop"))
+                                btnRumble_Click(sender, e);
+                        else if (!tP.leftDown && pTP[0])
+                            if (btnRumble.Text.Contains("Stop"))
+                                btnRumble_Click(sender, e);
+                        if (tP.rightDown && !pTP[1])
+                            if (!btnLightbar.Text.Contains("Reset"))
+                                btnLightbar_Click(sender, e);
+                        else if (!tP.rightDown && pTP[1])
+                            if (btnLightbar.Text.Contains("Reset"))
+                                btnLightbar_Click(sender, e);
+                        pTP[0] = tP.leftDown;
+                        pTP[1] = tP.rightDown;
+                    }
                     foreach (DS4Controls dc in dcs)
                         if (Mapping.getBoolMapping(dc, cState, null, null))
                         {
@@ -175,6 +196,7 @@ namespace DS4Windows
                                 }
                             }
                         }
+                }
             }
         }
         
@@ -251,6 +273,10 @@ namespace DS4Windows
             {
                 if (cBRecordDelays.Checked)
                     sw.Start();
+                btnRumble.Visible = cBRecordDelays.Checked;
+                btnLightbar.Visible = cBRecordDelays.Checked;
+                pBLtouch.Visible = cBRecordDelays.Checked;
+                pBRtouch.Visible = cBRecordDelays.Checked;
                 Program.rootHub.recordingMacro = true;
                 saved = false;
                 ds4.Start();
@@ -278,6 +304,13 @@ namespace DS4Windows
                     btn4th_Click(sender, e);
                 if (btn5th.Text.Contains(Properties.Resources.UpText))
                     btn5th_Click(sender, e);
+                if (cBRecordDelays.Checked)
+                {
+                    if (btnRumble.Text.Contains("Stop"))
+                        btnRumble_Click(sender, e);
+                    if (btnLightbar.Text.Contains("Reset"))
+                        btnLightbar_Click(sender, e);
+                }
                 if (cBRecordDelays.Checked)
                     sw.Reset();
                 if (cBRecordDelays.Checked)
@@ -618,6 +651,98 @@ namespace DS4Windows
         }
 
 
+        private void btnRumble_Click(object sender, EventArgs e)
+        {
+            int value = 1255255;
+            if (btnRumble.Text.Contains("Add"))
+            {
+                if (macros.Count == 0 || (recordAfter && macrosAfter.Count == 0))
+                {
+                    AddMacroValue(value);
+                    lVMacros.Items.Add("Rumble 255,255 (100%)", 0);
+                    if (cBRecordDelays.Checked)
+                    {
+                        sw.Reset();
+                        sw.Start();
+                    }
+                }
+                else if (macros.Count > 0 || (recordAfter && macrosAfter.Count > 0))
+                {
+                    if (cBRecordDelays.Checked)
+                    {
+                        AddMacroValue((int)sw.ElapsedMilliseconds + 300);
+                        lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
+                        sw.Reset();
+                        sw.Start();
+                    }
+                    AddMacroValue(value);
+                    lVMacros.Items.Add("Rumble 255,255 (100%)", 0);
+                }
+                btnRumble.Text = "Stop Rumble";
+            }
+            else
+            {
+                value = 1000000;
+                if (cBRecordDelays.Checked)
+                {
+                    AddMacroValue((int)sw.ElapsedMilliseconds + 300);
+                    lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
+                    sw.Reset();
+                    sw.Start();
+                }
+                AddMacroValue(value);
+                lVMacros.Items.Add("Stop Rumble", 1);
+                btnRumble.Text = "Add Rumble";
+            }
+            lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
+        }
+
+        private void btnLightbar_Click(object sender, EventArgs e)
+        {
+            int value = 1255255255;
+            if (btnLightbar.Text.Contains("Change"))
+            {
+                if (macros.Count == 0 || (recordAfter && macrosAfter.Count == 0))
+                {
+                    AddMacroValue(value);
+                    lVMacros.Items.Add("Lightbar Color: 255,255,255", 0);
+                    if (cBRecordDelays.Checked)
+                    {
+                        sw.Reset();
+                        sw.Start();
+                    }
+                }
+                else if (macros.Count > 0 || (recordAfter && macrosAfter.Count > 0))
+                {
+                    if (cBRecordDelays.Checked)
+                    {
+                        AddMacroValue((int)sw.ElapsedMilliseconds + 300);
+                        lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
+                        sw.Reset();
+                        sw.Start();
+                    }
+                    AddMacroValue(value);
+                    lVMacros.Items.Add("Lightbar Color: 255,255,255", 0);
+                }
+                btnLightbar.Text = "Reset Lightbar Color";
+            }
+            else
+            {
+                value = 1000000000;
+                if (cBRecordDelays.Checked)
+                {
+                    AddMacroValue((int)sw.ElapsedMilliseconds + 300);
+                    lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
+                    sw.Reset();
+                    sw.Start();
+                }
+                AddMacroValue(value);
+                lVMacros.Items.Add("Reset Lightbar", 1);
+                btnLightbar.Text = "Change Lightbar Color";
+            }
+            lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
+        }
+
         public void btnSave_Click(object sender, EventArgs e)
         {
             if (macros.Count > 0)
@@ -749,7 +874,34 @@ namespace DS4Windows
                 bool[] keydown = new bool[286];
                 foreach (int i in macros)
                 {
-                    if (i >= 300) //ints over 300 used to delay
+                    if (i >= 1000000000)
+                    {
+                        if (i > 1000000000)
+                        {
+                            string lb = i.ToString().Substring(1);
+                            byte r = (byte)(int.Parse(lb[0].ToString()) * 100 + int.Parse(lb[1].ToString()) * 10 + int.Parse(lb[2].ToString()));
+                            byte g = (byte)(int.Parse(lb[3].ToString()) * 100 + int.Parse(lb[4].ToString()) * 10 + int.Parse(lb[5].ToString()));
+                            byte b = (byte)(int.Parse(lb[6].ToString()) * 100 + int.Parse(lb[7].ToString()) * 10 + int.Parse(lb[8].ToString()));
+                            lVMacros.Items.Add($"Lightbar Color: {r},{g},{b}", 0);
+                        }
+                        else
+                        {
+                            lVMacros.Items.Add("Reset Lightbar", 1);
+                        }
+                    }
+                    else if (i >= 1000000)
+                    {
+                        if (i > 1000000)
+                        {
+                            string r = i.ToString().Substring(1);
+                            byte heavy = (byte)(int.Parse(r[0].ToString()) * 100 + int.Parse(r[1].ToString()) * 10 + int.Parse(r[2].ToString()));
+                            byte light = (byte)(int.Parse(r[3].ToString()) * 100 + int.Parse(r[4].ToString()) * 10 + int.Parse(r[5].ToString()));
+                            lVMacros.Items.Add($"Rumble {heavy}, {light} ({Math.Round((heavy * .75f + light * .25f) / 2.55f, 1)}%)", 0);
+                        }
+                        else
+                            lVMacros.Items.Add("Stop Rumble", 1);
+                    }
+                    else if (i >= 300) //ints over 300 used to delay
                         lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", (i - 300).ToString()).Replace("*ms*", "ms"), 2);
                     else if (!keydown[i])
                     {
@@ -823,7 +975,7 @@ namespace DS4Windows
                         keydown[i] = false;
                     }
                 }
-                for (ushort i = 0; i < keydown.Length; i++)
+                for (int i = 0; i < keydown.Length; i++)
                 {
                     if (keydown[i])
                     {
@@ -922,66 +1074,144 @@ namespace DS4Windows
             }
         }
         private int selection;
+        private bool changingDelay = false;
         private void lVMacros_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (lVMacros.SelectedIndices[0] >= 0 && lVMacros.SelectedItems[0].ImageIndex == 2)
-            {
-                TextBox tb = new TextBox();
-                tb.MaxLength = 5;
-                tb.KeyDown += nud_KeyDown;
-                tb.LostFocus += nud_LostFocus;
-                selection = lVMacros.SelectedIndices[0];
-                Controls.Add(tb);
-                tb.Location = new Point(lVMacros.Location.X + lVMacros.SelectedItems[0].Position.X, lVMacros.Location.Y + lVMacros.SelectedItems[0].Position.Y);
-                tb.BringToFront();
-                lVMacros.MouseHover -= lVMacros_MouseHover;
-                tb.TextChanged += tb_TextChanged;
-                tb.Focus();
-            }
+            if (lVMacros.SelectedIndices[0] >= 0)
+                if (lVMacros.SelectedItems[0].ImageIndex == 2)
+                {
+                    TextBox tb = new TextBox();
+                    tb.MaxLength = 5;
+                    tb.KeyDown += nud_KeyDown;
+                    tb.LostFocus += nud_LostFocus;
+                    selection = lVMacros.SelectedIndices[0];
+                    Controls.Add(tb);
+                    changingDelay = true;
+                    tb.Location = new Point(lVMacros.Location.X + lVMacros.SelectedItems[0].Position.X, lVMacros.Location.Y + lVMacros.SelectedItems[0].Position.Y);
+                    tb.BringToFront();
+                    lVMacros.MouseHover -= lVMacros_MouseHover;
+                    tb.TextChanged += tb_TextChanged;
+                    tb.Focus();
+                }
+                else if (macros[lVMacros.SelectedIndices[0]] > 1000000000)
+                {
+                    selection = lVMacros.SelectedIndices[0];
+                    string lb = macros[lVMacros.SelectedIndices[0]].ToString().Substring(1);
+                    byte r = (byte)(int.Parse(lb[0].ToString()) * 100 + int.Parse(lb[1].ToString()) * 10 + int.Parse(lb[2].ToString()));
+                    byte g = (byte)(int.Parse(lb[3].ToString()) * 100 + int.Parse(lb[4].ToString()) * 10 + int.Parse(lb[5].ToString()));
+                    byte b = (byte)(int.Parse(lb[6].ToString()) * 100 + int.Parse(lb[7].ToString()) * 10 + int.Parse(lb[8].ToString()));
+                    AdvancedColorDialog advColorDialog = new AdvancedColorDialog();
+                    advColorDialog.Color = Color.FromArgb(r, g, b);
+                    advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
+                    if (advColorDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        macros[selection] = 1000000000 + advColorDialog.Color.R * 1000000 + advColorDialog.Color.G * 1000 + advColorDialog.Color.B;
+                    }
+                    lVMacros.Items[selection].Text = ($"Lightbar Color: {advColorDialog.Color.R},{advColorDialog.Color.G},{advColorDialog.Color.B}");
+                }
+                else if (macros[lVMacros.SelectedIndices[0]] > 1000000 && macros[lVMacros.SelectedIndices[0]] != 1000000000)
+                {
+                    
+                    lVMacros.MouseHover -= lVMacros_MouseHover;
+                    string r = macros[lVMacros.SelectedIndices[0]].ToString().Substring(1);
+                    byte heavy = (byte)(int.Parse(r[0].ToString()) * 100 + int.Parse(r[1].ToString()) * 10 + int.Parse(r[2].ToString()));
+                    byte light = (byte)(int.Parse(r[3].ToString()) * 100 + int.Parse(r[4].ToString()) * 10 + int.Parse(r[5].ToString()));
+                    selection = lVMacros.SelectedIndices[0];
+                    tb1 = new TextBox();
+                    tb2 = new TextBox();
+                    tb1.Name = "tBHeavy";
+                    tb1.Name = "tBLight";
+                    tb1.MaxLength = 3;
+                    tb2.MaxLength = 3;
+                    tb1.KeyDown += nud_KeyDown;
+                    tb2.KeyDown += nud_KeyDown;
+                    Controls.Add(tb1);
+                    Controls.Add(tb2);
+                    changingDelay = false;
+                    tb1.Location = new Point(lVMacros.Location.X + lVMacros.SelectedItems[0].Position.X, lVMacros.Location.Y + lVMacros.SelectedItems[0].Position.Y);
+                    tb1.Size = new Size(tb1.Size.Width / 2, tb1.Size.Height);
+                    tb2.Location = new Point(lVMacros.Location.X + lVMacros.SelectedItems[0].Position.X + tb1.Size.Width, lVMacros.Location.Y + lVMacros.SelectedItems[0].Position.Y);
+                    tb2.Size = tb1.Size;
+                    tb1.BringToFront();
+                    tb2.BringToFront();
+                    tb1.Text = heavy.ToString();
+                    tb2.Text = light.ToString();
+                    tb1.TextChanged += tb_TextChanged;
+                    tb2.TextChanged += tb_TextChanged;
+                    tb1.Focus();
+                }
         }
 
         void tb_TextChanged(object sender, EventArgs e)
         {
             TextBox tb = (TextBox)sender;
-            for (int i = tb.Text.Length - 1; i >= 0; i--)
-                  if (!Char.IsDigit(tb.Text[i]))
-                      tb.Text = tb.Text.Remove(i, 1);
+            //if (changingDelay)
+            {
+                for (int i = tb.Text.Length - 1; i >= 0; i--)
+                    if (!char.IsDigit(tb.Text[i]))
+                        tb.Text = tb.Text.Remove(i, 1);
+            }
         }
 
         void nud_LostFocus(object sender, EventArgs e)
         {
-            TextBox tb = (TextBox)sender;
-            int i;
-            if (!string.IsNullOrEmpty(tb.Text) && int.TryParse(tb.Text, out i))
-            {
-                lVMacros.Items[selection] = new ListViewItem(Properties.Resources.WaitMS.Replace("*number*", (tb.Text)).Replace("*ms*", "ms"), 2);
-                macros[selection] = i + 300;
-                saved = false;
-            }
-            Controls.Remove(tb);
-            lVMacros.MouseHover += lVMacros_MouseHover;
+            SaveMacroChange((TextBox)sender);
         }
 
         void nud_KeyDown(object sender, KeyEventArgs e)
         {
-            TextBox tb = (TextBox)sender;
-            if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(tb.Text))
+            if (e.KeyCode == Keys.Enter)
+                SaveMacroChange((TextBox)sender);
+        }
+        private void SaveMacroChange(TextBox tb)
+        {
+            int i, j;
+            if (!string.IsNullOrEmpty(tb.Text))
             {
-                int i;
-                if (int.TryParse(tb.Text, out i))
+                if (changingDelay && int.TryParse(tb.Text, out i))
                 {
                     lVMacros.Items[selection] = new ListViewItem(Properties.Resources.WaitMS.Replace("*number*", (tb.Text)).Replace("*ms*", "ms"), 2);
                     macros[selection] = i + 300;
-                    saved = false;
                     Controls.Remove(tb);
-                    lVMacros.MouseHover += lVMacros_MouseHover;
+                    saved = false;
+                }
+                else if (!changingDelay)
+                {
+                    if (int.TryParse(tb1.Text, out i) && int.TryParse(tb2.Text, out j))
+                    {
+                        if (i + j > 0)
+                        {
+                            byte heavy = (byte)i;
+                            byte light = (byte)j;
+                            lVMacros.Items[selection].Text = ($"Rumble {heavy}, {light} ({Math.Round((heavy * .75f + light * .25f) / 2.55f, 1)}%)");
+                            macros[selection] = 1000000 + heavy * 1000 + light;
+                            saved = false;
+                            Controls.Remove(tb1);
+                            Controls.Remove(tb2);
+                            tb1 = null;
+                            tb2 = null;
+                        }
+                    }
                 }
             }
+            lVMacros.MouseHover += lVMacros_MouseHover;
         }
 
         private void RecordBox_Resize(object sender, EventArgs e)
         {
             cHMacro.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
+        {
+            if (sender is Color && Program.rootHub.DS4Controllers[0] != null)
+            {
+                Color color = (Color)sender;
+                DS4Color dcolor = new DS4Color { red = color.R, green = color.G, blue = color.B };
+                DS4LightBar.forcedColor[0] = dcolor;
+                DS4LightBar.forcedFlash[0] = 0;
+                DS4LightBar.forcelight[0] = true;
+            }
         }
 
         private void lVMacros_SelectedIndexChanged(object sender, EventArgs e)

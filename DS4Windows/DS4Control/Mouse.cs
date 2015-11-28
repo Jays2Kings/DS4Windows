@@ -32,6 +32,49 @@ namespace DS4Windows
             wheel = new MouseWheel(deviceNum);
         }
 
+        public virtual void sixaxisMoved(object sender, SixAxisEventArgs arg)
+        {
+            if (Global.UseSAforMouse[deviceNum])
+            {
+                bool triggeractivated = true;
+                int i = 0;
+                string[] ss = Global.SATriggers[deviceNum].Split(',');
+                //List<DS4Controls> ds4C = new List<DS4Controls>();
+                foreach (string s in ss)
+                    if (!(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                        triggeractivated = false;
+                if (triggeractivated)
+                    cursor.sixaxisMoved(arg);
+                dev.getCurrentState(s);
+            }
+        }
+
+        private bool getDS4ControlsByName(int key)
+        {
+            switch (key)
+            {
+                case 0: return s.Cross;
+                case 1: return s.Circle;
+                case 2: return s.Square;
+                case 3: return s.Triangle;
+                case 4: return s.L1;
+                case 5: return s.L2 > 127;
+                case 6: return s.R1;
+                case 7: return s.R2 > 127;
+                case 8: return s.DpadUp;
+                case 9: return s.DpadDown;
+                case 10: return s.DpadLeft;
+                case 11: return s.DpadRight;
+                case 12: return s.L3;
+                case 13: return s.R3;
+                case 14: return s.Touch1;
+                case 15: return s.Touch2;
+                case 16: return s.Options;
+                case 17: return s.Share;
+            }
+            return false;
+        }
+
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
             if (!Global.UseTPforControls[deviceNum])

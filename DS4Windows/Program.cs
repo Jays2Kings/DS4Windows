@@ -4,7 +4,7 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.ComponentModel;
-
+using System.Globalization;
 
 namespace DS4Windows
 {
@@ -41,6 +41,7 @@ namespace DS4Windows
                     return;
                 }
             }
+            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("tr");
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;
             try
             {

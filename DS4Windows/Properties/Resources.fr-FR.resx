@@ -142,7 +142,7 @@
     <value>Conseillé d'utiliser avec le côté droit telle une souris</value>
   </data>
   <data name="Browse" xml:space="preserve">
-    <value>Feuilleter...</value>
+    <value>Parcourir...</value>
   </data>
   <data name="CannotWriteHere" xml:space="preserve">
     <value>Écriture impossible ici. Copier les paramètres vers Appdata?</value>
@@ -202,16 +202,16 @@
     <value>Assombrir selon le %*nl*de batterie</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Turn off X360 input and only use the DS4's native input, hide ds4 must be off</value>
+    <value>Eteindre les entrées X360 et utiliser seulement DS4 en natif, Cacher ds4 DOIT être éteint</value>
   </data>
   <data name="DisconnectBT" xml:space="preserve">
     <value>Déconnecter Bluetooth</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
-    <value>Coupé</value>
+    <value>Déconnecté</value>
   </data>
   <data name="Downloading" xml:space="preserve">
-    <value>Downloading *number*%</value>
+    <value>Téléchargement *number*%</value>
   </data>
   <data name="DownloadVersion" xml:space="preserve">
     <value>Télécharger la version *number* maintenant ?</value>
@@ -235,7 +235,7 @@
     <value>5ème Bouton de Souris Bas</value>
   </data>
   <data name="FlashAtTip" xml:space="preserve">
-    <value>Clickez pour changer la couleur du clignotement. Noir = couleur par défaut</value>
+    <value>Cliquer pour changer la couleur du clignotement. Noir = couleur par défaut</value>
   </data>
   <data name="FlushHID" xml:space="preserve">
     <value>Flush HID</value>
@@ -256,7 +256,7 @@
     <value>Complète</value>
   </data>
   <data name="GyroReadout" xml:space="preserve">
-    <value>Clickez pour voir les valeurs du Sixaxis</value>
+    <value>Cliquer pour voir les valeurs du Sixaxis</value>
   </data>
   <data name="GyroX" xml:space="preserve">
     <value>GyroX, Gauche et droite inclinaison</value>
@@ -292,16 +292,16 @@
     <value>l'installation de ...</value>
   </data>
   <data name="Jitter" xml:space="preserve">
-    <value>Utiliser Sixaxis pour aider au calcul des mouvements du pad tactile</value>
+    <value>Utiliser Sixaxis pour aider au calcul des mouvements du pavé tactile</value>
   </data>
   <data name="KeepThisSize" xml:space="preserve">
     <value>Garder les dimensions de la fenêtre après fermeture</value>
   </data>
   <data name="LatencyNotOverTen" xml:space="preserve">
-    <value>Manette *number* latence inférieur à 10 ms</value>
+    <value>Manette *number* latence inférieure à 10 ms</value>
   </data>
   <data name="LatencyOverTen" xml:space="preserve">
-    <value>Manette *number* latence supérieura à 10 ms</value>
+    <value>Manette *number* latence supérieure à 10 ms</value>
   </data>
   <data name="LaunchProgram" xml:space="preserve">
     <value>Lancer *program*</value>
@@ -328,7 +328,7 @@
     <value>Nouveau</value>
   </data>
   <data name="NoMacroRecorded" xml:space="preserve">
-    <value>Aucun macro enregistré</value>
+    <value>Aucune macro enregistrée</value>
   </data>
   <data name="noneProfile" xml:space="preserve">
     <value>(aucun)</value>
@@ -370,7 +370,7 @@
     <value>Dossier de profil déplacé vers le dossier de l'application</value>
   </data>
   <data name="Programs" xml:space="preserve">
-    <value>Programme</value>
+    <value>Programmes</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
     <value>Experimental : Déconnexion auto BT quand branchement par USB</value>
@@ -400,7 +400,7 @@
     <value>Raccourcis</value>
   </data>
   <data name="SixAxisReading" xml:space="preserve">
-    <value>Clickez pour les valeurs avancées</value>
+    <value>Cliquer pour les valeurs avancées</value>
   </data>
   <data name="Starting" xml:space="preserve">
     <value>Ouverture...</value>
@@ -418,99 +418,105 @@
     <value>Arrêtez léger</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Arrêt de DS4Windows</value>
-  </data>
-  <data name="StoppingDS4" xml:space="preserve">
     <value>Arrêt des manettes DS4</value>
   </data>
-  <data name="StoppingX360" xml:space="preserve">
+  <data name="StoppingDS4" xml:space="preserve">
     <value>Arrêt des manettes X360</value>
   </data>
-  <data name="StopText" xml:space="preserve">
+  <data name="StoppingX360" xml:space="preserve">
     <value>Arrêter</value>
   </data>
-  <data name="SwipeDown" xml:space="preserve">
+  <data name="StopText" xml:space="preserve">
     <value>Balayer vers le bas</value>
   </data>
-  <data name="SwipeLeft" xml:space="preserve">
+  <data name="SwipeDown" xml:space="preserve">
     <value>Balayer vers la gauche</value>
   </data>
-  <data name="SwipeRight" xml:space="preserve">
+  <data name="SwipeLeft" xml:space="preserve">
     <value>Balayer vers la droite</value>
   </data>
-  <data name="SwipeTouchpad" xml:space="preserve">
+  <data name="SwipeRight" xml:space="preserve">
     <value>Glisser sur la pavé tactile pour changer de profil</value>
   </data>
-  <data name="SwipeUp" xml:space="preserve">
+  <data name="SwipeTouchpad" xml:space="preserve">
     <value>Balayer vers le haut</value>
   </data>
-  <data name="TapAndHold" xml:space="preserve">
+  <data name="SwipeUp" xml:space="preserve">
     <value>Appuyer et maintenir pour glisser, léger retard avec les simples pressions</value>
   </data>
-  <data name="TestHText" xml:space="preserve">
+  <data name="TapAndHold" xml:space="preserve">
     <value>Test fort</value>
+  </data>
+  <data name="TestHText" xml:space="preserve">
+    <value>Test léger</value>
   </data>
   <data name="TestLText" xml:space="preserve">
     <value>Test léger</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>Tilt Bas</value>
-  </data>
-  <data name="TiltLeft" xml:space="preserve">
     <value>Tilt Gauche</value>
   </data>
-  <data name="TiltRight" xml:space="preserve">
+  <data name="TiltLeft" xml:space="preserve">
     <value>Tilt Droite</value>
   </data>
-  <data name="TiltUp" xml:space="preserve">
+  <data name="TiltRight" xml:space="preserve">
     <value>Tilt Haut</value>
   </data>
-  <data name="TouchpadMovementOff" xml:space="preserve">
+  <data name="TiltUp" xml:space="preserve">
     <value>Reconnaissance de mouvement du pavé tactile est Désactivée</value>
   </data>
-  <data name="TouchpadMovementOn" xml:space="preserve">
+  <data name="TouchpadMovementOff" xml:space="preserve">
     <value>Reconnaissance de mouvement du pavé tactile est Activée</value>
   </data>
-  <data name="TouchpadOffTip" xml:space="preserve">
+  <data name="TouchpadMovementOn" xml:space="preserve">
     <value>Relancez en appuyant sur PS + Pad tactile</value>
   </data>
-  <data name="TwoFingerSwipe" xml:space="preserve">
+  <data name="TouchpadOffTip" xml:space="preserve">
     <value>Glisser gauche ou droit avec 2 doigts sur le pavé tactile</value>
   </data>
-  <data name="TypeNewName" xml:space="preserve">
+  <data name="TwoFingerSwipe" xml:space="preserve">
     <value>écrire un nouveau nom ici</value>
   </data>
-  <data name="TypeProfileName" xml:space="preserve">
+  <data name="TypeNewName" xml:space="preserve">
     <value>écrire un nom de profil ici</value>
   </data>
-  <data name="UpText" xml:space="preserve">
+  <data name="TypeProfileName" xml:space="preserve">
     <value>Bas</value>
   </data>
-  <data name="UpToDate" xml:space="preserve">
+  <data name="UpText" xml:space="preserve">
     <value>Votre version de DS4Windows est à jour</value>
   </data>
-  <data name="UseControllerForMapping" xml:space="preserve">
+  <data name="UpToDate" xml:space="preserve">
     <value>Vous pouvez également utiliser votre manette pour changer les commandes</value>
   </data>
-  <data name="UsingExclusive" xml:space="preserve">
+  <data name="UseControllerForMapping" xml:space="preserve">
     <value>Utilisation du mode Exclusif</value>
   </data>
-  <data name="UsingProfile" xml:space="preserve">
+  <data name="UsingExclusive" xml:space="preserve">
     <value>La manette *number* utilise le profil "*Profile name*"</value>
   </data>
-  <data name="UsingShared" xml:space="preserve">
+  <data name="UsingProfile" xml:space="preserve">
     <value>Utilisation du mode Partagé</value>
   </data>
-  <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Desactivation du pad tactile comme souris</value>
+  <data name="UsingShared" xml:space="preserve">
+    <value>Désactivation du pavé tactile comme souris</value>
   </data>
-  <data name="ValidName" xml:space="preserve">
+  <data name="UsingTPSwipes" xml:space="preserve">
     <value>Veuillez insérer un nom valide</value>
   </data>
-  <data name="WaitMS" xml:space="preserve">
+  <data name="ValidName" xml:space="preserve">
     <value>Attendre *number**ms*</value>
+  </data>
+  <data name="WaitMS" xml:space="preserve">
+    <value>Gardera</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
     <value>Gardera</value>
+  </data>
+  <data name="StoppedDS4Tool" xml:space="preserve">
+    <value>Arrêt de DS4Windows</value>
+  </data>
+  <data name="TextDocs" xml:space="preserve">
+    <value>Tilt Bas</value>
   </data>
 </root>

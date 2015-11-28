@@ -265,6 +265,7 @@ namespace DS4Windows
             device.Touchpad.TouchesMoved += tPad.touchesMoved;
             device.Touchpad.TouchesEnded += tPad.touchesEnded;
             device.Touchpad.TouchUnchanged += tPad.touchUnchanged;
+            device.SixAxis.SixAccelMoved += tPad.sixaxisMoved;
             //LogDebug("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
             //Log.LogToTray("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
             ControllerStatusChanged(this);
@@ -540,7 +541,7 @@ namespace DS4Windows
             DS4Controls helddown = DS4Controls.None;
             foreach (KeyValuePair<DS4Controls, string> p in getCustomExtras(ind))
             {
-                if (Mapping.getBoolMapping(p.Key, cState, eState, tp))
+                if (Mapping.getBoolMapping(ind, p.Key, cState, eState, tp))
                 {
                     helddown = p.Key;
                     break;
@@ -600,7 +601,7 @@ namespace DS4Windows
             bool pb = false;
             foreach (DS4Controls dc in dcs)
             {
-                if (Mapping.getBoolMapping(dc, cState, eState, tp))
+                if (Mapping.getBoolMapping(ind, dc, cState, eState, tp))
                 {
                     pb = true;
                     break;
@@ -673,35 +674,35 @@ namespace DS4Windows
             DS4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
             if (DS4Controllers[ind] != null)
-                if (Mapping.getBoolMapping(DS4Controls.Cross, cState, eState, tp)) return "Cross";
-                else if (Mapping.getBoolMapping(DS4Controls.Circle, cState, eState, tp)) return "Circle";
-                else if (Mapping.getBoolMapping(DS4Controls.Triangle, cState, eState, tp)) return "Triangle";
-                else if (Mapping.getBoolMapping(DS4Controls.Square, cState, eState, tp)) return "Square";
-                else if (Mapping.getBoolMapping(DS4Controls.L1, cState, eState, tp)) return "L1";
-                else if (Mapping.getBoolMapping(DS4Controls.R1, cState, eState, tp)) return "R1";
-                else if (Mapping.getBoolMapping(DS4Controls.L2, cState, eState, tp)) return "L2";
-                else if (Mapping.getBoolMapping(DS4Controls.R2, cState, eState, tp)) return "R2";
-                else if (Mapping.getBoolMapping(DS4Controls.L3, cState, eState, tp)) return "L3";
-                else if (Mapping.getBoolMapping(DS4Controls.R3, cState, eState, tp)) return "R3";
-                else if (Mapping.getBoolMapping(DS4Controls.DpadUp, cState, eState, tp)) return "Up";
-                else if (Mapping.getBoolMapping(DS4Controls.DpadDown, cState, eState, tp)) return "Down";
-                else if (Mapping.getBoolMapping(DS4Controls.DpadLeft, cState, eState, tp)) return "Left";
-                else if (Mapping.getBoolMapping(DS4Controls.DpadRight, cState, eState, tp)) return "Right";
-                else if (Mapping.getBoolMapping(DS4Controls.Share, cState, eState, tp)) return "Share";
-                else if (Mapping.getBoolMapping(DS4Controls.Options, cState, eState, tp)) return "Options";
-                else if (Mapping.getBoolMapping(DS4Controls.PS, cState, eState, tp)) return "PS";
-                else if (Mapping.getBoolMapping(DS4Controls.LXPos, cState, eState, tp)) return "LS Right";
-                else if (Mapping.getBoolMapping(DS4Controls.LXNeg, cState, eState, tp)) return "LS Left";
-                else if (Mapping.getBoolMapping(DS4Controls.LYPos, cState, eState, tp)) return "LS Down";
-                else if (Mapping.getBoolMapping(DS4Controls.LYNeg, cState, eState, tp)) return "LS Up";
-                else if (Mapping.getBoolMapping(DS4Controls.RXPos, cState, eState, tp)) return "RS Right";
-                else if (Mapping.getBoolMapping(DS4Controls.RXNeg, cState, eState, tp)) return "RS Left";
-                else if (Mapping.getBoolMapping(DS4Controls.RYPos, cState, eState, tp)) return "RS Down";
-                else if (Mapping.getBoolMapping(DS4Controls.RYNeg, cState, eState, tp)) return "RS Up";
-                else if (Mapping.getBoolMapping(DS4Controls.TouchLeft, cState, eState, tp)) return "Touch Left";
-                else if (Mapping.getBoolMapping(DS4Controls.TouchRight, cState, eState, tp)) return "Touch Right";
-                else if (Mapping.getBoolMapping(DS4Controls.TouchMulti, cState, eState, tp)) return "Touch Multi";
-                else if (Mapping.getBoolMapping(DS4Controls.TouchUpper, cState, eState, tp)) return "Touch Upper";
+                if (Mapping.getBoolMapping(ind, DS4Controls.Cross, cState, eState, tp)) return "Cross";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.Circle, cState, eState, tp)) return "Circle";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.Triangle, cState, eState, tp)) return "Triangle";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.Square, cState, eState, tp)) return "Square";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.L1, cState, eState, tp)) return "L1";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.R1, cState, eState, tp)) return "R1";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.L2, cState, eState, tp)) return "L2";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.R2, cState, eState, tp)) return "R2";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.L3, cState, eState, tp)) return "L3";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.R3, cState, eState, tp)) return "R3";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.DpadUp, cState, eState, tp)) return "Up";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.DpadDown, cState, eState, tp)) return "Down";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.DpadLeft, cState, eState, tp)) return "Left";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.DpadRight, cState, eState, tp)) return "Right";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.Share, cState, eState, tp)) return "Share";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.Options, cState, eState, tp)) return "Options";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.PS, cState, eState, tp)) return "PS";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.LXPos, cState, eState, tp)) return "LS Right";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.LXNeg, cState, eState, tp)) return "LS Left";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.LYPos, cState, eState, tp)) return "LS Down";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.LYNeg, cState, eState, tp)) return "LS Up";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.RXPos, cState, eState, tp)) return "RS Right";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.RXNeg, cState, eState, tp)) return "RS Left";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.RYPos, cState, eState, tp)) return "RS Down";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.RYNeg, cState, eState, tp)) return "RS Up";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.TouchLeft, cState, eState, tp)) return "Touch Left";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.TouchRight, cState, eState, tp)) return "Touch Right";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.TouchMulti, cState, eState, tp)) return "Touch Multi";
+                else if (Mapping.getBoolMapping(ind, DS4Controls.TouchUpper, cState, eState, tp)) return "Touch Upper";
             return "nothing";
         }
 
@@ -711,35 +712,35 @@ namespace DS4Windows
             DS4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
             if (DS4Controllers[ind] != null)
-                if (Mapping.getBoolMapping(DS4Controls.Cross, cState, eState, tp)) return DS4Controls.Cross;
-                else if (Mapping.getBoolMapping(DS4Controls.Circle, cState, eState, tp)) return DS4Controls.Circle;
-                else if (Mapping.getBoolMapping(DS4Controls.Triangle, cState, eState, tp)) return DS4Controls.Triangle;
-                else if (Mapping.getBoolMapping(DS4Controls.Square, cState, eState, tp)) return DS4Controls.Square;
-                else if (Mapping.getBoolMapping(DS4Controls.L1, cState, eState, tp)) return DS4Controls.L1;
-                else if (Mapping.getBoolMapping(DS4Controls.R1, cState, eState, tp)) return DS4Controls.R1;
-                else if (Mapping.getBoolMapping(DS4Controls.L2, cState, eState, tp)) return DS4Controls.L2;
-                else if (Mapping.getBoolMapping(DS4Controls.R2, cState, eState, tp)) return DS4Controls.R2;
-                else if (Mapping.getBoolMapping(DS4Controls.L3, cState, eState, tp)) return DS4Controls.L3;
-                else if (Mapping.getBoolMapping(DS4Controls.R3, cState, eState, tp)) return DS4Controls.R3;
-                else if (Mapping.getBoolMapping(DS4Controls.DpadUp, cState, eState, tp)) return DS4Controls.DpadUp;
-                else if (Mapping.getBoolMapping(DS4Controls.DpadDown, cState, eState, tp)) return DS4Controls.DpadDown;
-                else if (Mapping.getBoolMapping(DS4Controls.DpadLeft, cState, eState, tp)) return DS4Controls.DpadLeft;
-                else if (Mapping.getBoolMapping(DS4Controls.DpadRight, cState, eState, tp)) return DS4Controls.DpadRight;
-                else if (Mapping.getBoolMapping(DS4Controls.Share, cState, eState, tp)) return DS4Controls.Share;
-                else if (Mapping.getBoolMapping(DS4Controls.Options, cState, eState, tp)) return DS4Controls.Options;
-                else if (Mapping.getBoolMapping(DS4Controls.PS, cState, eState, tp)) return DS4Controls.PS;
-                else if (Mapping.getBoolMapping(DS4Controls.LXPos, cState, eState, tp)) return DS4Controls.LXPos;
-                else if (Mapping.getBoolMapping(DS4Controls.LXNeg, cState, eState, tp)) return DS4Controls.LXNeg;
-                else if (Mapping.getBoolMapping(DS4Controls.LYPos, cState, eState, tp)) return DS4Controls.LYPos;
-                else if (Mapping.getBoolMapping(DS4Controls.LYNeg, cState, eState, tp)) return DS4Controls.LYNeg;
-                else if (Mapping.getBoolMapping(DS4Controls.RXPos, cState, eState, tp)) return DS4Controls.RXPos;
-                else if (Mapping.getBoolMapping(DS4Controls.RXNeg, cState, eState, tp)) return DS4Controls.RXNeg;
-                else if (Mapping.getBoolMapping(DS4Controls.RYPos, cState, eState, tp)) return DS4Controls.RYPos;
-                else if (Mapping.getBoolMapping(DS4Controls.RYNeg, cState, eState, tp)) return DS4Controls.RYNeg;
-                else if (Mapping.getBoolMapping(DS4Controls.TouchLeft, cState, eState, tp)) return DS4Controls.TouchLeft;
-                else if (Mapping.getBoolMapping(DS4Controls.TouchRight, cState, eState, tp)) return DS4Controls.TouchRight;
-                else if (Mapping.getBoolMapping(DS4Controls.TouchMulti, cState, eState, tp)) return DS4Controls.TouchMulti;
-                else if (Mapping.getBoolMapping(DS4Controls.TouchUpper, cState, eState, tp)) return DS4Controls.TouchUpper;
+                if (Mapping.getBoolMapping(ind, DS4Controls.Cross, cState, eState, tp)) return DS4Controls.Cross;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.Circle, cState, eState, tp)) return DS4Controls.Circle;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.Triangle, cState, eState, tp)) return DS4Controls.Triangle;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.Square, cState, eState, tp)) return DS4Controls.Square;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.L1, cState, eState, tp)) return DS4Controls.L1;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.R1, cState, eState, tp)) return DS4Controls.R1;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.L2, cState, eState, tp)) return DS4Controls.L2;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.R2, cState, eState, tp)) return DS4Controls.R2;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.L3, cState, eState, tp)) return DS4Controls.L3;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.R3, cState, eState, tp)) return DS4Controls.R3;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.DpadUp, cState, eState, tp)) return DS4Controls.DpadUp;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.DpadDown, cState, eState, tp)) return DS4Controls.DpadDown;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.DpadLeft, cState, eState, tp)) return DS4Controls.DpadLeft;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.DpadRight, cState, eState, tp)) return DS4Controls.DpadRight;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.Share, cState, eState, tp)) return DS4Controls.Share;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.Options, cState, eState, tp)) return DS4Controls.Options;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.PS, cState, eState, tp)) return DS4Controls.PS;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.LXPos, cState, eState, tp)) return DS4Controls.LXPos;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.LXNeg, cState, eState, tp)) return DS4Controls.LXNeg;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.LYPos, cState, eState, tp)) return DS4Controls.LYPos;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.LYNeg, cState, eState, tp)) return DS4Controls.LYNeg;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.RXPos, cState, eState, tp)) return DS4Controls.RXPos;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.RXNeg, cState, eState, tp)) return DS4Controls.RXNeg;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.RYPos, cState, eState, tp)) return DS4Controls.RYPos;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.RYNeg, cState, eState, tp)) return DS4Controls.RYNeg;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.TouchLeft, cState, eState, tp)) return DS4Controls.TouchLeft;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.TouchRight, cState, eState, tp)) return DS4Controls.TouchRight;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.TouchMulti, cState, eState, tp)) return DS4Controls.TouchMulti;
+                else if (Mapping.getBoolMapping(ind, DS4Controls.TouchUpper, cState, eState, tp)) return DS4Controls.TouchUpper;
             return DS4Controls.None;
         }
 

@@ -38,6 +38,10 @@ namespace DS4Windows
                 {
                     color = ShiftColor[deviceNum];
                 }
+                else if (UseCustomLed[deviceNum])
+                {
+                    color = CustomColor[deviceNum];
+                }
                 else
                 {
                     if (Rainbow[deviceNum] > 0)
@@ -206,31 +210,31 @@ namespace DS4Windows
             bool shift;
             switch (ShiftModifier[deviceNum])
             {
-                case 1: shift = Mapping.getBoolMapping(DS4Controls.Cross, cState, eState, tp); break;
-                case 2: shift = Mapping.getBoolMapping(DS4Controls.Circle, cState, eState, tp); break;
-                case 3: shift = Mapping.getBoolMapping(DS4Controls.Square, cState, eState, tp); break;
-                case 4: shift = Mapping.getBoolMapping(DS4Controls.Triangle, cState, eState, tp); break;
-                case 5: shift = Mapping.getBoolMapping(DS4Controls.Options, cState, eState, tp); break;
-                case 6: shift = Mapping.getBoolMapping(DS4Controls.Share, cState, eState, tp); break;
-                case 7: shift = Mapping.getBoolMapping(DS4Controls.DpadUp, cState, eState, tp); break;
-                case 8: shift = Mapping.getBoolMapping(DS4Controls.DpadDown, cState, eState, tp); break;
-                case 9: shift = Mapping.getBoolMapping(DS4Controls.DpadLeft, cState, eState, tp); break;
-                case 10: shift = Mapping.getBoolMapping(DS4Controls.DpadRight, cState, eState, tp); break;
-                case 11: shift = Mapping.getBoolMapping(DS4Controls.PS, cState, eState, tp); break;
-                case 12: shift = Mapping.getBoolMapping(DS4Controls.L1, cState, eState, tp); break;
-                case 13: shift = Mapping.getBoolMapping(DS4Controls.R1, cState, eState, tp); break;
-                case 14: shift = Mapping.getBoolMapping(DS4Controls.L2, cState, eState, tp); break;
-                case 15: shift = Mapping.getBoolMapping(DS4Controls.R2, cState, eState, tp); break;
-                case 16: shift = Mapping.getBoolMapping(DS4Controls.L3, cState, eState, tp); break;
-                case 17: shift = Mapping.getBoolMapping(DS4Controls.R3, cState, eState, tp); break;
-                case 18: shift = Mapping.getBoolMapping(DS4Controls.TouchLeft, cState, eState, tp); break;
-                case 19: shift = Mapping.getBoolMapping(DS4Controls.TouchUpper, cState, eState, tp); break;
-                case 20: shift = Mapping.getBoolMapping(DS4Controls.TouchMulti, cState, eState, tp); break;
-                case 21: shift = Mapping.getBoolMapping(DS4Controls.TouchRight, cState, eState, tp); break;
-                case 22: shift = Mapping.getBoolMapping(DS4Controls.GyroZNeg, cState, eState, tp); break;
-                case 23: shift = Mapping.getBoolMapping(DS4Controls.GyroZPos, cState, eState, tp); break;
-                case 24: shift = Mapping.getBoolMapping(DS4Controls.GyroXPos, cState, eState, tp); break;
-                case 25: shift = Mapping.getBoolMapping(DS4Controls.GyroXNeg, cState, eState, tp); break;
+                case 1: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Cross, cState, eState, tp); break;
+                case 2: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Circle, cState, eState, tp); break;
+                case 3: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Square, cState, eState, tp); break;
+                case 4: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Triangle, cState, eState, tp); break;
+                case 5: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Options, cState, eState, tp); break;
+                case 6: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Share, cState, eState, tp); break;
+                case 7: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.DpadUp, cState, eState, tp); break;
+                case 8: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.DpadDown, cState, eState, tp); break;
+                case 9: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.DpadLeft, cState, eState, tp); break;
+                case 10: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.DpadRight, cState, eState, tp); break;
+                case 11: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.PS, cState, eState, tp); break;
+                case 12: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.L1, cState, eState, tp); break;
+                case 13: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.R1, cState, eState, tp); break;
+                case 14: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.L2, cState, eState, tp); break;
+                case 15: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.R2, cState, eState, tp); break;
+                case 16: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.L3, cState, eState, tp); break;
+                case 17: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.R3, cState, eState, tp); break;
+                case 18: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.TouchLeft, cState, eState, tp); break;
+                case 19: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.TouchUpper, cState, eState, tp); break;
+                case 20: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.TouchMulti, cState, eState, tp); break;
+                case 21: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.TouchRight, cState, eState, tp); break;
+                case 22: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.GyroZNeg, cState, eState, tp); break;
+                case 23: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.GyroZPos, cState, eState, tp); break;
+                case 24: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.GyroXPos, cState, eState, tp); break;
+                case 25: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.GyroXNeg, cState, eState, tp); break;
                 case 26: shift = device.getCurrentState().Touch1; break;
                 default: shift = false; break;
             }

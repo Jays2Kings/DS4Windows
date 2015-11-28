@@ -331,7 +331,7 @@
     <value>Создать</value>
   </data>
   <data name="NoMacroRecorded" xml:space="preserve">
-    <value>Нет макросов</value>
+    <value>Нет записанных макросов</value>
   </data>
   <data name="noneProfile" xml:space="preserve">
     <value>(отсутствует)</value>
@@ -352,13 +352,13 @@
     <value>Открытие установщика</value>
   </data>
   <data name="OpenScpDriver" xml:space="preserve">
-    <value>Запустите SCPDrivers.exe</value>
+    <value>Пожалуйста, откройте SCPDrivers.exe</value>
   </data>
   <data name="OtherFileLocation" xml:space="preserve">
     <value>, старые настройки из другой папки будут удалены</value>
   </data>
   <data name="PleaseDownloadUpdater" xml:space="preserve">
-    <value>Скачайте Updater, поместите его в папку с программой и запустите</value>
+    <value>Пожалуйста, скачайте Updater, поместите его в папку с программой и запустите снова</value>
   </data>
   <data name="PleaseImport" xml:space="preserve">
     <value>Импортируйте или создайте профиль</value>
@@ -427,102 +427,108 @@
     <value>Ост. лёгкий</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Остановлена работа DS4Windows</value>
-  </data>
-  <data name="StoppingDS4" xml:space="preserve">
     <value>Остановка контроллеров DS4</value>
   </data>
-  <data name="StoppingX360" xml:space="preserve">
+  <data name="StoppingDS4" xml:space="preserve">
     <value>Остановка контроллеров X360</value>
   </data>
-  <data name="StopText" xml:space="preserve">
+  <data name="StoppingX360" xml:space="preserve">
     <value>Остановить</value>
   </data>
-  <data name="SwipeDown" xml:space="preserve">
+  <data name="StopText" xml:space="preserve">
     <value>Ск-ж. вниз</value>
   </data>
-  <data name="SwipeLeft" xml:space="preserve">
+  <data name="SwipeDown" xml:space="preserve">
     <value>Ск-ж. влево</value>
   </data>
-  <data name="SwipeRight" xml:space="preserve">
+  <data name="SwipeLeft" xml:space="preserve">
     <value>Ск-ж. вправо</value>
   </data>
-  <data name="SwipeTouchpad" xml:space="preserve">
+  <data name="SwipeRight" xml:space="preserve">
     <value>Проведите пальцем по тачпаду для смены профиля</value>
   </data>
-  <data name="SwipeUp" xml:space="preserve">
+  <data name="SwipeTouchpad" xml:space="preserve">
     <value>Ск-ж. вверх</value>
   </data>
-  <data name="TapAndHold" xml:space="preserve">
+  <data name="SwipeUp" xml:space="preserve">
     <value>Коснитесь и удерживайте для перетаскивания, задержка с одним касанием</value>
   </data>
-  <data name="TestHText" xml:space="preserve">
+  <data name="TapAndHold" xml:space="preserve">
     <value>Тест. тяжёлого</value>
+  </data>
+  <data name="TestHText" xml:space="preserve">
+    <value>Тест. лёгкого</value>
   </data>
   <data name="TestLText" xml:space="preserve">
     <value>Тест. лёгкого</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>Накл. вниз</value>
-  </data>
-  <data name="TiltLeft" xml:space="preserve">
     <value>Накл. влево</value>
   </data>
-  <data name="TiltRight" xml:space="preserve">
+  <data name="TiltLeft" xml:space="preserve">
     <value>Накл. вправо</value>
   </data>
-  <data name="TiltUp" xml:space="preserve">
+  <data name="TiltRight" xml:space="preserve">
     <value>Накл. вверх</value>
   </data>
-  <data name="TouchpadMovementOff" xml:space="preserve">
+  <data name="TiltUp" xml:space="preserve">
     <value>Движения тачпадом выключены</value>
   </data>
-  <data name="TouchpadMovementOn" xml:space="preserve">
+  <data name="TouchpadMovementOff" xml:space="preserve">
     <value>Движения тачпадом включены</value>
   </data>
-  <data name="TouchpadOffTip" xml:space="preserve">
+  <data name="TouchpadMovementOn" xml:space="preserve">
     <value>Повторное включение нажатием PS + Touchpad</value>
   </data>
-  <data name="TwoFingerSwipe" xml:space="preserve">
+  <data name="TouchpadOffTip" xml:space="preserve">
     <value>Проведение двумя пальцами по тачпаду влево или вправо</value>
   </data>
-  <data name="TypeNewName" xml:space="preserve">
+  <data name="TwoFingerSwipe" xml:space="preserve">
     <value>задайте новое имя</value>
   </data>
-  <data name="TypeProfileName" xml:space="preserve">
+  <data name="TypeNewName" xml:space="preserve">
     <value>задайте имя профиля</value>
   </data>
-  <data name="UpText" xml:space="preserve">
+  <data name="TypeProfileName" xml:space="preserve">
     <value>Вверх</value>
   </data>
-  <data name="UpToDate" xml:space="preserve">
+  <data name="UpText" xml:space="preserve">
     <value>Обновления программы не найдены!</value>
   </data>
-  <data name="UseControllerForMapping" xml:space="preserve">
+  <data name="UpToDate" xml:space="preserve">
     <value>Используйте контроллер для изменения назначений</value>
   </data>
-  <data name="UsingExclusive" xml:space="preserve">
+  <data name="UseControllerForMapping" xml:space="preserve">
     <value>Включен приоритетный режим</value>
   </data>
-  <data name="UsingProfile" xml:space="preserve">
+  <data name="UsingExclusive" xml:space="preserve">
     <value>Для *number*-го контроллера задействован профиль "*Profile name*"</value>
   </data>
-  <data name="UsingShared" xml:space="preserve">
+  <data name="UsingProfile" xml:space="preserve">
     <value>Включен совместный режим</value>
   </data>
-  <data name="UsingTPSwipes" xml:space="preserve">
+  <data name="UsingShared" xml:space="preserve">
     <value>Это отключит возможность использования тачпада как мышь</value>
   </data>
-  <data name="ValidName" xml:space="preserve">
+  <data name="UsingTPSwipes" xml:space="preserve">
     <value>Пожалуйста, введите допустимое имя</value>
   </data>
-  <data name="WaitMS" xml:space="preserve">
+  <data name="ValidName" xml:space="preserve">
     <value>Задержка *number**ms*</value>
   </data>
-  <data name="WillKeep" xml:space="preserve">
+  <data name="WaitMS" xml:space="preserve">
     <value>Удержание</value>
+  </data>
+  <data name="WillKeep" xml:space="preserve">
+    <value>Используйте более высокий порт, если у вас возник конфликт с другим эмулятором контроллера X360</value>
   </data>
   <data name="XinputPorts" xml:space="preserve">
     <value>Используйте более высокий порт, если у вас возник конфликт с другим эмулятором контроллера X360</value>
+  </data>
+  <data name="StoppedDS4Tool" xml:space="preserve">
+    <value>Остановлена работа DS4Windows</value>
+  </data>
+  <data name="TextDocs" xml:space="preserve">
+    <value>Накл. вниз</value>
   </data>
 </root>

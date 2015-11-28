@@ -51,23 +51,23 @@ namespace DS4Windows
         /// <summary> Holds raw DS4 input data from 20 to 25 </summary>
         public byte[] Gyro { set { gyro = value; } }
 
-        /// <summary> Pitch upward/backward </summary>
-        /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
-        public int AccelX { get { return (Int16)((UInt16)(accel[0] << 8) | accel[1]); } }
         /// <summary> Yaw leftward/counter-clockwise/turn to port or larboard side </summary>
         /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
-        public int AccelY { get { return (Int16)((UInt16)(accel[2] << 8) | accel[3]); } }
+        public int AccelX { get { return (Int16)((UInt16)(accel[2] << 8) | accel[3]) / 256; } }
+        /// <summary> Pitch upward/backward </summary>
+        /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
+        public int AccelY { get { return (Int16)((UInt16)(accel[0] << 8) | accel[1]) / 256; } }
         /// <summary> roll left/L side of controller down/starboard raising up </summary>
         /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
-        public int AccelZ { get { return (Int16)((UInt16)(accel[4] << 8) | accel[5]); } }
+        public int AccelZ { get { return (Int16)((UInt16)(accel[4] << 8) | accel[5]) / 256; } }
         /// <summary> R side of controller upward </summary>
         /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
-        public int GyroX { get { return (Int16)((UInt16)(gyro[0] << 8) | gyro[1]); } }
+        public int GyroX { get { return (Int16)((UInt16)(gyro[0] << 8) | gyro[1]) / 64; } }
         /// <summary> touchpad and button face side of controller upward </summary>
         /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
-        public int GyroY { get { return (Int16)((UInt16)(gyro[2] << 8) | gyro[3]); } }
+        public int GyroY { get { return (Int16)((UInt16)(gyro[2] << 8) | gyro[3]) / 64; } }
         /// <summary> Audio/expansion ports upward and light bar/shoulders/bumpers/USB port downward </summary>
         /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
-        public int GyroZ { get { return (Int16)((UInt16)(gyro[4] << 8) | gyro[5]); } }
+        public int GyroZ { get { return (Int16)((UInt16)(gyro[4] << 8) | gyro[5]) / 64; } }        
     }
 }

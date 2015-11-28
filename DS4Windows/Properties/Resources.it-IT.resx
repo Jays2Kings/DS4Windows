@@ -121,7 +121,7 @@
     <value>Il Nome di questa azione esiste già</value>
   </data>
   <data name="AddingToList" xml:space="preserve">
-    <value>Aggiungere alla lista...</value>
+    <value>Aggiungendo alla lista...</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
     <value>Aggiungi Programmi</value>
@@ -133,7 +133,7 @@
     <value>Sempre Modalità Arcobaleno</value>
   </data>
   <data name="AssignProfile" xml:space="preserve">
-    <value>Assegnare al Controller *number*</value>
+    <value>Assegna al Controller *number*</value>
   </data>
   <data name="Battery" xml:space="preserve">
     <value>Batteria: *number*%</value>
@@ -199,7 +199,7 @@
     <value>Ottenuare quando % Batteria</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Spegnere X360 input e usare solo l'input nativo di DS4, nascondi ds4 deve essere disattivato</value>
+    <value>Spegnere X360 input e usare solo l'input nativo di DS4, nascondi ds4 deve essere disattivato (Solo tramite cavo)</value>
   </data>
   <data name="DisconnectBT" xml:space="preserve">
     <value>Disconnetti BT</value>
@@ -415,100 +415,100 @@
     <value>Arresto Leggero</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>DS4Windows Arrestato</value>
-  </data>
-  <data name="StoppingDS4" xml:space="preserve">
     <value>Controller DS4 in arresto</value>
   </data>
-  <data name="StoppingX360" xml:space="preserve">
+  <data name="StoppingDS4" xml:space="preserve">
     <value>X360 Controller in arresto</value>
   </data>
-  <data name="StopText" xml:space="preserve">
+  <data name="StoppingX360" xml:space="preserve">
     <value>Arresta</value>
   </data>
-  <data name="SwipeDown" xml:space="preserve">
+  <data name="StopText" xml:space="preserve">
     <value>Swipe Giù</value>
   </data>
-  <data name="SwipeLeft" xml:space="preserve">
+  <data name="SwipeDown" xml:space="preserve">
     <value>Swipe Sinistra</value>
   </data>
-  <data name="SwipeRight" xml:space="preserve">
+  <data name="SwipeLeft" xml:space="preserve">
     <value>Swipe Destra</value>
   </data>
-  <data name="SwipeTouchpad" xml:space="preserve">
+  <data name="SwipeRight" xml:space="preserve">
     <value>Effettuare Swipe sul Touchpad per cambiare profili</value>
   </data>
-  <data name="SwipeUp" xml:space="preserve">
+  <data name="SwipeTouchpad" xml:space="preserve">
     <value>Swipe Su</value>
   </data>
-  <data name="TapAndHold" xml:space="preserve">
+  <data name="SwipeUp" xml:space="preserve">
     <value>Tap e mantenere per trascinare, piccolo ritardo con tap singoli</value>
   </data>
-  <data name="TestHText" xml:space="preserve">
+  <data name="TapAndHold" xml:space="preserve">
     <value>Test Pesante</value>
+  </data>
+  <data name="TestHText" xml:space="preserve">
+    <value>Test Leggero</value>
   </data>
   <data name="TestLText" xml:space="preserve">
     <value>Test Leggero</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>Inclina Giù</value>
-  </data>
-  <data name="TiltLeft" xml:space="preserve">
     <value>Inclina a Sx</value>
   </data>
-  <data name="TiltRight" xml:space="preserve">
+  <data name="TiltLeft" xml:space="preserve">
     <value>Inclina a Dx</value>
   </data>
-  <data name="TiltUp" xml:space="preserve">
+  <data name="TiltRight" xml:space="preserve">
     <value>Inclina Su</value>
   </data>
+  <data name="TiltUp" xml:space="preserve">
+    <value>Movimenti Touchpad sono ora Disattivati</value>
+  </data>
   <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Movimenti Touchpad sono ora Disattivati </value>
+    <value>Movimenti Touchpad sono ora Attivati</value>
   </data>
   <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>Movimenti Touchpad sono ora Attivati </value>
-  </data>
-  <data name="TouchpadOffTip" xml:space="preserve">
     <value>Ri-abilita premendo PS+Touchpad</value>
   </data>
-  <data name="TwoFingerSwipe" xml:space="preserve">
+  <data name="TouchpadOffTip" xml:space="preserve">
     <value>Swipe Touchpad a 2 dita a sinistra o a destra</value>
   </data>
-  <data name="TypeNewName" xml:space="preserve">
+  <data name="TwoFingerSwipe" xml:space="preserve">
     <value>Scrivi nuovo nome qui</value>
   </data>
-  <data name="TypeProfileName" xml:space="preserve">
+  <data name="TypeNewName" xml:space="preserve">
     <value>Scrivi nome profilo qui</value>
   </data>
-  <data name="UpText" xml:space="preserve">
+  <data name="TypeProfileName" xml:space="preserve">
     <value>Su</value>
   </data>
-  <data name="UpToDate" xml:space="preserve">
+  <data name="UpText" xml:space="preserve">
     <value>Sei aggiornato</value>
   </data>
-  <data name="UseControllerForMapping" xml:space="preserve">
+  <data name="UpToDate" xml:space="preserve">
     <value>Puoi anche usare il tuo controller per cambiare i controlli</value>
   </data>
-  <data name="UsingExclusive" xml:space="preserve">
+  <data name="UseControllerForMapping" xml:space="preserve">
     <value>Utilizzando Modalità Esclusiva</value>
   </data>
-  <data name="UsingProfile" xml:space="preserve">
+  <data name="UsingExclusive" xml:space="preserve">
     <value>Il Controller *number* sta usando il Profilo "*Profile name*"</value>
   </data>
-  <data name="UsingShared" xml:space="preserve">
+  <data name="UsingProfile" xml:space="preserve">
     <value>Utilizzando Modalità Condivisa</value>
   </data>
-  <data name="UsingTPSwipes" xml:space="preserve">
+  <data name="UsingShared" xml:space="preserve">
     <value>Questo disabilita il Touchpad come mouse</value>
   </data>
-  <data name="ValidName" xml:space="preserve">
+  <data name="UsingTPSwipes" xml:space="preserve">
     <value>Per favore immettere un nome valido</value>
   </data>
-  <data name="WaitMS" xml:space="preserve">
+  <data name="ValidName" xml:space="preserve">
     <value>Aspetta *number**ms*</value>
   </data>
-  <data name="WillKeep" xml:space="preserve">
+  <data name="WaitMS" xml:space="preserve">
     <value>Mantenere</value>
+  </data>
+  <data name="WillKeep" xml:space="preserve">
+    <value>Usa porte più alte se ricevi conflitti in altri programmi emulatori X360, come il tool SCP</value>
   </data>
   <data name="XinputPorts" xml:space="preserve">
     <value>Usa porte più alte se ricevi conflitti in altri programmi emulatori X360, come il tool SCP</value>
@@ -524,5 +524,11 @@
   </data>
   <data name="CheckBattery" xml:space="preserve">
     <value>Controlla Batteria</value>
+  </data>
+  <data name="StoppedDS4Tool" xml:space="preserve">
+    <value>DS4Windows Arrestato</value>
+  </data>
+  <data name="TextDocs" xml:space="preserve">
+    <value>Inclina Giù</value>
   </data>
 </root>

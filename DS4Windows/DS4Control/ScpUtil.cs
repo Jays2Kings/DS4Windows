@@ -214,9 +214,15 @@ namespace DS4Windows
         public static bool[] DinputOnly => m_Config.dinputOnly; 
         public static bool[] StartTouchpadOff => m_Config.startTouchpadOff; 
         public static bool[] UseTPforControls => m_Config.useTPforControls;
+        public static bool[] UseSAforMouse => m_Config.useSAforMouse;
+        public static string[] SATriggers => m_Config.sATriggers;
+        public static int[] GyroSensitivity => m_Config.gyroSensitivity;
+        public static int[] GyroInvert => m_Config.gyroInvert;
         public static DS4Color[] MainColor => m_Config.m_Leds; 
         public static DS4Color[] LowColor => m_Config.m_LowLeds;
         public static DS4Color[] ChargingColor => m_Config.m_ChargingLeds;
+        public static DS4Color[] CustomColor => m_Config.m_CustomLeds;
+        public static bool[] UseCustomLed => m_Config.useCustomLeds;
 
         public static  DS4Color[] FlashColor => m_Config.m_FlashLeds;
         public static DS4Color[] ShiftColor => m_Config.m_ShiftLeds;
@@ -469,12 +475,22 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
+        public bool[] useCustomLeds = new bool[] { false, false, false, false };
+        public DS4Color[] m_CustomLeds = new DS4Color[]
+        {
+             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
+            new DS4Color(Color.Black)
+        };
         public bool[] shiftColorOn = { false, false, false, false, false };
         public int[] chargingType = { 0, 0, 0, 0, 0 };
         public string[] launchProgram = { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public bool[] dinputOnly = { false, false, false, false, false };
         public bool[] startTouchpadOff = { false, false, false, false, false };
         public bool[] useTPforControls = { false, false, false, false, false };
+        public bool[] useSAforMouse = { false, false, false, false, false };
+        public string[] sATriggers = { "", "", "", "", "" };
         public int[] lsCurve = { 0, 0, 0, 0, 0 };
         public int[] rsCurve = { 0, 0, 0, 0, 0 };
         public Boolean useExclusiveMode = false;
@@ -506,6 +522,8 @@ namespace DS4Windows
         public bool downloadLang = true;
         public bool flashWhenLate = true;
         public int flashWhenLateAt = 10;
+        public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
+        internal int[] gyroInvert = { 0, 0, 0, 0, 0 };
 
         public BackingStore()
         {
@@ -662,6 +680,10 @@ namespace DS4Windows
                 XmlNode xmlDinput = m_Xdoc.CreateNode(XmlNodeType.Element, "DinputOnly", null); xmlDinput.InnerText = dinputOnly[device].ToString(); Node.AppendChild(xmlDinput);
                 XmlNode xmlStartTouchpadOff = m_Xdoc.CreateNode(XmlNodeType.Element, "StartTouchpadOff", null); xmlStartTouchpadOff.InnerText = startTouchpadOff[device].ToString(); Node.AppendChild(xmlStartTouchpadOff);
                 XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null); xmlUseTPforControls.InnerText = useTPforControls[device].ToString(); Node.AppendChild(xmlUseTPforControls);
+                XmlNode xmlUseSAforMouse = m_Xdoc.CreateNode(XmlNodeType.Element, "UseSAforMouse", null); xmlUseSAforMouse.InnerText = useSAforMouse[device].ToString(); Node.AppendChild(xmlUseSAforMouse);
+                XmlNode xmlSATriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggers", null); xmlSATriggers.InnerText = sATriggers[device].ToString(); Node.AppendChild(xmlSATriggers);
+                XmlNode xmlGyroSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSensitivity", null); xmlGyroSensitivity.InnerText = gyroSensitivity[device].ToString(); Node.AppendChild(xmlGyroSensitivity);
+                XmlNode xmlGyroInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroInvert", null); xmlGyroInvert.InnerText = gyroInvert[device].ToString(); Node.AppendChild(xmlGyroInvert);
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
@@ -1259,6 +1281,18 @@ namespace DS4Windows
                 try
                 { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls"); Boolean.TryParse(Item.InnerText, out useTPforControls[device]); }
                 catch { useTPforControls[device] = false; missingSetting = true; }
+                try
+                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseSAforMouse"); Boolean.TryParse(Item.InnerText, out useSAforMouse[device]); }
+                catch { useSAforMouse[device] = false; missingSetting = true; }
+                try
+                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggers"); sATriggers[device] = Item.InnerText; }
+                catch { sATriggers[device] = ""; missingSetting = true; }
+                try
+                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSensitivity"); int.TryParse(Item.InnerText, out gyroSensitivity[device]); }
+                catch { gyroSensitivity[device] = 100; missingSetting = true; }
+                try
+                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroInvert"); int.TryParse(Item.InnerText, out gyroInvert[device]); }
+                catch { gyroInvert[device] = 0; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSCurve"); int.TryParse(Item.InnerText, out rsCurve[device]); }
@@ -1550,6 +1584,17 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/FlashWhenLateAt"); int.TryParse(Item.InnerText, out flashWhenLateAt); }
                     catch { missingSetting = true; }
+                    for (int i = 0; i < 4; i++)
+                    {
+                        try
+                        {
+                            Item = m_Xdoc.SelectSingleNode("/Profile/CustomLed" + (i + 1));
+                            string[] ss = Item.InnerText.Split(':');
+                            bool.TryParse(ss[0], out useCustomLeds[i]);
+                            DS4Color.TryParse(ss[1], ref m_CustomLeds[i]);
+                        }
+                        catch { missingSetting = true; }
+                    }
                 }
             }
             catch { }
@@ -1598,7 +1643,17 @@ namespace DS4Windows
             XmlNode xmlCloseMini = m_Xdoc.CreateNode(XmlNodeType.Element, "CloseMinimizes", null); xmlCloseMini.InnerText = closeMini.ToString(); Node.AppendChild(xmlCloseMini);
             XmlNode xmlDownloadLang = m_Xdoc.CreateNode(XmlNodeType.Element, "DownloadLang", null); xmlDownloadLang.InnerText = downloadLang.ToString(); Node.AppendChild(xmlDownloadLang);
             XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); Node.AppendChild(xmlFlashWhenLate);            
-            XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); Node.AppendChild(xmlFlashWhenLateAt);            
+            XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); Node.AppendChild(xmlFlashWhenLateAt);
+
+            for (int i = 0; i < 4; i++)
+            {
+                XmlNode xmlCustomLed = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed" + (1 + i), null);
+                xmlCustomLed.InnerText = useCustomLeds[i] + ":" + m_CustomLeds[i].red + ","+ m_CustomLeds[i].green + "," + m_CustomLeds[i].blue;
+                Node.AppendChild(xmlCustomLed);
+            }
+           /* XmlNode xmlCustomLed2 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed2", null); xmlCustomLed2.InnerText = profilePath[1]; Node.AppendChild(xmlCustomLed2);
+            XmlNode xmlCustomLed3 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed3", null); xmlCustomLed3.InnerText = profilePath[2]; Node.AppendChild(xmlCustomLed3);
+            XmlNode xmlCustomLed4 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed4", null); xmlCustomLed4.InnerText = profilePath[3]; Node.AppendChild(xmlCustomLed4);*/
 
             m_Xdoc.AppendChild(Node);
 

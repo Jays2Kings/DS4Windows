@@ -124,10 +124,10 @@
     <value>Adicionar a Lista</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
-    <value>Adicionar a Programas</value>
+    <value>Adicionar Programas</value>
   </data>
   <data name="AlwaysRainbow" xml:space="preserve">
-    <value>Modo Arco</value>
+    <value>Modo Arco Permanente</value>
   </data>
   <data name="AssignProfile" xml:space="preserve">
     <value>Configurar Controlador *number*</value>
@@ -145,7 +145,7 @@
     <value>Impossivel Copiar Para Local Atual. Copiar para AppData?</value>
   </data>
   <data name="Charged" xml:space="preserve">
-    <value>Carregar</value>
+    <value>Carregado</value>
   </data>
   <data name="Charging" xml:space="preserve">
     <value>Carregando: *number*%</value>
@@ -352,84 +352,165 @@
     <value>Encerrar Leve</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>DS4Windows Parou</value>
-  </data>
-  <data name="StoppingDS4" xml:space="preserve">
     <value>Parando Controle DS4</value>
   </data>
-  <data name="StoppingX360" xml:space="preserve">
+  <data name="StoppingDS4" xml:space="preserve">
     <value>Parando Controle X360</value>
   </data>
-  <data name="StopText" xml:space="preserve">
+  <data name="StoppingX360" xml:space="preserve">
     <value>Parar</value>
   </data>
+  <data name="StopText" xml:space="preserve">
+    <value>Deslizar para baixo</value>
+  </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Use o TouchPad para Mudar Perfis</value>
+    <value>Deslizar para cima</value>
   </data>
   <data name="TapAndHold" xml:space="preserve">
-    <value>Toque e Segure Para Arrastar, Atraso Com um Unico Toque</value>
+    <value>Testar Carregamento</value>
   </data>
   <data name="TestHText" xml:space="preserve">
-    <value>Testar Carregamento</value>
+    <value>Testar Leve</value>
   </data>
   <data name="TestLText" xml:space="preserve">
     <value>Testar Leve</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>Inclinar Para Baixo</value>
-  </data>
-  <data name="TiltLeft" xml:space="preserve">
     <value>Inclinar Para Esquerda</value>
   </data>
-  <data name="TiltRight" xml:space="preserve">
+  <data name="TiltLeft" xml:space="preserve">
     <value>Inclinar Para Direito</value>
   </data>
-  <data name="TiltUp" xml:space="preserve">
+  <data name="TiltRight" xml:space="preserve">
     <value>Inclinar Para Cima</value>
   </data>
-  <data name="TouchpadMovementOff" xml:space="preserve">
+  <data name="TiltUp" xml:space="preserve">
     <value>TouchPad Desligado</value>
   </data>
-  <data name="TouchpadMovementOn" xml:space="preserve">
+  <data name="TouchpadMovementOff" xml:space="preserve">
     <value>TouchPad Ligado</value>
   </data>
-  <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>2 Dedos Para TouchPad, Toque Direito e Esquerdo</value>
+  <data name="TouchpadMovementOn" xml:space="preserve">
+    <value>Re-habilite pressionando o PS+Touchpado</value>
   </data>
-  <data name="TypeNewName" xml:space="preserve">
+  <data name="TwoFingerSwipe" xml:space="preserve">
     <value>Digitar Novo Nome Aqui</value>
   </data>
-  <data name="TypeProfileName" xml:space="preserve">
+  <data name="TypeNewName" xml:space="preserve">
     <value>Digitar Nome de Perfil Aqui</value>
   </data>
-  <data name="UpText" xml:space="preserve">
+  <data name="TypeProfileName" xml:space="preserve">
     <value>Cima</value>
   </data>
-  <data name="UpToDate" xml:space="preserve">
+  <data name="UpText" xml:space="preserve">
     <value>Atualizando</value>
   </data>
-  <data name="UseControllerForMapping" xml:space="preserve">
+  <data name="UpToDate" xml:space="preserve">
     <value>Você Pode Usar o Controle Para Alterar Outros Controles</value>
   </data>
-  <data name="UsingExclusive" xml:space="preserve">
+  <data name="UseControllerForMapping" xml:space="preserve">
     <value>Usando Modo Exclusivo</value>
   </data>
-  <data name="UsingProfile" xml:space="preserve">
+  <data name="UsingExclusive" xml:space="preserve">
     <value>Controle *number* é Perfil Usado “*Profile name*"</value>
   </data>
-  <data name="UsingShared" xml:space="preserve">
+  <data name="UsingProfile" xml:space="preserve">
     <value>Usando Modo Shared</value>
   </data>
-  <data name="ValidName" xml:space="preserve">
-    <value>Por Favor Inserir Nome Valido</value>
+  <data name="UsingShared" xml:space="preserve">
+    <value>Isto desabilita o controle do Mouse pelo Touchpad</value>
   </data>
-  <data name="WaitMS" xml:space="preserve">
+  <data name="ValidName" xml:space="preserve">
     <value>Espere *number**ms*</value>
   </data>
-  <data name="WillKeep" xml:space="preserve">
+  <data name="WaitMS" xml:space="preserve">
     <value>Manter</value>
   </data>
+  <data name="WillKeep" xml:space="preserve">
+    <value>Use portas mais altas se houver conflitos com outras emulações com os programas X360, como a ferramenta do SCP</value>
+  </data>
   <data name="PlusNewProfile" xml:space="preserve">
-    <value>Novo Perfil</value>
+    <value>Novo profile</value>
+  </data>
+  <data name="ALocactionNeeded" xml:space="preserve">
+    <value>Uma localização precisa ser escolhida para prosseguir</value>
+  </data>
+  <data name="CheckBattery" xml:space="preserve">
+    <value>Checar bateria</value>
+  </data>
+  <data name="CloseDS4W" xml:space="preserve">
+    <value>Fechar DS4Windows ?</value>
+  </data>
+  <data name="DisconnectBT" xml:space="preserve">
+    <value>Desconectar BT</value>
+  </data>
+  <data name="FlashAtTip" xml:space="preserve">
+    <value>Clique para mudar a coloração da luz. Preto = cor padrão</value>
+  </data>
+  <data name="GyroX" xml:space="preserve">
+    <value>Eixo X, Inclinar para esquerda e para direita</value>
+  </data>
+  <data name="GyroY" xml:space="preserve">
+    <value>Eixo Y, Inclinar para frente e para trás</value>
+  </data>
+  <data name="GyroZ" xml:space="preserve">
+    <value>Eixo Z, Inclinar para cima e para baixo</value>
+  </data>
+  <data name="HoverOverItems" xml:space="preserve">
+    <value>Passe o mouse sobre para visualizar funções e descrições</value>
+  </data>
+  <data name="Jitter" xml:space="preserve">
+    <value>Use o Sixaxis para ajudar a calcular o movimento do touchpad</value>
+  </data>
+  <data name="LatencyNotOverTen" xml:space="preserve">
+    <value>Controle *number* com latência abaixo de 10ms</value>
+  </data>
+  <data name="LatencyOverTen" xml:space="preserve">
+    <value>Controle *number* com latência acima de 10ms</value>
+  </data>
+  <data name="Macro" xml:space="preserve">
+    <value>Macro</value>
+  </data>
+  <data name="NotUsingProfile" xml:space="preserve">
+    <value>Controle *number* não esta usando um perfil</value>
+  </data>
+  <data name="OtherFileLocation" xml:space="preserve">
+    <value>os arquivos dos outros locais serão deletados</value>
+  </data>
+  <data name="Programs" xml:space="preserve">
+    <value>Programas</value>
+  </data>
+  <data name="QuickCharge" xml:space="preserve">
+    <value>Experimental: Automaticamente desabilitar o bluetooth quando USB é conectado</value>
+  </data>
+  <data name="ScanCode" xml:space="preserve">
+    <value>Código de escaneamento</value>
+  </data>
+  <data name="Shortcuts" xml:space="preserve">
+    <value>Atalhos</value>
+  </data>
+  <data name="StoppedDS4Tool" xml:space="preserve">
+    <value>DS4Windows Parou</value>
+  </data>
+  <data name="SwipeDown" xml:space="preserve">
+    <value>Deslizar para esquerda</value>
+  </data>
+  <data name="SwipeLeft" xml:space="preserve">
+    <value>Deslizar para direita</value>
+  </data>
+  <data name="SwipeRight" xml:space="preserve">
+    <value>Use o TouchPad para Mudar Perfis</value>
+  </data>
+  <data name="SwipeUp" xml:space="preserve">
+    <value>Toque e Segure Para Arrastar, Atraso Com um Unico Toque</value>
+  </data>
+  <data name="TextDocs" xml:space="preserve">
+    <value>Inclinar Para Baixo</value>
+  </data>
+  <data name="TouchpadOffTip" xml:space="preserve">
+    <value>2 Dedos Para TouchPad, Toque Direito e Esquerdo</value>
+  </data>
+  <data name="UsingTPSwipes" xml:space="preserve">
+    <value>Por Favor Inserir Nome Valido</value>
   </data>
 </root>

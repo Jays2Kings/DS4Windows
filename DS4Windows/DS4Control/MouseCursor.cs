@@ -16,10 +16,57 @@ namespace DS4Windows
 
         // Keep track of remainders when performing moves or we lose fractional parts.
         private double horizontalRemainder = 0.0, verticalRemainder = 0.0;
+        private double hRemainder = 0.0, vRemainder = 0.0;
         /** Indicate x/y direction for doing jitter compensation, etc. */
         public enum Direction { Negative, Neutral, Positive }
         // Track direction vector separately and very trivially for now.
         private Direction horizontalDirection = Direction.Neutral, verticalDirection = Direction.Neutral;
+        private Direction hDirection = Direction.Neutral, vDirection = Direction.Neutral;
+
+        public virtual void sixaxisMoved(SixAxisEventArgs arg)
+        {
+            int deltaX = 0, deltaY = 0;
+            deltaX = -arg.sixAxis.accelX;
+            deltaY = -arg.sixAxis.accelY;
+            double coefficient = Global.GyroSensitivity[deviceNumber] / 100f;
+            // Collect rounding errors instead of losing motion.
+            double xMotion = coefficient * deltaX;
+            if (xMotion > 0.0)
+            {
+                if (horizontalRemainder > 0.0)
+                    xMotion += horizontalRemainder;
+            }
+            else if (xMotion < 0.0)
+            {
+                if (horizontalRemainder < 0.0)
+                    xMotion += horizontalRemainder;
+            }
+            int xAction = (int)xMotion;
+            hRemainder = xMotion - xAction;
+
+            double yMotion = coefficient * deltaY;
+            if (yMotion > 0.0)
+            {
+                if (verticalRemainder > 0.0)
+                    yMotion += verticalRemainder;
+            }
+            else if (yMotion < 0.0)
+            {
+                if (verticalRemainder < 0.0)
+                    yMotion += verticalRemainder;
+            }
+            int yAction = (int)yMotion;
+            vRemainder = yMotion - yAction;
+            if (Global.GyroInvert[deviceNumber] == 2 || Global.GyroInvert[deviceNumber] == 3)
+                xAction *= -1;
+            if (Global.GyroInvert[deviceNumber] == 1 || Global.GyroInvert[deviceNumber] == 3)
+                yAction *= -1;
+            if (yAction != 0 || xAction != 0)
+                InputMethods.MoveCursorBy(xAction, yAction);
+
+            hDirection = xMotion > 0.0 ? Direction.Positive : xMotion < 0.0 ? Direction.Negative : Direction.Neutral;
+            vDirection = yMotion > 0.0 ? Direction.Positive : yMotion < 0.0 ? Direction.Negative : Direction.Neutral;
+        }
 
         public void touchesBegan(TouchpadEventArgs arg)
         {

@@ -487,9 +487,239 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_Circle {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_Circle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_Cross {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_Cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_Down {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_Down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_L1 {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_L1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_L2 {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_L2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_Left {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_Left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_LS {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_LS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_Options {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_Options", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_PS {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_PS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_R1 {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_R1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_R2 {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_R2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_Right {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_Right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_RS {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_RS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_Share {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_Share", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_Square {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_Square", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_TouchLeft {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_TouchLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_TouchMulti {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_TouchMulti", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_TouchRight {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_TouchRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_TouchUpper {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_TouchUpper", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_Triangle {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_Triangle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_Config_Up {
+            get {
+                object obj = ResourceManager.GetObject("DS4_Config_Up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DS4_Controller {
             get {
                 object obj = ResourceManager.GetObject("DS4_Controller", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DS4_lightbar {
+            get {
+                object obj = ResourceManager.GetObject("DS4_lightbar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1493,15 +1723,6 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopped DS4 Tool.
-        /// </summary>
-        internal static string StoppedDS4Tool {
-            get {
-                return ResourceManager.GetString("StoppedDS4Tool", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Stopped DS4Windows.
         /// </summary>
         internal static string StoppedDS4Windows {
@@ -1615,6 +1836,15 @@ namespace DS4Windows.Properties {
         internal static string TestText {
             get {
                 return ResourceManager.GetString("TestText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Document (*.txt).
+        /// </summary>
+        internal static string TextDocs {
+            get {
+                return ResourceManager.GetString("TextDocs", resourceCulture);
             }
         }
         
@@ -1844,6 +2074,15 @@ namespace DS4Windows.Properties {
         internal static string XinputPorts {
             get {
                 return ResourceManager.GetString("XinputPorts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML Files (*.xml).
+        /// </summary>
+        internal static string XMLFiles {
+            get {
+                return ResourceManager.GetString("XMLFiles", resourceCulture);
             }
         }
         

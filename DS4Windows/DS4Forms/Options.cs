@@ -155,7 +155,7 @@ namespace DS4Windows
                 nUDTouch.Value = TouchSensitivity[device];
                 cBSlide.Checked = TouchSensitivity[device] > 0;
                 nUDScroll.Value = ScrollSensitivity[device];
-                cBScroll.Checked = ScrollSensitivity[device] > 0;
+                cBScroll.Checked = ScrollSensitivity[device] != 0;
                 nUDTap.Value = TapSensitivity[device];
                 cBTap.Checked = TapSensitivity[device] > 0;
                 cBDoubleTap.Checked = DoubleTap[device];
@@ -864,7 +864,7 @@ namespace DS4Windows
             TouchSensitivity[device] = (byte)nUDTouch.Value;
             TouchpadJitterCompensation[device] = cBTouchpadJitterCompensation.Checked;
             LowerRCOn[device] = cBlowerRCOn.Checked;
-            ScrollSensitivity[device] = (byte)nUDScroll.Value;
+            ScrollSensitivity[device] = (int)nUDScroll.Value;
             DoubleTap[device] = cBDoubleTap.Checked;
             TapSensitivity[device] = (byte)nUDTap.Value;
             IdleDisconnectTimeout[device] = (int)(nUDIdleDisconnect.Value * 60);

@@ -118,402 +118,426 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionExists" xml:space="preserve">
-    <value>Ação Existente</value>
+    <value>اسم هذا الإجراء مستخدم</value>
   </data>
   <data name="AddingToList" xml:space="preserve">
-    <value>Adicionar a Lista</value>
+    <value>اضافة إلى القائمة...</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
-    <value>Adicionar Programas</value>
-  </data>
-  <data name="AlwaysRainbow" xml:space="preserve">
-    <value>Modo Arco Permanente</value>
-  </data>
-  <data name="AssignProfile" xml:space="preserve">
-    <value>Configurar Controlador *number*</value>
-  </data>
-  <data name="Battery" xml:space="preserve">
-    <value>Bateria: *number*%</value>
-  </data>
-  <data name="BestUsedRightSide" xml:space="preserve">
-    <value>Usar Lado Direito na Função Mouse</value>
-  </data>
-  <data name="Browse" xml:space="preserve">
-    <value>Procurar</value>
-  </data>
-  <data name="CannotWriteHere" xml:space="preserve">
-    <value>Impossivel Copiar Para Local Atual. Copiar para AppData?</value>
-  </data>
-  <data name="Charged" xml:space="preserve">
-    <value>Carregado</value>
-  </data>
-  <data name="Charging" xml:space="preserve">
-    <value>Carregando: *number*%</value>
-  </data>
-  <data name="CloseMinimize" xml:space="preserve">
-    <value>Fechar DS4Windows Através do Ícone de Notificação</value>
-  </data>
-  <data name="Color" xml:space="preserve">
-    <value>Cor</value>
-  </data>
-  <data name="ColorByBattery" xml:space="preserve">
-    <value>Cor Para Bateria</value>
-  </data>
-  <data name="Connecting" xml:space="preserve">
-    <value>Conectando</value>
-  </data>
-  <data name="ContextEdit" xml:space="preserve">
-    <value>Editar Perfil do Controle*number*</value>
-  </data>
-  <data name="ContextNew" xml:space="preserve">
-    <value>Criar Perfil do Controle *number*</value>
-  </data>
-  <data name="ControllerWasRemoved" xml:space="preserve">
-    <value>Conexão do Controle *Mac address* Foi Perdida ou Removida</value>
-  </data>
-  <data name="CopyComplete" xml:space="preserve">
-    <value>Copia Completa, execute DS4 e Remova as Configurações do Diretorio</value>
-  </data>
-  <data name="CopyFullColor" xml:space="preserve">
-    <value>Clica Para Copiar Toda Cor</value>
-  </data>
-  <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Atenção: Não Foi Possivel Conectar o Controle DS4 *Mac address*.</value>
-  </data>
-  <data name="Day" xml:space="preserve">
-    <value>Dia</value>
-  </data>
-  <data name="Days" xml:space="preserve">
-    <value>Dias</value>
-  </data>
-  <data name="DeleteProfile" xml:space="preserve">
-    <value>Apagar Perfil ?</value>
-  </data>
-  <data name="DimByBattery" xml:space="preserve">
-    <value>Bateria: Nivel %</value>
-  </data>
-  <data name="DinputOnly" xml:space="preserve">
-    <value>Desligue a Entrada X360 e Deixa Apenas o DS4, Função Esconder DS4 Deve Estar Ativa</value>
-  </data>
-  <data name="Disconnected" xml:space="preserve">
-    <value>Desconectado</value>
-  </data>
-  <data name="Downloading" xml:space="preserve">
-    <value>Baixando *number*%</value>
-  </data>
-  <data name="DownloadVersion" xml:space="preserve">
-    <value>Baixando Versão *number* Agora?</value>
-  </data>
-  <data name="DownText" xml:space="preserve">
-    <value>Para Baixo</value>
-  </data>
-  <data name="DS4Update" xml:space="preserve">
-    <value>Atualização Disponivel</value>
-  </data>
-  <data name="DS4WindowsCannotEditHere" xml:space="preserve">
-    <value>Impossivel Editar Configurações, Ira Fechar Agora</value>
-  </data>
-  <data name="EditProfile" xml:space="preserve">
-    <value>Editar</value>
-  </data>
-  <data name="FifthMouseDown" xml:space="preserve">
-    <value>5ª Mouse Com Botão Para Baixo</value>
-  </data>
-  <data name="FifthMouseUp" xml:space="preserve">
-    <value>5ª Mouse Com Botão Para Cima</value>
-  </data>
-  <data name="FlushHID" xml:space="preserve">
-    <value>Flush HID</value>
-  </data>
-  <data name="FoundController" xml:space="preserve">
-    <value>Controle Encontrado:</value>
-  </data>
-  <data name="FourthMouseDown" xml:space="preserve">
-    <value>4ª Mouse Com Botão Para Baixa</value>
-  </data>
-  <data name="FourthMouseUp" xml:space="preserve">
-    <value>4ª Mouse Com Botão Para Cima</value>
-  </data>
-  <data name="Full" xml:space="preserve">
-    <value>Completo</value>
-  </data>
-  <data name="Hour" xml:space="preserve">
-    <value>Hora</value>
-  </data>
-  <data name="Hours" xml:space="preserve">
-    <value>Horas</value>
-  </data>
-  <data name="IfRemovingDS4Windows" xml:space="preserve">
-    <value>Removendo DS4, Você Pode Deletar Configurações Usando o Seguinte Linl</value>
-  </data>
-  <data name="InputDelay" xml:space="preserve">
-    <value>Atraso De Entreda: *number*mg</value>
-  </data>
-  <data name="InstallComplete" xml:space="preserve">
-    <value>Instalação Completa</value>
-  </data>
-  <data name="InstallDriver" xml:space="preserve">
-    <value>Instalar Driver Aqui</value>
-  </data>
-  <data name="Installing" xml:space="preserve">
-    <value>Instalando...</value>
-  </data>
-  <data name="KeepThisSize" xml:space="preserve">
-    <value>Manter Janela Ao Fechar</value>
-  </data>
-  <data name="LaunchProgram" xml:space="preserve">
-    <value>Executar *program*</value>
-  </data>
-  <data name="Loading" xml:space="preserve">
-    <value>Carregando...</value>
-  </data>
-  <data name="LoadProfile" xml:space="preserve">
-    <value>Carregar *profile*</value>
-  </data>
-  <data name="MakeNewProfile" xml:space="preserve">
-    <value>Criar Novo Perfil</value>
-  </data>
-  <data name="NA" xml:space="preserve">
-    <value>N/A</value>
-  </data>
-  <data name="New" xml:space="preserve">
-    <value>Novo</value>
-  </data>
-  <data name="NoMacroRecorded" xml:space="preserve">
-    <value>Nemhum Macro Gravado</value>
-  </data>
-  <data name="noneProfile" xml:space="preserve">
-    <value>Vazio</value>
-  </data>
-  <data name="NoneText" xml:space="preserve">
-    <value>Vazio</value>
-  </data>
-  <data name="NoProfileLoaded" xml:space="preserve">
-    <value>Nemhum Perfil Carregado</value>
-  </data>
-  <data name="NotValid" xml:space="preserve">
-    <value>Invalido</value>
-  </data>
-  <data name="OpeningInstaller" xml:space="preserve">
-    <value>Abrindo Instalação</value>
-  </data>
-  <data name="OpenScpDriver" xml:space="preserve">
-    <value>Por Favor Abrir ScpDriver.exe</value>
-  </data>
-  <data name="PleaseDownloadUpdater" xml:space="preserve">
-    <value>Faço o Download da Atualização, Coloque na Pasta Do Programa e Tente Novamente</value>
-  </data>
-  <data name="PleaseImport" xml:space="preserve">
-    <value>Por Favor Importar ou Criar um Perfil</value>
-  </data>
-  <data name="ProfileCannotRestore" xml:space="preserve">
-    <value>*Profile name* Não Pode Ser Restaurado.</value>
-  </data>
-  <data name="ProfileFolderMoved" xml:space="preserve">
-    <value>Pasta de Perfil Movida Para Pasta do Programa</value>
-  </data>
-  <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>Você deve encerrar outras aplicações como o Steam, Uplay antes de ativar a opção "Ocultar DS4 Controller '."</value>
-  </data>
-  <data name="RecordText" xml:space="preserve">
-    <value>Gravar</value>
-  </data>
-  <data name="RightClickPresets" xml:space="preserve">
-    <value>Clique Direito Para Definir Controles Padrão</value>
-  </data>
-  <data name="SaveRecordedMacro" xml:space="preserve">
-    <value>Salvar Gravação de Macro?</value>
-  </data>
-  <data name="SearchingController" xml:space="preserve">
-    <value>Procurando Controles...</value>
-  </data>
-  <data name="SelectActionTitle" xml:space="preserve">
-    <value>Selecione Uma Ação Para *action*</value>
-  </data>
-  <data name="SetRegularTrigger" xml:space="preserve">
-    <value>Definir Gatilho Regular</value>
-  </data>
-  <data name="SetUnloadTrigger" xml:space="preserve">
-    <value>Definir Gatilho de Tiro</value>
-  </data>
-  <data name="Starting" xml:space="preserve">
-    <value>Iniciando</value>
-  </data>
-  <data name="StartText" xml:space="preserve">
-    <value>Iniciar</value>
-  </data>
-  <data name="Step1" xml:space="preserve">
-    <value>Passo 1: Instalar Driver DS4</value>
-  </data>
-  <data name="StopHText" xml:space="preserve">
-    <value>Para de Carregar</value>
-  </data>
-  <data name="StopLText" xml:space="preserve">
-    <value>Encerrar Leve</value>
-  </data>
-  <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>DS4Windows Parou</value>
-  </data>
-  <data name="StoppingDS4" xml:space="preserve">
-    <value>Parando Controle DS4</value>
-  </data>
-  <data name="StoppingX360" xml:space="preserve">
-    <value>Parando Controle X360</value>
-  </data>
-  <data name="StopText" xml:space="preserve">
-    <value>Parar</value>
-  </data>
-  <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Use o TouchPad para Mudar Perfis</value>
-  </data>
-  <data name="TapAndHold" xml:space="preserve">
-    <value>Toque e Segure Para Arrastar, Atraso Com um Unico Toque</value>
-  </data>
-  <data name="TestHText" xml:space="preserve">
-    <value>Testar Carregamento</value>
-  </data>
-  <data name="TestLText" xml:space="preserve">
-    <value>Testar Leve</value>
-  </data>
-  <data name="TiltDown" xml:space="preserve">
-    <value>Inclinar Para Baixo</value>
-  </data>
-  <data name="TiltLeft" xml:space="preserve">
-    <value>Inclinar Para Esquerda</value>
-  </data>
-  <data name="TiltRight" xml:space="preserve">
-    <value>Inclinar Para Direito</value>
-  </data>
-  <data name="TiltUp" xml:space="preserve">
-    <value>Inclinar Para Cima</value>
-  </data>
-  <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>TouchPad Desligado</value>
-  </data>
-  <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>TouchPad Ligado</value>
-  </data>
-  <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>2 Dedos Para TouchPad, Toque Direito e Esquerdo</value>
-  </data>
-  <data name="TypeNewName" xml:space="preserve">
-    <value>Digitar Novo Nome Aqui</value>
-  </data>
-  <data name="TypeProfileName" xml:space="preserve">
-    <value>Digitar Nome de Perfil Aqui</value>
-  </data>
-  <data name="UpText" xml:space="preserve">
-    <value>Cima</value>
-  </data>
-  <data name="UpToDate" xml:space="preserve">
-    <value>Atualizando</value>
-  </data>
-  <data name="UseControllerForMapping" xml:space="preserve">
-    <value>Você Pode Usar o Controle Para Alterar Outros Controles</value>
-  </data>
-  <data name="UsingExclusive" xml:space="preserve">
-    <value>Usando Modo Exclusivo</value>
-  </data>
-  <data name="UsingProfile" xml:space="preserve">
-    <value>Controle *number* é Perfil Usado “*Profile name*"</value>
-  </data>
-  <data name="UsingShared" xml:space="preserve">
-    <value>Usando Modo Shared</value>
-  </data>
-  <data name="ValidName" xml:space="preserve">
-    <value>Por Favor Inserir Nome Valido</value>
-  </data>
-  <data name="WaitMS" xml:space="preserve">
-    <value>Espere *number**ms*</value>
-  </data>
-  <data name="WillKeep" xml:space="preserve">
-    <value>Manter</value>
-  </data>
-  <data name="PlusNewProfile" xml:space="preserve">
-    <value>Novo profile</value>
+    <value>أضف برنامج</value>
   </data>
   <data name="ALocactionNeeded" xml:space="preserve">
-    <value>Uma localização precisa ser escolhida para prosseguir</value>
+    <value>يجب أن تختار مسارا للإستمرار</value>
+  </data>
+  <data name="AlwaysRainbow" xml:space="preserve">
+    <value>دائما في نمط قوس قزح</value>
+  </data>
+  <data name="AssignProfile" xml:space="preserve">
+    <value>عين إلي يد *number*</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>البطارية: *number*%</value>
+  </data>
+  <data name="BestUsedRightSide" xml:space="preserve">
+    <value>يفضل استخدامه مع الجهة اليمنى كفأرة</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>تصفح...</value>
+  </data>
+  <data name="CannotMoveFiles" xml:space="preserve">
+    <value>لا يمكن نقل الملفات لموقع جديد، الرجاء إعادة تسمية ملف DS4Tool إلى "DS4Windows"</value>
+  </data>
+  <data name="CannotWriteHere" xml:space="preserve">
+    <value>لا يمكن الكتابة في الموقع الحالي, نسخ الإعدادات إلى ملف appdata؟</value>
+  </data>
+  <data name="ChargeController" xml:space="preserve">
+    <value>اشحن البطارية</value>
+  </data>
+  <data name="Charged" xml:space="preserve">
+    <value>مشحون</value>
+  </data>
+  <data name="Charging" xml:space="preserve">
+    <value>يتم الشحن: *number*%</value>
   </data>
   <data name="CheckBattery" xml:space="preserve">
-    <value>Checar bateria</value>
+    <value>تحقق من البطارية</value>
   </data>
   <data name="CloseDS4W" xml:space="preserve">
-    <value>Fechar DS4Windows ?</value>
+    <value>أغلق البرنامج؟</value>
+  </data>
+  <data name="CloseMinimize" xml:space="preserve">
+    <value>أغلق البرنامج عن طريق رمز التنبيه</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>لون</value>
+  </data>
+  <data name="ColorByBattery" xml:space="preserve">
+    <value>اللون بمستوى الشحن %</value>
+  </data>
+  <data name="Connecting" xml:space="preserve">
+    <value>توصيل...</value>
+  </data>
+  <data name="ContextEdit" xml:space="preserve">
+    <value>تعديل السجل لليد *number*</value>
+  </data>
+  <data name="ContextNew" xml:space="preserve">
+    <value>إنشاء سجل لليد *number*</value>
+  </data>
+  <data name="ControllerWasRemoved" xml:space="preserve">
+    <value>يد *Mac address* تم إزالتها أو فقد الإتصال</value>
+  </data>
+  <data name="CopyComplete" xml:space="preserve">
+    <value>اكتمل النسخ، الرجاء إعادة تشغيل البرنامج و إزالة الإعدادات من ملف البرنامج</value>
+  </data>
+  <data name="CopyFullColor" xml:space="preserve">
+    <value>انقر لنسخ اللون كاملا</value>
+  </data>
+  <data name="CouldNotOpenDS4" xml:space="preserve">
+    <value>تحذير: لا يمكن تشغيل يد *Mac address* بشكل حصري</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>يوم</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>أيام</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>حذف السجل؟</value>
+  </data>
+  <data name="DimByBattery" xml:space="preserve">
+    <value>تعتيم بحسب البطارية %</value>
+  </data>
+  <data name="DinputOnly" xml:space="preserve">
+    <value>أغلق إدخال 360 و استخدم إدخال يد البلاي ستايشن 4 فقط، إخفاء يد البلاي ستايشن 4 يجب أن يكون مغلقا (فقط للموصل بالسلك)</value>
   </data>
   <data name="DisconnectBT" xml:space="preserve">
-    <value>Desconectar BT</value>
+    <value>افصل البلوتوث</value>
+  </data>
+  <data name="Disconnected" xml:space="preserve">
+    <value>انفصل</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>تحميل *number*%</value>
+  </data>
+  <data name="DownloadVersion" xml:space="preserve">
+    <value>تحميل اصدار *number*%</value>
+  </data>
+  <data name="DownText" xml:space="preserve">
+    <value>تحت</value>
+  </data>
+  <data name="DS4Update" xml:space="preserve">
+    <value>يوجد تحديث</value>
+  </data>
+  <data name="DS4WindowsCannotEditHere" xml:space="preserve">
+    <value>البرنامج لا يستطيع تعديل الإعدادات هنا، هذا سيغلق الآن</value>
+  </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="FallBack" xml:space="preserve">
+    <value>العودة</value>
+  </data>
+  <data name="FallBackTo" xml:space="preserve">
+    <value>العودة إلى *button*</value>
+  </data>
+  <data name="FifthMouseDown" xml:space="preserve">
+    <value>زر الفأرة الخامس للأسفل</value>
+  </data>
+  <data name="FifthMouseUp" xml:space="preserve">
+    <value>زر الفأرة الخامس للأعلى</value>
   </data>
   <data name="FlashAtTip" xml:space="preserve">
-    <value>Clique para mudar a coloração da luz. Preto = cor padrão</value>
+    <value>نقر لتغيير لون الإيماض، الأسود = اللون الإفتراضي</value>
+  </data>
+  <data name="FlushHID" xml:space="preserve">
+    <value>حذف HID</value>
+  </data>
+  <data name="FlushHIDTip" xml:space="preserve">
+    <value>حذف سلسلة HID بعد كل قراءة</value>
+  </data>
+  <data name="FoundController" xml:space="preserve">
+    <value>وجد يد:</value>
+  </data>
+  <data name="FourthMouseDown" xml:space="preserve">
+    <value>زر الفأرة الرابع للأسفل</value>
+  </data>
+  <data name="FourthMouseUp" xml:space="preserve">
+    <value>زر الفأرة الرابع للأعلى</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>كامل</value>
+  </data>
+  <data name="GyroReadout" xml:space="preserve">
+    <value>انقر لرؤية قراءات المستشعرات</value>
   </data>
   <data name="GyroX" xml:space="preserve">
-    <value>Eixo X, Inclinar para esquerda e para direita</value>
+    <value>دوام السين، المليان لليمين و اليسار</value>
   </data>
   <data name="GyroY" xml:space="preserve">
-    <value>Eixo Y, Inclinar para frente e para trás</value>
+    <value>دوام الصاد، المليان للأمام و الخلف</value>
   </data>
   <data name="GyroZ" xml:space="preserve">
-    <value>Eixo Z, Inclinar para cima e para baixo</value>
+    <value>دوام العبن، المليان للأعلى و الأسفل</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>ساعة</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>ساعات</value>
   </data>
   <data name="HoverOverItems" xml:space="preserve">
-    <value>Passe o mouse sobre para visualizar funções e descrições</value>
+    <value>ضع الفأرة على البنود لترى الوصف و التعليمات</value>
+  </data>
+  <data name="IfRemovingDS4Windows" xml:space="preserve">
+    <value>عند إزالة البرنامج، تستطيع حذف الإعدادات عن طريق تتبع رابط ملف السجلات</value>
+  </data>
+  <data name="InputDelay" xml:space="preserve">
+    <value>تأخر الإدخال: *number* مللي ثانية</value>
+  </data>
+  <data name="InstallComplete" xml:space="preserve">
+    <value>تم التثبيت</value>
+  </data>
+  <data name="InstallDriver" xml:space="preserve">
+    <value>ثبت المعرفات هنا</value>
+  </data>
+  <data name="InstallFailed" xml:space="preserve">
+    <value>فشل التثبيت، الرجاء إعادة المحاولة</value>
+  </data>
+  <data name="Installing" xml:space="preserve">
+    <value>يتم التثبيت...</value>
   </data>
   <data name="Jitter" xml:space="preserve">
-    <value>Use o Sixaxis para ajudar a calcular o movimento do touchpad</value>
+    <value>استخدم Sixaxis لحساب حركة شاشة اللمس</value>
+  </data>
+  <data name="KeepThisSize" xml:space="preserve">
+    <value>أبق حجم الصفحة بعد الغلق</value>
   </data>
   <data name="LatencyNotOverTen" xml:space="preserve">
-    <value>Controle *number* com latência abaixo de 10ms</value>
+    <value>تأخر اليد *number* أقل من 10 مللي ثانية</value>
   </data>
   <data name="LatencyOverTen" xml:space="preserve">
-    <value>Controle *number* com latência acima de 10ms</value>
+    <value>تأخر اليد *number* أكثر من 10 مللي ثانية</value>
+  </data>
+  <data name="LaunchProgram" xml:space="preserve">
+    <value>شغل *program*</value>
+  </data>
+  <data name="LightByBatteryTip" xml:space="preserve">
+    <value>و عتم الضوء بعد الكمون لو كان مشغلا</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>تحميل...</value>
+  </data>
+  <data name="LoadProfile" xml:space="preserve">
+    <value>تحميل *profile*</value>
   </data>
   <data name="Macro" xml:space="preserve">
-    <value>Macro</value>
+    <value>ماكرو</value>
+  </data>
+  <data name="MakeNewProfile" xml:space="preserve">
+    <value>إنشاء سجل جديد</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>لا يوجد</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="NoMacroRecorded" xml:space="preserve">
+    <value>لا يوجد ماكرو مسجل</value>
+  </data>
+  <data name="noneProfile" xml:space="preserve">
+    <value>لا يوجد</value>
+  </data>
+  <data name="NoneText" xml:space="preserve">
+    <value>لايوجد</value>
+  </data>
+  <data name="NoProfileLoaded" xml:space="preserve">
+    <value>لا سجل محمل</value>
   </data>
   <data name="NotUsingProfile" xml:space="preserve">
-    <value>Controle *number* não esta usando um perfil</value>
+    <value>اليد *number* لا تستخدم سجل</value>
+  </data>
+  <data name="NotValid" xml:space="preserve">
+    <value>غير مقبول</value>
+  </data>
+  <data name="OpeningInstaller" xml:space="preserve">
+    <value>فتح المثبت</value>
+  </data>
+  <data name="OpenScpDriver" xml:space="preserve">
+    <value>الرجاء تشغيل ScpDriver.exe</value>
   </data>
   <data name="OtherFileLocation" xml:space="preserve">
-    <value>os arquivos dos outros locais serão deletados</value>
+    <value>، الملفات في الأماكن الأخرى ستحذف</value>
+  </data>
+  <data name="PleaseDownloadUpdater" xml:space="preserve">
+    <value>الرجاء تحميل المحدث الآن، و وضعه في ملف البرنامج، ثم تحقق من وجود تحديث مرة أخرى</value>
+  </data>
+  <data name="PleaseImport" xml:space="preserve">
+    <value>الرجاء إنشاء أو استيراد سجل</value>
+  </data>
+  <data name="PlusNewProfile" xml:space="preserve">
+    <value>سجل جديد</value>
+  </data>
+  <data name="ProfileCannotRestore" xml:space="preserve">
+    <value>لا يمكن استعادة *Profile name*</value>
+  </data>
+  <data name="ProfileFolderMoved" xml:space="preserve">
+    <value>ملف السجل نقل إلى ملف البرنامج</value>
   </data>
   <data name="Programs" xml:space="preserve">
-    <value>Programas</value>
+    <value>البرامج</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>Experimental: Automaticamente desabilitar o bluetooth quando USB é conectado</value>
+    <value>تجريبي: فصل البلوتوث لشكل تلقائي عند التوصيل بالسلك</value>
+  </data>
+  <data name="QuitOtherPrograms" xml:space="preserve">
+    <value>يجب إغلاق البرامج الأخرى مثل ستيم و اليو-بلاي قبل تفعيل خيار "إخفاء يد البلاي ستايشن 4"</value>
+  </data>
+  <data name="RecordText" xml:space="preserve">
+    <value>تسجيل</value>
+  </data>
+  <data name="RightClickPresets" xml:space="preserve">
+    <value>النقر باليمين لوضع مجهّز لعدة تحكم</value>
+  </data>
+  <data name="SaveRecordedMacro" xml:space="preserve">
+    <value>حفظ الماكرو المسجل؟</value>
   </data>
   <data name="ScanCode" xml:space="preserve">
-    <value>Código de escaneamento</value>
+    <value>سكان كود</value>
+  </data>
+  <data name="SearchingController" xml:space="preserve">
+    <value>البحث عن أيادي...</value>
+  </data>
+  <data name="SelectActionTitle" xml:space="preserve">
+    <value>اختر أمر لـ *action*</value>
+  </data>
+  <data name="SetRegularTrigger" xml:space="preserve">
+    <value>تحديد كزناد عادي</value>
+  </data>
+  <data name="SetUnloadTrigger" xml:space="preserve">
+    <value>تحديد كزناد ملغى</value>
   </data>
   <data name="Shortcuts" xml:space="preserve">
-    <value>Atalhos</value>
+    <value>إختصارات</value>
   </data>
-  <data name="StoppedDS4Tool" xml:space="preserve">
-    <value>DS4Windows Parou</value>
+  <data name="SixAxisReading" xml:space="preserve">
+    <value>انقر لقراءات متقدمة لـ Sixaxis</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>يبدأ...</value>
+  </data>
+  <data name="StartText" xml:space="preserve">
+    <value>بداية</value>
+  </data>
+  <data name="Step1" xml:space="preserve">
+    <value>الخطوة 1: تثبيت معرّف يد البلاي ستايشن 4</value>
+  </data>
+  <data name="StopHText" xml:space="preserve">
+    <value>إيقاف القوي</value>
+  </data>
+  <data name="StopLText" xml:space="preserve">
+    <value>إيقاف الضعيف</value>
+  </data>
+  <data name="StoppedDS4Windows" xml:space="preserve">
+    <value>أوقف البرنامج</value>
+  </data>
+  <data name="StoppingDS4" xml:space="preserve">
+    <value>يتم ايقاف ايادي البلاي ستايشن 4</value>
+  </data>
+  <data name="StoppingX360" xml:space="preserve">
+    <value>يتم ايقاف ايادي 360</value>
+  </data>
+  <data name="StopText" xml:space="preserve">
+    <value>ايقاف</value>
   </data>
   <data name="SwipeDown" xml:space="preserve">
-    <value>Deslizar para baixo</value>
+    <value>مسح للأسفل</value>
   </data>
   <data name="SwipeLeft" xml:space="preserve">
-    <value>Deslizar para esquerda</value>
+    <value>مسح لليسار</value>
   </data>
   <data name="SwipeRight" xml:space="preserve">
-    <value>Deslizar para direita</value>
+    <value>مسح لليمين</value>
+  </data>
+  <data name="SwipeTouchpad" xml:space="preserve">
+    <value>ميح شاشة اللمس لتغيير السجل</value>
   </data>
   <data name="SwipeUp" xml:space="preserve">
-    <value>Deslizar para cima</value>
+    <value>مسح للأعلى</value>
   </data>
-  <data name="TextDocs" xml:space="preserve">
-    <value>Inclinar Para Baixo</value>
+  <data name="TapAndHold" xml:space="preserve">
+    <value>اللمس للسحب، تأخر طفيف للنقرات المنفردة</value>
+  </data>
+  <data name="TestHText" xml:space="preserve">
+    <value>تجريب القوي</value>
+  </data>
+  <data name="TestLText" xml:space="preserve">
+    <value>تجريب الضعيف</value>
+  </data>
+  <data name="TestText" xml:space="preserve">
+    <value>تجريب</value>
+  </data>
+  <data name="TiltDown" xml:space="preserve">
+    <value>ميلان للأسفل</value>
+  </data>
+  <data name="TiltLeft" xml:space="preserve">
+    <value>ميلان للأعلى</value>
+  </data>
+  <data name="TiltRight" xml:space="preserve">
+    <value>ميلن لليسار</value>
+  </data>
+  <data name="TiltUp" xml:space="preserve">
+    <value>مليان لليمين</value>
+  </data>
+  <data name="TouchpadMovementOff" xml:space="preserve">
+    <value>حركة شاشة اللمس معطلة</value>
+  </data>
+  <data name="TouchpadMovementOn" xml:space="preserve">
+    <value>حركة شاشة اللمس مفعلة</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Re-habilite pressionando o PS+Touchpado</value>
+    <value>أعد التفعيل بضغط زر البلاي ستايشن + شاشة اللمس</value>
+  </data>
+  <data name="TwoFingerSwipe" xml:space="preserve">
+    <value>المسح بإصبعين لليسار و اليمين</value>
+  </data>
+  <data name="TypeNewName" xml:space="preserve">
+    <value>اكتب اسم جديد هنا</value>
+  </data>
+  <data name="TypeProfileName" xml:space="preserve">
+    <value>اكتب اسم للسجل هنا</value>
+  </data>
+  <data name="UpText" xml:space="preserve">
+    <value>اعلى</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>البرنامج في أحدث إصدار</value>
+  </data>
+  <data name="UseControllerForMapping" xml:space="preserve">
+    <value>تستطيع استخدام اليد لتغيير التحكم</value>
+  </data>
+  <data name="UsingExclusive" xml:space="preserve">
+    <value>يتم استخدام النمط الحصري</value>
+  </data>
+  <data name="UsingProfile" xml:space="preserve">
+    <value>اليد *number* تستخدم السجل “*Profile name*"</value>
+  </data>
+  <data name="UsingShared" xml:space="preserve">
+    <value>يتم استخدام نمط المشاركة</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Isto desabilita o controle do Mouse pelo Touchpad</value>
+    <value>هذا يعطل عمل شاشة اللمس كفأرة</value>
+  </data>
+  <data name="ValidName" xml:space="preserve">
+    <value>ارجاء إدخال اسم صالح</value>
+  </data>
+  <data name="WaitMS" xml:space="preserve">
+    <value>انتظار *number* مللي ثانية</value>
+  </data>
+  <data name="WillKeep" xml:space="preserve">
+    <value>سيبقى</value>
   </data>
   <data name="XinputPorts" xml:space="preserve">
-    <value>Use portas mais altas se houver conflitos com outras emulações com os programas X360, como a ferramenta do SCP</value>
+    <value>استخدم خانات أعلى لو حصل تعارض مع برامج محاكاة 360 أخرى مثل برنامج SCP's tool</value>
   </data>
 </root>

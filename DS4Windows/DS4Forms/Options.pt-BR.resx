@@ -169,8 +169,15 @@
   <data name="nUDTouch.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 11</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lbButtonMouseSens.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lbButtonMouseSens.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
   <data name="lbButtonMouseSens.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 17</value>
+    <value>115, 38</value>
   </data>
   <data name="lbButtonMouseSens.Text" xml:space="preserve">
     <value>Sensibilidade do Mouse:</value>
@@ -199,6 +206,9 @@
   <data name="nUDIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
     <value>196, 55</value>
   </data>
+  <data name="btnRumbleHeavyTest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 29</value>
+  </data>
   <data name="lbFull.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 17</value>
   </data>
@@ -212,7 +222,7 @@
     <value>Vazio:</value>
   </data>
   <data name="numUDMouseSens.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 19</value>
+    <value>124, 20</value>
   </data>
   <data name="gBTouchpad.Text" xml:space="preserve">
     <value>TouchPad</value>
@@ -371,16 +381,25 @@
     <value>Usar Apenas Dinput</value>
   </data>
   <data name="pBProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>318, 126</value>
+    <value>288, 128</value>
+  </data>
+  <data name="cBLaunchProgram.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cBLaunchProgram.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 122</value>
   </data>
   <data name="cBLaunchProgram.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 21</value>
+    <value>156, 43</value>
   </data>
   <data name="cBLaunchProgram.Text" xml:space="preserve">
     <value>Executar Programa Com Perfil</value>
   </data>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 126</value>
+    <value>176, 128</value>
+  </data>
+  <data name="btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 29</value>
   </data>
   <data name="btnBrowse.Text" xml:space="preserve">
     <value>Procurando...</value>
@@ -391,15 +410,17 @@
   <data name="lbUseController.Text" xml:space="preserve">
     <value>Usar Controle</value>
   </data>
+  <data name="cBMouseAccel.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="cBMouseAccel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 10</value>
+    <value>189, 12</value>
   </data>
   <data name="cBMouseAccel.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 38</value>
   </data>
   <data name="cBMouseAccel.Text" xml:space="preserve">
-    <value>Aceleração 
-de Mouse</value>
+    <value>Aceleração de Mouse</value>
   </data>
   <data name="cBControllerInput.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 21</value>
@@ -415,21 +436,6 @@ de Mouse</value>
   </data>
   <data name="gBLightbar.Text" xml:space="preserve">
     <value>Barra De Luz</value>
-  </data>
-  <data name="cBShiftLight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 9</value>
-  </data>
-  <data name="cBShiftLight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 21</value>
-  </data>
-  <data name="cBShiftLight.Text" xml:space="preserve">
-    <value>Usar Outra Cor no Modo Shift</value>
-  </data>
-  <data name="lbShift.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 17</value>
-  </data>
-  <data name="lbShift.Text" xml:space="preserve">
-    <value>Deslocamento:</value>
   </data>
   <data name="lbRainbowB.Location" type="System.Drawing.Point, System.Drawing">
     <value>275, 270</value>
@@ -464,8 +470,29 @@ de Mouse</value>
   <data name="lbWhileCharging.Text" xml:space="preserve">
     <value>Enquanto Carrega:</value>
   </data>
+  <data name="cBShiftLight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 9</value>
+  </data>
+  <data name="cBShiftLight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 21</value>
+  </data>
+  <data name="cBShiftLight.Text" xml:space="preserve">
+    <value>Usar Outra Cor no Modo Shift</value>
+  </data>
+  <data name="lbShift.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 17</value>
+  </data>
+  <data name="lbShift.Text" xml:space="preserve">
+    <value>Deslocamento:</value>
+  </data>
   <data name="gBRumble.Text" xml:space="preserve">
     <value>Vibrar</value>
+  </data>
+  <data name="btnRumbleLightTest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 19</value>
+  </data>
+  <data name="btnRumbleLightTest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 29</value>
   </data>
   <data name="btnRumbleLightTest.Text" xml:space="preserve">
     <value>Testar a Luz</value>
@@ -491,9 +518,6 @@ de Mouse</value>
   <data name="tPShiftMod.Text" xml:space="preserve">
     <value>Turno Modificador</value>
   </data>
-  <data name="cBShiftControl.Items" xml:space="preserve">
-    <value>(Nada)/Modo Shift</value>
-  </data>
   <data name="lbHold.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 17</value>
   </data>
@@ -506,11 +530,11 @@ de Mouse</value>
   <data name="lbtoUse.Text" xml:space="preserve">
     <value>Para Usar Esse Controle</value>
   </data>
+  <data name="cBShiftControl.Items" xml:space="preserve">
+    <value>(Nada)/Modo Shift</value>
+  </data>
   <data name="tPControls.Text" xml:space="preserve">
     <value>Controles</value>
-  </data>
-  <data name="lbControlTip.Text" xml:space="preserve">
-    <value>Clique Na Barra de Luz</value>
   </data>
   <data name="tPSpecial.Text" xml:space="preserve">
     <value>Ação Especial</value>
@@ -538,5 +562,8 @@ de Mouse</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Zona Morta</value>
+  </data>
+  <data name="lbControlTip.Text" xml:space="preserve">
+    <value>Clique Na Barra de Luz</value>
   </data>
 </root>

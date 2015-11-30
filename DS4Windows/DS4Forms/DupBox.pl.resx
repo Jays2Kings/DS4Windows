@@ -124,6 +124,6 @@
     <value>Zapisz</value>
   </data>
   <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;wpisz tutaj nową nazwę&gt;</value>
+    <value>&lt;wpisz nową nazwę&gt;</value>
   </data>
 </root>

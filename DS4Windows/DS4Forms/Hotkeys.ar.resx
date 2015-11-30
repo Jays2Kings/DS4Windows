@@ -117,83 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Adicionar Programas</value>
+  <data name="lbAbout.Text" xml:space="preserve">
+    <value>DS4Windows - Jays2Kings Build</value>
   </data>
-  <data name="bnSave.Text" xml:space="preserve">
-    <value>Salvar</value>
+  <data name="lbHotkeys.Text" xml:space="preserve">
+    <value>إخفاء يد البلاي ستايشن 4: تخفي يد البلاي ستايشن 4 عن البرامج الأخرى، علمها إذا كان لديك إدخال مزدوج في ألعابك أو كان ضغط R2 يوقف اللعبة
+ضغط الجهة اليسرى من شاشة اللمس: لمسة يسرى
+ضغط الجهة اليمنى من شاشة اللمس: لمسة يمنى
+ضغط شاشة اللمس بإصبعين: لمس متعدد
+ضغط الجهة العليا من شاشة اللمس: لمسة عليا
+زر البلاي ستايشن + Options أو ضغط زر البلاي ستايشن لمدة 10 ثواني: فصل اليد (البلوتوث فقط)
+لمس شاشة اللمس + زر البلاي ستايشن: إطفاء مسح شاشة اللمس (الضغط سيظل يعمل)
+ضغط الجهة اليمنى السفلى من شاشة اللمس: ضغطة يمنى (يفضل استخدامها عند استعمال الجهة اليمنى كفأرة)
+تمرير إصبعين للأعلى و الأسفل من شاشة اللمس*: نزول الصفحة للأعلى و الأسفل.
+الضغط و التعليق على شاشة اللمس*: سحب الفأرة اليسرى
+مسح شاشة اللمس بإصبعين لليمين و اليسار: تغيير السجل
+معدل Shift: قم بتغيير لإستعمال مجموعة أخرى من التحكم.
+عند إقران لوحة المفاتيح و الفأرة:
+قلب: ضغط الزر مرة واحدة سيجعله مضغوطا حتى يضغط مرة أخرى
+الماكرو: تعيين عدة أزرار لإدخال واحد
+سكان كود: الأزرار لعا عدة اعتبارات, قد تحتاجها لألعاب معينة
+*فقط عند التمكين"</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+  <data name="lbTranslators.Text" xml:space="preserve">
+    <value>المترجمين</value>
   </data>
-  <data name="lBController1.Text" xml:space="preserve">
-    <value>Controle 1</value>
+  <data name="linkDonate.Text" xml:space="preserve">
+    <value>تبرع عن طريق PayPal</value>
   </data>
-  <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+  <data name="lLChangelog.Text" xml:space="preserve">
+    <value>التغييرات</value>
   </data>
-  <data name="lBController2.Text" xml:space="preserve">
-    <value>Controle 2</value>
+  <data name="tPCredits.Text" xml:space="preserve">
+    <value>طاقم العمل</value>
   </data>
-  <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="lBController3.Text" xml:space="preserve">
-    <value>Controle 3</value>
-  </data>
-  <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="lBController4.Text" xml:space="preserve">
-    <value>Controle 4</value>
-  </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Remover</value>
-  </data>
-  <data name="nameHeader.Text" xml:space="preserve">
-    <value>Nome</value>
-  </data>
-  <data name="PathHeader.Text" xml:space="preserve">
-    <value>Caminho</value>
-  </data>
-  <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 13</value>
-  </data>
-  <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Esconlher Perfil Aqui</value>
-  </data>
-  <data name="bnHideUnchecked.Text" xml:space="preserve">
-    <value>Esconder Desmarcados</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Programas do Menu Iniciar</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Jogos Steam</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Jogo Origin</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Procurar Outro Programa</value>
-  </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 92</value>
-  </data>
-  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar diretório</value>
+  <data name="tPHotkeys.Text" xml:space="preserve">
+    <value>اختصارات المفاتيح</value>
   </data>
 </root>

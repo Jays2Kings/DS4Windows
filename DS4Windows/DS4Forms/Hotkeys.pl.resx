@@ -124,15 +124,35 @@
     <value>Tłumacze:</value>
   </data>
   <data name="linkDonate.Text" xml:space="preserve">
-    <value>Donacja przez PayPala</value>
+    <value>Wspomóż przez PayPala</value>
   </data>
   <data name="lLChangelog.Text" xml:space="preserve">
     <value>Lista zmian</value>
   </data>
   <data name="tPCredits.Text" xml:space="preserve">
-    <value>Credits</value>
+    <value>Autorzy</value>
   </data>
   <data name="tPHotkeys.Text" xml:space="preserve">
     <value>Skróty klawiszowe</value>
+  </data>
+  <data name="lbHotkeys.Text" xml:space="preserve">
+    <value>Ukryj kontroler DS4: ukrywa standardowe wykrywanie kontrolera (Dinput) przed innymi programami. Zaznacz jeśli masz problemy ze zdublowanymi akcjami lub R2 pauzuje gry.
+Kliknij lewą stronę panelu dotykowego: Lewe Dotknięcie
+Kliknij prawą stronę panelu dotykowego: Prawe Dotknięcie
+Kliknij panel dotykowy dwoma palcami: Multitouch
+Kliknij górną część panelu dotykowego: Górne dotknięcie
+Przycisk PS + OPTIONS lub przytrzymanie przycisku PS przez 10s: Odłącz kontroler (tylko przez Bluetooth)
+Dotknij panel dotykowy + przycisk PS: wyłącz ruchy na panelu dotykowym (kliknięcia nadal działają)
+Kliknięcie panelu dotykowego w prawym dolnym rogu: prawe kliknięcie (najlepiej działa gdy prawa strona panelu jest używana jako przycisk myszy)
+Przesunięcie dwoma palcami w górę/dół na panelu dotykowym: przewijanie Góra/Dół
+Stuknij i przytrzymaj panel dotykowy: przeciąganie lewym przyciskiem myszy
+Przesunięcie dwoma palcami w lewo lub w prawo na panelu dotykowym: przełączanie między profilami
+Modyfikator Shift: przytrzymaj akcję aby użyć innego zestawu sterowania
+Podczas mapowania klawiatury i myszy:
+Przełącznik: przycisk pozostanie w stanie „wciśnięty” do czasu ponownego wciśnięcia
+Macro: przypisanie kilku przycisków do jednego wciśnięcia
+Skanuj kod: przyciski są różnie interpretowane. Może być potrzebne w niektórych grach
+*Gdy włączone
+</value>
   </data>
 </root>

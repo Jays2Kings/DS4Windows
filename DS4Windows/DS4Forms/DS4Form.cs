@@ -43,7 +43,7 @@ namespace DS4Windows
         delegate void ControllerStatusChangedDelegate(object sender, EventArgs e);
         delegate void HotKeysDelegate(object sender, EventArgs e);
         Options opt;
-        private System.Drawing.Size oldsize;
+        public System.Drawing.Size oldsize;
         WinProgs WP;
         public bool mAllowVisible;
         bool contextclose;
@@ -267,6 +267,13 @@ namespace DS4Windows
             }
             Form_Resize(null, null);
             RefreshProfiles();
+            opt = new Options(this);
+            //opt.Text = "Options for Controller " + (devID + 1);
+            opt.Icon = this.Icon;
+            opt.TopLevel = false;
+            opt.Dock = DockStyle.Fill;
+            opt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            tabProfiles.Controls.Add(opt);
             NewVersion();
             for (int i = 0; i < 4; i++)
             {
@@ -841,6 +848,7 @@ namespace DS4Windows
                     {
                         Enable_Controls(Index, true);
                         //if (opt != null)
+                        if (opt.Visible)
                             opt?.inputtimer.Start();
                         //MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
                     }
@@ -1020,8 +1028,8 @@ namespace DS4Windows
 
         private void ShowOptions(int devID, string profile)
         {
-            if (opt != null)
-                opt.Close();
+            //if (opt != null)
+                //opt.Close();
             Show();
             WindowState = FormWindowState.Normal;
             toolStrip1.Enabled = false;
@@ -1031,43 +1039,37 @@ namespace DS4Windows
                 tSTBProfile.Text = profile;
             else
                 tSTBProfile.Text = "<" + Properties.Resources.TypeProfileName + ">";
-            opt = new Options(devID, profile, this);
-            opt.Text = "Options for Controller " + (devID + 1);
-            opt.Icon = this.Icon;
-            opt.TopLevel = false;
-            opt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            opt.Visible = true;
-            opt.Dock = DockStyle.Fill;
-            tabProfiles.Controls.Add(opt);
+            //opt = new Options(devID, profile, this);
             lBProfiles.SendToBack();
             toolStrip1.SendToBack();
             tSOptions.SendToBack();
-            opt.FormClosed += delegate
+            opt.BringToFront();
+            oldsize = Size;
             {
-                opt = null;
-                RefreshProfiles();
-                this.Size = oldsize;
-                oldsize = new System.Drawing.Size(0, 0);
-                tSBKeepSize.Text = Properties.Resources.KeepThisSize;
-                tSBKeepSize.Image = Properties.Resources.size;
-                tSBKeepSize.Enabled = true;
-                tSOptions.Visible = false;
-                toolStrip1.Visible = true;
-                toolStrip1.Enabled = true;
-                lbLastMessage.ForeColor = SystemColors.GrayText;
-                lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
-            };
-            oldsize = this.Size;
-            {
-                if (this.Size.Height < (int)(90 * dpiy) + opt.MaximumSize.Height)
-                    this.Size = new System.Drawing.Size(this.Size.Width, (int)(90 * dpiy) + opt.MaximumSize.Height);
-                if (this.Size.Width < (int)(20 * dpix) + opt.MaximumSize.Width)
-                    this.Size = new System.Drawing.Size((int)(20 * dpix) + opt.MaximumSize.Width, this.Size.Height);
+                if (Size.Height < (int)(90 * dpiy) + Options.mSize.Height)
+                    Size = new System.Drawing.Size(Size.Width, (int)(90 * dpiy) + Options.mSize.Height);
+                if (Size.Width < (int)(20 * dpix) + Options.mSize.Width)
+                    Size = new System.Drawing.Size((int)(20 * dpix) + Options.mSize.Width, Size.Height);
             }
-            opt.MaximumSize = new Size(0, 0);
             tabMain.SelectedIndex = 1;
+            opt.Reload(devID, profile);
+            opt.Visible = true;
         }
 
+        public void OptionsClosed()
+        {
+            RefreshProfiles();
+            Size = oldsize;
+            oldsize = new Size(0, 0);
+            tSBKeepSize.Text = Properties.Resources.KeepThisSize;
+            tSBKeepSize.Image = Properties.Resources.size;
+            tSBKeepSize.Enabled = true;
+            tSOptions.Visible = false;
+            toolStrip1.Visible = true;
+            toolStrip1.Enabled = true;
+            lbLastMessage.ForeColor = SystemColors.GrayText;
+            lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
+        }
         private void editButtons_Click(object sender, EventArgs e)
         {
             Button bn = (Button)sender;
@@ -1266,7 +1268,7 @@ namespace DS4Windows
                 lbLastMessage.Text = lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
             else
                 lbLastMessage.Text = "";
-            if (opt != null)
+            if (opt.Visible)
                 if (tabMain.SelectedIndex != 1)
                     opt.inputtimer.Stop();
                 else
@@ -1385,13 +1387,13 @@ namespace DS4Windows
 
         private void tSBCancel_Click(object sender, EventArgs e)
         {
-            if (opt != null)
+            if (opt.Visible)
                 opt.Close();
         }
 
         private void tSBSaveProfile_Click(object sender, EventArgs e)
         {
-            if (opt != null)
+            if (opt.Visible)
             {
                 opt.saving = true;
                 opt.Set();
@@ -1557,7 +1559,7 @@ namespace DS4Windows
 
         protected void ScpForm_Closing(object sender, FormClosingEventArgs e)
         {
-            if (opt != null)
+            if (opt.Visible)
             {
                 opt.Close();
                 e.Cancel = true;

@@ -117,75 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lbAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>554, 19</value>
-  </data>
   <data name="lbAbout.Text" xml:space="preserve">
-    <value>DS4Windows - Jays2Kings Construir (Versão</value>
+    <value>DS4Windows - Jays2Kings Build (Versão</value>
   </data>
-  <data name="lLChangelog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lLChangelog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 13</value>
+    <value>152, 17</value>
   </data>
   <data name="lLChangelog.Text" xml:space="preserve">
     <value>Registro de Alterações</value>
   </data>
-  <data name="linkDonate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>471, 3</value>
-  </data>
   <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 13</value>
+    <value>110, 17</value>
   </data>
   <data name="linkDonate.Text" xml:space="preserve">
     <value>Doar Via Paypal</value>
   </data>
-  <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 19</value>
-  </data>
-  <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>554, 411</value>
-  </data>
-  <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>546, 385</value>
-  </data>
-  <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>523, 472</value>
-  </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Esconder Controle DS4: Esconde entrada regular do DS4 (DINPUT) de outros programas verifique se você está recebendo dupla entrada em jogos ou R2 pausa jogos 
-Clique esquerdo do touchpad: Toque Esquerdo
-Clique direito do touchpad: Right Touch
-Clique no TouchPad com 2 Dedos: Multitouch
-Clique na Parte Superiro do TouchPad: Upper Touch
-Opções PS + ou segurar PS durante 10 segundos: Desconectar Controle ( Apenas Bluetooth)
-Toque Touchpad + PS: Desligue movimento touchpad (clicando ainda funciona)
-Clique direito no Canto Superio Direito*: Botão direito do mouse (o melhor utilizada quando o lado direito é usado como um botão do mouse)
-Dois Dedos Para Cima/Baixo no touchpad*: Lista Cima/Baixo
-Toque e Segure o touchpad*: Arrastar com o Esquerdo
-2 Dedos Para TouchPad Direito ou Esquerto*: Clico De Perfis
+    <value>Esconder Controle DS4: Esconde entrada normal do DS4 (Dinput) de outros programas, marque se você estiver recebendo dupla entrada em jogos ou o R2 pausa jogos 
+Clicar no lado esquerdo do touchpad: Toque Esquerdo
+Clicar no lado direito do touchpad: Toque Direito
+Clicar no touchpad com 2 dedos: Multitouch
+Clicar na parte superior do touchpad: Toque Superior
+PS + Options ou segurar PS durante 10 segundos: Desconectar controle (apenas no Bluetooth)
+Toque Touchpad + PS: Desligue movimento touchpad (clicar ainda funciona)
+Clicar no canto inferior direito do touchpad: Botão direito do mouse (funciona melhor quando o lado direito é usado como um botão do mouse)
+Dois dedos para cima/baixo no touchpad*: Rola para cima/baixo
+Toque e segure o touchpad*: Arrastar com o esquerdo do mouse
+2 dedos para touchpad direita ou esquerda*: Troca perfis
 Modificador: Segure uma ação para usar um outro conjunto de controles
-Quando Mapear Teclado e Mouse:
-Alternar: A chave permanecerá em um estado "pressionado" até ser pressionado novamente
-Macro: Atribuir várias chaves para uma entrada
-Scanear Codigo: As chaves são interpretados de forma diferente. Podem ser necessários para determinados jogos
-*Se Ativado</value>
+Ao mapear teclado e mouse:
+Alternar: A tecla permanecerá em um estado "pressionado" até ser pressionada novamente
+Macro: Atribua várias teclas a uma entrada
+Escanear código: As teclas são interpretados de forma diferente. Podem ser necessários para determinados jogos
+*Se habilitado</value>
   </data>
-  <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>546, 385</value>
+  <data name="tPHotkeys.Text" xml:space="preserve">
+    <value>Atalhos</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>554, 430</value>
+  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 17</value>
   </data>
   <data name="lbTranslators.Text" xml:space="preserve">
     <value>Tradutores</value>
   </data>
   <data name="tPCredits.Text" xml:space="preserve">
     <value>Créditos</value>
-  </data>
-  <data name="tPHotkeys.Text" xml:space="preserve">
-    <value>Atalhos</value>
   </data>
 </root>

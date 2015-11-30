@@ -117,83 +117,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Adicionar Programas</value>
+  <data name="bnMacro.Text" xml:space="preserve">
+    <value>سجل ماكرو</value>
   </data>
-  <data name="bnSave.Text" xml:space="preserve">
-    <value>Salvar</value>
+  <data name="bnTest.Text" xml:space="preserve">
+    <value>اختبار</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+  <data name="btnDefault.Text" xml:space="preserve">
+    <value>الإفتراضي</value>
   </data>
-  <data name="lBController1.Text" xml:space="preserve">
-    <value>Controle 1</value>
+  <data name="btnGuide.Text" xml:space="preserve">
+    <value>تعليمات</value>
   </data>
-  <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+  <data name="btnUNBOUND.Text" xml:space="preserve">
+    <value>غير مقرون</value>
   </data>
-  <data name="lBController2.Text" xml:space="preserve">
-    <value>Controle 2</value>
+  <data name="cBLightbar.Text" xml:space="preserve">
+    <value>غير الضوء</value>
   </data>
-  <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+  <data name="cBMouse.Text" xml:space="preserve">
+    <value>غير حساسية الفأرة</value>
   </data>
-  <data name="lBController3.Text" xml:space="preserve">
-    <value>Controle 3</value>
+  <data name="cBScanCode.Text" xml:space="preserve">
+    <value>سكان كود</value>
   </data>
-  <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+  <data name="cBToggle.Text" xml:space="preserve">
+    <value>عكس</value>
   </data>
-  <data name="lBController4.Text" xml:space="preserve">
-    <value>Controle 4</value>
+  <data name="gBExtras.Text" xml:space="preserve">
+    <value>الزيادات</value>
   </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Remover</value>
+  <data name="KBMlabel.Text" xml:space="preserve">
+    <value>المفاتيح و الفأرة</value>
   </data>
-  <data name="nameHeader.Text" xml:space="preserve">
-    <value>Nome</value>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>أزرق</value>
   </data>
-  <data name="PathHeader.Text" xml:space="preserve">
-    <value>Caminho</value>
+  <data name="lbFlashRate.Text" xml:space="preserve">
+    <value>معدل الإيماض</value>
   </data>
-  <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 13</value>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>أخضر</value>
   </data>
-  <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Esconlher Perfil Aqui</value>
+  <data name="lbHeavy.Text" xml:space="preserve">
+    <value>قوي</value>
   </data>
-  <data name="bnHideUnchecked.Text" xml:space="preserve">
-    <value>Esconder Desmarcados</value>
+  <data name="lbLight.Text" xml:space="preserve">
+    <value>ضوء</value>
   </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+  <data name="lBMacroOn.Text" xml:space="preserve">
+    <value>الماكرو ممكن، اختر زرا لإطفاءه، وإلا أغلق النافذة للحفظ</value>
   </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Programas do Menu Iniciar</value>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>أحمر</value>
   </data>
-  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+  <data name="lbRumble.Text" xml:space="preserve">
+    <value>الإهتزاز</value>
   </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Jogos Steam</value>
+  <data name="lBTip.Text" xml:space="preserve">
+    <value>أيضا تستطيع اختيار
+زر عن طريق ضغطه</value>
   </data>
-  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Jogo Origin</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Procurar Outro Programa</value>
-  </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 92</value>
-  </data>
-  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar diretório</value>
+  <data name="X360Label.Text" xml:space="preserve">
+    <value>تحكم X360</value>
   </data>
 </root>

@@ -41,7 +41,7 @@ namespace DS4Windows
                     return;
                 }
             }
-            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("tr");
+            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl");
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;
             try
             {

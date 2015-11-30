@@ -6,6 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 using static DS4Windows.Global;
+using System.Runtime.InteropServices;
 
 namespace DS4Windows
 {
@@ -26,10 +27,86 @@ namespace DS4Windows
         private float dpix;
         private float dpiy;
         public Dictionary<string, string> defaults = new Dictionary<string, string>();
-        public bool saving;
+        public bool saving, loading;
+        public static Size mSize { get; private set; }
+        private Size settingsSize;
+        public Options(DS4Form rt)
+        {
+            InitializeComponent();
+            mSize = MaximumSize;
+            settingsSize = fLPSettings.Size;
+            MaximumSize = new Size(0, 0);
+            root = rt;
+            btnRumbleHeavyTest.Text = Properties.Resources.TestHText;
+            btnRumbleLightTest.Text = Properties.Resources.TestLText;
+            rBTPControls.Text = rBSAControls.Text;
+            rBTPMouse.Text = rBSAMouse.Text;
+            Visible = false;
+            colored = pBRainbow.Image;
+            greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
+            fLPSettings.FlowDirection = FlowDirection.TopDown;
+            foreach (Control control in tPControls.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btn"))
+                    buttons.Add((Button)control);
+            foreach (Control control in fLPTouchSwipe.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btn"))
+                    buttons.Add((Button)control);
+            foreach (Control control in fLPTiltControls.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btn"))
+                    buttons.Add((Button)control);
+            foreach (Button b in buttons)
+                defaults.Add(b.Name, b.Text);
+
+            foreach (Control control in tPShiftMod.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btnShift"))
+                    subbuttons.Add((Button)control);
+            foreach (Control control in fLPShiftTiltControls.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btnShift"))
+                    subbuttons.Add((Button)control);
+            foreach (Control control in fLPShiftTouchSwipe.Controls)
+                if (control is Button && !((Button)control).Name.Contains("btn"))
+                    subbuttons.Add((Button)control);
+
+            foreach (System.Windows.Forms.Control control in Controls)
+            {
+                if (control.HasChildren)
+                    foreach (System.Windows.Forms.Control ctrl in control.Controls)
+                    {
+                        if (ctrl.HasChildren)
+                            foreach (System.Windows.Forms.Control ctrl2 in ctrl.Controls)
+                            {
+                                if (ctrl2.HasChildren)
+                                    foreach (System.Windows.Forms.Control ctrl3 in ctrl2.Controls)
+                                        ctrl3.MouseHover += Items_MouseHover;
+                                ctrl2.MouseHover += Items_MouseHover;
+                            }
+                        ctrl.MouseHover += Items_MouseHover;
+                    }
+                control.MouseHover += Items_MouseHover;
+            }
+            
+            foreach (Button b in buttons)
+            {
+                b.MouseHover += button_MouseHover;
+                b.MouseLeave += button_MouseLeave;
+            }
+            foreach (Button b in subbuttons)
+            {
+                b.MouseHover += button_MouseHover;
+                b.MouseLeave += button_MouseLeave;
+            }
+            advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
+            inputtimer.Tick += InputDS4;
+            sixaxisTimer.Tick += ControllerReadout_Tick;
+            sixaxisTimer.Interval = 1000 / 60;
+        }
+
         public Options(int deviceNum, string name, DS4Form rt)
         {
             InitializeComponent();
+            mSize = MaximumSize;
+            settingsSize = fLPSettings.Size;
+            MaximumSize = new Size(0, 0);
             btnRumbleHeavyTest.Text = Properties.Resources.TestHText;
             btnRumbleLightTest.Text = Properties.Resources.TestLText;
             device = deviceNum;
@@ -155,7 +232,7 @@ namespace DS4Windows
                 nUDTouch.Value = TouchSensitivity[device];
                 cBSlide.Checked = TouchSensitivity[device] > 0;
                 nUDScroll.Value = ScrollSensitivity[device];
-                cBScroll.Checked = ScrollSensitivity[device] > 0;
+                cBScroll.Checked = ScrollSensitivity[device] != 0;
                 nUDTap.Value = TapSensitivity[device];
                 cBTap.Checked = TapSensitivity[device] > 0;
                 cBDoubleTap.Checked = DoubleTap[device];
@@ -249,7 +326,7 @@ namespace DS4Windows
                 b.MouseLeave += button_MouseLeave;
             }
 
-            showShiftControls(pnlShiftController.SelectedIndex == 1);
+            showShiftControls(tCControls.SelectedIndex == 1);
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             UpdateLists();
             inputtimer.Start();
@@ -259,9 +336,190 @@ namespace DS4Windows
             LoadActions(string.IsNullOrEmpty(filename));
         }
 
+        public void Reload(int deviceNum, string name)
+        {
+            loading = true;
+            device = deviceNum;
+            filename = name;
+            lBControls.SelectedIndex = -1;
+            lBShiftControls.SelectedIndex = -1;
+            lbControlName.Text = "";
+            lbShiftControlName.Text = "";
+
+            tCControls.SelectedIndex = 0;
+            Graphics g = this.CreateGraphics();
+            try
+            {
+                dpix = g.DpiX / 100f * 1.041666666667f;
+                dpiy = g.DpiY / 100f * 1.041666666667f;
+            }
+            finally
+            {
+                g.Dispose();
+            }
+
+            //butts += "\n" + b.Name;
+            //MessageBox.Show(butts);
+
+            root.lbLastMessage.ForeColor = Color.Black;
+            root.lbLastMessage.Text = "Hover over items to see description or more about";
+            if (device < 4)
+                nUDSixaxis.Value = deviceNum + 1;
+            if (filename != "")
+            {
+                if (device == 4) //if temp device is called
+                    ProfilePath[4] = name;
+                LoadProfile(device, buttons.ToArray(), subbuttons.ToArray(), false, Program.rootHub);
+
+                if (Rainbow[device] == 0)
+                {
+                    pBRainbow.Image = greyscale;
+                    ToggleRainbow(false);
+                }
+                else
+                {
+                    pBRainbow.Image = colored;
+                    ToggleRainbow(true);
+                }
+                DS4Color color = MainColor[device];
+                tBRedBar.Value = color.red;
+                tBGreenBar.Value = color.green;
+                tBBlueBar.Value = color.blue;
+
+                alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
+                reg = Color.FromArgb(color.red, color.green, color.blue);
+                full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
+                main = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+                pBLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, main);
+
+                cBLightbyBattery.Checked = LedAsBatteryIndicator[device];
+                nUDflashLED.Value = FlashAt[device];
+                pnlLowBattery.Visible = cBLightbyBattery.Checked;
+                lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
+                //pnlFull.Location = new Point(pnlFull.Location.X, (cBLightbyBattery.Checked ? (int)(dpix * 42) : (pnlFull.Location.Y + pnlLowBattery.Location.Y) / 2));
+                DS4Color lowColor = LowColor[device];
+                tBLowRedBar.Value = lowColor.red;
+                tBLowGreenBar.Value = lowColor.green;
+                tBLowBlueBar.Value = lowColor.blue;
+
+                DS4Color shiftColor = ShiftColor[device];
+                tBShiftRedBar.Value = shiftColor.red;
+                tBShiftGreenBar.Value = shiftColor.green;
+                tBShiftBlueBar.Value = shiftColor.blue;
+                cBShiftLight.Checked = ShiftColorOn[device];
+
+                DS4Color cColor = ChargingColor[device];
+                btnChargingColor.BackColor = Color.FromArgb(cColor.red, cColor.green, cColor.blue);
+                if (FlashType[device] > cBFlashType.Items.Count - 1)
+                    cBFlashType.SelectedIndex = 0;
+                else
+                    cBFlashType.SelectedIndex = FlashType[device];
+                DS4Color fColor = FlashColor[device];
+                if (fColor.Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
+                    if (Rainbow[device] == 0)
+                        btnFlashColor.BackColor = main;
+                    else
+                        btnFlashColor.BackgroundImage = rainbowImg;
+                else
+                    btnFlashColor.BackColor = Color.FromArgb(fColor.red, fColor.green, fColor.blue);
+                nUDRumbleBoost.Value = RumbleBoost[device];
+                nUDTouch.Value = TouchSensitivity[device];
+                cBSlide.Checked = TouchSensitivity[device] > 0;
+                nUDScroll.Value = ScrollSensitivity[device];
+                cBScroll.Checked = ScrollSensitivity[device] != 0;
+                nUDTap.Value = TapSensitivity[device];
+                cBTap.Checked = TapSensitivity[device] > 0;
+                cBDoubleTap.Checked = DoubleTap[device];
+                nUDL2.Value = Math.Round((decimal)L2Deadzone[device] / 255, 2);
+                nUDR2.Value = Math.Round((decimal)R2Deadzone[device] / 255, 2);
+                cBTouchpadJitterCompensation.Checked = TouchpadJitterCompensation[device];
+                cBlowerRCOn.Checked = LowerRCOn[device];
+                cBFlushHIDQueue.Checked = FlushHIDQueue[device];
+                nUDIdleDisconnect.Value = Math.Round((decimal)(IdleDisconnectTimeout[device] / 60d), 1);
+                cBIdleDisconnect.Checked = IdleDisconnectTimeout[device] > 0;
+                numUDMouseSens.Value = ButtonMouseSensitivity[device];
+                cBMouseAccel.Checked = MouseAccel[device];
+                pBHoveredButton.Image = null;
+
+                alphacolor = Math.Max(tBLowRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
+                reg = Color.FromArgb(lowColor.red, lowColor.green, lowColor.blue);
+                full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
+                lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
+                nUDRainbow.Value = (decimal)Rainbow[device];
+                if (ChargingType[device] > cBWhileCharging.Items.Count - 1)
+                    cBWhileCharging.SelectedIndex = 0;
+                else
+                    cBWhileCharging.SelectedIndex = ChargingType[device];
+                nUDLS.Value = Math.Round((decimal)(LSDeadzone[device] / 127d), 3);
+                nUDRS.Value = Math.Round((decimal)(RSDeadzone[device] / 127d), 3);
+                nUDSX.Value = (decimal)SXDeadzone[device];
+                nUDSZ.Value = (decimal)SZDeadzone[device];
+                cBShiftControl.SelectedIndex = ShiftModifier[device];
+                if (LaunchProgram[device] != string.Empty)
+                {
+                    cBLaunchProgram.Checked = true;
+                    pBProgram.Image = Icon.ExtractAssociatedIcon(LaunchProgram[device]).ToBitmap();
+                    btnBrowse.Text = Path.GetFileNameWithoutExtension(LaunchProgram[device]);
+                }
+                cBDinput.Checked = DinputOnly[device];
+                olddinputcheck = cBDinput.Checked;
+                cbStartTouchpadOff.Checked = StartTouchpadOff[device];
+                rBTPControls.Checked = UseTPforControls[device];
+                rBTPMouse.Checked = !UseTPforControls[device];
+                rBSAMouse.Checked = UseSAforMouse[device];
+                rBSAControls.Checked = !UseSAforMouse[device];
+                nUDLSCurve.Value = LSCurve[device];
+                nUDRSCurve.Value = RSCurve[device];
+                cBControllerInput.Checked = DS4Mapping;
+
+                string[] satriggers = SATriggers[device].Split(',');
+                List<string> s = new List<string>();
+                for (int i = 0; i < satriggers.Length; i++)
+                {
+                    int tr;
+                    if (int.TryParse(satriggers[i], out tr))
+                    {
+                        ((ToolStripMenuItem)cMGyroTriggers.Items[tr]).Checked = true;
+                        s.Add(cMGyroTriggers.Items[int.Parse(satriggers[i])].Text);
+                    }
+                }
+                nUDGyroSensitivity.Value = GyroSensitivity[device];
+                int invert = GyroInvert[device];
+                cBGyroInvertX.Checked = invert == 2 || invert == 3;
+                cBGyroInvertY.Checked = invert == 1 || invert == 3;
+                if (s.Count > 0)
+                    btnGyroTriggers.Text = string.Join(", ", s);
+                else
+                    btnGyroTriggers.Text = Properties.Resources.NoneText;
+            }
+            else
+            {
+                cBFlashType.SelectedIndex = 0;
+                cBWhileCharging.SelectedIndex = 0;
+                rBTPMouse.Checked = true;
+                rBSAControls.Checked = true;
+                ToggleRainbow(false);
+                Set();
+                switch (device)
+                {
+                    case 0: tBRedBar.Value = 0; tBGreenBar.Value = 0; break;
+                    case 1: tBGreenBar.Value = 0; tBBlueBar.Value = 0; break;
+                    case 2: tBRedBar.Value = 0; tBBlueBar.Value = 0; break;
+                    case 3: tBGreenBar.Value = 0; break;
+                    case 4: tBRedBar.Value = 0; tBGreenBar.Value = 0; break;
+                }
+            }
+
+            showShiftControls(tCControls.SelectedIndex == 1);
+            UpdateLists();
+            inputtimer.Start();
+            LoadActions(string.IsNullOrEmpty(filename));
+            loading = false;
+        }
 
         public void LoadActions(bool newp)
         {
+            lVActions.Items.Clear();
             List<string> pactions = ProfileActions[device];
             foreach (SpecialAction action in GetActions())
             {
@@ -434,7 +692,7 @@ namespace DS4Windows
         }
         private void InputDS4(object sender, EventArgs e)
         {
-            if (Form.ActiveForm == root && cBControllerInput.Checked && pnlShiftController.SelectedIndex < 2)
+            if (Form.ActiveForm == root && cBControllerInput.Checked && tCControls.SelectedIndex < 2)
                 switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
                 {
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
@@ -485,92 +743,94 @@ namespace DS4Windows
         {
             bool swipesOn = lBControls.Items.Count > 33;
             string name = ((Button)sender).Name;
-            switch (name)
+            if (e != null)
             {
-                #region
-                case "bnCross": lBControls.SelectedIndex = 0; break;
-                case "bnCircle": lBControls.SelectedIndex = 1; break;
-                case "bnSquare": lBControls.SelectedIndex = 2; break;
-                case "bnTriangle": lBControls.SelectedIndex = 3; break;
-                case "bnOptions": lBControls.SelectedIndex = 4; break;
-                case "bnShare": lBControls.SelectedIndex = 5; break;
-                case "bnUp": lBControls.SelectedIndex = 6; break;
-                case "bnDown": lBControls.SelectedIndex = 7; break;
-                case "bnLeft": lBControls.SelectedIndex = 8; break;
-                case "bnRight": lBControls.SelectedIndex = 9; break;
-                case "bnPS": lBControls.SelectedIndex = 10; break;
-                case "bnL1": lBControls.SelectedIndex = 11; break;
-                case "bnR1": lBControls.SelectedIndex = 12; break;
-                case "bnL2": lBControls.SelectedIndex = 13; break;
-                case "bnR2": lBControls.SelectedIndex = 14; break;
-                case "bnL3": lBControls.SelectedIndex = 15; break;
-                case "bnR3": lBControls.SelectedIndex = 16; break;
-                case "bnTouchLeft": lBControls.SelectedIndex = 17; break;
-                case "bnTouchRight": lBControls.SelectedIndex = 18; break;
-                case "bnTouchMulti": lBControls.SelectedIndex = 19; break;
-                case "bnTouchUpper": lBControls.SelectedIndex = 20; break;
-                case "bnLSUp": lBControls.SelectedIndex = 21; break;
-                case "bnLSDown": lBControls.SelectedIndex = 22; break;
-                case "bnLSLeft": lBControls.SelectedIndex = 23; break;
-                case "bnLSRight": lBControls.SelectedIndex = 24; break;
-                case "bnRSUp": lBControls.SelectedIndex = 25; break;
-                case "bnRSDown": lBControls.SelectedIndex = 26; break;
-                case "bnRSLeft": lBControls.SelectedIndex = 27; break;
-                case "bnRSRight": lBControls.SelectedIndex = 28; break;
-                case "bnGyroZN": lBControls.SelectedIndex = 29; break;
-                case "bnGyroZP": lBControls.SelectedIndex = 30; break;
-                case "bnGyroXP": lBControls.SelectedIndex = 31; break;
-                case "bnGyroXN": lBControls.SelectedIndex = 32; break;
-
-
-                case "bnShiftCross": lBShiftControls.SelectedIndex = 0; break;
-                case "bnShiftCircle": lBShiftControls.SelectedIndex = 1; break;
-                case "bnShiftSquare": lBShiftControls.SelectedIndex = 2; break;
-                case "bnShiftTriangle": lBShiftControls.SelectedIndex = 3; break;
-                case "bnShiftOptions": lBShiftControls.SelectedIndex = 4; break;
-                case "bnShiftShare": lBShiftControls.SelectedIndex = 5; break;
-                case "bnShiftUp": lBShiftControls.SelectedIndex = 6; break;
-                case "bnShiftDown": lBShiftControls.SelectedIndex = 7; break;
-                case "bnShiftLeft": lBShiftControls.SelectedIndex = 8; break;
-                case "bnShiftRight": lBShiftControls.SelectedIndex = 9; break;
-                case "bnShiftPS": lBShiftControls.SelectedIndex = 10; break;
-                case "bnShiftL1": lBShiftControls.SelectedIndex = 11; break;
-                case "bnShiftR1": lBShiftControls.SelectedIndex = 12; break;
-                case "bnShiftL2": lBShiftControls.SelectedIndex = 13; break;
-                case "bnShiftR2": lBShiftControls.SelectedIndex = 14; break;
-                case "bnShiftL3": lBShiftControls.SelectedIndex = 15; break;
-                case "bnShiftR3": lBShiftControls.SelectedIndex = 16; break;
-                case "bnShiftTouchLeft": lBShiftControls.SelectedIndex = 17; break;
-                case "bnShiftTouchRight": lBShiftControls.SelectedIndex = 18; break;
-                case "bnShiftTouchMulti": lBShiftControls.SelectedIndex = 19; break;
-                case "bnShiftTouchUpper": lBShiftControls.SelectedIndex = 20; break;
-                case "bnShiftLSUp": lBShiftControls.SelectedIndex = 21; break;
-                case "bnShiftLSDown": lBShiftControls.SelectedIndex = 22; break;
-                case "bnShiftLSLeft": lBShiftControls.SelectedIndex = 23; break;
-                case "bnShiftLSRight": lBShiftControls.SelectedIndex = 24; break;
-                case "bnShiftRSUp": lBShiftControls.SelectedIndex = 25; break;
-                case "bnShiftRSDown": lBShiftControls.SelectedIndex = 26; break;
-                case "bnShiftRSLeft": lBShiftControls.SelectedIndex = 27; break;
-                case "bnShiftRSRight": lBShiftControls.SelectedIndex = 28; break;
-                case "bnShiftGyroZN": lBShiftControls.SelectedIndex = 29; break;
-                case "bnShiftGyroZP": lBShiftControls.SelectedIndex = 30; break;
-                case "bnShiftGyroXP": lBShiftControls.SelectedIndex = 31; break;
-                case "bnShiftGyroXN": lBShiftControls.SelectedIndex = 32; break;
-                    #endregion
-            }
-            if (swipesOn)
                 switch (name)
                 {
-                    case "bnSwipeUp": if (swipesOn) lBControls.SelectedIndex = 33; break;
-                    case "bnSwipeDown": if (swipesOn) lBControls.SelectedIndex = 34; break;
-                    case "bnSwipeLeft": if (swipesOn) lBControls.SelectedIndex = 35; break;
-                    case "bnSwipeRight": if (swipesOn) lBControls.SelectedIndex = 36; break;
-                    case "bnShiftSwipeUp": lBShiftControls.SelectedIndex = 33; break;
-                    case "bnShiftSwipeDown": lBShiftControls.SelectedIndex = 34; break;
-                    case "bnShiftSwipeLeft": lBShiftControls.SelectedIndex = 35; break;
-                    case "bnShiftSwipeRight": lBShiftControls.SelectedIndex = 36; break;
-                }
+                    #region
+                    case "bnCross": lBControls.SelectedIndex = 0; break;
+                    case "bnCircle": lBControls.SelectedIndex = 1; break;
+                    case "bnSquare": lBControls.SelectedIndex = 2; break;
+                    case "bnTriangle": lBControls.SelectedIndex = 3; break;
+                    case "bnOptions": lBControls.SelectedIndex = 4; break;
+                    case "bnShare": lBControls.SelectedIndex = 5; break;
+                    case "bnUp": lBControls.SelectedIndex = 6; break;
+                    case "bnDown": lBControls.SelectedIndex = 7; break;
+                    case "bnLeft": lBControls.SelectedIndex = 8; break;
+                    case "bnRight": lBControls.SelectedIndex = 9; break;
+                    case "bnPS": lBControls.SelectedIndex = 10; break;
+                    case "bnL1": lBControls.SelectedIndex = 11; break;
+                    case "bnR1": lBControls.SelectedIndex = 12; break;
+                    case "bnL2": lBControls.SelectedIndex = 13; break;
+                    case "bnR2": lBControls.SelectedIndex = 14; break;
+                    case "bnL3": lBControls.SelectedIndex = 15; break;
+                    case "bnR3": lBControls.SelectedIndex = 16; break;
+                    case "bnTouchLeft": lBControls.SelectedIndex = 17; break;
+                    case "bnTouchRight": lBControls.SelectedIndex = 18; break;
+                    case "bnTouchMulti": lBControls.SelectedIndex = 19; break;
+                    case "bnTouchUpper": lBControls.SelectedIndex = 20; break;
+                    case "bnLSUp": lBControls.SelectedIndex = 21; break;
+                    case "bnLSDown": lBControls.SelectedIndex = 22; break;
+                    case "bnLSLeft": lBControls.SelectedIndex = 23; break;
+                    case "bnLSRight": lBControls.SelectedIndex = 24; break;
+                    case "bnRSUp": lBControls.SelectedIndex = 25; break;
+                    case "bnRSDown": lBControls.SelectedIndex = 26; break;
+                    case "bnRSLeft": lBControls.SelectedIndex = 27; break;
+                    case "bnRSRight": lBControls.SelectedIndex = 28; break;
+                    case "bnGyroZN": lBControls.SelectedIndex = 29; break;
+                    case "bnGyroZP": lBControls.SelectedIndex = 30; break;
+                    case "bnGyroXP": lBControls.SelectedIndex = 31; break;
+                    case "bnGyroXN": lBControls.SelectedIndex = 32; break;
 
+
+                    case "bnShiftCross": lBShiftControls.SelectedIndex = 0; break;
+                    case "bnShiftCircle": lBShiftControls.SelectedIndex = 1; break;
+                    case "bnShiftSquare": lBShiftControls.SelectedIndex = 2; break;
+                    case "bnShiftTriangle": lBShiftControls.SelectedIndex = 3; break;
+                    case "bnShiftOptions": lBShiftControls.SelectedIndex = 4; break;
+                    case "bnShiftShare": lBShiftControls.SelectedIndex = 5; break;
+                    case "bnShiftUp": lBShiftControls.SelectedIndex = 6; break;
+                    case "bnShiftDown": lBShiftControls.SelectedIndex = 7; break;
+                    case "bnShiftLeft": lBShiftControls.SelectedIndex = 8; break;
+                    case "bnShiftRight": lBShiftControls.SelectedIndex = 9; break;
+                    case "bnShiftPS": lBShiftControls.SelectedIndex = 10; break;
+                    case "bnShiftL1": lBShiftControls.SelectedIndex = 11; break;
+                    case "bnShiftR1": lBShiftControls.SelectedIndex = 12; break;
+                    case "bnShiftL2": lBShiftControls.SelectedIndex = 13; break;
+                    case "bnShiftR2": lBShiftControls.SelectedIndex = 14; break;
+                    case "bnShiftL3": lBShiftControls.SelectedIndex = 15; break;
+                    case "bnShiftR3": lBShiftControls.SelectedIndex = 16; break;
+                    case "bnShiftTouchLeft": lBShiftControls.SelectedIndex = 17; break;
+                    case "bnShiftTouchRight": lBShiftControls.SelectedIndex = 18; break;
+                    case "bnShiftTouchMulti": lBShiftControls.SelectedIndex = 19; break;
+                    case "bnShiftTouchUpper": lBShiftControls.SelectedIndex = 20; break;
+                    case "bnShiftLSUp": lBShiftControls.SelectedIndex = 21; break;
+                    case "bnShiftLSDown": lBShiftControls.SelectedIndex = 22; break;
+                    case "bnShiftLSLeft": lBShiftControls.SelectedIndex = 23; break;
+                    case "bnShiftLSRight": lBShiftControls.SelectedIndex = 24; break;
+                    case "bnShiftRSUp": lBShiftControls.SelectedIndex = 25; break;
+                    case "bnShiftRSDown": lBShiftControls.SelectedIndex = 26; break;
+                    case "bnShiftRSLeft": lBShiftControls.SelectedIndex = 27; break;
+                    case "bnShiftRSRight": lBShiftControls.SelectedIndex = 28; break;
+                    case "bnShiftGyroZN": lBShiftControls.SelectedIndex = 29; break;
+                    case "bnShiftGyroZP": lBShiftControls.SelectedIndex = 30; break;
+                    case "bnShiftGyroXP": lBShiftControls.SelectedIndex = 31; break;
+                    case "bnShiftGyroXN": lBShiftControls.SelectedIndex = 32; break;
+                        #endregion
+                }
+                if (swipesOn)
+                    switch (name)
+                    {
+                        case "bnSwipeUp": if (swipesOn) lBControls.SelectedIndex = 33; break;
+                        case "bnSwipeDown": if (swipesOn) lBControls.SelectedIndex = 34; break;
+                        case "bnSwipeLeft": if (swipesOn) lBControls.SelectedIndex = 35; break;
+                        case "bnSwipeRight": if (swipesOn) lBControls.SelectedIndex = 36; break;
+                        case "bnShiftSwipeUp": lBShiftControls.SelectedIndex = 33; break;
+                        case "bnShiftSwipeDown": lBShiftControls.SelectedIndex = 34; break;
+                        case "bnShiftSwipeLeft": lBShiftControls.SelectedIndex = 35; break;
+                        case "bnShiftSwipeRight": lBShiftControls.SelectedIndex = 36; break;
+                    }
+            }
             switch (name)
             {
                 #region
@@ -832,8 +1092,10 @@ namespace DS4Windows
         {
             pBHoveredButton.Image = null;
             pBHoveredButton.Location = new Point(0, 0);
+            pBHoveredButton.Size = new Size(0, 0);
             pBShiftHoveredButton.Image = null;
             pBShiftHoveredButton.Location = new Point(0, 0);
+            pBShiftHoveredButton.Size = new Size(0, 0);
         }
 
         private void SetDynamicTrackBarValue(TrackBar trackBar, int value)
@@ -864,7 +1126,7 @@ namespace DS4Windows
             TouchSensitivity[device] = (byte)nUDTouch.Value;
             TouchpadJitterCompensation[device] = cBTouchpadJitterCompensation.Checked;
             LowerRCOn[device] = cBlowerRCOn.Checked;
-            ScrollSensitivity[device] = (byte)nUDScroll.Value;
+            ScrollSensitivity[device] = (int)nUDScroll.Value;
             DoubleTap[device] = cBDoubleTap.Checked;
             TapSensitivity[device] = (byte)nUDTap.Value;
             IdleDisconnectTimeout[device] = (int)(nUDIdleDisconnect.Value * 60);
@@ -1109,7 +1371,7 @@ namespace DS4Windows
                 pBShiftLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full));
                 ShiftColor[device] = new DS4Color((byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             }
-            if (!saving && tb != null)
+            if (!saving && !loading && tb != null)
                 tp.Show(tb.Value.ToString(), tb, (int)(dpix * 100), 0, 2000);
         }
 
@@ -1241,7 +1503,7 @@ namespace DS4Windows
             nUDIdleDisconnect.Enabled = cBIdleDisconnect.Checked;
         }
 
-        private void Options_Closed(object sender, FormClosedEventArgs e)
+        private void Options_FormClosing(object sender, FormClosingEventArgs e)
         {
             for (int i = 0; i < 4; i++)
                 LoadProfile(i, false, Program.rootHub); //Refreshes all profiles in case other controllers are using the same profile
@@ -1254,6 +1516,25 @@ namespace DS4Windows
                 Program.rootHub.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
             inputtimer.Stop();
             sixaxisTimer.Stop();
+            root.OptionsClosed();
+            Visible = false;
+            e.Cancel = true;
+        }
+
+        private void Options_Closed(object sender, FormClosedEventArgs e)
+        {
+            /*for (int i = 0; i < 4; i++)
+                LoadProfile(i, false, Program.rootHub); //Refreshes all profiles in case other controllers are using the same profile
+            if (olddinputcheck != cBDinput.Checked)
+            {
+                root.btnStartStop_Clicked(false);
+                root.btnStartStop_Clicked(false);
+            }
+            if (btnRumbleHeavyTest.Text == Properties.Resources.StopText)
+                Program.rootHub.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
+            inputtimer.Stop();
+            sixaxisTimer.Stop();*/
+            //e.c
         }
 
         private void cBSlide_CheckedChanged(object sender, EventArgs e)
@@ -1345,35 +1626,6 @@ namespace DS4Windows
                 lbSwipeRight.Text = UpdateRegButtonList(bnSwipeRight);
             }
 
-            btnCross.Text = UpdateRegButtonList(bnCross);
-            btnCircle.Text = UpdateRegButtonList(bnCircle);
-            btnSquare.Text = UpdateRegButtonList(bnSquare);
-            btnTriangle.Text = UpdateRegButtonList(bnTriangle);
-            btnOptions.Text = UpdateRegButtonList(bnOptions);
-            btnShare.Text = UpdateRegButtonList(bnShare);
-            btnUp.Text = "↑  " + UpdateRegButtonList(bnUp);
-            btnDown.Text = "↓  " + UpdateRegButtonList(bnDown);
-            btnLeft.Text = "←  " + UpdateRegButtonList(bnLeft);
-            btnRight.Text = "→  " + UpdateRegButtonList(bnRight);
-            btnPS.Text = UpdateRegButtonList(bnPS);
-            btnL1.Text = UpdateRegButtonList(bnL1);
-            btnR1.Text = UpdateRegButtonList(bnR1);
-            btnL2.Text = UpdateRegButtonList(bnL2);
-            btnR2.Text = UpdateRegButtonList(bnR2);
-            btnL3.Text = UpdateRegButtonList(bnL3);
-            btnR3.Text = UpdateRegButtonList(bnR3);
-            btnLSUp.Text = UpdateRegButtonList(bnLSUp);
-            btnLSDown.Text = UpdateRegButtonList(bnLSDown);
-            btnLSLeft.Text = UpdateRegButtonList(bnLSLeft);
-            btnLSRight.Text = UpdateRegButtonList(bnLSRight);
-            btnRSUp.Text = UpdateRegButtonList(bnRSUp);
-            btnRSDown.Text = UpdateRegButtonList(bnRSDown);
-            btnRSLeft.Text = UpdateRegButtonList(bnRSLeft);
-            btnRSRight.Text = UpdateRegButtonList(bnRSRight);
-            lbTouchLeft.Text = UpdateRegButtonList(bnTouchLeft);
-            lbTouchRight.Text = UpdateRegButtonList(bnTouchRight);
-            lbTouchMulti.Text = UpdateRegButtonList(bnTouchMulti);
-            lbTouchUpper.Text = UpdateRegButtonList(bnTouchUpper);
             lbGyroXN.Text = UpdateRegButtonList(bnGyroXN);
             lbGyroZN.Text = UpdateRegButtonList(bnGyroZN);
             lbGyroZP.Text = UpdateRegButtonList(bnGyroZP);
@@ -1433,37 +1685,7 @@ namespace DS4Windows
                 lbShiftSwipeLeft.Text = UpdateRegButtonList(bnShiftSwipeLeft);
                 lbShiftSwipeRight.Text = UpdateRegButtonList(bnShiftSwipeRight);
             }
-
-
-            btnShiftCross.Text = UpdateRegButtonList(bnShiftCross, true);
-            btnShiftCircle.Text = UpdateRegButtonList(bnShiftCircle, true);
-            btnShiftSquare.Text = UpdateRegButtonList(bnShiftSquare, true);
-            btnShiftTriangle.Text = UpdateRegButtonList(bnShiftTriangle, true);
-            btnShiftOptions.Text = UpdateRegButtonList(bnShiftOptions, true);
-            btnShiftShare.Text = UpdateRegButtonList(bnShiftShare, true);
-            btnShiftUp.Text = "↑  " + UpdateRegButtonList(bnShiftUp, true);
-            btnShiftDown.Text = "↓  " + UpdateRegButtonList(bnShiftDown, true);
-            btnShiftLeft.Text = "←  " + UpdateRegButtonList(bnShiftLeft, true);
-            btnShiftRight.Text = "→  " + UpdateRegButtonList(bnShiftRight, true);
-            btnShiftPS.Text = UpdateRegButtonList(bnShiftPS, true);
-            btnShiftL1.Text = UpdateRegButtonList(bnShiftL1, true);
-            btnShiftR1.Text = UpdateRegButtonList(bnShiftR1, true);
-            btnShiftL2.Text = UpdateRegButtonList(bnShiftL2, true);
-            btnShiftR2.Text = UpdateRegButtonList(bnShiftR2, true);
-            btnShiftL3.Text = UpdateRegButtonList(bnShiftL3, true);
-            btnShiftR3.Text = UpdateRegButtonList(bnShiftR3, true);
-            btnShiftLSUp.Text = UpdateRegButtonList(bnShiftLSUp, true);
-            btnShiftLSDown.Text = UpdateRegButtonList(bnShiftLSDown, true);
-            btnShiftLSLeft.Text = UpdateRegButtonList(bnShiftLSLeft, true);
-            btnShiftLSRight.Text = UpdateRegButtonList(bnShiftLSRight, true);
-            btnShiftRSUp.Text = UpdateRegButtonList(bnShiftRSUp, true);
-            btnShiftRSDown.Text = UpdateRegButtonList(bnShiftRSDown, true);
-            btnShiftRSLeft.Text = UpdateRegButtonList(bnShiftRSLeft, true);
-            btnShiftRSRight.Text = UpdateRegButtonList(bnShiftRSRight, true);
-            lbShiftTouchLeft.Text = UpdateRegButtonList(bnShiftTouchLeft, true);
-            lbShiftTouchRight.Text = UpdateRegButtonList(bnShiftTouchRight, true);
-            lbShiftTouchMulti.Text = UpdateRegButtonList(bnShiftTouchMulti, true);
-            lbShiftTouchUpper.Text = UpdateRegButtonList(bnShiftTouchUpper, true);
+            
             lbShiftGyroXN.Text = UpdateRegButtonList(bnShiftGyroXN, true);
             lbShiftGyroZN.Text = UpdateRegButtonList(bnShiftGyroZN, true);
             lbShiftGyroZP.Text = UpdateRegButtonList(bnShiftGyroZP, true);
@@ -1501,7 +1723,7 @@ namespace DS4Windows
             else if (!shift && !extracontrol)
                 return defaults[button.Name];
             else
-                return "Unassigned";
+                return Properties.Resources.Unassigned;
         }
         private void Show_ControlsList(object sender, EventArgs e)
         {
@@ -1798,7 +2020,7 @@ namespace DS4Windows
 
         private void LightBar_MouseDown(object sender, MouseEventArgs e)
         {
-            if (!saving)
+            if (!saving && !loading)
                 tp.Show(((TrackBar)sender).Value.ToString(), ((TrackBar)sender), (int)(100 * dpix), 0, 2000);
         }
 
@@ -1833,18 +2055,32 @@ namespace DS4Windows
 
         private void tabControls_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (pnlShiftController.SelectedIndex == 3)
+            if (tCControls.SelectedIndex == 3)
                 sixaxisTimer.Start();
             else
                 sixaxisTimer.Stop();
-            showShiftControls(pnlShiftController.SelectedIndex == 1);
+            if (tCControls.SelectedIndex == 1 && tPShiftMod.Controls.IndexOf(gBTouchpad) == -1)
+            {
+                Point p = gBTouchpad.Location;
+                tPShiftMod.Controls.Add(gBTouchpad);
+                gBTouchpad.Location = p;
+            }
+            else if (tCControls.SelectedIndex == 0 && tPControls.Controls.IndexOf(gBTouchpad) == -1)
+            {
+                Point p = gBTouchpad.Location;
+                tPControls.Controls.Add(gBTouchpad);
+                gBTouchpad.Location = p;
+            }
+            showShiftControls(tCControls.SelectedIndex == 1);
         }
 
         private void showShiftControls(bool shift)
         {
-            pnlShift.Visible = shift;
-            fLPShiftTouch.Visible = shift;
-            fLPTouch.Visible = !shift;
+            pnlShiftLight.Visible = shift;
+            pnlFull.Visible = !shift;
+            pnlLowBattery.Visible = (cBLightbyBattery.Checked ? !shift : false);
+            //fLPShiftTouch.Visible = shift;
+            //fLPTouch.Visible = !shift;
             fLPShiftTiltControls.Visible = rBSAControls.Checked ? shift : false;
             fLPTiltControls.Visible = rBSAControls.Checked ? !shift : false;
             fLPShiftTouchSwipe.Visible = rBTPControls.Checked ? shift : false;
@@ -2038,8 +2274,8 @@ namespace DS4Windows
         {
             UseTPforControls[device] = rBTPControls.Checked;
             pnlTPMouse.Visible = rBTPMouse.Checked;
-            fLPTouchSwipe.Visible = rBTPControls.Checked && pnlShiftController.SelectedIndex != 1;
-            fLPShiftTouchSwipe.Visible = rBSAControls.Checked && pnlShiftController.SelectedIndex == 1;
+            fLPTouchSwipe.Visible = rBTPControls.Checked && tCControls.SelectedIndex != 1;
+            fLPShiftTouchSwipe.Visible = rBTPControls.Checked && tCControls.SelectedIndex == 1;
             if (rBTPControls.Checked )
             {
                 lBControls.Items.AddRange(new string[4] { "t", "t", "t", "t" });
@@ -2126,9 +2362,9 @@ namespace DS4Windows
                 name = name.Remove(1, 1);
             if (name == "bnUp" || name == "bnLeft" || name == "bnRight" || name == "bnDown")
                 controlToolStripMenuItem.Text = "Dpad";
-            else if (name == "btnLeftStick" || name.Contains("bnLS"))
+            else if (name == "btnLeftStick" || name.Contains("bnLS") || name.Contains("bnL3"))
                 controlToolStripMenuItem.Text = "Left Stick";
-            else if (name == "btnRightStick" || name.Contains("bnRS"))
+            else if (name == "btnRightStick" || name.Contains("bnRS") || name.Contains("bnR3"))
                 controlToolStripMenuItem.Text = "Right Stick";
             else if (name == "bnCross" || name == "bnCircle" || name == "bnSquare" || name == "bnTriangle")
                 controlToolStripMenuItem.Text = "Face Buttons";
@@ -2169,6 +2405,7 @@ namespace DS4Windows
             KeyValuePair<object, string> tagL;
             KeyValuePair<object, string> tagR;
             KeyValuePair<object, string> tagD;
+            KeyValuePair<object, string> tagM = new KeyValuePair<object, string>(null, "0,0,0,0,0,0,0,0"); ;
             string name = ((ToolStripMenuItem)sender).Name;
             if (name.Contains("Dpad") || name.Contains("DPad"))
             {
@@ -2232,6 +2469,7 @@ namespace DS4Windows
                     tagR = new KeyValuePair<object, string>("Left X-Axis+", "0,0,0,0,0,0,0,0");
                     tagD = new KeyValuePair<object, string>("Left Y-Axis+", "0,0,0,0,0,0,0,0");
                 }
+                tagM = new KeyValuePair<object, string>("Left Stick", "0,0,0,0,0,0,0,0");
             }
             else if (name.Contains("RS"))
             {
@@ -2263,6 +2501,7 @@ namespace DS4Windows
                     tagR = new KeyValuePair<object, string>("Right X-Axis+", "0,0,0,0,0,0,0,0");
                     tagD = new KeyValuePair<object, string>("Right Y-Axis+", "0,0,0,0,0,0,0,0");
                 }
+                tagM = new KeyValuePair<object, string>("Right Stick", "0,0,0,0,0,0,0,0");
             }
             else if (name.Contains("ABXY"))
             {
@@ -2329,7 +2568,7 @@ namespace DS4Windows
                 tagD = new KeyValuePair<object, string>(null, "0,0,0,0,0,0,0,0");
             }
 
-            Button button1, button2, button3, button4;
+            Button button1, button2, button3, button4, button5 = null;
             if (controlToolStripMenuItem.Text == "Dpad")
             {
                 button1 = bnUp;
@@ -2343,6 +2582,7 @@ namespace DS4Windows
                 button2 = bnLSLeft;
                 button3 = bnLSRight;
                 button4 = bnLSDown;
+                button5 = bnL3;
             }
             else if (controlToolStripMenuItem.Text == "Right Stick")
             {
@@ -2350,6 +2590,7 @@ namespace DS4Windows
                 button2 = bnRSLeft;
                 button3 = bnRSRight;
                 button4 = bnRSDown;
+                button5 = bnR3;
             }
             else if (controlToolStripMenuItem.Text == "Face Buttons")
             {
@@ -2420,6 +2661,8 @@ namespace DS4Windows
             ChangeButtonText("Left Button", tagL, button2);
             ChangeButtonText("Right Button", tagR, button3);
             ChangeButtonText("Down Button", tagD, button4);
+            if (tagM.Key != null && button5 != null)
+                ChangeButtonText("Middle Button", tagM, button5);
             BatchToggle_Bn(scancode, button1, button2, button3, button4);
 
             UpdateLists();
@@ -2455,8 +2698,8 @@ namespace DS4Windows
         {
             UseSAforMouse[device] = rBSAMouse.Checked;
             pnlSAMouse.Visible = rBSAMouse.Checked;
-            fLPTiltControls.Visible = rBSAControls.Checked && pnlShiftController.SelectedIndex != 1;
-            fLPShiftTiltControls.Visible = rBSAControls.Checked && pnlShiftController.SelectedIndex == 1;
+            fLPTiltControls.Visible = rBSAControls.Checked && tCControls.SelectedIndex != 1;
+            fLPShiftTiltControls.Visible = rBSAControls.Checked && tCControls.SelectedIndex == 1;
         }
 
         private void btnGyroTriggers_Click(object sender, EventArgs e)
@@ -2494,14 +2737,135 @@ namespace DS4Windows
             GyroInvert[device] = invert;
         }
 
+        private void btnLightbar_MouseHover(object sender, EventArgs e)
+        {
+            lbControlName.Text = lbControlTip.Text;
+        }
+
+        private void Options_Resize(object sender, EventArgs e)
+        {
+            Size s = settingsSize;
+            s.Width = settingsSize.Width + Math.Max(0, Size.Width - mSize.Width);
+            fLPSettings.Size = s;
+           // fLPSettings.FlowDirection = fLPSettings.Size.Width > fLPSettings.Size.Height ? FlowDirection.TopDown : FlowDirection.LeftToRight;
+        }
+
         private void lBControls_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lbControlName.Text = lBControls.SelectedItem.ToString();
+            if (lBControls.SelectedItem != null)
+            {
+                lbControlName.Text = lBControls.SelectedItem.ToString();
+                if (lBControls.SelectedIndex == 0)
+                    lbControlName.ForeColor = Color.FromArgb(153, 205, 204);
+                else if (lBControls.SelectedIndex == 1)
+                    lbControlName.ForeColor = Color.FromArgb(247, 131, 150);
+                else if (lBControls.SelectedIndex == 2)
+                    lbControlName.ForeColor = Color.FromArgb(237, 170, 217);
+                else if (lBControls.SelectedIndex == 3)
+                    lbControlName.ForeColor = Color.FromArgb(75, 194, 202);
+                else
+                    lbControlName.ForeColor = Color.White;
+            }
+            if (lBControls.SelectedIndex == 0) button_MouseHover(bnCross, null);
+            if (lBControls.SelectedIndex == 1) button_MouseHover(bnCircle, null);
+            if (lBControls.SelectedIndex == 2) button_MouseHover(bnSquare, null);
+            if (lBControls.SelectedIndex == 3) button_MouseHover(bnTriangle, null);
+            if (lBControls.SelectedIndex == 4) button_MouseHover(bnOptions, null);
+            if (lBControls.SelectedIndex == 5) button_MouseHover(bnShare, null);
+            if (lBControls.SelectedIndex == 6) button_MouseHover(bnUp, null);
+            if (lBControls.SelectedIndex == 7) button_MouseHover(bnDown, null);
+            if (lBControls.SelectedIndex == 8) button_MouseHover(bnLeft, null);
+            if (lBControls.SelectedIndex == 9) button_MouseHover(bnRight, null);
+            if (lBControls.SelectedIndex == 10) button_MouseHover(bnPS, null);
+            if (lBControls.SelectedIndex == 11) button_MouseHover(bnL1, null);
+            if (lBControls.SelectedIndex == 12) button_MouseHover(bnR1, null);
+            if (lBControls.SelectedIndex == 13) button_MouseHover(bnL2, null);
+            if (lBControls.SelectedIndex == 14) button_MouseHover(bnR2, null);
+            if (lBControls.SelectedIndex == 15) button_MouseHover(bnL3, null);
+            if (lBControls.SelectedIndex == 16) button_MouseHover(bnR3, null);
+
+            if (lBControls.SelectedIndex == 17) button_MouseHover(bnTouchLeft, null);
+            if (lBControls.SelectedIndex == 18) button_MouseHover(bnTouchRight, null);
+            if (lBControls.SelectedIndex == 19) button_MouseHover(bnTouchMulti, null);
+            if (lBControls.SelectedIndex == 20) button_MouseHover(bnTouchUpper, null);
+
+            if (lBControls.SelectedIndex == 21) button_MouseHover(bnLSUp, null);
+            if (lBControls.SelectedIndex == 22) button_MouseHover(bnLSDown, null);
+            if (lBControls.SelectedIndex == 23) button_MouseHover(bnLSLeft, null);
+            if (lBControls.SelectedIndex == 24) button_MouseHover(bnLSRight, null);
+            if (lBControls.SelectedIndex == 25) button_MouseHover(bnRSUp, null);
+            if (lBControls.SelectedIndex == 26) button_MouseHover(bnRSDown, null);
+            if (lBControls.SelectedIndex == 27) button_MouseHover(bnRSLeft, null);
+            if (lBControls.SelectedIndex == 28) button_MouseHover(bnRSRight, null);
+
+            if (lBControls.SelectedIndex == 29) button_MouseHover(bnGyroZN, null);
+            if (lBControls.SelectedIndex == 30) button_MouseHover(bnGyroZP, null);
+            if (lBControls.SelectedIndex == 31) button_MouseHover(bnGyroXP, null);
+            if (lBControls.SelectedIndex == 32) button_MouseHover(bnGyroXN, null);
+
+            if (lBControls.SelectedIndex == 33) button_MouseHover(bnSwipeUp, null);
+            if (lBControls.SelectedIndex == 34) button_MouseHover(bnSwipeDown, null);
+            if (lBControls.SelectedIndex == 35) button_MouseHover(bnSwipeLeft, null);
+            if (lBControls.SelectedIndex == 36) button_MouseHover(bnSwipeRight, null);
         }
 
         private void lBShiftControls_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lbShiftControlName.Text = lBShiftControls.SelectedItem.ToString();
+            if (lBShiftControls.SelectedItem != null)
+            {
+                lbShiftControlName.Text = lBShiftControls.SelectedItem.ToString();
+                if (lBShiftControls.SelectedIndex == 0)
+                    lbShiftControlName.ForeColor = Color.FromArgb(153, 205, 204);
+                else if (lBShiftControls.SelectedIndex == 1)
+                    lbShiftControlName.ForeColor = Color.FromArgb(247, 131, 150);
+                else if (lBShiftControls.SelectedIndex == 2)
+                    lbShiftControlName.ForeColor = Color.FromArgb(237, 170, 217);
+                else if (lBShiftControls.SelectedIndex == 3)
+                    lbShiftControlName.ForeColor = Color.FromArgb(75, 194, 202);
+                else
+                    lbShiftControlName.ForeColor = Color.White;
+            }
+            if (lBShiftControls.SelectedIndex == 0) button_MouseHover(bnShiftCross, null);
+            if (lBShiftControls.SelectedIndex == 1) button_MouseHover(bnShiftCircle, null);
+            if (lBShiftControls.SelectedIndex == 2) button_MouseHover(bnShiftSquare, null);
+            if (lBShiftControls.SelectedIndex == 3) button_MouseHover(bnShiftTriangle, null);
+            if (lBShiftControls.SelectedIndex == 4) button_MouseHover(bnShiftOptions, null);
+            if (lBShiftControls.SelectedIndex == 5) button_MouseHover(bnShiftShare, null);
+            if (lBShiftControls.SelectedIndex == 6) button_MouseHover(bnShiftUp, null);
+            if (lBShiftControls.SelectedIndex == 7) button_MouseHover(bnShiftDown, null);
+            if (lBShiftControls.SelectedIndex == 8) button_MouseHover(bnShiftLeft, null);
+            if (lBShiftControls.SelectedIndex == 9) button_MouseHover(bnShiftRight, null);
+            if (lBShiftControls.SelectedIndex == 10) button_MouseHover(bnShiftPS, null);
+            if (lBShiftControls.SelectedIndex == 11) button_MouseHover(bnShiftL1, null);
+            if (lBShiftControls.SelectedIndex == 12) button_MouseHover(bnShiftR1, null);
+            if (lBShiftControls.SelectedIndex == 13) button_MouseHover(bnShiftL2, null);
+            if (lBShiftControls.SelectedIndex == 14) button_MouseHover(bnShiftR2, null);
+            if (lBShiftControls.SelectedIndex == 15) button_MouseHover(bnShiftL3, null);
+            if (lBShiftControls.SelectedIndex == 16) button_MouseHover(bnShiftR3, null);
+
+            if (lBShiftControls.SelectedIndex == 17) button_MouseHover(bnShiftTouchLeft, null);
+            if (lBShiftControls.SelectedIndex == 18) button_MouseHover(bnShiftTouchRight, null);
+            if (lBShiftControls.SelectedIndex == 19) button_MouseHover(bnShiftTouchMulti, null);
+            if (lBShiftControls.SelectedIndex == 20) button_MouseHover(bnShiftTouchUpper, null);
+
+            if (lBShiftControls.SelectedIndex == 21) button_MouseHover(bnShiftLSUp, null);
+            if (lBShiftControls.SelectedIndex == 22) button_MouseHover(bnShiftLSDown, null);
+            if (lBShiftControls.SelectedIndex == 23) button_MouseHover(bnShiftLSLeft, null);
+            if (lBShiftControls.SelectedIndex == 24) button_MouseHover(bnShiftLSRight, null);
+            if (lBShiftControls.SelectedIndex == 25) button_MouseHover(bnShiftRSUp, null);
+            if (lBShiftControls.SelectedIndex == 26) button_MouseHover(bnShiftRSDown, null);
+            if (lBShiftControls.SelectedIndex == 27) button_MouseHover(bnShiftRSLeft, null);
+            if (lBShiftControls.SelectedIndex == 28) button_MouseHover(bnShiftRSRight, null);
+
+            if (lBShiftControls.SelectedIndex == 29) button_MouseHover(bnShiftGyroZN, null);
+            if (lBShiftControls.SelectedIndex == 30) button_MouseHover(bnShiftGyroZP, null);
+            if (lBShiftControls.SelectedIndex == 31) button_MouseHover(bnShiftGyroXP, null);
+            if (lBShiftControls.SelectedIndex == 32) button_MouseHover(bnShiftGyroXN, null);
+
+            if (lBShiftControls.SelectedIndex == 33) button_MouseHover(bnShiftSwipeUp, null);
+            if (lBShiftControls.SelectedIndex == 34) button_MouseHover(bnShiftSwipeDown, null);
+            if (lBShiftControls.SelectedIndex == 35) button_MouseHover(bnShiftSwipeLeft, null);
+            if (lBShiftControls.SelectedIndex == 36) button_MouseHover(bnShiftSwipeRight, null);
         }
 
         private void nUDGyroSensitivity_ValueChanged(object sender, EventArgs e)

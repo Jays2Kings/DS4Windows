@@ -230,11 +230,17 @@ la souris:</value>
   <data name="numUDMouseSens.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 21</value>
   </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Pavé tactile</value>
+  </data>
   <data name="cbStartTouchpadOff.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 21</value>
   </data>
   <data name="cbStartTouchpadOff.Text" xml:space="preserve">
     <value>Démarrer avec le scroll off</value>
+  </data>
+  <data name="cMSPresets.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 244</value>
   </data>
   <data name="controlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 26</value>
@@ -247,6 +253,9 @@ la souris:</value>
   </data>
   <data name="defaultToolStripMenuItem.Text" xml:space="preserve">
     <value>Par défaut</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 26</value>
   </data>
   <data name="tSMIDPadInverted.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 26</value>
@@ -266,8 +275,11 @@ la souris:</value>
   <data name="tSMIDPadInvertedY.Text" xml:space="preserve">
     <value>Y inversé</value>
   </data>
-  <data name="DpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="LSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 26</value>
+  </data>
+  <data name="LSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Stick Gauche</value>
   </data>
   <data name="tSMILSInverted.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 26</value>
@@ -287,11 +299,11 @@ la souris:</value>
   <data name="tSMILSInvertedY.Text" xml:space="preserve">
     <value>Y inversé</value>
   </data>
-  <data name="LSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="RSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 26</value>
   </data>
-  <data name="LSToolStripMenuItem.Text" xml:space="preserve">
-    <value>Stick Gauche</value>
+  <data name="RSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Stick Droit</value>
   </data>
   <data name="tSMIRSInverted.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 26</value>
@@ -311,12 +323,6 @@ la souris:</value>
   <data name="tSMIRSInvertedY.Text" xml:space="preserve">
     <value>Y inversé</value>
   </data>
-  <data name="RSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 26</value>
-  </data>
-  <data name="RSToolStripMenuItem.Text" xml:space="preserve">
-    <value>Stick Droit</value>
-  </data>
   <data name="ABXYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 26</value>
   </data>
@@ -331,6 +337,12 @@ la souris:</value>
   </data>
   <data name="ArrowKeysToolStripMenuItem.Text" xml:space="preserve">
     <value>Fleches</value>
+  </data>
+  <data name="MouseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 26</value>
+  </data>
+  <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Souris</value>
   </data>
   <data name="tSMIMouseInverted.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 26</value>
@@ -350,17 +362,8 @@ la souris:</value>
   <data name="tSMIMouseInvertedY.Text" xml:space="preserve">
     <value>Y inversé</value>
   </data>
-  <data name="MouseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 26</value>
-  </data>
-  <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Souris</value>
-  </data>
-  <data name="cMSPresets.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 244</value>
-  </data>
-  <data name="gBTouchpad.Text" xml:space="preserve">
-    <value>Pavé tactile</value>
+  <data name="gBOther.Text" xml:space="preserve">
+    <value>Autre</value>
   </data>
   <data name="cBDinput.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 182</value>
@@ -422,20 +425,8 @@ la souris</value>
     <value>Pour mappage et 
 lecture valeurs</value>
   </data>
-  <data name="gBOther.Text" xml:space="preserve">
-    <value>Autre</value>
-  </data>
-  <data name="cBShiftLight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 21</value>
-  </data>
-  <data name="cBShiftLight.Text" xml:space="preserve">
-    <value>Utiliser une autre couleur pour le mode Shift</value>
-  </data>
-  <data name="lbShiftGreen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>17, 17</value>
-  </data>
-  <data name="lbShiftGreen.Text" xml:space="preserve">
-    <value>V</value>
+  <data name="gBLightbar.Text" xml:space="preserve">
+    <value>Barre lumineuse</value>
   </data>
   <data name="lbRainbowB.Location" type="System.Drawing.Point, System.Drawing">
     <value>254, 275</value>
@@ -464,14 +455,26 @@ lecture valeurs</value>
   <data name="lbWhileCharging.Text" xml:space="preserve">
     <value>En charge:</value>
   </data>
-  <data name="gBLightbar.Text" xml:space="preserve">
-    <value>Barre lumineuse</value>
+  <data name="cBShiftLight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 21</value>
+  </data>
+  <data name="cBShiftLight.Text" xml:space="preserve">
+    <value>Utiliser une autre couleur pour le mode Shift</value>
+  </data>
+  <data name="lbShiftGreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="lbShiftGreen.Text" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="gBRumble.Text" xml:space="preserve">
+    <value>Vibrer</value>
   </data>
   <data name="btnRumbleLightTest.Text" xml:space="preserve">
     <value>Test léger</value>
   </data>
-  <data name="gBRumble.Text" xml:space="preserve">
-    <value>Vibrer</value>
+  <data name="tPController.Text" xml:space="preserve">
+    <value>Visualisation des commandes</value>
   </data>
   <data name="lbRSTip.Text" xml:space="preserve">
     <value>Stick Droit</value>
@@ -482,11 +485,17 @@ lecture valeurs</value>
   <data name="lbSATip.Text" xml:space="preserve">
     <value>Sixaxis: l'axe X est inversé pour une meilleure lecture</value>
   </data>
+  <data name="lb6Accel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 131</value>
+  </data>
   <data name="lb6Accel.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>
   </data>
   <data name="lb6Accel.Text" xml:space="preserve">
     <value>Accéleration</value>
+  </data>
+  <data name="lb6Gryo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
   </data>
   <data name="lb6Gryo.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 17</value>
@@ -494,20 +503,14 @@ lecture valeurs</value>
   <data name="lb6Gryo.Text" xml:space="preserve">
     <value>Gyroscope</value>
   </data>
-  <data name="pnlSixaxis.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 156</value>
-  </data>
-  <data name="tPController.Text" xml:space="preserve">
-    <value>Visualisation des commandes</value>
-  </data>
-  <data name="cBShiftControl.Items" xml:space="preserve">
-    <value>(rien)/shift off</value>
-  </data>
   <data name="lbHold.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 17</value>
   </data>
   <data name="lbHold.Text" xml:space="preserve">
     <value>Maintenir</value>
+  </data>
+  <data name="pnlShiftController.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1182, 553</value>
   </data>
   <data name="lbtoUse.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 17</value>
@@ -515,11 +518,14 @@ lecture valeurs</value>
   <data name="lbtoUse.Text" xml:space="preserve">
     <value>pour utiliser ces commandes</value>
   </data>
-  <data name="lbControlTip.Text" xml:space="preserve">
-    <value>Cliquez sur la barre de lumière pour changer de couleur</value>
+  <data name="cBShiftControl.Items" xml:space="preserve">
+    <value>(rien)/shift off</value>
   </data>
   <data name="tPControls.Text" xml:space="preserve">
     <value>Commandes</value>
+  </data>
+  <data name="tPSpecial.Text" xml:space="preserve">
+    <value>Actions spéciales</value>
   </data>
   <data name="cHName.Text" xml:space="preserve">
     <value>Nom</value>
@@ -536,10 +542,10 @@ lecture valeurs</value>
   <data name="btnRemAction.Text" xml:space="preserve">
     <value>Effacer action</value>
   </data>
-  <data name="tPSpecial.Text" xml:space="preserve">
-    <value>Actions spéciales</value>
-  </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Zone morte</value>
+  </data>
+  <data name="lbControlTip.Text" xml:space="preserve">
+    <value>Cliquez sur la barre de lumière pour changer de couleur</value>
   </data>
 </root>

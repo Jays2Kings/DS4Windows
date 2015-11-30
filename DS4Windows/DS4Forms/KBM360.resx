@@ -138,7 +138,7 @@
   </data>
   <data name="btnP.Text" xml:space="preserve">
     <value>P</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="button36.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
   </data>
@@ -166,7 +166,7 @@
   </data>
   <data name="btnRETURN.Text" xml:space="preserve">
     <value>Enter</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnPREVTRACK.Name" xml:space="preserve">
     <value>btnPREVTRACK</value>
   </data>
@@ -197,7 +197,7 @@
   </data>
   <data name="btnA.Text" xml:space="preserve">
     <value>A</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnT.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -296,7 +296,7 @@
   </data>
   <data name="btnH.Text" xml:space="preserve">
     <value>H</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnBREAK.TabIndex" type="System.Int32, mscorlib">
     <value>240</value>
   </data>
@@ -329,7 +329,7 @@
   </data>
   <data name="btnS.Text" xml:space="preserve">
     <value>S</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;nUDLight.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
@@ -350,7 +350,7 @@
   </data>
   <data name="btnNUM4.Text" xml:space="preserve">
     <value>4Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnRSD.TabIndex" type="System.Int32, mscorlib">
     <value>309</value>
   </data>
@@ -365,7 +365,7 @@
   </data>
   <data name="btnLEFTMOUSE.Text" xml:space="preserve">
     <value>Left Mouse Button</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;tBBlueBar.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
@@ -395,7 +395,7 @@
   </data>
   <data name="btnF10.Text" xml:space="preserve">
     <value>F10</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="bnWHEELUP.Location" type="System.Drawing.Point, System.Drawing">
     <value>995, 78</value>
   </data>
@@ -482,7 +482,7 @@
   </data>
   <data name="btnK.Text" xml:space="preserve">
     <value>K</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnX.ZOrder" xml:space="preserve">
     <value>121</value>
   </data>
@@ -518,7 +518,7 @@
   </data>
   <data name="btnU.Text" xml:space="preserve">
     <value>U</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnW.ZOrder" xml:space="preserve">
     <value>42</value>
   </data>
@@ -563,7 +563,7 @@
   </data>
   <data name="btnMOUSELEFT.Text" xml:space="preserve">
     <value>←Mouse Left</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnOPENBRACKET.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -578,7 +578,7 @@
   </data>
   <data name="btnAPOSTROPHE.Text" xml:space="preserve">
     <value>'</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnCAPS.ZOrder" xml:space="preserve">
     <value>153</value>
   </data>
@@ -680,7 +680,7 @@
   </data>
   <data name="btnO.Text" xml:space="preserve">
     <value>O</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnSPACE.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -707,7 +707,7 @@
   </data>
   <data name="btnJ.Text" xml:space="preserve">
     <value>J</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnRSU.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 38</value>
   </data>
@@ -839,7 +839,7 @@
   </data>
   <data name="lbBlueV.Text" xml:space="preserve">
     <value>255</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;bnMacro.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -854,7 +854,7 @@
   </data>
   <data name="btnB.Text" xml:space="preserve">
     <value>B</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnR.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -896,7 +896,7 @@
   </data>
   <data name="btnNUM1.Text" xml:space="preserve">
     <value>1Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="pBMouse.Location" type="System.Drawing.Point, System.Drawing">
     <value>950, 55</value>
   </data>
@@ -1064,7 +1064,7 @@
   </data>
   <data name="btnV.Text" xml:space="preserve">
     <value>V</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnQ.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
@@ -1118,7 +1118,7 @@
   </data>
   <data name="btnMINUS.Text" xml:space="preserve">
     <value>-</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -1157,7 +1157,7 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Keybaord</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;pBMouse.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -1181,10 +1181,10 @@
   </data>
   <data name="btnF.Text" xml:space="preserve">
     <value>F</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnN.Text" xml:space="preserve">
     <value>N</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="lbRumble.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1199,7 +1199,7 @@
   </data>
   <data name="btnPGDN.Text" xml:space="preserve">
     <value>pgd</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnNUMDOT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -1226,7 +1226,7 @@
   </data>
   <data name="btnRCTRL.Text" xml:space="preserve">
     <value>RCtrl</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnA.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1286,7 +1286,7 @@
   </data>
   <data name="btnEND.Text" xml:space="preserve">
     <value>end</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnCAPS.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 144</value>
   </data>
@@ -1319,7 +1319,7 @@
   </data>
   <data name="button38.Text" xml:space="preserve">
     <value>↑Volume Up</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="lbRed.Size" type="System.Drawing.Size, System.Drawing">
     <value>18, 17</value>
   </data>
@@ -1367,7 +1367,7 @@
   </data>
   <data name="btnF11.Text" xml:space="preserve">
     <value>F11</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnY.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -1385,7 +1385,7 @@
   </data>
   <data name="lbGreenV.Text" xml:space="preserve">
     <value>255</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnPGUP.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1415,7 +1415,7 @@
   </data>
   <data name="btnNUMSLASH.Text" xml:space="preserve">
     <value>/Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnLSD.TabIndex" type="System.Int32, mscorlib">
     <value>308</value>
   </data>
@@ -1451,7 +1451,7 @@
   </data>
   <data name="btnM.Text" xml:space="preserve">
     <value>M</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnMOUSERIGHT.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
@@ -1505,7 +1505,7 @@
   </data>
   <data name="btnBACKSPACE.Text" xml:space="preserve">
     <value>Backspace</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;lbLight.Parent" xml:space="preserve">
     <value>gBExtras</value>
   </data>
@@ -1550,7 +1550,7 @@
   </data>
   <data name="btnNUMDOT.Text" xml:space="preserve">
     <value>.</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;pBX360.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -1565,7 +1565,7 @@
   </data>
   <data name="btnT.Text" xml:space="preserve">
     <value>T</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnRETURN.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1613,7 +1613,7 @@
   </data>
   <data name="btnE.Text" xml:space="preserve">
     <value>E</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnLSD.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 38</value>
   </data>
@@ -1730,7 +1730,7 @@
   </data>
   <data name="btnL.Text" xml:space="preserve">
     <value>L</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnPLAYPAUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -1778,7 +1778,7 @@
   </data>
   <data name="button4.Text" xml:space="preserve">
     <value>←Left</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;button20.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1811,7 +1811,7 @@
   </data>
   <data name="btnLCTRL.Text" xml:space="preserve">
     <value>LCtrl</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btn1.ZOrder" xml:space="preserve">
     <value>29</value>
   </data>
@@ -1829,7 +1829,7 @@
   </data>
   <data name="btnTILDE.Text" xml:space="preserve">
     <value>`</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnMOUSERIGHT.Location" type="System.Drawing.Point, System.Drawing">
     <value>1054, 150</value>
   </data>
@@ -1874,13 +1874,13 @@
   </data>
   <data name="bnWHEELDOWN.Text" xml:space="preserve">
     <value>↓Mouse Wheel Down</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="X360Label.Location" type="System.Drawing.Point, System.Drawing">
     <value>494, 266</value>
   </data>
   <data name="btnD.Text" xml:space="preserve">
     <value>D</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnF6.Location" type="System.Drawing.Point, System.Drawing">
     <value>272, 31</value>
   </data>
@@ -1901,7 +1901,7 @@
   </data>
   <data name="btnPERIOD.Text" xml:space="preserve">
     <value>.</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnMOUSEUP.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1946,7 +1946,7 @@
   </data>
   <data name="btnTAB.Text" xml:space="preserve">
     <value>Tab</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btn9.Location" type="System.Drawing.Point, System.Drawing">
     <value>348, 69</value>
   </data>
@@ -1958,10 +1958,10 @@
   </data>
   <data name="btnNUM5.Text" xml:space="preserve">
     <value>5Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="button35.Text" xml:space="preserve">
     <value>ØVolume Mute</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnRSL.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1985,7 +1985,7 @@
   </data>
   <data name="btnRSHIFT.Text" xml:space="preserve">
     <value>RShift</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="nUDHeavy.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -2003,7 +2003,7 @@
   </data>
   <data name="btnMIDDLEMOUSE.Text" xml:space="preserve">
     <value>Middle Mouse Button</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnF11.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -2114,7 +2114,7 @@
   </data>
   <data name="btnDEL.Text" xml:space="preserve">
     <value>del</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnNUM2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -2123,13 +2123,13 @@
   </data>
   <data name="btnNUM9.Text" xml:space="preserve">
     <value>9Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="X360Label.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="btnPGUP.Text" xml:space="preserve">
     <value>pgu</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnN.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -2150,7 +2150,7 @@
   </data>
   <data name="btnC.Text" xml:space="preserve">
     <value>C</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnTILDE.ZOrder" xml:space="preserve">
     <value>98</value>
   </data>
@@ -2177,7 +2177,7 @@
   </data>
   <data name="btnPLAYPAUSE.Text" xml:space="preserve">
     <value>4</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnMOUSEDOWN.TabIndex" type="System.Int32, mscorlib">
     <value>170</value>
   </data>
@@ -2204,7 +2204,7 @@
   </data>
   <data name="btnNUM7.Text" xml:space="preserve">
     <value>7Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>120, 120</value>
   </data>
@@ -2270,7 +2270,7 @@
   </data>
   <data name="btnX.Text" xml:space="preserve">
     <value>X</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnV.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
@@ -2291,7 +2291,7 @@
   </data>
   <data name="btnRALT.Text" xml:space="preserve">
     <value>RAlt</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnDefault.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -2402,7 +2402,7 @@
   </data>
   <data name="btnWINDOWS.Text" xml:space="preserve">
     <value>LWin</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btn6.ZOrder" xml:space="preserve">
     <value>60</value>
   </data>
@@ -2522,7 +2522,7 @@
   </data>
   <data name="btnNUMLOCK.Text" xml:space="preserve">
     <value>Num Lock</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;nUDHeavy.Parent" xml:space="preserve">
     <value>gBExtras</value>
   </data>
@@ -2633,7 +2633,7 @@
   </data>
   <data name="button34.Text" xml:space="preserve">
     <value>prt</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="tBRedBar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -2729,7 +2729,7 @@
   </data>
   <data name="btnNEXTTRACK.Text" xml:space="preserve">
     <value>:</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnCLOSEBRACKET.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -2792,7 +2792,7 @@
   </data>
   <data name="btnNUMENTER.Text" xml:space="preserve">
     <value>Enter</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnUNBOUND.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -2837,7 +2837,7 @@
   </data>
   <data name="btnSPACE.Text" xml:space="preserve">
     <value>Space</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="cBScanCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>829, 10</value>
   </data>
@@ -2849,13 +2849,13 @@
   </data>
   <data name="btnBREAK.Text" xml:space="preserve">
     <value>bk</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnMIDDLEMOUSE.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="btnLALT.Text" xml:space="preserve">
     <value>LAlt</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btn4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -6514,7 +6514,7 @@
   </data>
   <data name="btnESC.Text" xml:space="preserve">
     <value>Escape</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnLSD.ZOrder" xml:space="preserve">
     <value>24</value>
   </data>
@@ -6580,7 +6580,7 @@
   </data>
   <data name="btnHOME.Text" xml:space="preserve">
     <value>hm</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;button38.Name" xml:space="preserve">
     <value>button38</value>
   </data>
@@ -6667,13 +6667,13 @@
   </data>
   <data name="bTNRIGHTMOUSE.Text" xml:space="preserve">
     <value>Right Mouse Button</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="lBTip.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="btnF7.Text" xml:space="preserve">
     <value>F7</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnF3.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 30</value>
   </data>
@@ -6697,13 +6697,13 @@
   </data>
   <data name="btnEQUALS.Text" xml:space="preserve">
     <value>=</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="button23.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="btnNUM2.Text" xml:space="preserve">
     <value>2Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="button10.TabIndex" type="System.Int32, mscorlib">
     <value>297</value>
   </data>
@@ -6751,7 +6751,7 @@
   </data>
   <data name="btnMOUSERIGHT.Text" xml:space="preserve">
     <value>→Mouse Right</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btn0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -6778,10 +6778,10 @@
   </data>
   <data name="btnOPENBRACKET.Text" xml:space="preserve">
     <value>[</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnNUM0.Text" xml:space="preserve">
     <value>Num0</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnCOMMA.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -6883,7 +6883,7 @@
   </data>
   <data name="btnNUM6.Text" xml:space="preserve">
     <value>6Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnOPENBRACKET.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -6898,7 +6898,7 @@
   </data>
   <data name="btn8.Text" xml:space="preserve">
     <value>8</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;button20.Name" xml:space="preserve">
     <value>button20</value>
   </data>
@@ -6991,7 +6991,7 @@
   </data>
   <data name="btnCAPS.Text" xml:space="preserve">
     <value>Caps</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnNUM7.ZOrder" xml:space="preserve">
     <value>108</value>
   </data>
@@ -7012,7 +7012,7 @@
   </data>
   <data name="btn0.Text" xml:space="preserve">
     <value>0</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btn9.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -7060,7 +7060,7 @@
   </data>
   <data name="btnCOMMA.Text" xml:space="preserve">
     <value>,</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnOPENBRACKET.TabIndex" type="System.Int32, mscorlib">
     <value>187</value>
   </data>
@@ -7090,7 +7090,7 @@
   </data>
   <data name="button39.Text" xml:space="preserve">
     <value>↓Volume Down</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnBACKSPACE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -7143,7 +7143,7 @@ Sensitivity</value>
   </data>
   <data name="btnNUMPLUS.Text" xml:space="preserve">
     <value>+</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnPREVTRACK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -7182,7 +7182,7 @@ Sensitivity</value>
   </data>
   <data name="btn3.Text" xml:space="preserve">
     <value>3</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnEQUALS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -7245,7 +7245,7 @@ Sensitivity</value>
   </data>
   <data name="btnNUMSTAR.Text" xml:space="preserve">
     <value>*Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnI.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -7371,7 +7371,7 @@ Sensitivity</value>
   </data>
   <data name="btnMOUSEDOWN.Text" xml:space="preserve">
     <value>↓Mouse Down</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="button34.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -7392,7 +7392,7 @@ Sensitivity</value>
   </data>
   <data name="btnCLOSEBRACKET.Text" xml:space="preserve">
     <value>]</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnNUM0.TabIndex" type="System.Int32, mscorlib">
     <value>280</value>
   </data>
@@ -7530,7 +7530,7 @@ Sensitivity</value>
   </data>
   <data name="btn9.Text" xml:space="preserve">
     <value>9</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnNUM6.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -7608,7 +7608,7 @@ Sensitivity</value>
   </data>
   <data name="button5.Text" xml:space="preserve">
     <value>→Right</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="pBX360.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
   </data>
@@ -7623,7 +7623,7 @@ Sensitivity</value>
   </data>
   <data name="btnF6.Text" xml:space="preserve">
     <value>F6</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnF10.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -7638,7 +7638,7 @@ Sensitivity</value>
   </data>
   <data name="btnBACKSLASH.Text" xml:space="preserve">
     <value>\</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;nUDLightFlash.Name" xml:space="preserve">
     <value>nUDLightFlash</value>
   </data>
@@ -7668,10 +7668,10 @@ Sensitivity</value>
   </data>
   <data name="btnSTOP.Text" xml:space="preserve">
     <value>&lt;</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnF5.Text" xml:space="preserve">
     <value>F5</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnF9.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -7683,13 +7683,13 @@ Sensitivity</value>
   </data>
   <data name="lbRedV.Text" xml:space="preserve">
     <value>255</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;nUDMouse.Parent" xml:space="preserve">
     <value>gBExtras</value>
   </data>
   <data name="btn1.Text" xml:space="preserve">
     <value>1</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;cBScanCode.ZOrder" xml:space="preserve">
     <value>122</value>
   </data>
@@ -7698,7 +7698,7 @@ Sensitivity</value>
   </data>
   <data name="button7.Text" xml:space="preserve">
     <value>↑Up</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;X360Label.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -7734,7 +7734,7 @@ Sensitivity</value>
   </data>
   <data name="btnF4.Text" xml:space="preserve">
     <value>F4</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnF8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -7755,7 +7755,7 @@ Sensitivity</value>
   </data>
   <data name="btn4.Text" xml:space="preserve">
     <value>4</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnRS.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -7809,7 +7809,7 @@ Sensitivity</value>
   </data>
   <data name="btnF2.Text" xml:space="preserve">
     <value>F2</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnPLAYPAUSE.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
@@ -7827,7 +7827,7 @@ Sensitivity</value>
   </data>
   <data name="btnNUMMINUS.Text" xml:space="preserve">
     <value>-Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnTAB.ZOrder" xml:space="preserve">
     <value>105</value>
   </data>
@@ -7836,7 +7836,7 @@ Sensitivity</value>
   </data>
   <data name="btnLSHIFT.Text" xml:space="preserve">
     <value>LShift</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnBACKSPACE.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -7875,7 +7875,7 @@ Sensitivity</value>
   </data>
   <data name="btnF1.Text" xml:space="preserve">
     <value>F1</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnF8.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -7920,7 +7920,7 @@ Sensitivity</value>
   </data>
   <data name="btnSLASH.Text" xml:space="preserve">
     <value>/</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnO.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -7932,7 +7932,7 @@ Sensitivity</value>
   </data>
   <data name="btnSCL.Text" xml:space="preserve">
     <value>scl</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;nUDMouse.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
@@ -7980,13 +7980,13 @@ Sensitivity</value>
   </data>
   <data name="btn2.Text" xml:space="preserve">
     <value>2</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnMOUSEUP.Text" xml:space="preserve">
     <value>↑Mouse Up</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnRSL.TabIndex" type="System.Int32, mscorlib">
     <value>311</value>
   </data>
@@ -8013,7 +8013,7 @@ Sensitivity</value>
   </data>
   <data name="button36.Text" xml:space="preserve">
     <value>RWin</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="lbFlashRate.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 17</value>
   </data>
@@ -8115,7 +8115,7 @@ Sensitivity</value>
   </data>
   <data name="bnWHEELUP.Text" xml:space="preserve">
     <value>↑Mouse Wheel Up</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;lbHeavy.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -8142,7 +8142,7 @@ Sensitivity</value>
   </data>
   <data name="btnF3.Text" xml:space="preserve">
     <value>F3</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="button18.TabIndex" type="System.Int32, mscorlib">
     <value>305</value>
   </data>
@@ -8232,7 +8232,7 @@ Sensitivity</value>
   </data>
   <data name="btnF9.Text" xml:space="preserve">
     <value>F9</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnAPOSTROPHE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -8280,13 +8280,13 @@ Sensitivity</value>
   </data>
   <data name="btnF8.Text" xml:space="preserve">
     <value>F8</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="tBBlueBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnPREVTRACK.Text" xml:space="preserve">
     <value>9</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnPREVTRACK.Font" type="System.Drawing.Font, System.Drawing">
     <value>Webdings, 8.25pt</value>
   </data>
@@ -8304,7 +8304,7 @@ Sensitivity</value>
   </data>
   <data name="btnSEMICOLON.Text" xml:space="preserve">
     <value>;</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnSEMICOLON.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -8397,7 +8397,7 @@ Sensitivity</value>
   </data>
   <data name="btn7.Text" xml:space="preserve">
     <value>7</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;bnMacro.ZOrder" xml:space="preserve">
     <value>52</value>
   </data>
@@ -8481,7 +8481,7 @@ Sensitivity</value>
   </data>
   <data name="btnF12.Text" xml:space="preserve">
     <value>F12</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnD.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
@@ -8517,7 +8517,7 @@ Sensitivity</value>
   </data>
   <data name="btnNUM3.Text" xml:space="preserve">
     <value>3Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnMOUSELEFT.Location" type="System.Drawing.Point, System.Drawing">
     <value>931, 151</value>
   </data>
@@ -8555,7 +8555,8 @@ Sensitivity</value>
     <value>460, 144</value>
   </data>
   <data name="lBTip.Text" xml:space="preserve">
-    <value>You can also select a key by typing it</value>
+    <value>You can also select 
+a key by typing it</value>
   </data>
   <data name="pBX360.TabIndex" type="System.Int32, mscorlib">
     <value>322</value>
@@ -8613,7 +8614,7 @@ Sensitivity</value>
   </data>
   <data name="btnQ.Text" xml:space="preserve">
     <value>Q</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;button4.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -8676,13 +8677,13 @@ Sensitivity</value>
   </data>
   <data name="btn5.Text" xml:space="preserve">
     <value>5</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnNUMSTAR.TabIndex" type="System.Int32, mscorlib">
     <value>274</value>
   </data>
   <data name="btnZ.Text" xml:space="preserve">
     <value>Z</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnLEFTMOUSE.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
@@ -8709,7 +8710,7 @@ Sensitivity</value>
   </data>
   <data name="btnR.Text" xml:space="preserve">
     <value>R</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="button7.Location" type="System.Drawing.Point, System.Drawing">
     <value>625, 182</value>
   </data>
@@ -8790,7 +8791,7 @@ Sensitivity</value>
   </data>
   <data name="btnINS.Text" xml:space="preserve">
     <value>ins</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;button7.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -8973,13 +8974,13 @@ Sensitivity</value>
   </data>
   <data name="btn6.Text" xml:space="preserve">
     <value>6</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="cBScanCode.TabIndex" type="System.Int32, mscorlib">
     <value>288</value>
   </data>
   <data name="button6.Text" xml:space="preserve">
     <value>↓Down</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -9009,7 +9010,7 @@ Sensitivity</value>
   </data>
   <data name="btnY.Text" xml:space="preserve">
     <value>Y</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnPREVTRACK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -9051,7 +9052,7 @@ Sensitivity</value>
   </data>
   <data name="btnNUM8.Text" xml:space="preserve">
     <value>8Numpad</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;btnRALT.ZOrder" xml:space="preserve">
     <value>129</value>
   </data>
@@ -9075,13 +9076,13 @@ Sensitivity</value>
   </data>
   <data name="button33.Text" xml:space="preserve">
     <value>5th Mouse Button</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="button38.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="btnW.Text" xml:space="preserve">
     <value>W</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btnNUMSLASH.TabIndex" type="System.Int32, mscorlib">
     <value>271</value>
   </data>
@@ -9228,7 +9229,7 @@ Sensitivity</value>
   </data>
   <data name="button30.Text" xml:space="preserve">
     <value>4th Mouse Button</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btn4.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 69</value>
   </data>
@@ -9324,7 +9325,7 @@ Sensitivity</value>
   </data>
   <data name="btnI.Text" xml:space="preserve">
     <value>I</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btn8.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
@@ -9399,7 +9400,7 @@ Sensitivity</value>
   </data>
   <data name="btnG.Text" xml:space="preserve">
     <value>G</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="btn4.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>

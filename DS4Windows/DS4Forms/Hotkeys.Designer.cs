@@ -49,11 +49,17 @@
             this.lbRussianT = new System.Windows.Forms.Label();
             this.lbRomanian = new System.Windows.Forms.Label();
             this.lbRomanianT = new System.Windows.Forms.Label();
+            this.lbTurkish = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbChineseS = new System.Windows.Forms.Label();
+            this.lbChineseST = new System.Windows.Forms.Label();
+            this.lbChineseT = new System.Windows.Forms.Label();
+            this.lbChineseTT = new System.Windows.Forms.Label();
+            this.lbArabic = new System.Windows.Forms.Label();
+            this.lbArabicT = new System.Windows.Forms.Label();
             this.lbTranslators = new System.Windows.Forms.Label();
             this.linkSourceCode = new System.Windows.Forms.LinkLabel();
             this.lbLinkText = new System.Windows.Forms.Label();
-            this.lbTurkish = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
@@ -109,9 +115,9 @@
             // 
             // tCAbout
             // 
+            resources.ApplyResources(this.tCAbout, "tCAbout");
             this.tCAbout.Controls.Add(this.tPHotkeys);
             this.tCAbout.Controls.Add(this.tPCredits);
-            resources.ApplyResources(this.tCAbout, "tCAbout");
             this.tCAbout.Name = "tCAbout";
             this.tCAbout.SelectedIndex = 0;
             // 
@@ -129,6 +135,7 @@
             // 
             // tPCredits
             // 
+            resources.ApplyResources(this.tPCredits, "tPCredits");
             this.tPCredits.Controls.Add(this.tLPTranslators);
             this.tPCredits.Controls.Add(this.lbTranslators);
             this.tPCredits.Controls.Add(this.linkElectro);
@@ -137,7 +144,6 @@
             this.tPCredits.Controls.Add(this.linkJays2Kings);
             this.tPCredits.Controls.Add(this.linkJhebbel);
             this.tPCredits.Controls.Add(this.linkInhexSTER);
-            resources.ApplyResources(this.tPCredits, "tPCredits");
             this.tPCredits.Name = "tPCredits";
             this.tPCredits.UseVisualStyleBackColor = true;
             // 
@@ -154,6 +160,12 @@
             this.tLPTranslators.Controls.Add(this.lbRomanianT, 1, 3);
             this.tLPTranslators.Controls.Add(this.lbTurkish, 0, 4);
             this.tLPTranslators.Controls.Add(this.label2, 1, 4);
+            this.tLPTranslators.Controls.Add(this.lbChineseS, 0, 5);
+            this.tLPTranslators.Controls.Add(this.lbChineseST, 1, 5);
+            this.tLPTranslators.Controls.Add(this.lbChineseT, 0, 6);
+            this.tLPTranslators.Controls.Add(this.lbChineseTT, 1, 6);
+            this.tLPTranslators.Controls.Add(this.lbArabic, 0, 7);
+            this.tLPTranslators.Controls.Add(this.lbArabicT, 1, 7);
             this.tLPTranslators.Name = "tLPTranslators";
             // 
             // lbGerman
@@ -196,6 +208,46 @@
             resources.ApplyResources(this.lbRomanianT, "lbRomanianT");
             this.lbRomanianT.Name = "lbRomanianT";
             // 
+            // lbTurkish
+            // 
+            resources.ApplyResources(this.lbTurkish, "lbTurkish");
+            this.lbTurkish.Name = "lbTurkish";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // lbChineseS
+            // 
+            resources.ApplyResources(this.lbChineseS, "lbChineseS");
+            this.lbChineseS.Name = "lbChineseS";
+            // 
+            // lbChineseST
+            // 
+            resources.ApplyResources(this.lbChineseST, "lbChineseST");
+            this.lbChineseST.Name = "lbChineseST";
+            // 
+            // lbChineseT
+            // 
+            resources.ApplyResources(this.lbChineseT, "lbChineseT");
+            this.lbChineseT.Name = "lbChineseT";
+            // 
+            // lbChineseTT
+            // 
+            resources.ApplyResources(this.lbChineseTT, "lbChineseTT");
+            this.lbChineseTT.Name = "lbChineseTT";
+            // 
+            // lbArabic
+            // 
+            resources.ApplyResources(this.lbArabic, "lbArabic");
+            this.lbArabic.Name = "lbArabic";
+            // 
+            // lbArabicT
+            // 
+            resources.ApplyResources(this.lbArabicT, "lbArabicT");
+            this.lbArabicT.Name = "lbArabicT";
+            // 
             // lbTranslators
             // 
             resources.ApplyResources(this.lbTranslators, "lbTranslators");
@@ -212,16 +264,6 @@
             // 
             resources.ApplyResources(this.lbLinkText, "lbLinkText");
             this.lbLinkText.Name = "lbLinkText";
-            // 
-            // lbTurkish
-            // 
-            resources.ApplyResources(this.lbTurkish, "lbTurkish");
-            this.lbTurkish.Name = "lbTurkish";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
             // 
             // Hotkeys
             // 
@@ -272,5 +314,11 @@
         private System.Windows.Forms.Label lbRomanianT;
         private System.Windows.Forms.Label lbTurkish;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbChineseS;
+        private System.Windows.Forms.Label lbChineseST;
+        private System.Windows.Forms.Label lbChineseT;
+        private System.Windows.Forms.Label lbChineseTT;
+        private System.Windows.Forms.Label lbArabic;
+        private System.Windows.Forms.Label lbArabicT;
     }
 }

@@ -117,83 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Adicionar Programas</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>مرحبا بكم في DS4Windows</value>
   </data>
-  <data name="bnSave.Text" xml:space="preserve">
-    <value>Salvar</value>
+  <data name="bnFinish.Text" xml:space="preserve">
+    <value>إنهاء</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+  <data name="bnStep1.Text" xml:space="preserve">
+    <value>الخطوة الأولى: تثبيت برنامج تعريف يد البلاي ستايشن 4</value>
   </data>
-  <data name="lBController1.Text" xml:space="preserve">
-    <value>Controle 1</value>
+  <data name="button2.Text" xml:space="preserve">
+    <value>الخطوة 2: إذا كنت على ويندوز 7 أو أقل، ثبت برنامج تعريف 360</value>
   </data>
-  <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>إذا ظهرت هذه النافذة بعد التثبيت، أعد تشغيل جهازك أو انتظر 10-15 دقيقة لكي ينتبه الويندوز لبرنامج التعريف.</value>
   </data>
-  <data name="lBController2.Text" xml:space="preserve">
-    <value>Controle 2</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>لو كنت قد استخدمت يد 360 على هذا الجهاز, تستطيع تخطي هذه الخطوة.</value>
   </data>
-  <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+  <data name="labelBluetooth.Text" xml:space="preserve">
+    <value>لتهييء البلوتوث(اختياري):
+علق على زر البلاي ستايشن + Share لمدة 3 ثواني
+حتى يبدأ النور بالومض</value>
   </data>
-  <data name="lBController3.Text" xml:space="preserve">
-    <value>Controle 3</value>
+  <data name="labelBluetooth2.Text" xml:space="preserve">
+    <value>عندما يبدأ الومض، اذهب لإعدادات البلوتوث و وصل "يد لاسلكية"
+لو سألت, ضع شفرة التوصيل "0000"
+بعد الوصل, أنت جاهز الآن، استمتع.</value>
   </data>
-  <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="lBController4.Text" xml:space="preserve">
-    <value>Controle 4</value>
-  </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Remover</value>
-  </data>
-  <data name="nameHeader.Text" xml:space="preserve">
-    <value>Nome</value>
-  </data>
-  <data name="PathHeader.Text" xml:space="preserve">
-    <value>Caminho</value>
-  </data>
-  <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 13</value>
-  </data>
-  <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Esconlher Perfil Aqui</value>
-  </data>
-  <data name="bnHideUnchecked.Text" xml:space="preserve">
-    <value>Esconder Desmarcados</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Programas do Menu Iniciar</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Jogos Steam</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Jogo Origin</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Procurar Outro Programa</value>
-  </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 92</value>
-  </data>
-  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar diretório</value>
+  <data name="labelUSB.Text" xml:space="preserve">
+    <value>الخطوة 3: وصل يد البلاي ستايشن 4
+للوصل بسلك/يو اس بي
+فقط وصل اليد بالجهاز بإستخدام سلك ميكرو يو اس بي</value>
   </data>
 </root>

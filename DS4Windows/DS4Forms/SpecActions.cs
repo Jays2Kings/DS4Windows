@@ -344,9 +344,13 @@ namespace DS4Windows
 
         void LoadProgram(string path)
         {
-            pBProgram.Image = Icon.ExtractAssociatedIcon(path).ToBitmap();
+            try
+            {
+                pBProgram.Image = Icon.ExtractAssociatedIcon(path).ToBitmap();
                 lbProgram.Text = Path.GetFileNameWithoutExtension(path);
                 program = path;
+            }
+            catch { }
         }
 
         private void lVTrigger_ItemChecked(object sender, ItemCheckedEventArgs e)

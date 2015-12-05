@@ -357,7 +357,23 @@ namespace DS4Windows
                 File.Move(exepath + "\\Update Files\\DS4Updater.exe", exepath + "\\DS4Updater.exe");
                 Directory.Delete(exepath + "\\Update Files");
             }
-
+            if(FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileBuildPart == 32 &&
+                (!File.Exists(exepath + "\\DS4Updater.exe") ||
+                (File.Exists(exepath + "\\DS4Updater.exe") && FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileBuildPart < 32)))
+            {
+                Uri url2 = new Uri("https://github.com/Jays2Kings/DS4Windows/releases/download/v1.4.32/DS4Updater.exe");
+                WebClient wc2 = new WebClient();
+                if (appdatapath == exepath || !AdminNeeded())
+                {
+                    File.Delete(exepath + "\\DS4Updater.exe");
+                    wc2.DownloadFileAsync(url2, exepath + "\\DS4Updater.exe");
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
+                    Process.Start("https://github.com/Jays2Kings/DS4Windows/releases/download/v1.4.32/DS4Updater.exe");
+                }
+            }
         }
 
         void NewVersion()

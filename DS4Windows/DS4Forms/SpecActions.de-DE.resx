@@ -811,7 +811,7 @@
     <value>Lade Profil</value>
   </data>
   <data name="cBActions.Items4" xml:space="preserve">
-    <value>Umschalttaste drücken</value>
+    <value>Drücke/Wechsle eine Taste</value>
   </data>
   <data name="cBActions.Items5" xml:space="preserve">
     <value>Von Bluetooth trennen</value>
@@ -1554,5 +1554,14 @@
   </data>
   <data name="lbName.Text" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="lbDTapDVR.Text" xml:space="preserve">
+    <value>Den Trigger 2-mal hintereinander drücken</value>
+  </data>
+  <data name="lbHoldDVR.Text" xml:space="preserve">
+    <value>Den Trigger halten</value>
+  </data>
+  <data name="lbTapDVR.Text" xml:space="preserve">
+    <value>Trigger kurz antippen</value>
   </data>
 </root>

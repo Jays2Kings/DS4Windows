@@ -3736,7 +3736,7 @@
     <value>К</value>
   </data>
   <data name="nUDMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 354</value>
+    <value>144, 365</value>
   </data>
   <data name="bnColor.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 138</value>
@@ -3768,6 +3768,9 @@
   </data>
   <data name="X360Label.Text" xml:space="preserve">
     <value>Контроллер X360</value>
+  </data>
+  <data name="KBMlabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>582, 151</value>
   </data>
   <data name="KBMlabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 17</value>
@@ -3808,16 +3811,18 @@
   <data name="gBExtras.Text" xml:space="preserve">
     <value>Дополнительно</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cBMouse.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="cBMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 292</value>
+    <value>11, 323</value>
   </data>
   <data name="cBMouse.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 55</value>
   </data>
   <data name="cBMouse.Text" xml:space="preserve">
-    <value>Изменить 
-чувствительность 
-мыши</value>
+    <value>Изменить чувствительность мыши</value>
   </data>
   <data name="cBLightbar.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 112</value>
@@ -3836,9 +3841,5 @@
   </data>
   <data name="lbRedV.Location" type="System.Drawing.Point, System.Drawing">
     <value>165, 156</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
 </root>

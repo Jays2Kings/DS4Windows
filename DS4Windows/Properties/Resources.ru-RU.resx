@@ -148,7 +148,7 @@
     <value>Невозможно записать в текущее местоположение. Скопировать настройки в AppData?</value>
   </data>
   <data name="Charged" xml:space="preserve">
-    <value>Заряжена</value>
+    <value>Заряжено</value>
   </data>
   <data name="Charging" xml:space="preserve">
     <value>Зарядка: *number*%</value>
@@ -427,100 +427,100 @@
     <value>Ост. лёгкий</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Остановка контроллеров DS4</value>
+    <value>Остановлена работа DS4Windows</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
-    <value>Остановка контроллеров X360</value>
+    <value>Остановка контроллеров DS4</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
-    <value>Остановить</value>
+    <value>Остановка контроллеров X360</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Ск-ж. вниз</value>
+    <value>Остановить</value>
   </data>
   <data name="SwipeDown" xml:space="preserve">
-    <value>Ск-ж. влево</value>
+    <value>Ск-ж. вниз</value>
   </data>
   <data name="SwipeLeft" xml:space="preserve">
-    <value>Ск-ж. вправо</value>
+    <value>Ск-ж. влево</value>
   </data>
   <data name="SwipeRight" xml:space="preserve">
-    <value>Проведите пальцем по тачпаду для смены профиля</value>
+    <value>Ск-ж. вправо</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Ск-ж. вверх</value>
+    <value>Проведите пальцем по тачпаду для смены профиля</value>
   </data>
   <data name="SwipeUp" xml:space="preserve">
-    <value>Коснитесь и удерживайте для перетаскивания, задержка с одним касанием</value>
+    <value>Ск-ж. вверх</value>
   </data>
   <data name="TapAndHold" xml:space="preserve">
-    <value>Тест. тяжёлого</value>
+    <value>Коснитесь и удерживайте для перетаскивания, задержка с одним касанием</value>
   </data>
   <data name="TestHText" xml:space="preserve">
-    <value>Тест. лёгкого</value>
+    <value>Тест. тяжёлого</value>
   </data>
   <data name="TestLText" xml:space="preserve">
     <value>Тест. лёгкого</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>Накл. влево</value>
+    <value>Накл. вниз</value>
   </data>
   <data name="TiltLeft" xml:space="preserve">
-    <value>Накл. вправо</value>
+    <value>Накл. влево</value>
   </data>
   <data name="TiltRight" xml:space="preserve">
-    <value>Накл. вверх</value>
+    <value>Накл. вправо</value>
   </data>
   <data name="TiltUp" xml:space="preserve">
-    <value>Движения тачпадом выключены</value>
+    <value>Накл. вверх</value>
   </data>
   <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Движения тачпадом включены</value>
+    <value>Движения тачпадом выключены</value>
   </data>
   <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>Повторное включение нажатием PS + Touchpad</value>
+    <value>Движения тачпадом включены</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Проведение двумя пальцами по тачпаду влево или вправо</value>
+    <value>Повторное включение нажатием PS + Touchpad</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>задайте новое имя</value>
+    <value>Проведение двумя пальцами по тачпаду влево или вправо</value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
-    <value>задайте имя профиля</value>
+    <value>задайте новое имя</value>
   </data>
   <data name="TypeProfileName" xml:space="preserve">
-    <value>Вверх</value>
+    <value>задайте имя профиля</value>
   </data>
   <data name="UpText" xml:space="preserve">
-    <value>Обновления программы не найдены!</value>
+    <value>Вверх</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>Используйте контроллер для изменения назначений</value>
+    <value>Обновления программы не найдены!</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
-    <value>Включен приоритетный режим</value>
+    <value>Используйте контроллер для изменения назначений</value>
   </data>
   <data name="UsingExclusive" xml:space="preserve">
-    <value>Для *number*-го контроллера задействован профиль "*Profile name*"</value>
+    <value>Включен приоритетный режим</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Включен совместный режим</value>
+    <value>Для *number*-го контроллера задействован профиль "*Profile name*"</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
-    <value>Это отключит возможность использования тачпада как мышь</value>
+    <value>Включен совместный режим</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Пожалуйста, введите допустимое имя</value>
+    <value>Это отключит возможность использования тачпада как мышь</value>
   </data>
   <data name="ValidName" xml:space="preserve">
-    <value>Задержка *number**ms*</value>
+    <value>Пожалуйста, введите допустимое имя</value>
   </data>
   <data name="WaitMS" xml:space="preserve">
-    <value>Удержание</value>
+    <value>Задержка *number**ms*</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
-    <value>Используйте более высокий порт, если у вас возник конфликт с другим эмулятором контроллера X360</value>
+    <value>Удержание</value>
   </data>
   <data name="XinputPorts" xml:space="preserve">
     <value>Используйте более высокий порт, если у вас возник конфликт с другим эмулятором контроллера X360</value>
@@ -530,5 +530,17 @@
   </data>
   <data name="TextDocs" xml:space="preserve">
     <value>Накл. вниз</value>
+  </data>
+  <data name="CannotMoveFiles" xml:space="preserve">
+    <value>Невозможно переместить файлы в новое место. Пожалуйста переименуйте папку с DS4Tool в "DS4Windows"</value>
+  </data>
+  <data name="ChargeController" xml:space="preserve">
+    <value>Зарядите батарею</value>
+  </data>
+  <data name="FallBackTo" xml:space="preserve">
+    <value>Вернуть на *button*</value>
+  </data>
+  <data name="InstallFailed" xml:space="preserve">
+    <value>Установка не удалась. Пожалуйста повторите</value>
   </data>
 </root>

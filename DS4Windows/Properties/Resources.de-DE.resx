@@ -151,7 +151,7 @@
     <value>Aufgeladen</value>
   </data>
   <data name="Charging" xml:space="preserve">
-    <value>Lade: *number*%</value>
+    <value>Controller *number*% ist am aufladen</value>
   </data>
   <data name="CheckBattery" xml:space="preserve">
     <value>Batterie prüfen</value>
@@ -166,7 +166,7 @@
     <value>Farbe</value>
   </data>
   <data name="ColorByBattery" xml:space="preserve">
-    <value>Farbe bei % Batterie</value>
+    <value>Farbe wird nach der Akkulaufzeit eingestellt</value>
   </data>
   <data name="Connecting" xml:space="preserve">
     <value>Verbinde ...</value>
@@ -199,7 +199,7 @@
     <value>Profil löschen?</value>
   </data>
   <data name="DimByBattery" xml:space="preserve">
-    <value>Bei % Batterie dimmen.</value>
+    <value>Dimmen, wenn der Akku weniger als % hat.</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
     <value>Schalte X360 Eingabemethode aus und benutze nur DS4's systemeigene Eingabemethode. "Verstecke DS4 Controller" muss bei Kabelverbindung deaktiviert sein.</value>
@@ -325,7 +325,7 @@
     <value>Erstelle ein neues Profil</value>
   </data>
   <data name="NA" xml:space="preserve">
-    <value>Nicht angegeben</value>
+    <value>N/A</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>Neu</value>
@@ -334,7 +334,7 @@
     <value>Es wurde kein Makro aufgezeichnet.</value>
   </data>
   <data name="noneProfile" xml:space="preserve">
-    <value>(leer)</value>
+    <value>(nichts)</value>
   </data>
   <data name="NoneText" xml:space="preserve">
     <value>leer</value>
@@ -355,7 +355,7 @@
     <value>Bitte ScpDrivers.exe starten</value>
   </data>
   <data name="OtherFileLocation" xml:space="preserve">
-    <value>, andere Ortsdateien werden gelöscht</value>
+    <value>, Dateien an anderen Speicherorten werden gelöscht</value>
   </data>
   <data name="PleaseDownloadUpdater" xml:space="preserve">
     <value>Lade bitte den Updater herunter und kopiere ihn dann ins Programmverzeichnis. Suche anschließend erneut nach einer Aktualisierung.</value>
@@ -421,114 +421,123 @@
     <value>Schritt 1: Installiere den DS4 Treiber</value>
   </data>
   <data name="StopHText" xml:space="preserve">
-    <value>Starke stoppen</value>
+    <value>starke stoppen</value>
   </data>
   <data name="StopLText" xml:space="preserve">
-    <value>Leichte stoppen</value>
+    <value>schwache stoppen</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Beende DS4 Controller</value>
+    <value>DS4Windows beendet</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
-    <value>Beende X360 Controller</value>
+    <value>Beende DS4 Controller</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
-    <value>Stoppen</value>
+    <value>Beende X360 Controller</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>nach unten streichen</value>
+    <value>Stoppen</value>
   </data>
   <data name="SwipeDown" xml:space="preserve">
-    <value>nach links streichen</value>
+    <value>nach unten streichen</value>
   </data>
   <data name="SwipeLeft" xml:space="preserve">
-    <value>nach rechts streichen</value>
+    <value>nach links streichen</value>
   </data>
   <data name="SwipeRight" xml:space="preserve">
-    <value>Streiche über das Touchpad, um das Profil zu wechseln.</value>
+    <value>nach rechts streichen</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>nach oben streichen</value>
+    <value>Streiche über das Touchpad, um das Profil zu wechseln.</value>
   </data>
   <data name="SwipeUp" xml:space="preserve">
-    <value>Tippe und halte zum Ziehen - leichte Verzögerung bei einzelnen Karteireitern.</value>
+    <value>nach oben streichen</value>
   </data>
   <data name="TapAndHold" xml:space="preserve">
-    <value>Starke testen</value>
+    <value>Tippe und halte zum Ziehen - leichte Verzögerung bei einzelnen tips</value>
   </data>
   <data name="TestHText" xml:space="preserve">
-    <value>Leichte testen</value>
+    <value>starke testen</value>
   </data>
   <data name="TestLText" xml:space="preserve">
-    <value>leicht testen</value>
+    <value>schwache testen</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>Neigung nach Links</value>
+    <value>Neigung nach Unten</value>
   </data>
   <data name="TiltLeft" xml:space="preserve">
-    <value>Neigung nach Rechts</value>
+    <value>Neigung nach Links</value>
   </data>
   <data name="TiltRight" xml:space="preserve">
-    <value>Neigung nach Oben</value>
+    <value>Neigung nach Rechts</value>
   </data>
   <data name="TiltUp" xml:space="preserve">
-    <value>Touchpad Bewegung ist jetzt Aus</value>
+    <value>Neigung nach Oben</value>
   </data>
   <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Touchpad Bewegung ist jetzt An</value>
+    <value>Touchpad Bewegung ist jetzt Aus</value>
   </data>
   <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>Zum Reaktivieren, drücke PS + Touchpad.</value>
+    <value>Touchpad Bewegung ist jetzt An</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Streichgeste mit 2 Fingern nach links oder rechts</value>
+    <value>Zum Reaktivieren, drücke PS + Touchpad.</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>Neuen Namen hier eingeben</value>
+    <value>Streichgeste mit 2 Fingern nach links oder rechts</value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
-    <value>Profilnamen hier eingeben</value>
+    <value>Neuen Namen hier eingeben</value>
   </data>
   <data name="TypeProfileName" xml:space="preserve">
-    <value>Hoch</value>
+    <value>Profilnamen hier eingeben</value>
   </data>
   <data name="UpText" xml:space="preserve">
-    <value>Du befindest dich auf dem neuesten Stand.</value>
+    <value>Hoch</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>Du kannst auch den Controller verwenden, um die Bedienung zu ändern.</value>
+    <value>Du befindest dich auf dem neuesten Stand.</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
-    <value>Benutze exklusiven Modus</value>
+    <value>Du kannst auch den Controller verwenden, um die Bedienung zu ändern.</value>
   </data>
   <data name="UsingExclusive" xml:space="preserve">
-    <value>Controller *number* benutzt jetzt Profil "*Profile name*"</value>
+    <value>Benutze exklusiven Modus</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Benutze geteilten Modus</value>
+    <value>Controller *number* benutzt jetzt Profil "*Profile name*"</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
-    <value>Dies deaktiviert, dass das Touchpad als Maus benutzt werden kann.</value>
+    <value>Benutze geteilten Modus</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Bitte gültigen Namen eingeben</value>
+    <value>Dies deaktiviert, dass das Touchpad als Maus benutzt werden kann.</value>
   </data>
   <data name="ValidName" xml:space="preserve">
-    <value>Warte *number**ms*</value>
+    <value>Bitte gültigen Namen eingeben</value>
   </data>
   <data name="WaitMS" xml:space="preserve">
-    <value>Wird gehalten</value>
+    <value>Warte *number*ms</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
-    <value>Verwende höher liegende Ports, wenn Konflikte mit anderen X360 Simulationsprogrammen, wie SCP's Serviceprogramm, auftreten.</value>
+    <value>Wird gehalten</value>
   </data>
   <data name="XinputPorts" xml:space="preserve">
-    <value>Verwende höher liegende Ports, wenn Konflikte mit anderen X360 Emulationsprogrammen, wie SCP's tool, auftreten.</value>
+    <value>Verwende höher liegende Ports, wenn Konflikte mit anderen X360 Simulationsprogrammen, wie SCP's Serviceprogramm, auftreten.</value>
   </data>
   <data name="StoppedDS4Tool" xml:space="preserve">
     <value>DS4Windows beendet</value>
   </data>
   <data name="TextDocs" xml:space="preserve">
     <value>Neigung nach Unten</value>
+  </data>
+  <data name="ChargeController" xml:space="preserve">
+    <value>Die Batterie aufladen</value>
+  </data>
+  <data name="InstallFailed" xml:space="preserve">
+    <value>Installation fehlgeschlagen, bitte erneut versuchen</value>
+  </data>
+  <data name="XMLFiles" xml:space="preserve">
+    <value>XML Dateien (*.xml)</value>
   </data>
 </root>

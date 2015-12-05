@@ -57,6 +57,8 @@
             this.lbChineseTT = new System.Windows.Forms.Label();
             this.lbArabic = new System.Windows.Forms.Label();
             this.lbArabicT = new System.Windows.Forms.Label();
+            this.lbHebrew = new System.Windows.Forms.Label();
+            this.lbHebrewT = new System.Windows.Forms.Label();
             this.lbTranslators = new System.Windows.Forms.Label();
             this.linkSourceCode = new System.Windows.Forms.LinkLabel();
             this.lbLinkText = new System.Windows.Forms.Label();
@@ -166,6 +168,8 @@
             this.tLPTranslators.Controls.Add(this.lbChineseTT, 1, 6);
             this.tLPTranslators.Controls.Add(this.lbArabic, 0, 7);
             this.tLPTranslators.Controls.Add(this.lbArabicT, 1, 7);
+            this.tLPTranslators.Controls.Add(this.lbHebrew, 0, 8);
+            this.tLPTranslators.Controls.Add(this.lbHebrewT, 1, 8);
             this.tLPTranslators.Name = "tLPTranslators";
             // 
             // lbGerman
@@ -248,6 +252,16 @@
             resources.ApplyResources(this.lbArabicT, "lbArabicT");
             this.lbArabicT.Name = "lbArabicT";
             // 
+            // lbHebrew
+            // 
+            resources.ApplyResources(this.lbHebrew, "lbHebrew");
+            this.lbHebrew.Name = "lbHebrew";
+            // 
+            // lbHebrewT
+            // 
+            resources.ApplyResources(this.lbHebrewT, "lbHebrewT");
+            this.lbHebrewT.Name = "lbHebrewT";
+            // 
             // lbTranslators
             // 
             resources.ApplyResources(this.lbTranslators, "lbTranslators");
@@ -320,5 +334,7 @@
         private System.Windows.Forms.Label lbChineseTT;
         private System.Windows.Forms.Label lbArabic;
         private System.Windows.Forms.Label lbArabicT;
+        private System.Windows.Forms.Label lbHebrew;
+        private System.Windows.Forms.Label lbHebrewT;
     }
 }

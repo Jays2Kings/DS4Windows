@@ -6366,10 +6366,10 @@
     <value>Podłącz kontroler DS4 na wyłączność (eksperymentalne)</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1041, 94</value>
+    <value>1085, 94</value>
   </data>
   <data name="bnLight3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 28</value>
+    <value>33, 28</value>
   </data>
   <data name="pBStatus1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6428,10 +6428,10 @@
 </value>
   </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>477, 26</value>
+    <value>504, 26</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>973, 94</value>
+    <value>1017, 94</value>
   </data>
   <data name="bnEditC3.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 28</value>
@@ -6440,7 +6440,7 @@
     <value>Edytuj</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>973, 130</value>
+    <value>1017, 130</value>
   </data>
   <data name="bnEditC4.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 28</value>
@@ -6449,10 +6449,10 @@
     <value>Edytuj</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>827, 23</value>
+    <value>871, 23</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>973, 58</value>
+    <value>1017, 58</value>
   </data>
   <data name="bnEditC2.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 28</value>
@@ -6461,13 +6461,13 @@
     <value>Edytuj</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>827, 59</value>
+    <value>871, 59</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>827, 95</value>
+    <value>871, 95</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>973, 22</value>
+    <value>1017, 22</value>
   </data>
   <data name="bnEditC1.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 28</value>
@@ -6476,10 +6476,10 @@
     <value>Edytuj</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>827, 131</value>
+    <value>871, 131</value>
   </data>
   <data name="lbSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>838, 0</value>
+    <value>882, 0</value>
   </data>
   <data name="lbSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 18</value>
@@ -6488,25 +6488,25 @@
     <value>Wybrany profil</value>
   </data>
   <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>469, 0</value>
+    <value>495, 0</value>
   </data>
   <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>687, 0</value>
+    <value>726, 0</value>
   </data>
   <data name="lbBattery.Text" xml:space="preserve">
     <value>Bateria</value>
   </data>
   <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>695, 27</value>
+    <value>734, 27</value>
   </data>
   <data name="lbBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>695, 63</value>
+    <value>734, 63</value>
   </data>
   <data name="lbBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>695, 99</value>
+    <value>734, 99</value>
   </data>
   <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>695, 135</value>
+    <value>734, 135</value>
   </data>
   <data name="pBStatus2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6565,7 +6565,7 @@
 </value>
   </data>
   <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>477, 62</value>
+    <value>504, 62</value>
   </data>
   <data name="pBStatus3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6624,7 +6624,7 @@
 </value>
   </data>
   <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>477, 98</value>
+    <value>504, 98</value>
   </data>
   <data name="pBStatus4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6683,25 +6683,25 @@
 </value>
   </data>
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>477, 134</value>
+    <value>504, 134</value>
   </data>
   <data name="bnLight1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1041, 22</value>
+    <value>1085, 22</value>
   </data>
   <data name="bnLight1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 28</value>
+    <value>33, 28</value>
   </data>
   <data name="bnLight2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1041, 58</value>
+    <value>1085, 58</value>
   </data>
   <data name="bnLight2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 28</value>
+    <value>33, 28</value>
   </data>
   <data name="bnLight4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1041, 130</value>
+    <value>1085, 130</value>
   </data>
   <data name="bnLight4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 28</value>
+    <value>33, 28</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
     <value>Brak podłączonych kontrolerów (maks. 4)</value>
@@ -7089,9 +7089,5 @@
   </data>
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Użyj własnego koloru</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
   </data>
 </root>

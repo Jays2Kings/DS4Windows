@@ -121,7 +121,7 @@
     <value>Für die, die eine Standardinstallation bevorzugen. Einstellungen werden unter %appdata%/ds4tool gespeichert.</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Für die, die ein portables Programm bevorzugen. Beachte: Diese Option funktioniert nicht in einem Administratorverzeichnis ohne Benutzerkontensteuerung.</value>
+    <value>Für die, die ein portables Programm bevorzugen. Beachte: Diese Option funktioniert nicht in einem Administratorverzeichnis ohne entsprechende Rechte</value>
   </data>
   <data name="bnPrgmFolder.Text" xml:space="preserve">
     <value>Programmverzeichnis</value>

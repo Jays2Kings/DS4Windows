@@ -194,4 +194,7 @@
   <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
     <value>Обзор других программ...</value>
   </data>
+  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Добавить Папку</value>
+  </data>
 </root>

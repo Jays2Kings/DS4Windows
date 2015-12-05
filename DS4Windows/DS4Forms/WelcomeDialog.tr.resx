@@ -117,36 +117,137 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="$this.Text" xml:space="preserve">
-    <value>DS4Windows'a hoşgeldiniz</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bnStep1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 10</value>
   </data>
-  <data name="bnFinish.Text" xml:space="preserve">
-    <value>Bitir</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bnStep1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="bnStep1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 29</value>
   </data>
   <data name="bnStep1.Text" xml:space="preserve">
     <value>Adım 1: DS4 Sürücüsünü Kur</value>
   </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 79</value>
+  </data>
+  <data name="button2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 29</value>
+  </data>
   <data name="button2.Text" xml:space="preserve">
     <value>Adım 2: Eğer Windows 7 ve altı ise, 360 Sürücüsünü kur</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Eğer bu pencere kurduktan sonra yine çıkarsa, bilgisayarınızı yeniden başlatmanız veya Windows'un sürücüyü farketmesi için 10-15 dk beklemeniz gerekebilir</value>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 254</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Eğer bu bilgisayarda daha önce 360 Kontrol Cihazı kullandıysanız, bu adımı geçebilirsiniz.</value>
+  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 165</value>
+  </data>
+  <data name="labelBluetooth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 201</value>
+  </data>
+  <data name="labelBluetooth.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="labelBluetooth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 49</value>
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>Bluetooth'u kurmak için(Opsiyonel): PS ve Share düğmesine 3 saniye boyunca basılı tutun. Işık Göstergesi ikili yanıp sönemeye başlayacak</value>
   </data>
-  <data name="labelBluetooth2.Text" xml:space="preserve">
-    <value>Yanıp Sönerken Bluetooth ayarlarınıza gidin ve "Kablasuz Kontrol Cihazı" na bağlanın. Eğer pin sorarsa "0000" yazın. Eşleşirse, hazırsın. Bak keyfine!</value>
+  <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 140</value>
+  </data>
+  <data name="labelUSB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="labelUSB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>391, 49</value>
   </data>
   <data name="labelUSB.Text" xml:space="preserve">
     <value>Adım 3: DualShock 4 Kontrol Cihazına bağlanmak
 Kablo bağlantısı için cihazı bilgisayara usb portundan bağlayın, ek bir işlem yoktur.</value>
   </data>
+  <data name="labelBluetooth2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 422</value>
+  </data>
+  <data name="labelBluetooth2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="labelBluetooth2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 80</value>
+  </data>
+  <data name="labelBluetooth2.Text" xml:space="preserve">
+    <value>Yanıp Sönerken Bluetooth ayarlarınıza gidin ve "Kablasuz Kontrol Cihazı" na bağlanın. Eğer pin sorarsa "0000" yazın. Eşleşirse, hazırsın. Bak keyfine!</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 40</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>392, 40</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Eğer bu pencere kurduktan sonra yine çıkarsa, bilgisayarınızı yeniden başlatmanız veya Windows'un sürücüyü farketmesi için 10-15 dk beklemeniz gerekebilir</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 110</value>
+  </data>
+  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>394, 28</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Eğer bu bilgisayarda daha önce 360 Kontrol Cihazı kullandıysanız, bu adımı geçebilirsiniz.</value>
+  </data>
+  <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 500</value>
+  </data>
+  <data name="bnFinish.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="bnFinish.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 29</value>
+  </data>
+  <data name="bnFinish.Text" xml:space="preserve">
+    <value>Bitir</value>
+  </data>
+  <data name="linkBluetoothSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>211, 422</value>
+  </data>
+  <data name="linkBluetoothSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="linkBluetoothSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 17</value>
+  </data>
   <data name="linkBluetoothSettings.Text" xml:space="preserve">
     <value>Bluetooth Ayarları
 </value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>120, 120</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>394, 535</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>DS4Windows'a hoşgeldiniz</value>
   </data>
 </root>

@@ -695,4 +695,10 @@
   <data name="resetToolStripMenuItem.Text" xml:space="preserve">
     <value>Resetuj</value>
   </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Czułość</value>
+  </data>
+  <data name="lbShift.Text" xml:space="preserve">
+    <value>Shift:</value>
+  </data>
 </root>

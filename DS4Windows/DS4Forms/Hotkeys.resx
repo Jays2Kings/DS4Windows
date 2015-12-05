@@ -121,9 +121,9 @@
   <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
     <value>748, 474</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lbArabicT.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
   </data>
   <data name="&gt;&gt;tLPTranslators.Name" xml:space="preserve">
     <value>tLPTranslators</value>
@@ -131,6 +131,7 @@
   <data name="&gt;&gt;lbArabic.Name" xml:space="preserve">
     <value>lbArabic</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lbRussian.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
@@ -188,8 +189,7 @@
   <data name="&gt;&gt;lbChineseST.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lbTurkish.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lbChineseT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;lbAbout.Name" xml:space="preserve">
@@ -201,8 +201,8 @@
   <data name="&gt;&gt;lbChineseTT.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
   </data>
-  <data name="linkSourceCode.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="linkInhexSTER.Text" xml:space="preserve">
+    <value>InhexSTER (Starter of DS4Tool)</value>
   </data>
   <data name="&gt;&gt;lbAbout.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -210,11 +210,11 @@
   <data name="lbRussian.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="tLPTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>740, 277</value>
-  </data>
   <data name="&gt;&gt;linkInhexSTER.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkDonate.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;tCAbout.Parent" xml:space="preserve">
     <value>$this</value>
@@ -222,8 +222,11 @@
   <data name="lbChineseT.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
-  <data name="&gt;&gt;lbGermanT.Name" xml:space="preserve">
-    <value>lbGermanT</value>
+  <data name="&gt;&gt;lbHebrew.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="lbRomanianT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="&gt;&gt;lbRussian.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -234,19 +237,19 @@
   <data name="&gt;&gt;lbHotkeys.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tPCredits.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="linkInhexSTER.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 17</value>
   </data>
   <data name="tPHotkeys.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
+  <data name="lbHebrewT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 17</value>
+  </data>
   <data name="linkElectro.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 58</value>
   </data>
-  <data name="&gt;&gt;lbArabic.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lbChineseT.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
@@ -254,9 +257,6 @@
   </data>
   <data name="&gt;&gt;lbChineseS.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbGerman.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbRussianT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -267,8 +267,11 @@
   <data name="&gt;&gt;linkJays2Kings.Name" xml:space="preserve">
     <value>linkJays2Kings</value>
   </data>
-  <data name="lbRomanianT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>573, 27</value>
+  <data name="tLPTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>740, 277</value>
+  </data>
+  <data name="lbHebrew.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
   </data>
   <data name="lbChineseT.Text" xml:space="preserve">
     <value>Chinese (Traditional)</value>
@@ -276,11 +279,14 @@
   <data name="lbAbout.Text" xml:space="preserve">
     <value>DS4Windows - Jays2Kings Build (Version</value>
   </data>
+  <data name="&gt;&gt;lbChineseS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;lbRomanianT.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="lbRussianT.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="linkJhebbel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="lbItalian.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -291,8 +297,11 @@
   <data name="lbLinkText.Text" xml:space="preserve">
     <value>Links displayed here</value>
   </data>
-  <data name="lbTurkish.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+  <data name="linkSourceCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbTurkish.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;lbChineseST.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
@@ -300,11 +309,11 @@
   <data name="&gt;&gt;lbTranslators.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="lbTranslators.Text" xml:space="preserve">
-    <value>Translators:</value>
+  <data name="lbArabic.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 17</value>
   </data>
-  <data name="&gt;&gt;lbChineseST.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="lbChineseST.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="&gt;&gt;lbItalian.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
@@ -350,11 +359,17 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;tCAbout.Name" xml:space="preserve">
     <value>tCAbout</value>
   </data>
+  <data name="linkDonate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>625, 6</value>
+  </data>
   <data name="linkJhebbel.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
   <data name="lbChineseT.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;lbHebrew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbRomanian.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 17</value>
@@ -362,8 +377,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbRussian.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="lbRomanianT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 81</value>
+  <data name="lbTranslators.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <data name="tPHotkeys.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -392,9 +407,6 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="linkJays2Kings.Text" xml:space="preserve">
     <value>Jays2Kings</value>
   </data>
-  <data name="linkSourceCode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
   <data name="lbRussianT.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
@@ -422,8 +434,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbItalian.Name" xml:space="preserve">
     <value>lbItalian</value>
   </data>
-  <data name="lbTranslators.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+  <data name="lbHebrewT.Text" xml:space="preserve">
+    <value>avi12</value>
   </data>
   <data name="&gt;&gt;lbChineseT.Name" xml:space="preserve">
     <value>lbChineseT</value>
@@ -434,8 +446,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbLinkText.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 17</value>
   </data>
-  <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>748, 474</value>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;lbChineseTT.ZOrder" xml:space="preserve">
     <value>13</value>
@@ -443,23 +455,26 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbTranslators.Parent" xml:space="preserve">
     <value>tPCredits</value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="tLPTranslators.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
   </data>
-  <data name="&gt;&gt;tPCredits.Parent" xml:space="preserve">
-    <value>tCAbout</value>
+  <data name="&gt;&gt;linkJays2Kings.Parent" xml:space="preserve">
+    <value>tPCredits</value>
   </data>
   <data name="tLPTranslators.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 176</value>
   </data>
-  <data name="linkSourceCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="lbGerman.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="lbArabic.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
   <data name="lLChangelog.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="tPHotkeys.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
   </data>
   <data name="linkInhexSTER.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -479,6 +494,9 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="linkElectro.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
+  <data name="lbChineseTT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lbItalianT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -490,9 +508,6 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="lbItalian.Text" xml:space="preserve">
     <value>Italian/Italiano</value>
-  </data>
-  <data name="linkInhexSTER.Text" xml:space="preserve">
-    <value>InhexSTER (Starter of DS4Tool)</value>
   </data>
   <data name="&gt;&gt;linkSourceCode.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -515,9 +530,6 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbAbout.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>756, 530</value>
-  </data>
   <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>756, 503</value>
   </data>
@@ -536,14 +548,14 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="linkDonate.Text" xml:space="preserve">
     <value>Donate via Paypal</value>
   </data>
-  <data name="tPHotkeys.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
+  <data name="linkDonate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;lbRussian.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
   </data>
-  <data name="&gt;&gt;lbHotkeys.Name" xml:space="preserve">
-    <value>lbHotkeys</value>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>670, 516</value>
   </data>
   <data name="lbGermanT.Size" type="System.Drawing.Size, System.Drawing">
     <value>573, 27</value>
@@ -560,11 +572,17 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="linkElectro.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="lbGerman.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;lbHebrewT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lbLinkText.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <data name="&gt;&gt;tPCredits.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="&gt;&gt;lbRomanian.Name" xml:space="preserve">
+    <value>lbRomanian</value>
   </data>
   <data name="lbGermanT.Location" type="System.Drawing.Point, System.Drawing">
     <value>163, 0</value>
@@ -572,8 +590,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbAbout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="&gt;&gt;lbRomanianT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
+  <data name="lbArabicT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="&gt;&gt;lbLinkText.Name" xml:space="preserve">
     <value>lbLinkText</value>
@@ -584,11 +602,14 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbTranslators.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="linkJhebbel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="lbHebrewT.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
+  <data name="&gt;&gt;lbHebrewT.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;lbHebrew.Parent" xml:space="preserve">
+    <value>tLPTranslators</value>
   </data>
   <data name="&gt;&gt;lbRussian.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -596,20 +617,14 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbArabicT.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 17</value>
   </data>
-  <data name="&gt;&gt;lbHotkeys.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="linkInhexSTER.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="tLPTranslators.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
+  <data name="lbHebrew.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbLinkText.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;tCAbout.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="lbHotkeys.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 4</value>
@@ -662,8 +677,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbItalianT.Size" type="System.Drawing.Size, System.Drawing">
     <value>573, 27</value>
   </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>670, 516</value>
+  <data name="lbRomanianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 27</value>
   </data>
   <data name="&gt;&gt;lbRussianT.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -683,20 +698,26 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="linkElectro.Text" xml:space="preserve">
     <value>electrobrains (Branched off of)</value>
   </data>
+  <data name="&gt;&gt;lbHotkeys.Name" xml:space="preserve">
+    <value>lbHotkeys</value>
+  </data>
+  <data name="lbChineseTT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
   <data name="label2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="lbArabic.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lbHotkeys.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
   <data name="linkJhebbel.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 85</value>
   </data>
   <data name="lbChineseST.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 17</value>
+  </data>
+  <data name="lbHebrew.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lbTurkish.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -705,7 +726,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>Lütfi Tekin</value>
   </data>
   <data name="tLPTranslators.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbGerman" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbGermanT" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbItalianT" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbItalian" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRussian" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRussianT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRomanian" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRomanianT" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTurkish" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseS" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseST" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseT" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseTT" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbArabic" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbArabicT" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbGerman" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbGermanT" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbItalianT" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbItalian" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRussian" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRussianT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRomanian" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRomanianT" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTurkish" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseS" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseST" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseT" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseTT" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbArabic" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbArabicT" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbHebrew" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbHebrewT" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tCAbout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -716,20 +737,23 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbChineseST.Name" xml:space="preserve">
     <value>lbChineseST</value>
   </data>
-  <data name="&gt;&gt;lbItalian.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lbHebrewT.Parent" xml:space="preserve">
+    <value>tLPTranslators</value>
   </data>
   <data name="lbTurkish.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 108</value>
   </data>
+  <data name="&gt;&gt;lbAbout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="lLChangelog.Text" xml:space="preserve">
     <value>Changelog</value>
   </data>
-  <data name="lbChineseT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="tLPTranslators.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
   </data>
-  <data name="&gt;&gt;lbChineseT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
+  <data name="lbItalian.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <data name="&gt;&gt;tPHotkeys.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -740,14 +764,20 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbTranslators.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;linkInhexSTER.Name" xml:space="preserve">
+    <value>linkInhexSTER</value>
+  </data>
+  <data name="lbItalian.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
   <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>719, 559</value>
   </data>
   <data name="lbItalianT.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="lbArabicT.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+  <data name="lbGerman.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 17</value>
   </data>
   <data name="lbRomanian.Text" xml:space="preserve">
     <value>Romanian</value>
@@ -761,20 +791,23 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="linkDonate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>625, 6</value>
+  <data name="lbHebrew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 216</value>
+  </data>
+  <data name="lbHebrew.Text" xml:space="preserve">
+    <value>Hebrew</value>
   </data>
   <data name="&gt;&gt;linkDonate.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;lbRomanian.Name" xml:space="preserve">
-    <value>lbRomanian</value>
-  </data>
-  <data name="&gt;&gt;tCAbout.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tPCredits.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="tLPTranslators.RowCount" type="System.Int32, mscorlib">
     <value>10</value>
+  </data>
+  <data name="lbArabicT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 189</value>
   </data>
   <data name="&gt;&gt;tPCredits.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -782,8 +815,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbGermanT.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="lbItalian.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="&gt;&gt;tCAbout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tCAbout.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -803,11 +836,17 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbArabic.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
+  <data name="&gt;&gt;lbHebrew.Name" xml:space="preserve">
+    <value>lbHebrew</value>
+  </data>
   <data name="&gt;&gt;lbItalian.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="lbRussian.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="lbArabicT.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="tCAbout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -818,8 +857,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbGermanT.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lbLinkText.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Hotkeys</value>
   </data>
   <data name="&gt;&gt;lLChangelog.Parent" xml:space="preserve">
     <value>$this</value>
@@ -845,8 +884,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbArabicT.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
   </data>
-  <data name="tLPTranslators.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+  <data name="lbTranslators.Text" xml:space="preserve">
+    <value>Translators:</value>
   </data>
   <data name="lbGermanT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -860,9 +899,6 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbRussianT.Size" type="System.Drawing.Size, System.Drawing">
     <value>573, 27</value>
   </data>
-  <data name="linkJhebbel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="lbRussian.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 54</value>
   </data>
@@ -872,26 +908,29 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbGerman.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 0</value>
   </data>
-  <data name="&gt;&gt;lbGermanT.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="lbHotkeys.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>573, 27</value>
   </data>
-  <data name="linkDonate.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbTranslators.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;lbChineseST.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
   <data name="lbChineseS.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;lbHebrewT.Name" xml:space="preserve">
+    <value>lbHebrewT</value>
   </data>
   <data name="lbLinkText.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
   </data>
   <data name="lbRomanian.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 81</value>
+  </data>
+  <data name="&gt;&gt;lbArabic.Parent" xml:space="preserve">
+    <value>tLPTranslators</value>
   </data>
   <data name="linkJays2Kings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -905,6 +944,12 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;tLPTranslators.Type" xml:space="preserve">
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="lbHebrew.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbHebrewT.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="tPCredits.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -913,9 +958,6 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="&gt;&gt;lLChangelog.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Hotkeys</value>
   </data>
   <data name="&gt;&gt;lbRomanian.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
@@ -928,6 +970,9 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="tPCredits.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
+  </data>
+  <data name="lbChineseT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 162</value>
   </data>
   <data name="&gt;&gt;lbItalianT.Name" xml:space="preserve">
     <value>lbItalianT</value>
@@ -947,8 +992,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbChineseTT.Name" xml:space="preserve">
     <value>lbChineseTT</value>
   </data>
-  <data name="lbGerman.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 17</value>
+  <data name="&gt;&gt;tCAbout.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="lbGerman.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -956,14 +1001,17 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbRomanianT.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="lbRomanianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 81</value>
+  </data>
   <data name="linkJays2Kings.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <data name="lbRomanianT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="&gt;&gt;lbGerman.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;linkInhexSTER.Name" xml:space="preserve">
-    <value>linkInhexSTER</value>
+  <data name="&gt;&gt;linkElectro.Parent" xml:space="preserve">
+    <value>tPCredits</value>
   </data>
   <data name="linkElectro.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 17</value>
@@ -977,7 +1025,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbGerman.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lbArabicT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="linkJhebbel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="lbArabic.Text" xml:space="preserve">
@@ -986,29 +1034,29 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="linkJhebbel.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 17</value>
   </data>
+  <data name="&gt;&gt;lbChineseT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="tPHotkeys.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;linkJhebbel.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;linkDonate.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="lbTranslators.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="lbRussian.Text" xml:space="preserve">
     <value>Russian/ру́сский язы́к</value>
   </data>
-  <data name="&gt;&gt;lbChineseS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lbRomanianT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="lbTranslators.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;lbGermanT.Name" xml:space="preserve">
+    <value>lbGermanT</value>
   </data>
   <data name="linkJays2Kings.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 4</value>
-  </data>
-  <data name="lbRomanianT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;lbRussianT.Name" xml:space="preserve">
     <value>lbRussianT</value>
@@ -1022,8 +1070,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbTranslators.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="&gt;&gt;lbChineseT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lbGermanT.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="lbItalianT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1037,6 +1085,9 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;linkSourceCode.Name" xml:space="preserve">
     <value>linkSourceCode</value>
   </data>
+  <data name="lbRussianT.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <data name="linkSourceCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 4</value>
   </data>
@@ -1049,11 +1100,11 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbArabicT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lbChineseST.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>756, 530</value>
   </data>
-  <data name="&gt;&gt;lbTurkish.Name" xml:space="preserve">
-    <value>lbTurkish</value>
+  <data name="&gt;&gt;tPCredits.Parent" xml:space="preserve">
+    <value>tCAbout</value>
   </data>
   <data name="lbRomanian.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1061,11 +1112,14 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbItalian.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 27</value>
   </data>
-  <data name="lbArabic.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 17</value>
-  </data>
-  <data name="lbChineseTT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lbHebrewT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="lbHebrewT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="linkSourceCode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="&gt;&gt;tPHotkeys.Name" xml:space="preserve">
     <value>tPHotkeys</value>
@@ -1073,26 +1127,29 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbRomanian.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="linkSourceCode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="linkInhexSTER.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 31</value>
   </data>
-  <data name="lbChineseT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 162</value>
+  <data name="lbHotkeys.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="tPHotkeys.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lbHotkeys.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
   <data name="&gt;&gt;lbTurkish.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
   </data>
-  <data name="linkSourceCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 17</value>
+  <data name="&gt;&gt;lbItalian.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbChineseST.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
+  </data>
+  <data name="&gt;&gt;lbTurkish.Name" xml:space="preserve">
+    <value>lbTurkish</value>
   </data>
   <data name="linkJays2Kings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1109,11 +1166,14 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbLinkText.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="lbHebrewT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 216</value>
+  </data>
   <data name="&gt;&gt;lbChineseS.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="lbHotkeys.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>748, 474</value>
   </data>
   <data name="linkSourceCode.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1127,6 +1187,9 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbItalianT.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="lbHebrew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 17</value>
+  </data>
   <data name="lbTurkish.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
@@ -1136,11 +1199,14 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbAbout.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="lbArabicT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 189</value>
+  <data name="lbTranslators.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
-  <data name="lbItalian.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="lbArabicT.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="linkSourceCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 17</value>
   </data>
   <data name="&gt;&gt;lbHotkeys.Parent" xml:space="preserve">
     <value>tPHotkeys</value>
@@ -1157,8 +1223,8 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;lbRomanian.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;lbAbout.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lbRomanianT.Parent" xml:space="preserve">
+    <value>tLPTranslators</value>
   </data>
   <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 27</value>
@@ -1178,19 +1244,19 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="lbRomanianT.Text" xml:space="preserve">
     <value>Vlad Giurgiu, Anonim</value>
   </data>
-  <data name="&gt;&gt;linkJays2Kings.Parent" xml:space="preserve">
-    <value>tPCredits</value>
-  </data>
-  <data name="lbChineseTT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lbHotkeys.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="&gt;&gt;linkElectro.Parent" xml:space="preserve">
-    <value>tPCredits</value>
+  <data name="lbTurkish.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;lbHotkeys.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>pt-BR</value>
+    <value>vi</value>
   </metadata>
 </root>

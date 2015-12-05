@@ -162,4 +162,7 @@
   <data name="pBProfilesTip.Text" xml:space="preserve">
     <value>在此選擇設定檔</value>
   </data>
+  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>新增資料夾程式</value>
+  </data>
 </root>

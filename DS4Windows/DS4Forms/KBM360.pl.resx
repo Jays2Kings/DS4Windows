@@ -3652,8 +3652,7 @@
     <value>96, 34</value>
   </data>
   <data name="lbFlashRate.Text" xml:space="preserve">
-    <value>Częstotliwość 
-pulsowania</value>
+    <value>Częstotliwość pulsowania</value>
   </data>
   <data name="lbRumble.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 17</value>
@@ -3668,7 +3667,7 @@ pulsowania</value>
     <value>57, 29</value>
   </data>
   <data name="bnTest.Text" xml:space="preserve">
-    <value>Testy</value>
+    <value>Test</value>
   </data>
   <data name="nUDMouse.Location" type="System.Drawing.Point, System.Drawing">
     <value>105, 342</value>
@@ -3716,9 +3715,7 @@ pulsowania</value>
     <value>81, 55</value>
   </data>
   <data name="cBMouse.Text" xml:space="preserve">
-    <value>Zmień 
-czułość 
-myszy</value>
+    <value>Zmień czułość myszy</value>
   </data>
   <data name="cBLightbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 21</value>
@@ -3728,5 +3725,32 @@ myszy</value>
   </data>
   <data name="gBExtras.Text" xml:space="preserve">
     <value>Dodatki</value>
+  </data>
+  <data name="btnGuide.Text" xml:space="preserve">
+    <value>Przewodnik</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbHeavy.Text" xml:space="preserve">
+    <value>Silny</value>
+  </data>
+  <data name="lbLight.Text" xml:space="preserve">
+    <value>Słaby</value>
+  </data>
+  <data name="lBMacroOn.Text" xml:space="preserve">
+    <value>Macro włączone. Wybierz przycisk aby wyłączyć lub zamknij okno aby zapisać</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lBTip.Text" xml:space="preserve">
+    <value>Możesz również wybrać przycisk poprzez jego wciśnięcie</value>
+  </data>
+  <data name="X360Label.Text" xml:space="preserve">
+    <value>Ustawienia X360</value>
   </data>
 </root>

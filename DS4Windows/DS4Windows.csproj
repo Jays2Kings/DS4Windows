@@ -47,6 +47,8 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -200,6 +202,9 @@
     <EmbeddedResource Include="DS4Forms\DS4Form.fr-FR.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\DS4Form.he.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.it-IT.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,6 +224,12 @@
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.tr.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\DS4Form.tzm-Arab.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\DS4Form.vi.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.zh-Hans.resx">
@@ -242,6 +253,9 @@
     <EmbeddedResource Include="DS4Forms\DupBox.fr-FR.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\DupBox.he.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.it-IT.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -263,6 +277,9 @@
     <EmbeddedResource Include="DS4Forms\DupBox.tr.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\DupBox.vi.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.zh-Hans.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -279,6 +296,9 @@
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Hotkeys.fr-FR.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\Hotkeys.he.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Hotkeys.it-IT.resx">
@@ -302,6 +322,9 @@
     <EmbeddedResource Include="DS4Forms\Hotkeys.tr.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\Hotkeys.vi.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Hotkeys.zh-Hans.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
@@ -318,6 +341,9 @@
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\KBM360.fr-FR.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\KBM360.he.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\KBM360.it-IT.resx">
@@ -341,6 +367,9 @@
     <EmbeddedResource Include="DS4Forms\KBM360.tr.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\KBM360.vi.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\KBM360.zh-Hans.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
@@ -357,6 +386,9 @@
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.fr-FR.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\Options.he.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.it-IT.resx">
@@ -380,6 +412,9 @@
     <EmbeddedResource Include="DS4Forms\Options.tr.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\Options.vi.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.zh-Hans.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
@@ -396,6 +431,9 @@
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\RecordBox.fr-FR.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\RecordBox.he.resx">
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\RecordBox.it-IT.resx">
@@ -419,6 +457,9 @@
     <EmbeddedResource Include="DS4Forms\RecordBox.tr.resx">
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\RecordBox.vi.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\RecordBox.zh-Hans.resx">
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -435,6 +476,9 @@
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SaveWhere.fr-FR.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\SaveWhere.he.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SaveWhere.it-IT.resx">
@@ -458,6 +502,9 @@
     <EmbeddedResource Include="DS4Forms\SaveWhere.tr.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\SaveWhere.vi.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SaveWhere.zh-Hans.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
@@ -474,6 +521,9 @@
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SpecActions.fr-FR.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\SpecActions.he.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SpecActions.it-IT.resx">
@@ -497,6 +547,9 @@
     <EmbeddedResource Include="DS4Forms\SpecActions.tr.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\SpecActions.vi.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SpecActions.zh-Hans.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
@@ -513,6 +566,9 @@
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WelcomeDialog.fr-FR.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\WelcomeDialog.he.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WelcomeDialog.it-IT.resx">
@@ -536,6 +592,9 @@
     <EmbeddedResource Include="DS4Forms\WelcomeDialog.tr.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\WelcomeDialog.vi.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WelcomeDialog.zh-Hans.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -552,6 +611,9 @@
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WinProgs.fr-FR.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\WinProgs.he.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WinProgs.it-IT.resx">
@@ -575,6 +637,9 @@
     <EmbeddedResource Include="DS4Forms\WinProgs.tr.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\WinProgs.vi.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WinProgs.zh-Hans.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
@@ -585,6 +650,7 @@
     <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
     <EmbeddedResource Include="Properties\Resources.es.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
+    <EmbeddedResource Include="Properties\Resources.he.resx" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Properties\Resources.pl.resx" />
     <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
@@ -596,6 +662,7 @@
     <EmbeddedResource Include="Properties\Resources.ro-RO.resx" />
     <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
     <EmbeddedResource Include="Properties\Resources.tr.resx" />
+    <EmbeddedResource Include="Properties\Resources.vi.resx" />
     <EmbeddedResource Include="Properties\Resources.zh-hans.resx" />
     <EmbeddedResource Include="Properties\Resources.zh-Hant.resx" />
     <None Include="app.manifest" />

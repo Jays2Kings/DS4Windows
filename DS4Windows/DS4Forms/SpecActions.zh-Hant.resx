@@ -190,9 +190,18 @@
     <value>放開卸載的觸發鍵</value>
   </data>
   <data name="cHUnloadTrigger.Text" xml:space="preserve">
-    <value>卸載觸發</value>
+    <value>卸載觸發鍵</value>
   </data>
   <data name="lbUnloadTipKey.Text" xml:space="preserve">
     <value>關閉按鈕由</value>
+  </data>
+  <data name="lbDTapDVR.Text" xml:space="preserve">
+    <value>雙擊觸發鍵</value>
+  </data>
+  <data name="lbHoldDVR.Text" xml:space="preserve">
+    <value>按住觸發鍵</value>
+  </data>
+  <data name="lbTapDVR.Text" xml:space="preserve">
+    <value>點擊觸發鍵</value>
   </data>
 </root>

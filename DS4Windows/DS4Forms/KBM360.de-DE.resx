@@ -3685,7 +3685,7 @@
     <value>155, 264</value>
   </data>
   <data name="nUDMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 334</value>
+    <value>146, 341</value>
   </data>
   <data name="cBScanCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 21</value>
@@ -3700,9 +3700,7 @@
     <value>161, 51</value>
   </data>
   <data name="lBTip.Text" xml:space="preserve">
-    <value>Du kannst auch eine 
-Taste auswählen, indem
- du sie eingibst.</value>
+    <value>Du kannst auch eine Taste auswählen, indem du sie eingibst.</value>
   </data>
   <data name="btnGuide.Text" xml:space="preserve">
     <value>Wegweiser</value>
@@ -3712,6 +3710,9 @@ Taste auswählen, indem
   </data>
   <data name="X360Label.Text" xml:space="preserve">
     <value>X360 Steuerung</value>
+  </data>
+  <data name="KBMlabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>581, 150</value>
   </data>
   <data name="KBMlabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 17</value>
@@ -3750,21 +3751,25 @@ Taste auswählen, indem
     <value>565, 475</value>
   </data>
   <data name="btnUNBOUND.Text" xml:space="preserve">
-    <value>loslösen</value>
+    <value>Zurücksetzen</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cBMouse.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="cBMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 308</value>
+    <value>0, 298</value>
   </data>
   <data name="cBMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 21</value>
+    <value>161, 65</value>
   </data>
   <data name="cBMouse.Text" xml:space="preserve">
-    <value>Ändere Mausempfindlichkeit</value>
+    <value>Ändere die Mausempfindlichkeit</value>
   </data>
   <data name="cBLightbar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 21</value>
+    <value>137, 21</value>
   </data>
   <data name="cBLightbar.Text" xml:space="preserve">
-    <value>Ändere Licht</value>
+    <value>Ändere das Licht</value>
   </data>
 </root>

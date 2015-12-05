@@ -119,10 +119,10 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cBLightbyBattery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 21</value>
+    <value>149, 21</value>
   </data>
   <data name="cBLightbyBattery.Text" xml:space="preserve">
-    <value>Нижняя правая сторона тачпада как ПКМ</value>
+    <value>Цвет от заряда %</value>
   </data>
   <data name="lbBlue.Text" xml:space="preserve">
     <value>С</value>
@@ -146,56 +146,68 @@
     <value>К</value>
   </data>
   <data name="cBDoubleTap.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 21</value>
+    <value>146, 21</value>
   </data>
   <data name="cBDoubleTap.Text" xml:space="preserve">
-    <value>Очищать очереди HID</value>
+    <value>Двойное касание</value>
   </data>
   <data name="cBTap.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 21</value>
-  </data>
-  <data name="cBTap.Text" xml:space="preserve">
-    <value>Компенсация дрожания</value>
-  </data>
-  <data name="cBScroll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 12</value>
-  </data>
-  <data name="cBScroll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 21</value>
-  </data>
-  <data name="cBScroll.Text" xml:space="preserve">
-    <value>(отсутствует)</value>
-  </data>
-  <data name="cBSlide.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 21</value>
   </data>
-  <data name="cBSlide.Text" xml:space="preserve">
+  <data name="cBTap.Text" xml:space="preserve">
     <value>Касание</value>
+  </data>
+  <data name="cBScroll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 12</value>
+  </data>
+  <data name="cBScroll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 21</value>
+  </data>
+  <data name="cBScroll.Text" xml:space="preserve">
+    <value>Прокрутка</value>
+  </data>
+  <data name="cBSlide.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 21</value>
+  </data>
+  <data name="cBSlide.Text" xml:space="preserve">
+    <value>Скольжение</value>
   </data>
   <data name="nUDScroll.Location" type="System.Drawing.Point, System.Drawing">
     <value>290, 11</value>
   </data>
   <data name="nUDTouch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 11</value>
+    <value>121, 10</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lbButtonMouseSens.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="lbButtonMouseSens.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 34</value>
+    <value>106, 40</value>
   </data>
   <data name="lbButtonMouseSens.Text" xml:space="preserve">
-    <value>Чувствительность 
-мыши:</value>
+    <value>Чувствительность мыши:</value>
+  </data>
+  <data name="cBlowerRCOn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 110</value>
+  </data>
+  <data name="cBlowerRCOn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 21</value>
   </data>
   <data name="cBlowerRCOn.Text" xml:space="preserve">
-    <value>Ускорение курсора</value>
+    <value>Нижняя правая сторона тачпада как ПКМ</value>
+  </data>
+  <data name="cBTouchpadJitterCompensation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 83</value>
   </data>
   <data name="cBTouchpadJitterCompensation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 21</value>
+    <value>188, 21</value>
   </data>
   <data name="cBTouchpadJitterCompensation.Text" xml:space="preserve">
-    <value>Мёртвая зона</value>
+    <value>Компенсация дрожания</value>
   </data>
   <data name="lbIdleMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>261, 67</value>
+    <value>249, 64</value>
   </data>
   <data name="lbIdleMinutes.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 17</value>
@@ -204,16 +216,22 @@
     <value>минут</value>
   </data>
   <data name="nUDIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 63</value>
+    <value>180, 62</value>
+  </data>
+  <data name="cBFlushHIDQueue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 208</value>
   </data>
   <data name="cBFlushHIDQueue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 21</value>
+    <value>177, 21</value>
   </data>
   <data name="cBFlushHIDQueue.Text" xml:space="preserve">
-    <value>Время бездействия</value>
+    <value>Очищать очереди HID</value>
+  </data>
+  <data name="btnRumbleHeavyTest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 19</value>
   </data>
   <data name="btnRumbleHeavyTest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 29</value>
+    <value>128, 29</value>
   </data>
   <data name="btnRumbleHeavyTest.Text" xml:space="preserve">
     <value>Тест сильного</value>
@@ -243,7 +261,19 @@
     <value>Пусто:</value>
   </data>
   <data name="numUDMouseSens.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 26</value>
+    <value>120, 26</value>
+  </data>
+  <data name="rBTPControls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 46</value>
+  </data>
+  <data name="gBTouchpad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 236</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Тачпад</value>
+  </data>
+  <data name="cbStartTouchpadOff.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 137</value>
   </data>
   <data name="cbStartTouchpadOff.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 21</value>
@@ -251,8 +281,11 @@
   <data name="cbStartTouchpadOff.Text" xml:space="preserve">
     <value>Выключить скольжение и прокрутку тачпада</value>
   </data>
+  <data name="pnlTPMouse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 395</value>
+  </data>
   <data name="pnlTPMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>350, 160</value>
+    <value>340, 160</value>
   </data>
   <data name="controlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>213, 26</value>
@@ -359,29 +392,36 @@
   <data name="cMSPresets.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 244</value>
   </data>
-  <data name="gBTouchpad.Text" xml:space="preserve">
-    <value>Тачпад</value>
+  <data name="fLPShiftTouchSwipe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 398</value>
+  </data>
+  <data name="fLPTouchSwipe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 398</value>
+  </data>
+  <data name="cBDinput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 181</value>
   </data>
   <data name="cBDinput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 21</value>
+    <value>216, 21</value>
   </data>
   <data name="cBDinput.Text" xml:space="preserve">
-    <value>Двойное касание</value>
+    <value>Использовать только DInput</value>
   </data>
   <data name="pBProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>264, 135</value>
+    <value>287, 144</value>
   </data>
   <data name="cBLaunchProgram.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 140</value>
   </data>
   <data name="cBLaunchProgram.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 21</value>
+    <value>176, 38</value>
   </data>
   <data name="cBLaunchProgram.Text" xml:space="preserve">
-    <value>Цвет от заряда %</value>
+    <value>Запускать программу 
+с профилем</value>
   </data>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 135</value>
+    <value>193, 144</value>
   </data>
   <data name="btnBrowse.Text" xml:space="preserve">
     <value>Обзор...</value>
@@ -393,13 +433,13 @@
     <value>Использовать контроллер</value>
   </data>
   <data name="cBMouseAccel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>214, 26</value>
+    <value>189, 26</value>
   </data>
   <data name="cBMouseAccel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 21</value>
+    <value>143, 21</value>
   </data>
   <data name="cBMouseAccel.Text" xml:space="preserve">
-    <value>Прокрутка</value>
+    <value>Ускорение мыши</value>
   </data>
   <data name="nUDSixaxis.Location" type="System.Drawing.Point, System.Drawing">
     <value>201, 92</value>
@@ -407,48 +447,17 @@
   <data name="cBControllerInput.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 115</value>
   </data>
-  <data name="cBControllerInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 21</value>
-  </data>
-  <data name="cBControllerInput.Text" xml:space="preserve">
-    <value>Использовать только DInput</value>
+  <data name="cBIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 63</value>
   </data>
   <data name="cBIdleDisconnect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 38</value>
+    <value>160, 21</value>
   </data>
   <data name="cBIdleDisconnect.Text" xml:space="preserve">
-    <value>Запускать программу 
-с профилем</value>
+    <value>Время бездействия</value>
   </data>
   <data name="gBOther.Text" xml:space="preserve">
     <value>Другое</value>
-  </data>
-  <data name="cBShiftLight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 21</value>
-  </data>
-  <data name="cBShiftLight.Text" xml:space="preserve">
-    <value>Скольжение</value>
-  </data>
-  <data name="lbShift.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 17</value>
-  </data>
-  <data name="lbShift.Text" xml:space="preserve">
-    <value>Сдвиг:</value>
-  </data>
-  <data name="lbShiftRed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>17, 17</value>
-  </data>
-  <data name="lbShiftRed.Text" xml:space="preserve">
-    <value>К</value>
-  </data>
-  <data name="lbShiftGreen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>17, 17</value>
-  </data>
-  <data name="lbShiftGreen.Text" xml:space="preserve">
-    <value>З</value>
-  </data>
-  <data name="lbShiftBlue.Text" xml:space="preserve">
-    <value>С</value>
   </data>
   <data name="cBFlashType.Items" xml:space="preserve">
     <value>Вспышка при</value>
@@ -480,11 +489,44 @@
   <data name="lbWhileCharging.Text" xml:space="preserve">
     <value>Индикация заряда:</value>
   </data>
+  <data name="cBShiftLight.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cBShiftLight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 28</value>
+  </data>
+  <data name="cBShiftLight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 85</value>
+  </data>
+  <data name="cBShiftLight.Text" xml:space="preserve">
+    <value>Использовать алтернативный цвет для режима сдвига:</value>
+  </data>
+  <data name="lbShift.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 17</value>
+  </data>
+  <data name="lbShift.Text" xml:space="preserve">
+    <value>Сдвиг:</value>
+  </data>
+  <data name="lbShiftRed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="lbShiftRed.Text" xml:space="preserve">
+    <value>К</value>
+  </data>
+  <data name="lbShiftGreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="lbShiftGreen.Text" xml:space="preserve">
+    <value>З</value>
+  </data>
+  <data name="lbShiftBlue.Text" xml:space="preserve">
+    <value>С</value>
+  </data>
   <data name="gBLightbar.Text" xml:space="preserve">
     <value>Световая панель</value>
   </data>
   <data name="btnRumbleLightTest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>213, 19</value>
+    <value>224, 19</value>
   </data>
   <data name="btnRumbleLightTest.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 29</value>
@@ -496,7 +538,7 @@
     <value>Вибрация</value>
   </data>
   <data name="lbRSTip.Text" xml:space="preserve">
-    <value>Левый стик</value>
+    <value>Правый стрик</value>
   </data>
   <data name="lbInputDelay.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 17</value>
@@ -505,7 +547,7 @@
     <value>Задержка ввода: Н/Д</value>
   </data>
   <data name="lbLSTip.Text" xml:space="preserve">
-    <value>Удерживайте выбранные кнопки для назначения нужного действия, проверьте работоспособность при загруженном профиле. Предел 50 действий.</value>
+    <value>Левый стик</value>
   </data>
   <data name="lbSATip.Text" xml:space="preserve">
     <value>Гироскоп: Ось X отражена для простоты считывания</value>
@@ -522,11 +564,8 @@
   <data name="lb6Gryo.Text" xml:space="preserve">
     <value>Гиро</value>
   </data>
-  <data name="tPController.Text" xml:space="preserve">
-    <value>Считывание контроллера</value>
-  </data>
-  <data name="cBShiftControl.Items" xml:space="preserve">
-    <value>Использовать алтернативный цвет для режима сдвига:</value>
+  <data name="lbHold.Location" type="System.Drawing.Point, System.Drawing">
+    <value>409, 309</value>
   </data>
   <data name="lbHold.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 17</value>
@@ -534,14 +573,38 @@
   <data name="lbHold.Text" xml:space="preserve">
     <value>Нажмите</value>
   </data>
+  <data name="lBShiftControls.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 148</value>
+  </data>
+  <data name="lbtoUse.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lbtoUse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>350, 358</value>
+  </data>
   <data name="lbtoUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 17</value>
+    <value>183, 36</value>
   </data>
   <data name="lbtoUse.Text" xml:space="preserve">
     <value>для использования его управления</value>
   </data>
+  <data name="cBShiftControl.Items" xml:space="preserve">
+    <value>(отсутствует)</value>
+  </data>
+  <data name="cBShiftControl.Items26" xml:space="preserve">
+    <value>Тачпад (не нажатый)</value>
+  </data>
+  <data name="cBShiftControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 330</value>
+  </data>
   <data name="tPShiftMod.Text" xml:space="preserve">
     <value>Режим Сдвига</value>
+  </data>
+  <data name="fLPShiftTiltControls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 103</value>
+  </data>
+  <data name="fLPTiltControls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 103</value>
   </data>
   <data name="lbControlTip.Text" xml:space="preserve">
     <value>Нажмите на кнопку для назначения действия 
@@ -551,30 +614,147 @@
     <value>Управление</value>
   </data>
   <data name="cHName.Text" xml:space="preserve">
-    <value>Экшн</value>
-  </data>
-  <data name="cHTrigger.Text" xml:space="preserve">
     <value>Имя</value>
   </data>
+  <data name="cHTrigger.Text" xml:space="preserve">
+    <value>Триггер</value>
+  </data>
   <data name="cHAction.Text" xml:space="preserve">
-    <value>Использовать жесты</value>
+    <value>Экшн</value>
   </data>
   <data name="btnNewAction.Text" xml:space="preserve">
-    <value>Правый стик</value>
-  </data>
-  <data name="btnEditAction.Text" xml:space="preserve">
     <value>Новый экшн</value>
   </data>
-  <data name="btnRemAction.Text" xml:space="preserve">
+  <data name="btnEditAction.Text" xml:space="preserve">
     <value>Редактировать экшн</value>
   </data>
+  <data name="btnRemAction.Text" xml:space="preserve">
+    <value>Удалить экшн</value>
+  </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Триггер</value>
+    <value>Удерживайте выбранные кнопки для назначения нужного действия, проверьте работоспособность при загруженном профиле. Предел 50 действий.</value>
   </data>
   <data name="tPSpecial.Text" xml:space="preserve">
     <value>Удалить экшн</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
+    <value>Мертвая зона</value>
+  </data>
+  <data name="tPCurve.Text" xml:space="preserve">
     <value>Кривая</value>
+  </data>
+  <data name="rBSAControls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 53</value>
+  </data>
+  <data name="rBSAControls.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 21</value>
+  </data>
+  <data name="rBSAControls.Text" xml:space="preserve">
+    <value>Использовать для управления</value>
+  </data>
+  <data name="rBSAMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 21</value>
+  </data>
+  <data name="rBSAMouse.Text" xml:space="preserve">
+    <value>Использовать как мышь</value>
+  </data>
+  <data name="cBGyroInvertY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 95</value>
+  </data>
+  <data name="cBGyroInvertX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 95</value>
+  </data>
+  <data name="lbGyroInvert.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 17</value>
+  </data>
+  <data name="lbGyroInvert.Text" xml:space="preserve">
+    <value>Инвертировано:</value>
+  </data>
+  <data name="lbGyroTriggers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 17</value>
+  </data>
+  <data name="lbGyroTriggers.Text" xml:space="preserve">
+    <value>Триггера:</value>
+  </data>
+  <data name="lbGyroSens.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 17</value>
+  </data>
+  <data name="lbGyroSens.Text" xml:space="preserve">
+    <value>Чуствительность гироскопа:</value>
+  </data>
+  <data name="pnlSAMouse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 93</value>
+  </data>
+  <data name="gBGyro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 259</value>
+  </data>
+  <data name="crossToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="circleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="squareToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="triangleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="l1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="l2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="r1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="r2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="onTouchpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="downToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="leftToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="rightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="l3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="r3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="fingerOnTouchpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="fingerOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Палец на тачпаде</value>
+  </data>
+  <data name="fingersOnTouchpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="fingersOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Два пальца на тачпаде</value>
+  </data>
+  <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="shareToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="pSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="resetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="cMGyroTriggers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 524</value>
   </data>
 </root>

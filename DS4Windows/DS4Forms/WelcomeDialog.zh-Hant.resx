@@ -117,41 +117,160 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="$this.Text" xml:space="preserve">
-    <value>歡迎使用 DS4Windows</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bnStep1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 10</value>
   </data>
-  <data name="bnFinish.Text" xml:space="preserve">
-    <value>完成</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bnStep1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="bnStep1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 29</value>
   </data>
   <data name="bnStep1.Text" xml:space="preserve">
     <value>步驟一：安裝 DS4 驅動程式</value>
   </data>
+  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 79</value>
+  </data>
+  <data name="button2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>368, 29</value>
+  </data>
   <data name="button2.Text" xml:space="preserve">
-    <value>步驟二：如果是 Windows 7 或以下版本，安裝 360 驅動程式</value>
+    <value>步驟二：如果是 Windows 7 或以下版本，請安裝 360 控制器驅動程式</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>如果在安裝後，該視窗重新出現，您可能需要重新啟動你的電腦或者等待10-15分鐘為讓Windows去注意到驅動程式</value>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 254</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>如果你在這台電腦上已經使用了360控制器，你可以跳過這個</value>
+  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 165</value>
+  </data>
+  <data name="labelBluetooth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelBluetooth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 201</value>
+  </data>
+  <data name="labelBluetooth.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="labelBluetooth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 49</value>
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>設置藍牙（可選）：
 按住PS鍵和SHARE鍵3秒
 光條將開始雙閃</value>
   </data>
-  <data name="labelBluetooth2.Text" xml:space="preserve">
-    <value>一次的閃爍後到你的藍牙設定擋
-並連接到 "無線控制器"
-如果出現詢問視窗，輸入配對碼 "0000"
-一旦配對成功，你就準備好了。玩得開心！</value>
+  <data name="labelUSB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 140</value>
+  </data>
+  <data name="labelUSB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="labelUSB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>391, 49</value>
   </data>
   <data name="labelUSB.Text" xml:space="preserve">
     <value>第3步：連接 DUALSHOCK 4 控制器
 建立 有線/USB：
 只需將一條Micro USB線連接你的PC和 DUALSHOCK 4</value>
   </data>
+  <data name="labelBluetooth2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelBluetooth2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 422</value>
+  </data>
+  <data name="labelBluetooth2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="labelBluetooth2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 80</value>
+  </data>
+  <data name="labelBluetooth2.Text" xml:space="preserve">
+    <value>當光條開始閃爍後，到你的藍牙設定
+然後連接 "Wireless Controller"
+如果出現詢問視窗，輸入配對碼 "0000"
+只需配對一次就可以了。祝你玩得愉快！</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 40</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>392, 40</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>如果在安裝後，該視窗重新出現，您可能需要重新啟動你的電腦或者等待10-15分鐘為讓Windows去注意到驅動程式</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 110</value>
+  </data>
+  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>394, 30</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>如果你在這台電腦曾經使用過 360控制器，你可以跳過這步</value>
+  </data>
+  <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 500</value>
+  </data>
+  <data name="bnFinish.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="bnFinish.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 29</value>
+  </data>
+  <data name="bnFinish.Text" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="linkBluetoothSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>238, 422</value>
+  </data>
+  <data name="linkBluetoothSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="linkBluetoothSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 17</value>
+  </data>
   <data name="linkBluetoothSettings.Text" xml:space="preserve">
     <value>藍牙設定</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>120, 120</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>394, 535</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>歡迎使用 DS4Windows</value>
   </data>
 </root>

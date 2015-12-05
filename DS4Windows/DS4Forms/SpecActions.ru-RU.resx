@@ -826,7 +826,7 @@
     <value>Назначить выгр. триггер</value>
   </data>
   <data name="cHUnloadTrigger.Text" xml:space="preserve">
-    <value>Выгрузить триггера</value>
+    <value>Выгрузить триггер</value>
   </data>
   <data name="lVUnloadTrigger.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -1560,5 +1560,14 @@
   </data>
   <data name="cbLightbarBatt.Text" xml:space="preserve">
     <value>через световую панель</value>
+  </data>
+  <data name="lbDTapDVR.Text" xml:space="preserve">
+    <value>Триггер двойного тапа</value>
+  </data>
+  <data name="lbHoldDVR.Text" xml:space="preserve">
+    <value>Триггер удержания</value>
+  </data>
+  <data name="lbTapDVR.Text" xml:space="preserve">
+    <value>Триггер тапа</value>
   </data>
 </root>

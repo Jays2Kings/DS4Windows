@@ -41,6 +41,8 @@
             this.btnSaveP = new System.Windows.Forms.Button();
             this.lbRecordTip = new System.Windows.Forms.Label();
             this.pnlMouseButtons = new System.Windows.Forms.Panel();
+            this.pBRtouch = new System.Windows.Forms.PictureBox();
+            this.pBLtouch = new System.Windows.Forms.PictureBox();
             this.btnLightbar = new System.Windows.Forms.Button();
             this.btnRumble = new System.Windows.Forms.Button();
             this.btn5th = new System.Windows.Forms.Button();
@@ -53,12 +55,10 @@
             this.cMSLoadPresets = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.altTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pBLtouch = new System.Windows.Forms.PictureBox();
-            this.pBRtouch = new System.Windows.Forms.PictureBox();
             this.pnlMouseButtons.SuspendLayout();
-            this.cMSLoadPresets.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBLtouch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRtouch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBLtouch)).BeginInit();
+            this.cMSLoadPresets.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRecord
@@ -164,6 +164,20 @@
             this.pnlMouseButtons.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
             this.pnlMouseButtons.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
             // 
+            // pBRtouch
+            // 
+            resources.ApplyResources(this.pBRtouch, "pBRtouch");
+            this.pBRtouch.Image = global::DS4Windows.Properties.Resources.right_touch;
+            this.pBRtouch.Name = "pBRtouch";
+            this.pBRtouch.TabStop = false;
+            // 
+            // pBLtouch
+            // 
+            resources.ApplyResources(this.pBLtouch, "pBLtouch");
+            this.pBLtouch.Image = global::DS4Windows.Properties.Resources.left_touch;
+            this.pBLtouch.Name = "pBLtouch";
+            this.pBLtouch.TabStop = false;
+            // 
             // btnLightbar
             // 
             resources.ApplyResources(this.btnLightbar, "btnLightbar");
@@ -228,38 +242,25 @@
             // 
             // cMSLoadPresets
             // 
+            resources.ApplyResources(this.cMSLoadPresets, "cMSLoadPresets");
+            this.cMSLoadPresets.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cMSLoadPresets.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.altTabToolStripMenuItem,
             this.fromFileToolStripMenuItem});
             this.cMSLoadPresets.Name = "cMSLoadPresets";
             this.cMSLoadPresets.ShowImageMargin = false;
-            resources.ApplyResources(this.cMSLoadPresets, "cMSLoadPresets");
             // 
             // altTabToolStripMenuItem
             // 
-            this.altTabToolStripMenuItem.Name = "altTabToolStripMenuItem";
             resources.ApplyResources(this.altTabToolStripMenuItem, "altTabToolStripMenuItem");
+            this.altTabToolStripMenuItem.Name = "altTabToolStripMenuItem";
             this.altTabToolStripMenuItem.Click += new System.EventHandler(this.altTabToolStripMenuItem_Click);
             // 
             // fromFileToolStripMenuItem
             // 
-            this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
             resources.ApplyResources(this.fromFileToolStripMenuItem, "fromFileToolStripMenuItem");
+            this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
             this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.fromFileToolStripMenuItem_Click);
-            // 
-            // pBLtouch
-            // 
-            this.pBLtouch.Image = global::DS4Windows.Properties.Resources.left_touch;
-            resources.ApplyResources(this.pBLtouch, "pBLtouch");
-            this.pBLtouch.Name = "pBLtouch";
-            this.pBLtouch.TabStop = false;
-            // 
-            // pBRtouch
-            // 
-            this.pBRtouch.Image = global::DS4Windows.Properties.Resources.right_touch;
-            resources.ApplyResources(this.pBRtouch, "pBRtouch");
-            this.pBRtouch.Name = "pBRtouch";
-            this.pBRtouch.TabStop = false;
             // 
             // RecordBox
             // 
@@ -290,9 +291,9 @@
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
             this.Resize += new System.EventHandler(this.RecordBox_Resize);
             this.pnlMouseButtons.ResumeLayout(false);
-            this.cMSLoadPresets.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pBLtouch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBRtouch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBLtouch)).EndInit();
+            this.cMSLoadPresets.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

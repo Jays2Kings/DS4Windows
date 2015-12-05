@@ -162,4 +162,7 @@
   <data name="pBProfilesTip.Text" xml:space="preserve">
     <value>Wybierz profile</value>
   </data>
+  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dodaj folder</value>
+  </data>
 </root>

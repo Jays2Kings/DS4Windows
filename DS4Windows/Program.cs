@@ -31,6 +31,7 @@ namespace DS4Windows
         [STAThread]
         static void Main(string[] args)
         {
+            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("vi");
             foreach(string s in args)
             {
                 if (s == "driverinstall" || s == "-driverinstall")
@@ -41,11 +42,10 @@ namespace DS4Windows
                     return;
                 }
             }
-            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl");
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;
             try
             {
-                System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.High;
+                Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.High;
             }
             catch
             {

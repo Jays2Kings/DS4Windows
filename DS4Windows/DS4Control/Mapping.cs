@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using static DS4Windows.Global;
 namespace DS4Windows
 {
     public class Mapping
@@ -356,6 +357,15 @@ namespace DS4Windows
             percent /= 100f;
             return value1 * percent + value2 * (1 - percent);
         }
+        static double Clamp(double min, double value, double max)
+        {
+            if (value > max)
+                return max;
+            else if (value < min)
+                return min;
+            else
+                return value;
+        }
 
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState)
         {
@@ -363,14 +373,14 @@ namespace DS4Windows
             int x;
             int y;
             int curve;
-            if (Global.LSCurve[device] > 0)
+            if (LSCurve[device] > 0)
             {
                 x = cState.LX;
                 y = cState.LY;
                 float max = x + y;
                 double curvex;
                 double curvey;
-                curve = Global.LSCurve[device];
+                curve = LSCurve[device];
                 double multimax = TValue(382.5, max, curve);
                 double multimin = TValue(127.5, max, curve);
                 if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
@@ -395,14 +405,14 @@ namespace DS4Windows
                 dState.LX = (byte)Math.Round(curvex, 0);
                 dState.LY = (byte)Math.Round(curvey, 0);
             }
-            if (Global.RSCurve[device] > 0)
+            if (RSCurve[device] > 0)
             {
                 x = cState.RX;
                 y = cState.RY;
                 float max = x + y;
                 double curvex;
                 double curvey;
-                curve = Global.RSCurve[device];
+                curve = RSCurve[device];
                 double multimax = TValue(382.5, max, curve);
                 double multimin = TValue(127.5, max, curve);
                 if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
@@ -428,34 +438,48 @@ namespace DS4Windows
             }
             double ls = Math.Sqrt(Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2));
             //deadzones
-            if (Global.LSDeadzone[device] > 0 && ls < Global.LSDeadzone[device])
+            if (LSDeadzone[device] > 0 && ls < LSDeadzone[device])
             {
                 dState.LX = 127;
                 dState.LY = 127;
             }
-            else if (Global.LSDeadzone[device] < 0 && ls > 127.5f + Global.LSDeadzone[device])
+            else if (LSDeadzone[device] < 0 && ls > 127.5f + LSDeadzone[device])
             {
                 double r = Math.Atan2((dState.LY - 127.5f), (dState.LX - 127.5f));
-                dState.LX = (byte)(Math.Cos(r) * (127.5f + Global.LSDeadzone[device]) + 127.5f);
-                dState.LY = (byte)(Math.Sin(r) * (127.5f + Global.LSDeadzone[device]) + 127.5f);
+                dState.LX = (byte)(Math.Cos(r) * (127.5f + LSDeadzone[device]) + 127.5f);
+                dState.LY = (byte)(Math.Sin(r) * (127.5f + LSDeadzone[device]) + 127.5f);
             }
             //Console.WriteLine
             double rs = Math.Sqrt(Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2));
-            if (Global.RSDeadzone[device] > 0 && rs < Global.LSDeadzone[device])
+            if (RSDeadzone[device] > 0 && rs < LSDeadzone[device])
             {
                 dState.RX = 127;
                 dState.RY = 127;
             }
-            else if (Global.RSDeadzone[device] < 0 && rs > 127.5f + Global.RSDeadzone[device])
+            else if (RSDeadzone[device] < 0 && rs > 127.5f + RSDeadzone[device])
             {
                 double r = Math.Atan2((dState.RY - 127.5f), (dState.RX - 127.5f));
-                dState.RX = (byte)(Math.Cos(r) * (127.5f + Global.RSDeadzone[device]) + 127.5f);
-                dState.RY = (byte)(Math.Sin(r) * (127.5f + Global.RSDeadzone[device]) + 127.5f);
+                dState.RX = (byte)(Math.Cos(r) * (127.5f + RSDeadzone[device]) + 127.5f);
+                dState.RY = (byte)(Math.Sin(r) * (127.5f + RSDeadzone[device]) + 127.5f);
             }
-            if (Global.L2Deadzone[device] > 0 && cState.L2 < Global.L2Deadzone[device])
+            if (L2Deadzone[device] > 0 && cState.L2 < L2Deadzone[device])
                 dState.L2 = 0;
-            if (Global.R2Deadzone[device] > 0 && cState.R2 < Global.R2Deadzone[device])
+            if (R2Deadzone[device] > 0 && cState.R2 < R2Deadzone[device])
                 dState.R2 = 0;
+            if (LSSens[device] != 1)
+            {
+                dState.LX = (byte)Clamp(0, LSSens[device] * (dState.LX - 127) + 127, 255);
+                dState.LY = (byte)Clamp(0, LSSens[device] * (dState.LY - 127) + 127, 255);
+            }
+            if (RSSens[device] != 1)
+            {
+                dState.RX = (byte)Clamp(0, RSSens[device] * (dState.RX - 127) + 127, 255);
+                dState.RY = (byte)Clamp(0, RSSens[device] * (dState.RY - 127) + 127, 255);
+            }
+            if (L2Sens[device] != 1)
+                dState.L2 = (byte)Clamp(0, L2Sens[device] * dState.L2, 255);
+            if (R2Sens[device] != 1)
+                dState.R2 = (byte)Clamp(0, R2Sens[device] * dState.R2, 255);
             return dState;
         }
 
@@ -474,11 +498,11 @@ namespace DS4Windows
             int MouseDeltaY = 0;
             
             SyntheticState deviceState = Mapping.deviceState[device];
-            if (Global.GetActions().Count > 0 && (Global.ProfileActions[device].Count > 0 ||
-                !string.IsNullOrEmpty(Global.tempprofilename[device])))
+            if (GetActions().Count > 0 && (ProfileActions[device].Count > 0 ||
+                !string.IsNullOrEmpty(tempprofilename[device])))
                 MapCustomAction(device, cState, MappedState, eState, tp, ctrl);
             if (ctrl.DS4Controllers[device] == null) return;
-            switch (Global.ShiftModifier[device])
+            switch (ShiftModifier[device])
             {
                 case 1: shift = getBoolMapping(device, DS4Controls.Cross, cState, eState, tp); break;
                 case 2: shift = getBoolMapping(device, DS4Controls.Circle, cState, eState, tp); break;
@@ -511,14 +535,14 @@ namespace DS4Windows
             cState.CopyTo(MappedState);
             if (shift)
                 MapShiftCustom(device, cState, MappedState, eState, tp);
-            foreach (KeyValuePair<DS4Controls, string> customKey in Global.getCustomMacros(device))
+            foreach (KeyValuePair<DS4Controls, string> customKey in getCustomMacros(device))
             {
                 if (shift == false ||
-                    (Global.getShiftCustomMacro(device, customKey.Key) == "0" &&
-                    Global.getShiftCustomKey(device, customKey.Key) == 0 &&
-                    Global.getShiftCustomButton(device, customKey.Key) == X360Controls.None))
+                    (getShiftCustomMacro(device, customKey.Key) == "0" &&
+                    getShiftCustomKey(device, customKey.Key) == 0 &&
+                    getShiftCustomButton(device, customKey.Key) == X360Controls.None))
                 {
-                    DS4KeyType keyType = Global.getCustomKeyType(device, customKey.Key);
+                    DS4KeyType keyType = getCustomKeyType(device, customKey.Key);
                     if (getBoolMapping(device, customKey.Key, cState, eState, tp))
                     {
                         resetToDefaultValue(customKey.Key, MappedState);
@@ -530,14 +554,14 @@ namespace DS4Windows
                     }
                 }
             }
-            foreach (KeyValuePair<DS4Controls, ushort> customKey in Global.getCustomKeys(device))
+            foreach (KeyValuePair<DS4Controls, ushort> customKey in getCustomKeys(device))
             {
                 if (shift == false ||
-                    (Global.getShiftCustomMacro(device, customKey.Key) == "0" &&
-                    Global.getShiftCustomKey(device, customKey.Key) == 0 &&
-                    Global.getShiftCustomButton(device, customKey.Key) == X360Controls.None))
+                    (getShiftCustomMacro(device, customKey.Key) == "0" &&
+                    getShiftCustomKey(device, customKey.Key) == 0 &&
+                    getShiftCustomButton(device, customKey.Key) == X360Controls.None))
                 {
-                    DS4KeyType keyType = Global.getCustomKeyType(device, customKey.Key);
+                    DS4KeyType keyType = getCustomKeyType(device, customKey.Key);
                     if (getBoolMapping(device, customKey.Key, cState, eState, tp))
                     {
                         resetToDefaultValue(customKey.Key, MappedState);
@@ -564,7 +588,7 @@ namespace DS4Windows
                 }
             }
 
-            //Dictionary<DS4Controls, X360Controls> customButtons = Global.getCustomButtons(device);
+            //Dictionary<DS4Controls, X360Controls> customButtons = getCustomButtons(device);
             //foreach (KeyValuePair<DS4Controls, X360Controls> customButton in customButtons)
             List<DS4Controls> Cross = new List<DS4Controls>();
             List<DS4Controls> Circle = new List<DS4Controls>();
@@ -591,14 +615,14 @@ namespace DS4Windows
             List<DS4Controls> RXP = new List<DS4Controls>();
             List<DS4Controls> RYN = new List<DS4Controls>();
             List<DS4Controls> RYP = new List<DS4Controls>();
-            foreach (KeyValuePair<DS4Controls, X360Controls> customButton in Global.getCustomButtons(device))
+            foreach (KeyValuePair<DS4Controls, X360Controls> customButton in getCustomButtons(device))
             {
                 if (shift == false ||
-                    (Global.getShiftCustomMacro(device, customButton.Key) == "0" &&
-                    Global.getShiftCustomKey(device, customButton.Key) == 0 &&
-                    Global.getShiftCustomButton(device, customButton.Key) == X360Controls.None))
+                    (getShiftCustomMacro(device, customButton.Key) == "0" &&
+                    getShiftCustomKey(device, customButton.Key) == 0 &&
+                    getShiftCustomButton(device, customButton.Key) == X360Controls.None))
                 {
-                    DS4KeyType keyType = Global.getCustomKeyType(device, customButton.Key);
+                    DS4KeyType keyType = getCustomKeyType(device, customButton.Key);
                     int keyvalue = 0;
                     switch (customButton.Value)
                     {
@@ -802,21 +826,21 @@ namespace DS4Windows
                 if (getBoolMapping(device, dc, cState, eState, tp))
                     MappedState.PS = true;
 
-            if (Global.getCustomButton(device, DS4Controls.LXNeg) == X360Controls.None)
+            if (getCustomButton(device, DS4Controls.LXNeg) == X360Controls.None)
                 LXN.Add(DS4Controls.LXNeg);
-            if (Global.getCustomButton(device, DS4Controls.LXPos) == X360Controls.None)
+            if (getCustomButton(device, DS4Controls.LXPos) == X360Controls.None)
                 LXP.Add(DS4Controls.LXPos);
-            if (Global.getCustomButton(device, DS4Controls.LYNeg) == X360Controls.None)
+            if (getCustomButton(device, DS4Controls.LYNeg) == X360Controls.None)
                 LYN.Add(DS4Controls.LYNeg);
-            if (Global.getCustomButton(device, DS4Controls.LYPos) == X360Controls.None)
+            if (getCustomButton(device, DS4Controls.LYPos) == X360Controls.None)
                 LYP.Add(DS4Controls.LYPos);
-            if (Global.getCustomButton(device, DS4Controls.RXNeg) == X360Controls.None)
+            if (getCustomButton(device, DS4Controls.RXNeg) == X360Controls.None)
                 RXN.Add(DS4Controls.RXNeg);
-            if (Global.getCustomButton(device, DS4Controls.RXPos) == X360Controls.None)
+            if (getCustomButton(device, DS4Controls.RXPos) == X360Controls.None)
                 RXP.Add(DS4Controls.RXPos);
-            if (Global.getCustomButton(device, DS4Controls.RYNeg) == X360Controls.None)
+            if (getCustomButton(device, DS4Controls.RYNeg) == X360Controls.None)
                 RYN.Add(DS4Controls.RYNeg);
-            if (Global.getCustomButton(device, DS4Controls.RYPos) == X360Controls.None)
+            if (getCustomButton(device, DS4Controls.RYPos) == X360Controls.None)
                 RYP.Add(DS4Controls.RYPos);
             if ((shift && MappedState.LX == 127) || !shift)
                 if (LXN.Count > 0 || LXP.Count > 0)
@@ -873,9 +897,9 @@ namespace DS4Windows
         {
             //cState.CopyTo(MappedState);
             SyntheticState deviceState = Mapping.deviceState[device];
-            foreach (KeyValuePair<DS4Controls, string> customKey in Global.getShiftCustomMacros(device)) //with delays
+            foreach (KeyValuePair<DS4Controls, string> customKey in getShiftCustomMacros(device)) //with delays
             {
-                DS4KeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
+                DS4KeyType keyType = getShiftCustomKeyType(device, customKey.Key);
                 if (getBoolMapping(device, customKey.Key, cState, eState, tp))
                 {
                     resetToDefaultValue(customKey.Key, MappedState);
@@ -886,9 +910,9 @@ namespace DS4Windows
                     EndMacro(device, macroControl, customKey.Value, customKey.Key);
                 }
             }
-            foreach (KeyValuePair<DS4Controls, ushort> customKey in Global.getShiftCustomKeys(device))
+            foreach (KeyValuePair<DS4Controls, ushort> customKey in getShiftCustomKeys(device))
             {
-                DS4KeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
+                DS4KeyType keyType = getShiftCustomKeyType(device, customKey.Key);
                 if (getBoolMapping(device, customKey.Key, cState, eState, tp))
                 {
                     resetToDefaultValue(customKey.Key, MappedState);
@@ -921,7 +945,7 @@ namespace DS4Windows
             int MouseDeltaX = 0;
             int MouseDeltaY = 0;
 
-            Dictionary<DS4Controls, X360Controls> customButtons = Global.getShiftCustomButtons(device);
+            Dictionary<DS4Controls, X360Controls> customButtons = getShiftCustomButtons(device);
             //foreach (KeyValuePair<DS4Controls, X360Controls> customButton in customButtons)
             // resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
 
@@ -953,7 +977,7 @@ namespace DS4Windows
             foreach (KeyValuePair<DS4Controls, X360Controls> customButton in customButtons)
             {
                 resetToDefaultValue(customButton.Key, MappedState); // erase default mappings for things that are remapped
-                DS4KeyType keyType = Global.getShiftCustomKeyType(device, customButton.Key);
+                DS4KeyType keyType = getShiftCustomKeyType(device, customButton.Key);
                 int keyvalue = 0;
                 switch (customButton.Value)
                 {
@@ -1141,21 +1165,21 @@ namespace DS4Windows
                 if (getBoolMapping(device, dc, cState, eState, tp))
                     MappedState.PS = true;
 
-            if (Global.getShiftCustomButton(device, DS4Controls.LXNeg) == X360Controls.None)
+            if (getShiftCustomButton(device, DS4Controls.LXNeg) == X360Controls.None)
                 LXN.Add(DS4Controls.LXNeg);
-            if (Global.getShiftCustomButton(device, DS4Controls.LXPos) == X360Controls.None)
+            if (getShiftCustomButton(device, DS4Controls.LXPos) == X360Controls.None)
                 LXP.Add(DS4Controls.LXPos);
-            if (Global.getShiftCustomButton(device, DS4Controls.LYNeg) == X360Controls.None)
+            if (getShiftCustomButton(device, DS4Controls.LYNeg) == X360Controls.None)
                 LYN.Add(DS4Controls.LYNeg);
-            if (Global.getShiftCustomButton(device, DS4Controls.LYPos) == X360Controls.None)
+            if (getShiftCustomButton(device, DS4Controls.LYPos) == X360Controls.None)
                 LYP.Add(DS4Controls.LYPos);
-            if (Global.getShiftCustomButton(device, DS4Controls.RXNeg) == X360Controls.None)
+            if (getShiftCustomButton(device, DS4Controls.RXNeg) == X360Controls.None)
                 RXN.Add(DS4Controls.RXNeg);
-            if (Global.getShiftCustomButton(device, DS4Controls.RXPos) == X360Controls.None)
+            if (getShiftCustomButton(device, DS4Controls.RXPos) == X360Controls.None)
                 RXP.Add(DS4Controls.RXPos);
-            if (Global.getShiftCustomButton(device, DS4Controls.RYNeg) == X360Controls.None)
+            if (getShiftCustomButton(device, DS4Controls.RYNeg) == X360Controls.None)
                 RYN.Add(DS4Controls.RYNeg);
-            if (Global.getShiftCustomButton(device, DS4Controls.RYPos) == X360Controls.None)
+            if (getShiftCustomButton(device, DS4Controls.RYPos) == X360Controls.None)
                 RYP.Add(DS4Controls.RYPos);
             if (LXN.Count > 0 || LXP.Count > 0)
             {
@@ -1210,18 +1234,18 @@ namespace DS4Windows
 
         public static async void MapCustomAction(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, ControlService ctrl)
         {
-            foreach (string actionname in Global.ProfileActions[device])
+            foreach (string actionname in ProfileActions[device])
             {
-                //DS4KeyType keyType = Global.getShiftCustomKeyType(device, customKey.Key);
-                SpecialAction action = Global.GetAction(actionname);
-                int index = Global.GetActionIndexOf(actionname);
+                //DS4KeyType keyType = getShiftCustomKeyType(device, customKey.Key);
+                SpecialAction action = GetAction(actionname);
+                int index = GetActionIndexOf(actionname);
                 double time;
                 //If a key or button is assigned to the trigger, a key special action is used like
                 //a quick tap to use and hold to use the regular custom button/key
                 bool triggerToBeTapped = action.type == "Key" && action.trigger.Count == 1 &&
-                        (Global.getCustomMacro(device,  action.trigger[0]) != "0" ||
-                    Global.getCustomKey(device, action.trigger[0]) != 0 ||
-                    Global.getCustomButton(device, action.trigger[0]) != X360Controls.None);
+                        (getCustomMacro(device,  action.trigger[0]) != "0" ||
+                    getCustomKey(device, action.trigger[0]) != 0 ||
+                    getCustomButton(device, action.trigger[0]) != X360Controls.None);
                 if (!(action.name == "null" || index < 0))
                 {
                     bool triggeractivated = true;
@@ -1323,15 +1347,15 @@ namespace DS4Windows
                     }
                     else if (triggeractivated && action.type == "Profile")
                     {
-                        if (!actionDone[device, index] && string.IsNullOrEmpty(Global.tempprofilename[device]))
+                        if (!actionDone[device, index] && string.IsNullOrEmpty(tempprofilename[device]))
                         {
                             actionDone[device, index] = true;
                             untriggeraction[device] = action;
                             untriggerindex[device] = index;
                             foreach (DS4Controls dc in action.trigger)
                             {
-                                InputMethods.performKeyRelease(Global.getCustomKey(0, dc));
-                                string[] skeys = Global.getCustomMacro(0, dc).Split('/');
+                                InputMethods.performKeyRelease(getCustomKey(0, dc));
+                                string[] skeys = getCustomMacro(0, dc).Split('/');
                                 ushort[] keys = new ushort[skeys.Length];
                                 for (int i = 0; i < keys.Length; i++)
                                 {
@@ -1339,7 +1363,7 @@ namespace DS4Windows
                                     InputMethods.performKeyRelease(keys[i]);
                                 }
                             }
-                            Global.LoadTempProfile(device, action.details, true, ctrl);
+                            LoadTempProfile(device, action.details, true, ctrl);
                             return;
                         }
                     }
@@ -1403,8 +1427,8 @@ namespace DS4Windows
                             d.DisconnectBT();
                             foreach (DS4Controls dc in action.trigger)
                             {
-                                InputMethods.performKeyRelease(Global.getCustomKey(0, dc));
-                                string[] skeys = Global.getCustomMacro(0, dc).Split('/');
+                                InputMethods.performKeyRelease(getCustomKey(0, dc));
+                                string[] skeys = getCustomMacro(0, dc).Split('/');
                                 ushort[] keys = new ushort[skeys.Length];
                                 for (int i = 0; i < keys.Length; i++)
                                 {
@@ -1433,9 +1457,9 @@ namespace DS4Windows
                             }
                             DS4Color empty = new DS4Color(byte.Parse(dets[3]), byte.Parse(dets[4]), byte.Parse(dets[5]));
                             DS4Color full = new DS4Color(byte.Parse(dets[6]), byte.Parse(dets[7]), byte.Parse(dets[8]));
-                            DS4Color trans = Global.getTransitionedColor(empty, full, d.Battery);
+                            DS4Color trans = getTransitionedColor(empty, full, d.Battery);
                             if (fadetimer[device] < 100)
-                                DS4LightBar.forcedColor[device] = Global.getTransitionedColor(lastColor[device], trans, fadetimer[device] += 2);
+                                DS4LightBar.forcedColor[device] = getTransitionedColor(lastColor[device], trans, fadetimer[device] += 2);
                         }
                         actionDone[device, index] = true;
                     }
@@ -1457,15 +1481,15 @@ namespace DS4Windows
                     }
                     else if (action.type == "XboxGameDVR")
                     {
-                        if (Global.getCustomButton(device, action.trigger[0]) != X360Controls.Unbound)
-                            Global.getCustomButtons(device)[action.trigger[0]] = X360Controls.Unbound;
-                        if (Global.getCustomMacro(device, action.trigger[0]) != "0")
-                            Global.getCustomMacros(device).Remove(action.trigger[0]);
-                        if (Global.getCustomKey(device, action.trigger[0]) != 0)
-                            Global.getCustomMacros(device).Remove(action.trigger[0]);
+                        if (getCustomButton(device, action.trigger[0]) != X360Controls.Unbound)
+                            getCustomButtons(device)[action.trigger[0]] = X360Controls.Unbound;
+                        if (getCustomMacro(device, action.trigger[0]) != "0")
+                            getCustomMacros(device).Remove(action.trigger[0]);
+                        if (getCustomKey(device, action.trigger[0]) != 0)
+                            getCustomMacros(device).Remove(action.trigger[0]);
                         string[] dets = action.details.Split(',');
                         DS4Device d = ctrl.DS4Controllers[device];
-                        //Global.cus
+                        //cus
                         if (getBoolMapping(device, action.trigger[0], cState, eState, tp) && !getBoolMapping(device, action.trigger[0], d.getPreviousState(), eState, tp))
                         {//pressed down
                             pastTime = DateTime.UtcNow;
@@ -1574,13 +1598,13 @@ namespace DS4Windows
                 {
                     if ((action.controls == action.ucontrols && !actionDone[device, index]) || //if trigger and end trigger are the same
                     action.controls != action.ucontrols)
-                        if (!string.IsNullOrEmpty(Global.tempprofilename[device]))
+                        if (!string.IsNullOrEmpty(tempprofilename[device]))
                         {
                             foreach (DS4Controls dc in action.uTrigger)
                             {
                                 actionDone[device, index] = true;
-                                InputMethods.performKeyRelease(Global.getCustomKey(0, dc));
-                                string[] skeys = Global.getCustomMacro(0, dc).Split('/');
+                                InputMethods.performKeyRelease(getCustomKey(0, dc));
+                                string[] skeys = getCustomMacro(0, dc).Split('/');
                                 ushort[] keys = new ushort[skeys.Length];
                                 for (int i = 0; i < keys.Length; i++)
                                 {
@@ -1589,7 +1613,7 @@ namespace DS4Windows
                                 }
                             }
                             untriggeraction[device] = null;
-                            Global.LoadProfile(device, false, ctrl);
+                            LoadProfile(device, false, ctrl);
                         }
                 }
                 else
@@ -1844,16 +1868,16 @@ namespace DS4Windows
         private static int getMouseMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, int mnum)
         {
             int controlnum = DS4ControltoInt(control);
-            double SXD = Global.SXDeadzone[device];
-            double SZD = Global.SZDeadzone[device];
+            double SXD = SXDeadzone[device];
+            double SZD = SZDeadzone[device];
             int deadzoneL = 3;
             int deadzoneR = 3;
-            if (Global.LSDeadzone[device] >= 3)
+            if (LSDeadzone[device] >= 3)
                 deadzoneL = 0;
-            if (Global.RSDeadzone[device] >= 3)
+            if (RSDeadzone[device] >= 3)
                 deadzoneR = 0;
             double value = 0;
-            int speed = Global.ButtonMouseSensitivity[device] + 15;
+            int speed = ButtonMouseSensitivity[device] + 15;
             double root = 1.002;
             double divide = 10000d;
             //DateTime now = mousenow[mnum];
@@ -1925,7 +1949,7 @@ namespace DS4Windows
                 control.ToString().Contains("LY") ||
                 control.ToString().Contains("RX") ||
                     control.ToString().Contains("RY"));
-            if (Global.MouseAccel[device])
+            if (MouseAccel[device])
             {
                 if (value > 0)
                 {
@@ -1973,9 +1997,9 @@ namespace DS4Windows
 
         public static byte getByteMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
-            double SXD = Global.SXDeadzone[device];
-            double SZD = Global.SZDeadzone[device];
-            bool sOff = Global.UseSAforMouse[device];
+            double SXD = SXDeadzone[device];
+            double SZD = SZDeadzone[device];
+            bool sOff = UseSAforMouse[device];
             switch (control)
             {
                 case DS4Controls.Share: return (byte)(cState.Share ? 255 : 0);
@@ -2007,10 +2031,10 @@ namespace DS4Windows
                 case DS4Controls.RYPos: return (byte)(cState.RY - 127.5f < 0 ? 0 : (cState.RY - 127.5f) * 2);
                 case DS4Controls.L2: return cState.L2;
                 case DS4Controls.R2: return cState.R2;
-                case DS4Controls.GyroXPos: return (byte)(!sOff && eState.GyroX > SXD * 10 ? Math.Min(255, eState.GyroX  * 2) : 0);
-                case DS4Controls.GyroXNeg: return (byte)(!sOff && eState.GyroX < -SXD * 10 ? Math.Min(255, -eState.GyroX * 2) : 0);
-                case DS4Controls.GyroZPos: return (byte)(!sOff && eState.GyroZ > SZD * 10 ? Math.Min(255, eState.GyroZ * 2) : 0);
-                case DS4Controls.GyroZNeg: return (byte)(!sOff && eState.GyroZ < -SZD * 10 ? Math.Min(255, -eState.GyroZ * 2) : 0);
+                case DS4Controls.GyroXPos: return (byte)(!sOff && SXSens[device] * eState.GyroX > SXD * 10 ? Math.Min(255, SXSens[device] * eState.GyroX * 2) : 0);
+                case DS4Controls.GyroXNeg: return (byte)(!sOff && SXSens[device] * eState.GyroX < -SXD * 10 ? Math.Min(255, SXSens[device] * -eState.GyroX * 2) : 0);
+                case DS4Controls.GyroZPos: return (byte)(!sOff && SZSens[device] * eState.GyroZ > SZD * 10 ? Math.Min(255, SZSens[device] * eState.GyroZ * 2) : 0);
+                case DS4Controls.GyroZNeg: return (byte)(!sOff && SZSens[device] * eState.GyroZ < -SZD * 10 ? Math.Min(255, SZSens[device] * -eState.GyroZ  * 2) : 0);
                 case DS4Controls.SwipeUp: return (byte)(tp != null ? tp.swipeUpB : 0);
                 case DS4Controls.SwipeDown: return (byte)(tp != null ? tp.swipeDownB: 0);
                 case DS4Controls.SwipeLeft: return (byte)(tp != null ?  tp.swipeLeftB: 0);
@@ -2021,7 +2045,7 @@ namespace DS4Windows
 
         public static bool getBoolMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
-            bool sOff = Global.UseSAforMouse[device];
+            bool sOff = UseSAforMouse[device];
             switch (control)
             {
                 case DS4Controls.Share: return cState.Share;
@@ -2053,10 +2077,10 @@ namespace DS4Windows
                 case DS4Controls.RYPos: return cState.RY > 127 + 55;
                 case DS4Controls.L2: return cState.L2 > 100;
                 case DS4Controls.R2: return cState.R2 > 100;
-                case DS4Controls.GyroXPos: return !sOff ? eState.GyroX > 67 : false;
-                case DS4Controls.GyroXNeg: return !sOff ? eState.GyroX < -67 : false;
-                case DS4Controls.GyroZPos: return !sOff ? eState.GyroZ > 67 : false;
-                case DS4Controls.GyroZNeg: return !sOff ? eState.GyroZ < -67 : false;
+                case DS4Controls.GyroXPos: return !sOff ? SXSens[device] * eState.GyroX > 67 : false;
+                case DS4Controls.GyroXNeg: return !sOff ? SXSens[device] * eState.GyroX < -67 : false;
+                case DS4Controls.GyroZPos: return !sOff ? SZSens[device] * eState.GyroZ > 67 : false;
+                case DS4Controls.GyroZNeg: return !sOff ? SZSens[device] * eState.GyroZ < -67 : false;
                 case DS4Controls.SwipeUp: return (tp != null && tp.swipeUp);
                 case DS4Controls.SwipeDown: return (tp != null && tp.swipeDown);
                 case DS4Controls.SwipeLeft: return (tp != null && tp.swipeLeft);
@@ -2069,9 +2093,9 @@ namespace DS4Windows
         {
             byte trueVal = 0;
             byte falseVal = 127;
-            double SXD = Global.SXDeadzone[device];
-            double SZD = Global.SZDeadzone[device];
-            bool sOff = Global.UseSAforMouse[device];
+            double SXD = SXDeadzone[device];
+            double SZD = SZDeadzone[device];
+            bool sOff = UseSAforMouse[device];
             if (alt)
                 trueVal = 255;
             switch (control)
@@ -2102,16 +2126,16 @@ namespace DS4Windows
                 case DS4Controls.SwipeLeft: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeLeftB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeLeftB / 2f : 0);
                 case DS4Controls.SwipeRight: if (alt) return (byte)(tp != null ? 127.5f + tp.swipeRightB / 2f : 0); else return (byte)(tp != null ? 127.5f - tp.swipeRightB / 2f : 0);
                 case DS4Controls.GyroXPos: if (!sOff && eState.GyroX > SXD * 10)
-                        if (alt) return (byte)Math.Min(255, 127 + eState.GyroX); else return (byte)Math.Max(0, 127 - eState.GyroX);
+                        if (alt) return (byte)Math.Min(255, 127 + SXSens[device] * eState.GyroX); else return (byte)Math.Max(0, 127 - SXSens[device] * eState.GyroX);
                     else return falseVal;
                 case DS4Controls.GyroXNeg: if (!sOff && eState.GyroX < -SXD * 10)
-                        if (alt) return (byte)Math.Min(255, 127 + -eState.GyroX); else return (byte)Math.Max(0, 127 - -eState.GyroX);
+                        if (alt) return (byte)Math.Min(255, 127 + SXSens[device] * -eState.GyroX); else return (byte)Math.Max(0, 127 - SXSens[device] * -eState.GyroX);
                     else return falseVal;
                 case DS4Controls.GyroZPos: if (!sOff && eState.GyroZ > SZD * 10)
-                        if (alt) return (byte)Math.Min(255, 127 + eState.GyroZ); else return (byte)Math.Max(0, 127 - eState.GyroZ);
+                        if (alt) return (byte)Math.Min(255, 127 + SZSens[device] * eState.GyroZ); else return (byte)Math.Max(0, 127 - SZSens[device] * eState.GyroZ);
                     else return falseVal;
                 case DS4Controls.GyroZNeg: if (!sOff && eState.GyroZ < -SZD * 10)
-                        if (alt) return (byte)Math.Min(255, 127 + -eState.GyroZ); else return (byte)Math.Max(0, 127 - -eState.GyroZ);
+                        if (alt) return (byte)Math.Min(255, 127 + SZSens[device] * -eState.GyroZ); else return (byte)Math.Max(0, 127 - SZSens[device] * -eState.GyroZ);
                     else return falseVal;
             }            
             if (!alt)

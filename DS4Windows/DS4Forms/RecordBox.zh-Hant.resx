@@ -165,4 +165,7 @@
   <data name="lbDelayTip.Text" xml:space="preserve">
     <value>雙擊在一個等待上來編輯時間</value>
   </data>
+  <data name="btnLightbar.Text" xml:space="preserve">
+    <value>改變光條顏色</value>
+  </data>
 </root>

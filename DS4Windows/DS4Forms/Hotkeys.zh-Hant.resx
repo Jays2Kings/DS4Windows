@@ -120,20 +120,21 @@
   <data name="lbAbout.Text" xml:space="preserve">
     <value>DS4Windows - Jays2Kings 編譯 (版本</value>
   </data>
-  <data name="lbTranslators.Text" xml:space="preserve">
-    <value>翻譯人員</value>
-  </data>
-  <data name="linkDonate.Text" xml:space="preserve">
-    <value>Paypal 捐款</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lLChangelog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 17</value>
   </data>
   <data name="lLChangelog.Text" xml:space="preserve">
     <value>更新日誌</value>
   </data>
-  <data name="tPCredits.Text" xml:space="preserve">
-    <value>製作者名單</value>
+  <data name="linkDonate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>675, 6</value>
   </data>
-  <data name="tPHotkeys.Text" xml:space="preserve">
-    <value>熱鍵</value>
+  <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 17</value>
+  </data>
+  <data name="linkDonate.Text" xml:space="preserve">
+    <value>Paypal 捐款</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
     <value>隱藏DS4控制器：從其他程序隱藏DS4的常規輸入 (Dinput)，檢查你在遊戲中是否得到雙重輸入或 R2 暫停遊戲
@@ -153,5 +154,17 @@ Shift Modifer：按住一個動作來使用另一套控制動作
 巨集：分配多個鍵到一個輸入
 掃描代碼：密鑰有著不同的解讀。某些遊戲可能需要
 *如果啟用</value>
+  </data>
+  <data name="tPHotkeys.Text" xml:space="preserve">
+    <value>熱鍵</value>
+  </data>
+  <data name="tPCredits.Text" xml:space="preserve">
+    <value>製作者名單</value>
+  </data>
+  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 17</value>
+  </data>
+  <data name="lbTranslators.Text" xml:space="preserve">
+    <value>翻譯人員</value>
   </data>
 </root>

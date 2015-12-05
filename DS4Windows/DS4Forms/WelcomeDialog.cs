@@ -84,12 +84,29 @@ namespace DS4Windows
             timer.Start();
             timer.Tick += timer_Tick;
         }
-
+        bool waitForFile;
+        DateTime waitFileCheck;
         private void timer_Tick(object sender, EventArgs e)
         {
             Process[] processes = Process.GetProcessesByName("ScpDriver");
             if (processes.Length < 1)
             {
+                if (!File.Exists(exepath + "\\ScpDriver.log") && !waitForFile)
+                {
+                    waitForFile = true;
+                    waitFileCheck = DateTime.UtcNow;
+                    return;
+                }
+                if (waitForFile && waitFileCheck + TimeSpan.FromMinutes(2) < DateTime.UtcNow)
+                {
+                    bnStep1.Text = Properties.Resources.InstallFailed;
+                    Process.Start(exepath + "\\Virtual Bus Driver");
+                    File.Delete(exepath + "\\VBus.zip");
+                    ((Timer)sender).Stop();
+                    return;
+                }
+                else if (waitForFile)
+                    return;
                 string log = File.ReadAllText(exepath + "\\ScpDriver.log");
                 if (log.Contains("Install Succeeded"))
                     bnStep1.Text = Properties.Resources.InstallComplete;

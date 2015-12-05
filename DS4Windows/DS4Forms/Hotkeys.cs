@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
-using System.Net;
-using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace DS4Windows
 {
@@ -19,6 +13,11 @@ namespace DS4Windows
         public Hotkeys()
         {
             InitializeComponent();
+           /* switch (Thread.CurrentThread.CurrentUICulture.ToString())
+            {
+                case "ar": lbArabic.ForeColor = Color.Green; break;
+                case "de-DE": lbGerman.ForeColor = Color.Green; break;
+            }*/
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             lbAbout.Text += version + ")";

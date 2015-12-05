@@ -241,11 +241,17 @@ namespace DS4Windows
         public static int[] RSDeadzone => m_Config.RSDeadzone;
         public static int[] LSCurve => m_Config.lsCurve;
         public static int[] RSCurve => m_Config.rsCurve;
+        public static double[] L2Sens => m_Config.l2Sens;
+        public static double[] R2Sens => m_Config.r2Sens;
+        public static double[] SXSens => m_Config.SXSens;
+        public static double[] SZSens => m_Config.SZSens;
+        public static double[] LSSens => m_Config.LSSens;
+        public static double[] RSSens => m_Config.RSSens;
         public static bool[] MouseAccel => m_Config.mouseAccel;
         public static int[] ShiftModifier => m_Config.shiftModifier;
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
-        public static List<String>[] ProfileActions => m_Config.profileActions;
+        public static List<string>[] ProfileActions => m_Config.profileActions;
 
         public static void SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
         {
@@ -422,12 +428,15 @@ namespace DS4Windows
         public Boolean[] lowerRCOn = { false, false, false, false, false };
         public Boolean[] ledAsBattery = { false, false, false, false, false };
         public Byte[] flashType = { 0, 0, 0, 0, 0 };
-        public Byte[] l2Deadzone = { 0, 0, 0, 0, 0 }, r2Deadzone = { 0, 0, 0, 0, 0 };
         public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty, String.Empty };
         public Byte[] rumble = { 100, 100, 100, 100, 100 };
         public Byte[] touchSensitivity = { 100, 100, 100, 100, 100 };
+        public Byte[] l2Deadzone = { 0, 0, 0, 0, 0 }, r2Deadzone = { 0, 0, 0, 0, 0 };
         public int[] LSDeadzone = { 0, 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0, 0 };
         public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
+        public double[] l2Sens = { 1, 1, 1, 1, 1 }, r2Sens = { 1, 1, 1, 1, 1 };
+        public double[] LSSens = { 1, 1, 1, 1, 1 }, RSSens = { 1, 1, 1, 1, 1 };
+        public double[] SXSens = { 1, 1, 1, 1, 1 }, SZSens = { 1, 1, 1, 1, 1 };
         public Byte[] tapSensitivity = { 0, 0, 0, 0, 0 };
         public bool[] doubleTap = { false, false, false, false, false };
         public int[] scrollSensitivity = { 0, 0, 0, 0, 0 };
@@ -673,6 +682,11 @@ namespace DS4Windows
                 XmlNode xmlRSD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZone", null); xmlRSD.InnerText = RSDeadzone[device].ToString(); Node.AppendChild(xmlRSD);
                 XmlNode xmlSXD = m_Xdoc.CreateNode(XmlNodeType.Element, "SXDeadZone", null); xmlSXD.InnerText = SXDeadzone[device].ToString(); Node.AppendChild(xmlSXD);
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); Node.AppendChild(xmlSZD);
+
+                XmlNode xmlSens = m_Xdoc.CreateNode(XmlNodeType.Element, "Sensitivity", null);
+                xmlSens.InnerText = $"{LSSens[device]},{RSSens[device]},{l2Sens[device]},{r2Sens[device]},{SXSens[device]},{SZSens[device]}";
+                Node.AppendChild(xmlSens);
+
                 XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null); xmlChargingType.InnerText = chargingType[device].ToString(); Node.AppendChild(xmlChargingType);
                 XmlNode xmlMouseAccel = m_Xdoc.CreateNode(XmlNodeType.Element, "MouseAcceleration", null); xmlMouseAccel.InnerText = mouseAccel[device].ToString(); Node.AppendChild(xmlMouseAccel);
                 XmlNode xmlShiftMod = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftModifier", null); xmlShiftMod.InnerText = shiftModifier[device].ToString(); Node.AppendChild(xmlShiftMod);
@@ -1101,7 +1115,7 @@ namespace DS4Windows
                     DS4LightBar.forcelight[device] = false;
                     DS4LightBar.forcedFlash[device] = 0;
                 }
-                try { Item = m_Xdoc.SelectSingleNode("/"+ rootname + "/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
                 catch { missingSetting = true; }//rootname = }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout[device]); }
@@ -1246,6 +1260,18 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); double.TryParse(Item.InnerText, out SXDeadzone[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZDeadZone"); double.TryParse(Item.InnerText, out SZDeadzone[device]); }
+                catch { missingSetting = true; }
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Sensitivity");
+                    string[] s = Item.InnerText.Split(',');
+                    double.TryParse(s[0], out LSSens[device]);
+                    double.TryParse(s[1], out RSSens[device]);
+                    double.TryParse(s[2], out l2Sens[device]);
+                    double.TryParse(s[3], out r2Sens[device]);
+                    double.TryParse(s[4], out SXSens[device]);
+                    double.TryParse(s[5], out SZSens[device]);
+                }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingType"); int.TryParse(Item.InnerText, out chargingType[device]); }
                 catch { missingSetting = true; }

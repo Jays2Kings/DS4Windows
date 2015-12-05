@@ -201,6 +201,9 @@
   <data name="&gt;&gt;btnSave.Name" xml:space="preserve">
     <value>btnSave</value>
   </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="tBProfile.Text" xml:space="preserve">
     <value>&lt;type new name here&gt;</value>
   </data>
@@ -215,7 +218,7 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Type name of New Profile</value>
-  <comment>@Invariant</comment></data>
+  </data>
   <data name="&gt;&gt;tBProfile.Name" xml:space="preserve">
     <value>tBProfile</value>
   </data>
@@ -223,6 +226,6 @@
     <value>True</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>tr</value>
+    <value>vi</value>
   </metadata>
 </root>

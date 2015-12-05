@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionExists" xml:space="preserve">
-    <value>Nazwe tej akcji już istnieje</value>
+    <value>Nazwa tej akcji już istnieje</value>
   </data>
   <data name="AddingToList" xml:space="preserve">
     <value>Dodawanie do listy...</value>
@@ -127,7 +127,7 @@
     <value>Dodaj programy</value>
   </data>
   <data name="ALocactionNeeded" xml:space="preserve">
-    <value>Musi zostać wybrana lokalizacja aby kontynuować</value>
+    <value>Lokalizacja musi zostać wybrana aby kontynuować</value>
   </data>
   <data name="AlwaysRainbow" xml:space="preserve">
     <value>Zawsze w Trybie Tęczy</value>
@@ -139,13 +139,13 @@
     <value>Bateria: *numer*%</value>
   </data>
   <data name="BestUsedRightSide" xml:space="preserve">
-    <value>Najlepiej użyć prawej strony jak funkcje w myszce</value>
+    <value>Najlepiej używać prawej strony jako funkcje w myszce</value>
   </data>
   <data name="Browse" xml:space="preserve">
     <value>Wyszukaj...</value>
   </data>
   <data name="CannotWriteHere" xml:space="preserve">
-    <value>Nie mozna zapisac w obecnej lokalizacji. Kopiuj ustawienia do "appdata"</value>
+    <value>Nie mozna zapisac w obecnej lokalizacji. Kopiuj ustawienia do "appdata"?</value>
   </data>
   <data name="Charged" xml:space="preserve">
     <value>Naładowany</value>
@@ -178,13 +178,13 @@
     <value>Stwórz profil dla Kontrolera *number*</value>
   </data>
   <data name="ControllerWasRemoved" xml:space="preserve">
-    <value>Kontroler *Mac addres* został usunięty lub utracił połączenie</value>
+    <value>Kontroler *Mac address* został usunięty lub utracił połączenie</value>
   </data>
   <data name="CopyFullColor" xml:space="preserve">
     <value>Kliknij, żeby skopiować pełen kolor</value>
   </data>
   <data name="CouldNotOpenDS4" xml:space="preserve">
-    <value>Ostrzeżenie: Nie można otworzyć DS4 *Mac adress*.</value>
+    <value>Ostrzeżenie: Nie można otworzyć DS4 *Mac address*.</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>dzień</value>
@@ -202,7 +202,7 @@
     <value>Wyłącz wejście X360 i używaj tylko standardowego wejścia DS4, opcja ukryj ds4 musi zostać wyłączona (tylko przewodowo)</value>
   </data>
   <data name="DisconnectBT" xml:space="preserve">
-    <value>Rozłącz BT</value>
+    <value>Rozłącz Bluetooth</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
     <value>Rozłączono</value>
@@ -217,7 +217,7 @@
     <value>Dół</value>
   </data>
   <data name="DS4Update" xml:space="preserve">
-    <value>Dostępna aktualizacja dla DS4Windows</value>
+    <value>Dostępna aktualizacja dla DS4Windows!</value>
   </data>
   <data name="DS4WindowsCannotEditHere" xml:space="preserve">
     <value>DS4Windows nie może edytować tu ustawień, Okno zostanie zamknięte</value>
@@ -358,63 +358,123 @@
     <value>Krok 1: Zainstaluj DS4 Driver</value>
   </data>
   <data name="StopLText" xml:space="preserve">
-    <value>Przestań świecić</value>
+    <value>Wstrzymaj słabe</value>
   </data>
   <data name="StoppedDS4Tool" xml:space="preserve">
     <value>Zatrzymano DS4Windows</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Zatrzymywanie Kontrolerów DS4</value>
+    <value>Zatrzymano DS4Windows</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
-    <value>Zatrzymywanie Kontrolerów X360</value>
+    <value>Zatrzymywanie Kontrolerów DS4</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
-    <value>Stop</value>
+    <value>Zatrzymywanie Kontrolerów X360</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Przesuń w dół</value>
+    <value>Stop</value>
   </data>
   <data name="SwipeDown" xml:space="preserve">
-    <value>przesuń w lewo</value>
+    <value>Przesuń w dół</value>
   </data>
   <data name="SwipeLeft" xml:space="preserve">
-    <value>przesuń w prawo</value>
+    <value>Przesuń w lewo</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>przesuń w górę</value>
+    <value>Przesuń po panelu dotykowym aby zmienić profil</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>Wpisz tutaj nową nazwę</value>
+    <value>Przesunięcie dwoma palcami na panelu dotykowym w lewo lub prawo</value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
-    <value>Wpisz tutaj nową nazwę profilu</value>
+    <value>Wpisz tutaj nową nazwę</value>
   </data>
   <data name="TypeProfileName" xml:space="preserve">
-    <value>Góra</value>
+    <value>Wpisz tutaj nową nazwę profilu</value>
   </data>
   <data name="UpText" xml:space="preserve">
-    <value>Posiadasz najnowsza wersje oprogramowania</value>
+    <value>Góra</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>Możesz także użyć swego kontrolery aby zmienić sterowanie</value>
+    <value>Posiadasz najnowszą wersje oprogramowania</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
-    <value>Tryb wyłączności</value>
+    <value>Możesz także użyć swojego kontrolera aby zmienić sterowanie</value>
   </data>
   <data name="UsingExclusive" xml:space="preserve">
-    <value>Kontroler "numer" używa profilu "nazwa profilu"</value>
+    <value>Tryb wyłączności</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Tryb udostępniania</value>
+    <value>Kontroler *number* używa profilu "*Profile name*"</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Wpisz prawidłowy numer</value>
+    <value>Zablokowanie używania panelu dotykowego jako myszy</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
     <value>Zostanie zachowane</value>
   </data>
   <data name="WaitMS" xml:space="preserve">
     <value>Czekaj *number**ms*</value>
+  </data>
+  <data name="SixAxisReading" xml:space="preserve">
+    <value>Kliknij aby uzyskać zaawansowane odczyty Sixaxis</value>
+  </data>
+  <data name="StopHText" xml:space="preserve">
+    <value>Wstrzymaj silne</value>
+  </data>
+  <data name="SwipeRight" xml:space="preserve">
+    <value>Przesuń w prawo</value>
+  </data>
+  <data name="SwipeUp" xml:space="preserve">
+    <value>Przesuń w górę</value>
+  </data>
+  <data name="TestHText" xml:space="preserve">
+    <value>Testuj silne</value>
+  </data>
+  <data name="TestLText" xml:space="preserve">
+    <value>Testuj słabe</value>
+  </data>
+  <data name="TestText" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="TextDocs" xml:space="preserve">
+    <value>Pliki tekstowe (*.txt)</value>
+  </data>
+  <data name="TiltDown" xml:space="preserve">
+    <value>Wychyl w dół</value>
+  </data>
+  <data name="TiltLeft" xml:space="preserve">
+    <value>Wychyl w lewo</value>
+  </data>
+  <data name="TiltRight" xml:space="preserve">
+    <value>Wychyl w prawo</value>
+  </data>
+  <data name="TiltUp" xml:space="preserve">
+    <value>Wychyl w górę</value>
+  </data>
+  <data name="TouchpadMovementOff" xml:space="preserve">
+    <value>Poruszanie się panelem dotykowym jest teraz WYŁĄCZONE</value>
+  </data>
+  <data name="TouchpadMovementOn" xml:space="preserve">
+    <value>Poruszanie się panelem dotykowym jest teraz WŁĄCZONE</value>
+  </data>
+  <data name="TouchpadOffTip" xml:space="preserve">
+    <value>Włącz ponownie przez wciśnięcie przycisku PS i panelu dotykowego</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>Nieprzypisany</value>
+  </data>
+  <data name="UsingShared" xml:space="preserve">
+    <value>Tryb udostępniania</value>
+  </data>
+  <data name="ValidName" xml:space="preserve">
+    <value>Wpisz prawidłową nazwe</value>
+  </data>
+  <data name="XinputPorts" xml:space="preserve">
+    <value>Użyj kolejnych portów, jeśli pojawiają się konflikty z innymi programami emulującymi X360 jak SCP's tool</value>
+  </data>
+  <data name="XMLFiles" xml:space="preserve">
+    <value>Pliki XML (*.xml)</value>
   </data>
 </root>

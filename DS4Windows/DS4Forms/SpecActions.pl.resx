@@ -145,7 +145,7 @@
     <value>Wczytaj profil</value>
   </data>
   <data name="cBActions.Items5" xml:space="preserve">
-    <value>Rozłącz z Blootoothem</value>
+    <value>Rozłącz z Blootooth</value>
   </data>
   <data name="cBActions.Items6" xml:space="preserve">
     <value>Sprawdź stan baterii</value>
@@ -174,7 +174,10 @@
     <value>Nazwa</value>
   </data>
   <data name="lbSecs.Text" xml:space="preserve">
-    <value></value>
+    <value>sekund</value>
     <comment>秒</comment>
+  </data>
+  <data name="cBActions.Items4" xml:space="preserve">
+    <value>Wciśnij/Włącz przycisk</value>
   </data>
 </root>

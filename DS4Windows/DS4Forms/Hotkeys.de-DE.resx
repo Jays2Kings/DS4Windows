@@ -119,31 +119,28 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>582, 19</value>
-  </data>
-  <data name="lbAbout.Text" xml:space="preserve">
-    <value>DS4Windows - Jays2Kings Build (Version</value>
+    <value>731, 19</value>
   </data>
   <data name="lLChangelog.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 3</value>
   </data>
   <data name="lLChangelog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+    <value>86, 17</value>
   </data>
   <data name="lLChangelog.Text" xml:space="preserve">
     <value>Änderungen</value>
   </data>
   <data name="linkDonate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>475, 3</value>
+    <value>588, 3</value>
   </data>
   <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 13</value>
+    <value>143, 17</value>
   </data>
   <data name="linkDonate.Text" xml:space="preserve">
     <value>über Paypal spenden</value>
   </data>
   <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>551, 458</value>
+    <value>694, 458</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
     <value>Verstecke DS4 Controller: Verstecke DS4's Standard Eingabemethode (Dinput) vor anderen Programmen. Überprüfe, ob du Doppeleingaben in Spielen bekommst oder R2 das Spiel pausiert.
@@ -170,51 +167,102 @@ Scancode: Tasten werden unterschiedlich interpretiert. Kann für bestimmte Spiel
 *falls aktiviert</value>
   </data>
   <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>574, 352</value>
+    <value>723, 421</value>
   </data>
   <data name="tPHotkeys.Text" xml:space="preserve">
     <value>Makros</value>
   </data>
   <data name="lbGermanT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 22</value>
+    <value>573, 22</value>
+  </data>
+  <data name="lbItalianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 22</value>
   </data>
   <data name="lbItalianT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 22</value>
+    <value>573, 22</value>
+  </data>
+  <data name="lbItalian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="lbRussian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 44</value>
+  </data>
+  <data name="lbRussianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 44</value>
   </data>
   <data name="lbRussianT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 22</value>
+    <value>573, 22</value>
+  </data>
+  <data name="lbRomanian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 66</value>
+  </data>
+  <data name="lbRomanianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 66</value>
   </data>
   <data name="lbRomanianT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 22</value>
+    <value>573, 22</value>
+  </data>
+  <data name="lbTurkish.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 88</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 88</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 22</value>
+  </data>
+  <data name="lbChineseS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 110</value>
+  </data>
+  <data name="lbChineseST.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 110</value>
+  </data>
+  <data name="lbChineseT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 132</value>
+  </data>
+  <data name="lbChineseTT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 132</value>
+  </data>
+  <data name="lbArabic.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 154</value>
+  </data>
+  <data name="lbArabicT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 154</value>
+  </data>
+  <data name="lbHebrew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 176</value>
+  </data>
+  <data name="lbHebrewT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 176</value>
   </data>
   <data name="tLPTranslators.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 109</value>
+    <value>4, 173</value>
   </data>
   <data name="tLPTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>568, 227</value>
+    <value>715, 227</value>
+  </data>
+  <data name="lbTranslators.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 227</value>
   </data>
   <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
+    <value>82, 17</value>
   </data>
   <data name="lbTranslators.Text" xml:space="preserve">
     <value>Übersetzer:</value>
   </data>
   <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 336</value>
+    <value>4, 400</value>
   </data>
   <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>574, 352</value>
+    <value>723, 421</value>
   </data>
   <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 19</value>
   </data>
   <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>582, 378</value>
+    <value>731, 450</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>582, 397</value>
-  </data>
-  <data name="tPCredits.Text" xml:space="preserve">
-    <value>Credits</value>
+    <value>731, 469</value>
   </data>
 </root>

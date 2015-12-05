@@ -191,7 +191,7 @@
     <value>Zitterausgleich</value>
   </data>
   <data name="lbIdleMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 75</value>
+    <value>285, 75</value>
   </data>
   <data name="lbIdleMinutes.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 17</value>
@@ -200,7 +200,7 @@
     <value>Minuten</value>
   </data>
   <data name="nUDIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 71</value>
+    <value>217, 71</value>
   </data>
   <data name="cBFlushHIDQueue.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 212</value>
@@ -215,7 +215,7 @@
     <value>110, 29</value>
   </data>
   <data name="btnRumbleHeavyTest.Text" xml:space="preserve">
-    <value>Teste Gewicht</value>
+    <value>Teste starke Vibration</value>
   </data>
   <data name="lbFull.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 17</value>
@@ -255,6 +255,9 @@
   </data>
   <data name="DpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 26</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Steuerkreuz</value>
   </data>
   <data name="tSMIDPadInverted.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 26</value>
@@ -373,6 +376,9 @@
   <data name="tSMIMouseInvertedY.Text" xml:space="preserve">
     <value>Invertiert Y</value>
   </data>
+  <data name="gBOther.Text" xml:space="preserve">
+    <value>Andere</value>
+  </data>
   <data name="cBDinput.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 183</value>
   </data>
@@ -425,23 +431,22 @@
     <value>177, 102</value>
   </data>
   <data name="cBControllerInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 38</value>
+    <value>203, 21</value>
   </data>
   <data name="cBControllerInput.Text" xml:space="preserve">
-    <value>für Zuordung 
-und Auslesen</value>
+    <value>für Zuordung und Auslesen</value>
   </data>
   <data name="cBIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 72</value>
   </data>
   <data name="cBIdleDisconnect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 21</value>
+    <value>202, 21</value>
   </data>
   <data name="cBIdleDisconnect.Text" xml:space="preserve">
-    <value>Trenne im Leerlauf</value>
+    <value>Trenne, wenn nicht benutzt</value>
   </data>
-  <data name="gBOther.Text" xml:space="preserve">
-    <value>Andere</value>
+  <data name="gBLightbar.Text" xml:space="preserve">
+    <value>Lichtbalken</value>
   </data>
   <data name="lbRainbowB.Location" type="System.Drawing.Point, System.Drawing">
     <value>288, 271</value>
@@ -456,7 +461,7 @@ und Auslesen</value>
     <value>Pulsieren bei</value>
   </data>
   <data name="cBWhileCharging.Items1" xml:space="preserve">
-    <value>Ein- und ausblenden</value>
+    <value>Pulsieren</value>
   </data>
   <data name="cBWhileCharging.Items2" xml:space="preserve">
     <value>Regenbogen</value>
@@ -476,32 +481,30 @@ und Auslesen</value>
   <data name="lbWhileCharging.Text" xml:space="preserve">
     <value>Während des Ladens:</value>
   </data>
-  <data name="gBLightbar.Text" xml:space="preserve">
-    <value>Lichtbalken</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cBShiftLight.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cBShiftLight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 19</value>
   </data>
   <data name="cBShiftLight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>373, 21</value>
+    <value>165, 98</value>
   </data>
   <data name="cBShiftLight.Text" xml:space="preserve">
     <value>Benutze für den Umschalter Modus eine andere Farbe</value>
   </data>
-  <data name="lbShift.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 17</value>
-  </data>
-  <data name="lbShift.Text" xml:space="preserve">
-    <value>Umschalter:</value>
-  </data>
-  <data name="btnRumbleLightTest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 19</value>
-  </data>
-  <data name="btnRumbleLightTest.Text" xml:space="preserve">
-    <value>Teste Licht</value>
-  </data>
   <data name="gBRumble.Text" xml:space="preserve">
     <value>Vibration</value>
   </data>
-  <data name="tPController.Text" xml:space="preserve">
-    <value>Controller Kalibrierung</value>
+  <data name="btnRumbleLightTest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>214, 19</value>
+  </data>
+  <data name="btnRumbleLightTest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 29</value>
+  </data>
+  <data name="btnRumbleLightTest.Text" xml:space="preserve">
+    <value>Teste schwache Vibration</value>
   </data>
   <data name="lbRSTip.Text" xml:space="preserve">
     <value>Rechter Stick</value>
@@ -516,7 +519,7 @@ und Auslesen</value>
     <value>Linker Stick</value>
   </data>
   <data name="lbSATip.Text" xml:space="preserve">
-    <value>Sixaxis: X Achse ist vertauscht, um leichter zu lesen.</value>
+    <value>Sixaxis: X Achse ist vertauscht, um sie leichter lesen zu können</value>
   </data>
   <data name="pnlSixaxis.Size" type="System.Drawing.Size, System.Drawing">
     <value>277, 156</value>
@@ -537,10 +540,10 @@ und Auslesen</value>
     <value>11, 5</value>
   </data>
   <data name="lb6Gryo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 17</value>
+    <value>69, 17</value>
   </data>
   <data name="lb6Gryo.Text" xml:space="preserve">
-    <value>Bewegungssteuerung</value>
+    <value>Gyroskop</value>
   </data>
   <data name="tBsixaxisAccelY.Location" type="System.Drawing.Point, System.Drawing">
     <value>163, 64</value>
@@ -551,9 +554,6 @@ und Auslesen</value>
   <data name="tPShiftMod.Text" xml:space="preserve">
     <value>Modifikator</value>
   </data>
-  <data name="cBShiftControl.Items" xml:space="preserve">
-    <value>(nichts)/Umschalter aus</value>
-  </data>
   <data name="lbHold.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 17</value>
   </data>
@@ -561,13 +561,16 @@ und Auslesen</value>
     <value>Halte</value>
   </data>
   <data name="lbtoUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 57</value>
+    <value>345, 372</value>
   </data>
   <data name="lbtoUse.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 17</value>
   </data>
   <data name="lbtoUse.Text" xml:space="preserve">
     <value>um diese Steuerung zu nutzen</value>
+  </data>
+  <data name="cBShiftControl.Items" xml:space="preserve">
+    <value>(nichts)/Umschalter aus</value>
   </data>
   <data name="tPControls.Text" xml:space="preserve">
     <value>Steuerung</value>
@@ -576,11 +579,10 @@ und Auslesen</value>
     <value>244, 30</value>
   </data>
   <data name="lbControlTip.Text" xml:space="preserve">
-    <value>Drücke einen Teil des Controllers um die Aktion zu ändern
-Drücke den Lichtbalken für den Farbenauswähler</value>
+    <value>Drücke den Lichtbalken für den Farbenauswähler</value>
   </data>
   <data name="tPSpecial.Text" xml:space="preserve">
-    <value>Spezial Aktionen</value>
+    <value>Spezialaktionen</value>
   </data>
   <data name="cHTrigger.Text" xml:space="preserve">
     <value>Auslöser</value>
@@ -598,11 +600,121 @@ Drücke den Lichtbalken für den Farbenauswähler</value>
     <value>Lösche Aktion</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Halte ausgewählte Steuerungen um eine Aktion auszuführen. Kontrolliere 
-die Aktion, um sie zu benutzen, während das Profil geladen ist. Max 50 
-Aktionen.</value>
+    <value>Halte die ausgewählten Tasten, um die Aktion auszuführen. Hake die Aktion an, um sie im Spiel zu benutzen</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Toter Bereich</value>
+  </data>
+  <data name="tPCurve.Text" xml:space="preserve">
+    <value>Kurve</value>
+  </data>
+  <data name="rBSAControls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 25</value>
+  </data>
+  <data name="rBSAControls.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 21</value>
+  </data>
+  <data name="rBSAControls.Text" xml:space="preserve">
+    <value>Als Controller benutzen</value>
+  </data>
+  <data name="rBSAMouse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 25</value>
+  </data>
+  <data name="rBSAMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 21</value>
+  </data>
+  <data name="rBSAMouse.Text" xml:space="preserve">
+    <value>Als Maus benutzen</value>
+  </data>
+  <data name="lbGyroInvert.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 17</value>
+  </data>
+  <data name="lbGyroInvert.Text" xml:space="preserve">
+    <value>Invertieren:</value>
+  </data>
+  <data name="nUDGyroSensitivity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 56</value>
+  </data>
+  <data name="lbGyroSens.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 17</value>
+  </data>
+  <data name="lbGyroSens.Text" xml:space="preserve">
+    <value>Gyro Empfindlichkeit:</value>
+  </data>
+  <data name="cMGyroTriggers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>290, 524</value>
+  </data>
+  <data name="crossToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="circleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="squareToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="triangleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="l1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="l2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="r1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="r2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="onTouchpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="downToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="leftToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="rightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="l3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="r3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="fingerOnTouchpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="fingerOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Finger auf dem Touchpad</value>
+  </data>
+  <data name="fingersOnTouchpadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="fingersOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zwei Finger auf dem Touchpad</value>
+  </data>
+  <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="shareToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="pSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="resetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 26</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
   </data>
 </root>

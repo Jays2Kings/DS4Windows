@@ -40,7 +40,15 @@ namespace DS4Windows
                 }
                 else if (UseCustomLed[deviceNum])
                 {
-                    color = CustomColor[deviceNum];
+                    if (LedAsBatteryIndicator[deviceNum])
+                    {
+                            DS4Color fullColor = CustomColor[deviceNum];
+                            DS4Color lowColor = LowColor[deviceNum];
+
+                            color = getTransitionedColor(lowColor, fullColor, device.Battery);
+                    }
+                    else
+                        color = CustomColor[deviceNum];
                 }
                 else
                 {
@@ -70,7 +78,7 @@ namespace DS4Windows
                         //if (device.Charging == false || device.Battery >= 100) // when charged, don't show the charging animation
                         {
                             DS4Color fullColor = MainColor[deviceNum];
-                            DS4Color lowColor =  LowColor[deviceNum];
+                            DS4Color lowColor = LowColor[deviceNum];
 
                             color = getTransitionedColor(lowColor, fullColor, (uint)device.Battery);
                         }
@@ -80,63 +88,65 @@ namespace DS4Windows
                         color = MainColor[deviceNum];
                     }
 
+                }
 
-                    if (device.Battery <= FlashAt[deviceNum] && !defualtLight && !device.Charging)
+                if (device.Battery <= FlashAt[deviceNum] && !defualtLight && !device.Charging)
+                {
+                    if (!(FlashColor[deviceNum].red == 0 &&
+                        FlashColor[deviceNum].green == 0 &&
+                        FlashColor[deviceNum].blue == 0))
+                        color = FlashColor[deviceNum];
+                    if (FlashType[deviceNum] == 1)
                     {
-                        if (!(FlashColor[deviceNum].red == 0 &&
-                            FlashColor[deviceNum].green == 0 &&
-                            FlashColor[deviceNum].blue == 0))
-                            color = FlashColor[deviceNum];
-                        if (FlashType[deviceNum] == 1)
-                        {
+                        if (fadetimer[deviceNum] <= 0)
+                            fadedirection[deviceNum] = true;
+                        else if (fadetimer[deviceNum] >= 100)
+                            fadedirection[deviceNum] = false;
+                        if (fadedirection[deviceNum])
+                            fadetimer[deviceNum] += 1;
+                        else
+                            fadetimer[deviceNum] -= 1;
+                        color = getTransitionedColor(color, new DS4Color(0, 0, 0), fadetimer[deviceNum]);
+                    }
+                }
+
+                if (IdleDisconnectTimeout[deviceNum] > 0 && LedAsBatteryIndicator[deviceNum] && (!device.Charging || device.Battery >= 100))
+                {//Fade lightbar by idle time
+                    TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
+                    double botratio = timeratio.TotalMilliseconds;
+                    double topratio = TimeSpan.FromSeconds(IdleDisconnectTimeout[deviceNum]).TotalMilliseconds;
+                    double ratio = ((botratio / topratio) * 100);
+                    if (ratio >= 50 && ratio <= 100)
+                        color = getTransitionedColor(color, new DS4Color(0, 0, 0), (uint)((ratio - 50) * 2));
+                    else if (ratio >= 100)
+                        color = getTransitionedColor(color, new DS4Color(0, 0, 0), 100);
+                }
+                if (device.Charging && device.Battery < 100)
+                    switch (ChargingType[deviceNum])
+                    {
+                        case 1:
                             if (fadetimer[deviceNum] <= 0)
                                 fadedirection[deviceNum] = true;
-                            else if (fadetimer[deviceNum] >= 100)
+                            else if (fadetimer[deviceNum] >= 105)
                                 fadedirection[deviceNum] = false;
                             if (fadedirection[deviceNum])
-                                fadetimer[deviceNum] += 1;
+                                fadetimer[deviceNum] += .1;
                             else
-                                fadetimer[deviceNum] -= 1;
-                            color = getTransitionedColor(color, new DS4Color(0,0,0), fadetimer[deviceNum]);
-                        }
-                    }
-
-                    if (IdleDisconnectTimeout[deviceNum] > 0 && LedAsBatteryIndicator[deviceNum] && (!device.Charging || device.Battery >= 100))
-                    {//Fade lightbar by idle time
-                        TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
-                        double botratio = timeratio.TotalMilliseconds;
-                        double topratio = TimeSpan.FromSeconds(IdleDisconnectTimeout[deviceNum]).TotalMilliseconds;
-                        double ratio = ((botratio / topratio) * 100);
-                        if (ratio >= 50 && ratio <= 100)
-                            color = getTransitionedColor(color, new DS4Color(0, 0, 0), (uint)((ratio - 50) * 2));
-                        else if (ratio >= 100)
-                            color = getTransitionedColor(color, new DS4Color(0, 0, 0), 100);
-                    }
-                    if (device.Charging && device.Battery < 100)
-                        switch (ChargingType[deviceNum])
-                        {
-                            case 1:
-                                if (fadetimer[deviceNum] <= 0)
-                                    fadedirection[deviceNum] = true;
-                                else if (fadetimer[deviceNum] >= 105)
-                                    fadedirection[deviceNum] = false;
-                                if (fadedirection[deviceNum])
-                                    fadetimer[deviceNum] += .1;
-                                else
-                                    fadetimer[deviceNum] -= .1;
-                                color = getTransitionedColor(color, new DS4Color(0, 0, 0), fadetimer[deviceNum]);
-                                break;
-                            case 2:
-                                counters[deviceNum] += .167;
-                                color = HuetoRGB((float)counters[deviceNum] % 360, 255);
-                                break;
-                            case 3:
+                                fadetimer[deviceNum] -= .1;
+                            color = getTransitionedColor(color, new DS4Color(0, 0, 0), fadetimer[deviceNum]);
+                            break;
+                        case 2:
+                            counters[deviceNum] += .167;
+                            color = HuetoRGB((float)counters[deviceNum] % 360, 255);
+                            break;
+                        case 3:
+                            if (!(ShiftColorOn[deviceNum] && ShiftModifier[deviceNum] > 0 && shiftMod(device, deviceNum, cState, eState, tp)) &&
+                                !UseCustomLed[deviceNum])
                                 color = ChargingColor[deviceNum];
-                                break;
-                            default:
-                                break;
-                        }
-                }
+                            break;
+                        default:
+                            break;
+                    }
             }
             else if (forcelight[deviceNum])
             {

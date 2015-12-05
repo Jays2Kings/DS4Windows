@@ -848,12 +848,12 @@ namespace DS4Windows
                     {
                         Enable_Controls(Index, true);
                         //if (opt != null)
-                        if (opt.Visible)
-                            opt?.inputtimer.Start();
+                       // if (opt.Visible && tabMain.SelectedIndex == 1)
+                            //opt.inputtimer.Start();
                         //MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
                     }
                     else
-                        opt?.inputtimer.Stop();
+                        opt.inputtimer.Stop();
                 }
                 else
                 {
@@ -1268,11 +1268,11 @@ namespace DS4Windows
                 lbLastMessage.Text = lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
             else
                 lbLastMessage.Text = "";
-            if (opt.Visible)
-                if (tabMain.SelectedIndex != 1)
-                    opt.inputtimer.Stop();
-                else
-                    opt.inputtimer.Start();
+
+            if (tabMain.SelectedIndex != 1 || !opt.Visible)
+                opt.inputtimer.Stop();
+            else if (opt.Visible && tabMain.SelectedIndex == 1)
+                opt.inputtimer.Start();
             Program.rootHub.eastertime = tabMain.SelectedTab == tabLog;
         }
 

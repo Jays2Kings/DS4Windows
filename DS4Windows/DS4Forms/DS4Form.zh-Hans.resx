@@ -6740,7 +6740,7 @@
     <value>190, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>复制（Ctrl+C）</value>
+    <value>复制（Ctrl+D）</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 26</value>
@@ -6848,7 +6848,7 @@
     <value>复制</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>复制选定的配置（Ctrl+C）</value>
+    <value>复制选定的配置（Ctrl+D）</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 24</value>
@@ -7022,5 +7022,26 @@
   </data>
   <data name="tabLog.Text" xml:space="preserve">
     <value>日志</value>
+  </data>
+  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
+    <value>仅连接DS4 （实验性功能）</value>
+  </data>
+  <data name="cBoxNotifications.Items" xml:space="preserve">
+    <value>不显示</value>
+  </data>
+  <data name="cBoxNotifications.Items1" xml:space="preserve">
+    <value>仅显示警告</value>
+  </data>
+  <data name="cBoxNotifications.Items2" xml:space="preserve">
+    <value>显示全部</value>
+  </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
+    <value>使用自定义颜色</value>
+  </data>
+  <data name="useProfileColorToolStripMenuItem.Text" xml:space="preserve">
+    <value>使用配置颜色</value>
   </data>
 </root>

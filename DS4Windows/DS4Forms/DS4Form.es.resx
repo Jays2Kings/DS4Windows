@@ -6743,7 +6743,7 @@
     <value>240, 24</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Duplicar (Ctrl+C)</value>
+    <value>Duplicar (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 24</value>
@@ -6851,7 +6851,7 @@
     <value>Duplicar</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>Duplicar perfil seleccionado (Ctrl+C)</value>
+    <value>Duplicar perfil seleccionado (Ctrl+D)</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 24</value>

@@ -6737,7 +6737,7 @@
     <value>233, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Duplica (Ctrl+C)</value>
+    <value>Duplica (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 26</value>
@@ -6845,7 +6845,7 @@
     <value>Duplica</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>Duplica Profilo Selezionato (Ctrl+C)</value>
+    <value>Duplica Profilo Selezionato (Ctrl+D)</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 24</value>
@@ -7034,5 +7034,32 @@
   </data>
   <data name="tabLog.Text" xml:space="preserve">
     <value>Registro</value>
+  </data>
+  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
+    <value>Connetti Solo DS4 (sperimentale)</value>
+  </data>
+  <data name="cBoxNotifications.Items" xml:space="preserve">
+    <value>Nessuno</value>
+  </data>
+  <data name="cBoxNotifications.Items1" xml:space="preserve">
+    <value>Solo Avvisi</value>
+  </data>
+  <data name="cBoxNotifications.Items2" xml:space="preserve">
+    <value>Tutto</value>
+  </data>
+  <data name="chData.Text" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="llbHelp.Text" xml:space="preserve">
+    <value>Hotkeys/About</value>
+  </data>
+  <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Usa Colore Personalizzato</value>
+  </data>
+  <data name="useProfileColorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Usa Colore Profilo</value>
   </data>
 </root>

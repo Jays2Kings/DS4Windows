@@ -60,16 +60,16 @@ namespace DS4Windows
             }*/
             /* byte touchID1 = (byte)(data[0 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x7F);
              byte touchID2 = (byte)(data[4 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x7F);*/
-            int currentX = (Int16)((UInt16)(gyro[0] << 8) | gyro[1]) / 256;
-            int currentY = (Int16)((UInt16)(gyro[2] << 8) | gyro[3]) / 256;
-            int currentZ = (Int16)((UInt16)(gyro[4] << 8) | gyro[5]) / 256;
-            int AccelX = (Int16)((UInt16)(accel[2] << 8) | accel[3]) / 256;
-            int AccelY = (Int16)((UInt16)(accel[0] << 8) | accel[1]) / 256;
-            int AccelZ = (Int16)((UInt16)(accel[4] << 8) | accel[5]) / 256;
+            int currentX = (short)((ushort)(gyro[0] << 8) | gyro[1]) / 64;
+            int currentY = (short)((ushort)(gyro[2] << 8) | gyro[3]) / 64;
+            int currentZ = (short)((ushort)(gyro[4] << 8) | gyro[5]) / 64;
+            int AccelX = (short)((ushort)(accel[2] << 8) | accel[3]) / 256;
+            int AccelY = (short)((ushort)(accel[0] << 8) | accel[1]) / 256;
+            int AccelZ = (short)((ushort)(accel[4] << 8) | accel[5]) / 256;
             SixAxisEventArgs args;
             //if (sensors.Touch1 || sensors.Touch2)
             {
-                if (SixAxisMoved != null)
+               /* if (SixAxisMoved != null)
                 {
                     SixAxis sPrev, now;
                     sPrev = new SixAxis(lastGyroX, lastGyroY, lastGyroZ, lastAX,lastAY,lastAZ);
@@ -83,7 +83,7 @@ namespace DS4Windows
                 lastGyroZ = currentZ;
                 lastAX = AccelX;
                 lastAY = AccelY;
-                lastAZ = AccelZ;
+                lastAZ = AccelZ;*/
             }
             if (AccelX != 0 || AccelY != 0 || AccelZ != 0)
             {

@@ -34,15 +34,15 @@ namespace DS4Windows
 
         public virtual void sixaxisMoved(object sender, SixAxisEventArgs arg)
         {
-            if (Global.UseSAforMouse[deviceNum])
+            if (Global.UseSAforMouse[deviceNum] && Global.GyroSensitivity[deviceNum] > 0)
             {
                 bool triggeractivated = true;
                 int i = 0;
                 string[] ss = Global.SATriggers[deviceNum].Split(',');
-                //List<DS4Controls> ds4C = new List<DS4Controls>();
-                foreach (string s in ss)
-                    if (!(int.TryParse(s, out i) && getDS4ControlsByName(i)))
-                        triggeractivated = false;
+                if (!string.IsNullOrEmpty(ss[0]))
+                    foreach (string s in ss)
+                        if (!(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                            triggeractivated = false;
                 if (triggeractivated)
                     cursor.sixaxisMoved(arg);
                 dev.getCurrentState(s);
@@ -53,6 +53,7 @@ namespace DS4Windows
         {
             switch (key)
             {
+                case -1: return true;
                 case 0: return s.Cross;
                 case 1: return s.Circle;
                 case 2: return s.Square;
@@ -71,6 +72,7 @@ namespace DS4Windows
                 case 15: return s.Touch2;
                 case 16: return s.Options;
                 case 17: return s.Share;
+                case 18: return s.PS;
             }
             return false;
         }

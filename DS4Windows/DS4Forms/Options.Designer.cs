@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
             this.lowColorChooserButton = new System.Windows.Forms.Button();
             this.nUDRainbow = new System.Windows.Forms.NumericUpDown();
-            this.pBRainbow = new System.Windows.Forms.PictureBox();
             this.tBBlueBar = new System.Windows.Forms.TrackBar();
             this.tBGreenBar = new System.Windows.Forms.TrackBar();
             this.tBRedBar = new System.Windows.Forms.TrackBar();
@@ -134,6 +133,7 @@
             this.cBControllerInput = new System.Windows.Forms.CheckBox();
             this.cBIdleDisconnect = new System.Windows.Forms.CheckBox();
             this.gBLightbar = new System.Windows.Forms.GroupBox();
+            this.btnRainbow = new System.Windows.Forms.Button();
             this.lbRainbowB = new System.Windows.Forms.Label();
             this.nUDRainbowB = new System.Windows.Forms.NumericUpDown();
             this.cBFlashType = new System.Windows.Forms.ComboBox();
@@ -369,10 +369,9 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBRedBar)).BeginInit();
@@ -475,14 +474,6 @@
             0});
             this.nUDRainbow.Name = "nUDRainbow";
             this.nUDRainbow.ValueChanged += new System.EventHandler(this.numUDRainbow_ValueChanged);
-            // 
-            // pBRainbow
-            // 
-            resources.ApplyResources(this.pBRainbow, "pBRainbow");
-            this.pBRainbow.Image = global::DS4Windows.Properties.Resources.rainbow;
-            this.pBRainbow.Name = "pBRainbow";
-            this.pBRainbow.TabStop = false;
-            this.pBRainbow.Click += new System.EventHandler(this.pbRainbow_Click);
             // 
             // tBBlueBar
             // 
@@ -1413,6 +1404,7 @@
             // 
             resources.ApplyResources(this.gBLightbar, "gBLightbar");
             this.gBLightbar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBLightbar.Controls.Add(this.btnRainbow);
             this.gBLightbar.Controls.Add(this.lbRainbowB);
             this.gBLightbar.Controls.Add(this.nUDRainbowB);
             this.gBLightbar.Controls.Add(this.cBFlashType);
@@ -1421,7 +1413,6 @@
             this.gBLightbar.Controls.Add(this.btnChargingColor);
             this.gBLightbar.Controls.Add(this.lbWhileCharging);
             this.gBLightbar.Controls.Add(this.lbPercentFlashBar);
-            this.gBLightbar.Controls.Add(this.pBRainbow);
             this.gBLightbar.Controls.Add(this.nUDflashLED);
             this.gBLightbar.Controls.Add(this.nUDRainbow);
             this.gBLightbar.Controls.Add(this.lbspc);
@@ -1431,6 +1422,14 @@
             this.gBLightbar.Controls.Add(this.pnlFull);
             this.gBLightbar.Name = "gBLightbar";
             this.gBLightbar.TabStop = false;
+            // 
+            // btnRainbow
+            // 
+            resources.ApplyResources(this.btnRainbow, "btnRainbow");
+            this.btnRainbow.Image = global::DS4Windows.Properties.Resources.rainbow;
+            this.btnRainbow.Name = "btnRainbow";
+            this.btnRainbow.UseVisualStyleBackColor = true;
+            this.btnRainbow.Click += new System.EventHandler(this.btnRainbow_Click);
             // 
             // lbRainbowB
             // 
@@ -3854,7 +3853,7 @@
             this.optionsToolStripMenuItem,
             this.shareToolStripMenuItem,
             this.pSToolStripMenuItem,
-            this.resetToolStripMenuItem});
+            this.alwaysOnToolStripMenuItem});
             this.cMGyroTriggers.Name = "cMGyroTriggers";
             this.cMGyroTriggers.ShowCheckMargin = true;
             this.cMGyroTriggers.ShowImageMargin = false;
@@ -4011,13 +4010,12 @@
             this.pSToolStripMenuItem.Name = "pSToolStripMenuItem";
             this.pSToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
-            // resetToolStripMenuItem
+            // alwaysOnToolStripMenuItem
             // 
-            resources.ApplyResources(this.resetToolStripMenuItem, "resetToolStripMenuItem");
-            this.resetToolStripMenuItem.CheckOnClick = true;
-            this.resetToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
+            resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
+            this.alwaysOnToolStripMenuItem.CheckOnClick = true;
+            this.alwaysOnToolStripMenuItem.Name = "alwaysOnToolStripMenuItem";
+            this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
             // Options
             // 
@@ -4033,7 +4031,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Options_Closed);
             this.Resize += new System.EventHandler(this.Options_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBRainbow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBRedBar)).EndInit();
@@ -4141,7 +4138,6 @@
         //private System.Windows.Forms.TrackBar tBsixaxisGyroX;
         //private System.Windows.Forms.TrackBar tBsixaxisGyroY;
         private System.Windows.Forms.NumericUpDown nUDRainbow;
-        private System.Windows.Forms.PictureBox pBRainbow;
         private System.Windows.Forms.Button lowColorChooserButton;
         private System.Windows.Forms.TrackBar tBBlueBar;
         private System.Windows.Forms.TrackBar tBGreenBar;
@@ -4357,7 +4353,6 @@
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem shareToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
         private System.Windows.Forms.Label lbShiftSwipeUp;
         private System.Windows.Forms.Label lbShiftSwipeDown;
         private System.Windows.Forms.Label lbShiftSwipeLeft;
@@ -4481,5 +4476,7 @@
         private System.Windows.Forms.Panel pnlRSTrack;
         private System.Windows.Forms.Panel pnlLSTrack;
         private System.Windows.Forms.Panel pnlSATrack;
+        private System.Windows.Forms.Button btnRainbow;
+        private System.Windows.Forms.ToolStripMenuItem alwaysOnToolStripMenuItem;
     }
 }

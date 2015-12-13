@@ -3706,7 +3706,7 @@
     <value>74, 21</value>
   </data>
   <data name="cBScanCode.Text" xml:space="preserve">
-    <value>掃描代碼</value>
+    <value>扫描代码</value>
   </data>
   <data name="lBTip.Text" xml:space="preserve">
     <value>也可以使用键盘输入一个键</value>

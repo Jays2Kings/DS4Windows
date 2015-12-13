@@ -42,8 +42,8 @@ namespace DS4Windows
             rBTPControls.Text = rBSAControls.Text;
             rBTPMouse.Text = rBSAMouse.Text;
             Visible = false;
-            colored = pBRainbow.Image;
-            greyscale = GreyscaleImage((Bitmap)pBRainbow.Image);
+            colored = btnRainbow.Image;
+            greyscale = GreyscaleImage((Bitmap)btnRainbow.Image);
             fLPSettings.FlowDirection = FlowDirection.TopDown;
             foreach (Control control in tPControls.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btn"))
@@ -138,12 +138,12 @@ namespace DS4Windows
 
                 if (Rainbow[device] == 0)
                 {
-                    pBRainbow.Image = greyscale;
+                    btnRainbow.Image = greyscale;
                     ToggleRainbow(false);
                 }
                 else
                 {
-                    pBRainbow.Image = colored;
+                    btnRainbow.Image = colored;
                     ToggleRainbow(true);
                 }
                 DS4Color color = MainColor[device];
@@ -252,8 +252,23 @@ namespace DS4Windows
                     int tr;
                     if (int.TryParse(satriggers[i], out tr))
                     {
-                        ((ToolStripMenuItem)cMGyroTriggers.Items[tr]).Checked = true;
-                        s.Add(cMGyroTriggers.Items[int.Parse(satriggers[i])].Text);
+                        if (tr < cMGyroTriggers.Items.Count && tr > -1)
+                        {
+                            ((ToolStripMenuItem)cMGyroTriggers.Items[tr]).Checked = true;
+                            s.Add(cMGyroTriggers.Items[tr].Text);
+                        }
+                        else
+                        {
+                            ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = true;
+                            s.Add(cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1].Text);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = true;
+                        s.Add(cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1].Text);
+                        break;
                     }
                 }
                 nUDGyroSensitivity.Value = GyroSensitivity[device];
@@ -262,8 +277,6 @@ namespace DS4Windows
                 cBGyroInvertY.Checked = invert == 1 || invert == 3;
                 if (s.Count > 0)
                     btnGyroTriggers.Text = string.Join(", ", s);
-                else
-                    btnGyroTriggers.Text = Properties.Resources.NoneText;
             }
             else
             {
@@ -338,13 +351,10 @@ namespace DS4Windows
                 nUDLSCurve.Value = 0;
                 nUDRSCurve.Value = 0;
                 cBControllerInput.Checked = DS4Mapping;
-
-                for (int i = 0; i < cMGyroTriggers.Items.Count; i++)
-                    ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
+                ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = true;
                 nUDGyroSensitivity.Value = 100;
                 cBGyroInvertX.Checked = false;
                 cBGyroInvertY.Checked = false;
-                btnGyroTriggers.Text = Properties.Resources.NoneText;
                 Set();
             }
 
@@ -436,9 +446,9 @@ namespace DS4Windows
                 SetDynamicTrackBarValue(tBsixaxisGyroX, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisGyroY, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroY + tBsixaxisGyroY.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisGyroZ, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelX, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelY, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelY + tBsixaxisAccelY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelZ, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelX, (int)(Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelY, (int)(Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelY + tBsixaxisAccelY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelZ, (int)(Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
 
                 int x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LX;
                 int y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LY;
@@ -1040,13 +1050,14 @@ namespace DS4Windows
             GyroInvert[device] = invert;
 
             List<int> ints = new List<int>();
-            for (int i = 0; i < cMGyroTriggers.Items.Count; i++)
+            for (int i = 0; i < cMGyroTriggers.Items.Count - 1; i++)
                 if (((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked)
                     ints.Add(i);
+            if (ints.Count == 0)
+                ints.Add(-1);
             SATriggers[device] = string.Join(",", ints);
-
-            if (nUDRainbow.Value == 0) pBRainbow.Image = greyscale;
-            else pBRainbow.Image = colored;
+            if (nUDRainbow.Value == 0) btnRainbow.Image = greyscale;
+            else btnRainbow.Image = colored;
         }
 
         KBM360 kbm360 = null;
@@ -1713,23 +1724,23 @@ namespace DS4Windows
             Rainbow[device]= (double)nUDRainbow.Value;
             if ((double)nUDRainbow.Value <= 0.5)
             {
-                pBRainbow.Image = greyscale;
+                btnRainbow.Image = greyscale;
                 ToggleRainbow(false);
                 nUDRainbow.Value = 0;
             }
         }
 
-        private void pbRainbow_Click(object sender, EventArgs e)
+        private void btnRainbow_Click(object sender, EventArgs e)
         {
-            if (pBRainbow.Image == greyscale)
+            if (btnRainbow.Image == greyscale)
             {
-                pBRainbow.Image = colored;
+                btnRainbow.Image = colored;
                 ToggleRainbow(true);
                 nUDRainbow.Value = 5;
             }
             else
             {
-                pBRainbow.Image = greyscale;
+                btnRainbow.Image = greyscale;
                 ToggleRainbow(false);
                 nUDRainbow.Value = 0;
             }
@@ -1740,14 +1751,12 @@ namespace DS4Windows
             nUDRainbow.Enabled = on;
             if (on)
             {
-                //pBRainbow.Location = new Point(216 - 78, pBRainbow.Location.Y);
                 pBLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, main);
                 cBLightbyBattery.Text = Properties.Resources.DimByBattery.Replace("*nl*", "\n");
             }
             else
             {
                 pnlLowBattery.Enabled = cBLightbyBattery.Checked;
-                //pBRainbow.Location = new Point(216, pBRainbow.Location.Y);
                 pBLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, main);
                 cBLightbyBattery.Text = Properties.Resources.ColorByBattery.Replace("*nl*", "\n");
             }
@@ -2068,7 +2077,7 @@ namespace DS4Windows
         private void Items_MouseHover(object sender, EventArgs e)
         {
             string name = ((Control)sender).Name;
-            if (name.Contains("btn") && !name.Contains("Flash") && !name.Contains("Stick"))
+            if (name.Contains("btn") && !name.Contains("Flash") && !name.Contains("Stick") && !name.Contains("Rainbow"))
                 name = name.Remove(1, 1);
             switch (name)
             {
@@ -2076,7 +2085,7 @@ namespace DS4Windows
                 case "cBDoubleTap": root.lbLastMessage.Text = Properties.Resources.TapAndHold; break;
                 case "lbControlTip": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;
                 case "cBTouchpadJitterCompensation": root.lbLastMessage.Text = Properties.Resources.Jitter; break;
-                case "pBRainbow": root.lbLastMessage.Text = Properties.Resources.AlwaysRainbow; break;
+                case "btnRainbow": root.lbLastMessage.Text = Properties.Resources.AlwaysRainbow; break;
                 case "cBFlushHIDQueue": root.lbLastMessage.Text = Properties.Resources.FlushHIDTip; break;
                 case "cBLightbyBattery": root.lbLastMessage.Text = Properties.Resources.LightByBatteryTip; break;
                 case "lbGryo": root.lbLastMessage.Text = Properties.Resources.GyroReadout; break;
@@ -2584,22 +2593,28 @@ namespace DS4Windows
 
         private void SATrigger_CheckedChanged(object sender, EventArgs e)
         {
-            if (((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked) //reset
-                for (int i = 0; i < cMGyroTriggers.Items.Count; i++)
+            if (sender != cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1] && ((ToolStripMenuItem)sender).Checked)
+                ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = false;
+            if (((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked) //always on
+                for (int i = 0; i < cMGyroTriggers.Items.Count - 1; i++)
                     ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
-            List<int> ints = new List<int>();
+
+            List <int> ints = new List<int>();
             List<string> s = new List<string>();
-            for (int i = 0; i < cMGyroTriggers.Items.Count; i++)
+            for (int i = 0; i < cMGyroTriggers.Items.Count - 1; i++)
                 if (((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked)
                 {
                     ints.Add(i);
                     s.Add(cMGyroTriggers.Items[i].Text);
                 }
+            if (ints.Count == 0)
+            {
+                ints.Add(-1);
+                s.Add(cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1].Text);
+            }
             SATriggers[device] = string.Join(",", ints);
             if (s.Count > 0)
                 btnGyroTriggers.Text = string.Join(", ", s);
-            else
-                btnGyroTriggers.Text = Properties.Resources.NoneText;
         }
 
         private void cBGyroInvert_CheckChanged(object sender, EventArgs e)

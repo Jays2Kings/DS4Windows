@@ -430,99 +430,105 @@
     <value>DS4Windows已停止</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>DS4手柄停止中</value>
+    <value>DS4Windows已停止</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
-    <value>XBOX 360手柄停止中</value>
+    <value>DS4手柄停止中</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
-    <value>停止</value>
+    <value>XBOX 360手柄停止中</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>下滑</value>
+    <value>停止</value>
   </data>
   <data name="SwipeDown" xml:space="preserve">
-    <value>左滑</value>
+    <value>下滑</value>
   </data>
   <data name="SwipeLeft" xml:space="preserve">
-    <value>右滑</value>
+    <value>左滑</value>
   </data>
   <data name="SwipeRight" xml:space="preserve">
-    <value>滑动触摸板以更改配置文件</value>
+    <value>右滑</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>上滑</value>
+    <value>滑动触摸板以更改配置文件</value>
   </data>
   <data name="SwipeUp" xml:space="preserve">
-    <value>轻触保持以拖动，单次轻触稍微延迟</value>
+    <value>上滑</value>
   </data>
   <data name="TapAndHold" xml:space="preserve">
-    <value>测试震动</value>
+    <value>轻触保持以拖动，单次轻触稍微延迟</value>
   </data>
   <data name="TestHText" xml:space="preserve">
-    <value>测试微震</value>
+    <value>测试震动</value>
   </data>
   <data name="TextDocs" xml:space="preserve">
     <value>下斜</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>左斜</value>
+    <value>下斜</value>
   </data>
   <data name="TiltLeft" xml:space="preserve">
-    <value>右斜</value>
+    <value>左斜</value>
   </data>
   <data name="TiltRight" xml:space="preserve">
-    <value>上斜</value>
+    <value>右斜</value>
   </data>
   <data name="TiltUp" xml:space="preserve">
-    <value>触摸板移动已经关闭</value>
-  </data>
-  <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>触摸板移动已经打开</value>
-  </data>
-  <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>PS键+触摸板 以重新启用</value>
-  </data>
-  <data name="TouchpadOffTip" xml:space="preserve">
-    <value>触摸板双指左或右滑动</value>
-  </data>
-  <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>在此输入新命名</value>
-  </data>
-  <data name="TypeNewName" xml:space="preserve">
-    <value>在此输入配置文件名字</value>
-  </data>
-  <data name="TypeProfileName" xml:space="preserve">
     <value>上斜</value>
   </data>
+  <data name="TouchpadMovementOff" xml:space="preserve">
+    <value>触摸板移动已经关闭</value>
+  </data>
+  <data name="TouchpadMovementOn" xml:space="preserve">
+    <value>触摸板移动已经打开</value>
+  </data>
+  <data name="TouchpadOffTip" xml:space="preserve">
+    <value>PS键+触摸板 以重新启用</value>
+  </data>
+  <data name="TwoFingerSwipe" xml:space="preserve">
+    <value>触摸板双指左或右滑动</value>
+  </data>
+  <data name="TypeNewName" xml:space="preserve">
+    <value>在此输入新命名</value>
+  </data>
+  <data name="TypeProfileName" xml:space="preserve">
+    <value>在此输入配置文件名字</value>
+  </data>
   <data name="UpText" xml:space="preserve">
-    <value>程序已经是最新的</value>
+    <value>上斜</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>你也可以用手柄来改变操作</value>
+    <value>程序已经是最新的</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
-    <value>使用排它模式</value>
+    <value>你也可以用手柄来改变操作</value>
   </data>
   <data name="UsingExclusive" xml:space="preserve">
-    <value>手柄*number*正在使用配置文件*profile name*</value>
+    <value>使用排它模式</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>使用共享模式</value>
+    <value>手柄*number*正在使用配置文件*profile name*</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
-    <value>停止触摸板作为鼠标</value>
+    <value>使用共享模式</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>请输入一个有效的名字</value>
+    <value>停止触摸板作为鼠标</value>
   </data>
   <data name="ValidName" xml:space="preserve">
-    <value>等待*number*毫秒</value>
+    <value>请输入一个有效的名字</value>
   </data>
   <data name="WaitMS" xml:space="preserve">
-    <value>将保持</value>
+    <value>等待*number*毫秒</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
+    <value>将保持</value>
+  </data>
+  <data name="TestLText" xml:space="preserve">
+    <value>测试微震</value>
+  </data>
+  <data name="XinputPorts" xml:space="preserve">
     <value>如果你在其他XBOX 360模拟程序中有冲突，使用更高端口.例如SCP's工具</value>
   </data>
 </root>

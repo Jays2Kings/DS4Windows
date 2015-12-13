@@ -140,13 +140,13 @@
     <value>532, 476</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Nascondi Controller DS4: "Nasconde l'input regolare del DS4 (Dinput) da altri programmi spunta se stai avendo input doppio nei giochi o R2 pausa i giochi."
+    <value>Nascondi Controller DS4: "Nasconde l'input regolare del DS4 (Dinput) da altri programmi, spunta se stai avendo input doppio nei giochi o se R2 mette in pausa i giochi."
 Clicca parte sinistra del touchpad: Tocco Sinistro
 Clicca parte destra del touchpad: Tocco Destro
 Clicca sul touchpad con 2 dita: Tocco Multiplo
 Clicca parte superiore del touchpad: Tocco Superiore
 PS + Options oppure tieni premuto PS per 10 secondi: Disconnetti Controller (Solo su Bluetooth)
-Tocca Touchpad + PS: Disattiva movimento touchpad (cliccare funziona ancora)
+Tocca Touchpad + PS: Disattiva movimento touchpad (il click funzionerà ancora)
 Click inferiore destro sul Pad*: Click Destro (Meglio usato quando la parte destra è usata come bottone mouse)
 Due dita su/giù sul touchpad*: Scorri Su/Giù
 Tap quindi tieni premuto il touchpad*: Trascinamento mouse Sinistro

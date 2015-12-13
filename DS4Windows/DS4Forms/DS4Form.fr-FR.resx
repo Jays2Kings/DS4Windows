@@ -6773,7 +6773,7 @@
     <value>206, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dupliquer (Ctrl+C)</value>
+    <value>Dupliquer (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 26</value>

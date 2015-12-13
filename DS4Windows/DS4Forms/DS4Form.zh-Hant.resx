@@ -6746,7 +6746,7 @@
     <value>192, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>複製 (Ctrl+C)</value>
+    <value>複製 (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 26</value>
@@ -6854,7 +6854,7 @@
     <value>複製</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>複製選擇的設定檔 (Ctrl+C)</value>
+    <value>複製選擇的設定檔 (Ctrl+D)</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 24</value>
@@ -7076,5 +7076,8 @@
   </data>
   <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 56</value>
+  </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
   </data>
 </root>

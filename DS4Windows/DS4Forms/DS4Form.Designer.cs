@@ -181,13 +181,12 @@
             // 
             // lvDebug
             // 
-            resources.ApplyResources(this.lvDebug, "lvDebug");
             this.lvDebug.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chTime,
             this.chData});
+            resources.ApplyResources(this.lvDebug, "lvDebug");
             this.lvDebug.FullRowSelect = true;
             this.lvDebug.Name = "lvDebug";
-            this.toolTip1.SetToolTip(this.lvDebug, resources.GetString("lvDebug.ToolTip"));
             this.lvDebug.UseCompatibleStateImageBehavior = false;
             this.lvDebug.View = System.Windows.Forms.View.Details;
             this.lvDebug.ItemActivate += new System.EventHandler(this.lvDebug_ItemActivate);
@@ -207,27 +206,24 @@
             // 
             // pnlButton
             // 
-            resources.ApplyResources(this.pnlButton, "pnlButton");
             this.pnlButton.BackColor = System.Drawing.SystemColors.Control;
             this.pnlButton.Controls.Add(this.lbTest);
             this.pnlButton.Controls.Add(this.btnStartStop);
             this.pnlButton.Controls.Add(this.lbLastMessage);
             this.pnlButton.Controls.Add(this.llbHelp);
+            resources.ApplyResources(this.pnlButton, "pnlButton");
             this.pnlButton.Name = "pnlButton";
-            this.toolTip1.SetToolTip(this.pnlButton, resources.GetString("pnlButton.ToolTip"));
             this.pnlButton.MouseLeave += new System.EventHandler(this.pnlButton_MouseLeave);
             // 
             // lbTest
             // 
             resources.ApplyResources(this.lbTest, "lbTest");
             this.lbTest.Name = "lbTest";
-            this.toolTip1.SetToolTip(this.lbTest, resources.GetString("lbTest.ToolTip"));
             // 
             // btnStartStop
             // 
             resources.ApplyResources(this.btnStartStop, "btnStartStop");
             this.btnStartStop.Name = "btnStartStop";
-            this.toolTip1.SetToolTip(this.btnStartStop, resources.GetString("btnStartStop.ToolTip"));
             this.btnStartStop.UseVisualStyleBackColor = true;
             this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
             // 
@@ -236,7 +232,6 @@
             resources.ApplyResources(this.lbLastMessage, "lbLastMessage");
             this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
             this.lbLastMessage.Name = "lbLastMessage";
-            this.toolTip1.SetToolTip(this.lbLastMessage, resources.GetString("lbLastMessage.ToolTip"));
             this.lbLastMessage.MouseHover += new System.EventHandler(this.lbLastMessage_MouseHover);
             // 
             // llbHelp
@@ -244,14 +239,12 @@
             resources.ApplyResources(this.llbHelp, "llbHelp");
             this.llbHelp.Name = "llbHelp";
             this.llbHelp.TabStop = true;
-            this.toolTip1.SetToolTip(this.llbHelp, resources.GetString("llbHelp.ToolTip"));
             this.llbHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbHelp_LinkClicked);
             // 
             // btnClear
             // 
             resources.ApplyResources(this.btnClear, "btnClear");
             this.btnClear.Name = "btnClear";
-            this.toolTip1.SetToolTip(this.btnClear, resources.GetString("btnClear.ToolTip"));
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -266,7 +259,6 @@
             // 
             // cMTaskbar
             // 
-            resources.ApplyResources(this.cMTaskbar, "cMTaskbar");
             this.cMTaskbar.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.cMTaskbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editProfileForController1ToolStripMenuItem,
@@ -278,46 +270,46 @@
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.cMTaskbar.Name = "cMTaskbar";
+            resources.ApplyResources(this.cMTaskbar, "cMTaskbar");
             this.cMTaskbar.Tag = "25";
-            this.toolTip1.SetToolTip(this.cMTaskbar, resources.GetString("cMTaskbar.ToolTip"));
             // 
             // editProfileForController1ToolStripMenuItem
             // 
-            resources.ApplyResources(this.editProfileForController1ToolStripMenuItem, "editProfileForController1ToolStripMenuItem");
             this.editProfileForController1ToolStripMenuItem.Name = "editProfileForController1ToolStripMenuItem";
+            resources.ApplyResources(this.editProfileForController1ToolStripMenuItem, "editProfileForController1ToolStripMenuItem");
             this.editProfileForController1ToolStripMenuItem.Tag = "0";
             this.editProfileForController1ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
             // 
             // editProfileForController2ToolStripMenuItem
             // 
-            resources.ApplyResources(this.editProfileForController2ToolStripMenuItem, "editProfileForController2ToolStripMenuItem");
             this.editProfileForController2ToolStripMenuItem.Name = "editProfileForController2ToolStripMenuItem";
+            resources.ApplyResources(this.editProfileForController2ToolStripMenuItem, "editProfileForController2ToolStripMenuItem");
             this.editProfileForController2ToolStripMenuItem.Tag = "1";
             this.editProfileForController2ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
             // 
             // editProfileForController3ToolStripMenuItem
             // 
-            resources.ApplyResources(this.editProfileForController3ToolStripMenuItem, "editProfileForController3ToolStripMenuItem");
             this.editProfileForController3ToolStripMenuItem.Name = "editProfileForController3ToolStripMenuItem";
+            resources.ApplyResources(this.editProfileForController3ToolStripMenuItem, "editProfileForController3ToolStripMenuItem");
             this.editProfileForController3ToolStripMenuItem.Tag = "2";
             this.editProfileForController3ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
             // 
             // editProfileForController4ToolStripMenuItem
             // 
-            resources.ApplyResources(this.editProfileForController4ToolStripMenuItem, "editProfileForController4ToolStripMenuItem");
             this.editProfileForController4ToolStripMenuItem.Name = "editProfileForController4ToolStripMenuItem";
+            resources.ApplyResources(this.editProfileForController4ToolStripMenuItem, "editProfileForController4ToolStripMenuItem");
             this.editProfileForController4ToolStripMenuItem.Tag = "4";
             this.editProfileForController4ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // startToolStripMenuItem
             // 
-            resources.ApplyResources(this.startToolStripMenuItem, "startToolStripMenuItem");
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
+            resources.ApplyResources(this.startToolStripMenuItem, "startToolStripMenuItem");
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
@@ -328,14 +320,14 @@
             // 
             // exitToolStripMenuItem
             // 
-            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // openProfiles
             // 
@@ -344,32 +336,29 @@
             // 
             // tabMain
             // 
-            resources.ApplyResources(this.tabMain, "tabMain");
             this.tabMain.Controls.Add(this.tabControllers);
             this.tabMain.Controls.Add(this.tabProfiles);
             this.tabMain.Controls.Add(this.tabAutoProfiles);
             this.tabMain.Controls.Add(this.tabSettings);
             this.tabMain.Controls.Add(this.tabLog);
+            resources.ApplyResources(this.tabMain, "tabMain");
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.toolTip1.SetToolTip(this.tabMain, resources.GetString("tabMain.ToolTip"));
             this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabMain_SelectedIndexChanged);
             // 
             // tabControllers
             // 
-            resources.ApplyResources(this.tabControllers, "tabControllers");
             this.tabControllers.Controls.Add(this.btnConnectDS4Win10);
             this.tabControllers.Controls.Add(this.tLPControllers);
             this.tabControllers.Controls.Add(this.lbNoControllers);
+            resources.ApplyResources(this.tabControllers, "tabControllers");
             this.tabControllers.Name = "tabControllers";
-            this.toolTip1.SetToolTip(this.tabControllers, resources.GetString("tabControllers.ToolTip"));
             this.tabControllers.UseVisualStyleBackColor = true;
             // 
             // btnConnectDS4Win10
             // 
             resources.ApplyResources(this.btnConnectDS4Win10, "btnConnectDS4Win10");
             this.btnConnectDS4Win10.Name = "btnConnectDS4Win10";
-            this.toolTip1.SetToolTip(this.btnConnectDS4Win10, resources.GetString("btnConnectDS4Win10.ToolTip"));
             this.btnConnectDS4Win10.UseVisualStyleBackColor = true;
             this.btnConnectDS4Win10.Click += new System.EventHandler(this.btnConnectDS4Win10_Click);
             // 
@@ -405,15 +394,13 @@
             this.tLPControllers.Controls.Add(this.bnLight2, 5, 2);
             this.tLPControllers.Controls.Add(this.bnLight4, 5, 4);
             this.tLPControllers.Name = "tLPControllers";
-            this.toolTip1.SetToolTip(this.tLPControllers, resources.GetString("tLPControllers.ToolTip"));
             // 
             // bnLight3
             // 
-            resources.ApplyResources(this.bnLight3, "bnLight3");
             this.bnLight3.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.bnLight3, "bnLight3");
             this.bnLight3.Name = "bnLight3";
             this.bnLight3.Tag = "2";
-            this.toolTip1.SetToolTip(this.bnLight3, resources.GetString("bnLight3.ToolTip"));
             this.bnLight3.UseVisualStyleBackColor = false;
             this.bnLight3.Click += new System.EventHandler(this.EditCustomLed);
             // 
@@ -424,7 +411,6 @@
             this.pBStatus1.Name = "pBStatus1";
             this.pBStatus1.TabStop = false;
             this.pBStatus1.Tag = "0";
-            this.toolTip1.SetToolTip(this.pBStatus1, resources.GetString("pBStatus1.ToolTip"));
             this.pBStatus1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pBStatus_MouseClick);
             // 
             // lbPad1
@@ -432,7 +418,6 @@
             resources.ApplyResources(this.lbPad1, "lbPad1");
             this.lbPad1.Name = "lbPad1";
             this.lbPad1.Tag = "0";
-            this.toolTip1.SetToolTip(this.lbPad1, resources.GetString("lbPad1.ToolTip"));
             this.lbPad1.MouseLeave += new System.EventHandler(this.Pads_MouseLeave);
             this.lbPad1.MouseHover += new System.EventHandler(this.Pads_MouseHover);
             // 
@@ -441,7 +426,6 @@
             resources.ApplyResources(this.lbPad2, "lbPad2");
             this.lbPad2.Name = "lbPad2";
             this.lbPad2.Tag = "1";
-            this.toolTip1.SetToolTip(this.lbPad2, resources.GetString("lbPad2.ToolTip"));
             this.lbPad2.MouseLeave += new System.EventHandler(this.Pads_MouseLeave);
             this.lbPad2.MouseHover += new System.EventHandler(this.Pads_MouseHover);
             // 
@@ -450,7 +434,6 @@
             resources.ApplyResources(this.bnEditC3, "bnEditC3");
             this.bnEditC3.Name = "bnEditC3";
             this.bnEditC3.Tag = "2";
-            this.toolTip1.SetToolTip(this.bnEditC3, resources.GetString("bnEditC3.ToolTip"));
             this.bnEditC3.UseVisualStyleBackColor = true;
             this.bnEditC3.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -459,7 +442,6 @@
             resources.ApplyResources(this.bnEditC4, "bnEditC4");
             this.bnEditC4.Name = "bnEditC4";
             this.bnEditC4.Tag = "3";
-            this.toolTip1.SetToolTip(this.bnEditC4, resources.GetString("bnEditC4.ToolTip"));
             this.bnEditC4.UseVisualStyleBackColor = true;
             this.bnEditC4.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -468,7 +450,6 @@
             resources.ApplyResources(this.lbPad3, "lbPad3");
             this.lbPad3.Name = "lbPad3";
             this.lbPad3.Tag = "2";
-            this.toolTip1.SetToolTip(this.lbPad3, resources.GetString("lbPad3.ToolTip"));
             this.lbPad3.MouseLeave += new System.EventHandler(this.Pads_MouseLeave);
             this.lbPad3.MouseHover += new System.EventHandler(this.Pads_MouseHover);
             // 
@@ -477,7 +458,6 @@
             resources.ApplyResources(this.lbPad4, "lbPad4");
             this.lbPad4.Name = "lbPad4";
             this.lbPad4.Tag = "3";
-            this.toolTip1.SetToolTip(this.lbPad4, resources.GetString("lbPad4.ToolTip"));
             this.lbPad4.MouseLeave += new System.EventHandler(this.Pads_MouseLeave);
             this.lbPad4.MouseHover += new System.EventHandler(this.Pads_MouseHover);
             // 
@@ -488,7 +468,6 @@
             this.cBController1.FormattingEnabled = true;
             this.cBController1.Name = "cBController1";
             this.cBController1.Tag = "0";
-            this.toolTip1.SetToolTip(this.cBController1, resources.GetString("cBController1.ToolTip"));
             this.cBController1.SelectedValueChanged += new System.EventHandler(this.Profile_Changed);
             // 
             // bnEditC2
@@ -496,7 +475,6 @@
             resources.ApplyResources(this.bnEditC2, "bnEditC2");
             this.bnEditC2.Name = "bnEditC2";
             this.bnEditC2.Tag = "1";
-            this.toolTip1.SetToolTip(this.bnEditC2, resources.GetString("bnEditC2.ToolTip"));
             this.bnEditC2.UseVisualStyleBackColor = true;
             this.bnEditC2.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -507,7 +485,6 @@
             this.cBController2.FormattingEnabled = true;
             this.cBController2.Name = "cBController2";
             this.cBController2.Tag = "1";
-            this.toolTip1.SetToolTip(this.cBController2, resources.GetString("cBController2.ToolTip"));
             this.cBController2.SelectedValueChanged += new System.EventHandler(this.Profile_Changed);
             // 
             // cBController3
@@ -517,7 +494,6 @@
             this.cBController3.FormattingEnabled = true;
             this.cBController3.Name = "cBController3";
             this.cBController3.Tag = "2";
-            this.toolTip1.SetToolTip(this.cBController3, resources.GetString("cBController3.ToolTip"));
             this.cBController3.SelectedValueChanged += new System.EventHandler(this.Profile_Changed);
             // 
             // bnEditC1
@@ -525,7 +501,6 @@
             resources.ApplyResources(this.bnEditC1, "bnEditC1");
             this.bnEditC1.Name = "bnEditC1";
             this.bnEditC1.Tag = "0";
-            this.toolTip1.SetToolTip(this.bnEditC1, resources.GetString("bnEditC1.ToolTip"));
             this.bnEditC1.UseVisualStyleBackColor = true;
             this.bnEditC1.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -536,56 +511,47 @@
             this.cBController4.FormattingEnabled = true;
             this.cBController4.Name = "cBController4";
             this.cBController4.Tag = "3";
-            this.toolTip1.SetToolTip(this.cBController4, resources.GetString("cBController4.ToolTip"));
             this.cBController4.SelectedValueChanged += new System.EventHandler(this.Profile_Changed);
             // 
             // lbSelectedProfile
             // 
             resources.ApplyResources(this.lbSelectedProfile, "lbSelectedProfile");
             this.lbSelectedProfile.Name = "lbSelectedProfile";
-            this.toolTip1.SetToolTip(this.lbSelectedProfile, resources.GetString("lbSelectedProfile.ToolTip"));
             // 
             // lbID
             // 
             resources.ApplyResources(this.lbID, "lbID");
             this.lbID.Name = "lbID";
-            this.toolTip1.SetToolTip(this.lbID, resources.GetString("lbID.ToolTip"));
             // 
             // lbStatus
             // 
             resources.ApplyResources(this.lbStatus, "lbStatus");
             this.lbStatus.Name = "lbStatus";
-            this.toolTip1.SetToolTip(this.lbStatus, resources.GetString("lbStatus.ToolTip"));
             // 
             // lbBattery
             // 
             resources.ApplyResources(this.lbBattery, "lbBattery");
             this.lbBattery.Name = "lbBattery";
-            this.toolTip1.SetToolTip(this.lbBattery, resources.GetString("lbBattery.ToolTip"));
             // 
             // lbBatt1
             // 
             resources.ApplyResources(this.lbBatt1, "lbBatt1");
             this.lbBatt1.Name = "lbBatt1";
-            this.toolTip1.SetToolTip(this.lbBatt1, resources.GetString("lbBatt1.ToolTip"));
             // 
             // lbBatt2
             // 
             resources.ApplyResources(this.lbBatt2, "lbBatt2");
             this.lbBatt2.Name = "lbBatt2";
-            this.toolTip1.SetToolTip(this.lbBatt2, resources.GetString("lbBatt2.ToolTip"));
             // 
             // lbBatt3
             // 
             resources.ApplyResources(this.lbBatt3, "lbBatt3");
             this.lbBatt3.Name = "lbBatt3";
-            this.toolTip1.SetToolTip(this.lbBatt3, resources.GetString("lbBatt3.ToolTip"));
             // 
             // lbBatt4
             // 
             resources.ApplyResources(this.lbBatt4, "lbBatt4");
             this.lbBatt4.Name = "lbBatt4";
-            this.toolTip1.SetToolTip(this.lbBatt4, resources.GetString("lbBatt4.ToolTip"));
             // 
             // pBStatus2
             // 
@@ -594,7 +560,6 @@
             this.pBStatus2.Name = "pBStatus2";
             this.pBStatus2.TabStop = false;
             this.pBStatus2.Tag = "1";
-            this.toolTip1.SetToolTip(this.pBStatus2, resources.GetString("pBStatus2.ToolTip"));
             this.pBStatus2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pBStatus_MouseClick);
             // 
             // pBStatus3
@@ -604,7 +569,6 @@
             this.pBStatus3.Name = "pBStatus3";
             this.pBStatus3.TabStop = false;
             this.pBStatus3.Tag = "2";
-            this.toolTip1.SetToolTip(this.pBStatus3, resources.GetString("pBStatus3.ToolTip"));
             this.pBStatus3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pBStatus_MouseClick);
             // 
             // pBStatus4
@@ -614,36 +578,32 @@
             this.pBStatus4.Name = "pBStatus4";
             this.pBStatus4.TabStop = false;
             this.pBStatus4.Tag = "3";
-            this.toolTip1.SetToolTip(this.pBStatus4, resources.GetString("pBStatus4.ToolTip"));
             this.pBStatus4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pBStatus_MouseClick);
             // 
             // bnLight1
             // 
-            resources.ApplyResources(this.bnLight1, "bnLight1");
             this.bnLight1.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.bnLight1, "bnLight1");
             this.bnLight1.Name = "bnLight1";
             this.bnLight1.Tag = "0";
-            this.toolTip1.SetToolTip(this.bnLight1, resources.GetString("bnLight1.ToolTip"));
             this.bnLight1.UseVisualStyleBackColor = false;
             this.bnLight1.Click += new System.EventHandler(this.EditCustomLed);
             // 
             // bnLight2
             // 
-            resources.ApplyResources(this.bnLight2, "bnLight2");
             this.bnLight2.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.bnLight2, "bnLight2");
             this.bnLight2.Name = "bnLight2";
             this.bnLight2.Tag = "1";
-            this.toolTip1.SetToolTip(this.bnLight2, resources.GetString("bnLight2.ToolTip"));
             this.bnLight2.UseVisualStyleBackColor = false;
             this.bnLight2.Click += new System.EventHandler(this.EditCustomLed);
             // 
             // bnLight4
             // 
-            resources.ApplyResources(this.bnLight4, "bnLight4");
             this.bnLight4.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.bnLight4, "bnLight4");
             this.bnLight4.Name = "bnLight4";
             this.bnLight4.Tag = "3";
-            this.toolTip1.SetToolTip(this.bnLight4, resources.GetString("bnLight4.ToolTip"));
             this.bnLight4.UseVisualStyleBackColor = false;
             this.bnLight4.Click += new System.EventHandler(this.EditCustomLed);
             // 
@@ -651,34 +611,30 @@
             // 
             resources.ApplyResources(this.lbNoControllers, "lbNoControllers");
             this.lbNoControllers.Name = "lbNoControllers";
-            this.toolTip1.SetToolTip(this.lbNoControllers, resources.GetString("lbNoControllers.ToolTip"));
             // 
             // tabProfiles
             // 
-            resources.ApplyResources(this.tabProfiles, "tabProfiles");
             this.tabProfiles.Controls.Add(this.lBProfiles);
             this.tabProfiles.Controls.Add(this.tSOptions);
             this.tabProfiles.Controls.Add(this.toolStrip1);
+            resources.ApplyResources(this.tabProfiles, "tabProfiles");
             this.tabProfiles.Name = "tabProfiles";
-            this.toolTip1.SetToolTip(this.tabProfiles, resources.GetString("tabProfiles.ToolTip"));
             this.tabProfiles.UseVisualStyleBackColor = true;
             // 
             // lBProfiles
             // 
-            resources.ApplyResources(this.lBProfiles, "lBProfiles");
             this.lBProfiles.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lBProfiles.ContextMenuStrip = this.cMProfile;
+            resources.ApplyResources(this.lBProfiles, "lBProfiles");
             this.lBProfiles.FormattingEnabled = true;
             this.lBProfiles.MultiColumn = true;
             this.lBProfiles.Name = "lBProfiles";
-            this.toolTip1.SetToolTip(this.lBProfiles, resources.GetString("lBProfiles.ToolTip"));
             this.lBProfiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lBProfiles_KeyDown);
             this.lBProfiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseDoubleClick);
             this.lBProfiles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseDown);
             // 
             // cMProfile
             // 
-            resources.ApplyResources(this.cMProfile, "cMProfile");
             this.cMProfile.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.cMProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editToolStripMenuItem,
@@ -692,7 +648,7 @@
             this.importToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.cMProfile.Name = "cMProfile";
-            this.toolTip1.SetToolTip(this.cMProfile, resources.GetString("cMProfile.ToolTip"));
+            resources.ApplyResources(this.cMProfile, "cMProfile");
             // 
             // editToolStripMenuItem
             // 
@@ -702,61 +658,60 @@
             // 
             // assignToController1ToolStripMenuItem
             // 
-            resources.ApplyResources(this.assignToController1ToolStripMenuItem, "assignToController1ToolStripMenuItem");
             this.assignToController1ToolStripMenuItem.Name = "assignToController1ToolStripMenuItem";
+            resources.ApplyResources(this.assignToController1ToolStripMenuItem, "assignToController1ToolStripMenuItem");
             this.assignToController1ToolStripMenuItem.Click += new System.EventHandler(this.assignToController1ToolStripMenuItem_Click);
             // 
             // assignToController2ToolStripMenuItem
             // 
-            resources.ApplyResources(this.assignToController2ToolStripMenuItem, "assignToController2ToolStripMenuItem");
             this.assignToController2ToolStripMenuItem.Name = "assignToController2ToolStripMenuItem";
+            resources.ApplyResources(this.assignToController2ToolStripMenuItem, "assignToController2ToolStripMenuItem");
             this.assignToController2ToolStripMenuItem.Click += new System.EventHandler(this.assignToController2ToolStripMenuItem_Click);
             // 
             // assignToController3ToolStripMenuItem
             // 
-            resources.ApplyResources(this.assignToController3ToolStripMenuItem, "assignToController3ToolStripMenuItem");
             this.assignToController3ToolStripMenuItem.Name = "assignToController3ToolStripMenuItem";
+            resources.ApplyResources(this.assignToController3ToolStripMenuItem, "assignToController3ToolStripMenuItem");
             this.assignToController3ToolStripMenuItem.Click += new System.EventHandler(this.assignToController3ToolStripMenuItem_Click);
             // 
             // assignToController4ToolStripMenuItem
             // 
-            resources.ApplyResources(this.assignToController4ToolStripMenuItem, "assignToController4ToolStripMenuItem");
             this.assignToController4ToolStripMenuItem.Name = "assignToController4ToolStripMenuItem";
+            resources.ApplyResources(this.assignToController4ToolStripMenuItem, "assignToController4ToolStripMenuItem");
             this.assignToController4ToolStripMenuItem.Click += new System.EventHandler(this.assignToController4ToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
-            resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.tsBDeleteProfle_Click);
             // 
             // duplicateToolStripMenuItem
             // 
-            resources.ApplyResources(this.duplicateToolStripMenuItem, "duplicateToolStripMenuItem");
             this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
+            resources.ApplyResources(this.duplicateToolStripMenuItem, "duplicateToolStripMenuItem");
             this.duplicateToolStripMenuItem.Click += new System.EventHandler(this.tSBDupProfile_Click);
             // 
             // newProfileToolStripMenuItem
             // 
-            resources.ApplyResources(this.newProfileToolStripMenuItem, "newProfileToolStripMenuItem");
             this.newProfileToolStripMenuItem.Name = "newProfileToolStripMenuItem";
+            resources.ApplyResources(this.newProfileToolStripMenuItem, "newProfileToolStripMenuItem");
             this.newProfileToolStripMenuItem.Click += new System.EventHandler(this.tsBNewProfile_Click);
             // 
             // importToolStripMenuItem
             // 
-            resources.ApplyResources(this.importToolStripMenuItem, "importToolStripMenuItem");
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            resources.ApplyResources(this.importToolStripMenuItem, "importToolStripMenuItem");
             this.importToolStripMenuItem.Click += new System.EventHandler(this.tSBImportProfile_Click);
             // 
             // exportToolStripMenuItem
             // 
-            resources.ApplyResources(this.exportToolStripMenuItem, "exportToolStripMenuItem");
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            resources.ApplyResources(this.exportToolStripMenuItem, "exportToolStripMenuItem");
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.tSBExportProfile_Click);
             // 
             // tSOptions
             // 
-            resources.ApplyResources(this.tSOptions, "tSOptions");
             this.tSOptions.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tSOptions.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tSOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -766,55 +721,54 @@
             this.tSBCancel,
             this.toolStripSeparator3,
             this.tSBKeepSize});
+            resources.ApplyResources(this.tSOptions, "tSOptions");
             this.tSOptions.Name = "tSOptions";
             this.tSOptions.ShowItemToolTips = false;
-            this.toolTip1.SetToolTip(this.tSOptions, resources.GetString("tSOptions.ToolTip"));
             // 
             // toolStripLabel1
             // 
-            resources.ApplyResources(this.toolStripLabel1, "toolStripLabel1");
             this.toolStripLabel1.Name = "toolStripLabel1";
+            resources.ApplyResources(this.toolStripLabel1, "toolStripLabel1");
             // 
             // tSTBProfile
             // 
-            resources.ApplyResources(this.tSTBProfile, "tSTBProfile");
             this.tSTBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
             this.tSTBProfile.Name = "tSTBProfile";
+            resources.ApplyResources(this.tSTBProfile, "tSTBProfile");
             this.tSTBProfile.Enter += new System.EventHandler(this.tBProfile_Enter);
             this.tSTBProfile.Leave += new System.EventHandler(this.tBProfile_Leave);
             this.tSTBProfile.TextChanged += new System.EventHandler(this.tBProfile_TextChanged);
             // 
             // tSBSaveProfile
             // 
-            resources.ApplyResources(this.tSBSaveProfile, "tSBSaveProfile");
             this.tSBSaveProfile.AutoToolTip = false;
             this.tSBSaveProfile.Image = global::DS4Windows.Properties.Resources.saveprofile;
+            resources.ApplyResources(this.tSBSaveProfile, "tSBSaveProfile");
             this.tSBSaveProfile.Name = "tSBSaveProfile";
             this.tSBSaveProfile.Click += new System.EventHandler(this.tSBSaveProfile_Click);
             // 
             // tSBCancel
             // 
-            resources.ApplyResources(this.tSBCancel, "tSBCancel");
             this.tSBCancel.AutoToolTip = false;
             this.tSBCancel.Image = global::DS4Windows.Properties.Resources.delete;
+            resources.ApplyResources(this.tSBCancel, "tSBCancel");
             this.tSBCancel.Name = "tSBCancel";
             this.tSBCancel.Click += new System.EventHandler(this.tSBCancel_Click);
             // 
             // toolStripSeparator3
             // 
-            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
             // tSBKeepSize
             // 
-            resources.ApplyResources(this.tSBKeepSize, "tSBKeepSize");
             this.tSBKeepSize.Image = global::DS4Windows.Properties.Resources.size;
+            resources.ApplyResources(this.tSBKeepSize, "tSBKeepSize");
             this.tSBKeepSize.Name = "tSBKeepSize";
             this.tSBKeepSize.Click += new System.EventHandler(this.tSBKeepSize_Click);
             // 
             // toolStrip1
             // 
-            resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -824,20 +778,20 @@
             this.tSBDupProfile,
             this.tSBImportProfile,
             this.tSBExportProfile});
+            resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.Name = "toolStrip1";
-            this.toolTip1.SetToolTip(this.toolStrip1, resources.GetString("toolStrip1.ToolTip"));
             // 
             // tsBNewProfle
             // 
-            resources.ApplyResources(this.tsBNewProfle, "tsBNewProfle");
             this.tsBNewProfle.Image = global::DS4Windows.Properties.Resources.newprofile;
+            resources.ApplyResources(this.tsBNewProfle, "tsBNewProfle");
             this.tsBNewProfle.Name = "tsBNewProfle";
             this.tsBNewProfle.Click += new System.EventHandler(this.tsBNewProfile_Click);
             // 
             // tsBEditProfile
             // 
-            resources.ApplyResources(this.tsBEditProfile, "tsBEditProfile");
             this.tsBEditProfile.Image = global::DS4Windows.Properties.Resources.edit;
+            resources.ApplyResources(this.tsBEditProfile, "tsBEditProfile");
             this.tsBEditProfile.Name = "tsBEditProfile";
             this.tsBEditProfile.Click += new System.EventHandler(this.tsBNEditProfile_Click);
             // 
@@ -855,8 +809,8 @@
             // 
             // tSBImportProfile
             // 
-            resources.ApplyResources(this.tSBImportProfile, "tSBImportProfile");
             this.tSBImportProfile.Image = global::DS4Windows.Properties.Resources.import;
+            resources.ApplyResources(this.tSBImportProfile, "tSBImportProfile");
             this.tSBImportProfile.Name = "tSBImportProfile";
             this.tSBImportProfile.Click += new System.EventHandler(this.tSBImportProfile_Click);
             // 
@@ -870,15 +824,13 @@
             // 
             resources.ApplyResources(this.tabAutoProfiles, "tabAutoProfiles");
             this.tabAutoProfiles.Name = "tabAutoProfiles";
-            this.toolTip1.SetToolTip(this.tabAutoProfiles, resources.GetString("tabAutoProfiles.ToolTip"));
             this.tabAutoProfiles.UseVisualStyleBackColor = true;
             // 
             // tabSettings
             // 
-            resources.ApplyResources(this.tabSettings, "tabSettings");
             this.tabSettings.Controls.Add(this.fLPSettings);
+            resources.ApplyResources(this.tabSettings, "tabSettings");
             this.tabSettings.Name = "tabSettings";
-            this.toolTip1.SetToolTip(this.tabSettings, resources.GetString("tabSettings.ToolTip"));
             this.tabSettings.UseVisualStyleBackColor = true;
             // 
             // fLPSettings
@@ -899,13 +851,11 @@
             this.fLPSettings.Controls.Add(this.pnlXIPorts);
             this.fLPSettings.Controls.Add(this.flowLayoutPanel1);
             this.fLPSettings.Name = "fLPSettings";
-            this.toolTip1.SetToolTip(this.fLPSettings, resources.GetString("fLPSettings.ToolTip"));
             // 
             // hideDS4CheckBox
             // 
             resources.ApplyResources(this.hideDS4CheckBox, "hideDS4CheckBox");
             this.hideDS4CheckBox.Name = "hideDS4CheckBox";
-            this.toolTip1.SetToolTip(this.hideDS4CheckBox, resources.GetString("hideDS4CheckBox.ToolTip"));
             this.hideDS4CheckBox.UseVisualStyleBackColor = true;
             this.hideDS4CheckBox.CheckedChanged += new System.EventHandler(this.hideDS4CheckBox_CheckedChanged);
             // 
@@ -915,7 +865,6 @@
             this.cBSwipeProfiles.Checked = true;
             this.cBSwipeProfiles.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBSwipeProfiles.Name = "cBSwipeProfiles";
-            this.toolTip1.SetToolTip(this.cBSwipeProfiles, resources.GetString("cBSwipeProfiles.ToolTip"));
             this.cBSwipeProfiles.UseVisualStyleBackColor = true;
             this.cBSwipeProfiles.CheckedChanged += new System.EventHandler(this.cBSwipeProfiles_CheckedChanged);
             // 
@@ -923,7 +872,6 @@
             // 
             resources.ApplyResources(this.StartWindowsCheckBox, "StartWindowsCheckBox");
             this.StartWindowsCheckBox.Name = "StartWindowsCheckBox";
-            this.toolTip1.SetToolTip(this.StartWindowsCheckBox, resources.GetString("StartWindowsCheckBox.ToolTip"));
             this.StartWindowsCheckBox.UseVisualStyleBackColor = true;
             this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
             // 
@@ -931,23 +879,20 @@
             // 
             resources.ApplyResources(this.startMinimizedCheckBox, "startMinimizedCheckBox");
             this.startMinimizedCheckBox.Name = "startMinimizedCheckBox";
-            this.toolTip1.SetToolTip(this.startMinimizedCheckBox, resources.GetString("startMinimizedCheckBox.ToolTip"));
             this.startMinimizedCheckBox.UseVisualStyleBackColor = true;
             this.startMinimizedCheckBox.CheckedChanged += new System.EventHandler(this.startMinimizedCheckBox_CheckedChanged);
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.lbNotifications);
             this.panel1.Controls.Add(this.cBoxNotifications);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            this.toolTip1.SetToolTip(this.panel1, resources.GetString("panel1.ToolTip"));
             // 
             // lbNotifications
             // 
             resources.ApplyResources(this.lbNotifications, "lbNotifications");
             this.lbNotifications.Name = "lbNotifications";
-            this.toolTip1.SetToolTip(this.lbNotifications, resources.GetString("lbNotifications.ToolTip"));
             // 
             // cBoxNotifications
             // 
@@ -959,25 +904,22 @@
             resources.GetString("cBoxNotifications.Items1"),
             resources.GetString("cBoxNotifications.Items2")});
             this.cBoxNotifications.Name = "cBoxNotifications";
-            this.toolTip1.SetToolTip(this.cBoxNotifications, resources.GetString("cBoxNotifications.ToolTip"));
             this.cBoxNotifications.SelectedIndexChanged += new System.EventHandler(this.cBoxNotifications_SelectedIndexChanged);
             // 
             // cBDisconnectBT
             // 
             resources.ApplyResources(this.cBDisconnectBT, "cBDisconnectBT");
             this.cBDisconnectBT.Name = "cBDisconnectBT";
-            this.toolTip1.SetToolTip(this.cBDisconnectBT, resources.GetString("cBDisconnectBT.ToolTip"));
             this.cBDisconnectBT.UseVisualStyleBackColor = true;
             this.cBDisconnectBT.CheckedChanged += new System.EventHandler(this.cBDisconnectBT_CheckedChanged);
             // 
             // panel2
             // 
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.nUDLatency);
             this.panel2.Controls.Add(this.lbMsLatency);
             this.panel2.Controls.Add(this.cBFlashWhenLate);
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
-            this.toolTip1.SetToolTip(this.panel2, resources.GetString("panel2.ToolTip"));
             // 
             // nUDLatency
             // 
@@ -988,7 +930,6 @@
             0,
             0});
             this.nUDLatency.Name = "nUDLatency";
-            this.toolTip1.SetToolTip(this.nUDLatency, resources.GetString("nUDLatency.ToolTip"));
             this.nUDLatency.Value = new decimal(new int[] {
             10,
             0,
@@ -1000,7 +941,6 @@
             // 
             resources.ApplyResources(this.lbMsLatency, "lbMsLatency");
             this.lbMsLatency.Name = "lbMsLatency";
-            this.toolTip1.SetToolTip(this.lbMsLatency, resources.GetString("lbMsLatency.ToolTip"));
             // 
             // cBFlashWhenLate
             // 
@@ -1008,7 +948,6 @@
             this.cBFlashWhenLate.Checked = true;
             this.cBFlashWhenLate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBFlashWhenLate.Name = "cBFlashWhenLate";
-            this.toolTip1.SetToolTip(this.cBFlashWhenLate, resources.GetString("cBFlashWhenLate.ToolTip"));
             this.cBFlashWhenLate.UseVisualStyleBackColor = true;
             this.cBFlashWhenLate.CheckedChanged += new System.EventHandler(this.cBFlashWhenLate_CheckedChanged);
             // 
@@ -1016,7 +955,6 @@
             // 
             resources.ApplyResources(this.cBCloseMini, "cBCloseMini");
             this.cBCloseMini.Name = "cBCloseMini";
-            this.toolTip1.SetToolTip(this.cBCloseMini, resources.GetString("cBCloseMini.ToolTip"));
             this.cBCloseMini.UseVisualStyleBackColor = true;
             this.cBCloseMini.CheckedChanged += new System.EventHandler(this.cBCloseMini_CheckedChanged);
             // 
@@ -1024,7 +962,6 @@
             // 
             resources.ApplyResources(this.cBQuickCharge, "cBQuickCharge");
             this.cBQuickCharge.Name = "cBQuickCharge";
-            this.toolTip1.SetToolTip(this.cBQuickCharge, resources.GetString("cBQuickCharge.ToolTip"));
             this.cBQuickCharge.UseVisualStyleBackColor = true;
             this.cBQuickCharge.CheckedChanged += new System.EventHandler(this.cBQuickCharge_CheckedChanged);
             // 
@@ -1034,7 +971,6 @@
             this.cBDownloadLangauge.Checked = true;
             this.cBDownloadLangauge.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBDownloadLangauge.Name = "cBDownloadLangauge";
-            this.toolTip1.SetToolTip(this.cBDownloadLangauge, resources.GetString("cBDownloadLangauge.ToolTip"));
             this.cBDownloadLangauge.UseVisualStyleBackColor = true;
             this.cBDownloadLangauge.CheckedChanged += new System.EventHandler(this.cBDownloadLangauge_CheckedChanged);
             // 
@@ -1042,18 +978,16 @@
             // 
             resources.ApplyResources(this.cBUpdate, "cBUpdate");
             this.cBUpdate.Name = "cBUpdate";
-            this.toolTip1.SetToolTip(this.cBUpdate, resources.GetString("cBUpdate.ToolTip"));
             this.cBUpdate.UseVisualStyleBackColor = true;
             this.cBUpdate.CheckedChanged += new System.EventHandler(this.cBUpdate_CheckedChanged);
             // 
             // pNUpdate
             // 
-            resources.ApplyResources(this.pNUpdate, "pNUpdate");
             this.pNUpdate.Controls.Add(this.cBUpdateTime);
             this.pNUpdate.Controls.Add(this.lbCheckEvery);
             this.pNUpdate.Controls.Add(this.nUDUpdateTime);
+            resources.ApplyResources(this.pNUpdate, "pNUpdate");
             this.pNUpdate.Name = "pNUpdate";
-            this.toolTip1.SetToolTip(this.pNUpdate, resources.GetString("pNUpdate.ToolTip"));
             // 
             // cBUpdateTime
             // 
@@ -1064,14 +998,12 @@
             resources.GetString("cBUpdateTime.Items"),
             resources.GetString("cBUpdateTime.Items1")});
             this.cBUpdateTime.Name = "cBUpdateTime";
-            this.toolTip1.SetToolTip(this.cBUpdateTime, resources.GetString("cBUpdateTime.ToolTip"));
             this.cBUpdateTime.SelectedIndexChanged += new System.EventHandler(this.cBUpdateTime_SelectedIndexChanged);
             // 
             // lbCheckEvery
             // 
             resources.ApplyResources(this.lbCheckEvery, "lbCheckEvery");
             this.lbCheckEvery.Name = "lbCheckEvery";
-            this.toolTip1.SetToolTip(this.lbCheckEvery, resources.GetString("lbCheckEvery.ToolTip"));
             // 
             // nUDUpdateTime
             // 
@@ -1082,17 +1014,15 @@
             0,
             0});
             this.nUDUpdateTime.Name = "nUDUpdateTime";
-            this.toolTip1.SetToolTip(this.nUDUpdateTime, resources.GetString("nUDUpdateTime.ToolTip"));
             this.nUDUpdateTime.ValueChanged += new System.EventHandler(this.nUDUpdateTime_ValueChanged);
             // 
             // pnlXIPorts
             // 
-            resources.ApplyResources(this.pnlXIPorts, "pnlXIPorts");
             this.pnlXIPorts.Controls.Add(this.lbUseXIPorts);
             this.pnlXIPorts.Controls.Add(this.nUDXIPorts);
             this.pnlXIPorts.Controls.Add(this.lbLastXIPort);
+            resources.ApplyResources(this.pnlXIPorts, "pnlXIPorts");
             this.pnlXIPorts.Name = "pnlXIPorts";
-            this.toolTip1.SetToolTip(this.pnlXIPorts, resources.GetString("pnlXIPorts.ToolTip"));
             this.pnlXIPorts.MouseEnter += new System.EventHandler(this.pnlXIPorts_MouseEnter);
             this.pnlXIPorts.MouseLeave += new System.EventHandler(this.pnlXIPorts_MouseLeave);
             // 
@@ -1100,7 +1030,6 @@
             // 
             resources.ApplyResources(this.lbUseXIPorts, "lbUseXIPorts");
             this.lbUseXIPorts.Name = "lbUseXIPorts";
-            this.toolTip1.SetToolTip(this.lbUseXIPorts, resources.GetString("lbUseXIPorts.ToolTip"));
             // 
             // nUDXIPorts
             // 
@@ -1116,7 +1045,6 @@
             0,
             0});
             this.nUDXIPorts.Name = "nUDXIPorts";
-            this.toolTip1.SetToolTip(this.nUDXIPorts, resources.GetString("nUDXIPorts.ToolTip"));
             this.nUDXIPorts.Value = new decimal(new int[] {
             1,
             0,
@@ -1130,7 +1058,6 @@
             // 
             resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
             this.lbLastXIPort.Name = "lbLastXIPort";
-            this.toolTip1.SetToolTip(this.lbLastXIPort, resources.GetString("lbLastXIPort.ToolTip"));
             // 
             // flowLayoutPanel1
             // 
@@ -1141,14 +1068,12 @@
             this.flowLayoutPanel1.Controls.Add(this.linkSetup);
             this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.toolTip1.SetToolTip(this.flowLayoutPanel1, resources.GetString("flowLayoutPanel1.ToolTip"));
             // 
             // linkProfiles
             // 
             resources.ApplyResources(this.linkProfiles, "linkProfiles");
             this.linkProfiles.Name = "linkProfiles";
             this.linkProfiles.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkProfiles, resources.GetString("linkProfiles.ToolTip"));
             this.linkProfiles.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkProfiles_LinkClicked);
             // 
             // lnkControllers
@@ -1156,7 +1081,6 @@
             resources.ApplyResources(this.lnkControllers, "lnkControllers");
             this.lnkControllers.Name = "lnkControllers";
             this.lnkControllers.TabStop = true;
-            this.toolTip1.SetToolTip(this.lnkControllers, resources.GetString("lnkControllers.ToolTip"));
             this.lnkControllers.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkControllers_LinkClicked);
             // 
             // linkUninstall
@@ -1164,7 +1088,6 @@
             resources.ApplyResources(this.linkUninstall, "linkUninstall");
             this.linkUninstall.Name = "linkUninstall";
             this.linkUninstall.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkUninstall, resources.GetString("linkUninstall.ToolTip"));
             this.linkUninstall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkUninstall_LinkClicked);
             // 
             // linkSetup
@@ -1172,7 +1095,6 @@
             resources.ApplyResources(this.linkSetup, "linkSetup");
             this.linkSetup.Name = "linkSetup";
             this.linkSetup.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkSetup, resources.GetString("linkSetup.ToolTip"));
             this.linkSetup.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLSetup_LinkClicked);
             // 
             // lLBUpdate
@@ -1180,16 +1102,14 @@
             resources.ApplyResources(this.lLBUpdate, "lLBUpdate");
             this.lLBUpdate.Name = "lLBUpdate";
             this.lLBUpdate.TabStop = true;
-            this.toolTip1.SetToolTip(this.lLBUpdate, resources.GetString("lLBUpdate.ToolTip"));
             this.lLBUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLBUpdate_LinkClicked);
             // 
             // tabLog
             // 
-            resources.ApplyResources(this.tabLog, "tabLog");
             this.tabLog.Controls.Add(this.lvDebug);
             this.tabLog.Controls.Add(this.btnClear);
+            resources.ApplyResources(this.tabLog, "tabLog");
             this.tabLog.Name = "tabLog";
-            this.toolTip1.SetToolTip(this.tabLog, resources.GetString("tabLog.ToolTip"));
             this.tabLog.UseVisualStyleBackColor = true;
             // 
             // saveProfiles
@@ -1198,7 +1118,6 @@
             // 
             // cMCustomLed
             // 
-            resources.ApplyResources(this.cMCustomLed, "cMCustomLed");
             this.cMCustomLed.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cMCustomLed.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useProfileColorToolStripMenuItem,
@@ -1206,20 +1125,20 @@
             this.cMCustomLed.Name = "cMCustomLed";
             this.cMCustomLed.ShowCheckMargin = true;
             this.cMCustomLed.ShowImageMargin = false;
-            this.toolTip1.SetToolTip(this.cMCustomLed, resources.GetString("cMCustomLed.ToolTip"));
+            resources.ApplyResources(this.cMCustomLed, "cMCustomLed");
             // 
             // useProfileColorToolStripMenuItem
             // 
-            resources.ApplyResources(this.useProfileColorToolStripMenuItem, "useProfileColorToolStripMenuItem");
             this.useProfileColorToolStripMenuItem.Checked = true;
             this.useProfileColorToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.useProfileColorToolStripMenuItem.Name = "useProfileColorToolStripMenuItem";
+            resources.ApplyResources(this.useProfileColorToolStripMenuItem, "useProfileColorToolStripMenuItem");
             this.useProfileColorToolStripMenuItem.Click += new System.EventHandler(this.useProfileColorToolStripMenuItem_Click);
             // 
             // useCustomColorToolStripMenuItem
             // 
-            resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Name = "useCustomColorToolStripMenuItem";
+            resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
             // 
             // advColorDialog
@@ -1228,14 +1147,13 @@
             // 
             // DS4Form
             // 
-            resources.ApplyResources(this, "$this");
             this.AllowDrop = true;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.pnlButton);
             this.Name = "DS4Form";
-            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScpForm_Closing);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ScpForm_DragEnter);

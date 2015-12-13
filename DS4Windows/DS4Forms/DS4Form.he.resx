@@ -121,7 +121,7 @@
     <value>זמן</value>
   </data>
   <data name="chData.Text" xml:space="preserve">
-    <value>דאטה</value>
+    <value>נתונים</value>
   </data>
   <data name="btnStartStop.Text" xml:space="preserve">
     <value>התחל</value>
@@ -6366,7 +6366,7 @@
     <value>בקרים</value>
   </data>
   <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>התחבר ל-DS4 בלעדית</value>
+    <value>התחבר ל-DS4 בלעדית (ניסיוני)</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1085, 94</value>
@@ -6716,37 +6716,37 @@
     <value>186, 26</value>
   </data>
   <data name="assignToController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>הגדר בבקר 1</value>
+    <value>הגדר כבקר 1</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 26</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>הגדר בבקר 2</value>
+    <value>הגדר כבקר 2</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 26</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>הגדר בבקר 3</value>
+    <value>הגדר כבקר 3</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 26</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>הגדר בבקר 4</value>
+    <value>הגדר כבקר 4</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 26</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>מחיקה (Delete)</value>
+    <value>מחק (Delete)</value>
   </data>
   <data name="duplicateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>שכפל (Ctrl+C)</value>
+    <value>שכפל (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 26</value>
@@ -6851,7 +6851,7 @@
     <value>שכפל</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>שכפל את הפרופיל הנבחר</value>
+    <value>שכפל את הפרופיל הנבחר (Ctrl+D)</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 24</value>
@@ -6860,7 +6860,7 @@
     <value>ייבא</value>
   </data>
   <data name="tSBImportProfile.ToolTipText" xml:space="preserve">
-    <value>ייבא את הפרופיל הנבחר</value>
+    <value>ייבא פרופיל/ים</value>
   </data>
   <data name="tSBExportProfile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6940,7 +6940,7 @@
     <value>224, 21</value>
   </data>
   <data name="cBDisconnectBT.Text" xml:space="preserve">
-    <value>נתק Bluetooth בעת השימוש בבקר</value>
+    <value>נתק Bluetooth בעת הסגירה</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>269, 28</value>
@@ -7064,5 +7064,8 @@
   </data>
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>שימוש בצבע מסוים</value>
+  </data>
+  <data name="cBCloseMini.Text" xml:space="preserve">
+    <value>סגירה ממזערת</value>
   </data>
 </root>

@@ -152,7 +152,7 @@
   </data>
   <data name="lbGermanT.Text" xml:space="preserve">
     <value>Jan-Stefan Janetzky, Michél, Ammonjak, An Op Turk</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;lbGermanT.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
   </data>
@@ -203,7 +203,7 @@
   </data>
   <data name="linkInhexSTER.Text" xml:space="preserve">
     <value>InhexSTER (Starter of DS4Tool)</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;lbAbout.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -263,7 +263,7 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Help</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;linkJays2Kings.Name" xml:space="preserve">
     <value>linkJays2Kings</value>
   </data>
@@ -296,7 +296,7 @@
   </data>
   <data name="lbLinkText.Text" xml:space="preserve">
     <value>Links displayed here</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="linkSourceCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -406,7 +406,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="linkJays2Kings.Text" xml:space="preserve">
     <value>Jays2Kings</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="lbRussianT.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
@@ -508,7 +508,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="lbItalian.Text" xml:space="preserve">
     <value>Italian/Italiano</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;linkSourceCode.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -538,10 +538,10 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="lbItalianT.Text" xml:space="preserve">
     <value>Giulio</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="lbRussianT.Text" xml:space="preserve">
     <value>KoNoRIMCI, Sr_psycho</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;linkElectro.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -565,7 +565,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="lbTurkish.Text" xml:space="preserve">
     <value>Turkish</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 17</value>
   </data>
@@ -661,7 +661,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="linkJhebbel.Text" xml:space="preserve">
     <value>jhebbel (DSDCS)</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;lbTurkish.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
@@ -697,7 +697,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="linkElectro.Text" xml:space="preserve">
     <value>electrobrains (Branched off of)</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;lbHotkeys.Name" xml:space="preserve">
     <value>lbHotkeys</value>
   </data>
@@ -724,7 +724,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Lütfi Tekin</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="tLPTranslators.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbGerman" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbGermanT" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbItalianT" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbItalian" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRussian" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRussianT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbRomanian" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRomanianT" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbTurkish" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseS" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseST" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseT" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseTT" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbArabic" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbArabicT" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbHebrew" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbHebrewT" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
@@ -781,7 +781,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="lbRomanian.Text" xml:space="preserve">
     <value>Romanian</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;lbRussianT.Parent" xml:space="preserve">
     <value>tLPTranslators</value>
   </data>
@@ -865,13 +865,13 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="lbGerman.Text" xml:space="preserve">
     <value>German/Deutsch</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;linkJhebbel.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="linkSourceCode.Text" xml:space="preserve">
     <value>Source Code</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 453</value>
   </data>
@@ -1048,7 +1048,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="lbRussian.Text" xml:space="preserve">
     <value>Russian/ру́сский язы́к</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="lbRomanianT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1243,7 +1243,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="lbRomanianT.Text" xml:space="preserve">
     <value>Vlad Giurgiu, Anonim</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="lbHotkeys.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>

@@ -28,35 +28,20 @@ namespace DS4Windows
             int deltaX = 0, deltaY = 0;
             deltaX = -arg.sixAxis.accelX;
             deltaY = -arg.sixAxis.accelY;
-            double coefficient = Global.GyroSensitivity[deviceNumber] / 100f;
-            // Collect rounding errors instead of losing motion.
-            double xMotion = coefficient * deltaX;
-            if (xMotion > 0.0)
-            {
-                if (horizontalRemainder > 0.0)
-                    xMotion += horizontalRemainder;
-            }
-            else if (xMotion < 0.0)
-            {
-                if (horizontalRemainder < 0.0)
-                    xMotion += horizontalRemainder;
-            }
-            int xAction = (int)xMotion;
-            hRemainder = xMotion - xAction;
+            //Console.WriteLine(arg.sixAxis.deltaX);
 
+            double coefficient = Global.GyroSensitivity[deviceNumber] / 100f;
+            //Collect rounding errors instead of losing motion.
+            double xMotion = coefficient * deltaX;
+            xMotion += hRemainder;
+            int xAction = (int)xMotion;
+            hRemainder += xMotion - xAction;
+            hRemainder -= (int)hRemainder;
             double yMotion = coefficient * deltaY;
-            if (yMotion > 0.0)
-            {
-                if (verticalRemainder > 0.0)
-                    yMotion += verticalRemainder;
-            }
-            else if (yMotion < 0.0)
-            {
-                if (verticalRemainder < 0.0)
-                    yMotion += verticalRemainder;
-            }
+            yMotion += vRemainder;
             int yAction = (int)yMotion;
-            vRemainder = yMotion - yAction;
+            vRemainder += yMotion - yAction;
+            vRemainder -= (int)vRemainder;
             if (Global.GyroInvert[deviceNumber] == 2 || Global.GyroInvert[deviceNumber] == 3)
                 xAction *= -1;
             if (Global.GyroInvert[deviceNumber] == 1 || Global.GyroInvert[deviceNumber] == 3)

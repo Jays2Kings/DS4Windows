@@ -218,7 +218,7 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Type name of New Profile</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;tBProfile.Name" xml:space="preserve">
     <value>tBProfile</value>
   </data>

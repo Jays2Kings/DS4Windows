@@ -6743,7 +6743,7 @@
     <value>171, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>تكرير (Ctrl+C)</value>
+    <value>تكرير (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 26</value>
@@ -6845,7 +6845,7 @@
     <value>كرر</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>كرر السجل المحدد (Ctrl+C)</value>
+    <value>كرر السجل المحدد (Ctrl+D)</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 24</value>

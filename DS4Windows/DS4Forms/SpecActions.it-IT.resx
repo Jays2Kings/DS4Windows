@@ -1499,7 +1499,7 @@
     <value>TopCenter</value>
   </data>
   <data name="lbHoldFor.Text" xml:space="preserve">
-    <value>Premuto per</value>
+    <value>Tieni Premuto per</value>
   </data>
   <data name="lbSecs.Text" xml:space="preserve">
     <value>secondi</value>
@@ -1539,5 +1539,14 @@
   </data>
   <data name="lbArg.Text" xml:space="preserve">
     <value>Argomento</value>
+  </data>
+  <data name="lbDTapDVR.Text" xml:space="preserve">
+    <value>Doppio Tap sul Grilletto (LT/RT)</value>
+  </data>
+  <data name="lbHoldDVR.Text" xml:space="preserve">
+    <value>Tieni Premuto Grilletto</value>
+  </data>
+  <data name="lbTapDVR.Text" xml:space="preserve">
+    <value>Tap sul Grilletto</value>
   </data>
 </root>

@@ -244,4 +244,7 @@
   <data name="cMSLoadPresets.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 48</value>
   </data>
+  <data name="btnRumble.Text" xml:space="preserve">
+    <value>Aggiungi Vibrazione</value>
+  </data>
 </root>

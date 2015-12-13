@@ -125,7 +125,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbTest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>832, 17</value>
+    <value>823, 11</value>
   </data>
   <data name="lbLastMessage.Size" type="System.Drawing.Size, System.Drawing">
     <value>890, 22</value>
@@ -141,6 +141,51 @@
   </data>
   <data name="btnClear.Text" xml:space="preserve">
     <value>Xóa</value>
+  </data>
+  <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 26</value>
+  </data>
+  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sửa Profile của Controller 1</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 26</value>
+  </data>
+  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sửa Profile của Controller 2</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 26</value>
+  </data>
+  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sửa Profile của Controller 3</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 26</value>
+  </data>
+  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sửa Profile của Controller 4</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 6</value>
+  </data>
+  <data name="startToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 26</value>
+  </data>
+  <data name="startToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bắt đầu</value>
+  </data>
+  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 26</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mở</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 26</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Thoát (Chuột giữa)</value>
   </data>
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>266, 192</value>
@@ -6317,59 +6362,14 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
   </data>
-  <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 26</value>
-  </data>
-  <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sửa Profile của Controller 1</value>
-  </data>
-  <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 26</value>
-  </data>
-  <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sửa Profile của Controller 2</value>
-  </data>
-  <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 26</value>
-  </data>
-  <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sửa Profile của Controller 3</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 26</value>
-  </data>
-  <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sửa Profile của Controller 4</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 6</value>
-  </data>
-  <data name="startToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 26</value>
-  </data>
-  <data name="startToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bắt đầu</value>
-  </data>
-  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 26</value>
-  </data>
-  <data name="openToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mở</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 26</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Thoát (Chuột giữa)</value>
-  </data>
   <data name="btnConnectDS4Win10.Text" xml:space="preserve">
     <value>Kết nối DS4 qua cmd (thử nghiệm)</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 94</value>
+    <value>1083, 94</value>
   </data>
   <data name="bnLight3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 28</value>
+    <value>35, 28</value>
   </data>
   <data name="pBStatus1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6427,44 +6427,44 @@
         1WDefQHxFbbcLCQjmgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>511, 26</value>
+  </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1031, 94</value>
+    <value>1029, 94</value>
   </data>
   <data name="bnEditC3.Text" xml:space="preserve">
     <value>Sửa</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1031, 130</value>
+    <value>1029, 130</value>
   </data>
   <data name="bnEditC4.Text" xml:space="preserve">
     <value>Sửa</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>885, 23</value>
+    <value>883, 23</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1031, 58</value>
+    <value>1029, 58</value>
   </data>
   <data name="bnEditC2.Text" xml:space="preserve">
     <value>Sửa</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>885, 59</value>
+    <value>883, 59</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>885, 95</value>
+    <value>883, 95</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1031, 22</value>
+    <value>1029, 22</value>
   </data>
   <data name="bnEditC1.Text" xml:space="preserve">
     <value>Sửa</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>885, 131</value>
-  </data>
-  <data name="lbSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>893, 0</value>
+    <value>883, 131</value>
   </data>
   <data name="lbSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 18</value>
@@ -6473,7 +6473,7 @@
     <value>Profile đã chọn</value>
   </data>
   <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>491, 0</value>
+    <value>489, 0</value>
   </data>
   <data name="lbStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 18</value>
@@ -6482,7 +6482,7 @@
     <value>Trạng thái</value>
   </data>
   <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>753, 0</value>
+    <value>751, 0</value>
   </data>
   <data name="lbBattery.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 18</value>
@@ -6491,16 +6491,16 @@
     <value>Pin</value>
   </data>
   <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 27</value>
+    <value>744, 27</value>
   </data>
   <data name="lbBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 63</value>
+    <value>744, 63</value>
   </data>
   <data name="lbBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 99</value>
+    <value>744, 99</value>
   </data>
   <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 135</value>
+    <value>744, 135</value>
   </data>
   <data name="pBStatus2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6558,6 +6558,9 @@
         1WDefQHxFbbcLCQjmgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>511, 62</value>
+  </data>
   <data name="pBStatus3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACcAAAAUCAYAAAAOTSQ2AAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
@@ -6613,6 +6616,9 @@
         4bquCMM5T6fTj3cMQXCYZVm2/afEcRw6n88igHv5EYgZOBwO28YBnFXX9acPxuyv+RJYqQqsVAVWqgIr
         1WDefQHxFbbcLCQjmgAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>511, 98</value>
   </data>
   <data name="pBStatus4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6670,38 +6676,29 @@
         1WDefQHxFbbcLCQjmgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>511, 134</value>
+  </data>
   <data name="bnLight1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 22</value>
+    <value>1083, 22</value>
   </data>
   <data name="bnLight1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 28</value>
+    <value>35, 28</value>
   </data>
   <data name="bnLight2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 58</value>
+    <value>1083, 58</value>
   </data>
   <data name="bnLight2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 28</value>
+    <value>35, 28</value>
   </data>
   <data name="bnLight4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 130</value>
+    <value>1083, 130</value>
   </data>
   <data name="bnLight4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 28</value>
+    <value>35, 28</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
     <value>Không có tay cầm nào kết nối (Tối đa 4)</value>
-  </data>
-  <data name="tabAutoProfiles.Text" xml:space="preserve">
-    <value>Profile tự chọn</value>
-  </data>
-  <data name="tabSettings.Text" xml:space="preserve">
-    <value>Hiệu chỉnh</value>
-  </data>
-  <data name="tabLog.Text" xml:space="preserve">
-    <value>Báo cáo</value>
-  </data>
-  <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 264</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 26</value>
@@ -6763,8 +6760,8 @@
   <data name="exportToolStripMenuItem.Text" xml:space="preserve">
     <value>Xuất</value>
   </data>
-  <data name="tSOptions.Text" xml:space="preserve">
-    <value>Tùy chọn Profile</value>
+  <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 264</value>
   </data>
   <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 24</value>
@@ -6792,6 +6789,9 @@
   </data>
   <data name="tSBKeepSize.Text" xml:space="preserve">
     <value>Giữ kích thước cửa sổ sau khi đóng</value>
+  </data>
+  <data name="tSOptions.Text" xml:space="preserve">
+    <value>Tùy chọn Profile</value>
   </data>
   <data name="tsBNewProfle.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 24</value>
@@ -6882,6 +6882,9 @@
   <data name="tSBExportProfile.ToolTipText" xml:space="preserve">
     <value>Xuất Profile được chọn</value>
   </data>
+  <data name="tabAutoProfiles.Text" xml:space="preserve">
+    <value>Profile tự chọn</value>
+  </data>
   <data name="hideDS4CheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 21</value>
   </data>
@@ -6927,9 +6930,6 @@
   <data name="cBDisconnectBT.Text" xml:space="preserve">
     <value>Ngắt kết nối BT khi bấm Dừng</value>
   </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 28</value>
-  </data>
   <data name="nUDLatency.Location" type="System.Drawing.Point, System.Drawing">
     <value>170, 2</value>
   </data>
@@ -6941,6 +6941,9 @@
   </data>
   <data name="cBFlashWhenLate.Text" xml:space="preserve">
     <value>Báo đèn khi độ trễ cao</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 28</value>
   </data>
   <data name="cBCloseMini.Text" xml:space="preserve">
     <value>Close minimizes</value>
@@ -6972,9 +6975,6 @@
   <data name="lbCheckEvery.Text" xml:space="preserve">
     <value>Kiểm tra mỗi</value>
   </data>
-  <data name="pnlXIPorts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 28</value>
-  </data>
   <data name="lbUseXIPorts.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 17</value>
   </data>
@@ -6987,11 +6987,8 @@
   <data name="lbLastXIPort.Location" type="System.Drawing.Point, System.Drawing">
     <value>239, 5</value>
   </data>
-  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>287, 13</value>
-  </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 85</value>
+  <data name="pnlXIPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 28</value>
   </data>
   <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 17</value>
@@ -7023,8 +7020,17 @@
   <data name="lLBUpdate.Text" xml:space="preserve">
     <value>Kiểm tra cập nhật bây giờ</value>
   </data>
-  <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 56</value>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>287, 13</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 85</value>
+  </data>
+  <data name="tabSettings.Text" xml:space="preserve">
+    <value>Hiệu chỉnh</value>
+  </data>
+  <data name="tabLog.Text" xml:space="preserve">
+    <value>Báo cáo</value>
   </data>
   <data name="useProfileColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 26</value>
@@ -7037,5 +7043,8 @@
   </data>
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Dùng màu tự chọn</value>
+  </data>
+  <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 56</value>
   </data>
 </root>

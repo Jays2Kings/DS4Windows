@@ -329,7 +329,7 @@ namespace DS4Windows
             hotkeysTimer.Start();
             hotkeysTimer.Tick += Hotkeys;
             test.Tick += test_Tick;
-            if (!System.IO.Directory.Exists(appdatapath + "\\Virtual Bus Driver"))
+            if (!Directory.Exists(appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk"))
             {
@@ -356,23 +356,6 @@ namespace DS4Windows
                 File.Delete(exepath + "\\DS4Updater.exe");
                 File.Move(exepath + "\\Update Files\\DS4Updater.exe", exepath + "\\DS4Updater.exe");
                 Directory.Delete(exepath + "\\Update Files");
-            }
-            if(FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileBuildPart == 32 &&
-                (!File.Exists(exepath + "\\DS4Updater.exe") ||
-                (File.Exists(exepath + "\\DS4Updater.exe") && FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileBuildPart < 32)))
-            {
-                Uri url2 = new Uri("https://github.com/Jays2Kings/DS4Windows/releases/download/v1.4.32/DS4Updater.exe");
-                WebClient wc2 = new WebClient();
-                if (appdatapath == exepath || !AdminNeeded())
-                {
-                    File.Delete(exepath + "\\DS4Updater.exe");
-                    wc2.DownloadFileAsync(url2, exepath + "\\DS4Updater.exe");
-                }
-                else
-                {
-                    MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
-                    Process.Start("https://github.com/Jays2Kings/DS4Windows/releases/download/v1.4.32/DS4Updater.exe");
-                }
             }
         }
 
@@ -480,9 +463,9 @@ namespace DS4Windows
 
         private void test_Tick(object sender, EventArgs e)
         {
-            /*testing values
+            //testing values
             lbTest.Visible = true;
-            lbTest.Text = Program.rootHub.oldtouchvalue[0].ToString();//*/
+            lbTest.Text = ((int)(Program.rootHub.ExposedState[0].AccelX * 2) / 2f).ToString();
         }
         void Hotkeys(object sender, EventArgs e)
         {
@@ -932,13 +915,13 @@ namespace DS4Windows
 
         private void lBProfiles_KeyDown(object sender, KeyEventArgs e)
         {
-            if (lBProfiles.SelectedIndex >= 0 && opt == null)
+            if (lBProfiles.SelectedIndex >= 0 && !opt.Visible)
             {
                 if (e.KeyValue == 13)
                     ShowOptions(4, lBProfiles.SelectedItem.ToString());
                 if (e.KeyValue == 46)
                     tsBDeleteProfle_Click(this, e);
-                if (e.KeyValue == 67 && e.Modifiers == Keys.Control)
+                if (e.KeyValue == 68 && e.Modifiers == Keys.Control)
                     tSBDupProfile_Click(this, e);
             }
 

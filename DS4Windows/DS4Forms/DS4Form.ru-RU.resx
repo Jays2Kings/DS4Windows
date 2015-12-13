@@ -6881,7 +6881,7 @@
     <value>Сделать копию</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>Сделать копию выбранного профиля (Ctrl+C)</value>
+    <value>Сделать копию выбранного профиля (Ctrl+D)</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 24</value>

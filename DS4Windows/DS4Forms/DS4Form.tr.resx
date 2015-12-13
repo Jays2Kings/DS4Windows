@@ -6770,7 +6770,7 @@
     <value>182, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Klonla (Ctrl+C)</value>
+    <value>Klonla (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 26</value>
@@ -6875,7 +6875,7 @@
     <value>Klonla</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>Seçili Profili Klonla (Ctrl+C)</value>
+    <value>Seçili Profili Klonla (Ctrl+D)</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 24</value>

@@ -124,6 +124,6 @@
     <value>保存</value>
   </data>
   <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;在这里输入配置名&gt;</value>
+    <value>&lt;在此处输入配置名&gt;</value>
   </data>
 </root>

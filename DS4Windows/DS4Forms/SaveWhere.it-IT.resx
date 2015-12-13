@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label4.Text" xml:space="preserve">
-    <value>Per quelli che preferiscono un'installazione regolare Impostazioni salvate in %appdata%/ds4tool</value>
+    <value>Per quelli che preferiscono un'installazione regolare, le Impostazioni sono salvate in %appdata%/ds4tool</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Per quelli che preferiscono un programma portatile Nota: questa opzione non funziona se in una cartella admin senza UAC</value>
+    <value>Per quelli che preferiscono un programma portatile Nota: questa opzione non funziona se si trova in una cartella admin senza UAC</value>
   </data>
   <data name="bnPrgmFolder.Text" xml:space="preserve">
     <value>Cartella Programma</value>

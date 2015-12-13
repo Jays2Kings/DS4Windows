@@ -278,7 +278,7 @@
     <value>152, 26</value>
   </data>
   <data name="tSMIRSInverted.Text" xml:space="preserve">
-    <value>invertito</value>
+    <value>Invertito</value>
   </data>
   <data name="tSMIRSInvertedX.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 26</value>
@@ -305,7 +305,7 @@
     <value>228, 26</value>
   </data>
   <data name="wScanCodeWASDToolStripMenuItem.Text" xml:space="preserve">
-    <value>con Scansiona Codice</value>
+    <value>con Scansione del Codice</value>
   </data>
   <data name="ArrowKeysToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 26</value>
@@ -317,7 +317,7 @@
     <value>228, 26</value>
   </data>
   <data name="wScanCodeArrowKeysToolStripMenuItem.Text" xml:space="preserve">
-    <value>con Scansiona Codice</value>
+    <value>con Scansione del Codice</value>
   </data>
   <data name="MouseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 26</value>
@@ -508,5 +508,95 @@ con profilo</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Zona Morta</value>
+  </data>
+  <data name="cBFlushHIDQueue.Text" xml:space="preserve">
+    <value>Flush HID</value>
+  </data>
+  <data name="cBShiftControl.Items26" xml:space="preserve">
+    <value>Touchpad (non cliccato dentro)</value>
+  </data>
+  <data name="cBTap.Text" xml:space="preserve">
+    <value>Tap</value>
+  </data>
+  <data name="cHTrigger.Text" xml:space="preserve">
+    <value>Trigger</value>
+  </data>
+  <data name="defaultToolStripMenuItem.Text" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dpad</value>
+  </data>
+  <data name="fingerOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dito sul Touchpad</value>
+  </data>
+  <data name="fingersOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>2 Dita sul Touchpad</value>
+  </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Sensibilità</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Touchpad</value>
+  </data>
+  <data name="lb6Accel.Text" xml:space="preserve">
+    <value>Accel</value>
+  </data>
+  <data name="lb6Gryo.Text" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbGyroInvert.Text" xml:space="preserve">
+    <value>Inverti:</value>
+  </data>
+  <data name="lbGyroSens.Text" xml:space="preserve">
+    <value>Sensibilità Giroscopio:</value>
+  </data>
+  <data name="lbGyroTriggers.Text" xml:space="preserve">
+    <value>Grilletti (LT/RT):</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbShift.Text" xml:space="preserve">
+    <value>Shift:</value>
+  </data>
+  <data name="lbShiftBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbShiftGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbShiftRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mouse</value>
+  </data>
+  <data name="rBSAControls.Text" xml:space="preserve">
+    <value>Usa per i Controlli</value>
+  </data>
+  <data name="rBSAMouse.Text" xml:space="preserve">
+    <value>Usa come Mouse</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="tPCurve.Text" xml:space="preserve">
+    <value>Piega</value>
   </data>
 </root>

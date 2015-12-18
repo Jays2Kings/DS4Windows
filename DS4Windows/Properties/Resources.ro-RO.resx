@@ -421,97 +421,97 @@
     <value>Oprește Slab</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Se opresc manetele DS4</value>
+    <value>DS4Windows a fost oprit</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
-    <value>Se opresc manetele X360</value>
+    <value>Se opresc manetele DS4</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
-    <value>Oprire</value>
+    <value>Se opresc manetele X360</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Glisare în jos</value>
+    <value>Oprire</value>
   </data>
   <data name="SwipeDown" xml:space="preserve">
-    <value>Glisare spre stânga</value>
+    <value>Glisare în jos</value>
   </data>
   <data name="SwipeLeft" xml:space="preserve">
-    <value>Glisare spre dreapta</value>
+    <value>Glisare spre stânga</value>
   </data>
   <data name="SwipeRight" xml:space="preserve">
-    <value>Glisați pe touchpad pentru a schimba profilele</value>
+    <value>Glisare spre dreapta</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Glisare în sus</value>
+    <value>Glisați pe touchpad pentru a schimba profilele</value>
   </data>
   <data name="SwipeUp" xml:space="preserve">
-    <value>Apasă și ține apăsat pentru a trage, puțină întârziere cu apăsări individuale</value>
+    <value>Glisare în sus</value>
   </data>
   <data name="TapAndHold" xml:space="preserve">
-    <value>Testează intens</value>
+    <value>Apasă și ține apăsat pentru a trage, puțină întârziere cu apăsări individuale</value>
   </data>
   <data name="TestHText" xml:space="preserve">
-    <value>Testează slab</value>
+    <value>Testează intens</value>
   </data>
   <data name="TestLText" xml:space="preserve">
     <value>Testează slab</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>Înclinare la stânga</value>
+    <value>Înclinare în jos</value>
   </data>
   <data name="TiltLeft" xml:space="preserve">
-    <value>Înclinare la dreapta</value>
+    <value>Înclinare la stânga</value>
   </data>
   <data name="TiltRight" xml:space="preserve">
-    <value>Înclinare în sus</value>
+    <value>Înclinare la dreapta</value>
   </data>
   <data name="TiltUp" xml:space="preserve">
-    <value>Mișcare pe touchpad oprită</value>
+    <value>Înclinare în sus</value>
   </data>
   <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Mișcare pe touchpad pornită</value>
+    <value>Mișcare pe touchpad oprită</value>
   </data>
   <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>Reactivează apăsând PS+Touchpad</value>
+    <value>Mișcare pe touchpad pornită</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Glisare spre stânga sau dreapta cu 2 degete pe touchpad</value>
+    <value>Reactivează apăsând PS+Touchpad</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>scrie noul nume aici</value>
+    <value>Glisare spre stânga sau dreapta cu 2 degete pe touchpad</value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
-    <value>scrie numele profilului aici</value>
+    <value>scrie noul nume aici</value>
   </data>
   <data name="TypeProfileName" xml:space="preserve">
-    <value>Sus</value>
+    <value>scrie numele profilului aici</value>
   </data>
   <data name="UpText" xml:space="preserve">
-    <value>Actualizările sunt la zi!</value>
+    <value>Sus</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>Puteți folosi și maneta pentru a schimba controalele</value>
+    <value>Actualizările sunt la zi!</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
-    <value>Folosind modul exclusiv</value>
+    <value>Puteți folosi și maneta pentru a schimba controalele</value>
   </data>
   <data name="UsingExclusive" xml:space="preserve">
-    <value>Maneta *number* folosește profilul "*Profile name*"</value>
+    <value>Folosind modul exclusiv</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Folosind modul partajat</value>
+    <value>Maneta *number* folosește profilul "*Profile name*"</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
-    <value>Acesta dezactivează touchpad-ul ca mouse</value>
+    <value>Folosind modul partajat</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Vă rog, introduceți un nume valid</value>
+    <value>Acesta dezactivează touchpad-ul ca mouse</value>
   </data>
   <data name="ValidName" xml:space="preserve">
-    <value>Asteaptă *number*ms</value>
+    <value>Vă rog, introduceți un nume valid</value>
   </data>
   <data name="WaitMS" xml:space="preserve">
-    <value>Se va păstra</value>
+    <value>Asteaptă *number*ms</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
     <value>Se va păstra</value>

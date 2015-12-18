@@ -513,7 +513,7 @@
     <value>79, 17</value>
   </data>
   <data name="lb6Gryo.Text" xml:space="preserve">
-    <value>Hồi chuyển</value>
+    <value>Gyro</value>
   </data>
   <data name="tPShiftMod.Text" xml:space="preserve">
     <value>Phím chuyển đổi</value>
@@ -677,5 +677,38 @@
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>Inherit</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dpad</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Touchpad</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="tPController.Text" xml:space="preserve">
+    <value>giải mã tín hiệu</value>
+  </data>
+  <data name="tPDeadzone.Text" xml:space="preserve">
+    <value>Deadzone</value>
   </data>
 </root>

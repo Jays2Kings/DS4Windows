@@ -163,7 +163,7 @@
     <value>قوي</value>
   </data>
   <data name="lbLight.Text" xml:space="preserve">
-    <value>ضوء</value>
+    <value>ضعيف</value>
   </data>
   <data name="lBMacroOn.Text" xml:space="preserve">
     <value>الماكرو ممكن، اختر زرا لإطفاءه، وإلا أغلق النافذة للحفظ</value>
@@ -180,5 +180,8 @@
   </data>
   <data name="X360Label.Text" xml:space="preserve">
     <value>تحكم X360</value>
+  </data>
+  <data name="rBShiftModifer.Text" xml:space="preserve">
+    <value>معدل الشيفت</value>
   </data>
 </root>

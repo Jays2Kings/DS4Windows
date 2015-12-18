@@ -130,21 +130,6 @@
   <data name="DS4_Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DS4 Controller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LeftTouch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LeftTouch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MultiTouch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MultiTouch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RightTouch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RightTouch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sticks" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sticks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UpperTouch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UpperTouch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Pairmode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pairmode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -249,9 +234,6 @@
   </data>
   <data name="Y" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Y.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_360_fades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\360 fades.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="size" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\size.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -691,12 +673,6 @@
   <data name="ChargeController" xml:space="preserve">
     <value>Charge the battery</value>
   </data>
-  <data name="left_touch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\left touch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="right_touch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\right touch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DS4_Config" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DS4 Config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -774,5 +750,17 @@
   </data>
   <data name="Unassigned" xml:space="preserve">
     <value>Unassigned</value>
+  </data>
+  <data name="left_touch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\left touch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_touch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right touch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_360_highlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\360 highlight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_360_map" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\360 map.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -159,7 +159,7 @@ Pendant que vous configurez le clavier et la souris:
 Toggle: La touche restera dans un état "enfoncée" tant qu'elle n'aura pas été pressée une nouvelle fois
 Macro: Assigner plusieurs touches à une entrée
 Scan du code: Les touches sont interprétées différemment. Peut-être nécessaire pour certains jeux
-*si Activé</value>
+*Si Activé</value>
   </data>
   <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>520, 384</value>
@@ -193,5 +193,8 @@ Scan du code: Les touches sont interprétées différemment. Peut-être nécessa
   </data>
   <data name="tPCredits.Text" xml:space="preserve">
     <value>Crédits</value>
+  </data>
+  <data name="tPHotkeys.Text" xml:space="preserve">
+    <value>Raccourcis</value>
   </data>
 </root>

@@ -155,9 +155,12 @@ Macro: Gán nhiều lệnh cho một phím bấm
     <value>89, 17</value>
   </data>
   <data name="lbTranslators.Text" xml:space="preserve">
-    <value>Ng.Minh.Duy</value>
+    <value>N.M.D</value>
   </data>
   <data name="tPCredits.Text" xml:space="preserve">
     <value>Công bởi</value>
+  </data>
+  <data name="tPHotkeys.Text" xml:space="preserve">
+    <value>Phím nóng</value>
   </data>
 </root>

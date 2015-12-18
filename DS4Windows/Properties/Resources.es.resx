@@ -316,76 +316,76 @@
     <value>DS4Windows detenido</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
-    <value>Deteniendo Controladores X360</value>
+    <value>Deteniendo Controladores DS4</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
-    <value>Detenido</value>
+    <value>Deteniendo Controladores X360</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Desliza hacia Abajo</value>
+    <value>Detenido</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Desliza hacia Arriba</value>
+    <value>Desliza el Panel Táctil para cambiar perfiles</value>
   </data>
   <data name="TapAndHold" xml:space="preserve">
-    <value>Prueba Vib. Pesada</value>
+    <value>Mantenga pulsado para arrastrar, ligero retraso con toques simples</value>
   </data>
   <data name="TestHText" xml:space="preserve">
-    <value>Prueba Vib. Ligera</value>
+    <value>Prueba Vib. Pesada</value>
   </data>
   <data name="TestLText" xml:space="preserve">
     <value>Prueba Vib. Ligera</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>Inclinacion Izquierda</value>
+    <value>Inclinacion Abajo</value>
   </data>
   <data name="TiltLeft" xml:space="preserve">
-    <value>Inclinacion Derecha</value>
+    <value>Inclinacion Izquierda</value>
   </data>
   <data name="TiltRight" xml:space="preserve">
-    <value>Inclinacion Arriba</value>
+    <value>Inclinacion Derecha</value>
   </data>
   <data name="TiltUp" xml:space="preserve">
-    <value>Movimiento de Panel Táctil Apagado</value>
+    <value>Inclinacion Arriba</value>
   </data>
   <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Movimiento de Panel Táctil Encendido</value>
+    <value>Movimiento de Panel Táctil Apagado</value>
   </data>
   <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>Rehabilita pulsando PS+Panel Táctil</value>
+    <value>Movimiento de Panel Táctil Encendido</value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
-    <value>escriba nombre de perfil aquí</value>
+    <value>escriba nuevo nombre aquí</value>
   </data>
   <data name="TypeProfileName" xml:space="preserve">
-    <value>Arriba</value>
+    <value>escriba nombre de perfil aquí</value>
   </data>
   <data name="UpText" xml:space="preserve">
-    <value>Actualizado</value>
+    <value>Arriba</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>También puedes utilizar tu controlador para cambiar controles</value>
+    <value>Actualizado</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
-    <value>Usando Modo Exclusivo</value>
+    <value>También puedes utilizar tu controlador para cambiar controles</value>
   </data>
   <data name="UsingExclusive" xml:space="preserve">
-    <value>Controlador *number* está usando perfil "*Profile name*"</value>
+    <value>Usando Modo Exclusivo</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Usando Modo Compartido</value>
+    <value>Controlador *number* está usando perfil "*Profile name*"</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
-    <value>Esto desactiva el panel táctil como un ratón</value>
+    <value>Usando Modo Compartido</value>
   </data>
   <data name="ValidName" xml:space="preserve">
-    <value>Espere *number**ms*</value>
+    <value>Por favor ingresa un nombre válido</value>
   </data>
   <data name="WaitMS" xml:space="preserve">
-    <value>Se mantendrá</value>
+    <value>Espere *number*ms</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
-    <value>Utiliza puertos más altos si tienes conflictos en otros programas de emulación X360, como la herramienta SCP</value>
+    <value>Se mantendrá</value>
   </data>
   <data name="PlusNewProfile" xml:space="preserve">
     <value>Nuevo Perfil</value>
@@ -397,7 +397,7 @@
     <value>Una ubicación tiene que ser elegida para continuar</value>
   </data>
   <data name="CheckBattery" xml:space="preserve">
-    <value>Verifica la Batería</value>
+    <value>Verificar la batería</value>
   </data>
   <data name="CloseDS4W" xml:space="preserve">
     <value>Cerrar DS4Windows?</value>
@@ -502,30 +502,48 @@
     <value>Haz click para leer Sixaxis avanzado</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>Deteniendo Controladores DS4</value>
+    <value>DS4Windows detenido</value>
   </data>
   <data name="SwipeDown" xml:space="preserve">
-    <value>Desliza hacia la Izquierda</value>
+    <value>Desliza hacia Abajo</value>
   </data>
   <data name="SwipeLeft" xml:space="preserve">
-    <value>Desliza hacia la Derecha</value>
+    <value>Desliza hacia la Izquierda</value>
   </data>
   <data name="SwipeRight" xml:space="preserve">
-    <value>Desliza el Panel Táctil para cambiar perfiles</value>
+    <value>Desliza hacia la Derecha</value>
   </data>
   <data name="SwipeUp" xml:space="preserve">
-    <value>Mantenga pulsado para arrastrar, ligero retraso con toques simples</value>
+    <value>Desliza hacia Arriba</value>
   </data>
   <data name="TextDocs" xml:space="preserve">
     <value>Inclinacion Abajo</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>2 dedos en el Panel Táctil desliza derecha o izquierda</value>
+    <value>Rehabilita pulsando PS+Panel Táctil</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>escriba nuevo nombre aquí</value>
+    <value>2 dedos en el Panel Táctil desliza derecha o izquierda</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Por favor ingresa un nombre válido</value>
+    <value>Esto desactiva el panel táctil como un ratón</value>
+  </data>
+  <data name="CannotMoveFiles" xml:space="preserve">
+    <value>No se pueden mover los archivos a otra ubicación, por favor, renombre la carpeta de DS4Tool a "DS4Windows"</value>
+  </data>
+  <data name="ChargeController" xml:space="preserve">
+    <value>Cargar la batería</value>
+  </data>
+  <data name="FallBackTo" xml:space="preserve">
+    <value>Retroceder a *button*</value>
+  </data>
+  <data name="InstallFailed" xml:space="preserve">
+    <value>La instalación ha fallado, por favor vuelva a intentarlo</value>
+  </data>
+  <data name="TestText" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="XinputPorts" xml:space="preserve">
+    <value>Utiliza puertos más altos si tienes conflictos en otros programas de emulación X360, como la herramienta SCP</value>
   </data>
 </root>

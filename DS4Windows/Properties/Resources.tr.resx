@@ -428,100 +428,100 @@
     <value>Hafif Durdur</value>
   </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
-    <value>DS4 Kolu durduruluyor</value>
+    <value>DS4Windows durduruluyor</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
-    <value>x360 Kolu durduruluyor</value>
+    <value>DS4 Kolu durduruluyor</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
-    <value>Durdur</value>
+    <value>x360 Kolu durduruluyor</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Asağı Kaydır</value>
+    <value>Durdur</value>
   </data>
   <data name="SwipeDown" xml:space="preserve">
-    <value>Sola Kaydır</value>
+    <value>Asağı Kaydır</value>
   </data>
   <data name="SwipeLeft" xml:space="preserve">
-    <value>Sağa Kaydır</value>
+    <value>Sola Kaydır</value>
   </data>
   <data name="SwipeRight" xml:space="preserve">
-    <value>Profiller arası geçiş için touchpad'de kaydır</value>
+    <value>Sağa Kaydır</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Yukarı Kaydır</value>
+    <value>Profiller arası geçiş için touchpad'de kaydır</value>
   </data>
   <data name="SwipeUp" xml:space="preserve">
-    <value>Uzun basarak sürükle, kısa aralıklarla tek tıkla</value>
+    <value>Yukarı Kaydır</value>
   </data>
   <data name="TapAndHold" xml:space="preserve">
-    <value>Ağır Test</value>
+    <value>Uzun basarak sürükle, kısa aralıklarla tek tıkla</value>
   </data>
   <data name="TestHText" xml:space="preserve">
-    <value>Hafif Test</value>
+    <value>Ağır Test</value>
   </data>
   <data name="TestLText" xml:space="preserve">
     <value>Hafif Test</value>
   </data>
   <data name="TiltDown" xml:space="preserve">
-    <value>Yukarı Eğ</value>
+    <value>Aşağı Eğ</value>
   </data>
   <data name="TiltLeft" xml:space="preserve">
-    <value>Sağa Yatır</value>
+    <value>Yukarı Eğ</value>
   </data>
   <data name="TiltRight" xml:space="preserve">
-    <value>Sola Yatır</value>
+    <value>Sağa Yatır</value>
   </data>
   <data name="TiltUp" xml:space="preserve">
-    <value>Touchpad Hareketi şuan Kapalı</value>
+    <value>Sola Yatır</value>
   </data>
   <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Touchpad Hareketi şuan Açık</value>
+    <value>Touchpad Hareketi şuan Kapalı</value>
   </data>
   <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>PS+Touchpad kombinasyonu ile yeniden etkinleştir</value>
+    <value>Touchpad Hareketi şuan Açık</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Touchpad'de 2 Parmak ile sağa yada sola kaydır</value>
+    <value>PS+Touchpad kombinasyonu ile yeniden etkinleştir</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>Yeni ismi buraya yazın</value>
+    <value>Touchpad'de 2 Parmak ile sağa yada sola kaydır</value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
-    <value>Profil ismini buraya yazın</value>
+    <value>Yeni ismi buraya yazın</value>
   </data>
   <data name="TypeProfileName" xml:space="preserve">
-    <value>Yukarı</value>
+    <value>Profil ismini buraya yazın</value>
   </data>
   <data name="UpText" xml:space="preserve">
-    <value>Güncelsiniz</value>
+    <value>Yukarı</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>Kolu kontrölleri değiştirmek için de kullanabilirsiniz</value>
+    <value>Güncelsiniz</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
-    <value>Özgün Mod Kullanılıyor</value>
+    <value>Kolu kontrölleri değiştirmek için de kullanabilirsiniz</value>
   </data>
   <data name="UsingExclusive" xml:space="preserve">
-    <value>Kol *number* "*Profil name*" adlı profili kullanıyor</value>
+    <value>Özgün Mod Kullanılıyor</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Paylaşımlı Mod Kullanılıyor</value>
+    <value>Kol *number* "*Profil name*" adlı profili kullanıyor</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
-    <value>Bu touchpadi etkisizleştiri</value>
+    <value>Paylaşımlı Mod Kullanılıyor</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Lütfen geçerli bir isim girin</value>
+    <value>Bu touchpadi etkisizleştiri</value>
   </data>
   <data name="ValidName" xml:space="preserve">
-    <value>*number*ms bekleyin</value>
+    <value>Lütfen geçerli bir isim girin</value>
   </data>
   <data name="WaitMS" xml:space="preserve">
-    <value>Hatırlanacak</value>
+    <value>*number*ms bekleyin</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
-    <value>Eğer X360 programları ile çakışmalar yaşıyorsanız, SCP's Tool gibi, daha yüksek portları kullanın.</value>
+    <value>Hatırlanacak</value>
   </data>
   <data name="XinputPorts" xml:space="preserve">
     <value>Eğer X360 programları ile çakışmalar yaşıyorsanız, SCP's Tool gibi, daha yüksek portları kullanın.</value>

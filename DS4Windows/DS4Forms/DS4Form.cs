@@ -72,7 +72,6 @@ namespace DS4Windows
 
         public DS4Form(string[] args)
         {
-            //System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("pl");
             InitializeComponent();
             saveProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
             openProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
@@ -632,7 +631,7 @@ namespace DS4Windows
                 lBProfiles.Items.AddRange(profilenames.ToArray());
                 if (lBProfiles.Items.Count == 0)
                 {
-                    SaveProfile(0, "Default", null, null);
+                    SaveProfile(0, "Default");
                     ProfilePath[0] = "Default";
                     RefreshProfiles();
                     return;
@@ -665,7 +664,7 @@ namespace DS4Windows
             catch (DirectoryNotFoundException)
             {
                 Directory.CreateDirectory(appdatapath + @"\Profiles\");
-                SaveProfile(0, "Default", null, null);
+                SaveProfile(0, "Default");
                 ProfilePath[0] = "Default";
                 RefreshProfiles();
                 return;
@@ -1401,7 +1400,7 @@ namespace DS4Windows
                 {
                     System.IO.File.Delete(appdatapath + @"\Profiles\" + opt.filename + ".xml");
                     ProfilePath[opt.device] = tSTBProfile.Text;
-                    SaveProfile(opt.device, tSTBProfile.Text, opt.buttons.ToArray(), opt.subbuttons.ToArray());
+                    SaveProfile(opt.device, tSTBProfile.Text);
                     Save();
                     opt.Close();
                 }

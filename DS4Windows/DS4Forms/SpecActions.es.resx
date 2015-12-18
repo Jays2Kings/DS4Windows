@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnBrowse.Text" xml:space="preserve">
+    <value>Explorar...</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="btnRecordMacro.Text" xml:space="preserve">
+    <value>Grabar una macro</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="btnSelectKey.Text" xml:space="preserve">
+    <value>Seleccione una tecla</value>
+  </data>
+  <data name="cBActions.Items" xml:space="preserve">
+    <value>-Seleccione una acción-</value>
+  </data>
+  <data name="cBActions.Items1" xml:space="preserve">
+    <value>Grabar una macro</value>
+  </data>
+  <data name="cBActions.Items2" xml:space="preserve">
+    <value>Lanzar un programa</value>
+  </data>
+  <data name="cBActions.Items3" xml:space="preserve">
+    <value>Cargar un perfil</value>
+  </data>
+  <data name="cBActions.Items5" xml:space="preserve">
+    <value>Desconectar del Bluetooth</value>
+  </data>
+  <data name="cBActions.Items6" xml:space="preserve">
+    <value>Comprobar batería</value>
+  </data>
 </root>

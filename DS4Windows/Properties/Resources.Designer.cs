@@ -63,9 +63,19 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _360_fades {
+        internal static System.Drawing.Bitmap _360_highlight {
             get {
-                object obj = ResourceManager.GetObject("_360_fades", resourceCulture);
+                object obj = ResourceManager.GetObject("_360_highlight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _360_map {
+            get {
+                object obj = ResourceManager.GetObject("_360_map", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1092,16 +1102,6 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LeftTouch {
-            get {
-                object obj = ResourceManager.GetObject("LeftTouch", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Also dim light by idle timeout if on.
         /// </summary>
         internal static string LightByBatteryTip {
@@ -1212,16 +1212,6 @@ namespace DS4Windows.Properties {
         internal static System.Drawing.Bitmap mouse {
             get {
                 object obj = ResourceManager.GetObject("mouse", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MultiTouch {
-            get {
-                object obj = ResourceManager.GetObject("MultiTouch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1498,16 +1488,6 @@ namespace DS4Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RightTouch {
-            get {
-                object obj = ResourceManager.GetObject("RightTouch", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap RS {
             get {
                 object obj = ResourceManager.GetObject("RS", resourceCulture);
@@ -1691,16 +1671,6 @@ namespace DS4Windows.Properties {
         internal static string Step1 {
             get {
                 return ResourceManager.GetString("Step1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap sticks {
-            get {
-                object obj = ResourceManager.GetObject("sticks", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -1953,16 +1923,6 @@ namespace DS4Windows.Properties {
         internal static System.Drawing.Bitmap UP {
             get {
                 object obj = ResourceManager.GetObject("UP", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap UpperTouch {
-            get {
-                object obj = ResourceManager.GetObject("UpperTouch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

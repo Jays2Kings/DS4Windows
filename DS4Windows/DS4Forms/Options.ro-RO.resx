@@ -170,8 +170,7 @@
     <value>96, 34</value>
   </data>
   <data name="lbButtonMouseSens.Text" xml:space="preserve">
-    <value>Sensitivitatea 
-mouse-ului</value>
+    <value>Sensitivitatea mouse-ului</value>
   </data>
   <data name="cBTouchpadJitterCompensation.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 21</value>
@@ -375,8 +374,7 @@ mouse-ului</value>
     <value>164, 38</value>
   </data>
   <data name="cBLaunchProgram.Text" xml:space="preserve">
-    <value>Lansează programul 
-cu profilul</value>
+    <value>Lansează programul cu profilul</value>
   </data>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
     <value>180, 135</value>
@@ -551,5 +549,35 @@ pentru modul shift</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Zonă moartă</value>
+  </data>
+  <data name="cBScroll.Text" xml:space="preserve">
+    <value>Scroll</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dpad</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Touchpad</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mouse</value>
   </data>
 </root>

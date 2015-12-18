@@ -15,8 +15,7 @@ namespace DS4Windows
         public int device;
         public string filename;
         public Timer inputtimer = new Timer(), sixaxisTimer = new Timer();
-        public List<Button> buttons = new List<Button>(), subbuttons = new List<Button>();
-        private Button lastSelected;
+        public List<Button> buttons = new List<Button>();
         private int alphacolor;
         private Color reg, full, main;
         private Image colored, greyscale;
@@ -41,6 +40,8 @@ namespace DS4Windows
             btnRumbleLightTest.Text = Properties.Resources.TestLText;
             rBTPControls.Text = rBSAControls.Text;
             rBTPMouse.Text = rBSAMouse.Text;
+            rBTPControls.Location = rBSAControls.Location;
+            rBTPMouse.Location = rBSAMouse.Location;
             Visible = false;
             colored = btnRainbow.Image;
             greyscale = GreyscaleImage((Bitmap)btnRainbow.Image);
@@ -54,19 +55,15 @@ namespace DS4Windows
             foreach (Control control in fLPTiltControls.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                     buttons.Add((Button)control);
-            foreach (Button b in buttons)
-                defaults.Add(b.Name, b.Text);
-
-            foreach (Control control in tPShiftMod.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btnShift"))
-                    subbuttons.Add((Button)control);
-            foreach (Control control in fLPShiftTiltControls.Controls)
-                if (control is Button && !((Button)control).Name.Contains("btnShift"))
-                    subbuttons.Add((Button)control);
-            foreach (Control control in fLPShiftTouchSwipe.Controls)
+            foreach (Control control in pnlController.Controls)
                 if (control is Button && !((Button)control).Name.Contains("btn"))
-                    subbuttons.Add((Button)control);
-
+                    buttons.Add((Button)control);
+            foreach (Button b in buttons)
+            {
+                defaults.Add(b.Name, b.Text);
+                b.Text = "";
+            }
+            
             foreach (System.Windows.Forms.Control control in Controls)
             {
                 if (control.HasChildren)
@@ -90,15 +87,18 @@ namespace DS4Windows
                 b.MouseHover += button_MouseHover;
                 b.MouseLeave += button_MouseLeave;
             }
-            foreach (Button b in subbuttons)
-            {
-                b.MouseHover += button_MouseHover;
-                b.MouseLeave += button_MouseLeave;
-            }
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             inputtimer.Tick += InputDS4;
             sixaxisTimer.Tick += ControllerReadout_Tick;
             sixaxisTimer.Interval = 1000 / 60;
+            bnGyroZN.Text = Properties.Resources.TiltUp;
+            bnGyroZP.Text = Properties.Resources.TiltDown;
+            bnGyroXP.Text = Properties.Resources.TiltLeft;
+            bnGyroXN.Text = Properties.Resources.TiltRight;
+            bnSwipeUp.Text = Properties.Resources.SwipeUp;
+            bnSwipeDown.Text = Properties.Resources.SwipeDown;
+            bnSwipeLeft.Text = Properties.Resources.SwipeLeft;
+            bnSwipeRight.Text = Properties.Resources.SwipeRight;
         }        
 
         public void Reload(int deviceNum, string name)
@@ -107,9 +107,7 @@ namespace DS4Windows
             device = deviceNum;
             filename = name;
             lBControls.SelectedIndex = -1;
-            lBShiftControls.SelectedIndex = -1;
             lbControlName.Text = "";
-            lbShiftControlName.Text = "";
 
             tCControls.SelectedIndex = 0;
             Graphics g = this.CreateGraphics();
@@ -134,7 +132,7 @@ namespace DS4Windows
             {
                 if (device == 4) //if temp device is called
                     ProfilePath[4] = name;
-                LoadProfile(device, buttons.ToArray(), subbuttons.ToArray(), false, Program.rootHub);
+                LoadProfile(device, false, Program.rootHub);
 
                 if (Rainbow[device] == 0)
                 {
@@ -155,7 +153,7 @@ namespace DS4Windows
                 reg = Color.FromArgb(color.red, color.green, color.blue);
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 main = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-                pBLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, main);
+                btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
 
                 cBLightbyBattery.Checked = LedAsBatteryIndicator[device];
                 nUDflashLED.Value = FlashAt[device];
@@ -166,13 +164,7 @@ namespace DS4Windows
                 tBLowRedBar.Value = lowColor.red;
                 tBLowGreenBar.Value = lowColor.green;
                 tBLowBlueBar.Value = lowColor.blue;
-
-                DS4Color shiftColor = ShiftColor[device];
-                tBShiftRedBar.Value = shiftColor.red;
-                tBShiftGreenBar.Value = shiftColor.green;
-                tBShiftBlueBar.Value = shiftColor.blue;
-                cBShiftLight.Checked = ShiftColorOn[device];
-
+                
                 DS4Color cColor = ChargingColor[device];
                 btnChargingColor.BackColor = Color.FromArgb(cColor.red, cColor.green, cColor.blue);
                 if (FlashType[device] > cBFlashType.Items.Count - 1)
@@ -227,7 +219,6 @@ namespace DS4Windows
                 nUDSXS.Value = Math.Round((decimal)SXSens[device], 2);
                 nUDSZS.Value = Math.Round((decimal)SZSens[device], 2);
 
-                cBShiftControl.SelectedIndex = ShiftModifier[device];
                 if (LaunchProgram[device] != string.Empty)
                 {
                     cBLaunchProgram.Checked = true;
@@ -303,11 +294,6 @@ namespace DS4Windows
                 nUDflashLED.Value = 0;
                 lbFull.Text = (cBLightbyBattery.Checked ? "Full:" : "Color:");
 
-                tBShiftRedBar.Value = 0;
-                tBShiftGreenBar.Value = 0;
-                tBShiftBlueBar.Value = 0;
-                cBShiftLight.Checked = false;
-
                 cBFlashType.SelectedIndex = 0;
                 nUDRumbleBoost.Value = 100;
                 nUDTouch.Value = 100;
@@ -341,7 +327,6 @@ namespace DS4Windows
                 nUDSXS.Value = 1;
                 nUDSZS.Value = 1;
 
-                cBShiftControl.SelectedIndex = 0;
                 cBLaunchProgram.Checked = false;
                 pBProgram.Image = null;
                 btnBrowse.Text = Properties.Resources.Browse;
@@ -357,12 +342,62 @@ namespace DS4Windows
                 cBGyroInvertY.Checked = false;
                 Set();
             }
-
-            showShiftControls(tCControls.SelectedIndex == 1);
+            
             UpdateLists();
             inputtimer.Start();
             LoadActions(string.IsNullOrEmpty(filename));
             loading = false;
+            saving = false;
+        }
+
+        private string getDS4ControlsByName(DS4Controls key)
+        {
+            switch (key)
+            {
+                case DS4Controls.Share: return "bnShare";
+                case DS4Controls.L3: return "bnL3";
+                case DS4Controls.R3: return "bnR3";
+                case DS4Controls.Options: return "bnOptions";
+                case DS4Controls.DpadUp: return "bnUp";
+                case DS4Controls.DpadRight: return "bnRight";
+                case DS4Controls.DpadDown: return "bnDown";
+                case DS4Controls.DpadLeft: return "bnLeft";
+
+                case DS4Controls.L1: return "bnL1";
+                case DS4Controls.R1: return "bnR1";
+                case DS4Controls.Triangle: return "bnTriangle";
+                case DS4Controls.Circle: return "bnCircle";
+                case DS4Controls.Cross: return "bnCross";
+                case DS4Controls.Square: return "bnSquare";
+
+                case DS4Controls.PS: return "bnPS";
+                case DS4Controls.LXNeg: return "bnLSLeft";
+                case DS4Controls.LYNeg: return "bnLSUp";
+                case DS4Controls.RXNeg: return "bnRSLeft";
+                case DS4Controls.RYNeg: return "bnRSUp";
+
+                case DS4Controls.LXPos: return "bnLSRight";
+                case DS4Controls.LYPos: return "bnLSDown";
+                case DS4Controls.RXPos: return "bnRSRight";
+                case DS4Controls.RYPos: return "bnRSDown";
+                case DS4Controls.L2: return "bnL2";
+                case DS4Controls.R2: return "bnR2";
+
+                case DS4Controls.TouchLeft: return "bnTouchLeft";
+                case DS4Controls.TouchMulti: return "bnTouchMulti";
+                case DS4Controls.TouchUpper: return "bnTouchUpper";
+                case DS4Controls.TouchRight: return "bnTouchRight";
+                case DS4Controls.GyroXPos: return "bnGyroXP";
+                case DS4Controls.GyroXNeg: return "bnGyroXN";
+                case DS4Controls.GyroZPos: return "bnGyroZP";
+                case DS4Controls.GyroZNeg: return "bnGyroZN";
+
+                case DS4Controls.SwipeUp: return "bnSwipeUp";
+                case DS4Controls.SwipeDown: return "bnSwipeDown";
+                case DS4Controls.SwipeLeft: return "bnSwipeLeft";
+                case DS4Controls.SwipeRight: return "bnSwipeRight";
+            }
+            return "";
         }
 
         public void LoadActions(bool newp)
@@ -438,7 +473,8 @@ namespace DS4Windows
             {
                 EnableReadings(false);
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", Properties.Resources.NA);
-                pBDelayTracker.BackColor = Color.Transparent;
+                lbInputDelay.BackColor = Color.Transparent;
+                lbInputDelay.ForeColor = Color.Black;
             }
             else
             {
@@ -562,11 +598,20 @@ namespace DS4Windows
                 double latency = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1].Latency;
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", latency.ToString());
                 if (latency > 10)
-                    pBDelayTracker.BackColor = Color.Red;
+                {
+                    lbInputDelay.BackColor = Color.Red;
+                    lbInputDelay.ForeColor = Color.White;
+                }
                 else if (latency > 5)
-                    pBDelayTracker.BackColor = Color.Yellow;
+                {
+                    lbInputDelay.BackColor = Color.Yellow;
+                    lbInputDelay.ForeColor = Color.Black;
+                }
                 else
-                    pBDelayTracker.BackColor = Color.Green;
+                {
+                    lbInputDelay.BackColor = Color.Transparent;
+                    lbInputDelay.ForeColor = Color.Black;
+                }
             }
         }
 
@@ -577,7 +622,7 @@ namespace DS4Windows
         }
         private void InputDS4(object sender, EventArgs e)
         {
-            if (Form.ActiveForm == root && cBControllerInput.Checked && tCControls.SelectedIndex < 2)
+            if (Form.ActiveForm == root && cBControllerInput.Checked && tCControls.SelectedIndex < 1)
                 switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
                 {
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
@@ -624,6 +669,40 @@ namespace DS4Windows
                 button_MouseHover(b[0], e);
         }
 
+        private string ShiftTrigger(int trigger)
+        {
+            switch (trigger)
+            {
+                case 1: return "Cross";
+                case 2: return "Circle";
+                case 3: return "Square";
+                case 4: return "Triangle";
+                case 5: return "Options";
+                case 6: return "Share";
+                case 7: return "Dpad Up";
+                case 8: return "Dpad Down";
+                case 9: return "Dpad Left";
+                case 10: return"Dpad Right";
+                case 11: return "PS";
+                case 12: return "L1";
+                case 13: return "R1";
+                case 14: return "L2";
+                case 15: return "R2";
+                case 16: return "L3";
+                case 17: return "R3";
+                case 18: return "Left Touch";
+                case 19: return "Upper Touch";
+                case 20: return "Multi Touch";
+                case 21: return "Right Touch";
+                case 22: return Properties.Resources.TiltUp; 
+                case 23: return Properties.Resources.TiltDown;
+                case 24: return Properties.Resources.TiltLeft;
+                case 25: return Properties.Resources.TiltRight;
+                case 26: return fingerOnTouchpadToolStripMenuItem.Text;
+                default: return "";
+            }
+        }
+
         private void button_MouseHover(object sender, EventArgs e)
         {
             bool swipesOn = lBControls.Items.Count > 33;
@@ -665,42 +744,7 @@ namespace DS4Windows
                     case "bnGyroZN": lBControls.SelectedIndex = 29; break;
                     case "bnGyroZP": lBControls.SelectedIndex = 30; break;
                     case "bnGyroXP": lBControls.SelectedIndex = 31; break;
-                    case "bnGyroXN": lBControls.SelectedIndex = 32; break;
-
-
-                    case "bnShiftCross": lBShiftControls.SelectedIndex = 0; break;
-                    case "bnShiftCircle": lBShiftControls.SelectedIndex = 1; break;
-                    case "bnShiftSquare": lBShiftControls.SelectedIndex = 2; break;
-                    case "bnShiftTriangle": lBShiftControls.SelectedIndex = 3; break;
-                    case "bnShiftOptions": lBShiftControls.SelectedIndex = 4; break;
-                    case "bnShiftShare": lBShiftControls.SelectedIndex = 5; break;
-                    case "bnShiftUp": lBShiftControls.SelectedIndex = 6; break;
-                    case "bnShiftDown": lBShiftControls.SelectedIndex = 7; break;
-                    case "bnShiftLeft": lBShiftControls.SelectedIndex = 8; break;
-                    case "bnShiftRight": lBShiftControls.SelectedIndex = 9; break;
-                    case "bnShiftPS": lBShiftControls.SelectedIndex = 10; break;
-                    case "bnShiftL1": lBShiftControls.SelectedIndex = 11; break;
-                    case "bnShiftR1": lBShiftControls.SelectedIndex = 12; break;
-                    case "bnShiftL2": lBShiftControls.SelectedIndex = 13; break;
-                    case "bnShiftR2": lBShiftControls.SelectedIndex = 14; break;
-                    case "bnShiftL3": lBShiftControls.SelectedIndex = 15; break;
-                    case "bnShiftR3": lBShiftControls.SelectedIndex = 16; break;
-                    case "bnShiftTouchLeft": lBShiftControls.SelectedIndex = 17; break;
-                    case "bnShiftTouchRight": lBShiftControls.SelectedIndex = 18; break;
-                    case "bnShiftTouchMulti": lBShiftControls.SelectedIndex = 19; break;
-                    case "bnShiftTouchUpper": lBShiftControls.SelectedIndex = 20; break;
-                    case "bnShiftLSUp": lBShiftControls.SelectedIndex = 21; break;
-                    case "bnShiftLSDown": lBShiftControls.SelectedIndex = 22; break;
-                    case "bnShiftLSLeft": lBShiftControls.SelectedIndex = 23; break;
-                    case "bnShiftLSRight": lBShiftControls.SelectedIndex = 24; break;
-                    case "bnShiftRSUp": lBShiftControls.SelectedIndex = 25; break;
-                    case "bnShiftRSDown": lBShiftControls.SelectedIndex = 26; break;
-                    case "bnShiftRSLeft": lBShiftControls.SelectedIndex = 27; break;
-                    case "bnShiftRSRight": lBShiftControls.SelectedIndex = 28; break;
-                    case "bnShiftGyroZN": lBShiftControls.SelectedIndex = 29; break;
-                    case "bnShiftGyroZP": lBShiftControls.SelectedIndex = 30; break;
-                    case "bnShiftGyroXP": lBShiftControls.SelectedIndex = 31; break;
-                    case "bnShiftGyroXN": lBShiftControls.SelectedIndex = 32; break;
+                    case "bnGyroXN": lBControls.SelectedIndex = 32; break;                        
                         #endregion
                 }
                 if (swipesOn)
@@ -710,11 +754,20 @@ namespace DS4Windows
                         case "bnSwipeDown": if (swipesOn) lBControls.SelectedIndex = 34; break;
                         case "bnSwipeLeft": if (swipesOn) lBControls.SelectedIndex = 35; break;
                         case "bnSwipeRight": if (swipesOn) lBControls.SelectedIndex = 36; break;
-                        case "bnShiftSwipeUp": lBShiftControls.SelectedIndex = 33; break;
-                        case "bnShiftSwipeDown": lBShiftControls.SelectedIndex = 34; break;
-                        case "bnShiftSwipeLeft": lBShiftControls.SelectedIndex = 35; break;
-                        case "bnShiftSwipeRight": lBShiftControls.SelectedIndex = 36; break;
                     }
+            }
+            DS4ControlSettings dcs = getDS4CSetting(device, name);
+            if (lBControls.SelectedIndex >= 0)
+            { 
+                string tipText = lBControls.SelectedItem.ToString().Split(':')[0];
+                tipText += ": ";
+                tipText += UpdateButtonList(((Button)sender));
+                if (GetDS4Action(device, name, true) != null && GetDS4STrigger(device, name) > 0)
+                {
+                    tipText += "\n Shift: ";
+                    tipText += ShiftTrigger(GetDS4STrigger(device, name)) + " -> " + UpdateButtonList(((Button)sender), true);
+                }
+                lbControlName.Text = tipText;
             }
             switch (name)
             {
@@ -834,142 +887,11 @@ namespace DS4Windows
                 case "bnRSRight":
                     pBHoveredButton.Image = Properties.Resources.DS4_Config_RS;
                     pBHoveredButton.Location = lbLRS.Location;
-                    break;
-
-
-                case "bnShiftCross":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_Cross;
-                    pBShiftHoveredButton.Location = lbLCross.Location;
-                    break;
-                case "bnShiftCircle":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_Circle;
-                    pBShiftHoveredButton.Location = lbLCircle.Location;
-                    break;
-                case "bnShiftSquare":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_Square;
-                    pBShiftHoveredButton.Location = lbLSquare.Location;
-                    break;
-                case "bnShiftTriangle":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_Triangle;
-                    pBShiftHoveredButton.Location = lbLTriangle.Location;
-                    break;
-                case "bnShiftOptions":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_Options;
-                    pBShiftHoveredButton.Location = lbLOptions.Location;
-                    break;
-                case "bnShiftShare":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_Share;
-                    pBShiftHoveredButton.Location = lbLShare.Location;
-                    break;
-                case "bnShiftUp":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_Up;
-                    pBShiftHoveredButton.Location = lbLUp.Location;
-                    break;
-                case "bnShiftDown":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_Down;
-                    pBShiftHoveredButton.Location = lbLDown.Location;
-                    break;
-                case "bnShiftLeft":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_Left;
-                    pBShiftHoveredButton.Location = lbLLeft.Location;
-                    break;
-                case "bnShiftRight":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_Right;
-                    pBShiftHoveredButton.Location = lbLright.Location;
-                    break;
-                case "bnShiftPS":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_PS;
-                    pBShiftHoveredButton.Location = lbLPS.Location;
-                    break;
-                case "bnShiftL1":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_L1;
-                    pBShiftHoveredButton.Location = lbLL1.Location;
-                    break;
-                case "bnShiftR1":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_R1;
-                    pBShiftHoveredButton.Location = lbLR1.Location;
-                    break;
-                case "bnShiftL2":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_L2;
-                    pBShiftHoveredButton.Location = lbLL2.Location;
-                    break;
-                case "bnShiftR2":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_R2;
-                    pBShiftHoveredButton.Location = lbLR2.Location;
-                    break;
-                case "bnShiftTouchLeft":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_TouchLeft;
-                    pBShiftHoveredButton.Location = lbLTouchLM.Location;
-                    break;
-                case "bnShiftTouchRight":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_TouchRight;
-                    pBShiftHoveredButton.Location = lbLTouchRight.Location;
-                    break;
-                case "bnShiftTouchMulti":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_TouchMulti;
-                    pBShiftHoveredButton.Location = lbLTouchLM.Location;
-                    break;
-                case "bnShiftTouchUpper":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_TouchUpper;
-                    pBShiftHoveredButton.Location = lbLTouchUpper.Location;
-                    break;
-                case "bnShiftL3":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_LS;
-                    pBShiftHoveredButton.Location = lbLLS.Location;
-                    break;
-                case "bnShiftLSUp":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_LS;
-                    pBShiftHoveredButton.Location = lbLLS.Location;
-                    break;
-                case "bnShiftLSDown":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_LS;
-                    pBShiftHoveredButton.Location = lbLLS.Location;
-                    break;
-                case "bnShiftLSLeft":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_LS;
-                    pBShiftHoveredButton.Location = lbLLS.Location;
-                    break;
-                case "bnShiftLSRight":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_LS;
-                    pBShiftHoveredButton.Location = lbLLS.Location;
-                    break;
-                case "bnShiftR3":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_RS;
-                    pBShiftHoveredButton.Location = lbLRS.Location;
-                    break;
-                case "bnShiftRSUp":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_RS;
-                    pBShiftHoveredButton.Location = lbLRS.Location;
-                    break;
-                case "bnShiftRSDown":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_RS;
-                    pBShiftHoveredButton.Location = lbLRS.Location;
-                    break;
-                case "bnShiftRSLeft":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_RS;
-                    pBShiftHoveredButton.Location = lbLRS.Location;
-                    break;
-                case "bnShiftRSRight":
-                    pBShiftHoveredButton.Image = Properties.Resources.DS4_Config_RS;
-                    pBShiftHoveredButton.Location = lbLRS.Location;
-                    break;
+                    break;                    
                     #endregion
             }
             if (pBHoveredButton.Image != null)
-            {
-                /*pBHoveredButton.Location = new Point((int)(pBHoveredButton.Location.X * (dpix / 1.25f)), (int)(pBHoveredButton.Location.Y * (dpix / 1.25f)));
-                if (dpix <= 1)
-                    pBHoveredButton.Location = new Point(pBHoveredButton.Location.X + 2, pBHoveredButton.Location.Y + 0);*/
                 pBHoveredButton.Size = new Size((int)(pBHoveredButton.Image.Size.Width * (dpix / 1.25f)), (int)(pBHoveredButton.Image.Size.Height * (dpix / 1.25f)));
-            }
-            else
-            if (pBShiftHoveredButton.Image != null)
-            {
-                /*pBShiftHoveredButton.Location = new Point((int)(pBShiftHoveredButton.Location.X * (dpix / 1.25f)), (int)(pBShiftHoveredButton.Location.Y * (dpix / 1.25f)));
-                if (dpix <= 1)
-                    pBShiftHoveredButton.Location = new Point(pBShiftHoveredButton.Location.X + 2, pBShiftHoveredButton.Location.Y + 0);*/
-                pBShiftHoveredButton.Size = new Size((int)(pBShiftHoveredButton.Image.Size.Width * (dpix / 1.25f)), (int)(pBShiftHoveredButton.Image.Size.Height * (dpix / 1.25f)));
-            }
         }
 
 
@@ -978,9 +900,6 @@ namespace DS4Windows
             pBHoveredButton.Image = null;
             pBHoveredButton.Location = new Point(0, 0);
             pBHoveredButton.Size = new Size(0, 0);
-            pBShiftHoveredButton.Image = null;
-            pBShiftHoveredButton.Location = new Point(0, 0);
-            pBShiftHoveredButton.Size = new Size(0, 0);
         }
 
         private void SetDynamicTrackBarValue(TrackBar trackBar, int value)
@@ -998,7 +917,6 @@ namespace DS4Windows
             lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.Full + ":": Properties.Resources.Color + ":");
             MainColor[device] = new DS4Color((byte)tBRedBar.Value, (byte)tBGreenBar.Value, (byte)tBBlueBar.Value);
             LowColor[device] = new DS4Color((byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            ShiftColor[device] = new DS4Color((byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             ChargingColor[device] = new DS4Color(btnChargingColor.BackColor);
             FlashType[device] = (byte)cBFlashType.SelectedIndex;
             if (btnFlashColor.BackColor != main)
@@ -1023,7 +941,6 @@ namespace DS4Windows
             SXDeadzone[device] = (double)nUDSX.Value;
             SZDeadzone[device] = (double)nUDSZ.Value;
             MouseAccel[device] = cBMouseAccel.Checked;
-            ShiftModifier[device] = cBShiftControl.SelectedIndex;
             DinputOnly[device] = cBDinput.Checked;
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
             UseTPforControls[device] = rBTPControls.Checked;
@@ -1060,7 +977,6 @@ namespace DS4Windows
             else btnRainbow.Image = colored;
         }
 
-        KBM360 kbm360 = null;
         private void Show_ControlsBtn(object sender, EventArgs e)
         {
             Control[] b = Controls.Find(((Button)sender).Name.Remove(1, 1), true);
@@ -1070,49 +986,32 @@ namespace DS4Windows
 
         private void Show_ControlsBn(object sender, EventArgs e)
         {
-            lastSelected = (Button)sender;
-            kbm360 = new KBM360(device, this, lastSelected);
-            kbm360.Icon = this.Icon;
+            KBM360 kbm360 = new KBM360(device, this, (Button)sender);
+            kbm360.Icon = Icon;
             kbm360.ShowDialog();
+        }        
+
+        public void ChangeButtonText(Control ctrl, bool shift, KeyValuePair<object, string> tag, bool SC, bool TG, bool MC, bool MR, int sTrigger = 0)
+        {
+            DS4KeyType kt = DS4KeyType.None;
+            if (SC) kt |= DS4KeyType.ScanCode;
+            if (TG) kt |= DS4KeyType.Toggle;
+            if (MC) kt |= DS4KeyType.Macro;
+            if (MR) kt |= DS4KeyType.RepeatMacro;
+            UpdateDS4CSetting(device, ctrl.Name, shift, tag.Key, tag.Value, kt, sTrigger);
         }
 
-        public void ChangeButtonText(string controlname, KeyValuePair<object, string> tag)
-        {
-            lastSelected.Text = controlname;
-            int value;
-            if (tag.Key == null)
-                lastSelected.Tag = tag;
-            else if (Int32.TryParse(tag.Key.ToString(), out value))
-                lastSelected.Tag = new KeyValuePair<int, string>(value, tag.Value);
-            else if (tag.Key is Int32[])
-                lastSelected.Tag = new KeyValuePair<Int32[], string>((Int32[])tag.Key, tag.Value);
-            else
-                lastSelected.Tag = new KeyValuePair<string, string>(tag.Key.ToString(), tag.Value);    
-        }
-        public void ChangeButtonText(string controlname, KeyValuePair<object, string> tag, System.Windows.Forms.Control ctrl)
-        {
-            if (ctrl is Button)
-            {
-                Button btn = (Button)ctrl;
-                btn.Text = controlname;
-                int value;
-                if (tag.Key == null)
-                    btn.Tag = tag;
-                else if (Int32.TryParse(tag.Key.ToString(), out value))
-                    btn.Tag = new KeyValuePair<int, string>(value, tag.Value);
-                else if (tag.Key is Int32[])
-                    btn.Tag = new KeyValuePair<Int32[], string>((Int32[])tag.Key, tag.Value);
-                else
-                    btn.Tag = new KeyValuePair<string, string>(tag.Key.ToString(), tag.Value);
+         public void ChangeButtonText(KeyValuePair<object, string> tag, Control ctrl, bool SC)
+         {
+             if (ctrl is Button)
+             {
+                DS4KeyType kt = DS4KeyType.None;
+                if (SC) kt |= DS4KeyType.ScanCode;
+                UpdateDS4CSetting(device, ctrl.Name, false, tag.Key, tag.Value, kt);
             }
-        }
-        public void ChangeButtonText(string controlname)
-        {
-            lastSelected.Text = controlname;
-            lastSelected.Tag = controlname;
-        }
+         }
 
-        public void Toggle_Bn(bool SC, bool TG, bool MC,  bool MR)
+        /*public void Toggle_Bn(bool SC, bool TG, bool MC,  bool MR)
         {
             if (lastSelected.Tag is KeyValuePair<int, string> || lastSelected.Tag is KeyValuePair<UInt16, string> || lastSelected.Tag is KeyValuePair<int[], string>)
                 lastSelected.Font = new Font(lastSelected.Font, 
@@ -1124,6 +1023,7 @@ namespace DS4Windows
             else
                 lastSelected.Font = new Font(lastSelected.Font, FontStyle.Regular);
         }
+
         public void Toggle_Bn(bool SC, bool TG, bool MC, bool MR, System.Windows.Forms.Control ctrl)
         {
             if (ctrl is Button)
@@ -1139,7 +1039,7 @@ namespace DS4Windows
                     else
                         btn.Font = new Font(btn.Font, FontStyle.Regular);
             }
-        }
+        }*/
 
 
         private void btnLightbar_Click(object sender, EventArgs e)
@@ -1149,7 +1049,7 @@ namespace DS4Windows
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
                 main = advColorDialog.Color;
-                pBLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, main);
+                btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
                 if (FlashColor[device].Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
                     btnFlashColor.BackColor = main;
                 btnFlashColor.BackgroundImage = nUDRainbow.Enabled ? rainbowImg : null;
@@ -1160,27 +1060,7 @@ namespace DS4Windows
             if (device < 4)
                 DS4LightBar.forcelight[device] = false;
         }
-
-        private void btnShiftLightbar_Click(object sender, EventArgs e)
-        {
-            if (cBShiftLight.Checked)
-            {
-                advColorDialog.Color = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
-                advColorDialog_OnUpdateColor(advColorDialog.Color, e);
-                if (advColorDialog.ShowDialog() == DialogResult.OK)
-                {
-                    pBShiftLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, advColorDialog.Color);
-                    tBShiftRedBar.Value = advColorDialog.Color.R;
-                    tBShiftGreenBar.Value = advColorDialog.Color.G;
-                    tBShiftBlueBar.Value = advColorDialog.Color.B;
-                }
-                if (device < 4)
-                    DS4LightBar.forcelight[device] = false;
-            }
-            else
-                btnLightbar_Click(sender, e);
-        }
-
+        
         private void lowColorChooserButton_Click(object sender, EventArgs e)
         {
             advColorDialog.Color = lowColorChooserButton.BackColor;
@@ -1235,7 +1115,7 @@ namespace DS4Windows
                 reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 main = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-                pBLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, main);
+                btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
                 if (FlashColor[device].Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
                     btnFlashColor.BackColor = main;
                 btnFlashColor.BackgroundImage = nUDRainbow.Enabled ? rainbowImg : null;
@@ -1248,14 +1128,6 @@ namespace DS4Windows
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
                 LowColor[device] = new DS4Color((byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
-            }
-            else if (type == 2)
-            {
-                alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
-                reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
-                full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-                pBShiftLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full));
-                ShiftColor[device] = new DS4Color((byte)tBShiftRedBar.Value, (byte)tBShiftGreenBar.Value, (byte)tBShiftBlueBar.Value);
             }
             if (!saving && !loading && tb != null)
                 tp.Show(tb.Value.ToString(), tb, (int)(dpix * 100), 0, 2000);
@@ -1271,12 +1143,7 @@ namespace DS4Windows
         {
             SetColorToolTip((TrackBar)sender, 1);
         }        
-
-        private void ShiftBar_ValueChanged(object sender, EventArgs e)
-        {
-            SetColorToolTip((TrackBar)sender, 2);
-        }
-
+        
         public Color HuetoRGB(float hue, float light, Color rgb)
         {
             float L = (float)Math.Max(.5, light);
@@ -1458,156 +1325,91 @@ namespace DS4Windows
 
         public void UpdateLists()
         {
-            lBControls.Items[0] = "Cross : " + UpdateRegButtonList(bnCross);
-            lBControls.Items[1] = "Circle : " + UpdateRegButtonList(bnCircle);
-            lBControls.Items[2] = "Square : " + UpdateRegButtonList(bnSquare);
-            lBControls.Items[3] = "Triangle : " + UpdateRegButtonList(bnTriangle);
-            lBControls.Items[4] = "Options : " + UpdateRegButtonList(bnOptions);
-            lBControls.Items[5] = "Share : " + UpdateRegButtonList(bnShare);
-            lBControls.Items[6] = "Up : " + UpdateRegButtonList(bnUp);
-            lBControls.Items[7] = "Down : " + UpdateRegButtonList(bnDown);
-            lBControls.Items[8] = "Left : " + UpdateRegButtonList(bnLeft);
-            lBControls.Items[9] = "Right : " + UpdateRegButtonList(bnRight);
-            lBControls.Items[10] = "PS : " + UpdateRegButtonList(bnPS);
-            lBControls.Items[11] = "L1 : " + UpdateRegButtonList(bnL1);
-            lBControls.Items[12] = "R1 : " + UpdateRegButtonList(bnR1);
-            lBControls.Items[13] = "L2 : " + UpdateRegButtonList(bnL2);
-            lBControls.Items[14] = "R2 : " + UpdateRegButtonList(bnR2);
-            lBControls.Items[15] = "L3 : " + UpdateRegButtonList(bnL3);
-            lBControls.Items[16] = "R3 : " + UpdateRegButtonList(bnR3);
-            lBControls.Items[17] = "Left Touch : " + UpdateRegButtonList(bnTouchLeft);
-            lBControls.Items[18] = "Right Touch : " + UpdateRegButtonList(bnTouchRight);
-            lBControls.Items[19] = "Multitouch : " + UpdateRegButtonList(bnTouchMulti);
-            lBControls.Items[20] = "Upper Touch : " + UpdateRegButtonList(bnTouchUpper);
-            lBControls.Items[21] = "LS Up : " + UpdateRegButtonList(bnLSUp);
-            lBControls.Items[22] = "LS Down : " + UpdateRegButtonList(bnLSDown);
-            lBControls.Items[23] = "LS Left : " + UpdateRegButtonList(bnLSLeft);
-            lBControls.Items[24] = "LS Right : " + UpdateRegButtonList(bnLSRight);
-            lBControls.Items[25] = "RS Up : " + UpdateRegButtonList(bnRSUp);
-            lBControls.Items[26] = "RS Down : " + UpdateRegButtonList(bnRSDown);
-            lBControls.Items[27] = "RS Left : " + UpdateRegButtonList(bnRSLeft);
-            lBControls.Items[28] = "RS Right : " + UpdateRegButtonList(bnRSRight);
-            lBControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateRegButtonList(bnGyroZN);
-            lBControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateRegButtonList(bnGyroZP);
-            lBControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateRegButtonList(bnGyroXP);
-            lBControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateRegButtonList(bnGyroXN);
-            bnGyroZN.Text = Properties.Resources.TiltUp;
-            bnGyroZP.Text = Properties.Resources.TiltDown;
-            bnGyroXP.Text = Properties.Resources.TiltLeft;
-            bnGyroXN.Text = Properties.Resources.TiltRight;
+            lBControls.Items[0] = "Cross : " + UpdateButtonList(bnCross);
+            lBControls.Items[1] = "Circle : " + UpdateButtonList(bnCircle);
+            lBControls.Items[2] = "Square : " + UpdateButtonList(bnSquare);
+            lBControls.Items[3] = "Triangle : " + UpdateButtonList(bnTriangle);
+            lBControls.Items[4] = "Options : " + UpdateButtonList(bnOptions);
+            lBControls.Items[5] = "Share : " + UpdateButtonList(bnShare);
+            lBControls.Items[6] = "Up : " + UpdateButtonList(bnUp);
+            lBControls.Items[7] = "Down : " + UpdateButtonList(bnDown);
+            lBControls.Items[8] = "Left : " + UpdateButtonList(bnLeft);
+            lBControls.Items[9] = "Right : " + UpdateButtonList(bnRight);
+            lBControls.Items[10] = "PS : " + UpdateButtonList(bnPS);
+            lBControls.Items[11] = "L1 : " + UpdateButtonList(bnL1);
+            lBControls.Items[12] = "R1 : " + UpdateButtonList(bnR1);
+            lBControls.Items[13] = "L2 : " + UpdateButtonList(bnL2);
+            lBControls.Items[14] = "R2 : " + UpdateButtonList(bnR2);
+            lBControls.Items[15] = "L3 : " + UpdateButtonList(bnL3);
+            lBControls.Items[16] = "R3 : " + UpdateButtonList(bnR3);
+            lBControls.Items[17] = "Left Touch : " + UpdateButtonList(bnTouchLeft);
+            lBControls.Items[18] = "Right Touch : " + UpdateButtonList(bnTouchRight);
+            lBControls.Items[19] = "Multitouch : " + UpdateButtonList(bnTouchMulti);
+            lBControls.Items[20] = "Upper Touch : " + UpdateButtonList(bnTouchUpper);
+            lBControls.Items[21] = "LS Up : " + UpdateButtonList(bnLSUp);
+            lBControls.Items[22] = "LS Down : " + UpdateButtonList(bnLSDown);
+            lBControls.Items[23] = "LS Left : " + UpdateButtonList(bnLSLeft);
+            lBControls.Items[24] = "LS Right : " + UpdateButtonList(bnLSRight);
+            lBControls.Items[25] = "RS Up : " + UpdateButtonList(bnRSUp);
+            lBControls.Items[26] = "RS Down : " + UpdateButtonList(bnRSDown);
+            lBControls.Items[27] = "RS Left : " + UpdateButtonList(bnRSLeft);
+            lBControls.Items[28] = "RS Right : " + UpdateButtonList(bnRSRight);
+            lBControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateButtonList(bnGyroZN);
+            lBControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateButtonList(bnGyroZP);
+            lBControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateButtonList(bnGyroXP);
+            lBControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateButtonList(bnGyroXN);
             if (lBControls.Items.Count > 33)
             {
-                lBControls.Items[33] = Properties.Resources.SwipeUp + " : " + UpdateRegButtonList(bnSwipeUp);
-                lBControls.Items[34] = Properties.Resources.SwipeDown + " : " + UpdateRegButtonList(bnSwipeDown);
-                lBControls.Items[35] = Properties.Resources.SwipeLeft + " : " + UpdateRegButtonList(bnSwipeLeft);
-                lBControls.Items[36] = Properties.Resources.SwipeRight + " : " + UpdateRegButtonList(bnSwipeRight);
-                bnSwipeUp.Text = Properties.Resources.SwipeUp;
-                bnSwipeDown.Text = Properties.Resources.SwipeDown;
-                bnSwipeLeft.Text = Properties.Resources.SwipeLeft;
-                bnSwipeRight.Text = Properties.Resources.SwipeRight;
+                lBControls.Items[33] = Properties.Resources.SwipeUp + " : " + UpdateButtonList(bnSwipeUp);
+                lBControls.Items[34] = Properties.Resources.SwipeDown + " : " + UpdateButtonList(bnSwipeDown);
+                lBControls.Items[35] = Properties.Resources.SwipeLeft + " : " + UpdateButtonList(bnSwipeLeft);
+                lBControls.Items[36] = Properties.Resources.SwipeRight + " : " + UpdateButtonList(bnSwipeRight);
 
-                lbSwipeUp.Text = UpdateRegButtonList(bnSwipeUp);
-                lbSwipeDown.Text = UpdateRegButtonList(bnSwipeDown);
-                lbSwipeLeft.Text = UpdateRegButtonList(bnSwipeLeft);
-                lbSwipeRight.Text = UpdateRegButtonList(bnSwipeRight);
+                lbSwipeUp.Text = UpdateButtonList(bnSwipeUp);
+                lbSwipeDown.Text = UpdateButtonList(bnSwipeDown);
+                lbSwipeLeft.Text = UpdateButtonList(bnSwipeLeft);
+                lbSwipeRight.Text = UpdateButtonList(bnSwipeRight);
             }
 
-            lbGyroXN.Text = UpdateRegButtonList(bnGyroXN);
-            lbGyroZN.Text = UpdateRegButtonList(bnGyroZN);
-            lbGyroZP.Text = UpdateRegButtonList(bnGyroZP);
-            lbGyroXP.Text = UpdateRegButtonList(bnGyroXP);
-
-
-            lBShiftControls.Items[0] = "Cross : " + UpdateRegButtonList(bnShiftCross);
-            lBShiftControls.Items[1] = "Circle : " + UpdateRegButtonList(bnShiftCircle);
-            lBShiftControls.Items[2] = "Square : " + UpdateRegButtonList(bnShiftSquare);
-            lBShiftControls.Items[3] = "Triangle : " + UpdateRegButtonList(bnShiftTriangle);
-            lBShiftControls.Items[4] = "Options : " + UpdateRegButtonList(bnShiftOptions);
-            lBShiftControls.Items[5] = "Share : " + UpdateRegButtonList(bnShiftShare);
-            lBShiftControls.Items[6] = "Up : " + UpdateRegButtonList(bnShiftUp);
-            lBShiftControls.Items[7] = "Down : " + UpdateRegButtonList(bnShiftDown);
-            lBShiftControls.Items[8] = "Left : " + UpdateRegButtonList(bnShiftLeft);
-            lBShiftControls.Items[9] = "Right : " + UpdateRegButtonList(bnShiftRight);
-            lBShiftControls.Items[10] = "PS : " + UpdateRegButtonList(bnShiftPS);
-            lBShiftControls.Items[11] = "L1 : " + UpdateRegButtonList(bnShiftL1);
-            lBShiftControls.Items[12] = "R1 : " + UpdateRegButtonList(bnShiftR1);
-            lBShiftControls.Items[13] = "L2 : " + UpdateRegButtonList(bnShiftR2);
-            lBShiftControls.Items[14] = "R2 : " + UpdateRegButtonList(bnShiftR2);
-            lBShiftControls.Items[15] = "L3 : " + UpdateRegButtonList(bnShiftL3);
-            lBShiftControls.Items[16] = "R3 : " + UpdateRegButtonList(bnShiftR3);
-            lBShiftControls.Items[17] = "Left Touch : " + UpdateRegButtonList(bnShiftTouchLeft);
-            lBShiftControls.Items[18] = "Right Touch : " + UpdateRegButtonList(bnShiftTouchRight);
-            lBShiftControls.Items[19] = "Multitouch : " + UpdateRegButtonList(bnShiftTouchMulti);
-            lBShiftControls.Items[20] = "Upper Touch : " + UpdateRegButtonList(bnShiftTouchUpper);
-            lBShiftControls.Items[21] = "LS Up : " + UpdateRegButtonList(bnShiftLSUp);
-            lBShiftControls.Items[22] = "LS Down : " + UpdateRegButtonList(bnShiftLSDown);
-            lBShiftControls.Items[23] = "LS Left : " + UpdateRegButtonList(bnShiftLSLeft);
-            lBShiftControls.Items[24] = "LS Right : " + UpdateRegButtonList(bnShiftLSRight);
-            lBShiftControls.Items[25] = "RS Up : " + UpdateRegButtonList(bnShiftRSUp);
-            lBShiftControls.Items[26] = "RS Down : " + UpdateRegButtonList(bnShiftRSDown);
-            lBShiftControls.Items[27] = "RS Left : " + UpdateRegButtonList(bnShiftRSLeft);
-            lBShiftControls.Items[28] = "RS Right : " + UpdateRegButtonList(bnShiftRSRight);
-            lBShiftControls.Items[29] = Properties.Resources.TiltUp + " : " + UpdateRegButtonList(bnShiftGyroZN);
-            lBShiftControls.Items[30] = Properties.Resources.TiltDown + " : " + UpdateRegButtonList(bnShiftGyroZP);
-            lBShiftControls.Items[31] = Properties.Resources.TiltLeft + " : " + UpdateRegButtonList(bnShiftGyroXP);
-            lBShiftControls.Items[32] = Properties.Resources.TiltRight + " : " + UpdateRegButtonList(bnShiftGyroXN);
-            bnShiftGyroZN.Text = Properties.Resources.TiltUp;
-            bnShiftGyroZP.Text = Properties.Resources.TiltDown;
-            bnShiftGyroXP.Text = Properties.Resources.TiltLeft;
-            bnShiftGyroXN.Text = Properties.Resources.TiltRight;
-            if (lBShiftControls.Items.Count > 33)
-            {
-                lBShiftControls.Items[33] = Properties.Resources.SwipeUp + " : " + UpdateRegButtonList(bnShiftSwipeUp);
-                lBShiftControls.Items[34] = Properties.Resources.SwipeDown + " : " + UpdateRegButtonList(bnShiftSwipeDown);
-                lBShiftControls.Items[35] = Properties.Resources.SwipeLeft + " : " + UpdateRegButtonList(bnShiftSwipeLeft);
-                lBShiftControls.Items[36] = Properties.Resources.SwipeRight + " : " + UpdateRegButtonList(bnShiftSwipeRight);
-                bnShiftSwipeUp.Text = Properties.Resources.SwipeUp;
-                bnShiftSwipeDown.Text = Properties.Resources.SwipeDown;
-                bnShiftSwipeLeft.Text = Properties.Resources.SwipeLeft;
-                bnShiftSwipeRight.Text = Properties.Resources.SwipeRight;
-
-                lbShiftSwipeUp.Text = UpdateRegButtonList(bnShiftSwipeUp);
-                lbShiftSwipeDown.Text = UpdateRegButtonList(bnShiftSwipeDown);
-                lbShiftSwipeLeft.Text = UpdateRegButtonList(bnShiftSwipeLeft);
-                lbShiftSwipeRight.Text = UpdateRegButtonList(bnShiftSwipeRight);
-            }
-            
-            lbShiftGyroXN.Text = UpdateRegButtonList(bnShiftGyroXN, true);
-            lbShiftGyroZN.Text = UpdateRegButtonList(bnShiftGyroZN, true);
-            lbShiftGyroZP.Text = UpdateRegButtonList(bnShiftGyroZP, true);
-            lbShiftGyroXP.Text = UpdateRegButtonList(bnShiftGyroXP, true);
+            lbGyroXN.Text = UpdateButtonList(bnGyroXN);
+            lbGyroZN.Text = UpdateButtonList(bnGyroZN);
+            lbGyroZP.Text = UpdateButtonList(bnGyroZP);
+            lbGyroXP.Text = UpdateButtonList(bnGyroXP);                        
         }
 
-        private string UpdateRegButtonList(Button button, bool buttonLabel = false)
+        private string UpdateButtonList(Button button, bool shift =false)
         {
-            Button regbutton = null;
-            bool shift = button.Name.Contains("Shift");
-            if (shift)
-                regbutton = ((Button)Controls.Find(button.Name.Remove(2, 5), true)[0]);
+            object tagO = GetDS4Action(device, button.Name, shift);
+            bool SC = GetDS4KeyType(device, button.Name, false).HasFlag(DS4KeyType.ScanCode);
             bool extracontrol = button.Name.Contains("Gyro") || button.Name.Contains("Swipe");
-            if (button.Tag is String && (String)button.Tag == "Unbound")
-                return "Unbound";
-            else if (button.Tag is KeyValuePair<Int32[], string>)
-                return Properties.Resources.Macro + (button.Font.Bold ? " (" + Properties.Resources.ScanCode + ")" : "");
-            else if (button.Tag is KeyValuePair<int, string>)
-                return ((Keys)((KeyValuePair<int, string>)button.Tag).Key).ToString() + (button.Font.Bold ? " (" + Properties.Resources.ScanCode + ")" : "");
-            else if (button.Tag is KeyValuePair<UInt16, string>)
-                return ((Keys)((KeyValuePair<UInt16, string>)button.Tag).Key).ToString() + (button.Font.Bold ? " (" + Properties.Resources.ScanCode + ")" : "");
-            else if (button.Tag is KeyValuePair<string, string>)
-                return ((KeyValuePair<string, string>)button.Tag).Key;
-            else if (shift && extracontrol && !(regbutton.Tag is KeyValuePair<object, string>)
-                && (button.Tag == null || ((KeyValuePair<object, string>)button.Tag).Key == null))
-                if (buttonLabel)
-                    return Properties.Resources.FallBack;
+            if (tagO != null)
+            {
+                if (tagO is int || tagO is ushort)
+                {
+                    return (Keys)int.Parse(tagO.ToString()) + (SC ? " (" + Properties.Resources.ScanCode + ")" : "");
+                }
+                else if (tagO is int[])
+                {
+                    return Properties.Resources.Macro + (SC ? " (" + Properties.Resources.ScanCode + ")" : "");
+                }
+                else if (tagO is string || tagO is X360Controls)
+                {
+                    string tag;
+                    if (tagO is X360Controls)
+                    {
+                        tag = KBM360.getX360ControlsByName((X360Controls)tagO);
+                    }
+                    else
+                        tag = tagO.ToString();
+                    return tag;
+                }
                 else
-                    return Properties.Resources.FallBackTo.Replace("*button*", UpdateRegButtonList(regbutton, buttonLabel));
-            else if (shift && !extracontrol && (button.Tag == null || ((KeyValuePair<object, string>)button.Tag).Key == null))
-                if (buttonLabel)
-                    return Properties.Resources.FallBack;
-                else
-                    return Properties.Resources.FallBackTo.Replace("*button*", UpdateRegButtonList(regbutton,buttonLabel));
-            else if (!shift && !extracontrol)
+                    return defaults[button.Name];
+            }
+            else if (!extracontrol && !shift && defaults.ContainsKey(button.Name))
                 return defaults[button.Name];
+            else if (shift)
+                return "";
             else
                 return Properties.Resources.Unassigned;
         }
@@ -1654,69 +1456,17 @@ namespace DS4Windows
             if (lBControls.SelectedIndex == 34) Show_ControlsBn(bnSwipeDown, e);
             if (lBControls.SelectedIndex == 35) Show_ControlsBn(bnSwipeLeft, e);
             if (lBControls.SelectedIndex == 36) Show_ControlsBn(bnSwipeRight, e);
-        }
-
-        private void Show_ShiftControlsList(object sender, EventArgs e)
-        {
-            if (lBShiftControls.SelectedIndex == 0) Show_ControlsBn(bnShiftCross, e);
-            if (lBShiftControls.SelectedIndex == 1) Show_ControlsBn(bnShiftCircle, e);
-            if (lBShiftControls.SelectedIndex == 2) Show_ControlsBn(bnShiftSquare, e);
-            if (lBShiftControls.SelectedIndex == 3) Show_ControlsBn(bnShiftTriangle, e);
-            if (lBShiftControls.SelectedIndex == 4) Show_ControlsBn(bnShiftOptions, e);
-            if (lBShiftControls.SelectedIndex == 5) Show_ControlsBn(bnShiftShare, e);
-            if (lBShiftControls.SelectedIndex == 6) Show_ControlsBn(bnShiftUp, e);
-            if (lBShiftControls.SelectedIndex == 7) Show_ControlsBn(bnShiftDown, e);
-            if (lBShiftControls.SelectedIndex == 8) Show_ControlsBn(bnShiftLeft, e);
-            if (lBShiftControls.SelectedIndex == 9) Show_ControlsBn(bnShiftRight, e);
-            if (lBShiftControls.SelectedIndex == 10) Show_ControlsBn(bnShiftPS, e);
-            if (lBShiftControls.SelectedIndex == 11) Show_ControlsBn(bnShiftL1, e);
-            if (lBShiftControls.SelectedIndex == 12) Show_ControlsBn(bnShiftR1, e);
-            if (lBShiftControls.SelectedIndex == 13) Show_ControlsBn(bnShiftR2, e);
-            if (lBShiftControls.SelectedIndex == 14) Show_ControlsBn(bnShiftR2, e);
-            if (lBShiftControls.SelectedIndex == 15) Show_ControlsBn(bnShiftL3, e);
-            if (lBShiftControls.SelectedIndex == 16) Show_ControlsBn(bnShiftR3, e);
-
-            if (lBShiftControls.SelectedIndex == 17) Show_ControlsBn(bnShiftTouchLeft, e);
-            if (lBShiftControls.SelectedIndex == 18) Show_ControlsBn(bnShiftTouchRight, e);
-            if (lBShiftControls.SelectedIndex == 19) Show_ControlsBn(bnShiftTouchMulti, e);
-            if (lBShiftControls.SelectedIndex == 20) Show_ControlsBn(bnShiftTouchUpper, e);
-
-            if (lBShiftControls.SelectedIndex == 21) Show_ControlsBn(bnShiftLSUp, e);
-            if (lBShiftControls.SelectedIndex == 22) Show_ControlsBn(bnShiftLSDown, e);
-            if (lBShiftControls.SelectedIndex == 23) Show_ControlsBn(bnShiftLSLeft, e);
-            if (lBShiftControls.SelectedIndex == 24) Show_ControlsBn(bnShiftLSRight, e);
-            if (lBShiftControls.SelectedIndex == 25) Show_ControlsBn(bnShiftRSUp, e);
-            if (lBShiftControls.SelectedIndex == 26) Show_ControlsBn(bnShiftRSDown, e);
-            if (lBShiftControls.SelectedIndex == 27) Show_ControlsBn(bnShiftRSLeft, e);
-            if (lBShiftControls.SelectedIndex == 28) Show_ControlsBn(bnShiftRSRight, e);
-
-            if (lBShiftControls.SelectedIndex == 29) Show_ControlsBn(bnShiftGyroZN, e);
-            if (lBShiftControls.SelectedIndex == 30) Show_ControlsBn(bnShiftGyroZP, e);
-            if (lBShiftControls.SelectedIndex == 31) Show_ControlsBn(bnShiftGyroXP, e);
-            if (lBShiftControls.SelectedIndex == 32) Show_ControlsBn(bnShiftGyroXN, e);
-
-
-            if (lBShiftControls.SelectedIndex == 33) Show_ControlsBn(bnShiftSwipeUp, e);
-            if (lBShiftControls.SelectedIndex == 34) Show_ControlsBn(bnShiftSwipeDown, e);
-            if (lBShiftControls.SelectedIndex == 35) Show_ControlsBn(bnShiftSwipeLeft, e);
-            if (lBShiftControls.SelectedIndex == 36) Show_ControlsBn(bnShiftSwipeRight, e);
-        }
+        }        
 
         private void List_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-           if (((ListBox)sender).Name.Contains("Shift"))
-               Show_ShiftControlsList(sender, e);
-           else
             Show_ControlsList(sender, e);
         }
 
         private void List_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13)
-                if (((ListBox)sender).Name.Contains("Shift"))
-                    Show_ShiftControlsList(sender, e);
-                else
-                    Show_ControlsList(sender, e);
+                Show_ControlsList(sender, e);
         }
 
         private void numUDRainbow_ValueChanged(object sender, EventArgs e)
@@ -1751,13 +1501,13 @@ namespace DS4Windows
             nUDRainbow.Enabled = on;
             if (on)
             {
-                pBLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, main);
+                btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
                 cBLightbyBattery.Text = Properties.Resources.DimByBattery.Replace("*nl*", "\n");
             }
             else
             {
                 pnlLowBattery.Enabled = cBLightbyBattery.Checked;
-                pBLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, main);
+                btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
                 cBLightbyBattery.Text = Properties.Resources.ColorByBattery.Replace("*nl*", "\n");
             }
             if (FlashColor[device].Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
@@ -1929,47 +1679,15 @@ namespace DS4Windows
         {
             MouseAccel[device] = cBMouseAccel.Checked;
         }
-
-        private void cBShiftControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ShiftModifier[device] = cBShiftControl.SelectedIndex;
-            if (cBShiftControl.SelectedIndex < 1)
-                cBShiftLight.Checked = false;
-        }
-
+        
         private void tabControls_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tCControls.SelectedIndex == 3)
+            if (tCControls.SelectedIndex == 2)
                 sixaxisTimer.Start();
             else
                 sixaxisTimer.Stop();
-            if (tCControls.SelectedIndex == 1 && tPShiftMod.Controls.IndexOf(gBTouchpad) == -1)
-            {
-                Point p = gBTouchpad.Location;
-                tPShiftMod.Controls.Add(gBTouchpad);
-                gBTouchpad.Location = p;
-            }
-            else if (tCControls.SelectedIndex == 0 && tPControls.Controls.IndexOf(gBTouchpad) == -1)
-            {
-                Point p = gBTouchpad.Location;
-                tPControls.Controls.Add(gBTouchpad);
-                gBTouchpad.Location = p;
-            }
-            showShiftControls(tCControls.SelectedIndex == 1);
         }
-
-        private void showShiftControls(bool shift)
-        {
-            pnlShiftLight.Visible = shift;
-            pnlFull.Visible = !shift;
-            pnlLowBattery.Visible = (cBLightbyBattery.Checked ? !shift : false);
-            //fLPShiftTouch.Visible = shift;
-            //fLPTouch.Visible = !shift;
-            fLPShiftTiltControls.Visible = rBSAControls.Checked ? shift : false;
-            fLPTiltControls.Visible = rBSAControls.Checked ? !shift : false;
-            fLPShiftTouchSwipe.Visible = rBTPControls.Checked ? shift : false;
-            fLPTouchSwipe.Visible = rBTPControls.Checked ? !shift : false;
-        }
+        
         private void DrawCircle(object sender, PaintEventArgs e)
         {
             // Create pen.
@@ -1987,14 +1705,7 @@ namespace DS4Windows
             tBLowRedBar.Value = tBRedBar.Value;
             tBLowGreenBar.Value = tBGreenBar.Value;
             tBLowBlueBar.Value = tBBlueBar.Value;
-        }
-
-        private void lbShift_Click(object sender, EventArgs e)
-        {
-            tBShiftRedBar.Value = tBRedBar.Value;
-            tBShiftGreenBar.Value = tBGreenBar.Value;
-            tBShiftBlueBar.Value = tBBlueBar.Value;
-        }
+        }        
 
         private void lbSATip_Click(object sender, EventArgs e)
         {
@@ -2011,32 +1722,7 @@ namespace DS4Windows
         {
             lbSATip_Click(sender, e);
         }
-
-        private void cBShiftLight_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ShiftModifier[device] < 1)
-                cBShiftLight.Checked = false;
-            if (!cBShiftLight.Checked)
-            {
-                pBShiftLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, main);
-            }
-            else
-            {
-                alphacolor = Math.Max(tBShiftRedBar.Value, Math.Max(tBShiftGreenBar.Value, tBShiftBlueBar.Value));
-                reg = Color.FromArgb(tBShiftRedBar.Value, tBShiftGreenBar.Value, tBShiftBlueBar.Value);
-                full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
-                pBShiftLightbar.Image = RecolorImage((Bitmap)pBLightbar.Image, Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full));
-            }
-            ShiftColorOn[device]= cBShiftLight.Checked;
-            lbShift.Enabled = cBShiftLight.Checked;
-            lbShiftRed.Enabled = cBShiftLight.Checked;
-            lbShiftGreen.Enabled = cBShiftLight.Checked;
-            lbShiftBlue.Enabled = cBShiftLight.Checked;
-            tBShiftRedBar.Enabled = cBShiftLight.Checked;
-            tBShiftGreenBar.Enabled = cBShiftLight.Checked;
-            tBShiftBlueBar.Enabled = cBShiftLight.Checked;
-        }
-
+       
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             if( openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -2096,7 +1782,6 @@ namespace DS4Windows
                 case "tBsixaxisAccelY": root.lbLastMessage.Text = "AccelY"; break;
                 case "tBsixaxisAccelZ": root.lbLastMessage.Text = "AccelZ"; break;
                 case "lbEmpty": root.lbLastMessage.Text = Properties.Resources.CopyFullColor; break;
-                case "lbShift": root.lbLastMessage.Text = Properties.Resources.CopyFullColor; break;
                 case "lbSATip": root.lbLastMessage.Text = Properties.Resources.SixAxisReading; break;
                 case "cBDinput": root.lbLastMessage.Text = Properties.Resources.DinputOnly; break;
                 case "btnFlashColor": root.lbLastMessage.Text = Properties.Resources.FlashAtTip; break;
@@ -2123,30 +1808,11 @@ namespace DS4Windows
                 case "bnSwipeUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "bnSwipeLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "bnSwipeRight": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnSwipeDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-
-                case "bnShiftUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftRight": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "btnShiftLeftStick": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "btnShiftRightStick": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftCross": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftCircle": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftSquare": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftTriangle": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "lbShiftGyro": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftGyroZN": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftGyroZP": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftGyroXN": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftGyroXP": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "lbShiftTPSwipes": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftSwipeUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftSwipeLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftSwipeRight": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnShiftSwipeDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnSwipeDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;                    
+                case "bnL3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;                    
+                case "bnR3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;                    
             }
-            if (name.Contains("bnLS") || name.Contains("bnRS") || name.Contains("bnShiftLS") || name.Contains("bnShiftRS"))
+            if (name.Contains("bnLS") || name.Contains("bnRS"))
                 root.lbLastMessage.Text = Properties.Resources.RightClickPresets;
             if (root.lbLastMessage.Text != Properties.Resources.HoverOverItems)
                 root.lbLastMessage.ForeColor = Color.Black;
@@ -2158,24 +1824,18 @@ namespace DS4Windows
         {
             UseTPforControls[device] = rBTPControls.Checked;
             pnlTPMouse.Visible = rBTPMouse.Checked;
-            fLPTouchSwipe.Visible = rBTPControls.Checked && tCControls.SelectedIndex != 1;
-            fLPShiftTouchSwipe.Visible = rBTPControls.Checked && tCControls.SelectedIndex == 1;
-            if (rBTPControls.Checked )
+            fLPTouchSwipe.Visible = rBTPControls.Checked;
+            if (rBTPControls.Checked && lBControls.Items.Count <= 33)
             {
                 lBControls.Items.AddRange(new string[4] { "t", "t", "t", "t" });
-                lBShiftControls.Items.AddRange(new string[4] { "t", "t", "t", "t" });
                 UpdateLists();
             }
-            else if (lBControls.Items.Count > 33)
+            else if (rBTPMouse.Checked && lBControls.Items.Count > 33)
             {
                 lBControls.Items.RemoveAt(36);
                 lBControls.Items.RemoveAt(35);
                 lBControls.Items.RemoveAt(34);
                 lBControls.Items.RemoveAt(33);
-                lBShiftControls.Items.RemoveAt(36);
-                lBShiftControls.Items.RemoveAt(35);
-                lBShiftControls.Items.RemoveAt(34);
-                lBShiftControls.Items.RemoveAt(33);
             }
         }
 
@@ -2256,30 +1916,18 @@ namespace DS4Windows
                 controlToolStripMenuItem.Text = "Sixaxis";
             else if (name == "lbTPSwipes" || name.StartsWith("bnSwipe"))
                 controlToolStripMenuItem.Text = "Touchpad Swipes";
-            else if (name == "bnShiftUp" || name == "bnShiftLeft" || name == "bnShiftRight" || name == "bnShiftDown")
-                controlToolStripMenuItem.Text = "Dpad (Shift)";
-            else if (name == "btnShiftLeftStick" || name.Contains("bnShiftLS"))
-                controlToolStripMenuItem.Text = "Left Stick (Shift)";
-            else if (name == "btnShiftRightStick" || name.Contains("bnShiftRS"))
-                controlToolStripMenuItem.Text = "Right Stick (Shift)";
-            else if (name == "bnShiftCross" || name == "bnShiftCircle" || name == "bnShiftSquare" || name == "bnShiftTriangle")
-                controlToolStripMenuItem.Text = "Face Buttons (Shift)";
-            else if (name == "lbShiftGyro" || name.StartsWith("bnShiftGyro"))
-                controlToolStripMenuItem.Text = "Sixaxis (Shift)";
-            else if (name == "lbShiftTPSwipes" || name.StartsWith("bnShiftSwipe"))
-                controlToolStripMenuItem.Text = "Touchpad Swipes (Shift)";
             else
                 controlToolStripMenuItem.Text = "Select another control";
-            MouseToolStripMenuItem.Visible = !(name == "lbTPSwipes" || name.StartsWith("bnSwipe") || name == "lbShiftTPSwipes" || name.StartsWith("bnShiftSwipe"));
+            MouseToolStripMenuItem.Visible = !(name == "lbTPSwipes" || name.StartsWith("bnSwipe"));
         }
 
-        private void BatchToggle_Bn(bool scancode, Button button1, Button button2, Button button3, Button button4)
+        /*private void BatchToggle_Bn(bool scancode, Button button1, Button button2, Button button3, Button button4)
         {
             Toggle_Bn(scancode, false, false, false, button1);
             Toggle_Bn(scancode, false, false, false, button2);
             Toggle_Bn(scancode, false, false, false, button3);
             Toggle_Bn(scancode, false, false, false, button4);
-        }
+        }*/
 
 
         private void SetPreset(object sender, EventArgs e)
@@ -2497,57 +2145,15 @@ namespace DS4Windows
                 button3 = bnSwipeRight;
                 button4 = bnSwipeDown;
             }
-            else if (controlToolStripMenuItem.Text == "Dpad (Shift)")
-            {
-                button1 = bnShiftUp;
-                button2 = bnShiftLeft;
-                button3 = bnShiftRight;
-                button4 = bnShiftDown;
-            }
-            else if (controlToolStripMenuItem.Text == "Left Stick (Shift)")
-            {
-                button1 = bnShiftLSUp;
-                button2 = bnShiftLSLeft;
-                button3 = bnShiftLSRight;
-                button4 = bnShiftLSDown;
-            }
-            else if (controlToolStripMenuItem.Text == "Right Stick (Shift)")
-            {
-                button1 = bnShiftRSUp;
-                button2 = bnShiftRSLeft;
-                button3 = bnShiftRSRight;
-                button4 = bnShiftRSDown;
-            }
-            else if (controlToolStripMenuItem.Text == "Face Buttons (Shift)")
-            {
-                button1 = bnShiftTriangle;
-                button2 = bnShiftSquare;
-                button3 = bnShiftCircle;
-                button4 = bnShiftCross;
-            }
-            else if (controlToolStripMenuItem.Text == "Sixaxis (Shift)")
-            {
-                button1 = bnShiftGyroZN;
-                button2 = bnShiftGyroXP;
-                button3 = bnShiftGyroXN;
-                button4 = bnShiftGyroZP;
-            }
-            else if (controlToolStripMenuItem.Text == "Touchpad Swipes (Shift)")
-            {
-                button1 = bnShiftSwipeUp;
-                button2 = bnShiftSwipeLeft;
-                button3 = bnShiftSwipeRight;
-                button4 = bnShiftSwipeDown;
-            }
             else
                 button1 = button2 = button3 = button4 = null;
-            ChangeButtonText("Up Button", tagU, button1);
-            ChangeButtonText("Left Button", tagL, button2);
-            ChangeButtonText("Right Button", tagR, button3);
-            ChangeButtonText("Down Button", tagD, button4);
+            ChangeButtonText(tagU, button1, scancode);
+            ChangeButtonText(tagL, button2, scancode);
+            ChangeButtonText(tagR, button3, scancode);
+            ChangeButtonText(tagD, button4, scancode);
             if (tagM.Key != null && button5 != null)
-                ChangeButtonText("Middle Button", tagM, button5);
-            BatchToggle_Bn(scancode, button1, button2, button3, button4);
+                ChangeButtonText(tagM, button5, scancode);
+            //BatchToggle_Bn(scancode, button1, button2, button3, button4);
 
             UpdateLists();
             cMSPresets.Hide();
@@ -2582,8 +2188,7 @@ namespace DS4Windows
         {
             UseSAforMouse[device] = rBSAMouse.Checked;
             pnlSAMouse.Visible = rBSAMouse.Checked;
-            fLPTiltControls.Visible = rBSAControls.Checked && tCControls.SelectedIndex != 1;
-            fLPShiftTiltControls.Visible = rBSAControls.Checked && tCControls.SelectedIndex == 1;
+            fLPTiltControls.Visible = rBSAControls.Checked;
         }
 
         private void btnGyroTriggers_Click(object sender, EventArgs e)
@@ -2655,7 +2260,7 @@ namespace DS4Windows
         {
             if (lBControls.SelectedItem != null)
             {
-                lbControlName.Text = lBControls.SelectedItem.ToString();
+                //lbControlName.Text = lBControls.SelectedItem.ToString();
                 if (lBControls.SelectedIndex == 0)
                     lbControlName.ForeColor = Color.FromArgb(153, 205, 204);
                 else if (lBControls.SelectedIndex == 1)
@@ -2709,66 +2314,7 @@ namespace DS4Windows
             if (lBControls.SelectedIndex == 35) button_MouseHover(bnSwipeLeft, null);
             if (lBControls.SelectedIndex == 36) button_MouseHover(bnSwipeRight, null);
         }
-
-        private void lBShiftControls_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lBShiftControls.SelectedItem != null)
-            {
-                lbShiftControlName.Text = lBShiftControls.SelectedItem.ToString();
-                if (lBShiftControls.SelectedIndex == 0)
-                    lbShiftControlName.ForeColor = Color.FromArgb(153, 205, 204);
-                else if (lBShiftControls.SelectedIndex == 1)
-                    lbShiftControlName.ForeColor = Color.FromArgb(247, 131, 150);
-                else if (lBShiftControls.SelectedIndex == 2)
-                    lbShiftControlName.ForeColor = Color.FromArgb(237, 170, 217);
-                else if (lBShiftControls.SelectedIndex == 3)
-                    lbShiftControlName.ForeColor = Color.FromArgb(75, 194, 202);
-                else
-                    lbShiftControlName.ForeColor = Color.White;
-            }
-            if (lBShiftControls.SelectedIndex == 0) button_MouseHover(bnShiftCross, null);
-            if (lBShiftControls.SelectedIndex == 1) button_MouseHover(bnShiftCircle, null);
-            if (lBShiftControls.SelectedIndex == 2) button_MouseHover(bnShiftSquare, null);
-            if (lBShiftControls.SelectedIndex == 3) button_MouseHover(bnShiftTriangle, null);
-            if (lBShiftControls.SelectedIndex == 4) button_MouseHover(bnShiftOptions, null);
-            if (lBShiftControls.SelectedIndex == 5) button_MouseHover(bnShiftShare, null);
-            if (lBShiftControls.SelectedIndex == 6) button_MouseHover(bnShiftUp, null);
-            if (lBShiftControls.SelectedIndex == 7) button_MouseHover(bnShiftDown, null);
-            if (lBShiftControls.SelectedIndex == 8) button_MouseHover(bnShiftLeft, null);
-            if (lBShiftControls.SelectedIndex == 9) button_MouseHover(bnShiftRight, null);
-            if (lBShiftControls.SelectedIndex == 10) button_MouseHover(bnShiftPS, null);
-            if (lBShiftControls.SelectedIndex == 11) button_MouseHover(bnShiftL1, null);
-            if (lBShiftControls.SelectedIndex == 12) button_MouseHover(bnShiftR1, null);
-            if (lBShiftControls.SelectedIndex == 13) button_MouseHover(bnShiftL2, null);
-            if (lBShiftControls.SelectedIndex == 14) button_MouseHover(bnShiftR2, null);
-            if (lBShiftControls.SelectedIndex == 15) button_MouseHover(bnShiftL3, null);
-            if (lBShiftControls.SelectedIndex == 16) button_MouseHover(bnShiftR3, null);
-
-            if (lBShiftControls.SelectedIndex == 17) button_MouseHover(bnShiftTouchLeft, null);
-            if (lBShiftControls.SelectedIndex == 18) button_MouseHover(bnShiftTouchRight, null);
-            if (lBShiftControls.SelectedIndex == 19) button_MouseHover(bnShiftTouchMulti, null);
-            if (lBShiftControls.SelectedIndex == 20) button_MouseHover(bnShiftTouchUpper, null);
-
-            if (lBShiftControls.SelectedIndex == 21) button_MouseHover(bnShiftLSUp, null);
-            if (lBShiftControls.SelectedIndex == 22) button_MouseHover(bnShiftLSDown, null);
-            if (lBShiftControls.SelectedIndex == 23) button_MouseHover(bnShiftLSLeft, null);
-            if (lBShiftControls.SelectedIndex == 24) button_MouseHover(bnShiftLSRight, null);
-            if (lBShiftControls.SelectedIndex == 25) button_MouseHover(bnShiftRSUp, null);
-            if (lBShiftControls.SelectedIndex == 26) button_MouseHover(bnShiftRSDown, null);
-            if (lBShiftControls.SelectedIndex == 27) button_MouseHover(bnShiftRSLeft, null);
-            if (lBShiftControls.SelectedIndex == 28) button_MouseHover(bnShiftRSRight, null);
-
-            if (lBShiftControls.SelectedIndex == 29) button_MouseHover(bnShiftGyroZN, null);
-            if (lBShiftControls.SelectedIndex == 30) button_MouseHover(bnShiftGyroZP, null);
-            if (lBShiftControls.SelectedIndex == 31) button_MouseHover(bnShiftGyroXP, null);
-            if (lBShiftControls.SelectedIndex == 32) button_MouseHover(bnShiftGyroXN, null);
-
-            if (lBShiftControls.SelectedIndex == 33) button_MouseHover(bnShiftSwipeUp, null);
-            if (lBShiftControls.SelectedIndex == 34) button_MouseHover(bnShiftSwipeDown, null);
-            if (lBShiftControls.SelectedIndex == 35) button_MouseHover(bnShiftSwipeLeft, null);
-            if (lBShiftControls.SelectedIndex == 36) button_MouseHover(bnShiftSwipeRight, null);
-        }
-
+        
         private void nUDGyroSensitivity_ValueChanged(object sender, EventArgs e)
         {
             GyroSensitivity[device] = (int)Math.Round(nUDGyroSensitivity.Value, 0);

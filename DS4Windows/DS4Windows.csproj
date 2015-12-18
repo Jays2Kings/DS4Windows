@@ -208,6 +208,9 @@
     <EmbeddedResource Include="DS4Forms\DS4Form.it-IT.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\DS4Form.nl.resx">
+      <DependentUpon>DS4Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.pl.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -224,9 +227,6 @@
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.tr.resx">
-      <DependentUpon>DS4Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DS4Forms\DS4Form.tzm-Arab.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.vi.resx">
@@ -257,6 +257,9 @@
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.it-IT.resx">
+      <DependentUpon>DupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\DupBox.nl.resx">
       <DependentUpon>DupBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DupBox.pl.resx">
@@ -304,6 +307,9 @@
     <EmbeddedResource Include="DS4Forms\Hotkeys.it-IT.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\Hotkeys.nl.resx">
+      <DependentUpon>Hotkeys.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Hotkeys.pl.resx">
       <DependentUpon>Hotkeys.cs</DependentUpon>
     </EmbeddedResource>
@@ -347,6 +353,9 @@
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\KBM360.it-IT.resx">
+      <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\KBM360.nl.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\KBM360.pl.resx">
@@ -394,6 +403,9 @@
     <EmbeddedResource Include="DS4Forms\Options.it-IT.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\Options.nl.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.pl.resx">
       <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
@@ -437,6 +449,9 @@
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\RecordBox.it-IT.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\RecordBox.nl.resx">
       <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\RecordBox.pl.resx">
@@ -484,6 +499,9 @@
     <EmbeddedResource Include="DS4Forms\SaveWhere.it-IT.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\SaveWhere.nl.resx">
+      <DependentUpon>SaveWhere.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SaveWhere.pl.resx">
       <DependentUpon>SaveWhere.cs</DependentUpon>
     </EmbeddedResource>
@@ -527,6 +545,9 @@
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SpecActions.it-IT.resx">
+      <DependentUpon>SpecActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\SpecActions.nl.resx">
       <DependentUpon>SpecActions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\SpecActions.pl.resx">
@@ -574,6 +595,9 @@
     <EmbeddedResource Include="DS4Forms\WelcomeDialog.it-IT.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\WelcomeDialog.nl.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WelcomeDialog.pl.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -619,6 +643,9 @@
     <EmbeddedResource Include="DS4Forms\WinProgs.it-IT.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\WinProgs.nl.resx">
+      <DependentUpon>WinProgs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\WinProgs.pl.resx">
       <DependentUpon>WinProgs.cs</DependentUpon>
     </EmbeddedResource>
@@ -652,6 +679,7 @@
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
     <EmbeddedResource Include="Properties\Resources.he.resx" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
+    <EmbeddedResource Include="Properties\Resources.nl.resx" />
     <EmbeddedResource Include="Properties\Resources.pl.resx" />
     <EmbeddedResource Include="Properties\Resources.pt-BR.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -697,10 +725,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HidLibrary\LICENSE.htm" />
-    <Content Include="Resources\1401402547_menu-24.png" />
     <Content Include="Resources\360 fades.png" />
-    <Content Include="Resources\360LS.png" />
-    <Content Include="Resources\360RS.png" />
+    <None Include="Resources\360 map.png" />
+    <None Include="Resources\360 highlight.png" />
     <Content Include="Resources\A.PNG" />
     <Content Include="Resources\B.png" />
     <Content Include="Resources\BACK.png" />
@@ -742,7 +769,6 @@
     <Content Include="Resources\LB.png" />
     <None Include="Resources\left touch.png" />
     <Content Include="Resources\LEFT.png" />
-    <Content Include="Resources\LeftTouch.png" />
     <Content Include="Resources\LS.png" />
     <Content Include="Resources\LSD.png" />
     <Content Include="Resources\LSL.png" />
@@ -750,7 +776,6 @@
     <Content Include="Resources\LSU.png" />
     <Content Include="Resources\LT.png" />
     <Content Include="Resources\mouse.png" />
-    <Content Include="Resources\MultiTouch.png" />
     <Content Include="Resources\none.png" />
     <Content Include="Resources\Pairmode.png" />
     <Content Include="Resources\rainbow.png" />
@@ -759,7 +784,6 @@
     <Content Include="Resources\Red Circle.png" />
     <None Include="Resources\right touch.png" />
     <Content Include="Resources\RIGHT.png" />
-    <Content Include="Resources\RightTouch.png" />
     <Content Include="Resources\RS.png" />
     <Content Include="Resources\RSD.png" />
     <Content Include="Resources\RSL.png" />
@@ -774,10 +798,6 @@
     <Content Include="Resources\shell32_new.png" />
     <Content Include="Resources\size.png" />
     <Content Include="Resources\START.png" />
-    <Content Include="Resources\sticks.png" />
-    <Content Include="Resources\sticks2.png" />
-    <Content Include="Resources\Touch states2.png" />
-    <Content Include="Resources\Touch.png" />
     <Content Include="Resources\UP.png" />
     <Content Include="Resources\UpperTouch.png" />
     <Content Include="Resources\USB.png" />

@@ -529,7 +529,7 @@
     <value>Остановлена работа DS4Windows</value>
   </data>
   <data name="TextDocs" xml:space="preserve">
-    <value>Накл. вниз</value>
+    <value>Текстовый документ (*.txt)</value>
   </data>
   <data name="CannotMoveFiles" xml:space="preserve">
     <value>Невозможно переместить файлы в новое место. Пожалуйста переименуйте папку с DS4Tool в "DS4Windows"</value>
@@ -542,5 +542,11 @@
   </data>
   <data name="InstallFailed" xml:space="preserve">
     <value>Установка не удалась. Пожалуйста повторите</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>Не назначено</value>
+  </data>
+  <data name="XMLFiles" xml:space="preserve">
+    <value>XML файлы (*.xml)</value>
   </data>
 </root>

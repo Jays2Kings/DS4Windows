@@ -160,6 +160,9 @@
     <value>المسار</value>
   </data>
   <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>اختر السجل هنا</value>
+    <value>اختر السجلات هنا</value>
+  </data>
+  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>اضف مسار</value>
   </data>
 </root>

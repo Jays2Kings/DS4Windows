@@ -174,30 +174,18 @@ namespace DS4Windows
         public bool dragging, dragging2;
         private void synthesizeMouseButtons()
         {
-            if (Global.getCustomButton(deviceNum, DS4Controls.TouchLeft) == X360Controls.None &&
-                Global.getCustomMacro(deviceNum, DS4Controls.TouchLeft) == "0" &&
-                    Global.getCustomKey(deviceNum, DS4Controls.TouchLeft) == 0 &&
-                leftDown)
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchLeft.ToString(), false) == null && leftDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
                 dragging2 = true;
             }
             else
                 dragging2 = false;
-            if (Global.getCustomButton(deviceNum, DS4Controls.TouchUpper) == X360Controls.None &&
-                Global.getCustomMacro(deviceNum, DS4Controls.TouchUpper) == "0" &&
-                    Global.getCustomKey(deviceNum, DS4Controls.TouchUpper) == 0 &&
-                upperDown)
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchUpper.ToString(), false) == null && upperDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Middle);
-            if (Global.getCustomButton(deviceNum, DS4Controls.TouchRight) == X360Controls.None &&
-                Global.getCustomMacro(deviceNum, DS4Controls.TouchRight) == "0" &&
-                    Global.getCustomKey(deviceNum, DS4Controls.TouchRight) == 0 &&
-                rightDown)
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchRight.ToString(), false) == null && rightDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
-            if (Global.getCustomButton(deviceNum, DS4Controls.TouchMulti) == X360Controls.None &&
-                Global.getCustomMacro(deviceNum, DS4Controls.TouchMulti) == "0" &&
-                    Global.getCustomKey(deviceNum, DS4Controls.TouchMulti) == 0 &&
-                multiDown)
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchMulti.ToString(), false) == null && multiDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
             if (!Global.UseTPforControls[deviceNum])
             {

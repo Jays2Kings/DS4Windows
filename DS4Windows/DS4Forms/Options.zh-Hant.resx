@@ -711,4 +711,7 @@
   <data name="tPShiftMod.Text" xml:space="preserve">
     <value>Shift Modifier</value>
   </data>
+  <data name="alwaysOnToolStripMenuItem.Text" xml:space="preserve">
+    <value>總是啟用</value>
+  </data>
 </root>

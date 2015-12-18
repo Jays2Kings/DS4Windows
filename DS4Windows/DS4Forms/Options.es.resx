@@ -323,7 +323,7 @@
     <value>162, 26</value>
   </data>
   <data name="ABXYToolStripMenuItem.Text" xml:space="preserve">
-    <value>Botones de Cara</value>
+    <value>Botones delanteros</value>
   </data>
   <data name="wScanCodeWASDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 26</value>
@@ -401,8 +401,7 @@
     <value>227, 11</value>
   </data>
   <data name="cBMouseAccel.Text" xml:space="preserve">
-    <value>Aceleración 
-de ratón</value>
+    <value>Aceleración de ratón</value>
   </data>
   <data name="nUDSixaxis.Location" type="System.Drawing.Point, System.Drawing">
     <value>140, 92</value>
@@ -553,5 +552,59 @@ de ratón</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Zona muerta</value>
+  </data>
+  <data name="cBWhileCharging.Items" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="cBWhileCharging.Items3" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dpad</value>
+  </data>
+  <data name="fingerOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Un dedo en el Touchpad</value>
+  </data>
+  <data name="fingersOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dos dedos en el Touchpad</value>
+  </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Sensibilidad</value>
+  </data>
+  <data name="lb6Gryo.Text" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbGyroInvert.Text" xml:space="preserve">
+    <value>Invertir:</value>
+  </data>
+  <data name="lbGyroSens.Text" xml:space="preserve">
+    <value>Sensibilidad Giroscopio:</value>
+  </data>
+  <data name="lbGyroTriggers.Text" xml:space="preserve">
+    <value>Gatillos:</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="rBSAControls.Text" xml:space="preserve">
+    <value>Usar para controles</value>
+  </data>
+  <data name="rBSAMouse.Text" xml:space="preserve">
+    <value>Usar como ratón</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Restablecer</value>
+  </data>
+  <data name="tPCurve.Text" xml:space="preserve">
+    <value>Curva</value>
   </data>
 </root>

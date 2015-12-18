@@ -266,12 +266,6 @@
   <data name="rBTPControls.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 46</value>
   </data>
-  <data name="gBTouchpad.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 236</value>
-  </data>
-  <data name="gBTouchpad.Text" xml:space="preserve">
-    <value>Тачпад</value>
-  </data>
   <data name="cbStartTouchpadOff.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 137</value>
   </data>
@@ -397,6 +391,12 @@
   </data>
   <data name="fLPTouchSwipe.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 398</value>
+  </data>
+  <data name="gBTouchpad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 236</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Тачпад</value>
   </data>
   <data name="cBDinput.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 181</value>
@@ -751,10 +751,16 @@
   <data name="pSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 26</value>
   </data>
-  <data name="resetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="alwaysOnToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 26</value>
   </data>
   <data name="cMGyroTriggers.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 524</value>
+  </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Чувствительность</value>
+  </data>
+  <data name="tPController.Text" xml:space="preserve">
+    <value>Считывание контроллера</value>
   </data>
 </root>

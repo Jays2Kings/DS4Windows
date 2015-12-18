@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KBM360));
-            this.pBX360 = new System.Windows.Forms.PictureBox();
+            this.pBHighlight = new System.Windows.Forms.PictureBox();
             this.pBMouse = new System.Windows.Forms.PictureBox();
             this.btnF6 = new System.Windows.Forms.Button();
             this.btnF5 = new System.Windows.Forms.Button();
@@ -63,7 +63,7 @@
             this.btn5 = new System.Windows.Forms.Button();
             this.btnPREVTRACK = new System.Windows.Forms.Button();
             this.btn4 = new System.Windows.Forms.Button();
-            this.button38 = new System.Windows.Forms.Button();
+            this.btnVolUp = new System.Windows.Forms.Button();
             this.btn3 = new System.Windows.Forms.Button();
             this.button39 = new System.Windows.Forms.Button();
             this.btn2 = new System.Windows.Forms.Button();
@@ -142,31 +142,31 @@
             this.btnF = new System.Windows.Forms.Button();
             this.lBTip = new System.Windows.Forms.Label();
             this.btnD = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnAButton = new System.Windows.Forms.Button();
             this.btnS = new System.Windows.Forms.Button();
             this.btnGuide = new System.Windows.Forms.Button();
             this.btnA = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
             this.btnTAB = new System.Windows.Forms.Button();
-            this.button23 = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.btnBACKSLASH = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnBButton = new System.Windows.Forms.Button();
             this.btnCLOSEBRACKET = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnXButton = new System.Windows.Forms.Button();
             this.btnOPENBRACKET = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.btnYButton = new System.Windows.Forms.Button();
             this.btnP = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
+            this.btnLB = new System.Windows.Forms.Button();
             this.btnO = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
+            this.btnDpadRight = new System.Windows.Forms.Button();
             this.btnI = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
+            this.btnDpadUp = new System.Windows.Forms.Button();
             this.btnU = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
+            this.btnDpadDown = new System.Windows.Forms.Button();
             this.btnY = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
+            this.btnDpadLeft = new System.Windows.Forms.Button();
             this.btnT = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
+            this.btnLT = new System.Windows.Forms.Button();
             this.btnR = new System.Windows.Forms.Button();
             this.X360Label = new System.Windows.Forms.Label();
             this.bTNRIGHTMOUSE = new System.Windows.Forms.Button();
@@ -176,28 +176,28 @@
             this.bnWHEELDOWN = new System.Windows.Forms.Button();
             this.bnMacro = new System.Windows.Forms.Button();
             this.bnWHEELUP = new System.Windows.Forms.Button();
-            this.btnRSL = new System.Windows.Forms.Button();
+            this.btnRSLeft = new System.Windows.Forms.Button();
             this.btnMIDDLEMOUSE = new System.Windows.Forms.Button();
-            this.btnRSD = new System.Windows.Forms.Button();
+            this.btnRSDown = new System.Windows.Forms.Button();
             this.btnW = new System.Windows.Forms.Button();
-            this.btnRSR = new System.Windows.Forms.Button();
+            this.btnRSRight = new System.Windows.Forms.Button();
             this.button33 = new System.Windows.Forms.Button();
             this.btnRB = new System.Windows.Forms.Button();
-            this.button30 = new System.Windows.Forms.Button();
-            this.btnLSL = new System.Windows.Forms.Button();
+            this.btn4THMOUSE = new System.Windows.Forms.Button();
+            this.btnLSLeft = new System.Windows.Forms.Button();
             this.btnMOUSERIGHT = new System.Windows.Forms.Button();
-            this.btnRSU = new System.Windows.Forms.Button();
+            this.btnRSUp = new System.Windows.Forms.Button();
             this.btnMOUSELEFT = new System.Windows.Forms.Button();
-            this.btnLSD = new System.Windows.Forms.Button();
+            this.btnLSDown = new System.Windows.Forms.Button();
             this.btnMOUSEDOWN = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnRT = new System.Windows.Forms.Button();
             this.btnMOUSEUP = new System.Windows.Forms.Button();
-            this.btnLSR = new System.Windows.Forms.Button();
+            this.btnLSRight = new System.Windows.Forms.Button();
             this.btnLEFTMOUSE = new System.Windows.Forms.Button();
-            this.btnRS = new System.Windows.Forms.Button();
+            this.btnRSClick = new System.Windows.Forms.Button();
             this.btnQ = new System.Windows.Forms.Button();
-            this.btnLSU = new System.Windows.Forms.Button();
-            this.btnLS = new System.Windows.Forms.Button();
+            this.btnLSUp = new System.Windows.Forms.Button();
+            this.btnLSClick = new System.Windows.Forms.Button();
             this.cBToggle = new System.Windows.Forms.CheckBox();
             this.btnDefault = new System.Windows.Forms.Button();
             this.btnUNBOUND = new System.Windows.Forms.Button();
@@ -208,8 +208,13 @@
             this.lbBlueV = new System.Windows.Forms.Label();
             this.lbGreenV = new System.Windows.Forms.Label();
             this.lbRedV = new System.Windows.Forms.Label();
+            this.rBRegular = new System.Windows.Forms.RadioButton();
+            this.rBShiftModifer = new System.Windows.Forms.RadioButton();
+            this.cBShiftButton = new System.Windows.Forms.ComboBox();
+            this.pnl360Controls = new System.Windows.Forms.Panel();
+            this.lb360Tip = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.pBX360)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBHighlight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBMouse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHeavy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLight)).BeginInit();
@@ -219,18 +224,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.tBRedBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMouse)).BeginInit();
             this.gBExtras.SuspendLayout();
+            this.pnl360Controls.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pBX360
+            // pBHighlight
             // 
-            resources.ApplyResources(this.pBX360, "pBX360");
-            this.pBX360.Name = "pBX360";
-            this.pBX360.TabStop = false;
+            this.pBHighlight.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.pBHighlight, "pBHighlight");
+            this.pBHighlight.Image = global::DS4Windows.Properties.Resources._360_highlight;
+            this.pBHighlight.Name = "pBHighlight";
+            this.pBHighlight.TabStop = false;
             // 
             // pBMouse
             // 
-            resources.ApplyResources(this.pBMouse, "pBMouse");
             this.pBMouse.Image = global::DS4Windows.Properties.Resources.mouse;
+            resources.ApplyResources(this.pBMouse, "pBMouse");
             this.pBMouse.Name = "pBMouse";
             this.pBMouse.TabStop = false;
             // 
@@ -414,7 +422,7 @@
             resources.ApplyResources(this.button34, "button34");
             this.button34.Name = "button34";
             this.button34.TabStop = false;
-            this.button34.Tag = "";
+            this.button34.Tag = "42";
             this.button34.UseVisualStyleBackColor = true;
             // 
             // btn8
@@ -489,13 +497,13 @@
             this.btn4.Tag = "52";
             this.btn4.UseVisualStyleBackColor = true;
             // 
-            // button38
+            // btnVolUp
             // 
-            resources.ApplyResources(this.button38, "button38");
-            this.button38.Name = "button38";
-            this.button38.TabStop = false;
-            this.button38.Tag = "175";
-            this.button38.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnVolUp, "btnVolUp");
+            this.btnVolUp.Name = "btnVolUp";
+            this.btnVolUp.TabStop = false;
+            this.btnVolUp.Tag = "175";
+            this.btnVolUp.UseVisualStyleBackColor = true;
             // 
             // btn3
             // 
@@ -942,7 +950,7 @@
             this.tBBlueBar.TickFrequency = 25;
             this.tBBlueBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tBBlueBar.Value = 255;
-            this.tBBlueBar.ValueChanged += new System.EventHandler(this.blueBar_ValueChanged);
+            this.tBBlueBar.ValueChanged += new System.EventHandler(this.SetColorToolTip);
             // 
             // btnL
             // 
@@ -985,7 +993,7 @@
             this.tBGreenBar.TickFrequency = 25;
             this.tBGreenBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tBGreenBar.Value = 255;
-            this.tBGreenBar.ValueChanged += new System.EventHandler(this.greenBar_ValueChanged);
+            this.tBGreenBar.ValueChanged += new System.EventHandler(this.SetColorToolTip);
             // 
             // tBRedBar
             // 
@@ -996,7 +1004,7 @@
             this.tBRedBar.TickFrequency = 25;
             this.tBRedBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tBRedBar.Value = 255;
-            this.tBRedBar.ValueChanged += new System.EventHandler(this.redBar_ValueChanged);
+            this.tBRedBar.ValueChanged += new System.EventHandler(this.SetColorToolTip);
             // 
             // lbBlue
             // 
@@ -1070,8 +1078,8 @@
             // 
             // bnColor
             // 
-            resources.ApplyResources(this.bnColor, "bnColor");
             this.bnColor.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.bnColor, "bnColor");
             this.bnColor.Name = "bnColor";
             this.bnColor.UseVisualStyleBackColor = false;
             this.bnColor.Click += new System.EventHandler(this.bnColor_Click);
@@ -1109,8 +1117,8 @@
             // 
             // lBTip
             // 
-            resources.ApplyResources(this.lBTip, "lBTip");
             this.lBTip.ForeColor = System.Drawing.SystemColors.GrayText;
+            resources.ApplyResources(this.lBTip, "lBTip");
             this.lBTip.Name = "lBTip";
             // 
             // btnD
@@ -1121,14 +1129,19 @@
             this.btnD.Tag = "68";
             this.btnD.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnAButton
             // 
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Image = global::DS4Windows.Properties.Resources.A;
-            this.button3.Name = "button3";
-            this.button3.TabStop = false;
-            this.button3.Tag = "X360A Button";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAButton.BackColor = System.Drawing.Color.Transparent;
+            this.btnAButton.FlatAppearance.BorderSize = 0;
+            this.btnAButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnAButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnAButton, "btnAButton");
+            this.btnAButton.Name = "btnAButton";
+            this.btnAButton.TabStop = false;
+            this.btnAButton.Tag = "X360A Button";
+            this.btnAButton.UseVisualStyleBackColor = false;
+            this.btnAButton.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnAButton.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnS
             // 
@@ -1140,11 +1153,17 @@
             // 
             // btnGuide
             // 
+            this.btnGuide.BackColor = System.Drawing.Color.Transparent;
+            this.btnGuide.FlatAppearance.BorderSize = 0;
+            this.btnGuide.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnGuide.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.btnGuide, "btnGuide");
             this.btnGuide.Name = "btnGuide";
             this.btnGuide.TabStop = false;
             this.btnGuide.Tag = "X360Guide";
-            this.btnGuide.UseVisualStyleBackColor = true;
+            this.btnGuide.UseVisualStyleBackColor = false;
+            this.btnGuide.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnGuide.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnA
             // 
@@ -1154,14 +1173,19 @@
             this.btnA.Tag = "65";
             this.btnA.UseVisualStyleBackColor = true;
             // 
-            // button22
+            // btnStart
             // 
-            resources.ApplyResources(this.button22, "button22");
-            this.button22.Image = global::DS4Windows.Properties.Resources.START;
-            this.button22.Name = "button22";
-            this.button22.TabStop = false;
-            this.button22.Tag = "X360Start";
-            this.button22.UseVisualStyleBackColor = true;
+            this.btnStart.BackColor = System.Drawing.Color.Transparent;
+            this.btnStart.FlatAppearance.BorderSize = 0;
+            this.btnStart.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnStart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnStart, "btnStart");
+            this.btnStart.Name = "btnStart";
+            this.btnStart.TabStop = false;
+            this.btnStart.Tag = "X360Start";
+            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnStart.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnTAB
             // 
@@ -1171,14 +1195,19 @@
             this.btnTAB.Tag = "9";
             this.btnTAB.UseVisualStyleBackColor = true;
             // 
-            // button23
+            // btnBack
             // 
-            resources.ApplyResources(this.button23, "button23");
-            this.button23.Image = global::DS4Windows.Properties.Resources.BACK;
-            this.button23.Name = "button23";
-            this.button23.TabStop = false;
-            this.button23.Tag = "X360Back";
-            this.button23.UseVisualStyleBackColor = true;
+            this.btnBack.BackColor = System.Drawing.Color.Transparent;
+            this.btnBack.FlatAppearance.BorderSize = 0;
+            this.btnBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnBack, "btnBack");
+            this.btnBack.Name = "btnBack";
+            this.btnBack.TabStop = false;
+            this.btnBack.Tag = "X360Back";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnBack.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnBACKSLASH
             // 
@@ -1188,14 +1217,19 @@
             this.btnBACKSLASH.Tag = "220";
             this.btnBACKSLASH.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // btnBButton
             // 
-            resources.ApplyResources(this.button8, "button8");
-            this.button8.Image = global::DS4Windows.Properties.Resources.B;
-            this.button8.Name = "button8";
-            this.button8.TabStop = false;
-            this.button8.Tag = "X360B Button";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnBButton.BackColor = System.Drawing.Color.Transparent;
+            this.btnBButton.FlatAppearance.BorderSize = 0;
+            this.btnBButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnBButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnBButton, "btnBButton");
+            this.btnBButton.Name = "btnBButton";
+            this.btnBButton.TabStop = false;
+            this.btnBButton.Tag = "X360B Button";
+            this.btnBButton.UseVisualStyleBackColor = false;
+            this.btnBButton.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnBButton.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnCLOSEBRACKET
             // 
@@ -1205,14 +1239,19 @@
             this.btnCLOSEBRACKET.Tag = "221";
             this.btnCLOSEBRACKET.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // btnXButton
             // 
-            resources.ApplyResources(this.button9, "button9");
-            this.button9.Image = global::DS4Windows.Properties.Resources.X;
-            this.button9.Name = "button9";
-            this.button9.TabStop = false;
-            this.button9.Tag = "X360X Button";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnXButton.BackColor = System.Drawing.Color.Transparent;
+            this.btnXButton.FlatAppearance.BorderSize = 0;
+            this.btnXButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnXButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnXButton, "btnXButton");
+            this.btnXButton.Name = "btnXButton";
+            this.btnXButton.TabStop = false;
+            this.btnXButton.Tag = "X360X Button";
+            this.btnXButton.UseVisualStyleBackColor = false;
+            this.btnXButton.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnXButton.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnOPENBRACKET
             // 
@@ -1222,14 +1261,19 @@
             this.btnOPENBRACKET.Tag = "219";
             this.btnOPENBRACKET.UseVisualStyleBackColor = true;
             // 
-            // button10
+            // btnYButton
             // 
-            resources.ApplyResources(this.button10, "button10");
-            this.button10.Image = global::DS4Windows.Properties.Resources.Y;
-            this.button10.Name = "button10";
-            this.button10.TabStop = false;
-            this.button10.Tag = "X360Y Button";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnYButton.BackColor = System.Drawing.Color.Transparent;
+            this.btnYButton.FlatAppearance.BorderSize = 0;
+            this.btnYButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnYButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnYButton, "btnYButton");
+            this.btnYButton.Name = "btnYButton";
+            this.btnYButton.TabStop = false;
+            this.btnYButton.Tag = "X360Y Button";
+            this.btnYButton.UseVisualStyleBackColor = false;
+            this.btnYButton.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnYButton.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnP
             // 
@@ -1239,14 +1283,19 @@
             this.btnP.Tag = "80";
             this.btnP.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // btnLB
             // 
-            resources.ApplyResources(this.button11, "button11");
-            this.button11.Image = global::DS4Windows.Properties.Resources.LB;
-            this.button11.Name = "button11";
-            this.button11.TabStop = false;
-            this.button11.Tag = "X360Left Bumper";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnLB.BackColor = System.Drawing.Color.Transparent;
+            this.btnLB.FlatAppearance.BorderSize = 0;
+            this.btnLB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLB, "btnLB");
+            this.btnLB.Name = "btnLB";
+            this.btnLB.TabStop = false;
+            this.btnLB.Tag = "X360Left Bumper";
+            this.btnLB.UseVisualStyleBackColor = false;
+            this.btnLB.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnLB.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnO
             // 
@@ -1256,14 +1305,19 @@
             this.btnO.Tag = "79";
             this.btnO.UseVisualStyleBackColor = true;
             // 
-            // button17
+            // btnDpadRight
             // 
-            resources.ApplyResources(this.button17, "button17");
-            this.button17.Image = global::DS4Windows.Properties.Resources.RIGHT;
-            this.button17.Name = "button17";
-            this.button17.TabStop = false;
-            this.button17.Tag = "X360Right Button";
-            this.button17.UseVisualStyleBackColor = true;
+            this.btnDpadRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnDpadRight.FlatAppearance.BorderSize = 0;
+            this.btnDpadRight.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDpadRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDpadRight, "btnDpadRight");
+            this.btnDpadRight.Name = "btnDpadRight";
+            this.btnDpadRight.TabStop = false;
+            this.btnDpadRight.Tag = "X360Right Button";
+            this.btnDpadRight.UseVisualStyleBackColor = false;
+            this.btnDpadRight.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnDpadRight.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnI
             // 
@@ -1273,14 +1327,19 @@
             this.btnI.Tag = "73";
             this.btnI.UseVisualStyleBackColor = true;
             // 
-            // button18
+            // btnDpadUp
             // 
-            resources.ApplyResources(this.button18, "button18");
-            this.button18.Image = global::DS4Windows.Properties.Resources.UP;
-            this.button18.Name = "button18";
-            this.button18.TabStop = false;
-            this.button18.Tag = "X360Up Button";
-            this.button18.UseVisualStyleBackColor = true;
+            this.btnDpadUp.BackColor = System.Drawing.Color.Transparent;
+            this.btnDpadUp.FlatAppearance.BorderSize = 0;
+            this.btnDpadUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDpadUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDpadUp, "btnDpadUp");
+            this.btnDpadUp.Name = "btnDpadUp";
+            this.btnDpadUp.TabStop = false;
+            this.btnDpadUp.Tag = "X360Up Button";
+            this.btnDpadUp.UseVisualStyleBackColor = false;
+            this.btnDpadUp.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnDpadUp.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnU
             // 
@@ -1290,14 +1349,19 @@
             this.btnU.Tag = "85";
             this.btnU.UseVisualStyleBackColor = true;
             // 
-            // button20
+            // btnDpadDown
             // 
-            resources.ApplyResources(this.button20, "button20");
-            this.button20.Image = global::DS4Windows.Properties.Resources.DOWN;
-            this.button20.Name = "button20";
-            this.button20.TabStop = false;
-            this.button20.Tag = "X360Down Button";
-            this.button20.UseVisualStyleBackColor = true;
+            this.btnDpadDown.BackColor = System.Drawing.Color.Transparent;
+            this.btnDpadDown.FlatAppearance.BorderSize = 0;
+            this.btnDpadDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDpadDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDpadDown, "btnDpadDown");
+            this.btnDpadDown.Name = "btnDpadDown";
+            this.btnDpadDown.TabStop = false;
+            this.btnDpadDown.Tag = "X360Down Button";
+            this.btnDpadDown.UseVisualStyleBackColor = false;
+            this.btnDpadDown.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnDpadDown.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnY
             // 
@@ -1307,14 +1371,19 @@
             this.btnY.Tag = "89";
             this.btnY.UseVisualStyleBackColor = true;
             // 
-            // button19
+            // btnDpadLeft
             // 
-            resources.ApplyResources(this.button19, "button19");
-            this.button19.Image = global::DS4Windows.Properties.Resources.LEFT;
-            this.button19.Name = "button19";
-            this.button19.TabStop = false;
-            this.button19.Tag = "X360Left Button";
-            this.button19.UseVisualStyleBackColor = true;
+            this.btnDpadLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnDpadLeft.FlatAppearance.BorderSize = 0;
+            this.btnDpadLeft.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDpadLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDpadLeft, "btnDpadLeft");
+            this.btnDpadLeft.Name = "btnDpadLeft";
+            this.btnDpadLeft.TabStop = false;
+            this.btnDpadLeft.Tag = "X360Left Button";
+            this.btnDpadLeft.UseVisualStyleBackColor = false;
+            this.btnDpadLeft.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnDpadLeft.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnT
             // 
@@ -1324,14 +1393,20 @@
             this.btnT.Tag = "84";
             this.btnT.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // btnLT
             // 
-            resources.ApplyResources(this.button13, "button13");
-            this.button13.Image = global::DS4Windows.Properties.Resources.LT;
-            this.button13.Name = "button13";
-            this.button13.TabStop = false;
-            this.button13.Tag = "X360Left Trigger";
-            this.button13.UseVisualStyleBackColor = true;
+            this.btnLT.BackColor = System.Drawing.Color.Transparent;
+            this.btnLT.FlatAppearance.BorderSize = 0;
+            this.btnLT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLT, "btnLT");
+            this.btnLT.ForeColor = System.Drawing.Color.Transparent;
+            this.btnLT.Name = "btnLT";
+            this.btnLT.TabStop = false;
+            this.btnLT.Tag = "X360Left Trigger";
+            this.btnLT.UseVisualStyleBackColor = false;
+            this.btnLT.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnLT.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnR
             // 
@@ -1396,14 +1471,19 @@
             this.bnWHEELUP.Tag = "Mouse Wheel Up";
             this.bnWHEELUP.UseVisualStyleBackColor = true;
             // 
-            // btnRSL
+            // btnRSLeft
             // 
-            resources.ApplyResources(this.btnRSL, "btnRSL");
-            this.btnRSL.Image = global::DS4Windows.Properties.Resources.RSL;
-            this.btnRSL.Name = "btnRSL";
-            this.btnRSL.TabStop = false;
-            this.btnRSL.Tag = "X360Right X-Axis-";
-            this.btnRSL.UseVisualStyleBackColor = true;
+            this.btnRSLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnRSLeft.FlatAppearance.BorderSize = 0;
+            this.btnRSLeft.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRSLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRSLeft, "btnRSLeft");
+            this.btnRSLeft.Name = "btnRSLeft";
+            this.btnRSLeft.TabStop = false;
+            this.btnRSLeft.Tag = "X360Right X-Axis-";
+            this.btnRSLeft.UseVisualStyleBackColor = false;
+            this.btnRSLeft.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnRSLeft.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnMIDDLEMOUSE
             // 
@@ -1413,14 +1493,19 @@
             this.btnMIDDLEMOUSE.Tag = "Middle Mouse Button";
             this.btnMIDDLEMOUSE.UseVisualStyleBackColor = true;
             // 
-            // btnRSD
+            // btnRSDown
             // 
-            resources.ApplyResources(this.btnRSD, "btnRSD");
-            this.btnRSD.Image = global::DS4Windows.Properties.Resources.RSD;
-            this.btnRSD.Name = "btnRSD";
-            this.btnRSD.TabStop = false;
-            this.btnRSD.Tag = "X360Right Y-Axis+";
-            this.btnRSD.UseVisualStyleBackColor = true;
+            this.btnRSDown.BackColor = System.Drawing.Color.Transparent;
+            this.btnRSDown.FlatAppearance.BorderSize = 0;
+            this.btnRSDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRSDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRSDown, "btnRSDown");
+            this.btnRSDown.Name = "btnRSDown";
+            this.btnRSDown.TabStop = false;
+            this.btnRSDown.Tag = "X360Right Y-Axis+";
+            this.btnRSDown.UseVisualStyleBackColor = false;
+            this.btnRSDown.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnRSDown.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnW
             // 
@@ -1430,14 +1515,19 @@
             this.btnW.Tag = "87";
             this.btnW.UseVisualStyleBackColor = true;
             // 
-            // btnRSR
+            // btnRSRight
             // 
-            resources.ApplyResources(this.btnRSR, "btnRSR");
-            this.btnRSR.Image = global::DS4Windows.Properties.Resources.RSR;
-            this.btnRSR.Name = "btnRSR";
-            this.btnRSR.TabStop = false;
-            this.btnRSR.Tag = "X360Right X-Axis+";
-            this.btnRSR.UseVisualStyleBackColor = true;
+            this.btnRSRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnRSRight.FlatAppearance.BorderSize = 0;
+            this.btnRSRight.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRSRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRSRight, "btnRSRight");
+            this.btnRSRight.Name = "btnRSRight";
+            this.btnRSRight.TabStop = false;
+            this.btnRSRight.Tag = "X360Right X-Axis+";
+            this.btnRSRight.UseVisualStyleBackColor = false;
+            this.btnRSRight.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnRSRight.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // button33
             // 
@@ -1449,29 +1539,39 @@
             // 
             // btnRB
             // 
+            this.btnRB.BackColor = System.Drawing.Color.Transparent;
+            this.btnRB.FlatAppearance.BorderSize = 0;
+            this.btnRB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.btnRB, "btnRB");
-            this.btnRB.Image = global::DS4Windows.Properties.Resources.RB;
             this.btnRB.Name = "btnRB";
             this.btnRB.TabStop = false;
             this.btnRB.Tag = "X360Right Bumper";
-            this.btnRB.UseVisualStyleBackColor = true;
+            this.btnRB.UseVisualStyleBackColor = false;
+            this.btnRB.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnRB.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
-            // button30
+            // btn4THMOUSE
             // 
-            resources.ApplyResources(this.button30, "button30");
-            this.button30.Name = "button30";
-            this.button30.TabStop = false;
-            this.button30.Tag = "4th Mouse Button";
-            this.button30.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btn4THMOUSE, "btn4THMOUSE");
+            this.btn4THMOUSE.Name = "btn4THMOUSE";
+            this.btn4THMOUSE.TabStop = false;
+            this.btn4THMOUSE.Tag = "4th Mouse Button";
+            this.btn4THMOUSE.UseVisualStyleBackColor = true;
             // 
-            // btnLSL
+            // btnLSLeft
             // 
-            resources.ApplyResources(this.btnLSL, "btnLSL");
-            this.btnLSL.Image = global::DS4Windows.Properties.Resources.LSL;
-            this.btnLSL.Name = "btnLSL";
-            this.btnLSL.TabStop = false;
-            this.btnLSL.Tag = "X360Left X-Axis-";
-            this.btnLSL.UseVisualStyleBackColor = true;
+            this.btnLSLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnLSLeft.FlatAppearance.BorderSize = 0;
+            this.btnLSLeft.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLSLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLSLeft, "btnLSLeft");
+            this.btnLSLeft.Name = "btnLSLeft";
+            this.btnLSLeft.TabStop = false;
+            this.btnLSLeft.Tag = "X360Left X-Axis-";
+            this.btnLSLeft.UseVisualStyleBackColor = false;
+            this.btnLSLeft.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnLSLeft.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnMOUSERIGHT
             // 
@@ -1481,14 +1581,19 @@
             this.btnMOUSERIGHT.Tag = "Mouse Right";
             this.btnMOUSERIGHT.UseVisualStyleBackColor = true;
             // 
-            // btnRSU
+            // btnRSUp
             // 
-            resources.ApplyResources(this.btnRSU, "btnRSU");
-            this.btnRSU.Image = global::DS4Windows.Properties.Resources.RSU;
-            this.btnRSU.Name = "btnRSU";
-            this.btnRSU.TabStop = false;
-            this.btnRSU.Tag = "X360Right Y-Axis-";
-            this.btnRSU.UseVisualStyleBackColor = true;
+            this.btnRSUp.BackColor = System.Drawing.Color.Transparent;
+            this.btnRSUp.FlatAppearance.BorderSize = 0;
+            this.btnRSUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRSUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRSUp, "btnRSUp");
+            this.btnRSUp.Name = "btnRSUp";
+            this.btnRSUp.TabStop = false;
+            this.btnRSUp.Tag = "X360Right Y-Axis-";
+            this.btnRSUp.UseVisualStyleBackColor = false;
+            this.btnRSUp.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnRSUp.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnMOUSELEFT
             // 
@@ -1498,14 +1603,19 @@
             this.btnMOUSELEFT.Tag = "Mouse Left";
             this.btnMOUSELEFT.UseVisualStyleBackColor = true;
             // 
-            // btnLSD
+            // btnLSDown
             // 
-            resources.ApplyResources(this.btnLSD, "btnLSD");
-            this.btnLSD.Image = global::DS4Windows.Properties.Resources.LSD;
-            this.btnLSD.Name = "btnLSD";
-            this.btnLSD.TabStop = false;
-            this.btnLSD.Tag = "X360Left Y-Axis+";
-            this.btnLSD.UseVisualStyleBackColor = true;
+            this.btnLSDown.BackColor = System.Drawing.Color.Transparent;
+            this.btnLSDown.FlatAppearance.BorderSize = 0;
+            this.btnLSDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLSDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLSDown, "btnLSDown");
+            this.btnLSDown.Name = "btnLSDown";
+            this.btnLSDown.TabStop = false;
+            this.btnLSDown.Tag = "X360Left Y-Axis+";
+            this.btnLSDown.UseVisualStyleBackColor = false;
+            this.btnLSDown.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnLSDown.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnMOUSEDOWN
             // 
@@ -1515,14 +1625,19 @@
             this.btnMOUSEDOWN.Tag = "Mouse Down";
             this.btnMOUSEDOWN.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnRT
             // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Image = global::DS4Windows.Properties.Resources.RT;
-            this.button2.Name = "button2";
-            this.button2.TabStop = false;
-            this.button2.Tag = "X360Right Trigger";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRT.BackColor = System.Drawing.Color.Transparent;
+            this.btnRT.FlatAppearance.BorderSize = 0;
+            this.btnRT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRT, "btnRT");
+            this.btnRT.Name = "btnRT";
+            this.btnRT.TabStop = false;
+            this.btnRT.Tag = "X360Right Trigger";
+            this.btnRT.UseVisualStyleBackColor = false;
+            this.btnRT.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnRT.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnMOUSEUP
             // 
@@ -1532,14 +1647,19 @@
             this.btnMOUSEUP.Tag = "Mouse Up";
             this.btnMOUSEUP.UseVisualStyleBackColor = true;
             // 
-            // btnLSR
+            // btnLSRight
             // 
-            resources.ApplyResources(this.btnLSR, "btnLSR");
-            this.btnLSR.Image = global::DS4Windows.Properties.Resources.LSR;
-            this.btnLSR.Name = "btnLSR";
-            this.btnLSR.TabStop = false;
-            this.btnLSR.Tag = "X360Left X-Axis+";
-            this.btnLSR.UseVisualStyleBackColor = true;
+            this.btnLSRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnLSRight.FlatAppearance.BorderSize = 0;
+            this.btnLSRight.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLSRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLSRight, "btnLSRight");
+            this.btnLSRight.Name = "btnLSRight";
+            this.btnLSRight.TabStop = false;
+            this.btnLSRight.Tag = "X360Left X-Axis+";
+            this.btnLSRight.UseVisualStyleBackColor = false;
+            this.btnLSRight.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnLSRight.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnLEFTMOUSE
             // 
@@ -1549,14 +1669,19 @@
             this.btnLEFTMOUSE.Tag = "Left Mouse Button";
             this.btnLEFTMOUSE.UseVisualStyleBackColor = true;
             // 
-            // btnRS
+            // btnRSClick
             // 
-            resources.ApplyResources(this.btnRS, "btnRS");
-            this.btnRS.Image = global::DS4Windows.Properties.Resources.RS;
-            this.btnRS.Name = "btnRS";
-            this.btnRS.TabStop = false;
-            this.btnRS.Tag = "X360Right Stick";
-            this.btnRS.UseVisualStyleBackColor = true;
+            this.btnRSClick.BackColor = System.Drawing.Color.Transparent;
+            this.btnRSClick.FlatAppearance.BorderSize = 0;
+            this.btnRSClick.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRSClick.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnRSClick, "btnRSClick");
+            this.btnRSClick.Name = "btnRSClick";
+            this.btnRSClick.TabStop = false;
+            this.btnRSClick.Tag = "X360Right Stick";
+            this.btnRSClick.UseVisualStyleBackColor = false;
+            this.btnRSClick.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnRSClick.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // btnQ
             // 
@@ -1566,23 +1691,33 @@
             this.btnQ.Tag = "81";
             this.btnQ.UseVisualStyleBackColor = true;
             // 
-            // btnLSU
+            // btnLSUp
             // 
-            resources.ApplyResources(this.btnLSU, "btnLSU");
-            this.btnLSU.Image = global::DS4Windows.Properties.Resources.LSU;
-            this.btnLSU.Name = "btnLSU";
-            this.btnLSU.TabStop = false;
-            this.btnLSU.Tag = "X360Left Y-Axis-";
-            this.btnLSU.UseVisualStyleBackColor = true;
+            this.btnLSUp.BackColor = System.Drawing.Color.Transparent;
+            this.btnLSUp.FlatAppearance.BorderSize = 0;
+            this.btnLSUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLSUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLSUp, "btnLSUp");
+            this.btnLSUp.Name = "btnLSUp";
+            this.btnLSUp.TabStop = false;
+            this.btnLSUp.Tag = "X360Left Y-Axis-";
+            this.btnLSUp.UseVisualStyleBackColor = false;
+            this.btnLSUp.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnLSUp.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
-            // btnLS
+            // btnLSClick
             // 
-            resources.ApplyResources(this.btnLS, "btnLS");
-            this.btnLS.Image = global::DS4Windows.Properties.Resources.LS;
-            this.btnLS.Name = "btnLS";
-            this.btnLS.TabStop = false;
-            this.btnLS.Tag = "X360Left Stick";
-            this.btnLS.UseVisualStyleBackColor = true;
+            this.btnLSClick.BackColor = System.Drawing.Color.Transparent;
+            this.btnLSClick.FlatAppearance.BorderSize = 0;
+            this.btnLSClick.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLSClick.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnLSClick, "btnLSClick");
+            this.btnLSClick.Name = "btnLSClick";
+            this.btnLSClick.TabStop = false;
+            this.btnLSClick.Tag = "X360Left Stick";
+            this.btnLSClick.UseVisualStyleBackColor = false;
+            this.btnLSClick.MouseLeave += new System.EventHandler(this.Highlight_Leave);
+            this.btnLSClick.MouseHover += new System.EventHandler(this.Hightlight_Hover);
             // 
             // cBToggle
             // 
@@ -1616,7 +1751,6 @@
             // 
             // gBExtras
             // 
-            resources.ApplyResources(this.gBExtras, "gBExtras");
             this.gBExtras.Controls.Add(this.nUDMouse);
             this.gBExtras.Controls.Add(this.cBMouse);
             this.gBExtras.Controls.Add(this.cBLightbar);
@@ -1639,6 +1773,7 @@
             this.gBExtras.Controls.Add(this.tBGreenBar);
             this.gBExtras.Controls.Add(this.tBRedBar);
             this.gBExtras.Controls.Add(this.lBTip);
+            resources.ApplyResources(this.gBExtras, "gBExtras");
             this.gBExtras.Name = "gBExtras";
             this.gBExtras.TabStop = false;
             // 
@@ -1647,12 +1782,14 @@
             resources.ApplyResources(this.cBMouse, "cBMouse");
             this.cBMouse.Name = "cBMouse";
             this.cBMouse.UseVisualStyleBackColor = true;
+            this.cBMouse.CheckedChanged += new System.EventHandler(this.ExtraChanged);
             // 
             // cBLightbar
             // 
             resources.ApplyResources(this.cBLightbar, "cBLightbar");
             this.cBLightbar.Name = "cBLightbar";
             this.cBLightbar.UseVisualStyleBackColor = true;
+            this.cBLightbar.CheckedChanged += new System.EventHandler(this.ExtraChanged);
             // 
             // lbBlueV
             // 
@@ -1669,6 +1806,98 @@
             resources.ApplyResources(this.lbRedV, "lbRedV");
             this.lbRedV.Name = "lbRedV";
             // 
+            // rBRegular
+            // 
+            resources.ApplyResources(this.rBRegular, "rBRegular");
+            this.rBRegular.Name = "rBRegular";
+            this.rBRegular.TabStop = true;
+            this.rBRegular.UseVisualStyleBackColor = true;
+            this.rBRegular.CheckedChanged += new System.EventHandler(this.rBShift_CheckedChanged);
+            // 
+            // rBShiftModifer
+            // 
+            resources.ApplyResources(this.rBShiftModifer, "rBShiftModifer");
+            this.rBShiftModifer.Name = "rBShiftModifer";
+            this.rBShiftModifer.TabStop = true;
+            this.rBShiftModifer.UseVisualStyleBackColor = true;
+            this.rBShiftModifer.CheckedChanged += new System.EventHandler(this.rBShift_CheckedChanged);
+            // 
+            // cBShiftButton
+            // 
+            this.cBShiftButton.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBShiftButton.FormattingEnabled = true;
+            this.cBShiftButton.Items.AddRange(new object[] {
+            resources.GetString("cBShiftButton.Items"),
+            resources.GetString("cBShiftButton.Items1"),
+            resources.GetString("cBShiftButton.Items2"),
+            resources.GetString("cBShiftButton.Items3"),
+            resources.GetString("cBShiftButton.Items4"),
+            resources.GetString("cBShiftButton.Items5"),
+            resources.GetString("cBShiftButton.Items6"),
+            resources.GetString("cBShiftButton.Items7"),
+            resources.GetString("cBShiftButton.Items8"),
+            resources.GetString("cBShiftButton.Items9"),
+            resources.GetString("cBShiftButton.Items10"),
+            resources.GetString("cBShiftButton.Items11"),
+            resources.GetString("cBShiftButton.Items12"),
+            resources.GetString("cBShiftButton.Items13"),
+            resources.GetString("cBShiftButton.Items14"),
+            resources.GetString("cBShiftButton.Items15"),
+            resources.GetString("cBShiftButton.Items16"),
+            resources.GetString("cBShiftButton.Items17"),
+            resources.GetString("cBShiftButton.Items18"),
+            resources.GetString("cBShiftButton.Items19"),
+            resources.GetString("cBShiftButton.Items20"),
+            resources.GetString("cBShiftButton.Items21"),
+            resources.GetString("cBShiftButton.Items22"),
+            resources.GetString("cBShiftButton.Items23"),
+            resources.GetString("cBShiftButton.Items24"),
+            resources.GetString("cBShiftButton.Items25"),
+            resources.GetString("cBShiftButton.Items26")});
+            resources.ApplyResources(this.cBShiftButton, "cBShiftButton");
+            this.cBShiftButton.Name = "cBShiftButton";
+            // 
+            // pnl360Controls
+            // 
+            this.pnl360Controls.BackgroundImage = global::DS4Windows.Properties.Resources._360_map;
+            resources.ApplyResources(this.pnl360Controls, "pnl360Controls");
+            this.pnl360Controls.Controls.Add(this.lb360Tip);
+            this.pnl360Controls.Controls.Add(this.pBHighlight);
+            this.pnl360Controls.Controls.Add(this.btnGuide);
+            this.pnl360Controls.Controls.Add(this.btnLT);
+            this.pnl360Controls.Controls.Add(this.btnAButton);
+            this.pnl360Controls.Controls.Add(this.btnLB);
+            this.pnl360Controls.Controls.Add(this.btnStart);
+            this.pnl360Controls.Controls.Add(this.btnRT);
+            this.pnl360Controls.Controls.Add(this.btnLSDown);
+            this.pnl360Controls.Controls.Add(this.btnBack);
+            this.pnl360Controls.Controls.Add(this.btnRSUp);
+            this.pnl360Controls.Controls.Add(this.btnLSRight);
+            this.pnl360Controls.Controls.Add(this.btnBButton);
+            this.pnl360Controls.Controls.Add(this.btnLSLeft);
+            this.pnl360Controls.Controls.Add(this.btnRB);
+            this.pnl360Controls.Controls.Add(this.btnXButton);
+            this.pnl360Controls.Controls.Add(this.btnRSRight);
+            this.pnl360Controls.Controls.Add(this.btnRSDown);
+            this.pnl360Controls.Controls.Add(this.btnYButton);
+            this.pnl360Controls.Controls.Add(this.btnRSClick);
+            this.pnl360Controls.Controls.Add(this.btnRSLeft);
+            this.pnl360Controls.Controls.Add(this.btnDpadRight);
+            this.pnl360Controls.Controls.Add(this.X360Label);
+            this.pnl360Controls.Controls.Add(this.btnDpadLeft);
+            this.pnl360Controls.Controls.Add(this.btnLSClick);
+            this.pnl360Controls.Controls.Add(this.btnLSUp);
+            this.pnl360Controls.Controls.Add(this.btnDpadDown);
+            this.pnl360Controls.Controls.Add(this.btnDpadUp);
+            this.pnl360Controls.Name = "pnl360Controls";
+            // 
+            // lb360Tip
+            // 
+            resources.ApplyResources(this.lb360Tip, "lb360Tip");
+            this.lb360Tip.BackColor = System.Drawing.SystemColors.ControlText;
+            this.lb360Tip.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lb360Tip.Name = "lb360Tip";
+            // 
             // advColorDialog
             // 
             this.advColorDialog.AnyColor = true;
@@ -1680,55 +1909,46 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.cBShiftButton);
+            this.Controls.Add(this.rBShiftModifer);
+            this.Controls.Add(this.rBRegular);
             this.Controls.Add(this.gBExtras);
             this.Controls.Add(this.btnESC);
             this.Controls.Add(this.btnUNBOUND);
             this.Controls.Add(this.lBMacroOn);
             this.Controls.Add(this.btnDefault);
             this.Controls.Add(this.cBToggle);
-            this.Controls.Add(this.btnLS);
             this.Controls.Add(this.btnF6);
-            this.Controls.Add(this.btnLSU);
             this.Controls.Add(this.btnF5);
             this.Controls.Add(this.btnQ);
             this.Controls.Add(this.btnF7);
-            this.Controls.Add(this.btnRS);
             this.Controls.Add(this.btnF4);
             this.Controls.Add(this.btnLEFTMOUSE);
             this.Controls.Add(this.btnF8);
-            this.Controls.Add(this.btnLSR);
             this.Controls.Add(this.btnF3);
             this.Controls.Add(this.btnMOUSEUP);
             this.Controls.Add(this.btnF9);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnF2);
             this.Controls.Add(this.btnMOUSEDOWN);
             this.Controls.Add(this.btnINS);
-            this.Controls.Add(this.btnLSD);
             this.Controls.Add(this.btnF1);
             this.Controls.Add(this.btnMOUSELEFT);
             this.Controls.Add(this.btnHOME);
-            this.Controls.Add(this.btnRSU);
             this.Controls.Add(this.btn1);
             this.Controls.Add(this.btnMOUSERIGHT);
             this.Controls.Add(this.btnPGUP);
-            this.Controls.Add(this.btnLSL);
             this.Controls.Add(this.btnBACKSPACE);
-            this.Controls.Add(this.button30);
+            this.Controls.Add(this.btn4THMOUSE);
             this.Controls.Add(this.btnPGDN);
-            this.Controls.Add(this.btnRB);
             this.Controls.Add(this.btnEQUALS);
             this.Controls.Add(this.button33);
             this.Controls.Add(this.btnEND);
-            this.Controls.Add(this.btnRSR);
             this.Controls.Add(this.btnMINUS);
             this.Controls.Add(this.btnW);
             this.Controls.Add(this.btnDEL);
-            this.Controls.Add(this.btnRSD);
             this.Controls.Add(this.btn0);
             this.Controls.Add(this.btnMIDDLEMOUSE);
             this.Controls.Add(this.btnSCL);
-            this.Controls.Add(this.btnRSL);
             this.Controls.Add(this.btn9);
             this.Controls.Add(this.bnWHEELUP);
             this.Controls.Add(this.button34);
@@ -1743,59 +1963,45 @@
             this.Controls.Add(this.btn6);
             this.Controls.Add(this.bTNRIGHTMOUSE);
             this.Controls.Add(this.btnNEXTTRACK);
-            this.Controls.Add(this.X360Label);
             this.Controls.Add(this.btn5);
             this.Controls.Add(this.btnR);
             this.Controls.Add(this.btnPREVTRACK);
-            this.Controls.Add(this.button13);
             this.Controls.Add(this.btn4);
             this.Controls.Add(this.btnT);
-            this.Controls.Add(this.button38);
-            this.Controls.Add(this.button19);
+            this.Controls.Add(this.btnVolUp);
             this.Controls.Add(this.btn3);
             this.Controls.Add(this.btnY);
             this.Controls.Add(this.button39);
-            this.Controls.Add(this.button20);
             this.Controls.Add(this.btn2);
             this.Controls.Add(this.btnU);
             this.Controls.Add(this.button35);
-            this.Controls.Add(this.button18);
             this.Controls.Add(this.btnSPACE);
             this.Controls.Add(this.btnI);
             this.Controls.Add(this.btnBREAK);
-            this.Controls.Add(this.button17);
             this.Controls.Add(this.btnLSHIFT);
             this.Controls.Add(this.btnO);
             this.Controls.Add(this.btnF12);
-            this.Controls.Add(this.button11);
             this.Controls.Add(this.btnRSHIFT);
             this.Controls.Add(this.btnP);
             this.Controls.Add(this.btnF10);
-            this.Controls.Add(this.button10);
             this.Controls.Add(this.btnSLASH);
             this.Controls.Add(this.btnOPENBRACKET);
             this.Controls.Add(this.btnF11);
-            this.Controls.Add(this.button9);
             this.Controls.Add(this.btnPERIOD);
             this.Controls.Add(this.btnCLOSEBRACKET);
             this.Controls.Add(this.btnTILDE);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.btnCOMMA);
             this.Controls.Add(this.btnBACKSLASH);
             this.Controls.Add(this.btnM);
-            this.Controls.Add(this.button23);
             this.Controls.Add(this.btnNUMLOCK);
             this.Controls.Add(this.btnTAB);
             this.Controls.Add(this.btnN);
-            this.Controls.Add(this.button22);
             this.Controls.Add(this.btnNUM7);
             this.Controls.Add(this.btnA);
             this.Controls.Add(this.btnB);
-            this.Controls.Add(this.btnGuide);
             this.Controls.Add(this.btnNUMSLASH);
             this.Controls.Add(this.btnS);
             this.Controls.Add(this.btnV);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnNUM8);
             this.Controls.Add(this.btnD);
             this.Controls.Add(this.btnC);
@@ -1836,7 +2042,7 @@
             this.Controls.Add(this.btnCAPS);
             this.Controls.Add(this.btnNUM0);
             this.Controls.Add(this.pBMouse);
-            this.Controls.Add(this.pBX360);
+            this.Controls.Add(this.pnl360Controls);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -1844,7 +2050,7 @@
             this.Name = "KBM360";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finalMeasure);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Key_Down_Action);
-            ((System.ComponentModel.ISupportInitialize)(this.pBX360)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBHighlight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBMouse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHeavy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLight)).EndInit();
@@ -1855,6 +2061,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDMouse)).EndInit();
             this.gBExtras.ResumeLayout(false);
             this.gBExtras.PerformLayout();
+            this.pnl360Controls.ResumeLayout(false);
+            this.pnl360Controls.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1862,7 +2070,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pBX360;
+        private System.Windows.Forms.PictureBox pBHighlight;
         private System.Windows.Forms.PictureBox pBMouse;
         private System.Windows.Forms.Button btnF6;
         private System.Windows.Forms.Button btnF5;
@@ -1896,7 +2104,7 @@
         private System.Windows.Forms.Button btn5;
         private System.Windows.Forms.Button btnPREVTRACK;
         private System.Windows.Forms.Button btn4;
-        private System.Windows.Forms.Button button38;
+        private System.Windows.Forms.Button btnVolUp;
         private System.Windows.Forms.Button btn3;
         private System.Windows.Forms.Button button39;
         private System.Windows.Forms.Button btn2;
@@ -1975,31 +2183,31 @@
         private System.Windows.Forms.Button btnF;
         private System.Windows.Forms.Label lBTip;
         private System.Windows.Forms.Button btnD;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnAButton;
         private System.Windows.Forms.Button btnS;
         private System.Windows.Forms.Button btnGuide;
         private System.Windows.Forms.Button btnA;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnTAB;
-        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnBACKSLASH;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnBButton;
         private System.Windows.Forms.Button btnCLOSEBRACKET;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnXButton;
         private System.Windows.Forms.Button btnOPENBRACKET;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnYButton;
         private System.Windows.Forms.Button btnP;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button btnLB;
         private System.Windows.Forms.Button btnO;
-        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button btnDpadRight;
         private System.Windows.Forms.Button btnI;
-        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button btnDpadUp;
         private System.Windows.Forms.Button btnU;
-        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button btnDpadDown;
         private System.Windows.Forms.Button btnY;
-        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button btnDpadLeft;
         private System.Windows.Forms.Button btnT;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btnLT;
         private System.Windows.Forms.Button btnR;
         private System.Windows.Forms.Label X360Label;
         private System.Windows.Forms.Button bTNRIGHTMOUSE;
@@ -2009,28 +2217,28 @@
         private System.Windows.Forms.Button bnWHEELDOWN;
         private System.Windows.Forms.Button bnMacro;
         private System.Windows.Forms.Button bnWHEELUP;
-        private System.Windows.Forms.Button btnRSL;
+        private System.Windows.Forms.Button btnRSLeft;
         private System.Windows.Forms.Button btnMIDDLEMOUSE;
-        private System.Windows.Forms.Button btnRSD;
+        private System.Windows.Forms.Button btnRSDown;
         private System.Windows.Forms.Button btnW;
-        private System.Windows.Forms.Button btnRSR;
+        private System.Windows.Forms.Button btnRSRight;
         private System.Windows.Forms.Button button33;
         private System.Windows.Forms.Button btnRB;
-        private System.Windows.Forms.Button button30;
-        private System.Windows.Forms.Button btnLSL;
+        private System.Windows.Forms.Button btn4THMOUSE;
+        private System.Windows.Forms.Button btnLSLeft;
         private System.Windows.Forms.Button btnMOUSERIGHT;
-        private System.Windows.Forms.Button btnRSU;
+        private System.Windows.Forms.Button btnRSUp;
         private System.Windows.Forms.Button btnMOUSELEFT;
-        private System.Windows.Forms.Button btnLSD;
+        private System.Windows.Forms.Button btnLSDown;
         private System.Windows.Forms.Button btnMOUSEDOWN;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnRT;
         private System.Windows.Forms.Button btnMOUSEUP;
-        private System.Windows.Forms.Button btnLSR;
+        private System.Windows.Forms.Button btnLSRight;
         private System.Windows.Forms.Button btnLEFTMOUSE;
-        private System.Windows.Forms.Button btnRS;
+        private System.Windows.Forms.Button btnRSClick;
         private System.Windows.Forms.Button btnQ;
-        private System.Windows.Forms.Button btnLSU;
-        private System.Windows.Forms.Button btnLS;
+        private System.Windows.Forms.Button btnLSUp;
+        private System.Windows.Forms.Button btnLSClick;
         private System.Windows.Forms.CheckBox cBToggle;
         private System.Windows.Forms.Button btnDefault;
         private System.Windows.Forms.Button btnUNBOUND;
@@ -2042,7 +2250,10 @@
         private AdvancedColorDialog advColorDialog;
         private System.Windows.Forms.CheckBox cBMouse;
         private System.Windows.Forms.CheckBox cBLightbar;
-
-
+        private System.Windows.Forms.RadioButton rBRegular;
+        private System.Windows.Forms.RadioButton rBShiftModifer;
+        private System.Windows.Forms.ComboBox cBShiftButton;
+        private System.Windows.Forms.Panel pnl360Controls;
+        private System.Windows.Forms.Label lb360Tip;
     }
 }

@@ -34,11 +34,7 @@ namespace DS4Windows
             DS4Color color;
             if (!defualtLight && !forcelight[deviceNum])
             {
-                if (ShiftColorOn[deviceNum] && ShiftModifier[deviceNum] > 0 && shiftMod(device, deviceNum, cState, eState, tp))
-                {
-                    color = ShiftColor[deviceNum];
-                }
-                else if (UseCustomLed[deviceNum])
+                if (UseCustomLed[deviceNum])
                 {
                     if (LedAsBatteryIndicator[deviceNum])
                     {
@@ -140,9 +136,7 @@ namespace DS4Windows
                             color = HuetoRGB((float)counters[deviceNum] % 360, 255);
                             break;
                         case 3:
-                            if (!(ShiftColorOn[deviceNum] && ShiftModifier[deviceNum] > 0 && shiftMod(device, deviceNum, cState, eState, tp)) &&
-                                !UseCustomLed[deviceNum])
-                                color = ChargingColor[deviceNum];
+                            color = ChargingColor[deviceNum];
                             break;
                         default:
                             break;
@@ -214,42 +208,7 @@ namespace DS4Windows
         }
 
         public static bool defualtLight = false, shuttingdown = false;
-
-        public static bool shiftMod(DS4Device device, int deviceNum, DS4State cState, DS4StateExposed eState, Mouse tp)
-        {
-            bool shift;
-            switch (ShiftModifier[deviceNum])
-            {
-                case 1: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Cross, cState, eState, tp); break;
-                case 2: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Circle, cState, eState, tp); break;
-                case 3: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Square, cState, eState, tp); break;
-                case 4: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Triangle, cState, eState, tp); break;
-                case 5: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Options, cState, eState, tp); break;
-                case 6: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.Share, cState, eState, tp); break;
-                case 7: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.DpadUp, cState, eState, tp); break;
-                case 8: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.DpadDown, cState, eState, tp); break;
-                case 9: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.DpadLeft, cState, eState, tp); break;
-                case 10: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.DpadRight, cState, eState, tp); break;
-                case 11: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.PS, cState, eState, tp); break;
-                case 12: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.L1, cState, eState, tp); break;
-                case 13: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.R1, cState, eState, tp); break;
-                case 14: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.L2, cState, eState, tp); break;
-                case 15: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.R2, cState, eState, tp); break;
-                case 16: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.L3, cState, eState, tp); break;
-                case 17: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.R3, cState, eState, tp); break;
-                case 18: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.TouchLeft, cState, eState, tp); break;
-                case 19: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.TouchUpper, cState, eState, tp); break;
-                case 20: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.TouchMulti, cState, eState, tp); break;
-                case 21: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.TouchRight, cState, eState, tp); break;
-                case 22: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.GyroZNeg, cState, eState, tp); break;
-                case 23: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.GyroZPos, cState, eState, tp); break;
-                case 24: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.GyroXPos, cState, eState, tp); break;
-                case 25: shift = Mapping.getBoolMapping(deviceNum, DS4Controls.GyroXNeg, cState, eState, tp); break;
-                case 26: shift = device.getCurrentState().Touch1; break;
-                default: shift = false; break;
-            }
-            return shift;
-        }
+      
         public static DS4Color HuetoRGB(float hue, byte sat)
         {
             byte C = sat;

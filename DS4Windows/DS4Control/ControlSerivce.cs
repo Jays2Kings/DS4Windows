@@ -479,13 +479,13 @@ namespace DS4Windows
                     L2Sens[ind] != 0 || R2Sens[ind] != 0) //if a curve or deadzone is in place
                     cState = Mapping.SetCurveAndDeadzone(ind, cState);
                 if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
-                    getHasCustomKeysorButtons(ind) || getHasShiftCustomKeysorButtons(ind) || ProfileActions[ind].Count > 0))
+                    HasCustomAction(ind) || HasCustomExtras(ind) || ProfileActions[ind].Count > 0))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
                     cState = MappedState[ind];
                 }
-                if (getHasCustomExtras(ind))
-                    DoExtras(ind);
+                //if (HasCustomExtras(ind))
+                  //  DoExtras(ind);
 
                 // Update the GUI/whatever.
                 DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
@@ -534,7 +534,7 @@ namespace DS4Windows
             }
         }
         
-        private void DoExtras(int ind)
+       /* private void DoExtras(int ind)
         {
             DS4State cState = CurrentState[ind];
             DS4StateExposed eState = ExposedState[ind];
@@ -589,8 +589,8 @@ namespace DS4Windows
                 setRumble(0, 0, ind);
                 held[ind] = false;
             }
-        }
-
+        }*/
+        
 
 
         public void EasterTime(int ind)

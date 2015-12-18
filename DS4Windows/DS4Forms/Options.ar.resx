@@ -155,7 +155,7 @@
     <value>57, 17</value>
   </data>
   <data name="lbspc.Text" xml:space="preserve">
-    <value>ثانية/الدورة</value>
+    <value>ثانية\الدورة</value>
   </data>
   <data name="lbRed.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 34</value>
@@ -593,7 +593,7 @@
     <value>33, 17</value>
   </data>
   <data name="lb6Gryo.Text" xml:space="preserve">
-    <value>الدوام</value>
+    <value>الدوّام</value>
   </data>
   <data name="tPShiftMod.Text" xml:space="preserve">
     <value>معدل الشيفت</value>

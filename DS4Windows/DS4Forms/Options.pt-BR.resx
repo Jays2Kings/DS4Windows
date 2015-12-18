@@ -566,4 +566,34 @@
   <data name="lbControlTip.Text" xml:space="preserve">
     <value>Clique Na Barra de Luz</value>
   </data>
+  <data name="cBFlushHIDQueue.Text" xml:space="preserve">
+    <value>Flush HID</value>
+  </data>
+  <data name="cBWhileCharging.Items" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="lb6Accel.Text" xml:space="preserve">
+    <value>Accel</value>
+  </data>
+  <data name="lb6Gryo.Text" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
 </root>

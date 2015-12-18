@@ -717,4 +717,37 @@
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>Inherit</value>
   </data>
+  <data name="cBWhileCharging.Items" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="cHName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Empfindlichkeit</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Touchpad</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="tPController.Text" xml:space="preserve">
+    <value>Controller Kalibrierung</value>
+  </data>
 </root>

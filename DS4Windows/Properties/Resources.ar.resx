@@ -121,7 +121,7 @@
     <value>اسم هذا الإجراء مستخدم</value>
   </data>
   <data name="AddingToList" xml:space="preserve">
-    <value>اضافة إلى القائمة...</value>
+    <value>إضافة إلى القائمة...</value>
   </data>
   <data name="AddPrograms" xml:space="preserve">
     <value>أضف برنامج</value>
@@ -220,13 +220,13 @@
     <value>تحميل *number*%</value>
   </data>
   <data name="DownloadVersion" xml:space="preserve">
-    <value>تحميل اصدار *number*%</value>
+    <value>تحميل اصدار *number* الآن؟</value>
   </data>
   <data name="DownText" xml:space="preserve">
     <value>تحت</value>
   </data>
   <data name="DS4Update" xml:space="preserve">
-    <value>يوجد تحديث</value>
+    <value>يوجد تحديث متاح!</value>
   </data>
   <data name="DS4WindowsCannotEditHere" xml:space="preserve">
     <value>البرنامج لا يستطيع تعديل الإعدادات هنا، هذا سيغلق الآن</value>
@@ -268,16 +268,16 @@
     <value>كامل</value>
   </data>
   <data name="GyroReadout" xml:space="preserve">
-    <value>انقر لرؤية قراءات المستشعرات</value>
+    <value>انقر لرؤية قراءات الحساسات</value>
   </data>
   <data name="GyroX" xml:space="preserve">
     <value>دوام السين، المليان لليمين و اليسار</value>
   </data>
   <data name="GyroY" xml:space="preserve">
-    <value>دوام الصاد، المليان للأمام و الخلف</value>
+    <value>دوّام الصاد، المليان للأمام و الخلف</value>
   </data>
   <data name="GyroZ" xml:space="preserve">
-    <value>دوام العبن، المليان للأعلى و الأسفل</value>
+    <value>دوّام العين، المليان للأعلى و الأسفل</value>
   </data>
   <data name="Hour" xml:space="preserve">
     <value>ساعة</value>
@@ -349,7 +349,7 @@
     <value>لا يوجد</value>
   </data>
   <data name="NoneText" xml:space="preserve">
-    <value>لايوجد</value>
+    <value>لا يوجد</value>
   </data>
   <data name="NoProfileLoaded" xml:space="preserve">
     <value>لا سجل محمل</value>
@@ -358,7 +358,7 @@
     <value>اليد *number* لا تستخدم سجل</value>
   </data>
   <data name="NotValid" xml:space="preserve">
-    <value>غير مقبول</value>
+    <value>غير صالح</value>
   </data>
   <data name="OpeningInstaller" xml:space="preserve">
     <value>فتح المثبت</value>
@@ -370,7 +370,7 @@
     <value>، الملفات في الأماكن الأخرى ستحذف</value>
   </data>
   <data name="PleaseDownloadUpdater" xml:space="preserve">
-    <value>الرجاء تحميل المحدث الآن، و وضعه في ملف البرنامج، ثم تحقق من وجود تحديث مرة أخرى</value>
+    <value>الرجاء تحميل المحدِّث الآن، و وضعه في ملف البرنامج، ثم تحقق من وجود تحديث مرة أخرى</value>
   </data>
   <data name="PleaseImport" xml:space="preserve">
     <value>الرجاء إنشاء أو استيراد سجل</value>
@@ -388,7 +388,7 @@
     <value>البرامج</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>تجريبي: فصل البلوتوث لشكل تلقائي عند التوصيل بالسلك</value>
+    <value>تجريبي: فصل البلوتوث بشكل تلقائي عند التوصيل بالسلك</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
     <value>يجب إغلاق البرامج الأخرى مثل ستيم و اليو-بلاي قبل تفعيل خيار "إخفاء يد البلاي ستايشن 4"</value>

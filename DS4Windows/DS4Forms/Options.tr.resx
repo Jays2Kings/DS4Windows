@@ -568,4 +568,22 @@
   <data name="tPSpecial.Text" xml:space="preserve">
     <value>Özel Eylemler</value>
   </data>
+  <data name="cBWhileCharging.Items" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dpad</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Touchpad</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="tPDeadzone.Text" xml:space="preserve">
+    <value>Deadzone</value>
+  </data>
 </root>

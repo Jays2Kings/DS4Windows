@@ -211,4 +211,25 @@
   <data name="lb360Tip.Location" type="System.Drawing.Point, System.Drawing">
     <value>431, 279</value>
   </data>
+  <data name="bnTest.Text" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="cBShiftButton.Items" xml:space="preserve">
+    <value>Zu Verschiebenen Trigger Auswählen</value>
+  </data>
+  <data name="gBExtras.Text" xml:space="preserve">
+    <value>Extras</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="rBRegular.Text" xml:space="preserve">
+    <value>Regulär</value>
+  </data>
 </root>

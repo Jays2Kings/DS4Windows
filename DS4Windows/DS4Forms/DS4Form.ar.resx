@@ -143,7 +143,7 @@
     <value>اختصارات لوحة المفاتيح/عن البرنامج</value>
   </data>
   <data name="btnClear.Text" xml:space="preserve">
-    <value>محو</value>
+    <value>مسح</value>
   </data>
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 192</value>
@@ -209,13 +209,13 @@
     <value>992, 94</value>
   </data>
   <data name="bnEditC3.Text" xml:space="preserve">
-    <value>حرر</value>
+    <value>تعديل</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
     <value>992, 130</value>
   </data>
   <data name="bnEditC4.Text" xml:space="preserve">
-    <value>حرر</value>
+    <value>تعديل</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
     <value>846, 23</value>
@@ -224,7 +224,7 @@
     <value>992, 58</value>
   </data>
   <data name="bnEditC2.Text" xml:space="preserve">
-    <value>حرر</value>
+    <value>تعديل</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
     <value>846, 59</value>
@@ -236,7 +236,7 @@
     <value>992, 22</value>
   </data>
   <data name="bnEditC1.Text" xml:space="preserve">
-    <value>حرر</value>
+    <value>تعديل</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
     <value>846, 131</value>

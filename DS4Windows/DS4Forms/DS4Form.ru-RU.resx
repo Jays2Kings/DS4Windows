@@ -6372,16 +6372,16 @@
     <value>Эксклюзивное подключение DS4 (эксперементально)</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1089, 94</value>
+    <value>1085, 94</value>
   </data>
   <data name="bnLight3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 28</value>
+    <value>33, 28</value>
   </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 26</value>
+    <value>438, 26</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>952, 94</value>
+    <value>948, 94</value>
   </data>
   <data name="bnEditC3.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 28</value>
@@ -6390,7 +6390,7 @@
     <value>Редактировать</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>952, 130</value>
+    <value>948, 130</value>
   </data>
   <data name="bnEditC4.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 28</value>
@@ -6399,10 +6399,10 @@
     <value>Редактировать</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>786, 24</value>
+    <value>782, 23</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>952, 58</value>
+    <value>948, 58</value>
   </data>
   <data name="bnEditC2.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 28</value>
@@ -6411,13 +6411,13 @@
     <value>Редактировать</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>786, 60</value>
+    <value>782, 59</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>786, 96</value>
+    <value>782, 95</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>952, 22</value>
+    <value>948, 22</value>
   </data>
   <data name="bnEditC1.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 28</value>
@@ -6426,10 +6426,10 @@
     <value>Редактировать</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>786, 132</value>
+    <value>782, 131</value>
   </data>
   <data name="lbSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>766, 0</value>
+    <value>762, 0</value>
   </data>
   <data name="lbSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 18</value>
@@ -6444,7 +6444,7 @@
     <value>ID устройства:</value>
   </data>
   <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>385, 0</value>
+    <value>382, 0</value>
   </data>
   <data name="lbStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 18</value>
@@ -6453,7 +6453,7 @@
     <value>Тип подключения:</value>
   </data>
   <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>606, 0</value>
+    <value>602, 0</value>
   </data>
   <data name="lbBattery.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 18</value>
@@ -6462,43 +6462,43 @@
     <value>аккумулятора</value>
   </data>
   <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 27</value>
+    <value>639, 27</value>
   </data>
   <data name="lbBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 63</value>
+    <value>639, 63</value>
   </data>
   <data name="lbBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 99</value>
+    <value>639, 99</value>
   </data>
   <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>642, 135</value>
+    <value>639, 135</value>
   </data>
   <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 62</value>
+    <value>438, 62</value>
   </data>
   <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 98</value>
+    <value>438, 98</value>
   </data>
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 134</value>
+    <value>438, 134</value>
   </data>
   <data name="bnLight1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1089, 22</value>
+    <value>1085, 22</value>
   </data>
   <data name="bnLight1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 28</value>
+    <value>33, 28</value>
   </data>
   <data name="bnLight2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1089, 58</value>
+    <value>1085, 58</value>
   </data>
   <data name="bnLight2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 28</value>
+    <value>33, 28</value>
   </data>
   <data name="bnLight4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1089, 130</value>
+    <value>1085, 130</value>
   </data>
   <data name="bnLight4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 28</value>
+    <value>33, 28</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
     <value>Контроллеры не подключены (не больше четырёх)</value>
@@ -6717,10 +6717,10 @@
     <value>418, 5</value>
   </data>
   <data name="cBFlashWhenLate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 21</value>
+    <value>356, 21</value>
   </data>
   <data name="cBFlashWhenLate.Text" xml:space="preserve">
-    <value>Вспышка световой панели при высокой задержке</value>
+    <value>Мигание световой панели при высокой задержке</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>447, 28</value>
@@ -6789,10 +6789,10 @@
     <value>262, 22</value>
   </data>
   <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 17</value>
+    <value>198, 17</value>
   </data>
   <data name="linkProfiles.Text" xml:space="preserve">
-    <value>Показать папку с профилями</value>
+    <value>Открыть папку с профилями</value>
   </data>
   <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 17</value>

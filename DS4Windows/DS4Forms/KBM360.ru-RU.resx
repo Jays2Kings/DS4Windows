@@ -228,4 +228,10 @@
   <data name="rBShiftModifer.Text" xml:space="preserve">
     <value>Режим Сдвига</value>
   </data>
+  <data name="cBShiftButton.Items" xml:space="preserve">
+    <value>Выбрать кнопку для Режима Сдвига</value>
+  </data>
+  <data name="rBRegular.Text" xml:space="preserve">
+    <value>Обычний</value>
+  </data>
 </root>

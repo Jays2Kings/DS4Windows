@@ -133,6 +133,9 @@
   <data name="linkDonate.Text" xml:space="preserve">
     <value>Quyên góp qua Paypal</value>
   </data>
+  <data name="tPHotkeys.Text" xml:space="preserve">
+    <value>Phím nóng</value>
+  </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
     <value>Giấu DS4 Controller: Ngăn tín hiệu Dinput của DS4 đọc bởi các chuơng trình khác, chọn trong trường hợp bị nhân đôi tín hiệu hoặc nút R2 làm dừng game.
 Nhấn bên trái touchpad: Left Touch
@@ -151,16 +154,82 @@ Toggle: phím sẽ giữ trạng thái nhấn đến khi được nhấn lần n
 Macro: Gán nhiều lệnh cho một phím bấm
 </value>
   </data>
-  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 17</value>
-  </data>
-  <data name="lbTranslators.Text" xml:space="preserve">
-    <value>N.M.D</value>
-  </data>
   <data name="tPCredits.Text" xml:space="preserve">
     <value>Công bởi</value>
   </data>
-  <data name="tPHotkeys.Text" xml:space="preserve">
-    <value>Phím nóng</value>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="lbGermanT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 23</value>
+  </data>
+  <data name="lbItalianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 23</value>
+  </data>
+  <data name="lbItalianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 23</value>
+  </data>
+  <data name="lbItalian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 23</value>
+  </data>
+  <data name="lbRussian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 46</value>
+  </data>
+  <data name="lbRussianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 46</value>
+  </data>
+  <data name="lbRussianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 23</value>
+  </data>
+  <data name="lbRomanian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 69</value>
+  </data>
+  <data name="lbRomanianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 69</value>
+  </data>
+  <data name="lbRomanianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 23</value>
+  </data>
+  <data name="lbTurkish.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 92</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 92</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 23</value>
+  </data>
+  <data name="lbChineseS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 115</value>
+  </data>
+  <data name="lbChineseST.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 115</value>
+  </data>
+  <data name="lbChineseT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 138</value>
+  </data>
+  <data name="lbChineseTT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 138</value>
+  </data>
+  <data name="lbArabic.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 161</value>
+  </data>
+  <data name="lbArabicT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 161</value>
+  </data>
+  <data name="lbHebrew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 184</value>
+  </data>
+  <data name="lbHebrewT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 184</value>
+  </data>
+  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 17</value>
+  </data>
+  <data name="lbTranslators.Text" xml:space="preserve">
+    <value>N.M.D</value>
   </data>
 </root>

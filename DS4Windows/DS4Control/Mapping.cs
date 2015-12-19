@@ -965,8 +965,8 @@ namespace DS4Windows
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
                             MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp);
                 }
-                else
-                    MappedState.LX = cState.LX;
+                //else
+                    //MappedState.LX = cState.LX;
             if (Math.Abs(MappedState.LY - 127) < 10)
                 if (LYN.Count > 0 || LYP.Count > 0)
                 {
@@ -977,8 +977,8 @@ namespace DS4Windows
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                             MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp, true);
                 }
-                else
-                    MappedState.LY = cState.LY;
+                //else
+                    //MappedState.LY = cState.LY;
             if (Math.Abs(MappedState.RX - 127) < 10)
                 if (RXN.Count > 0 || RXP.Count > 0)
                 {
@@ -989,8 +989,8 @@ namespace DS4Windows
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                             MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp, true);
                 }
-                else
-                    MappedState.RX = cState.RX;
+                //else
+                   // MappedState.RX = cState.RX;
             if (Math.Abs(MappedState.RY - 127) < 10)
                 if (RYN.Count > 0 || RYP.Count > 0)
                 {
@@ -1001,14 +1001,14 @@ namespace DS4Windows
                         if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
                             MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp, true);
                 }
-                else
-                    MappedState.RY = cState.RY;
+               // else
+                   // MappedState.RY = cState.RY;
             InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
         }
 
         private static bool IfAxisIsNotModified(int device, bool shift, DS4Controls dc)
         {
-            return shift ? GetDS4Action(device, DS4Controls.LXNeg.ToString(), true) == null : GetDS4Action(device, DS4Controls.LXNeg.ToString(), false) == null;
+            return shift ? false : GetDS4Action(device, dc.ToString(), false) == null;
         }
         public static async void MapCustomAction(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, ControlService ctrl)
         {

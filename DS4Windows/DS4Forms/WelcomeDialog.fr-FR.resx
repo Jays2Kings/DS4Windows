@@ -177,30 +177,31 @@
     <value>Étape 1: Installer les pilotes DS4</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
-    <value>Étape 2: Si vous êtes sous Windows 7 ou antérieur, installez les pilotes 360</value>
+    <value>Étape 2: Si vous êtes sous Windows 7 ou antérieur, installez les pilotes de 360</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Si vous avez déjà utilisé une manette 360 sur votre PC, passez cette étape</value>
+    <value>Si vous avez déjà utilisé une manette de 360 sur votre PC, passez cette étape</value>
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
-    <value>Pour paramétrer l'installation bluetooth
+    <value>Pour Démarrer l'installation bluetooth (optionnel)
 Maintenir les boutons PS et SHARE pendant 3 secondes
-La barre lumineuse va commencer à doublement clignoter</value>
+La barre lumineusecommencera à clignoter</value>
   </data>
   <data name="labelBluetooth2.Text" xml:space="preserve">
-    <value>Une fois le clignotement débuté, rendez vous aux paramètres Bluetooth
-puis connectez sur "Wireless Controller"
-Une fois appareillée, vous êtes prêt. Amusez-vous bien !</value>
+    <value>Une fois le clignotement débuté, rendez vous aux Paramètres Bluetooth
+et Connectez vous à "Manette sans fils"
+si requis, entrez le code "0000"
+Une fois associer, vous êtes prêt. Amusez-vous !</value>
   </data>
   <data name="labelUSB.Text" xml:space="preserve">
     <value>Étape 3: Connecter la manette DualShock 4
 Pour paramétrer l'installation filaire/usb:
-Brancher simplement le câble mini usb dans votre PC et votre DualShock 4</value>
+Brancher simplement le câble mini usb de votre PC à la DualShock 4</value>
   </data>
   <data name="linkBluetoothSettings.Text" xml:space="preserve">
     <value>Réglages Bluetooth</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>SI cette fenêtre réapparaît après l'installation, vous devriez redémarrer votre PC ou attendre 10-15 mins pour que Windows trouve le driver</value>
+    <value>SI cette fenêtre réapparaît après l'installation, vous devrez redémarrer votre PC ou attendre 10-15 mins pour que Windows trouve le driver</value>
   </data>
 </root>

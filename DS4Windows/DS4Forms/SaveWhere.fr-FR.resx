@@ -131,22 +131,25 @@
     <value>389, 157</value>
   </data>
   <data name="bnPrgmFolder.Text" xml:space="preserve">
-    <value>Dossier de l'application</value>
+    <value>Dossier de l'Application</value>
   </data>
   <data name="cBDeleteOther.Text" xml:space="preserve">
     <value>Ne pas encore supprimer
 les autres paramètres</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Pour ceux qui préfèrent une application portable Note: Cette option ne fonctionne point si dans un dossier admin sans UAC (contrôle de compte d'utilisateur)</value>
+    <value>Pour ceux qui préfèrent une application portable A Noter: Cette option ne fonctionne point si dans un dossier admin sans Contrôle de Compte d'Utilisateur UAC</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Pour ceux préférant une installation normale, les paramètres sont sauvegardés à %appdata%/ds4tool</value>
+    <value>Pour ceux préférant une installation normale, les paramètres sont sauvegardés dans %appdata%/ds4tool</value>
   </data>
   <data name="lbMultiSaves.Text" xml:space="preserve">
-    <value>Multiples emplacements de sauvegarde supprimés</value>
+    <value>Multiples emplacements de sauvegarde détecter</value>
   </data>
   <data name="lbPickWhere.Text" xml:space="preserve">
     <value>Choisissez l'emplacement auquel vous voulez que vos paramètres et profiles soient sauvegardes</value>
+  </data>
+  <data name="bnAppdataFolder.Text" xml:space="preserve">
+    <value>Données D'Appli.</value>
   </data>
 </root>

@@ -31,7 +31,7 @@ namespace DS4Windows
         [STAThread]
         static void Main(string[] args)
         {
-            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
+            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("he");
             foreach(string s in args)
             {
                 if (s == "driverinstall" || s == "-driverinstall")

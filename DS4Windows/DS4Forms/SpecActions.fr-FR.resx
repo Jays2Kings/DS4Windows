@@ -1306,7 +1306,7 @@
 </value>
   </data>
   <data name="btnBrowse.Text" xml:space="preserve">
-    <value>Parcourir</value>
+    <value>Parcourir...</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Annuler</value>
@@ -1324,31 +1324,31 @@
     <value>Charger un profil</value>
   </data>
   <data name="cBActions.Items5" xml:space="preserve">
-    <value>Déconnexion du bluetooth</value>
+    <value>Déconnexion du Bluetooth</value>
   </data>
   <data name="cBActions.Items6" xml:space="preserve">
-    <value>Verifier batterie</value>
+    <value>Vérifier batterie</value>
   </data>
   <data name="cbLightbarBatt.Text" xml:space="preserve">
-    <value>Via barre lumineuse</value>
+    <value>via barre lumineuse</value>
   </data>
   <data name="cBMacroScanCode.Text" xml:space="preserve">
     <value>Scanner le code</value>
   </data>
   <data name="cBNotificationBatt.Text" xml:space="preserve">
-    <value>Via notification bureau</value>
+    <value>via notification</value>
   </data>
   <data name="cHTrigger.Text" xml:space="preserve">
-    <value>Déclencheur</value>
+    <value>Gachette</value>
   </data>
   <data name="lbName.Text" xml:space="preserve">
     <value>Nom</value>
   </data>
   <data name="btnSelectKey.Text" xml:space="preserve">
-    <value>Choisir une touche</value>
+    <value>Choisir une Touche</value>
   </data>
   <data name="cBActions.Items" xml:space="preserve">
-    <value>-Séléctionner une action-</value>
+    <value>-Séléctionner une Action-</value>
   </data>
   <data name="cBActions.Items1" xml:space="preserve">
     <value>Enregistrer une macro</value>
@@ -1357,6 +1357,39 @@
     <value>Maintenir pour</value>
   </data>
   <data name="lbSecs.Text" xml:space="preserve">
-    <value>seondes</value>
+    <value>secondes</value>
+  </data>
+  <data name="btnSetUTriggerKeys.Text" xml:space="preserve">
+    <value>Choix Gachette de Déchargement</value>
+  </data>
+  <data name="btnSetUTriggerProfile.Text" xml:space="preserve">
+    <value>Choix Gachette de Déchargement</value>
+  </data>
+  <data name="cBActions.Items4" xml:space="preserve">
+    <value>Appuyer/Alterner Touche</value>
+  </data>
+  <data name="cBPressRelease.Items" xml:space="preserve">
+    <value>appuyant la Gachette de Déchargement</value>
+  </data>
+  <data name="cBPressRelease.Items1" xml:space="preserve">
+    <value>relachant la Gachette de Déchargement</value>
+  </data>
+  <data name="cHUnloadTrigger.Text" xml:space="preserve">
+    <value>Gachette de Déchargement</value>
+  </data>
+  <data name="lbArg.Text" xml:space="preserve">
+    <value>Arguments</value>
+  </data>
+  <data name="lbDTapDVR.Text" xml:space="preserve">
+    <value>Tapoter Gachette</value>
+  </data>
+  <data name="lbHoldDVR.Text" xml:space="preserve">
+    <value>Maintenir Gachette</value>
+  </data>
+  <data name="lbTapDVR.Text" xml:space="preserve">
+    <value>Taper la Gachette</value>
+  </data>
+  <data name="lbUnloadTipKey.Text" xml:space="preserve">
+    <value>Dés-alterner la touche en</value>
   </data>
 </root>

@@ -41,24 +41,30 @@
             this.lbHotkeys = new System.Windows.Forms.Label();
             this.tPCredits = new System.Windows.Forms.TabPage();
             this.tLPTranslators = new System.Windows.Forms.TableLayoutPanel();
-            this.lbGerman = new System.Windows.Forms.Label();
+            this.lbes = new System.Windows.Forms.Label();
+            this.lbSpanishT = new System.Windows.Forms.Label();
+            this.lbpl = new System.Windows.Forms.Label();
+            this.lbPolishT = new System.Windows.Forms.Label();
+            this.lbde = new System.Windows.Forms.Label();
             this.lbGermanT = new System.Windows.Forms.Label();
             this.lbItalianT = new System.Windows.Forms.Label();
-            this.lbItalian = new System.Windows.Forms.Label();
-            this.lbRussian = new System.Windows.Forms.Label();
+            this.lbitIT = new System.Windows.Forms.Label();
+            this.lbruRU = new System.Windows.Forms.Label();
             this.lbRussianT = new System.Windows.Forms.Label();
-            this.lbRomanian = new System.Windows.Forms.Label();
+            this.lbroRO = new System.Windows.Forms.Label();
             this.lbRomanianT = new System.Windows.Forms.Label();
-            this.lbTurkish = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lbChineseS = new System.Windows.Forms.Label();
+            this.lbtr = new System.Windows.Forms.Label();
+            this.lbTurkishT = new System.Windows.Forms.Label();
+            this.lbzhHans = new System.Windows.Forms.Label();
             this.lbChineseST = new System.Windows.Forms.Label();
-            this.lbChineseT = new System.Windows.Forms.Label();
+            this.lbzhHant = new System.Windows.Forms.Label();
             this.lbChineseTT = new System.Windows.Forms.Label();
-            this.lbArabic = new System.Windows.Forms.Label();
+            this.lbar = new System.Windows.Forms.Label();
             this.lbArabicT = new System.Windows.Forms.Label();
-            this.lbHebrew = new System.Windows.Forms.Label();
+            this.lbhe = new System.Windows.Forms.Label();
             this.lbHebrewT = new System.Windows.Forms.Label();
+            this.lbfrFR = new System.Windows.Forms.Label();
+            this.lbFrenchT = new System.Windows.Forms.Label();
             this.lbTranslators = new System.Windows.Forms.Label();
             this.linkSourceCode = new System.Windows.Forms.LinkLabel();
             this.lbLinkText = new System.Windows.Forms.Label();
@@ -117,9 +123,9 @@
             // 
             // tCAbout
             // 
-            resources.ApplyResources(this.tCAbout, "tCAbout");
             this.tCAbout.Controls.Add(this.tPHotkeys);
             this.tCAbout.Controls.Add(this.tPCredits);
+            resources.ApplyResources(this.tCAbout, "tCAbout");
             this.tCAbout.Name = "tCAbout";
             this.tCAbout.SelectedIndex = 0;
             // 
@@ -137,7 +143,6 @@
             // 
             // tPCredits
             // 
-            resources.ApplyResources(this.tPCredits, "tPCredits");
             this.tPCredits.Controls.Add(this.tLPTranslators);
             this.tPCredits.Controls.Add(this.lbTranslators);
             this.tPCredits.Controls.Add(this.linkElectro);
@@ -146,36 +151,63 @@
             this.tPCredits.Controls.Add(this.linkJays2Kings);
             this.tPCredits.Controls.Add(this.linkJhebbel);
             this.tPCredits.Controls.Add(this.linkInhexSTER);
+            resources.ApplyResources(this.tPCredits, "tPCredits");
             this.tPCredits.Name = "tPCredits";
             this.tPCredits.UseVisualStyleBackColor = true;
             // 
             // tLPTranslators
             // 
             resources.ApplyResources(this.tLPTranslators, "tLPTranslators");
-            this.tLPTranslators.Controls.Add(this.lbGerman, 0, 0);
+            this.tLPTranslators.Controls.Add(this.lbes, 0, 11);
+            this.tLPTranslators.Controls.Add(this.lbSpanishT, 0, 11);
+            this.tLPTranslators.Controls.Add(this.lbpl, 0, 10);
+            this.tLPTranslators.Controls.Add(this.lbPolishT, 0, 10);
+            this.tLPTranslators.Controls.Add(this.lbde, 0, 0);
             this.tLPTranslators.Controls.Add(this.lbGermanT, 1, 0);
             this.tLPTranslators.Controls.Add(this.lbItalianT, 1, 1);
-            this.tLPTranslators.Controls.Add(this.lbItalian, 0, 1);
-            this.tLPTranslators.Controls.Add(this.lbRussian, 0, 2);
+            this.tLPTranslators.Controls.Add(this.lbitIT, 0, 1);
+            this.tLPTranslators.Controls.Add(this.lbruRU, 0, 2);
             this.tLPTranslators.Controls.Add(this.lbRussianT, 1, 2);
-            this.tLPTranslators.Controls.Add(this.lbRomanian, 0, 3);
+            this.tLPTranslators.Controls.Add(this.lbroRO, 0, 3);
             this.tLPTranslators.Controls.Add(this.lbRomanianT, 1, 3);
-            this.tLPTranslators.Controls.Add(this.lbTurkish, 0, 4);
-            this.tLPTranslators.Controls.Add(this.label2, 1, 4);
-            this.tLPTranslators.Controls.Add(this.lbChineseS, 0, 5);
+            this.tLPTranslators.Controls.Add(this.lbtr, 0, 4);
+            this.tLPTranslators.Controls.Add(this.lbTurkishT, 1, 4);
+            this.tLPTranslators.Controls.Add(this.lbzhHans, 0, 5);
             this.tLPTranslators.Controls.Add(this.lbChineseST, 1, 5);
-            this.tLPTranslators.Controls.Add(this.lbChineseT, 0, 6);
+            this.tLPTranslators.Controls.Add(this.lbzhHant, 0, 6);
             this.tLPTranslators.Controls.Add(this.lbChineseTT, 1, 6);
-            this.tLPTranslators.Controls.Add(this.lbArabic, 0, 7);
+            this.tLPTranslators.Controls.Add(this.lbar, 0, 7);
             this.tLPTranslators.Controls.Add(this.lbArabicT, 1, 7);
-            this.tLPTranslators.Controls.Add(this.lbHebrew, 0, 8);
+            this.tLPTranslators.Controls.Add(this.lbhe, 0, 8);
             this.tLPTranslators.Controls.Add(this.lbHebrewT, 1, 8);
+            this.tLPTranslators.Controls.Add(this.lbfrFR, 0, 9);
+            this.tLPTranslators.Controls.Add(this.lbFrenchT, 1, 9);
             this.tLPTranslators.Name = "tLPTranslators";
             // 
-            // lbGerman
+            // lbes
             // 
-            resources.ApplyResources(this.lbGerman, "lbGerman");
-            this.lbGerman.Name = "lbGerman";
+            resources.ApplyResources(this.lbes, "lbes");
+            this.lbes.Name = "lbes";
+            // 
+            // lbSpanishT
+            // 
+            resources.ApplyResources(this.lbSpanishT, "lbSpanishT");
+            this.lbSpanishT.Name = "lbSpanishT";
+            // 
+            // lbpl
+            // 
+            resources.ApplyResources(this.lbpl, "lbpl");
+            this.lbpl.Name = "lbpl";
+            // 
+            // lbPolishT
+            // 
+            resources.ApplyResources(this.lbPolishT, "lbPolishT");
+            this.lbPolishT.Name = "lbPolishT";
+            // 
+            // lbde
+            // 
+            resources.ApplyResources(this.lbde, "lbde");
+            this.lbde.Name = "lbde";
             // 
             // lbGermanT
             // 
@@ -187,80 +219,90 @@
             resources.ApplyResources(this.lbItalianT, "lbItalianT");
             this.lbItalianT.Name = "lbItalianT";
             // 
-            // lbItalian
+            // lbitIT
             // 
-            resources.ApplyResources(this.lbItalian, "lbItalian");
-            this.lbItalian.Name = "lbItalian";
+            resources.ApplyResources(this.lbitIT, "lbitIT");
+            this.lbitIT.Name = "lbitIT";
             // 
-            // lbRussian
+            // lbruRU
             // 
-            resources.ApplyResources(this.lbRussian, "lbRussian");
-            this.lbRussian.Name = "lbRussian";
+            resources.ApplyResources(this.lbruRU, "lbruRU");
+            this.lbruRU.Name = "lbruRU";
             // 
             // lbRussianT
             // 
             resources.ApplyResources(this.lbRussianT, "lbRussianT");
             this.lbRussianT.Name = "lbRussianT";
             // 
-            // lbRomanian
+            // lbroRO
             // 
-            resources.ApplyResources(this.lbRomanian, "lbRomanian");
-            this.lbRomanian.Name = "lbRomanian";
+            resources.ApplyResources(this.lbroRO, "lbroRO");
+            this.lbroRO.Name = "lbroRO";
             // 
             // lbRomanianT
             // 
             resources.ApplyResources(this.lbRomanianT, "lbRomanianT");
             this.lbRomanianT.Name = "lbRomanianT";
             // 
-            // lbTurkish
+            // lbtr
             // 
-            resources.ApplyResources(this.lbTurkish, "lbTurkish");
-            this.lbTurkish.Name = "lbTurkish";
+            resources.ApplyResources(this.lbtr, "lbtr");
+            this.lbtr.Name = "lbtr";
             // 
-            // label2
+            // lbTurkishT
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.lbTurkishT, "lbTurkishT");
+            this.lbTurkishT.Name = "lbTurkishT";
             // 
-            // lbChineseS
+            // lbzhHans
             // 
-            resources.ApplyResources(this.lbChineseS, "lbChineseS");
-            this.lbChineseS.Name = "lbChineseS";
+            resources.ApplyResources(this.lbzhHans, "lbzhHans");
+            this.lbzhHans.Name = "lbzhHans";
             // 
             // lbChineseST
             // 
             resources.ApplyResources(this.lbChineseST, "lbChineseST");
             this.lbChineseST.Name = "lbChineseST";
             // 
-            // lbChineseT
+            // lbzhHant
             // 
-            resources.ApplyResources(this.lbChineseT, "lbChineseT");
-            this.lbChineseT.Name = "lbChineseT";
+            resources.ApplyResources(this.lbzhHant, "lbzhHant");
+            this.lbzhHant.Name = "lbzhHant";
             // 
             // lbChineseTT
             // 
             resources.ApplyResources(this.lbChineseTT, "lbChineseTT");
             this.lbChineseTT.Name = "lbChineseTT";
             // 
-            // lbArabic
+            // lbar
             // 
-            resources.ApplyResources(this.lbArabic, "lbArabic");
-            this.lbArabic.Name = "lbArabic";
+            resources.ApplyResources(this.lbar, "lbar");
+            this.lbar.Name = "lbar";
             // 
             // lbArabicT
             // 
             resources.ApplyResources(this.lbArabicT, "lbArabicT");
             this.lbArabicT.Name = "lbArabicT";
             // 
-            // lbHebrew
+            // lbhe
             // 
-            resources.ApplyResources(this.lbHebrew, "lbHebrew");
-            this.lbHebrew.Name = "lbHebrew";
+            resources.ApplyResources(this.lbhe, "lbhe");
+            this.lbhe.Name = "lbhe";
             // 
             // lbHebrewT
             // 
             resources.ApplyResources(this.lbHebrewT, "lbHebrewT");
             this.lbHebrewT.Name = "lbHebrewT";
+            // 
+            // lbfrFR
+            // 
+            resources.ApplyResources(this.lbfrFR, "lbfrFR");
+            this.lbfrFR.Name = "lbfrFR";
+            // 
+            // lbFrenchT
+            // 
+            resources.ApplyResources(this.lbFrenchT, "lbFrenchT");
+            this.lbFrenchT.Name = "lbFrenchT";
             // 
             // lbTranslators
             // 
@@ -317,24 +359,30 @@
         private System.Windows.Forms.Label lbTranslators;
         private System.Windows.Forms.Label lbHotkeys;
         private System.Windows.Forms.TableLayoutPanel tLPTranslators;
-        private System.Windows.Forms.Label lbGerman;
+        private System.Windows.Forms.Label lbde;
         private System.Windows.Forms.Label lbGermanT;
         private System.Windows.Forms.Label lbItalianT;
-        private System.Windows.Forms.Label lbItalian;
-        private System.Windows.Forms.Label lbRussian;
+        private System.Windows.Forms.Label lbitIT;
+        private System.Windows.Forms.Label lbruRU;
         private System.Windows.Forms.Label lbRussianT;
         private System.Windows.Forms.Label lbLinkText;
-        private System.Windows.Forms.Label lbRomanian;
+        private System.Windows.Forms.Label lbroRO;
         private System.Windows.Forms.Label lbRomanianT;
-        private System.Windows.Forms.Label lbTurkish;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lbChineseS;
+        private System.Windows.Forms.Label lbtr;
+        private System.Windows.Forms.Label lbTurkishT;
+        private System.Windows.Forms.Label lbzhHans;
         private System.Windows.Forms.Label lbChineseST;
-        private System.Windows.Forms.Label lbChineseT;
+        private System.Windows.Forms.Label lbzhHant;
         private System.Windows.Forms.Label lbChineseTT;
-        private System.Windows.Forms.Label lbArabic;
+        private System.Windows.Forms.Label lbar;
         private System.Windows.Forms.Label lbArabicT;
-        private System.Windows.Forms.Label lbHebrew;
+        private System.Windows.Forms.Label lbhe;
         private System.Windows.Forms.Label lbHebrewT;
+        private System.Windows.Forms.Label lbes;
+        private System.Windows.Forms.Label lbSpanishT;
+        private System.Windows.Forms.Label lbpl;
+        private System.Windows.Forms.Label lbPolishT;
+        private System.Windows.Forms.Label lbfrFR;
+        private System.Windows.Forms.Label lbFrenchT;
     }
 }

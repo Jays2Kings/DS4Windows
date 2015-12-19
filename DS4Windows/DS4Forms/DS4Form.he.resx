@@ -197,49 +197,52 @@
     <value>התחבר ל-DS4 בלעדית (ניסיוני)</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 94</value>
+    <value>1084, 94</value>
   </data>
   <data name="bnLight3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 28</value>
+    <value>34, 28</value>
+  </data>
+  <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 26</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1031, 94</value>
+    <value>1030, 94</value>
   </data>
   <data name="bnEditC3.Text" xml:space="preserve">
     <value>ערוך</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1031, 130</value>
+    <value>1030, 130</value>
   </data>
   <data name="bnEditC4.Text" xml:space="preserve">
     <value>ערוך</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>885, 23</value>
+    <value>884, 23</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1031, 58</value>
+    <value>1030, 58</value>
   </data>
   <data name="bnEditC2.Text" xml:space="preserve">
     <value>ערוך</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>885, 59</value>
+    <value>884, 59</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>885, 95</value>
+    <value>884, 95</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1031, 22</value>
+    <value>1030, 22</value>
   </data>
   <data name="bnEditC1.Text" xml:space="preserve">
     <value>ערוך</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>885, 131</value>
+    <value>884, 131</value>
   </data>
   <data name="lbSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>906, 0</value>
+    <value>905, 0</value>
   </data>
   <data name="lbSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 18</value>
@@ -254,7 +257,7 @@
     <value>מזהה</value>
   </data>
   <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>514, 0</value>
+    <value>445, 0</value>
   </data>
   <data name="lbStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 18</value>
@@ -263,7 +266,7 @@
     <value>מצב</value>
   </data>
   <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>743, 0</value>
+    <value>720, 0</value>
   </data>
   <data name="lbBattery.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 18</value>
@@ -272,34 +275,43 @@
     <value>סוללה</value>
   </data>
   <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 27</value>
+    <value>723, 27</value>
   </data>
   <data name="lbBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 63</value>
+    <value>723, 63</value>
   </data>
   <data name="lbBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 99</value>
+    <value>723, 99</value>
   </data>
   <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 135</value>
+    <value>723, 135</value>
+  </data>
+  <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 62</value>
+  </data>
+  <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 98</value>
+  </data>
+  <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 134</value>
   </data>
   <data name="bnLight1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 22</value>
+    <value>1084, 22</value>
   </data>
   <data name="bnLight1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 28</value>
+    <value>34, 28</value>
   </data>
   <data name="bnLight2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 58</value>
+    <value>1084, 58</value>
   </data>
   <data name="bnLight2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 28</value>
+    <value>34, 28</value>
   </data>
   <data name="bnLight4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 130</value>
+    <value>1084, 130</value>
   </data>
   <data name="bnLight4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 28</value>
+    <value>34, 28</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
     <value>לא מחוברים בקרים (מקסימום 4)</value>
@@ -308,64 +320,64 @@
     <value>פרופילים</value>
   </data>
   <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 264</value>
+    <value>180, 264</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 26</value>
+    <value>179, 26</value>
   </data>
   <data name="editToolStripMenuItem.Text" xml:space="preserve">
     <value>ערוך</value>
   </data>
   <data name="assignToController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 26</value>
+    <value>179, 26</value>
   </data>
   <data name="assignToController1ToolStripMenuItem.Text" xml:space="preserve">
     <value>הגדר כבקר 1</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 26</value>
+    <value>179, 26</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Text" xml:space="preserve">
     <value>הגדר כבקר 2</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 26</value>
+    <value>179, 26</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Text" xml:space="preserve">
     <value>הגדר כבקר 3</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 26</value>
+    <value>179, 26</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
     <value>הגדר כבקר 4</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 26</value>
+    <value>179, 26</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>מחק (Delete)</value>
   </data>
   <data name="duplicateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 26</value>
+    <value>179, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
     <value>שכפל (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 26</value>
+    <value>179, 26</value>
   </data>
   <data name="newProfileToolStripMenuItem.Text" xml:space="preserve">
     <value>פרופיל חדש</value>
   </data>
   <data name="importToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 26</value>
+    <value>179, 26</value>
   </data>
   <data name="importToolStripMenuItem.Text" xml:space="preserve">
     <value>ייבוא</value>
   </data>
   <data name="exportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 26</value>
+    <value>179, 26</value>
   </data>
   <data name="exportToolStripMenuItem.Text" xml:space="preserve">
     <value>ייצוא</value>
@@ -506,7 +518,7 @@
     <value>88, 1</value>
   </data>
   <data name="cBDisconnectBT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 21</value>
+    <value>188, 21</value>
   </data>
   <data name="cBDisconnectBT.Text" xml:space="preserve">
     <value>נתק Bluetooth בעת הסגירה</value>
@@ -525,6 +537,12 @@
   </data>
   <data name="cBFlashWhenLate.Text" xml:space="preserve">
     <value>הבהב אור במהירות גבוהה</value>
+  </data>
+  <data name="cBCloseMini.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 21</value>
+  </data>
+  <data name="cBCloseMini.Text" xml:space="preserve">
+    <value>סגירה ממזערת</value>
   </data>
   <data name="cBQuickCharge.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 21</value>
@@ -633,8 +651,5 @@
   </data>
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>שימוש בצבע מסוים</value>
-  </data>
-  <data name="cBCloseMini.Text" xml:space="preserve">
-    <value>סגירה ממזערת</value>
   </data>
 </root>

@@ -610,4 +610,19 @@
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Gebruik Aangepaste Kleuren</value>
   </data>
+  <data name="btnStartStop.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="lbStatus.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="linkSetup.Text" xml:space="preserve">
+    <value>Controller/Driver Setup</value>
+  </data>
+  <data name="tabControllers.Text" xml:space="preserve">
+    <value>Controllers</value>
+  </data>
+  <data name="tabLog.Text" xml:space="preserve">
+    <value>Log</value>
+  </data>
 </root>

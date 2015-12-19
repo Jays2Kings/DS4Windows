@@ -197,4 +197,7 @@
   <data name="pBProfilesTip.Text" xml:space="preserve">
     <value>Profile hier auswählen</value>
   </data>
+  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Verzeichnis Hinzufügen</value>
+  </data>
 </root>

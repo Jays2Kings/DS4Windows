@@ -190,6 +190,8 @@
             // 
             // cMSPrograms
             // 
+            resources.ApplyResources(this.cMSPrograms, "cMSPrograms");
+            this.cMSPrograms.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cMSPrograms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addProgramsFromStartMenuToolStripMenuItem,
             this.addSteamGamesToolStripMenuItem,
@@ -198,36 +200,35 @@
             this.browseForOtherProgramsToolStripMenuItem});
             this.cMSPrograms.Name = "contextMenuStrip1";
             this.cMSPrograms.ShowImageMargin = false;
-            resources.ApplyResources(this.cMSPrograms, "cMSPrograms");
             // 
             // addProgramsFromStartMenuToolStripMenuItem
             // 
-            this.addProgramsFromStartMenuToolStripMenuItem.Name = "addProgramsFromStartMenuToolStripMenuItem";
             resources.ApplyResources(this.addProgramsFromStartMenuToolStripMenuItem, "addProgramsFromStartMenuToolStripMenuItem");
+            this.addProgramsFromStartMenuToolStripMenuItem.Name = "addProgramsFromStartMenuToolStripMenuItem";
             this.addProgramsFromStartMenuToolStripMenuItem.Click += new System.EventHandler(this.addProgramsFromStartMenuToolStripMenuItem_Click);
             // 
             // addSteamGamesToolStripMenuItem
             // 
-            this.addSteamGamesToolStripMenuItem.Name = "addSteamGamesToolStripMenuItem";
             resources.ApplyResources(this.addSteamGamesToolStripMenuItem, "addSteamGamesToolStripMenuItem");
+            this.addSteamGamesToolStripMenuItem.Name = "addSteamGamesToolStripMenuItem";
             this.addSteamGamesToolStripMenuItem.Click += new System.EventHandler(this.addSteamGamesToolStripMenuItem_Click);
             // 
             // addOriginGamesToolStripMenuItem
             // 
-            this.addOriginGamesToolStripMenuItem.Name = "addOriginGamesToolStripMenuItem";
             resources.ApplyResources(this.addOriginGamesToolStripMenuItem, "addOriginGamesToolStripMenuItem");
+            this.addOriginGamesToolStripMenuItem.Name = "addOriginGamesToolStripMenuItem";
             this.addOriginGamesToolStripMenuItem.Click += new System.EventHandler(this.addOriginGamesToolStripMenuItem_Click);
             // 
             // addDirectoryToolStripMenuItem
             // 
-            this.addDirectoryToolStripMenuItem.Name = "addDirectoryToolStripMenuItem";
             resources.ApplyResources(this.addDirectoryToolStripMenuItem, "addDirectoryToolStripMenuItem");
+            this.addDirectoryToolStripMenuItem.Name = "addDirectoryToolStripMenuItem";
             this.addDirectoryToolStripMenuItem.Click += new System.EventHandler(this.addDirectoryToolStripMenuItem_Click);
             // 
             // browseForOtherProgramsToolStripMenuItem
             // 
-            this.browseForOtherProgramsToolStripMenuItem.Name = "browseForOtherProgramsToolStripMenuItem";
             resources.ApplyResources(this.browseForOtherProgramsToolStripMenuItem, "browseForOtherProgramsToolStripMenuItem");
+            this.browseForOtherProgramsToolStripMenuItem.Name = "browseForOtherProgramsToolStripMenuItem";
             this.browseForOtherProgramsToolStripMenuItem.Click += new System.EventHandler(this.browseForOtherProgramsToolStripMenuItem_Click);
             // 
             // WinProgs

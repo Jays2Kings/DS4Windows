@@ -529,7 +529,7 @@
     <value>DS4Windows beendet</value>
   </data>
   <data name="TextDocs" xml:space="preserve">
-    <value>Neigung nach Unten</value>
+    <value>Text Dokument (*.txt)</value>
   </data>
   <data name="ChargeController" xml:space="preserve">
     <value>Die Batterie aufladen</value>
@@ -539,5 +539,8 @@
   </data>
   <data name="XMLFiles" xml:space="preserve">
     <value>XML Dateien (*.xml)</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>Nicht Zugewiesen</value>
   </data>
 </root>

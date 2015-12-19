@@ -638,4 +638,16 @@
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Benutze eine eigene Farbe</value>
   </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="lbStatus.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="tabControllers.Text" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="tabLog.Text" xml:space="preserve">
+    <value>Log</value>
+  </data>
 </root>

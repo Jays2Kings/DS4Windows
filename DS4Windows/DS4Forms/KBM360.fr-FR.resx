@@ -214,4 +214,22 @@
   <data name="lbRed.Text" xml:space="preserve">
     <value>R</value>
   </data>
+  <data name="cBShiftButton.Items" xml:space="preserve">
+    <value>Selection Gachette Shift</value>
+  </data>
+  <data name="cBToggle.Text" xml:space="preserve">
+    <value>Basculer entre</value>
+  </data>
+  <data name="gBExtras.Text" xml:space="preserve">
+    <value>Extras</value>
+  </data>
+  <data name="lBMacroOn.Text" xml:space="preserve">
+    <value>Macro activé, Choisir une touche a désactiver, ou fermer la fenêtre pour sauvegarder</value>
+  </data>
+  <data name="rBRegular.Text" xml:space="preserve">
+    <value>Normale</value>
+  </data>
+  <data name="rBShiftModifer.Text" xml:space="preserve">
+    <value>Modification de Shift</value>
+  </data>
 </root>

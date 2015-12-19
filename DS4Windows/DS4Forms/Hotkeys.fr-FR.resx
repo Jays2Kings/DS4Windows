@@ -119,82 +119,178 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>528, 19</value>
+    <value>652, 19</value>
   </data>
   <data name="lLChangelog.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 3</value>
   </data>
   <data name="lLChangelog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 13</value>
+    <value>136, 17</value>
   </data>
   <data name="lLChangelog.Text" xml:space="preserve">
     <value>Liste de nouveautés</value>
   </data>
   <data name="linkDonate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>421, 3</value>
+    <value>540, 2</value>
   </data>
   <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 13</value>
+    <value>104, 17</value>
   </data>
   <data name="linkDonate.Text" xml:space="preserve">
-    <value>Donation via PayPal</value>
+    <value>Don via PayPal</value>
   </data>
   <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>497, 505</value>
+    <value>615, 505</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Cacher manette DS4: Cacher les entrées de base (Dinput) de la DS4 de la vérification des autres programmes si vous observez des entrées doubles en plein jeu ou si R2 met le jeu en pause
+    <value>Cacher manette DS4: Cache les entrées de base (Dinput) de la DS4 de la vérification des autres programmes, cochez si vous observez des entrées doubles en jeu ou si R2 met le jeu en pause
 Cliquez sur le côté gauche du pavé tactile: Left Touch
 Cliquez sur le côté droit du pavé tactile: Right Touch
 Cliquez sur le pavé tactile avec 2 doigts: Multitouch
 Cliquez sur la partie supérieure du pavé tactile: Upper Touch
 PS + Options ou maintenir PS pendant 10 secondes: Déconnecter la manette (Bluetooth seulement)
 Pavé tactile + PS: Désactiver les glissements sur le pavé tactile (le clique fonctionne toujours)
-Clic sur la partie inférieure et droite du pavé tactile*: Clic droit (conseillé d'utiliser quand le côté droit est utilisé comme bouton de souris)
+Clic sur la partie inférieure droite du pavé tactile*: Clic droit (conseillé d'utiliser quand le côté droit est utilisé comme bouton de souris)
 Deux doigts haut/bas sur la pavé tactile*: Défiler vers le Haut/Bas
 Appuyer puis maintenir le pavé tactile*: Glisser du clic gauche de la souris
-Glisser gauche ou droit avec 2 doigts sur le pavé tactile*: Cycle through profiles
+Glisser avec 2 doigts gauche ou droit sur le pavé tactile*: Cycle through profiles
 Shift Modifer: Maintenir une action pour utiliser un autre ensemble de commandes
 Pendant que vous configurez le clavier et la souris:
 Toggle: La touche restera dans un état "enfoncée" tant qu'elle n'aura pas été pressée une nouvelle fois
 Macro: Assigner plusieurs touches à une entrée
-Scan du code: Les touches sont interprétées différemment. Peut-être nécessaire pour certains jeux
+Scan du code: Les touches sont interprétées différemment. Peut être nécessaire pour certains jeux
 *Si Activé</value>
   </data>
   <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>520, 384</value>
+    <value>644, 421</value>
+  </data>
+  <data name="tPHotkeys.Text" xml:space="preserve">
+    <value>Raccourcis</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 230</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 230</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 210</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 210</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="lbGermanT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 21</value>
+  </data>
+  <data name="lbItalianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 21</value>
+  </data>
+  <data name="lbItalianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 21</value>
+  </data>
+  <data name="lbItalian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 21</value>
+  </data>
+  <data name="lbRussian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 42</value>
+  </data>
+  <data name="lbRussianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 42</value>
+  </data>
+  <data name="lbRussianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 21</value>
+  </data>
+  <data name="lbRomanian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 63</value>
+  </data>
+  <data name="lbRomanianT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 63</value>
+  </data>
+  <data name="lbRomanianT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 21</value>
+  </data>
+  <data name="lbTurkish.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 84</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 84</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 21</value>
+  </data>
+  <data name="lbChineseS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 105</value>
+  </data>
+  <data name="lbChineseST.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 105</value>
+  </data>
+  <data name="lbChineseT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 126</value>
+  </data>
+  <data name="lbChineseTT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 126</value>
+  </data>
+  <data name="lbArabic.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 147</value>
+  </data>
+  <data name="lbArabicT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 147</value>
+  </data>
+  <data name="lbHebrew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 168</value>
+  </data>
+  <data name="lbHebrewT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 168</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 189</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 21</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 189</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 21</value>
   </data>
   <data name="tLPTranslators.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 110</value>
+    <value>4, 142</value>
   </data>
   <data name="tLPTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>514, 258</value>
+    <value>636, 258</value>
+  </data>
+  <data name="lbTranslators.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 195</value>
   </data>
   <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 13</value>
+    <value>85, 17</value>
   </data>
   <data name="lbTranslators.Text" xml:space="preserve">
     <value>Traducteurs</value>
   </data>
   <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 368</value>
+    <value>4, 400</value>
   </data>
   <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>520, 384</value>
+    <value>644, 421</value>
+  </data>
+  <data name="tPCredits.Text" xml:space="preserve">
+    <value>Crédits</value>
   </data>
   <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 19</value>
   </data>
   <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>528, 410</value>
+    <value>652, 450</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>528, 429</value>
-  </data>
-  <data name="tPCredits.Text" xml:space="preserve">
-    <value>Crédits</value>
-  </data>
-  <data name="tPHotkeys.Text" xml:space="preserve">
-    <value>Raccourcis</value>
+    <value>652, 469</value>
   </data>
 </root>

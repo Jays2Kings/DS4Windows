@@ -13,11 +13,15 @@ namespace DS4Windows
         public Hotkeys()
         {
             InitializeComponent();
-           /* switch (Thread.CurrentThread.CurrentUICulture.ToString())
+            string s = Thread.CurrentThread.CurrentUICulture.ToString().Split('-')[0];
+            
+            Control[] ctrls = tLPTranslators.Controls.Find("lb" + s, true);
+            if (ctrls.Length > 0)
             {
-                case "ar": lbArabic.ForeColor = Color.Green; break;
-                case "de-DE": lbGerman.ForeColor = Color.Green; break;
-            }*/
+                ((Label)ctrls[0]).ForeColor = Color.DarkGreen;
+                int ind = tLPTranslators.Controls.IndexOf(ctrls[0]) + 1;
+                ((Label)tLPTranslators.Controls[ind]).ForeColor = Color.DarkGreen;
+            }
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             lbAbout.Text += version + ")";

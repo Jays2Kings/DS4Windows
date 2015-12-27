@@ -152,6 +152,9 @@
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
+            this.pnlTrayColor = new System.Windows.Forms.Panel();
+            this.lbTrayColor = new System.Windows.Forms.Label();
+            this.cbTrayColor = new System.Windows.Forms.ComboBox();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -177,6 +180,7 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.tabLog.SuspendLayout();
             this.cMCustomLed.SuspendLayout();
+            this.pnlTrayColor.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvDebug
@@ -848,6 +852,7 @@
             this.fLPSettings.Controls.Add(this.StartWindowsCheckBox);
             this.fLPSettings.Controls.Add(this.startMinimizedCheckBox);
             this.fLPSettings.Controls.Add(this.panel1);
+            this.fLPSettings.Controls.Add(this.pnlTrayColor);
             this.fLPSettings.Controls.Add(this.cBDisconnectBT);
             this.fLPSettings.Controls.Add(this.panel2);
             this.fLPSettings.Controls.Add(this.cBCloseMini);
@@ -1152,6 +1157,29 @@
             // 
             this.advColorDialog.OnUpdateColor += new DS4Windows.AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
             // 
+            // pnlTrayColor
+            // 
+            this.pnlTrayColor.Controls.Add(this.lbTrayColor);
+            this.pnlTrayColor.Controls.Add(this.cbTrayColor);
+            resources.ApplyResources(this.pnlTrayColor, "pnlTrayColor");
+            this.pnlTrayColor.Name = "pnlTrayColor";
+            // 
+            // lbTrayColor
+            // 
+            resources.ApplyResources(this.lbTrayColor, "lbTrayColor");
+            this.lbTrayColor.Name = "lbTrayColor";
+            // 
+            // cbTrayColor
+            // 
+            resources.ApplyResources(this.cbTrayColor, "cbTrayColor");
+            this.cbTrayColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTrayColor.FormattingEnabled = true;
+            this.cbTrayColor.Items.AddRange(new object[] {
+            resources.GetString("cbTrayColor.Items"),
+            resources.GetString("cbTrayColor.Items1")});
+            this.cbTrayColor.Name = "cbTrayColor";
+            this.cbTrayColor.SelectedIndexChanged += new System.EventHandler(this.cbTrayColor_SelectedIndexChanged);
+            // 
             // DS4Form
             // 
             this.AllowDrop = true;
@@ -1202,6 +1230,8 @@
             this.flowLayoutPanel1.PerformLayout();
             this.tabLog.ResumeLayout(false);
             this.cMCustomLed.ResumeLayout(false);
+            this.pnlTrayColor.ResumeLayout(false);
+            this.pnlTrayColor.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1330,6 +1360,9 @@
         private System.Windows.Forms.ToolStripMenuItem useProfileColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useCustomColorToolStripMenuItem;
         private AdvancedColorDialog advColorDialog;
+        private System.Windows.Forms.Panel pnlTrayColor;
+        private System.Windows.Forms.Label lbTrayColor;
+        private System.Windows.Forms.ComboBox cbTrayColor;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

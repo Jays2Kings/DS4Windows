@@ -118,132 +118,47 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="bnAddPrograms.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 2</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="bnAddPrograms.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="bnAddPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 28</value>
+    <value>132, 23</value>
   </data>
   <data name="bnAddPrograms.Text" xml:space="preserve">
     <value>Ajouter de Programmes</value>
   </data>
-  <data name="lBProgramPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>692, 240</value>
-  </data>
-  <data name="lBProgramPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lBProgramPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 22</value>
-  </data>
-  <data name="cBProfile1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>812, 34</value>
-  </data>
-  <data name="cBProfile1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="cBProfile1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 24</value>
-  </data>
-  <data name="cBProfile2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>812, 68</value>
-  </data>
-  <data name="cBProfile2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="cBProfile2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 24</value>
-  </data>
-  <data name="cBProfile3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>812, 101</value>
-  </data>
-  <data name="cBProfile3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="cBProfile3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 24</value>
-  </data>
-  <data name="cBProfile4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>812, 134</value>
-  </data>
-  <data name="cBProfile4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="cBProfile4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 24</value>
-  </data>
   <data name="bnSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>868, 2</value>
-  </data>
-  <data name="bnSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>651, 2</value>
   </data>
   <data name="bnSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 28</value>
+    <value>79, 23</value>
   </data>
   <data name="bnSave.Text" xml:space="preserve">
     <value>Sauvegarder</value>
   </data>
-  <data name="lBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>688, 38</value>
-  </data>
-  <data name="lBController1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
   <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 17</value>
+    <value>55, 13</value>
   </data>
   <data name="lBController1.Text" xml:space="preserve">
     <value>Manette 1</value>
   </data>
-  <data name="lBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>688, 71</value>
-  </data>
-  <data name="lBController2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
   <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 17</value>
+    <value>55, 13</value>
   </data>
   <data name="lBController2.Text" xml:space="preserve">
     <value>Manette 2</value>
   </data>
-  <data name="lBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>688, 105</value>
-  </data>
-  <data name="lBController3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
   <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 17</value>
+    <value>55, 13</value>
   </data>
   <data name="lBController3.Text" xml:space="preserve">
     <value>Manette 3</value>
   </data>
-  <data name="lBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>688, 138</value>
-  </data>
-  <data name="lBController4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
   <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 17</value>
+    <value>55, 13</value>
   </data>
   <data name="lBController4.Text" xml:space="preserve">
     <value>Manette 4</value>
   </data>
   <data name="bnDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>771, 2</value>
-  </data>
-  <data name="bnDelete.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="bnDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 28</value>
+    <value>578, 2</value>
   </data>
   <data name="bnDelete.Text" xml:space="preserve">
     <value>Supprimer</value>
@@ -254,79 +169,49 @@
   <data name="PathHeader.Text" xml:space="preserve">
     <value>Chemin</value>
   </data>
-  <data name="lVPrograms.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 34</value>
-  </data>
-  <data name="lVPrograms.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="lVPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>672, 233</value>
-  </data>
-  <data name="pBProfilesTip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>829, 167</value>
-  </data>
-  <data name="pBProfilesTip.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
   <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 17</value>
+    <value>82, 13</value>
   </data>
   <data name="pBProfilesTip.Text" xml:space="preserve">
     <value>Choisir Profils ici</value>
   </data>
   <data name="bnHideUnchecked.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 2</value>
-  </data>
-  <data name="bnHideUnchecked.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="bnHideUnchecked.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 28</value>
+    <value>143, 2</value>
   </data>
   <data name="bnHideUnchecked.Text" xml:space="preserve">
     <value>Cacher les choix non cocher</value>
   </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>348, 134</value>
-  </data>
   <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>347, 26</value>
+    <value>283, 22</value>
   </data>
   <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter des programmes du Menu Démarrer</value>
   </data>
   <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>347, 26</value>
+    <value>283, 22</value>
   </data>
   <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter de Jeux Steam</value>
   </data>
   <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>347, 26</value>
+    <value>283, 22</value>
   </data>
   <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter de Jeux Origin</value>
   </data>
   <data name="addDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>347, 26</value>
+    <value>283, 22</value>
   </data>
   <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajouter Répertoire</value>
   </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>347, 26</value>
+    <value>283, 22</value>
   </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
     <value>Parcourir pour d'autres programmes</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>981, 273</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
+    <value>284, 114</value>
   </data>
 </root>

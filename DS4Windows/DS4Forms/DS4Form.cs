@@ -50,6 +50,7 @@ namespace DS4Windows
         string logFile = appdatapath + @"\DS4Service.log";
         StreamWriter logWriter;
         bool runningBat;
+        bool wasTmpStopped = false; //used for detection of ds4windows stopping itself -dedChar
         //bool outputlog = false;
 
         [DllImport("user32.dll")]
@@ -499,6 +500,13 @@ namespace DS4Windows
                                 LoadTempProfile(j, proprofiles[j][i], true, Program.rootHub); //j is controller index, i is filename
                                 if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
                             }
+                            //stops ds4windows if (none) is selected -dedChar
+                            else
+                            {
+                                btnStartStop_Click(sender, e);
+                                hotkeysTimer.Start(); //btnStartStop_Clicked() stops this timer. If it isn't running, ds4windows won't start itself again -dedChar
+                                wasTmpStopped = true;
+                            }
                         tempProfileProgram = name;
                     }
                 }
@@ -506,6 +514,11 @@ namespace DS4Windows
             {
                 if (tempProfileProgram != GetTopWindowName().ToLower().Replace('/', '\\'))
                 {
+                    if(wasTmpStopped == true)
+                    {
+                        btnStartStop_Click(sender, e);
+                        wasTmpStopped = false;
+                    }
                     tempProfileProgram = "null";
                     for (int j = 0; j < 4; j++)
                         LoadProfile(j, false, Program.rootHub);

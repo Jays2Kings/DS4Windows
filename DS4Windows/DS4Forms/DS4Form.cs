@@ -148,7 +148,6 @@ namespace DS4Windows
                 g.Dispose();
             }
             Icon = Properties.Resources.DS4W;
-            notifyIcon1.Icon = Properties.Resources.DS4W;
             Program.rootHub.Debug += On_Debug;
 
             Log.GuiLog += On_Debug;
@@ -187,6 +186,8 @@ namespace DS4Windows
                     Close();
                     return;
                 }
+
+            notifyIcon1_SetColor();
             //MessageBox.Show(Environment.OSVersion.VersionString);
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
@@ -296,6 +297,7 @@ namespace DS4Windows
                 tabMain.SelectedIndex = 1;
             //cBNotifications.Checked = Notifications;
             cBoxNotifications.SelectedIndex = Notifications;
+            cbTrayColor.SelectedIndex = TrayColor;
             cBSwipeProfiles.Checked = SwipeProfiles;
             int checkwhen = CheckWhen;
             cBUpdate.Checked = checkwhen > 0;
@@ -1726,6 +1728,21 @@ namespace DS4Windows
                 DS4LightBar.forcelight[currentCustomLed] = true;
             }
         }
+
+        private void cbTrayColor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TrayColor = cbTrayColor.SelectedIndex;
+            notifyIcon1_SetColor();
+        }
+
+        private void notifyIcon1_SetColor()
+        {
+            if (TrayColor == 1)
+                notifyIcon1.Icon = Properties.Resources.DS4W_White;
+            else // default to black
+                notifyIcon1.Icon = Properties.Resources.DS4W;
+        }
+
 
         private void cBDownloadLangauge_CheckedChanged(object sender, EventArgs e)
         {

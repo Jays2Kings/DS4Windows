@@ -205,6 +205,11 @@ namespace DS4Windows
             set { m_Config.notifications = value; }
             get { return m_Config.notifications; }
         }
+        public static int TrayColor
+        {
+            set { m_Config.trayColor = value; }
+            get { return m_Config.trayColor; }
+        }
         public static bool DCBTatStop
         {
             set { m_Config.disconnectBTAtStop = value; }
@@ -576,6 +581,7 @@ namespace DS4Windows
         public DateTime lastChecked;
         public int CheckWhen = 1;
         public int notifications = 2;
+        public int trayColor = 0;
         public bool disconnectBTAtStop = false;
         public bool swipeProfiles = true;
         public bool ds4Mapping = true;
@@ -1791,6 +1797,8 @@ namespace DS4Windows
                             notifications = (Boolean.Parse(Item.InnerText) ? 2 : 0);
                     }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/TrayColor"); int.TryParse(Item.InnerText, out trayColor); }
+                    catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/DisconnectBTAtStop"); Boolean.TryParse(Item.InnerText, out disconnectBTAtStop); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/SwipeProfiles"); Boolean.TryParse(Item.InnerText, out swipeProfiles); }
@@ -1860,6 +1868,7 @@ namespace DS4Windows
             XmlNode xmlLastChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastChecked", null); xmlLastChecked.InnerText = lastChecked.ToString(); Node.AppendChild(xmlLastChecked);
             XmlNode xmlCheckWhen = m_Xdoc.CreateNode(XmlNodeType.Element, "CheckWhen", null); xmlCheckWhen.InnerText = CheckWhen.ToString(); Node.AppendChild(xmlCheckWhen);
             XmlNode xmlNotifications = m_Xdoc.CreateNode(XmlNodeType.Element, "Notifications", null); xmlNotifications.InnerText = notifications.ToString(); Node.AppendChild(xmlNotifications);
+            XmlNode xmlTrayColor = m_Xdoc.CreateNode(XmlNodeType.Element, "TrayColor", null); xmlTrayColor.InnerText = trayColor.ToString(); Node.AppendChild(xmlTrayColor);
             XmlNode xmlDisconnectBT = m_Xdoc.CreateNode(XmlNodeType.Element, "DisconnectBTAtStop", null); xmlDisconnectBT.InnerText = disconnectBTAtStop.ToString(); Node.AppendChild(xmlDisconnectBT);
             XmlNode xmlSwipeProfiles = m_Xdoc.CreateNode(XmlNodeType.Element, "SwipeProfiles", null); xmlSwipeProfiles.InnerText = swipeProfiles.ToString(); Node.AppendChild(xmlSwipeProfiles);
             XmlNode xmlDS4Mapping = m_Xdoc.CreateNode(XmlNodeType.Element, "UseDS4ForMapping", null); xmlDS4Mapping.InnerText = ds4Mapping.ToString(); Node.AppendChild(xmlDS4Mapping);

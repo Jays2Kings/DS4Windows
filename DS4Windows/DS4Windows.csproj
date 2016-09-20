@@ -761,6 +761,7 @@
     <None Include="Resources\DS4-Config_Triangle.png" />
     <None Include="Resources\DS4-Config_Up.png" />
     <Content Include="Resources\DS4.ico" />
+    <Content Include="Resources\DS4W White.ico" />
     <Content Include="Resources\DS4W.ico" />
     <Content Include="Resources\EE.wav" />
     <Content Include="Resources\export.png" />

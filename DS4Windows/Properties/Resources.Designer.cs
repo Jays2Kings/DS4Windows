@@ -754,6 +754,16 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon DS4W_White {
+            get {
+                object obj = ResourceManager.GetObject("DS4W_White", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DS4Windows cannot edit settings here, This will now close.
         /// </summary>
         internal static string DS4WindowsCannotEditHere {

@@ -751,7 +751,7 @@ namespace DS4Windows
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); Node.AppendChild(xmlSZD);
 
                 XmlNode xmlSens = m_Xdoc.CreateNode(XmlNodeType.Element, "Sensitivity", null);
-                xmlSens.InnerText = $"{LSSens[device]},{RSSens[device]},{l2Sens[device]},{r2Sens[device]},{SXSens[device]},{SZSens[device]}";
+                xmlSens.InnerText = $"{LSSens[device]}|{RSSens[device]}|{l2Sens[device]}|{r2Sens[device]}|{SXSens[device]}|{SZSens[device]}";
                 Node.AppendChild(xmlSens);
 
                 XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null); xmlChargingType.InnerText = chargingType[device].ToString(); Node.AppendChild(xmlChargingType);
@@ -1388,7 +1388,12 @@ namespace DS4Windows
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Sensitivity");
-                    string[] s = Item.InnerText.Split(',');
+                    string[] s = Item.InnerText.Split('|');
+                    if (s.Length != 6)
+                    {
+                        s = Item.InnerText.Split(',');
+                    }
+
                     double.TryParse(s[0], out LSSens[device]);
                     double.TryParse(s[1], out RSSens[device]);
                     double.TryParse(s[2], out l2Sens[device]);

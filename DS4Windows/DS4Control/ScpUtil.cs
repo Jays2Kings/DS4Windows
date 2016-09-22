@@ -1396,8 +1396,16 @@ namespace DS4Windows
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Sensitivity");
                     string[] s = Item.InnerText.Split('|');
+<<<<<<< HEAD
                     if (s.Length == 1)
                         s = Item.InnerText.Split(',');
+=======
+                    if (s.Length != 6)
+                    {
+                        s = Item.InnerText.Split(',');
+                    }
+
+>>>>>>> origin/jay
                     double.TryParse(s[0], out LSSens[device]);
                     double.TryParse(s[1], out RSSens[device]);
                     double.TryParse(s[2], out l2Sens[device]);

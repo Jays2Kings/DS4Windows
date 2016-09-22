@@ -244,7 +244,7 @@
     <value>Gyro</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Hou de geselecteerde besturing om een actie uit te voeren, controlleer de actie om het te gebruiken als het profiel geladen is. Max 50 acties</value>
+    <value>Hou de geselecteerde besturing om een actie uit te voeren, controlleer de actie om het te gebruiken als het profiel geladen is.</value>
   </data>
   <data name="lbBlue.Text" xml:space="preserve">
     <value>B</value>

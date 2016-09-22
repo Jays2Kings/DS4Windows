@@ -563,7 +563,7 @@
     <value>Eylemi Sil</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Bir eylemi gerçekleştirmek için seçili kontrol cihazlarını basılı tutunuz, eylemi profil yüklenirken kontrol edin. En fazla 50</value>
+    <value>Bir eylemi gerçekleştirmek için seçili kontrol cihazlarını basılı tutunuz, eylemi profil yüklenirken kontrol edin.</value>
   </data>
   <data name="tPSpecial.Text" xml:space="preserve">
     <value>Özel Eylemler</value>

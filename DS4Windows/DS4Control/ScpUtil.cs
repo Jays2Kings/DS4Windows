@@ -265,6 +265,11 @@ namespace DS4Windows
             set { m_Config.flashWhenLateAt = value; }
             get { return m_Config.flashWhenLateAt; }
         }
+        public static bool UseWhiteIcon
+        {
+            set { m_Config.useWhiteIcon = value; }
+            get { return m_Config.useWhiteIcon; }
+        }
 
         //controller/profile specfic values
         public static int[] ButtonMouseSensitivity => m_Config.buttonMouseSensitivity;
@@ -337,6 +342,7 @@ namespace DS4Windows
         public static void SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
         {
             m_Config.SaveAction(name, controls, mode, details, edit, extras);
+            Mapping.actionDone.Add(new Mapping.ActionState());
         }
 
         public static void RemoveAction(string name)
@@ -597,10 +603,11 @@ namespace DS4Windows
         public Dictionary<DS4Controls, String>[] shiftCustomMapExtras = { null, null, null, null, null };*/
         public List<string>[] profileActions = { null, null, null, null, null };
         public bool downloadLang = true;
+        public bool useWhiteIcon;
         public bool flashWhenLate = true;
         public int flashWhenLateAt = 10;
         public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
-        internal int[] gyroInvert = { 0, 0, 0, 0, 0 };
+        public int[] gyroInvert = { 0, 0, 0, 0, 0 };
 
         public BackingStore()
         {
@@ -751,7 +758,7 @@ namespace DS4Windows
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); Node.AppendChild(xmlSZD);
 
                 XmlNode xmlSens = m_Xdoc.CreateNode(XmlNodeType.Element, "Sensitivity", null);
-                xmlSens.InnerText = $"{LSSens[device]},{RSSens[device]},{l2Sens[device]},{r2Sens[device]},{SXSens[device]},{SZSens[device]}";
+                xmlSens.InnerText = $"{LSSens[device]}|{RSSens[device]}|{l2Sens[device]}|{r2Sens[device]}|{SXSens[device]}|{SZSens[device]}";
                 Node.AppendChild(xmlSens);
 
                 XmlNode xmlChargingType = m_Xdoc.CreateNode(XmlNodeType.Element, "ChargingType", null); xmlChargingType.InnerText = chargingType[device].ToString(); Node.AppendChild(xmlChargingType);
@@ -1118,7 +1125,7 @@ namespace DS4Windows
                 case "sbnGyroXN": return DS4Controls.GyroXNeg;
                 case "sbnGyroZP": return DS4Controls.GyroZPos;
                 case "sbnGyroZN": return DS4Controls.GyroZNeg;
-#endregion
+                #endregion
 
                 case "bnShiftShare": return DS4Controls.Share;
                 case "bnShiftL3": return DS4Controls.L3;
@@ -1345,7 +1352,7 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingBlue"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device].blue); }
                     catch { missingSetting = true; }
-                }                
+                }
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/FlashColor");
@@ -1388,7 +1395,9 @@ namespace DS4Windows
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Sensitivity");
-                    string[] s = Item.InnerText.Split(',');
+                    string[] s = Item.InnerText.Split('|');
+                    if (s.Length == 1)
+                        s = Item.InnerText.Split(',');
                     double.TryParse(s[0], out LSSens[device]);
                     double.TryParse(s[1], out RSSens[device]);
                     double.TryParse(s[2], out l2Sens[device]);
@@ -1424,7 +1433,7 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/StartTouchpadOff"); 
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/StartTouchpadOff");
                     Boolean.TryParse(Item.InnerText, out startTouchpadOff[device]);
                     if (startTouchpadOff[device] == true) control.StartTPOff(device);
                 }
@@ -1450,10 +1459,11 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try
                 {
-                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ProfileActions"); 
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ProfileActions");
                     profileActions[device].Clear();
                     if (!string.IsNullOrEmpty(Item.InnerText))
-                        profileActions[device].AddRange(Item.InnerText.Split('/')); }
+                        profileActions[device].AddRange(Item.InnerText.Split('/'));
+                }
                 catch { profileActions[device].Clear(); missingSetting = true; }
 
                 foreach (DS4ControlSettings dcs in ds4settings[device])
@@ -1461,7 +1471,7 @@ namespace DS4Windows
 
                 DS4KeyType keyType;
                 ushort wvk;
-               
+
                 {
                     XmlNode ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Button");
                     if (ParentItem != null)
@@ -1612,7 +1622,7 @@ namespace DS4Windows
                     //LoadButtons(buttons, "Control", customMapKeyTypes, customMapKeys, customMapButtons, customMapMacros, customMapExtras);
                     //LoadButtons(shiftbuttons, "ShiftControl", shiftCustomMapKeyTypes, shiftCustomMapKeys, shiftCustomMapButtons, shiftCustomMapMacros, shiftCustomMapExtras);                    
                 }
-            }            
+            }
             //catch { Loaded = false; }
             /*if (Loaded)
             {
@@ -1780,7 +1790,8 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CheckWhen"); Int32.TryParse(Item.InnerText, out CheckWhen); }
                     catch { missingSetting = true; }
-                    try {
+                    try
+                    {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Notifications");
                         if (!int.TryParse(Item.InnerText, out notifications))
                             notifications = (Boolean.Parse(Item.InnerText) ? 2 : 0);
@@ -1804,6 +1815,8 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/FlashWhenLateAt"); int.TryParse(Item.InnerText, out flashWhenLateAt); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/WhiteIcon"); Boolean.TryParse(Item.InnerText, out useWhiteIcon); }
+                    catch { missingSetting = true; }
                     for (int i = 0; i < 4; i++)
                     {
                         try
@@ -1820,7 +1833,7 @@ namespace DS4Windows
             catch { }
             if (missingSetting)
                 Save();
-            return Loaded; 
+            return Loaded;
         }
         public bool Save()
         {
@@ -1862,8 +1875,9 @@ namespace DS4Windows
             XmlNode xmlFirstXinputPort = m_Xdoc.CreateNode(XmlNodeType.Element, "FirstXinputPort", null); xmlFirstXinputPort.InnerText = firstXinputPort.ToString(); Node.AppendChild(xmlFirstXinputPort);
             XmlNode xmlCloseMini = m_Xdoc.CreateNode(XmlNodeType.Element, "CloseMinimizes", null); xmlCloseMini.InnerText = closeMini.ToString(); Node.AppendChild(xmlCloseMini);
             XmlNode xmlDownloadLang = m_Xdoc.CreateNode(XmlNodeType.Element, "DownloadLang", null); xmlDownloadLang.InnerText = downloadLang.ToString(); Node.AppendChild(xmlDownloadLang);
-            XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); Node.AppendChild(xmlFlashWhenLate);            
+            XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); Node.AppendChild(xmlFlashWhenLate);
             XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); Node.AppendChild(xmlFlashWhenLateAt);
+            XmlNode xmlWhiteIcon = m_Xdoc.CreateNode(XmlNodeType.Element, "WhiteIcon", null); xmlWhiteIcon.InnerText = useWhiteIcon.ToString(); Node.AppendChild(xmlWhiteIcon);
 
             for (int i = 0; i < 4; i++)
             {
@@ -1941,7 +1955,7 @@ namespace DS4Windows
                 case 4:
                     el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "Key";
                     el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
-                    if (!String.IsNullOrEmpty(extras))
+                    if (!string.IsNullOrEmpty(extras))
                     {
                         string[] exts = extras.Split('\n');
                         el.AppendChild(m_Xdoc.CreateElement("UnloadTrigger")).InnerText = exts[1];
@@ -1957,7 +1971,7 @@ namespace DS4Windows
                     el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
                     break;
                 case 7:
-                    el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "XboxGameDVR";
+                    el.AppendChild(m_Xdoc.CreateElement("Type")).InnerText = "MultiAction";
                     el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
                     break;
             }
@@ -2001,12 +2015,14 @@ namespace DS4Windows
                 doc.Load(Global.appdatapath + "\\Actions.xml");
                 XmlNodeList actionslist = doc.SelectNodes("Actions/Action");
                 string name, controls, type, details, extras, extras2;
+                Mapping.actionDone.Clear();
                 foreach (XmlNode x in actionslist)
                 {
                     name = x.Attributes["Name"].Value;
                     controls = x.ChildNodes[0].InnerText;
                     type = x.ChildNodes[1].InnerText;
                     details = x.ChildNodes[2].InnerText;
+                    Mapping.actionDone.Add(new Mapping.ActionState());
                     if (type == "Profile")
                     {
                         extras = x.ChildNodes[3].InnerText;
@@ -2046,7 +2062,9 @@ namespace DS4Windows
                     else if (type == "BatteryCheck")
                     {
                         double doub;
-                        if (double.TryParse(details.Split(',')[0], out doub))
+                        if (double.TryParse(details.Split('|')[0], out doub))
+                            actions.Add(new SpecialAction(name, controls, type, details, doub));
+                        else if (double.TryParse(details.Split(',')[0], out doub))
                             actions.Add(new SpecialAction(name, controls, type, details, doub));
                         else
                             actions.Add(new SpecialAction(name, controls, type, details));
@@ -2067,7 +2085,7 @@ namespace DS4Windows
                             actions.Add(new SpecialAction(name, controls, type, details));
                         }
                     }
-                    else if (type == "XboxGameDVR")
+                    else if (type == "XboxGameDVR" || type == "MultiAction")
                     {
                         actions.Add(new SpecialAction(name, controls, type, details));
                     }
@@ -2282,6 +2300,30 @@ namespace DS4Windows
                 this.details = details;
                 if (extras != string.Empty)
                     extra = extras;
+            }
+            else if (type == "XboxGameDVR")
+            {
+                string[] dets = details.Split(',');
+                List<string> macros = new List<string>();
+                //string dets = "";
+                int typeT = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    if (int.TryParse(dets[i], out typeT))
+                    {
+                        switch (typeT)
+                        {
+                            case 0: macros.Add("91/71/71/91"); break;
+                            case 1: macros.Add("91/164/82/82/164/91"); break;
+                            case 2: macros.Add("91/164/44/44/164/91"); break;
+                            case 3: macros.Add(dets[3] + "/" + dets[3]); break;
+                            case 4: macros.Add("91/164/71/71/164/91"); break;
+                        }
+                    }
+                }
+                this.type = "MultiAction";
+                type = "MultiAction";
+                this.details = string.Join(",", macros);
             }
             else
                 this.details = details;

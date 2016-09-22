@@ -40,7 +40,24 @@
             this.tPHotkeys = new System.Windows.Forms.TabPage();
             this.lbHotkeys = new System.Windows.Forms.Label();
             this.tPCredits = new System.Windows.Forms.TabPage();
+            this.linkKiliansch = new System.Windows.Forms.LinkLabel();
+            this.linkChamilsaan = new System.Windows.Forms.LinkLabel();
+            this.linkBoganhobo = new System.Windows.Forms.LinkLabel();
             this.tLPTranslators = new System.Windows.Forms.TableLayoutPanel();
+            this.lbuk = new System.Windows.Forms.Label();
+            this.lbUkrainianT = new System.Windows.Forms.Label();
+            this.lbid = new System.Windows.Forms.Label();
+            this.lbIndonesianT = new System.Windows.Forms.Label();
+            this.lbhu = new System.Windows.Forms.Label();
+            this.lbHungarianT = new System.Windows.Forms.Label();
+            this.lbel = new System.Windows.Forms.Label();
+            this.lbGreekT = new System.Windows.Forms.Label();
+            this.lbfi = new System.Windows.Forms.Label();
+            this.lbFinnishT = new System.Windows.Forms.Label();
+            this.lbcs = new System.Windows.Forms.Label();
+            this.lbCzechT = new System.Windows.Forms.Label();
+            this.lbpt = new System.Windows.Forms.Label();
+            this.lbPortugueseT = new System.Windows.Forms.Label();
             this.lbes = new System.Windows.Forms.Label();
             this.lbSpanishT = new System.Windows.Forms.Label();
             this.lbpl = new System.Windows.Forms.Label();
@@ -68,6 +85,7 @@
             this.lbTranslators = new System.Windows.Forms.Label();
             this.linkSourceCode = new System.Windows.Forms.LinkLabel();
             this.lbLinkText = new System.Windows.Forms.Label();
+            this.linkTeokp = new System.Windows.Forms.LinkLabel();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
@@ -143,6 +161,10 @@
             // 
             // tPCredits
             // 
+            this.tPCredits.Controls.Add(this.linkTeokp);
+            this.tPCredits.Controls.Add(this.linkKiliansch);
+            this.tPCredits.Controls.Add(this.linkChamilsaan);
+            this.tPCredits.Controls.Add(this.linkBoganhobo);
             this.tPCredits.Controls.Add(this.tLPTranslators);
             this.tPCredits.Controls.Add(this.lbTranslators);
             this.tPCredits.Controls.Add(this.linkElectro);
@@ -155,9 +177,44 @@
             this.tPCredits.Name = "tPCredits";
             this.tPCredits.UseVisualStyleBackColor = true;
             // 
+            // linkKiliansch
+            // 
+            resources.ApplyResources(this.linkKiliansch, "linkKiliansch");
+            this.linkKiliansch.Name = "linkKiliansch";
+            this.linkKiliansch.TabStop = true;
+            this.linkKiliansch.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkKiliansch_LinkClicked);
+            // 
+            // linkChamilsaan
+            // 
+            resources.ApplyResources(this.linkChamilsaan, "linkChamilsaan");
+            this.linkChamilsaan.Name = "linkChamilsaan";
+            this.linkChamilsaan.TabStop = true;
+            this.linkChamilsaan.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkChamilsaan_LinkClicked);
+            // 
+            // linkBoganhobo
+            // 
+            resources.ApplyResources(this.linkBoganhobo, "linkBoganhobo");
+            this.linkBoganhobo.Name = "linkBoganhobo";
+            this.linkBoganhobo.TabStop = true;
+            this.linkBoganhobo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkBoganhobo_LinkClicked);
+            // 
             // tLPTranslators
             // 
             resources.ApplyResources(this.tLPTranslators, "tLPTranslators");
+            this.tLPTranslators.Controls.Add(this.lbuk, 0, 18);
+            this.tLPTranslators.Controls.Add(this.lbUkrainianT, 0, 18);
+            this.tLPTranslators.Controls.Add(this.lbid, 0, 17);
+            this.tLPTranslators.Controls.Add(this.lbIndonesianT, 0, 17);
+            this.tLPTranslators.Controls.Add(this.lbhu, 0, 16);
+            this.tLPTranslators.Controls.Add(this.lbHungarianT, 0, 16);
+            this.tLPTranslators.Controls.Add(this.lbel, 0, 15);
+            this.tLPTranslators.Controls.Add(this.lbGreekT, 0, 15);
+            this.tLPTranslators.Controls.Add(this.lbfi, 0, 14);
+            this.tLPTranslators.Controls.Add(this.lbFinnishT, 0, 14);
+            this.tLPTranslators.Controls.Add(this.lbcs, 0, 13);
+            this.tLPTranslators.Controls.Add(this.lbCzechT, 0, 13);
+            this.tLPTranslators.Controls.Add(this.lbpt, 0, 12);
+            this.tLPTranslators.Controls.Add(this.lbPortugueseT, 0, 12);
             this.tLPTranslators.Controls.Add(this.lbes, 0, 11);
             this.tLPTranslators.Controls.Add(this.lbSpanishT, 0, 11);
             this.tLPTranslators.Controls.Add(this.lbpl, 0, 10);
@@ -183,6 +240,76 @@
             this.tLPTranslators.Controls.Add(this.lbfrFR, 0, 9);
             this.tLPTranslators.Controls.Add(this.lbFrenchT, 1, 9);
             this.tLPTranslators.Name = "tLPTranslators";
+            // 
+            // lbuk
+            // 
+            resources.ApplyResources(this.lbuk, "lbuk");
+            this.lbuk.Name = "lbuk";
+            // 
+            // lbUkrainianT
+            // 
+            resources.ApplyResources(this.lbUkrainianT, "lbUkrainianT");
+            this.lbUkrainianT.Name = "lbUkrainianT";
+            // 
+            // lbid
+            // 
+            resources.ApplyResources(this.lbid, "lbid");
+            this.lbid.Name = "lbid";
+            // 
+            // lbIndonesianT
+            // 
+            resources.ApplyResources(this.lbIndonesianT, "lbIndonesianT");
+            this.lbIndonesianT.Name = "lbIndonesianT";
+            // 
+            // lbhu
+            // 
+            resources.ApplyResources(this.lbhu, "lbhu");
+            this.lbhu.Name = "lbhu";
+            // 
+            // lbHungarianT
+            // 
+            resources.ApplyResources(this.lbHungarianT, "lbHungarianT");
+            this.lbHungarianT.Name = "lbHungarianT";
+            // 
+            // lbel
+            // 
+            resources.ApplyResources(this.lbel, "lbel");
+            this.lbel.Name = "lbel";
+            // 
+            // lbGreekT
+            // 
+            resources.ApplyResources(this.lbGreekT, "lbGreekT");
+            this.lbGreekT.Name = "lbGreekT";
+            // 
+            // lbfi
+            // 
+            resources.ApplyResources(this.lbfi, "lbfi");
+            this.lbfi.Name = "lbfi";
+            // 
+            // lbFinnishT
+            // 
+            resources.ApplyResources(this.lbFinnishT, "lbFinnishT");
+            this.lbFinnishT.Name = "lbFinnishT";
+            // 
+            // lbcs
+            // 
+            resources.ApplyResources(this.lbcs, "lbcs");
+            this.lbcs.Name = "lbcs";
+            // 
+            // lbCzechT
+            // 
+            resources.ApplyResources(this.lbCzechT, "lbCzechT");
+            this.lbCzechT.Name = "lbCzechT";
+            // 
+            // lbpt
+            // 
+            resources.ApplyResources(this.lbpt, "lbpt");
+            this.lbpt.Name = "lbpt";
+            // 
+            // lbPortugueseT
+            // 
+            resources.ApplyResources(this.lbPortugueseT, "lbPortugueseT");
+            this.lbPortugueseT.Name = "lbPortugueseT";
             // 
             // lbes
             // 
@@ -321,6 +448,13 @@
             resources.ApplyResources(this.lbLinkText, "lbLinkText");
             this.lbLinkText.Name = "lbLinkText";
             // 
+            // linkTeokp
+            // 
+            resources.ApplyResources(this.linkTeokp, "linkTeokp");
+            this.linkTeokp.Name = "linkTeokp";
+            this.linkTeokp.TabStop = true;
+            this.linkTeokp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkTeokp_LinkClicked);
+            // 
             // Hotkeys
             // 
             resources.ApplyResources(this, "$this");
@@ -384,5 +518,23 @@
         private System.Windows.Forms.Label lbPolishT;
         private System.Windows.Forms.Label lbfrFR;
         private System.Windows.Forms.Label lbFrenchT;
+        private System.Windows.Forms.LinkLabel linkBoganhobo;
+        private System.Windows.Forms.LinkLabel linkKiliansch;
+        private System.Windows.Forms.LinkLabel linkChamilsaan;
+        private System.Windows.Forms.Label lbuk;
+        private System.Windows.Forms.Label lbUkrainianT;
+        private System.Windows.Forms.Label lbid;
+        private System.Windows.Forms.Label lbIndonesianT;
+        private System.Windows.Forms.Label lbhu;
+        private System.Windows.Forms.Label lbHungarianT;
+        private System.Windows.Forms.Label lbel;
+        private System.Windows.Forms.Label lbGreekT;
+        private System.Windows.Forms.Label lbfi;
+        private System.Windows.Forms.Label lbFinnishT;
+        private System.Windows.Forms.Label lbcs;
+        private System.Windows.Forms.Label lbCzechT;
+        private System.Windows.Forms.Label lbpt;
+        private System.Windows.Forms.Label lbPortugueseT;
+        private System.Windows.Forms.LinkLabel linkTeokp;
     }
 }

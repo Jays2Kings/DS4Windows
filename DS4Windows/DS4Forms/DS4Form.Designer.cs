@@ -35,10 +35,10 @@
             this.chData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.pnlButton = new System.Windows.Forms.Panel();
+            this.llbHelp = new System.Windows.Forms.LinkLabel();
             this.lbTest = new System.Windows.Forms.Label();
             this.btnStartStop = new System.Windows.Forms.Button();
             this.lbLastMessage = new System.Windows.Forms.Label();
-            this.llbHelp = new System.Windows.Forms.LinkLabel();
             this.btnClear = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.cMTaskbar = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -139,6 +139,7 @@
             this.lbUseXIPorts = new System.Windows.Forms.Label();
             this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
             this.lbLastXIPort = new System.Windows.Forms.Label();
+            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
@@ -207,13 +208,20 @@
             // pnlButton
             // 
             this.pnlButton.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlButton.Controls.Add(this.llbHelp);
             this.pnlButton.Controls.Add(this.lbTest);
             this.pnlButton.Controls.Add(this.btnStartStop);
             this.pnlButton.Controls.Add(this.lbLastMessage);
-            this.pnlButton.Controls.Add(this.llbHelp);
             resources.ApplyResources(this.pnlButton, "pnlButton");
             this.pnlButton.Name = "pnlButton";
             this.pnlButton.MouseLeave += new System.EventHandler(this.pnlButton_MouseLeave);
+            // 
+            // llbHelp
+            // 
+            resources.ApplyResources(this.llbHelp, "llbHelp");
+            this.llbHelp.Name = "llbHelp";
+            this.llbHelp.TabStop = true;
+            this.llbHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbHelp_LinkClicked);
             // 
             // lbTest
             // 
@@ -233,13 +241,6 @@
             this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
             this.lbLastMessage.Name = "lbLastMessage";
             this.lbLastMessage.MouseHover += new System.EventHandler(this.lbLastMessage_MouseHover);
-            // 
-            // llbHelp
-            // 
-            resources.ApplyResources(this.llbHelp, "llbHelp");
-            this.llbHelp.Name = "llbHelp";
-            this.llbHelp.TabStop = true;
-            this.llbHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbHelp_LinkClicked);
             // 
             // btnClear
             // 
@@ -852,6 +853,7 @@
             this.fLPSettings.Controls.Add(this.panel2);
             this.fLPSettings.Controls.Add(this.cBCloseMini);
             this.fLPSettings.Controls.Add(this.cBQuickCharge);
+            this.fLPSettings.Controls.Add(this.cBUseWhiteIcon);
             this.fLPSettings.Controls.Add(this.cBDownloadLangauge);
             this.fLPSettings.Controls.Add(this.cBUpdate);
             this.fLPSettings.Controls.Add(this.pNUpdate);
@@ -1065,6 +1067,13 @@
             // 
             resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
             this.lbLastXIPort.Name = "lbLastXIPort";
+            // 
+            // cBUseWhiteIcon
+            // 
+            resources.ApplyResources(this.cBUseWhiteIcon, "cBUseWhiteIcon");
+            this.cBUseWhiteIcon.Name = "cBUseWhiteIcon";
+            this.cBUseWhiteIcon.UseVisualStyleBackColor = true;
+            this.cBUseWhiteIcon.CheckedChanged += new System.EventHandler(this.cBUseWhiteIcon_CheckedChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -1330,6 +1339,7 @@
         private System.Windows.Forms.ToolStripMenuItem useProfileColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useCustomColorToolStripMenuItem;
         private AdvancedColorDialog advColorDialog;
+        private System.Windows.Forms.CheckBox cBUseWhiteIcon;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

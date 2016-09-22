@@ -225,6 +225,7 @@ namespace DS4Windows
             el.AppendChild(m_Xdoc.CreateElement("Controller2")).InnerText = cBProfile2.Text;
             el.AppendChild(m_Xdoc.CreateElement("Controller3")).InnerText = cBProfile3.Text;
             el.AppendChild(m_Xdoc.CreateElement("Controller4")).InnerText = cBProfile4.Text;
+            el.AppendChild(m_Xdoc.CreateElement("TurnOff")).InnerText = cBTurnOffDS4W.Checked.ToString();
             try
             {
                 XmlNode oldxmlprocess = m_Xdoc.SelectSingleNode("/Programs/Program[@path=\"" + lBProgramPath.Text + "\"]");
@@ -249,21 +250,33 @@ namespace DS4Windows
                 for (int i = 0; i < 4; i++)
                 {
                     Item = doc.SelectSingleNode("/Programs/Program[@path=\"" + name + "\"]" + "/Controller" + (i + 1));
-                    for (int j = 0; j < cbs[i].Items.Count; j++)
-                        if (cbs[i].Items[j].ToString() == Item.InnerText)
-                        {
-                            cbs[i].SelectedIndex = j;
-                            bnSave.Enabled = false;
-                            break;
-                        }
-                        else
-                            cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+                    if (Item != null)
+                        for (int j = 0; j < cbs[i].Items.Count; j++)
+                            if (cbs[i].Items[j].ToString() == Item.InnerText)
+                            {
+                                cbs[i].SelectedIndex = j;
+                                bnSave.Enabled = false;
+                                break;
+                            }
+                            else
+                                cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+                    else
+                        cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
                 }
+                Item = doc.SelectSingleNode("/Programs/Program[@path=\"" + name + "\"]" + "/TurnOff");
+                bool turnOff;
+                if (Item != null && bool.TryParse(Item.InnerText, out turnOff))
+                {
+                    cBTurnOffDS4W.Checked = turnOff;
+                }
+                else
+                    cBTurnOffDS4W.Checked = false;
             }
             else
             {
                 for (int i = 0; i < 4; i++)
                     cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+                cBTurnOffDS4W.Checked = false;
                 bnSave.Enabled = false;
             }
         }
@@ -294,7 +307,7 @@ namespace DS4Windows
             if (lBProgramPath.Text != string.Empty)
                 bnSave.Enabled = true;
             if (cbs[0].SelectedIndex == last && cbs[1].SelectedIndex == last &&
-                cbs[2].SelectedIndex == last && cbs[3].SelectedIndex == last)
+                cbs[2].SelectedIndex == last && cbs[3].SelectedIndex == last && !cBTurnOffDS4W.Checked)
                 bnSave.Enabled = false;
         }
 
@@ -503,6 +516,11 @@ namespace DS4Windows
                 // A COMException is thrown if the file is not a valid shortcut (.lnk) file 
                 return null;
             }
+        }
+
+        private void cBTurnOffDS4W_CheckedChanged(object sender, EventArgs e)
+        {
+            CBProfile_IndexChanged(sender, e);
         }
 
         public static string ResolveMsiShortcut(string file)

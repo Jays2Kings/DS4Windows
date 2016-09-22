@@ -23,6 +23,7 @@ namespace DS4Windows
         public List<int> macros = new List<int>(), macrosAfter = new List<int>();
         public List<string> macronames = new List<string>();
         SpecActions sA;
+        int sAButton = -1;
         KBM360 kbm;
         DS4State cState;
         public bool saved = false;
@@ -50,7 +51,7 @@ namespace DS4Windows
             }
         }
 
-        public RecordBox(SpecActions op)
+        public RecordBox(SpecActions op, int button = -1)
         {
             sA = op;
             InitializeComponent();
@@ -59,12 +60,23 @@ namespace DS4Windows
             else
                 cBStyle.SelectedIndex = 0;
             AddtoDS4List();
+            if (button > -1)
+                sAButton = button;
             ds4.Tick += ds4_Tick;
             ds4.Interval = 1;
             lbRecordTip.Visible = false;
             cBStyle.Visible = false;
             pnlMouseButtons.Location = new Point(pnlMouseButtons.Location.X, pnlMouseButtons.Location.Y - 75);
-            if (sA.macrostag.Count > 0)
+            if (sAButton > -1)
+            {
+                if (sA.multiMacrostag[sAButton].Count > 0)
+                {
+                    macros.AddRange(sA.multiMacrostag[sAButton]);
+                    LoadMacro();
+                    saved = true;
+                }
+            }
+            else if (sA.macrostag.Count > 0)
             {
                 macros.AddRange(sA.macrostag);
                 LoadMacro();
@@ -747,7 +759,19 @@ namespace DS4Windows
 
         public void btnSave_Click(object sender, EventArgs e)
         {
-            if (macros.Count > 0)
+            if (sA != null && sAButton > -1)
+            {
+                sA.multiMacrostag[sAButton] = macros;
+                switch (sAButton)
+                {
+                    case 0: sA.btnSTapT.Text = macros.Count > 0 ? Properties.Resources.MacroRecorded : Properties.Resources.SelectMacro; break;
+                    case 1: sA.btnHoldT.Text = macros.Count > 0 ? Properties.Resources.MacroRecorded : Properties.Resources.SelectMacro; break;
+                    case 2: sA.btnDTapT.Text = macros.Count > 0 ? Properties.Resources.MacroRecorded : Properties.Resources.SelectMacro; break;
+                }
+                saved = true;
+                Close();
+            }
+            else if (macros.Count > 0)
             {
                 macronames.Clear();
                 foreach (ListViewItem lvi in lVMacros.Items)
@@ -776,7 +800,7 @@ namespace DS4Windows
                         sA.macrorepeat = true;
                     saved = true;
                     //if (sender != sA)
-                       // sA.Close();
+                    // sA.Close();
                     Close();
                 }
                 else

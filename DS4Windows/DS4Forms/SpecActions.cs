@@ -21,6 +21,7 @@ namespace DS4Windows
         public List<string> controls = new List<string>();
         public List<string> ucontrols = new List<string>();
         public List<int> macrostag = new List<int>();
+        public List<int>[] multiMacrostag = { new List<int>(), new List<int>(), new List<int>() };
         public bool macrorepeat, newaction;
         public string program;
         int editIndex;
@@ -38,13 +39,14 @@ namespace DS4Windows
             cBProfiles.SelectedIndex = 0;
             cBActions.SelectedIndex = 0;
             cBPressRelease.SelectedIndex = 0;
-            if (Environment.OSVersion.Version.Major >= 10)
+            /*if (Environment.OSVersion.Version.Major >= 10)
             {
                 cBActions.Items.Add("Xbox Game DVR");
                 cBTapDVR.SelectedIndex = 0;
                 cBHoldDVR.SelectedIndex = 2;
                 cBDTapDVR.SelectedIndex = 1;
-            }
+            }*/
+            cBActions.Items[7] = Properties.Resources.MultiAction;
             foreach (object s in opt.root.lBProfiles.Items)
                 cBProfiles.Items.Add(s.ToString());
             editIndex = editindex;
@@ -129,7 +131,7 @@ namespace DS4Windows
                     bnFullColor.BackColor = Color.FromArgb(byte.Parse(dets[6]), byte.Parse(dets[7]), byte.Parse(dets[8]));
                     break;
                 case "XboxGameDVR":
-                    if (cBActions.Items.Count < 8)
+                   /* if (cBActions.Items.Count < 8)
                     {
                         cBActions.Items.Add("Xbox Game DVR");
                         cBTapDVR.SelectedIndex = 0;
@@ -145,7 +147,35 @@ namespace DS4Windows
                     btnCustomDVRKey.Tag = int.Parse(dets[3]);
                     cBTapDVR.SelectedIndex = int.Parse(dets[0]);
                     cBHoldDVR.SelectedIndex = int.Parse(dets[1]);
-                    cBDTapDVR.SelectedIndex = int.Parse(dets[2]);
+                    cBDTapDVR.SelectedIndex = int.Parse(dets[2]);*/
+                    break;
+                case "MultiAction":
+                    cBActions.SelectedIndex = 7;
+                    dets = act.details.Split(',');
+                    for (int i = 0; i < 3; i++)
+                    {
+                        string[] macs = dets[i].Split('/');
+                        foreach (string s in macs)
+                        {
+                            int v;
+                            if (int.TryParse(s, out v))
+                                multiMacrostag[i].Add(v);
+                        }
+                        switch (i)
+                        {
+                            case 0: btnSTapT.Text = macs.Length > 1 ? Properties.Resources.MacroRecorded : Properties.Resources.SelectMacro; break;
+                            case 1: btnHoldT.Text = macs.Length > 1 ? Properties.Resources.MacroRecorded : Properties.Resources.SelectMacro; break;
+                            case 2: btnDTapT.Text = macs.Length > 1 ? Properties.Resources.MacroRecorded : Properties.Resources.SelectMacro; break;
+                        }
+                    }
+                    /*if (int.Parse(dets[3]) == 0)
+                        btnCustomDVRKey.Text = "Custom Key";
+                    else
+                        btnCustomDVRKey.Text = ((Keys)(int.Parse(dets[3]))).ToString();
+                    btnCustomDVRKey.Tag = int.Parse(dets[3]);
+                    cBTapDVR.SelectedIndex = int.Parse(dets[0]);
+                    cBHoldDVR.SelectedIndex = int.Parse(dets[1]);
+                    cBDTapDVR.SelectedIndex = int.Parse(dets[2]);*/
                     break;
             }
         }
@@ -274,10 +304,10 @@ namespace DS4Windows
                             actRe = true;
                             if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
                                 Global.RemoveAction(oldprofilename);
-                            dets = Math.Round(nUDDCBatt.Value, 1).ToString() + "," + cBNotificationBatt.Checked + "," + cbLightbarBatt.Checked + "," +
-                                bnEmptyColor.BackColor.R + "," + bnEmptyColor.BackColor.G + "," + bnEmptyColor.BackColor.B + "," +
-                                bnFullColor.BackColor.R + "," + bnFullColor.BackColor.G + "," + bnFullColor.BackColor.B;
-                            Global.SaveAction(tBName.Text, String.Join("/", controls), cBActions.SelectedIndex, dets, edit);
+                            dets = Math.Round(nUDDCBatt.Value, 1).ToString() + "|" + cBNotificationBatt.Checked + "|" + cbLightbarBatt.Checked + "|" +
+                                bnEmptyColor.BackColor.R + "|" + bnEmptyColor.BackColor.G + "|" + bnEmptyColor.BackColor.B + "|" +
+                                bnFullColor.BackColor.R + "|" + bnFullColor.BackColor.G + "|" + bnFullColor.BackColor.B;
+                            Global.SaveAction(tBName.Text, string.Join("/", controls), cBActions.SelectedIndex, dets, edit);
                         }
                         else
                         {
@@ -286,12 +316,20 @@ namespace DS4Windows
                         }
                         break;
                     case 7:
-                        action = "Xbox Game DVR";// Properties.Resources.CheckBattery;
-                        actRe = true;
-                        if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
-                            Global.RemoveAction(oldprofilename);
-                        dets = cBTapDVR.SelectedIndex + "," + cBHoldDVR.SelectedIndex + "," + cBDTapDVR.SelectedIndex + "," + int.Parse(btnCustomDVRKey.Tag.ToString());
-                        Global.SaveAction(tBName.Text, controls[0], cBActions.SelectedIndex, dets, edit);
+                        if (multiMacrostag[0].Count + multiMacrostag[1].Count + multiMacrostag[2].Count > 0)
+                        {
+                            action = Properties.Resources.MultiAction;
+                            actRe = true;
+                            if (!string.IsNullOrEmpty(oldprofilename) && oldprofilename != tBName.Text)
+                                Global.RemoveAction(oldprofilename);
+                            //dets = cBTapDVR.SelectedIndex + "," + cBHoldDVR.SelectedIndex + "," + cBDTapDVR.SelectedIndex + "," + int.Parse(btnCustomDVRKey.Tag.ToString());
+                            dets = string.Join("/", multiMacrostag[0]) + "," + string.Join("/", multiMacrostag[1]) + "," + string.Join("/", multiMacrostag[2]);
+                            Global.SaveAction(tBName.Text, controls[0], cBActions.SelectedIndex, dets, edit);
+                        }
+                        else
+                        {
+
+                        }
                         break;
                 }
                 if (actRe)
@@ -451,7 +489,7 @@ namespace DS4Windows
         }
         private void cBDVR_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (((ComboBox)sender).SelectedIndex == 3)
+            /*if (((ComboBox)sender).SelectedIndex == 3)
             {
                 if (!loadingAction)
                     new KBM360(this, btnCustomDVRKey, false).ShowDialog();
@@ -464,9 +502,31 @@ namespace DS4Windows
                 ((ComboBox)sender).SelectedIndexChanged -= cBDVR_SelectedIndexChanged;
                 ((ComboBox)sender).SelectedIndex = 3;
                 ((ComboBox)sender).SelectedIndexChanged += cBDVR_SelectedIndexChanged;
-            }
+            }*/
         }
 
+        private void btnSTapT_Click(object sender, EventArgs e)
+        {
+            OpenRecordBox(0);
+        }
+
+        private void btnHoldT_Click(object sender, EventArgs e)
+        {
+            OpenRecordBox(1);
+        }
+
+        private void btnDTapT_Click(object sender, EventArgs e)
+        {
+            OpenRecordBox(2);
+        }
+
+        void OpenRecordBox(int i)
+        {
+            rb = new RecordBox(this, i);
+            rb.TopLevel = true;
+            rb.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            rb.ShowDialog();
+        }
         private void cBBatt_CheckedChanged(object sender, EventArgs e)
         {
             cbLightbarBatt.ForeColor = Color.Black;

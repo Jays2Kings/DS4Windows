@@ -424,6 +424,9 @@ namespace DS4Windows
                     case "XboxGameDVR":
                         lvi.SubItems.Add("Xbox Game DVR");
                         break;
+                    case "MultiAction":
+                        lvi.SubItems.Add(Properties.Resources.MultiAction);
+                        break;
                 }
                 if (newp)
                     if (action.type == "DisconnectBT")
@@ -1883,10 +1886,10 @@ namespace DS4Windows
                 if (lvi != null && lvi.Checked)
                     pactions.Add(lvi.Text);
             ProfileActions[device] = pactions;
-            if (lVActions.Items.Count >= 50)
+            /*if (lVActions.Items.Count >= 50)
             {
                 btnNewAction.Enabled = false;
-            }
+            }*/
         }
 
         private void nUDLSCurve_ValueChanged(object sender, EventArgs e)

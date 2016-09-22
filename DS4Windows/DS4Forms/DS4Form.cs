@@ -37,6 +37,7 @@ namespace DS4Windows
         List<string> profilenames = new List<string>();
         List<string> programpaths = new List<string>();
         List<string>[] proprofiles;
+        List<bool> turnOffTempProfiles;
         private static int WM_QUERYENDSESSION = 0x11;
         private static bool systemShutdown = false;
         private bool wasrunning = false;
@@ -49,6 +50,7 @@ namespace DS4Windows
         bool contextclose;
         string logFile = appdatapath + @"\DS4Service.log";
         StreamWriter logWriter;
+        bool turnOffTemp;
         bool runningBat;
         //bool outputlog = false;
 
@@ -147,8 +149,6 @@ namespace DS4Windows
             {
                 g.Dispose();
             }
-            Icon = Properties.Resources.DS4W;
-            notifyIcon1.Icon = Properties.Resources.DS4W;
             Program.rootHub.Debug += On_Debug;
 
             Log.GuiLog += On_Debug;
@@ -188,6 +188,9 @@ namespace DS4Windows
                     return;
                 }
             //MessageBox.Show(Environment.OSVersion.VersionString);
+            cBUseWhiteIcon.Checked = UseWhiteIcon;
+            Icon = Properties.Resources.DS4W;
+            notifyIcon1.Icon = UseWhiteIcon ? Properties.Resources.DS4W___White : Properties.Resources.DS4W;
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
@@ -499,7 +502,18 @@ namespace DS4Windows
                                 LoadTempProfile(j, proprofiles[j][i], true, Program.rootHub); //j is controller index, i is filename
                                 if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
                             }
+                        if (turnOffTempProfiles[i])
+                        {
+                            turnOffTemp = true;
+                            if (btnStartStop.Text == Properties.Resources.StopText)
+                            {
+                                btnStartStop_Clicked();
+                                hotkeysTimer.Start();
+                                btnStartStop.Text = Properties.Resources.StartText;
+                            }
+                        }
                         tempProfileProgram = name;
+                        break;
                     }
                 }
             else
@@ -509,6 +523,15 @@ namespace DS4Windows
                     tempProfileProgram = "null";
                     for (int j = 0; j < 4; j++)
                         LoadProfile(j, false, Program.rootHub);
+                    if (turnOffTemp)
+                    {
+                        turnOffTemp = false;
+                        if (btnStartStop.Text == Properties.Resources.StartText)
+                        {
+                            btnStartStop_Clicked();
+                            btnStartStop.Text = Properties.Resources.StopText;
+                        }
+                    }
                 }
             }
             if (bat != null && bat.HasExited && runningBat)
@@ -526,6 +549,7 @@ namespace DS4Windows
             XmlDocument doc = new XmlDocument();
             proprofiles = new List<string>[4] { new List<string>(), new List<string>(),
                 new List<string>(), new List<string>() };
+            turnOffTempProfiles = new List<bool>();
             programpaths.Clear();
             if (!File.Exists(appdatapath + "\\Auto Profiles.xml"))
                 return;
@@ -534,11 +558,20 @@ namespace DS4Windows
             foreach (XmlNode x in programslist)
                 programpaths.Add(x.Attributes["path"].Value);
             foreach (string s in programpaths)
+            {
                 for (int i = 0; i < 4; i++)
                 {
                     proprofiles[i].Add(doc.SelectSingleNode("/Programs/Program[@path=\"" + s + "\"]"
                         + "/Controller" + (i + 1)).InnerText);
                 }
+                XmlNode item = doc.SelectSingleNode("/Programs/Program[@path=\"" + s + "\"]"
+                        + "/TurnOff");
+                bool turnOff;
+                if (item != null && bool.TryParse(item.InnerText, out turnOff))
+                    turnOffTempProfiles.Add(turnOff);
+                else
+                    turnOffTempProfiles.Add(false);
+            }
         }
         string originalsettingstext;
         private void CheckDrivers()
@@ -1101,9 +1134,9 @@ namespace DS4Windows
         private void hideDS4CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Prevent the Game Controllers window from throwing an error when controllers are un/hidden
-            System.Diagnostics.Process[] rundll32 = System.Diagnostics.Process.GetProcessesByName("rundll32");
-            foreach (System.Diagnostics.Process rundll32Instance in rundll32)
-                foreach (System.Diagnostics.ProcessModule module in rundll32Instance.Modules)
+            System.Diagnostics.Process[] rundll64 = System.Diagnostics.Process.GetProcessesByName("rundll64");
+            foreach (System.Diagnostics.Process rundll64Instance in rundll64)
+                foreach (System.Diagnostics.ProcessModule module in rundll64Instance.Modules)
                     if (module.FileName.Contains("joy.cpl"))
                         module.Dispose();
 
@@ -1713,6 +1746,11 @@ namespace DS4Windows
             DS4LightBar.forcelight[currentCustomLed] = false;
         }
 
+        private void cBUseWhiteIcon_CheckedChanged(object sender, EventArgs e)
+        {
+            UseWhiteIcon = cBUseWhiteIcon.Checked;
+            notifyIcon1.Icon = UseWhiteIcon ? Properties.Resources.DS4W___White : Properties.Resources.DS4W;
+        }
 
         private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
         {

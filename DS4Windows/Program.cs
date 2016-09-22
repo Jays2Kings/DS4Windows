@@ -32,14 +32,31 @@ namespace DS4Windows
         static void Main(string[] args)
         {
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("he");
-            foreach(string s in args)
+            for (int i = 0; i < args.Length; i++)
             {
+                string s = args[i];
                 if (s == "driverinstall" || s == "-driverinstall")
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new WelcomeDialog());
                     return;
+                }
+                else if (s == "re-enabledevice" || s == "-re-enabledevice")
+                {
+                    try
+                    {
+                        i++;
+                        string deviceInstanceId = args[i];
+                        DS4Devices.reEnableDevice(deviceInstanceId);
+                        Environment.ExitCode = 0;
+                        return;
+                    }
+                    catch (Exception)
+                    {
+                        Environment.ExitCode = Marshal.GetLastWin32Error();
+                        return;
+                    }
                 }
             }
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;
@@ -63,6 +80,7 @@ namespace DS4Windows
             // Create the Event handle
             threadComEvent = new EventWaitHandle(false, EventResetMode.AutoReset, SingleAppComEventName);
             CreateInterAppComThread();
+
             if (mutex.WaitOne(TimeSpan.Zero, true))
             {
                 rootHub = new ControlService();

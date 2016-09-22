@@ -796,10 +796,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lVTrigger.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 33</value>
+    <value>19, 41</value>
+  </data>
+  <data name="lVTrigger.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="lVTrigger.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 217</value>
+    <value>237, 267</value>
   </data>
   <data name="lVTrigger.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -822,8 +825,11 @@
   <data name="btnRecordMacro.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="btnRecordMacro.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="btnRecordMacro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
+    <value>204, 28</value>
   </data>
   <data name="btnRecordMacro.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -847,10 +853,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 27</value>
+    <value>1, 33</value>
+  </data>
+  <data name="btnBrowse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
+    <value>204, 28</value>
   </data>
   <data name="btnBrowse.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -873,8 +882,11 @@
   <data name="cBProfiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="cBProfiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="cBProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 21</value>
+    <value>203, 24</value>
   </data>
   <data name="cBProfiles.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -901,10 +913,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 229</value>
+    <value>275, 282</value>
+  </data>
+  <data name="btnSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 23</value>
+    <value>105, 28</value>
   </data>
   <data name="btnSave.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -931,10 +946,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 229</value>
+    <value>388, 282</value>
+  </data>
+  <data name="btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 23</value>
+    <value>91, 28</value>
   </data>
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -958,10 +976,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 8</value>
+    <value>16, 10</value>
+  </data>
+  <data name="lbName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 13</value>
+    <value>72, 16</value>
   </data>
   <data name="lbName.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -988,10 +1009,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="tBName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 5</value>
+    <value>77, 6</value>
+  </data>
+  <data name="tBName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="tBName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>324, 20</value>
+    <value>431, 22</value>
   </data>
   <data name="tBName.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1029,11 +1053,17 @@
   <data name="cBActions.Items6" xml:space="preserve">
     <value>Check Battery Life</value>
   </data>
+  <data name="cBActions.Items7" xml:space="preserve">
+    <value>Mutli Action Button</value>
+  </data>
   <data name="cBActions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 31</value>
+    <value>273, 38</value>
+  </data>
+  <data name="cBActions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="cBActions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 21</value>
+    <value>203, 24</value>
   </data>
   <data name="cBActions.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -1063,10 +1093,13 @@
     <value>NoControl</value>
   </data>
   <data name="pBProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 53</value>
+    <value>173, 65</value>
+  </data>
+  <data name="pBProgram.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pBProgram.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 23</value>
+    <value>31, 28</value>
   </data>
   <data name="pBProgram.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
@@ -1090,10 +1123,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 53</value>
+    <value>4, 65</value>
+  </data>
+  <data name="lbProgram.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbProgram.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 23</value>
+    <value>163, 28</value>
   </data>
   <data name="lbProgram.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1123,10 +1159,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnBorder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 31</value>
+    <value>16, 38</value>
+  </data>
+  <data name="btnBorder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnBorder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 221</value>
+    <value>243, 272</value>
   </data>
   <data name="btnBorder.TabIndex" type="System.Int32, mscorlib">
     <value>257</value>
@@ -1147,10 +1186,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnSetUTriggerProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 27</value>
+    <value>0, 33</value>
+  </data>
+  <data name="btnSetUTriggerProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnSetUTriggerProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
+    <value>204, 28</value>
   </data>
   <data name="btnSetUTriggerProfile.TabIndex" type="System.Int32, mscorlib">
     <value>258</value>
@@ -1846,10 +1888,13 @@
 </value>
   </data>
   <data name="lVUnloadTrigger.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 33</value>
+    <value>19, 41</value>
+  </data>
+  <data name="lVUnloadTrigger.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="lVUnloadTrigger.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 217</value>
+    <value>237, 267</value>
   </data>
   <data name="lVUnloadTrigger.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -1867,10 +1912,13 @@
     <value>7</value>
   </data>
   <data name="tBArg.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 91</value>
+    <value>5, 112</value>
+  </data>
+  <data name="tBArg.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="tBArg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 20</value>
+    <value>196, 22</value>
   </data>
   <data name="tBArg.TabIndex" type="System.Int32, mscorlib">
     <value>264</value>
@@ -1888,10 +1936,13 @@
     <value>0</value>
   </data>
   <data name="nUDProg.Location" type="System.Drawing.Point, System.Drawing">
-    <value>56, 3</value>
+    <value>75, 4</value>
+  </data>
+  <data name="nUDProg.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="nUDProg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
+    <value>71, 22</value>
   </data>
   <data name="nUDProg.TabIndex" type="System.Int32, mscorlib">
     <value>263</value>
@@ -1915,10 +1966,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbArg.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 76</value>
+    <value>4, 94</value>
+  </data>
+  <data name="lbArg.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbArg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 13</value>
+    <value>76, 17</value>
   </data>
   <data name="lbArg.TabIndex" type="System.Int32, mscorlib">
     <value>261</value>
@@ -1945,10 +1999,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbHoldForProg.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 5</value>
+    <value>4, 6</value>
+  </data>
+  <data name="lbHoldForProg.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbHoldForProg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 18</value>
+    <value>63, 22</value>
   </data>
   <data name="lbHoldForProg.TabIndex" type="System.Int32, mscorlib">
     <value>261</value>
@@ -1975,10 +2032,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbSecsProg.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 5</value>
+    <value>153, 6</value>
+  </data>
+  <data name="lbSecsProg.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbSecsProg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 18</value>
+    <value>44, 22</value>
   </data>
   <data name="lbSecsProg.TabIndex" type="System.Int32, mscorlib">
     <value>262</value>
@@ -2002,10 +2062,13 @@
     <value>4</value>
   </data>
   <data name="pnlProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 58</value>
+    <value>275, 71</value>
+  </data>
+  <data name="pnlProgram.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pnlProgram.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 124</value>
+    <value>216, 153</value>
   </data>
   <data name="pnlProgram.TabIndex" type="System.Int32, mscorlib">
     <value>260</value>
@@ -2032,10 +2095,13 @@
     <value>NoControl</value>
   </data>
   <data name="cBMacroScanCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 30</value>
+    <value>5, 37</value>
+  </data>
+  <data name="cBMacroScanCode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="cBMacroScanCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 17</value>
+    <value>99, 21</value>
   </data>
   <data name="cBMacroScanCode.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -2059,10 +2125,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbMacroRecorded.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 50</value>
+    <value>0, 62</value>
+  </data>
+  <data name="lbMacroRecorded.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbMacroRecorded.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
+    <value>204, 28</value>
   </data>
   <data name="lbMacroRecorded.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -2083,10 +2152,13 @@
     <value>2</value>
   </data>
   <data name="pnlMacro.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 58</value>
+    <value>275, 71</value>
+  </data>
+  <data name="pnlMacro.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pnlMacro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 94</value>
+    <value>217, 116</value>
   </data>
   <data name="pnlMacro.TabIndex" type="System.Int32, mscorlib">
     <value>261</value>
@@ -2110,10 +2182,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbUnloadTipProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 55</value>
+    <value>0, 68</value>
+  </data>
+  <data name="lbUnloadTipProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbUnloadTipProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
+    <value>133, 28</value>
   </data>
   <data name="lbUnloadTipProfile.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -2131,10 +2206,13 @@
     <value>0</value>
   </data>
   <data name="pnlProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 58</value>
+    <value>275, 71</value>
+  </data>
+  <data name="pnlProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pnlProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 94</value>
+    <value>215, 116</value>
   </data>
   <data name="pnlProfile.TabIndex" type="System.Int32, mscorlib">
     <value>262</value>
@@ -2155,10 +2233,13 @@
     <value>11</value>
   </data>
   <data name="nUDDCBT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>56, 3</value>
+    <value>75, 4</value>
+  </data>
+  <data name="nUDDCBT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="nUDDCBT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
+    <value>71, 22</value>
   </data>
   <data name="nUDDCBT.TabIndex" type="System.Int32, mscorlib">
     <value>260</value>
@@ -2179,10 +2260,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbHoldFor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 5</value>
+    <value>4, 6</value>
+  </data>
+  <data name="lbHoldFor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbHoldFor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 18</value>
+    <value>63, 22</value>
   </data>
   <data name="lbHoldFor.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -2209,10 +2293,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbSecs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 5</value>
+    <value>153, 6</value>
+  </data>
+  <data name="lbSecs.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbSecs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 18</value>
+    <value>44, 22</value>
   </data>
   <data name="lbSecs.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -2236,10 +2323,13 @@
     <value>2</value>
   </data>
   <data name="pnlDisconnectBT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 58</value>
+    <value>275, 71</value>
+  </data>
+  <data name="pnlDisconnectBT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pnlDisconnectBT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 59</value>
+    <value>215, 73</value>
   </data>
   <data name="pnlDisconnectBT.TabIndex" type="System.Int32, mscorlib">
     <value>262</value>
@@ -2263,10 +2353,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnSelectKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 3</value>
+    <value>7, 4</value>
+  </data>
+  <data name="btnSelectKey.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnSelectKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
+    <value>204, 28</value>
   </data>
   <data name="btnSelectKey.TabIndex" type="System.Int32, mscorlib">
     <value>260</value>
@@ -2293,10 +2386,13 @@
     <value>releasing unload trigger</value>
   </data>
   <data name="cBPressRelease.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 76</value>
+    <value>7, 94</value>
+  </data>
+  <data name="cBPressRelease.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="cBPressRelease.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 21</value>
+    <value>203, 24</value>
   </data>
   <data name="cBPressRelease.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -2320,10 +2416,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnSetUTriggerKeys.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 29</value>
+    <value>7, 36</value>
+  </data>
+  <data name="btnSetUTriggerKeys.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnSetUTriggerKeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
+    <value>204, 28</value>
   </data>
   <data name="btnSetUTriggerKeys.TabIndex" type="System.Int32, mscorlib">
     <value>258</value>
@@ -2350,10 +2449,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbUnloadTipKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 61</value>
+    <value>7, 75</value>
+  </data>
+  <data name="lbUnloadTipKey.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbUnloadTipKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>203, 27</value>
   </data>
   <data name="lbUnloadTipKey.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -2380,10 +2482,13 @@
     <value>3</value>
   </data>
   <data name="pnlKeys.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 58</value>
+    <value>267, 71</value>
+  </data>
+  <data name="pnlKeys.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pnlKeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 107</value>
+    <value>215, 132</value>
   </data>
   <data name="pnlKeys.TabIndex" type="System.Int32, mscorlib">
     <value>263</value>
@@ -2407,10 +2512,13 @@
     <value>NoControl</value>
   </data>
   <data name="pBGraident.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 71</value>
+    <value>37, 87</value>
+  </data>
+  <data name="pBGraident.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pBGraident.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 13</value>
+    <value>145, 16</value>
   </data>
   <data name="pBGraident.TabIndex" type="System.Int32, mscorlib">
     <value>264</value>
@@ -2434,10 +2542,13 @@
     <value>NoControl</value>
   </data>
   <data name="cBNotificationBatt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 25</value>
+    <value>24, 31</value>
+  </data>
+  <data name="cBNotificationBatt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="cBNotificationBatt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 17</value>
+    <value>120, 21</value>
   </data>
   <data name="cBNotificationBatt.TabIndex" type="System.Int32, mscorlib">
     <value>263</value>
@@ -2464,10 +2575,13 @@
     <value>NoControl</value>
   </data>
   <data name="cbLightbarBatt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 44</value>
+    <value>24, 54</value>
+  </data>
+  <data name="cbLightbarBatt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="cbLightbarBatt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 17</value>
+    <value>99, 21</value>
   </data>
   <data name="cbLightbarBatt.TabIndex" type="System.Int32, mscorlib">
     <value>262</value>
@@ -2494,10 +2608,13 @@
     <value>NoControl</value>
   </data>
   <data name="bnFullColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 71</value>
+    <value>191, 87</value>
+  </data>
+  <data name="bnFullColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="bnFullColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 13</value>
+    <value>17, 16</value>
   </data>
   <data name="bnFullColor.TabIndex" type="System.Int32, mscorlib">
     <value>261</value>
@@ -2521,10 +2638,13 @@
     <value>NoControl</value>
   </data>
   <data name="bnEmptyColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 71</value>
+    <value>12, 87</value>
+  </data>
+  <data name="bnEmptyColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="bnEmptyColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 13</value>
+    <value>17, 16</value>
   </data>
   <data name="bnEmptyColor.TabIndex" type="System.Int32, mscorlib">
     <value>261</value>
@@ -2542,10 +2662,13 @@
     <value>4</value>
   </data>
   <data name="nUDDCBatt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>56, 3</value>
+    <value>75, 4</value>
+  </data>
+  <data name="nUDDCBatt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="nUDDCBatt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
+    <value>71, 22</value>
   </data>
   <data name="nUDDCBatt.TabIndex" type="System.Int32, mscorlib">
     <value>260</value>
@@ -2566,10 +2689,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbHoldForBatt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 5</value>
+    <value>4, 6</value>
+  </data>
+  <data name="lbHoldForBatt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbHoldForBatt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 18</value>
+    <value>63, 22</value>
   </data>
   <data name="lbHoldForBatt.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -2596,10 +2722,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbFullBatt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 93</value>
+    <value>171, 114</value>
+  </data>
+  <data name="lbFullBatt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbFullBatt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 18</value>
+    <value>44, 22</value>
   </data>
   <data name="lbFullBatt.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -2626,10 +2755,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbEmptyBatt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 93</value>
+    <value>8, 114</value>
+  </data>
+  <data name="lbEmptyBatt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbEmptyBatt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 18</value>
+    <value>44, 22</value>
   </data>
   <data name="lbEmptyBatt.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -2653,10 +2785,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbSecsBatt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 5</value>
+    <value>153, 6</value>
+  </data>
+  <data name="lbSecsBatt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbSecsBatt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 18</value>
+    <value>44, 22</value>
   </data>
   <data name="lbSecsBatt.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -2680,10 +2815,13 @@
     <value>9</value>
   </data>
   <data name="pnlBatteryCheck.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 59</value>
+    <value>271, 73</value>
+  </data>
+  <data name="pnlBatteryCheck.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pnlBatteryCheck.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 123</value>
+    <value>215, 151</value>
   </data>
   <data name="pnlBatteryCheck.TabIndex" type="System.Int32, mscorlib">
     <value>264</value>
@@ -2703,71 +2841,95 @@
   <data name="&gt;&gt;pnlBatteryCheck.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="btnCustomDVRKey.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnDTapT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnCustomDVRKey.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, -9</value>
+  <data name="btnDTapT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 123</value>
   </data>
-  <data name="btnCustomDVRKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="btnDTapT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
-  <data name="btnCustomDVRKey.TabIndex" type="System.Int32, mscorlib">
-    <value>264</value>
+  <data name="btnDTapT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 28</value>
   </data>
-  <data name="btnCustomDVRKey.Text" xml:space="preserve">
-    <value>Custom Key</value>
-  <comment>@Invariant</comment></data>
-  <data name="btnCustomDVRKey.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="btnDTapT.TabIndex" type="System.Int32, mscorlib">
+    <value>267</value>
   </data>
-  <data name="&gt;&gt;btnCustomDVRKey.Name" xml:space="preserve">
-    <value>btnCustomDVRKey</value>
+  <data name="btnDTapT.Text" xml:space="preserve">
+    <value>Select a macro</value>
   </data>
-  <data name="&gt;&gt;btnCustomDVRKey.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnDTapT.Name" xml:space="preserve">
+    <value>btnDTapT</value>
+  </data>
+  <data name="&gt;&gt;btnDTapT.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnCustomDVRKey.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnDTapT.Parent" xml:space="preserve">
     <value>pnlGameDVR</value>
   </data>
-  <data name="&gt;&gt;btnCustomDVRKey.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnDTapT.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="cBDTapDVR.Items" xml:space="preserve">
-    <value>Open Game Bar (Win+G)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBDTapDVR.Items1" xml:space="preserve">
-    <value>Start/Stop Recording (Win+Alt+R)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBDTapDVR.Items2" xml:space="preserve">
-    <value>Take Screenshot (Win+Alt+PrtScn)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBDTapDVR.Items3" xml:space="preserve">
-    <value>Take Screenshot (Custom Key)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBDTapDVR.Items4" xml:space="preserve">
-    <value>Record That (Win+Alt+G)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBDTapDVR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 98</value>
+  <data name="btnHoldT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="cBDTapDVR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 21</value>
+  <data name="btnHoldT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 73</value>
   </data>
-  <data name="cBDTapDVR.TabIndex" type="System.Int32, mscorlib">
-    <value>262</value>
+  <data name="btnHoldT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;cBDTapDVR.Name" xml:space="preserve">
-    <value>cBDTapDVR</value>
+  <data name="btnHoldT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 28</value>
   </data>
-  <data name="&gt;&gt;cBDTapDVR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnHoldT.TabIndex" type="System.Int32, mscorlib">
+    <value>266</value>
   </data>
-  <data name="&gt;&gt;cBDTapDVR.Parent" xml:space="preserve">
+  <data name="btnHoldT.Text" xml:space="preserve">
+    <value>Select a macro</value>
+  </data>
+  <data name="&gt;&gt;btnHoldT.Name" xml:space="preserve">
+    <value>btnHoldT</value>
+  </data>
+  <data name="&gt;&gt;btnHoldT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHoldT.Parent" xml:space="preserve">
     <value>pnlGameDVR</value>
   </data>
-  <data name="&gt;&gt;cBDTapDVR.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnHoldT.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="btnSTapT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSTapT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="btnSTapT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="btnSTapT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 28</value>
+  </data>
+  <data name="btnSTapT.TabIndex" type="System.Int32, mscorlib">
+    <value>265</value>
+  </data>
+  <data name="btnSTapT.Text" xml:space="preserve">
+    <value>Select a macro</value>
+  </data>
+  <data name="&gt;&gt;btnSTapT.Name" xml:space="preserve">
+    <value>btnSTapT</value>
+  </data>
+  <data name="&gt;&gt;btnSTapT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSTapT.Parent" xml:space="preserve">
+    <value>pnlGameDVR</value>
+  </data>
+  <data name="&gt;&gt;btnSTapT.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="lbDTapDVR.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2776,10 +2938,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbDTapDVR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 83</value>
+    <value>5, 102</value>
+  </data>
+  <data name="lbDTapDVR.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbDTapDVR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 13</value>
+    <value>132, 17</value>
   </data>
   <data name="lbDTapDVR.TabIndex" type="System.Int32, mscorlib">
     <value>263</value>
@@ -2797,42 +2962,6 @@
     <value>pnlGameDVR</value>
   </data>
   <data name="&gt;&gt;lbDTapDVR.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="cBHoldDVR.Items" xml:space="preserve">
-    <value>Open Game Bar (Win+G)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBHoldDVR.Items1" xml:space="preserve">
-    <value>Start/Stop Recording (Win+Alt+R)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBHoldDVR.Items2" xml:space="preserve">
-    <value>Take Screenshot (Win+Alt+PrtScn)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBHoldDVR.Items3" xml:space="preserve">
-    <value>Take Screenshot (Custom Key)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBHoldDVR.Items4" xml:space="preserve">
-    <value>Record That (Win+Alt+G)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBHoldDVR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 59</value>
-  </data>
-  <data name="cBHoldDVR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 21</value>
-  </data>
-  <data name="cBHoldDVR.TabIndex" type="System.Int32, mscorlib">
-    <value>260</value>
-  </data>
-  <data name="&gt;&gt;cBHoldDVR.Name" xml:space="preserve">
-    <value>cBHoldDVR</value>
-  </data>
-  <data name="&gt;&gt;cBHoldDVR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBHoldDVR.Parent" xml:space="preserve">
-    <value>pnlGameDVR</value>
-  </data>
-  <data name="&gt;&gt;cBHoldDVR.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="lbHoldDVR.AutoSize" type="System.Boolean, mscorlib">
@@ -2842,10 +2971,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbHoldDVR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 44</value>
+    <value>5, 54</value>
+  </data>
+  <data name="lbHoldDVR.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbHoldDVR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+    <value>87, 17</value>
   </data>
   <data name="lbHoldDVR.TabIndex" type="System.Int32, mscorlib">
     <value>261</value>
@@ -2865,42 +2997,6 @@
   <data name="&gt;&gt;lbHoldDVR.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="cBTapDVR.Items" xml:space="preserve">
-    <value>Open Game Bar (Win+G)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBTapDVR.Items1" xml:space="preserve">
-    <value>Start/Stop Recording (Win+Alt+R)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBTapDVR.Items2" xml:space="preserve">
-    <value>Take Screenshot (Win+Alt+PrtScn)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBTapDVR.Items3" xml:space="preserve">
-    <value>Take Screenshot (Custom Key)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBTapDVR.Items4" xml:space="preserve">
-    <value>Record That (Win+Alt+G)</value>
-  <comment>@Invariant</comment></data>
-  <data name="cBTapDVR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 18</value>
-  </data>
-  <data name="cBTapDVR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 21</value>
-  </data>
-  <data name="cBTapDVR.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;cBTapDVR.Name" xml:space="preserve">
-    <value>cBTapDVR</value>
-  </data>
-  <data name="&gt;&gt;cBTapDVR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBTapDVR.Parent" xml:space="preserve">
-    <value>pnlGameDVR</value>
-  </data>
-  <data name="&gt;&gt;cBTapDVR.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="lbTapDVR.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2908,10 +3004,13 @@
     <value>NoControl</value>
   </data>
   <data name="lbTapDVR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>4, 4</value>
+  </data>
+  <data name="lbTapDVR.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lbTapDVR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 13</value>
+    <value>83, 17</value>
   </data>
   <data name="lbTapDVR.TabIndex" type="System.Int32, mscorlib">
     <value>259</value>
@@ -2929,13 +3028,16 @@
     <value>pnlGameDVR</value>
   </data>
   <data name="&gt;&gt;lbTapDVR.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="pnlGameDVR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 57</value>
+    <value>267, 70</value>
+  </data>
+  <data name="pnlGameDVR.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pnlGameDVR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 122</value>
+    <value>228, 154</value>
   </data>
   <data name="pnlGameDVR.TabIndex" type="System.Int32, mscorlib">
     <value>264</value>
@@ -2962,10 +3064,13 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>402, 264</value>
+    <value>536, 325</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>SpecActions</value>
@@ -2998,7 +3103,7 @@
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.265.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SpecActions</value>

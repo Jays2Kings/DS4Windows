@@ -287,9 +287,6 @@
   <data name="bnHideUnchecked.Text" xml:space="preserve">
     <value>Cacher les choix non cocher</value>
   </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>348, 134</value>
-  </data>
   <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>347, 26</value>
   </data>
@@ -319,6 +316,9 @@
   </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
     <value>Parcourir pour d'autres programmes</value>
+  </data>
+  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
+    <value>348, 134</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>

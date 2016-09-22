@@ -250,9 +250,6 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>394, 535</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>

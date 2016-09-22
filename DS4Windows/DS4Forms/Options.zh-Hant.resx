@@ -591,7 +591,7 @@
     <value>移除動作</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>按住選擇的控制鍵來執行一個動作，檢查動作以便使用它，直到設定檔被載入。最大50個動作</value>
+    <value>按住選擇的控制鍵來執行一個動作，檢查動作以便使用它，直到設定檔被載入。</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>死區</value>

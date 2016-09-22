@@ -556,9 +556,6 @@
   <data name="btnRemAction.Text" xml:space="preserve">
     <value>删除动作</value>
   </data>
-  <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>...最多50个动作。</value>
-  </data>
   <data name="tPSpecial.Text" xml:space="preserve">
     <value>特殊动作</value>
   </data>

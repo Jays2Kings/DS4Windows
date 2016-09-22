@@ -558,7 +558,7 @@
     <value>Remover Ação</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Segure controles selecionados para executar uma ação, verificar a ação de usá-lo, enquanto o perfil é carregado. Max 50 ações</value>
+    <value>Segure controles selecionados para executar uma ação, verificar a ação de usá-lo, enquanto o perfil é carregado.</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Zona Morta</value>

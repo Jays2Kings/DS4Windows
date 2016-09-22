@@ -80,14 +80,13 @@
             this.lbEmptyBatt = new System.Windows.Forms.Label();
             this.lbSecsBatt = new System.Windows.Forms.Label();
             this.pnlGameDVR = new System.Windows.Forms.Panel();
-            this.btnCustomDVRKey = new System.Windows.Forms.Button();
-            this.cBDTapDVR = new System.Windows.Forms.ComboBox();
+            this.btnDTapT = new System.Windows.Forms.Button();
+            this.btnHoldT = new System.Windows.Forms.Button();
+            this.btnSTapT = new System.Windows.Forms.Button();
             this.lbDTapDVR = new System.Windows.Forms.Label();
-            this.cBHoldDVR = new System.Windows.Forms.ComboBox();
             this.lbHoldDVR = new System.Windows.Forms.Label();
-            this.cBTapDVR = new System.Windows.Forms.ComboBox();
             this.lbTapDVR = new System.Windows.Forms.Label();
-            this.advColorDialog = new AdvancedColorDialog();
+            this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pBProgram)).BeginInit();
             this.pnlProgram.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProg)).BeginInit();
@@ -221,7 +220,8 @@
             resources.GetString("cBActions.Items3"),
             resources.GetString("cBActions.Items4"),
             resources.GetString("cBActions.Items5"),
-            resources.GetString("cBActions.Items6")});
+            resources.GetString("cBActions.Items6"),
+            resources.GetString("cBActions.Items7")});
             resources.ApplyResources(this.cBActions, "cBActions");
             this.cBActions.Name = "cBActions";
             this.cBActions.SelectedIndexChanged += new System.EventHandler(this.cBActions_SelectedIndexChanged);
@@ -548,74 +548,48 @@
             // 
             // pnlGameDVR
             // 
-            this.pnlGameDVR.Controls.Add(this.btnCustomDVRKey);
-            this.pnlGameDVR.Controls.Add(this.cBDTapDVR);
+            this.pnlGameDVR.Controls.Add(this.btnDTapT);
+            this.pnlGameDVR.Controls.Add(this.btnHoldT);
+            this.pnlGameDVR.Controls.Add(this.btnSTapT);
             this.pnlGameDVR.Controls.Add(this.lbDTapDVR);
-            this.pnlGameDVR.Controls.Add(this.cBHoldDVR);
             this.pnlGameDVR.Controls.Add(this.lbHoldDVR);
-            this.pnlGameDVR.Controls.Add(this.cBTapDVR);
             this.pnlGameDVR.Controls.Add(this.lbTapDVR);
             resources.ApplyResources(this.pnlGameDVR, "pnlGameDVR");
             this.pnlGameDVR.Name = "pnlGameDVR";
             // 
-            // btnCustomDVRKey
+            // btnDTapT
             // 
-            resources.ApplyResources(this.btnCustomDVRKey, "btnCustomDVRKey");
-            this.btnCustomDVRKey.Name = "btnCustomDVRKey";
-            this.btnCustomDVRKey.Tag = "0";
-            this.btnCustomDVRKey.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnDTapT, "btnDTapT");
+            this.btnDTapT.Name = "btnDTapT";
+            this.btnDTapT.Tag = "0";
+            this.btnDTapT.UseVisualStyleBackColor = true;
+            this.btnDTapT.Click += new System.EventHandler(this.btnDTapT_Click);
             // 
-            // cBDTapDVR
+            // btnHoldT
             // 
-            this.cBDTapDVR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBDTapDVR.FormattingEnabled = true;
-            this.cBDTapDVR.Items.AddRange(new object[] {
-            resources.GetString("cBDTapDVR.Items"),
-            resources.GetString("cBDTapDVR.Items1"),
-            resources.GetString("cBDTapDVR.Items2"),
-            resources.GetString("cBDTapDVR.Items3"),
-            resources.GetString("cBDTapDVR.Items4")});
-            resources.ApplyResources(this.cBDTapDVR, "cBDTapDVR");
-            this.cBDTapDVR.Name = "cBDTapDVR";
-            this.cBDTapDVR.SelectedIndexChanged += new System.EventHandler(this.cBDVR_SelectedIndexChanged);
+            resources.ApplyResources(this.btnHoldT, "btnHoldT");
+            this.btnHoldT.Name = "btnHoldT";
+            this.btnHoldT.Tag = "0";
+            this.btnHoldT.UseVisualStyleBackColor = true;
+            this.btnHoldT.Click += new System.EventHandler(this.btnHoldT_Click);
+            // 
+            // btnSTapT
+            // 
+            resources.ApplyResources(this.btnSTapT, "btnSTapT");
+            this.btnSTapT.Name = "btnSTapT";
+            this.btnSTapT.Tag = "0";
+            this.btnSTapT.UseVisualStyleBackColor = true;
+            this.btnSTapT.Click += new System.EventHandler(this.btnSTapT_Click);
             // 
             // lbDTapDVR
             // 
             resources.ApplyResources(this.lbDTapDVR, "lbDTapDVR");
             this.lbDTapDVR.Name = "lbDTapDVR";
             // 
-            // cBHoldDVR
-            // 
-            this.cBHoldDVR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBHoldDVR.FormattingEnabled = true;
-            this.cBHoldDVR.Items.AddRange(new object[] {
-            resources.GetString("cBHoldDVR.Items"),
-            resources.GetString("cBHoldDVR.Items1"),
-            resources.GetString("cBHoldDVR.Items2"),
-            resources.GetString("cBHoldDVR.Items3"),
-            resources.GetString("cBHoldDVR.Items4")});
-            resources.ApplyResources(this.cBHoldDVR, "cBHoldDVR");
-            this.cBHoldDVR.Name = "cBHoldDVR";
-            this.cBHoldDVR.SelectedIndexChanged += new System.EventHandler(this.cBDVR_SelectedIndexChanged);
-            // 
             // lbHoldDVR
             // 
             resources.ApplyResources(this.lbHoldDVR, "lbHoldDVR");
             this.lbHoldDVR.Name = "lbHoldDVR";
-            // 
-            // cBTapDVR
-            // 
-            this.cBTapDVR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBTapDVR.FormattingEnabled = true;
-            this.cBTapDVR.Items.AddRange(new object[] {
-            resources.GetString("cBTapDVR.Items"),
-            resources.GetString("cBTapDVR.Items1"),
-            resources.GetString("cBTapDVR.Items2"),
-            resources.GetString("cBTapDVR.Items3"),
-            resources.GetString("cBTapDVR.Items4")});
-            resources.ApplyResources(this.cBTapDVR, "cBTapDVR");
-            this.cBTapDVR.Name = "cBTapDVR";
-            this.cBTapDVR.SelectedIndexChanged += new System.EventHandler(this.cBDVR_SelectedIndexChanged);
             // 
             // lbTapDVR
             // 
@@ -627,7 +601,7 @@
             this.advColorDialog.AnyColor = true;
             this.advColorDialog.Color = System.Drawing.Color.Blue;
             this.advColorDialog.FullOpen = true;
-            this.advColorDialog.OnUpdateColor += new AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
+            this.advColorDialog.OnUpdateColor += new DS4Windows.AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
             // 
             // SpecActions
             // 
@@ -725,12 +699,11 @@
         private System.Windows.Forms.Label lbHoldForProg;
         private System.Windows.Forms.Label lbSecsProg;
         private System.Windows.Forms.Panel pnlGameDVR;
-        private System.Windows.Forms.ComboBox cBTapDVR;
         private System.Windows.Forms.Label lbTapDVR;
-        private System.Windows.Forms.ComboBox cBDTapDVR;
         private System.Windows.Forms.Label lbDTapDVR;
-        private System.Windows.Forms.ComboBox cBHoldDVR;
         private System.Windows.Forms.Label lbHoldDVR;
-        private System.Windows.Forms.Button btnCustomDVRKey;
+        public System.Windows.Forms.Button btnDTapT;
+        public System.Windows.Forms.Button btnHoldT;
+        public System.Windows.Forms.Button btnSTapT;
     }
 }

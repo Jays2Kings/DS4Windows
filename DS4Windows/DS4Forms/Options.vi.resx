@@ -564,7 +564,7 @@
     <value>Xóa lệnh</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Giữ phím điều khiển để thực thi lênh, chọn lệnh để sử dụng khi profile được load. Tối đa 50 lệnh</value>
+    <value>Giữ phím điều khiển để thực thi lênh, chọn lệnh để sử dụng khi profile được load.</value>
   </data>
   <data name="tCSens.Location" type="System.Drawing.Point, System.Drawing">
     <value>352, 97</value>

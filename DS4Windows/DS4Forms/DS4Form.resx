@@ -117,6 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="chTime.Text" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="chTime.Width" type="System.Int32, mscorlib">
+    <value>167</value>
+  </data>
+  <data name="chData.Text" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="chData.Width" type="System.Int32, mscorlib">
+    <value>84</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lvDebug.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -134,7 +147,6 @@
   <data name="lvDebug.Size" type="System.Drawing.Size, System.Drawing">
     <value>1114, 415</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lvDebug.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -150,56 +162,35 @@
   <data name="&gt;&gt;lvDebug.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="chTime.Text" xml:space="preserve">
-    <value>Time</value>
-  </data>
-  <data name="chTime.Width" type="System.Int32, mscorlib">
-    <value>167</value>
-  </data>
-  <data name="chData.Text" xml:space="preserve">
-    <value>Data</value>
-  </data>
-  <data name="chData.Width" type="System.Int32, mscorlib">
-    <value>84</value>
-  </data>
   <metadata name="tmrUpdate.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="&gt;&gt;lbTest.Name" xml:space="preserve">
-    <value>lbTest</value>
+  <data name="llbHelp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;lbTest.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="llbHelp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;lbTest.Parent" xml:space="preserve">
-    <value>pnlButton</value>
+  <data name="llbHelp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;lbTest.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="llbHelp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>943, 11</value>
   </data>
-  <data name="&gt;&gt;btnStartStop.Name" xml:space="preserve">
-    <value>btnStartStop</value>
+  <data name="llbHelp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
-  <data name="&gt;&gt;btnStartStop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="llbHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 17</value>
   </data>
-  <data name="&gt;&gt;btnStartStop.Parent" xml:space="preserve">
-    <value>pnlButton</value>
+  <data name="llbHelp.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
-  <data name="&gt;&gt;btnStartStop.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="llbHelp.Text" xml:space="preserve">
+    <value>Hotkeys/About</value>
   </data>
-  <data name="&gt;&gt;lbLastMessage.Name" xml:space="preserve">
-    <value>lbLastMessage</value>
-  </data>
-  <data name="&gt;&gt;lbLastMessage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbLastMessage.Parent" xml:space="preserve">
-    <value>pnlButton</value>
-  </data>
-  <data name="&gt;&gt;lbLastMessage.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="llbHelp.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
   </data>
   <data name="&gt;&gt;llbHelp.Name" xml:space="preserve">
     <value>llbHelp</value>
@@ -211,34 +202,7 @@
     <value>pnlButton</value>
   </data>
   <data name="&gt;&gt;llbHelp.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="pnlButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="pnlButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 481</value>
-  </data>
-  <data name="pnlButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="pnlButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1130, 38</value>
-  </data>
-  <data name="pnlButton.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;pnlButton.Name" xml:space="preserve">
-    <value>pnlButton</value>
-  </data>
-  <data name="&gt;&gt;pnlButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnlButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>0</value>
   </data>
   <data name="lbTest.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -277,7 +241,7 @@
     <value>pnlButton</value>
   </data>
   <data name="&gt;&gt;lbTest.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnStartStop.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -310,7 +274,7 @@
     <value>pnlButton</value>
   </data>
   <data name="&gt;&gt;btnStartStop.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="lbLastMessage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -340,43 +304,34 @@
     <value>pnlButton</value>
   </data>
   <data name="&gt;&gt;lbLastMessage.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
-  <data name="llbHelp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="pnlButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
   </data>
-  <data name="llbHelp.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="pnlButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 481</value>
   </data>
-  <data name="llbHelp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="pnlButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
-  <data name="llbHelp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>943, 11</value>
+  <data name="pnlButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1130, 38</value>
   </data>
-  <data name="llbHelp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="pnlButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
-  <data name="llbHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 17</value>
-  </data>
-  <data name="llbHelp.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="llbHelp.Text" xml:space="preserve">
-    <value>Hotkeys/About</value>
-  </data>
-  <data name="&gt;&gt;llbHelp.Name" xml:space="preserve">
-    <value>llbHelp</value>
-  </data>
-  <data name="&gt;&gt;llbHelp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;llbHelp.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlButton.Name" xml:space="preserve">
     <value>pnlButton</value>
   </data>
-  <data name="&gt;&gt;llbHelp.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;pnlButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlButton.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="btnClear.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
@@ -423,21 +378,6 @@
   <metadata name="cMTaskbar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>339, 17</value>
   </metadata>
-  <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 192</value>
-  </data>
-  <data name="&gt;&gt;cMTaskbar.Name" xml:space="preserve">
-    <value>cMTaskbar</value>
-  </data>
-  <data name="&gt;&gt;cMTaskbar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="notifyIcon1.Text" xml:space="preserve">
-    <value>DS4 Xinput Tool</value>
-  </data>
-  <data name="notifyIcon1.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>262, 26</value>
   </data>
@@ -485,6 +425,21 @@
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Exit (Middle Mouse)</value>
+  </data>
+  <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 192</value>
+  </data>
+  <data name="&gt;&gt;cMTaskbar.Name" xml:space="preserve">
+    <value>cMTaskbar</value>
+  </data>
+  <data name="&gt;&gt;cMTaskbar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="notifyIcon1.Text" xml:space="preserve">
+    <value>DS4 Xinput Tool</value>
+  </data>
+  <data name="notifyIcon1.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 6</value>
@@ -544,13 +499,13 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1089, 94</value>
+    <value>1063, 94</value>
   </data>
   <data name="bnLight3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="bnLight3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 28</value>
+    <value>55, 28</value>
   </data>
   <data name="bnLight3.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -574,7 +529,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>533, 26</value>
+    <value>516, 26</value>
   </data>
   <data name="pBStatus1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -685,7 +640,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1035, 94</value>
+    <value>1009, 94</value>
   </data>
   <data name="bnEditC3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -718,7 +673,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1035, 130</value>
+    <value>1009, 130</value>
   </data>
   <data name="bnEditC4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -826,7 +781,7 @@
     <value>None</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>889, 24</value>
+    <value>863, 23</value>
   </data>
   <data name="cBController1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -856,7 +811,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1035, 58</value>
+    <value>1009, 58</value>
   </data>
   <data name="bnEditC2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -886,7 +841,7 @@
     <value>None</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>889, 60</value>
+    <value>863, 59</value>
   </data>
   <data name="cBController2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -913,7 +868,7 @@
     <value>None</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>889, 96</value>
+    <value>863, 95</value>
   </data>
   <data name="cBController3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -943,7 +898,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1035, 22</value>
+    <value>1009, 22</value>
   </data>
   <data name="bnEditC1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -973,7 +928,7 @@
     <value>None</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>889, 132</value>
+    <value>863, 131</value>
   </data>
   <data name="cBController4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1009,7 +964,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>894, 0</value>
+    <value>868, 0</value>
   </data>
   <data name="lbSelectedProfile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1087,7 +1042,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>524, 0</value>
+    <value>508, 0</value>
   </data>
   <data name="lbStatus.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1126,7 +1081,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>747, 0</value>
+    <value>724, 0</value>
   </data>
   <data name="lbBattery.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1165,7 +1120,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 27</value>
+    <value>732, 27</value>
   </data>
   <data name="lbBatt1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1204,7 +1159,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 63</value>
+    <value>732, 63</value>
   </data>
   <data name="lbBatt2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1243,7 +1198,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 99</value>
+    <value>732, 99</value>
   </data>
   <data name="lbBatt3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1282,7 +1237,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 135</value>
+    <value>732, 135</value>
   </data>
   <data name="lbBatt4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1315,7 +1270,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>533, 62</value>
+    <value>516, 62</value>
   </data>
   <data name="pBStatus2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1348,7 +1303,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>533, 98</value>
+    <value>516, 98</value>
   </data>
   <data name="pBStatus3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1381,7 +1336,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>533, 134</value>
+    <value>516, 134</value>
   </data>
   <data name="pBStatus4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -1417,13 +1372,13 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1089, 22</value>
+    <value>1063, 22</value>
   </data>
   <data name="bnLight1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="bnLight1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 28</value>
+    <value>55, 28</value>
   </data>
   <data name="bnLight1.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -1450,13 +1405,13 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1089, 58</value>
+    <value>1063, 58</value>
   </data>
   <data name="bnLight2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="bnLight2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 28</value>
+    <value>55, 28</value>
   </data>
   <data name="bnLight2.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
@@ -1483,13 +1438,13 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1089, 130</value>
+    <value>1063, 130</value>
   </data>
   <data name="bnLight4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="bnLight4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 28</value>
+    <value>55, 28</value>
   </data>
   <data name="bnLight4.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
@@ -1537,7 +1492,7 @@
     <value>1</value>
   </data>
   <data name="tLPControllers.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="bnLight3" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbPad1" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC3" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC4" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbPad3" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad4" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cBController1" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC2" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController2" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="cBController3" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC1" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController4" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbSelectedProfile" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbStatus" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbBattery" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt1" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt2" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt3" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt4" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus4" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="bnLight1" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnLight2" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnLight4" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,48.95498,Percent,26.82658,Percent,24.21844,AutoSize,0,AutoSize,0,Absolute,35" /&gt;&lt;Rows Styles="AutoSize,0,Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="bnLight3" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbPad1" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC3" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC4" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbPad3" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad4" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cBController1" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC2" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController2" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="cBController3" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC1" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController4" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbSelectedProfile" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbStatus" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbBattery" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt1" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt2" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt3" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt4" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus4" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="bnLight1" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnLight2" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnLight4" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,48.95498,Percent,26.82658,Percent,24.21844,AutoSize,0,AutoSize,0,Absolute,62" /&gt;&lt;Rows Styles="AutoSize,0,Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lbNoControllers.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1605,12 +1560,102 @@
   <data name="&gt;&gt;tabControllers.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="tSOptions.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>891, 17</value>
+  <metadata name="cMProfile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>788, 17</value>
   </metadata>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>568, 17</value>
-  </metadata>
+  <data name="editToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
+  </data>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="assignToController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="assignToController1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Assign to Controller 1</value>
+  </data>
+  <data name="assignToController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="assignToController2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Assign to Controller 2</value>
+  </data>
+  <data name="assignToController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="assignToController3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Assign to Controller 3</value>
+  </data>
+  <data name="assignToController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Assign to Controller 4</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Delete (Del)</value>
+  </data>
+  <data name="duplicateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Duplicate (Ctrl+D)</value>
+  </data>
+  <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="newProfileToolStripMenuItem.Text" xml:space="preserve">
+    <value>New Profile</value>
+  </data>
+  <data name="importToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="exportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 26</value>
+  </data>
+  <data name="exportToolStripMenuItem.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 264</value>
+  </data>
+  <data name="&gt;&gt;cMProfile.Name" xml:space="preserve">
+    <value>cMProfile</value>
+  </data>
+  <data name="&gt;&gt;cMProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lBProfiles.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lBProfiles.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="lBProfiles.ItemHeight" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="lBProfiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 58</value>
+  </data>
+  <data name="lBProfiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="lBProfiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1114, 390</value>
+  </data>
+  <data name="lBProfiles.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;lBProfiles.Name" xml:space="preserve">
     <value>lBProfiles</value>
   </data>
@@ -1623,6 +1668,63 @@
   <data name="&gt;&gt;lBProfiles.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="tSOptions.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>891, 17</value>
+  </metadata>
+  <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 24</value>
+  </data>
+  <data name="toolStripLabel1.Text" xml:space="preserve">
+    <value>Profile Name:</value>
+  </data>
+  <data name="tSTBProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 27</value>
+  </data>
+  <data name="tSTBProfile.Text" xml:space="preserve">
+    <value>&lt;type profile name here&gt;</value>
+  </data>
+  <data name="tSBSaveProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tSBSaveProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 24</value>
+  </data>
+  <data name="tSBSaveProfile.Text" xml:space="preserve">
+    <value>Save Profile</value>
+  </data>
+  <data name="tSBCancel.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tSBCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 24</value>
+  </data>
+  <data name="tSBCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 27</value>
+  </data>
+  <data name="tSBKeepSize.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tSBKeepSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 24</value>
+  </data>
+  <data name="tSBKeepSize.Text" xml:space="preserve">
+    <value>Keep this window size after closing</value>
+  </data>
+  <data name="tSOptions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 31</value>
+  </data>
+  <data name="tSOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1114, 27</value>
+  </data>
+  <data name="tSOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tSOptions.Text" xml:space="preserve">
+    <value>Profile Options</value>
+  </data>
   <data name="&gt;&gt;tSOptions.Name" xml:space="preserve">
     <value>tSOptions</value>
   </data>
@@ -1634,6 +1736,93 @@
   </data>
   <data name="&gt;&gt;tSOptions.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>568, 17</value>
+  </metadata>
+  <data name="tsBNewProfle.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tsBNewProfle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 24</value>
+  </data>
+  <data name="tsBNewProfle.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="tsBNewProfle.ToolTipText" xml:space="preserve">
+    <value>Make a New Profile</value>
+  </data>
+  <data name="tsBEditProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tsBEditProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 24</value>
+  </data>
+  <data name="tsBEditProfile.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="tsBEditProfile.ToolTipText" xml:space="preserve">
+    <value>Edit Selected Profile (Enter)</value>
+  </data>
+  <data name="tsBDeleteProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tsBDeleteProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 24</value>
+  </data>
+  <data name="tsBDeleteProfile.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="tsBDeleteProfile.ToolTipText" xml:space="preserve">
+    <value>Delete Selected Profle (Delete)</value>
+  </data>
+  <data name="tSBDupProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tSBDupProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 24</value>
+  </data>
+  <data name="tSBDupProfile.Text" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
+    <value>Dupliacate Selected Profile (Ctrl+D)</value>
+  </data>
+  <data name="tSBImportProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 24</value>
+  </data>
+  <data name="tSBImportProfile.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="tSBImportProfile.ToolTipText" xml:space="preserve">
+    <value>Import Profile or Profiles</value>
+  </data>
+  <data name="tSBExportProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tSBExportProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 24</value>
+  </data>
+  <data name="tSBExportProfile.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="tSBExportProfile.ToolTipText" xml:space="preserve">
+    <value>Export Selected Profile</value>
+  </data>
+  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 4</value>
+  </data>
+  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1114, 27</value>
+  </data>
+  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>toolStrip1</value>
   </data>
   <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
     <value>toolStrip1</value>
@@ -1704,584 +1893,8 @@
   <data name="&gt;&gt;tabAutoProfiles.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;fLPSettings.Name" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.Parent" xml:space="preserve">
-    <value>tabSettings</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tabSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
-  </data>
-  <data name="tabSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="tabSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="tabSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1122, 452</value>
-  </data>
-  <data name="tabSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="tabSettings.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="&gt;&gt;tabSettings.Name" xml:space="preserve">
-    <value>tabSettings</value>
-  </data>
-  <data name="&gt;&gt;tabSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabSettings.Parent" xml:space="preserve">
-    <value>tabMain</value>
-  </data>
-  <data name="&gt;&gt;tabSettings.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tabLog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
-  </data>
-  <data name="tabLog.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="tabLog.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="tabLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1122, 452</value>
-  </data>
-  <data name="tabLog.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tabLog.Text" xml:space="preserve">
-    <value>Log</value>
-  </data>
-  <data name="&gt;&gt;tabLog.Name" xml:space="preserve">
-    <value>tabLog</value>
-  </data>
-  <data name="&gt;&gt;tabLog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabLog.Parent" xml:space="preserve">
-    <value>tabMain</value>
-  </data>
-  <data name="&gt;&gt;tabLog.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tabMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tabMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="tabMain.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="tabMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1130, 481</value>
-  </data>
-  <data name="tabMain.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;tabMain.Name" xml:space="preserve">
-    <value>tabMain</value>
-  </data>
-  <data name="&gt;&gt;tabMain.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabMain.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tabMain.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="cMProfile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>788, 17</value>
-  </metadata>
-  <data name="cMProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 264</value>
-  </data>
-  <data name="&gt;&gt;cMProfile.Name" xml:space="preserve">
-    <value>cMProfile</value>
-  </data>
-  <data name="&gt;&gt;cMProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lBProfiles.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="lBProfiles.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="lBProfiles.ItemHeight" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="lBProfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 58</value>
-  </data>
-  <data name="lBProfiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="lBProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1114, 390</value>
-  </data>
-  <data name="lBProfiles.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lBProfiles.Name" xml:space="preserve">
-    <value>lBProfiles</value>
-  </data>
-  <data name="&gt;&gt;lBProfiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lBProfiles.Parent" xml:space="preserve">
-    <value>tabProfiles</value>
-  </data>
-  <data name="&gt;&gt;lBProfiles.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="editToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 26</value>
-  </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="assignToController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 26</value>
-  </data>
-  <data name="assignToController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Assign to Controller 1</value>
-  </data>
-  <data name="assignToController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 26</value>
-  </data>
-  <data name="assignToController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Assign to Controller 2</value>
-  </data>
-  <data name="assignToController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 26</value>
-  </data>
-  <data name="assignToController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Assign to Controller 3</value>
-  </data>
-  <data name="assignToController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 26</value>
-  </data>
-  <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Assign to Controller 4</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 26</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete (Del)</value>
-  </data>
-  <data name="duplicateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 26</value>
-  </data>
-  <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Duplicate (Ctrl+D)</value>
-  </data>
-  <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 26</value>
-  </data>
-  <data name="newProfileToolStripMenuItem.Text" xml:space="preserve">
-    <value>New Profile</value>
-  </data>
-  <data name="importToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 26</value>
-  </data>
-  <data name="importToolStripMenuItem.Text" xml:space="preserve">
-    <value>Import</value>
-  </data>
-  <data name="exportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 26</value>
-  </data>
-  <data name="exportToolStripMenuItem.Text" xml:space="preserve">
-    <value>Export</value>
-  </data>
-  <metadata name="tSOptions.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>891, 17</value>
-  </metadata>
-  <data name="tSOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 31</value>
-  </data>
-  <data name="tSOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1114, 27</value>
-  </data>
-  <data name="tSOptions.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tSOptions.Text" xml:space="preserve">
-    <value>Profile Options</value>
-  </data>
-  <data name="&gt;&gt;tSOptions.Name" xml:space="preserve">
-    <value>tSOptions</value>
-  </data>
-  <data name="&gt;&gt;tSOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tSOptions.Parent" xml:space="preserve">
-    <value>tabProfiles</value>
-  </data>
-  <data name="&gt;&gt;tSOptions.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 24</value>
-  </data>
-  <data name="toolStripLabel1.Text" xml:space="preserve">
-    <value>Profile Name:</value>
-  </data>
-  <data name="tSTBProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 27</value>
-  </data>
-  <data name="tSTBProfile.Text" xml:space="preserve">
-    <value>&lt;type profile name here&gt;</value>
-  </data>
-  <data name="tSBSaveProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="tSBSaveProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 24</value>
-  </data>
-  <data name="tSBSaveProfile.Text" xml:space="preserve">
-    <value>Save Profile</value>
-  </data>
-  <data name="tSBCancel.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="tSBCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 24</value>
-  </data>
-  <data name="tSBCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 27</value>
-  </data>
-  <data name="tSBKeepSize.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="tSBKeepSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 24</value>
-  </data>
-  <data name="tSBKeepSize.Text" xml:space="preserve">
-    <value>Keep this window size after closing</value>
-  </data>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>568, 17</value>
-  </metadata>
-  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 4</value>
-  </data>
-  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1114, 27</value>
-  </data>
-  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="toolStrip1.Text" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
-    <value>tabProfiles</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tsBNewProfle.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="tsBNewProfle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 24</value>
-  </data>
-  <data name="tsBNewProfle.Text" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="tsBNewProfle.ToolTipText" xml:space="preserve">
-    <value>Make a New Profile</value>
-  </data>
-  <data name="tsBEditProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="tsBEditProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 24</value>
-  </data>
-  <data name="tsBEditProfile.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="tsBEditProfile.ToolTipText" xml:space="preserve">
-    <value>Edit Selected Profile (Enter)</value>
-  </data>
-  <data name="tsBDeleteProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="tsBDeleteProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 24</value>
-  </data>
-  <data name="tsBDeleteProfile.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="tsBDeleteProfile.ToolTipText" xml:space="preserve">
-    <value>Delete Selected Profile (Delete)</value>
-  </data>
-  <data name="tSBDupProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="tSBDupProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 24</value>
-  </data>
-  <data name="tSBDupProfile.Text" xml:space="preserve">
-    <value>Duplicate</value>
-  </data>
-  <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>Dupliacate Selected Profile (Ctrl+D)</value>
-  </data>
-  <data name="tSBImportProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 24</value>
-  </data>
-  <data name="tSBImportProfile.Text" xml:space="preserve">
-    <value>Import</value>
-  </data>
-  <data name="tSBImportProfile.ToolTipText" xml:space="preserve">
-    <value>Import Profile or Profiles</value>
-  </data>
-  <data name="tSBExportProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="tSBExportProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 24</value>
-  </data>
-  <data name="tSBExportProfile.Text" xml:space="preserve">
-    <value>Export</value>
-  </data>
-  <data name="tSBExportProfile.ToolTipText" xml:space="preserve">
-    <value>Export Selected Profile</value>
-  </data>
   <data name="fLPSettings.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="&gt;&gt;hideDS4CheckBox.Name" xml:space="preserve">
-    <value>hideDS4CheckBox</value>
-  </data>
-  <data name="&gt;&gt;hideDS4CheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;hideDS4CheckBox.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;hideDS4CheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cBSwipeProfiles.Name" xml:space="preserve">
-    <value>cBSwipeProfiles</value>
-  </data>
-  <data name="&gt;&gt;cBSwipeProfiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBSwipeProfiles.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;cBSwipeProfiles.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;StartWindowsCheckBox.Name" xml:space="preserve">
-    <value>StartWindowsCheckBox</value>
-  </data>
-  <data name="&gt;&gt;StartWindowsCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;StartWindowsCheckBox.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;StartWindowsCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;startMinimizedCheckBox.Name" xml:space="preserve">
-    <value>startMinimizedCheckBox</value>
-  </data>
-  <data name="&gt;&gt;startMinimizedCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;startMinimizedCheckBox.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;startMinimizedCheckBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;cBDisconnectBT.Name" xml:space="preserve">
-    <value>cBDisconnectBT</value>
-  </data>
-  <data name="&gt;&gt;cBDisconnectBT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBDisconnectBT.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;cBDisconnectBT.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;cBCloseMini.Name" xml:space="preserve">
-    <value>cBCloseMini</value>
-  </data>
-  <data name="&gt;&gt;cBCloseMini.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBCloseMini.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;cBCloseMini.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;cBQuickCharge.Name" xml:space="preserve">
-    <value>cBQuickCharge</value>
-  </data>
-  <data name="&gt;&gt;cBQuickCharge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBQuickCharge.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;cBQuickCharge.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;cBDownloadLangauge.Name" xml:space="preserve">
-    <value>cBDownloadLangauge</value>
-  </data>
-  <data name="&gt;&gt;cBDownloadLangauge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBDownloadLangauge.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;cBDownloadLangauge.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;cBUpdate.Name" xml:space="preserve">
-    <value>cBUpdate</value>
-  </data>
-  <data name="&gt;&gt;cBUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBUpdate.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;cBUpdate.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;pNUpdate.Name" xml:space="preserve">
-    <value>pNUpdate</value>
-  </data>
-  <data name="&gt;&gt;pNUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pNUpdate.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;pNUpdate.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;pnlXIPorts.Name" xml:space="preserve">
-    <value>pnlXIPorts</value>
-  </data>
-  <data name="&gt;&gt;pnlXIPorts.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlXIPorts.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;pnlXIPorts.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="fLPSettings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="fLPSettings.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
-    <value>TopDown</value>
-  </data>
-  <data name="fLPSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 4</value>
-  </data>
-  <data name="fLPSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="fLPSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>9, 9, 0, 11</value>
-  </data>
-  <data name="fLPSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1114, 444</value>
-  </data>
-  <data name="fLPSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.Name" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.Parent" xml:space="preserve">
-    <value>tabSettings</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="hideDS4CheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2415,54 +2028,6 @@
   <data name="&gt;&gt;startMinimizedCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;lbNotifications.Name" xml:space="preserve">
-    <value>lbNotifications</value>
-  </data>
-  <data name="&gt;&gt;lbNotifications.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbNotifications.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;lbNotifications.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cBoxNotifications.Name" xml:space="preserve">
-    <value>cBoxNotifications</value>
-  </data>
-  <data name="&gt;&gt;cBoxNotifications.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBoxNotifications.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;cBoxNotifications.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 129</value>
-  </data>
-  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 28</value>
-  </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="lbNotifications.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2532,6 +2097,30 @@
   <data name="&gt;&gt;cBoxNotifications.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 129</value>
+  </data>
+  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 28</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="cBDisconnectBT.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2565,71 +2154,11 @@
   <data name="&gt;&gt;cBDisconnectBT.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;nUDLatency.Name" xml:space="preserve">
-    <value>nUDLatency</value>
-  </data>
-  <data name="&gt;&gt;nUDLatency.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDLatency.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;nUDLatency.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lbMsLatency.Name" xml:space="preserve">
-    <value>lbMsLatency</value>
-  </data>
-  <data name="&gt;&gt;lbMsLatency.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbMsLatency.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;lbMsLatency.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cBFlashWhenLate.Name" xml:space="preserve">
-    <value>cBFlashWhenLate</value>
-  </data>
-  <data name="&gt;&gt;cBFlashWhenLate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBFlashWhenLate.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;cBFlashWhenLate.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 194</value>
-  </data>
-  <data name="panel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>348, 28</value>
-  </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
-    <value>57</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="nUDLatency.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="nUDLatency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 2</value>
+    <value>231, 2</value>
   </data>
   <data name="nUDLatency.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2662,7 +2191,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbMsLatency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>319, 5</value>
+    <value>294, 5</value>
   </data>
   <data name="lbMsLatency.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -2701,13 +2230,13 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="cBFlashWhenLate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 21</value>
+    <value>223, 21</value>
   </data>
   <data name="cBFlashWhenLate.TabIndex" type="System.Int32, mscorlib">
     <value>53</value>
   </data>
   <data name="cBFlashWhenLate.Text" xml:space="preserve">
-    <value>Flash Lightbar when Latency is over</value>
+    <value>Flash Lightbar at High Latency</value>
   </data>
   <data name="&gt;&gt;cBFlashWhenLate.Name" xml:space="preserve">
     <value>cBFlashWhenLate</value>
@@ -2720,6 +2249,30 @@
   </data>
   <data name="&gt;&gt;cBFlashWhenLate.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 194</value>
+  </data>
+  <data name="panel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 28</value>
+  </data>
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="cBCloseMini.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2787,6 +2340,36 @@
   <data name="&gt;&gt;cBQuickCharge.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="cBUseWhiteIcon.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBUseWhiteIcon.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBUseWhiteIcon.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 287</value>
+  </data>
+  <data name="cBUseWhiteIcon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 21</value>
+  </data>
+  <data name="cBUseWhiteIcon.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="cBUseWhiteIcon.Text" xml:space="preserve">
+    <value>White DS4Windows Icon</value>
+  </data>
+  <data name="&gt;&gt;cBUseWhiteIcon.Name" xml:space="preserve">
+    <value>cBUseWhiteIcon</value>
+  </data>
+  <data name="&gt;&gt;cBUseWhiteIcon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBUseWhiteIcon.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;cBUseWhiteIcon.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
   <data name="cBDownloadLangauge.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2794,7 +2377,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBDownloadLangauge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 288</value>
+    <value>13, 315</value>
   </data>
   <data name="cBDownloadLangauge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2818,7 +2401,7 @@
     <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;cBDownloadLangauge.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="cBUpdate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2827,7 +2410,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 317</value>
+    <value>13, 344</value>
   </data>
   <data name="cBUpdate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2851,69 +2434,6 @@
     <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;cBUpdate.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;cBUpdateTime.Name" xml:space="preserve">
-    <value>cBUpdateTime</value>
-  </data>
-  <data name="&gt;&gt;cBUpdateTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBUpdateTime.Parent" xml:space="preserve">
-    <value>pNUpdate</value>
-  </data>
-  <data name="&gt;&gt;cBUpdateTime.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lbCheckEvery.Name" xml:space="preserve">
-    <value>lbCheckEvery</value>
-  </data>
-  <data name="&gt;&gt;lbCheckEvery.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbCheckEvery.Parent" xml:space="preserve">
-    <value>pNUpdate</value>
-  </data>
-  <data name="&gt;&gt;lbCheckEvery.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;nUDUpdateTime.Name" xml:space="preserve">
-    <value>nUDUpdateTime</value>
-  </data>
-  <data name="&gt;&gt;nUDUpdateTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDUpdateTime.Parent" xml:space="preserve">
-    <value>pNUpdate</value>
-  </data>
-  <data name="&gt;&gt;nUDUpdateTime.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="pNUpdate.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="pNUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 346</value>
-  </data>
-  <data name="pNUpdate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="pNUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 28</value>
-  </data>
-  <data name="pNUpdate.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="&gt;&gt;pNUpdate.Name" xml:space="preserve">
-    <value>pNUpdate</value>
-  </data>
-  <data name="&gt;&gt;pNUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pNUpdate.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;pNUpdate.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
   <data name="cBUpdateTime.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -3012,64 +2532,31 @@
   <data name="&gt;&gt;nUDUpdateTime.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;lbUseXIPorts.Name" xml:space="preserve">
-    <value>lbUseXIPorts</value>
+  <data name="pNUpdate.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;lbUseXIPorts.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pNUpdate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 373</value>
   </data>
-  <data name="&gt;&gt;lbUseXIPorts.Parent" xml:space="preserve">
-    <value>pnlXIPorts</value>
-  </data>
-  <data name="&gt;&gt;lbUseXIPorts.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;nUDXIPorts.Name" xml:space="preserve">
-    <value>nUDXIPorts</value>
-  </data>
-  <data name="&gt;&gt;nUDXIPorts.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDXIPorts.Parent" xml:space="preserve">
-    <value>pnlXIPorts</value>
-  </data>
-  <data name="&gt;&gt;nUDXIPorts.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lbLastXIPort.Name" xml:space="preserve">
-    <value>lbLastXIPort</value>
-  </data>
-  <data name="&gt;&gt;lbLastXIPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbLastXIPort.Parent" xml:space="preserve">
-    <value>pnlXIPorts</value>
-  </data>
-  <data name="&gt;&gt;lbLastXIPort.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="pnlXIPorts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 382</value>
-  </data>
-  <data name="pnlXIPorts.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="pNUpdate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="pnlXIPorts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 28</value>
+  <data name="pNUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 28</value>
   </data>
-  <data name="pnlXIPorts.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+  <data name="pNUpdate.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
   </data>
-  <data name="&gt;&gt;pnlXIPorts.Name" xml:space="preserve">
-    <value>pnlXIPorts</value>
+  <data name="&gt;&gt;pNUpdate.Name" xml:space="preserve">
+    <value>pNUpdate</value>
   </data>
-  <data name="&gt;&gt;pnlXIPorts.Type" xml:space="preserve">
+  <data name="&gt;&gt;pNUpdate.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pnlXIPorts.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pNUpdate.Parent" xml:space="preserve">
     <value>fLPSettings</value>
   </data>
-  <data name="&gt;&gt;pnlXIPorts.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;pNUpdate.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
   <data name="lbUseXIPorts.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -3112,7 +2599,7 @@
     <value>Top, Right</value>
   </data>
   <data name="nUDXIPorts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 1</value>
+    <value>125, 1</value>
   </data>
   <data name="nUDXIPorts.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3145,7 +2632,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbLastXIPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>179, 4</value>
+    <value>188, 4</value>
   </data>
   <data name="lbLastXIPort.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -3171,95 +2658,32 @@
   <data name="&gt;&gt;lbLastXIPort.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="flowLayoutPanel1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="pnlXIPorts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>344, 13</value>
   </data>
-  <data name="&gt;&gt;linkProfiles.Name" xml:space="preserve">
-    <value>linkProfiles</value>
-  </data>
-  <data name="&gt;&gt;linkProfiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkProfiles.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;linkProfiles.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lnkControllers.Name" xml:space="preserve">
-    <value>lnkControllers</value>
-  </data>
-  <data name="&gt;&gt;lnkControllers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lnkControllers.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lnkControllers.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;linkUninstall.Name" xml:space="preserve">
-    <value>linkUninstall</value>
-  </data>
-  <data name="&gt;&gt;linkUninstall.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkUninstall.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;linkUninstall.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;linkSetup.Name" xml:space="preserve">
-    <value>linkSetup</value>
-  </data>
-  <data name="&gt;&gt;linkSetup.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkSetup.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;linkSetup.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lLBUpdate.Name" xml:space="preserve">
-    <value>lLBUpdate</value>
-  </data>
-  <data name="&gt;&gt;lLBUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lLBUpdate.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;lLBUpdate.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="flowLayoutPanel1.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
-    <value>TopDown</value>
-  </data>
-  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>369, 13</value>
-  </data>
-  <data name="flowLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="pnlXIPorts.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 85</value>
+  <data name="pnlXIPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 28</value>
   </data>
-  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
+  <data name="pnlXIPorts.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
+  <data name="&gt;&gt;pnlXIPorts.Name" xml:space="preserve">
+    <value>pnlXIPorts</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;pnlXIPorts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pnlXIPorts.Parent" xml:space="preserve">
     <value>fLPSettings</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;pnlXIPorts.ZOrder" xml:space="preserve">
     <value>13</value>
+  </data>
+  <data name="flowLayoutPanel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="linkProfiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3432,6 +2856,153 @@
   <data name="&gt;&gt;lLBUpdate.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="flowLayoutPanel1.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>TopDown</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>344, 49</value>
+  </data>
+  <data name="flowLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 85</value>
+  </data>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="fLPSettings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="fLPSettings.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>TopDown</value>
+  </data>
+  <data name="fLPSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 4</value>
+  </data>
+  <data name="fLPSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="fLPSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>9, 9, 0, 11</value>
+  </data>
+  <data name="fLPSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1114, 444</value>
+  </data>
+  <data name="fLPSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;fLPSettings.Name" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;fLPSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fLPSettings.Parent" xml:space="preserve">
+    <value>tabSettings</value>
+  </data>
+  <data name="&gt;&gt;fLPSettings.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="tabSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="tabSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="tabSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1122, 452</value>
+  </data>
+  <data name="tabSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tabSettings.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="&gt;&gt;tabSettings.Name" xml:space="preserve">
+    <value>tabSettings</value>
+  </data>
+  <data name="&gt;&gt;tabSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabSettings.Parent" xml:space="preserve">
+    <value>tabMain</value>
+  </data>
+  <data name="&gt;&gt;tabSettings.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tabLog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="tabLog.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="tabLog.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="tabLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1122, 452</value>
+  </data>
+  <data name="tabLog.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabLog.Text" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="&gt;&gt;tabLog.Name" xml:space="preserve">
+    <value>tabLog</value>
+  </data>
+  <data name="&gt;&gt;tabLog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabLog.Parent" xml:space="preserve">
+    <value>tabMain</value>
+  </data>
+  <data name="&gt;&gt;tabLog.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tabMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tabMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tabMain.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="tabMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1130, 481</value>
+  </data>
+  <data name="tabMain.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;tabMain.Name" xml:space="preserve">
+    <value>tabMain</value>
+  </data>
+  <data name="&gt;&gt;tabMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabMain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabMain.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <metadata name="saveProfiles.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>673, 17</value>
   </metadata>
@@ -3444,15 +3015,6 @@
   <metadata name="cMCustomLed.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1110, 17</value>
   </metadata>
-  <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 56</value>
-  </data>
-  <data name="&gt;&gt;cMCustomLed.Name" xml:space="preserve">
-    <value>cMCustomLed</value>
-  </data>
-  <data name="&gt;&gt;cMCustomLed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="useProfileColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
@@ -3465,6 +3027,15 @@
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Use Custom Color</value>
   </data>
+  <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 56</value>
+  </data>
+  <data name="&gt;&gt;cMCustomLed.Name" xml:space="preserve">
+    <value>cMCustomLed</value>
+  </data>
+  <data name="&gt;&gt;cMCustomLed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="advColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1264, 17</value>
   </metadata>
@@ -3476,6 +3047,9 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1130, 519</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3730,7 +3304,7 @@
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.401.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>DS4Form</value>

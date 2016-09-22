@@ -254,7 +254,7 @@
     <value>Best used with right side as a mouse function</value>
   </data>
   <data name="CannotWriteHere" xml:space="preserve">
-    <value>Cannot write at current locataion. Copy Settings to appdata?</value>
+    <value>Cannot write at current location. Copy Settings to appdata?</value>
   </data>
   <data name="Charged" xml:space="preserve">
     <value>Charged</value>
@@ -263,7 +263,7 @@
     <value>Charging: *number*%</value>
   </data>
   <data name="ColorByBattery" xml:space="preserve">
-    <value>Color by Battery %</value>
+    <value>Color by Battey %</value>
   </data>
   <data name="Connecting" xml:space="preserve">
     <value>Connecting...</value>
@@ -452,7 +452,7 @@
     <value>Please enter a valid name</value>
   </data>
   <data name="WaitMS" xml:space="preserve">
-    <value>Wait *number**ms*</value>
+    <value>Wait *number*ms</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
     <value>Will Keep</value>
@@ -641,7 +641,7 @@
     <value>Fall Back</value>
   </data>
   <data name="ALocactionNeeded" xml:space="preserve">
-    <value>A location must be picked to continue.</value>
+    <value>A location must be picked to continue</value>
   </data>
   <data name="CloseDS4W" xml:space="preserve">
     <value>Close DS4Windows?</value>
@@ -762,5 +762,17 @@
   </data>
   <data name="_360_map" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\360 map.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DS4W___White" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DS4W - White.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MultiAction" xml:space="preserve">
+    <value>Mutli-Action Button</value>
+  </data>
+  <data name="MacroRecorded" xml:space="preserve">
+    <value>Macro Recorded</value>
+  </data>
+  <data name="SelectMacro" xml:space="preserve">
+    <value>Select a macro</value>
   </data>
 </root>

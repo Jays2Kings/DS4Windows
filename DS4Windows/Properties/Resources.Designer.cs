@@ -128,7 +128,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A location must be picked to continue..
+        ///   Looks up a localized string similar to A location must be picked to continue.
         /// </summary>
         internal static string ALocactionNeeded {
             get {
@@ -221,7 +221,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot write at current locataion. Copy Settings to appdata?.
+        ///   Looks up a localized string similar to Cannot write at current location. Copy Settings to appdata?.
         /// </summary>
         internal static string CannotWriteHere {
             get {
@@ -293,7 +293,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Color by Battery %.
+        ///   Looks up a localized string similar to Color by Battey %.
         /// </summary>
         internal static string ColorByBattery {
             get {
@@ -754,6 +754,16 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon DS4W___White {
+            get {
+                object obj = ResourceManager.GetObject("DS4W___White", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DS4Windows cannot edit settings here, This will now close.
         /// </summary>
         internal static string DS4WindowsCannotEditHere {
@@ -1198,6 +1208,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Macro Recorded.
+        /// </summary>
+        internal static string MacroRecorded {
+            get {
+                return ResourceManager.GetString("MacroRecorded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Make a New Profile.
         /// </summary>
         internal static string MakeNewProfile {
@@ -1213,6 +1232,15 @@ namespace DS4Windows.Properties {
             get {
                 object obj = ResourceManager.GetObject("mouse", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutli-Action Button.
+        /// </summary>
+        internal static string MultiAction {
+            get {
+                return ResourceManager.GetString("MultiAction", resourceCulture);
             }
         }
         
@@ -1588,6 +1616,15 @@ namespace DS4Windows.Properties {
         internal static string SelectActionTitle {
             get {
                 return ResourceManager.GetString("SelectActionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a macro.
+        /// </summary>
+        internal static string SelectMacro {
+            get {
+                return ResourceManager.GetString("SelectMacro", resourceCulture);
             }
         }
         
@@ -2010,7 +2047,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wait *number**ms*.
+        ///   Looks up a localized string similar to Wait *number*ms.
         /// </summary>
         internal static string WaitMS {
             get {

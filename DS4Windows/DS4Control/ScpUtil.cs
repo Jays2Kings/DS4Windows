@@ -1398,12 +1398,18 @@ namespace DS4Windows
                     string[] s = Item.InnerText.Split('|');
                     if (s.Length == 1)
                         s = Item.InnerText.Split(',');
-                    double.TryParse(s[0], out LSSens[device]);
-                    double.TryParse(s[1], out RSSens[device]);
-                    double.TryParse(s[2], out l2Sens[device]);
-                    double.TryParse(s[3], out r2Sens[device]);
-                    double.TryParse(s[4], out SXSens[device]);
-                    double.TryParse(s[5], out SZSens[device]);
+                    if (!double.TryParse(s[0], out LSSens[device]) || LSSens[device] < .5f)
+                        LSSens[device] = 1;
+                    if (!double.TryParse(s[1], out RSSens[device]) || RSSens[device] < .5f)
+                        RSSens[device] = 1;
+                    if (!double.TryParse(s[2], out l2Sens[device]) || l2Sens[device] < .5f)
+                        l2Sens[device] = 1;
+                    if (!double.TryParse(s[3], out r2Sens[device]) || r2Sens[device] < .5f)
+                        r2Sens[device] = 1;
+                    if (!double.TryParse(s[4], out SXSens[device]) || SXSens[device] < .5f)
+                        SXSens[device] = 1;
+                    if (!double.TryParse(s[5], out SZSens[device]) || SZSens[device] < .5f)
+                        SZSens[device] = 1;
                 }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingType"); int.TryParse(Item.InnerText, out chargingType[device]); }

@@ -160,11 +160,11 @@
     <value>przez powiadomienia</value>
   </data>
   <data name="cHTrigger.Text" xml:space="preserve">
-    <value></value>
+    <value>Trigger</value>
     <comment>觸發鍵</comment>
   </data>
   <data name="lbArg.Text" xml:space="preserve">
-    <value></value>
+    <value>Argumenty</value>
     <comment>參數</comment>
   </data>
   <data name="lbHoldFor.Text" xml:space="preserve">
@@ -179,5 +179,8 @@
   </data>
   <data name="cBActions.Items4" xml:space="preserve">
     <value>Wciśnij/Włącz przycisk</value>
+  </data>
+  <data name="lbHoldDVR.Text" xml:space="preserve">
+    <value>Trzymaj trigger</value>
   </data>
 </root>

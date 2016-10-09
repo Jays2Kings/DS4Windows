@@ -641,7 +641,7 @@
     <value>احذف الإجراء</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>علق على الأزرار لتنفيذ الإجراء، علم الإجراء لإستخدامه عند فتح السجل.</value>
+    <value>علق على الأزرار لتنفيذ الإجراء، علم الإجراء لإستخدامه عند فتح السجل</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>المنطقة الفائضة</value>

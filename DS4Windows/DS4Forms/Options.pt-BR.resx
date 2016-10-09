@@ -122,7 +122,7 @@
     <value>137, 21</value>
   </data>
   <data name="cBLightbyBattery.Text" xml:space="preserve">
-    <value>Cor de Bateria %</value>
+    <value>Cor por % de Bateria</value>
   </data>
   <data name="lbspc.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 17</value>
@@ -155,7 +155,7 @@
     <value>60, 21</value>
   </data>
   <data name="cBScroll.Text" xml:space="preserve">
-    <value>Lista</value>
+    <value>Scroll</value>
   </data>
   <data name="cBSlide.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 21</value>
@@ -180,19 +180,19 @@
     <value>115, 38</value>
   </data>
   <data name="lbButtonMouseSens.Text" xml:space="preserve">
-    <value>Sensibilidade do Mouse:</value>
+    <value>Sensibilidade do Rato:</value>
   </data>
   <data name="cBlowerRCOn.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 21</value>
   </data>
   <data name="cBlowerRCOn.Text" xml:space="preserve">
-    <value>Inferior Direito RMB</value>
+    <value>Inferior Direito como RMB</value>
   </data>
   <data name="cBTouchpadJitterCompensation.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 21</value>
   </data>
   <data name="cBTouchpadJitterCompensation.Text" xml:space="preserve">
-    <value>Compensar Jitter</value>
+    <value>Compensar Agitação/Instabilidade</value>
   </data>
   <data name="lbIdleMinutes.Location" type="System.Drawing.Point, System.Drawing">
     <value>264, 59</value>
@@ -225,13 +225,13 @@
     <value>124, 20</value>
   </data>
   <data name="gBTouchpad.Text" xml:space="preserve">
-    <value>TouchPad</value>
+    <value>Painel de Toque (Touchpad)</value>
   </data>
   <data name="cbStartTouchpadOff.Size" type="System.Drawing.Size, System.Drawing">
     <value>243, 21</value>
   </data>
   <data name="cbStartTouchpadOff.Text" xml:space="preserve">
-    <value>Iniciar com Deslizamento/Lista Off</value>
+    <value>Iniciar com Deslize/Scroll Off</value>
   </data>
   <data name="cMSPresets.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 244</value>
@@ -276,7 +276,7 @@
     <value>187, 26</value>
   </data>
   <data name="LSToolStripMenuItem.Text" xml:space="preserve">
-    <value>Analogico esquerdo</value>
+    <value>Analógico Esquerdo</value>
   </data>
   <data name="tSMILSInverted.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 26</value>
@@ -300,7 +300,7 @@
     <value>187, 26</value>
   </data>
   <data name="RSToolStripMenuItem.Text" xml:space="preserve">
-    <value>Analogico direito</value>
+    <value>Analógico Direito</value>
   </data>
   <data name="tSMIRSInverted.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 26</value>
@@ -324,7 +324,7 @@
     <value>187, 26</value>
   </data>
   <data name="ABXYToolStripMenuItem.Text" xml:space="preserve">
-    <value>Botões frontais</value>
+    <value>Botões Frontais</value>
   </data>
   <data name="WASDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 26</value>
@@ -333,25 +333,25 @@
     <value>233, 26</value>
   </data>
   <data name="wScanCodeWASDToolStripMenuItem.Text" xml:space="preserve">
-    <value>Com scaner de código</value>
+    <value>Com Digitalização de Código</value>
   </data>
   <data name="ArrowKeysToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 26</value>
   </data>
   <data name="ArrowKeysToolStripMenuItem.Text" xml:space="preserve">
-    <value>Setas</value>
+    <value>Setas de Direcção</value>
   </data>
   <data name="wScanCodeArrowKeysToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 26</value>
   </data>
   <data name="wScanCodeArrowKeysToolStripMenuItem.Text" xml:space="preserve">
-    <value>Com scaner de código</value>
+    <value>Com Digitalização de Código</value>
   </data>
   <data name="MouseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 26</value>
   </data>
   <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mousa</value>
+    <value>Rato</value>
   </data>
   <data name="tSMIMouseInverted.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 26</value>
@@ -393,7 +393,7 @@
     <value>156, 43</value>
   </data>
   <data name="cBLaunchProgram.Text" xml:space="preserve">
-    <value>Executar Programa Com Perfil</value>
+    <value>Executar Programa com o Perfil</value>
   </data>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
     <value>176, 128</value>
@@ -408,7 +408,7 @@
     <value>95, 17</value>
   </data>
   <data name="lbUseController.Text" xml:space="preserve">
-    <value>Usar Controle</value>
+    <value>Usar Controlo</value>
   </data>
   <data name="cBMouseAccel.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -420,22 +420,22 @@
     <value>105, 38</value>
   </data>
   <data name="cBMouseAccel.Text" xml:space="preserve">
-    <value>Aceleração de Mouse</value>
+    <value>Aceleração do Rato</value>
   </data>
   <data name="cBControllerInput.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 21</value>
   </data>
   <data name="cBControllerInput.Text" xml:space="preserve">
-    <value>Para Mapear e ler</value>
+    <value>para Mapear e Ler</value>
   </data>
   <data name="cBIdleDisconnect.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 21</value>
   </data>
   <data name="cBIdleDisconnect.Text" xml:space="preserve">
-    <value>Desconectar Se Ocioso</value>
+    <value>Desconectar quando Inactivo</value>
   </data>
   <data name="gBLightbar.Text" xml:space="preserve">
-    <value>Barra De Luz</value>
+    <value>Barra de Luz</value>
   </data>
   <data name="lbRainbowB.Location" type="System.Drawing.Point, System.Drawing">
     <value>275, 270</value>
@@ -450,10 +450,10 @@
     <value>Pulsar a</value>
   </data>
   <data name="cBWhileCharging.Items1" xml:space="preserve">
-    <value>Desvanecer e Esgotado</value>
+    <value>Pulsação</value>
   </data>
   <data name="cBWhileCharging.Items2" xml:space="preserve">
-    <value>Arco</value>
+    <value>Arco-Íris</value>
   </data>
   <data name="cBWhileCharging.Items3" xml:space="preserve">
     <value>Cor</value>
@@ -486,7 +486,7 @@
     <value>Deslocamento:</value>
   </data>
   <data name="gBRumble.Text" xml:space="preserve">
-    <value>Vibrar</value>
+    <value>Vibração</value>
   </data>
   <data name="btnRumbleLightTest.Location" type="System.Drawing.Point, System.Drawing">
     <value>215, 19</value>
@@ -495,13 +495,13 @@
     <value>106, 29</value>
   </data>
   <data name="btnRumbleLightTest.Text" xml:space="preserve">
-    <value>Testar a Luz</value>
+    <value>Testar Vibração Fraca</value>
   </data>
   <data name="tPController.Text" xml:space="preserve">
-    <value>Lendo Controle</value>
+    <value>Leitura do Controlo</value>
   </data>
   <data name="lbRSTip.Text" xml:space="preserve">
-    <value>Analogico direito</value>
+    <value>Analógico Direito</value>
   </data>
   <data name="lbInputDelay.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 17</value>
@@ -510,10 +510,10 @@
     <value>Atraso de Entrada: N/Ams</value>
   </data>
   <data name="lbLSTip.Text" xml:space="preserve">
-    <value>Analogico esquerdo</value>
+    <value>Analógico Esquerdo</value>
   </data>
   <data name="lbSATip.Text" xml:space="preserve">
-    <value>Sixaxis: eixo X é invertida para facilitar a leitura</value>
+    <value>Sixaxis: eixo X é invertido para facilitar a leitura</value>
   </data>
   <data name="tPShiftMod.Text" xml:space="preserve">
     <value>Turno Modificador</value>
@@ -534,10 +534,10 @@
     <value>(Nada)/Modo Shift</value>
   </data>
   <data name="tPControls.Text" xml:space="preserve">
-    <value>Controles</value>
+    <value>Controlos</value>
   </data>
   <data name="tPSpecial.Text" xml:space="preserve">
-    <value>Ação Especial</value>
+    <value>Ações Especiais</value>
   </data>
   <data name="cHName.Text" xml:space="preserve">
     <value>Nome</value>
@@ -558,25 +558,25 @@
     <value>Remover Ação</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Segure controles selecionados para executar uma ação, verificar a ação de usá-lo, enquanto o perfil é carregado.</value>
+    <value>Segure controles selecionados para executar uma ação, verificar a ação de usá-lo, enquanto o perfil é carregado</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Zona Morta</value>
   </data>
   <data name="lbControlTip.Text" xml:space="preserve">
-    <value>Clique Na Barra de Luz</value>
+    <value>Clique na Barra de Luz para escolher uma cor</value>
   </data>
   <data name="cBFlushHIDQueue.Text" xml:space="preserve">
-    <value>Flush HID</value>
+    <value>Despejar HID</value>
   </data>
   <data name="cBWhileCharging.Items" xml:space="preserve">
     <value>Normal</value>
   </data>
   <data name="lb6Accel.Text" xml:space="preserve">
-    <value>Accel</value>
+    <value>Accelerómetro</value>
   </data>
   <data name="lb6Gryo.Text" xml:space="preserve">
-    <value>Gyro</value>
+    <value>Giroscópio</value>
   </data>
   <data name="lbBlue.Text" xml:space="preserve">
     <value>B</value>
@@ -595,5 +595,41 @@
   </data>
   <data name="lbRed.Text" xml:space="preserve">
     <value>R</value>
+  </data>
+  <data name="alwaysOnToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sempre Ligado</value>
+  </data>
+  <data name="btnRumbleHeavyTest.Text" xml:space="preserve">
+    <value>Testar Vibração Forte</value>
+  </data>
+  <data name="fingerOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dedo no Painel de Toque</value>
+  </data>
+  <data name="fingersOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>2 Dedos no Painel de Toque</value>
+  </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Sensibilidade</value>
+  </data>
+  <data name="lbGyroInvert.Text" xml:space="preserve">
+    <value>Inverter:</value>
+  </data>
+  <data name="lbGyroSens.Text" xml:space="preserve">
+    <value>Sensibilidade do Giroscópio:</value>
+  </data>
+  <data name="lbGyroTriggers.Text" xml:space="preserve">
+    <value>Gatilhos:</value>
+  </data>
+  <data name="rBSAControls.Text" xml:space="preserve">
+    <value>Usar para Controlos</value>
+  </data>
+  <data name="rBSAMouse.Text" xml:space="preserve">
+    <value>Usar como Rato</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Repor</value>
+  </data>
+  <data name="tPCurve.Text" xml:space="preserve">
+    <value>Curva</value>
   </data>
 </root>

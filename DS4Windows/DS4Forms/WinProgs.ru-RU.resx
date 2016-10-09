@@ -183,7 +183,7 @@
     <value>Спрятать не выбранное</value>
   </data>
   <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Добавить из меню Пуск</value>
+    <value>Добавить программы из меню Пуск</value>
   </data>
   <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Добавить игры из Steam</value>
@@ -192,7 +192,7 @@
     <value>Добавить игры из Origin</value>
   </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Обзор других программ...</value>
+    <value>Обзор других программ</value>
   </data>
   <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
     <value>Добавить Папку</value>

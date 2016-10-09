@@ -122,7 +122,7 @@
     <value>821, 19</value>
   </data>
   <data name="lbAbout.Text" xml:space="preserve">
-    <value>DS4Windows - Сборка от Jays2Kings (Версия</value>
+    <value>DS4Windows - Сборка от Jays2Kings (версия</value>
   </data>
   <data name="lLChangelog.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 3</value>
@@ -140,13 +140,13 @@
     <value>203, 17</value>
   </data>
   <data name="linkDonate.Text" xml:space="preserve">
-    <value>Пожертвование через PayPal</value>
+    <value>Пожертвовать через PayPal</value>
   </data>
   <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>784, 454</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Скрыть контроллер DS4: Скрывает контроллер DS4 в режиме DInput от других программ Включите, если вы наблюдаете эффект двойного ввода
+    <value>Скрыть DS4: Скрывает контроллер DS4 в режиме DInput от других программ Включите, если вы наблюдаете эффект двойного ввода
 Нажатие на тачпад слева: Касание слева
 Нажатие на тачпад справа: Касание справа
 Нажатие на тачпад двумя пальцами: Мультитач
@@ -207,7 +207,7 @@ Pad click on lower right*: Правый клик (удобно, если пра�
     <value>813, 436</value>
   </data>
   <data name="tPCredits.Text" xml:space="preserve">
-    <value>Титры</value>
+    <value>О программе</value>
   </data>
   <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 19</value>

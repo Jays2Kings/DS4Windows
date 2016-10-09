@@ -160,7 +160,7 @@
     <value>Закрыть DS4Windows?</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
-    <value>Закрыть через значок уведомления</value>
+    <value>Закрывать DS4Windows через значок уведомления</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Цвет</value>
@@ -379,7 +379,7 @@
     <value>Автоотключение Bluetooth при подключении по USB</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>Перед активацией функции "Спрятать контроллер DS4" вы должны выйти из: Steam, Uplay, Origin</value>
+    <value>Перед активацией функции "Спрятать DS4" вы должны выйти из игровых клиентов, таких как Steam, Uplay, Origin и пр.</value>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>Запись</value>
@@ -448,7 +448,7 @@
     <value>Ск-ж. вправо</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
-    <value>Проведите пальцем по тачпаду для смены профиля</value>
+    <value>Проводить пальцем по тачпаду для смены профиля</value>
   </data>
   <data name="SwipeUp" xml:space="preserve">
     <value>Ск-ж. вверх</value>
@@ -487,16 +487,16 @@
     <value>Проведение двумя пальцами по тачпаду влево или вправо</value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
-    <value>задайте новое имя</value>
+    <value>введите сюда новое имя</value>
   </data>
   <data name="TypeProfileName" xml:space="preserve">
-    <value>задайте имя профиля</value>
+    <value>введите сюда имя профиля</value>
   </data>
   <data name="UpText" xml:space="preserve">
     <value>Вверх</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>Обновления программы не найдены!</value>
+    <value>У вас стоит последняя версия</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
     <value>Используйте контроллер для изменения назначений</value>
@@ -511,19 +511,19 @@
     <value>Включен совместный режим</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
-    <value>Это отключит возможность использования тачпада как мышь</value>
+    <value>Это отключит возможность использования тачпада в качестве указателя</value>
   </data>
   <data name="ValidName" xml:space="preserve">
     <value>Пожалуйста, введите допустимое имя</value>
   </data>
   <data name="WaitMS" xml:space="preserve">
-    <value>Задержка *number**ms*</value>
+    <value>Задержка *number**мс*</value>
   </data>
   <data name="WillKeep" xml:space="preserve">
     <value>Удержание</value>
   </data>
   <data name="XinputPorts" xml:space="preserve">
-    <value>Используйте более высокий порт, если у вас возник конфликт с другим эмулятором контроллера X360</value>
+    <value>Используйте иной порт, если у вас возникла проблема с другой программой эмулятора контроллера X360, такой как SCP's tool</value>
   </data>
   <data name="StoppedDS4Tool" xml:space="preserve">
     <value>Остановлена работа DS4Windows</value>
@@ -547,6 +547,9 @@
     <value>Не назначено</value>
   </data>
   <data name="XMLFiles" xml:space="preserve">
-    <value>XML файлы (*.xml)</value>
+    <value>XML-файлы (*.xml)</value>
+  </data>
+  <data name="TestText" xml:space="preserve">
+    <value>Проверка</value>
   </data>
 </root>

@@ -211,4 +211,19 @@
   <data name="cBShiftButton.Items" xml:space="preserve">
     <value>Vyberte Shift Trigger</value>
   </data>
+  <data name="bnTest.Text" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>Rychlost blikání</value>
+  </data>
+  <data name="lbRumble.Text" xml:space="preserve">
+    <value>Rumble</value>
+  </data>
 </root>

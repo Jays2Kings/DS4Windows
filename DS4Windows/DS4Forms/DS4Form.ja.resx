@@ -485,4 +485,7 @@
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>Inherit</value>
   </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
 </root>

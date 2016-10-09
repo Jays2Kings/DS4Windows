@@ -141,8 +141,7 @@
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>Aby podłączyć Bluetooth (opcjonalne):
-Przytrzymaj przycisk SHARE i PS przez 3s tak aby lightbar zaczął błyskać
-</value>
+Przytrzymaj przycisk SHARE i PS przez 3s tak aby lightbar zaczął błyskać</value>
     <comment>設置藍牙（可選）：
 按住PS鍵和SHARE鍵3秒
 光條將開始雙閃</comment>
@@ -150,8 +149,7 @@ Przytrzymaj przycisk SHARE i PS przez 3s tak aby lightbar zaczął błyskać
   <data name="labelBluetooth2.Text" xml:space="preserve">
     <value>Podczas błyskania lightbar przejdź do ustawień systemowych Bluetooth i połącz się
 z "Wireless Controller". Jeśli to konieczne wpisz kod parowania "0000".
-Po sparowaniu jesteś gotowy do akcji. Miłej zabawy!
-</value>
+Po sparowaniu jesteś gotowy do akcji. Miłej zabawy!</value>
     <comment>一次的閃爍後到你的藍牙設定擋
 並連接到 "無線控制器"
 如果出現詢問視窗，輸入配對碼 "0000"
@@ -159,8 +157,7 @@ Po sparowaniu jesteś gotowy do akcji. Miłej zabawy!
   </data>
   <data name="labelUSB.Text" xml:space="preserve">
     <value>Krok 3: podłączanie kontrolera DS4 przez kabel usb.
-Zwyczajnie podłącz kontroler do komputera przez kabel micro usb.
-</value>
+Zwyczajnie podłącz kontroler do komputera przez kabel micro usb.</value>
     <comment>第3步：連接 DUALSHOCK 4 控制器
 建立 有線/USB：
 只需將一條Micro USB線連接你的PC和 DUALSHOCK 4</comment>

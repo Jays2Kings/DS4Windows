@@ -128,7 +128,7 @@
     <value>159, 17</value>
   </data>
   <data name="cBRecordDelays.Text" xml:space="preserve">
-    <value>Verzögerungen aufzeichnen</value>
+    <value>Wartezeiten auch aufzeichnen</value>
   </data>
   <data name="iLKeys.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -194,7 +194,7 @@
     <value>Abbrechen</value>
   </data>
   <data name="btnSaveP.Text" xml:space="preserve">
-    <value>Speichere Voreinstellungen</value>
+    <value>Makro speichern</value>
   </data>
   <data name="lbRecordTip.Location" type="System.Drawing.Point, System.Drawing">
     <value>263, 8</value>
@@ -212,7 +212,7 @@
     <value>4. Maustaste gedrückt</value>
   </data>
   <data name="btnLoadP.Text" xml:space="preserve">
-    <value>Lade Voreinstellungen</value>
+    <value>Makro laden</value>
   </data>
   <data name="lbMacroOrder.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 13</value>
@@ -227,7 +227,7 @@
     <value>145, 26</value>
   </data>
   <data name="lbDelayTip.Text" xml:space="preserve">
-    <value>Doppelklick, um die Zeiten zu bearbeiten.</value>
+    <value>Doppelklick, um die Wartezeiten zu bearbeiten.</value>
   </data>
   <data name="altTabToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 22</value>
@@ -236,7 +236,7 @@
     <value>Programm wechseln (wie mit ALT + TAB)</value>
   </data>
   <data name="altTabToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Das Warten bearbeiten, um die Taktrate zu ändern.</value>
+    <value>Die Wartezeit bearbeiten, um die Taktrate zu ändern.</value>
   </data>
   <data name="fromFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 22</value>
@@ -248,7 +248,7 @@
     <value>154, 48</value>
   </data>
   <data name="btnLightbar.Text" xml:space="preserve">
-    <value>Lichtbar Farbe ändern</value>
+    <value>Lightbar-Farbe ändern</value>
   </data>
   <data name="btnRumble.Text" xml:space="preserve">
     <value>Vibration hinzufügen</value>

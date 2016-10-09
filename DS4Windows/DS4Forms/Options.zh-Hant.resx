@@ -122,7 +122,7 @@
     <value>119, 21</value>
   </data>
   <data name="cBLightbyBattery.Text" xml:space="preserve">
-    <value>顏色依電池%變化</value>
+    <value>顏色依電量%變化</value>
   </data>
   <data name="lbBlue.Size" type="System.Drawing.Size, System.Drawing">
     <value>19, 17</value>
@@ -591,7 +591,7 @@
     <value>移除動作</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>按住選擇的控制鍵來執行一個動作，檢查動作以便使用它，直到設定檔被載入。</value>
+    <value>按住選擇的控制鍵來執行一個動作，檢查動作以便使用它，直到設定檔被載入</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>死區</value>

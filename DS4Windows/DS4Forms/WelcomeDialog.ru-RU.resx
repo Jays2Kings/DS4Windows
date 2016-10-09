@@ -129,7 +129,7 @@
     <value>324, 29</value>
   </data>
   <data name="bnStep1.Text" xml:space="preserve">
-    <value>Шаг 1: Установите DS4 драйвер</value>
+    <value>Шаг 1: Установите драйвер для DS4</value>
   </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>36, 96</value>
@@ -141,7 +141,7 @@
     <value>324, 29</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
-    <value>Шаг 2: Установите Xbox 360 Accessories</value>
+    <value>Шаг 2: Если у вас Windows 7 или ниже, установите драйвер для контреллера Xbox 360</value>
   </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -166,7 +166,7 @@
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>Для подключения по Bluetooth (по желанию): 
-Нажмите и удерживайте кнопки PS и Share в течение 
+Удерживайте кнопки PS и Share в течение 
 3-х секунд пока световая панель не начнёт мигать</value>
   </data>
   <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
@@ -210,9 +210,7 @@
     <value>392, 52</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Если после установки драйвера вы снова увидели 
-данное сообщение необходимо подождать минут 
-10-15 или перезагрузить ваш компьютер</value>
+    <value>Если это окно снова появляется после установки драйвера, перезагрузите ваш компьютер или подождите 10-15 минут, чтобы Windows заметил драйвер</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 129</value>
@@ -224,8 +222,7 @@
     <value>394, 39</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Можете пропустить данный шаг, если вы уже 
-используете контроллер Xbox 360</value>
+    <value>Можете пропустить данный шаг, если вы уже использовали контроллер Xbox 360 на этом ПК</value>
   </data>
   <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
     <value>146, 509</value>
@@ -249,7 +246,7 @@
     <value>150, 17</value>
   </data>
   <data name="linkBluetoothSettings.Text" xml:space="preserve">
-    <value>настройкам Bluetooth</value>
+    <value>Настройки Bluetooth</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>120, 120</value>

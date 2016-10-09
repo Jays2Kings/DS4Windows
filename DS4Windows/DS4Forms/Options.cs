@@ -164,7 +164,7 @@ namespace DS4Windows
                 tBLowRedBar.Value = lowColor.red;
                 tBLowGreenBar.Value = lowColor.green;
                 tBLowBlueBar.Value = lowColor.blue;
-                
+
                 DS4Color cColor = ChargingColor[device];
                 btnChargingColor.BackColor = Color.FromArgb(cColor.red, cColor.green, cColor.blue);
                 if (FlashType[device] > cBFlashType.Items.Count - 1)
@@ -205,20 +205,102 @@ namespace DS4Windows
                     cBWhileCharging.SelectedIndex = 0;
                 else
                     cBWhileCharging.SelectedIndex = ChargingType[device];
-                nUDL2.Value = Math.Round((decimal)L2Deadzone[device] / 255, 2);
-                nUDR2.Value = Math.Round((decimal)R2Deadzone[device] / 255, 2);
-                nUDLS.Value = Math.Round((decimal)(LSDeadzone[device] / 127d), 3);
-                nUDRS.Value = Math.Round((decimal)(RSDeadzone[device] / 127d), 3);
-                nUDSX.Value = (decimal)SXDeadzone[device];
-                nUDSZ.Value = (decimal)SZDeadzone[device];
-
-                nUDL2S.Value = Math.Round((decimal)L2Sens[device], 2);
-                nUDR2S.Value = Math.Round((decimal)R2Sens[device], 2);
-                nUDLSS.Value = Math.Round((decimal)LSSens[device], 2);
-                nUDRSS.Value = Math.Round((decimal)RSSens[device], 2);
-                nUDSXS.Value = Math.Round((decimal)SXSens[device], 2);
-                nUDSZS.Value = Math.Round((decimal)SZSens[device], 2);
-
+                try
+                {
+                    nUDL2.Value = Math.Round((decimal)L2Deadzone[device] / 255, 2);
+                }
+                catch
+                {
+                    nUDL2.Value = 0;
+                }
+                try
+                {
+                    nUDR2.Value = Math.Round((decimal)R2Deadzone[device] / 255, 2);
+                }
+                catch
+                {
+                    nUDR2.Value = 0;
+                }
+                try
+                {
+                    nUDLS.Value = Math.Round((decimal)(LSDeadzone[device] / 127d), 3);
+                }
+                catch
+                {
+                    nUDLS.Value = 0;
+                }
+                try
+                {
+                    nUDRS.Value = Math.Round((decimal)(RSDeadzone[device] / 127d), 3);
+                }
+                catch
+                {
+                    nUDRS.Value = 0;
+                }
+                try
+                {
+                    nUDSX.Value = (decimal)SXDeadzone[device];
+                }
+                catch
+                {
+                    nUDSX.Value = 0.25m;
+                }
+                try
+                {
+                    nUDSZ.Value = (decimal)SZDeadzone[device];
+                }
+                catch
+                {
+                    nUDSZ.Value = 0.25m;
+                }
+                try
+                {
+                    nUDL2S.Value = Math.Round((decimal)L2Sens[device], 2);
+                }
+                catch
+                {
+                    nUDL2S.Value = 1;
+                }
+                try
+                {
+                    nUDR2S.Value = Math.Round((decimal)R2Sens[device], 2);
+                }
+                catch
+                {
+                    nUDR2S.Value = 1;
+                }
+                try
+                {
+                    nUDLSS.Value = Math.Round((decimal)LSSens[device], 2);
+                }
+                catch
+                {
+                    nUDLSS.Value = 1;
+                }
+                try
+                {
+                    nUDRSS.Value = Math.Round((decimal)RSSens[device], 2);
+                }
+                catch
+                {
+                    nUDRSS.Value = 1;
+                }
+                try
+                {
+                    nUDSXS.Value = Math.Round((decimal)SXSens[device], 2);
+                }
+                catch
+                {
+                    nUDSXS.Value = 1;
+                }
+                try
+                {
+                    nUDSZS.Value = Math.Round((decimal)SZSens[device], 2);
+                }
+                catch
+                {
+                    nUDSZS.Value = 1;
+                }
                 if (LaunchProgram[device] != string.Empty)
                 {
                     cBLaunchProgram.Checked = true;

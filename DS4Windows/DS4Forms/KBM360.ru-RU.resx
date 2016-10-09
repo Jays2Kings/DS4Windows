@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="lbFlashRate.Text" xml:space="preserve">
-    <value>Частота вспышки</value>
+    <value>Частота вспышек</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbRumble.Size" type="System.Drawing.Size, System.Drawing">
@@ -168,7 +168,7 @@
 клавишу нажав её</value>
   </data>
   <data name="btnGuide.Text" xml:space="preserve">
-    <value>Домой</value>
+    <value>Руководство</value>
   </data>
   <data name="X360Label.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 17</value>
@@ -189,7 +189,7 @@
     <value>564, 17</value>
   </data>
   <data name="lBMacroOn.Text" xml:space="preserve">
-    <value>Макрос включен. Выберите кнопку для назначения, закройте окно для сохранения</value>
+    <value>Макрос включён. Выберите кнопку для назначения, закройте окно для сохранения</value>
   </data>
   <data name="bnMacro.Text" xml:space="preserve">
     <value>Записать макрос</value>

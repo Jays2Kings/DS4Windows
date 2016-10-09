@@ -122,7 +122,7 @@
     <value>149, 21</value>
   </data>
   <data name="cBLightbyBattery.Text" xml:space="preserve">
-    <value>Цвет от заряда %</value>
+    <value>Цвет от % заряда</value>
   </data>
   <data name="lbBlue.Text" xml:space="preserve">
     <value>С</value>
@@ -195,7 +195,7 @@
     <value>309, 21</value>
   </data>
   <data name="cBlowerRCOn.Text" xml:space="preserve">
-    <value>Нижняя правая сторона тачпада как ПКМ</value>
+    <value>Нижняя правая часть тачпада как ПКМ</value>
   </data>
   <data name="cBTouchpadJitterCompensation.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 83</value>
@@ -234,13 +234,13 @@
     <value>128, 29</value>
   </data>
   <data name="btnRumbleHeavyTest.Text" xml:space="preserve">
-    <value>Тест сильного</value>
+    <value>Тест сильной</value>
   </data>
   <data name="lbFull.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 17</value>
   </data>
   <data name="lbFull.Text" xml:space="preserve">
-    <value>Полный:</value>
+    <value>Заряжена:</value>
   </data>
   <data name="lbLowRed.Size" type="System.Drawing.Size, System.Drawing">
     <value>17, 17</value>
@@ -258,7 +258,7 @@
     <value>С</value>
   </data>
   <data name="lbEmpty.Text" xml:space="preserve">
-    <value>Пусто:</value>
+    <value>Разряжена:</value>
   </data>
   <data name="numUDMouseSens.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 26</value>
@@ -439,7 +439,7 @@
     <value>294, 21</value>
   </data>
   <data name="cBControllerInput.Text" xml:space="preserve">
-    <value>для назначеня клавиш и вывода текста</value>
+    <value>для назначения клавиш и вывода текста</value>
   </data>
   <data name="cBIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 63</value>
@@ -448,28 +448,28 @@
     <value>160, 21</value>
   </data>
   <data name="cBIdleDisconnect.Text" xml:space="preserve">
-    <value>Время бездействия</value>
+    <value>Таймаут бездействия:</value>
   </data>
   <data name="gBOther.Text" xml:space="preserve">
     <value>Другое</value>
   </data>
   <data name="cBFlashType.Items" xml:space="preserve">
-    <value>Вспышка при</value>
+    <value>Мигать при</value>
   </data>
   <data name="cBFlashType.Items1" xml:space="preserve">
     <value>Пульсировать при</value>
   </data>
   <data name="cBWhileCharging.Items" xml:space="preserve">
-    <value>Обычная</value>
+    <value>обычная</value>
   </data>
   <data name="cBWhileCharging.Items1" xml:space="preserve">
-    <value>Пульс</value>
+    <value>пульсация</value>
   </data>
   <data name="cBWhileCharging.Items2" xml:space="preserve">
-    <value>Радуга</value>
+    <value>радуга</value>
   </data>
   <data name="cBWhileCharging.Items3" xml:space="preserve">
-    <value>Цвет</value>
+    <value>цвет</value>
   </data>
   <data name="cBWhileCharging.Location" type="System.Drawing.Point, System.Drawing">
     <value>142, 206</value>
@@ -481,7 +481,7 @@
     <value>136, 17</value>
   </data>
   <data name="lbWhileCharging.Text" xml:space="preserve">
-    <value>Индикация заряда:</value>
+    <value>Индикация зарядки:</value>
   </data>
   <data name="gBLightbar.Text" xml:space="preserve">
     <value>Световая панель</value>
@@ -493,13 +493,13 @@
     <value>112, 29</value>
   </data>
   <data name="btnRumbleLightTest.Text" xml:space="preserve">
-    <value>Тест слабого</value>
+    <value>Тест слабой</value>
   </data>
   <data name="gBRumble.Text" xml:space="preserve">
     <value>Вибрация</value>
   </data>
   <data name="lbRSTip.Text" xml:space="preserve">
-    <value>Правый стрик</value>
+    <value>Правый стик</value>
   </data>
   <data name="lbInputDelay.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 17</value>
@@ -511,19 +511,19 @@
     <value>Левый стик</value>
   </data>
   <data name="lbSATip.Text" xml:space="preserve">
-    <value>Гироскоп: Ось X отражена для простоты считывания</value>
+    <value>Гироскоп: ось X инвертирована для простоты считывания</value>
   </data>
   <data name="lb6Accel.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 17</value>
   </data>
   <data name="lb6Accel.Text" xml:space="preserve">
-    <value>Аксел</value>
+    <value>Акселерометр</value>
   </data>
   <data name="lb6Gryo.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 17</value>
   </data>
   <data name="lb6Gryo.Text" xml:space="preserve">
-    <value>Гиро</value>
+    <value>Гироскоп</value>
   </data>
   <data name="fLPTiltControls.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 103</value>
@@ -536,34 +536,34 @@
     <value>Управление</value>
   </data>
   <data name="cHName.Text" xml:space="preserve">
-    <value>Имя</value>
+    <value>Название</value>
   </data>
   <data name="cHTrigger.Text" xml:space="preserve">
     <value>Триггер</value>
   </data>
   <data name="cHAction.Text" xml:space="preserve">
-    <value>Экшн</value>
+    <value>Действие</value>
   </data>
   <data name="btnNewAction.Text" xml:space="preserve">
-    <value>Новый экшн</value>
+    <value>Новое действие</value>
   </data>
   <data name="btnEditAction.Text" xml:space="preserve">
-    <value>Редактировать экшн</value>
+    <value>Изменить действие</value>
   </data>
   <data name="btnRemAction.Text" xml:space="preserve">
-    <value>Удалить экшн</value>
+    <value>Удалить действие</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Удерживайте выбранные кнопки для назначения нужного действия, проверьте работоспособность при загруженном профиле.</value>
+    <value>Удерживайте выбранные кнопки для назначения нужного действия, проверьте работоспособность при загруженном профиле</value>
   </data>
   <data name="tPSpecial.Text" xml:space="preserve">
-    <value>Удалить экшн</value>
+    <value>Особые действия</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
-    <value>Мертвая зона</value>
+    <value>Мёртвые зоны</value>
   </data>
   <data name="tPCurve.Text" xml:space="preserve">
-    <value>Кривая</value>
+    <value>Кривые</value>
   </data>
   <data name="rBSAControls.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 48</value>
@@ -593,19 +593,19 @@
     <value>115, 17</value>
   </data>
   <data name="lbGyroInvert.Text" xml:space="preserve">
-    <value>Инвертировано:</value>
+    <value>Инвертировать:</value>
   </data>
   <data name="lbGyroTriggers.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 17</value>
   </data>
   <data name="lbGyroTriggers.Text" xml:space="preserve">
-    <value>Триггера:</value>
+    <value>Триггер:</value>
   </data>
   <data name="lbGyroSens.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 17</value>
   </data>
   <data name="lbGyroSens.Text" xml:space="preserve">
-    <value>Чуствительность гироскопа:</value>
+    <value>Чувствительность гироскопа:</value>
   </data>
   <data name="pnlSAMouse.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 93</value>
@@ -684,5 +684,14 @@
   </data>
   <data name="cMGyroTriggers.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 524</value>
+  </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Чувствительность</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="tPController.Text" xml:space="preserve">
+    <value>Считывание контроллера</value>
   </data>
 </root>

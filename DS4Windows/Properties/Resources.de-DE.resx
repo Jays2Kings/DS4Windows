@@ -151,7 +151,7 @@
     <value>Aufgeladen</value>
   </data>
   <data name="Charging" xml:space="preserve">
-    <value>Controller *number*% ist am aufladen</value>
+    <value>Wird aufgeladen: *number*%</value>
   </data>
   <data name="CheckBattery" xml:space="preserve">
     <value>Batterie prüfen</value>
@@ -226,7 +226,7 @@
     <value>DS4Windows kann hier nicht die Einstellungen bearbeiten. Fenster wird nun geschlossen.</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
-    <value>Editieren</value>
+    <value>Ändern</value>
   </data>
   <data name="FallBack" xml:space="preserve">
     <value>Zurückfallen</value>
@@ -496,7 +496,7 @@
     <value>Hoch</value>
   </data>
   <data name="UpToDate" xml:space="preserve">
-    <value>Du befindest dich auf dem neuesten Stand.</value>
+    <value>DS4Windows ist auf dem neuesten Stand</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
     <value>Du kannst auch den Controller verwenden, um die Bedienung zu ändern.</value>
@@ -542,5 +542,23 @@
   </data>
   <data name="Unassigned" xml:space="preserve">
     <value>Nicht Zugewiesen</value>
+  </data>
+  <data name="MacroRecorded" xml:space="preserve">
+    <value>Makro aufgezeichnet</value>
+  </data>
+  <data name="MultiAction" xml:space="preserve">
+    <value>Multi-Aktions Knopf</value>
+  </data>
+  <data name="SelectMacro" xml:space="preserve">
+    <value>Wähle ein Makro aus</value>
+  </data>
+  <data name="TestText" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="CannotMoveFiles" xml:space="preserve">
+    <value>Dateien können nicht zu neuem Ziel bewegt werden. Bitte ändern Sie den Namen des DS4Tool Verzeichnisses zu "DS4Windows"</value>
+  </data>
+  <data name="FallBackTo" xml:space="preserve">
+    <value>Falle zurück zu *button*</value>
   </data>
 </root>

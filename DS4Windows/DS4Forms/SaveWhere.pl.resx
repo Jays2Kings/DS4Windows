@@ -127,19 +127,19 @@
     <value>Nie usuwaj jeszcze innych ustawień</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value></value>
+    <value>Dla tych którzy preferują wersję portable. Uwaga: ta opcja nie działa jeśli nie posiadasz praw administratora</value>
     <comment>給那些比較喜歡隨身免安裝版程式 注意：假如存放於系統管理員管制的資料夾中沒使用UAC使用者帳戶控制功能，此選項將無法運作</comment>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value></value>
+    <value>Dla tych którzy preferują regularną instalację. Ustawienia zapisane w %appdata%ds4tool</value>
     <comment>給那些比較喜歡常規安裝設定檔儲存在 %appdata%/ds4tool</comment>
   </data>
   <data name="lbMultiSaves.Text" xml:space="preserve">
-    <value></value>
+    <value>Wykryto wiele lokacji zapisu</value>
     <comment>偵測到多重儲存的位置</comment>
   </data>
   <data name="lbPickWhere.Text" xml:space="preserve">
-    <value></value>
+    <value>Wybierz gdzie chcesz zapisywać ustawienia i profile</value>
     <comment>選擇您想儲存程式設定及控制器設定檔的位置</comment>
   </data>
 </root>

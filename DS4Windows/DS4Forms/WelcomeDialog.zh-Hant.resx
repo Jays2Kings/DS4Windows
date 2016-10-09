@@ -170,7 +170,7 @@
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>設置藍牙（可選）：
 按住PS鍵和SHARE鍵3秒
-光條將開始雙閃</value>
+光條將開始持續連閃2次</value>
   </data>
   <data name="labelUSB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>

@@ -347,8 +347,7 @@
     <value>191, 38</value>
   </data>
   <data name="cBLaunchProgram.Text" xml:space="preserve">
-    <value>Εκκίνηση Προγράμματος 
-με προφίλ</value>
+    <value>Εκκίνηση Προγράμματος με προφίλ</value>
   </data>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
     <value>196, 164</value>
@@ -372,8 +371,7 @@
     <value>106, 38</value>
   </data>
   <data name="cBMouseAccel.Text" xml:space="preserve">
-    <value>Επιτάχυνση 
-ποντικιού</value>
+    <value>Επιτάχυνση ποντικιού</value>
   </data>
   <data name="cBIdleDisconnect.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 21</value>
@@ -575,5 +573,35 @@
   </data>
   <data name="alwaysOnToolStripMenuItem.Text" xml:space="preserve">
     <value>Πάντα ενεργοποιημένο</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dpad</value>
+  </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Ευαισθησία</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Επαναφορά</value>
+  </data>
+  <data name="tPController.Text" xml:space="preserve">
+    <value>Μετρήσεις Χειριστηρίου</value>
   </data>
 </root>

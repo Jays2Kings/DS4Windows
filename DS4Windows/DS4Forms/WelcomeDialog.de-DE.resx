@@ -168,7 +168,7 @@ Sobald er verbunden ist, bist du fertig. Viel Spaß!</value>
     <value>314, 43</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Wenn dieses Fenster nach der Installation wieder erscheint, musst du warscheinlich den PC neustarten oder 10-15 minuten warten bis Windows den Treiber bemerkt.</value>
+    <value>Wenn dieses Fenster nach der Installation wieder erscheint, musst du wahrscheinlich den PC neustarten oder 10-15 Minuten warten bis Windows den Treiber bemerkt.</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 119</value>

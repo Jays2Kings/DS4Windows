@@ -391,7 +391,7 @@
     <value>Scannez le code</value>
   </data>
   <data name="SearchingController" xml:space="preserve">
-    <value>Cherche manettes...</value>
+    <value>Cherche des manettes...</value>
   </data>
   <data name="SelectActionTitle" xml:space="preserve">
     <value>Sélectionner une action pour *action*</value>

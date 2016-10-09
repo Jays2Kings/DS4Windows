@@ -150,4 +150,49 @@
   <data name="cBActions.Items6" xml:space="preserve">
     <value>Comprobar batería</value>
   </data>
+  <data name="cbLightbarBatt.Text" xml:space="preserve">
+    <value>a través del barra de luz</value>
+  </data>
+  <data name="cBMacroScanCode.Text" xml:space="preserve">
+    <value>Escanear del código</value>
+  </data>
+  <data name="cBNotificationBatt.Text" xml:space="preserve">
+    <value>via notificación</value>
+  </data>
+  <data name="cBPressRelease.Items" xml:space="preserve">
+    <value>Oprimiendo trigger unload</value>
+  </data>
+  <data name="cBPressRelease.Items1" xml:space="preserve">
+    <value>Soltando el trigger unload</value>
+  </data>
+  <data name="cHTrigger.Text" xml:space="preserve">
+    <value>Gatillo</value>
+  </data>
+  <data name="cHUnloadTrigger.Text" xml:space="preserve">
+    <value>Liberar Gatillo</value>
+  </data>
+  <data name="lbArg.Text" xml:space="preserve">
+    <value>Argumentos</value>
+  </data>
+  <data name="lbDTapDVR.Text" xml:space="preserve">
+    <value>Oprimir el gatillo doblemente</value>
+  </data>
+  <data name="lbHoldDVR.Text" xml:space="preserve">
+    <value>Dejar oprimido el gatillo</value>
+  </data>
+  <data name="lbHoldFor.Text" xml:space="preserve">
+    <value>Dejar oprimido por</value>
+  </data>
+  <data name="lbName.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="lbSecs.Text" xml:space="preserve">
+    <value>segundos</value>
+  </data>
+  <data name="lbTapDVR.Text" xml:space="preserve">
+    <value>Oprimir el gatillo</value>
+  </data>
+  <data name="lbUnloadTipKey.Text" xml:space="preserve">
+    <value>Desligar tecla por</value>
+  </data>
 </root>

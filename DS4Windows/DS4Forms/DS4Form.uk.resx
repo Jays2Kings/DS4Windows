@@ -652,4 +652,7 @@
   <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 56</value>
   </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
 </root>

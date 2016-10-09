@@ -715,13 +715,13 @@
 </value>
   </data>
   <data name="btnRecordMacro.Text" xml:space="preserve">
-    <value>Gravar Macro</value>
+    <value>Gravar uma Macro</value>
   </data>
   <data name="btnBrowse.Text" xml:space="preserve">
     <value>Procurar...</value>
   </data>
   <data name="btnSave.Text" xml:space="preserve">
-    <value>Salvar</value>
+    <value>Gravar</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cancelar</value>
@@ -730,19 +730,19 @@
     <value>Nome</value>
   </data>
   <data name="cBActions.Items" xml:space="preserve">
-    <value>- Selecionar um Ação-</value>
+    <value>- Seleccionar uma Ação-</value>
   </data>
   <data name="cBActions.Items1" xml:space="preserve">
-    <value>Gravar Macro</value>
+    <value>Gravar uma Macro</value>
   </data>
   <data name="cBActions.Items2" xml:space="preserve">
-    <value>Executar Programa</value>
+    <value>Executar um Programa</value>
   </data>
   <data name="cBActions.Items3" xml:space="preserve">
-    <value>Carregar Perfil</value>
+    <value>Carregar um Perfil</value>
   </data>
   <data name="cHUnloadTrigger.Text" xml:space="preserve">
-    <value>Gatilho de Tiro</value>
+    <value>Gatilho de Descarregar</value>
   </data>
   <data name="lVUnloadTrigger.Items" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -1339,25 +1339,25 @@
 </value>
   </data>
   <data name="btnSelectKey.Text" xml:space="preserve">
-    <value>Selecione uma tecla</value>
+    <value>Selecione um Botão</value>
   </data>
   <data name="btnSetUTriggerProfile.Text" xml:space="preserve">
-    <value>Definir Gatilho de Tiro</value>
+    <value>Definir Gatilho de Descarregar</value>
   </data>
   <data name="cBActions.Items4" xml:space="preserve">
-    <value>Pressione/ative botão</value>
+    <value>Pressione/Escolha um Botão</value>
   </data>
   <data name="cBActions.Items5" xml:space="preserve">
-    <value>Desconete do Bluetooth</value>
+    <value>Desconecte do Bluetooth</value>
   </data>
   <data name="cBActions.Items6" xml:space="preserve">
-    <value>Checar vida útil da bateria</value>
+    <value>Visualizar Nível de Bateria</value>
   </data>
   <data name="cbLightbarBatt.Text" xml:space="preserve">
-    <value>via barra de luz</value>
+    <value>via Barra de Luz</value>
   </data>
   <data name="cBMacroScanCode.Text" xml:space="preserve">
-    <value>Scanear Codigo</value>
+    <value>Digitalizar Código</value>
   </data>
   <data name="cBNotificationBatt.Text" xml:space="preserve">
     <value>via notificação</value>
@@ -1366,6 +1366,30 @@
     <value>Argumentos</value>
   </data>
   <data name="lbHoldFor.Text" xml:space="preserve">
-    <value>Segure para</value>
+    <value>Segurar para</value>
+  </data>
+  <data name="btnSetUTriggerKeys.Text" xml:space="preserve">
+    <value>Definir Gatilho de Descarregar</value>
+  </data>
+  <data name="cBPressRelease.Items" xml:space="preserve">
+    <value>pressionar gatilho de descarregar</value>
+  </data>
+  <data name="cBPressRelease.Items1" xml:space="preserve">
+    <value>largar gatilho de descarregar</value>
+  </data>
+  <data name="lbDTapDVR.Text" xml:space="preserve">
+    <value>Gatilho de Duplo-Toque</value>
+  </data>
+  <data name="lbHoldDVR.Text" xml:space="preserve">
+    <value>Manter Premido o Gatilho</value>
+  </data>
+  <data name="lbSecs.Text" xml:space="preserve">
+    <value>segundos</value>
+  </data>
+  <data name="lbTapDVR.Text" xml:space="preserve">
+    <value>Clicar no Gatilho</value>
+  </data>
+  <data name="lbUnloadTipKey.Text" xml:space="preserve">
+    <value>Alternar botão por</value>
   </data>
 </root>

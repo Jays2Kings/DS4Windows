@@ -477,4 +477,40 @@
   <data name="XMLFiles" xml:space="preserve">
     <value>Pliki XML (*.xml)</value>
   </data>
+  <data name="CannotMoveFiles" xml:space="preserve">
+    <value>Nie można przenieś plików do nowej lokacij, zmień nazwę folderu DS4Tool na "DS4Windows"</value>
+  </data>
+  <data name="ChargeController" xml:space="preserve">
+    <value>Ładowanie bateri</value>
+  </data>
+  <data name="CopyComplete" xml:space="preserve">
+    <value>Kopiowanie kompletne, zrestartuj DS4Windows i usuń ustawienia z folderu programu</value>
+  </data>
+  <data name="FallBackTo" xml:space="preserve">
+    <value>Cofnij do *przycisk*</value>
+  </data>
+  <data name="FlashAtTip" xml:space="preserve">
+    <value>Kliknij to zmieny koloru diody kontrolera. Czarny = domyślny kolor</value>
+  </data>
+  <data name="InstallFailed" xml:space="preserve">
+    <value>Instalacja zakończona niepomyślnie, Proszę spróbować ponownie</value>
+  </data>
+  <data name="Jitter" xml:space="preserve">
+    <value>Użyj Sixaxis dla lepszego kalkulowania ruchów touchpada</value>
+  </data>
+  <data name="LatencyNotOverTen" xml:space="preserve">
+    <value>Kontroler *number* opoźnienie poniżej 10ms</value>
+  </data>
+  <data name="LatencyOverTen" xml:space="preserve">
+    <value>Kontroler *number* opoźnienei ponad 10ms</value>
+  </data>
+  <data name="MacroRecorded" xml:space="preserve">
+    <value>Macro zapisane</value>
+  </data>
+  <data name="MultiAction" xml:space="preserve">
+    <value>Klawisz wielofunkcyjny</value>
+  </data>
+  <data name="SelectMacro" xml:space="preserve">
+    <value>Wybierz macro</value>
+  </data>
 </root>

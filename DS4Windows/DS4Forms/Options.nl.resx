@@ -244,12 +244,138 @@
     <value>Gyro</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Hou de geselecteerde besturing om een actie uit te voeren, controlleer de actie om het te gebruiken als het profiel geladen is.</value>
+    <value>Hou de geselecteerde besturing om een actie uit te voeren, controlleer de actie om het te gebruiken als het profiel geladen is</value>
   </data>
   <data name="lbBlue.Text" xml:space="preserve">
     <value>B</value>
   </data>
   <data name="lbButtonMouseSens.Text" xml:space="preserve">
     <value>Muis Gevoeligheid</value>
+  </data>
+  <data name="alwaysOnToolStripMenuItem.Text" xml:space="preserve">
+    <value>Altijd aan</value>
+  </data>
+  <data name="lbControlTip.Text" xml:space="preserve">
+    <value>Klik de Lightbar voor een kleur te kiezen.</value>
+  </data>
+  <data name="lbEmpty.Text" xml:space="preserve">
+    <value>Leeg</value>
+  </data>
+  <data name="lbFull.Text" xml:space="preserve">
+    <value>Vol</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbGyroInvert.Text" xml:space="preserve">
+    <value>Omkeren</value>
+  </data>
+  <data name="lbGyroSens.Text" xml:space="preserve">
+    <value>Gevoeligheid Gyro</value>
+  </data>
+  <data name="lbGyroTriggers.Text" xml:space="preserve">
+    <value>Triggers</value>
+  </data>
+  <data name="lbIdleMinutes.Text" xml:space="preserve">
+    <value>Minuten</value>
+  </data>
+  <data name="lbInputDelay.Text" xml:space="preserve">
+    <value>Invoer vertraging</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbLSTip.Text" xml:space="preserve">
+    <value>Linker Stick</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbRSTip.Text" xml:space="preserve">
+    <value>Rechter Stick</value>
+  </data>
+  <data name="lbSATip.Text" xml:space="preserve">
+    <value>Sixaxes: X is omgedraaid voor makkelijker lezen</value>
+  </data>
+  <data name="lbspc.Text" xml:space="preserve">
+    <value>Seconden/Periode</value>
+  </data>
+  <data name="lbUseController.Text" xml:space="preserve">
+    <value>Gebruik de controller</value>
+  </data>
+  <data name="lbWhileCharging.Text" xml:space="preserve">
+    <value>Tijdens het laden</value>
+  </data>
+  <data name="LSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Linker Stick</value>
+  </data>
+  <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Muis</value>
+  </data>
+  <data name="rBSAControls.Text" xml:space="preserve">
+    <value>Gebruik voor besturing</value>
+  </data>
+  <data name="rBSAMouse.Text" xml:space="preserve">
+    <value>Als muis gebruiken</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Resetten</value>
+  </data>
+  <data name="RSToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rechter Stick</value>
+  </data>
+  <data name="tPControls.Text" xml:space="preserve">
+    <value>Besturing</value>
+  </data>
+  <data name="tPSpecial.Text" xml:space="preserve">
+    <value>Speciale Acties</value>
+  </data>
+  <data name="tSMIDPadInverted.Text" xml:space="preserve">
+    <value>Omgekeerd</value>
+  </data>
+  <data name="tSMIDPadInvertedX.Text" xml:space="preserve">
+    <value>Omgekeerde X</value>
+  </data>
+  <data name="tSMIDPadInvertedY.Text" xml:space="preserve">
+    <value>Omgekeerde Y</value>
+  </data>
+  <data name="tSMILSInverted.Text" xml:space="preserve">
+    <value>Omgekeerd</value>
+  </data>
+  <data name="tSMILSInvertedX.Text" xml:space="preserve">
+    <value>Omgekeerde X</value>
+  </data>
+  <data name="tSMILSInvertedY.Text" xml:space="preserve">
+    <value>Omgekeerde Y</value>
+  </data>
+  <data name="tSMIMouseInverted.Text" xml:space="preserve">
+    <value>Omgekeerd</value>
+  </data>
+  <data name="tSMIMouseInvertedX.Text" xml:space="preserve">
+    <value>Omgekeerde X</value>
+  </data>
+  <data name="tSMIMouseInvertedY.Text" xml:space="preserve">
+    <value>Omgekeerde Y</value>
+  </data>
+  <data name="tSMIRSInverted.Text" xml:space="preserve">
+    <value>Omgekeerd</value>
+  </data>
+  <data name="tSMIRSInvertedX.Text" xml:space="preserve">
+    <value>Omgekeerde X</value>
+  </data>
+  <data name="tSMIRSInvertedY.Text" xml:space="preserve">
+    <value>Omgekeerde Y</value>
+  </data>
+  <data name="wScanCodeArrowKeysToolStripMenuItem.Text" xml:space="preserve">
+    <value>w/ Scan Code</value>
+  </data>
+  <data name="wScanCodeWASDToolStripMenuItem.Text" xml:space="preserve">
+    <value>w/ Scan Code</value>
   </data>
 </root>

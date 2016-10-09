@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label4.Text" xml:space="preserve">
-    <value>Para aqueles que preferem a Instalação regular as configurações salvas estão em % appdata% / ds4tool</value>
+    <value>Para aqueles que preferem as Definições normais de instalação gravadas em %appdata%/ds4tool</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Para aqueles que preferem um programa portátil Nota: esta opção não funciona se a pasta requisitar privilegios de administrador</value>
+    <value>Para aqueles que preferem um programa portátil Nota: esta opção não funciona se estiver numa pasta de administrador sem CCU (Controlo de Conta de Utilizador)</value>
   </data>
   <data name="bnAppdataFolder.Text" xml:space="preserve">
     <value>AppData</value>
@@ -130,14 +130,14 @@
     <value>Pasta do Programa</value>
   </data>
   <data name="lbPickWhere.Text" xml:space="preserve">
-    <value>Escolha Onde Você Quer Salvar os Perfis</value>
+    <value>Escolha onde quer que as Definições e Perfis sejam gravados</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbMultiSaves.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 13</value>
   </data>
   <data name="lbMultiSaves.Text" xml:space="preserve">
-    <value>Multiplos Localizações de Saves Detectado</value>
+    <value>Detectadas Múltiplas Localizações de "Saves"</value>
   </data>
   <data name="cBDeleteOther.Location" type="System.Drawing.Point, System.Drawing">
     <value>253, 0</value>
@@ -146,7 +146,7 @@
     <value>134, 30</value>
   </data>
   <data name="cBDeleteOther.Text" xml:space="preserve">
-    <value>"Não apague as outras definições ainda"</value>
+    <value>Não Elimine ainda as outras definições</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>389, 148</value>

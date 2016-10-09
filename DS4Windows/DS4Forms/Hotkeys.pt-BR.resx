@@ -125,13 +125,13 @@
     <value>152, 17</value>
   </data>
   <data name="lLChangelog.Text" xml:space="preserve">
-    <value>Registro de Alterações</value>
+    <value>Registo de Alterações</value>
   </data>
   <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 17</value>
   </data>
   <data name="linkDonate.Text" xml:space="preserve">
-    <value>Doar Via Paypal</value>
+    <value>Doar via Paypal</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
     <value>Esconder Controle DS4: Esconde entrada normal do DS4 (Dinput) de outros programas, marque se você estiver recebendo dupla entrada em jogos ou o R2 pausa jogos 

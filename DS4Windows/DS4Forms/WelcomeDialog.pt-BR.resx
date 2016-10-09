@@ -118,14 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="bnStep1.Text" xml:space="preserve">
-    <value>Passo 1: Instalar Driver DS4</value>
+    <value>Passo 1: Instalar a Drive do DS4</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>29, 77</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
-    <value>Passo 2: Windows 7 ou Inferior, Instalar Driver 360</value>
+    <value>Passo 2: Se usar o Windows 7 ou inferior, instale a Drive do 360</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>36, 224</value>
@@ -135,31 +135,31 @@
   </data>
   <data name="labelBluetooth.Text" xml:space="preserve">
     <value>Para configurar Bluetooth (opcional):
-Segure o botões PS e Share por 3 segundos
-A barra de luzes começara a piscar</value>
+Segure o Botão PS e o Botão Share durante 3 segundos
+A barra de Luz começará a piscar</value>
   </data>
   <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 132</value>
   </data>
   <data name="labelUSB.Text" xml:space="preserve">
-    <value>Passo 3: Ligue o controle DualShock 4
-Para configurar wired / usb:
-Basta ligar um micro USB no seu PC e DualShock 4</value>
+    <value>Passo 3: Conecte o controlo DualShock 4
+Para configurar por cabo usb:
+Basta ligar um micro USB no PC e no DualShock 4</value>
   </data>
   <data name="labelBluetooth2.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 359</value>
   </data>
   <data name="labelBluetooth2.Text" xml:space="preserve">
-    <value>Uma vez que piscar vá para Configurações de Bluetooth
-e conecte " Wireless Controller "
-Se solicitado, digite o código par " 0000 "
-Uma vez emparelhado, você está pronto. Diverta-se!</value>
+    <value>Quando piscar diriga-se às Configurações do Bluetooth
+e ligue/conecte a "Wireless Controller"
+Se solicitado, digite o código par "0000"
+Uma vez emparelhado, está pronto. Bom divertimento!</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>314, 42</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Se esta janela reaparece após a instalação, você pode precisar reiniciar seu pc ou esperar 10-15min para Windows Reconhecer os Drivers</value>
+    <value>Se esta janela reaparecer após a instalação, pode ser preciso reiniciar o pc ou esperar 10 a 15 minutos para o Windows reconhecer as Drives</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 103</value>
@@ -168,7 +168,7 @@ Uma vez emparelhado, você está pronto. Diverta-se!</value>
     <value>315, 29</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Se você já usou um controlador 360 neste PC, você pode pular esta parte</value>
+    <value>Se já usou um controlador da XBox 360 neste PC, pode saltar esta parte</value>
   </data>
   <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 413</value>
@@ -193,6 +193,6 @@ Uma vez emparelhado, você está pronto. Diverta-se!</value>
     <value>315, 439</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Bem Vindo ao DS4Windows</value>
+    <value>Bem-Vindo ao DS4Windows</value>
   </data>
 </root>

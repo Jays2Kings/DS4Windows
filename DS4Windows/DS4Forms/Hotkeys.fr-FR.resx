@@ -143,23 +143,7 @@
     <value>615, 505</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Cacher manette DS4: Cache les entrées de base (Dinput) de la DS4 de la vérification des autres programmes, cochez si vous observez des entrées doubles en jeu ou si R2 met le jeu en pause
-Cliquez sur le côté gauche du pavé tactile: Left Touch
-Cliquez sur le côté droit du pavé tactile: Right Touch
-Cliquez sur le pavé tactile avec 2 doigts: Multitouch
-Cliquez sur la partie supérieure du pavé tactile: Upper Touch
-PS + Options ou maintenir PS pendant 10 secondes: Déconnecter la manette (Bluetooth seulement)
-Pavé tactile + PS: Désactiver les glissements sur le pavé tactile (le clique fonctionne toujours)
-Clic sur la partie inférieure droite du pavé tactile*: Clic droit (conseillé d'utiliser quand le côté droit est utilisé comme bouton de souris)
-Deux doigts haut/bas sur la pavé tactile*: Défiler vers le Haut/Bas
-Appuyer puis maintenir le pavé tactile*: Glisser du clic gauche de la souris
-Glisser avec 2 doigts gauche ou droit sur le pavé tactile*: Cycle through profiles
-Shift Modifer: Maintenir une action pour utiliser un autre ensemble de commandes
-Pendant que vous configurez le clavier et la souris:
-Toggle: La touche restera dans un état "enfoncée" tant qu'elle n'aura pas été pressée une nouvelle fois
-Macro: Assigner plusieurs touches à une entrée
-Scan du code: Les touches sont interprétées différemment. Peut être nécessaire pour certains jeux
-*Si Activé</value>
+    <value>Скрыть джойстик DS4: Cache основные входы (DINPUT) от DS4 проверки других программ, проверьте, если вы видите двойные записи в игру, или если R2 ставит паузу игра Нажмите на левой стороне сенсорной панели: Левая касание Нажмите на правой стороне сенсорной панели: правой сенсорной мыши сенсорной панели двумя пальцами: Multitouch нажмите верхнюю часть сенсорной панели: верхний сенсорный PS + Options или поддерживать PS в течение 10 секунд: Отключите контроллер (только Bluetooth) клавиатура нажмите + PS: Отключение скольжения по сенсорной панели (клика все еще работает) нажмите на нижней правой части сенсорной панели *: правой кнопкой мыши (рекомендуется использовать, когда правая часть используется в качестве мыши) Два пальца вверх / вниз по сенсорной панели *: прокрутка вверх / вниз Нажмите и удерживайте сенсорной панели *: перетащите мышь, щелкните левой кнопкой мыши перетащить двумя пальцами влево или вправо на сенсорной панели *: Циклический сдвиг профилей ИЗМЕНИТЬ: поддерживать Action использовать другой набор команд при настройке клавиатуры и мыши: Toggle: ключ будет оставаться в "вниз", пока не будет нажата снова Macro: Назначают несколько клавиш на входе сканирования код: ключи интерпретируются по-разному. Может быть необходимо для некоторых игр * Если на</value>
   </data>
   <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>644, 421</value>
@@ -292,5 +276,8 @@ Scan du code: Les touches sont interprétées différemment. Peut être nécessa
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>652, 469</value>
+  </data>
+  <data name="lbAbout.Text" xml:space="preserve">
+    <value>DS4Windows - Jays2Kings Build (Version</value>
   </data>
 </root>

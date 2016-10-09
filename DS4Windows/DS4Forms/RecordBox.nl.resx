@@ -117,4 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn4th.Text" xml:space="preserve">
+    <value>4e Muisknop ingedrukt</value>
+  </data>
+  <data name="btn5th.Text" xml:space="preserve">
+    <value>5e Muisknop ingedrukt</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="btnLightbar.Text" xml:space="preserve">
+    <value>Kleur van Lightbar veranderen</value>
+  </data>
+  <data name="btnLoadP.Text" xml:space="preserve">
+    <value>Laad Preset</value>
+  </data>
+  <data name="btnRecord.Text" xml:space="preserve">
+    <value>Opnemen</value>
+  </data>
+  <data name="btnRumble.Text" xml:space="preserve">
+    <value>Voeg trillen toe</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="btnSaveP.Text" xml:space="preserve">
+    <value>Preset Opslaan</value>
+  </data>
+  <data name="cBRecordDelays.Text" xml:space="preserve">
+    <value>Neem Vertragingen op</value>
+  </data>
+  <data name="cBStyle.Items" xml:space="preserve">
+    <value>Eenmaals afspelen</value>
+  </data>
+  <data name="cBStyle.Items1" xml:space="preserve">
+    <value>Herhaal wanneer ingehouden</value>
+  </data>
+  <data name="fromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Uit bestand...</value>
+  </data>
+  <data name="lbMacroOrder.Text" xml:space="preserve">
+    <value>Macro-volgorde</value>
+  </data>
+  <data name="lbRecordTip.Text" xml:space="preserve">
+    <value>Gebruik Toetsenbord/Muis + Controller 1 voor het opnemen</value>
+  </data>
 </root>

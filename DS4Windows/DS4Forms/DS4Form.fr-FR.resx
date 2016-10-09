@@ -359,7 +359,7 @@
     <value>208, 26</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Choisir manette 4</value>
+    <value>7</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 26</value>
@@ -678,5 +678,8 @@
   </data>
   <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
     <value>307, 56</value>
+  </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
   </data>
 </root>

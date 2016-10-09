@@ -165,4 +165,7 @@
   <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
     <value>Dodaj folder</value>
   </data>
+  <data name="cBTurnOffDS4W.Text" xml:space="preserve">
+    <value>Tymczasowo wyłącz DS4Windows</value>
+  </data>
 </root>

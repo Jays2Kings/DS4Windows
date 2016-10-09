@@ -187,4 +187,22 @@
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="altTabToolStripMenuItem.Text" xml:space="preserve">
+    <value>Alternar los Programas</value>
+  </data>
+  <data name="altTabToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Editar el Tiempo de Espera para cambiar la velocidad de ciclo de alternación</value>
+  </data>
+  <data name="fromFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Desde el archivo...</value>
+  </data>
+  <data name="lbDelayTip.Text" xml:space="preserve">
+    <value>Doble click en la espera para editar el tiempo</value>
+  </data>
+  <data name="lbMacroOrder.Text" xml:space="preserve">
+    <value>Orden de macro</value>
+  </data>
+  <data name="lbRecordTip.Text" xml:space="preserve">
+    <value>Usar Teclado/Mouse + Control 1 para grabar</value>
+  </data>
 </root>

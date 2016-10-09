@@ -628,4 +628,16 @@
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Použít vlastní barvu</value>
   </data>
+  <data name="btnStartStop.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="chData.Text" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="startToolStripMenuItem.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
 </root>

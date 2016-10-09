@@ -177,29 +177,29 @@
     <value>Jogar Uma Vez</value>
   </data>
   <data name="cBStyle.Items1" xml:space="preserve">
-    <value>Repetir Enquanto Mantem</value>
+    <value>Repetir Enquanto Mantido</value>
   </data>
   <data name="btnSave.Text" xml:space="preserve">
-    <value>Salvar</value>
+    <value>Gravar</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="btnSaveP.Text" xml:space="preserve">
-    <value>Salvar Padrão</value>
+    <value>Gravar Predefinição</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbRecordTip.Size" type="System.Drawing.Size, System.Drawing">
     <value>227, 13</value>
   </data>
   <data name="lbRecordTip.Text" xml:space="preserve">
-    <value>Usar Teclado/Mouse + Controle 1 para Gravar</value>
+    <value>Usar Teclado/Rato + Controlo 1 para Gravar</value>
   </data>
   <data name="btn5th.Text" xml:space="preserve">
-    <value>5ª Mouse Com Botão Para Baixo</value>
+    <value>5ª Botão do Rato Premido</value>
   </data>
   <data name="btn4th.Text" xml:space="preserve">
-    <value>4ª Mouse Com Botão Para Baixo</value>
+    <value>4ª Botão do Rato Premido</value>
   </data>
   <data name="btnLoadP.Text" xml:space="preserve">
     <value>Carregar Padrão</value>
@@ -208,18 +208,27 @@
     <value>88, 13</value>
   </data>
   <data name="lbMacroOrder.Text" xml:space="preserve">
-    <value>Ordem De Macro</value>
+    <value>Ordem de Macro</value>
   </data>
   <data name="lbDelayTip.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 13</value>
   </data>
   <data name="lbDelayTip.Text" xml:space="preserve">
-    <value>Duplo Clique Para Mudar o Tempo</value>
+    <value>Duplo clique numa espera para editar o tempo</value>
   </data>
   <data name="altTabToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Edite a espera para alterar a taxa de ciclo</value>
+    <value>Editar a Espera para alterar a taxa de ciclo</value>
   </data>
   <data name="fromFileToolStripMenuItem.Text" xml:space="preserve">
     <value>Do arquivo...</value>
+  </data>
+  <data name="altTabToolStripMenuItem.Text" xml:space="preserve">
+    <value>Precorrer Programas</value>
+  </data>
+  <data name="btnLightbar.Text" xml:space="preserve">
+    <value>Mudar a Cor da Barra de Luz</value>
+  </data>
+  <data name="btnRumble.Text" xml:space="preserve">
+    <value>Adicionar Vibração</value>
   </data>
 </root>

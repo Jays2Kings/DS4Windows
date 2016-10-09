@@ -625,4 +625,10 @@
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Egyedi szín használata</value>
   </data>
+  <data name="btnStartStop.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
 </root>

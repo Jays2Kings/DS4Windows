@@ -121,11 +121,26 @@
   <data name="bnAddPrograms.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 23</value>
   </data>
+  <data name="bnAddPrograms.Text" xml:space="preserve">
+    <value>Programme hinzufügen</value>
+  </data>
+  <data name="bnSave.Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="bnDelete.Text" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="PathHeader.Text" xml:space="preserve">
+    <value>Verzeichnis</value>
+  </data>
   <data name="pBProfilesTip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>614, 133</value>
+    <value>818, 167</value>
   </data>
   <data name="pBProfilesTip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 13</value>
+    <value>147, 17</value>
+  </data>
+  <data name="pBProfilesTip.Text" xml:space="preserve">
+    <value>Profile hier auswählen</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="bnHideUnchecked.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -135,46 +150,46 @@
     <value>141, 2</value>
   </data>
   <data name="bnHideUnchecked.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 23</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
-  </data>
-  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 22</value>
-  </data>
-  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 92</value>
-  </data>
-  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Origin Spiel hinzufügen</value>
-  </data>
-  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Startmenü Programm hinzufügen</value>
-  </data>
-  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Steam Spiel hinzufügen</value>
-  </data>
-  <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Programme hinzufügen</value>
-  </data>
-  <data name="bnDelete.Text" xml:space="preserve">
-    <value>Entfernen</value>
+    <value>172, 23</value>
   </data>
   <data name="bnHideUnchecked.Text" xml:space="preserve">
     <value>Abgewählte verstecken</value>
   </data>
-  <data name="bnSave.Text" xml:space="preserve">
-    <value>Speichern</value>
+  <data name="addProgramsFromStartMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 26</value>
+  </data>
+  <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Startmenü Programm hinzufügen</value>
+  </data>
+  <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 26</value>
+  </data>
+  <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Steam Spiel hinzufügen</value>
+  </data>
+  <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 26</value>
+  </data>
+  <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Origin Spiel hinzufügen</value>
+  </data>
+  <data name="addDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 26</value>
+  </data>
+  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Verzeichnis Hinzufügen</value>
+  </data>
+  <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 26</value>
   </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
     <value>Suche nach anderen Programmen</value>
+  </data>
+  <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 134</value>
+  </data>
+  <data name="cBTurnOffDS4W.Text" xml:space="preserve">
+    <value>DS4Windows temporär ausschalten</value>
   </data>
   <data name="lBController1.Text" xml:space="preserve">
     <value>Controller 1</value>
@@ -190,14 +205,5 @@
   </data>
   <data name="nameHeader.Text" xml:space="preserve">
     <value>Name</value>
-  </data>
-  <data name="PathHeader.Text" xml:space="preserve">
-    <value>Verzeichnis</value>
-  </data>
-  <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Profile hier auswählen</value>
-  </data>
-  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Verzeichnis Hinzufügen</value>
   </data>
 </root>

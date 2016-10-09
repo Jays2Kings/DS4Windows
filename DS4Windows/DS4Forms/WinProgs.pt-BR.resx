@@ -121,32 +121,32 @@
     <value>Adicionar Programas</value>
   </data>
   <data name="bnSave.Text" xml:space="preserve">
-    <value>Salvar</value>
+    <value>Gravar</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lBController1.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
   </data>
   <data name="lBController1.Text" xml:space="preserve">
-    <value>Controle 1</value>
+    <value>Controlo 1</value>
   </data>
   <data name="lBController2.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
   </data>
   <data name="lBController2.Text" xml:space="preserve">
-    <value>Controle 2</value>
+    <value>Controlo 2</value>
   </data>
   <data name="lBController3.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
   </data>
   <data name="lBController3.Text" xml:space="preserve">
-    <value>Controle 3</value>
+    <value>Controlo 3</value>
   </data>
   <data name="lBController4.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
   </data>
   <data name="lBController4.Text" xml:space="preserve">
-    <value>Controle 4</value>
+    <value>Controlo 4</value>
   </data>
   <data name="bnDelete.Text" xml:space="preserve">
     <value>Remover</value>
@@ -161,7 +161,7 @@
     <value>104, 13</value>
   </data>
   <data name="pBProfilesTip.Text" xml:space="preserve">
-    <value>Esconlher Perfil Aqui</value>
+    <value>Escolher Perfis aqui</value>
   </data>
   <data name="bnHideUnchecked.Text" xml:space="preserve">
     <value>Esconder Desmarcados</value>
@@ -176,24 +176,24 @@
     <value>246, 22</value>
   </data>
   <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Jogos Steam</value>
+    <value>Adicionar Jogos da Steam</value>
   </data>
   <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 22</value>
   </data>
   <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar Jogo Origin</value>
+    <value>Adicionar Jogos da Origin</value>
   </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 22</value>
   </data>
   <data name="browseForOtherProgramsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Procurar Outro Programa</value>
+    <value>Procurar por outros Programas</value>
   </data>
   <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 92</value>
   </data>
   <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Adicionar diretório</value>
+    <value>Adicionar Diretório</value>
   </data>
 </root>

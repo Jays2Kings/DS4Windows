@@ -409,8 +409,7 @@ and readout</value>
     <value>145, 38</value>
   </data>
   <data name="rBSAControls.Text" xml:space="preserve">
-    <value>Gunakan sebagai 
-Kontrol</value>
+    <value>Gunakan sebagai Kontrol</value>
   </data>
   <data name="rBSAMouse.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 13</value>
@@ -419,8 +418,7 @@ Kontrol</value>
     <value>145, 38</value>
   </data>
   <data name="rBSAMouse.Text" xml:space="preserve">
-    <value>Gunakan sebagai 
-Mouse</value>
+    <value>Gunakan sebagai Mouse</value>
   </data>
   <data name="lbGyroInvert.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 17</value>
@@ -505,5 +503,56 @@ Mouse</value>
   </data>
   <data name="alwaysOnToolStripMenuItem.Text" xml:space="preserve">
     <value>Tetap nyala</value>
+  </data>
+  <data name="btnBrowse.Text" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="cBScroll.Text" xml:space="preserve">
+    <value>Scroll</value>
+  </data>
+  <data name="cBWhileCharging.Items" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dpad</value>
+  </data>
+  <data name="gBLightbar.Text" xml:space="preserve">
+    <value>Lightbar</value>
+  </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Sensitivitas</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Touchpad</value>
+  </data>
+  <data name="lb6Gryo.Text" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbInputDelay.Text" xml:space="preserve">
+    <value>Input Delay: N/Ams</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="MouseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mouse</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Atur ulang</value>
   </data>
 </root>

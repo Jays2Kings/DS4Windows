@@ -628,4 +628,10 @@
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Käytä profiiliväriä</value>
   </data>
+  <data name="chData.Text" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
 </root>

@@ -574,4 +574,43 @@
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
     <value>Gunakan Aturan Warna</value>
   </data>
+  <data name="bnEditC1.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="bnEditC2.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="bnEditC3.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="bnEditC4.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="chData.Text" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="exportToolStripMenuItem.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="lbID.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="lbStatus.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="tsBEditProfile.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="tSBExportProfile.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="tSBImportProfile.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
 </root>

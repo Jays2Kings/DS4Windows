@@ -118,26 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="lbFlashRate.Text" xml:space="preserve">
-    <value>Taxa De Flash</value>
+    <value>Taxa De Velocidade de Flash</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbRumble.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 17</value>
   </data>
   <data name="lbRumble.Text" xml:space="preserve">
-    <value>Vibrar</value>
+    <value>Vibração</value>
   </data>
   <data name="lbHeavy.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 17</value>
   </data>
   <data name="lbHeavy.Text" xml:space="preserve">
-    <value>Vibrar</value>
+    <value>Pesado/Forte</value>
   </data>
   <data name="lbLight.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 17</value>
   </data>
   <data name="lbLight.Text" xml:space="preserve">
-    <value>LED</value>
+    <value>Ligeiro/Devagar</value>
   </data>
   <data name="cBScanCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>797, 10</value>
@@ -146,32 +146,32 @@
     <value>131, 21</value>
   </data>
   <data name="cBScanCode.Text" xml:space="preserve">
-    <value>Scanear Codigo</value>
+    <value>Digitalizar Código</value>
   </data>
   <data name="lBTip.Text" xml:space="preserve">
-    <value>Você também pode selecionar
-uma chave, digitando-o</value>
+    <value>Também pode seleccionar
+uma chave, digitando-a</value>
   </data>
   <data name="X360Label.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 17</value>
   </data>
   <data name="X360Label.Text" xml:space="preserve">
-    <value>Controle X360</value>
+    <value>Controlos X360</value>
   </data>
   <data name="KBMlabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 17</value>
   </data>
   <data name="KBMlabel.Text" xml:space="preserve">
-    <value>Teclado e Mouse</value>
+    <value>Teclado e Rato</value>
   </data>
   <data name="lBMacroOn.Size" type="System.Drawing.Size, System.Drawing">
     <value>529, 17</value>
   </data>
   <data name="lBMacroOn.Text" xml:space="preserve">
-    <value>Macro Ligado, Escolha Uma Chave Para Desativar Ou Feche a Janela Para Salvar</value>
+    <value>Macro Ligado, escolha uma chave para desativar ou feche a janela para gravar</value>
   </data>
   <data name="bnMacro.Text" xml:space="preserve">
-    <value>Gravar Macro</value>
+    <value>Gravar uma Macro</value>
   </data>
   <data name="cBToggle.Location" type="System.Drawing.Point, System.Drawing">
     <value>717, 10</value>
@@ -186,16 +186,16 @@ uma chave, digitando-o</value>
     <value>Padrão</value>
   </data>
   <data name="cBMouse.Text" xml:space="preserve">
-    <value>Mudar Sensibilidade do Controle</value>
+    <value>Mudar Sensibilidade do Controlo</value>
   </data>
   <data name="cBLightbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 21</value>
   </data>
   <data name="cBLightbar.Text" xml:space="preserve">
-    <value>Mudar LED</value>
+    <value>Mudar Luz LED</value>
   </data>
   <data name="bnTest.Text" xml:space="preserve">
-    <value>Test</value>
+    <value>Testar</value>
   </data>
   <data name="gBExtras.Text" xml:space="preserve">
     <value>Extras</value>
@@ -210,6 +210,12 @@ uma chave, digitando-o</value>
     <value>R</value>
   </data>
   <data name="rBShiftModifer.Text" xml:space="preserve">
-    <value>Turno Modificador</value>
+    <value>Modificador de Shift</value>
+  </data>
+  <data name="btnGuide.Text" xml:space="preserve">
+    <value>Guia</value>
+  </data>
+  <data name="btnUNBOUND.Text" xml:space="preserve">
+    <value>Desvincular</value>
   </data>
 </root>

@@ -235,8 +235,7 @@ Kablo bağlantısı için cihazı bilgisayara usb portundan bağlayın, ek bir i
     <value>120, 17</value>
   </data>
   <data name="linkBluetoothSettings.Text" xml:space="preserve">
-    <value>Bluetooth Ayarları
-</value>
+    <value>Bluetooth Ayarları</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>120, 120</value>

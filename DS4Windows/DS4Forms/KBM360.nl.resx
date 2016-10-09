@@ -130,7 +130,7 @@
     <value>Gids</value>
   </data>
   <data name="btnUNBOUND.Text" xml:space="preserve">
-    <value>ongebonden</value>
+    <value>Ongebonden</value>
   </data>
   <data name="cBLightbar.Text" xml:space="preserve">
     <value>Verander licht</value>
@@ -179,5 +179,8 @@
   </data>
   <data name="X360Label.Text" xml:space="preserve">
     <value>X360 Besturing</value>
+  </data>
+  <data name="rBRegular.Text" xml:space="preserve">
+    <value>Normaal</value>
   </data>
 </root>

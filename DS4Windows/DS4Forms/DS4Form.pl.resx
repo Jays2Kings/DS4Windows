@@ -671,4 +671,7 @@
   <data name="startToolStripMenuItem.Text" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="cBUseWhiteIcon.Text" xml:space="preserve">
+    <value>Biała ikona DS4Windows</value>
+  </data>
 </root>

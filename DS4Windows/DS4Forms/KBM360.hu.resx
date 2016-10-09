@@ -140,13 +140,13 @@
     <value>Gyenge</value>
   </data>
   <data name="lbBlue.Text" xml:space="preserve">
-    <value>K</value>
+    <value>Kék</value>
   </data>
   <data name="lbGreen.Size" type="System.Drawing.Size, System.Drawing">
     <value>17, 17</value>
   </data>
   <data name="lbGreen.Text" xml:space="preserve">
-    <value>Z</value>
+    <value>Zöld</value>
   </data>
   <data name="bnTest.Text" xml:space="preserve">
     <value>Teszt</value>
@@ -155,7 +155,7 @@
     <value>17, 17</value>
   </data>
   <data name="lbRed.Text" xml:space="preserve">
-    <value>P</value>
+    <value>Piros</value>
   </data>
   <data name="cBScanCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 21</value>

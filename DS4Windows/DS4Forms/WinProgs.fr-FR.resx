@@ -297,13 +297,13 @@
     <value>347, 26</value>
   </data>
   <data name="addSteamGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ajouter de Jeux Steam</value>
+    <value>Ajouter des Jeux Steam</value>
   </data>
   <data name="addOriginGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>347, 26</value>
   </data>
   <data name="addOriginGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ajouter de Jeux Origin</value>
+    <value>Ajouter des Jeux Origin</value>
   </data>
   <data name="addDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>347, 26</value>

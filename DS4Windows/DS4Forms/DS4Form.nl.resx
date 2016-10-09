@@ -335,7 +335,7 @@
     <value>262, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Kopieren (Ctrl+D)</value>
+    <value>Kopiëren (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>262, 26</value>
@@ -395,7 +395,7 @@
     <value>104, 24</value>
   </data>
   <data name="tsBEditProfile.Text" xml:space="preserve">
-    <value>Aanpassen</value>
+    <value>Bewerken</value>
   </data>
   <data name="tsBEditProfile.ToolTipText" xml:space="preserve">
     <value>Geselecteerd Profiel Aanpassen</value>
@@ -416,7 +416,7 @@
     <value>Kopieren</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>Kopieer Geselecteerd Profiel</value>
+    <value>Dupliceer Geselecteerd Profiel</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 24</value>
@@ -624,5 +624,8 @@
   </data>
   <data name="tabLog.Text" xml:space="preserve">
     <value>Log</value>
+  </data>
+  <data name="cBUseWhiteIcon.Text" xml:space="preserve">
+    <value>Wit DS4 Icoon</value>
   </data>
 </root>

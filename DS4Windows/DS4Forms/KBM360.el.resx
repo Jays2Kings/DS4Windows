@@ -167,8 +167,7 @@
     <value>100, 34</value>
   </data>
   <data name="KBMlabel.Text" xml:space="preserve">
-    <value>Πληκτρολόγιο 
-και Ποντίκι</value>
+    <value>Πληκτρολόγιο και Ποντίκι</value>
   </data>
   <data name="lBMacroOn.Size" type="System.Drawing.Size, System.Drawing">
     <value>717, 17</value>
@@ -211,5 +210,14 @@
   </data>
   <data name="cBLightbar.Text" xml:space="preserve">
     <value>Αλλαγή Φωτισμού</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
   </data>
 </root>

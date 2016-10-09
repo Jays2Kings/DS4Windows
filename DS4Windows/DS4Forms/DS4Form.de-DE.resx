@@ -203,7 +203,7 @@
     <value>74, 28</value>
   </data>
   <data name="bnEditC3.Text" xml:space="preserve">
-    <value>Editieren</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
     <value>989, 130</value>
@@ -212,7 +212,7 @@
     <value>74, 28</value>
   </data>
   <data name="bnEditC4.Text" xml:space="preserve">
-    <value>Editieren</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
     <value>834, 23</value>
@@ -224,7 +224,7 @@
     <value>74, 28</value>
   </data>
   <data name="bnEditC2.Text" xml:space="preserve">
-    <value>Editieren</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
     <value>834, 59</value>
@@ -239,7 +239,7 @@
     <value>74, 28</value>
   </data>
   <data name="bnEditC1.Text" xml:space="preserve">
-    <value>Editieren</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
     <value>834, 131</value>
@@ -446,7 +446,7 @@
     <value>Importieren</value>
   </data>
   <data name="tSBImportProfile.ToolTipText" xml:space="preserve">
-    <value>Importiere ein Profil oder mehrere</value>
+    <value>Importiere ein oder mehrere Profile</value>
   </data>
   <data name="tSBExportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 24</value>
@@ -458,8 +458,7 @@
     <value>Exportiere das ausgewählte Profil</value>
   </data>
   <data name="tabAutoProfiles.Text" xml:space="preserve">
-    <value>Automatische Profile
-</value>
+    <value>Automatische Profile</value>
   </data>
   <data name="tabSettings.Text" xml:space="preserve">
     <value>Einstellungen</value>
@@ -649,5 +648,8 @@
   </data>
   <data name="tabLog.Text" xml:space="preserve">
     <value>Log</value>
+  </data>
+  <data name="cBUseWhiteIcon.Text" xml:space="preserve">
+    <value>Weißes DS4Windows Symbol</value>
   </data>
 </root>

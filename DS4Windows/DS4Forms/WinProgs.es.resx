@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="bnAddPrograms.Text" xml:space="preserve">
-    <value>Agregar Programas</value>
+    <value>Añadir programas</value>
   </data>
   <data name="bnSave.Text" xml:space="preserve">
     <value>Guardar</value>
@@ -170,7 +170,7 @@
     <value>261, 22</value>
   </data>
   <data name="addProgramsFromStartMenuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Añadir programas del menu de Inicio</value>
+    <value>Añadir programas del menú Inicio</value>
   </data>
   <data name="addSteamGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>261, 22</value>
@@ -192,5 +192,8 @@
   </data>
   <data name="cMSPrograms.Size" type="System.Drawing.Size, System.Drawing">
     <value>262, 92</value>
+  </data>
+  <data name="addDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Añadir directorio</value>
   </data>
 </root>

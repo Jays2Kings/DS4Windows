@@ -121,7 +121,7 @@
     <value>Время</value>
   </data>
   <data name="chData.Text" xml:space="preserve">
-    <value>Событие</value>
+    <value>Дата</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnStartStop.Location" type="System.Drawing.Point, System.Drawing">
@@ -143,7 +143,7 @@
     <value>126, 17</value>
   </data>
   <data name="llbHelp.Text" xml:space="preserve">
-    <value>Показать справку</value>
+    <value>Горячие клавиши / О программе</value>
   </data>
   <data name="btnClear.Text" xml:space="preserve">
     <value>Очистить журнал</value>
@@ -152,25 +152,25 @@
     <value>379, 26</value>
   </data>
   <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактировать профиль 1-го контроллера</value>
+    <value>Редакт. профиль 1-го контроллера</value>
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>379, 26</value>
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактировать профиль 2-го контроллера</value>
+    <value>Редакт. профиль 2-го контроллера</value>
   </data>
   <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>379, 26</value>
   </data>
   <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактировать профиль 3-го контроллера</value>
+    <value>Редакт. профиль 3-го контроллера</value>
   </data>
   <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>379, 26</value>
   </data>
   <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Редактировать профиль 4-го контроллера</value>
+    <value>Редакт. профиль 4-го контроллера</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>376, 6</value>
@@ -191,7 +191,7 @@
     <value>379, 26</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Выход</value>
+    <value>Выход (ср. кнопка мыши)</value>
   </data>
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>380, 192</value>
@@ -6369,7 +6369,7 @@
 </value>
   </data>
   <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Эксклюзивное подключение DS4 (эксперементально)</value>
+    <value>Особое подключение DS4 (экспериментально, для Windows 10 и выше)</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1085, 94</value>
@@ -6435,13 +6435,13 @@
     <value>178, 18</value>
   </data>
   <data name="lbSelectedProfile.Text" xml:space="preserve">
-    <value>Выбранный профиль:</value>
+    <value>Выбранный профиль</value>
   </data>
   <data name="lbID.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 18</value>
   </data>
   <data name="lbID.Text" xml:space="preserve">
-    <value>ID устройства:</value>
+    <value>ID устройства</value>
   </data>
   <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
     <value>382, 0</value>
@@ -6450,7 +6450,7 @@
     <value>151, 18</value>
   </data>
   <data name="lbStatus.Text" xml:space="preserve">
-    <value>Тип подключения:</value>
+    <value>Тип подключения</value>
   </data>
   <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
     <value>602, 0</value>
@@ -6459,7 +6459,7 @@
     <value>118, 18</value>
   </data>
   <data name="lbBattery.Text" xml:space="preserve">
-    <value>аккумулятора</value>
+    <value>Аккумулятор</value>
   </data>
   <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
     <value>639, 27</value>
@@ -6501,7 +6501,7 @@
     <value>33, 28</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
-    <value>Контроллеры не подключены (не больше четырёх)</value>
+    <value>Контроллеры не подключены (макс. не больше четырёх)</value>
   </data>
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Контроллеры</value>
@@ -6540,13 +6540,13 @@
     <value>289, 26</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Удалить</value>
+    <value>Удалить (Del)</value>
   </data>
   <data name="duplicateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Копировать</value>
+    <value>Дублировать (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 26</value>
@@ -6576,7 +6576,7 @@
     <value>Имя профиля:</value>
   </data>
   <data name="tSTBProfile.Text" xml:space="preserve">
-    <value>&lt;задайте имя профиля&gt;</value>
+    <value>&lt;введите сюда имя профиля&gt;</value>
   </data>
   <data name="tSBSaveProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 24</value>
@@ -6669,13 +6669,13 @@
     <value>415, 21</value>
   </data>
   <data name="cBSwipeProfiles.Text" xml:space="preserve">
-    <value>Проведите пальцами по тачпаду для изменения профиля</value>
+    <value>Жест смахивания на тачпаде изменяет профиль</value>
   </data>
   <data name="StartWindowsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 21</value>
   </data>
   <data name="StartWindowsCheckBox.Text" xml:space="preserve">
-    <value>Запускать при старте Windows</value>
+    <value>Запускать при загрузке Windows</value>
   </data>
   <data name="startMinimizedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 21</value>
@@ -6687,16 +6687,16 @@
     <value>161, 17</value>
   </data>
   <data name="lbNotifications.Text" xml:space="preserve">
-    <value>Показать уведомления</value>
+    <value>Показать уведомления:</value>
   </data>
   <data name="cBoxNotifications.Items" xml:space="preserve">
-    <value>Ничего</value>
+    <value>никаких</value>
   </data>
   <data name="cBoxNotifications.Items1" xml:space="preserve">
-    <value>Только предупреждения</value>
+    <value>только предупреждения</value>
   </data>
   <data name="cBoxNotifications.Items2" xml:space="preserve">
-    <value>Все</value>
+    <value>все</value>
   </data>
   <data name="cBoxNotifications.Location" type="System.Drawing.Point, System.Drawing">
     <value>185, 1</value>
@@ -6720,7 +6720,7 @@
     <value>356, 21</value>
   </data>
   <data name="cBFlashWhenLate.Text" xml:space="preserve">
-    <value>Мигание световой панели при высокой задержке</value>
+    <value>Мигать световой панелью при высокой задержке</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>447, 28</value>
@@ -6729,31 +6729,31 @@
     <value>255, 21</value>
   </data>
   <data name="cBCloseMini.Text" xml:space="preserve">
-    <value>При закрытии сворачивать в трэй</value>
+    <value>При закрытии сворачивать в трей</value>
   </data>
   <data name="cBQuickCharge.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 21</value>
   </data>
   <data name="cBQuickCharge.Text" xml:space="preserve">
-    <value>Ускорить процесс зарядки</value>
+    <value>Быстрая зарядка</value>
   </data>
   <data name="cBDownloadLangauge.Size" type="System.Drawing.Size, System.Drawing">
     <value>296, 21</value>
   </data>
   <data name="cBDownloadLangauge.Text" xml:space="preserve">
-    <value>Скачать языковой пакет с обновлением</value>
+    <value>Загружать язык. пакет вместе с обновлением</value>
   </data>
   <data name="cBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 21</value>
   </data>
   <data name="cBUpdate.Text" xml:space="preserve">
-    <value>Проверять обновления при запуске:</value>
+    <value>Проверять обновления при запуске</value>
   </data>
   <data name="cBUpdateTime.Items" xml:space="preserve">
-    <value>часов</value>
+    <value>час.</value>
   </data>
   <data name="cBUpdateTime.Items1" xml:space="preserve">
-    <value>дней</value>
+    <value>дн.</value>
   </data>
   <data name="cBUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>211, 0</value>
@@ -6762,7 +6762,7 @@
     <value>138, 17</value>
   </data>
   <data name="lbCheckEvery.Text" xml:space="preserve">
-    <value>Интервал проверки</value>
+    <value>Проверять каждые</value>
   </data>
   <data name="nUDUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>150, 0</value>
@@ -6774,7 +6774,7 @@
     <value>179, 17</value>
   </data>
   <data name="lbUseXIPorts.Text" xml:space="preserve">
-    <value>Использовать порт XInput</value>
+    <value>Использовать порт XInput:</value>
   </data>
   <data name="nUDXIPorts.Location" type="System.Drawing.Point, System.Drawing">
     <value>185, 1</value>
@@ -6798,13 +6798,13 @@
     <value>218, 17</value>
   </data>
   <data name="lnkControllers.Text" xml:space="preserve">
-    <value>Доступные игровые устройства</value>
+    <value>Панель управления</value>
   </data>
   <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 17</value>
   </data>
   <data name="linkUninstall.Text" xml:space="preserve">
-    <value>Удалить VBus драйвер</value>
+    <value>Удалить драйвер VBus</value>
   </data>
   <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 17</value>

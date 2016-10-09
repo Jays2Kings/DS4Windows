@@ -545,7 +545,7 @@
     <value>Eliminar Acción</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Mantenga los controles seleccionados para llevar a cabo una acción, compruebe la acción para usarlo mientras se carga el perfil.</value>
+    <value>Mantenga los controles seleccionados para llevar a cabo una acción, compruebe la acción para usarlo mientras se carga el perfil</value>
   </data>
   <data name="tPSpecial.Text" xml:space="preserve">
     <value>Acciones Especiales</value>

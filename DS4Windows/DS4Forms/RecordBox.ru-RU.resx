@@ -182,7 +182,7 @@
 </value>
   </data>
   <data name="cBStyle.Items" xml:space="preserve">
-    <value>Играть один раз</value>
+    <value>Воспроизвести один раз</value>
   </data>
   <data name="cBStyle.Items1" xml:space="preserve">
     <value>Повторять при удержании</value>
@@ -206,10 +206,10 @@
     <value>Для записи использовать мышь, клавиатуру и первый контроллер</value>
   </data>
   <data name="btn5th.Text" xml:space="preserve">
-    <value>5-я кнопка мыши вниз</value>
+    <value>Нажатие 5-й кнопки мыши</value>
   </data>
   <data name="btn4th.Text" xml:space="preserve">
-    <value>4-я кнопка мыши вниз</value>
+    <value>Нажатие 4-й кнопки мыши</value>
   </data>
   <data name="btnLoadP.Text" xml:space="preserve">
     <value>Загрузить настройки</value>
@@ -245,7 +245,7 @@
     <value>225, 48</value>
   </data>
   <data name="btnLightbar.Text" xml:space="preserve">
-    <value>Изменить цвет светопанели</value>
+    <value>Изменить цвет световой панели</value>
   </data>
   <data name="btnRumble.Text" xml:space="preserve">
     <value>Добавить вибрацию</value>

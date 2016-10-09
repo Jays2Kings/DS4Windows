@@ -349,8 +349,7 @@
     <value>Geçerli değil</value>
   </data>
   <data name="OpeningInstaller" xml:space="preserve">
-    <value>Kurucu Açılıyor
-</value>
+    <value>Kurucu Açılıyor</value>
   </data>
   <data name="OpenScpDriver" xml:space="preserve">
     <value>Lütfen ScpDriver.exe'yi açınız</value>

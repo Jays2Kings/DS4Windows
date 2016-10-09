@@ -220,4 +220,13 @@
   <data name="cBShiftButton.Items" xml:space="preserve">
     <value>Izberi Shift gumb</value>
   </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
 </root>

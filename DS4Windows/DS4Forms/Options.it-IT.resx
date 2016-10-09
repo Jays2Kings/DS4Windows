@@ -504,7 +504,7 @@ con profilo</value>
     <value>Rimuovi Azione</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Tieni premuti i controlli selezionati per effettuare un'azione, controlla l'Azione per usarla mentre il profilo è caricato.</value>
+    <value>Tieni premuti i controlli selezionati per effettuare un'azione, controlla l'Azione per usarla mentre il profilo è caricato</value>
   </data>
   <data name="tPDeadzone.Text" xml:space="preserve">
     <value>Zona Morta</value>

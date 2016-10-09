@@ -151,8 +151,7 @@ Trược 2 ngón trái/phải: chuyển qua lại profile
 Nút chuyển đổi: Giữ để chuyển sang hệ phím gán khác
 Khi gán bàn phím và chuột
 Toggle: phím sẽ giữ trạng thái nhấn đến khi được nhấn lần nữa
-Macro: Gán nhiều lệnh cho một phím bấm
-</value>
+Macro: Gán nhiều lệnh cho một phím bấm</value>
   </data>
   <data name="tPCredits.Text" xml:space="preserve">
     <value>Công bởi</value>

@@ -121,7 +121,7 @@
     <value>Сохранить</value>
   </data>
   <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;введите новое имя&gt;</value>
+    <value>&lt;введите сюда новое имя&gt;</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Отмена</value>

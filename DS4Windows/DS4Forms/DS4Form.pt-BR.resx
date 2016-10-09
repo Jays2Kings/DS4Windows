@@ -143,25 +143,25 @@
     <value>255, 26</value>
   </data>
   <data name="editProfileForController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar Perfil do Controle 1</value>
+    <value>Editar Perfil do Controlo 1</value>
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 26</value>
   </data>
   <data name="editProfileForController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar Perfil do Controle 2</value>
+    <value>Editar Perfil do Controlo 2</value>
   </data>
   <data name="editProfileForController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 26</value>
   </data>
   <data name="editProfileForController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar Perfil do Controle 3</value>
+    <value>Editar Perfil do Controlo 3</value>
   </data>
   <data name="editProfileForController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 26</value>
   </data>
   <data name="editProfileForController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Editar Perfil do Controle 4</value>
+    <value>Editar Perfil do Controlo 4</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 6</value>
@@ -182,13 +182,13 @@
     <value>255, 26</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sair (Botão do meio)</value>
+    <value>Sair (Botão do Meio no Rato)</value>
   </data>
   <data name="cMTaskbar.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 192</value>
   </data>
   <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Conectar DS4 exclusivamente (experimental)</value>
+    <value>Conectar exclusivamente o DS4 (experimental)</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1038, 94</value>
@@ -254,7 +254,7 @@
     <value>143, 18</value>
   </data>
   <data name="lbSelectedProfile.Text" xml:space="preserve">
-    <value>Perfil selecionado</value>
+    <value>Perfil Selecionado</value>
   </data>
   <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
     <value>466, 0</value>
@@ -305,10 +305,10 @@
     <value>80, 28</value>
   </data>
   <data name="lbNoControllers.Text" xml:space="preserve">
-    <value>Nenhum controle conectado (Max. 4)</value>
+    <value>Nenhum Controlo Conectado (Max. 4)</value>
   </data>
   <data name="tabControllers.Text" xml:space="preserve">
-    <value>Controles</value>
+    <value>Controlos</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
@@ -320,43 +320,43 @@
     <value>202, 26</value>
   </data>
   <data name="assignToController1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir Controle 1</value>
+    <value>Definir Controlo 1</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="assignToController2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir Controle 2</value>
+    <value>Definir Controlo 2</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="assignToController3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir Controle 3</value>
+    <value>Definir Controlo 3</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="assignToController4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir Controle 4</value>
+    <value>Definir Controlo 4</value>
   </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Deletar (Del)</value>
+    <value>Eliminar (Del)</value>
   </data>
   <data name="duplicateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="duplicateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Duplicar (Ctrl+C)</value>
+    <value>Duplicar (Ctrl+D)</value>
   </data>
   <data name="newProfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
   </data>
   <data name="newProfileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Novo perfil</value>
+    <value>Novo Perfil</value>
   </data>
   <data name="importToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 26</value>
@@ -386,7 +386,7 @@
     <value>112, 24</value>
   </data>
   <data name="tSBSaveProfile.Text" xml:space="preserve">
-    <value>Salvar perfil</value>
+    <value>Salvar Perfil</value>
   </data>
   <data name="tSBCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 24</value>
@@ -398,10 +398,10 @@
     <value>320, 24</value>
   </data>
   <data name="tSBKeepSize.Text" xml:space="preserve">
-    <value>Manter este tamanho de janela após fechar</value>
+    <value>Manter este tamanho da janela após fechar</value>
   </data>
   <data name="tSOptions.Text" xml:space="preserve">
-    <value>Opções de perfil</value>
+    <value>Opções de Perfil</value>
   </data>
   <data name="tsBNewProfle.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 24</value>
@@ -410,7 +410,7 @@
     <value>Novo</value>
   </data>
   <data name="tsBNewProfle.ToolTipText" xml:space="preserve">
-    <value>Criar novo perfil</value>
+    <value>Criar um Novo Perfil</value>
   </data>
   <data name="tsBEditProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 24</value>
@@ -419,16 +419,16 @@
     <value>Editar</value>
   </data>
   <data name="tsBEditProfile.ToolTipText" xml:space="preserve">
-    <value>Editar perfil selecionado (Enter)</value>
+    <value>Editar Perfil Selecionado (Enter)</value>
   </data>
   <data name="tsBDeleteProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 24</value>
   </data>
   <data name="tsBDeleteProfile.Text" xml:space="preserve">
-    <value>Excluir</value>
+    <value>Eliminar</value>
   </data>
   <data name="tsBDeleteProfile.ToolTipText" xml:space="preserve">
-    <value>Excluir perfil selecionado (Delete)</value>
+    <value>Excluir Perfil Selecionado (Delete)</value>
   </data>
   <data name="tSBDupProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 24</value>
@@ -437,7 +437,7 @@
     <value>Duplicar</value>
   </data>
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
-    <value>Duplicar perfil selecionado (Ctrl+D)</value>
+    <value>Duplicar Perfil Selecionado (Ctrl+D)</value>
   </data>
   <data name="tSBImportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 24</value>
@@ -446,7 +446,7 @@
     <value>Importar</value>
   </data>
   <data name="tSBImportProfile.ToolTipText" xml:space="preserve">
-    <value>Importar perfis</value>
+    <value>Importar Perfis</value>
   </data>
   <data name="tSBExportProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 24</value>
@@ -455,19 +455,19 @@
     <value>Exportar</value>
   </data>
   <data name="tSBExportProfile.ToolTipText" xml:space="preserve">
-    <value>Exportar perfil selecionado</value>
+    <value>Exportar Perfil Selecionado</value>
   </data>
   <data name="tabProfiles.Text" xml:space="preserve">
     <value>Perfis</value>
   </data>
   <data name="tabAutoProfiles.Text" xml:space="preserve">
-    <value>Perfis automáticos</value>
+    <value>Perfis Automáticos</value>
   </data>
   <data name="hideDS4CheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 21</value>
   </data>
   <data name="hideDS4CheckBox.Text" xml:space="preserve">
-    <value>Esconder DS4</value>
+    <value>Esconder o Comando DS4</value>
   </data>
   <data name="cBSwipeProfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>286, 21</value>
@@ -491,7 +491,7 @@
     <value>135, 17</value>
   </data>
   <data name="lbNotifications.Text" xml:space="preserve">
-    <value>Mostrar notificações</value>
+    <value>Mostrar Notificações</value>
   </data>
   <data name="cBoxNotifications.Items" xml:space="preserve">
     <value>Nenhuma</value>
@@ -512,7 +512,7 @@
     <value>268, 21</value>
   </data>
   <data name="cBDisconnectBT.Text" xml:space="preserve">
-    <value>Desconectar Bluetooth Quando Parar</value>
+    <value>Desconectar Bluetooth Quando Pára</value>
   </data>
   <data name="nUDLatency.Location" type="System.Drawing.Point, System.Drawing">
     <value>305, 2</value>
@@ -524,7 +524,7 @@
     <value>306, 21</value>
   </data>
   <data name="cBFlashWhenLate.Text" xml:space="preserve">
-    <value>Pisca a luz quando estiver com alta latência</value>
+    <value>Luz intermitente quando estiver com alta latência</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>397, 28</value>
@@ -533,25 +533,25 @@
     <value>132, 21</value>
   </data>
   <data name="cBCloseMini.Text" xml:space="preserve">
-    <value>Fechar minimiza</value>
+    <value>Fechar a janela Minimiza-a</value>
   </data>
   <data name="cBQuickCharge.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 21</value>
   </data>
   <data name="cBQuickCharge.Text" xml:space="preserve">
-    <value>Carga rápida</value>
+    <value>Carregamento Rápido</value>
   </data>
   <data name="cBDownloadLangauge.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 21</value>
   </data>
   <data name="cBDownloadLangauge.Text" xml:space="preserve">
-    <value>Baixar pacotes de idiomas com a atualização</value>
+    <value>Transefrir Pacotes de Idiomas com a Atualização</value>
   </data>
   <data name="cBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 21</value>
   </data>
   <data name="cBUpdate.Text" xml:space="preserve">
-    <value>Verificar atualizações ao iniciar</value>
+    <value>Verificar Atualizações ao Iniciar</value>
   </data>
   <data name="cBUpdateTime.Items" xml:space="preserve">
     <value>horas</value>
@@ -566,7 +566,7 @@
     <value>97, 17</value>
   </data>
   <data name="lbCheckEvery.Text" xml:space="preserve">
-    <value>Checar Todos</value>
+    <value>Seleccionar Todos</value>
   </data>
   <data name="nUDUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>110, 1</value>
@@ -578,7 +578,7 @@
     <value>126, 17</value>
   </data>
   <data name="lbUseXIPorts.Text" xml:space="preserve">
-    <value>Usar portas Xinput</value>
+    <value>Usar Portas Xinput</value>
   </data>
   <data name="nUDXIPorts.Location" type="System.Drawing.Point, System.Drawing">
     <value>131, 1</value>
@@ -593,31 +593,31 @@
     <value>99, 17</value>
   </data>
   <data name="linkProfiles.Text" xml:space="preserve">
-    <value>Pasta de perfil</value>
+    <value>Pasta de Perfil</value>
   </data>
   <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 17</value>
   </data>
   <data name="lnkControllers.Text" xml:space="preserve">
-    <value>Painel de Controle</value>
+    <value>Painel de Controlo</value>
   </data>
   <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 17</value>
   </data>
   <data name="linkUninstall.Text" xml:space="preserve">
-    <value>Desinstalar driver VBus</value>
+    <value>Desinstalar a Drive VBus</value>
   </data>
   <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 17</value>
   </data>
   <data name="linkSetup.Text" xml:space="preserve">
-    <value>Controle/Configurar Drive</value>
+    <value>Controlo/Configuração da Drive</value>
   </data>
   <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 17</value>
   </data>
   <data name="lLBUpdate.Text" xml:space="preserve">
-    <value>Verificar atualizações</value>
+    <value>Verificar Atualizaçõesn Agora</value>
   </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>418, 13</value>
@@ -629,19 +629,19 @@
     <value>Configurações</value>
   </data>
   <data name="tabLog.Text" xml:space="preserve">
-    <value>Registro</value>
+    <value>Registo</value>
   </data>
   <data name="useProfileColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 26</value>
   </data>
   <data name="useProfileColorToolStripMenuItem.Text" xml:space="preserve">
-    <value>Usar cor do perfil</value>
+    <value>Usar Cor do Perfil</value>
   </data>
   <data name="useCustomColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 26</value>
   </data>
   <data name="useCustomColorToolStripMenuItem.Text" xml:space="preserve">
-    <value>Usar cor personalizada</value>
+    <value>Usar Cor Personalizada</value>
   </data>
   <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 56</value>

@@ -561,7 +561,7 @@
     <value>Effacer action</value>
   </data>
   <data name="lbActionsTip.Text" xml:space="preserve">
-    <value>Maintenir les touches sélectionnées pour effectuer l'action, cocher l'Action pour l'utiliser losque le profil est charger. Max 50 actions.</value>
+    <value>Maintenir les touches sélectionnées pour effectuer l'action, cocher l'Action pour l'utiliser losque le profil est charger</value>
   </data>
   <data name="tPSpecial.Text" xml:space="preserve">
     <value>Actions Spéciales</value>
@@ -675,9 +675,39 @@
     <value>259, 26</value>
   </data>
   <data name="alwaysOnToolStripMenuItem.Text" xml:space="preserve">
-    <value>Toujours allumer</value>
+    <value>Toujours allumé</value>
   </data>
   <data name="cMGyroTriggers.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 524</value>
+  </data>
+  <data name="cBWhileCharging.Items" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="cHAction.Text" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Sensibilité</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbIdleMinutes.Text" xml:space="preserve">
+    <value>mins</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="lbRed.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remise a zéro</value>
+  </data>
+  <data name="tPController.Text" xml:space="preserve">
+    <value>Visualisation des commandes</value>
   </data>
 </root>

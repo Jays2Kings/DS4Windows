@@ -272,8 +272,7 @@
     <value>134, 38</value>
   </data>
   <data name="cBLaunchProgram.Text" xml:space="preserve">
-    <value>Spustit program 
-s profilem</value>
+    <value>Spustit program s profilem</value>
   </data>
   <data name="btnBrowse.Text" xml:space="preserve">
     <value>Procházet...</value>
@@ -454,5 +453,38 @@ s profilem</value>
   </data>
   <data name="alwaysOnToolStripMenuItem.Text" xml:space="preserve">
     <value>Vždy na</value>
+  </data>
+  <data name="cHTrigger.Text" xml:space="preserve">
+    <value>Trigger</value>
+  </data>
+  <data name="DpadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dpad</value>
+  </data>
+  <data name="gBLightbar.Text" xml:space="preserve">
+    <value>Lightbar</value>
+  </data>
+  <data name="gBRumble.Text" xml:space="preserve">
+    <value>Rumble</value>
+  </data>
+  <data name="gBSensitivity,Text" xml:space="preserve">
+    <value>Citlivost</value>
+  </data>
+  <data name="gBTouchpad.Text" xml:space="preserve">
+    <value>Touchpad</value>
+  </data>
+  <data name="lbBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowBlue.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="lbLowGreen.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="lbLowRed.Text" xml:space="preserve">
+    <value>R</value>
   </data>
 </root>

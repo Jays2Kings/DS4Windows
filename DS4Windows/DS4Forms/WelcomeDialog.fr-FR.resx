@@ -196,7 +196,7 @@ Une fois associer, vous êtes prêt. Amusez-vous !</value>
   <data name="labelUSB.Text" xml:space="preserve">
     <value>Étape 3: Connecter la manette DualShock 4
 Pour paramétrer l'installation filaire/usb:
-Brancher simplement le câble mini usb de votre PC à la DualShock 4</value>
+Brancher simplement le câble micro usb de votre PC à la DualShock 4</value>
   </data>
   <data name="linkBluetoothSettings.Text" xml:space="preserve">
     <value>Réglages Bluetooth</value>

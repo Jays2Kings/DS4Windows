@@ -151,13 +151,13 @@
     <value>Color</value>
   </data>
   <data name="ColorByBattery" xml:space="preserve">
-    <value>Color por % de Batería</value>
+    <value>Color por % de Batería</value>
   </data>
   <data name="Connecting" xml:space="preserve">
     <value>Conectando...</value>
   </data>
   <data name="ContextEdit" xml:space="preserve">
-    <value>Editar perfil para el Controlador *number*</value>
+    <value>Editar perfil para el Controlador *number*</value>
   </data>
   <data name="ContextNew" xml:space="preserve">
     <value>Crear perfil para el Controlador *number*</value>
@@ -223,7 +223,7 @@
     <value>horas</value>
   </data>
   <data name="IfRemovingDS4Windows" xml:space="preserve">
-    <value>Si borras DS4Windows, puedes eliminar la configuración siguiendo el enlace Carpeta de Perfil</value>
+    <value>Si borras DS4Windows, puedes eliminar la configuración siguiendo el enlace Carpeta de Perfil</value>
   </data>
   <data name="InputDelay" xml:space="preserve">
     <value>Retraso de entrada: *number*ms</value>
@@ -280,7 +280,7 @@
     <value>*Profile name* no puede ser restaurado.</value>
   </data>
   <data name="ProfileFolderMoved" xml:space="preserve">
-    <value>Carpeta de Perfil se ha movido a Carpeta de Programa</value>
+    <value>Carpeta de Perfil se ha movido a Carpeta de Programa</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
     <value>Debes salir de otras aplicaciones como Steam, Uplay antes de activar la opción "Ocultar controlador DS4"</value>
@@ -322,7 +322,7 @@
     <value>Deteniendo Controladores X360</value>
   </data>
   <data name="StopText" xml:space="preserve">
-    <value>Detenido</value>
+    <value>Detener</value>
   </data>
   <data name="SwipeTouchpad" xml:space="preserve">
     <value>Desliza el Panel Táctil para cambiar perfiles</value>

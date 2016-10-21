@@ -454,7 +454,7 @@ namespace DS4Windows
                         lBMacroOn.Visible = true;
                         foreach (int i in tag)
                             macrostag.Add(i);
-                    if (Global.GetDS4KeyType(device, button.Name, rBShiftModifer.Checked).HasFlag(DS4KeyType.RepeatMacro))
+                    if (Global.GetDS4KeyType(device, button.Name, rBShiftModifer.Checked).HasFlag(DS4KeyType.HoldMacro))
                         macrorepeat = true;
                 }
                 else if (tagO is string || tagO is X360Controls)

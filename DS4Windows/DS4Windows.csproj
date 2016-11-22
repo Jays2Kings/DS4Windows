@@ -98,6 +98,7 @@
     <Compile Include="DS4Control\X360Device.designer.cs">
       <DependentUpon>X360Device.cs</DependentUpon>
     </Compile>
+    <Compile Include="DS4Library\DS4Audio.cs" />
     <Compile Include="DS4Library\DS4Device.cs" />
     <Compile Include="DS4Library\DS4Devices.cs" />
     <Compile Include="DS4Library\DS4Sixaxis.cs" />
@@ -1117,6 +1118,7 @@
     <Content Include="Resources\xbox_360_controller.png" />
     <Content Include="Resources\Y.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

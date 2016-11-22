@@ -14,6 +14,7 @@ using System.Text;
 using System.IO;
 using System.Collections;
 using System.Drawing;
+using DS4Windows.DS4Library;
 
 namespace DS4Windows
 {
@@ -131,6 +132,7 @@ namespace DS4Windows
         private byte ledFlashOn, ledFlashOff;
         private Thread ds4Input, ds4Output;
         private int battery;
+        private DS4Audio audio = new DS4Audio();
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
@@ -564,6 +566,7 @@ namespace DS4Windows
                 outputReportBuffer[8] = LightBarColor.blue; //blue
                 outputReportBuffer[9] = ledFlashOn; //flash on duration
                 outputReportBuffer[10] = ledFlashOff; //flash off duration
+                outputReportBuffer[19] = outputReportBuffer[20] = Convert.ToByte(audio.Volume);
             }
             lock (outputReport)
             {

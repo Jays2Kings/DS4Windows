@@ -422,19 +422,10 @@ namespace DS4Windows
                 cState.Circle = ((byte)inputReport[5] & (1 << 6)) != 0;
                 cState.Cross = ((byte)inputReport[5] & (1 << 5)) != 0;
                 cState.Square = ((byte)inputReport[5] & (1 << 4)) != 0;
-                cState.DpadUp = ((byte)inputReport[5] & (1 << 3)) != 0;
-                cState.DpadDown = ((byte)inputReport[5] & (1 << 2)) != 0;
-                cState.DpadLeft = ((byte)inputReport[5] & (1 << 1)) != 0;
-                cState.DpadRight = ((byte)inputReport[5] & (1 << 0)) != 0;
 
-                //Convert dpad into individual On/Off bits instead of a clock representation
-                byte dpad_state = 0;
-
-                dpad_state = (byte)(
-                ((cState.DpadRight ? 1 : 0) << 0) |
-                ((cState.DpadLeft ? 1 : 0) << 1) |
-	            ((cState.DpadDown ? 1 : 0) << 2) |
-                ((cState.DpadUp ? 1 : 0) << 3));
+                // First 4 bits denote dpad state. Clock representation
+                // with 8 meaning centered and 0 meaning DpadUp.
+                byte dpad_state = (byte)(inputReport[5] & 0x0F);
 
                 switch (dpad_state)
                 {

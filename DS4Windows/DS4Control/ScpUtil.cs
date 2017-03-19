@@ -505,7 +505,7 @@ namespace DS4Windows
         //fifth value used to for options, not fifth controller
         public int[] buttonMouseSensitivity = { 25, 25, 25, 25, 25 };
 
-        public bool[] flushHIDQueue = { true, true, true, true, true };
+        public bool[] flushHIDQueue = { false, false, false, false, false };
         public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
         public Boolean[] touchpadJitterCompensation = { true, true, true, true, true };
         public Boolean[] lowerRCOn = { false, false, false, false, false };
@@ -1402,9 +1402,9 @@ namespace DS4Windows
                         LSSens[device] = 1;
                     if (!double.TryParse(s[1], out RSSens[device]) || RSSens[device] < .5f)
                         RSSens[device] = 1;
-                    if (!double.TryParse(s[2], out l2Sens[device]) || l2Sens[device] < .5f)
+                    if (!double.TryParse(s[2], out l2Sens[device]) || l2Sens[device] < .1f)
                         l2Sens[device] = 1;
-                    if (!double.TryParse(s[3], out r2Sens[device]) || r2Sens[device] < .5f)
+                    if (!double.TryParse(s[3], out r2Sens[device]) || r2Sens[device] < .1f)
                         r2Sens[device] = 1;
                     if (!double.TryParse(s[4], out SXSens[device]) || SXSens[device] < .5f)
                         SXSens[device] = 1;

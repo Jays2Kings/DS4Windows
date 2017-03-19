@@ -387,7 +387,7 @@ namespace DS4Windows
                 cBDoubleTap.Checked = false;
                 cBTouchpadJitterCompensation.Checked = true;
                 cBlowerRCOn.Checked = false;
-                cBFlushHIDQueue.Checked = true;
+                cBFlushHIDQueue.Checked = false;
                 nUDIdleDisconnect.Value = 5;
                 cBIdleDisconnect.Checked = true;
                 numUDMouseSens.Value = 25;

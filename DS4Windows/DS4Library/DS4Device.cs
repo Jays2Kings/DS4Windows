@@ -339,6 +339,7 @@ namespace DS4Windows
             firstActive = DateTime.UtcNow;
             System.Timers.Timer readTimeout = new System.Timers.Timer(); // Await 30 seconds for the initial packet, then 3 seconds thereafter.
             readTimeout.Elapsed += delegate { HidDevice.CancelIO(); };
+            NativeMethods.HidD_SetNumInputBuffers(hDevice.safeReadHandle.DangerousGetHandle(), 2);
             List<long> Latency = new List<long>();
             long oldtime = 0;
             Stopwatch sw = new Stopwatch();

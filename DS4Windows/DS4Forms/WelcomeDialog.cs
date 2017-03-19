@@ -42,7 +42,7 @@ namespace DS4Windows
             WebClient wb = new WebClient();
             if (!driverinstalling)
             {
-                wb.DownloadFileAsync(new Uri("http://ds4windows.com/Files/Virtual Bus Driver.zip"), exepath + "\\VBus.zip");
+                wb.DownloadFileAsync(new Uri("http://23.239.26.40/ds4windows/files/Virtual Bus Driver.zip"), exepath + "\\VBus.zip");
                 wb.DownloadProgressChanged += wb_DownloadProgressChanged;
                 wb.DownloadFileCompleted += wb_DownloadFileCompleted;
                 driverinstalling = true;

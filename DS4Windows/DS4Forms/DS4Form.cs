@@ -312,7 +312,7 @@ namespace DS4Windows
                 cBUpdateTime.SelectedIndex = 0;
                 nUDUpdateTime.Value = checkwhen;
             }
-            Uri url = new Uri("http://ds4windows.com/Files/Builds/newest.txt"); //Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("http://23.236.26.40/ds4windows/files/builds/newest.txt"); //Sorry other devs, gonna have to find your own server
 
 
             if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
@@ -626,14 +626,14 @@ namespace DS4Windows
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
                     {
-                        Uri url2 = new Uri("http://ds4windows.com/Files/DS4Updater.exe");
+                        Uri url2 = new Uri("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
                         WebClient wc2 = new WebClient();
                         if (appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
-                            Process.Start("http://ds4windows.com/Files/DS4Updater.exe");
+                            Process.Start("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
                         }
                     }
                     Process p = new Process();
@@ -1501,7 +1501,7 @@ namespace DS4Windows
 
         private void lLBUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Uri url = new Uri("http://ds4windows.com/Files/Builds/newest.txt"); //Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("http://23.236.26.40/ds4windows/files/builds/newest.txt"); //Sorry other devs, gonna have to find your own server
             WebClient wct = new WebClient();
             wct.DownloadFileAsync(url, appdatapath + "\\version.txt");
             wct.DownloadFileCompleted += wct_DownloadFileCompleted;

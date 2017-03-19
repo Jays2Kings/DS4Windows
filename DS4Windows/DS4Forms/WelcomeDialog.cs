@@ -131,7 +131,7 @@ namespace DS4Windows
 
         private void button2_Click(object sender, EventArgs e)
         {
-             Process.Start("http://www.microsoft.com/hardware/en-us/d/xbox-360-controller-for-windows");
+             Process.Start("http://www.microsoft.com/accessories/en-gb/d/xbox-360-controller-for-windows");
         }
     }
 }

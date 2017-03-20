@@ -803,7 +803,7 @@ namespace DS4Windows
                                 keyType += DS4KeyType.Unbound;
                         if (dcs.keyType.HasFlag(DS4KeyType.HoldMacro))
                             keyType += DS4KeyType.HoldMacro;
-                        if (dcs.keyType.HasFlag(DS4KeyType.Macro))
+                        else if (dcs.keyType.HasFlag(DS4KeyType.Macro))
                             keyType += DS4KeyType.Macro;
                         if (dcs.keyType.HasFlag(DS4KeyType.Toggle))
                             keyType += DS4KeyType.Toggle;

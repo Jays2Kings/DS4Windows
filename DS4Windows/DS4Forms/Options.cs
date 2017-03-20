@@ -1082,7 +1082,7 @@ namespace DS4Windows
             if (SC) kt |= DS4KeyType.ScanCode;
             if (TG) kt |= DS4KeyType.Toggle;
             if (MC) kt |= DS4KeyType.Macro;
-            if (MR) kt |= DS4KeyType.RepeatMacro;
+            if (MR) kt |= DS4KeyType.HoldMacro;
             UpdateDS4CSetting(device, ctrl.Name, shift, tag.Key, tag.Value, kt, sTrigger);
         }
 

@@ -242,11 +242,11 @@ namespace DS4Windows
                 Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> start");
                 sendOutputReport(true); // initialize the output report
                 ds4Output = new Thread(performDs4Output);
-                ds4Output.Priority = ThreadPriority.AboveNormal;
+                ds4Output.Priority = ThreadPriority.Highest;
                 ds4Output.Name = "DS4 Output thread: " + Mac;
                 ds4Output.Start();
                 ds4Input = new Thread(performDs4Input);
-                ds4Input.Priority = ThreadPriority.AboveNormal;
+                ds4Input.Priority = ThreadPriority.Highest;
                 ds4Input.Name = "DS4 Input thread: " + Mac;
                 ds4Input.Start();
             }

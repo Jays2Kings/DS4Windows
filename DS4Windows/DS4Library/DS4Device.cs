@@ -121,6 +121,7 @@ namespace DS4Windows
         private byte[] accel = new byte[6];
         private byte[] gyro = new byte[6];
         private byte[] inputReport;
+        private byte[] inputReport2;
         private byte[] btInputReport = null;
         private byte[] outputReportBuffer, outputReport;
         private readonly DS4Touchpad touchpad = null;
@@ -134,6 +135,8 @@ namespace DS4Windows
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
+        // Use large value for worst case scenario
+        private static int readStreamTimeout = 100;
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
 
@@ -221,6 +224,7 @@ namespace DS4Windows
             if (conType == ConnectionType.USB)
             {
                 inputReport = new byte[64];
+                inputReport2 = new byte[64];
                 outputReport = new byte[hDevice.Capabilities.OutputReportByteLength];
                 outputReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength];
             }
@@ -244,7 +248,13 @@ namespace DS4Windows
                 ds4Output = new Thread(performDs4Output);
                 ds4Output.Priority = ThreadPriority.Highest;
                 ds4Output.Name = "DS4 Output thread: " + Mac;
-                ds4Output.Start();
+                if (conType == ConnectionType.BT)
+                {
+                    // Only use the output thread for Bluetooth connections.
+                    // USB will utilize overlapped IO instead.
+                    ds4Output.Start();
+                }
+
                 ds4Input = new Thread(performDs4Input);
                 ds4Input.Priority = ThreadPriority.Highest;
                 ds4Input.Name = "DS4 Input thread: " + Mac;
@@ -273,7 +283,7 @@ namespace DS4Windows
 
         private void StopOutputUpdate()
         {
-            if (ds4Output.ThreadState != System.Threading.ThreadState.Stopped || ds4Output.ThreadState != System.Threading.ThreadState.Aborted)
+            if (ds4Output.ThreadState != System.Threading.ThreadState.Unstarted ||  ds4Output.ThreadState != System.Threading.ThreadState.Stopped || ds4Output.ThreadState != System.Threading.ThreadState.Aborted)
             {
                 try
                 {
@@ -295,7 +305,7 @@ namespace DS4Windows
             }
             else
             {
-                return hDevice.WriteOutputReportViaInterrupt(outputReport, 8);
+                return hDevice.WriteAsyncOutputReportViaInterrupt(outputReport);
             }
         }
 
@@ -303,10 +313,12 @@ namespace DS4Windows
         {
             lock (outputReport)
             {
-                int lastError = 0;
+                //int lastError = 0;
                 while (true)
                 {
-                    if (writeOutput())
+                    Monitor.Wait(outputReport);
+                    writeOutput();
+                    /*if (writeOutput())
                     {
                         lastError = 0;
                         if (testRumble.IsRumbleSet()) // repeat test rumbles periodically; rumble has auto-shut-off in the DS4 firmware
@@ -323,6 +335,7 @@ namespace DS4Windows
                             lastError = thisError;
                         }
                     }
+                    */
                 }
             }
         }
@@ -374,7 +387,8 @@ namespace DS4Windows
                 readTimeout.Enabled = true;
                 if (conType != ConnectionType.USB)
                 {
-                    HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
+                    //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
+                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, readStreamTimeout);
                     readTimeout.Enabled = false;
                     if (res == HidDevice.ReadStatus.Success)
                     {
@@ -394,7 +408,8 @@ namespace DS4Windows
                 }
                 else
                 {
-                    HidDevice.ReadStatus res = hDevice.ReadFile(inputReport);
+                    //HidDevice.ReadStatus res = hDevice.ReadFile(inputReport);
+                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport2, readStreamTimeout);
                     readTimeout.Enabled = false;
                     if (res != HidDevice.ReadStatus.Success)
                     {
@@ -404,6 +419,10 @@ namespace DS4Windows
                         if (Removal != null)
                             Removal(this, EventArgs.Empty);
                         return;
+                    }
+                    else
+                    {
+                        Array.Copy(inputReport2, 0, inputReport, 0, inputReport.Length);
                     }
                 }
                 if (ConnectionType == ConnectionType.BT && btInputReport[0] != 0x11)
@@ -517,7 +536,12 @@ namespace DS4Windows
                 // XXX fix initialization ordering so the null checks all go away
                 if (Report != null)
                     Report(this, EventArgs.Empty);
-                sendOutputReport(false);
+                bool syncWriteReport = true;
+                if (conType == ConnectionType.BT)
+                {
+                    syncWriteReport = false;
+                }
+                sendOutputReport(syncWriteReport);
                 if (!string.IsNullOrEmpty(error))
                     error = string.Empty;
                 if (!string.IsNullOrEmpty(currerror))

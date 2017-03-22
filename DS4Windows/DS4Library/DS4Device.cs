@@ -113,6 +113,8 @@ namespace DS4Windows
     {
         private const int BT_OUTPUT_REPORT_LENGTH = 78;
         private const int BT_INPUT_REPORT_LENGTH = 547;
+        // Use large value for worst case scenario
+        private static int READ_STREAM_TIMEOUT = 100;
         private HidDevice hDevice;
         private string Mac;
         private DS4State cState = new DS4State();
@@ -135,8 +137,6 @@ namespace DS4Windows
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
-        // Use large value for worst case scenario
-        private static int readStreamTimeout = 100;
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
 
@@ -388,7 +388,7 @@ namespace DS4Windows
                 if (conType != ConnectionType.USB)
                 {
                     //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
-                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, readStreamTimeout);
+                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
                     readTimeout.Enabled = false;
                     if (res == HidDevice.ReadStatus.Success)
                     {
@@ -409,7 +409,7 @@ namespace DS4Windows
                 else
                 {
                     //HidDevice.ReadStatus res = hDevice.ReadFile(inputReport);
-                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport2, readStreamTimeout);
+                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport2, READ_STREAM_TIMEOUT);
                     readTimeout.Enabled = false;
                     if (res != HidDevice.ReadStatus.Success)
                     {

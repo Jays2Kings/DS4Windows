@@ -155,7 +155,8 @@ namespace DS4Windows
                 else
                     color = new DS4Color(0, 0, 0);
             }
-            bool distanceprofile = (ProfilePath[deviceNum].ToLower().Contains("distance") || tempprofilename[deviceNum].ToLower().Contains("distance"));
+            bool distanceprofile = DistanceProfiles[deviceNum] || tempprofileDistance[deviceNum];
+            //distanceprofile = (ProfilePath[deviceNum].ToLower().Contains("distance") || tempprofilename[deviceNum].ToLower().Contains("distance"));
             if (distanceprofile && !defualtLight)
             { //Thing I did for Distance
                 float rumble = device.LeftHeavySlowRumble / 2.55f;
@@ -202,8 +203,11 @@ namespace DS4Windows
             }
             if (device.LightBarOnDuration != haptics.LightBarFlashDurationOn && device.LightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
                 haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
-            if (device.LightBarOnDuration == 1) //helps better reset the color
-                System.Threading.Thread.Sleep(5);
+
+            // Comment out code for now. This condition gets hit too often and bogs down the GUI
+            //if (device.LightBarOnDuration == 1) //helps better reset the color
+            //    System.Threading.Thread.Sleep(5);
+
             device.pushHapticState(haptics);
         }
 

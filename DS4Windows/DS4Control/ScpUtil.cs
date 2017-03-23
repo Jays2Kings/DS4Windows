@@ -143,6 +143,7 @@ namespace DS4Windows
         static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         public static string appdatapath;
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
 
         public static void SaveWhere(string path)
         {
@@ -319,6 +320,7 @@ namespace DS4Windows
         public static bool[] MouseAccel => m_Config.mouseAccel;
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
+        public static bool[] DistanceProfiles => m_Config.distanceProfiles;
         public static List<string>[] ProfileActions => m_Config.profileActions;
         
         public static void UpdateDS4CSetting (int deviceNum, string buttonName, bool shift, object action, string exts, DS4KeyType kt, int trigger = 0)
@@ -410,12 +412,14 @@ namespace DS4Windows
         {
             m_Config.LoadProfile(device, launchprogram, control);
             tempprofilename[device] = string.Empty;
+            tempprofileDistance[device] = false;
         }
 
         public static void LoadTempProfile(int device, string name, bool launchprogram, ControlService control)
         {
             m_Config.LoadProfile(device, launchprogram, control, appdatapath + @"\Profiles\" + name + ".xml");
             tempprofilename[device] = name;
+            tempprofileDistance[device] = name.ToLower().Contains("distance");
         }
 
         public static bool Save()
@@ -512,6 +516,8 @@ namespace DS4Windows
         public Boolean[] ledAsBattery = { false, false, false, false, false };
         public Byte[] flashType = { 0, 0, 0, 0, 0 };
         public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty, String.Empty };
+        // Cache properties instead of performing a string comparison every frame
+        public bool[] distanceProfiles = { false, false, false, false, false };
         public Byte[] rumble = { 100, 100, 100, 100, 100 };
         public Byte[] touchSensitivity = { 100, 100, 100, 100, 100 };
         public Byte[] l2Deadzone = { 0, 0, 0, 0, 0 }, r2Deadzone = { 0, 0, 0, 0, 0 };
@@ -1784,13 +1790,37 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/formHeight"); Int32.TryParse(Item.InnerText, out formHeight); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller1"); profilePath[0] = Item.InnerText; }
+                    try {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/Controller1"); profilePath[0] = Item.InnerText;
+                        if (profilePath[0].ToLower().Contains("distance"))
+                        {
+                            distanceProfiles[0] = true;
+                        }
+                    }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller2"); profilePath[1] = Item.InnerText; }
+                    try {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/Controller2"); profilePath[1] = Item.InnerText;
+                        if (profilePath[1].ToLower().Contains("distance"))
+                        {
+                            distanceProfiles[1] = true;
+                        }
+                    }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller3"); profilePath[2] = Item.InnerText; }
+                    try {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/Controller3"); profilePath[2] = Item.InnerText;
+                        if (profilePath[2].ToLower().Contains("distance"))
+                        {
+                            distanceProfiles[2] = true;
+                        }
+                    }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller4"); profilePath[3] = Item.InnerText; }
+                    try {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/Controller4"); profilePath[3] = Item.InnerText;
+                        if (profilePath[3].ToLower().Contains("distance"))
+                        {
+                            distanceProfiles[3] = true;
+                        }
+                    }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/LastChecked"); DateTime.TryParse(Item.InnerText, out lastChecked); }
                     catch { missingSetting = true; }

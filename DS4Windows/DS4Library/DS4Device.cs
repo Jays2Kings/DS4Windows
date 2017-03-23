@@ -137,6 +137,7 @@ namespace DS4Windows
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
+        private bool outputRumble = false;
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
 
@@ -266,15 +267,11 @@ namespace DS4Windows
 
         public void StopUpdate()
         {
-            if (ds4Output.ThreadState != System.Threading.ThreadState.Unstarted && ds4Input.ThreadState != System.Threading.ThreadState.Stopped)
+            if (ds4Input.ThreadState != System.Threading.ThreadState.Unstarted && ds4Input.ThreadState != System.Threading.ThreadState.Stopped)
             {
                 try
                 {
-                    if (ds4Output.ThreadState != System.Threading.ThreadState.Aborted && ds4Output.ThreadState != System.Threading.ThreadState.AbortRequested)
-                    {
-                        ds4Input.Abort();
-                    }
-
+                    ds4Input.Abort();
                     ds4Input.Join();
                 }
                 catch (Exception e)
@@ -291,11 +288,7 @@ namespace DS4Windows
             {
                 try
                 {
-                    if (ds4Output.ThreadState != System.Threading.ThreadState.Aborted && ds4Output.ThreadState != System.Threading.ThreadState.AbortRequested)
-                    {
-                        ds4Output.Abort();
-                    }
-
+                    ds4Output.Abort();
                     ds4Output.Join();
                 }
                 catch (Exception e)
@@ -321,29 +314,39 @@ namespace DS4Windows
         {
             lock (outputReport)
             {
-                //int lastError = 0;
+                int lastError = 0;
                 while (true)
                 {
-                    Monitor.Wait(outputReport);
-                    writeOutput();
-                    /*if (writeOutput())
+                    bool result = false;
+                    if (outputRumble)
+                    {
+                        result = writeOutput();
+
+                        if (!result)
+                        {
+                            int thisError = Marshal.GetLastWin32Error();
+                            if (lastError != thisError)
+                            {
+                                Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
+                                lastError = thisError;
+                            }
+                        }
+                        else
+                        {
+                            outputRumble = false;
+                        }
+                    }
+
+                    if (!outputRumble)
                     {
                         lastError = 0;
-                        if (testRumble.IsRumbleSet()) // repeat test rumbles periodically; rumble has auto-shut-off in the DS4 firmware
+                        Monitor.Wait(outputReport);
+                        /*if (testRumble.IsRumbleSet()) // repeat test rumbles periodically; rumble has auto-shut-off in the DS4 firmware
                             Monitor.Wait(outputReport, 10000); // DS4 firmware stops it after 5 seconds, so let the motors rest for that long, too.
                         else
                             Monitor.Wait(outputReport);
+                        */
                     }
-                    else
-                    {
-                        int thisError = Marshal.GetLastWin32Error();
-                        if (lastError != thisError)
-                        {
-                            Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
-                            lastError = thisError;
-                        }
-                    }
-                    */
                 }
             }
         }
@@ -595,6 +598,7 @@ namespace DS4Windows
             {
                 if (synchronous)
                 {
+                    outputRumble = false;
                     outputReportBuffer.CopyTo(outputReport, 0);
                     try
                     {
@@ -617,6 +621,7 @@ namespace DS4Windows
                         output = outputReport[i] != outputReportBuffer[i];
                     if (output)
                     {
+                        outputRumble = true;
                         outputReportBuffer.CopyTo(outputReport, 0);
                         Monitor.Pulse(outputReport);
                     }

@@ -115,6 +115,10 @@ namespace DS4Windows
         private const int BT_INPUT_REPORT_LENGTH = 547;
         // Use large value for worst case scenario
         private static int READ_STREAM_TIMEOUT = 100;
+        // Isolated BT report can have latency as high as 15 ms
+        // due to hardware.
+        private static int WARN_INTERVAL_BT = 20;
+        private static int WARN_INTERVAL_USB = 10;
         private HidDevice hDevice;
         private string Mac;
         private DS4State cState = new DS4State();
@@ -138,6 +142,7 @@ namespace DS4Windows
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
         private bool outputRumble = false;
+        private int warnInterval = WARN_INTERVAL_USB;
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
 
@@ -228,6 +233,7 @@ namespace DS4Windows
                 inputReport2 = new byte[64];
                 outputReport = new byte[hDevice.Capabilities.OutputReportByteLength];
                 outputReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength];
+                warnInterval = WARN_INTERVAL_USB;
             }
             else
             {
@@ -235,6 +241,7 @@ namespace DS4Windows
                 inputReport = new byte[btInputReport.Length - 2];
                 outputReport = new byte[BT_OUTPUT_REPORT_LENGTH];
                 outputReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
+                warnInterval = WARN_INTERVAL_BT;
             }
             touchpad = new DS4Touchpad();
             sixAxis = new DS4SixAxis();
@@ -358,7 +365,7 @@ namespace DS4Windows
         }
         private byte priorInputReport30 = 0xff;
         public double Latency = 0;
-        bool warn;
+        bool warn = false;
         public string error;
         private void performDs4Input()
         {
@@ -381,12 +388,12 @@ namespace DS4Windows
 
                 this.Latency = Latency.Average();
 
-                if (this.Latency > 10 && !warn && sw.ElapsedMilliseconds > 4000)
+                if (this.Latency > warnInterval && !warn && sw.ElapsedMilliseconds > 4000)
                 {
                     warn = true;
                     //System.Diagnostics.Trace.WriteLine(System.DateTime.UtcNow.ToString("o") + "> " + "Controller " + /*this.DeviceNum*/ + 1 + " (" + this.MacAddress + ") is experiencing latency issues. Currently at " + Math.Round(this.Latency, 2).ToString() + "ms of recomended maximum 10ms");
                 }
-                else if (this.Latency <= 10 && warn) warn = false;
+                else if (this.Latency <= warnInterval && warn) warn = false;
 
                 if (readTimeout.Interval != 3000.0)
                 {

@@ -246,7 +246,7 @@ namespace DS4Windows
                 Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> start");
                 sendOutputReport(true); // initialize the output report
                 ds4Output = new Thread(performDs4Output);
-                ds4Output.Priority = ThreadPriority.Highest;
+                ds4Output.Priority = ThreadPriority.AboveNormal;
                 ds4Output.Name = "DS4 Output thread: " + Mac;
                 if (conType == ConnectionType.BT)
                 {
@@ -256,7 +256,7 @@ namespace DS4Windows
                 }
 
                 ds4Input = new Thread(performDs4Input);
-                ds4Input.Priority = ThreadPriority.Highest;
+                ds4Input.Priority = ThreadPriority.AboveNormal;
                 ds4Input.Name = "DS4 Input thread: " + Mac;
                 ds4Input.Start();
             }
@@ -266,11 +266,15 @@ namespace DS4Windows
 
         public void StopUpdate()
         {
-            if (ds4Input.ThreadState != System.Threading.ThreadState.Stopped || ds4Input.ThreadState != System.Threading.ThreadState.Aborted)
+            if (ds4Output.ThreadState != System.Threading.ThreadState.Unstarted && ds4Input.ThreadState != System.Threading.ThreadState.Stopped)
             {
                 try
                 {
-                    ds4Input.Abort();
+                    if (ds4Output.ThreadState != System.Threading.ThreadState.Aborted && ds4Output.ThreadState != System.Threading.ThreadState.AbortRequested)
+                    {
+                        ds4Input.Abort();
+                    }
+
                     ds4Input.Join();
                 }
                 catch (Exception e)
@@ -283,11 +287,15 @@ namespace DS4Windows
 
         private void StopOutputUpdate()
         {
-            if (ds4Output.ThreadState != System.Threading.ThreadState.Unstarted ||  ds4Output.ThreadState != System.Threading.ThreadState.Stopped || ds4Output.ThreadState != System.Threading.ThreadState.Aborted)
+            if (ds4Output.ThreadState != System.Threading.ThreadState.Unstarted && ds4Output.ThreadState != System.Threading.ThreadState.Stopped)
             {
                 try
                 {
-                    ds4Output.Abort();
+                    if (ds4Output.ThreadState != System.Threading.ThreadState.Aborted && ds4Output.ThreadState != System.Threading.ThreadState.AbortRequested)
+                    {
+                        ds4Output.Abort();
+                    }
+
                     ds4Output.Join();
                 }
                 catch (Exception e)

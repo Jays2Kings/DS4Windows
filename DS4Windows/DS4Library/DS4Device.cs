@@ -156,7 +156,16 @@ namespace DS4Windows
         public int IdleTimeout { get; set; } // behavior only active when > 0
 
         public int Battery => battery;
+        public int getBattery()
+        {
+            return battery;
+        }
+
         public bool Charging => charging;
+        public bool isCharging()
+        {
+            return charging;
+        }
 
         public byte RightLightFastRumble
         {
@@ -176,6 +185,11 @@ namespace DS4Windows
                 if (value == leftHeavySlowRumble) return;
                 leftHeavySlowRumble = value;
             }
+        }
+
+        public byte getLeftHeavySlowRumble()
+        {
+            return leftHeavySlowRumble;
         }
 
         public DS4Color LightBarColor
@@ -201,6 +215,11 @@ namespace DS4Windows
                 }
             }
         }
+
+        public byte getLightBarOnDuration()
+        {
+            return ledFlashOn;
+        }
         
         public byte LightBarOffDuration
         {
@@ -212,6 +231,11 @@ namespace DS4Windows
                     ledFlashOff = value;
                 }
             }
+        }
+
+        public byte getLightBarOffDuration()
+        {
+            return ledFlashOff;
         }
 
         public DS4Touchpad Touchpad { get { return touchpad; } }

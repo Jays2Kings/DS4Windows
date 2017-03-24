@@ -280,7 +280,17 @@ namespace DS4Windows
         public static int[] IdleDisconnectTimeout => m_Config.idleDisconnectTimeout; 
         public static byte[] TouchSensitivity => m_Config.touchSensitivity;
         public static byte[] FlashType => m_Config.flashType;
+        public static byte getFlashType(int index)
+        {
+            return m_Config.flashType[index];
+        }
+
         public static int[] FlashAt => m_Config.flashAt;
+        public static int getFlashAt(int index)
+        {
+            return m_Config.flashAt[index];
+        }
+
         public static bool[] LedAsBatteryIndicator => m_Config.ledAsBattery;
         public static int[] ChargingType => m_Config.chargingType;
         public static bool[] DinputOnly => m_Config.dinputOnly; 
@@ -320,7 +330,7 @@ namespace DS4Windows
         public static bool[] MouseAccel => m_Config.mouseAccel;
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
-        public static bool[] DistanceProfiles => m_Config.distanceProfiles;
+        public static bool[] DistanceProfiles = m_Config.distanceProfiles;
         public static List<string>[] ProfileActions => m_Config.profileActions;
         
         public static void UpdateDS4CSetting (int deviceNum, string buttonName, bool shift, object action, string exts, DS4KeyType kt, int trigger = 0)

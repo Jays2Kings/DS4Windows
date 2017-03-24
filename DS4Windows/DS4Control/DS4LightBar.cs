@@ -31,6 +31,11 @@ namespace DS4Windows
         public static byte[] forcedFlash = new byte[4];
         public static void updateLightBar(DS4Device device, int deviceNum, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
+            /*
+             * TODO: Remove more property usage and use explicit getter methods instead.
+             * Testing in proper optimized release builds shows that it is
+             * still necessary to reduce lag.
+             */
             DS4Color color;
             if (!defualtLight && !forcelight[deviceNum])
             {
@@ -86,7 +91,7 @@ namespace DS4Windows
 
                 }
 
-                if (device.Battery <= FlashAt[deviceNum] && !defualtLight && !device.Charging)
+                if (device.getBattery() <= FlashAt[deviceNum] && !defualtLight && !device.isCharging())
                 {
                     if (!(FlashColor[deviceNum].red == 0 &&
                         FlashColor[deviceNum].green == 0 &&
@@ -106,7 +111,7 @@ namespace DS4Windows
                     }
                 }
 
-                if (IdleDisconnectTimeout[deviceNum] > 0 && LedAsBatteryIndicator[deviceNum] && (!device.Charging || device.Battery >= 100))
+                if (IdleDisconnectTimeout[deviceNum] > 0 && LedAsBatteryIndicator[deviceNum] && (!device.isCharging() || device.getBattery() >= 100))
                 {//Fade lightbar by idle time
                     TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
                     double botratio = timeratio.TotalMilliseconds;
@@ -164,7 +169,7 @@ namespace DS4Windows
                 if (device.LeftHeavySlowRumble > 100)
                     color = getTransitionedColor(new DS4Color(max, max, 0), new DS4Color(255, 0, 0), rumble);
                 else
-                    color = getTransitionedColor(color, getTransitionedColor(new DS4Color(max, max, 0), new DS4Color(255, 0, 0), 39.6078f), device.LeftHeavySlowRumble);
+                    color = getTransitionedColor(color, getTransitionedColor(new DS4Color(max, max, 0), new DS4Color(255, 0, 0), 39.6078f), device.getLeftHeavySlowRumble());
             }
             DS4HapticState haptics = new DS4HapticState
             {
@@ -177,7 +182,7 @@ namespace DS4Windows
                     haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
                     haptics.LightBarExplicitlyOff = true;
                 }
-                else if (device.Battery <= FlashAt[deviceNum] && FlashType[deviceNum] == 0 && !defualtLight && !device.Charging)
+                else if (device.getBattery() <= getFlashAt(deviceNum) && getFlashType(deviceNum) == 0 && !defualtLight && !device.isCharging())
                 {
                     int level = device.Battery / 10;
                     //if (level >= 10)
@@ -185,9 +190,9 @@ namespace DS4Windows
                     haptics.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
                     haptics.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];
                 }
-                else if (distanceprofile && device.LeftHeavySlowRumble > 155) //also part of Distance
+                else if (distanceprofile && device.getLeftHeavySlowRumble() > 155) //also part of Distance
                 {
-                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)((-device.LeftHeavySlowRumble + 265));
+                    haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)((-device.getLeftHeavySlowRumble() + 265));
                     haptics.LightBarExplicitlyOff = true;
                 }
                 else
@@ -201,7 +206,9 @@ namespace DS4Windows
             {
                 haptics.LightBarExplicitlyOff = true;
             }
-            if (device.LightBarOnDuration != haptics.LightBarFlashDurationOn && device.LightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
+
+            byte tempLightBarOnDuration = device.getLightBarOnDuration();
+            if (tempLightBarOnDuration != haptics.LightBarFlashDurationOn && tempLightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
                 haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
 
             // Comment out code for now. This condition gets hit too often and bogs down the GUI

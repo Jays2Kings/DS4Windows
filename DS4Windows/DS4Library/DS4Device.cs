@@ -298,7 +298,8 @@ namespace DS4Windows
 
         public void StopUpdate()
         {
-            if (ds4Input.ThreadState != System.Threading.ThreadState.Unstarted && ds4Input.ThreadState != System.Threading.ThreadState.Stopped)
+            if (ds4Input.IsAlive && ds4Input.ThreadState != System.Threading.ThreadState.Stopped &&
+                ds4Input.ThreadState != System.Threading.ThreadState.AbortRequested)
             {
                 try
                 {
@@ -315,7 +316,8 @@ namespace DS4Windows
 
         private void StopOutputUpdate()
         {
-            if (ds4Output.ThreadState != System.Threading.ThreadState.Unstarted && ds4Output.ThreadState != System.Threading.ThreadState.Stopped)
+            if (ds4Output.IsAlive && ds4Output.ThreadState != System.Threading.ThreadState.Stopped &&
+                ds4Output.ThreadState != System.Threading.ThreadState.AbortRequested)
             {
                 try
                 {
@@ -633,7 +635,9 @@ namespace DS4Windows
                     outputReportBuffer.CopyTo(outputReport, 0);
                     try
                     {
-                        if (!writeOutput())
+                        if (!writeOutput() && ds4Output.IsAlive &&
+                            ds4Output.ThreadState != System.Threading.ThreadState.Stopped &&
+                            ds4Output.ThreadState != System.Threading.ThreadState.AbortRequested)
                         {
                             Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered synchronous write failure: " + Marshal.GetLastWin32Error());
                             ds4Output.Abort();

@@ -143,6 +143,8 @@ namespace DS4Windows
         private bool charging;
         private bool outputRumble = false;
         private int warnInterval = WARN_INTERVAL_USB;
+        private bool exitOutputThread = false;
+        private object exitLocker = new object();
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
 
@@ -280,6 +282,7 @@ namespace DS4Windows
                 ds4Output = new Thread(performDs4Output);
                 ds4Output.Priority = ThreadPriority.AboveNormal;
                 ds4Output.Name = "DS4 Output thread: " + Mac;
+                ds4Output.IsBackground = true;
                 if (conType == ConnectionType.BT)
                 {
                     // Only use the output thread for Bluetooth connections.
@@ -290,6 +293,7 @@ namespace DS4Windows
                 ds4Input = new Thread(performDs4Input);
                 ds4Input.Priority = ThreadPriority.AboveNormal;
                 ds4Input.Name = "DS4 Input thread: " + Mac;
+                ds4Input.IsBackground = true;
                 ds4Input.Start();
             }
             else
@@ -298,8 +302,8 @@ namespace DS4Windows
 
         public void StopUpdate()
         {
-            if (ds4Input.IsAlive && ds4Input.ThreadState != System.Threading.ThreadState.Stopped &&
-                ds4Input.ThreadState != System.Threading.ThreadState.AbortRequested)
+            if (ds4Input.IsAlive && !ds4Input.ThreadState.HasFlag(System.Threading.ThreadState.Stopped) &&
+                !ds4Input.ThreadState.HasFlag(System.Threading.ThreadState.AbortRequested))
             {
                 try
                 {
@@ -316,17 +320,26 @@ namespace DS4Windows
 
         private void StopOutputUpdate()
         {
-            if (ds4Output.IsAlive && ds4Output.ThreadState != System.Threading.ThreadState.Stopped &&
-                ds4Output.ThreadState != System.Threading.ThreadState.AbortRequested)
+            lock (exitLocker)
             {
-                try
+                if (ds4Output.IsAlive && !ds4Output.ThreadState.HasFlag(System.Threading.ThreadState.Stopped) &&
+                    !ds4Output.ThreadState.HasFlag(System.Threading.ThreadState.AbortRequested))
                 {
-                    ds4Output.Abort();
-                    ds4Output.Join();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                    try
+                    {
+                        exitOutputThread = true;
+                        lock (outputReport)
+                        {
+                            Monitor.PulseAll(outputReport);
+                        }
+
+                        //ds4Output.Interrupt();
+                        ds4Output.Join();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
             }
         }
@@ -348,7 +361,7 @@ namespace DS4Windows
             lock (outputReport)
             {
                 int lastError = 0;
-                while (true)
+                while (!exitOutputThread)
                 {
                     bool result = false;
                     if (outputRumble)
@@ -635,13 +648,10 @@ namespace DS4Windows
                     outputReportBuffer.CopyTo(outputReport, 0);
                     try
                     {
-                        if (!writeOutput() && ds4Output.IsAlive &&
-                            ds4Output.ThreadState != System.Threading.ThreadState.Stopped &&
-                            ds4Output.ThreadState != System.Threading.ThreadState.AbortRequested)
+                        if (!writeOutput())
                         {
                             Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered synchronous write failure: " + Marshal.GetLastWin32Error());
-                            ds4Output.Abort();
-                            ds4Output.Join();
+                            StopOutputUpdate();
                         }
                     }
                     catch

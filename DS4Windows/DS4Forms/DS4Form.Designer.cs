@@ -129,6 +129,7 @@
             this.cBFlashWhenLate = new System.Windows.Forms.CheckBox();
             this.cBCloseMini = new System.Windows.Forms.CheckBox();
             this.cBQuickCharge = new System.Windows.Forms.CheckBox();
+            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
             this.cBDownloadLangauge = new System.Windows.Forms.CheckBox();
             this.cBUpdate = new System.Windows.Forms.CheckBox();
             this.pNUpdate = new System.Windows.Forms.Panel();
@@ -139,7 +140,6 @@
             this.lbUseXIPorts = new System.Windows.Forms.Label();
             this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
             this.lbLastXIPort = new System.Windows.Forms.Label();
-            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
@@ -152,7 +152,6 @@
             this.cMCustomLed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -940,7 +939,7 @@
             0});
             this.nUDLatency.Name = "nUDLatency";
             this.nUDLatency.Value = new decimal(new int[] {
-            10,
+            20,
             0,
             0,
             0});
@@ -973,6 +972,13 @@
             this.cBQuickCharge.Name = "cBQuickCharge";
             this.cBQuickCharge.UseVisualStyleBackColor = true;
             this.cBQuickCharge.CheckedChanged += new System.EventHandler(this.cBQuickCharge_CheckedChanged);
+            // 
+            // cBUseWhiteIcon
+            // 
+            resources.ApplyResources(this.cBUseWhiteIcon, "cBUseWhiteIcon");
+            this.cBUseWhiteIcon.Name = "cBUseWhiteIcon";
+            this.cBUseWhiteIcon.UseVisualStyleBackColor = true;
+            this.cBUseWhiteIcon.CheckedChanged += new System.EventHandler(this.cBUseWhiteIcon_CheckedChanged);
             // 
             // cBDownloadLangauge
             // 
@@ -1068,13 +1074,6 @@
             resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
             this.lbLastXIPort.Name = "lbLastXIPort";
             // 
-            // cBUseWhiteIcon
-            // 
-            resources.ApplyResources(this.cBUseWhiteIcon, "cBUseWhiteIcon");
-            this.cBUseWhiteIcon.Name = "cBUseWhiteIcon";
-            this.cBUseWhiteIcon.UseVisualStyleBackColor = true;
-            this.cBUseWhiteIcon.CheckedChanged += new System.EventHandler(this.cBUseWhiteIcon_CheckedChanged);
-            // 
             // flowLayoutPanel1
             // 
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
@@ -1156,10 +1155,6 @@
             this.useCustomColorToolStripMenuItem.Name = "useCustomColorToolStripMenuItem";
             resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
-            // 
-            // advColorDialog
-            // 
-            this.advColorDialog.OnUpdateColor += new DS4Windows.AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
             // 
             // DS4Form
             // 

@@ -135,7 +135,16 @@ namespace DS4Windows
         private void closeFileStreamIO()
         {
             if (fileStream != null)
-                fileStream.Close();
+            {
+                try
+                {
+                    fileStream.Close();
+                }
+                catch (IOException)
+                {
+                }
+            }
+
             fileStream = null;
             Console.WriteLine("Close fs");
             if (safeReadHandle != null && !safeReadHandle.IsInvalid)

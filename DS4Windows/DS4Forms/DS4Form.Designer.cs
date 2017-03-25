@@ -129,7 +129,6 @@
             this.cBFlashWhenLate = new System.Windows.Forms.CheckBox();
             this.cBCloseMini = new System.Windows.Forms.CheckBox();
             this.cBQuickCharge = new System.Windows.Forms.CheckBox();
-            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
             this.cBDownloadLangauge = new System.Windows.Forms.CheckBox();
             this.cBUpdate = new System.Windows.Forms.CheckBox();
             this.pNUpdate = new System.Windows.Forms.Panel();
@@ -138,6 +137,7 @@
             this.nUDUpdateTime = new System.Windows.Forms.NumericUpDown();
             this.pnlXIPorts = new System.Windows.Forms.Panel();
             this.lbUseXIPorts = new System.Windows.Forms.Label();
+            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
             this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
             this.lbLastXIPort = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -152,6 +152,7 @@
             this.cMCustomLed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.advColorDialog = new AdvancedColorDialog();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();

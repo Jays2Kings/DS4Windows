@@ -497,20 +497,28 @@ namespace DS4Windows
                 }
             }
 
-            if (LSSens[device] != 1)
+            double lsSens = LSSens[device];
+            if (lsSens != 1.0)
             {
-                dState.LX = (byte)Clamp(0, LSSens[device] * (dState.LX - 127) + 127, 255);
-                dState.LY = (byte)Clamp(0, LSSens[device] * (dState.LY - 127) + 127, 255);
+                dState.LX = (byte)Clamp(0, lsSens * (dState.LX - 127) + 127, 255);
+                dState.LY = (byte)Clamp(0, lsSens * (dState.LY - 127) + 127, 255);
             }
-            if (RSSens[device] != 1)
+
+            double rsSens = RSSens[device];
+            if (rsSens != 1.0)
             {
-                dState.RX = (byte)Clamp(0, RSSens[device] * (dState.RX - 127) + 127, 255);
-                dState.RY = (byte)Clamp(0, RSSens[device] * (dState.RY - 127) + 127, 255);
+                dState.RX = (byte)Clamp(0, rsSens * (dState.RX - 127) + 127, 255);
+                dState.RY = (byte)Clamp(0, rsSens * (dState.RY - 127) + 127, 255);
             }
-            if (L2Sens[device] != 1)
-                dState.L2 = (byte)Clamp(0, L2Sens[device] * dState.L2, 255);
-            if (R2Sens[device] != 1)
-                dState.R2 = (byte)Clamp(0, R2Sens[device] * dState.R2, 255);
+
+            double l2Sens = L2Sens[device];
+            if (l2Sens != 1.0)
+                dState.L2 = (byte)Clamp(0, l2Sens * dState.L2, 255);
+
+            double r2Sens = R2Sens[device];
+            if (r2Sens != 1.0)
+                dState.R2 = (byte)Clamp(0, r2Sens * dState.R2, 255);
+
             return dState;
         }
 

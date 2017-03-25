@@ -470,10 +470,33 @@ namespace DS4Windows
                 dState.RX = (byte)(Math.Cos(r) * (127.5f + RSDeadzone[device]) + 127.5f);
                 dState.RY = (byte)(Math.Sin(r) * (127.5f + RSDeadzone[device]) + 127.5f);
             }
-            if (L2Deadzone[device] > 0 && cState.L2 < L2Deadzone[device])
-                dState.L2 = 0;
-            if (R2Deadzone[device] > 0 && cState.R2 < R2Deadzone[device])
-                dState.R2 = 0;
+
+            byte l2Deadzone = L2Deadzone[device];
+            if (l2Deadzone > 0)
+            {
+                if (cState.L2 > l2Deadzone)
+                {
+                    dState.L2 = (byte)(((cState.L2 - l2Deadzone) / (double)(255 - l2Deadzone)) * 255);
+                }
+                else
+                {
+                    dState.L2 = 0;
+                }
+            }
+
+            byte r2Deadzone = R2Deadzone[device];
+            if (r2Deadzone > 0)
+            {
+                if (cState.R2 > r2Deadzone)
+                {
+                    dState.R2 = (byte)(((cState.R2 - l2Deadzone) / (double)(255 - r2Deadzone)) * 255);
+                }
+                else
+                {
+                    dState.R2 = 0;
+                }
+            }
+
             if (LSSens[device] != 1)
             {
                 dState.LX = (byte)Clamp(0, LSSens[device] * (dState.LX - 127) + 127, 255);

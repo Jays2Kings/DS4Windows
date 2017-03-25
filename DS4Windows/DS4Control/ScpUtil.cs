@@ -621,7 +621,7 @@ namespace DS4Windows
         public bool downloadLang = true;
         public bool useWhiteIcon;
         public bool flashWhenLate = true;
-        public int flashWhenLateAt = 10;
+        public int flashWhenLateAt = 20;
         public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
         public int[] gyroInvert = { 0, 0, 0, 0, 0 };
 

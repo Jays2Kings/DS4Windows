@@ -328,12 +328,13 @@ namespace DS4Windows
                     try
                     {
                         exitOutputThread = true;
-                        lock (outputReport)
+                        /*lock (outputReport)
                         {
                             Monitor.PulseAll(outputReport);
                         }
+                        */
 
-                        //ds4Output.Interrupt();
+                        ds4Output.Interrupt();
                         ds4Output.Join();
                     }
                     catch (Exception e)
@@ -360,39 +361,46 @@ namespace DS4Windows
         {
             lock (outputReport)
             {
-                int lastError = 0;
-                while (!exitOutputThread)
+                try
                 {
-                    bool result = false;
-                    if (outputRumble)
+                    int lastError = 0;
+                    while (!exitOutputThread)
                     {
-                        result = writeOutput();
-
-                        if (!result)
+                        bool result = false;
+                        if (outputRumble)
                         {
-                            int thisError = Marshal.GetLastWin32Error();
-                            if (lastError != thisError)
+                            result = writeOutput();
+
+                            if (!result)
                             {
-                                Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
-                                lastError = thisError;
+                                int thisError = Marshal.GetLastWin32Error();
+                                if (lastError != thisError)
+                                {
+                                    Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
+                                    lastError = thisError;
+                                }
+                            }
+                            else
+                            {
+                                outputRumble = false;
                             }
                         }
-                        else
+
+                        if (!outputRumble)
                         {
-                            outputRumble = false;
+                            lastError = 0;
+                            Monitor.Wait(outputReport);
+                            /*if (testRumble.IsRumbleSet()) // repeat test rumbles periodically; rumble has auto-shut-off in the DS4 firmware
+                                Monitor.Wait(outputReport, 10000); // DS4 firmware stops it after 5 seconds, so let the motors rest for that long, too.
+                            else
+                                Monitor.Wait(outputReport);
+                            */
                         }
                     }
+                }
+                catch (ThreadInterruptedException)
+                {
 
-                    if (!outputRumble)
-                    {
-                        lastError = 0;
-                        Monitor.Wait(outputReport);
-                        /*if (testRumble.IsRumbleSet()) // repeat test rumbles periodically; rumble has auto-shut-off in the DS4 firmware
-                            Monitor.Wait(outputReport, 10000); // DS4 firmware stops it after 5 seconds, so let the motors rest for that long, too.
-                        else
-                            Monitor.Wait(outputReport);
-                        */
-                    }
                 }
             }
         }

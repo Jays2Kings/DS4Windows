@@ -444,31 +444,48 @@ namespace DS4Windows
                 dState.RX = (byte)Math.Round(curvex, 0);
                 dState.RY = (byte)Math.Round(curvey, 0);
             }
-            double ls = Math.Sqrt(Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2));
+            double lsSquared = Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2);
             //deadzones
-            if (LSDeadzone[device] > 0 && ls < LSDeadzone[device])
+            int lsDeadzone = LSDeadzone[device];
+            double lsDeadzoneSquared = Math.Pow(lsDeadzone, 2);
+            if (lsDeadzone > 0 && lsSquared <= lsDeadzoneSquared)
             {
                 dState.LX = 127;
                 dState.LY = 127;
             }
-            else if (LSDeadzone[device] < 0 && ls > 127.5f + LSDeadzone[device])
+            else if (lsDeadzone > 0 && lsSquared > lsDeadzoneSquared)
             {
-                double r = Math.Atan2((dState.LY - 127.5f), (dState.LX - 127.5f));
-                dState.LX = (byte)(Math.Cos(r) * (127.5f + LSDeadzone[device]) + 127.5f);
-                dState.LY = (byte)(Math.Sin(r) * (127.5f + LSDeadzone[device]) + 127.5f);
+                double r = Math.Atan2(-(dState.LY - 127.5f), (dState.LX - 127.5f));
+                double tempLsXDead = Math.Cos(r) * (lsDeadzone);
+                double tempLsYDead = Math.Sin(r) * (lsDeadzone);
+                double maxXValue = dState.LX > 127.5 ? 127.5 : -127.5;
+                double maxYValue = dState.LY > 127.5 ? 127.5 : -127.5;
+                dState.LX = (byte)(((dState.LX - 127.5f - tempLsXDead) / (double)(maxXValue - tempLsXDead)) * maxXValue + 127.5f);
+                dState.LY = (byte)(((dState.LY - 127.5f - tempLsYDead) / (double)(maxYValue - tempLsYDead)) * maxYValue + 127.5f);
+                //dState.LX = (byte)(Math.Cos(r) * (127.5f + LSDeadzone[device]) + 127.5f);
+                //dState.LY = (byte)(Math.Sin(r) * (127.5f + LSDeadzone[device]) + 127.5f);
             }
             //Console.WriteLine
-            double rs = Math.Sqrt(Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2));
-            if (RSDeadzone[device] > 0 && rs < LSDeadzone[device])
+            double rsSquared = Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2);
+            int rsDeadzone = RSDeadzone[device];
+            double rsDeadzoneSquared = Math.Pow(rsDeadzone, 2);
+            if (rsDeadzone > 0 && rsSquared <= rsDeadzoneSquared)
             {
                 dState.RX = 127;
                 dState.RY = 127;
             }
-            else if (RSDeadzone[device] < 0 && rs > 127.5f + RSDeadzone[device])
+            else if (rsDeadzone < 0 && rsSquared > rsDeadzoneSquared)
             {
-                double r = Math.Atan2((dState.RY - 127.5f), (dState.RX - 127.5f));
-                dState.RX = (byte)(Math.Cos(r) * (127.5f + RSDeadzone[device]) + 127.5f);
-                dState.RY = (byte)(Math.Sin(r) * (127.5f + RSDeadzone[device]) + 127.5f);
+
+                double r = Math.Atan2(-(dState.RY - 127.5f), (dState.RX - 127.5f));
+                double tempRsXDead = Math.Cos(r) * (lsDeadzone);
+                double tempRsYDead = Math.Sin(r) * (lsDeadzone);
+                double maxXValue = dState.RX > 127.5 ? 127.5 : -127.5;
+                double maxYValue = dState.RY > 127.5 ? 127.5 : -127.5;
+                dState.RX = (byte)(((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead)) * maxXValue + 127.5f);
+                dState.RY = (byte)(((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead)) * maxYValue + 127.5f);
+                //dState.RX = (byte)(Math.Cos(r) * (127.5f + RSDeadzone[device]) + 127.5f);
+                //dState.RY = (byte)(Math.Sin(r) * (127.5f + RSDeadzone[device]) + 127.5f);
             }
 
             byte l2Deadzone = L2Deadzone[device];
@@ -476,7 +493,7 @@ namespace DS4Windows
             {
                 if (cState.L2 > l2Deadzone)
                 {
-                    dState.L2 = (byte)(((cState.L2 - l2Deadzone) / (double)(255 - l2Deadzone)) * 255);
+                    dState.L2 = (byte)(((dState.L2 - l2Deadzone) / (double)(255 - l2Deadzone)) * 255);
                 }
                 else
                 {
@@ -489,7 +506,7 @@ namespace DS4Windows
             {
                 if (cState.R2 > r2Deadzone)
                 {
-                    dState.R2 = (byte)(((cState.R2 - l2Deadzone) / (double)(255 - r2Deadzone)) * 255);
+                    dState.R2 = (byte)(((dState.R2 - l2Deadzone) / (double)(255 - r2Deadzone)) * 255);
                 }
                 else
                 {
@@ -500,15 +517,15 @@ namespace DS4Windows
             double lsSens = LSSens[device];
             if (lsSens != 1.0)
             {
-                dState.LX = (byte)Clamp(0, lsSens * (dState.LX - 127) + 127, 255);
-                dState.LY = (byte)Clamp(0, lsSens * (dState.LY - 127) + 127, 255);
+                dState.LX = (byte)Clamp(0, lsSens * (dState.LX - 127.5f) + 127.5f, 255);
+                dState.LY = (byte)Clamp(0, lsSens * (dState.LY - 127.5f) + 127.5f, 255);
             }
 
             double rsSens = RSSens[device];
             if (rsSens != 1.0)
             {
-                dState.RX = (byte)Clamp(0, rsSens * (dState.RX - 127) + 127, 255);
-                dState.RY = (byte)Clamp(0, rsSens * (dState.RY - 127) + 127, 255);
+                dState.RX = (byte)Clamp(0, rsSens * (dState.RX - 127.5f) + 127.5f, 255);
+                dState.RY = (byte)Clamp(0, rsSens * (dState.RY - 127.5f) + 127.5f, 255);
             }
 
             double l2Sens = L2Sens[device];

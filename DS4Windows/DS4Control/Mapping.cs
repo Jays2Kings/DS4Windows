@@ -461,25 +461,44 @@ namespace DS4Windows
                 double maxYValue = dState.LY > 127.5 ? 127.5 : -127.5;
 
                 double tempLsXDead = 0.0, tempLsYDead = 0.0;
+                double tempOutputX = 0.0, tempOutputY = 0.0;
                 if (lsDeadzone > 0)
                 {
                     tempLsXDead = Math.Cos(r) * (lsDeadzone);
                     tempLsYDead = Math.Sin(r) * (lsDeadzone);
+
+                    if (lsSquared > lsDeadzoneSquared)
+                    {
+                        tempOutputX = ((dState.LX - 127.5f - tempLsXDead) / (double)(maxXValue - tempLsXDead));
+                        tempOutputY = ((dState.LY - 127.5f - tempLsYDead) / (double)(maxYValue - tempLsYDead));
+                    }
                 }
 
                 double tempLsXAntiDeadPercent = 0.0, tempLsYAntiDeadPercent = 0.0;
-
                 if (lsAntiDead > 0)
                 {
                     tempLsXAntiDeadPercent = (lsAntiDead / 100.0) * Math.Abs(Math.Cos(r));
                     tempLsYAntiDeadPercent = (lsAntiDead / 100.0) * Math.Abs(Math.Sin(r));
                 }
 
-                double tempOutputX = ((dState.LX - 127.5f - tempLsXDead) / (double)(maxXValue - tempLsXDead));
-                double tempOutputY = ((dState.LY - 127.5f - tempLsYDead) / (double)(maxYValue - tempLsYDead));
+                if (tempOutputX > 0.0)
+                {
+                    dState.LX = (byte)((((1.0 - tempLsXAntiDeadPercent) * tempOutputX + tempLsXAntiDeadPercent)) * maxXValue + 127.5f);
+                }
+                else
+                {
+                    dState.LX = 127;
+                }
 
-                dState.LX = (byte)((((1.0 - tempLsXAntiDeadPercent) * tempOutputX + tempLsXAntiDeadPercent)) * maxXValue + 127.5f);
-                dState.LY = (byte)((((1.0 - tempLsYAntiDeadPercent) * tempOutputY + tempLsYAntiDeadPercent)) * maxYValue + 127.5f);
+                if (tempOutputY > 0.0)
+                {
+                    dState.LY = (byte)((((1.0 - tempLsYAntiDeadPercent) * tempOutputY + tempLsYAntiDeadPercent)) * maxYValue + 127.5f);
+                }
+                else
+                {
+                    dState.LY = 127;
+                }
+
                 //dState.LX = (byte)(Math.Cos(r) * (127.5f + LSDeadzone[device]) + 127.5f);
                 //dState.LY = (byte)(Math.Sin(r) * (127.5f + LSDeadzone[device]) + 127.5f);
             }
@@ -500,10 +519,17 @@ namespace DS4Windows
                 double maxYValue = dState.RY > 127.5 ? 127.5 : -127.5;
 
                 double tempRsXDead = 0.0, tempRsYDead = 0.0;
+                double tempOutputX = 0.0, tempOutputY = 0.0;
                 if (rsDeadzone > 0)
                 {
                     tempRsXDead = Math.Cos(r) * (rsDeadzone);
                     tempRsYDead = Math.Sin(r) * (rsDeadzone);
+
+                    if (rsSquared > rsDeadzoneSquared)
+                    {
+                        tempOutputX = ((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead));
+                        tempOutputY = ((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead));
+                    }
                 }
 
                 double tempRsXAntiDeadPercent = 0.0, tempRsYAntiDeadPercent = 0.0;
@@ -513,11 +539,24 @@ namespace DS4Windows
                     tempRsYAntiDeadPercent = (rsAntiDead / 100.0) * Math.Abs(Math.Sin(r));
                 }
 
-                double tempOutputX = ((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead));
-                double tempOutputY = ((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead));
+                if (tempOutputX > 0.0)
+                {
+                    dState.RX = (byte)((((1.0 - tempRsXAntiDeadPercent) * tempOutputX + tempRsXAntiDeadPercent)) * maxXValue + 127.5f);
+                }
+                else
+                {
+                    dState.RX = 127;
+                }
 
-                dState.RX = (byte)((((1.0 - tempRsXAntiDeadPercent) * tempOutputX + tempRsXAntiDeadPercent)) * maxXValue + 127.5f);
-                dState.RY = (byte)((((1.0 - tempRsYAntiDeadPercent) * tempOutputY + tempRsYAntiDeadPercent)) * maxYValue + 127.5f);
+                if (tempOutputY > 0.0)
+                {
+                    dState.RY = (byte)((((1.0 - tempRsYAntiDeadPercent) * tempOutputY + tempRsYAntiDeadPercent)) * maxYValue + 127.5f);
+                }
+                else
+                {
+                    dState.RY = 127;
+                }
+
                 //dState.RX = (byte)(((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead)) * maxXValue + 127.5f);
                 //dState.RY = (byte)(((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead)) * maxYValue + 127.5f);
                 //dState.RX = (byte)(Math.Cos(r) * (127.5f + RSDeadzone[device]) + 127.5f);

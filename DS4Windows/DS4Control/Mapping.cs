@@ -474,7 +474,7 @@ namespace DS4Windows
                 dState.RX = 127;
                 dState.RY = 127;
             }
-            else if (rsDeadzone < 0 && rsSquared > rsDeadzoneSquared)
+            else if (rsDeadzone > 0 && rsSquared > rsDeadzoneSquared)
             {
 
                 double r = Math.Atan2(-(dState.RY - 127.5f), (dState.RX - 127.5f));

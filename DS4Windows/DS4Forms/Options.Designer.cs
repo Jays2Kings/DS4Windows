@@ -302,6 +302,11 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.antiDeadzoneTabPage = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.nUDLSAntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nUDRSAntiDead = new System.Windows.Forms.NumericUpDown();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -374,6 +379,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
+            this.antiDeadzoneTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -2552,6 +2560,7 @@
             // 
             this.tCSens.Controls.Add(this.tPDeadzone);
             this.tCSens.Controls.Add(this.tPCurve);
+            this.tCSens.Controls.Add(this.antiDeadzoneTabPage);
             resources.ApplyResources(this.tCSens, "tCSens");
             this.tCSens.Name = "tCSens";
             this.tCSens.SelectedIndex = 0;
@@ -3131,6 +3140,60 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
+            // antiDeadzoneTabPage
+            // 
+            this.antiDeadzoneTabPage.Controls.Add(this.nUDRSAntiDead);
+            this.antiDeadzoneTabPage.Controls.Add(this.label2);
+            this.antiDeadzoneTabPage.Controls.Add(this.nUDLSAntiDead);
+            this.antiDeadzoneTabPage.Controls.Add(this.label1);
+            resources.ApplyResources(this.antiDeadzoneTabPage, "antiDeadzoneTabPage");
+            this.antiDeadzoneTabPage.Name = "antiDeadzoneTabPage";
+            this.antiDeadzoneTabPage.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // nUDLSAntiDead
+            // 
+            this.nUDLSAntiDead.DecimalPlaces = 2;
+            this.nUDLSAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDLSAntiDead, "nUDLSAntiDead");
+            this.nUDLSAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDLSAntiDead.Name = "nUDLSAntiDead";
+            this.nUDLSAntiDead.ValueChanged += new System.EventHandler(this.nUDLSAntiDead_ValueChanged);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // nUDRSAntiDead
+            // 
+            this.nUDRSAntiDead.DecimalPlaces = 2;
+            this.nUDRSAntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRSAntiDead, "nUDRSAntiDead");
+            this.nUDRSAntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRSAntiDead.Name = "nUDRSAntiDead";
+            this.nUDRSAntiDead.ValueChanged += new System.EventHandler(this.nUDRSAntiDead_ValueChanged);
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3229,6 +3292,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
+            this.antiDeadzoneTabPage.ResumeLayout(false);
+            this.antiDeadzoneTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3510,5 +3577,10 @@
         private System.Windows.Forms.Button btnRainbow;
         private System.Windows.Forms.ToolStripMenuItem alwaysOnToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem fingerOnTouchpadToolStripMenuItem;
+        private System.Windows.Forms.TabPage antiDeadzoneTabPage;
+        private System.Windows.Forms.NumericUpDown nUDRSAntiDead;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown nUDLSAntiDead;
+        private System.Windows.Forms.Label label1;
     }
 }

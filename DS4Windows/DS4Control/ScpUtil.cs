@@ -319,6 +319,8 @@ namespace DS4Windows
         public static double[] SZDeadzone => m_Config.SZDeadzone;
         public static int[] LSDeadzone => m_Config.LSDeadzone;
         public static int[] RSDeadzone => m_Config.RSDeadzone;
+        public static int[] LSAntiDeadzone => m_Config.LSAntiDeadzone;
+        public static int[] RSAntiDeadzone => m_Config.RSAntiDeadzone;
         public static int[] LSCurve => m_Config.lsCurve;
         public static int[] RSCurve => m_Config.rsCurve;
         public static double[] L2Sens => m_Config.l2Sens;
@@ -532,6 +534,7 @@ namespace DS4Windows
         public Byte[] touchSensitivity = { 100, 100, 100, 100, 100 };
         public Byte[] l2Deadzone = { 0, 0, 0, 0, 0 }, r2Deadzone = { 0, 0, 0, 0, 0 };
         public int[] LSDeadzone = { 0, 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0, 0 };
+        public int[] LSAntiDeadzone = { 0, 0, 0, 0, 0 }, RSAntiDeadzone = { 0, 0, 0, 0, 0 };
         public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
         public double[] l2Sens = { 1, 1, 1, 1, 1 }, r2Sens = { 1, 1, 1, 1, 1 };
         public double[] LSSens = { 1, 1, 1, 1, 1 }, RSSens = { 1, 1, 1, 1, 1 };

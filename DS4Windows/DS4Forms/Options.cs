@@ -2335,6 +2335,16 @@ namespace DS4Windows
             }
         }
 
+        private void nUDLSAntiDead_ValueChanged(object sender, EventArgs e)
+        {
+            LSAntiDeadzone[device] = (byte)(nUDLSAntiDead.Value * 100);
+        }
+
+        private void nUDRSAntiDead_ValueChanged(object sender, EventArgs e)
+        {
+            RSAntiDeadzone[device] = (byte)(nUDRSAntiDead.Value * 100);
+        }
+
         private void Options_Resize(object sender, EventArgs e)
         {
             fLPSettings.AutoScroll = false;

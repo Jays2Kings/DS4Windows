@@ -448,123 +448,128 @@ namespace DS4Windows
                 dState.RY = (byte)Math.Round(curvey, 0);
             }
 
-            double lsSquared = Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2);
-            //deadzones
             int lsDeadzone = LSDeadzone[device];
             int lsAntiDead = LSAntiDeadzone[device];
-            double lsDeadzoneSquared = Math.Pow(lsDeadzone, 2);
-            if (lsDeadzone > 0 && lsSquared <= lsDeadzoneSquared)
+            if (lsDeadzone > 0 || lsAntiDead > 0)
             {
-                dState.LX = 127;
-                dState.LY = 127;
-            }
-            else if ((lsDeadzone > 0 && lsSquared > lsDeadzoneSquared) || lsAntiDead > 0)
-            {
-                double r = Math.Atan2(-(dState.LY - 127.5f), (dState.LX - 127.5f));
-                double maxXValue = dState.LX >= 127.5 ? 127.5 : -127.5;
-                double maxYValue = dState.LY >= 127.5 ? 127.5 : -127.5;
-
-                double tempLsXDead = 0.0, tempLsYDead = 0.0;
-                double tempOutputX = 0.0, tempOutputY = 0.0;
-                if (lsDeadzone > 0)
-                {
-                    tempLsXDead = Math.Abs(Math.Cos(r)) * (lsDeadzone / 127.0) * maxXValue;
-                    tempLsYDead = Math.Abs(Math.Sin(r)) * (lsDeadzone / 127.0) * maxYValue;
-
-                    if (lsSquared > lsDeadzoneSquared)
-                    {
-                        tempOutputX = ((dState.LX - 127.5f - tempLsXDead) / (double)(maxXValue - tempLsXDead));
-                        tempOutputY = ((dState.LY - 127.5f - tempLsYDead) / (double)(maxYValue - tempLsYDead));
-                    }
-                }
-
-                double tempLsXAntiDeadPercent = 0.0, tempLsYAntiDeadPercent = 0.0;
-                if (lsAntiDead > 0)
-                {
-                    tempLsXAntiDeadPercent = (lsAntiDead / 100.0) * Math.Abs(Math.Cos(r));
-                    tempLsYAntiDeadPercent = (lsAntiDead / 100.0) * Math.Abs(Math.Sin(r));
-                }
-
-                if (tempOutputX > 0.0)
-                {
-                    dState.LX = (byte)((((1.0 - tempLsXAntiDeadPercent) * tempOutputX + tempLsXAntiDeadPercent)) * maxXValue + 127.5f);
-                }
-                else
+                double lsSquared = Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2);
+                double lsDeadzoneSquared = Math.Pow(lsDeadzone, 2);
+                if (lsDeadzone > 0 && lsSquared <= lsDeadzoneSquared)
                 {
                     dState.LX = 127;
-                }
-
-                if (tempOutputY > 0.0)
-                {
-                    dState.LY = (byte)((((1.0 - tempLsYAntiDeadPercent) * tempOutputY + tempLsYAntiDeadPercent)) * maxYValue + 127.5f);
-                }
-                else
-                {
                     dState.LY = 127;
                 }
+                else if ((lsDeadzone > 0 && lsSquared > lsDeadzoneSquared) || lsAntiDead > 0)
+                {
+                    double r = Math.Atan2(-(dState.LY - 127.5f), (dState.LX - 127.5f));
+                    double maxXValue = dState.LX >= 127.5 ? 127.5 : -127.5;
+                    double maxYValue = dState.LY >= 127.5 ? 127.5 : -127.5;
 
-                //dState.LX = (byte)(Math.Cos(r) * (127.5f + LSDeadzone[device]) + 127.5f);
-                //dState.LY = (byte)(Math.Sin(r) * (127.5f + LSDeadzone[device]) + 127.5f);
+                    double tempLsXDead = 0.0, tempLsYDead = 0.0;
+                    double tempOutputX = 0.0, tempOutputY = 0.0;
+                    if (lsDeadzone > 0)
+                    {
+                        tempLsXDead = Math.Abs(Math.Cos(r)) * (lsDeadzone / 127.0) * maxXValue;
+                        tempLsYDead = Math.Abs(Math.Sin(r)) * (lsDeadzone / 127.0) * maxYValue;
+
+                        if (lsSquared > lsDeadzoneSquared)
+                        {
+                            tempOutputX = ((dState.LX - 127.5f - tempLsXDead) / (double)(maxXValue - tempLsXDead));
+                            tempOutputY = ((dState.LY - 127.5f - tempLsYDead) / (double)(maxYValue - tempLsYDead));
+                        }
+                    }
+
+                    double tempLsXAntiDeadPercent = 0.0, tempLsYAntiDeadPercent = 0.0;
+                    if (lsAntiDead > 0)
+                    {
+                        tempLsXAntiDeadPercent = (lsAntiDead / 100.0) * Math.Abs(Math.Cos(r));
+                        tempLsYAntiDeadPercent = (lsAntiDead / 100.0) * Math.Abs(Math.Sin(r));
+                    }
+
+                    if (tempOutputX > 0.0)
+                    {
+                        dState.LX = (byte)((((1.0 - tempLsXAntiDeadPercent) * tempOutputX + tempLsXAntiDeadPercent)) * maxXValue + 127.5f);
+                    }
+                    else
+                    {
+                        dState.LX = 127;
+                    }
+
+                    if (tempOutputY > 0.0)
+                    {
+                        dState.LY = (byte)((((1.0 - tempLsYAntiDeadPercent) * tempOutputY + tempLsYAntiDeadPercent)) * maxYValue + 127.5f);
+                    }
+                    else
+                    {
+                        dState.LY = 127;
+                    }
+
+                    //dState.LX = (byte)(Math.Cos(r) * (127.5f + LSDeadzone[device]) + 127.5f);
+                    //dState.LY = (byte)(Math.Sin(r) * (127.5f + LSDeadzone[device]) + 127.5f);
+                }
             }
-            //Console.WriteLine
-            double rsSquared = Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2);
+
             int rsDeadzone = RSDeadzone[device];
             int rsAntiDead = RSAntiDeadzone[device];
-            double rsDeadzoneSquared = Math.Pow(rsDeadzone, 2);
-            if (rsDeadzone > 0 && rsSquared <= rsDeadzoneSquared)
+            if (rsDeadzone > 0 || rsAntiDead > 0)
             {
-                dState.RX = 127;
-                dState.RY = 127;
-            }
-            else if ((rsDeadzone > 0 && rsSquared > rsDeadzoneSquared) || rsAntiDead > 0)
-            {
-                double r = Math.Atan2(-(dState.RY - 127.5f), (dState.RX - 127.5f));
-                double maxXValue = dState.RX >= 127.5 ? 127.5 : -127.5;
-                double maxYValue = dState.RY >= 127.5 ? 127.5 : -127.5;
-
-                double tempRsXDead = 0.0, tempRsYDead = 0.0;
-                double tempOutputX = 0.0, tempOutputY = 0.0;
-                if (rsDeadzone > 0)
-                {
-                    tempRsXDead = Math.Abs(Math.Cos(r)) * (rsDeadzone / 127.0) * maxXValue;
-                    tempRsYDead = Math.Abs(Math.Sin(r)) * (rsDeadzone / 127.0) * maxYValue;
-
-                    if (rsSquared > rsDeadzoneSquared)
-                    {
-                        tempOutputX = ((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead));
-                        tempOutputY = ((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead));
-                    }
-                }
-
-                double tempRsXAntiDeadPercent = 0.0, tempRsYAntiDeadPercent = 0.0;
-                if (rsAntiDead > 0)
-                {
-                    tempRsXAntiDeadPercent = (rsAntiDead / 100.0) * Math.Abs(Math.Cos(r));
-                    tempRsYAntiDeadPercent = (rsAntiDead / 100.0) * Math.Abs(Math.Sin(r));
-                }
-
-                if (tempOutputX > 0.0)
-                {
-                    dState.RX = (byte)((((1.0 - tempRsXAntiDeadPercent) * tempOutputX + tempRsXAntiDeadPercent)) * maxXValue + 127.5f);
-                }
-                else
+                double rsSquared = Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2);
+                double rsDeadzoneSquared = Math.Pow(rsDeadzone, 2);
+                if (rsDeadzone > 0 && rsSquared <= rsDeadzoneSquared)
                 {
                     dState.RX = 127;
-                }
-
-                if (tempOutputY > 0.0)
-                {
-                    dState.RY = (byte)((((1.0 - tempRsYAntiDeadPercent) * tempOutputY + tempRsYAntiDeadPercent)) * maxYValue + 127.5f);
-                }
-                else
-                {
                     dState.RY = 127;
                 }
+                else if ((rsDeadzone > 0 && rsSquared > rsDeadzoneSquared) || rsAntiDead > 0)
+                {
+                    double r = Math.Atan2(-(dState.RY - 127.5f), (dState.RX - 127.5f));
+                    double maxXValue = dState.RX >= 127.5 ? 127.5 : -127.5;
+                    double maxYValue = dState.RY >= 127.5 ? 127.5 : -127.5;
 
-                //dState.RX = (byte)(((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead)) * maxXValue + 127.5f);
-                //dState.RY = (byte)(((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead)) * maxYValue + 127.5f);
-                //dState.RX = (byte)(Math.Cos(r) * (127.5f + RSDeadzone[device]) + 127.5f);
-                //dState.RY = (byte)(Math.Sin(r) * (127.5f + RSDeadzone[device]) + 127.5f);
+                    double tempRsXDead = 0.0, tempRsYDead = 0.0;
+                    double tempOutputX = 0.0, tempOutputY = 0.0;
+                    if (rsDeadzone > 0)
+                    {
+                        tempRsXDead = Math.Abs(Math.Cos(r)) * (rsDeadzone / 127.0) * maxXValue;
+                        tempRsYDead = Math.Abs(Math.Sin(r)) * (rsDeadzone / 127.0) * maxYValue;
+
+                        if (rsSquared > rsDeadzoneSquared)
+                        {
+                            tempOutputX = ((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead));
+                            tempOutputY = ((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead));
+                        }
+                    }
+
+                    double tempRsXAntiDeadPercent = 0.0, tempRsYAntiDeadPercent = 0.0;
+                    if (rsAntiDead > 0)
+                    {
+                        tempRsXAntiDeadPercent = (rsAntiDead / 100.0) * Math.Abs(Math.Cos(r));
+                        tempRsYAntiDeadPercent = (rsAntiDead / 100.0) * Math.Abs(Math.Sin(r));
+                    }
+
+                    if (tempOutputX > 0.0)
+                    {
+                        dState.RX = (byte)((((1.0 - tempRsXAntiDeadPercent) * tempOutputX + tempRsXAntiDeadPercent)) * maxXValue + 127.5f);
+                    }
+                    else
+                    {
+                        dState.RX = 127;
+                    }
+
+                    if (tempOutputY > 0.0)
+                    {
+                        dState.RY = (byte)((((1.0 - tempRsYAntiDeadPercent) * tempOutputY + tempRsYAntiDeadPercent)) * maxYValue + 127.5f);
+                    }
+                    else
+                    {
+                        dState.RY = 127;
+                    }
+
+                    //dState.RX = (byte)(((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead)) * maxXValue + 127.5f);
+                    //dState.RY = (byte)(((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead)) * maxYValue + 127.5f);
+                    //dState.RX = (byte)(Math.Cos(r) * (127.5f + RSDeadzone[device]) + 127.5f);
+                    //dState.RY = (byte)(Math.Sin(r) * (127.5f + RSDeadzone[device]) + 127.5f);
+                }
             }
 
             byte l2Deadzone = L2Deadzone[device];

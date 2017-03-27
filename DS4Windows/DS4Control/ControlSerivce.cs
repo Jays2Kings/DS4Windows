@@ -474,9 +474,10 @@ namespace DS4Windows
                 if (eastertime)
                     EasterTime(ind);
                 GetInputkeys(ind);
-                if (LSCurve[ind] != 0 || RSCurve[ind] != 0 || LSDeadzone[ind] != 0 || RSDeadzone[ind] != 0 ||
+                /*if (LSCurve[ind] != 0 || RSCurve[ind] != 0 || LSDeadzone[ind] != 0 || RSDeadzone[ind] != 0 ||
                     L2Deadzone[ind] != 0 || R2Deadzone[ind] != 0 || LSSens[ind] != 0 || RSSens[ind] != 0 ||
                     L2Sens[ind] != 0 || R2Sens[ind] != 0) //if a curve or deadzone is in place
+                    */
                     cState = Mapping.SetCurveAndDeadzone(ind, cState);
                 if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
                     HasCustomAction(ind) || HasCustomExtras(ind) || ProfileActions[ind].Count > 0))

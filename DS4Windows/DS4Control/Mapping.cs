@@ -468,8 +468,8 @@ namespace DS4Windows
                 double tempOutputX = 0.0, tempOutputY = 0.0;
                 if (lsDeadzone > 0)
                 {
-                    tempLsXDead = Math.Cos(r) * (lsDeadzone);
-                    tempLsYDead = Math.Sin(r) * (-lsDeadzone);
+                    tempLsXDead = Math.Abs(Math.Cos(r)) * (lsDeadzone / 127.0) * maxXValue;
+                    tempLsYDead = Math.Abs(Math.Sin(r)) * (lsDeadzone / 127.0) * maxYValue;
 
                     if (lsSquared > lsDeadzoneSquared)
                     {
@@ -526,8 +526,8 @@ namespace DS4Windows
                 double tempOutputX = 0.0, tempOutputY = 0.0;
                 if (rsDeadzone > 0)
                 {
-                    tempRsXDead = Math.Cos(r) * (rsDeadzone);
-                    tempRsYDead = Math.Sin(r) * (-rsDeadzone);
+                    tempRsXDead = Math.Abs(Math.Cos(r)) * (rsDeadzone / 127.0) * maxXValue;
+                    tempRsYDead = Math.Abs(Math.Sin(r)) * (rsDeadzone / 127.0) * maxYValue;
 
                     if (rsSquared > rsDeadzoneSquared)
                     {

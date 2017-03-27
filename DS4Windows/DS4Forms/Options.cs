@@ -239,6 +239,22 @@ namespace DS4Windows
                 }
                 try
                 {
+                    nUDLSAntiDead.Value = (decimal)(LSAntiDeadzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDLSAntiDead.Value = 0;
+                }
+                try
+                {
+                    nUDRSAntiDead.Value = (decimal)(RSAntiDeadzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDRSAntiDead.Value = 0;
+                }
+                try
+                {
                     nUDSX.Value = (decimal)SXDeadzone[device];
                 }
                 catch
@@ -399,6 +415,8 @@ namespace DS4Windows
                 nUDR2.Value = 0;
                 nUDLS.Value = 0;
                 nUDRS.Value = 0;
+                nUDLSAntiDead.Value = 0;
+                nUDRSAntiDead.Value = 0;
                 nUDSX.Value = .25m;
                 nUDSZ.Value = .25m;
 
@@ -1021,6 +1039,8 @@ namespace DS4Windows
             Rainbow[device] = (int)nUDRainbow.Value;
             RSDeadzone[device] = (int)Math.Round((nUDRS.Value * 127), 0);
             LSDeadzone[device] = (int)Math.Round((nUDLS.Value * 127), 0);
+            LSAntiDeadzone[device] = (int)(nUDLSAntiDead.Value * 100);
+            RSAntiDeadzone[device] = (int)(nUDRSAntiDead.Value * 100);
             ButtonMouseSensitivity[device] = (int)numUDMouseSens.Value;
             FlashAt[device] = (int)nUDflashLED.Value;
             SXDeadzone[device] = (double)nUDSX.Value;

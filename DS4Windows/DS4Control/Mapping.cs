@@ -457,15 +457,15 @@ namespace DS4Windows
             else if ((lsDeadzone > 0 && lsSquared > lsDeadzoneSquared) || lsAntiDead > 0)
             {
                 double r = Math.Atan2(-(dState.LY - 127.5f), (dState.LX - 127.5f));
-                double maxXValue = dState.LX > 127.5 ? 127.5 : -127.5;
-                double maxYValue = dState.LY > 127.5 ? 127.5 : -127.5;
+                double maxXValue = dState.LX >= 127.5 ? 127.5 : -127.5;
+                double maxYValue = dState.LY >= 127.5 ? 127.5 : -127.5;
 
                 double tempLsXDead = 0.0, tempLsYDead = 0.0;
                 double tempOutputX = 0.0, tempOutputY = 0.0;
                 if (lsDeadzone > 0)
                 {
                     tempLsXDead = Math.Cos(r) * (lsDeadzone);
-                    tempLsYDead = Math.Sin(r) * (lsDeadzone);
+                    tempLsYDead = Math.Sin(r) * (-lsDeadzone);
 
                     if (lsSquared > lsDeadzoneSquared)
                     {
@@ -515,15 +515,15 @@ namespace DS4Windows
             else if ((rsDeadzone > 0 && rsSquared > rsDeadzoneSquared) || rsAntiDead > 0)
             {
                 double r = Math.Atan2(-(dState.RY - 127.5f), (dState.RX - 127.5f));
-                double maxXValue = dState.RX > 127.5 ? 127.5 : -127.5;
-                double maxYValue = dState.RY > 127.5 ? 127.5 : -127.5;
+                double maxXValue = dState.RX >= 127.5 ? 127.5 : -127.5;
+                double maxYValue = dState.RY >= 127.5 ? 127.5 : -127.5;
 
                 double tempRsXDead = 0.0, tempRsYDead = 0.0;
                 double tempOutputX = 0.0, tempOutputY = 0.0;
                 if (rsDeadzone > 0)
                 {
                     tempRsXDead = Math.Cos(r) * (rsDeadzone);
-                    tempRsYDead = Math.Sin(r) * (rsDeadzone);
+                    tempRsYDead = Math.Sin(r) * (-rsDeadzone);
 
                     if (rsSquared > rsDeadzoneSquared)
                     {

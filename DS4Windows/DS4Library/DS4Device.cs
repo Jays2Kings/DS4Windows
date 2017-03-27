@@ -804,13 +804,14 @@ namespace DS4Windows
         // Use the "most recently set" haptic state for each of light bar/motor.
         private void setHapticState()
         {
-            int i = 0;
             DS4Color lightBarColor = LightBarColor;
             byte lightBarFlashDurationOn = LightBarOnDuration, lightBarFlashDurationOff = LightBarOffDuration;
             byte rumbleMotorStrengthLeftHeavySlow = LeftHeavySlowRumble, rumbleMotorStrengthRightLightFast = rightLightFastRumble;
-            foreach (DS4HapticState haptic in hapticState)
+            int hapticLen = hapticState.Length;
+            for (int i=0; i < hapticLen; i++)
             {
-                if (i++ == hapticStackIndex)
+                DS4HapticState haptic = hapticState[i];
+                if (i == hapticStackIndex)
                     break; // rest haven't been used this time
                 if (haptic.IsLightBarSet())
                 {

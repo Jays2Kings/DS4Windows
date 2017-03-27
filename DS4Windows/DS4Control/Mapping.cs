@@ -381,14 +381,15 @@ namespace DS4Windows
             int x;
             int y;
             int curve;
-            if (LSCurve[device] > 0)
+            int lsCurve = LSCurve[device];
+            if (lsCurve > 0)
             {
                 x = cState.LX;
                 y = cState.LY;
                 float max = x + y;
                 double curvex;
                 double curvey;
-                curve = LSCurve[device];
+                curve = lsCurve;
                 double multimax = TValue(382.5, max, curve);
                 double multimin = TValue(127.5, max, curve);
                 if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
@@ -413,14 +414,16 @@ namespace DS4Windows
                 dState.LX = (byte)Math.Round(curvex, 0);
                 dState.LY = (byte)Math.Round(curvey, 0);
             }
-            if (RSCurve[device] > 0)
+
+            int rsCurve = RSCurve[device];
+            if (rsCurve > 0)
             {
                 x = cState.RX;
                 y = cState.RY;
                 float max = x + y;
                 double curvex;
                 double curvey;
-                curve = RSCurve[device];
+                curve = rsCurve;
                 double multimax = TValue(382.5, max, curve);
                 double multimin = TValue(127.5, max, curve);
                 if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
@@ -444,6 +447,7 @@ namespace DS4Windows
                 dState.RX = (byte)Math.Round(curvex, 0);
                 dState.RY = (byte)Math.Round(curvey, 0);
             }
+
             double lsSquared = Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2);
             //deadzones
             int lsDeadzone = LSDeadzone[device];

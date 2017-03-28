@@ -674,7 +674,9 @@ namespace DS4Windows
         public bool useWhiteIcon;
         public bool flashWhenLate = true;
         public int flashWhenLateAt = 20;
+        // Cache whether profile has custom action
         public bool[] containsCustomAction = { false, false, false, false, false };
+        // Cache whether profile has custom extras
         public bool[] containsCustomExtras = { false, false, false, false, false };
         public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
         public int[] gyroInvert = { 0, 0, 0, 0, 0 };

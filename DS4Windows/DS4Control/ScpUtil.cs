@@ -19,7 +19,8 @@ namespace DS4Windows
     public class DS4ControlSettings
     {
         public DS4Controls control;
-        public string extras = "0,0,0,0,0,0,0,0";
+        //public string extras = "0,0,0,0,0,0,0,0";
+        public string extras = null;
         public DS4KeyType keyType = DS4KeyType.None;
         public enum ActionType : byte { Default, Key, Button, Macro };
         public ActionType actionType = ActionType.Default;
@@ -27,7 +28,8 @@ namespace DS4Windows
         public ActionType shiftActionType = ActionType.Default;
         public object shiftAction = null;
         public int shiftTrigger = 0;
-        public string shiftExtras = "0,0,0,0,0,0,0,0";
+        //public string shiftExtras = "0,0,0,0,0,0,0,0";
+        public string shiftExtras = null;
         public DS4KeyType shiftKeyType = DS4KeyType.None;
 
         public DS4ControlSettings(DS4Controls ctrl)
@@ -37,14 +39,16 @@ namespace DS4Windows
 
         public void Reset()
         {
-            extras = "0,0,0,0,0,0,0,0";
+            //extras = "0,0,0,0,0,0,0,0";
+            extras = null;
             keyType = DS4KeyType.None;
             actionType = ActionType.Default;
             action = null;
             shiftActionType = ActionType.Default;
             shiftAction = null;
             shiftTrigger = 0;
-            shiftExtras = "0,0,0,0,0,0,0,0";
+            //shiftExtras = "0,0,0,0,0,0,0,0";
+            shiftExtras = null;
             shiftKeyType = DS4KeyType.None;
         }
     
@@ -371,10 +375,14 @@ namespace DS4Windows
         public static void UpdateDS4CSetting (int deviceNum, string buttonName, bool shift, object action, string exts, DS4KeyType kt, int trigger = 0)
         {
             m_Config.UpdateDS4CSetting(deviceNum, buttonName, shift, action, exts, kt, trigger);
+            m_Config.containsCustomAction[deviceNum] = m_Config.HasCustomActions(deviceNum);
+            m_Config.containsCustomExtras[deviceNum] = m_Config.HasCustomExtras(deviceNum);
         }
         public static void UpdateDS4Extra(int deviceNum, string buttonName, bool shift, string exts)
         {
             m_Config.UpdateDS4CExtra(deviceNum, buttonName, shift, exts);
+            m_Config.containsCustomAction[deviceNum] = m_Config.HasCustomActions(deviceNum);
+            m_Config.containsCustomExtras[deviceNum] = m_Config.HasCustomExtras(deviceNum);
         }
 
     public static object GetDS4Action(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Action(deviceNum, buttonName, shift);
@@ -385,6 +393,14 @@ namespace DS4Windows
         public static DS4ControlSettings getDS4CSetting(int deviceNum, string control) => m_Config.getDS4CSetting(deviceNum, control);
         public static bool HasCustomAction(int deviceNum) => m_Config.HasCustomActions(deviceNum);
         public static bool HasCustomExtras(int deviceNum) => m_Config.HasCustomExtras(deviceNum);
+        public static bool containsCustomAction(int deviceNum)
+        {
+            return m_Config.containsCustomAction[deviceNum];
+        }
+        public static bool containsCustomExtras(int deviceNum)
+        {
+            return m_Config.containsCustomExtras[deviceNum];
+        }
 
         public static void SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
         {
@@ -658,6 +674,8 @@ namespace DS4Windows
         public bool useWhiteIcon;
         public bool flashWhenLate = true;
         public int flashWhenLateAt = 20;
+        public bool[] containsCustomAction = { false, false, false, false, false };
+        public bool[] containsCustomExtras = { false, false, false, false, false };
         public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
         public int[] gyroInvert = { 0, 0, 0, 0, 0 };
 
@@ -1533,6 +1551,9 @@ namespace DS4Windows
                 foreach (DS4ControlSettings dcs in ds4settings[device])
                     dcs.Reset();
 
+                containsCustomAction[device] = false;
+                containsCustomExtras[device] = false;
+
                 DS4KeyType keyType;
                 ushort wvk;
 
@@ -1706,6 +1727,8 @@ namespace DS4Windows
             if (missingSetting && Loaded)// && buttons != null)
                 SaveProfile(device, profilepath);
 
+            containsCustomAction[device] = HasCustomActions(device);
+            containsCustomExtras[device] = HasCustomExtras(device);
             return Loaded;
         }
 

@@ -42,7 +42,7 @@ namespace DS4Windows
             sp.Stream = Properties.Resources.EE;
             x360Bus = new X360Device();
             AddtoDS4List();
-            for (int i = 0; i < DS4Controllers.Length; i++)
+            for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
             {
                 processingData[i] = new X360Data();
                 MappedState[i] = new DS4State();
@@ -167,7 +167,7 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingX360);
                 bool anyUnplugged = false;                
-                for (int i = 0; i < DS4Controllers.Length; i++)
+                for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
                 {
                     if (DS4Controllers[i] != null)
                     {
@@ -479,7 +479,7 @@ namespace DS4Windows
                     */
                     cState = Mapping.SetCurveAndDeadzone(ind, cState);
                 if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
-                    HasCustomAction(ind) || HasCustomExtras(ind) || ProfileActions[ind].Count > 0))
+                    containsCustomAction(ind) || containsCustomExtras(ind) || ProfileActions[ind].Count > 0))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
                     cState = MappedState[ind];

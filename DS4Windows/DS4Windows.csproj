@@ -1055,7 +1055,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HidLibrary\LICENSE.htm" />
+    <Content Include="HidLibrary\LICENSE" />
     <Content Include="Resources\360 fades.png" />
     <None Include="Resources\360 map.png" />
     <None Include="Resources\360 highlight.png" />

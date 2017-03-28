@@ -474,7 +474,7 @@ namespace DS4Windows
                 else
                 {
                     //HidDevice.ReadStatus res = hDevice.ReadFile(inputReport);
-                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport2, READ_STREAM_TIMEOUT);
+                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport, READ_STREAM_TIMEOUT);
                     readTimeout.Enabled = false;
                     if (res != HidDevice.ReadStatus.Success)
                     {
@@ -487,7 +487,7 @@ namespace DS4Windows
                     }
                     else
                     {
-                        Array.Copy(inputReport2, 0, inputReport, 0, inputReport.Length);
+                        //Array.Copy(inputReport2, 0, inputReport, 0, inputReport.Length);
                     }
                 }
                 if (ConnectionType == ConnectionType.BT && btInputReport[0] != 0x11)
@@ -759,8 +759,8 @@ namespace DS4Windows
         public void getExposedState(DS4StateExposed expState, DS4State state)
         {
             cState.CopyTo(state);
-            expState.Accel = accel;
-            expState.Gyro = gyro;
+            expState.setAccel(accel);
+            expState.setGyro(gyro);
         }
 
         public void getCurrentState(DS4State state)

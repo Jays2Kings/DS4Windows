@@ -441,17 +441,16 @@ namespace DS4Windows
         //Called every time the new input report has arrived
         protected virtual void On_Report(object sender, EventArgs e)
         {
-
             DS4Device device = (DS4Device)sender;
 
             int ind = -1;
-            for (int i = 0; i < DS4Controllers.Length; i++)
+            for (int i = 0, arlength = DS4Controllers.Length; ind == -1 && i < arlength; i++)
                 if (device == DS4Controllers[i])
                     ind = i;
 
             if (ind != -1)
             {
-                if (FlushHIDQueue[ind])
+                if (getFlushHIDQueue(ind))
                     device.FlushHID();
                 if (!string.IsNullOrEmpty(device.error))
                 {
@@ -459,9 +458,10 @@ namespace DS4Windows
                 }
                 if (DateTime.UtcNow - device.firstActive > TimeSpan.FromSeconds(5))
                 {
-                    if (device.Latency >= FlashWhenLateAt && !lag[ind])
+                    int flashWhenLateAt = getFlashWhenLateAt();
+                    if (device.Latency >= flashWhenLateAt && !lag[ind])
                         LagFlashWarning(ind, true);
-                    else if (device.Latency < FlashWhenLateAt && lag[ind])
+                    else if (device.Latency < flashWhenLateAt && lag[ind])
                         LagFlashWarning(ind, false);
                 }
                 device.getExposedState(ExposedState[ind], CurrentState[ind]);
@@ -508,7 +508,7 @@ namespace DS4Windows
                 // Output any synthetic events.
                 Mapping.Commit(ind);
                 // Pull settings updates.
-                device.IdleTimeout = IdleDisconnectTimeout[ind];
+                device.IdleTimeout = getIdleDisconnectTimeout(ind);
             }
         }
 
@@ -751,22 +751,22 @@ namespace DS4Windows
         public int[] oldscrollvalue = { 0, 0, 0, 0 };
         protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
         {
-            if (!UseTPforControls[deviceID] && cState.Touch1 && pState.PS)
+            if (!getUseTPforControls(deviceID) && cState.Touch1 && pState.PS)
             {
-                if (TouchSensitivity[deviceID] > 0 && touchreleased[deviceID])
+                if (getTouchSensitivity(deviceID) > 0 && touchreleased[deviceID])
                 {
-                    oldtouchvalue[deviceID] = TouchSensitivity[deviceID];
-                    oldscrollvalue[deviceID] = ScrollSensitivity[deviceID];
-                    TouchSensitivity[deviceID] = 0;
-                    ScrollSensitivity[deviceID] = 0;
+                    oldtouchvalue[deviceID] = getTouchSensitivity(deviceID);
+                    oldscrollvalue[deviceID] = getScrollSensitivity(deviceID);
+                    getTouchSensitivity()[deviceID] = 0;
+                    getScrollSensitivity()[deviceID] = 0;
                     LogDebug(TouchSensitivity[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
                     Log.LogToTray(TouchSensitivity[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }
                 else if (touchreleased[deviceID])
                 {
-                    TouchSensitivity[deviceID] = oldtouchvalue[deviceID];
-                    ScrollSensitivity[deviceID] = oldscrollvalue[deviceID];
+                    getTouchSensitivity()[deviceID] = oldtouchvalue[deviceID];
+                    getScrollSensitivity()[deviceID] = oldscrollvalue[deviceID];
                     LogDebug(TouchSensitivity[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
                     Log.LogToTray(TouchSensitivity[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;

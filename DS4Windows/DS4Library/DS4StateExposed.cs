@@ -48,8 +48,17 @@ namespace DS4Windows
 
         /// <summary> Holds raw DS4 input data from 14 to 19 </summary>
         public byte[] Accel { set { accel = value; } }
+        public void setAccel(byte[] value)
+        {
+            accel = value;
+        }
+
         /// <summary> Holds raw DS4 input data from 20 to 25 </summary>
         public byte[] Gyro { set { gyro = value; } }
+        public void setGyro(byte[] value)
+        {
+            gyro = value;
+        }
 
         /// <summary> Yaw leftward/counter-clockwise/turn to port or larboard side </summary>
         /// <remarks> Add double the previous result to this delta and divide by three.</remarks>

@@ -266,6 +266,10 @@ namespace DS4Windows
             set { m_Config.flashWhenLateAt = value; }
             get { return m_Config.flashWhenLateAt; }
         }
+        public static int getFlashWhenLateAt()
+        {
+            return m_Config.flashWhenLateAt;
+        }
         public static bool UseWhiteIcon
         {
             set { m_Config.useWhiteIcon = value; }
@@ -277,8 +281,24 @@ namespace DS4Windows
         public static byte[] RumbleBoost => m_Config.rumble; 
         public static double[] Rainbow => m_Config.rainbow;
         public static bool[] FlushHIDQueue => m_Config.flushHIDQueue;
-        public static int[] IdleDisconnectTimeout => m_Config.idleDisconnectTimeout; 
+        public static bool getFlushHIDQueue(int index)
+        {
+            return m_Config.flushHIDQueue[index];
+        }
+        public static int[] IdleDisconnectTimeout => m_Config.idleDisconnectTimeout;
+        public static int getIdleDisconnectTimeout(int index)
+        {
+            return m_Config.idleDisconnectTimeout[index];
+        }
         public static byte[] TouchSensitivity => m_Config.touchSensitivity;
+        public static byte[] getTouchSensitivity()
+        {
+            return m_Config.touchSensitivity;
+        }
+        public static byte getTouchSensitivity(int index)
+        {
+            return m_Config.touchSensitivity[index];
+        }
         public static byte[] FlashType => m_Config.flashType;
         public static byte getFlashType(int index)
         {
@@ -296,6 +316,10 @@ namespace DS4Windows
         public static bool[] DinputOnly => m_Config.dinputOnly; 
         public static bool[] StartTouchpadOff => m_Config.startTouchpadOff; 
         public static bool[] UseTPforControls => m_Config.useTPforControls;
+        public static bool getUseTPforControls(int index)
+        {
+            return m_Config.useTPforControls[index];
+        }
         public static bool[] UseSAforMouse => m_Config.useSAforMouse;
         public static string[] SATriggers => m_Config.sATriggers;
         public static int[] GyroSensitivity => m_Config.gyroSensitivity;
@@ -310,6 +334,15 @@ namespace DS4Windows
         public static byte[] TapSensitivity => m_Config.tapSensitivity;
         public static bool[] DoubleTap => m_Config.doubleTap; 
         public static int[] ScrollSensitivity => m_Config.scrollSensitivity;
+        public static int[] getScrollSensitivity()
+        {
+            return m_Config.scrollSensitivity;
+        }
+        public static int getScrollSensitivity(int index)
+        {
+            return m_Config.scrollSensitivity[index];
+        }
+
         public static bool[] LowerRCOn => m_Config.lowerRCOn;
         public static bool[] TouchpadJitterCompensation => m_Config.touchpadJitterCompensation;       
 

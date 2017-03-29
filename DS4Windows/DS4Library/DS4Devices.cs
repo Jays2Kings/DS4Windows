@@ -188,6 +188,9 @@ namespace DS4Windows
             {
                 throw new Exception("Error disabling device, error code = " + Marshal.GetLastWin32Error());
             }
+
+            System.Threading.Thread.Sleep(50);
+
             propChangeParams.stateChange = NativeMethods.DICS_ENABLE;
             success = NativeMethods.SetupDiSetClassInstallParams(deviceInfoSet, ref deviceInfoData, ref propChangeParams, Marshal.SizeOf(propChangeParams));
             if (!success)

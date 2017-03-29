@@ -1718,7 +1718,7 @@ namespace DS4Windows
                             keydown[i] = false;
                         }
                     }
-                    for (ushort i = 0; i < keydown.Length; i++)
+                    for (int i = 0, arlength = keydown.Length; i < arlength; i++)
                     {
                         if (keydown[i])
                             if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
@@ -1752,9 +1752,9 @@ namespace DS4Windows
                             else if (i == 284) macroControl[23] = false;
                             else if (i == 285) macroControl[24] = false;
                             else if (keyType.HasFlag(DS4KeyType.ScanCode))
-                                InputMethods.performSCKeyRelease(i);
+                                InputMethods.performSCKeyRelease((ushort)i);
                             else
-                                InputMethods.performKeyRelease(i);
+                                InputMethods.performKeyRelease((ushort)i);
                     }
                     DS4LightBar.forcedFlash[device] = 0;
                     DS4LightBar.forcelight[device] = false;

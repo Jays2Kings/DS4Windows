@@ -40,6 +40,7 @@
             this.tPHotkeys = new System.Windows.Forms.TabPage();
             this.lbHotkeys = new System.Windows.Forms.Label();
             this.tPCredits = new System.Windows.Forms.TabPage();
+            this.linkTeokp = new System.Windows.Forms.LinkLabel();
             this.linkKiliansch = new System.Windows.Forms.LinkLabel();
             this.linkChamilsaan = new System.Windows.Forms.LinkLabel();
             this.linkBoganhobo = new System.Windows.Forms.LinkLabel();
@@ -85,7 +86,6 @@
             this.lbTranslators = new System.Windows.Forms.Label();
             this.linkSourceCode = new System.Windows.Forms.LinkLabel();
             this.lbLinkText = new System.Windows.Forms.Label();
-            this.linkTeokp = new System.Windows.Forms.LinkLabel();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
@@ -176,6 +176,13 @@
             resources.ApplyResources(this.tPCredits, "tPCredits");
             this.tPCredits.Name = "tPCredits";
             this.tPCredits.UseVisualStyleBackColor = true;
+            // 
+            // linkTeokp
+            // 
+            resources.ApplyResources(this.linkTeokp, "linkTeokp");
+            this.linkTeokp.Name = "linkTeokp";
+            this.linkTeokp.TabStop = true;
+            this.linkTeokp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkTeokp_LinkClicked);
             // 
             // linkKiliansch
             // 
@@ -447,13 +454,6 @@
             // 
             resources.ApplyResources(this.lbLinkText, "lbLinkText");
             this.lbLinkText.Name = "lbLinkText";
-            // 
-            // linkTeokp
-            // 
-            resources.ApplyResources(this.linkTeokp, "linkTeokp");
-            this.linkTeokp.Name = "linkTeokp";
-            this.linkTeokp.TabStop = true;
-            this.linkTeokp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkTeokp_LinkClicked);
             // 
             // Hotkeys
             // 

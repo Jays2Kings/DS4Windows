@@ -214,13 +214,13 @@ namespace DS4Windows
                         continue;
                     if (((Func<bool>)delegate
                     {
-                        for (Int32 Index = 0; Index < DS4Controllers.Length; Index++)
+                        for (Int32 Index = 0, arlength = DS4Controllers.Length; Index < arlength; Index++)
                             if (DS4Controllers[Index] != null && DS4Controllers[Index].MacAddress == device.MacAddress)
                                 return true;
                         return false;
                     })())
                         continue;
-                    for (Int32 Index = 0; Index < DS4Controllers.Length; Index++)
+                    for (Int32 Index = 0, arlength = DS4Controllers.Length; Index < arlength; Index++)
                         if (DS4Controllers[Index] == null)
                         {
                             LogDebug(Properties.Resources.FoundController + device.MacAddress + " (" + device.ConnectionType + ")");
@@ -418,7 +418,7 @@ namespace DS4Windows
         {
             DS4Device device = (DS4Device)sender;
             int ind = -1;
-            for (int i = 0; i < DS4Controllers.Length; i++)
+            for (int i = 0, arlength = DS4Controllers.Length; ind == -1 && i < arlength; i++)
                 if (DS4Controllers[i] != null && device.MacAddress == DS4Controllers[i].MacAddress)
                     ind = i;
             if (ind != -1)
@@ -434,10 +434,13 @@ namespace DS4Windows
                 System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 DS4Controllers[ind] = null;
                 touchPad[ind] = null;
+                lag[ind] = false;
+                inWarnMonitor[ind] = false;
                 ControllerStatusChanged(this);
             }
         }
         public bool[] lag = { false, false, false, false };
+        public bool[] inWarnMonitor = { false, false, false, false };
         //Called every time the new input report has arrived
         protected virtual void On_Report(object sender, EventArgs e)
         {
@@ -456,14 +459,23 @@ namespace DS4Windows
                 {
                     LogDebug(device.error);
                 }
-                if (DateTime.UtcNow - device.firstActive > TimeSpan.FromSeconds(5))
+
+                if (inWarnMonitor[ind])
                 {
                     int flashWhenLateAt = getFlashWhenLateAt();
-                    if (device.Latency >= flashWhenLateAt && !lag[ind])
+                    if (!lag[ind] && device.Latency >= flashWhenLateAt)
                         LagFlashWarning(ind, true);
-                    else if (device.Latency < flashWhenLateAt && lag[ind])
+                    else if (lag[ind] && device.Latency < flashWhenLateAt)
                         LagFlashWarning(ind, false);
                 }
+                else
+                {
+                    if (DateTime.UtcNow - device.firstActive > TimeSpan.FromSeconds(5))
+                    {
+                        inWarnMonitor[ind] = true;
+                    }
+                }
+
                 device.getExposedState(ExposedState[ind], CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
                 device.getPreviousState(PreviousState[ind]);

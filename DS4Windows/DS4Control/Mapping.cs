@@ -716,7 +716,7 @@ namespace DS4Windows
         static int[] oldmouse = new int[4] { -1, -1, -1, -1 };
         public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, ControlService ctrl)
         {
-            
+            /* TODO: This method is slow sauce. Find ways to speed up action execution */
             MappedState.LX = 127;
             MappedState.LY = 127;
             MappedState.RX = 127;

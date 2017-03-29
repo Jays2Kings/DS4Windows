@@ -1279,7 +1279,7 @@ namespace DS4Windows
                                     if (dcs.action != null)
                                     {
                                         if (dcs.actionType == DS4ControlSettings.ActionType.Key)
-                                            InputMethods.performKeyRelease(ushort.Parse(action.ToString()));
+                                            InputMethods.performKeyRelease(ushort.Parse(dcs.action.ToString()));
                                         else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                                         {
                                             int[] keys = (int[])dcs.action;

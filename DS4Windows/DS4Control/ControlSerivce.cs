@@ -423,20 +423,33 @@ namespace DS4Windows
                     ind = i;
             if (ind != -1)
             {
-                CurrentState[ind].Battery = PreviousState[ind].Battery = 0; // Reset for the next connection's initial status change.
-                x360Bus.Unplug(ind);
-                string removed = Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", (ind +1).ToString());
-                if (DS4Controllers[ind].Battery <= 20 &&
-                    DS4Controllers[ind].ConnectionType == ConnectionType.BT && !DS4Controllers[ind].Charging)
-                    removed += ". " + Properties.Resources.ChargeController;
-                LogDebug(removed);
-                Log.LogToTray(removed);
-                System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
-                DS4Controllers[ind] = null;
-                touchPad[ind] = null;
-                lag[ind] = false;
-                inWarnMonitor[ind] = false;
-                ControllerStatusChanged(this);
+                bool removingStatus = false;
+                lock (device.removeLocker)
+                {
+                    if (!DS4Controllers[ind].IsRemoving)
+                    {
+                        removingStatus = true;
+                        DS4Controllers[ind].IsRemoving = true;
+                    }
+                }
+
+                if (removingStatus)
+                {
+                    CurrentState[ind].Battery = PreviousState[ind].Battery = 0; // Reset for the next connection's initial status change.
+                    x360Bus.Unplug(ind);
+                    string removed = Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", (ind + 1).ToString());
+                    if (DS4Controllers[ind].Battery <= 20 &&
+                        DS4Controllers[ind].ConnectionType == ConnectionType.BT && !DS4Controllers[ind].Charging)
+                        removed += ". " + Properties.Resources.ChargeController;
+                    LogDebug(removed);
+                    Log.LogToTray(removed);
+                    System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
+                    DS4Controllers[ind] = null;
+                    touchPad[ind] = null;
+                    lag[ind] = false;
+                    inWarnMonitor[ind] = false;
+                    ControllerStatusChanged(this);
+                }
             }
         }
         public bool[] lag = { false, false, false, false };

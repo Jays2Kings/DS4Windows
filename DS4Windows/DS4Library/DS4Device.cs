@@ -153,6 +153,8 @@ namespace DS4Windows
         public HidDevice HidDevice => hDevice;
         public bool IsExclusive => HidDevice.IsExclusive;
         public bool IsDisconnecting { get; private set; }
+        public bool IsRemoving { get; set; }
+        public object removeLocker = new object();
 
         public string MacAddress =>  Mac;
 
@@ -651,6 +653,7 @@ namespace DS4Windows
                 outputReportBuffer[10] = ledFlashOff; //flash off duration
                 outputReportBuffer[19] = outputReportBuffer[20] = Convert.ToByte(audio.Volume);
             }
+            bool quitOutputThread = false;
             lock (outputReport)
             {
                 if (synchronous)
@@ -662,7 +665,7 @@ namespace DS4Windows
                         if (!writeOutput())
                         {
                             Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered synchronous write failure: " + Marshal.GetLastWin32Error());
-                            StopOutputUpdate();
+                            quitOutputThread = true;
                         }
                     }
                     catch
@@ -682,6 +685,11 @@ namespace DS4Windows
                         Monitor.Pulse(outputReport);
                     }
                 }
+            }
+
+            if (quitOutputThread)
+            {
+                StopOutputUpdate();
             }
         }
 

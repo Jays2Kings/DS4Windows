@@ -373,6 +373,10 @@ namespace DS4Windows
         public static string[] ProfilePath => m_Config.profilePath;
         public static bool[] DistanceProfiles = m_Config.distanceProfiles;
         public static List<string>[] ProfileActions => m_Config.profileActions;
+        public static List<string> getProfileActions(int index)
+        {
+            return m_Config.profileActions[index];
+        }
         
         public static void UpdateDS4CSetting (int deviceNum, string buttonName, bool shift, object action, string exts, DS4KeyType kt, int trigger = 0)
         {

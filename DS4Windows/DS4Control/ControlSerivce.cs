@@ -504,7 +504,7 @@ namespace DS4Windows
                     */
                     cState = Mapping.SetCurveAndDeadzone(ind, cState);
                 if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
-                    containsCustomAction(ind) || containsCustomExtras(ind) || ProfileActions[ind].Count > 0))
+                    containsCustomAction(ind) || containsCustomExtras(ind) || getProfileActions(ind).Count > 0))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
                     cState = MappedState[ind];

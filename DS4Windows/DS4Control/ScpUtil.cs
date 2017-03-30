@@ -395,8 +395,10 @@ namespace DS4Windows
         public static DS4KeyType GetDS4KeyType(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4KeyType(deviceNum, buttonName, shift);
         public static string GetDS4Extra(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Extra(deviceNum, buttonName, shift);
         public static int GetDS4STrigger(int deviceNum, string buttonName) => m_Config.GetDS4STrigger(deviceNum, buttonName);
+        public static int GetDS4STrigger(int deviceNum, DS4Controls control) => m_Config.GetDS4STrigger(deviceNum, control);
         public static List<DS4ControlSettings> getDS4CSettings(int device) => m_Config.ds4settings[device];
         public static DS4ControlSettings getDS4CSetting(int deviceNum, string control) => m_Config.getDS4CSetting(deviceNum, control);
+        public static DS4ControlSettings getDS4CSetting(int deviceNum, DS4Controls control) => m_Config.getDS4CSetting(deviceNum, control);
         public static bool HasCustomAction(int deviceNum) => m_Config.HasCustomActions(deviceNum);
         public static bool HasCustomExtras(int deviceNum) => m_Config.HasCustomExtras(deviceNum);
         public static bool containsCustomAction(int deviceNum)
@@ -2340,6 +2342,19 @@ namespace DS4Windows
             return 0;
         }
 
+        public int GetDS4STrigger(int deviceNum, DS4Controls dc)
+        {
+            int temp = (int)dc;
+            if (temp > 0)
+            {
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                return dcs.shiftTrigger;
+            }
+
+            return 0;
+        }
+
         public DS4ControlSettings getDS4CSetting(int deviceNum, string buttonName)
         {
             DS4Controls dc;
@@ -2350,6 +2365,19 @@ namespace DS4Windows
             foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
                 if (dcs.control == dc)
                     return dcs;
+            return null;
+        }
+
+        public DS4ControlSettings getDS4CSetting(int deviceNum, DS4Controls dc)
+        {
+            int temp = (int)dc;
+            if (temp > 0)
+            {
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                return dcs;
+            }
+
             return null;
         }
 

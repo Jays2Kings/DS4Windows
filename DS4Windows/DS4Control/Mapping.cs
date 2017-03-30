@@ -1058,28 +1058,28 @@ namespace DS4Windows
             if (macroControl[23]) MappedState.RY = 255;
             if (macroControl[24]) MappedState.RY = 0;
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LXNeg.ToString()), device, cState, eState, tp), DS4Controls.LXNeg))
+            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LXNeg), device, cState, eState, tp), DS4Controls.LXNeg))
                 tempControlDict.Add(DS4Controls.LXNeg, DS4Controls.LXNeg);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LXPos.ToString()), device, cState, eState, tp), DS4Controls.LXPos))
+            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LXPos), device, cState, eState, tp), DS4Controls.LXPos))
                 tempControlDict.Add(DS4Controls.LXPos, DS4Controls.LXPos);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LYNeg.ToString()), device, cState, eState, tp), DS4Controls.LYNeg))
+            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LYNeg), device, cState, eState, tp), DS4Controls.LYNeg))
                 tempControlDict.Add(DS4Controls.LYNeg, DS4Controls.LYNeg);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LYPos.ToString()), device, cState, eState, tp), DS4Controls.LYPos))
+            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LYPos), device, cState, eState, tp), DS4Controls.LYPos))
                 tempControlDict.Add(DS4Controls.LYPos, DS4Controls.LYPos);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RXNeg.ToString()), device, cState, eState, tp), DS4Controls.RXNeg))
+            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RXNeg), device, cState, eState, tp), DS4Controls.RXNeg))
                 tempControlDict.Add(DS4Controls.RXNeg, DS4Controls.RXNeg);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RXPos.ToString()), device, cState, eState, tp), DS4Controls.RXPos))
+            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RXPos), device, cState, eState, tp), DS4Controls.RXPos))
                 tempControlDict.Add(DS4Controls.RXPos, DS4Controls.RXPos);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RYNeg.ToString()), device, cState, eState, tp), DS4Controls.RYNeg))
+            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RYNeg), device, cState, eState, tp), DS4Controls.RYNeg))
                 tempControlDict.Add(DS4Controls.RYNeg, DS4Controls.RYNeg);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RYPos.ToString()), device, cState, eState, tp), DS4Controls.RYPos))
+            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RYPos), device, cState, eState, tp), DS4Controls.RYPos))
                 tempControlDict.Add(DS4Controls.RYPos, DS4Controls.RYPos);
 
             foreach (KeyValuePair<DS4Controls, DS4Controls> entry in tempControlDict)
@@ -1320,7 +1320,7 @@ namespace DS4Windows
                                 untriggerindex[device] = index;
                                 foreach (DS4Controls dc in action.trigger)
                                 {
-                                    DS4ControlSettings dcs = getDS4CSetting(device, dc.ToString());
+                                    DS4ControlSettings dcs = getDS4CSetting(device, dc);
                                     if (dcs.action != null)
                                     {
                                         if (dcs.actionType == DS4ControlSettings.ActionType.Key)
@@ -1397,7 +1397,7 @@ namespace DS4Windows
                                 d.DisconnectBT();
                                 foreach (DS4Controls dc in action.trigger)
                                 {
-                                    DS4ControlSettings dcs = getDS4CSetting(device, dc.ToString());
+                                    DS4ControlSettings dcs = getDS4CSetting(device, dc);
                                     if (dcs.action != null)
                                     {
                                         if (dcs.actionType == DS4ControlSettings.ActionType.Key)
@@ -1596,7 +1596,7 @@ namespace DS4Windows
                             foreach (DS4Controls dc in action.uTrigger)
                             {
                                 actionDone[index].dev[device] = true;
-                                DS4ControlSettings dcs = getDS4CSetting(device, dc.ToString());
+                                DS4ControlSettings dcs = getDS4CSetting(device, dc);
                                 if (dcs.action != null)
                                 {
                                     if (dcs.actionType == DS4ControlSettings.ActionType.Key)

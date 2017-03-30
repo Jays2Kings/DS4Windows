@@ -478,12 +478,17 @@ namespace DS4Windows
                             tempOutputY = ((dState.LY - 127.5f - tempLsYDead) / (double)(maxYValue - tempLsYDead));
                         }
                     }
+                    else
+                    {
+                        tempOutputX = ((dState.LX - 127.5f) / (double)(maxXValue));
+                        tempOutputY = ((dState.LY - 127.5f) / (double)(maxYValue));
+                    }
 
                     double tempLsXAntiDeadPercent = 0.0, tempLsYAntiDeadPercent = 0.0;
                     if (lsAntiDead > 0)
                     {
-                        tempLsXAntiDeadPercent = (lsAntiDead / 100.0) * Math.Abs(Math.Cos(r));
-                        tempLsYAntiDeadPercent = (lsAntiDead / 100.0) * Math.Abs(Math.Sin(r));
+                        tempLsXAntiDeadPercent = (lsAntiDead * 0.01) * Math.Abs(Math.Cos(r));
+                        tempLsYAntiDeadPercent = (lsAntiDead * 0.01) * Math.Abs(Math.Sin(r));
                     }
 
                     if (tempOutputX > 0.0)
@@ -539,12 +544,17 @@ namespace DS4Windows
                             tempOutputY = ((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead));
                         }
                     }
+                    else
+                    {
+                        tempOutputX = ((dState.RX - 127.5f) / (double)(maxXValue));
+                        tempOutputY = ((dState.RY - 127.5f) / (double)(maxYValue));
+                    }
 
                     double tempRsXAntiDeadPercent = 0.0, tempRsYAntiDeadPercent = 0.0;
                     if (rsAntiDead > 0)
                     {
-                        tempRsXAntiDeadPercent = (rsAntiDead / 100.0) * Math.Abs(Math.Cos(r));
-                        tempRsYAntiDeadPercent = (rsAntiDead / 100.0) * Math.Abs(Math.Sin(r));
+                        tempRsXAntiDeadPercent = (rsAntiDead * 0.01) * Math.Abs(Math.Cos(r));
+                        tempRsYAntiDeadPercent = (rsAntiDead * 0.01) * Math.Abs(Math.Sin(r));
                     }
 
                     if (tempOutputX > 0.0)
@@ -573,9 +583,38 @@ namespace DS4Windows
             }
 
             byte l2Deadzone = L2Deadzone[device];
-            if (l2Deadzone > 0)
+            int l2AntiDeadzone = L2AntiDeadzone[device];
+            if (l2Deadzone > 0 || l2AntiDeadzone > 0)
             {
-                if (cState.L2 > l2Deadzone)
+                double tempL2Output = (cState.L2 / 255.0);
+                double tempL2AntiDead = 0.0;
+                if (l2Deadzone > 0)
+                {
+                    if (cState.L2 > l2Deadzone)
+                    {
+                        tempL2Output = ((dState.L2 - l2Deadzone) / (double)(255 - l2Deadzone));
+                    }
+                    else
+                    {
+                        tempL2Output = 0.0;
+                    }
+                }
+
+                if (l2AntiDeadzone > 0)
+                {
+                    tempL2AntiDead = l2AntiDeadzone * 0.01;
+                }
+
+                if (tempL2Output > 0.0)
+                {
+                    dState.L2 = (byte)(((1.0 - tempL2AntiDead) * tempL2Output + tempL2AntiDead) * 255);
+                }
+                else
+                {
+                    dState.L2 = 0;
+                }
+
+                /*if (cState.L2 > l2Deadzone)
                 {
                     dState.L2 = (byte)(((dState.L2 - l2Deadzone) / (double)(255 - l2Deadzone)) * 255);
                 }
@@ -583,14 +622,35 @@ namespace DS4Windows
                 {
                     dState.L2 = 0;
                 }
+                */
             }
 
             byte r2Deadzone = R2Deadzone[device];
-            if (r2Deadzone > 0)
+            int r2AntiDeadzone = R2AntiDeadzone[device];
+            if (r2Deadzone > 0 || r2AntiDeadzone > 0)
             {
-                if (cState.R2 > r2Deadzone)
+                double tempR2Output = (cState.R2 / 255.0);
+                double tempR2AntiDead = 0.0;
+                if (r2Deadzone > 0)
                 {
-                    dState.R2 = (byte)(((dState.R2 - r2Deadzone) / (double)(255 - r2Deadzone)) * 255);
+                    if (cState.R2 > r2Deadzone)
+                    {
+                        tempR2Output = ((dState.R2 - r2Deadzone) / (double)(255 - r2Deadzone));
+                    }
+                    else
+                    {
+                        tempR2Output = 0.0;
+                    }
+                }
+
+                if (r2AntiDeadzone > 0)
+                {
+                    tempR2AntiDead = r2AntiDeadzone * 0.01;
+                }
+
+                if (tempR2Output > 0.0)
+                {
+                    dState.R2 = (byte)(((1.0 - tempR2AntiDead) * tempR2Output + tempR2AntiDead) * 255);
                 }
                 else
                 {

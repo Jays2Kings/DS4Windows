@@ -221,6 +221,24 @@ namespace DS4Windows
                 {
                     nUDR2.Value = 0;
                 }
+
+                try
+                {
+                    nUDL2AntiDead.Value = (decimal)(L2AntiDeadzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDL2AntiDead.Value = 0;
+                }
+                try
+                {
+                    nUDR2AntiDead.Value = (decimal)(R2AntiDeadzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDR2AntiDead.Value = 0;
+                }
+
                 try
                 {
                     nUDLS.Value = Math.Round((decimal)(LSDeadzone[device] / 127d), 3);
@@ -237,6 +255,7 @@ namespace DS4Windows
                 {
                     nUDRS.Value = 0;
                 }
+
                 try
                 {
                     nUDLSAntiDead.Value = (decimal)(LSAntiDeadzone[device] / 100d);
@@ -253,6 +272,7 @@ namespace DS4Windows
                 {
                     nUDRSAntiDead.Value = 0;
                 }
+
                 try
                 {
                     nUDSX.Value = (decimal)SXDeadzone[device];
@@ -1028,6 +1048,8 @@ namespace DS4Windows
                 FlashColor[device] = new DS4Color(Color.Black);
             L2Deadzone[device] = (byte)Math.Round((nUDL2.Value * 255), 0);
             R2Deadzone[device] = (byte)Math.Round((nUDR2.Value * 255), 0);
+            L2AntiDeadzone[device] = (int)(nUDL2AntiDead.Value * 100);
+            R2AntiDeadzone[device] = (int)(nUDR2AntiDead.Value * 100);
             RumbleBoost[device] = (byte)nUDRumbleBoost.Value;
             TouchSensitivity[device] = (byte)nUDTouch.Value;
             TouchpadJitterCompensation[device] = cBTouchpadJitterCompensation.Checked;
@@ -2357,12 +2379,22 @@ namespace DS4Windows
 
         private void nUDLSAntiDead_ValueChanged(object sender, EventArgs e)
         {
-            LSAntiDeadzone[device] = (byte)(nUDLSAntiDead.Value * 100);
+            LSAntiDeadzone[device] = (int)(nUDLSAntiDead.Value * 100);
         }
 
         private void nUDRSAntiDead_ValueChanged(object sender, EventArgs e)
         {
-            RSAntiDeadzone[device] = (byte)(nUDRSAntiDead.Value * 100);
+            RSAntiDeadzone[device] = (int)(nUDRSAntiDead.Value * 100);
+        }
+
+        private void nUDL2AntiDead_ValueChanged(object sender, EventArgs e)
+        {
+            L2AntiDeadzone[device] = (int)(nUDL2AntiDead.Value * 100);
+        }
+
+        private void nUDR2AntiDead_ValueChanged(object sender, EventArgs e)
+        {
+            R2AntiDeadzone[device] = (int)(nUDR2AntiDead.Value * 100);
         }
 
         private void Options_Resize(object sender, EventArgs e)

@@ -700,7 +700,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbL2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 4</value>
+    <value>6, 31</value>
   </data>
   <data name="lbL2.Size" type="System.Drawing.Size, System.Drawing">
     <value>19, 13</value>
@@ -730,7 +730,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbR2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 5</value>
+    <value>82, 32</value>
   </data>
   <data name="lbR2.Size" type="System.Drawing.Size, System.Drawing">
     <value>21, 13</value>
@@ -760,7 +760,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbIdleMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 47</value>
+    <value>169, 67</value>
   </data>
   <data name="lbIdleMinutes.Size" type="System.Drawing.Size, System.Drawing">
     <value>28, 13</value>
@@ -784,7 +784,7 @@
     <value>13</value>
   </data>
   <data name="nUDIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 44</value>
+    <value>115, 64</value>
   </data>
   <data name="nUDIdleDisconnect.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 20</value>
@@ -805,7 +805,7 @@
     <value>8</value>
   </data>
   <data name="nUDR2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 2</value>
+    <value>105, 29</value>
   </data>
   <data name="nUDR2.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
@@ -835,7 +835,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBFlushHIDQueue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 162</value>
+    <value>8, 178</value>
   </data>
   <data name="cBFlushHIDQueue.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -1189,7 +1189,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbRS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 34</value>
+    <value>82, 6</value>
   </data>
   <data name="lbRS.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 13</value>
@@ -1219,7 +1219,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbLS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 34</value>
+    <value>6, 6</value>
   </data>
   <data name="lbLS.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 13</value>
@@ -1243,7 +1243,7 @@
     <value>10</value>
   </data>
   <data name="nUDRS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 31</value>
+    <value>105, 3</value>
   </data>
   <data name="nUDRS.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
@@ -1288,7 +1288,7 @@
     <value>11</value>
   </data>
   <data name="nUDLS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 31</value>
+    <value>30, 3</value>
   </data>
   <data name="nUDLS.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
@@ -1312,7 +1312,7 @@
     <value>2</value>
   </data>
   <data name="nUDL2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 2</value>
+    <value>30, 29</value>
   </data>
   <data name="nUDL2.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
@@ -1918,7 +1918,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBDinput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 138</value>
+    <value>8, 154</value>
   </data>
   <data name="cBDinput.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -1948,7 +1948,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 106</value>
+    <value>215, 122</value>
   </data>
   <data name="pBProgram.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 23</value>
@@ -1978,7 +1978,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBLaunchProgram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 105</value>
+    <value>4, 118</value>
   </data>
   <data name="cBLaunchProgram.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -2015,7 +2015,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 108</value>
+    <value>132, 122</value>
   </data>
   <data name="btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 23</value>
@@ -2045,7 +2045,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbUseController.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 75</value>
+    <value>5, 96</value>
   </data>
   <data name="lbUseController.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 13</value>
@@ -2075,7 +2075,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="cBMouseAccel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 9</value>
+    <value>8, 42</value>
   </data>
   <data name="cBMouseAccel.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 17</value>
@@ -2099,7 +2099,7 @@ with profile</value>
     <value>5</value>
   </data>
   <data name="nUDSixaxis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 74</value>
+    <value>85, 95</value>
   </data>
   <data name="nUDSixaxis.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 20</value>
@@ -2126,7 +2126,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="cBControllerInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>120, 74</value>
+    <value>118, 95</value>
   </data>
   <data name="cBControllerInput.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -2159,7 +2159,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="cBIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 45</value>
+    <value>8, 65</value>
   </data>
   <data name="cBIdleDisconnect.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -2189,7 +2189,7 @@ with profile</value>
     <value>281, 221</value>
   </data>
   <data name="gBOther.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 190</value>
+    <value>272, 205</value>
   </data>
   <data name="gBOther.TabIndex" type="System.Int32, mscorlib">
     <value>247</value>
@@ -5909,7 +5909,7 @@ with profile</value>
     <value>0</value>
   </data>
   <data name="nUDLSCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 2</value>
+    <value>36, 16</value>
   </data>
   <data name="nUDLSCurve.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
@@ -5933,7 +5933,7 @@ with profile</value>
     <value>0</value>
   </data>
   <data name="nUDRSCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 2</value>
+    <value>153, 16</value>
   </data>
   <data name="nUDRSCurve.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
@@ -5963,7 +5963,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbRSCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>123, 4</value>
+    <value>130, 18</value>
   </data>
   <data name="lbRSCurve.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 13</value>
@@ -5993,7 +5993,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbRSCurvePercent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>201, 4</value>
+    <value>208, 18</value>
   </data>
   <data name="lbRSCurvePercent.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 13</value>
@@ -6023,7 +6023,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbLSCurvePercent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 4</value>
+    <value>91, 18</value>
   </data>
   <data name="lbLSCurvePercent.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 13</value>
@@ -6053,7 +6053,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbLSCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 4</value>
+    <value>13, 18</value>
   </data>
   <data name="lbLSCurve.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 13</value>
@@ -6103,8 +6103,110 @@ with profile</value>
   <data name="&gt;&gt;tPCurve.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="nUDR2AntiDead.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 30</value>
+  </data>
+  <data name="nUDR2AntiDead.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="nUDR2AntiDead.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;nUDR2AntiDead.Name" xml:space="preserve">
+    <value>nUDR2AntiDead</value>
+  </data>
+  <data name="&gt;&gt;nUDR2AntiDead.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDR2AntiDead.Parent" xml:space="preserve">
+    <value>antiDeadzoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;nUDR2AntiDead.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>117, 32</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 13</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>R2:</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>antiDeadzoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="nUDL2AntiDead.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 29</value>
+  </data>
+  <data name="nUDL2AntiDead.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDL2AntiDead.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;nUDL2AntiDead.Name" xml:space="preserve">
+    <value>nUDL2AntiDead</value>
+  </data>
+  <data name="&gt;&gt;nUDL2AntiDead.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDL2AntiDead.Parent" xml:space="preserve">
+    <value>antiDeadzoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;nUDL2AntiDead.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 31</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 13</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>L2:</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>antiDeadzoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="nUDRSAntiDead.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 18</value>
+    <value>157, 4</value>
   </data>
   <data name="nUDRSAntiDead.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 20</value>
@@ -6122,7 +6224,7 @@ with profile</value>
     <value>antiDeadzoneTabPage</value>
   </data>
   <data name="&gt;&gt;nUDRSAntiDead.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6131,7 +6233,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 20</value>
+    <value>116, 6</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>25, 13</value>
@@ -6152,10 +6254,10 @@ with profile</value>
     <value>antiDeadzoneTabPage</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="nUDLSAntiDead.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 17</value>
+    <value>50, 3</value>
   </data>
   <data name="nUDLSAntiDead.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 20</value>
@@ -6173,7 +6275,7 @@ with profile</value>
     <value>antiDeadzoneTabPage</value>
   </data>
   <data name="&gt;&gt;nUDLSAntiDead.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6182,7 +6284,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 19</value>
+    <value>6, 5</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 13</value>
@@ -6203,7 +6305,7 @@ with profile</value>
     <value>antiDeadzoneTabPage</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="antiDeadzoneTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

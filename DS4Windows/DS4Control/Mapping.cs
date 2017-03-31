@@ -381,7 +381,7 @@ namespace DS4Windows
             int x;
             int y;
             int curve;
-            int lsCurve = LSCurve[device];
+            int lsCurve = getLSCurve(device);
             if (lsCurve > 0)
             {
                 x = cState.LX;
@@ -415,7 +415,7 @@ namespace DS4Windows
                 dState.LY = (byte)Math.Round(curvey, 0);
             }
 
-            int rsCurve = RSCurve[device];
+            int rsCurve = getRSCurve(device);
             if (rsCurve > 0)
             {
                 x = cState.RX;
@@ -448,8 +448,8 @@ namespace DS4Windows
                 dState.RY = (byte)Math.Round(curvey, 0);
             }
 
-            int lsDeadzone = LSDeadzone[device];
-            int lsAntiDead = LSAntiDeadzone[device];
+            int lsDeadzone = getLSDeadzone(device);
+            int lsAntiDead = getLSAntiDeadzone(device);
             if (lsDeadzone > 0 || lsAntiDead > 0)
             {
                 double lsSquared = Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2);
@@ -514,8 +514,8 @@ namespace DS4Windows
                 }
             }
 
-            int rsDeadzone = RSDeadzone[device];
-            int rsAntiDead = RSAntiDeadzone[device];
+            int rsDeadzone = getRSDeadzone(device);
+            int rsAntiDead = getRSAntiDeadzone(device);
             if (rsDeadzone > 0 || rsAntiDead > 0)
             {
                 double rsSquared = Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2);
@@ -582,8 +582,8 @@ namespace DS4Windows
                 }
             }
 
-            byte l2Deadzone = L2Deadzone[device];
-            int l2AntiDeadzone = L2AntiDeadzone[device];
+            byte l2Deadzone = getL2Deadzone(device);
+            int l2AntiDeadzone = getL2AntiDeadzone(device);
             if (l2Deadzone > 0 || l2AntiDeadzone > 0)
             {
                 double tempL2Output = (cState.L2 / 255.0);
@@ -625,8 +625,8 @@ namespace DS4Windows
                 */
             }
 
-            byte r2Deadzone = R2Deadzone[device];
-            int r2AntiDeadzone = R2AntiDeadzone[device];
+            byte r2Deadzone = getR2Deadzone(device);
+            int r2AntiDeadzone = getR2AntiDeadzone(device);
             if (r2Deadzone > 0 || r2AntiDeadzone > 0)
             {
                 double tempR2Output = (cState.R2 / 255.0);
@@ -658,25 +658,25 @@ namespace DS4Windows
                 }
             }
 
-            double lsSens = LSSens[device];
+            double lsSens = getLSSens(device);
             if (lsSens != 1.0)
             {
                 dState.LX = (byte)Clamp(0, lsSens * (dState.LX - 127.5f) + 127.5f, 255);
                 dState.LY = (byte)Clamp(0, lsSens * (dState.LY - 127.5f) + 127.5f, 255);
             }
 
-            double rsSens = RSSens[device];
+            double rsSens = getRSSens(device);
             if (rsSens != 1.0)
             {
                 dState.RX = (byte)Clamp(0, rsSens * (dState.RX - 127.5f) + 127.5f, 255);
                 dState.RY = (byte)Clamp(0, rsSens * (dState.RY - 127.5f) + 127.5f, 255);
             }
 
-            double l2Sens = L2Sens[device];
+            double l2Sens = getL2Sens(device);
             if (l2Sens != 1.0)
                 dState.L2 = (byte)Clamp(0, l2Sens * dState.L2, 255);
 
-            double r2Sens = R2Sens[device];
+            double r2Sens = getR2Sens(device);
             if (r2Sens != 1.0)
                 dState.R2 = (byte)Clamp(0, r2Sens * dState.R2, 255);
 

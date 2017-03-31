@@ -350,24 +350,80 @@ namespace DS4Windows
         public static bool[] LowerRCOn => m_Config.lowerRCOn;
         public static bool[] TouchpadJitterCompensation => m_Config.touchpadJitterCompensation;       
 
-        public static byte[] L2Deadzone => m_Config.l2Deadzone; 
+        public static byte[] L2Deadzone => m_Config.l2Deadzone;
+        public static byte getL2Deadzone(int index)
+        {
+            return m_Config.l2Deadzone[index];
+        }
         public static byte[] R2Deadzone => m_Config.r2Deadzone;
+        public static byte getR2Deadzone(int index)
+        {
+            return m_Config.r2Deadzone[index];
+        }
         public static double[] SXDeadzone => m_Config.SXDeadzone;
         public static double[] SZDeadzone => m_Config.SZDeadzone;
         public static int[] LSDeadzone => m_Config.LSDeadzone;
+        public static int getLSDeadzone(int index)
+        {
+            return m_Config.LSDeadzone[index];
+        }
         public static int[] RSDeadzone => m_Config.RSDeadzone;
+        public static int getRSDeadzone(int index)
+        {
+            return m_Config.RSDeadzone[index];
+        }
         public static int[] LSAntiDeadzone => m_Config.LSAntiDeadzone;
+        public static int getLSAntiDeadzone(int index)
+        {
+            return m_Config.LSAntiDeadzone[index];
+        }
         public static int[] RSAntiDeadzone => m_Config.RSAntiDeadzone;
+        public static int getRSAntiDeadzone(int index)
+        {
+            return m_Config.RSAntiDeadzone[index];
+        }
         public static int[] L2AntiDeadzone => m_Config.l2AntiDeadzone;
+        public static int getL2AntiDeadzone(int index)
+        {
+            return m_Config.l2AntiDeadzone[index];
+        }
         public static int[] R2AntiDeadzone => m_Config.r2AntiDeadzone;
+        public static int getR2AntiDeadzone(int index)
+        {
+            return m_Config.r2AntiDeadzone[index];
+        }
         public static int[] LSCurve => m_Config.lsCurve;
+        public static int getLSCurve(int index)
+        {
+            return m_Config.lsCurve[index];
+        }
         public static int[] RSCurve => m_Config.rsCurve;
+        public static int getRSCurve(int index)
+        {
+            return m_Config.rsCurve[index];
+        }
         public static double[] L2Sens => m_Config.l2Sens;
+        public static double getL2Sens(int index)
+        {
+            return m_Config.l2Sens[index];
+        }
         public static double[] R2Sens => m_Config.r2Sens;
+        public static double getR2Sens(int index)
+        {
+            return m_Config.r2Sens[index];
+        }
         public static double[] SXSens => m_Config.SXSens;
         public static double[] SZSens => m_Config.SZSens;
         public static double[] LSSens => m_Config.LSSens;
+        public static double getLSSens(int index)
+        {
+            return m_Config.LSSens[index];
+        }
         public static double[] RSSens => m_Config.RSSens;
+        public static double getRSSens(int index)
+        {
+            return m_Config.RSSens[index];
+        }
         public static bool[] MouseAccel => m_Config.mouseAccel;
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;

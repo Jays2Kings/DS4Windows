@@ -447,7 +447,8 @@ namespace DS4Windows
             m_Config.containsCustomExtras[deviceNum] = m_Config.HasCustomExtras(deviceNum);
         }
 
-    public static object GetDS4Action(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Action(deviceNum, buttonName, shift);
+        public static object GetDS4Action(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Action(deviceNum, buttonName, shift);
+        public static object GetDS4Action(int deviceNum, DS4Controls control, bool shift) => m_Config.GetDS4Action(deviceNum, control, shift);
         public static DS4KeyType GetDS4KeyType(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4KeyType(deviceNum, buttonName, shift);
         public static string GetDS4Extra(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Extra(deviceNum, buttonName, shift);
         public static int GetDS4STrigger(int deviceNum, string buttonName) => m_Config.GetDS4STrigger(deviceNum, buttonName);
@@ -483,7 +484,7 @@ namespace DS4Windows
 
         public static int GetActionIndexOf(string name)
         {
-            for (int i = 0; i < m_Config.actions.Count; i++)
+            for (int i = 0, actionCount = m_Config.actions.Count; i < actionCount; i++)
                 if (m_Config.actions[i].name == name)
                     return i;
             return -1;
@@ -2346,6 +2347,26 @@ namespace DS4Windows
                     else
                         return dcs.action;
                 }
+            return null;
+        }
+
+        public object GetDS4Action(int deviceNum, DS4Controls dc, bool shift)
+        {
+            int temp = (int)dc;
+            if (temp > 0)
+            {
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                if (shift)
+                {
+                    return dcs.shiftTrigger;
+                }
+                else
+                {
+                    return dcs.action;
+                }
+            }
+
             return null;
         }
 

@@ -785,7 +785,7 @@ namespace DS4Windows
             int MouseDeltaY = 0;
             
             SyntheticState deviceState = Mapping.deviceState[device];
-            if (GetActions().Count > 0 && (getProfileActions(device).Count > 0 || !string.IsNullOrEmpty(tempprofilename[device])))
+            if (containsCustomAction(device) && (getProfileActions(device).Count > 0 || !string.IsNullOrEmpty(tempprofilename[device])))
                 MapCustomAction(device, cState, MappedState, eState, tp, ctrl);
             if (ctrl.DS4Controllers[device] == null) return;
 
@@ -1197,25 +1197,29 @@ namespace DS4Windows
         }
         public static async void MapCustomAction(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, ControlService ctrl)
         {
-            try {
-                foreach (string actionname in ProfileActions[device])
+            /* TODO: This method is slow sauce. Find ways to speed up action execution */
+            try
+            {
+                List<string> profileActions = getProfileActions(device);
+                foreach (string actionname in profileActions)
                 {
                     //DS4KeyType keyType = getShiftCustomKeyType(device, customKey.Key);
                     SpecialAction action = GetAction(actionname);
                     int index = GetActionIndexOf(actionname);
-                    if (actionDone.Count < index + 1)
+                    int actionDoneCount = actionDone.Count;
+                    if (actionDoneCount < index + 1)
                         actionDone.Add(new ActionState());
-                    else if (actionDone.Count > GetActions().Count())
-                        actionDone.RemoveAt(actionDone.Count - 1);
-                    double time;
+                    else if (actionDoneCount > GetActions().Count())
+                        actionDone.RemoveAt(actionDoneCount - 1);
+                    double time = 0.0;
                     //If a key or button is assigned to the trigger, a key special action is used like
                     //a quick tap to use and hold to use the regular custom button/key
                     bool triggerToBeTapped = action.type == "Key" && action.trigger.Count == 1 &&
-                            GetDS4Action(device, action.trigger[0].ToString(), false) == null;
+                            GetDS4Action(device, action.trigger[0], false) == null;
                     if (!(action.name == "null" || index < 0))
                     {
                         bool triggeractivated = true;
-                        if (action.delayTime > 0)
+                        if (action.delayTime > 0.0)
                         {
                             triggeractivated = false;
                             bool subtriggeractivated = true;
@@ -1287,7 +1291,8 @@ namespace DS4Windows
                             }
 
                         bool utriggeractivated = true;
-                        if (action.type == "Key" && action.uTrigger.Count > 0)
+                        int uTriggerCount = action.uTrigger.Count;
+                        if (action.type == "Key" && uTriggerCount > 0)
                         {
                             foreach (DS4Controls dc in action.uTrigger)
                             {
@@ -1328,7 +1333,7 @@ namespace DS4Windows
                                         else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                                         {
                                             int[] keys = (int[])dcs.action;
-                                            for (int i = 0; i < keys.Length; i++)
+                                            for (int i = 0, keysLen = keys.Length; i < keysLen; i++)
                                                 InputMethods.performKeyRelease((ushort)keys[i]);
                                         }
                                     }
@@ -1352,13 +1357,13 @@ namespace DS4Windows
                         }
                         else if (triggeractivated && action.type == "Key")
                         {
-                            if (action.uTrigger.Count == 0 || (action.uTrigger.Count > 0 && untriggerindex[device] == -1 && !actionDone[index].dev[device]))
+                            if (uTriggerCount == 0 || (uTriggerCount > 0 && untriggerindex[device] == -1 && !actionDone[index].dev[device]))
                             {
                                 actionDone[index].dev[device] = true;
                                 untriggerindex[device] = index;
                                 ushort key;
                                 ushort.TryParse(action.details, out key);
-                                if (action.uTrigger.Count == 0)
+                                if (uTriggerCount == 0)
                                 {
                                     SyntheticState.KeyPresses kp;
                                     if (!deviceState[device].keyPresses.TryGetValue(key, out kp))
@@ -1375,7 +1380,7 @@ namespace DS4Windows
                                     InputMethods.performKeyPress(key);
                             }
                         }
-                        else if (action.uTrigger.Count > 0 && utriggeractivated && action.type == "Key")
+                        else if (uTriggerCount > 0 && utriggeractivated && action.type == "Key")
                         {
                             if (untriggerindex[device] > -1 && !actionDone[index].dev[device])
                             {

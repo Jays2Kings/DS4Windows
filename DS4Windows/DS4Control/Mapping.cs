@@ -1218,7 +1218,7 @@ namespace DS4Windows
                     //a quick tap to use and hold to use the regular custom button/key
                     bool triggerToBeTapped = action.typeID == SpecialAction.ActionTypeId.None && action.trigger.Count == 1 &&
                             GetDS4Action(device, action.trigger[0], false) == null;
-                    if (!(action.name == "null" || index < 0))
+                    if (!(action.typeID == SpecialAction.ActionTypeId.None || index < 0))
                     {
                         bool triggeractivated = true;
                         if (action.delayTime > 0.0)

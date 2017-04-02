@@ -1211,7 +1211,7 @@ namespace DS4Windows
                     int actionDoneCount = actionDone.Count;
                     if (actionDoneCount < index + 1)
                         actionDone.Add(new ActionState());
-                    else if (actionDoneCount > GetActions().Count())
+                    else if (actionDoneCount > GetActions().Count)
                         actionDone.RemoveAt(actionDoneCount - 1);
                     double time = 0.0;
                     //If a key or button is assigned to the trigger, a key special action is used like

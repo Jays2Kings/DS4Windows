@@ -785,7 +785,7 @@ namespace DS4Windows
             int MouseDeltaY = 0;
             
             SyntheticState deviceState = Mapping.deviceState[device];
-            if (containsCustomAction(device) && (getProfileActions(device).Count > 0 || !string.IsNullOrEmpty(tempprofilename[device])))
+            if (getProfileActionCount(device) > 0 || !string.IsNullOrEmpty(tempprofilename[device]))
                 MapCustomAction(device, cState, MappedState, eState, tp, ctrl);
             if (ctrl.DS4Controllers[device] == null) return;
 
@@ -1193,7 +1193,7 @@ namespace DS4Windows
 
         private static bool IfAxisIsNotModified(int device, bool shift, DS4Controls dc)
         {
-            return shift ? false : GetDS4Action(device, dc.ToString(), false) == null;
+            return shift ? false : GetDS4Action(device, dc, false) == null;
         }
         public static async void MapCustomAction(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, ControlService ctrl)
         {
@@ -1204,8 +1204,10 @@ namespace DS4Windows
                 foreach (string actionname in profileActions)
                 {
                     //DS4KeyType keyType = getShiftCustomKeyType(device, customKey.Key);
-                    SpecialAction action = GetAction(actionname);
-                    int index = GetActionIndexOf(actionname);
+                    //SpecialAction action = GetAction(actionname);
+                    //int index = GetActionIndexOf(actionname);
+                    SpecialAction action = GetProfileAction(device, actionname);
+                    int index = GetProfileActionIndexOf(device, actionname);
                     int actionDoneCount = actionDone.Count;
                     if (actionDoneCount < index + 1)
                         actionDone.Add(new ActionState());
@@ -1214,7 +1216,7 @@ namespace DS4Windows
                     double time = 0.0;
                     //If a key or button is assigned to the trigger, a key special action is used like
                     //a quick tap to use and hold to use the regular custom button/key
-                    bool triggerToBeTapped = action.type == "Key" && action.trigger.Count == 1 &&
+                    bool triggerToBeTapped = action.typeID == SpecialAction.ActionTypeId.None && action.trigger.Count == 1 &&
                             GetDS4Action(device, action.trigger[0], false) == null;
                     if (!(action.name == "null" || index < 0))
                     {
@@ -1292,7 +1294,7 @@ namespace DS4Windows
 
                         bool utriggeractivated = true;
                         int uTriggerCount = action.uTrigger.Count;
-                        if (action.type == "Key" && uTriggerCount > 0)
+                        if (action.typeID == SpecialAction.ActionTypeId.Key && uTriggerCount > 0)
                         {
                             foreach (DS4Controls dc in action.uTrigger)
                             {
@@ -1305,7 +1307,7 @@ namespace DS4Windows
                             if (action.pressRelease) utriggeractivated = !utriggeractivated;
                         }
 
-                        if (triggeractivated && action.type == "Program")
+                        if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.Program)
                         {
                             if (!actionDone[index].dev[device])
                             {
@@ -1316,7 +1318,7 @@ namespace DS4Windows
                                     Process.Start(action.details);
                             }
                         }
-                        else if (triggeractivated && action.type == "Profile")
+                        else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.Profile)
                         {
                             if (!actionDone[index].dev[device] && string.IsNullOrEmpty(tempprofilename[device]))
                             {
@@ -1342,7 +1344,7 @@ namespace DS4Windows
                                 return;
                             }
                         }
-                        else if (triggeractivated && action.type == "Macro")
+                        else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.Macro)
                         {
                             if (!actionDone[index].dev[device])
                             {
@@ -1355,7 +1357,7 @@ namespace DS4Windows
                             else
                                 EndMacro(device, macroControl, String.Join("/", action.macro), DS4Controls.None);
                         }
-                        else if (triggeractivated && action.type == "Key")
+                        else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.Key)
                         {
                             if (uTriggerCount == 0 || (uTriggerCount > 0 && untriggerindex[device] == -1 && !actionDone[index].dev[device]))
                             {
@@ -1380,7 +1382,7 @@ namespace DS4Windows
                                     InputMethods.performKeyPress(key);
                             }
                         }
-                        else if (uTriggerCount > 0 && utriggeractivated && action.type == "Key")
+                        else if (uTriggerCount > 0 && utriggeractivated && action.typeID == SpecialAction.ActionTypeId.Key)
                         {
                             if (untriggerindex[device] > -1 && !actionDone[index].dev[device])
                             {
@@ -1394,7 +1396,7 @@ namespace DS4Windows
                                     InputMethods.performKeyRelease(key);
                             }
                         }
-                        else if (triggeractivated && action.type == "DisconnectBT")
+                        else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.DisconnectBT)
                         {
                             DS4Device d = ctrl.DS4Controllers[device];
                             if (!d.Charging)
@@ -1418,7 +1420,7 @@ namespace DS4Windows
                                 return;
                             }
                         }
-                        else if (triggeractivated && action.type == "BatteryCheck")
+                        else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.BatteryCheck)
                         {
                             string[] dets = action.details.Split('|');
                             if (dets.Length == 1)
@@ -1444,7 +1446,7 @@ namespace DS4Windows
                             }
                             actionDone[index].dev[device] = true;
                         }
-                        else if (!triggeractivated && action.type == "BatteryCheck")
+                        else if (!triggeractivated && action.typeID == SpecialAction.ActionTypeId.BatteryCheck)
                         {
                             if (actionDone[index].dev[device])
                             {
@@ -1460,7 +1462,7 @@ namespace DS4Windows
                                 actionDone[index].dev[device] = false;
                             }
                         }
-                        else if (action.type == "XboxGameDVR" || action.type == "MultiAction")
+                        else if (action.typeID == SpecialAction.ActionTypeId.XboxGameDVR || action.typeID == SpecialAction.ActionTypeId.MultiAction)
                         {
                             /*if (getCustomButton(device, action.trigger[0]) != X360Controls.Unbound)
                                 getCustomButtons(device)[action.trigger[0]] = X360Controls.Unbound;
@@ -1505,7 +1507,7 @@ namespace DS4Windows
                             string macro = "";
                             if (tappedOnce) //single tap
                             {
-                                if (action.type == "MultiAction")
+                                if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
                                 {
                                     macro = dets[0];
                                 }
@@ -1530,7 +1532,7 @@ namespace DS4Windows
                             }
                             else if (firstTouch && (DateTime.UtcNow - pastTime) > TimeSpan.FromMilliseconds(1000)) //helddown
                             {
-                                if (action.type == "MultiAction")
+                                if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
                                 {
                                     macro = dets[1];
                                 }
@@ -1551,7 +1553,7 @@ namespace DS4Windows
                             }
                             else if (secondtouchbegin) //if double tap
                             {
-                                if (action.type == "MultiAction")
+                                if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
                                 {
                                     macro = dets[2];
                                 }
@@ -1592,7 +1594,7 @@ namespace DS4Windows
                     }
                 }
 
-                if (utriggeractivated && action.type == "Profile")
+                if (utriggeractivated && action.typeID == SpecialAction.ActionTypeId.Profile)
                 {
                     if ((action.controls == action.ucontrols && !actionDone[index].dev[device]) || //if trigger and end trigger are the same
                     action.controls != action.ucontrols)

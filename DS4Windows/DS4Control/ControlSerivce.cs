@@ -13,21 +13,22 @@ namespace DS4Windows
     public class ControlService
     {
         public X360Device x360Bus;
-        public DS4Device[] DS4Controllers = new DS4Device[4];
-        public Mouse[] touchPad = new Mouse[4];
+        public const int DS4_CONTROLLER_COUNT = 4;
+        public DS4Device[] DS4Controllers = new DS4Device[DS4_CONTROLLER_COUNT];
+        public Mouse[] touchPad = new Mouse[DS4_CONTROLLER_COUNT];
         private bool running = false;
-        private DS4State[] MappedState = new DS4State[4];
-        private DS4State[] CurrentState = new DS4State[4];
-        private DS4State[] PreviousState = new DS4State[4];
-        public DS4StateExposed[] ExposedState = new DS4StateExposed[4];
+        private DS4State[] MappedState = new DS4State[DS4_CONTROLLER_COUNT];
+        private DS4State[] CurrentState = new DS4State[DS4_CONTROLLER_COUNT];
+        private DS4State[] PreviousState = new DS4State[DS4_CONTROLLER_COUNT];
+        public DS4StateExposed[] ExposedState = new DS4StateExposed[DS4_CONTROLLER_COUNT];
         public bool recordingMacro = false;
         public event EventHandler<DebugEventArgs> Debug = null;
         public bool eastertime = false;
         private int eCode = 0;
         bool[] buttonsdown = { false, false, false, false };
         List<DS4Controls> dcs = new List<DS4Controls>();
-        bool[] held = new bool[4];
-        int[] oldmouse = new int[4] { -1, -1, -1, -1 };
+        bool[] held = new bool[DS4_CONTROLLER_COUNT];
+        int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
         SoundPlayer sp = new SoundPlayer();
 
         private class X360Data
@@ -460,7 +461,7 @@ namespace DS4Windows
             DS4Device device = (DS4Device)sender;
 
             int ind = -1;
-            for (int i = 0, arlength = DS4Controllers.Length; ind == -1 && i < arlength; i++)
+            for (int i = 0, arlength = DS4_CONTROLLER_COUNT; ind == -1 && i < arlength; i++)
                 if (device == DS4Controllers[i])
                     ind = i;
 
@@ -504,7 +505,7 @@ namespace DS4Windows
                     */
                     cState = Mapping.SetCurveAndDeadzone(ind, cState);
                 if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
-                    containsCustomAction(ind) || containsCustomExtras(ind) || getProfileActions(ind).Count > 0))
+                    containsCustomAction(ind) || containsCustomExtras(ind) || getProfileActionCount(ind) > 0))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
                     cState = MappedState[ind];

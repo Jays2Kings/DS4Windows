@@ -1080,6 +1080,8 @@ namespace DS4Windows
                 if (lvi.Checked)
                     pactions.Add(lvi.Text);
             ProfileActions[device] = pactions;
+            calculateProfileActionCount(device);
+            calculateProfileActionDicts(device);
             pnlTPMouse.Visible = rBTPMouse.Checked;
             pnlSAMouse.Visible = rBSAMouse.Checked;
             fLPTiltControls.Visible = rBSAControls.Checked;
@@ -2010,6 +2012,8 @@ namespace DS4Windows
                 if (lvi != null && lvi.Checked)
                     pactions.Add(lvi.Text);
             ProfileActions[device] = pactions;
+            calculateProfileActionCount(device);
+            calculateProfileActionDicts(device);
             /*if (lVActions.Items.Count >= 50)
             {
                 btnNewAction.Enabled = false;

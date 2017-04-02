@@ -429,6 +429,14 @@ namespace DS4Windows
         public static string[] ProfilePath => m_Config.profilePath;
         public static bool[] DistanceProfiles = m_Config.distanceProfiles;
         public static List<string>[] ProfileActions => m_Config.profileActions;
+        public static int getProfileActionCount(int index)
+        {
+            return m_Config.profileActionCount[index];
+        }
+        public static void calculateProfileActionCount(int index)
+        {
+            m_Config.profileActionCount[index] = m_Config.profileActions[index].Count;
+        }
         public static List<string> getProfileActions(int index)
         {
             return m_Config.profileActions[index];
@@ -490,6 +498,13 @@ namespace DS4Windows
             return -1;
         }
 
+        public static int GetProfileActionIndexOf(int device, string name)
+        {
+            int index = -1;
+            m_Config.profileActionIndexDict[device].TryGetValue(name, out index);
+            return index;
+        }
+
         public static SpecialAction GetAction(string name)
         {
             foreach (SpecialAction sA in m_Config.actions)
@@ -498,6 +513,24 @@ namespace DS4Windows
             return new SpecialAction("null", "null", "null", "null");
         }
 
+        public static SpecialAction GetProfileAction(int device, string name)
+        {
+            SpecialAction sA = new SpecialAction("null", "null", "null", "null");
+            m_Config.profileActionDict[device].TryGetValue(name, out sA);
+            return sA;
+        }
+
+        public static void calculateProfileActionDicts(int device)
+        {
+            m_Config.profileActionDict[device].Clear();
+            m_Config.profileActionIndexDict[device].Clear();
+
+            foreach (string actionname in m_Config.profileActions[device])
+            {
+                m_Config.profileActionDict[device].Add(actionname, Global.GetAction(actionname));
+                m_Config.profileActionIndexDict[device].Add(actionname, Global.GetActionIndexOf(actionname));
+            }
+        }
 
         /*public static X360Controls getCustomButton(int device, DS4Controls controlName) => m_Config.GetCustomButton(device, controlName);
         
@@ -736,6 +769,9 @@ namespace DS4Windows
         public Dictionary<DS4Controls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] shiftCustomMapExtras = { null, null, null, null, null };*/
         public List<string>[] profileActions = { null, null, null, null, null };
+        public int[] profileActionCount = { 0, 0, 0, 0, 0 };
+        public Dictionary<string, SpecialAction>[] profileActionDict = { new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>() };
+        public Dictionary<string, int>[] profileActionIndexDict = { new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>() };
         public bool downloadLang = true;
         public bool useWhiteIcon;
         public bool flashWhenLate = true;
@@ -767,6 +803,7 @@ namespace DS4Windows
                 shiftCustomMapExtras[i] = new Dictionary<DS4Controls, string>();*/
                 profileActions[i] = new List<string>();
                 profileActions[i].Add("Disconnect Controller");
+                profileActionCount[i] = profileActions[i].Count;
             }
         }
 
@@ -1627,6 +1664,14 @@ namespace DS4Windows
 
                 containsCustomAction[device] = false;
                 containsCustomExtras[device] = false;
+                profileActionCount[device] = profileActions[device].Count;
+                profileActionDict[device].Clear();
+                profileActionIndexDict[device].Clear();
+                foreach (string actionname in profileActions[device])
+                {
+                    profileActionDict[device].Add(actionname, Global.GetAction(actionname));
+                    profileActionIndexDict[device].Add(actionname, Global.GetActionIndexOf(actionname));
+                }
 
                 DS4KeyType keyType;
                 ushort wvk;
@@ -2478,9 +2523,12 @@ namespace DS4Windows
 
     public class SpecialAction
     {
+        public enum ActionTypeId { None, Key, Program, Profile, Macro, DisconnectBT, BatteryCheck, MultiAction, XboxGameDVR }
+
         public string name;
         public List<DS4Controls> trigger = new List<DS4Controls>();
         public string type;
+        public ActionTypeId typeID;
         public string controls;
         public List<int> macro = new List<int>();
         public string details;
@@ -2494,25 +2542,16 @@ namespace DS4Windows
         {
             this.name = name;
             this.type = type;
+            this.typeID = ActionTypeId.None;
             this.controls = controls;
             delayTime = delay;
             string[] ctrls = controls.Split('/');
             foreach (string s in ctrls)
                 trigger.Add(getDS4ControlsByName(s));
-            if (type == "Macro")
+
+            if (type == "Key")
             {
-                string[] macs = details.Split('/');
-                foreach (string s in macs)
-                {
-                    int v;
-                    if (int.TryParse(s, out v))
-                        macro.Add(v);
-                }
-                if (extras.Contains("Scan Code"))
-                    keyType |= DS4KeyType.ScanCode;
-            }
-            else if (type == "Key")
-            {
+                typeID = ActionTypeId.Key;
                 this.details = details.Split(' ')[0];
                 if (!string.IsNullOrEmpty(extras))
                 {
@@ -2528,12 +2567,43 @@ namespace DS4Windows
             }
             else if (type == "Program")
             {
+                typeID = ActionTypeId.Program;
                 this.details = details;
                 if (extras != string.Empty)
                     extra = extras;
             }
+            else if (type == "Profile")
+            {
+                typeID = ActionTypeId.Profile;
+            }
+            else if (type == "Macro")
+            {
+                typeID = ActionTypeId.Macro;
+                string[] macs = details.Split('/');
+                foreach (string s in macs)
+                {
+                    int v;
+                    if (int.TryParse(s, out v))
+                        macro.Add(v);
+                }
+                if (extras.Contains("Scan Code"))
+                    keyType |= DS4KeyType.ScanCode;
+            }
+            else if (type == "DisconnectBT")
+            {
+                typeID = ActionTypeId.DisconnectBT;
+            }
+            else if (type == "BatteryCheck")
+            {
+                typeID = ActionTypeId.BatteryCheck;
+            }
+            else if (type == "MultiAction")
+            {
+                typeID = ActionTypeId.MultiAction;
+            }
             else if (type == "XboxGameDVR")
             {
+                this.typeID = ActionTypeId.XboxGameDVR;
                 string[] dets = details.Split(',');
                 List<string> macros = new List<string>();
                 //string dets = "";

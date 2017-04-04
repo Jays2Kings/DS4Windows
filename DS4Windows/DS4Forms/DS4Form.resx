@@ -160,7 +160,7 @@
     <value>0</value>
   </data>
   <metadata name="tmrUpdate.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+    <value>153, 17</value>
   </metadata>
   <data name="llbHelp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -349,13 +349,13 @@
     <value>1</value>
   </data>
   <metadata name="notifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>226, 17</value>
+    <value>264, 17</value>
   </metadata>
   <data name="notifyIcon1.BalloonTipTitle" xml:space="preserve">
     <value>Scp server</value>
   </data>
   <metadata name="cMTaskbar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>339, 17</value>
+    <value>377, 17</value>
   </metadata>
   <data name="editProfileForController1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
@@ -424,7 +424,7 @@
     <value>211, 6</value>
   </data>
   <metadata name="openProfiles.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>449, 17</value>
+    <value>487, 17</value>
   </metadata>
   <data name="openProfiles.Filter" xml:space="preserve">
     <value>XML Files (*.xml)|*.xml</value>
@@ -475,10 +475,10 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>848, 74</value>
+    <value>845, 74</value>
   </data>
   <data name="bnLight3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 22</value>
+    <value>48, 22</value>
   </data>
   <data name="bnLight3.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -502,7 +502,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>407, 19</value>
+    <value>406, 19</value>
   </data>
   <data name="pBStatus1.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -604,7 +604,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>805, 74</value>
+    <value>802, 74</value>
   </data>
   <data name="bnEditC3.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 22</value>
@@ -634,7 +634,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>805, 102</value>
+    <value>802, 102</value>
   </data>
   <data name="bnEditC4.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 22</value>
@@ -733,7 +733,7 @@
     <value>None</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>688, 18</value>
+    <value>685, 18</value>
   </data>
   <data name="cBController1.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -760,7 +760,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>805, 46</value>
+    <value>802, 46</value>
   </data>
   <data name="bnEditC2.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 22</value>
@@ -787,7 +787,7 @@
     <value>None</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>688, 46</value>
+    <value>685, 46</value>
   </data>
   <data name="cBController2.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -811,7 +811,7 @@
     <value>None</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>688, 74</value>
+    <value>685, 74</value>
   </data>
   <data name="cBController3.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -838,7 +838,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>805, 18</value>
+    <value>802, 18</value>
   </data>
   <data name="bnEditC1.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 22</value>
@@ -865,7 +865,7 @@
     <value>None</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>688, 102</value>
+    <value>685, 102</value>
   </data>
   <data name="cBController4.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -898,7 +898,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>689, 0</value>
+    <value>686, 0</value>
   </data>
   <data name="lbSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 15</value>
@@ -970,7 +970,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>403, 0</value>
+    <value>402, 0</value>
   </data>
   <data name="lbStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 15</value>
@@ -1006,7 +1006,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>576, 0</value>
+    <value>574, 0</value>
   </data>
   <data name="lbBattery.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 15</value>
@@ -1042,7 +1042,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>582, 21</value>
+    <value>580, 21</value>
   </data>
   <data name="lbBatt1.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -1078,7 +1078,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>582, 49</value>
+    <value>580, 49</value>
   </data>
   <data name="lbBatt2.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -1114,7 +1114,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>582, 77</value>
+    <value>580, 77</value>
   </data>
   <data name="lbBatt3.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -1150,7 +1150,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>582, 105</value>
+    <value>580, 105</value>
   </data>
   <data name="lbBatt4.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -1180,7 +1180,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>407, 47</value>
+    <value>406, 47</value>
   </data>
   <data name="pBStatus2.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -1210,7 +1210,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>407, 75</value>
+    <value>406, 75</value>
   </data>
   <data name="pBStatus3.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -1240,7 +1240,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>407, 103</value>
+    <value>406, 103</value>
   </data>
   <data name="pBStatus4.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -1273,10 +1273,10 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>848, 18</value>
+    <value>845, 18</value>
   </data>
   <data name="bnLight1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 22</value>
+    <value>48, 22</value>
   </data>
   <data name="bnLight1.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -1303,10 +1303,10 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>848, 46</value>
+    <value>845, 46</value>
   </data>
   <data name="bnLight2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 22</value>
+    <value>48, 22</value>
   </data>
   <data name="bnLight2.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
@@ -1333,10 +1333,10 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>848, 102</value>
+    <value>845, 102</value>
   </data>
   <data name="bnLight4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 22</value>
+    <value>48, 22</value>
   </data>
   <data name="bnLight4.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
@@ -1381,7 +1381,7 @@
     <value>1</value>
   </data>
   <data name="tLPControllers.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="bnLight3" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbPad1" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC3" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC4" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbPad3" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad4" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cBController1" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC2" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController2" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="cBController3" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC1" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController4" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbSelectedProfile" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbStatus" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbBattery" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt1" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt2" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt3" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt4" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus4" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="bnLight1" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnLight2" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnLight4" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,48.95498,Percent,26.82658,Percent,24.21844,AutoSize,0,AutoSize,0,Absolute,50" /&gt;&lt;Rows Styles="AutoSize,0,Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="bnLight3" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbPad1" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC3" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC4" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbPad3" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad4" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cBController1" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC2" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController2" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="cBController3" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC1" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController4" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbSelectedProfile" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="lbID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbStatus" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbBattery" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt1" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt2" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt3" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt4" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus4" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="bnLight1" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnLight2" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnLight4" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,48.95498,Percent,26.82658,Percent,24.21844,AutoSize,0,AutoSize,0,Absolute,53" /&gt;&lt;Rows Styles="AutoSize,0,Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lbNoControllers.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1444,7 +1444,7 @@
     <value>0</value>
   </data>
   <metadata name="cMProfile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>788, 17</value>
+    <value>826, 17</value>
   </metadata>
   <data name="editToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
@@ -1549,7 +1549,7 @@
     <value>0</value>
   </data>
   <metadata name="tSOptions.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>891, 17</value>
+    <value>17, 56</value>
   </metadata>
   <data name="toolStripLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 24</value>
@@ -1618,7 +1618,7 @@
     <value>1</value>
   </data>
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>568, 17</value>
+    <value>606, 17</value>
   </metadata>
   <data name="tsBNewProfle.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -1632,6 +1632,9 @@
   <data name="tsBNewProfle.ToolTipText" xml:space="preserve">
     <value>Make a New Profile</value>
   </data>
+  <data name="tsBEditProfile.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="tsBEditProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -1643,6 +1646,9 @@
   </data>
   <data name="tsBEditProfile.ToolTipText" xml:space="preserve">
     <value>Edit Selected Profile (Enter)</value>
+  </data>
+  <data name="tsBDeleteProfile.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="tsBDeleteProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -1656,6 +1662,9 @@
   <data name="tsBDeleteProfile.ToolTipText" xml:space="preserve">
     <value>Delete Selected Profle (Delete)</value>
   </data>
+  <data name="tSBDupProfile.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="tSBDupProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -1668,6 +1677,9 @@
   <data name="tSBDupProfile.ToolTipText" xml:space="preserve">
     <value>Dupliacate Selected Profile (Ctrl+D)</value>
   </data>
+  <data name="tSBImportProfile.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="tSBImportProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -1679,6 +1691,9 @@
   </data>
   <data name="tSBImportProfile.ToolTipText" xml:space="preserve">
     <value>Import Profile or Profiles</value>
+  </data>
+  <data name="tSBExportProfile.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="tSBExportProfile.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -2779,16 +2794,16 @@
     <value>3</value>
   </data>
   <metadata name="saveProfiles.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>673, 17</value>
+    <value>711, 17</value>
   </metadata>
   <data name="saveProfiles.Filter" xml:space="preserve">
     <value>XML Files (*.xml)|*.xml</value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>997, 17</value>
+    <value>123, 56</value>
   </metadata>
   <metadata name="cMCustomLed.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1110, 17</value>
+    <value>220, 56</value>
   </metadata>
   <data name="useProfileColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 22</value>
@@ -2811,6 +2826,9 @@
   <data name="&gt;&gt;cMCustomLed.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="advColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2819,6 +2837,9 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>904, 415</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>459, 229</value>
@@ -3065,6 +3086,12 @@
   </data>
   <data name="&gt;&gt;useCustomColorToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;advColorDialog.Name" xml:space="preserve">
+    <value>advColorDialog</value>
+  </data>
+  <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.57.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>DS4Form</value>

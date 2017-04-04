@@ -1765,6 +1765,29 @@ namespace DS4Windows
             }
         }
 
+        private void lBProfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = lBProfiles.SelectedIndex;
+            if (index >= 0)
+            {
+                tsBNewProfle.Enabled = true;
+                tsBEditProfile.Enabled = true;
+                tsBDeleteProfile.Enabled = true;
+                tSBDupProfile.Enabled = true;
+                tSBImportProfile.Enabled = true;
+                tSBExportProfile.Enabled = true;
+            }
+            else
+            {
+                tsBNewProfle.Enabled = true;
+                tsBEditProfile.Enabled = false;
+                tsBDeleteProfile.Enabled = false;
+                tSBDupProfile.Enabled = false;
+                tSBImportProfile.Enabled = false;
+                tSBExportProfile.Enabled = false;
+            }
+        }
+
         private void cBDownloadLangauge_CheckedChanged(object sender, EventArgs e)
         {
             DownloadLang = cBDownloadLangauge.Checked;

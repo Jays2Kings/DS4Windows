@@ -129,6 +129,7 @@
             this.cBFlashWhenLate = new System.Windows.Forms.CheckBox();
             this.cBCloseMini = new System.Windows.Forms.CheckBox();
             this.cBQuickCharge = new System.Windows.Forms.CheckBox();
+            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
             this.cBDownloadLangauge = new System.Windows.Forms.CheckBox();
             this.cBUpdate = new System.Windows.Forms.CheckBox();
             this.pNUpdate = new System.Windows.Forms.Panel();
@@ -137,7 +138,6 @@
             this.nUDUpdateTime = new System.Windows.Forms.NumericUpDown();
             this.pnlXIPorts = new System.Windows.Forms.Panel();
             this.lbUseXIPorts = new System.Windows.Forms.Label();
-            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
             this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
             this.lbLastXIPort = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -152,7 +152,7 @@
             this.cMCustomLed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.advColorDialog = new AdvancedColorDialog();
+            this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -632,8 +632,8 @@
             this.lBProfiles.ContextMenuStrip = this.cMProfile;
             resources.ApplyResources(this.lBProfiles, "lBProfiles");
             this.lBProfiles.FormattingEnabled = true;
-            this.lBProfiles.MultiColumn = true;
             this.lBProfiles.Name = "lBProfiles";
+            this.lBProfiles.SelectedIndexChanged += new System.EventHandler(this.lBProfiles_SelectedIndexChanged);
             this.lBProfiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lBProfiles_KeyDown);
             this.lBProfiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseDoubleClick);
             this.lBProfiles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseDown);
@@ -795,36 +795,36 @@
             // 
             // tsBEditProfile
             // 
-            this.tsBEditProfile.Image = global::DS4Windows.Properties.Resources.edit;
             resources.ApplyResources(this.tsBEditProfile, "tsBEditProfile");
+            this.tsBEditProfile.Image = global::DS4Windows.Properties.Resources.edit;
             this.tsBEditProfile.Name = "tsBEditProfile";
             this.tsBEditProfile.Click += new System.EventHandler(this.tsBNEditProfile_Click);
             // 
             // tsBDeleteProfile
             // 
-            this.tsBDeleteProfile.Image = global::DS4Windows.Properties.Resources.delete;
             resources.ApplyResources(this.tsBDeleteProfile, "tsBDeleteProfile");
+            this.tsBDeleteProfile.Image = global::DS4Windows.Properties.Resources.delete;
             this.tsBDeleteProfile.Name = "tsBDeleteProfile";
             this.tsBDeleteProfile.Click += new System.EventHandler(this.tsBDeleteProfle_Click);
             // 
             // tSBDupProfile
             // 
-            this.tSBDupProfile.Image = global::DS4Windows.Properties.Resources.copy;
             resources.ApplyResources(this.tSBDupProfile, "tSBDupProfile");
+            this.tSBDupProfile.Image = global::DS4Windows.Properties.Resources.copy;
             this.tSBDupProfile.Name = "tSBDupProfile";
             this.tSBDupProfile.Click += new System.EventHandler(this.tSBDupProfile_Click);
             // 
             // tSBImportProfile
             // 
-            this.tSBImportProfile.Image = global::DS4Windows.Properties.Resources.import;
             resources.ApplyResources(this.tSBImportProfile, "tSBImportProfile");
+            this.tSBImportProfile.Image = global::DS4Windows.Properties.Resources.import;
             this.tSBImportProfile.Name = "tSBImportProfile";
             this.tSBImportProfile.Click += new System.EventHandler(this.tSBImportProfile_Click);
             // 
             // tSBExportProfile
             // 
-            this.tSBExportProfile.Image = global::DS4Windows.Properties.Resources.export;
             resources.ApplyResources(this.tSBExportProfile, "tSBExportProfile");
+            this.tSBExportProfile.Image = global::DS4Windows.Properties.Resources.export;
             this.tSBExportProfile.Name = "tSBExportProfile";
             this.tSBExportProfile.Click += new System.EventHandler(this.tSBExportProfile_Click);
             // 

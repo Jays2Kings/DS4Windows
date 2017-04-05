@@ -87,7 +87,7 @@ namespace DS4Windows
         public override string ToString() => $"Red: {red} Green: {green} Blue: {blue}";
     }
 
-    public enum ConnectionType : byte { BT, USB }; // Prioritize Bluetooth when both are connected.
+    public enum ConnectionType : byte { BT, USB, SONYWA }; // Prioritize Bluetooth when both BT and USB are connected.
 
     /**
      * The haptics engine uses a stack of these states representing the light bar and rumble motor settings.
@@ -249,7 +249,20 @@ namespace DS4Windows
 
         public static ConnectionType HidConnectionType(HidDevice hidDevice)
         {
-            return hidDevice.Capabilities.InputReportByteLength == 64 ? ConnectionType.USB : ConnectionType.BT;
+            ConnectionType result = ConnectionType.USB;
+            if (hidDevice.Capabilities.InputReportByteLength == 64)
+            {
+                if (hidDevice.Capabilities.NumberFeatureDataIndices == 22)
+                {
+                    result = ConnectionType.SONYWA;
+                }
+            }
+            else
+            {
+                result = ConnectionType.BT;
+            }
+
+            return result;
         }
 
         public DS4Device(HidDevice hidDevice)
@@ -454,7 +467,7 @@ namespace DS4Windows
                         readTimeout.Interval = 3000.0;
                 }
                 readTimeout.Enabled = true;
-                if (conType != ConnectionType.USB)
+                if (conType == ConnectionType.BT)
                 {
                     //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
                     HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);

@@ -863,6 +863,7 @@ namespace DS4Windows
                 {
                     case "USB": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.USB; toolTip1.SetToolTip(statPB[Index], ""); break;
                     case "BT": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
+                    case "SONYWA": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.DS4_Config_PS; toolTip1.SetToolTip(statPB[Index], ""); break;
                     default: statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], ""); break;
                 }
                 Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);

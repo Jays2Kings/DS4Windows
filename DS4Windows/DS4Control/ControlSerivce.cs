@@ -180,7 +180,7 @@ namespace DS4Windows
                             }
                             else if (DS4Controllers[i].ConnectionType == ConnectionType.SONYWA)
                             {
-                                DS4Controllers[i].DisconnectDongle();
+                                DS4Controllers[i].DisconnectDongle(true);
                             }
                         }
                         else

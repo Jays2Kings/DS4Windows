@@ -498,6 +498,7 @@ namespace DS4Windows
                 else
                 {
                     //HidDevice.ReadStatus res = hDevice.ReadFile(inputReport);
+                    //Array.Clear(inputReport, 0, inputReport.Length);
                     HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport, READ_STREAM_TIMEOUT);
                     readTimeout.Enabled = false;
                     if (res != HidDevice.ReadStatus.Success)
@@ -759,7 +760,7 @@ namespace DS4Windows
             return false;
         }
 
-        public bool DisconnectDongle()
+        public bool DisconnectDongle(bool remove=false)
         {
             bool result = false;
             byte[] disconnectReport = new byte[65];
@@ -767,8 +768,9 @@ namespace DS4Windows
             disconnectReport[1] = 0x02;
             for (int i = 2; i < 65; i++)
                 disconnectReport[i] = 0;
+
             result = hDevice.WriteFeatureReport(disconnectReport);
-            if (result)
+            if (result && remove)
             {
                 IsDisconnecting = true;
                 StopOutputUpdate();

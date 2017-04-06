@@ -441,8 +441,6 @@ namespace DS4Windows
         private void performDs4Input()
         {
             firstActive = DateTime.UtcNow;
-            System.Timers.Timer readTimeout = new System.Timers.Timer(); // Await 30 seconds for the initial packet, then 3 seconds thereafter.
-            readTimeout.Elapsed += delegate { HidDevice.CancelIO(); };
             NativeMethods.HidD_SetNumInputBuffers(hDevice.safeReadHandle.DangerousGetHandle(), 2);
             List<long> Latency = new List<long>();
             long oldtime = 0;
@@ -466,19 +464,10 @@ namespace DS4Windows
                 }
                 else if (this.Latency <= warnInterval && warn) warn = false;
 
-                if (readTimeout.Interval != 3000.0)
-                {
-                    if (readTimeout.Interval != 30000.0)
-                        readTimeout.Interval = 30000.0;
-                    else
-                        readTimeout.Interval = 3000.0;
-                }
-                readTimeout.Enabled = true;
                 if (conType == ConnectionType.BT)
                 {
                     //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
                     HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
-                    readTimeout.Enabled = false;
                     if (res == HidDevice.ReadStatus.Success)
                     {
                         Array.Copy(btInputReport, 2, inputReport, 0, inputReport.Length);
@@ -500,7 +489,6 @@ namespace DS4Windows
                     //HidDevice.ReadStatus res = hDevice.ReadFile(inputReport);
                     //Array.Clear(inputReport, 0, inputReport.Length);
                     HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport, READ_STREAM_TIMEOUT);
-                    readTimeout.Enabled = false;
                     if (res != HidDevice.ReadStatus.Success)
                     {
                         Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
@@ -515,11 +503,13 @@ namespace DS4Windows
                         //Array.Copy(inputReport2, 0, inputReport, 0, inputReport.Length);
                     }
                 }
-                if (ConnectionType == ConnectionType.BT && btInputReport[0] != 0x11)
+
+                if (conType == ConnectionType.BT && btInputReport[0] != 0x11)
 	            {
 	                //Received incorrect report, skip it
 	                continue;
 	            }
+
                 DateTime utcNow = System.DateTime.UtcNow; // timestamp with UTC in case system time zone changes
                 resetHapticState();
                 cState.ReportTimeStamp = utcNow;
@@ -570,9 +560,9 @@ namespace DS4Windows
 
                 try
                 {
-                charging = (inputReport[30] & 0x10) != 0;
-                battery = (inputReport[30] & 0x0f) * 10;
-                cState.Battery = (byte)battery;
+                    charging = (inputReport[30] & 0x10) != 0;
+                    battery = (inputReport[30] & 0x0f) * 10;
+                    cState.Battery = (byte)battery;
                     if (inputReport[30] != priorInputReport30)
                     {
                         priorInputReport30 = inputReport[30];
@@ -580,6 +570,7 @@ namespace DS4Windows
                     }
                 }
                 catch { currerror = "Index out of bounds: battery"; }
+
                 // XXX DS4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
                 try
                 {
@@ -597,7 +588,7 @@ namespace DS4Windows
                     }
                 }
                 catch { currerror = "Index out of bounds: touchpad"; }
-                
+
                 /* Debug output of incoming HID data:
                 if (cState.L2 == 0xff && cState.R2 == 0xff)
                 {
@@ -606,23 +597,30 @@ namespace DS4Windows
                         Console.Write(" " + inputReport[i].ToString("x2"));
                     Console.WriteLine();
                 } */
-                if (!isDS4Idle())
+
+                bool ds4Idle = cState.FrameCounter == pState.FrameCounter;
+                if (!ds4Idle)
                     lastActive = utcNow;
+
                 if (conType == ConnectionType.BT)
                 {
                     bool shouldDisconnect = false;
-                    if (IdleTimeout > 0)
+                    int idleTime = IdleTimeout;
+                    if (idleTime > 0)
                     {
-                        if (isDS4Idle())
+                        bool idleInput = isDS4Idle();
+                        if (idleInput)
                         {
-                            DateTime timeout = lastActive + TimeSpan.FromSeconds(IdleTimeout);
-                            if (!Charging)
+                            DateTime timeout = lastActive + TimeSpan.FromSeconds(idleTime);
+                            if (!charging)
                                 shouldDisconnect = utcNow >= timeout;
                         }
                     }
+
                     if (shouldDisconnect && DisconnectBT())
                         return; // all done
                 }
+
                 // XXX fix initialization ordering so the null checks all go away
                 if (Report != null)
                     Report(this, EventArgs.Empty);
@@ -635,7 +633,7 @@ namespace DS4Windows
                 if (!string.IsNullOrEmpty(error))
                     error = string.Empty;
                 if (!string.IsNullOrEmpty(currerror))
-                    error = currerror;                
+                    error = currerror;
                 cState.CopyTo(pState);
             }
         }

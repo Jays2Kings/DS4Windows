@@ -34,8 +34,9 @@ namespace DS4Windows
             device = deviceNum;
             ops = ooo;
             button = buton;
-            cBToggle.Checked = button.Font.Italic;
-            cBScanCode.Checked = button.Font.Bold;
+            DS4ControlSettings dcs = Global.getDS4CSetting(device, button.Name);
+            cBToggle.Checked = dcs.keyType.HasFlag(DS4KeyType.Toggle);
+            cBScanCode.Checked = dcs.keyType.HasFlag(DS4KeyType.ScanCode);
             oldSC = cBScanCode.Location;
             defaultText = btnDefault.Text;
             if (button.Name.StartsWith("bnShift"))

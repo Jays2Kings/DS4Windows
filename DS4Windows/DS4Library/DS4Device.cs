@@ -159,7 +159,16 @@ namespace DS4Windows
         public string MacAddress =>  Mac;
 
         public ConnectionType ConnectionType => conType;
-        public int IdleTimeout { get; set; } // behavior only active when > 0
+
+        // behavior only active when > 0
+        private int idleTimeout = 0;
+        public int IdleTimeout {
+            get { return idleTimeout; }
+            set
+            {
+                idleTimeout = value;
+            }
+        }
 
         public int Battery => battery;
         public int getBattery()
@@ -599,13 +608,14 @@ namespace DS4Windows
                 } */
 
                 bool ds4Idle = cState.FrameCounter == pState.FrameCounter;
-                if (!ds4Idle)
+                if (conType != ConnectionType.BT)
+                {
                     lastActive = utcNow;
-
-                if (conType == ConnectionType.BT)
+                }
+                else
                 {
                     bool shouldDisconnect = false;
-                    int idleTime = IdleTimeout;
+                    int idleTime = idleTimeout;
                     if (idleTime > 0)
                     {
                         bool idleInput = isDS4Idle();
@@ -615,6 +625,14 @@ namespace DS4Windows
                             if (!charging)
                                 shouldDisconnect = utcNow >= timeout;
                         }
+                        else
+                        {
+                            lastActive = utcNow;
+                        }
+                    }
+                    else
+                    {
+                        lastActive = utcNow;
                     }
 
                     if (shouldDisconnect && DisconnectBT())

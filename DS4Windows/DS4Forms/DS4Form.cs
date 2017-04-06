@@ -863,7 +863,7 @@ namespace DS4Windows
                 {
                     case "USB": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.USB; toolTip1.SetToolTip(statPB[Index], ""); break;
                     case "BT": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
-                    case "SONYWA": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.DS4_Config_PS; toolTip1.SetToolTip(statPB[Index], ""); break;
+                    case "SONYWA": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
                     default: statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], ""); break;
                 }
                 Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
@@ -911,6 +911,10 @@ namespace DS4Windows
             int i = Int32.Parse(((PictureBox)sender).Tag.ToString());
             if (e.Button == System.Windows.Forms.MouseButtons.Right && Program.rootHub.getDS4Status(i) == "BT" && !Program.rootHub.DS4Controllers[i].Charging)
                 Program.rootHub.DS4Controllers[i].DisconnectBT();
+            else if (e.Button == System.Windows.Forms.MouseButtons.Right && Program.rootHub.getDS4Status(i) == "SONYWA" && !Program.rootHub.DS4Controllers[i].Charging)
+            {
+                Program.rootHub.DS4Controllers[i].DisconnectDongle();
+            }
         }
 
         private void Enable_Controls(int device, bool on)

@@ -270,13 +270,20 @@ namespace DS4Windows
             hDevice = hidDevice;
             conType = HidConnectionType(hDevice);
             Mac = hDevice.readSerial();
-            if (conType == ConnectionType.USB)
+            if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
             {
                 inputReport = new byte[64];
                 inputReport2 = new byte[64];
                 outputReport = new byte[hDevice.Capabilities.OutputReportByteLength];
                 outputReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength];
-                warnInterval = WARN_INTERVAL_USB;
+                if (conType == ConnectionType.USB)
+                {
+                    warnInterval = WARN_INTERVAL_USB;
+                }
+                else
+                {
+                    warnInterval = WARN_INTERVAL_BT;
+                }
             }
             else
             {
@@ -750,6 +757,26 @@ namespace DS4Windows
                 return success;
             }
             return false;
+        }
+
+        public bool DisconnectDongle()
+        {
+            bool result = false;
+            byte[] disconnectReport = new byte[65];
+            disconnectReport[0] = 0xe2;
+            disconnectReport[1] = 0x02;
+            for (int i = 2; i < 65; i++)
+                disconnectReport[i] = 0;
+            result = hDevice.WriteFeatureReport(disconnectReport);
+            if (result)
+            {
+                IsDisconnecting = true;
+                StopUpdate();
+                if (Removal != null)
+                    Removal(this, EventArgs.Empty);
+            }
+
+            return result;
         }
 
         private DS4HapticState testRumble = new DS4HapticState();

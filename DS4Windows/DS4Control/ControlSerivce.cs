@@ -173,7 +173,16 @@ namespace DS4Windows
                     if (DS4Controllers[i] != null)
                     {
                         if (DCBTatStop && !DS4Controllers[i].Charging && showlog)
-                            DS4Controllers[i].DisconnectBT();
+                        {
+                            if (DS4Controllers[i].ConnectionType == ConnectionType.BT)
+                            {
+                                DS4Controllers[i].DisconnectBT();
+                            }
+                            else if (DS4Controllers[i].ConnectionType == ConnectionType.SONYWA)
+                            {
+                                DS4Controllers[i].DisconnectDongle();
+                            }
+                        }
                         else
                         {
                             DS4LightBar.forcelight[i] = false;

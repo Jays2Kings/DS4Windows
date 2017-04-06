@@ -110,6 +110,17 @@ namespace DS4Windows
             return NativeMethods.HidD_GetInputReport(safeReadHandle, data, data.Length);
         }
 
+        public bool WriteFeatureReport(byte[] data)
+        {
+            bool result = false;
+            if (IsOpen && safeReadHandle != null)
+            {
+                result = NativeMethods.HidD_SetFeature(safeReadHandle, data, data.Length);
+            }
+
+            return result;
+        }
+
 
         private static HidDeviceAttributes GetDeviceAttributes(SafeFileHandle hidHandle)
         {
@@ -266,7 +277,6 @@ namespace DS4Windows
                     fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, inputBuffer.Length, true);
                 if (!safeReadHandle.IsInvalid && fileStream.CanRead)
                 {
-
                     Task<int> readTask = fileStream.ReadAsync(inputBuffer, 0, inputBuffer.Length);
                     readTask.Wait(timeout);
                     if (readTask.Result > 0)

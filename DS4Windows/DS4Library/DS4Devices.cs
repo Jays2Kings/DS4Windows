@@ -83,7 +83,9 @@ namespace DS4Windows
                     }
                     if (hDevice.IsOpen)
                     {
-                        if (Devices.ContainsKey(hDevice.readSerial()))
+                        string serial = hDevice.readSerial();
+                        bool validSerial = !serial.Equals("00:00:00:00:00:00");
+                        if (Devices.ContainsKey(serial))
                             continue; // happens when the BT endpoint already is open and the USB is plugged into the same host
                         else
                         {

@@ -771,7 +771,7 @@ namespace DS4Windows
             if (result)
             {
                 IsDisconnecting = true;
-                StopUpdate();
+                StopOutputUpdate();
                 if (Removal != null)
                     Removal(this, EventArgs.Empty);
             }

@@ -1401,7 +1401,12 @@ namespace DS4Windows
                             DS4Device d = ctrl.DS4Controllers[device];
                             if (!d.Charging)
                             {
-                                d.DisconnectBT();
+                                ConnectionType deviceConn = d.ConnectionType;
+                                if (deviceConn == ConnectionType.BT)
+                                {
+                                    d.DisconnectBT();
+                                }
+
                                 foreach (DS4Controls dc in action.trigger)
                                 {
                                     DS4ControlSettings dcs = getDS4CSetting(device, dc);

@@ -257,6 +257,10 @@
             this.lbLSCurvePercent = new System.Windows.Forms.Label();
             this.lbLSCurve = new System.Windows.Forms.Label();
             this.antiDeadzoneTabPage = new System.Windows.Forms.TabPage();
+            this.nUDR2AntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nUDL2AntiDead = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.nUDRSAntiDead = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.nUDLSAntiDead = new System.Windows.Forms.NumericUpDown();
@@ -307,10 +311,6 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nUDR2AntiDead = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.nUDL2AntiDead = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -372,6 +372,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
             this.antiDeadzoneTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).BeginInit();
             this.fLPSettings.SuspendLayout();
@@ -386,8 +388,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -2507,7 +2507,7 @@
             this.lVActions.ShowItemToolTips = true;
             this.lVActions.UseCompatibleStateImageBehavior = false;
             this.lVActions.View = System.Windows.Forms.View.Details;
-            this.lVActions.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lVActions_ItemChecked);
+            this.lVActions.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lVActions_ItemCheck);
             // 
             // cHName
             // 
@@ -2656,6 +2656,50 @@
             resources.ApplyResources(this.antiDeadzoneTabPage, "antiDeadzoneTabPage");
             this.antiDeadzoneTabPage.Name = "antiDeadzoneTabPage";
             this.antiDeadzoneTabPage.UseVisualStyleBackColor = true;
+            // 
+            // nUDR2AntiDead
+            // 
+            this.nUDR2AntiDead.DecimalPlaces = 2;
+            this.nUDR2AntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2AntiDead, "nUDR2AntiDead");
+            this.nUDR2AntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2AntiDead.Name = "nUDR2AntiDead";
+            this.nUDR2AntiDead.ValueChanged += new System.EventHandler(this.nUDR2AntiDead_ValueChanged);
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // nUDL2AntiDead
+            // 
+            this.nUDL2AntiDead.DecimalPlaces = 2;
+            this.nUDL2AntiDead.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDL2AntiDead, "nUDL2AntiDead");
+            this.nUDL2AntiDead.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDL2AntiDead.Name = "nUDL2AntiDead";
+            this.nUDL2AntiDead.ValueChanged += new System.EventHandler(this.nUDL2AntiDead_ValueChanged);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
             // 
             // nUDRSAntiDead
             // 
@@ -3204,50 +3248,6 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
-            // nUDR2AntiDead
-            // 
-            this.nUDR2AntiDead.DecimalPlaces = 2;
-            this.nUDR2AntiDead.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDR2AntiDead, "nUDR2AntiDead");
-            this.nUDR2AntiDead.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDR2AntiDead.Name = "nUDR2AntiDead";
-            this.nUDR2AntiDead.ValueChanged += new System.EventHandler(this.nUDR2AntiDead_ValueChanged);
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // nUDL2AntiDead
-            // 
-            this.nUDL2AntiDead.DecimalPlaces = 2;
-            this.nUDL2AntiDead.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDL2AntiDead, "nUDL2AntiDead");
-            this.nUDL2AntiDead.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDL2AntiDead.Name = "nUDL2AntiDead";
-            this.nUDL2AntiDead.ValueChanged += new System.EventHandler(this.nUDL2AntiDead_ValueChanged);
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3333,6 +3333,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
             this.antiDeadzoneTabPage.ResumeLayout(false);
             this.antiDeadzoneTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).EndInit();
             this.fLPSettings.ResumeLayout(false);
@@ -3350,8 +3352,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).EndInit();
             this.ResumeLayout(false);
 
         }

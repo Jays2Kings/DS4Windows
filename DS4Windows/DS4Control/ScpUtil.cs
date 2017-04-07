@@ -2596,6 +2596,8 @@ namespace DS4Windows
             else if (type == "BatteryCheck")
             {
                 typeID = ActionTypeId.BatteryCheck;
+                string[] dets = details.Split('|');
+                this.details = string.Join(",", dets);
             }
             else if (type == "MultiAction")
             {

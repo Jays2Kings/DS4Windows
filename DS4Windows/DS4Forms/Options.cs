@@ -27,6 +27,7 @@ namespace DS4Windows
         private float dpiy;
         public Dictionary<string, string> defaults = new Dictionary<string, string>();
         public bool saving, loading;
+        public bool actionTabSeen = false;
         public static Size mSize { get; private set; }
         private Size settingsSize;
         public Options(DS4Form rt)
@@ -99,7 +100,7 @@ namespace DS4Windows
             bnSwipeDown.Text = Properties.Resources.SwipeDown;
             bnSwipeLeft.Text = Properties.Resources.SwipeLeft;
             bnSwipeRight.Text = Properties.Resources.SwipeRight;
-        }        
+        }
 
         public void Reload(int deviceNum, string name)
         {
@@ -1811,10 +1812,16 @@ namespace DS4Windows
         
         private void tabControls_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tCControls.SelectedIndex == 2)
+            int index = tCControls.SelectedIndex;
+            if (index == 2)
                 sixaxisTimer.Start();
             else
                 sixaxisTimer.Stop();
+
+            if (index == 1)
+            {
+                actionTabSeen = true;
+            }
         }
         
         private void DrawCircle(object sender, PaintEventArgs e)
@@ -2003,21 +2010,6 @@ namespace DS4Windows
                 RemoveAction(lVActions.SelectedItems[0].Text);
                 lVActions.Items.Remove(lVActions.SelectedItems[0]);
             }
-        }
-
-        private void lVActions_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            List<string> pactions = new List<string>();
-            foreach (ListViewItem lvi in lVActions.Items)
-                if (lvi != null && lvi.Checked)
-                    pactions.Add(lvi.Text);
-            ProfileActions[device] = pactions;
-            calculateProfileActionCount(device);
-            calculateProfileActionDicts(device);
-            /*if (lVActions.Items.Count >= 50)
-            {
-                btnNewAction.Enabled = false;
-            }*/
         }
 
         private void nUDLSCurve_ValueChanged(object sender, EventArgs e)
@@ -2399,6 +2391,21 @@ namespace DS4Windows
         private void nUDR2AntiDead_ValueChanged(object sender, EventArgs e)
         {
             R2AntiDeadzone[device] = (int)(nUDR2AntiDead.Value * 100);
+        }
+
+        private void lVActions_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (actionTabSeen)
+            {
+                List<string> pactions = new List<string>();
+                foreach (ListViewItem lvi in lVActions.Items)
+                    if (lvi != null && lvi.Checked)
+                        pactions.Add(lvi.Text);
+
+                ProfileActions[device] = pactions;
+                calculateProfileActionCount(device);
+                calculateProfileActionDicts(device);
+            }
         }
 
         private void Options_Resize(object sender, EventArgs e)

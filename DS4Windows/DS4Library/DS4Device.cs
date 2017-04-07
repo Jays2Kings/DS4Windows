@@ -608,7 +608,7 @@ namespace DS4Windows
                 } */
 
                 bool ds4Idle = cState.FrameCounter == pState.FrameCounter;
-                if (conType != ConnectionType.BT)
+                if (conType == ConnectionType.USB)
                 {
                     lastActive = utcNow;
                 }
@@ -635,8 +635,19 @@ namespace DS4Windows
                         lastActive = utcNow;
                     }
 
-                    if (shouldDisconnect && DisconnectBT())
-                        return; // all done
+                    if (shouldDisconnect)
+                    {
+                        if (conType == ConnectionType.BT)
+                        {
+                            if (DisconnectBT())
+                                return; // all done
+                        }
+                        else if (conType == ConnectionType.SONYWA)
+                        {
+                            if (DisconnectDongle())
+                                return; // all done
+                        }
+                    }
                 }
 
                 // XXX fix initialization ordering so the null checks all go away

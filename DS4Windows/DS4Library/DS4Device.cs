@@ -87,7 +87,7 @@ namespace DS4Windows
         public override string ToString() => $"Red: {red} Green: {green} Blue: {blue}";
     }
 
-    public enum ConnectionType : byte { BT, USB, SONYWA }; // Prioritize Bluetooth when both BT and USB are connected.
+    public enum ConnectionType : byte { BT, SONYWA, USB }; // Prioritize Bluetooth when both BT and USB are connected.
 
     /**
      * The haptics engine uses a stack of these states representing the light bar and rumble motor settings.
@@ -145,6 +145,11 @@ namespace DS4Windows
         private bool charging;
         private bool outputRumble = false;
         private int warnInterval = WARN_INTERVAL_USB;
+        public int getWarnInterval()
+        {
+            return warnInterval;
+        }
+
         private bool exitOutputThread = false;
         private object exitLocker = new object();
         public event EventHandler<EventArgs> Report = null;

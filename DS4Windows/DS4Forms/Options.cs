@@ -593,7 +593,8 @@ namespace DS4Windows
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
             // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
             // We should try to indicate setpoints of the calibration when exposing this measurement....
-            if (Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1] == null)
+            DS4Device ds = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
+            if (ds == null)
             {
                 EnableReadings(false);
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", Properties.Resources.NA);
@@ -719,14 +720,15 @@ namespace DS4Windows
                     lbR2Track.ForeColor = Color.Black;
 
 
-                double latency = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1].Latency;
+                double latency = ds.Latency;
+                int warnInterval = ds.getWarnInterval();
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", latency.ToString());
-                if (latency > 10)
+                if (latency > warnInterval)
                 {
                     lbInputDelay.BackColor = Color.Red;
                     lbInputDelay.ForeColor = Color.White;
                 }
-                else if (latency > 5)
+                else if (latency > (warnInterval / 2))
                 {
                     lbInputDelay.BackColor = Color.Yellow;
                     lbInputDelay.ForeColor = Color.Black;

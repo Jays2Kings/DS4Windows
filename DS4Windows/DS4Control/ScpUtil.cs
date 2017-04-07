@@ -2575,6 +2575,11 @@ namespace DS4Windows
             else if (type == "Profile")
             {
                 typeID = ActionTypeId.Profile;
+                this.details = details;
+                if (extras != string.Empty)
+                {
+                    extra = extras;
+                }
             }
             else if (type == "Macro")
             {

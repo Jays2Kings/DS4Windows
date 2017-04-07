@@ -2602,6 +2602,7 @@ namespace DS4Windows
             else if (type == "MultiAction")
             {
                 typeID = ActionTypeId.MultiAction;
+                this.details = details;
             }
             else if (type == "XboxGameDVR")
             {

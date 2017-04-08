@@ -687,6 +687,7 @@ namespace DS4Windows
         {
             switch (trigger)
             {
+                case 0: return false;
                 case 1: return getBoolMapping(device, DS4Controls.Cross, cState, eState, tp); 
                 case 2: return getBoolMapping(device, DS4Controls.Circle, cState, eState, tp); 
                 case 3: return getBoolMapping(device, DS4Controls.Square, cState, eState, tp); 
@@ -792,7 +793,6 @@ namespace DS4Windows
             cState.CopyTo(MappedState);
 
             Dictionary<DS4Controls, DS4Controls> tempControlDict = new Dictionary<DS4Controls, DS4Controls>();
-            //Dictionary<DS4Controls, DS4Controls> tempAxesControlDict = new Dictionary<DS4Controls, DS4Controls>();
             DS4Controls usingExtra = DS4Controls.None;
             foreach (DS4ControlSettings dcs in getDS4CSettings(device))
             {
@@ -811,6 +811,7 @@ namespace DS4Windows
                     actionType = dcs.actionType;
                     keyType = dcs.keyType;
                 }
+
                 if (action != null)
                 {
                     if (actionType == DS4ControlSettings.ActionType.Macro)
@@ -991,8 +992,9 @@ namespace DS4Windows
                         else
                             p = dcs.extras;
                         string[] extraS = p.Split(',');
-                        int[] extras = new int[extraS.Length];
-                        for (int i = 0; i < extraS.Length; i++)
+                        int extrasSLen = extraS.Length;
+                        int[] extras = new int[extrasSLen];
+                        for (int i = 0; i < extrasSLen; i++)
                         {
                             int b;
                             if (int.TryParse(extraS[i], out b))
@@ -1188,7 +1190,10 @@ namespace DS4Windows
                 }
             }
 
-            InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
+            if (MouseDeltaX != 0 || MouseDeltaY != 0)
+            {
+                InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
+            }
         }
 
         private static bool IfAxisIsNotModified(int device, bool shift, DS4Controls dc)
@@ -1200,6 +1205,8 @@ namespace DS4Windows
             /* TODO: This method is slow sauce. Find ways to speed up action execution */
             try
             {
+                int actionDoneCount = actionDone.Count;
+                int totalActionCount = GetActions().Count;
                 List<string> profileActions = getProfileActions(device);
                 foreach (string actionname in profileActions)
                 {
@@ -1208,11 +1215,18 @@ namespace DS4Windows
                     //int index = GetActionIndexOf(actionname);
                     SpecialAction action = GetProfileAction(device, actionname);
                     int index = GetProfileActionIndexOf(device, actionname);
-                    int actionDoneCount = actionDone.Count;
+
                     if (actionDoneCount < index + 1)
+                    {
                         actionDone.Add(new ActionState());
-                    else if (actionDoneCount > GetActions().Count)
+                        actionDoneCount++;
+                    }
+                    else if (actionDoneCount > totalActionCount)
+                    {
                         actionDone.RemoveAt(actionDoneCount - 1);
+                        actionDoneCount--;
+                    }
+
                     double time = 0.0;
                     //If a key or button is assigned to the trigger, a key special action is used like
                     //a quick tap to use and hold to use the regular custom button/key
@@ -1399,7 +1413,7 @@ namespace DS4Windows
                         else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.DisconnectBT)
                         {
                             DS4Device d = ctrl.DS4Controllers[device];
-                            if (!d.Charging)
+                            if (!d.isCharging())
                             {
                                 ConnectionType deviceConn = d.ConnectionType;
                                 if (deviceConn == ConnectionType.BT)
@@ -1417,7 +1431,7 @@ namespace DS4Windows
                                         else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                                         {
                                             int[] keys = (int[])dcs.action;
-                                            for (int i = 0; i < keys.Length; i++)
+                                            for (int i = 0, keysLen = keys.Length; i < keysLen; i++)
                                                 InputMethods.performKeyRelease((ushort)keys[i]);
                                         }
                                     }
@@ -1616,7 +1630,7 @@ namespace DS4Windows
                                     else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                                     {
                                         int[] keys = (int[])dcs.action;
-                                        for (int i = 0; i < keys.Length; i++)
+                                        for (int i = 0, keysLen=keys.Length; i < keysLen; i++)
                                             InputMethods.performKeyRelease((ushort)keys[i]);
                                     }
                                 }

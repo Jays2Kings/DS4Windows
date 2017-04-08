@@ -164,9 +164,9 @@ namespace DS4Windows
             //distanceprofile = (ProfilePath[deviceNum].ToLower().Contains("distance") || tempprofilename[deviceNum].ToLower().Contains("distance"));
             if (distanceprofile && !defualtLight)
             { //Thing I did for Distance
-                float rumble = device.LeftHeavySlowRumble / 2.55f;
+                float rumble = device.getLeftHeavySlowRumble() / 2.55f;
                 byte max = Max(color.red, Max(color.green, color.blue));
-                if (device.LeftHeavySlowRumble > 100)
+                if (device.getLeftHeavySlowRumble() > 100)
                     color = getTransitionedColor(new DS4Color(max, max, 0), new DS4Color(255, 0, 0), rumble);
                 else
                     color = getTransitionedColor(color, getTransitionedColor(new DS4Color(max, max, 0), new DS4Color(255, 0, 0), 39.6078f), device.getLeftHeavySlowRumble());

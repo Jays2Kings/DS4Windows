@@ -2092,48 +2092,103 @@ namespace DS4Windows
 
         public static bool getBoolMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
+            bool result = false;
             bool sOff = UseSAforMouse[device];
-            switch (control)
+            if (control >= DS4Controls.Square && control <= DS4Controls.Cross)
             {
-                case DS4Controls.Share: return cState.Share;
-                case DS4Controls.Options: return cState.Options;
-                case DS4Controls.L1: return cState.L1;
-                case DS4Controls.R1: return cState.R1;
-                case DS4Controls.L3: return cState.L3;
-                case DS4Controls.R3: return cState.R3;
-                case DS4Controls.DpadUp: return cState.DpadUp;
-                case DS4Controls.DpadDown: return cState.DpadDown;
-                case DS4Controls.DpadLeft: return cState.DpadLeft;
-                case DS4Controls.DpadRight: return cState.DpadRight;
-                case DS4Controls.PS: return cState.PS;
-                case DS4Controls.Cross: return cState.Cross;
-                case DS4Controls.Square: return cState.Square;
-                case DS4Controls.Triangle: return cState.Triangle;
-                case DS4Controls.Circle: return cState.Circle;
-                case DS4Controls.TouchLeft: return (tp != null ? tp.leftDown : false);
-                case DS4Controls.TouchRight: return (tp != null ? tp.rightDown : false);
-                case DS4Controls.TouchMulti: return (tp != null ? tp.multiDown : false);
-                case DS4Controls.TouchUpper: return (tp != null ? tp.upperDown : false);
-                case DS4Controls.LXNeg: return cState.LX < 127 - 55;
-                case DS4Controls.LYNeg: return cState.LY < 127 - 55;
-                case DS4Controls.RXNeg: return cState.RX < 127 - 55;
-                case DS4Controls.RYNeg: return cState.RY < 127 - 55;
-                case DS4Controls.LXPos: return cState.LX > 127 + 55;
-                case DS4Controls.LYPos: return cState.LY > 127 + 55;
-                case DS4Controls.RXPos: return cState.RX > 127 + 55;
-                case DS4Controls.RYPos: return cState.RY > 127 + 55;
-                case DS4Controls.L2: return cState.L2 > 100;
-                case DS4Controls.R2: return cState.R2 > 100;
-                case DS4Controls.GyroXPos: return !sOff ? SXSens[device] * eState.GyroX > 67 : false;
-                case DS4Controls.GyroXNeg: return !sOff ? SXSens[device] * eState.GyroX < -67 : false;
-                case DS4Controls.GyroZPos: return !sOff ? SZSens[device] * eState.GyroZ > 67 : false;
-                case DS4Controls.GyroZNeg: return !sOff ? SZSens[device] * eState.GyroZ < -67 : false;
-                case DS4Controls.SwipeUp: return (tp != null && tp.swipeUp);
-                case DS4Controls.SwipeDown: return (tp != null && tp.swipeDown);
-                case DS4Controls.SwipeLeft: return (tp != null && tp.swipeLeft);
-                case DS4Controls.SwipeRight: return (tp != null && tp.swipeRight);
+                switch (control)
+                {
+                    case DS4Controls.Cross: result = cState.Cross; break;
+                    case DS4Controls.Square: result = cState.Square; break;
+                    case DS4Controls.Triangle: result = cState.Triangle; break;
+                    case DS4Controls.Circle: result = cState.Circle; break;
+                    default: break;
+                }
             }
-            return false;
+            else if (control >= DS4Controls.L1 && control <= DS4Controls.R3)
+            {
+                switch (control)
+                {
+                    case DS4Controls.L1: result = cState.L1; break;
+                    case DS4Controls.R1: result = cState.R1; break;
+                    case DS4Controls.L2: result = cState.L2 > 100; break;
+                    case DS4Controls.R2: result = cState.R2 > 100; break;
+                    case DS4Controls.L3: result = cState.L3; break;
+                    case DS4Controls.R3: result = cState.R3; break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.DpadUp && control <= DS4Controls.DpadLeft)
+            {
+                switch (control)
+                {
+                    case DS4Controls.DpadUp: result = cState.DpadUp; break;
+                    case DS4Controls.DpadDown: result = cState.DpadDown; break;
+                    case DS4Controls.DpadLeft: result = cState.DpadLeft; break;
+                    case DS4Controls.DpadRight: result = cState.DpadRight; break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.LXNeg && control <= DS4Controls.RYPos)
+            {
+                switch (control)
+                {
+                    case DS4Controls.LXNeg: result = cState.LX < 127 - 55; break;
+                    case DS4Controls.LYNeg: result = cState.LY < 127 - 55; break;
+                    case DS4Controls.RXNeg: result = cState.RX < 127 - 55; break;
+                    case DS4Controls.RYNeg: result = cState.RY < 127 - 55; break;
+                    case DS4Controls.LXPos: result = cState.LX > 127 + 55; break;
+                    case DS4Controls.LYPos: result = cState.LY > 127 + 55; break;
+                    case DS4Controls.RXPos: result = cState.RX > 127 + 55; break;
+                    case DS4Controls.RYPos: result = cState.RY > 127 + 55; break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.TouchLeft && control <= DS4Controls.TouchRight)
+            {
+                switch (control)
+                {
+                    case DS4Controls.TouchLeft: result = (tp != null ? tp.leftDown : false); break;
+                    case DS4Controls.TouchRight: result = (tp != null ? tp.rightDown : false); break;
+                    case DS4Controls.TouchMulti: result = (tp != null ? tp.multiDown : false); break;
+                    case DS4Controls.TouchUpper: result = (tp != null ? tp.upperDown : false); break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.SwipeLeft && control <= DS4Controls.SwipeDown)
+            {
+                switch (control)
+                {
+                    case DS4Controls.SwipeUp: result = (tp != null && tp.swipeUp); break;
+                    case DS4Controls.SwipeDown: result = (tp != null && tp.swipeDown); break;
+                    case DS4Controls.SwipeLeft: result = (tp != null && tp.swipeLeft); break;
+                    case DS4Controls.SwipeRight: result = (tp != null && tp.swipeRight); break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.GyroXPos && control <= DS4Controls.GyroZNeg)
+            {
+                switch (control)
+                {
+                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.GyroX > 67 : false; break;
+                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * eState.GyroX < -67 : false; break;
+                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.GyroZ > 67 : false; break;
+                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.GyroZ < -67 : false; break;
+                    default: break;
+                }
+            }
+            else
+            {
+                switch (control)
+                {
+                    case DS4Controls.PS: result = cState.PS; break;
+                    case DS4Controls.Share: result = cState.Share; break;
+                    case DS4Controls.Options: result = cState.Options; break;
+                    default: break;
+                }
+            }
+
+            return result;
         }
 
         public static byte getXYAxisMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp, bool alt = false)

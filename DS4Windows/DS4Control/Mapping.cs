@@ -81,6 +81,47 @@ namespace DS4Windows
         public static DateTime[] oldnowKeyAct = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
         private static bool tappedOnce = false, firstTouch = false, secondtouchbegin = false;
         private static DateTime pastTime, firstTap, TimeofEnd;
+        private static DS4Controls[] shiftTriggerMapping = { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
+            DS4Controls.Triangle, DS4Controls.Options, DS4Controls.Share, DS4Controls.DpadUp, DS4Controls.DpadDown,
+            DS4Controls.DpadLeft, DS4Controls.DpadRight, DS4Controls.PS, DS4Controls.L1, DS4Controls.R1, DS4Controls.L2,
+            DS4Controls.R2, DS4Controls.L3, DS4Controls.R3, DS4Controls.TouchLeft, DS4Controls.TouchUpper, DS4Controls.TouchMulti,
+            DS4Controls.TouchRight, DS4Controls.GyroZNeg, DS4Controls.GyroZPos, DS4Controls.GyroXPos, DS4Controls.GyroXNeg
+        };
+        private static int[] ds4ControlMapping = { 0, // DS4Control.None
+            16, // DS4Controls.LXNeg
+            20, // DS4Controls.LXPos
+            17, // DS4Controls.LYNeg
+            21, // DS4Controls.LYPos
+            18, // DS4Controls.RXNeg
+            22, // DS4Controls.RXPos
+            19, // DS4Controls.RYNeg
+            23, // DS4Controls.RYPos
+            3,  // DS4Controls.L1
+            24, // DS4Controls.L2
+            5,  // DS4Controls.L3
+            4,  // DS4Controls.R1
+            25, // DS4Controls.R2
+            6,  // DS4Controls.R3
+            13, // DS4Controls.Square
+            14, // DS4Controls.Triangle
+            15, // DS4Controls.Circle
+            12, // DS4Controls.Cross
+            7,  // DS4Controls.DpadUp
+            10, // DS4Controls.DpadRight
+            8,  // DS4Controls.DpadDown
+            9,  // DS4Controls.DpadLeft
+            11, // DS4Controls.PS
+            27, // DS4Controls.TouchLeft
+            29, // DS4Controls.TouchUpper
+            26, // DS4Controls.TouchMulti
+            28, // DS4Controls.TouchRight
+            1,  // DS4Controls.Share
+            2,  // DS4Controls.Options
+            31, // DS4Controls.GyroXPos
+            30, // DS4Controls.GyroXNeg
+            33, // DS4Controls.GyroZPos
+            32  // DS4Controls.GyroZNeg
+        };
 
         //special macros
         static bool altTabDone = true;
@@ -321,43 +362,13 @@ namespace DS4Windows
 
         public static int DS4ControltoInt(DS4Controls ctrl)
         {
-            switch (ctrl)
+            int result = 0;
+            if (ctrl >= DS4Controls.None && ctrl <= DS4Controls.GyroZNeg)
             {
-                case DS4Controls.Share: return 1;
-                case DS4Controls.Options: return 2;
-                case DS4Controls.L1: return 3;
-                case DS4Controls.R1: return 4;
-                case DS4Controls.L3: return 5;
-                case DS4Controls.R3: return 6;
-                case DS4Controls.DpadUp: return 7;
-                case DS4Controls.DpadDown: return 8;
-                case DS4Controls.DpadLeft: return 9;
-                case DS4Controls.DpadRight: return 10;
-                case DS4Controls.PS: return 11;
-                case DS4Controls.Cross: return 12;
-                case DS4Controls.Square: return 13;
-                case DS4Controls.Triangle: return 14;
-                case DS4Controls.Circle: return 15;
-                case DS4Controls.LXNeg: return 16;
-                case DS4Controls.LYNeg: return 17;
-                case DS4Controls.RXNeg: return 18;
-                case DS4Controls.RYNeg: return 19;
-                case DS4Controls.LXPos: return 20;
-                case DS4Controls.LYPos: return 21;
-                case DS4Controls.RXPos: return 22;
-                case DS4Controls.RYPos: return 23;
-                case DS4Controls.L2: return 24;
-                case DS4Controls.R2: return 25;
-                case DS4Controls.TouchMulti: return 26;
-                case DS4Controls.TouchLeft: return 27;
-                case DS4Controls.TouchRight: return 28;
-                case DS4Controls.TouchUpper: return 29;
-                case DS4Controls.GyroXNeg: return 30;
-                case DS4Controls.GyroXPos: return 31;
-                case DS4Controls.GyroZNeg: return 32;
-                case DS4Controls.GyroZPos: return 33;
+                result = ds4ControlMapping[(int)ctrl];
             }
-            return 0; 
+
+            return result;
         }
 
         static double TValue(double value1, double value2, double percent)
@@ -685,38 +696,20 @@ namespace DS4Windows
 
         private static bool ShiftTrigger(int trigger, int device, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
-            switch (trigger)
+            bool result = false;
+            if (trigger == 0)
             {
-                case 0: return false;
-                case 1: return getBoolMapping(device, DS4Controls.Cross, cState, eState, tp); 
-                case 2: return getBoolMapping(device, DS4Controls.Circle, cState, eState, tp); 
-                case 3: return getBoolMapping(device, DS4Controls.Square, cState, eState, tp); 
-                case 4: return getBoolMapping(device, DS4Controls.Triangle, cState, eState, tp); 
-                case 5: return getBoolMapping(device, DS4Controls.Options, cState, eState, tp); 
-                case 6: return getBoolMapping(device, DS4Controls.Share, cState, eState, tp); 
-                case 7: return getBoolMapping(device, DS4Controls.DpadUp, cState, eState, tp); 
-                case 8: return getBoolMapping(device, DS4Controls.DpadDown, cState, eState, tp); 
-                case 9: return getBoolMapping(device, DS4Controls.DpadLeft, cState, eState, tp); 
-                case 10: return getBoolMapping(device, DS4Controls.DpadRight, cState, eState, tp); 
-                case 11: return getBoolMapping(device, DS4Controls.PS, cState, eState, tp); 
-                case 12: return getBoolMapping(device, DS4Controls.L1, cState, eState, tp); 
-                case 13: return getBoolMapping(device, DS4Controls.R1, cState, eState, tp); 
-                case 14: return getBoolMapping(device, DS4Controls.L2, cState, eState, tp); 
-                case 15: return getBoolMapping(device, DS4Controls.R2, cState, eState, tp); 
-                case 16: return getBoolMapping(device, DS4Controls.L3, cState, eState, tp); 
-                case 17: return getBoolMapping(device, DS4Controls.R3, cState, eState, tp); 
-                case 18: return getBoolMapping(device, DS4Controls.TouchLeft, cState, eState, tp); 
-                case 19: return getBoolMapping(device, DS4Controls.TouchUpper, cState, eState, tp); 
-                case 20: return getBoolMapping(device, DS4Controls.TouchMulti, cState, eState, tp); 
-                case 21: return getBoolMapping(device, DS4Controls.TouchRight, cState, eState, tp); 
-                case 22: return getBoolMapping(device, DS4Controls.GyroZNeg, cState, eState, tp); 
-                case 23: return getBoolMapping(device, DS4Controls.GyroZPos, cState, eState, tp); 
-                case 24: return getBoolMapping(device, DS4Controls.GyroXPos, cState, eState, tp); 
-                case 25: return getBoolMapping(device, DS4Controls.GyroXNeg, cState, eState, tp); 
-                case 26: return cState.Touch1; 
-                default: return false; 
+                result = false;
             }
+            else
+            {
+                DS4Controls ds = shiftTriggerMapping[trigger];
+                result = getBoolMapping(device, ds, cState, eState, tp);
+            }
+
+            return result;
         }
+
         private static X360Controls getX360ControlsByName(string key)
         {
             X360Controls x3c;
@@ -1090,102 +1083,133 @@ namespace DS4Windows
                 DS4Controls dc = entry.Value;
                 if (getBoolMapping(device, dc, cState, eState, tp))
                 {
-                    switch (entry.Key)
+                    if (key >= DS4Controls.Square && key <= DS4Controls.Cross)
                     {
-                        case DS4Controls.Cross: MappedState.Cross = true; break;
-                        case DS4Controls.Circle: MappedState.Circle = true; break;
-                        case DS4Controls.Square: MappedState.Square = true; break;
-                        case DS4Controls.Triangle: MappedState.Triangle = true; break;
-                        case DS4Controls.L1: MappedState.L1 = true; break;
-                        case DS4Controls.L2: MappedState.L2 = getByteMapping(device, dc, cState, eState, tp); break;
-                        case DS4Controls.L3: MappedState.L3 = true; break;
-                        case DS4Controls.R1: MappedState.R1 = true; break;
-                        case DS4Controls.R2: MappedState.R2 = getByteMapping(device, dc, cState, eState, tp); break;
-                        case DS4Controls.R3: MappedState.R3 = true; break;
-                        case DS4Controls.DpadUp: MappedState.DpadUp = true; break;
-                        case DS4Controls.DpadRight: MappedState.DpadRight = true; break;
-                        case DS4Controls.DpadLeft: MappedState.DpadLeft = true; break;
-                        case DS4Controls.DpadDown: MappedState.DpadDown = true; break;
-                        case DS4Controls.Options: MappedState.Options = true; break;
-                        case DS4Controls.Share: MappedState.Share = true; break;
-                        case DS4Controls.PS: MappedState.PS = true; break;
-                        case DS4Controls.LXNeg:
-                        case DS4Controls.LXPos:
+                        switch (key)
                         {
-                            if (Math.Abs(MappedState.LX - 127) < 10)
-                            {
-                                if (key == DS4Controls.LXNeg)
-                                {
-                                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
-                                        MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                                }
-                                else
-                                {
-                                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
-                                        MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp);
-                                }
-                            }
-
-                            break;
+                            case DS4Controls.Cross: MappedState.Cross = true; break;
+                            case DS4Controls.Circle: MappedState.Circle = true; break;
+                            case DS4Controls.Square: MappedState.Square = true; break;
+                            case DS4Controls.Triangle: MappedState.Triangle = true; break;
+                            default: break;
                         }
-                        case DS4Controls.LYNeg:
-                        case DS4Controls.LYPos:
+                    }
+                    else if (key >= DS4Controls.L1 && key <= DS4Controls.R3)
+                    {
+                        switch (key)
                         {
-                            if (Math.Abs(MappedState.LY - 127) < 10)
-                            {
-                                if (key == DS4Controls.LYNeg)
-                                {
-                                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
-                                        MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp);
-                                }
-                                else
-                                {
-                                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
-                                        MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                                }
-                            }
-
-                            break;
+                            case DS4Controls.L1: MappedState.L1 = true; break;
+                            case DS4Controls.L2: MappedState.L2 = getByteMapping(device, dc, cState, eState, tp); break;
+                            case DS4Controls.L3: MappedState.L3 = true; break;
+                            case DS4Controls.R1: MappedState.R1 = true; break;
+                            case DS4Controls.R2: MappedState.R2 = getByteMapping(device, dc, cState, eState, tp); break;
+                            case DS4Controls.R3: MappedState.R3 = true; break;
+                            default: break;
                         }
-                        case DS4Controls.RXNeg:
-                        case DS4Controls.RXPos:
+                    }
+                    else if (key >= DS4Controls.DpadUp && key <= DS4Controls.DpadLeft)
+                    {
+                        switch (key)
                         {
-                            if (Math.Abs(MappedState.RX - 127) < 10)
-                            {
-                                if (key == DS4Controls.RXNeg)
-                                {
-                                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
-                                        MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp);
-                                }
-                                else
-                                {
-                                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
-                                        MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                                }
-                            }
-
-                            break;
+                            case DS4Controls.DpadUp: MappedState.DpadUp = true; break;
+                            case DS4Controls.DpadRight: MappedState.DpadRight = true; break;
+                            case DS4Controls.DpadLeft: MappedState.DpadLeft = true; break;
+                            case DS4Controls.DpadDown: MappedState.DpadDown = true; break;
+                            default: break;
                         }
-                        case DS4Controls.RYNeg:
-                        case DS4Controls.RYPos:
+                    }
+                    else if (key >= DS4Controls.LXNeg && key <= DS4Controls.RYPos)
+                    {
+                        switch (key)
                         {
-                            if (Math.Abs(MappedState.RY - 127) < 10)
+                            case DS4Controls.LXNeg:
+                            case DS4Controls.LXPos:
                             {
-                                if (key == DS4Controls.RYNeg)
+                                if (Math.Abs(MappedState.LX - 127) < 10)
                                 {
-                                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
-                                        MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp);
+                                    if (key == DS4Controls.LXNeg)
+                                    {
+                                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
+                                            MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp, true);
+                                    }
+                                    else
+                                    {
+                                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
+                                            MappedState.LX = getXYAxisMapping(device, dc, cState, eState, tp);
+                                    }
                                 }
-                                else
-                                {
-                                    if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
-                                        MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                                }
-                            }
 
-                            break;
+                                break;
+                            }
+                            case DS4Controls.LYNeg:
+                            case DS4Controls.LYPos:
+                            {
+                                if (Math.Abs(MappedState.LY - 127) < 10)
+                                {
+                                    if (key == DS4Controls.LYNeg)
+                                    {
+                                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
+                                            MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp);
+                                    }
+                                    else
+                                    {
+                                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
+                                            MappedState.LY = getXYAxisMapping(device, dc, cState, eState, tp, true);
+                                    }
+                                }
+
+                                break;
+                            }
+                            case DS4Controls.RXNeg:
+                            case DS4Controls.RXPos:
+                            {
+                                if (Math.Abs(MappedState.RX - 127) < 10)
+                                {
+                                    if (key == DS4Controls.RXNeg)
+                                    {
+                                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
+                                            MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp);
+                                    }
+                                    else
+                                    {
+                                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
+                                            MappedState.RX = getXYAxisMapping(device, dc, cState, eState, tp, true);
+                                    }
+                                }
+
+                                break;
+                            }
+                            case DS4Controls.RYNeg:
+                            case DS4Controls.RYPos:
+                            {
+                                if (Math.Abs(MappedState.RY - 127) < 10)
+                                {
+                                    if (key == DS4Controls.RYNeg)
+                                    {
+                                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp)) > 5)
+                                            MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp);
+                                    }
+                                    else
+                                    {
+                                        if (Math.Abs(127 - getXYAxisMapping(device, dc, cState, eState, tp, true)) > 5)
+                                            MappedState.RY = getXYAxisMapping(device, dc, cState, eState, tp, true);
+                                    }
+                                }
+
+                                break;
+                            }
+                            default: break;
                         }
-                        default: break;
+                    }
+                    else
+                    {
+                        switch (key)
+                        {
+                            case DS4Controls.Options: MappedState.Options = true; break;
+                            case DS4Controls.Share: MappedState.Share = true; break;
+                            case DS4Controls.PS: MappedState.PS = true; break;
+                            default: break;
+                        }
                     }
                 }
             }

@@ -157,8 +157,36 @@ namespace DS4Windows
 
         public HidDevice HidDevice => hDevice;
         public bool IsExclusive => HidDevice.IsExclusive;
-        public bool IsDisconnecting { get; private set; }
-        public bool IsRemoving { get; set; }
+        private bool isDisconnecting = false;
+        public bool IsDisconnecting
+        {
+            get { return isDisconnecting; }
+            private set
+            {
+                this.isDisconnecting = value;
+            }
+        }
+
+        private bool isRemoving = false;
+        public bool IsRemoving
+        {
+            get { return isRemoving; }
+            set
+            {
+                this.isRemoving = value;
+            }
+        }
+
+        private bool isRemoved = false;
+        public bool IsRemoved
+        {
+            get { return isRemoved; }
+            set
+            {
+                this.isRemoved = value;
+            }
+        }
+
         public object removeLocker = new object();
 
         public string MacAddress =>  Mac;
@@ -491,7 +519,7 @@ namespace DS4Windows
                         Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
                         sendOutputReport(true); // Kick Windows into noticing the disconnection.
                         StopOutputUpdate();
-                        IsDisconnecting = true;
+                        isDisconnecting = true;
                         if (Removal != null)
                             Removal(this, EventArgs.Empty);
                         return;
@@ -507,7 +535,7 @@ namespace DS4Windows
                     {
                         Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
                         StopOutputUpdate();
-                        IsDisconnecting = true;
+                        isDisconnecting = true;
                         if (Removal != null)
                             Removal(this, EventArgs.Empty);
                         return;
@@ -613,6 +641,11 @@ namespace DS4Windows
                 } */
 
                 bool ds4Idle = cState.FrameCounter == pState.FrameCounter;
+                if (!ds4Idle)
+                {
+                    isRemoved = false;
+                }
+
                 if (conType == ConnectionType.USB)
                 {
                     lastActive = utcNow;
@@ -621,7 +654,7 @@ namespace DS4Windows
                 {
                     bool shouldDisconnect = false;
                     int idleTime = idleTimeout;
-                    if (idleTime > 0)
+                    if (!isRemoved && idleTime > 0)
                     {
                         bool idleInput = isDS4Idle();
                         if (idleInput)
@@ -649,8 +682,7 @@ namespace DS4Windows
                         }
                         else if (conType == ConnectionType.SONYWA)
                         {
-                            if (DisconnectDongle())
-                                return; // all done
+                            DisconnectDongle();
                         }
                     }
                 }
@@ -792,22 +824,27 @@ namespace DS4Windows
             return false;
         }
 
-        public bool DisconnectDongle(bool remove=false)
+        public bool DisconnectDongle(bool remove = false)
         {
             bool result = false;
             byte[] disconnectReport = new byte[65];
             disconnectReport[0] = 0xe2;
             disconnectReport[1] = 0x02;
-            for (int i = 2; i < 65; i++)
-                disconnectReport[i] = 0;
+            Array.Clear(disconnectReport, 2, 63);
+            //for (int i = 2; i < 65; i++)
+            //    disconnectReport[i] = 0;
 
             result = hDevice.WriteFeatureReport(disconnectReport);
             if (result && remove)
             {
-                IsDisconnecting = true;
+                isDisconnecting = true;
                 StopOutputUpdate();
                 if (Removal != null)
                     Removal(this, EventArgs.Empty);
+            }
+            else if (result && !remove)
+            {
+                isRemoved = true;
             }
 
             return result;

@@ -849,108 +849,165 @@ namespace DS4Windows
                     else if (actionType == DS4ControlSettings.ActionType.Button)
                     {
                         int keyvalue = 0;
-                        bool isAnalog = dcs.control.ToString().Contains("LX") ||
-                                        dcs.control.ToString().Contains("RX") ||
-                                        dcs.control.ToString().Contains("LY") ||
-                                        dcs.control.ToString().Contains("LY") ||
-                                        dcs.control.ToString().Contains("R2") ||
-                                        dcs.control.ToString().Contains("L2") ||
-                                        dcs.control.ToString().Contains("Gyro");
-                        switch (getX360ControlsByName(action.ToString()))
+                        bool isAnalog = false;
+
+                        if (dcs.control >= DS4Controls.LXNeg && dcs.control <= DS4Controls.RYPos)
                         {
-                            case X360Controls.A: tempControlDict.Add(DS4Controls.Cross, dcs.control); break;
-                            case X360Controls.B: tempControlDict.Add(DS4Controls.Circle, dcs.control); break;
-                            case X360Controls.X: tempControlDict.Add(DS4Controls.Square, dcs.control); break;
-                            case X360Controls.Y: tempControlDict.Add(DS4Controls.Triangle, dcs.control); break;
-                            case X360Controls.LB: tempControlDict.Add(DS4Controls.L1, dcs.control); break;
-                            case X360Controls.LS: tempControlDict.Add(DS4Controls.L3, dcs.control); break;
-                            case X360Controls.RB: tempControlDict.Add(DS4Controls.R1, dcs.control); break;
-                            case X360Controls.RS: tempControlDict.Add(DS4Controls.R3, dcs.control); break;
-                            case X360Controls.DpadUp: tempControlDict.Add(DS4Controls.DpadUp, dcs.control); break;
-                            case X360Controls.DpadDown: tempControlDict.Add(DS4Controls.DpadDown, dcs.control); break;
-                            case X360Controls.DpadLeft: tempControlDict.Add(DS4Controls.DpadLeft, dcs.control); break;
-                            case X360Controls.DpadRight: tempControlDict.Add(DS4Controls.DpadRight, dcs.control); break;
-                            case X360Controls.Start: tempControlDict.Add(DS4Controls.Options, dcs.control); break;
-                            case X360Controls.Guide: tempControlDict.Add(DS4Controls.PS, dcs.control); break;
-                            case X360Controls.Back: tempControlDict.Add(DS4Controls.Share, dcs.control); break;
-                            case X360Controls.LXNeg: tempControlDict.Add(DS4Controls.LXNeg, dcs.control); break;
-                            case X360Controls.LYNeg: tempControlDict.Add(DS4Controls.LYNeg, dcs.control); break;
-                            case X360Controls.RXNeg: tempControlDict.Add(DS4Controls.RXNeg, dcs.control); break;
-                            case X360Controls.RYNeg: tempControlDict.Add(DS4Controls.RYNeg, dcs.control); break;
-                            case X360Controls.LXPos: tempControlDict.Add(DS4Controls.LXPos, dcs.control); break;
-                            case X360Controls.LYPos: tempControlDict.Add(DS4Controls.LYPos, dcs.control); break;
-                            case X360Controls.RXPos: tempControlDict.Add(DS4Controls.RXPos, dcs.control); break;
-                            case X360Controls.RYPos: tempControlDict.Add(DS4Controls.RYPos, dcs.control); break;
-                            case X360Controls.LT: tempControlDict.Add(DS4Controls.L2, dcs.control); break;
-                            case X360Controls.RT: tempControlDict.Add(DS4Controls.R2, dcs.control); break;
-                            case X360Controls.LeftMouse:
-                                keyvalue = 256;
-                                if (getBoolMapping(device, dcs.control, cState, eState, tp))
-                                    deviceState.currentClicks.leftCount++;
-                                break;
-                            case X360Controls.RightMouse:
-                                keyvalue = 257;
-                                if (getBoolMapping(device, dcs.control, cState, eState, tp))
-                                    deviceState.currentClicks.rightCount++;
-                                break;
-                            case X360Controls.MiddleMouse:
-                                keyvalue = 258;
-                                if (getBoolMapping(device, dcs.control, cState, eState, tp))
-                                    deviceState.currentClicks.middleCount++;
-                                break;
-                            case X360Controls.FourthMouse:
-                                keyvalue = 259;
-                                if (getBoolMapping(device, dcs.control, cState, eState, tp))
-                                    deviceState.currentClicks.fourthCount++;
-                                break;
-                            case X360Controls.FifthMouse:
-                                keyvalue = 260;
-                                if (getBoolMapping(device, dcs.control, cState, eState, tp))
-                                    deviceState.currentClicks.fifthCount++;
-                                break;
-                            case X360Controls.WUP:
-                                if (getBoolMapping(device, dcs.control, cState, eState, tp))
-                                    if (isAnalog)
-                                        getMouseWheelMapping(device, dcs.control, cState, eState, tp, false);
-                                    else
-                                        deviceState.currentClicks.wUpCount++;
-                                break;
-                            case X360Controls.WDOWN:
-                                if (getBoolMapping(device, dcs.control, cState, eState, tp))
-                                    if (isAnalog)
-                                        getMouseWheelMapping(device, dcs.control, cState, eState, tp, true);
-                                    else
-                                        deviceState.currentClicks.wDownCount++;
-                                break;
-                            case X360Controls.MouseUp:
-                                if (MouseDeltaY == 0)
-                                {
-                                    MouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, 0);
-                                    MouseDeltaY = -Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
-                                }
-                                break;
-                            case X360Controls.MouseDown:
-                                if (MouseDeltaY == 0)
-                                {
-                                    MouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, 1);
-                                    MouseDeltaY = Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
-                                }
-                                break;
-                            case X360Controls.MouseLeft:
-                                if (MouseDeltaX == 0)
-                                {
-                                    MouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, 2);
-                                    MouseDeltaX = -Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
-                                }
-                                break;
-                            case X360Controls.MouseRight:
-                                if (MouseDeltaX == 0)
-                                {
-                                    MouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, 3);
-                                    MouseDeltaX = Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
-                                }
-                                break;
+                            isAnalog = true;
                         }
+                        else if (dcs.control == DS4Controls.L2 || dcs.control == DS4Controls.R2)
+                        {
+                            isAnalog = true;
+                        }
+                        else if (dcs.control >= DS4Controls.GyroXPos && dcs.control <= DS4Controls.GyroZNeg)
+                        {
+                            isAnalog = true;
+                        }
+
+                        X360Controls xboxControl = getX360ControlsByName(action.ToString());
+                        if (xboxControl >= X360Controls.X && xboxControl <= X360Controls.A)
+                        {
+                            switch (xboxControl)
+                            {
+                                case X360Controls.A: tempControlDict.Add(DS4Controls.Cross, dcs.control); break;
+                                case X360Controls.B: tempControlDict.Add(DS4Controls.Circle, dcs.control); break;
+                                case X360Controls.X: tempControlDict.Add(DS4Controls.Square, dcs.control); break;
+                                case X360Controls.Y: tempControlDict.Add(DS4Controls.Triangle, dcs.control); break;
+                                default: break;
+                            }
+                        }
+                        else if (xboxControl >= X360Controls.LB && xboxControl <= X360Controls.RS)
+                        {
+                            switch (xboxControl)
+                            {
+                                case X360Controls.LB: tempControlDict.Add(DS4Controls.L1, dcs.control); break;
+                                case X360Controls.LT: tempControlDict.Add(DS4Controls.L2, dcs.control); break;
+                                case X360Controls.LS: tempControlDict.Add(DS4Controls.L3, dcs.control); break;
+                                case X360Controls.RB: tempControlDict.Add(DS4Controls.R1, dcs.control); break;
+                                case X360Controls.RT: tempControlDict.Add(DS4Controls.R2, dcs.control); break;
+                                case X360Controls.RS: tempControlDict.Add(DS4Controls.R3, dcs.control); break;
+                                default: break;
+                            }
+                        }
+                        else if (xboxControl >= X360Controls.DpadUp && xboxControl <= X360Controls.DpadLeft)
+                        {
+                            switch (xboxControl)
+                            {
+                                case X360Controls.DpadUp: tempControlDict.Add(DS4Controls.DpadUp, dcs.control); break;
+                                case X360Controls.DpadDown: tempControlDict.Add(DS4Controls.DpadDown, dcs.control); break;
+                                case X360Controls.DpadLeft: tempControlDict.Add(DS4Controls.DpadLeft, dcs.control); break;
+                                case X360Controls.DpadRight: tempControlDict.Add(DS4Controls.DpadRight, dcs.control); break;
+                                default: break;
+                            }
+                        }
+                        else if (xboxControl >= X360Controls.LXNeg && xboxControl <= X360Controls.RYPos)
+                        {
+                            switch (xboxControl)
+                            {
+                                case X360Controls.LXNeg: tempControlDict.Add(DS4Controls.LXNeg, dcs.control); break;
+                                case X360Controls.LYNeg: tempControlDict.Add(DS4Controls.LYNeg, dcs.control); break;
+                                case X360Controls.RXNeg: tempControlDict.Add(DS4Controls.RXNeg, dcs.control); break;
+                                case X360Controls.RYNeg: tempControlDict.Add(DS4Controls.RYNeg, dcs.control); break;
+                                case X360Controls.LXPos: tempControlDict.Add(DS4Controls.LXPos, dcs.control); break;
+                                case X360Controls.LYPos: tempControlDict.Add(DS4Controls.LYPos, dcs.control); break;
+                                case X360Controls.RXPos: tempControlDict.Add(DS4Controls.RXPos, dcs.control); break;
+                                case X360Controls.RYPos: tempControlDict.Add(DS4Controls.RYPos, dcs.control); break;
+                                default: break;
+                            }
+                        }
+                        else if (xboxControl >= X360Controls.LeftMouse && xboxControl <= X360Controls.WDOWN)
+                        {
+                            switch (xboxControl)
+                            {
+                                case X360Controls.LeftMouse:
+                                    keyvalue = 256;
+                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                        deviceState.currentClicks.leftCount++;
+                                    break;
+                                case X360Controls.RightMouse:
+                                    keyvalue = 257;
+                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                        deviceState.currentClicks.rightCount++;
+                                    break;
+                                case X360Controls.MiddleMouse:
+                                    keyvalue = 258;
+                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                        deviceState.currentClicks.middleCount++;
+                                    break;
+                                case X360Controls.FourthMouse:
+                                    keyvalue = 259;
+                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                        deviceState.currentClicks.fourthCount++;
+                                    break;
+                                case X360Controls.FifthMouse:
+                                    keyvalue = 260;
+                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                        deviceState.currentClicks.fifthCount++;
+                                    break;
+                                case X360Controls.WUP:
+                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                        if (isAnalog)
+                                            getMouseWheelMapping(device, dcs.control, cState, eState, tp, false);
+                                        else
+                                            deviceState.currentClicks.wUpCount++;
+                                    break;
+                                case X360Controls.WDOWN:
+                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                        if (isAnalog)
+                                            getMouseWheelMapping(device, dcs.control, cState, eState, tp, true);
+                                        else
+                                            deviceState.currentClicks.wDownCount++;
+                                    break;
+                                default: break;
+                            }
+                        }
+                        else if (xboxControl >= X360Controls.MouseUp && xboxControl <= X360Controls.MouseRight)
+                        {
+                            switch (xboxControl)
+                            {
+                                case X360Controls.MouseUp:
+                                    if (MouseDeltaY == 0)
+                                    {
+                                        MouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, 0);
+                                        MouseDeltaY = -Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
+                                    }
+                                    break;
+                                case X360Controls.MouseDown:
+                                    if (MouseDeltaY == 0)
+                                    {
+                                        MouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, 1);
+                                        MouseDeltaY = Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
+                                    }
+                                    break;
+                                case X360Controls.MouseLeft:
+                                    if (MouseDeltaX == 0)
+                                    {
+                                        MouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, 2);
+                                        MouseDeltaX = -Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
+                                    }
+                                    break;
+                                case X360Controls.MouseRight:
+                                    if (MouseDeltaX == 0)
+                                    {
+                                        MouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, 3);
+                                        MouseDeltaX = Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
+                                    }
+                                    break;
+
+                                default: break;
+                            }
+                        }
+                        else
+                        {
+                            switch (xboxControl)
+                            {
+                                case X360Controls.Start: tempControlDict.Add(DS4Controls.Options, dcs.control); break;
+                                case X360Controls.Guide: tempControlDict.Add(DS4Controls.PS, dcs.control); break;
+                                case X360Controls.Back: tempControlDict.Add(DS4Controls.Share, dcs.control); break;
+                                default: break;
+                            }
+                        }
+
                         if (keyType.HasFlag(DS4KeyType.Toggle))
                         {
                             if (getBoolMapping(device, dcs.control, cState, eState, tp))
@@ -968,6 +1025,7 @@ namespace DS4Windows
                                 pressedonce[keyvalue] = false;
                             }
                         }
+
                         resetToDefaultValue(dcs.control, MappedState); // erase default mappings for things that are remapped                       
                     }
                 }
@@ -2405,33 +2463,65 @@ namespace DS4Windows
         //if its a trigger returns 0
         public static void resetToDefaultValue(DS4Controls control, DS4State cState)
         {
-            switch (control)
+            if (control >= DS4Controls.Square && control <= DS4Controls.Cross)
             {
-                case DS4Controls.Share: cState.Share = false; break;
-                case DS4Controls.Options: cState.Options = false; break;
-                case DS4Controls.L1: cState.L1 = false; break;
-                case DS4Controls.R1: cState.R1 = false; break;
-                case DS4Controls.L3: cState.L3 = false; break;
-                case DS4Controls.R3: cState.R3 = false; break;
-                case DS4Controls.DpadUp: cState.DpadUp = false; break;
-                case DS4Controls.DpadDown: cState.DpadDown = false; break;
-                case DS4Controls.DpadLeft: cState.DpadLeft = false; break;
-                case DS4Controls.DpadRight: cState.DpadRight = false; break;
-                case DS4Controls.PS: cState.PS = false; break;
-                case DS4Controls.Cross: cState.Cross = false; break;
-                case DS4Controls.Square: cState.Square = false; break;
-                case DS4Controls.Triangle: cState.Triangle = false; break;
-                case DS4Controls.Circle: cState.Circle = false; break;
-                case DS4Controls.LXNeg: cState.LX = 127; break;
-                case DS4Controls.LYNeg: cState.LY = 127; break;
-                case DS4Controls.RXNeg: cState.RX = 127; break;
-                case DS4Controls.RYNeg: cState.RY = 127; break;
-                case DS4Controls.LXPos: cState.LX = 127; break;
-                case DS4Controls.LYPos: cState.LY = 127; break;
-                case DS4Controls.RXPos: cState.RX = 127; break;
-                case DS4Controls.RYPos: cState.RY = 127; break;
-                case DS4Controls.L2: cState.L2 = 0; break;
-                case DS4Controls.R2: cState.R2 = 0; break;
+                switch (control)
+                {
+                    case DS4Controls.Cross: cState.Cross = false; break;
+                    case DS4Controls.Square: cState.Square = false; break;
+                    case DS4Controls.Triangle: cState.Triangle = false; break;
+                    case DS4Controls.Circle: cState.Circle = false; break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.L1 && control <= DS4Controls.R3)
+            {
+                switch (control)
+                {
+                    case DS4Controls.L1: cState.L1 = false; break;
+                    case DS4Controls.L2: cState.L2 = 0; break;
+                    case DS4Controls.L3: cState.L3 = false; break;
+                    case DS4Controls.R1: cState.R1 = false; break;
+                    case DS4Controls.R2: cState.R2 = 0; break;
+                    case DS4Controls.R3: cState.R3 = false; break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.DpadUp && control <= DS4Controls.DpadLeft)
+            {
+                switch (control)
+                {
+                    case DS4Controls.DpadUp: cState.DpadUp = false; break;
+                    case DS4Controls.DpadDown: cState.DpadDown = false; break;
+                    case DS4Controls.DpadLeft: cState.DpadLeft = false; break;
+                    case DS4Controls.DpadRight: cState.DpadRight = false; break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.LXNeg && control <= DS4Controls.RYPos)
+            {
+                switch (control)
+                {
+                    case DS4Controls.LXNeg: cState.LX = 127; break;
+                    case DS4Controls.LYNeg: cState.LY = 127; break;
+                    case DS4Controls.RXNeg: cState.RX = 127; break;
+                    case DS4Controls.RYNeg: cState.RY = 127; break;
+                    case DS4Controls.LXPos: cState.LX = 127; break;
+                    case DS4Controls.LYPos: cState.LY = 127; break;
+                    case DS4Controls.RXPos: cState.RX = 127; break;
+                    case DS4Controls.RYPos: cState.RY = 127; break;
+                    default: break;
+                }
+            }
+            else
+            {
+                switch (control)
+                {
+                    case DS4Controls.Share: cState.Share = false; break;
+                    case DS4Controls.Options: cState.Options = false; break;
+                    case DS4Controls.PS: cState.PS = false; break;
+                    default: break;
+                }
             }
         }
     }

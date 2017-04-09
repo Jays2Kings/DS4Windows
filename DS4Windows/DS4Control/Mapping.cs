@@ -2158,7 +2158,7 @@ namespace DS4Windows
         public static bool getBoolMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
             bool result = false;
-            bool sOff = UseSAforMouse[device];
+
             if (control >= DS4Controls.Square && control <= DS4Controls.Cross)
             {
                 switch (control)
@@ -2233,6 +2233,8 @@ namespace DS4Windows
             }
             else if (control >= DS4Controls.GyroXPos && control <= DS4Controls.GyroZNeg)
             {
+                bool sOff = UseSAforMouse[device];
+
                 switch (control)
                 {
                     case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.GyroX > 67 : false; break;

@@ -478,7 +478,6 @@ namespace DS4Windows
         }
         private byte priorInputReport30 = 0xff;
         public double Latency = 0;
-        bool warn = false;
         public string error;
         private void performDs4Input()
         {
@@ -498,13 +497,6 @@ namespace DS4Windows
                     Latency.RemoveAt(0);
 
                 this.Latency = Latency.Average();
-
-                if (this.Latency > warnInterval && !warn && sw.ElapsedMilliseconds > 4000)
-                {
-                    warn = true;
-                    //System.Diagnostics.Trace.WriteLine(System.DateTime.UtcNow.ToString("o") + "> " + "Controller " + /*this.DeviceNum*/ + 1 + " (" + this.MacAddress + ") is experiencing latency issues. Currently at " + Math.Round(this.Latency, 2).ToString() + "ms of recomended maximum 10ms");
-                }
-                else if (this.Latency <= warnInterval && warn) warn = false;
 
                 if (conType == ConnectionType.BT)
                 {

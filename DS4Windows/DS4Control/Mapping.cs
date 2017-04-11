@@ -788,8 +788,11 @@ namespace DS4Windows
 
             Dictionary<DS4Controls, DS4Controls> tempControlDict = new Dictionary<DS4Controls, DS4Controls>();
             DS4Controls usingExtra = DS4Controls.None;
-            foreach (DS4ControlSettings dcs in getDS4CSettings(device))
+            List<DS4ControlSettings> tempSettingsList = getDS4CSettings(device);
+            //foreach (DS4ControlSettings dcs in getDS4CSettings(device))
+            for (int settingIndex = 0, arlen = tempSettingsList.Count; settingIndex < arlen; settingIndex++)
             {
+                DS4ControlSettings dcs = tempSettingsList[settingIndex];
                 object action = null;
                 DS4ControlSettings.ActionType actionType = 0;
                 DS4KeyType keyType = DS4KeyType.None;

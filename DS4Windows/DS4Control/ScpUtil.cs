@@ -515,7 +515,7 @@ namespace DS4Windows
 
         public static SpecialAction GetProfileAction(int device, string name)
         {
-            SpecialAction sA = new SpecialAction("null", "null", "null", "null");
+            SpecialAction sA = null;
             m_Config.profileActionDict[device].TryGetValue(name, out sA);
             return sA;
         }

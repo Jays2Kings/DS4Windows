@@ -768,7 +768,8 @@ namespace DS4Windows
         /// </summary>
         static bool[] held = new bool[4];
         static int[] oldmouse = new int[4] { -1, -1, -1, -1 };
-        public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, ControlService ctrl)
+        public static void MapCustom(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState,
+            Mouse tp, ControlService ctrl)
         {
             /* TODO: This method is slow sauce. Find ways to speed up action execution */
             MappedState.LX = 127;
@@ -1290,7 +1291,8 @@ namespace DS4Windows
         {
             return shift ? false : GetDS4Action(device, dc, false) == null;
         }
-        public static async void MapCustomAction(int device, DS4State cState, DS4State MappedState, DS4StateExposed eState, Mouse tp, ControlService ctrl)
+        public static async void MapCustomAction(int device, DS4State cState, DS4State MappedState,
+            DS4StateExposed eState, Mouse tp, ControlService ctrl)
         {
             /* TODO: This method is slow sauce. Find ways to speed up action execution */
             try
@@ -1329,8 +1331,10 @@ namespace DS4Windows
                         {
                             triggeractivated = false;
                             bool subtriggeractivated = true;
-                            foreach (DS4Controls dc in action.trigger)
+                            //foreach (DS4Controls dc in action.trigger)
+                            for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
+                                DS4Controls dc = action.trigger[i];
                                 if (!getBoolMapping(device, dc, cState, eState, tp))
                                 {
                                     subtriggeractivated = false;
@@ -1351,8 +1355,10 @@ namespace DS4Windows
                         {
                             triggeractivated = false;
                             bool subtriggeractivated = true;
-                            foreach (DS4Controls dc in action.trigger)
+                            //foreach (DS4Controls dc in action.trigger)
+                            for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
+                                DS4Controls dc = action.trigger[i];
                                 if (!getBoolMapping(device, dc, cState, eState, tp))
                                 {
                                     subtriggeractivated = false;
@@ -1368,8 +1374,10 @@ namespace DS4Windows
                         {
                             triggeractivated = false;
                             bool subtriggeractivated = true;
-                            foreach (DS4Controls dc in action.trigger)
+                            //foreach (DS4Controls dc in action.trigger)
+                            for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
+                                DS4Controls dc = action.trigger[i];
                                 if (!getBoolMapping(device, dc, cState, eState, tp))
                                 {
                                     subtriggeractivated = false;
@@ -1387,21 +1395,27 @@ namespace DS4Windows
                                 oldnowKeyAct[device] = DateTime.MinValue;
                         }
                         else
-                            foreach (DS4Controls dc in action.trigger)
+                        {
+                            //foreach (DS4Controls dc in action.trigger)
+                            for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
+                                DS4Controls dc = action.trigger[i];
                                 if (!getBoolMapping(device, dc, cState, eState, tp))
                                 {
                                     triggeractivated = false;
                                     break;
                                 }
                             }
+                        }
 
                         bool utriggeractivated = true;
                         int uTriggerCount = action.uTrigger.Count;
                         if (action.typeID == SpecialAction.ActionTypeId.Key && uTriggerCount > 0)
                         {
-                            foreach (DS4Controls dc in action.uTrigger)
+                            //foreach (DS4Controls dc in action.uTrigger)
+                            for (int i = 0, arlen = action.uTrigger.Count; i < arlen; i++)
                             {
+                                DS4Controls dc = action.uTrigger[i];
                                 if (!getBoolMapping(device, dc, cState, eState, tp))
                                 {
                                     utriggeractivated = false;
@@ -1411,279 +1425,326 @@ namespace DS4Windows
                             if (action.pressRelease) utriggeractivated = !utriggeractivated;
                         }
 
-                        if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.Program)
+                        bool actionFound = false;
+                        if (triggeractivated)
                         {
-                            if (!actionDone[index].dev[device])
+                            if (action.typeID == SpecialAction.ActionTypeId.Program)
                             {
-                                actionDone[index].dev[device] = true;
-                                if (!string.IsNullOrEmpty(action.extra))
-                                    Process.Start(action.details, action.extra);
-                                else
-                                    Process.Start(action.details);
-                            }
-                        }
-                        else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.Profile)
-                        {
-                            if (!actionDone[index].dev[device] && string.IsNullOrEmpty(tempprofilename[device]))
-                            {
-                                actionDone[index].dev[device] = true;
-                                untriggeraction[device] = action;
-                                untriggerindex[device] = index;
-                                foreach (DS4Controls dc in action.trigger)
-                                {
-                                    DS4ControlSettings dcs = getDS4CSetting(device, dc);
-                                    if (dcs.action != null)
-                                    {
-                                        if (dcs.actionType == DS4ControlSettings.ActionType.Key)
-                                            InputMethods.performKeyRelease(ushort.Parse(dcs.action.ToString()));
-                                        else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
-                                        {
-                                            int[] keys = (int[])dcs.action;
-                                            for (int i = 0, keysLen = keys.Length; i < keysLen; i++)
-                                                InputMethods.performKeyRelease((ushort)keys[i]);
-                                        }
-                                    }
-                                }
-                                LoadTempProfile(device, action.details, true, ctrl);
-                                return;
-                            }
-                        }
-                        else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.Macro)
-                        {
-                            if (!actionDone[index].dev[device])
-                            {
-                                DS4KeyType keyType = action.keyType;
-                                actionDone[index].dev[device] = true;
-                                foreach (DS4Controls dc in action.trigger)
-                                    resetToDefaultValue(dc, MappedState);
-                                PlayMacro(device, macroControl, String.Join("/", action.macro), DS4Controls.None, keyType);
-                            }
-                            else
-                                EndMacro(device, macroControl, String.Join("/", action.macro), DS4Controls.None);
-                        }
-                        else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.Key)
-                        {
-                            if (uTriggerCount == 0 || (uTriggerCount > 0 && untriggerindex[device] == -1 && !actionDone[index].dev[device]))
-                            {
-                                actionDone[index].dev[device] = true;
-                                untriggerindex[device] = index;
-                                ushort key;
-                                ushort.TryParse(action.details, out key);
-                                if (uTriggerCount == 0)
-                                {
-                                    SyntheticState.KeyPresses kp;
-                                    if (!deviceState[device].keyPresses.TryGetValue(key, out kp))
-                                        deviceState[device].keyPresses[key] = kp = new SyntheticState.KeyPresses();
-                                    if (action.keyType.HasFlag(DS4KeyType.ScanCode))
-                                        kp.current.scanCodeCount++;
-                                    else
-                                        kp.current.vkCount++;
-                                    kp.current.repeatCount++;
-                                }
-                                else if (action.keyType.HasFlag(DS4KeyType.ScanCode))
-                                    InputMethods.performSCKeyPress(key);
-                                else
-                                    InputMethods.performKeyPress(key);
-                            }
-                        }
-                        else if (uTriggerCount > 0 && utriggeractivated && action.typeID == SpecialAction.ActionTypeId.Key)
-                        {
-                            if (untriggerindex[device] > -1 && !actionDone[index].dev[device])
-                            {
-                                actionDone[index].dev[device] = true;
-                                untriggerindex[device] = -1;
-                                ushort key;
-                                ushort.TryParse(action.details, out key);
-                                if (action.keyType.HasFlag(DS4KeyType.ScanCode))
-                                    InputMethods.performSCKeyRelease(key);
-                                else
-                                    InputMethods.performKeyRelease(key);
-                            }
-                        }
-                        else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.DisconnectBT)
-                        {
-                            DS4Device d = ctrl.DS4Controllers[device];
-                            if (!d.isCharging())
-                            {
-                                ConnectionType deviceConn = d.ConnectionType;
-                                if (deviceConn == ConnectionType.BT)
-                                {
-                                    d.DisconnectBT();
-                                }
+                                actionFound = true;
 
-                                foreach (DS4Controls dc in action.trigger)
-                                {
-                                    DS4ControlSettings dcs = getDS4CSetting(device, dc);
-                                    if (dcs.action != null)
-                                    {
-                                        if (dcs.actionType == DS4ControlSettings.ActionType.Key)
-                                            InputMethods.performKeyRelease((ushort)dcs.action);
-                                        else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
-                                        {
-                                            int[] keys = (int[])dcs.action;
-                                            for (int i = 0, keysLen = keys.Length; i < keysLen; i++)
-                                                InputMethods.performKeyRelease((ushort)keys[i]);
-                                        }
-                                    }
-                                }
-                                return;
-                            }
-                        }
-                        else if (triggeractivated && action.typeID == SpecialAction.ActionTypeId.BatteryCheck)
-                        {
-                            string[] dets = action.details.Split('|');
-                            if (dets.Length == 1)
-                                dets = action.details.Split(',');
-                            if (bool.Parse(dets[1]) && !actionDone[index].dev[device])
-                            {
-                                Log.LogToTray("Controller " + (device + 1) + ": " +
-                                    ctrl.getDS4Battery(device), true);
-                            }
-                            if (bool.Parse(dets[2]))
-                            {
-                                DS4Device d = ctrl.DS4Controllers[device];
                                 if (!actionDone[index].dev[device])
                                 {
-                                    lastColor[device] = d.LightBarColor;
-                                    DS4LightBar.forcelight[device] = true;
+                                    actionDone[index].dev[device] = true;
+                                    if (!string.IsNullOrEmpty(action.extra))
+                                        Process.Start(action.details, action.extra);
+                                    else
+                                        Process.Start(action.details);
                                 }
-                                DS4Color empty = new DS4Color(byte.Parse(dets[3]), byte.Parse(dets[4]), byte.Parse(dets[5]));
-                                DS4Color full = new DS4Color(byte.Parse(dets[6]), byte.Parse(dets[7]), byte.Parse(dets[8]));
-                                DS4Color trans = getTransitionedColor(empty, full, d.Battery);
-                                if (fadetimer[device] < 100)
-                                    DS4LightBar.forcedColor[device] = getTransitionedColor(lastColor[device], trans, fadetimer[device] += 2);
                             }
-                            actionDone[index].dev[device] = true;
-                        }
-                        else if (!triggeractivated && action.typeID == SpecialAction.ActionTypeId.BatteryCheck)
-                        {
-                            if (actionDone[index].dev[device])
+                            else if (action.typeID == SpecialAction.ActionTypeId.Profile)
                             {
-                                fadetimer[device] = 0;
-                                /*if (prevFadetimer[device] == fadetimer[device])
-                                {
-                                    prevFadetimer[device] = 0;
-                                    fadetimer[device] = 0;
-                                }
-                                else
-                                    prevFadetimer[device] = fadetimer[device];*/
-                                DS4LightBar.forcelight[device] = false;
-                                actionDone[index].dev[device] = false;
-                            }
-                        }
-                        else if (action.typeID == SpecialAction.ActionTypeId.XboxGameDVR || action.typeID == SpecialAction.ActionTypeId.MultiAction)
-                        {
-                            /*if (getCustomButton(device, action.trigger[0]) != X360Controls.Unbound)
-                                getCustomButtons(device)[action.trigger[0]] = X360Controls.Unbound;
-                            if (getCustomMacro(device, action.trigger[0]) != "0")
-                                getCustomMacros(device).Remove(action.trigger[0]);
-                            if (getCustomKey(device, action.trigger[0]) != 0)
-                                getCustomMacros(device).Remove(action.trigger[0]);*/
-                            string[] dets = action.details.Split(',');
-                            DS4Device d = ctrl.DS4Controllers[device];
-                            //cus
-                            if (getBoolMapping(device, action.trigger[0], cState, eState, tp) && !getBoolMapping(device, action.trigger[0], d.getPreviousState(), eState, tp))
-                            {//pressed down
-                                pastTime = DateTime.UtcNow;
-                                if (DateTime.UtcNow <= (firstTap + TimeSpan.FromMilliseconds(150)))
-                                {
-                                    tappedOnce = false;
-                                    secondtouchbegin = true;
-                                }
-                                else
-                                    firstTouch = true;
-                            }
-                            else if (!getBoolMapping(device, action.trigger[0], cState, eState, tp) && getBoolMapping(device, action.trigger[0], d.getPreviousState(), eState, tp))
-                            {//released
-                                if (secondtouchbegin)
-                                {
-                                    firstTouch = false;
-                                    secondtouchbegin = false;
-                                }
-                                else if (firstTouch)
-                                {
-                                    firstTouch = false;
-                                    if (DateTime.UtcNow <= (pastTime + TimeSpan.FromMilliseconds(200)) && !tappedOnce)
-                                    {
-                                        tappedOnce = true;
-                                        firstTap = DateTime.UtcNow;
-                                        TimeofEnd = DateTime.UtcNow;
-                                    }
-                                }
-                            }
+                                actionFound = true;
 
-                            int type = 0;
-                            string macro = "";
-                            if (tappedOnce) //single tap
-                            {
-                                if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
+                                if (!actionDone[index].dev[device] && string.IsNullOrEmpty(tempprofilename[device]))
                                 {
-                                    macro = dets[0];
-                                }
-                                else if (int.TryParse(dets[0], out type))
-                                {
-                                    switch (type)
+                                    actionDone[index].dev[device] = true;
+                                    untriggeraction[device] = action;
+                                    untriggerindex[device] = index;
+                                    //foreach (DS4Controls dc in action.trigger)
+                                    for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                                     {
-                                        case 0: macro = "91/71/71/91"; break;
-                                        case 1: macro = "91/164/82/82/164/91"; break;
-                                        case 2: macro = "91/164/44/44/164/91"; break;
-                                        case 3: macro = dets[3] + "/" + dets[3]; break;
-                                        case 4: macro = "91/164/71/71/164/91"; break;
+                                        DS4Controls dc = action.trigger[i];
+                                        DS4ControlSettings dcs = getDS4CSetting(device, dc);
+                                        if (dcs.action != null)
+                                        {
+                                            if (dcs.actionType == DS4ControlSettings.ActionType.Key)
+                                                InputMethods.performKeyRelease(ushort.Parse(dcs.action.ToString()));
+                                            else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
+                                            {
+                                                int[] keys = (int[])dcs.action;
+                                                for (int j = 0, keysLen = keys.Length; j < keysLen; j++)
+                                                    InputMethods.performKeyRelease((ushort)keys[j]);
+                                            }
+                                        }
                                     }
+                                    LoadTempProfile(device, action.details, true, ctrl);
+                                    return;
                                 }
-                                if ((DateTime.UtcNow - TimeofEnd) > TimeSpan.FromMilliseconds(150))
-                                {
-                                    if (macro != "")
-                                        PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
-                                    tappedOnce = false;
-                                }
-                                //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
                             }
-                            else if (firstTouch && (DateTime.UtcNow - pastTime) > TimeSpan.FromMilliseconds(1000)) //helddown
+                            else if (action.typeID == SpecialAction.ActionTypeId.Macro)
                             {
-                                if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
+                                actionFound = true;
+
+                                if (!actionDone[index].dev[device])
                                 {
-                                    macro = dets[1];
-                                }
-                                else if (int.TryParse(dets[1], out type))
-                                {
-                                    switch (type)
+                                    DS4KeyType keyType = action.keyType;
+                                    actionDone[index].dev[device] = true;
+                                    //foreach (DS4Controls dc in action.trigger)
+                                    for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                                     {
-                                        case 0: macro = "91/71/71/91"; break;
-                                        case 1: macro = "91/164/82/82/164/91"; break;
-                                        case 2: macro = "91/164/44/44/164/91"; break;
-                                        case 3: macro = dets[3] + "/" + dets[3]; break;
-                                        case 4: macro = "91/164/71/71/164/91"; break;
+                                        DS4Controls dc = action.trigger[i];
+                                        resetToDefaultValue(dc, MappedState);
                                     }
+
+                                    PlayMacro(device, macroControl, String.Join("/", action.macro), DS4Controls.None, keyType);
                                 }
-                                if (macro != "")
-                                    PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
-                                firstTouch = false;
+                                else
+                                    EndMacro(device, macroControl, String.Join("/", action.macro), DS4Controls.None);
                             }
-                            else if (secondtouchbegin) //if double tap
+                            else if (action.typeID == SpecialAction.ActionTypeId.Key)
                             {
-                                if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
+                                actionFound = true;
+
+                                if (uTriggerCount == 0 || (uTriggerCount > 0 && untriggerindex[device] == -1 && !actionDone[index].dev[device]))
                                 {
-                                    macro = dets[2];
-                                }
-                                else if (int.TryParse(dets[2], out type))
-                                {
-                                    switch (type)
+                                    actionDone[index].dev[device] = true;
+                                    untriggerindex[device] = index;
+                                    ushort key;
+                                    ushort.TryParse(action.details, out key);
+                                    if (uTriggerCount == 0)
                                     {
-                                        case 0: macro = "91/71/71/91"; break;
-                                        case 1: macro = "91/164/82/82/164/91"; break;
-                                        case 2: macro = "91/164/44/44/164/91"; break;
-                                        case 3: macro = dets[3] + "/" + dets[3]; break;
-                                        case 4: macro = "91/164/71/71/164/91"; break;
+                                        SyntheticState.KeyPresses kp;
+                                        if (!deviceState[device].keyPresses.TryGetValue(key, out kp))
+                                            deviceState[device].keyPresses[key] = kp = new SyntheticState.KeyPresses();
+                                        if (action.keyType.HasFlag(DS4KeyType.ScanCode))
+                                            kp.current.scanCodeCount++;
+                                        else
+                                            kp.current.vkCount++;
+                                        kp.current.repeatCount++;
                                     }
+                                    else if (action.keyType.HasFlag(DS4KeyType.ScanCode))
+                                        InputMethods.performSCKeyPress(key);
+                                    else
+                                        InputMethods.performKeyPress(key);
                                 }
-                                if (macro != "")
-                                    PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
-                                secondtouchbegin = false;
+                            }
+                            else if (action.typeID == SpecialAction.ActionTypeId.DisconnectBT)
+                            {
+                                actionFound = true;
+
+                                DS4Device d = ctrl.DS4Controllers[device];
+                                if (!d.isCharging())
+                                {
+                                    ConnectionType deviceConn = d.ConnectionType;
+                                    if (deviceConn == ConnectionType.BT)
+                                    {
+                                        d.DisconnectBT();
+                                    }
+
+                                    //foreach (DS4Controls dc in action.trigger)
+                                    for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
+                                    {
+                                        DS4Controls dc = action.trigger[i];
+                                        DS4ControlSettings dcs = getDS4CSetting(device, dc);
+                                        if (dcs.action != null)
+                                        {
+                                            if (dcs.actionType == DS4ControlSettings.ActionType.Key)
+                                                InputMethods.performKeyRelease((ushort)dcs.action);
+                                            else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
+                                            {
+                                                int[] keys = (int[])dcs.action;
+                                                for (int j = 0, keysLen = keys.Length; j < keysLen; j++)
+                                                    InputMethods.performKeyRelease((ushort)keys[j]);
+                                            }
+                                        }
+                                    }
+                                    return;
+                                }
+                            }
+                            else if (action.typeID == SpecialAction.ActionTypeId.BatteryCheck)
+                            {
+                                actionFound = true;
+
+                                string[] dets = action.details.Split('|');
+                                if (dets.Length == 1)
+                                    dets = action.details.Split(',');
+                                if (bool.Parse(dets[1]) && !actionDone[index].dev[device])
+                                {
+                                    Log.LogToTray("Controller " + (device + 1) + ": " +
+                                        ctrl.getDS4Battery(device), true);
+                                }
+                                if (bool.Parse(dets[2]))
+                                {
+                                    DS4Device d = ctrl.DS4Controllers[device];
+                                    if (!actionDone[index].dev[device])
+                                    {
+                                        lastColor[device] = d.LightBarColor;
+                                        DS4LightBar.forcelight[device] = true;
+                                    }
+                                    DS4Color empty = new DS4Color(byte.Parse(dets[3]), byte.Parse(dets[4]), byte.Parse(dets[5]));
+                                    DS4Color full = new DS4Color(byte.Parse(dets[6]), byte.Parse(dets[7]), byte.Parse(dets[8]));
+                                    DS4Color trans = getTransitionedColor(empty, full, d.Battery);
+                                    if (fadetimer[device] < 100)
+                                        DS4LightBar.forcedColor[device] = getTransitionedColor(lastColor[device], trans, fadetimer[device] += 2);
+                                }
+                                actionDone[index].dev[device] = true;
                             }
                         }
                         else
-                            actionDone[index].dev[device] = false;
+                        {
+                            if (action.typeID == SpecialAction.ActionTypeId.BatteryCheck)
+                            {
+                                actionFound = true;
+                                if (actionDone[index].dev[device])
+                                {
+                                    fadetimer[device] = 0;
+                                    /*if (prevFadetimer[device] == fadetimer[device])
+                                    {
+                                        prevFadetimer[device] = 0;
+                                        fadetimer[device] = 0;
+                                    }
+                                    else
+                                        prevFadetimer[device] = fadetimer[device];*/
+                                    DS4LightBar.forcelight[device] = false;
+                                    actionDone[index].dev[device] = false;
+                                }
+                            }
+                            else if (action.typeID != SpecialAction.ActionTypeId.Key &&
+                                     action.typeID != SpecialAction.ActionTypeId.XboxGameDVR &&
+                                     action.typeID != SpecialAction.ActionTypeId.MultiAction)
+                            {
+                                // Ignore
+                                actionFound = true;
+                                actionDone[index].dev[device] = false;
+                            }
+                        }
+
+                        if (!actionFound)
+                        {
+                            if (uTriggerCount > 0 && utriggeractivated && action.typeID == SpecialAction.ActionTypeId.Key)
+                            {
+                                actionFound = true;
+
+                                if (untriggerindex[device] > -1 && !actionDone[index].dev[device])
+                                {
+                                    actionDone[index].dev[device] = true;
+                                    untriggerindex[device] = -1;
+                                    ushort key;
+                                    ushort.TryParse(action.details, out key);
+                                    if (action.keyType.HasFlag(DS4KeyType.ScanCode))
+                                        InputMethods.performSCKeyRelease(key);
+                                    else
+                                        InputMethods.performKeyRelease(key);
+                                }
+                            }
+                            else if (action.typeID == SpecialAction.ActionTypeId.XboxGameDVR || action.typeID == SpecialAction.ActionTypeId.MultiAction)
+                            {
+                                actionFound = true;
+
+                                /*if (getCustomButton(device, action.trigger[0]) != X360Controls.Unbound)
+                                    getCustomButtons(device)[action.trigger[0]] = X360Controls.Unbound;
+                                if (getCustomMacro(device, action.trigger[0]) != "0")
+                                    getCustomMacros(device).Remove(action.trigger[0]);
+                                if (getCustomKey(device, action.trigger[0]) != 0)
+                                    getCustomMacros(device).Remove(action.trigger[0]);*/
+                                string[] dets = action.details.Split(',');
+                                DS4Device d = ctrl.DS4Controllers[device];
+                                //cus
+                                if (getBoolMapping(device, action.trigger[0], cState, eState, tp) && !getBoolMapping(device, action.trigger[0], d.getPreviousState(), eState, tp))
+                                {//pressed down
+                                    pastTime = DateTime.UtcNow;
+                                    if (DateTime.UtcNow <= (firstTap + TimeSpan.FromMilliseconds(150)))
+                                    {
+                                        tappedOnce = false;
+                                        secondtouchbegin = true;
+                                    }
+                                    else
+                                        firstTouch = true;
+                                }
+                                else if (!getBoolMapping(device, action.trigger[0], cState, eState, tp) && getBoolMapping(device, action.trigger[0], d.getPreviousState(), eState, tp))
+                                {//released
+                                    if (secondtouchbegin)
+                                    {
+                                        firstTouch = false;
+                                        secondtouchbegin = false;
+                                    }
+                                    else if (firstTouch)
+                                    {
+                                        firstTouch = false;
+                                        if (DateTime.UtcNow <= (pastTime + TimeSpan.FromMilliseconds(200)) && !tappedOnce)
+                                        {
+                                            tappedOnce = true;
+                                            firstTap = DateTime.UtcNow;
+                                            TimeofEnd = DateTime.UtcNow;
+                                        }
+                                    }
+                                }
+
+                                int type = 0;
+                                string macro = "";
+                                if (tappedOnce) //single tap
+                                {
+                                    if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
+                                    {
+                                        macro = dets[0];
+                                    }
+                                    else if (int.TryParse(dets[0], out type))
+                                    {
+                                        switch (type)
+                                        {
+                                            case 0: macro = "91/71/71/91"; break;
+                                            case 1: macro = "91/164/82/82/164/91"; break;
+                                            case 2: macro = "91/164/44/44/164/91"; break;
+                                            case 3: macro = dets[3] + "/" + dets[3]; break;
+                                            case 4: macro = "91/164/71/71/164/91"; break;
+                                        }
+                                    }
+                                    if ((DateTime.UtcNow - TimeofEnd) > TimeSpan.FromMilliseconds(150))
+                                    {
+                                        if (macro != "")
+                                            PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+                                        tappedOnce = false;
+                                    }
+                                    //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
+                                }
+                                else if (firstTouch && (DateTime.UtcNow - pastTime) > TimeSpan.FromMilliseconds(1000)) //helddown
+                                {
+                                    if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
+                                    {
+                                        macro = dets[1];
+                                    }
+                                    else if (int.TryParse(dets[1], out type))
+                                    {
+                                        switch (type)
+                                        {
+                                            case 0: macro = "91/71/71/91"; break;
+                                            case 1: macro = "91/164/82/82/164/91"; break;
+                                            case 2: macro = "91/164/44/44/164/91"; break;
+                                            case 3: macro = dets[3] + "/" + dets[3]; break;
+                                            case 4: macro = "91/164/71/71/164/91"; break;
+                                        }
+                                    }
+                                    if (macro != "")
+                                        PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+                                    firstTouch = false;
+                                }
+                                else if (secondtouchbegin) //if double tap
+                                {
+                                    if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
+                                    {
+                                        macro = dets[2];
+                                    }
+                                    else if (int.TryParse(dets[2], out type))
+                                    {
+                                        switch (type)
+                                        {
+                                            case 0: macro = "91/71/71/91"; break;
+                                            case 1: macro = "91/164/82/82/164/91"; break;
+                                            case 2: macro = "91/164/44/44/164/91"; break;
+                                            case 3: macro = dets[3] + "/" + dets[3]; break;
+                                            case 4: macro = "91/164/71/71/164/91"; break;
+                                        }
+                                    }
+                                    if (macro != "")
+                                        PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+                                    secondtouchbegin = false;
+                                }
+                            }
+                            else
+                            {
+                                actionDone[index].dev[device] = false;
+                            }
+                        }
                     }
                 }
             }
@@ -1707,10 +1768,13 @@ namespace DS4Windows
                 {
                     if ((action.controls == action.ucontrols && !actionDone[index].dev[device]) || //if trigger and end trigger are the same
                     action.controls != action.ucontrols)
+                    {
                         if (!string.IsNullOrEmpty(tempprofilename[device]))
                         {
-                            foreach (DS4Controls dc in action.uTrigger)
+                            //foreach (DS4Controls dc in action.uTrigger)
+                            for (int i = 0, arlen = action.uTrigger.Count; i < arlen; i++)
                             {
+                                DS4Controls dc = action.uTrigger[i];
                                 actionDone[index].dev[device] = true;
                                 DS4ControlSettings dcs = getDS4CSetting(device, dc);
                                 if (dcs.action != null)
@@ -1720,17 +1784,20 @@ namespace DS4Windows
                                     else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                                     {
                                         int[] keys = (int[])dcs.action;
-                                        for (int i = 0, keysLen=keys.Length; i < keysLen; i++)
-                                            InputMethods.performKeyRelease((ushort)keys[i]);
+                                        for (int j = 0, keysLen = keys.Length; j < keysLen; j++)
+                                            InputMethods.performKeyRelease((ushort)keys[j]);
                                     }
                                 }
                             }
                             untriggeraction[device] = null;
                             LoadProfile(device, false, ctrl);
                         }
+                    }
                 }
                 else
+                {
                     actionDone[index].dev[device] = false;
+                }
             }
         }
 

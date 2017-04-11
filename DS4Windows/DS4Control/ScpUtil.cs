@@ -154,7 +154,8 @@ namespace DS4Windows
             X360Controls.LB, X360Controls.LT, X360Controls.LS, X360Controls.RB, X360Controls.RT, X360Controls.RS, X360Controls.X,
             X360Controls.Y, X360Controls.B, X360Controls.A, X360Controls.DpadUp, X360Controls.DpadRight, X360Controls.DpadDown,
             X360Controls.DpadLeft, X360Controls.Guide, X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None,
-            X360Controls.Back, X360Controls.Start
+            X360Controls.Back, X360Controls.Start, X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None,
+            X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None
         };
 
         public static void SaveWhere(string path)

@@ -1036,9 +1036,14 @@ namespace DS4Windows
                             buttonNode.InnerText = dcs.action.ToString();
                             Key.AppendChild(buttonNode);
                         }
-                        else if (dcs.action is string || dcs.action is X360Controls)
+                        else if (dcs.action is string)
                         {
                             buttonNode.InnerText = dcs.action.ToString();
+                            Button.AppendChild(buttonNode);
+                        }
+                        else if (dcs.action is X360Controls)
+                        {
+                            buttonNode.InnerText = getX360ControlString((X360Controls)dcs.action);
                             Button.AppendChild(buttonNode);
                         }
                     }

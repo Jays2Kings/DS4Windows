@@ -868,7 +868,16 @@ namespace DS4Windows
                             isAnalog = true;
                         }
 
-                        X360Controls xboxControl = getX360ControlsByName(action.ToString());
+                        X360Controls xboxControl = X360Controls.None;
+                        if (action is X360Controls)
+                        {
+                            xboxControl = (X360Controls)action;
+                        }
+                        else if (action is string)
+                        {
+                            xboxControl = getX360ControlsByName(action.ToString());
+                        }
+
                         if (xboxControl >= X360Controls.X && xboxControl <= X360Controls.A)
                         {
                             switch (xboxControl)

@@ -149,6 +149,14 @@ namespace DS4Windows
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
 
+        public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
+            X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
+            X360Controls.LB, X360Controls.LT, X360Controls.LS, X360Controls.RB, X360Controls.RT, X360Controls.RS, X360Controls.X,
+            X360Controls.Y, X360Controls.B, X360Controls.A, X360Controls.DpadUp, X360Controls.DpadRight, X360Controls.DpadDown,
+            X360Controls.DpadLeft, X360Controls.Guide, X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None,
+            X360Controls.Back, X360Controls.Start
+        };
+
         public static void SaveWhere(string path)
         {
             appdatapath = path;
@@ -532,6 +540,26 @@ namespace DS4Windows
             }
         }
 
+        public static X360Controls getX360ControlsByName(string key)
+        {
+            return m_Config.getX360ControlsByName(key);
+        }
+
+        public static string getX360ControlString(X360Controls key)
+        {
+            return m_Config.getX360ControlString(key);
+        }
+
+        public static DS4Controls getDS4ControlsByName(string key)
+        {
+            return m_Config.getDS4ControlsByName(key);
+        }
+
+        public static X360Controls getDefaultX360ControlBinding(DS4Controls dc)
+        {
+            return defaultButtonMapping[(int)dc];
+        }
+
         /*public static X360Controls getCustomButton(int device, DS4Controls controlName) => m_Config.GetCustomButton(device, controlName);
         
         public static ushort getCustomKey(int device, DS4Controls controlName) => m_Config.GetCustomKey(device, controlName);
@@ -564,7 +592,7 @@ namespace DS4Windows
         public static Dictionary<DS4Controls, ushort> getShiftCustomKeys(int device) => m_Config.shiftCustomMapKeys[device];        
         public static Dictionary<DS4Controls, string> getShiftCustomMacros(int device) => m_Config.shiftCustomMapMacros[device];        
         public static Dictionary<DS4Controls, string> getShiftCustomExtras(int device) => m_Config.shiftCustomMapExtras[device];        
-        public static Dictionary<DS4Controls, DS4KeyType> getShiftCustomKeyTypes(int device) => m_Config.shiftCustomMapKeyTypes[device]; */       
+        public static Dictionary<DS4Controls, DS4KeyType> getShiftCustomKeyTypes(int device) => m_Config.shiftCustomMapKeyTypes[device]; */
         public static bool Load() => m_Config.Load();
         
         public static void LoadProfile(int device, bool launchprogram, ControlService control)
@@ -1216,7 +1244,7 @@ namespace DS4Windows
             return Saved;
         }
 
-        private DS4Controls getDS4ControlsByName(string key)
+        public DS4Controls getDS4ControlsByName(string key)
         {
 
             if (!key.StartsWith("bn"))
@@ -1352,7 +1380,7 @@ namespace DS4Windows
             return 0;
         }
 
-        private X360Controls getX360ControlsByName(string key)
+        public X360Controls getX360ControlsByName(string key)
         {
             X360Controls x3c;
             if (Enum.TryParse(key, true, out x3c))
@@ -1403,6 +1431,56 @@ namespace DS4Windows
 
             }
             return X360Controls.Unbound;
+        }
+
+        public string getX360ControlString(X360Controls key)
+        {
+            switch (key)
+            {
+                case X360Controls.Back: return "Back";
+                case X360Controls.LS: return "Left Stick";
+                case X360Controls.RS: return "Right Stick";
+                case X360Controls.Start: return "Start";
+                case X360Controls.DpadUp: return "Up Button";
+                case X360Controls.DpadRight: return "Right Button";
+                case X360Controls.DpadDown: return "Down Button";
+                case X360Controls.DpadLeft: return "Left Button";
+
+                case X360Controls.LB: return "Left Bumper";
+                case X360Controls.RB: return "Right Bumper";
+                case X360Controls.Y: return "Y Button";
+                case X360Controls.B: return "B Button";
+                case X360Controls.A: return "A Button";
+                case X360Controls.X: return "X Button";
+
+                case X360Controls.Guide: return "Guide";
+                case X360Controls.LXNeg: return "Left X-Axis-";
+                case X360Controls.LYNeg: return "Left Y-Axis-";
+                case X360Controls.RXNeg: return "Right X-Axis-";
+                case X360Controls.RYNeg: return "Right Y-Axis-";
+
+                case X360Controls.LXPos: return "Left X-Axis+";
+                case X360Controls.LYPos: return "Left Y-Axis+";
+                case X360Controls.RXPos: return "Right X-Axis+";
+                case X360Controls.RYPos: return "Right Y-Axis+";
+                case X360Controls.LT: return "Left Trigger";
+                case X360Controls.RT: return "Right Trigger";
+
+                case X360Controls.LeftMouse: return "Left Mouse Button";
+                case X360Controls.RightMouse: return "Right Mouse Button";
+                case X360Controls.MiddleMouse: return "Middle Mouse Button";
+                case X360Controls.FourthMouse: return "4th Mouse Button";
+                case X360Controls.FifthMouse: return "5th Mouse Button";
+                case X360Controls.WUP: return "Mouse Wheel Up";
+                case X360Controls.WDOWN: return "Mouse Wheel Down";
+                case X360Controls.MouseUp: return "Mouse Up";
+                case X360Controls.MouseDown: return "Mouse Down";
+                case X360Controls.MouseLeft: return "Mouse Left";
+                case X360Controls.MouseRight: return "Mouse Right";
+                case X360Controls.Unbound: return "Unbound";
+            }
+
+            return "Unbound";
         }
 
         public Boolean LoadProfile(int device, bool launchprogram, ControlService control, string propath = "")
@@ -2324,7 +2402,6 @@ namespace DS4Windows
             catch { saved = false; }
             return saved;
         }
-        
 
         public void UpdateDS4CSetting(int deviceNum, string buttonName, bool shift, object action, string exts, DS4KeyType kt, int trigger = 0)
         {

@@ -141,7 +141,17 @@ namespace DS4Windows
                 object keytag;
                 //ushort val;
                 if (((Button)sender).Tag != null && ((Button)sender).Tag.ToString().Contains("X360"))
-                    keytag = ((Button)sender).Tag.ToString().Substring(4);
+                {
+                    //keytag = ((Button)sender).Tag.ToString().Substring(4);
+                    keytag = Global.getX360ControlsByName(((Button)sender).Tag.ToString().Substring(4));
+                    DS4Controls psButton = Global.getDS4ControlsByName(button.Name);
+                    if ((X360Controls)keytag == Global.getDefaultX360ControlBinding(psButton) &&
+                        !cBScanCode.Checked && !cBToggle.Checked && !rBShiftModifer.Checked)
+                    {
+                        // Reset action
+                        keytag = null;
+                    }
+                }
                 else if (((Button)sender).Tag != null && ushort.TryParse(((Button)sender).Tag.ToString(), out val))
                     keytag = val;
                 else

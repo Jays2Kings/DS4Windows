@@ -38,9 +38,11 @@ namespace DS4Windows
                 previousClicks = currentClicks;
                 if (performClear)
                     currentClicks.leftCount = currentClicks.middleCount = currentClicks.rightCount = currentClicks.fourthCount = currentClicks.fifthCount = currentClicks.wUpCount = currentClicks.wDownCount = currentClicks.toggleCount = 0;
-                /* TODO: Change foreach loop to for loop when I can test the performance difference */
-                foreach (KeyPresses kp in keyPresses.Values)
+                //foreach (KeyPresses kp in keyPresses.Values)
+                Dictionary<ushort, KeyPresses>.ValueCollection keyValues = keyPresses.Values;
+                for (int i = 0, kpCount = keyValues.Count; i < kpCount; i++)
                 {
+                    KeyPresses kp = keyValues.ElementAt(i);
                     kp.previous = kp.current;
                     if (performClear)
                     {
@@ -235,59 +237,63 @@ namespace DS4Windows
 
                 // Merge and synthesize all key presses/releases that are present in this device's mapping.
                 // TODO what about the rest?  e.g. repeat keys really ought to be on some set schedule
-                /* TODO: Change foreach loop to for loop when I can test the performance difference */
-                foreach (KeyValuePair<UInt16, SyntheticState.KeyPresses> kvp in state.keyPresses)
+                Dictionary<UInt16, SyntheticState.KeyPresses>.KeyCollection kvpKeys = state.keyPresses.Keys;
+                //foreach (KeyValuePair<UInt16, SyntheticState.KeyPresses> kvp in state.keyPresses)
+                for (int i = 0, keyCount = kvpKeys.Count; i < keyCount; i++)
                 {
+                    UInt16 kvpKey = kvpKeys.ElementAt(i);
+                    SyntheticState.KeyPresses kvpValue = state.keyPresses[kvpKey];
+
                     SyntheticState.KeyPresses gkp;
-                    if (globalState.keyPresses.TryGetValue(kvp.Key, out gkp))
+                    if (globalState.keyPresses.TryGetValue(kvpKey, out gkp))
                     {
-                        gkp.current.vkCount += kvp.Value.current.vkCount - kvp.Value.previous.vkCount;
-                        gkp.current.scanCodeCount += kvp.Value.current.scanCodeCount - kvp.Value.previous.scanCodeCount;
-                        gkp.current.repeatCount += kvp.Value.current.repeatCount - kvp.Value.previous.repeatCount;
-                        gkp.current.toggle = kvp.Value.current.toggle;
-                        gkp.current.toggleCount += kvp.Value.current.toggleCount - kvp.Value.previous.toggleCount;
+                        gkp.current.vkCount += kvpValue.current.vkCount - kvpValue.previous.vkCount;
+                        gkp.current.scanCodeCount += kvpValue.current.scanCodeCount - kvpValue.previous.scanCodeCount;
+                        gkp.current.repeatCount += kvpValue.current.repeatCount - kvpValue.previous.repeatCount;
+                        gkp.current.toggle = kvpValue.current.toggle;
+                        gkp.current.toggleCount += kvpValue.current.toggleCount - kvpValue.previous.toggleCount;
                     }
                     else
                     {
                         gkp = new SyntheticState.KeyPresses();
-                        gkp.current = kvp.Value.current;
-                        globalState.keyPresses[kvp.Key] = gkp;
+                        gkp.current = kvpValue.current;
+                        globalState.keyPresses[kvpKey] = gkp;
                     }
                     if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && gkp.current.toggle)
                     {
                         if (gkp.current.scanCodeCount != 0)
-                            InputMethods.performSCKeyPress(kvp.Key);
+                            InputMethods.performSCKeyPress(kvpKey);
                         else
-                            InputMethods.performKeyPress(kvp.Key);
+                            InputMethods.performKeyPress(kvpKey);
                     }
                     else if (gkp.current.toggleCount != 0 && gkp.previous.toggleCount == 0 && !gkp.current.toggle)
                     {
                         if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
-                            InputMethods.performSCKeyRelease(kvp.Key);
+                            InputMethods.performSCKeyRelease(kvpKey);
                         else
-                         InputMethods.performKeyRelease(kvp.Key);
+                         InputMethods.performKeyRelease(kvpKey);
                     }
                     else if (gkp.current.vkCount + gkp.current.scanCodeCount != 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount == 0)
                     {
                         if (gkp.current.scanCodeCount != 0)
                         {
                             oldnow = DateTime.UtcNow;
-                            InputMethods.performSCKeyPress(kvp.Key);
+                            InputMethods.performSCKeyPress(kvpKey);
                             pressagain = false;
-                            keyshelddown = kvp.Key;
+                            keyshelddown = kvpKey;
                         }
                         else
                         {
                             oldnow = DateTime.UtcNow;
-                            InputMethods.performKeyPress(kvp.Key);
+                            InputMethods.performKeyPress(kvpKey);
                             pressagain = false;
-                            keyshelddown = kvp.Key;
+                            keyshelddown = kvpKey;
                         }
                     }
                     else if (gkp.current.toggleCount != 0 || gkp.previous.toggleCount != 0 || gkp.current.repeatCount != 0 || // repeat or SC/VK transition
                         ((gkp.previous.scanCodeCount == 0) != (gkp.current.scanCodeCount == 0))) //repeat keystroke after 500ms
                     {
-                        if (keyshelddown == kvp.Key)
+                        if (keyshelddown == kvpKey)
                         {
                             DateTime now = DateTime.UtcNow;
                             if (now >= oldnow + TimeSpan.FromMilliseconds(500) && !pressagain)
@@ -301,7 +307,7 @@ namespace DS4Windows
                                 if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                                 {
                                     oldnow = now;
-                                    InputMethods.performSCKeyPress(kvp.Key);
+                                    InputMethods.performSCKeyPress(kvpKey);
                                 }
                             }
                             else if (pressagain)
@@ -310,7 +316,7 @@ namespace DS4Windows
                                 if (now >= oldnow + TimeSpan.FromMilliseconds(25) && pressagain)
                                 {
                                     oldnow = now;
-                                    InputMethods.performKeyPress(kvp.Key);
+                                    InputMethods.performKeyPress(kvpKey);
                                 }
                             }
                         }
@@ -319,12 +325,12 @@ namespace DS4Windows
                     {
                         if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
                         {
-                            InputMethods.performSCKeyRelease(kvp.Key);
+                            InputMethods.performSCKeyRelease(kvpKey);
                             pressagain = false;
                         }
                         else
                         {
-                            InputMethods.performKeyRelease(kvp.Key);
+                            InputMethods.performKeyRelease(kvpKey);
                             pressagain = false;
                         }
                     }

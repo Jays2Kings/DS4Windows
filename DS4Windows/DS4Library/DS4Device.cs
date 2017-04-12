@@ -574,6 +574,7 @@ namespace DS4Windows
                     case 6: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = true; cState.DpadRight = false; break;
                     case 7: cState.DpadUp = true; cState.DpadDown = false; cState.DpadLeft = true; cState.DpadRight = false; break;
                     case 8: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = false; break;
+                    default: break;
                 }
 
                 cState.R3 = ((byte)inputReport[6] & (1 << 7)) != 0;
@@ -700,6 +701,7 @@ namespace DS4Windows
         {
             hDevice.flush_Queue();
         }
+
         private void sendOutputReport(bool synchronous)
         {
             setTestRumble();
@@ -730,7 +732,9 @@ namespace DS4Windows
                 outputReportBuffer[10] = ledFlashOff; //flash off duration
                 outputReportBuffer[19] = outputReportBuffer[20] = Convert.ToByte(audio.Volume);
             }
+
             bool quitOutputThread = false;
+
             lock (outputReport)
             {
                 if (synchronous)
@@ -753,7 +757,7 @@ namespace DS4Windows
                 else
                 {
                     bool output = false;
-                    for (int i = 0; !output && i < outputReport.Length; i++)
+                    for (int i = 0, arlen = outputReport.Length; !output && i < arlen; i++)
                         output = outputReport[i] != outputReportBuffer[i];
                     if (output)
                     {
@@ -823,8 +827,6 @@ namespace DS4Windows
             disconnectReport[0] = 0xe2;
             disconnectReport[1] = 0x02;
             Array.Clear(disconnectReport, 2, 63);
-            //for (int i = 2; i < 65; i++)
-            //    disconnectReport[i] = 0;
 
             result = hDevice.WriteFeatureReport(disconnectReport);
             if (result && remove)

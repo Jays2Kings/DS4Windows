@@ -38,6 +38,7 @@ namespace DS4Windows
                 previousClicks = currentClicks;
                 if (performClear)
                     currentClicks.leftCount = currentClicks.middleCount = currentClicks.rightCount = currentClicks.fourthCount = currentClicks.fifthCount = currentClicks.wUpCount = currentClicks.wDownCount = currentClicks.toggleCount = 0;
+                /* TODO: Change foreach loop to for loop when I can test the performance difference */
                 foreach (KeyPresses kp in keyPresses.Values)
                 {
                     kp.previous = kp.current;
@@ -234,6 +235,7 @@ namespace DS4Windows
 
                 // Merge and synthesize all key presses/releases that are present in this device's mapping.
                 // TODO what about the rest?  e.g. repeat keys really ought to be on some set schedule
+                /* TODO: Change foreach loop to for loop when I can test the performance difference */
                 foreach (KeyValuePair<UInt16, SyntheticState.KeyPresses> kvp in state.keyPresses)
                 {
                     SyntheticState.KeyPresses gkp;
@@ -1317,11 +1319,14 @@ namespace DS4Windows
                 int actionDoneCount = actionDone.Count;
                 int totalActionCount = GetActions().Count;
                 List<string> profileActions = getProfileActions(device);
-                foreach (string actionname in profileActions)
+                //foreach (string actionname in profileActions)
+                for (int actionIndex = 0, profileListLen = profileActions.Count;
+                     actionIndex < profileListLen; actionIndex++)
                 {
                     //DS4KeyType keyType = getShiftCustomKeyType(device, customKey.Key);
                     //SpecialAction action = GetAction(actionname);
                     //int index = GetActionIndexOf(actionname);
+                    string actionname = profileActions[actionIndex];
                     SpecialAction action = GetProfileAction(device, actionname);
                     int index = GetProfileActionIndexOf(device, actionname);
 
@@ -1772,8 +1777,10 @@ namespace DS4Windows
                 SpecialAction action = untriggeraction[device];
                 int index = untriggerindex[device];
                 bool utriggeractivated = true;
-                foreach (DS4Controls dc in action.uTrigger)
+                //foreach (DS4Controls dc in action.uTrigger)
+                for (int i = 0, uTrigLen = action.uTrigger.Count; i < uTrigLen; i++)
                 {
+                    DS4Controls dc = action.uTrigger[i];
                     if (!getBoolMapping(device, dc, cState, eState, tp))
                     {
                         utriggeractivated = false;

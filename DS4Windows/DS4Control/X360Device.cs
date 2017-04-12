@@ -13,6 +13,7 @@ namespace DS4Windows
         private const String DS3_BUS_CLASS_GUID = "{F679F562-3164-42CE-A4DB-E7DDBE723909}";
         private const int CONTROLLER_OFFSET = 1; // Device 0 is the virtual USB hub itself, and we leave devices 1-10 available for other software (like the Scarlet.Crush DualShock driver itself)
         private const int inputResolution = 127 - (-128);
+        private const float reciprocalInputResolution = 1 / (float)inputResolution;
         private const int outputResolution = 32767 - (-32768);
 
         private int firstController = 1;
@@ -27,7 +28,8 @@ namespace DS4Windows
         {
             Value -= 0x80;
 
-            float temp = (Value - (-128)) / (float)inputResolution;
+            //float temp = (Value - (-128)) / (float)inputResolution;
+            float temp = (Value - (-128)) * reciprocalInputResolution;
             if (Flip) temp = (temp - 0.5f) * -1.0f + 0.5f;
 
             return (Int32)(temp * outputResolution + (-32768));
@@ -107,10 +109,11 @@ namespace DS4Windows
             Output[4] = (Byte)(device + firstController);
             Output[9] = 0x14;
 
-            for (int i = 10; i < Output.Length; i++)
+            for (int i = 10, outLen = Output.Length; i < outLen; i++)
             {
                 Output[i] = 0;
             }
+
             if (state.Share) Output[10] |= (Byte)(1 << 5); // Back
             if (state.L3) Output[10] |= (Byte)(1 << 6); // Left  Thumb
             if (state.R3) Output[10] |= (Byte)(1 << 7); // Right Thumb

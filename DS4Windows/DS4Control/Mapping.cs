@@ -1148,10 +1148,15 @@ namespace DS4Windows
             if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RYPos), device, cState, eState, tp), DS4Controls.RYPos))
                 tempControlDict.Add(DS4Controls.RYPos, DS4Controls.RYPos);
 
-            foreach (KeyValuePair<DS4Controls, DS4Controls> entry in tempControlDict)
+            Dictionary<DS4Controls, DS4Controls>.KeyCollection controlKeys = tempControlDict.Keys;
+
+            //foreach (KeyValuePair<DS4Controls, DS4Controls> entry in tempControlDict)
+            for (int i = 0, keyCount = controlKeys.Count; i < keyCount; i++)
             {
-                DS4Controls key = entry.Key;
-                DS4Controls dc = entry.Value;
+                DS4Controls key = controlKeys.ElementAt<DS4Controls>(i);
+                DS4Controls dc = tempControlDict[key];
+                //DS4Controls key = entry.Key;
+                //DS4Controls dc = entry.Value;
                 if (getBoolMapping(device, dc, cState, eState, tp))
                 {
                     if (key >= DS4Controls.Square && key <= DS4Controls.Cross)

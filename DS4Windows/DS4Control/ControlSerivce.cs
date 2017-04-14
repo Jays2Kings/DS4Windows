@@ -638,8 +638,10 @@ namespace DS4Windows
             Mouse tp = touchPad[ind];
 
             bool pb = false;
-            foreach (DS4Controls dc in dcs)
+            //foreach (DS4Controls dc in dcs)
+            for (int i = 0, dcslen = dcs.Count; i < dcslen; i++)
             {
+                DS4Controls dc = dcs[i];
                 if (Mapping.getBoolMapping(ind, dc, cState, eState, tp))
                 {
                     pb = true;

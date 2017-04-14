@@ -2151,14 +2151,17 @@ namespace DS4Windows
                 case DS4Controls.GyroZNeg: return (byte)(eState.GyroZ < -SZD * 10 ?
                     Math.Pow(root + speed / divide, -eState.GyroZ) : 0);
             }
+
             bool LXChanged = (Math.Abs(127 - cState.LX) < deadzoneL);
             bool LYChanged = (Math.Abs(127 - cState.LY) < deadzoneL);
             bool RXChanged = (Math.Abs(127 - cState.RX) < deadzoneR);
             bool RYChanged = (Math.Abs(127 - cState.RY) < deadzoneR);
-            bool contains = (control.ToString().Contains("LX") ||
+            /*bool contains = (control.ToString().Contains("LX") ||
                 control.ToString().Contains("LY") ||
                 control.ToString().Contains("RX") ||
                     control.ToString().Contains("RY"));
+            */
+            bool contains = control >= DS4Controls.LXNeg && control <= DS4Controls.RYPos;
             if (MouseAccel[device])
             {
                 if (value > 0)

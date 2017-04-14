@@ -779,11 +779,6 @@
             0,
             0,
             0});
-            this.nUDRS.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
             this.nUDRS.Name = "nUDRS";
             this.nUDRS.ValueChanged += new System.EventHandler(this.numUDRS_ValueChanged);
             // 
@@ -817,11 +812,6 @@
             0,
             0,
             0});
-            this.nUDLS.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
             this.nUDLS.Name = "nUDLS";
             this.nUDLS.ValueChanged += new System.EventHandler(this.numUDLS_ValueChanged);
             // 

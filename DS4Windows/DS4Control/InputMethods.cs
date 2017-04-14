@@ -88,69 +88,6 @@ namespace DS4Windows
             }
         }
 
-        public static void performLeftClick()
-        {
-            lock (lockob)
-            {
-                sendInputs[0].Type = INPUT_MOUSE;
-                sendInputs[0].Data.Mouse.ExtraInfo = IntPtr.Zero;
-                sendInputs[0].Data.Mouse.Flags = 0;
-                sendInputs[0].Data.Mouse.Flags |= MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP;
-                sendInputs[0].Data.Mouse.MouseData = 0;
-                sendInputs[0].Data.Mouse.Time = 0;
-                sendInputs[0].Data.Mouse.X = 0;
-                sendInputs[0].Data.Mouse.Y = 0;
-                uint result = SendInput(1, sendInputs, Marshal.SizeOf(sendInputs[0]));
-            }
-        }
-
-        public static void performRightClick()
-        {
-            lock (lockob)
-            {
-                sendInputs[0].Type = INPUT_MOUSE;
-                sendInputs[0].Data.Mouse.ExtraInfo = IntPtr.Zero;
-                sendInputs[0].Data.Mouse.Flags = 0;
-                sendInputs[0].Data.Mouse.Flags |= MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP;
-                sendInputs[0].Data.Mouse.MouseData = 0;
-                sendInputs[0].Data.Mouse.Time = 0;
-                sendInputs[0].Data.Mouse.X = 0;
-                sendInputs[0].Data.Mouse.Y = 0;
-                uint result = SendInput(1, sendInputs, Marshal.SizeOf(sendInputs[0]));
-            }
-        }
-
-        public static void performMiddleClick()
-        {
-            lock (lockob)
-            {
-                sendInputs[0].Type = INPUT_MOUSE;
-                sendInputs[0].Data.Mouse.ExtraInfo = IntPtr.Zero;
-                sendInputs[0].Data.Mouse.Flags = 0;
-                sendInputs[0].Data.Mouse.Flags |= MOUSEEVENTF_MIDDLEDOWN | MOUSEEVENTF_MIDDLEUP;
-                sendInputs[0].Data.Mouse.MouseData = 0;
-                sendInputs[0].Data.Mouse.Time = 0;
-                sendInputs[0].Data.Mouse.X = 0;
-                sendInputs[0].Data.Mouse.Y = 0;
-                uint result = SendInput(1, sendInputs, Marshal.SizeOf(sendInputs[0]));
-            }
-        }
-
-        public static void performFourthClick()
-        {
-            lock (lockob)
-            {
-                sendInputs[0].Type = INPUT_MOUSE;
-                sendInputs[0].Data.Mouse.ExtraInfo = IntPtr.Zero;
-                sendInputs[0].Data.Mouse.Flags = 0;
-                sendInputs[0].Data.Mouse.Flags |= MOUSEEVENTF_XBUTTONDOWN | MOUSEEVENTF_XBUTTONUP;
-                sendInputs[0].Data.Mouse.MouseData = 1;
-                sendInputs[0].Data.Mouse.Time = 0;
-                sendInputs[0].Data.Mouse.X = 0;
-                sendInputs[0].Data.Mouse.Y = 0;
-                uint result = SendInput(1, sendInputs, Marshal.SizeOf(sendInputs[0]));
-            }
-        }
         public static void performSCKeyPress(ushort key)
         {
             lock (lockob)
@@ -169,10 +106,16 @@ namespace DS4Windows
         {
             lock (lockob)
             {
+                ushort scancode = scancodeFromVK(key);
+                bool extended = (scancode & 0x100) != 0;
+                uint curflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
+
                 sendInputs[0].Type = INPUT_KEYBOARD;
                 sendInputs[0].Data.Keyboard.ExtraInfo = IntPtr.Zero;
-                sendInputs[0].Data.Keyboard.Flags = 1;
-                sendInputs[0].Data.Keyboard.Scan = 0;
+                sendInputs[0].Data.Keyboard.Flags = curflags;
+                sendInputs[0].Data.Keyboard.Scan = scancode;
+                //sendInputs[0].Data.Keyboard.Flags = 1;
+                //sendInputs[0].Data.Keyboard.Scan = 0;
                 sendInputs[0].Data.Keyboard.Time = 0;
                 sendInputs[0].Data.Keyboard.Vk = key;
                 uint result = SendInput(1, sendInputs, Marshal.SizeOf(sendInputs[0]));
@@ -197,14 +140,58 @@ namespace DS4Windows
         {
             lock (lockob)
             {
+                ushort scancode = scancodeFromVK(key);
+                bool extended = (scancode & 0x100) != 0;
+                uint curflags = extended ? KEYEVENTF_EXTENDEDKEY : 0;
+
                 sendInputs[0].Type = INPUT_KEYBOARD;
                 sendInputs[0].Data.Keyboard.ExtraInfo = IntPtr.Zero;
-                sendInputs[0].Data.Keyboard.Flags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
-                sendInputs[0].Data.Keyboard.Scan = 0;
+                sendInputs[0].Data.Keyboard.Flags = curflags | KEYEVENTF_KEYUP;
+                sendInputs[0].Data.Keyboard.Scan = scancode;
+                //sendInputs[0].Data.Keyboard.Flags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
+                //sendInputs[0].Data.Keyboard.Scan = 0;
                 sendInputs[0].Data.Keyboard.Time = 0;
                 sendInputs[0].Data.Keyboard.Vk = key;
                 uint result = SendInput(1, sendInputs, Marshal.SizeOf(sendInputs[0]));
             }
+        }
+
+        private static ushort scancodeFromVK(uint vkey)
+        {
+            ushort scancode = 0;
+            if (vkey == VK_PAUSE)
+            {
+                // MapVirtualKey does not work with VK_PAUSE
+                scancode = 0x45;
+            }
+            else
+            {
+                scancode = MapVirtualKey(vkey, MAPVK_VK_TO_VSC);
+            }
+
+            switch (vkey)
+            {
+                case VK_LEFT:
+                case VK_UP:
+                case VK_RIGHT:
+                case VK_DOWN:
+                case VK_PRIOR:
+                case VK_NEXT:
+                case VK_END:
+                case VK_HOME:
+                case VK_INSERT:
+                case VK_DELETE:
+                case VK_DIVIDE:
+                case VK_NUMLOCK:
+                case VK_RCONTROL:
+                case VK_RMENU:
+                {
+                    scancode |= (ushort)EXTENDED_FLAG; // set extended bit
+                    break;
+                }
+            }
+
+            return scancode;
         }
 
         /// <summary>
@@ -277,7 +264,11 @@ namespace DS4Windows
             MOUSEEVENTF_XBUTTONDOWN = 128, MOUSEEVENTF_XBUTTONUP = 256,
             KEYEVENTF_EXTENDEDKEY = 1, KEYEVENTF_KEYUP = 2, MOUSEEVENTF_WHEEL = 0x0800, MOUSEEVENTF_HWHEEL = 0x1000,
             MOUSEEVENTF_MIDDLEWDOWN = 0x0020, MOUSEEVENTF_MIDDLEWUP = 0x0040,
-            KEYEVENTF_SCANCODE = 0x0008, MAPVK_VK_TO_VSC = 0, KEYEVENTF_UNICODE = 0x0004;
+            KEYEVENTF_SCANCODE = 0x0008, MAPVK_VK_TO_VSC = 0, KEYEVENTF_UNICODE = 0x0004, EXTENDED_FLAG = 0x100;
+
+        internal const uint VK_PAUSE = 0x13, VK_LEFT = 0x25, VK_UP = 0x26, VK_RIGHT = 0x27, VK_DOWN = 0x28,
+            VK_PRIOR = 0x21, VK_NEXT = 0x22, VK_END = 0x23, VK_HOME = 0x24, VK_INSERT = 0x2D, VK_DELETE = 0x2E,
+            VK_DIVIDE = 0x6F, VK_NUMLOCK = 0x90, VK_RCONTROL = 0xAE, VK_RMENU = 0xA5;
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern uint SendInput(uint numberOfInputs, INPUT[] inputs, int sizeOfInputs);

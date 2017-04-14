@@ -334,6 +334,10 @@ namespace DS4Windows
             return m_Config.useTPforControls[index];
         }
         public static bool[] UseSAforMouse => m_Config.useSAforMouse;
+        public static bool isUsingSAforMouse(int index)
+        {
+            return m_Config.useSAforMouse[index];
+        }
         public static string[] SATriggers => m_Config.sATriggers;
         public static int[] GyroSensitivity => m_Config.gyroSensitivity;
         public static int[] GyroInvert => m_Config.gyroInvert;
@@ -370,7 +374,15 @@ namespace DS4Windows
             return m_Config.r2Deadzone[index];
         }
         public static double[] SXDeadzone => m_Config.SXDeadzone;
+        public static double getSXDeadzone(int index)
+        {
+            return m_Config.SXDeadzone[index];
+        }
         public static double[] SZDeadzone => m_Config.SZDeadzone;
+        public static double getSZDeadzone(int index)
+        {
+            return m_Config.SZDeadzone[index];
+        }
         public static int[] LSDeadzone => m_Config.LSDeadzone;
         public static int getLSDeadzone(int index)
         {
@@ -422,7 +434,15 @@ namespace DS4Windows
             return m_Config.r2Sens[index];
         }
         public static double[] SXSens => m_Config.SXSens;
+        public static double getSXSens(int index)
+        {
+            return m_Config.SXSens[index];
+        }
         public static double[] SZSens => m_Config.SZSens;
+        public static double getSZSens(int index)
+        {
+            return m_Config.SZSens[index];
+        }
         public static double[] LSSens => m_Config.LSSens;
         public static double getLSSens(int index)
         {

@@ -784,8 +784,10 @@ namespace DS4Windows
             MappedState.LY = 127;
             MappedState.RX = 127;
             MappedState.RY = 127;
-            int MouseDeltaX = 0;
-            int MouseDeltaY = 0;
+            double tempMouseDeltaX = 0.0;
+            double tempMouseDeltaY = 0.0;
+            int mouseDeltaX = 0;
+            int mouseDeltaY = 0;
             
             SyntheticState deviceState = Mapping.deviceState[device];
             if (getProfileActionCount(device) > 0 || !string.IsNullOrEmpty(tempprofilename[device]))
@@ -987,31 +989,31 @@ namespace DS4Windows
                             switch (xboxControl)
                             {
                                 case X360Controls.MouseUp:
-                                    if (MouseDeltaY == 0)
+                                    if (tempMouseDeltaY == 0)
                                     {
-                                        MouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, 0);
-                                        MouseDeltaY = -Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
+                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, 0);
+                                        tempMouseDeltaY = -Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
                                     }
                                     break;
                                 case X360Controls.MouseDown:
-                                    if (MouseDeltaY == 0)
+                                    if (tempMouseDeltaY == 0)
                                     {
-                                        MouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, 1);
-                                        MouseDeltaY = Math.Abs((MouseDeltaY == -2147483648 ? 0 : MouseDeltaY));
+                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, 1);
+                                        tempMouseDeltaY = Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
                                     }
                                     break;
                                 case X360Controls.MouseLeft:
-                                    if (MouseDeltaX == 0)
+                                    if (tempMouseDeltaX == 0)
                                     {
-                                        MouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, 2);
-                                        MouseDeltaX = -Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
+                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, 2);
+                                        tempMouseDeltaX = -Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
                                     }
                                     break;
                                 case X360Controls.MouseRight:
-                                    if (MouseDeltaX == 0)
+                                    if (tempMouseDeltaX == 0)
                                     {
-                                        MouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, 3);
-                                        MouseDeltaX = Math.Abs((MouseDeltaX == -2147483648 ? 0 : MouseDeltaX));
+                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, 3);
+                                        tempMouseDeltaX = Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
                                     }
                                     break;
 
@@ -1306,9 +1308,11 @@ namespace DS4Windows
                 }
             }
 
-            if (MouseDeltaX != 0 || MouseDeltaY != 0)
+            calculateFinalMouseMovement(ref tempMouseDeltaX, ref tempMouseDeltaY,
+                out mouseDeltaX, out mouseDeltaY);
+            if (mouseDeltaX != 0 || mouseDeltaY != 0)
             {
-                InputMethods.MoveCursorBy(MouseDeltaX, MouseDeltaY);
+                InputMethods.MoveCursorBy(mouseDeltaX, mouseDeltaY);
             }
         }
 
@@ -2075,16 +2079,15 @@ namespace DS4Windows
             }
         }
 
-        private static int getMouseMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, int mnum)
+        private static double getMouseMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, int mnum)
         {
             int controlnum = DS4ControltoInt(control);
-            double SXD = SXDeadzone[device];
-            double SZD = SZDeadzone[device];
+
             int deadzoneL = 3;
             int deadzoneR = 3;
-            if (LSDeadzone[device] >= 3)
+            if (getLSDeadzone(device) >= 3)
                 deadzoneL = 0;
-            if (RSDeadzone[device] >= 3)
+            if (getRSDeadzone(device) >= 3)
                 deadzoneR = 0;
 
             double value = 0.0;
@@ -2098,56 +2101,71 @@ namespace DS4Windows
                 switch (control)
                 {
                     case DS4Controls.LXNeg:
-                        if (cState.LX - 127.5f < -deadzoneL)
-                            value = -(cState.LX - 127.5f) / 2550d * speed;
+                        if (cState.LX < 127.5f - deadzoneL)
+                            value = -(cState.LX - 127.5f - deadzoneL) / 2550d * speed;
                         break;
                     case DS4Controls.LXPos:
-                        if (cState.LX - 127.5f > deadzoneL)
-                            value = (cState.LX - 127.5f) / 2550d * speed;
+                        if (cState.LX > 127.5f + deadzoneL)
+                            value = (cState.LX - 127.5f + deadzoneL) / 2550d * speed;
                         break;
                     case DS4Controls.RXNeg:
-                        if (cState.RX - 127.5f < -deadzoneR)
-                            value = -(cState.RX - 127.5f) / 2550d * speed;
+                        if (cState.RX < 127.5f - deadzoneR)
+                            value = -(cState.RX - 127.5f - deadzoneR) / 2550d * speed;
                         break;
                     case DS4Controls.RXPos:
-                        if (cState.RX - 127.5f > deadzoneR)
-                            value = (cState.RX - 127.5f) / 2550d * speed;
+                        if (cState.RX > 127.5f + deadzoneR)
+                            value = (cState.RX - 127.5f + deadzoneR) / 2550d * speed;
                         break;
                     case DS4Controls.LYNeg:
-                        if (cState.LY - 127.5f < -deadzoneL)
-                            value = -(cState.LY - 127.5f) / 2550d * speed;
+                        if (cState.LY < 127.5f - deadzoneL)
+                            value = -(cState.LY - 127.5f - deadzoneL) / 2550d * speed;
                         break;
                     case DS4Controls.LYPos:
-                        if (cState.LY - 127.5f > deadzoneL)
-                            value = (cState.LY - 127.5f) / 2550d * speed;
+                        if (cState.LY > 127.5f + deadzoneL)
+                            value = (cState.LY - 127.5f + deadzoneL) / 2550d * speed;
                         break;
                     case DS4Controls.RYNeg:
-                        if (cState.RY - 127.5f < -deadzoneR)
-                            value = -(cState.RY - 127.5f) / 2550d * speed;
+                        if (cState.RY < 127 - deadzoneR)
+                            value = -(cState.RY - 127.5f - deadzoneR) / 2550d * speed;
                         break;
                     case DS4Controls.RYPos:
-                        if (cState.RY - 127.5f > deadzoneR)
-                            value = (cState.RY - 127.5f) / 2550d * speed;
+                        if (cState.RY > 127 + deadzoneR)
+                            value = (cState.RY - 127.5f + deadzoneR) / 2550d * speed;
                         break;
                     default: break;
                 }
             }
             else if (control >= DS4Controls.GyroXPos && control <= DS4Controls.GyroZNeg)
             {
+                double SXD = getSXDeadzone(device);
+                double SZD = getSZDeadzone(device);
+
                 switch (control)
                 {
                     case DS4Controls.GyroXPos:
-                        value = (byte)(eState.GyroX > SXD * 10 ? Math.Pow(root + speed / divide, eState.GyroX) : 0);
+                    {
+                        int gyroX = eState.GyroX;
+                        value = (byte)(gyroX > SXD * 10 ? Math.Pow(root + speed / divide, gyroX) : 0);
                         break;
+                    }
                     case DS4Controls.GyroXNeg:
-                        value = (byte)(eState.GyroX < -SXD * 10 ? Math.Pow(root + speed / divide, -eState.GyroX) : 0);
+                    {
+                        int gyroX = eState.GyroX;
+                        value = (byte)(gyroX < -SXD * 10 ? Math.Pow(root + speed / divide, -gyroX) : 0);
                         break;
+                    }
                     case DS4Controls.GyroZPos:
-                        value = (byte)(eState.GyroZ > SZD * 10 ? Math.Pow(root + speed / divide, eState.GyroZ) : 0);
+                    {
+                        int gyroZ = eState.GyroZ;
+                        value = (byte)(gyroZ > SZD * 10 ? Math.Pow(root + speed / divide, gyroZ) : 0);
                         break;
+                    }
                     case DS4Controls.GyroZNeg:
-                        value = (byte)(eState.GyroZ < -SZD * 10 ? Math.Pow(root + speed / divide, -eState.GyroZ) : 0);
+                    {
+                        int gyroZ = eState.GyroZ;
+                        value = (byte)(gyroZ < -SZD * 10 ? Math.Pow(root + speed / divide, -gyroZ) : 0);
                         break;
+                    }
 
                     default: break;
                 }
@@ -2198,12 +2216,6 @@ namespace DS4Windows
                 }
             }
 
-            bool LXChanged = (Math.Abs(127 - cState.LX) < deadzoneL);
-            bool LYChanged = (Math.Abs(127 - cState.LY) < deadzoneL);
-            bool RXChanged = (Math.Abs(127 - cState.RX) < deadzoneR);
-            bool RYChanged = (Math.Abs(127 - cState.RY) < deadzoneR);
-
-            bool contains = control >= DS4Controls.LXNeg && control <= DS4Controls.RYPos;
             if (MouseAccel[device])
             {
                 if (value > 0)
@@ -2223,22 +2235,36 @@ namespace DS4Windows
                 value *= 1 + (double)Math.Min(20000, (mouseaccel)) / 10000d;
                 prevmouseaccel = mouseaccel;
             }
-            int intValue;
-            if (mnum > 1)
+
+            return value;
+        }
+
+        private static void calculateFinalMouseMovement(ref double rawMouseX, ref double rawMouseY,
+            out int mouseX, out int mouseY)
+        {
+            if ((rawMouseX > 0.0 && horizontalRemainder > 0.0) || (rawMouseX < 0.0 && horizontalRemainder < 0.0))
             {
-                if ((value > 0.0 && horizontalRemainder > 0.0) || (value < 0.0 && horizontalRemainder < 0.0))
-                    value += horizontalRemainder;
-                intValue = (int)value;
-                horizontalRemainder = value - intValue;
+                rawMouseX += horizontalRemainder;
             }
             else
             {
-                if ((value > 0.0 && verticalRemainder > 0.0) || (value < 0.0 && verticalRemainder < 0.0))
-                    value += verticalRemainder;
-                intValue = (int)value;
-                verticalRemainder = value - intValue;
+                horizontalRemainder = 0.0;
             }
-            return intValue;
+
+            mouseX = (int)rawMouseX;
+            horizontalRemainder = rawMouseX - mouseX;
+
+            if ((rawMouseY > 0.0 && verticalRemainder > 0.0) || (rawMouseY < 0.0 && verticalRemainder < 0.0))
+            {
+                rawMouseY += verticalRemainder;
+            }
+            else
+            {
+                verticalRemainder = 0.0;
+            }
+
+            mouseY = (int)rawMouseY;
+            verticalRemainder = rawMouseY - mouseY;
         }
 
         public static bool compare(byte b1, byte b2)
@@ -2328,16 +2354,38 @@ namespace DS4Windows
             }
             else if (control >= DS4Controls.GyroXPos && control <= DS4Controls.GyroZNeg)
             {
-                double SXD = SXDeadzone[device];
-                double SZD = SZDeadzone[device];
-                bool sOff = UseSAforMouse[device];
+                double SXD = getSXDeadzone(device);
+                double SZD = getSZDeadzone(device);
+                bool sOff = isUsingSAforMouse(device);
+                double sxsens = getSXSens(device);
+                double szsens = getSZSens(device);
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: result = (byte)(!sOff && SXSens[device] * eState.GyroX > SXD * 10 ? Math.Min(255, SXSens[device] * eState.GyroX * 2) : 0); break;
-                    case DS4Controls.GyroXNeg: result = (byte)(!sOff && SXSens[device] * eState.GyroX < -SXD * 10 ? Math.Min(255, SXSens[device] * -eState.GyroX * 2) : 0); break;
-                    case DS4Controls.GyroZPos: result = (byte)(!sOff && SZSens[device] * eState.GyroZ > SZD * 10 ? Math.Min(255, SZSens[device] * eState.GyroZ * 2) : 0); break;
-                    case DS4Controls.GyroZNeg: result = (byte)(!sOff && SZSens[device] * eState.GyroZ < -SZD * 10 ? Math.Min(255, SZSens[device] * -eState.GyroZ * 2) : 0); break;
+                    case DS4Controls.GyroXPos:
+                    {
+                        int gyroX = eState.GyroX;
+                        result = (byte)(!sOff && sxsens * gyroX > SXD * 10 ? Math.Min(255, sxsens * gyroX * 2) : 0);
+                        break;
+                    }
+                    case DS4Controls.GyroXNeg:
+                    {
+                        int gyroX = eState.GyroX;
+                        result = (byte)(!sOff && sxsens * gyroX < -SXD * 10 ? Math.Min(255, sxsens * -gyroX * 2) : 0);
+                        break;
+                    }
+                    case DS4Controls.GyroZPos:
+                    {
+                        int gyroZ = eState.GyroZ;
+                        result = (byte)(!sOff && szsens * gyroZ > SZD * 10 ? Math.Min(255, szsens * gyroZ * 2) : 0);
+                        break;
+                    }
+                    case DS4Controls.GyroZNeg:
+                    {
+                        int gyroZ = eState.GyroZ;
+                        result = (byte)(!sOff && szsens * gyroZ < -SZD * 10 ? Math.Min(255, szsens * -gyroZ * 2) : 0);
+                        break;
+                    }
                     default: break;
                 }
             }
@@ -2433,7 +2481,7 @@ namespace DS4Windows
             }
             else if (control >= DS4Controls.GyroXPos && control <= DS4Controls.GyroZNeg)
             {
-                bool sOff = UseSAforMouse[device];
+                bool sOff = isUsingSAforMouse(device);
 
                 switch (control)
                 {
@@ -2541,9 +2589,9 @@ namespace DS4Windows
             }
             else if (control >= DS4Controls.GyroXPos && control <= DS4Controls.GyroZNeg)
             {
-                double SXD = SXDeadzone[device];
-                double SZD = SZDeadzone[device];
-                bool sOff = UseSAforMouse[device];
+                double SXD = getSXDeadzone(device);
+                double SZD = getSZDeadzone(device);
+                bool sOff = isUsingSAforMouse(device);
 
                 switch (control)
                 {

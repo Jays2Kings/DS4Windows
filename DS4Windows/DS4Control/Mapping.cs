@@ -1167,7 +1167,7 @@ namespace DS4Windows
                 DS4Controls dc = tempControlDict[key];
                 //DS4Controls key = entry.Key;
                 //DS4Controls dc = entry.Value;
-                if (getBoolActionMapping(device, dc, cState, eState, tp))
+                if (getBoolActionMapping(device, dc, cState, eState, tp, true))
                 {
                     if (key >= DS4Controls.Square && key <= DS4Controls.Cross)
                     {
@@ -2506,7 +2506,8 @@ namespace DS4Windows
             return result;
         }
 
-        public static bool getBoolActionMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)
+        public static bool getBoolActionMapping(int device, DS4Controls control,
+            DS4State cState, DS4StateExposed eState, Mouse tp, bool analog=false)
         {
             bool result = false;
 
@@ -2551,58 +2552,122 @@ namespace DS4Windows
                 {
                     case DS4Controls.LXNeg:
                     {
-                        double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
-                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
-                        result = cState.LX < 127 && (angle >= 210 && angle <= 330);
+                        if (!analog)
+                        {
+                            double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
+                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            result = cState.LX < 127 && (angle >= 210 && angle <= 330);
+                        }
+                        else
+                        {
+                            result = cState.LX < 127;
+                        }
+
                         break;
                     }
                     case DS4Controls.LYNeg:
                     {
-                        double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
-                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
-                        result = cState.LY < 127 && (angle >= 300 || angle <= 60);
+                        if (!analog)
+                        {
+                            double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
+                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            result = cState.LY < 127 && (angle >= 300 || angle <= 60);
+                        }
+                        else
+                        {
+                            result = cState.LY < 127;
+                        }
+
                         break;
                     }
                     case DS4Controls.RXNeg:
                     {
-                        double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
-                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
-                        result = cState.RX < 127 && (angle >= 210 && angle <= 330);
+                        if (!analog)
+                        {
+                            double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
+                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            result = cState.RX < 127 && (angle >= 210 && angle <= 330);
+                        }
+                        else
+                        {
+                            result = cState.RX < 127;
+                        }
+
                         break;
                     }
                     case DS4Controls.RYNeg:
                     {
-                        double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
-                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
-                        result = cState.RY < 127 && (angle >= 300 || angle <= 60);
+                        if (!analog)
+                        {
+                            double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
+                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            result = cState.RY < 127 && (angle >= 300 || angle <= 60);
+                        }
+                        else
+                        {
+                            result = cState.RY < 127;
+                        }
+
                         break;
                     }
                     case DS4Controls.LXPos:
                     {
-                        double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
-                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
-                        result = cState.LX > 127 && (angle >= 30 && angle <= 150);
+                        if (!analog)
+                        {
+                            double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
+                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            result = cState.LX > 127 && (angle >= 30 && angle <= 150);
+                        }
+                        else
+                        {
+                            result = cState.LX > 127;
+                        }
+
                         break;
                     }
                     case DS4Controls.LYPos:
                     {
-                        double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
-                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
-                        result = cState.LY > 127 && (angle >= 120 && angle <= 240);
+                        if (!analog)
+                        {
+                            double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
+                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            result = cState.LY > 127 && (angle >= 120 && angle <= 240);
+                        }
+                        else
+                        {
+                            result = cState.LY > 127;
+                        }
+
                         break;
                     }
                     case DS4Controls.RXPos:
                     {
-                        double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
-                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
-                        result = cState.RX > 127 && (angle >= 30 && angle <= 150);
+                        if (!analog)
+                        {
+                            double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
+                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            result = cState.RX > 127 && (angle >= 30 && angle <= 150);
+                        }
+                        else
+                        {
+                            result = cState.RX > 127;
+                        }
+
                         break;
                     }
                     case DS4Controls.RYPos:
                     {
-                        double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
-                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
-                        result = cState.RY > 127 && (angle >= 120 && angle <= 240);
+                        if (!analog)
+                        {
+                            double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
+                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            result = cState.RY > 127 && (angle >= 120 && angle <= 240);
+                        }
+                        else
+                        {
+                            result = cState.RY > 127;
+                        }
+
                         break;
                     }
                     default: break;

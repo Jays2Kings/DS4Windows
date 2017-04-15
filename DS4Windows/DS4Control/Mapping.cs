@@ -836,7 +836,7 @@ namespace DS4Windows
                     else if (actionType == DS4ControlSettings.ActionType.Key)
                     {
                         ushort value = ushort.Parse(action.ToString());
-                        if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                        if (getBoolActionMapping(device, dcs.control, cState, eState, tp))
                         {
                             resetToDefaultValue(dcs.control, MappedState);
                             SyntheticState.KeyPresses kp;
@@ -944,38 +944,38 @@ namespace DS4Windows
                             {
                                 case X360Controls.LeftMouse:
                                     keyvalue = 256;
-                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                    if (getBoolActionMapping(device, dcs.control, cState, eState, tp))
                                         deviceState.currentClicks.leftCount++;
                                     break;
                                 case X360Controls.RightMouse:
                                     keyvalue = 257;
-                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                    if (getBoolActionMapping(device, dcs.control, cState, eState, tp))
                                         deviceState.currentClicks.rightCount++;
                                     break;
                                 case X360Controls.MiddleMouse:
                                     keyvalue = 258;
-                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                    if (getBoolActionMapping(device, dcs.control, cState, eState, tp))
                                         deviceState.currentClicks.middleCount++;
                                     break;
                                 case X360Controls.FourthMouse:
                                     keyvalue = 259;
-                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                    if (getBoolActionMapping(device, dcs.control, cState, eState, tp))
                                         deviceState.currentClicks.fourthCount++;
                                     break;
                                 case X360Controls.FifthMouse:
                                     keyvalue = 260;
-                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                    if (getBoolActionMapping(device, dcs.control, cState, eState, tp))
                                         deviceState.currentClicks.fifthCount++;
                                     break;
                                 case X360Controls.WUP:
-                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                    if (getBoolActionMapping(device, dcs.control, cState, eState, tp))
                                         if (isAnalog)
                                             getMouseWheelMapping(device, dcs.control, cState, eState, tp, false);
                                         else
                                             deviceState.currentClicks.wUpCount++;
                                     break;
                                 case X360Controls.WDOWN:
-                                    if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                                    if (getBoolActionMapping(device, dcs.control, cState, eState, tp))
                                         if (isAnalog)
                                             getMouseWheelMapping(device, dcs.control, cState, eState, tp, true);
                                         else
@@ -1033,7 +1033,7 @@ namespace DS4Windows
 
                         if (keyType.HasFlag(DS4KeyType.Toggle))
                         {
-                            if (getBoolMapping(device, dcs.control, cState, eState, tp))
+                            if (getBoolActionMapping(device, dcs.control, cState, eState, tp))
                             {
                                 resetToDefaultValue(dcs.control, MappedState);
                                 if (!pressedonce[keyvalue])
@@ -1057,7 +1057,7 @@ namespace DS4Windows
                 {
                     bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && dcs.shiftExtras != "0,0,0,0,0,0,0,0" && ShiftTrigger(dcs.shiftTrigger, device, cState, eState, tp);
                     bool regE = !string.IsNullOrEmpty(dcs.extras) && dcs.extras != "0,0,0,0,0,0,0,0";
-                    if ((regE || shiftE) && getBoolMapping(device, dcs.control, cState, eState, tp))
+                    if ((regE || shiftE) && getBoolActionMapping(device, dcs.control, cState, eState, tp))
                     {
                         usingExtra = dcs.control;
                         string p;
@@ -1167,7 +1167,7 @@ namespace DS4Windows
                 DS4Controls dc = tempControlDict[key];
                 //DS4Controls key = entry.Key;
                 //DS4Controls dc = entry.Value;
-                if (getBoolMapping(device, dc, cState, eState, tp))
+                if (getBoolActionMapping(device, dc, cState, eState, tp))
                 {
                     if (key >= DS4Controls.Square && key <= DS4Controls.Cross)
                     {
@@ -2504,6 +2504,177 @@ namespace DS4Windows
             }
 
             return result;
+        }
+
+        public static bool getBoolActionMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)
+        {
+            bool result = false;
+
+            if (control >= DS4Controls.Square && control <= DS4Controls.Cross)
+            {
+                switch (control)
+                {
+                    case DS4Controls.Cross: result = cState.Cross; break;
+                    case DS4Controls.Square: result = cState.Square; break;
+                    case DS4Controls.Triangle: result = cState.Triangle; break;
+                    case DS4Controls.Circle: result = cState.Circle; break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.L1 && control <= DS4Controls.R3)
+            {
+                switch (control)
+                {
+                    case DS4Controls.L1: result = cState.L1; break;
+                    case DS4Controls.R1: result = cState.R1; break;
+                    case DS4Controls.L2: result = cState.L2 > 0; break;
+                    case DS4Controls.R2: result = cState.R2 > 0; break;
+                    case DS4Controls.L3: result = cState.L3; break;
+                    case DS4Controls.R3: result = cState.R3; break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.DpadUp && control <= DS4Controls.DpadLeft)
+            {
+                switch (control)
+                {
+                    case DS4Controls.DpadUp: result = cState.DpadUp; break;
+                    case DS4Controls.DpadDown: result = cState.DpadDown; break;
+                    case DS4Controls.DpadLeft: result = cState.DpadLeft; break;
+                    case DS4Controls.DpadRight: result = cState.DpadRight; break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.LXNeg && control <= DS4Controls.RYPos)
+            {
+                switch (control)
+                {
+                    case DS4Controls.LXNeg:
+                    {
+                        double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
+                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                        result = cState.LX < 127 && (angle >= 210 && angle <= 330);
+                        break;
+                    }
+                    case DS4Controls.LYNeg:
+                    {
+                        double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
+                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                        result = cState.LY < 127 && (angle >= 300 || angle <= 60);
+                        break;
+                    }
+                    case DS4Controls.RXNeg:
+                    {
+                        double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
+                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                        result = cState.RX < 127 && (angle >= 210 && angle <= 330);
+                        break;
+                    }
+                    case DS4Controls.RYNeg:
+                    {
+                        double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
+                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                        result = cState.RY < 127 && (angle >= 300 || angle <= 60);
+                        break;
+                    }
+                    case DS4Controls.LXPos:
+                    {
+                        double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
+                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                        result = cState.LX > 127 && (angle >= 30 && angle <= 150);
+                        break;
+                    }
+                    case DS4Controls.LYPos:
+                    {
+                        double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
+                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                        result = cState.LY > 127 && (angle >= 120 && angle <= 240);
+                        break;
+                    }
+                    case DS4Controls.RXPos:
+                    {
+                        double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
+                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                        result = cState.RX > 127 && (angle >= 30 && angle <= 150);
+                        break;
+                    }
+                    case DS4Controls.RYPos:
+                    {
+                        double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
+                        angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                        result = cState.RY > 127 && (angle >= 120 && angle <= 240);
+                        break;
+                    }
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.TouchLeft && control <= DS4Controls.TouchRight)
+            {
+                switch (control)
+                {
+                    case DS4Controls.TouchLeft: result = (tp != null ? tp.leftDown : false); break;
+                    case DS4Controls.TouchRight: result = (tp != null ? tp.rightDown : false); break;
+                    case DS4Controls.TouchMulti: result = (tp != null ? tp.multiDown : false); break;
+                    case DS4Controls.TouchUpper: result = (tp != null ? tp.upperDown : false); break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.SwipeLeft && control <= DS4Controls.SwipeDown)
+            {
+                switch (control)
+                {
+                    case DS4Controls.SwipeUp: result = (tp != null && tp.swipeUp); break;
+                    case DS4Controls.SwipeDown: result = (tp != null && tp.swipeDown); break;
+                    case DS4Controls.SwipeLeft: result = (tp != null && tp.swipeLeft); break;
+                    case DS4Controls.SwipeRight: result = (tp != null && tp.swipeRight); break;
+                    default: break;
+                }
+            }
+            else if (control >= DS4Controls.GyroXPos && control <= DS4Controls.GyroZNeg)
+            {
+                bool sOff = isUsingSAforMouse(device);
+
+                switch (control)
+                {
+                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.GyroX > 67 : false; break;
+                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * eState.GyroX < -67 : false; break;
+                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.GyroZ > 67 : false; break;
+                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.GyroZ < -67 : false; break;
+                    default: break;
+                }
+            }
+            else
+            {
+                switch (control)
+                {
+                    case DS4Controls.PS: result = cState.PS; break;
+                    case DS4Controls.Share: result = cState.Share; break;
+                    case DS4Controls.Options: result = cState.Options; break;
+                    default: break;
+                }
+            }
+
+            return result;
+        }
+
+        public static bool getBoolButtonMapping(bool stateButton)
+        {
+            return stateButton;
+        }
+
+        public static bool getBoolAxisDirMapping(byte stateAxis, bool positive)
+        {
+            return positive ? stateAxis > 127 + 55 : stateAxis < 127 - 55;
+        }
+
+        public static bool getBoolTriggerMapping(byte stateAxis)
+        {
+            return stateAxis > 100;
+        }
+
+        public static bool getBoolTouchMapping(bool touchButton)
+        {
+            return touchButton;
         }
 
         public static byte getXYAxisMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp, bool alt = false)

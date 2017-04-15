@@ -2608,18 +2608,28 @@ namespace DS4Windows
 
         public bool HasCustomActions(int deviceNum)
         {
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            for (int i = 0, listLen = ds4settings[deviceNum].Count; i < listLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settings[deviceNum][i];
                 if (dcs.action != null || dcs.shiftAction != null)
                     return true;
+            }
+
             return false;
         }
 
 
         public bool HasCustomExtras(int deviceNum)
         {
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            for (int i = 0, listLen = ds4settings[deviceNum].Count; i < listLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settings[deviceNum][i];
                 if (dcs.extras != null || dcs.shiftExtras != null)
                     return true;
+            }
+
             return false;
         }
     }

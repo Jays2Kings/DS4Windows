@@ -2101,36 +2101,36 @@ namespace DS4Windows
                 switch (control)
                 {
                     case DS4Controls.LXNeg:
-                        if (cState.LX < 127.5f - deadzoneL)
-                            value = -(cState.LX - 127.5f - deadzoneL) / 2550d * speed;
+                        if (cState.LX < 127 - deadzoneL)
+                            value = -(cState.LX - 127 - deadzoneL) / 2550d * speed;
                         break;
                     case DS4Controls.LXPos:
-                        if (cState.LX > 127.5f + deadzoneL)
-                            value = (cState.LX - 127.5f + deadzoneL) / 2550d * speed;
+                        if (cState.LX > 127 + deadzoneL)
+                            value = (cState.LX - 127 + deadzoneL) / 2550d * speed;
                         break;
                     case DS4Controls.RXNeg:
-                        if (cState.RX < 127.5f - deadzoneR)
-                            value = -(cState.RX - 127.5f - deadzoneR) / 2550d * speed;
+                        if (cState.RX < 127 - deadzoneR)
+                            value = -(cState.RX - 127 - deadzoneR) / 2550d * speed;
                         break;
                     case DS4Controls.RXPos:
-                        if (cState.RX > 127.5f + deadzoneR)
-                            value = (cState.RX - 127.5f + deadzoneR) / 2550d * speed;
+                        if (cState.RX > 127 + deadzoneR)
+                            value = (cState.RX - 127 + deadzoneR) / 2550d * speed;
                         break;
                     case DS4Controls.LYNeg:
-                        if (cState.LY < 127.5f - deadzoneL)
-                            value = -(cState.LY - 127.5f - deadzoneL) / 2550d * speed;
+                        if (cState.LY < 127 - deadzoneL)
+                            value = -(cState.LY - 127 - deadzoneL) / 2550d * speed;
                         break;
                     case DS4Controls.LYPos:
-                        if (cState.LY > 127.5f + deadzoneL)
-                            value = (cState.LY - 127.5f + deadzoneL) / 2550d * speed;
+                        if (cState.LY > 127 + deadzoneL)
+                            value = (cState.LY - 127 + deadzoneL) / 2550d * speed;
                         break;
                     case DS4Controls.RYNeg:
                         if (cState.RY < 127 - deadzoneR)
-                            value = -(cState.RY - 127.5f - deadzoneR) / 2550d * speed;
+                            value = -(cState.RY - 127 - deadzoneR) / 2550d * speed;
                         break;
                     case DS4Controls.RYPos:
                         if (cState.RY > 127 + deadzoneR)
-                            value = (cState.RY - 127.5f + deadzoneR) / 2550d * speed;
+                            value = (cState.RY - 127 + deadzoneR) / 2550d * speed;
                         break;
                     default: break;
                 }

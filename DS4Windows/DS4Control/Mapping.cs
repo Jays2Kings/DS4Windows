@@ -365,6 +365,7 @@ namespace DS4Windows
                 case Click.WDOWN:
                     deviceState[device].currentClicks.wDownCount++;
                     break;
+                default: break;
             }
         }
 

@@ -27,6 +27,7 @@ namespace DS4Windows
         {
             if (arg.touches.Length != 2 || dragging)
                 return;
+
             Touch lastT0 = arg.touches[0].previousTouch;
             Touch lastT1 = arg.touches[1].previousTouch;
             Touch T0 = arg.touches[0];

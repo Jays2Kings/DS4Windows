@@ -73,7 +73,9 @@ namespace DS4Windows
                 case 16: return s.Options;
                 case 17: return s.Share;
                 case 18: return s.PS;
+                default: break;
             }
+
             return false;
         }
 
@@ -98,11 +100,13 @@ namespace DS4Windows
                 swipeLeftB = (byte)Math.Min(255, Math.Max(0, firstTouch.hwX - arg.touches[0].hwX));
                 swipeRightB = (byte)Math.Min(255, Math.Max(0, arg.touches[0].hwX - firstTouch.hwX));
             }
+
             if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 50 && arg.touches.Length == 2)
                 if (arg.touches[0].hwX - firstTouch.hwX > 200 && !slideleft)
                     slideright = true;
                 else if (firstTouch.hwX - arg.touches[0].hwX > 200 && !slideright)
                     slideleft = true;
+
             dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
@@ -113,14 +117,17 @@ namespace DS4Windows
                 cursor.touchesBegan(arg);
                 wheel.touchesBegan(arg);
             }
+
             pastTime = arg.timeStamp;
             firstTouch = arg.touches[0];
+
             if (Global.DoubleTap[deviceNum])
             {
                 DateTime test = arg.timeStamp;
                 if (test <= (firstTap + TimeSpan.FromMilliseconds((double)Global.TapSensitivity[deviceNum] * 1.5)) && !arg.touchButtonPressed)
                     secondtouchbegin = true;
             }
+
             dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
@@ -129,16 +136,17 @@ namespace DS4Windows
             slideright = slideleft = false;
             swipeUp = swipeDown = swipeLeft = swipeRight = false;
             swipeUpB = swipeDownB = swipeLeftB = swipeRightB = 0;
-            if (Global.TapSensitivity[deviceNum] != 0 && !Global.UseTPforControls[deviceNum])
+            byte tapSensitivity = Global.TapSensitivity[deviceNum];
+            if (tapSensitivity != 0 && !Global.UseTPforControls[deviceNum])
             {
-
                 if (secondtouchbegin)
                 {
                     tappedOnce = false;
                     secondtouchbegin = false;
                 }
+
                 DateTime test = arg.timeStamp;
-                if (test <= (pastTime + TimeSpan.FromMilliseconds((double)Global.TapSensitivity[deviceNum] * 2)) && !arg.touchButtonPressed && !tappedOnce)
+                if (test <= (pastTime + TimeSpan.FromMilliseconds((double)tapSensitivity * 2)) && !arg.touchButtonPressed && !tappedOnce)
                     if (Math.Abs(firstTouch.hwX - arg.touches[0].hwX) < 10 && Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 10)
                         if (Global.DoubleTap[deviceNum])
                         {
@@ -149,6 +157,7 @@ namespace DS4Windows
                         else
                             Mapping.MapClick(deviceNum, Mapping.Click.Left); //this way no delay if disabled
             }
+
             dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
@@ -174,19 +183,23 @@ namespace DS4Windows
         public bool dragging, dragging2;
         private void synthesizeMouseButtons()
         {
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchLeft.ToString(), false) == null && leftDown)
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchLeft, false) == null && leftDown)
             {
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
                 dragging2 = true;
             }
             else
+            {
                 dragging2 = false;
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchUpper.ToString(), false) == null && upperDown)
+            }
+
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchUpper, false) == null && upperDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Middle);
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchRight.ToString(), false) == null && rightDown)
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchRight, false) == null && rightDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
-            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchMulti.ToString(), false) == null && multiDown)
+            if (Global.GetDS4Action(deviceNum, DS4Controls.TouchMulti, false) == null && multiDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
+
             if (!Global.UseTPforControls[deviceNum])
             {
                 if (tappedOnce)
@@ -205,8 +218,11 @@ namespace DS4Windows
                     dragging = true;
                 }
                 else
+                {
                     dragging = false;
+                }
             }
+
             s = remapped;
             //remapped.CopyTo(s);
         }
@@ -231,11 +247,13 @@ namespace DS4Windows
             {
                 if ((Global.LowerRCOn[deviceNum] && arg.touches[0].hwX > (1920 * 3) / 4 && arg.touches[0].hwY > (960 * 3) / 4))
                     Mapping.MapClick(deviceNum, Mapping.Click.Right);
+
                 if (isLeft(arg.touches[0]))
                     leftDown = true;
                 else if (isRight(arg.touches[0]))
                     rightDown = true;
             }
+
             dev.getCurrentState(s);
             synthesizeMouseButtons();
         }

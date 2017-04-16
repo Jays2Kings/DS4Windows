@@ -42,10 +42,14 @@ namespace DS4Windows
             int yAction = (int)yMotion;
             vRemainder += yMotion - yAction;
             vRemainder -= (int)vRemainder;
-            if (Global.GyroInvert[deviceNumber] == 2 || Global.GyroInvert[deviceNumber] == 3)
+
+            int gyroInvert = Global.GyroInvert[deviceNumber];
+            if (gyroInvert == 2 || gyroInvert == 3)
                 xAction *= -1;
-            if (Global.GyroInvert[deviceNumber] == 1 || Global.GyroInvert[deviceNumber] == 3)
+
+            if (gyroInvert == 1 || gyroInvert == 3)
                 yAction *= -1;
+
             if (yAction != 0 || xAction != 0)
                 InputMethods.MoveCursorBy(xAction, yAction);
 
@@ -65,8 +69,10 @@ namespace DS4Windows
         private byte lastTouchID;
         public void touchesMoved(TouchpadEventArgs arg, bool dragging)
         {
-            if ((!dragging && arg.touches.Length != 1) || (dragging && arg.touches.Length < 1))
+            int touchesLen = arg.touches.Length;
+            if ((!dragging && touchesLen != 1) || (dragging && touchesLen < 1))
                 return;
+
             int deltaX, deltaY;
             if (arg.touches[0].touchID != lastTouchID)
             {
@@ -78,8 +84,7 @@ namespace DS4Windows
             else if (Global.TouchpadJitterCompensation[deviceNumber])
             {
                 // Often the DS4's internal jitter compensation kicks in and starts hiding changes, ironically creating jitter...
-
-                if (dragging && arg.touches.Length > 1)
+                if (dragging && touchesLen > 1)
                 {
                     deltaX = arg.touches[1].deltaX;
                     deltaY = arg.touches[1].deltaY;
@@ -89,6 +94,7 @@ namespace DS4Windows
                     deltaX = arg.touches[0].deltaX;
                     deltaY = arg.touches[0].deltaY;
                 }
+
                 // allow only very fine, slow motions, when changing direction, even from neutral
                 // TODO maybe just consume it completely?
                 if (deltaX <= -1)
@@ -127,7 +133,7 @@ namespace DS4Windows
             }
             else
             {
-                if (dragging && arg.touches.Length > 1)
+                if (dragging && touchesLen > 1)
                 {
                     deltaX = arg.touches[1].deltaX;
                     deltaY = arg.touches[1].deltaY;

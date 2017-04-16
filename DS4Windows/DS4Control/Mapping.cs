@@ -431,6 +431,7 @@ namespace DS4Windows
                         curvey = Math.Min(y, (y / max) * multimax);
                     }
                 }
+
                 dState.LX = (byte)Math.Round(curvex, 0);
                 dState.LY = (byte)Math.Round(curvey, 0);
             }
@@ -464,6 +465,7 @@ namespace DS4Windows
                         curvey = Math.Min(y, (y / max) * multimax);
                     }
                 }
+
                 dState.RX = (byte)Math.Round(curvex, 0);
                 dState.RY = (byte)Math.Round(curvey, 0);
             }
@@ -2555,8 +2557,7 @@ namespace DS4Windows
                     {
                         if (!analog)
                         {
-                            double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
-                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            double angle = cState.LSAngle;
                             result = cState.LX < 127 && (angle >= 210 && angle <= 330);
                         }
                         else
@@ -2570,8 +2571,7 @@ namespace DS4Windows
                     {
                         if (!analog)
                         {
-                            double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
-                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            double angle = cState.LSAngle;
                             result = cState.LY < 127 && (angle >= 300 || angle <= 60);
                         }
                         else
@@ -2585,8 +2585,7 @@ namespace DS4Windows
                     {
                         if (!analog)
                         {
-                            double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
-                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            double angle = cState.RSAngle;
                             result = cState.RX < 127 && (angle >= 210 && angle <= 330);
                         }
                         else
@@ -2600,8 +2599,7 @@ namespace DS4Windows
                     {
                         if (!analog)
                         {
-                            double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
-                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            double angle = cState.RSAngle;
                             result = cState.RY < 127 && (angle >= 300 || angle <= 60);
                         }
                         else
@@ -2615,8 +2613,7 @@ namespace DS4Windows
                     {
                         if (!analog)
                         {
-                            double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
-                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            double angle = cState.LSAngle;
                             result = cState.LX > 127 && (angle >= 30 && angle <= 150);
                         }
                         else
@@ -2630,8 +2627,7 @@ namespace DS4Windows
                     {
                         if (!analog)
                         {
-                            double angle = Math.Atan2((cState.LX - 127), -(cState.LY - 127));
-                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            double angle = cState.LSAngle;
                             result = cState.LY > 127 && (angle >= 120 && angle <= 240);
                         }
                         else
@@ -2645,8 +2641,7 @@ namespace DS4Windows
                     {
                         if (!analog)
                         {
-                            double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
-                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            double angle = cState.RSAngle;
                             result = cState.RX > 127 && (angle >= 30 && angle <= 150);
                         }
                         else
@@ -2660,8 +2655,7 @@ namespace DS4Windows
                     {
                         if (!analog)
                         {
-                            double angle = Math.Atan2((cState.RX - 127), -(cState.RY - 127));
-                            angle = (angle >= 0 ? angle : (2 * Math.PI + angle)) * 180 / Math.PI;
+                            double angle = cState.RSAngle;
                             result = cState.RY > 127 && (angle >= 120 && angle <= 240);
                         }
                         else

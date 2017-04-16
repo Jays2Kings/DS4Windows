@@ -17,6 +17,8 @@ namespace DS4Windows
         public byte FrameCounter; // 0, 1, 2...62, 63, 0....
         public byte TouchPacketCounter; // we break these out automatically
         public byte Battery; // 0 for charging, 10/20/30/40/50/60/70/80/90/100 for percentage of full
+        public double LSAngle;
+        public double RSAngle;
 
         public DS4State()
         {
@@ -29,6 +31,8 @@ namespace DS4Windows
             FrameCounter = 255; // only actually has 6 bits, so this is a null indicator
             TouchPacketCounter = 255; // 8 bits, no great junk value
             Battery = 0;
+            LSAngle = 0.0;
+            RSAngle = 0.0;
         }
 
         public DS4State(DS4State state)
@@ -65,6 +69,8 @@ namespace DS4Windows
             RY = state.RY;
             FrameCounter = state.FrameCounter;
             Battery = state.Battery;
+            LSAngle = state.LSAngle;
+            RSAngle = state.RSAngle;
         }
 
         public DS4State Clone()
@@ -106,7 +112,19 @@ namespace DS4Windows
             state.RY = RY;
             state.FrameCounter = FrameCounter;
             state.Battery = Battery;
+            state.LSAngle = LSAngle;
+            state.RSAngle = RSAngle;
         }
 
+        public void calculateStickAngles()
+        {
+            double lsangle = Math.Atan2((LX - 127), -(LY - 127));
+            lsangle = (lsangle >= 0 ? lsangle : (2 * Math.PI + lsangle)) * 180 / Math.PI;
+            LSAngle = lsangle;
+
+            double rsangle = Math.Atan2((RX - 127), -(RY - 127));
+            rsangle = (rsangle >= 0 ? rsangle : (2 * Math.PI + rsangle)) * 180 / Math.PI;
+            RSAngle = rsangle;
+        }
     }
 }

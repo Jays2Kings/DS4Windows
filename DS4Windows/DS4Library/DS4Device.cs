@@ -192,6 +192,10 @@ namespace DS4Windows
         public string MacAddress =>  Mac;
 
         public ConnectionType ConnectionType => conType;
+        public ConnectionType getConnectionType()
+        {
+            return this.conType;
+        }
 
         // behavior only active when > 0
         private int idleTimeout = 0;
@@ -213,6 +217,12 @@ namespace DS4Windows
         public bool isCharging()
         {
             return charging;
+        }
+
+        private long lastTimeElapsed = 0;
+        public long getLastTimeElapsed()
+        {
+            return lastTimeElapsed;
         }
 
         public byte RightLightFastRumble
@@ -490,8 +500,10 @@ namespace DS4Windows
             while (true)
             {
                 string currerror = string.Empty;
-                Latency.Add(sw.ElapsedMilliseconds - oldtime);
-                oldtime = sw.ElapsedMilliseconds;
+                long curtime = sw.ElapsedMilliseconds;
+                this.lastTimeElapsed = curtime - oldtime;
+                Latency.Add(this.lastTimeElapsed);
+                oldtime = curtime;
 
                 if (Latency.Count > 100)
                     Latency.RemoveAt(0);
@@ -683,16 +695,20 @@ namespace DS4Windows
                 // XXX fix initialization ordering so the null checks all go away
                 if (Report != null)
                     Report(this, EventArgs.Empty);
+
                 bool syncWriteReport = true;
                 if (conType == ConnectionType.BT)
                 {
                     syncWriteReport = false;
                 }
                 sendOutputReport(syncWriteReport);
+
                 if (!string.IsNullOrEmpty(error))
                     error = string.Empty;
+
                 if (!string.IsNullOrEmpty(currerror))
                     error = currerror;
+
                 cState.CopyTo(pState);
             }
         }
@@ -950,10 +966,11 @@ namespace DS4Windows
 
         public void pushHapticState(DS4HapticState hs)
         {
-            if (hapticStackIndex == hapticState.Length)
+            int hapsLen = hapticState.Length;
+            if (hapticStackIndex == hapsLen)
             {
-                DS4HapticState[] newHaptics = new DS4HapticState[hapticState.Length + 1];
-                Array.Copy(hapticState, newHaptics, hapticState.Length);
+                DS4HapticState[] newHaptics = new DS4HapticState[hapsLen + 1];
+                Array.Copy(hapticState, newHaptics, hapsLen);
                 hapticState = newHaptics;
             }
             hapticState[hapticStackIndex++] = hs;

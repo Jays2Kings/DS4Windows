@@ -325,7 +325,15 @@ namespace DS4Windows
         }
 
         public static bool[] LedAsBatteryIndicator => m_Config.ledAsBattery;
+        public static bool getLedAsBatteryIndicator(int index)
+        {
+            return m_Config.ledAsBattery[index];
+        }
         public static int[] ChargingType => m_Config.chargingType;
+        public static int getChargingType(int index)
+        {
+            return m_Config.chargingType[index];
+        }
         public static bool[] DinputOnly => m_Config.dinputOnly; 
         public static bool[] StartTouchpadOff => m_Config.startTouchpadOff; 
         public static bool[] UseTPforControls => m_Config.useTPforControls;

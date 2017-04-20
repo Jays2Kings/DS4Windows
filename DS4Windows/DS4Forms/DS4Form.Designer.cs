@@ -118,6 +118,10 @@
             this.hideDS4CheckBox = new System.Windows.Forms.CheckBox();
             this.cBSwipeProfiles = new System.Windows.Forms.CheckBox();
             this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
+            this.runStartupPanel = new System.Windows.Forms.Panel();
+            this.runStartTaskRadio = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.runStartProgRadio = new System.Windows.Forms.RadioButton();
             this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbNotifications = new System.Windows.Forms.Label();
@@ -168,6 +172,7 @@
             this.toolStrip1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.fLPSettings.SuspendLayout();
+            this.runStartupPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLatency)).BeginInit();
@@ -847,6 +852,7 @@
             this.fLPSettings.Controls.Add(this.hideDS4CheckBox);
             this.fLPSettings.Controls.Add(this.cBSwipeProfiles);
             this.fLPSettings.Controls.Add(this.StartWindowsCheckBox);
+            this.fLPSettings.Controls.Add(this.runStartupPanel);
             this.fLPSettings.Controls.Add(this.startMinimizedCheckBox);
             this.fLPSettings.Controls.Add(this.panel1);
             this.fLPSettings.Controls.Add(this.cBDisconnectBT);
@@ -883,6 +889,37 @@
             this.StartWindowsCheckBox.Name = "StartWindowsCheckBox";
             this.StartWindowsCheckBox.UseVisualStyleBackColor = true;
             this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
+            // 
+            // runStartupPanel
+            // 
+            this.runStartupPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.runStartupPanel.Controls.Add(this.runStartTaskRadio);
+            this.runStartupPanel.Controls.Add(this.label1);
+            this.runStartupPanel.Controls.Add(this.runStartProgRadio);
+            resources.ApplyResources(this.runStartupPanel, "runStartupPanel");
+            this.runStartupPanel.Name = "runStartupPanel";
+            // 
+            // runStartTaskRadio
+            // 
+            resources.ApplyResources(this.runStartTaskRadio, "runStartTaskRadio");
+            this.runStartTaskRadio.Name = "runStartTaskRadio";
+            this.runStartTaskRadio.TabStop = true;
+            this.runStartTaskRadio.UseVisualStyleBackColor = true;
+            this.runStartTaskRadio.Click += new System.EventHandler(this.runStartTaskRadio_Click);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // runStartProgRadio
+            // 
+            resources.ApplyResources(this.runStartProgRadio, "runStartProgRadio");
+            this.runStartProgRadio.Checked = true;
+            this.runStartProgRadio.Name = "runStartProgRadio";
+            this.runStartProgRadio.TabStop = true;
+            this.runStartProgRadio.UseVisualStyleBackColor = true;
+            this.runStartProgRadio.Click += new System.EventHandler(this.runStartProgRadio_Click);
             // 
             // startMinimizedCheckBox
             // 
@@ -1192,6 +1229,8 @@
             this.tabSettings.ResumeLayout(false);
             this.fLPSettings.ResumeLayout(false);
             this.fLPSettings.PerformLayout();
+            this.runStartupPanel.ResumeLayout(false);
+            this.runStartupPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1336,6 +1375,10 @@
         private System.Windows.Forms.ToolStripMenuItem useCustomColorToolStripMenuItem;
         private AdvancedColorDialog advColorDialog;
         private System.Windows.Forms.CheckBox cBUseWhiteIcon;
+        private System.Windows.Forms.Panel runStartupPanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton runStartProgRadio;
+        private System.Windows.Forms.RadioButton runStartTaskRadio;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

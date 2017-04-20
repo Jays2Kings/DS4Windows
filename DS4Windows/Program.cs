@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Globalization;
+using Microsoft.Win32.TaskScheduler;
 
 namespace DS4Windows
 {
@@ -32,7 +33,7 @@ namespace DS4Windows
         static void Main(string[] args)
         {
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("he");
-            for (int i = 0; i < args.Length; i++)
+            for (int i = 0, argsLen = args.Length; i < argsLen; i++)
             {
                 string s = args[i];
                 if (s == "driverinstall" || s == "-driverinstall")
@@ -57,6 +58,18 @@ namespace DS4Windows
                         Environment.ExitCode = Marshal.GetLastWin32Error();
                         return;
                     }
+                }
+                else if (s == "runtask" || s == "-runtask")
+                {
+                    TaskService ts = new TaskService();
+                    Task tasker = ts.FindTask("RunDS4Windows");
+                    if (tasker != null)
+                    {
+                        tasker.Run("");
+                    }
+
+                    Environment.ExitCode = 0;
+                    return;
                 }
             }
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;

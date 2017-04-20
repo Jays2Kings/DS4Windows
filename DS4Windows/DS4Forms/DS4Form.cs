@@ -14,7 +14,10 @@ using System.Text;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.ServiceProcess;
+using Microsoft.Win32.TaskScheduler;
 using static DS4Windows.Global;
+using System.Security.Principal;
+
 namespace DS4Windows
 {
     public partial class DS4Form : Form
@@ -75,6 +78,9 @@ namespace DS4Windows
         public DS4Form(string[] args)
         {
             InitializeComponent();
+
+            this.StartWindowsCheckBox.CheckedChanged -= this.StartWindowsCheckBox_CheckedChanged;
+
             saveProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
             openProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
             arguements = args;
@@ -253,7 +259,7 @@ namespace DS4Windows
             }
             bool start = true;
             bool mini = false;
-            for (int i = 0; i < arguements.Length; i++)
+            for (int i = 0, argslen = arguements.Length; i < argslen; i++)
             {
                 if (arguements[i] == "-stop")
                     start = false;
@@ -333,17 +339,34 @@ namespace DS4Windows
             test.Tick += test_Tick;
             if (!Directory.Exists(appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
+
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk"))
             {
                 StartWindowsCheckBox.Checked = true;
+                runStartupPanel.Visible = true;
                 string lnkpath = WinProgs.ResolveShortcutAndArgument(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
-                if (!lnkpath.EndsWith("-m"))
+                string onlylnkpath = WinProgs.ResolveShortcut(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
+                if (!lnkpath.EndsWith("-runtask"))
+                {
+                    runStartProgRadio.Checked = true;
+                }
+                else
+                {
+                    runStartTaskRadio.Checked = true;
+                }
+
+                if (onlylnkpath != Process.GetCurrentProcess().MainModule.FileName)
                 {
                     File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
                     appShortcutToStartup();
+                    changeStartupRoutine();
                 }
             }
+
             UpdateTheUpdater();
+
+
+            this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
         }
 
         private async void UpdateTheUpdater()
@@ -353,7 +376,7 @@ namespace DS4Windows
                 Process[] processes = Process.GetProcessesByName("DS4Updater");
                 while (processes.Length > 0)
                 {
-                    await Task.Delay(500);
+                    await System.Threading.Tasks.Task.Delay(500);
                 }
                 File.Delete(exepath + "\\DS4Updater.exe");
                 File.Move(exepath + "\\Update Files\\DS4Updater.exe", exepath + "\\DS4Updater.exe");
@@ -1249,12 +1272,31 @@ namespace DS4Windows
 
         private void StartWindowsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            bool isChecked = StartWindowsCheckBox.Checked;
             RegistryKey KeyLoc = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            if (StartWindowsCheckBox.Checked && !File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk"))
+            if (isChecked && !File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk"))
+            {
                 appShortcutToStartup();
-            else if (!StartWindowsCheckBox.Checked)
+            }
+            else if (!isChecked)
+            {
                 File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
+            }
+
             KeyLoc.DeleteValue("DS4Tool", false);
+
+            if (isChecked)
+            {
+                runStartupPanel.Visible = true;
+            }
+            else
+            {
+                runStartupPanel.Visible = false;
+                runStartTaskRadio.Checked = false;
+                runStartProgRadio.Checked = true;
+            }
+
+            changeStartupRoutine();
         }
 
         private void appShortcutToStartup()
@@ -1267,8 +1309,18 @@ namespace DS4Windows
                 try
                 {
                     string app = Assembly.GetExecutingAssembly().Location;
-                    lnk.TargetPath = Assembly.GetExecutingAssembly().Location;
-                    lnk.Arguments = "-m";
+                    if (runStartProgRadio.Checked)
+                    {
+                        lnk.TargetPath = Assembly.GetExecutingAssembly().Location;
+                        lnk.Arguments = "-m";
+                    }
+                    else if (runStartTaskRadio.Checked)
+                    {
+                        lnk.Arguments = "-runtask";
+                    }
+
+                    //lnk.TargetPath = Assembly.GetExecutingAssembly().Location;
+                    //lnk.Arguments = "-m";
                     lnk.IconLocation = app.Replace('\\', '/');
                     lnk.Save();
                 }
@@ -1790,6 +1842,58 @@ namespace DS4Windows
                 tSBDupProfile.Enabled = false;
                 tSBImportProfile.Enabled = false;
                 tSBExportProfile.Enabled = false;
+            }
+        }
+
+        private void runStartProgRadio_Click(object sender, EventArgs e)
+        {
+            appShortcutToStartup();
+            changeStartupRoutine();
+        }
+
+        private void runStartTaskRadio_Click(object sender, EventArgs e)
+        {
+            appShortcutToStartup();
+            changeStartupRoutine();
+        }
+
+        private void changeStartupRoutine()
+        {
+            if (runStartTaskRadio.Checked)
+            {
+                WindowsIdentity identity = WindowsIdentity.GetCurrent();
+                WindowsPrincipal principal = new WindowsPrincipal(identity);
+                if (principal.IsInRole(WindowsBuiltInRole.Administrator))
+                {
+                    TaskService ts = new TaskService();
+                    Microsoft.Win32.TaskScheduler.Task tasker = ts.FindTask("RunDS4Windows");
+                    if (tasker != null)
+                    {
+                        ts.RootFolder.DeleteTask("RunDS4Windows");
+                    }
+
+                    TaskDefinition td = ts.NewTask();
+                    td.Actions.Add(new ExecAction(@"%windir%\System32\cmd.exe",
+                        "/c start \"RunDS4Windows\" \"" + Process.GetCurrentProcess().MainModule.FileName + "\" -m",
+                        new FileInfo(Process.GetCurrentProcess().MainModule.FileName).DirectoryName));
+
+                    td.Principal.RunLevel = TaskRunLevel.Highest;
+                    ts.RootFolder.RegisterTaskDefinition("RunDS4Windows", td);
+                }
+            }
+            else
+            {
+                WindowsIdentity identity = WindowsIdentity.GetCurrent();
+                WindowsPrincipal principal = new WindowsPrincipal(identity);
+                if (principal.IsInRole(WindowsBuiltInRole.Administrator))
+                {
+                    TaskService ts = new TaskService();
+                    Microsoft.Win32.TaskScheduler.Task tasker = ts.FindTask("RunDS4Windows");
+                    if (tasker != null)
+                    {
+                        ts.RootFolder.DeleteTask("RunDS4Windows");
+                    }
+                }
             }
         }
 

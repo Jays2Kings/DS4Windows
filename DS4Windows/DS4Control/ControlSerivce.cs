@@ -595,7 +595,6 @@ namespace DS4Windows
                     EasterTime(ind);
 
                 cState = Mapping.SetCurveAndDeadzone(ind, cState);
-                cState.calculateStickAngles();
 
                 if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
                     containsCustomAction(ind) || containsCustomExtras(ind) ||

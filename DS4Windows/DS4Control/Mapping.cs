@@ -271,7 +271,7 @@ namespace DS4Windows
                         if (gkp.previous.scanCodeCount != 0) // use the last type of VK/SC
                             InputMethods.performSCKeyRelease(kvpKey);
                         else
-                         InputMethods.performKeyRelease(kvpKey);
+                            InputMethods.performKeyRelease(kvpKey);
                     }
                     else if (gkp.current.vkCount + gkp.current.scanCodeCount != 0 && gkp.previous.vkCount + gkp.previous.scanCodeCount == 0)
                     {
@@ -627,16 +627,6 @@ namespace DS4Windows
                 {
                     dState.L2 = 0;
                 }
-
-                /*if (cState.L2 > l2Deadzone)
-                {
-                    dState.L2 = (byte)(((dState.L2 - l2Deadzone) / (double)(255 - l2Deadzone)) * 255);
-                }
-                else
-                {
-                    dState.L2 = 0;
-                }
-                */
             }
 
             byte r2Deadzone = getR2Deadzone(device);
@@ -708,6 +698,22 @@ namespace DS4Windows
             {
                 DS4Controls ds = shiftTriggerMapping[trigger];
                 result = getBoolMapping(device, ds, cState, eState, tp);
+            }
+
+            return result;
+        }
+
+        private static bool ShiftTrigger2(int trigger, int device, DS4State cState, DS4StateExposed eState, Mouse tp, DS4StateFieldMapping fieldMapping)
+        {
+            bool result = false;
+            if (trigger == 0)
+            {
+                result = false;
+            }
+            else
+            {
+                DS4Controls ds = shiftTriggerMapping[trigger];
+                result = getBoolMapping2(device, ds, cState, eState, tp, fieldMapping);
             }
 
             return result;
@@ -804,7 +810,7 @@ namespace DS4Windows
                 object action = null;
                 DS4ControlSettings.ActionType actionType = 0;
                 DS4KeyType keyType = DS4KeyType.None;
-                if (dcs.shiftAction != null && ShiftTrigger(dcs.shiftTrigger, device, cState, eState, tp))
+                if (dcs.shiftAction != null && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping))
                 {
                     action = dcs.shiftAction;
                     actionType = dcs.shiftActionType;
@@ -841,10 +847,12 @@ namespace DS4Windows
                             SyntheticState.KeyPresses kp;
                             if (!deviceState.keyPresses.TryGetValue(value, out kp))
                                 deviceState.keyPresses[value] = kp = new SyntheticState.KeyPresses();
+
                             if (keyType.HasFlag(DS4KeyType.ScanCode))
                                 kp.current.scanCodeCount++;
                             else
                                 kp.current.vkCount++;
+
                             if (keyType.HasFlag(DS4KeyType.Toggle))
                             {
                                 if (!pressedonce[value])
@@ -1054,9 +1062,9 @@ namespace DS4Windows
 
                 if (usingExtra == DS4Controls.None || usingExtra == dcs.control)
                 {
-                    bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && dcs.shiftExtras != "0,0,0,0,0,0,0,0" && ShiftTrigger(dcs.shiftTrigger, device, cState, eState, tp);
+                    bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && dcs.shiftExtras != "0,0,0,0,0,0,0,0" && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
                     bool regE = !string.IsNullOrEmpty(dcs.extras) && dcs.extras != "0,0,0,0,0,0,0,0";
-                    if ((regE || shiftE) && getBoolActionMapping(device, dcs.control, cState, eState, tp))
+                    if ((regE || shiftE) && getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                     {
                         usingExtra = dcs.control;
                         string p;
@@ -1133,28 +1141,28 @@ namespace DS4Windows
             if (macroControl[23]) MappedState.RY = 255;
             if (macroControl[24]) MappedState.RY = 0;
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LXNeg), device, cState, eState, tp), DS4Controls.LXNeg))
+            if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LXNeg), device, cState, eState, tp, fieldMapping), DS4Controls.LXNeg))
                 tempControlDict.Add(DS4Controls.LXNeg, DS4Controls.LXNeg);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LXPos), device, cState, eState, tp), DS4Controls.LXPos))
+            if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LXPos), device, cState, eState, tp, fieldMapping), DS4Controls.LXPos))
                 tempControlDict.Add(DS4Controls.LXPos, DS4Controls.LXPos);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LYNeg), device, cState, eState, tp), DS4Controls.LYNeg))
+            if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LYNeg), device, cState, eState, tp, fieldMapping), DS4Controls.LYNeg))
                 tempControlDict.Add(DS4Controls.LYNeg, DS4Controls.LYNeg);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.LYPos), device, cState, eState, tp), DS4Controls.LYPos))
+            if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LYPos), device, cState, eState, tp, fieldMapping), DS4Controls.LYPos))
                 tempControlDict.Add(DS4Controls.LYPos, DS4Controls.LYPos);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RXNeg), device, cState, eState, tp), DS4Controls.RXNeg))
+            if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RXNeg), device, cState, eState, tp, fieldMapping), DS4Controls.RXNeg))
                 tempControlDict.Add(DS4Controls.RXNeg, DS4Controls.RXNeg);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RXPos), device, cState, eState, tp), DS4Controls.RXPos))
+            if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RXPos), device, cState, eState, tp, fieldMapping), DS4Controls.RXPos))
                 tempControlDict.Add(DS4Controls.RXPos, DS4Controls.RXPos);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RYNeg), device, cState, eState, tp), DS4Controls.RYNeg))
+            if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RYNeg), device, cState, eState, tp, fieldMapping), DS4Controls.RYNeg))
                 tempControlDict.Add(DS4Controls.RYNeg, DS4Controls.RYNeg);
 
-            if (IfAxisIsNotModified(device, ShiftTrigger(GetDS4STrigger(device, DS4Controls.RYPos), device, cState, eState, tp), DS4Controls.RYPos))
+            if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RYPos), device, cState, eState, tp, fieldMapping), DS4Controls.RYPos))
                 tempControlDict.Add(DS4Controls.RYPos, DS4Controls.RYPos);
 
             Dictionary<DS4Controls, DS4Controls>.KeyCollection controlKeys = tempControlDict.Keys;
@@ -1369,7 +1377,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.trigger[i];
-                                if (!getBoolMapping(device, dc, cState, eState, tp))
+                                if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
                                 {
                                     subtriggeractivated = false;
                                     break;
@@ -1393,7 +1401,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.trigger[i];
-                                if (!getBoolMapping(device, dc, cState, eState, tp))
+                                if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
                                 {
                                     subtriggeractivated = false;
                                     break;
@@ -1412,7 +1420,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.trigger[i];
-                                if (!getBoolMapping(device, dc, cState, eState, tp))
+                                if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
                                 {
                                     subtriggeractivated = false;
                                     break;
@@ -1434,7 +1442,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.trigger[i];
-                                if (!getBoolMapping(device, dc, cState, eState, tp))
+                                if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
                                 {
                                     triggeractivated = false;
                                     break;
@@ -1450,7 +1458,7 @@ namespace DS4Windows
                             for (int i = 0, arlen = action.uTrigger.Count; i < arlen; i++)
                             {
                                 DS4Controls dc = action.uTrigger[i];
-                                if (!getBoolMapping(device, dc, cState, eState, tp))
+                                if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
                                 {
                                     utriggeractivated = false;
                                     break;
@@ -1674,10 +1682,14 @@ namespace DS4Windows
                                 string[] dets = action.details.Split(',');
                                 DS4Device d = ctrl.DS4Controllers[device];
                                 //cus
-                                if (getBoolMapping(device, action.trigger[0], cState, eState, tp) && !getBoolMapping(device, action.trigger[0], d.getPreviousState(), eState, tp))
-                                {//pressed down
+
+                                bool activeCur = getBoolMapping2(device, action.trigger[0], cState, eState, tp, fieldMapping);
+                                bool activePrev = getBoolMapping2(device, action.trigger[0], d.getPreviousState(), eState, tp, fieldMapping);
+                                if (activeCur && !activePrev)
+                                {
+                                    // pressed down
                                     pastTime = DateTime.UtcNow;
-                                    if (DateTime.UtcNow <= (firstTap + TimeSpan.FromMilliseconds(150)))
+                                    if (pastTime <= (firstTap + TimeSpan.FromMilliseconds(150)))
                                     {
                                         tappedOnce = false;
                                         secondtouchbegin = true;
@@ -1685,8 +1697,9 @@ namespace DS4Windows
                                     else
                                         firstTouch = true;
                                 }
-                                else if (!getBoolMapping(device, action.trigger[0], cState, eState, tp) && getBoolMapping(device, action.trigger[0], d.getPreviousState(), eState, tp))
-                                {//released
+                                else if (!activeCur && activePrev)
+                                {
+                                    // released
                                     if (secondtouchbegin)
                                     {
                                         firstTouch = false;
@@ -1793,7 +1806,7 @@ namespace DS4Windows
                 for (int i = 0, uTrigLen = action.uTrigger.Count; i < uTrigLen; i++)
                 {
                     DS4Controls dc = action.uTrigger[i];
-                    if (!getBoolMapping(device, dc, cState, eState, tp))
+                    if (!getBoolMapping2(device, dc, cState, eState, tp, fieldMapping))
                     {
                         utriggeractivated = false;
                         break;
@@ -1985,6 +1998,7 @@ namespace DS4Windows
                     for (int i = 0, arlength = keydown.Length; i < arlength; i++)
                     {
                         if (keydown[i])
+                        {
                             if (i == 256) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_LEFTUP); //anything above 255 is not a keyvalue
                             else if (i == 257) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_RIGHTUP);
                             else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
@@ -2019,7 +2033,9 @@ namespace DS4Windows
                                 InputMethods.performSCKeyRelease((ushort)i);
                             else
                                 InputMethods.performKeyRelease((ushort)i);
+                        }
                     }
+
                     DS4LightBar.forcedFlash[device] = 0;
                     DS4LightBar.forcelight[device] = false;
                     Program.rootHub.DS4Controllers[device].setRumble(0, 0);
@@ -2037,6 +2053,7 @@ namespace DS4Windows
         {
             if ((macro.StartsWith("164/9/9/164") || macro.StartsWith("18/9/9/18")) && !altTabDone)
                 AltTabSwappingRelease();
+
             if (control != DS4Controls.None)
                 macrodone[DS4ControltoInt(control)] = false;
         }
@@ -2187,7 +2204,7 @@ namespace DS4Windows
                 }
             }
 
-            if (MouseAccel[device])
+            if (getMouseAccel(device))
             {
                 if (value > 0)
                 {
@@ -2243,11 +2260,14 @@ namespace DS4Windows
 
         public static bool compare(byte b1, byte b2)
         {
+            bool result = true;
             if (Math.Abs(b1 - b2) > 10)
             {
-                return false;
+                result = false;
+
             }
-            return true;
+
+            return result;
         }
 
         public static byte getByteMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)

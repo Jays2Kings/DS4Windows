@@ -464,6 +464,10 @@ namespace DS4Windows
             return m_Config.RSSens[index];
         }
         public static bool[] MouseAccel => m_Config.mouseAccel;
+        public static bool getMouseAccel(int device)
+        {
+            return m_Config.mouseAccel[device];
+        }
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
         public static bool[] DistanceProfiles = m_Config.distanceProfiles;

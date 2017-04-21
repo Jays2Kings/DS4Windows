@@ -10,6 +10,20 @@ using System.Threading.Tasks;
 using static DS4Windows.Global;
 namespace DS4Windows
 {
+    /*public class DS4ControlInfo
+    {
+        public enum ControlType { Unknown = 0, Button, AxisDir, Trigger, Touch, GyroDir, SwipeDir }
+        public DS4Controls control = DS4Controls.None;
+        public ControlType mappedType = ControlType.Unknown;
+
+        public DS4ControlInfo(DS4Controls control, ControlType mappedType)
+        {
+            this.control = control;
+            this.mappedType = mappedType;
+        }
+    }
+    */
+
     public class ControlService
     {
         public X360Device x360Bus;
@@ -27,6 +41,8 @@ namespace DS4Windows
         private int eCode = 0;
         bool[] buttonsdown = { false, false, false, false };
         List<DS4Controls> dcs = new List<DS4Controls>();
+        //Dictionary<DS4Controls, DS4ControlInfo> controlInfoDir = 
+        //    new Dictionary<DS4Controls, DS4ControlInfo>();
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
         SoundPlayer sp = new SoundPlayer();
@@ -36,6 +52,7 @@ namespace DS4Windows
             public byte[] Report = new byte[28];
             public byte[] Rumble = new byte[8];
         }
+
         private X360Data[] processingData = new X360Data[4];
 
         public ControlService()
@@ -43,6 +60,8 @@ namespace DS4Windows
             sp.Stream = Properties.Resources.EE;
             x360Bus = new X360Device();
             AddtoDS4List();
+            //populateControlInfoDictionary();
+
             for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
             {
                 processingData[i] = new X360Data();
@@ -55,7 +74,6 @@ namespace DS4Windows
 
         void AddtoDS4List()
         {
-            dcs.Add(DS4Controls.Cross);
             dcs.Add(DS4Controls.Cross);
             dcs.Add(DS4Controls.Circle);
             dcs.Add(DS4Controls.Square);
@@ -87,16 +105,62 @@ namespace DS4Windows
             dcs.Add(DS4Controls.SwipeRight);
         }
 
+        /*void populateControlInfoDictionary()
+        {
+            controlInfoDir.Add(DS4Controls.Cross, new DS4ControlInfo(DS4Controls.Cross, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.Circle, new DS4ControlInfo(DS4Controls.Circle, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.Square, new DS4ControlInfo(DS4Controls.Square, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.Triangle, new DS4ControlInfo(DS4Controls.Triangle, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.Options, new DS4ControlInfo(DS4Controls.Options, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.Share, new DS4ControlInfo(DS4Controls.Share, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.DpadUp, new DS4ControlInfo(DS4Controls.DpadUp, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.DpadDown, new DS4ControlInfo(DS4Controls.DpadDown, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.DpadLeft, new DS4ControlInfo(DS4Controls.DpadLeft, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.DpadRight, new DS4ControlInfo(DS4Controls.DpadRight, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.PS, new DS4ControlInfo(DS4Controls.PS, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.L1, new DS4ControlInfo(DS4Controls.L1, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.R1, new DS4ControlInfo(DS4Controls.R1, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.L2, new DS4ControlInfo(DS4Controls.L2, DS4ControlInfo.ControlType.Trigger));
+            controlInfoDir.Add(DS4Controls.R2, new DS4ControlInfo(DS4Controls.R2, DS4ControlInfo.ControlType.Trigger));
+            controlInfoDir.Add(DS4Controls.L3, new DS4ControlInfo(DS4Controls.L3, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.R3, new DS4ControlInfo(DS4Controls.R3, DS4ControlInfo.ControlType.Button));
+            controlInfoDir.Add(DS4Controls.LXPos, new DS4ControlInfo(DS4Controls.LXPos, DS4ControlInfo.ControlType.AxisDir));
+            controlInfoDir.Add(DS4Controls.LXNeg, new DS4ControlInfo(DS4Controls.LXNeg, DS4ControlInfo.ControlType.AxisDir));
+            controlInfoDir.Add(DS4Controls.LYPos, new DS4ControlInfo(DS4Controls.LYPos, DS4ControlInfo.ControlType.AxisDir));
+            controlInfoDir.Add(DS4Controls.LYNeg, new DS4ControlInfo(DS4Controls.LYNeg, DS4ControlInfo.ControlType.AxisDir));
+            controlInfoDir.Add(DS4Controls.RXPos, new DS4ControlInfo(DS4Controls.RXPos, DS4ControlInfo.ControlType.AxisDir));
+            controlInfoDir.Add(DS4Controls.RXNeg, new DS4ControlInfo(DS4Controls.RXNeg, DS4ControlInfo.ControlType.AxisDir));
+            controlInfoDir.Add(DS4Controls.RYPos, new DS4ControlInfo(DS4Controls.RYPos, DS4ControlInfo.ControlType.AxisDir));
+            controlInfoDir.Add(DS4Controls.RYNeg, new DS4ControlInfo(DS4Controls.RYNeg, DS4ControlInfo.ControlType.AxisDir));
+
+            controlInfoDir.Add(DS4Controls.SwipeUp, new DS4ControlInfo(DS4Controls.SwipeUp, DS4ControlInfo.ControlType.SwipeDir));
+            controlInfoDir.Add(DS4Controls.SwipeDown, new DS4ControlInfo(DS4Controls.SwipeDown, DS4ControlInfo.ControlType.SwipeDir));
+            controlInfoDir.Add(DS4Controls.SwipeLeft, new DS4ControlInfo(DS4Controls.SwipeLeft, DS4ControlInfo.ControlType.SwipeDir));
+            controlInfoDir.Add(DS4Controls.SwipeRight, new DS4ControlInfo(DS4Controls.SwipeRight, DS4ControlInfo.ControlType.SwipeDir));
+
+            controlInfoDir.Add(DS4Controls.TouchLeft, new DS4ControlInfo(DS4Controls.TouchLeft, DS4ControlInfo.ControlType.Touch));
+            controlInfoDir.Add(DS4Controls.TouchUpper, new DS4ControlInfo(DS4Controls.TouchUpper, DS4ControlInfo.ControlType.Touch));
+            controlInfoDir.Add(DS4Controls.TouchMulti, new DS4ControlInfo(DS4Controls.TouchMulti, DS4ControlInfo.ControlType.Touch));
+            controlInfoDir.Add(DS4Controls.TouchRight, new DS4ControlInfo(DS4Controls.TouchRight, DS4ControlInfo.ControlType.Touch));
+
+            controlInfoDir.Add(DS4Controls.GyroXPos, new DS4ControlInfo(DS4Controls.GyroXPos, DS4ControlInfo.ControlType.GyroDir));
+            controlInfoDir.Add(DS4Controls.GyroXNeg, new DS4ControlInfo(DS4Controls.GyroXNeg, DS4ControlInfo.ControlType.GyroDir));
+            controlInfoDir.Add(DS4Controls.GyroZPos, new DS4ControlInfo(DS4Controls.GyroZPos, DS4ControlInfo.ControlType.GyroDir));
+            controlInfoDir.Add(DS4Controls.GyroZNeg, new DS4ControlInfo(DS4Controls.GyroZNeg, DS4ControlInfo.ControlType.GyroDir));
+        }
+        */
+
         private async void WarnExclusiveModeFailure(DS4Device device)
         {
             if (DS4Devices.isExclusiveMode && !device.IsExclusive)
             {
                 await System.Threading.Tasks.Task.Delay(5);
-                String message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.MacAddress) + " " + Properties.Resources.QuitOtherPrograms;
+                String message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.getMacAddress()) + " " + Properties.Resources.QuitOtherPrograms;
                 LogDebug(message, true);
                 Log.LogToTray(message, true);
             }
-        }        
+        }
+
         public bool Start(bool showlog = true)
         {
             if (x360Bus.Open() && x360Bus.Start())
@@ -118,7 +182,7 @@ namespace DS4Windows
                     foreach (DS4Device device in devices)
                     {
                         if (showlog)
-                            LogDebug(Properties.Resources.FoundController + device.MacAddress + " (" + device.ConnectionType + ")");
+                            LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
                         WarnExclusiveModeFailure(device);
                         DS4Controllers[ind] = device;
                         device.Removal -= DS4Devices.On_Removal;
@@ -133,9 +197,10 @@ namespace DS4Windows
                         //string filename = ProfilePath[ind];
                         ind++;
                         if (showlog)
-                            if (System.IO.File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[ind-1] + ".xml"))
+                        {
+                            if (System.IO.File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[ind - 1] + ".xml"))
                             {
-                                string prolog = Properties.Resources.UsingProfile.Replace("*number*", ind.ToString()).Replace("*Profile name*", ProfilePath[ind-1]);
+                                string prolog = Properties.Resources.UsingProfile.Replace("*number*", ind.ToString()).Replace("*Profile name*", ProfilePath[ind - 1]);
                                 LogDebug(prolog);
                                 Log.LogToTray(prolog);
                             }
@@ -145,6 +210,8 @@ namespace DS4Windows
                                 LogDebug(prolog);
                                 Log.LogToTray(prolog);
                             }
+                        }
+
                         if (ind >= 4) // out of Xinput devices!
                             break;
                     }
@@ -200,13 +267,17 @@ namespace DS4Windows
                 }
                 if (anyUnplugged)
                     System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
+
                 x360Bus.UnplugAll();
                 x360Bus.Stop();
+
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingDS4);
+
                 DS4Devices.stopControllers();
                 if (showlog)
                     LogDebug(Properties.Resources.StoppedDS4Windows);
+
                 ControllerStatusChanged(this);                
             }
             return true;
@@ -218,22 +289,27 @@ namespace DS4Windows
             {
                 DS4Devices.findControllers();
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
-                foreach (DS4Device device in devices)
+                //foreach (DS4Device device in devices)
+                for (int i = 0, devlen = devices.Count(); i < devlen; i++)
                 {
-                    if (device.IsDisconnecting)
+                    DS4Device device = devices.ElementAt<DS4Device>(i);
+                    if (device.isDisconnectingStatus())
                         continue;
+
                     if (((Func<bool>)delegate
                     {
                         for (Int32 Index = 0, arlength = DS4Controllers.Length; Index < arlength; Index++)
-                            if (DS4Controllers[Index] != null && DS4Controllers[Index].MacAddress == device.MacAddress)
+                            if (DS4Controllers[Index] != null && DS4Controllers[Index].getMacAddress() == device.getMacAddress())
                                 return true;
                         return false;
                     })())
                         continue;
+
                     for (Int32 Index = 0, arlength = DS4Controllers.Length; Index < arlength; Index++)
+                    {
                         if (DS4Controllers[Index] == null)
                         {
-                            LogDebug(Properties.Resources.FoundController + device.MacAddress + " (" + device.ConnectionType + ")");
+                            LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
                             WarnExclusiveModeFailure(device);
                             DS4Controllers[Index] = device;
                             device.Removal -= DS4Devices.On_Removal;
@@ -258,9 +334,10 @@ namespace DS4Windows
                                 LogDebug(prolog);
                                 Log.LogToTray(prolog);
                             }
-                        
+
                             break;
                         }
+                    }
                 }
             }
             return true;
@@ -317,23 +394,25 @@ namespace DS4Windows
                 {
                     var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
                     TimeoutThread.IsBackground = true;
-                    TimeoutThread.Name = "TimeoutFor" + d.MacAddress.ToString();
+                    TimeoutThread.Name = "TimeoutFor" + d.getMacAddress().ToString();
                     TimeoutThread.Start();
                     return Properties.Resources.Connecting;
                 }
+
                 String battery;
-                if (d.Charging)
+                if (d.isCharging())
                 {
-                    if (d.Battery >= 100)
+                    if (d.getBattery() >= 100)
                         battery = Properties.Resources.Charged;
                     else
-                        battery = Properties.Resources.Charging.Replace("*number*", d.Battery.ToString());
+                        battery = Properties.Resources.Charging.Replace("*number*", d.getBattery().ToString());
                 }
                 else
                 {
-                    battery = Properties.Resources.Battery.Replace("*number*", d.Battery.ToString());
+                    battery = Properties.Resources.Battery.Replace("*number*", d.getBattery().ToString());
                 }
-                return d.MacAddress + " (" + d.ConnectionType + "), " + battery;
+
+                return d.getMacAddress() + " (" + d.ConnectionType + "), " + battery;
                 //return d.MacAddress + " (" + d.ConnectionType + "), Battery is " + battery + ", Touchpad in " + modeSwitcher[index].ToString();
             }
             else
@@ -350,11 +429,11 @@ namespace DS4Windows
                 {
                     var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
                     TimeoutThread.IsBackground = true;
-                    TimeoutThread.Name = "TimeoutFor" + d.MacAddress.ToString();
+                    TimeoutThread.Name = "TimeoutFor" + d.getMacAddress().ToString();
                     TimeoutThread.Start();
                     return Properties.Resources.Connecting;
                 }
-                return d.MacAddress;
+                return d.getMacAddress();
             }
             else
                 return String.Empty;
@@ -368,18 +447,20 @@ namespace DS4Windows
                 String battery;
                 if (!d.IsAlive())
                     battery = "...";
-                if (d.Charging)
+
+                if (d.isCharging())
                 {
-                    if (d.Battery >= 100)
+                    if (d.getBattery() >= 100)
                         battery = Properties.Resources.Full;
                     else
-                        battery = d.Battery + "%+";
+                        battery = d.getBattery() + "%+";
                 }
                 else
                 {
-                    battery = d.Battery + "%";
+                    battery = d.getBattery() + "%";
                 }
-                return (d.ConnectionType + " " + battery);
+
+                return (d.getConnectionType() + " " + battery);
             }
             else
                 return Properties.Resources.NoneText;
@@ -393,17 +474,19 @@ namespace DS4Windows
                 String battery;
                 if (!d.IsAlive())
                     battery = "...";
-                if (d.Charging)
+
+                if (d.isCharging())
                 {
-                    if (d.Battery >= 100)
+                    if (d.getBattery() >= 100)
                         battery = Properties.Resources.Full;
                     else
-                        battery = d.Battery + "%+";
+                        battery = d.getBattery() + "%+";
                 }
                 else
                 {
-                    battery = d.Battery + "%";
+                    battery = d.getBattery() + "%";
                 }
+
                 return battery;
             }
             else
@@ -415,12 +498,11 @@ namespace DS4Windows
             if (DS4Controllers[index] != null)
             {
                 DS4Device d = DS4Controllers[index];
-                return d.ConnectionType+"";
+                return d.getConnectionType() + "";
             }
             else
                 return Properties.Resources.NoneText;
         }
-
 
         private int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         //Called when DS4 is disconnected or timed out
@@ -429,7 +511,7 @@ namespace DS4Windows
             DS4Device device = (DS4Device)sender;
             int ind = -1;
             for (int i = 0, arlength = DS4Controllers.Length; ind == -1 && i < arlength; i++)
-                if (DS4Controllers[i] != null && device.MacAddress == DS4Controllers[i].MacAddress)
+                if (DS4Controllers[i] != null && device.getMacAddress() == DS4Controllers[i].getMacAddress())
                     ind = i;
 
             if (ind != -1)
@@ -480,6 +562,7 @@ namespace DS4Windows
             {
                 if (getFlushHIDQueue(ind))
                     device.FlushHID();
+
                 if (!string.IsNullOrEmpty(device.error))
                 {
                     LogDebug(device.error);
@@ -515,7 +598,8 @@ namespace DS4Windows
                 cState.calculateStickAngles();
 
                 if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
-                    containsCustomAction(ind) || containsCustomExtras(ind) || getProfileActionCount(ind) > 0))
+                    containsCustomAction(ind) || containsCustomExtras(ind) ||
+                    getProfileActionCount(ind) > 0))
                 {
                     Mapping.MapCustom(ind, cState, MappedState[ind], ExposedState[ind], touchPad[ind], this);
                     cState = MappedState[ind];
@@ -627,8 +711,6 @@ namespace DS4Windows
                 held[ind] = false;
             }
         }*/
-        
-
 
         public void EasterTime(int ind)
         {
@@ -647,6 +729,7 @@ namespace DS4Windows
                     break;
                 }
             }
+
             int temp = eCode;
             //Looks like you found the easter egg code, since you're already cheating,
             //I scrambled the code for you :)
@@ -1013,7 +1096,9 @@ namespace DS4Windows
         {
             DS4State cState = CurrentState[ind];
             string slidedir = "none";
-            if (DS4Controllers[ind] != null && cState.Touch2 && !(touchPad[ind].dragging || touchPad[ind].dragging2))
+            if (DS4Controllers[ind] != null && cState.Touch2 &&
+               !(touchPad[ind].dragging || touchPad[ind].dragging2))
+            {
                 if (touchPad[ind].slideright && !touchslid[ind])
                 {
                     slidedir = "right";
@@ -1029,6 +1114,8 @@ namespace DS4Windows
                     slidedir = "";
                     touchslid[ind] = false;
                 }
+            }
+
             return slidedir;
         }
 
@@ -1058,6 +1145,7 @@ namespace DS4Windows
             uint heavyBoosted = ((uint)heavyMotor * (uint)boost) / 100;
             if (heavyBoosted > 255)
                 heavyBoosted = 255;
+
             if (deviceNum < 4)
                 if (DS4Controllers[deviceNum] != null)
                     DS4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
@@ -1067,6 +1155,7 @@ namespace DS4Windows
         {
             return CurrentState[ind];
         }
+
         public DS4State getDS4StateMapped(int ind)
         {
             return MappedState[ind];

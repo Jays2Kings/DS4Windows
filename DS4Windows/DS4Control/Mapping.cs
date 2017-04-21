@@ -530,9 +530,6 @@ namespace DS4Windows
                     {
                         dState.LY = 127;
                     }
-
-                    //dState.LX = (byte)(Math.Cos(r) * (127.5f + LSDeadzone[device]) + 127.5f);
-                    //dState.LY = (byte)(Math.Sin(r) * (127.5f + LSDeadzone[device]) + 127.5f);
                 }
             }
 
@@ -596,11 +593,6 @@ namespace DS4Windows
                     {
                         dState.RY = 127;
                     }
-
-                    //dState.RX = (byte)(((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead)) * maxXValue + 127.5f);
-                    //dState.RY = (byte)(((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead)) * maxYValue + 127.5f);
-                    //dState.RX = (byte)(Math.Cos(r) * (127.5f + RSDeadzone[device]) + 127.5f);
-                    //dState.RY = (byte)(Math.Sin(r) * (127.5f + RSDeadzone[device]) + 127.5f);
                 }
             }
 
@@ -1560,7 +1552,7 @@ namespace DS4Windows
                                 DS4Device d = ctrl.DS4Controllers[device];
                                 if (!d.isCharging())
                                 {
-                                    ConnectionType deviceConn = d.ConnectionType;
+                                    ConnectionType deviceConn = d.getConnectionType();
                                     if (deviceConn == ConnectionType.BT)
                                     {
                                         d.DisconnectBT();
@@ -2041,6 +2033,7 @@ namespace DS4Windows
             if (control != DS4Controls.None)
                 macrodone[DS4ControltoInt(control)] = false;
         }
+
         private static void AltTabSwapping(int wait, int device)
         {
             if (altTabDone)
@@ -2226,15 +2219,18 @@ namespace DS4Windows
                     mcounter = 34;
                     mouseaccel++;
                 }
+
                 if (mouseaccel == prevmouseaccel)
                 {
                     mcounter--;
                 }
+
                 if (mcounter <= 0)
                 {
                     mouseaccel = 0;
                     mcounter = 34;
                 }
+
                 value *= 1 + (double)Math.Min(20000, (mouseaccel)) / 10000d;
                 prevmouseaccel = mouseaccel;
             }

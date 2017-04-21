@@ -64,6 +64,7 @@ namespace DS4Windows
                     actionType = ActionType.Macro;
                 else
                     actionType = ActionType.Default;
+
                 action = act;
                 extras = exts;
                 keyType = kt;
@@ -78,6 +79,7 @@ namespace DS4Windows
                     shiftActionType = ActionType.Macro;
                 else
                     shiftActionType = ActionType.Default;
+
                 shiftAction = act;
                 shiftExtras = exts;
                 shiftKeyType = kt;

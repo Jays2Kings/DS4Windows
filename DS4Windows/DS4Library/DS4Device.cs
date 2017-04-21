@@ -166,6 +166,10 @@ namespace DS4Windows
                 this.isDisconnecting = value;
             }
         }
+        public bool isDisconnectingStatus()
+        {
+            return this.isDisconnecting;
+        }
 
         private bool isRemoving = false;
         public bool IsRemoving
@@ -190,6 +194,10 @@ namespace DS4Windows
         public object removeLocker = new object();
 
         public string MacAddress =>  Mac;
+        public string getMacAddress()
+        {
+            return this.Mac;
+        }
 
         public ConnectionType ConnectionType => conType;
         public ConnectionType getConnectionType()

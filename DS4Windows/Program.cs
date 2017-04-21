@@ -73,6 +73,7 @@ namespace DS4Windows
                 }
             }
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;
+
             try
             {
                 Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.High;
@@ -81,6 +82,7 @@ namespace DS4Windows
             {
                 // Ignore problems raising the priority.
             }
+
             try
             {
                 // another instance is already running if OpenExsting succeeds.
@@ -90,6 +92,7 @@ namespace DS4Windows
                 return;    // return immediatly.
             }
             catch { /* don't care about errors */     }
+
             // Create the Event handle
             threadComEvent = new EventWaitHandle(false, EventResetMode.AutoReset, SingleAppComEventName);
             CreateInterAppComThread();

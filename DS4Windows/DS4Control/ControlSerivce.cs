@@ -178,7 +178,7 @@ namespace DS4Windows
                     DS4Devices.findControllers();
                     IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                     int ind = 0;
-                    DS4LightBar.defualtLight = false;
+                    DS4LightBar.defaultLight = false;
                     foreach (DS4Device device in devices)
                     {
                         if (showlog)
@@ -254,7 +254,7 @@ namespace DS4Windows
                         {
                             DS4LightBar.forcelight[i] = false;
                             DS4LightBar.forcedFlash[i] = 0;
-                            DS4LightBar.defualtLight = true;
+                            DS4LightBar.defaultLight = true;
                             DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i], ExposedState[i], touchPad[i]);
                             System.Threading.Thread.Sleep(50);
                         }

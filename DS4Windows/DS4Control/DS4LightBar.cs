@@ -39,7 +39,7 @@ namespace DS4Windows
              * still necessary to reduce lag.
              */
             DS4Color color;
-            if (!defualtLight && !forcelight[deviceNum])
+            if (!defaultLight && !forcelight[deviceNum])
             {
                 if (getUseCustomLed(deviceNum))
                 {
@@ -94,7 +94,7 @@ namespace DS4Windows
                     }
                 }
 
-                if (device.getBattery() <= getFlashAt(deviceNum) && !defualtLight && !device.isCharging())
+                if (device.getBattery() <= getFlashAt(deviceNum) && !defaultLight && !device.isCharging())
                 {
                     DS4Color flashColor = getFlashColor(deviceNum);
                     if (!(flashColor.red == 0 &&
@@ -183,7 +183,7 @@ namespace DS4Windows
 
             bool distanceprofile = DistanceProfiles[deviceNum] || tempprofileDistance[deviceNum];
             //distanceprofile = (ProfilePath[deviceNum].ToLower().Contains("distance") || tempprofilename[deviceNum].ToLower().Contains("distance"));
-            if (distanceprofile && !defualtLight)
+            if (distanceprofile && !defaultLight)
             {
                 //Thing I did for Distance
                 float rumble = device.getLeftHeavySlowRumble() / 2.55f;
@@ -206,7 +206,7 @@ namespace DS4Windows
                     haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = (byte)(25 - forcedFlash[deviceNum]);
                     haptics.LightBarExplicitlyOff = true;
                 }
-                else if (device.getBattery() <= getFlashAt(deviceNum) && getFlashType(deviceNum) == 0 && !defualtLight && !device.isCharging())
+                else if (device.getBattery() <= getFlashAt(deviceNum) && getFlashType(deviceNum) == 0 && !defaultLight && !device.isCharging())
                 {
                     int level = device.getBattery() / 10;
                     //if (level >= 10)
@@ -242,7 +242,7 @@ namespace DS4Windows
             device.pushHapticState(haptics);
         }
 
-        public static bool defualtLight = false, shuttingdown = false;
+        public static bool defaultLight = false, shuttingdown = false;
       
         public static DS4Color HuetoRGB(float hue, byte sat)
         {

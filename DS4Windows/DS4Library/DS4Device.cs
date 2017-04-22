@@ -410,6 +410,7 @@ namespace DS4Windows
                     Console.WriteLine(e.Message);
                 }
             }
+
             StopOutputUpdate();
         }
 
@@ -705,7 +706,7 @@ namespace DS4Windows
                     {
                         if (conType == ConnectionType.BT)
                         {
-                            if (DisconnectBT())
+                            if (DisconnectBT(false))
                                 return; // all done
                         }
                         else if (conType == ConnectionType.SONYWA)
@@ -814,7 +815,7 @@ namespace DS4Windows
             }
         }
 
-        public bool DisconnectBT()
+        public bool DisconnectBT(bool allThreadsQuit = true)
         {
             if (Mac != null)
             {
@@ -851,7 +852,15 @@ namespace DS4Windows
                 if(success)
                 {
                     IsDisconnecting = true;
-                    StopOutputUpdate();
+                    if (allThreadsQuit)
+                    {
+                        StopUpdate();
+                    }
+                    else
+                    {
+                        StopOutputUpdate();
+                    }
+
                     if (Removal != null)
                         Removal(this, EventArgs.Empty);
                 }

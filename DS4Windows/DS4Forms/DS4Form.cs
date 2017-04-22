@@ -877,11 +877,6 @@ namespace DS4Windows
             {
                 Pads[Index].Text = Program.rootHub.getDS4MacAddress(Index);
                 DS4Device d = Program.rootHub.DS4Controllers[Index];
-                if (QuickCharge && d?.getConnectionType() == ConnectionType.BT && (bool)d?.isCharging())
-                {
-                    d.DisconnectBT();
-                    return;
-                }
 
                 switch (Program.rootHub.getDS4Status(Index))
                 {

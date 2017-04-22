@@ -216,7 +216,7 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(Properties.Resources.StoppedDS4Windows);
 
-                ControllerStatusChanged(this);                
+                ControllerStatusChanged(this);
             }
             return true;
         }
@@ -231,6 +231,13 @@ namespace DS4Windows
                 for (int i = 0, devlen = devices.Count(); i < devlen; i++)
                 {
                     DS4Device device = devices.ElementAt<DS4Device>(i);
+
+                    if (QuickCharge && device?.getConnectionType() == ConnectionType.BT && (bool)device?.isCharging())
+                    {
+                        device.DisconnectBT();
+                        continue;
+                    }
+
                     if (device.isDisconnectingStatus())
                         continue;
 
@@ -278,6 +285,7 @@ namespace DS4Windows
                     }
                 }
             }
+
             return true;
         }
 

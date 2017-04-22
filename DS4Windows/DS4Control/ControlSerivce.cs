@@ -10,20 +10,6 @@ using System.Threading.Tasks;
 using static DS4Windows.Global;
 namespace DS4Windows
 {
-    /*public class DS4ControlInfo
-    {
-        public enum ControlType { Unknown = 0, Button, AxisDir, Trigger, Touch, GyroDir, SwipeDir }
-        public DS4Controls control = DS4Controls.None;
-        public ControlType mappedType = ControlType.Unknown;
-
-        public DS4ControlInfo(DS4Controls control, ControlType mappedType)
-        {
-            this.control = control;
-            this.mappedType = mappedType;
-        }
-    }
-    */
-
     public class ControlService
     {
         public X360Device x360Bus;
@@ -41,8 +27,6 @@ namespace DS4Windows
         private int eCode = 0;
         bool[] buttonsdown = { false, false, false, false };
         List<DS4Controls> dcs = new List<DS4Controls>();
-        //Dictionary<DS4Controls, DS4ControlInfo> controlInfoDir = 
-        //    new Dictionary<DS4Controls, DS4ControlInfo>();
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
         SoundPlayer sp = new SoundPlayer();
@@ -60,7 +44,6 @@ namespace DS4Windows
             sp.Stream = Properties.Resources.EE;
             x360Bus = new X360Device();
             AddtoDS4List();
-            //populateControlInfoDictionary();
 
             for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
             {
@@ -104,51 +87,6 @@ namespace DS4Windows
             dcs.Add(DS4Controls.SwipeLeft);
             dcs.Add(DS4Controls.SwipeRight);
         }
-
-        /*void populateControlInfoDictionary()
-        {
-            controlInfoDir.Add(DS4Controls.Cross, new DS4ControlInfo(DS4Controls.Cross, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.Circle, new DS4ControlInfo(DS4Controls.Circle, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.Square, new DS4ControlInfo(DS4Controls.Square, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.Triangle, new DS4ControlInfo(DS4Controls.Triangle, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.Options, new DS4ControlInfo(DS4Controls.Options, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.Share, new DS4ControlInfo(DS4Controls.Share, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.DpadUp, new DS4ControlInfo(DS4Controls.DpadUp, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.DpadDown, new DS4ControlInfo(DS4Controls.DpadDown, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.DpadLeft, new DS4ControlInfo(DS4Controls.DpadLeft, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.DpadRight, new DS4ControlInfo(DS4Controls.DpadRight, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.PS, new DS4ControlInfo(DS4Controls.PS, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.L1, new DS4ControlInfo(DS4Controls.L1, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.R1, new DS4ControlInfo(DS4Controls.R1, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.L2, new DS4ControlInfo(DS4Controls.L2, DS4ControlInfo.ControlType.Trigger));
-            controlInfoDir.Add(DS4Controls.R2, new DS4ControlInfo(DS4Controls.R2, DS4ControlInfo.ControlType.Trigger));
-            controlInfoDir.Add(DS4Controls.L3, new DS4ControlInfo(DS4Controls.L3, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.R3, new DS4ControlInfo(DS4Controls.R3, DS4ControlInfo.ControlType.Button));
-            controlInfoDir.Add(DS4Controls.LXPos, new DS4ControlInfo(DS4Controls.LXPos, DS4ControlInfo.ControlType.AxisDir));
-            controlInfoDir.Add(DS4Controls.LXNeg, new DS4ControlInfo(DS4Controls.LXNeg, DS4ControlInfo.ControlType.AxisDir));
-            controlInfoDir.Add(DS4Controls.LYPos, new DS4ControlInfo(DS4Controls.LYPos, DS4ControlInfo.ControlType.AxisDir));
-            controlInfoDir.Add(DS4Controls.LYNeg, new DS4ControlInfo(DS4Controls.LYNeg, DS4ControlInfo.ControlType.AxisDir));
-            controlInfoDir.Add(DS4Controls.RXPos, new DS4ControlInfo(DS4Controls.RXPos, DS4ControlInfo.ControlType.AxisDir));
-            controlInfoDir.Add(DS4Controls.RXNeg, new DS4ControlInfo(DS4Controls.RXNeg, DS4ControlInfo.ControlType.AxisDir));
-            controlInfoDir.Add(DS4Controls.RYPos, new DS4ControlInfo(DS4Controls.RYPos, DS4ControlInfo.ControlType.AxisDir));
-            controlInfoDir.Add(DS4Controls.RYNeg, new DS4ControlInfo(DS4Controls.RYNeg, DS4ControlInfo.ControlType.AxisDir));
-
-            controlInfoDir.Add(DS4Controls.SwipeUp, new DS4ControlInfo(DS4Controls.SwipeUp, DS4ControlInfo.ControlType.SwipeDir));
-            controlInfoDir.Add(DS4Controls.SwipeDown, new DS4ControlInfo(DS4Controls.SwipeDown, DS4ControlInfo.ControlType.SwipeDir));
-            controlInfoDir.Add(DS4Controls.SwipeLeft, new DS4ControlInfo(DS4Controls.SwipeLeft, DS4ControlInfo.ControlType.SwipeDir));
-            controlInfoDir.Add(DS4Controls.SwipeRight, new DS4ControlInfo(DS4Controls.SwipeRight, DS4ControlInfo.ControlType.SwipeDir));
-
-            controlInfoDir.Add(DS4Controls.TouchLeft, new DS4ControlInfo(DS4Controls.TouchLeft, DS4ControlInfo.ControlType.Touch));
-            controlInfoDir.Add(DS4Controls.TouchUpper, new DS4ControlInfo(DS4Controls.TouchUpper, DS4ControlInfo.ControlType.Touch));
-            controlInfoDir.Add(DS4Controls.TouchMulti, new DS4ControlInfo(DS4Controls.TouchMulti, DS4ControlInfo.ControlType.Touch));
-            controlInfoDir.Add(DS4Controls.TouchRight, new DS4ControlInfo(DS4Controls.TouchRight, DS4ControlInfo.ControlType.Touch));
-
-            controlInfoDir.Add(DS4Controls.GyroXPos, new DS4ControlInfo(DS4Controls.GyroXPos, DS4ControlInfo.ControlType.GyroDir));
-            controlInfoDir.Add(DS4Controls.GyroXNeg, new DS4ControlInfo(DS4Controls.GyroXNeg, DS4ControlInfo.ControlType.GyroDir));
-            controlInfoDir.Add(DS4Controls.GyroZPos, new DS4ControlInfo(DS4Controls.GyroZPos, DS4ControlInfo.ControlType.GyroDir));
-            controlInfoDir.Add(DS4Controls.GyroZNeg, new DS4ControlInfo(DS4Controls.GyroZNeg, DS4ControlInfo.ControlType.GyroDir));
-        }
-        */
 
         private async void WarnExclusiveModeFailure(DS4Device device)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DS4Windows
 {
-    class DS4StateFieldMapping
+    public class DS4StateFieldMapping
     {
         public enum ControlType { Unknown = 0, Button, AxisDir, Trigger, Touch, GyroDir, SwipeDir }
 

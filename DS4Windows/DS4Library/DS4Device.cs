@@ -359,6 +359,7 @@ namespace DS4Windows
                 outputReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
                 warnInterval = WARN_INTERVAL_BT;
             }
+
             touchpad = new DS4Touchpad();
             sixAxis = new DS4SixAxis();
         }
@@ -500,9 +501,11 @@ namespace DS4Windows
         {
             return priorInputReport30 != 0xff;
         }
+
         private byte priorInputReport30 = 0xff;
         public double Latency = 0;
         public string error;
+
         private void performDs4Input()
         {
             firstActive = DateTime.UtcNow;
@@ -736,6 +739,7 @@ namespace DS4Windows
         {
             setTestRumble();
             setHapticState();
+
             if (conType == ConnectionType.BT)
             {
                 outputReportBuffer[0] = 0x11;

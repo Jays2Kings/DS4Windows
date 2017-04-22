@@ -560,8 +560,11 @@ namespace DS4Windows
         public static int GetActionIndexOf(string name)
         {
             for (int i = 0, actionCount = m_Config.actions.Count; i < actionCount; i++)
+            {
                 if (m_Config.actions[i].name == name)
                     return i;
+            }
+
             return -1;
         }
 
@@ -798,7 +801,7 @@ namespace DS4Windows
         public bool[] mouseAccel = { true, true, true, true, true };
         public DS4Color[] m_LowLeds = new DS4Color[]
         {
-             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -814,7 +817,7 @@ namespace DS4Windows
         };
         public DS4Color[] m_ChargingLeds = new DS4Color[] 
         {
-             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -822,7 +825,7 @@ namespace DS4Windows
         };
         public DS4Color[] m_FlashLeds = new DS4Color[] 
         {
-             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -831,7 +834,7 @@ namespace DS4Windows
         public bool[] useCustomLeds = new bool[] { false, false, false, false };
         public DS4Color[] m_CustomLeds = new DS4Color[]
         {
-             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
@@ -891,8 +894,11 @@ namespace DS4Windows
             for (int i = 0; i < 5; i++)
             {
                 foreach (DS4Controls dc in Enum.GetValues(typeof(DS4Controls)))
+                {
                     if (dc != DS4Controls.None)
                         ds4settings[i].Add(new DS4ControlSettings(dc));
+                }
+
                 /*customMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
                 customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
                 customMapMacros[i] = new Dictionary<DS4Controls, String>();
@@ -904,6 +910,7 @@ namespace DS4Windows
                 shiftCustomMapMacros[i] = new Dictionary<DS4Controls, String>();
                 shiftCustomMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
                 shiftCustomMapExtras[i] = new Dictionary<DS4Controls, string>();*/
+
                 profileActions[i] = new List<string>();
                 profileActions[i].Add("Disconnect Controller");
                 profileActionCount[i] = profileActions[i].Count;
@@ -2490,12 +2497,18 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     dcs.UpdateSettings(shift, action, exts, kt, trigger);
                     break;
                 }
+            }
         }
 
         public void UpdateDS4CExtra(int deviceNum, string buttonName, bool shift, string exts)
@@ -2505,15 +2518,22 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     if (shift)
                         dcs.shiftExtras = exts;
                     else
                         dcs.extras = exts;
+
                     break;
                 }
+            }
         }
 
         private void UpdateDS4CKeyType(int deviceNum, string buttonName, bool shift, DS4KeyType keyType)
@@ -2523,15 +2543,22 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     if (shift)
                         dcs.shiftKeyType = keyType;
                     else
                         dcs.keyType = keyType;
+
                     break;
                 }
+            }
         }
 
         public object GetDS4Action(int deviceNum, string buttonName, bool shift)
@@ -2541,7 +2568,12 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     if (shift)
@@ -2549,6 +2581,8 @@ namespace DS4Windows
                     else
                         return dcs.action;
                 }
+            }
+
             return null;
         }
 
@@ -2579,7 +2613,12 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     if (shift)
@@ -2587,6 +2626,8 @@ namespace DS4Windows
                     else
                         return dcs.extras;
                 }
+            }
+
             return null;
         }
 
@@ -2597,7 +2638,12 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     if (shift)
@@ -2605,6 +2651,8 @@ namespace DS4Windows
                     else
                         return dcs.keyType;
                 }
+            }
+
             return DS4KeyType.None;
         }
 
@@ -2615,9 +2663,16 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
-                   return dcs.shiftTrigger;
+                    return dcs.shiftTrigger;
+            }
+
             return 0;
         }
 
@@ -2641,9 +2696,16 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                     return dcs;
+            }
+
             return null;
         }
 
@@ -2663,9 +2725,10 @@ namespace DS4Windows
         public bool HasCustomActions(int deviceNum)
         {
             //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
-            for (int i = 0, listLen = ds4settings[deviceNum].Count; i < listLen; i++)
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
-                DS4ControlSettings dcs = ds4settings[deviceNum][i];
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.action != null || dcs.shiftAction != null)
                     return true;
             }
@@ -2677,9 +2740,10 @@ namespace DS4Windows
         public bool HasCustomExtras(int deviceNum)
         {
             //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
-            for (int i = 0, listLen = ds4settings[deviceNum].Count; i < listLen; i++)
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
-                DS4ControlSettings dcs = ds4settings[deviceNum][i];
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.extras != null || dcs.shiftExtras != null)
                     return true;
             }

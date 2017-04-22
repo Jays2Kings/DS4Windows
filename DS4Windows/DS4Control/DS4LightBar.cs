@@ -243,8 +243,9 @@ namespace DS4Windows
                 else if (device.getBattery() <= getFlashAt(deviceNum) && getFlashType(deviceNum) == 0 && !defaultLight && !device.isCharging())
                 {
                     int level = device.getBattery() / 10;
-                    //if (level >= 10)
-                    //level = 0; // all values of ~0% or >~100% are rendered the same
+                    if (level >= 10)
+                        level = 0; // all values of ~0% or >~100% are rendered the same
+
                     haptics.LightBarFlashDurationOn = BatteryIndicatorDurations[level, 0];
                     haptics.LightBarFlashDurationOff = BatteryIndicatorDurations[level, 1];
                 }

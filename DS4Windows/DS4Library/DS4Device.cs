@@ -121,11 +121,15 @@ namespace DS4Windows
         private const int BT_OUTPUT_REPORT_LENGTH = 78;
         private const int BT_INPUT_REPORT_LENGTH = 547;
         // Use large value for worst case scenario
-        private static int READ_STREAM_TIMEOUT = 100;
+        private const int READ_STREAM_TIMEOUT = 100;
         // Isolated BT report can have latency as high as 15 ms
         // due to hardware.
-        private static int WARN_INTERVAL_BT = 20;
-        private static int WARN_INTERVAL_USB = 10;
+        private const int WARN_INTERVAL_BT = 20;
+        private const int WARN_INTERVAL_USB = 10;
+        // Maximum values for battery level when no USB cable is connected
+        // and when a USB cable is connected
+        private const int BATTERY_MAX = 8;
+        private const int BATTERY_MAX_USB = 11;
         private HidDevice hDevice;
         private string Mac;
         private DS4State cState = new DS4State();
@@ -625,12 +629,14 @@ namespace DS4Windows
                 try
                 {
                     charging = (inputReport[30] & 0x10) != 0;
-                    battery = (inputReport[30] & 0x0f) * 10;
+                    int maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
+                    int tempBattery = (inputReport[30] & 0x0f) * 100 / maxBatteryValue;
+                    battery = Math.Min((byte)tempBattery, (byte)100);
                     cState.Battery = (byte)battery;
                     if (inputReport[30] != priorInputReport30)
                     {
                         priorInputReport30 = inputReport[30];
-                        Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
+                        //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
                     }
                 }
                 catch { currerror = "Index out of bounds: battery"; }

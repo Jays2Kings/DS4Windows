@@ -873,15 +873,16 @@ namespace DS4Windows
         {
             String tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
             bool nocontrollers = true;
-            for (Int32 Index = 0; Index < Pads.Length; Index++)
+            for (Int32 Index = 0, PadsLen = Pads.Length; Index < PadsLen; Index++)
             {
                 Pads[Index].Text = Program.rootHub.getDS4MacAddress(Index);
                 DS4Device d = Program.rootHub.DS4Controllers[Index];
-                if (QuickCharge && d?.ConnectionType == ConnectionType.BT && (bool)d?.Charging)
+                if (QuickCharge && d?.getConnectionType() == ConnectionType.BT && (bool)d?.isCharging())
                 {
                     d.DisconnectBT();
                     return;
                 }
+
                 switch (Program.rootHub.getDS4Status(Index))
                 {
                     case "USB": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.USB; toolTip1.SetToolTip(statPB[Index], ""); break;
@@ -889,6 +890,7 @@ namespace DS4Windows
                     case "SONYWA": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
                     default: statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], ""); break;
                 }
+
                 Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
                 if (Pads[Index].Text != String.Empty)
                 {
@@ -920,6 +922,7 @@ namespace DS4Windows
                 if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
                     tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
             }
+
             lbNoControllers.Visible = nocontrollers;
             tLPControllers.Visible = !nocontrollers;
             btnClear.Enabled = lvDebug.Items.Count > 0;

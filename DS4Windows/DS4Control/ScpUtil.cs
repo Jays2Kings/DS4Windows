@@ -366,6 +366,10 @@ namespace DS4Windows
             return m_Config.m_LowLeds[index];
         }
         public static DS4Color[] ChargingColor => m_Config.m_ChargingLeds;
+        public static DS4Color getChargingColor(int index)
+        {
+            return m_Config.m_ChargingLeds[index];
+        }
         public static DS4Color[] CustomColor => m_Config.m_CustomLeds;
         public static DS4Color getCustomColor(int index)
         {

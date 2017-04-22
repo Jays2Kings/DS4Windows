@@ -28,7 +28,7 @@ namespace DS4Windows
         public static double[] fadetimer = new double[4] { 0, 0, 0, 0 };
         public static Stopwatch[] fadewatches = { new Stopwatch(), new Stopwatch(), new Stopwatch(), new Stopwatch() };
         static bool[] fadedirection = new bool[4] { false, false, false, false };
-        static DateTime oldnow = DateTime.UtcNow;
+        static DateTime[] oldnow = { DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow };
         public static bool[] forcelight = new bool[4] { false, false, false, false };
         public static DS4Color[] forcedColor = new DS4Color[4];
         public static byte[] forcedFlash = new byte[4];
@@ -63,14 +63,15 @@ namespace DS4Windows
                     {
                         // Display rainbow
                         DateTime now = DateTime.UtcNow;
-                        if (now >= oldnow + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
+                        if (now >= oldnow[deviceNum] + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
                         {
-                            oldnow = now;
+                            oldnow[deviceNum] = now;
                             if (device.isCharging())
                                 counters[deviceNum] -= 1.5 * 3 / rainbow;
                             else
                                 counters[deviceNum] += 1.5 * 3 / rainbow;
                         }
+
                         if (counters[deviceNum] < 0)
                             counters[deviceNum] = 180000;
                         else if (counters[deviceNum] > 180000)
@@ -159,11 +160,11 @@ namespace DS4Windows
                     TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
                     double botratio = timeratio.TotalMilliseconds;
                     double topratio = TimeSpan.FromSeconds(idleDisconnectTimeout).TotalMilliseconds;
-                    double ratio = ((botratio / topratio) * 100);
-                    if (ratio >= 50 && ratio <= 100)
+                    double ratio = 100.0 * (botratio / topratio);
+                    if (ratio >= 50.0 && ratio <= 100.0)
                         color = getTransitionedColor(color, new DS4Color(0, 0, 0), (uint)((ratio - 50) * 2));
-                    else if (ratio >= 100)
-                        color = getTransitionedColor(color, new DS4Color(0, 0, 0), 100);
+                    else if (ratio >= 100.0)
+                        color = getTransitionedColor(color, new DS4Color(0, 0, 0), 100.0);
                 }
 
                 if (device.isCharging() && device.getBattery() < 100)
@@ -193,7 +194,7 @@ namespace DS4Windows
                         }
                         case 3:
                         {
-                            color = ChargingColor[deviceNum];
+                            color = getChargingColor(deviceNum);
                             break;
                         }
                         default: break;
@@ -218,7 +219,7 @@ namespace DS4Windows
             //distanceprofile = (ProfilePath[deviceNum].ToLower().Contains("distance") || tempprofilename[deviceNum].ToLower().Contains("distance"));
             if (distanceprofile && !defaultLight)
             {
-                //Thing I did for Distance
+                // Thing I did for Distance
                 float rumble = device.getLeftHeavySlowRumble() / 2.55f;
                 byte max = Max(color.red, Max(color.green, color.blue));
                 if (device.getLeftHeavySlowRumble() > 100)

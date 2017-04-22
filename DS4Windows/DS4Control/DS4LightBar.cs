@@ -29,7 +29,9 @@ namespace DS4Windows
         public static bool[] forcelight = new bool[4] { false, false, false, false };
         public static DS4Color[] forcedColor = new DS4Color[4];
         public static byte[] forcedFlash = new byte[4];
-        public static void updateLightBar(DS4Device device, int deviceNum, DS4State cState, DS4StateExposed eState, Mouse tp)
+
+        public static void updateLightBar(DS4Device device, int deviceNum, DS4State cState,
+            DS4StateExposed eState, Mouse tp)
         {
             /*
              * TODO: Remove more property usage and use explicit getter methods instead.
@@ -39,22 +41,23 @@ namespace DS4Windows
             DS4Color color;
             if (!defualtLight && !forcelight[deviceNum])
             {
-                if (UseCustomLed[deviceNum])
+                if (getUseCustomLed(deviceNum))
                 {
                     if (getLedAsBatteryIndicator(deviceNum))
                     {
-                        DS4Color fullColor = CustomColor[deviceNum];
-                        DS4Color lowColor = LowColor[deviceNum];
+                        DS4Color fullColor = getCustomColor(deviceNum);
+                        DS4Color lowColor = getLowColor(deviceNum);
                         color = getTransitionedColor(lowColor, fullColor, device.Battery);
                     }
                     else
-                        color = CustomColor[deviceNum];
+                        color = getCustomColor(deviceNum);
                 }
                 else
                 {
-                    double rainbow = Rainbow[deviceNum];
+                    double rainbow = getRainbow(deviceNum);
                     if (rainbow > 0)
-                    {// Display rainbow
+                    {
+                        // Display rainbow
                         DateTime now = DateTime.UtcNow;
                         if (now >= oldnow + TimeSpan.FromMilliseconds(10)) //update by the millisecond that way it's a smooth transtion
                         {
@@ -79,32 +82,31 @@ namespace DS4Windows
                     {
                         //if (device.Charging == false || device.Battery >= 100) // when charged, don't show the charging animation
                         {
-                            DS4Color fullColor = MainColor[deviceNum];
-                            DS4Color lowColor = LowColor[deviceNum];
+                            DS4Color fullColor = getMainColor(deviceNum);
+                            DS4Color lowColor = getLowColor(deviceNum);
 
                             color = getTransitionedColor(lowColor, fullColor, (uint)device.getBattery());
                         }
                     }
                     else
                     {
-                        color = MainColor[deviceNum];
+                        color = getMainColor(deviceNum);
                     }
-
                 }
 
                 if (device.getBattery() <= getFlashAt(deviceNum) && !defualtLight && !device.isCharging())
                 {
-                    DS4Color flashColor = FlashColor[deviceNum];
+                    DS4Color flashColor = getFlashColor(deviceNum);
                     if (!(flashColor.red == 0 &&
                         flashColor.green == 0 &&
                         flashColor.blue == 0))
                         color = flashColor;
 
-                    if (FlashType[deviceNum] == 1)
+                    if (getFlashType(deviceNum) == 1)
                     {
-                        if (fadetimer[deviceNum] <= 0)
+                        if (fadetimer[deviceNum] <= 0.0)
                             fadedirection[deviceNum] = true;
-                        else if (fadetimer[deviceNum] >= 100)
+                        else if (fadetimer[deviceNum] >= 100.0)
                             fadedirection[deviceNum] = false;
 
                         if (fadedirection[deviceNum])
@@ -117,8 +119,10 @@ namespace DS4Windows
                 }
 
                 int idleDisconnectTimeout = getIdleDisconnectTimeout(deviceNum);
-                if (idleDisconnectTimeout > 0 && getLedAsBatteryIndicator(deviceNum) && (!device.isCharging() || device.getBattery() >= 100))
-                {//Fade lightbar by idle time
+                if (idleDisconnectTimeout > 0 && getLedAsBatteryIndicator(deviceNum) &&
+                    (!device.isCharging() || device.getBattery() >= 100))
+                {
+                    //Fade lightbar by idle time
                     TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
                     double botratio = timeratio.TotalMilliseconds;
                     double topratio = TimeSpan.FromSeconds(idleDisconnectTimeout).TotalMilliseconds;
@@ -135,22 +139,22 @@ namespace DS4Windows
                     {
                         case 1:
                         {
-                            if (fadetimer[deviceNum] <= 0)
+                            if (fadetimer[deviceNum] <= 0.0)
                                 fadedirection[deviceNum] = true;
-                            else if (fadetimer[deviceNum] >= 105)
+                            else if (fadetimer[deviceNum] >= 100.0)
                                 fadedirection[deviceNum] = false;
 
                             if (fadedirection[deviceNum])
-                                fadetimer[deviceNum] += .1;
+                                fadetimer[deviceNum] += 0.1;
                             else
-                                fadetimer[deviceNum] -= .1;
+                                fadetimer[deviceNum] -= 0.1;
 
                             color = getTransitionedColor(color, new DS4Color(0, 0, 0), fadetimer[deviceNum]);
                             break;
                         }
                         case 2:
                         {
-                            counters[deviceNum] += .167;
+                            counters[deviceNum] += 0.167;
                             color = HuetoRGB((float)counters[deviceNum] % 360, 255);
                             break;
                         }
@@ -180,7 +184,8 @@ namespace DS4Windows
             bool distanceprofile = DistanceProfiles[deviceNum] || tempprofileDistance[deviceNum];
             //distanceprofile = (ProfilePath[deviceNum].ToLower().Contains("distance") || tempprofilename[deviceNum].ToLower().Contains("distance"));
             if (distanceprofile && !defualtLight)
-            { //Thing I did for Distance
+            {
+                //Thing I did for Distance
                 float rumble = device.getLeftHeavySlowRumble() / 2.55f;
                 byte max = Max(color.red, Max(color.green, color.blue));
                 if (device.getLeftHeavySlowRumble() > 100)

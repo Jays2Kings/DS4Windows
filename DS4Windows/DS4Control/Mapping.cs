@@ -687,6 +687,7 @@ namespace DS4Windows
             return dState;
         }
 
+        /* TODO: Possibly remove usage of this version of the method */
         private static bool ShiftTrigger(int trigger, int device, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
             bool result = false;
@@ -2264,7 +2265,6 @@ namespace DS4Windows
             if (Math.Abs(b1 - b2) > 10)
             {
                 result = false;
-
             }
 
             return result;
@@ -2397,6 +2397,7 @@ namespace DS4Windows
             return result;
         }
 
+        /* TODO: Possibly remove usage of this version of the method */
         public static bool getBoolMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp)
         {
             bool result = false;
@@ -2716,6 +2717,7 @@ namespace DS4Windows
             return result;
         }
 
+        /* TODO: Possibly remove usage of this version of the method */
         public static bool getBoolActionMapping(int device, DS4Controls control,
             DS4State cState, DS4StateExposed eState, Mouse tp, bool analog=false)
         {
@@ -3086,6 +3088,7 @@ namespace DS4Windows
             return result;
         }
 
+        /* TODO: Possibly remove usage of this version of the method */
         //Returns false for any bool, 
         //if control is one of the xy axis returns 127
         //if its a trigger returns 0
@@ -3153,7 +3156,8 @@ namespace DS4Windows
             }
         }
 
-        private static void resetToDefaultValue2(DS4Controls control, DS4State cState, DS4StateFieldMapping fieldMap)
+        private static void resetToDefaultValue2(DS4Controls control, DS4State cState,
+            DS4StateFieldMapping fieldMap)
         {
             int controlNum = (int)control;
             DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[controlNum];

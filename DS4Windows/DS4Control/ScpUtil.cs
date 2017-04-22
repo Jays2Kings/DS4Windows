@@ -295,6 +295,10 @@ namespace DS4Windows
         public static int[] ButtonMouseSensitivity => m_Config.buttonMouseSensitivity;
         public static byte[] RumbleBoost => m_Config.rumble; 
         public static double[] Rainbow => m_Config.rainbow;
+        public static double getRainbow(int index)
+        {
+            return m_Config.rainbow[index];
+        }
         public static bool[] FlushHIDQueue => m_Config.flushHIDQueue;
         public static bool getFlushHIDQueue(int index)
         {
@@ -351,13 +355,33 @@ namespace DS4Windows
         public static string[] SATriggers => m_Config.sATriggers;
         public static int[] GyroSensitivity => m_Config.gyroSensitivity;
         public static int[] GyroInvert => m_Config.gyroInvert;
-        public static DS4Color[] MainColor => m_Config.m_Leds; 
+        public static DS4Color[] MainColor => m_Config.m_Leds;
+        public static DS4Color getMainColor(int index)
+        {
+            return m_Config.m_Leds[index];
+        }
         public static DS4Color[] LowColor => m_Config.m_LowLeds;
+        public static DS4Color getLowColor(int index)
+        {
+            return m_Config.m_LowLeds[index];
+        }
         public static DS4Color[] ChargingColor => m_Config.m_ChargingLeds;
         public static DS4Color[] CustomColor => m_Config.m_CustomLeds;
+        public static DS4Color getCustomColor(int index)
+        {
+            return m_Config.m_CustomLeds[index];
+        }
         public static bool[] UseCustomLed => m_Config.useCustomLeds;
+        public static bool getUseCustomLed(int index)
+        {
+            return m_Config.useCustomLeds[index];
+        }
 
-        public static  DS4Color[] FlashColor => m_Config.m_FlashLeds;
+        public static DS4Color[] FlashColor => m_Config.m_FlashLeds;
+        public static DS4Color getFlashColor(int index)
+        {
+            return m_Config.m_FlashLeds[index];
+        }
         public static byte[] TapSensitivity => m_Config.tapSensitivity;
         public static bool[] DoubleTap => m_Config.doubleTap; 
         public static int[] ScrollSensitivity => m_Config.scrollSensitivity;
@@ -656,15 +680,17 @@ namespace DS4Windows
 
         private static byte applyRatio(byte b1, byte b2, double r)
         {
-            if (r > 100)
-                r = 100;
-            else if (r < 0)
-                r = 0;
-            r /= 100f;
-            return (byte)Math.Round((b1 * (1 - r) + b2 *r),0);
+            if (r > 100.0)
+                r = 100.0;
+            else if (r < 0.0)
+                r = 0.0;
+
+            r /= 100.0;
+            return (byte)Math.Round((b1 * (1 - r) + b2 * r), 0);
         }
+
         public static DS4Color getTransitionedColor(DS4Color c1, DS4Color c2, double ratio)
-        {//;
+        {
             //Color cs = Color.FromArgb(c1.red, c1.green, c1.blue);
             c1.red = applyRatio(c1.red, c2.red, ratio);
             c1.green = applyRatio(c1.green, c2.green, ratio);
@@ -689,6 +715,7 @@ namespace DS4Windows
                 csR = HuetoRGB(hue2,sat2,bri2 - br*ratio);
             else
                 csR = HuetoRGB(hue2 - hr * ratio, sat2 - sr * ratio, bri2 - br * ratio);
+
             return csR;
         }
 
@@ -699,26 +726,39 @@ namespace DS4Windows
             float m = bri - C / 2;
             float R, G, B;
             if (0 <= hue && hue < 60)
-            {   R = C; G = X; B = 0;}
+            {
+                R = C; G = X; B = 0;
+            }
             else if (60 <= hue && hue < 120)
-            {R = X; G = C; B = 0; }
+            {
+                R = X; G = C; B = 0;
+            }
             else if (120 <= hue && hue < 180)
-            { R = 0; G = C; B = X; }
+            {
+                R = 0; G = C; B = X;
+            }
             else if (180 <= hue && hue < 240)
-            { R = 0; G = X; B = C; }
+            {
+                R = 0; G = X; B = C;
+            }
             else if (240 <= hue && hue < 300)
-                { R = X; G = 0; B = C; }
+            {
+                R = X; G = 0; B = C;
+            }
             else if (300 <= hue && hue < 360)
-                { R = C; G = 0; B = X; }
+            {
+                R = C; G = 0; B = X;
+            }
             else
-                { R = 255; G = 0; B = 0; }
+            {
+                R = 255; G = 0; B = 0;
+            }
+
             R += m; G += m; B += m;
-            R *= 255; G *= 255; B *= 255;
+            R *= 255.0f; G *= 255.0f; B *= 255.0f;
             return Color.FromArgb((int)R, (int)G, (int)B);
         }
-
     }
-
 
 
     public class BackingStore

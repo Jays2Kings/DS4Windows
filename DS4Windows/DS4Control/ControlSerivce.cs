@@ -604,9 +604,6 @@ namespace DS4Windows
                     cState = MappedState[ind];
                 }
 
-                //if (HasCustomExtras(ind))
-                  //  DoExtras(ind);
-
                 // Update the GUI/whatever.
                 DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
 
@@ -653,63 +650,6 @@ namespace DS4Windows
                 DS4LightBar.forcedFlash[ind] = 0;
             }
         }
-        
-       /* private void DoExtras(int ind)
-        {
-            DS4State cState = CurrentState[ind];
-            DS4StateExposed eState = ExposedState[ind];
-            Mouse tp = touchPad[ind];
-            DS4Controls helddown = DS4Controls.None;
-            foreach (KeyValuePair<DS4Controls, string> p in getCustomExtras(ind))
-            {
-                if (Mapping.getBoolMapping(ind, p.Key, cState, eState, tp))
-                {
-                    helddown = p.Key;
-                    break;
-                }
-            }
-            if (helddown != DS4Controls.None)
-            {
-                string p = getCustomExtras(ind)[helddown];
-                string[] extraS = p.Split(',');
-                int[] extras = new int[extraS.Length];
-                for (int i = 0; i < extraS.Length; i++)
-                {
-                    int b;
-                    if (int.TryParse(extraS[i], out b))
-                        extras[i] = b;
-                }
-                held[ind] = true;
-                try
-                {
-                    if (!(extras[0] == extras[1] && extras[1] == 0))
-                        setRumble((byte)extras[0], (byte)extras[1], ind);
-                    if (extras[2] == 1)
-                    {
-                        DS4Color color = new DS4Color { red = (byte)extras[3], green = (byte)extras[4], blue = (byte)extras[5] };
-                        DS4LightBar.forcedColor[ind] = color;
-                        DS4LightBar.forcedFlash[ind] = (byte)extras[6];
-                        DS4LightBar.forcelight[ind] = true;
-                    }
-                    if (extras[7] == 1)
-                    {
-                        if (oldmouse[ind] == -1)
-                            oldmouse[ind] = ButtonMouseSensitivity[ind];
-                        ButtonMouseSensitivity[ind] = extras[8];
-                    }
-                }
-                catch { }
-            }
-            else if (held[ind])
-            {
-                DS4LightBar.forcelight[ind] = false;
-                DS4LightBar.forcedFlash[ind] = 0;                
-                ButtonMouseSensitivity[ind] = oldmouse[ind];
-                oldmouse[ind] = -1;
-                setRumble(0, 0, ind);
-                held[ind] = false;
-            }
-        }*/
 
         public void EasterTime(int ind)
         {

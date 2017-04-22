@@ -38,6 +38,7 @@ namespace DS4Windows
                 previousClicks = currentClicks;
                 if (performClear)
                     currentClicks.leftCount = currentClicks.middleCount = currentClicks.rightCount = currentClicks.fourthCount = currentClicks.fifthCount = currentClicks.wUpCount = currentClicks.wDownCount = currentClicks.toggleCount = 0;
+
                 //foreach (KeyPresses kp in keyPresses.Values)
                 Dictionary<ushort, KeyPresses>.ValueCollection keyValues = keyPresses.Values;
                 for (int i = 0, kpCount = keyValues.Count; i < kpCount; i++)

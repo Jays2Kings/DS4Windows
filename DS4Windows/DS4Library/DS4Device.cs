@@ -29,12 +29,14 @@ namespace DS4Windows
             green = c.G;
             blue = c.B;
         }
+
         public DS4Color(byte r, byte g, byte b)
         {
             red = r;
             green = g;
             blue = b;
         }
+
         public override bool Equals(object obj)
         {
             if (obj is DS4Color)
@@ -45,6 +47,7 @@ namespace DS4Windows
             else
                 return false;
         }
+
         public Color ToColor => Color.FromArgb(red, green, blue);
         public Color ToColorA
         {
@@ -84,6 +87,7 @@ namespace DS4Windows
             }
             catch { return false; }
         }
+
         public override string ToString() => $"Red: {red} Green: {green} Blue: {blue}";
     }
 
@@ -100,10 +104,12 @@ namespace DS4Windows
         public byte LightBarFlashDurationOn, LightBarFlashDurationOff;
         public byte RumbleMotorStrengthLeftHeavySlow, RumbleMotorStrengthRightLightFast;
         public bool RumbleMotorsExplicitlyOff;
+
         public bool IsLightBarSet()
         {
             return LightBarExplicitlyOff || LightBarColor.red != 0 || LightBarColor.green != 0 || LightBarColor.blue != 0;
         }
+
         public bool IsRumbleSet()
         {
             return RumbleMotorsExplicitlyOff || RumbleMotorStrengthLeftHeavySlow != 0 || RumbleMotorStrengthRightLightFast != 0;
@@ -869,6 +875,7 @@ namespace DS4Windows
         }
 
         private DS4HapticState testRumble = new DS4HapticState();
+
         public void setRumble(byte rightLightFastMotor, byte leftHeavySlowMotor)
         {
             testRumble.RumbleMotorStrengthRightLightFast = rightLightFastMotor;

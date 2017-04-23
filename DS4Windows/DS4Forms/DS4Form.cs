@@ -1307,9 +1307,10 @@ namespace DS4Windows
                 try
                 {
                     string app = Assembly.GetExecutingAssembly().Location;
+                    lnk.TargetPath = Assembly.GetExecutingAssembly().Location;
+
                     if (runStartProgRadio.Checked)
                     {
-                        lnk.TargetPath = Assembly.GetExecutingAssembly().Location;
                         lnk.Arguments = "-m";
                     }
                     else if (runStartTaskRadio.Checked)

@@ -397,7 +397,8 @@ namespace DS4Windows
 
         public void StopUpdate()
         {
-            if (ds4Input.IsAlive && !ds4Input.ThreadState.HasFlag(System.Threading.ThreadState.Stopped) &&
+            if (ds4Input != null &&
+                ds4Input.IsAlive && !ds4Input.ThreadState.HasFlag(System.Threading.ThreadState.Stopped) &&
                 !ds4Input.ThreadState.HasFlag(System.Threading.ThreadState.AbortRequested))
             {
                 try
@@ -418,7 +419,8 @@ namespace DS4Windows
         {
             lock (exitLocker)
             {
-                if (ds4Output.IsAlive && !ds4Output.ThreadState.HasFlag(System.Threading.ThreadState.Stopped) &&
+                if (ds4Output != null &&
+                    ds4Output.IsAlive && !ds4Output.ThreadState.HasFlag(System.Threading.ThreadState.Stopped) &&
                     !ds4Output.ThreadState.HasFlag(System.Threading.ThreadState.AbortRequested))
                 {
                     try

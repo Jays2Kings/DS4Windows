@@ -81,6 +81,7 @@ namespace DS4Windows
                         if (isExclusiveMode && !hDevice.IsOpen)
                             hDevice.OpenDevice(false);
                     }
+
                     if (hDevice.IsOpen)
                     {
                         string serial = hDevice.readSerial();

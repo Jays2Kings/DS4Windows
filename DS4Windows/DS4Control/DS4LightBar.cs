@@ -25,7 +25,6 @@ namespace DS4Windows
             { 252, 28 } // on 90% of the time at 90
         };
         static double[] counters = new double[4] { 0, 0, 0, 0 };
-        public static double[] fadetimer = new double[4] { 0, 0, 0, 0 };
         public static Stopwatch[] fadewatches = { new Stopwatch(), new Stopwatch(), new Stopwatch(), new Stopwatch() };
         static bool[] fadedirection = new bool[4] { false, false, false, false };
         static DateTime[] oldnow = { DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow };
@@ -33,6 +32,7 @@ namespace DS4Windows
         public static DS4Color[] forcedColor = new DS4Color[4];
         public static byte[] forcedFlash = new byte[4];
         internal const int PULSE_FLASH_DURATION = 2000;
+        internal const int PULSE_CHARGING_DURATION = 4000;
 
         public static void updateLightBar(DS4Device device, int deviceNum, DS4State cState,
             DS4StateExposed eState, Mouse tp)
@@ -173,17 +173,46 @@ namespace DS4Windows
                     {
                         case 1:
                         {
-                            if (fadetimer[deviceNum] <= 0.0)
-                                fadedirection[deviceNum] = true;
-                            else if (fadetimer[deviceNum] >= 100.0)
-                                fadedirection[deviceNum] = false;
+                            double ratio = 0.0;
 
-                            if (fadedirection[deviceNum])
-                                fadetimer[deviceNum] += 0.1;
+                            if (!fadewatches[deviceNum].IsRunning)
+                            {
+                                bool temp = fadedirection[deviceNum];
+                                fadedirection[deviceNum] = !temp;
+                                fadewatches[deviceNum].Restart();
+                                ratio = temp ? 100.0 : 0.0;
+                            }
                             else
-                                fadetimer[deviceNum] -= 0.1;
+                            {
+                                long elapsed = fadewatches[deviceNum].ElapsedMilliseconds;
 
-                            color = getTransitionedColor(color, new DS4Color(0, 0, 0), fadetimer[deviceNum]);
+                                if (fadedirection[deviceNum])
+                                {
+                                    if (elapsed < PULSE_CHARGING_DURATION)
+                                    {
+                                        ratio = 100.0 * (elapsed / (double)PULSE_CHARGING_DURATION);
+                                    }
+                                    else
+                                    {
+                                        ratio = 100.0;
+                                        fadewatches[deviceNum].Stop();
+                                    }
+                                }
+                                else
+                                {
+                                    if (elapsed < PULSE_CHARGING_DURATION)
+                                    {
+                                        ratio = (0 - 100.0) * (elapsed / (double)PULSE_CHARGING_DURATION) + 100.0;
+                                    }
+                                    else
+                                    {
+                                        ratio = 0.0;
+                                        fadewatches[deviceNum].Stop();
+                                    }
+                                }
+                            }
+
+                            color = getTransitionedColor(color, new DS4Color(0, 0, 0), ratio);
                             break;
                         }
                         case 2:

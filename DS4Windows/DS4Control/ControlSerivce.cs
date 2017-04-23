@@ -232,20 +232,25 @@ namespace DS4Windows
                 {
                     DS4Device device = devices.ElementAt<DS4Device>(i);
 
-                    if (QuickCharge && device?.getConnectionType() == ConnectionType.BT && (bool)device?.isCharging())
+                    if (device.isDisconnectingStatus())
+                        continue;
+
+                    if (QuickCharge && device?.getConnectionType() == ConnectionType.BT &&
+                        (bool)device?.isCharging())
                     {
                         device.DisconnectBT();
                         continue;
                     }
 
-                    if (device.isDisconnectingStatus())
-                        continue;
-
                     if (((Func<bool>)delegate
                     {
                         for (Int32 Index = 0, arlength = DS4Controllers.Length; Index < arlength; Index++)
-                            if (DS4Controllers[Index] != null && DS4Controllers[Index].getMacAddress() == device.getMacAddress())
+                        {
+                            if (DS4Controllers[Index] != null &&
+                                DS4Controllers[Index].getMacAddress() == device.getMacAddress())
                                 return true;
+                        }
+
                         return false;
                     })())
                         continue;
@@ -266,6 +271,7 @@ namespace DS4Windows
                             if (!DinputOnly[Index])
                                 x360Bus.Plugin(Index);
                             TouchPadOn(Index, device);
+
                             //string filename = Path.GetFileName(ProfilePath[Index]);
                             if (System.IO.File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[Index] + ".xml"))
                             {

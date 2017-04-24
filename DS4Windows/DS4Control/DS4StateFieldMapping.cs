@@ -90,10 +90,10 @@ namespace DS4Windows
             buttons[(int)DS4Controls.DpadDown] = cState.DpadDown;
             buttons[(int)DS4Controls.DpadLeft] = cState.DpadLeft;
 
-            buttons[(int)DS4Controls.TouchLeft] = tp.leftDown;
-            buttons[(int)DS4Controls.TouchRight] = tp.rightDown;
-            buttons[(int)DS4Controls.TouchUpper] = tp.upperDown;
-            buttons[(int)DS4Controls.TouchMulti] = tp.multiDown;
+            buttons[(int)DS4Controls.TouchLeft] = tp != null ? tp.leftDown : false;
+            buttons[(int)DS4Controls.TouchRight] = tp != null ? tp.rightDown : false;
+            buttons[(int)DS4Controls.TouchUpper] = tp != null ? tp.upperDown : false;
+            buttons[(int)DS4Controls.TouchMulti] = tp != null ? tp.multiDown : false;
 
             gryodirs[(int)DS4Controls.GyroXNeg] = exposeState.getGyroX();
             gryodirs[(int)DS4Controls.GyroXPos] = exposeState.getGyroX();
@@ -101,15 +101,15 @@ namespace DS4Windows
             gryodirs[(int)DS4Controls.GyroZPos] = exposeState.getGyroZ();
             gryodirs[(int)DS4Controls.GyroZPos] = exposeState.getGyroZ();
 
-            swipedirs[(int)DS4Controls.SwipeLeft] = tp.swipeLeftB;
-            swipedirs[(int)DS4Controls.SwipeRight] = tp.swipeRightB;
-            swipedirs[(int)DS4Controls.SwipeUp] = tp.swipeUpB;
-            swipedirs[(int)DS4Controls.SwipeDown] = tp.swipeDownB;
+            swipedirs[(int)DS4Controls.SwipeLeft] = tp != null ? tp.swipeLeftB : (byte)0;
+            swipedirs[(int)DS4Controls.SwipeRight] = tp != null ? tp.swipeRightB : (byte)0;
+            swipedirs[(int)DS4Controls.SwipeUp] = tp != null ? tp.swipeUpB : (byte)0;
+            swipedirs[(int)DS4Controls.SwipeDown] = tp != null ? tp.swipeDownB : (byte)0;
 
-            swipedirbools[(int)DS4Controls.SwipeLeft] = tp.swipeLeft;
-            swipedirbools[(int)DS4Controls.SwipeRight] = tp.swipeRight;
-            swipedirbools[(int)DS4Controls.SwipeUp] = tp.swipeUp;
-            swipedirbools[(int)DS4Controls.SwipeDown] = tp.swipeDown;
+            swipedirbools[(int)DS4Controls.SwipeLeft] = tp != null ? tp.swipeLeft : false;
+            swipedirbools[(int)DS4Controls.SwipeRight] = tp != null ? tp.swipeRight : false;
+            swipedirbools[(int)DS4Controls.SwipeUp] = tp != null ? tp.swipeUp : false;
+            swipedirbools[(int)DS4Controls.SwipeDown] = tp != null ? tp.swipeDown : false;
         }
 
         public void populateState(DS4State state)

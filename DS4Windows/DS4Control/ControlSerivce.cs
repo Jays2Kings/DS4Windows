@@ -507,8 +507,11 @@ namespace DS4Windows
 
             int ind = -1;
             for (int i = 0, arlength = DS4_CONTROLLER_COUNT; ind == -1 && i < arlength; i++)
-                if (device == DS4Controllers[i])
+            {
+                DS4Device tempDev = DS4Controllers[i];
+                if (tempDev != null && device == tempDev)
                     ind = i;
+            }
 
             if (ind != -1)
             {
@@ -540,11 +543,18 @@ namespace DS4Windows
                 DS4State cState = CurrentState[ind];
                 device.getPreviousState(PreviousState[ind]);
                 DS4State pState = PreviousState[ind];
+
+                // Change routine to be more specific to a device.
+                // Currently updates status of all devices in DS4Form when any battery
+                // state change occurs.
                 if (pState.Battery != cState.Battery)
                     ControllerStatusChanged(this);
+
                 CheckForHotkeys(ind, cState, pState);
-                if (eastertime)
-                    EasterTime(ind);
+
+                // Temporarily disable easter time routine
+                //if (eastertime)
+                //    EasterTime(ind);
 
                 cState = Mapping.SetCurveAndDeadzone(ind, cState);
 
@@ -945,6 +955,7 @@ namespace DS4Windows
         public bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };
         public byte[] oldtouchvalue = { 0, 0, 0, 0 };
         public int[] oldscrollvalue = { 0, 0, 0, 0 };
+
         protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
         {
             if (!getUseTPforControls(deviceID) && cState.Touch1 && pState.PS)

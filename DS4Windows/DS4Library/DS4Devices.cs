@@ -36,10 +36,13 @@ namespace DS4Windows
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });
 
-                foreach (HidDevice hDevice in hDevices)
+                for (int i = 0, devCount = hDevices.Count(); i < devCount; i++)
+                //foreach (HidDevice hDevice in hDevices)
                 {
+                    HidDevice hDevice = hDevices.ElementAt<HidDevice>(i);
                     if (DevicePaths.Contains(hDevice.DevicePath))
                         continue; // BT/USB endpoint already open once
+
                     if (!hDevice.IsOpen)
                     {
                         hDevice.OpenDevice(isExclusiveMode);
@@ -98,7 +101,6 @@ namespace DS4Windows
                         }
                     }
                 }
-                
             }
         }
 
@@ -134,11 +136,14 @@ namespace DS4Windows
             lock (Devices)
             {
                 IEnumerable<DS4Device> devices = getDS4Controllers();
-                foreach (DS4Device device in devices)
+                //foreach (DS4Device device in devices)
+                for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                 {
+                    DS4Device device = devices.ElementAt<DS4Device>(i);
                     device.StopUpdate();
                     device.HidDevice.CloseDevice();
                 }
+
                 Devices.Clear();
                 DevicePaths.Clear();
             }

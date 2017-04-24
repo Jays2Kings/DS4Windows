@@ -142,6 +142,21 @@ namespace DS4Windows
         }
     }
 
+    public class MultiValueDict<Key, Value> : Dictionary<Key, List<Value>>
+    {
+        public void Add(Key key, Value val)
+        {
+            List<Value> values = null;
+            if (!this.TryGetValue(key, out values))
+            {
+                values = new List<Value>();
+                this.Add(key, values);
+            }
+
+            values.Add(val);
+        }
+    }
+
     public class Global
     {
         protected static BackingStore m_Config = new BackingStore();

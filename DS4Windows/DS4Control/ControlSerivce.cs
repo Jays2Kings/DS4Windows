@@ -423,7 +423,7 @@ namespace DS4Windows
             if (DS4Controllers[index] != null)
             {
                 DS4Device d = DS4Controllers[index];
-                String battery;
+                string battery;
                 if (!d.IsAlive())
                     battery = "...";
 
@@ -483,9 +483,10 @@ namespace DS4Windows
                     CurrentState[ind].Battery = PreviousState[ind].Battery = 0; // Reset for the next connection's initial status change.
                     x360Bus.Unplug(ind);
                     string removed = Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", (ind + 1).ToString());
-                    if (device.Battery <= 20 &&
-                        device.ConnectionType == ConnectionType.BT && !device.Charging)
+                    if (device.getBattery() <= 20 &&
+                        device.getConnectionType() == ConnectionType.BT && !device.isCharging())
                         removed += ". " + Properties.Resources.ChargeController;
+
                     LogDebug(removed);
                     Log.LogToTray(removed);
                     System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);

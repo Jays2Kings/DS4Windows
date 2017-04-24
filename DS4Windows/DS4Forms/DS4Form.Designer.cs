@@ -119,6 +119,7 @@
             this.cBSwipeProfiles = new System.Windows.Forms.CheckBox();
             this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
             this.runStartupPanel = new System.Windows.Forms.Panel();
+            this.uacTaskButton = new System.Windows.Forms.Button();
             this.runStartTaskRadio = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.runStartProgRadio = new System.Windows.Forms.RadioButton();
@@ -893,11 +894,20 @@
             // runStartupPanel
             // 
             this.runStartupPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.runStartupPanel.Controls.Add(this.uacTaskButton);
             this.runStartupPanel.Controls.Add(this.runStartTaskRadio);
             this.runStartupPanel.Controls.Add(this.label1);
             this.runStartupPanel.Controls.Add(this.runStartProgRadio);
             resources.ApplyResources(this.runStartupPanel, "runStartupPanel");
             this.runStartupPanel.Name = "runStartupPanel";
+            // 
+            // uacTaskButton
+            // 
+            this.uacTaskButton.FlatAppearance.BorderSize = 0;
+            resources.ApplyResources(this.uacTaskButton, "uacTaskButton");
+            this.uacTaskButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.uacTaskButton.Name = "uacTaskButton";
+            this.uacTaskButton.UseVisualStyleBackColor = true;
             // 
             // runStartTaskRadio
             // 
@@ -1379,6 +1389,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton runStartProgRadio;
         private System.Windows.Forms.RadioButton runStartTaskRadio;
+        private System.Windows.Forms.Button uacTaskButton;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

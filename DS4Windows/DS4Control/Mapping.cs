@@ -794,15 +794,17 @@ namespace DS4Windows
 
             cState.calculateStickAngles();
             DS4StateFieldMapping fieldMapping = new DS4StateFieldMapping(cState, eState, tp);
-            
+            DS4StateFieldMapping outputfieldMapping = new DS4StateFieldMapping(cState, eState, tp);
+
             SyntheticState deviceState = Mapping.deviceState[device];
             if (getProfileActionCount(device) > 0 || !string.IsNullOrEmpty(tempprofilename[device]))
-                MapCustomAction(device, cState, MappedState, eState, tp, ctrl, fieldMapping);
+                MapCustomAction(device, cState, MappedState, eState, tp, ctrl, fieldMapping, outputfieldMapping);
             if (ctrl.DS4Controllers[device] == null) return;
 
             cState.CopyTo(MappedState);
 
             Dictionary<DS4Controls, DS4Controls> tempControlDict = new Dictionary<DS4Controls, DS4Controls>();
+            //MultiValueDict<DS4Controls, DS4Controls> tempControlDict = new MultiValueDict<DS4Controls, DS4Controls>();
             DS4Controls usingExtra = DS4Controls.None;
             List<DS4ControlSettings> tempSettingsList = getDS4CSettings(device);
             //foreach (DS4ControlSettings dcs in getDS4CSettings(device))
@@ -832,7 +834,7 @@ namespace DS4Windows
                         bool active = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
                         if (active)
                         {
-                            resetToDefaultValue2(dcs.control, MappedState, fieldMapping);
+                            resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
                             PlayMacro(device, macroControl, string.Join("/", (int[])action), dcs.control, keyType);
                         }
                         else
@@ -845,7 +847,7 @@ namespace DS4Windows
                         ushort value = ushort.Parse(action.ToString());
                         if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                         {
-                            resetToDefaultValue2(dcs.control, MappedState, fieldMapping);
+                            resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
                             SyntheticState.KeyPresses kp;
                             if (!deviceState.keyPresses.TryGetValue(value, out kp))
                                 deviceState.keyPresses[value] = kp = new SyntheticState.KeyPresses();
@@ -901,10 +903,10 @@ namespace DS4Windows
                         {
                             switch (xboxControl)
                             {
-                                case X360Controls.A: tempControlDict.Add(DS4Controls.Cross, dcs.control); break;
-                                case X360Controls.B: tempControlDict.Add(DS4Controls.Circle, dcs.control); break;
-                                case X360Controls.X: tempControlDict.Add(DS4Controls.Square, dcs.control); break;
-                                case X360Controls.Y: tempControlDict.Add(DS4Controls.Triangle, dcs.control); break;
+                                case X360Controls.A: tempControlDict.Add(dcs.control, DS4Controls.Cross); break;
+                                case X360Controls.B: tempControlDict.Add(dcs.control, DS4Controls.Circle); break;
+                                case X360Controls.X: tempControlDict.Add(dcs.control, DS4Controls.Square); break;
+                                case X360Controls.Y: tempControlDict.Add(dcs.control, DS4Controls.Triangle); break;
                                 default: break;
                             }
                         }
@@ -912,12 +914,12 @@ namespace DS4Windows
                         {
                             switch (xboxControl)
                             {
-                                case X360Controls.LB: tempControlDict.Add(DS4Controls.L1, dcs.control); break;
-                                case X360Controls.LT: tempControlDict.Add(DS4Controls.L2, dcs.control); break;
-                                case X360Controls.LS: tempControlDict.Add(DS4Controls.L3, dcs.control); break;
-                                case X360Controls.RB: tempControlDict.Add(DS4Controls.R1, dcs.control); break;
-                                case X360Controls.RT: tempControlDict.Add(DS4Controls.R2, dcs.control); break;
-                                case X360Controls.RS: tempControlDict.Add(DS4Controls.R3, dcs.control); break;
+                                case X360Controls.LB: tempControlDict.Add(dcs.control, DS4Controls.L1); break;
+                                case X360Controls.LT: tempControlDict.Add(dcs.control, DS4Controls.L2); break;
+                                case X360Controls.LS: tempControlDict.Add(dcs.control, DS4Controls.L3); break;
+                                case X360Controls.RB: tempControlDict.Add(dcs.control, DS4Controls.R1); break;
+                                case X360Controls.RT: tempControlDict.Add(dcs.control, DS4Controls.R2); break;
+                                case X360Controls.RS: tempControlDict.Add(dcs.control, DS4Controls.R3); break;
                                 default: break;
                             }
                         }
@@ -925,10 +927,10 @@ namespace DS4Windows
                         {
                             switch (xboxControl)
                             {
-                                case X360Controls.DpadUp: tempControlDict.Add(DS4Controls.DpadUp, dcs.control); break;
-                                case X360Controls.DpadDown: tempControlDict.Add(DS4Controls.DpadDown, dcs.control); break;
-                                case X360Controls.DpadLeft: tempControlDict.Add(DS4Controls.DpadLeft, dcs.control); break;
-                                case X360Controls.DpadRight: tempControlDict.Add(DS4Controls.DpadRight, dcs.control); break;
+                                case X360Controls.DpadUp: tempControlDict.Add(dcs.control, DS4Controls.DpadUp); break;
+                                case X360Controls.DpadDown: tempControlDict.Add(dcs.control, DS4Controls.DpadDown); break;
+                                case X360Controls.DpadLeft: tempControlDict.Add(dcs.control, DS4Controls.DpadLeft); break;
+                                case X360Controls.DpadRight: tempControlDict.Add(dcs.control, DS4Controls.DpadRight); break;
                                 default: break;
                             }
                         }
@@ -936,14 +938,14 @@ namespace DS4Windows
                         {
                             switch (xboxControl)
                             {
-                                case X360Controls.LXNeg: tempControlDict.Add(DS4Controls.LXNeg, dcs.control); break;
-                                case X360Controls.LYNeg: tempControlDict.Add(DS4Controls.LYNeg, dcs.control); break;
-                                case X360Controls.RXNeg: tempControlDict.Add(DS4Controls.RXNeg, dcs.control); break;
-                                case X360Controls.RYNeg: tempControlDict.Add(DS4Controls.RYNeg, dcs.control); break;
-                                case X360Controls.LXPos: tempControlDict.Add(DS4Controls.LXPos, dcs.control); break;
-                                case X360Controls.LYPos: tempControlDict.Add(DS4Controls.LYPos, dcs.control); break;
-                                case X360Controls.RXPos: tempControlDict.Add(DS4Controls.RXPos, dcs.control); break;
-                                case X360Controls.RYPos: tempControlDict.Add(DS4Controls.RYPos, dcs.control); break;
+                                case X360Controls.LXNeg: tempControlDict.Add(dcs.control, DS4Controls.LXNeg); break;
+                                case X360Controls.LYNeg: tempControlDict.Add(dcs.control, DS4Controls.LYNeg); break;
+                                case X360Controls.RXNeg: tempControlDict.Add(dcs.control, DS4Controls.RXNeg); break;
+                                case X360Controls.RYNeg: tempControlDict.Add(dcs.control, DS4Controls.RYNeg); break;
+                                case X360Controls.LXPos: tempControlDict.Add(dcs.control, DS4Controls.LXPos); break;
+                                case X360Controls.LYPos: tempControlDict.Add(dcs.control, DS4Controls.LYPos); break;
+                                case X360Controls.RXPos: tempControlDict.Add(dcs.control, DS4Controls.RXPos); break;
+                                case X360Controls.RYPos: tempControlDict.Add(dcs.control, DS4Controls.RYPos); break;
                                 default: break;
                             }
                         }
@@ -1033,9 +1035,9 @@ namespace DS4Windows
                         {
                             switch (xboxControl)
                             {
-                                case X360Controls.Start: tempControlDict.Add(DS4Controls.Options, dcs.control); break;
-                                case X360Controls.Guide: tempControlDict.Add(DS4Controls.PS, dcs.control); break;
-                                case X360Controls.Back: tempControlDict.Add(DS4Controls.Share, dcs.control); break;
+                                case X360Controls.Start: tempControlDict.Add(dcs.control, DS4Controls.Options); break;
+                                case X360Controls.Guide: tempControlDict.Add(dcs.control, DS4Controls.PS); break;
+                                case X360Controls.Back: tempControlDict.Add(dcs.control, DS4Controls.Share); break;
                                 default: break;
                             }
                         }
@@ -1044,7 +1046,7 @@ namespace DS4Windows
                         {
                             if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                             {
-                                resetToDefaultValue2(dcs.control, MappedState, fieldMapping);
+                                resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
                                 if (!pressedonce[keyvalue])
                                 {
                                     deviceState.currentClicks.toggle = !deviceState.currentClicks.toggle;
@@ -1058,7 +1060,7 @@ namespace DS4Windows
                             }
                         }
 
-                        resetToDefaultValue2(dcs.control, MappedState, fieldMapping); // erase default mappings for things that are remapped                       
+                        resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping); // erase default mappings for things that are remapped                       
                     }
                 }
 
@@ -1115,7 +1117,9 @@ namespace DS4Windows
                         usingExtra = DS4Controls.None;
                     }
                 }
-            }            
+            }
+
+            outputfieldMapping.populateState(MappedState);
 
             if (macroControl[00]) MappedState.Cross = true;
             if (macroControl[01]) MappedState.Circle = true;
@@ -1168,6 +1172,7 @@ namespace DS4Windows
                 tempControlDict.Add(DS4Controls.RYPos, DS4Controls.RYPos);
 
             Dictionary<DS4Controls, DS4Controls>.KeyCollection controlKeys = tempControlDict.Keys;
+            //Dictionary<DS4Controls, List<DS4Controls>>.KeyCollection controlKeys = tempControlDict.Keys;
 
             //foreach (KeyValuePair<DS4Controls, DS4Controls> entry in tempControlDict)
             for (int i = 0, keyCount = controlKeys.Count; i < keyCount; i++)
@@ -1176,11 +1181,12 @@ namespace DS4Windows
                 DS4Controls dc = tempControlDict[key];
                 //DS4Controls key = entry.Key;
                 //DS4Controls dc = entry.Value;
-                if (getBoolActionMapping2(device, dc, cState, eState, tp, fieldMapping, true))
+
+                if (getBoolActionMapping2(device, key, cState, eState, tp, fieldMapping, true))
                 {
-                    if (key >= DS4Controls.Square && key <= DS4Controls.Cross)
+                    if (dc >= DS4Controls.Square && dc <= DS4Controls.Cross)
                     {
-                        switch (key)
+                        switch (dc)
                         {
                             case DS4Controls.Cross: MappedState.Cross = true; break;
                             case DS4Controls.Circle: MappedState.Circle = true; break;
@@ -1189,22 +1195,22 @@ namespace DS4Windows
                             default: break;
                         }
                     }
-                    else if (key >= DS4Controls.L1 && key <= DS4Controls.R3)
+                    else if (dc >= DS4Controls.L1 && dc <= DS4Controls.R3)
                     {
-                        switch (key)
+                        switch (dc)
                         {
                             case DS4Controls.L1: MappedState.L1 = true; break;
-                            case DS4Controls.L2: MappedState.L2 = getByteMapping(device, dc, cState, eState, tp); break;
+                            case DS4Controls.L2: MappedState.L2 = getByteMapping(device, key, cState, eState, tp); break;
                             case DS4Controls.L3: MappedState.L3 = true; break;
                             case DS4Controls.R1: MappedState.R1 = true; break;
-                            case DS4Controls.R2: MappedState.R2 = getByteMapping(device, dc, cState, eState, tp); break;
+                            case DS4Controls.R2: MappedState.R2 = getByteMapping(device, key, cState, eState, tp); break;
                             case DS4Controls.R3: MappedState.R3 = true; break;
                             default: break;
                         }
                     }
-                    else if (key >= DS4Controls.DpadUp && key <= DS4Controls.DpadLeft)
+                    else if (dc >= DS4Controls.DpadUp && dc <= DS4Controls.DpadLeft)
                     {
-                        switch (key)
+                        switch (dc)
                         {
                             case DS4Controls.DpadUp: MappedState.DpadUp = true; break;
                             case DS4Controls.DpadRight: MappedState.DpadRight = true; break;
@@ -1213,100 +1219,100 @@ namespace DS4Windows
                             default: break;
                         }
                     }
-                    else if (key >= DS4Controls.LXNeg && key <= DS4Controls.RYPos)
+                    else if (dc >= DS4Controls.LXNeg && dc <= DS4Controls.RYPos)
                     {
-                        switch (key)
+                        switch (dc)
                         {
                             case DS4Controls.LXNeg:
                             case DS4Controls.LXPos:
-                            {
-                                if (Math.Abs(MappedState.LX - 127) < 10)
                                 {
-                                    if (key == DS4Controls.LXNeg)
+                                    if (Math.Abs(MappedState.LX - 127) < 10)
                                     {
-                                        byte axisMapping = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                                        if (Math.Abs(127 - axisMapping) > 5)
-                                            MappedState.LX = axisMapping;
+                                        if (dc == DS4Controls.LXNeg)
+                                        {
+                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp, true);
+                                            if (Math.Abs(127 - axisMapping) > 5)
+                                                MappedState.LX = axisMapping;
+                                        }
+                                        else
+                                        {
+                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp);
+                                            if (Math.Abs(127 - axisMapping) > 5)
+                                                MappedState.LX = axisMapping;
+                                        }
                                     }
-                                    else
-                                    {
-                                        byte axisMapping = getXYAxisMapping(device, dc, cState, eState, tp);
-                                        if (Math.Abs(127 - axisMapping) > 5)
-                                            MappedState.LX = axisMapping;
-                                    }
-                                }
 
-                                break;
-                            }
+                                    break;
+                                }
                             case DS4Controls.LYNeg:
                             case DS4Controls.LYPos:
-                            {
-                                if (Math.Abs(MappedState.LY - 127) < 10)
                                 {
-                                    if (key == DS4Controls.LYNeg)
+                                    if (Math.Abs(MappedState.LY - 127) < 10)
                                     {
-                                        byte axisMapping = getXYAxisMapping(device, dc, cState, eState, tp);
-                                        if (Math.Abs(127 - axisMapping) > 5)
-                                            MappedState.LY = axisMapping;
+                                        if (dc == DS4Controls.LYNeg)
+                                        {
+                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp);
+                                            if (Math.Abs(127 - axisMapping) > 5)
+                                                MappedState.LY = axisMapping;
+                                        }
+                                        else
+                                        {
+                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp, true);
+                                            if (Math.Abs(127 - axisMapping) > 5)
+                                                MappedState.LY = axisMapping;
+                                        }
                                     }
-                                    else
-                                    {
-                                        byte axisMapping = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                                        if (Math.Abs(127 - axisMapping) > 5)
-                                            MappedState.LY = axisMapping;
-                                    }
-                                }
 
-                                break;
-                            }
+                                    break;
+                                }
                             case DS4Controls.RXNeg:
                             case DS4Controls.RXPos:
-                            {
-                                if (Math.Abs(MappedState.RX - 127) < 10)
                                 {
-                                    if (key == DS4Controls.RXNeg)
+                                    if (Math.Abs(MappedState.RX - 127) < 10)
                                     {
-                                        byte axisMapping = getXYAxisMapping(device, dc, cState, eState, tp);
-                                        if (Math.Abs(127 - axisMapping) > 5)
-                                            MappedState.RX = axisMapping;
+                                        if (dc == DS4Controls.RXNeg)
+                                        {
+                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp);
+                                            if (Math.Abs(127 - axisMapping) > 5)
+                                                MappedState.RX = axisMapping;
+                                        }
+                                        else
+                                        {
+                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp, true);
+                                            if (Math.Abs(127 - axisMapping) > 5)
+                                                MappedState.RX = axisMapping;
+                                        }
                                     }
-                                    else
-                                    {
-                                        byte axisMapping = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                                        if (Math.Abs(127 - axisMapping) > 5)
-                                            MappedState.RX = axisMapping;
-                                    }
-                                }
 
-                                break;
-                            }
+                                    break;
+                                }
                             case DS4Controls.RYNeg:
                             case DS4Controls.RYPos:
-                            {
-                                if (Math.Abs(MappedState.RY - 127) < 10)
                                 {
-                                    if (key == DS4Controls.RYNeg)
+                                    if (Math.Abs(MappedState.RY - 127) < 10)
                                     {
-                                        byte axisMapping = getXYAxisMapping(device, dc, cState, eState, tp);
-                                        if (Math.Abs(127 - axisMapping) > 5)
-                                            MappedState.RY = axisMapping;
+                                        if (dc == DS4Controls.RYNeg)
+                                        {
+                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp);
+                                            if (Math.Abs(127 - axisMapping) > 5)
+                                                MappedState.RY = axisMapping;
+                                        }
+                                        else
+                                        {
+                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp, true);
+                                            if (Math.Abs(127 - axisMapping) > 5)
+                                                MappedState.RY = axisMapping;
+                                        }
                                     }
-                                    else
-                                    {
-                                        byte axisMapping = getXYAxisMapping(device, dc, cState, eState, tp, true);
-                                        if (Math.Abs(127 - axisMapping) > 5)
-                                            MappedState.RY = axisMapping;
-                                    }
-                                }
 
-                                break;
-                            }
+                                    break;
+                                }
                             default: break;
                         }
                     }
                     else
                     {
-                        switch (key)
+                        switch (dc)
                         {
                             case DS4Controls.Options: MappedState.Options = true; break;
                             case DS4Controls.Share: MappedState.Share = true; break;
@@ -1316,8 +1322,6 @@ namespace DS4Windows
                     }
                 }
             }
-
-            fieldMapping.populateState(MappedState);
 
             calculateFinalMouseMovement(ref tempMouseDeltaX, ref tempMouseDeltaY,
                 out mouseDeltaX, out mouseDeltaY);
@@ -1333,7 +1337,7 @@ namespace DS4Windows
         }
 
         private static async void MapCustomAction(int device, DS4State cState, DS4State MappedState,
-            DS4StateExposed eState, Mouse tp, ControlService ctrl, DS4StateFieldMapping fieldMapping)
+            DS4StateExposed eState, Mouse tp, ControlService ctrl, DS4StateFieldMapping fieldMapping, DS4StateFieldMapping outputfieldMapping)
         {
             /* TODO: This method is slow sauce. Find ways to speed up action execution */
             try
@@ -1527,7 +1531,7 @@ namespace DS4Windows
                                     for (int i = 0, arlen = action.trigger.Count; i < arlen; i++)
                                     {
                                         DS4Controls dc = action.trigger[i];
-                                        resetToDefaultValue2(dc, MappedState, fieldMapping);
+                                        resetToDefaultValue2(dc, MappedState, outputfieldMapping);
                                     }
 
                                     PlayMacro(device, macroControl, String.Join("/", action.macro), DS4Controls.None, keyType);

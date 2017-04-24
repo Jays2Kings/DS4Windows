@@ -57,11 +57,17 @@ namespace DS4Windows
         bool runningBat;
         //bool outputlog = false;
 
+        internal const int BCM_FIRST = 0x1600; // Normal button
+        internal const int BCM_SETSHIELD = (BCM_FIRST + 0x000C); // Elevated button
+
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
         private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
+        [DllImport("user32.dll")]
+        private static extern int SendMessage(IntPtr hwnd, int wMsg, int wParam, uint lParam);
 
         [DllImport("kernel32.dll")]
         private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
@@ -344,6 +350,16 @@ namespace DS4Windows
             {
                 StartWindowsCheckBox.Checked = true;
                 runStartupPanel.Visible = true;
+
+                if (Global.IsAdministrator())
+                {
+                    runStartTaskRadio.Enabled = true;
+                }
+                else
+                {
+                    runStartTaskRadio.Enabled = false;
+                }
+
                 string lnkpath = WinProgs.ResolveShortcutAndArgument(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
                 string onlylnkpath = WinProgs.ResolveShortcut(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
                 if (!lnkpath.EndsWith("-runtask"))
@@ -361,6 +377,8 @@ namespace DS4Windows
                     appShortcutToStartup();
                     changeStartupRoutine();
                 }
+
+                SendMessage(uacTaskButton.Handle, BCM_SETSHIELD, 0, 1);
             }
 
             UpdateTheUpdater();
@@ -869,53 +887,61 @@ namespace DS4Windows
             else
                 ControllerStatusChanged();
         }
+
         protected void ControllerStatusChanged()
         {
             String tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
             bool nocontrollers = true;
+            DS4Device[] devices = Program.rootHub.DS4Controllers;
+            int controllerLen = devices.Length;
             for (Int32 Index = 0, PadsLen = Pads.Length; Index < PadsLen; Index++)
             {
-                Pads[Index].Text = Program.rootHub.getDS4MacAddress(Index);
-                DS4Device d = Program.rootHub.DS4Controllers[Index];
-
-                switch (Program.rootHub.getDS4Status(Index))
+                // Make sure a controller exists
+                if (Index < controllerLen)
                 {
-                    case "USB": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.USB; toolTip1.SetToolTip(statPB[Index], ""); break;
-                    case "BT": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
-                    case "SONYWA": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
-                    default: statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], ""); break;
-                }
+                    Pads[Index].Text = Program.rootHub.getDS4MacAddress(Index);
+                    DS4Device d = devices[Index];
 
-                Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
-                if (Pads[Index].Text != String.Empty)
-                {
-                    if (runningBat)
+                    switch (Program.rootHub.getDS4Status(Index))
                     {
-                        SendKeys.Send("A");
-                        runningBat = false;
+                        case "USB": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.USB; toolTip1.SetToolTip(statPB[Index], ""); break;
+                        case "BT": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
+                        case "SONYWA": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
+                        default: statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], ""); break;
                     }
-                    Pads[Index].Enabled = true;
-                    nocontrollers = false;
-                    if (Pads[Index].Text != Properties.Resources.Connecting)
+
+                    Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
+                    if (Pads[Index].Text != String.Empty)
                     {
-                        Enable_Controls(Index, true);
-                        //if (opt != null)
-                       // if (opt.Visible && tabMain.SelectedIndex == 1)
+                        if (runningBat)
+                        {
+                            SendKeys.Send("A");
+                            runningBat = false;
+                        }
+
+                        Pads[Index].Enabled = true;
+                        nocontrollers = false;
+                        if (Pads[Index].Text != Properties.Resources.Connecting)
+                        {
+                            Enable_Controls(Index, true);
+                            //if (opt != null)
+                            // if (opt.Visible && tabMain.SelectedIndex == 1)
                             //opt.inputtimer.Start();
-                        //MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
+                            //MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
+                        }
+                        else
+                            opt.inputtimer.Stop();
                     }
                     else
-                        opt.inputtimer.Stop();
+                    {
+                        Pads[Index].Text = Properties.Resources.Disconnected;
+                        Enable_Controls(Index, false);
+                    }
+                    //if (((Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index)).Length > 50)
+                    //MessageBox.Show(((Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index)).Length.ToString());
+                    if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
+                        tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
                 }
-                else
-                {
-                    Pads[Index].Text = Properties.Resources.Disconnected;
-                    Enable_Controls(Index, false);
-                }
-                //if (((Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index)).Length > 50)
-                //MessageBox.Show(((Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index)).Length.ToString());
-                if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
-                    tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
             }
 
             lbNoControllers.Visible = nocontrollers;

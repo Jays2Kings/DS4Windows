@@ -377,8 +377,6 @@ namespace DS4Windows
                     appShortcutToStartup();
                     changeStartupRoutine();
                 }
-
-                SendMessage(uacTaskButton.Handle, BCM_SETSHIELD, 0, 1);
             }
 
             UpdateTheUpdater();

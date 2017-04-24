@@ -1200,10 +1200,10 @@ namespace DS4Windows
                         switch (dc)
                         {
                             case DS4Controls.L1: MappedState.L1 = true; break;
-                            case DS4Controls.L2: MappedState.L2 = getByteMapping(device, key, cState, eState, tp); break;
+                            case DS4Controls.L2: MappedState.L2 = getByteMapping2(device, key, cState, eState, tp, fieldMapping); break;
                             case DS4Controls.L3: MappedState.L3 = true; break;
                             case DS4Controls.R1: MappedState.R1 = true; break;
-                            case DS4Controls.R2: MappedState.R2 = getByteMapping(device, key, cState, eState, tp); break;
+                            case DS4Controls.R2: MappedState.R2 = getByteMapping2(device, key, cState, eState, tp, fieldMapping); break;
                             case DS4Controls.R3: MappedState.R3 = true; break;
                             default: break;
                         }
@@ -1230,13 +1230,13 @@ namespace DS4Windows
                                     {
                                         if (dc == DS4Controls.LXNeg)
                                         {
-                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp, true);
+                                            byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
                                             if (Math.Abs(127 - axisMapping) > 5)
                                                 MappedState.LX = axisMapping;
                                         }
                                         else
                                         {
-                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp);
+                                            byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
                                             if (Math.Abs(127 - axisMapping) > 5)
                                                 MappedState.LX = axisMapping;
                                         }
@@ -1251,13 +1251,13 @@ namespace DS4Windows
                                     {
                                         if (dc == DS4Controls.LYNeg)
                                         {
-                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp);
+                                            byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
                                             if (Math.Abs(127 - axisMapping) > 5)
                                                 MappedState.LY = axisMapping;
                                         }
                                         else
                                         {
-                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp, true);
+                                            byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
                                             if (Math.Abs(127 - axisMapping) > 5)
                                                 MappedState.LY = axisMapping;
                                         }
@@ -1272,13 +1272,13 @@ namespace DS4Windows
                                     {
                                         if (dc == DS4Controls.RXNeg)
                                         {
-                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp);
+                                            byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
                                             if (Math.Abs(127 - axisMapping) > 5)
                                                 MappedState.RX = axisMapping;
                                         }
                                         else
                                         {
-                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp, true);
+                                            byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
                                             if (Math.Abs(127 - axisMapping) > 5)
                                                 MappedState.RX = axisMapping;
                                         }
@@ -1293,13 +1293,13 @@ namespace DS4Windows
                                     {
                                         if (dc == DS4Controls.RYNeg)
                                         {
-                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp);
+                                            byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
                                             if (Math.Abs(127 - axisMapping) > 5)
                                                 MappedState.RY = axisMapping;
                                         }
                                         else
                                         {
-                                            byte axisMapping = getXYAxisMapping(device, key, cState, eState, tp, true);
+                                            byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
                                             if (Math.Abs(127 - axisMapping) > 5)
                                                 MappedState.RY = axisMapping;
                                         }
@@ -2095,7 +2095,8 @@ namespace DS4Windows
             }
         }
 
-        private static void getMouseWheelMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp, bool down)
+        private static void getMouseWheelMapping(int device, DS4Controls control, DS4State cState,
+            DS4StateExposed eState, Mouse tp, bool down)
         {
             DateTime now = DateTime.UtcNow;
             if (now >= oldnow + TimeSpan.FromMilliseconds(10) && !pressagain)
@@ -2270,6 +2271,83 @@ namespace DS4Windows
             if (Math.Abs(b1 - b2) > 10)
             {
                 result = false;
+            }
+
+            return result;
+        }
+
+        private static byte getByteMapping2(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp,
+            DS4StateFieldMapping fieldMap)
+        {
+            byte result = 0;
+
+            int controlNum = (int)control;
+            DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[controlNum];
+            if (controlType == DS4StateFieldMapping.ControlType.Button)
+            {
+                result = (byte)(fieldMap.buttons[controlNum] ? 255 : 0);
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.AxisDir)
+            {
+                byte axisValue = fieldMap.axisdirs[controlNum];
+
+                switch (control)
+                {
+                    case DS4Controls.LXNeg: result = (byte)(axisValue - 127.5f > 0 ? 0 : -(axisValue - 127.5f) * 2); break;
+                    case DS4Controls.LYNeg: result = (byte)(axisValue - 127.5f > 0 ? 0 : -(axisValue - 127.5f) * 2); break;
+                    case DS4Controls.RXNeg: result = (byte)(axisValue - 127.5f > 0 ? 0 : -(axisValue - 127.5f) * 2); break;
+                    case DS4Controls.RYNeg: result = (byte)(axisValue - 127.5f > 0 ? 0 : -(axisValue - 127.5f) * 2); break;
+                    default: result = (byte)(axisValue - 127.5f < 0 ? 0 : (axisValue - 127.5f) * 2); break;
+                }
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.Trigger)
+            {
+                result = fieldMap.triggers[controlNum];
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.Touch)
+            {
+                result = (byte)(tp != null && fieldMap.buttons[controlNum] ? 255 : 0);
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.SwipeDir)
+            {
+                result = (byte)(tp != null ? fieldMap.swipedirs[controlNum] : 0);
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
+            {
+                double SXD = getSXDeadzone(device);
+                double SZD = getSZDeadzone(device);
+                bool sOff = isUsingSAforMouse(device);
+                double sxsens = getSXSens(device);
+                double szsens = getSZSens(device);
+
+                switch (control)
+                {
+                    case DS4Controls.GyroXPos:
+                    {
+                        int gyroX = fieldMap.gryodirs[controlNum];
+                        result = (byte)(!sOff && sxsens * gyroX > SXD * 10 ? Math.Min(255, sxsens * gyroX * 2) : 0);
+                        break;
+                    }
+                    case DS4Controls.GyroXNeg:
+                    {
+                        int gyroX = fieldMap.gryodirs[controlNum];
+                        result = (byte)(!sOff && sxsens * gyroX < -SXD * 10 ? Math.Min(255, sxsens * -gyroX * 2) : 0);
+                        break;
+                    }
+                    case DS4Controls.GyroZPos:
+                    {
+                        int gyroZ = fieldMap.gryodirs[controlNum];
+                        result = (byte)(!sOff && szsens * gyroZ > SZD * 10 ? Math.Min(255, szsens * gyroZ * 2) : 0);
+                        break;
+                    }
+                    case DS4Controls.GyroZNeg:
+                    {
+                        int gyroZ = fieldMap.gryodirs[controlNum];
+                        result = (byte)(!sOff && szsens * gyroZ < -SZD * 10 ? Math.Min(255, szsens * -gyroZ * 2) : 0);
+                        break;
+                    }
+                    default: break;
+                }
             }
 
             return result;
@@ -2949,6 +3027,109 @@ namespace DS4Windows
         public static bool getBoolTouchMapping(bool touchButton)
         {
             return touchButton;
+        }
+
+        private static byte getXYAxisMapping2(int device, DS4Controls control, DS4State cState,
+            DS4StateExposed eState, Mouse tp, DS4StateFieldMapping fieldMap, bool alt = false)
+        {
+            byte result = 0;
+            byte trueVal = 0;
+            byte falseVal = 127;
+
+            if (alt)
+                trueVal = 255;
+
+            int controlNum = (int)control;
+            DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[controlNum];
+
+            if (controlType == DS4StateFieldMapping.ControlType.Button)
+            {
+                result = (byte)(fieldMap.buttons[controlNum] ? trueVal : falseVal);
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.AxisDir)
+            {
+                byte axisValue = fieldMap.axisdirs[controlNum];
+
+                switch (control)
+                {
+                    case DS4Controls.LXNeg: if (!alt) result = cState.LX; else result = (byte)(255 - cState.LX); break;
+                    case DS4Controls.LYNeg: if (!alt) result = cState.LY; else result = (byte)(255 - cState.LY); break;
+                    case DS4Controls.RXNeg: if (!alt) result = cState.RX; else result = (byte)(255 - cState.RX); break;
+                    case DS4Controls.RYNeg: if (!alt) result = cState.RY; else result = (byte)(255 - cState.RY); break;
+                    default: if (!alt) result = (byte)(255 - axisValue); else result = axisValue; break;
+                }
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.Trigger)
+            {
+                if (alt)
+                {
+                    result = (byte)(127.5f + fieldMap.triggers[controlNum] / 2f);
+                }
+                else
+                {
+                    result = (byte)(127.5f - fieldMap.triggers[controlNum] / 2f);
+                }
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.Touch)
+            {
+                result = (byte)(fieldMap.buttons[controlNum] ? trueVal : falseVal);
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.SwipeDir)
+            {
+                if (alt)
+                {
+                    result = (byte)(tp != null ? 127.5f + fieldMap.swipedirs[controlNum] / 2f : 0);
+                }
+                else
+                {
+                    result = (byte)(tp != null ? 127.5f - fieldMap.swipedirs[controlNum] / 2f : 0);
+                }
+            }
+            else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
+            {
+                double SXD = getSXDeadzone(device);
+                double SZD = getSZDeadzone(device);
+                bool sOff = isUsingSAforMouse(device);
+
+                if (control == DS4Controls.GyroXNeg || control == DS4Controls.GyroZNeg)
+                {
+                    if (!sOff && fieldMap.gryodirs[controlNum] < -SXD * 10)
+                    {
+                        if (alt)
+                        {
+                            result = (byte)Math.Min(255, 127 + SXSens[device] * -fieldMap.gryodirs[controlNum]);
+                        }
+                        else
+                        {
+                            result = (byte)Math.Max(0, 127 - SXSens[device] * -fieldMap.gryodirs[controlNum]);
+                        }
+                    }
+                    else
+                    {
+                        result = falseVal;
+                    }
+                }
+                else
+                {
+                    if (!sOff && fieldMap.gryodirs[controlNum] > SXD * 10)
+                    {
+                        if (alt)
+                        {
+                            result = (byte)Math.Min(255, 127 + SXSens[device] * fieldMap.gryodirs[controlNum]);
+                        }
+                        else
+                        {
+                            result = (byte)Math.Max(0, 127 - SXSens[device] * fieldMap.gryodirs[controlNum]);
+                        }
+                    }
+                    else
+                    {
+                        result = falseVal;
+                    }
+                }
+            }
+
+            return result;
         }
 
         public static byte getXYAxisMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState, Mouse tp, bool alt = false)

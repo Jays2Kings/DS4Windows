@@ -351,7 +351,7 @@ namespace DS4Windows
                     return Properties.Resources.Connecting;
                 }
 
-                String battery;
+                string battery;
                 if (d.isCharging())
                 {
                     if (d.getBattery() >= 100)
@@ -368,7 +368,7 @@ namespace DS4Windows
                 //return d.MacAddress + " (" + d.ConnectionType + "), Battery is " + battery + ", Touchpad in " + modeSwitcher[index].ToString();
             }
             else
-                return String.Empty;
+                return string.Empty;
         }
 
         public string getDS4MacAddress(int index)
@@ -388,7 +388,7 @@ namespace DS4Windows
                 return d.getMacAddress();
             }
             else
-                return String.Empty;
+                return string.Empty;
         }
 
         public string getShortDS4ControllerInfo(int index)
@@ -687,6 +687,7 @@ namespace DS4Windows
 
                 if (temp != eCode)
                     Console.WriteLine(eCode);
+
                 buttonsdown[ind] = true;
             }
             else if (!pb)
@@ -1050,8 +1051,10 @@ namespace DS4Windows
                 heavyBoosted = 255;
 
             if (deviceNum < 4)
+            {
                 if (DS4Controllers[deviceNum] != null)
                     DS4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
+            }
         }
 
         public DS4State getDS4State(int ind)

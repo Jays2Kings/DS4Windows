@@ -24,6 +24,7 @@ namespace DS4Windows
     {
         public string[] arguements;
         delegate void LogDebugDelegate(DateTime Time, String Data, bool warning);
+        delegate void NotificationDelegate(object sender, DebugEventArgs args);
         protected Label[] Pads, Batteries;
         protected ComboBox[] cbs;
         protected Button[] ebns;
@@ -324,6 +325,7 @@ namespace DS4Windows
                 cBUpdateTime.SelectedIndex = 0;
                 nUDUpdateTime.Value = checkwhen;
             }
+
             Uri url = new Uri("http://23.236.26.40/ds4windows/files/builds/newest.txt"); //Sorry other devs, gonna have to find your own server
 
 
@@ -380,7 +382,6 @@ namespace DS4Windows
             }
 
             UpdateTheUpdater();
-
 
             this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
         }
@@ -508,39 +509,52 @@ namespace DS4Windows
             lbTest.Visible = true;
             lbTest.Text = ((int)(Program.rootHub.ExposedState[0].AccelX * 2) / 2f).ToString();
         }
+
         void Hotkeys(object sender, EventArgs e)
         {
             if (SwipeProfiles)
+            {
                 for (int i = 0; i < 4; i++)
                 {
                     string slide = Program.rootHub.TouchpadSlide(i);
                     if (slide == "left")
+                    {
                         if (cbs[i].SelectedIndex <= 0)
                             cbs[i].SelectedIndex = cbs[i].Items.Count - 2;
                         else
                             cbs[i].SelectedIndex--;
+
+                    }
                     else if (slide == "right")
+                    {
                         if (cbs[i].SelectedIndex == cbs[i].Items.Count - 2)
                             cbs[i].SelectedIndex = 0;
                         else
                             cbs[i].SelectedIndex++;
+                    }
+
                     if (slide.Contains("t"))
                         ShowNotification(this, Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", cbs[i].Text));
                 }
+            }
 
             //Check for process for auto profiles
             if (tempProfileProgram == "null")
+            {
                 for (int i = 0; i < programpaths.Count; i++)
                 {
                     string name = programpaths[i].ToLower().Replace('/', '\\');
                     if (name == GetTopWindowName().ToLower().Replace('/', '\\'))
                     {
                         for (int j = 0; j < 4; j++)
+                        {
                             if (proprofiles[j][i] != "(none)" && proprofiles[j][i] != Properties.Resources.noneProfile)
                             {
                                 LoadTempProfile(j, proprofiles[j][i], true, Program.rootHub); //j is controller index, i is filename
                                 if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
                             }
+                        }
+
                         if (turnOffTempProfiles[i])
                         {
                             turnOffTemp = true;
@@ -551,10 +565,12 @@ namespace DS4Windows
                                 btnStartStop.Text = Properties.Resources.StartText;
                             }
                         }
+
                         tempProfileProgram = name;
                         break;
                     }
                 }
+            }
             else
             {
                 if (tempProfileProgram != GetTopWindowName().ToLower().Replace('/', '\\'))
@@ -562,6 +578,7 @@ namespace DS4Windows
                     tempProfileProgram = "null";
                     for (int j = 0; j < 4; j++)
                         LoadProfile(j, false, Program.rootHub);
+
                     if (turnOffTemp)
                     {
                         turnOffTemp = false;
@@ -573,6 +590,7 @@ namespace DS4Windows
                     }
                 }
             }
+
             if (bat != null && bat.HasExited && runningBat)
             {
                 Process.Start("explorer.exe");
@@ -767,6 +785,7 @@ namespace DS4Windows
             WP.Dock = DockStyle.Fill;
             tabAutoProfiles.Controls.Add(WP);
         }
+
         protected void LogDebug(DateTime Time, String Data, bool warning)
         {
             if (lvDebug.InvokeRequired)
@@ -774,7 +793,9 @@ namespace DS4Windows
                 LogDebugDelegate d = new LogDebugDelegate(LogDebug);
                 try
                 {
-                    this.Invoke(d, new Object[] { Time, Data, warning });
+                    // Make sure to invoke method asynchronously instead of waiting for result
+                    this.BeginInvoke(d, new object[] { Time, Data, warning });
+                    //this.Invoke(d, new object[] { Time, Data, warning });
                 }
                 catch { }
             }
@@ -783,7 +804,7 @@ namespace DS4Windows
                 String Posted = Time.ToString("G");
                 lvDebug.Items.Add(new ListViewItem(new String[] { Posted, Data })).EnsureVisible();
                 if (warning) lvDebug.Items[lvDebug.Items.Count - 1].ForeColor = Color.Red;
-                //Added alternative
+                // Added alternative
                 lbLastMessage.Text = Data;
                 lbLastMessage.ForeColor = (warning ? Color.Red : SystemColors.GrayText);
             }
@@ -791,11 +812,25 @@ namespace DS4Windows
 
         protected void ShowNotification(object sender, DebugEventArgs args)
         {
-            if (Form.ActiveForm != this && (Notifications == 2 || (Notifications == 1 && args.Warning) || sender != null))
+            if (this.InvokeRequired)
             {
-                this.notifyIcon1.BalloonTipText = args.Data;
-                notifyIcon1.BalloonTipTitle = "DS4Windows";
-                notifyIcon1.ShowBalloonTip(1);
+                NotificationDelegate d = new NotificationDelegate(ShowNotification);
+
+                try
+                {
+                    // Make sure to invoke method asynchronously instead of waiting for result
+                    this.BeginInvoke(d, new object[] { sender, args });
+                }
+                catch { }
+            }
+            else
+            {
+                if (Form.ActiveForm != this && (Notifications == 2 || (Notifications == 1 && args.Warning) || sender != null))
+                {
+                    this.notifyIcon1.BalloonTipText = args.Data;
+                    notifyIcon1.BalloonTipTitle = "DS4Windows";
+                    notifyIcon1.ShowBalloonTip(1);
+                }
             }
         }
 

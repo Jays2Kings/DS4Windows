@@ -145,13 +145,13 @@ namespace DS4Windows
                         {
                             if (System.IO.File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[i] + ".xml"))
                             {
-                                string prolog = Properties.Resources.UsingProfile.Replace("*number*", i.ToString()).Replace("*Profile name*", ProfilePath[i]);
+                                string prolog = Properties.Resources.UsingProfile.Replace("*number*", (i+1).ToString()).Replace("*Profile name*", ProfilePath[i]);
                                 LogDebug(prolog);
                                 Log.LogToTray(prolog);
                             }
                             else
                             {
-                                string prolog = Properties.Resources.NotUsingProfile.Replace("*number*", (i).ToString());
+                                string prolog = Properties.Resources.NotUsingProfile.Replace("*number*", (i+1).ToString());
                                 LogDebug(prolog);
                                 Log.LogToTray(prolog);
                             }

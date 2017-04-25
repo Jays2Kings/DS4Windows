@@ -90,7 +90,7 @@ namespace DS4Windows
 
         private async void WarnExclusiveModeFailure(DS4Device device)
         {
-            if (DS4Devices.isExclusiveMode && !device.IsExclusive)
+            if (DS4Devices.isExclusiveMode && !device.isExclusive())
             {
                 await System.Threading.Tasks.Task.Delay(5);
                 String message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.getMacAddress()) + " " + Properties.Resources.QuitOtherPrograms;
@@ -104,53 +104,60 @@ namespace DS4Windows
             if (x360Bus.Open() && x360Bus.Start())
             {
                 if (showlog)
-                LogDebug(Properties.Resources.Starting);
-                DS4Devices.isExclusiveMode = UseExclusiveMode;
+                    LogDebug(Properties.Resources.Starting);
+
+                DS4Devices.isExclusiveMode = getUseExclusiveMode();
                 if (showlog)
                 {
                     LogDebug(Properties.Resources.SearchingController);
                     LogDebug(DS4Devices.isExclusiveMode ?  Properties.Resources.UsingExclusive: Properties.Resources.UsingShared);
                 }
+
                 try
                 {
                     DS4Devices.findControllers();
                     IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
-                    int ind = 0;
+                    //int ind = 0;
                     DS4LightBar.defaultLight = false;
-                    foreach (DS4Device device in devices)
+                    //foreach (DS4Device device in devices)
+                    for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                     {
+                        DS4Device device = devices.ElementAt<DS4Device>(i);
                         if (showlog)
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
+
                         WarnExclusiveModeFailure(device);
-                        DS4Controllers[ind] = device;
+                        DS4Controllers[i] = device;
                         device.Removal -= DS4Devices.On_Removal;
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
-                        touchPad[ind] = new Mouse(ind, device);
-                        device.LightBarColor = MainColor[ind];
-                        if (!DinputOnly[ind])
-                            x360Bus.Plugin(ind);
+                        touchPad[i] = new Mouse(i, device);
+                        device.LightBarColor = getMainColor(i);
+
+                        if (!getDInputOnly(i))
+                            x360Bus.Plugin(i);
+
                         device.Report += this.On_Report;
-                        TouchPadOn(ind, device);
+                        TouchPadOn(i, device);
                         //string filename = ProfilePath[ind];
-                        ind++;
+                        //ind++;
                         if (showlog)
                         {
-                            if (System.IO.File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[ind - 1] + ".xml"))
+                            if (System.IO.File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[i] + ".xml"))
                             {
-                                string prolog = Properties.Resources.UsingProfile.Replace("*number*", ind.ToString()).Replace("*Profile name*", ProfilePath[ind - 1]);
+                                string prolog = Properties.Resources.UsingProfile.Replace("*number*", i.ToString()).Replace("*Profile name*", ProfilePath[i]);
                                 LogDebug(prolog);
                                 Log.LogToTray(prolog);
                             }
                             else
                             {
-                                string prolog = Properties.Resources.NotUsingProfile.Replace("*number*", (ind).ToString());
+                                string prolog = Properties.Resources.NotUsingProfile.Replace("*number*", (i).ToString());
                                 LogDebug(prolog);
                                 Log.LogToTray(prolog);
                             }
                         }
 
-                        if (ind >= 4) // out of Xinput devices!
+                        if (i >= 4) // out of Xinput devices!
                             break;
                     }
                 }
@@ -159,9 +166,12 @@ namespace DS4Windows
                     LogDebug(e.Message);
                     Log.LogToTray(e.Message);
                 }
-                running = true;
 
+                running = true;
             }
+
+            ControllerStatusChanged(this);
+
             return true;
         }
 
@@ -172,18 +182,19 @@ namespace DS4Windows
                 running = false;
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingX360);
+
                 bool anyUnplugged = false;                
                 for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
                 {
                     if (DS4Controllers[i] != null)
                     {
-                        if (DCBTatStop && !DS4Controllers[i].Charging && showlog)
+                        if (DCBTatStop && !DS4Controllers[i].isCharging() && showlog)
                         {
-                            if (DS4Controllers[i].ConnectionType == ConnectionType.BT)
+                            if (DS4Controllers[i].getConnectionType() == ConnectionType.BT)
                             {
                                 DS4Controllers[i].DisconnectBT();
                             }
-                            else if (DS4Controllers[i].ConnectionType == ConnectionType.SONYWA)
+                            else if (DS4Controllers[i].getConnectionType() == ConnectionType.SONYWA)
                             {
                                 DS4Controllers[i].DisconnectDongle(true);
                             }
@@ -203,6 +214,7 @@ namespace DS4Windows
                         touchPad[i] = null;
                     }
                 }
+
                 if (anyUnplugged)
                     System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
 
@@ -218,6 +230,7 @@ namespace DS4Windows
 
                 ControllerStatusChanged(this);
             }
+
             return true;
         }
 
@@ -235,7 +248,7 @@ namespace DS4Windows
                     if (device.isDisconnectingStatus())
                         continue;
 
-                    if (QuickCharge && device?.getConnectionType() == ConnectionType.BT &&
+                    if (getQuickCharge() && device?.getConnectionType() == ConnectionType.BT &&
                         (bool)device?.isCharging())
                     {
                         device.DisconnectBT();
@@ -268,7 +281,7 @@ namespace DS4Windows
                             touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = MainColor[Index];
                             device.Report += this.On_Report;
-                            if (!DinputOnly[Index])
+                            if (!getDInputOnly(Index))
                                 x360Bus.Plugin(Index);
                             TouchPadOn(Index, device);
 
@@ -290,6 +303,8 @@ namespace DS4Windows
                         }
                     }
                 }
+
+                ControllerStatusChanged(this);
             }
 
             return true;
@@ -549,7 +564,8 @@ namespace DS4Windows
                 // Currently updates status of all devices in DS4Form when any battery
                 // state change occurs.
                 if (pState.Battery != cState.Battery)
-                    ControllerStatusChanged(this);
+                    OnBatteryStatusChange(this, ind, cState.Battery);
+                    //ControllerStatusChanged(this);
 
                 CheckForHotkeys(ind, cState, pState);
 

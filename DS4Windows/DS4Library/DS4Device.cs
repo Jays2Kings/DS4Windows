@@ -167,6 +167,10 @@ namespace DS4Windows
 
         public HidDevice HidDevice => hDevice;
         public bool IsExclusive => HidDevice.IsExclusive;
+        public bool isExclusive()
+        {
+            return HidDevice.IsExclusive;
+        }
         private bool isDisconnecting = false;
         public bool IsDisconnecting
         {

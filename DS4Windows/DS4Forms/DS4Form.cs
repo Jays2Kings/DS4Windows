@@ -25,6 +25,7 @@ namespace DS4Windows
         public string[] arguements;
         delegate void LogDebugDelegate(DateTime Time, String Data, bool warning);
         delegate void NotificationDelegate(object sender, DebugEventArgs args);
+        delegate void BatteryStatusDelegate(object sender, BatteryReportArgs args);
         protected Label[] Pads, Batteries;
         protected ComboBox[] cbs;
         protected Button[] ebns;
@@ -300,6 +301,7 @@ namespace DS4Windows
             }
             LoadP();
             Global.ControllerStatusChange += ControllerStatusChange;
+            Global.BatteryStatusChange += BatteryStatusUpdate;
             Enable_Controls(0, false);
             Enable_Controls(1, false);
             Enable_Controls(2, false);
@@ -919,6 +921,30 @@ namespace DS4Windows
                 Invoke(new ControllerStatusChangedDelegate(ControllerStatusChange), new object[] { sender, e });
             else
                 ControllerStatusChanged();
+        }
+
+        protected void BatteryStatusUpdate(object sender, BatteryReportArgs args)
+        {
+            if (this.InvokeRequired)
+            {
+                try
+                {
+                    BatteryStatusDelegate d = new BatteryStatusDelegate(BatteryStatusUpdate);
+                    this.BeginInvoke(d, new object[] { sender, args });
+                }
+                catch { }
+            }
+            else
+            {
+                string battery;
+                int level = args.getLevel();
+                if (level >= 100)
+                    battery = Properties.Resources.Full;
+                else
+                    battery = level + "%+";
+
+                Batteries[args.getIndex()].Text = battery;
+            }
         }
 
         protected void ControllerStatusChanged()

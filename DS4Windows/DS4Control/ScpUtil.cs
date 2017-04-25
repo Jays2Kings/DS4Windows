@@ -142,6 +142,28 @@ namespace DS4Windows
         }
     }
 
+    public class BatteryReportArgs: EventArgs
+    {
+        private int index;
+        private int level;
+
+        public BatteryReportArgs(int index, int level)
+        {
+            this.index = index;
+            this.level = level;
+        }
+
+        public int getIndex()
+        {
+            return this.index;
+        }
+
+        public int getLevel()
+        {
+            return this.level;
+        }
+    }
+
     public class MultiValueDict<Key, Value> : Dictionary<Key, List<Value>>
     {
         public void Add(Key key, Value val)
@@ -213,11 +235,25 @@ namespace DS4Windows
                 ControllerStatusChange(sender, EventArgs.Empty);
         }
 
+        public static event EventHandler<BatteryReportArgs> BatteryStatusChange;
+        public static void OnBatteryStatusChange(object sender, int index, int level)
+        {
+            if (BatteryStatusChange != null)
+            {
+                BatteryReportArgs args = new BatteryReportArgs(index, level);
+                BatteryStatusChange(sender, args);
+            }
+        }
+
         //general values
         public static bool UseExclusiveMode
         {
             set { m_Config.useExclusiveMode = value; }
             get { return m_Config.useExclusiveMode; }
+        }
+        public static bool getUseExclusiveMode()
+        {
+            return m_Config.useExclusiveMode;
         }
 
         public static DateTime LastChecked
@@ -255,6 +291,10 @@ namespace DS4Windows
         {
             set { m_Config.quickCharge = value; }
             get { return m_Config.quickCharge; }
+        }
+        public static bool getQuickCharge()
+        {
+            return m_Config.quickCharge;
         }
         public static int FirstXinputPort
         {
@@ -356,6 +396,10 @@ namespace DS4Windows
             return m_Config.chargingType[index];
         }
         public static bool[] DinputOnly => m_Config.dinputOnly; 
+        public static bool getDInputOnly(int index)
+        {
+            return m_Config.dinputOnly[index];
+        }
         public static bool[] StartTouchpadOff => m_Config.startTouchpadOff; 
         public static bool[] UseTPforControls => m_Config.useTPforControls;
         public static bool getUseTPforControls(int index)

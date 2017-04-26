@@ -26,6 +26,7 @@ namespace DS4Windows
         delegate void LogDebugDelegate(DateTime Time, String Data, bool warning);
         delegate void NotificationDelegate(object sender, DebugEventArgs args);
         delegate void BatteryStatusDelegate(object sender, BatteryReportArgs args);
+        delegate void ControllerRemovedDelegate(object sender, ControllerRemovedArgs args);
         protected Label[] Pads, Batteries;
         protected ComboBox[] cbs;
         protected Button[] ebns;
@@ -302,6 +303,7 @@ namespace DS4Windows
             LoadP();
             Global.ControllerStatusChange += ControllerStatusChange;
             Global.BatteryStatusChange += BatteryStatusUpdate;
+            Global.ControllerRemoved += ControllerRemovedChange;
             Enable_Controls(0, false);
             Enable_Controls(1, false);
             Enable_Controls(2, false);
@@ -919,14 +921,6 @@ namespace DS4Windows
             catch { }
         }
 
-        protected void ControllerStatusChange(object sender, EventArgs e)
-        {
-            if (InvokeRequired)
-                Invoke(new ControllerStatusChangedDelegate(ControllerStatusChange), new object[] { sender, e });
-            else
-                ControllerStatusChanged();
-        }
-
         protected void BatteryStatusUpdate(object sender, BatteryReportArgs args)
         {
             if (this.InvokeRequired)
@@ -949,6 +943,50 @@ namespace DS4Windows
 
                 Batteries[args.getIndex()].Text = battery;
             }
+        }
+
+        protected void ControllerRemovedChange(object sender, ControllerRemovedArgs args)
+        {
+            if (this.InvokeRequired)
+            {
+                try
+                {
+                    ControllerRemovedDelegate d = new ControllerRemovedDelegate(ControllerRemovedChange);
+                    this.BeginInvoke(d, new object[] { sender, args });
+                }
+                catch { }
+            }
+            else
+            {
+                int devIndex = args.getIndex();
+                Pads[devIndex].Text = Properties.Resources.Disconnected;
+                Enable_Controls(devIndex, false);
+                statPB[devIndex].Visible = false;
+                toolTip1.SetToolTip(statPB[devIndex], "");
+
+                DS4Device[] devices = Program.rootHub.DS4Controllers;
+                int controllerLen = devices.Length;
+                bool nocontrollers = true;
+                for (Int32 i = 0, PadsLen = Pads.Length; nocontrollers && i < PadsLen; i++)
+                {
+                    DS4Device d = devices[i];
+                    if (d != null)
+                    {
+                        nocontrollers = false;
+                    }
+                }
+
+                lbNoControllers.Visible = nocontrollers;
+                tLPControllers.Visible = !nocontrollers;
+            }
+        }
+
+        protected void ControllerStatusChange(object sender, EventArgs e)
+        {
+            if (InvokeRequired)
+                Invoke(new ControllerStatusChangedDelegate(ControllerStatusChange), new object[] { sender, e });
+            else
+                ControllerStatusChanged();
         }
 
         protected void ControllerStatusChanged()
@@ -1009,7 +1047,6 @@ namespace DS4Windows
 
             lbNoControllers.Visible = nocontrollers;
             tLPControllers.Visible = !nocontrollers;
-            btnClear.Enabled = lvDebug.Items.Count > 0;
             if (tooltip.Length > 63)
                 notifyIcon1.Text = tooltip.Substring(0, 63);
             else
@@ -1214,8 +1251,13 @@ namespace DS4Windows
             toolStrip1.Visible = true;
             toolStrip1.Enabled = true;
             lbLastMessage.ForeColor = SystemColors.GrayText;
-            lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
+            int lvDebugItemCount = lvDebug.Items.Count;
+            if (lvDebugItemCount > 0)
+            {
+                lbLastMessage.Text = lvDebug.Items[lvDebugItemCount - 1].SubItems[1].Text;
+            }
         }
+
         private void editButtons_Click(object sender, EventArgs e)
         {
             Button bn = (Button)sender;

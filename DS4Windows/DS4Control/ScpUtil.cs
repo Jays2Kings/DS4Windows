@@ -51,7 +51,7 @@ namespace DS4Windows
             shiftExtras = null;
             shiftKeyType = DS4KeyType.None;
         }
-    
+
         internal void UpdateSettings(bool shift, object act, string exts, DS4KeyType kt, int trigger = 0)
         {
             if (!shift)
@@ -142,7 +142,7 @@ namespace DS4Windows
         }
     }
 
-    public class BatteryReportArgs: EventArgs
+    public class BatteryReportArgs : EventArgs
     {
         private int index;
         private int level;
@@ -161,6 +161,21 @@ namespace DS4Windows
         public int getLevel()
         {
             return this.level;
+        }
+    }
+
+    public class ControllerRemovedArgs : EventArgs
+    {
+        private int index;
+
+        public ControllerRemovedArgs(int index)
+        {
+            this.index = index;
+        }
+
+        public int getIndex()
+        {
+            return this.index;
         }
     }
 
@@ -243,6 +258,16 @@ namespace DS4Windows
             {
                 BatteryReportArgs args = new BatteryReportArgs(index, level);
                 BatteryStatusChange(sender, args);
+            }
+        }
+
+        public static event EventHandler<ControllerRemovedArgs> ControllerRemoved;
+        public static void OnControllerRemoved(object sender, int index)
+        {
+            if (ControllerRemoved != null)
+            {
+                ControllerRemovedArgs args = new ControllerRemovedArgs(index);
+                ControllerRemoved(sender, args);
             }
         }
 
@@ -332,6 +357,10 @@ namespace DS4Windows
             set { m_Config.flashWhenLate = value; }
             get { return m_Config.flashWhenLate; }
         }
+        public static bool getFlashWhenLate()
+        {
+            return m_Config.flashWhenLate;
+        }
         public static int FlashWhenLateAt
         {
             set { m_Config.flashWhenLateAt = value; }
@@ -349,7 +378,11 @@ namespace DS4Windows
 
         //controller/profile specfic values
         public static int[] ButtonMouseSensitivity => m_Config.buttonMouseSensitivity;
-        public static byte[] RumbleBoost => m_Config.rumble; 
+        public static byte[] RumbleBoost => m_Config.rumble;
+        public static byte getRumbleBoost(int index)
+        {
+            return m_Config.rumble[index];
+        }
         public static double[] Rainbow => m_Config.rainbow;
         public static double getRainbow(int index)
         {

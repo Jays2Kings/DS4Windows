@@ -276,7 +276,9 @@ namespace DS4Windows
 
                         return false;
                     })())
+                    {
                         continue;
+                    }
 
                     for (Int32 Index = 0, arlength = DS4Controllers.Length; Index < arlength; Index++)
                     {
@@ -289,7 +291,7 @@ namespace DS4Windows
                             device.Removal += this.On_DS4Removal;
                             device.Removal += DS4Devices.On_Removal;
                             touchPad[Index] = new Mouse(Index, device);
-                            device.LightBarColor = MainColor[Index];
+                            device.LightBarColor = getMainColor(Index);
                             device.Report += this.On_Report;
                             if (!getDInputOnly(Index))
                                 x360Bus.Plugin(Index);
@@ -488,8 +490,10 @@ namespace DS4Windows
             DS4Device device = (DS4Device)sender;
             int ind = -1;
             for (int i = 0, arlength = DS4Controllers.Length; ind == -1 && i < arlength; i++)
+            {
                 if (DS4Controllers[i] != null && device.getMacAddress() == DS4Controllers[i].getMacAddress())
                     ind = i;
+            }
 
             if (ind != -1)
             {
@@ -520,7 +524,8 @@ namespace DS4Windows
                     touchPad[ind] = null;
                     lag[ind] = false;
                     inWarnMonitor[ind] = false;
-                    ControllerStatusChanged(this);
+                    OnControllerRemoved(this, ind);
+                    //ControllerStatusChanged(this);
                 }
             }
         }
@@ -570,9 +575,6 @@ namespace DS4Windows
                 device.getPreviousState(PreviousState[ind]);
                 DS4State pState = PreviousState[ind];
 
-                // Change routine to be more specific to a device.
-                // Currently updates status of all devices in DS4Form when any battery
-                // state change occurs.
                 if (pState.Battery != cState.Battery)
                     OnBatteryStatusChange(this, ind, cState.Battery);
                     //ControllerStatusChanged(this);
@@ -623,7 +625,7 @@ namespace DS4Windows
             {
                 lag[ind] = true;
                 LogDebug(Properties.Resources.LatencyOverTen.Replace("*number*", (ind + 1).ToString()), true);
-                if (FlashWhenLate)
+                if (getFlashWhenLate())
                 {
                     DS4Color color = new DS4Color { red = 50, green = 0, blue = 0 };
                     DS4LightBar.forcedColor[ind] = color;
@@ -1068,7 +1070,7 @@ namespace DS4Windows
         //sets the rumble adjusted with rumble boost
         public virtual void setRumble(byte heavyMotor, byte lightMotor, int deviceNum)
         {
-            byte boost = RumbleBoost[deviceNum];
+            byte boost = getRumbleBoost(deviceNum);
             uint lightBoosted = ((uint)lightMotor * (uint)boost) / 100;
             if (lightBoosted > 255)
                 lightBoosted = 255;

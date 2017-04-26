@@ -47,18 +47,31 @@ namespace DS4Windows
             colored = btnRainbow.Image;
             greyscale = GreyscaleImage((Bitmap)btnRainbow.Image);
             fLPSettings.FlowDirection = FlowDirection.TopDown;
+
             foreach (Control control in tPControls.Controls)
+            {
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                     buttons.Add((Button)control);
+            }
+
             foreach (Control control in fLPTouchSwipe.Controls)
+            {
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                     buttons.Add((Button)control);
+            }
+
             foreach (Control control in fLPTiltControls.Controls)
+            {
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                     buttons.Add((Button)control);
+            }
+
             foreach (Control control in pnlController.Controls)
+            {
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                     buttons.Add((Button)control);
+            }
+
             foreach (Button b in buttons)
             {
                 defaults.Add(b.Name, b.Text);
@@ -68,18 +81,27 @@ namespace DS4Windows
             foreach (System.Windows.Forms.Control control in Controls)
             {
                 if (control.HasChildren)
+                {
                     foreach (System.Windows.Forms.Control ctrl in control.Controls)
                     {
                         if (ctrl.HasChildren)
+                        {
                             foreach (System.Windows.Forms.Control ctrl2 in ctrl.Controls)
                             {
                                 if (ctrl2.HasChildren)
+                                {
                                     foreach (System.Windows.Forms.Control ctrl3 in ctrl2.Controls)
                                         ctrl3.MouseHover += Items_MouseHover;
+                                }
+
                                 ctrl2.MouseHover += Items_MouseHover;
                             }
+                        }
+
                         ctrl.MouseHover += Items_MouseHover;
                     }
+                }
+
                 control.MouseHover += Items_MouseHover;
             }
             
@@ -88,6 +110,7 @@ namespace DS4Windows
                 b.MouseHover += button_MouseHover;
                 b.MouseLeave += button_MouseLeave;
             }
+
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             inputtimer.Tick += InputDS4;
             sixaxisTimer.Tick += ControllerReadout_Tick;
@@ -357,7 +380,7 @@ namespace DS4Windows
 
                 string[] satriggers = SATriggers[device].Split(',');
                 List<string> s = new List<string>();
-                for (int i = 0; i < satriggers.Length; i++)
+                for (int i = 0, satrigLen = satriggers.Length; i < satrigLen; i++)
                 {
                     int tr;
                     if (int.TryParse(satriggers[i], out tr))

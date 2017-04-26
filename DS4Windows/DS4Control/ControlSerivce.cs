@@ -576,10 +576,15 @@ namespace DS4Windows
                 DS4State pState = PreviousState[ind];
 
                 if (pState.Battery != cState.Battery)
+                {
                     OnBatteryStatusChange(this, ind, cState.Battery);
                     //ControllerStatusChanged(this);
+                }
 
-                CheckForHotkeys(ind, cState, pState);
+                if (getEnableHotkeys(ind))
+                {
+                    CheckForHotkeys(ind, cState, pState);
+                }
 
                 // Temporarily disable easter time routine
                 //if (eastertime)
@@ -1010,7 +1015,7 @@ namespace DS4Windows
                 }
             }
             else
-                touchreleased[deviceID] = true;            
+                touchreleased[deviceID] = true;
         }
 
         public virtual void StartTPOff(int deviceID)

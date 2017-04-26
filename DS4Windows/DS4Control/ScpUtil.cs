@@ -393,6 +393,11 @@ namespace DS4Windows
         {
             return m_Config.flushHIDQueue[index];
         }
+        public static bool[] EnableHotkeys => m_Config.enableHotkeys;
+        public static bool getEnableHotkeys(int index)
+        {
+            return m_Config.enableHotkeys[index];
+        }
         public static int[] IdleDisconnectTimeout => m_Config.idleDisconnectTimeout;
         public static int getIdleDisconnectTimeout(int index)
         {
@@ -872,6 +877,7 @@ namespace DS4Windows
         public int[] buttonMouseSensitivity = { 25, 25, 25, 25, 25 };
 
         public bool[] flushHIDQueue = { false, false, false, false, false };
+        public bool[] enableHotkeys = { true, true, true, true, true };
         public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
         public Boolean[] touchpadJitterCompensation = { true, true, true, true, true };
         public Boolean[] lowerRCOn = { false, false, false, false, false };
@@ -1107,6 +1113,7 @@ namespace DS4Windows
                 Node = m_Xdoc.CreateNode(XmlNodeType.Element, "DS4Windows", null);
 
                 XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); xmlFlushHIDQueue.InnerText = flushHIDQueue[device].ToString(); Node.AppendChild(xmlFlushHIDQueue);
+                XmlNode xmlEnableHotkeys = m_Xdoc.CreateNode(XmlNodeType.Element, "enableHotkeys", null); xmlEnableHotkeys.InnerText = enableHotkeys[device].ToString(); Node.AppendChild(xmlEnableHotkeys);
                 XmlNode xmlIdleDisconnectTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "idleDisconnectTimeout", null); xmlIdleDisconnectTimeout.InnerText = idleDisconnectTimeout[device].ToString(); Node.AppendChild(xmlIdleDisconnectTimeout);
                 XmlNode xmlColor = m_Xdoc.CreateNode(XmlNodeType.Element, "Color", null);
                 xmlColor.InnerText = m_Leds[device].red.ToString() + "," + m_Leds[device].green.ToString() + "," + m_Leds[device].blue.ToString();
@@ -1704,6 +1711,9 @@ namespace DS4Windows
                 }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
                 catch { missingSetting = true; }//rootname = }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/enableHotkeys"); Boolean.TryParse(Item.InnerText, out enableHotkeys[device]); }
+                catch { missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout[device]); }
                 catch { missingSetting = true; }

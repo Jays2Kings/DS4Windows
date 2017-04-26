@@ -214,6 +214,7 @@ namespace DS4Windows
                 cBTouchpadJitterCompensation.Checked = TouchpadJitterCompensation[device];
                 cBlowerRCOn.Checked = LowerRCOn[device];
                 cBFlushHIDQueue.Checked = FlushHIDQueue[device];
+                enableHotkeysCheckbox.Checked = getEnableHotkeys(device);
                 nUDIdleDisconnect.Value = Math.Round((decimal)(IdleDisconnectTimeout[device] / 60d), 1);
                 cBIdleDisconnect.Checked = IdleDisconnectTimeout[device] > 0;
                 numUDMouseSens.Value = ButtonMouseSensitivity[device];
@@ -448,6 +449,7 @@ namespace DS4Windows
                 cBTouchpadJitterCompensation.Checked = true;
                 cBlowerRCOn.Checked = false;
                 cBFlushHIDQueue.Checked = false;
+                enableHotkeysCheckbox.Checked = true;
                 nUDIdleDisconnect.Value = 5;
                 cBIdleDisconnect.Checked = true;
                 numUDMouseSens.Value = 25;
@@ -2431,6 +2433,11 @@ namespace DS4Windows
                 calculateProfileActionCount(device);
                 calculateProfileActionDicts(device);
             }
+        }
+
+        private void enableHotkeysCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableHotkeys[device] = enableHotkeysCheckbox.Checked;
         }
 
         private void Options_Resize(object sender, EventArgs e)

@@ -221,9 +221,23 @@ namespace DS4Windows
 
         // behavior only active when > 0
         private int idleTimeout = 0;
-        public int IdleTimeout {
+        public int IdleTimeout
+        {
             get { return idleTimeout; }
             set
+            {
+                idleTimeout = value;
+            }
+        }
+
+        public int getIdleTimeout()
+        {
+            return idleTimeout;
+        }
+
+        public void setIdleTimeout(int value)
+        {
+            if (idleTimeout != value)
             {
                 idleTimeout = value;
             }

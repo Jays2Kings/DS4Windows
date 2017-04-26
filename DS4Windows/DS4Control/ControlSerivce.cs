@@ -581,9 +581,9 @@ namespace DS4Windows
                     //ControllerStatusChanged(this);
                 }
 
-                if (getEnableHotkeys(ind))
+                if (getEnableTouchToggle(ind))
                 {
-                    CheckForHotkeys(ind, cState, pState);
+                    CheckForTouchToggle(ind, cState, pState);
                 }
 
                 // Temporarily disable easter time routine
@@ -620,7 +620,7 @@ namespace DS4Windows
                 // Output any synthetic events.
                 Mapping.Commit(ind);
                 // Pull settings updates.
-                device.IdleTimeout = getIdleDisconnectTimeout(ind);
+                device.setIdleTimeout(getIdleDisconnectTimeout(ind));
             }
         }
 
@@ -991,7 +991,7 @@ namespace DS4Windows
         public byte[] oldtouchvalue = { 0, 0, 0, 0 };
         public int[] oldscrollvalue = { 0, 0, 0, 0 };
 
-        protected virtual void CheckForHotkeys(int deviceID, DS4State cState, DS4State pState)
+        protected virtual void CheckForTouchToggle(int deviceID, DS4State cState, DS4State pState)
         {
             if (!getUseTPforControls(deviceID) && cState.Touch1 && pState.PS)
             {

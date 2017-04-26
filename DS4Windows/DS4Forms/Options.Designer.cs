@@ -114,6 +114,7 @@
             this.bnSwipeRight = new System.Windows.Forms.Button();
             this.lbSwipeRight = new System.Windows.Forms.Label();
             this.gBOther = new System.Windows.Forms.GroupBox();
+            this.enableTouchToggleCheckbox = new System.Windows.Forms.CheckBox();
             this.cBDinput = new System.Windows.Forms.CheckBox();
             this.pBProgram = new System.Windows.Forms.PictureBox();
             this.cBLaunchProgram = new System.Windows.Forms.CheckBox();
@@ -312,7 +313,6 @@
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            this.enableHotkeysCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -1148,7 +1148,7 @@
             // gBOther
             // 
             this.gBOther.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.gBOther.Controls.Add(this.enableHotkeysCheckbox);
+            this.gBOther.Controls.Add(this.enableTouchToggleCheckbox);
             this.gBOther.Controls.Add(this.cBDinput);
             this.gBOther.Controls.Add(this.pBProgram);
             this.gBOther.Controls.Add(this.cBLaunchProgram);
@@ -1166,6 +1166,13 @@
             resources.ApplyResources(this.gBOther, "gBOther");
             this.gBOther.Name = "gBOther";
             this.gBOther.TabStop = false;
+            // 
+            // enableTouchToggleCheckbox
+            // 
+            resources.ApplyResources(this.enableTouchToggleCheckbox, "enableTouchToggleCheckbox");
+            this.enableTouchToggleCheckbox.Name = "enableTouchToggleCheckbox";
+            this.enableTouchToggleCheckbox.UseVisualStyleBackColor = true;
+            this.enableTouchToggleCheckbox.CheckedChanged += new System.EventHandler(this.enableTouchToggleCheckbox_CheckedChanged);
             // 
             // cBDinput
             // 
@@ -3240,13 +3247,6 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
-            // enableHotkeysCheckbox
-            // 
-            resources.ApplyResources(this.enableHotkeysCheckbox, "enableHotkeysCheckbox");
-            this.enableHotkeysCheckbox.Name = "enableHotkeysCheckbox";
-            this.enableHotkeysCheckbox.UseVisualStyleBackColor = true;
-            this.enableHotkeysCheckbox.CheckedChanged += new System.EventHandler(this.enableHotkeysCheckbox_CheckedChanged);
-            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3641,6 +3641,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nUDL2AntiDead;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox enableHotkeysCheckbox;
+        private System.Windows.Forms.CheckBox enableTouchToggleCheckbox;
     }
 }

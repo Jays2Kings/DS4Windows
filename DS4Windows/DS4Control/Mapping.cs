@@ -1229,15 +1229,18 @@ namespace DS4Windows
                             case DS4Controls.LXNeg:
                             case DS4Controls.LXPos:
                             {
-                                if (dc == DS4Controls.LXNeg)
+                                if (MappedState.LX == 127)
                                 {
-                                    byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
-                                    MappedState.LX = axisMapping;
-                                }
-                                else
-                                {
-                                    byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
-                                    MappedState.LX = axisMapping;
+                                    if (dc == DS4Controls.LXNeg)
+                                    {
+                                        byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
+                                        MappedState.LX = axisMapping;
+                                    }
+                                    else
+                                    {
+                                        byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
+                                        MappedState.LX = axisMapping;
+                                    }
                                 }
 
                                 break;
@@ -1245,15 +1248,18 @@ namespace DS4Windows
                             case DS4Controls.LYNeg:
                             case DS4Controls.LYPos:
                             {
-                                if (dc == DS4Controls.LYNeg)
+                                if (MappedState.LY == 127)
                                 {
-                                    byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
-                                    MappedState.LY = axisMapping;
-                                }
-                                else
-                                {
-                                    byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
-                                    MappedState.LY = axisMapping;
+                                    if (dc == DS4Controls.LYNeg)
+                                    {
+                                        byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
+                                        MappedState.LY = axisMapping;
+                                    }
+                                    else
+                                    {
+                                        byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
+                                        MappedState.LY = axisMapping;
+                                    }
                                 }
 
                                 break;
@@ -1261,15 +1267,18 @@ namespace DS4Windows
                             case DS4Controls.RXNeg:
                             case DS4Controls.RXPos:
                             {
-                                if (dc == DS4Controls.RXNeg)
+                                if (MappedState.RX == 127)
                                 {
-                                    byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
-                                    MappedState.RX = axisMapping;
-                                }
-                                else
-                                {
-                                    byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
-                                    MappedState.RX = axisMapping;
+                                    if (dc == DS4Controls.RXNeg)
+                                    {
+                                        byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
+                                        MappedState.RX = axisMapping;
+                                    }
+                                    else
+                                    {
+                                        byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
+                                        MappedState.RX = axisMapping;
+                                    }
                                 }
 
                                 break;
@@ -1277,15 +1286,18 @@ namespace DS4Windows
                             case DS4Controls.RYNeg:
                             case DS4Controls.RYPos:
                             {
-                                if (dc == DS4Controls.RYNeg)
+                                if (MappedState.RY == 127)
                                 {
-                                    byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
-                                    MappedState.RY = axisMapping;
-                                }
-                                else
-                                {
-                                    byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
-                                    MappedState.RY = axisMapping;
+                                    if (dc == DS4Controls.RYNeg)
+                                    {
+                                        byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping);
+                                        MappedState.RY = axisMapping;
+                                    }
+                                    else
+                                    {
+                                        byte axisMapping = getXYAxisMapping2(device, key, cState, eState, tp, fieldMapping, true);
+                                        MappedState.RY = axisMapping;
+                                    }
                                 }
 
                                 break;

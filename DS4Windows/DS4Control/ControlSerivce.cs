@@ -110,7 +110,7 @@ namespace DS4Windows
                 if (showlog)
                 {
                     LogDebug(Properties.Resources.SearchingController);
-                    LogDebug(DS4Devices.isExclusiveMode ?  Properties.Resources.UsingExclusive: Properties.Resources.UsingShared);
+                    LogDebug(DS4Devices.isExclusiveMode ? Properties.Resources.UsingExclusive : Properties.Resources.UsingShared);
                 }
 
                 try
@@ -145,13 +145,13 @@ namespace DS4Windows
                         {
                             if (System.IO.File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[i] + ".xml"))
                             {
-                                string prolog = Properties.Resources.UsingProfile.Replace("*number*", (i+1).ToString()).Replace("*Profile name*", ProfilePath[i]);
+                                string prolog = Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", ProfilePath[i]);
                                 LogDebug(prolog);
                                 Log.LogToTray(prolog);
                             }
                             else
                             {
-                                string prolog = Properties.Resources.NotUsingProfile.Replace("*number*", (i+1).ToString());
+                                string prolog = Properties.Resources.NotUsingProfile.Replace("*number*", (i + 1).ToString());
                                 LogDebug(prolog);
                                 Log.LogToTray(prolog);
                             }
@@ -169,8 +169,15 @@ namespace DS4Windows
 
                 running = true;
             }
+            else
+            {
+                string logMessage = "Could not connect to Scp Virtual Bus Driver. Please check the status of the System device in Device Manager";
+                LogDebug(logMessage);
+                Log.LogToTray(logMessage);
+            }
 
             ControllerStatusChanged(this);
+            runHotPlug = true;
 
             return true;
         }
@@ -180,6 +187,8 @@ namespace DS4Windows
             if (running)
             {
                 running = false;
+                runHotPlug = false;
+
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingX360);
 
@@ -231,6 +240,7 @@ namespace DS4Windows
                 ControllerStatusChanged(this);
             }
 
+            runHotPlug = false;
             return true;
         }
 

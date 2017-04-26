@@ -36,7 +36,11 @@ namespace DS4Windows
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });
 
-                for (int i = 0, devCount = hDevices.Count(); i < devCount; i++)
+                int devCount = hDevices.Count();
+                string devicePlural = "device" + (devCount == 0 || devCount > 1 ? "s" : "");
+                //Log.LogToGui("Found " + devCount + " possible " + devicePlural + ". Examining " + devicePlural + ".", false);
+
+                for (int i = 0;  i < devCount; i++)
                 //foreach (HidDevice hDevice in hDevices)
                 {
                     HidDevice hDevice = hDevices.ElementAt<HidDevice>(i);

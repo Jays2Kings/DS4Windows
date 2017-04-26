@@ -185,6 +185,7 @@ namespace DS4Windows
         protected static Int32 m_IdleTimeout = 600000;
         static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         public static string appdatapath;
+        public static bool runHotPlug = false;
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
 

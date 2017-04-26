@@ -894,20 +894,24 @@ namespace DS4Windows
 
         protected override void WndProc(ref Message m)
         {
-            try
+            if (runHotPlug)
             {
-                if (m.Msg == ScpDevice.WM_DEVICECHANGE)
+                try
                 {
-                    Int32 Type = m.WParam.ToInt32();
-                    lock (this)
+                    if (m.Msg == ScpDevice.WM_DEVICECHANGE)
                     {
-                        Program.rootHub.HotPlug();
+                        Int32 Type = m.WParam.ToInt32();
+
+                        lock (this)
+                        {
+                            Program.rootHub.HotPlug();
+                        }
                     }
                 }
+                catch { }
+                if (m.Msg == WM_QUERYENDSESSION)
+                    systemShutdown = true;
             }
-            catch { }
-            if (m.Msg == WM_QUERYENDSESSION)
-                systemShutdown = true;
 
             // If this is WM_QUERYENDSESSION, the closing event should be
             // raised in the base WndProc.

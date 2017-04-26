@@ -19,6 +19,7 @@ namespace DS4Windows
         public byte Battery; // 0 for charging, 10/20/30/40/50/60/70/80/90/100 for percentage of full
         public double LSAngle; // Calculated bearing of the LS X,Y coordinates
         public double RSAngle; // Calculated bearing of the RS X,Y coordinates
+        public static readonly int DEFAULT_AXISDIR_VALUE = 127;
 
         public DS4State()
         {

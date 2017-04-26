@@ -334,7 +334,7 @@ namespace DS4Windows
             device.SixAxis.SixAccelMoved += tPad.sixaxisMoved;
             //LogDebug("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
             //Log.LogToTray("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
-            ControllerStatusChanged(this);
+            //ControllerStatusChanged(this);
         }
 
         public void TimeoutConnection(DS4Device d)

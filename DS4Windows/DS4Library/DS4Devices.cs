@@ -26,7 +26,7 @@ namespace DS4Windows
             return deviceInstanceId;
         }
 
-        //enumerates ds4 controllers in the system
+        // enumerates ds4 controllers in the system
         public static void findControllers()
         {
             lock (Devices)

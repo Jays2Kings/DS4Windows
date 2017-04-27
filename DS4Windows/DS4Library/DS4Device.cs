@@ -726,7 +726,7 @@ namespace DS4Windows
                     {
                         if (conType == ConnectionType.BT)
                         {
-                            if (DisconnectBT(false))
+                            if (DisconnectBT())
                                 return; // all done
                         }
                         else if (conType == ConnectionType.SONYWA)
@@ -835,7 +835,7 @@ namespace DS4Windows
             }
         }
 
-        public bool DisconnectBT(bool allThreadsQuit = true)
+        public bool DisconnectBT()
         {
             if (Mac != null)
             {
@@ -850,6 +850,7 @@ namespace DS4Windows
                     //parse hex byte in reverse order
                     btAddr[5 - i] = Convert.ToByte(sbytes[i], 16);
                 }
+
                 long lbtAddr = BitConverter.ToInt64(btAddr, 0);
 
                 NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS p = new NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS();
@@ -862,30 +863,27 @@ namespace DS4Windows
                     success = NativeMethods.DeviceIoControl(btHandle, IOCTL_BTH_DISCONNECT_DEVICE, ref lbtAddr, 8, IntPtr.Zero, 0, ref bytesReturned, IntPtr.Zero);
                     NativeMethods.CloseHandle(btHandle);
                     if (!success)
+                    {
                         if (!NativeMethods.BluetoothFindNextRadio(searchHandle, ref btHandle))
                             btHandle = IntPtr.Zero;
-
+                    }
                 }
+
                 NativeMethods.BluetoothFindRadioClose(searchHandle);
                 Console.WriteLine("Disconnect successful: " + success);
                 success = true; // XXX return value indicates failure, but it still works?
-                if(success)
+                if (success)
                 {
                     IsDisconnecting = true;
-                    if (allThreadsQuit)
-                    {
-                        StopUpdate();
-                    }
-                    else
-                    {
-                        StopOutputUpdate();
-                    }
+                    StopOutputUpdate();
 
                     if (Removal != null)
                         Removal(this, EventArgs.Empty);
                 }
+
                 return success;
             }
+
             return false;
         }
 
@@ -902,6 +900,7 @@ namespace DS4Windows
             {
                 isDisconnecting = true;
                 StopOutputUpdate();
+
                 if (Removal != null)
                     Removal(this, EventArgs.Empty);
             }

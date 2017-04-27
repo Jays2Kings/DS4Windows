@@ -1571,7 +1571,7 @@ namespace DS4Windows
                                     ConnectionType deviceConn = d.getConnectionType();
                                     if (deviceConn == ConnectionType.BT)
                                     {
-                                        d.DisconnectBT(false);
+                                        d.DisconnectBT();
                                     }
 
                                     //foreach (DS4Controls dc in action.trigger)

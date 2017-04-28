@@ -95,11 +95,13 @@ namespace DS4Windows
             buttons[(int)DS4Controls.TouchUpper] = tp != null ? tp.upperDown : false;
             buttons[(int)DS4Controls.TouchMulti] = tp != null ? tp.multiDown : false;
 
-            gryodirs[(int)DS4Controls.GyroXNeg] = exposeState.getGyroX();
-            gryodirs[(int)DS4Controls.GyroXPos] = exposeState.getGyroX();
+            int gyroX = exposeState.getGyroX();
+            gryodirs[(int)DS4Controls.GyroXPos] = gyroX;
+            gryodirs[(int)DS4Controls.GyroXNeg] = gyroX;
 
-            gryodirs[(int)DS4Controls.GyroZPos] = exposeState.getGyroZ();
-            gryodirs[(int)DS4Controls.GyroZPos] = exposeState.getGyroZ();
+            int gyroZ = exposeState.getGyroZ();
+            gryodirs[(int)DS4Controls.GyroZPos] = gyroZ;
+            gryodirs[(int)DS4Controls.GyroZNeg] = gyroZ;
 
             swipedirs[(int)DS4Controls.SwipeLeft] = tp != null ? tp.swipeLeftB : (byte)0;
             swipedirs[(int)DS4Controls.SwipeRight] = tp != null ? tp.swipeRightB : (byte)0;

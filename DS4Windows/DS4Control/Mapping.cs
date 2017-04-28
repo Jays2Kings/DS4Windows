@@ -2619,13 +2619,14 @@ namespace DS4Windows
             {
                 bool sOff = isUsingSAforMouse(device);
                 bool safeTest = false;
-                if (control == DS4Controls.GyroXNeg || control == DS4Controls.GyroZNeg)
+
+                switch (control)
                 {
-                    safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] > 67;
-                }
-                else
-                {
-                    safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] < -67;
+                    case DS4Controls.GyroXPos: safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroXNeg: safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroZPos: safeTest = SZSens[device] * fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroZNeg: safeTest = SZSens[device] * fieldMap.gryodirs[controlNum] < -67; break;
+                    default: break;
                 }
 
                 result = !sOff ? safeTest : false;
@@ -2780,13 +2781,14 @@ namespace DS4Windows
             {
                 bool sOff = isUsingSAforMouse(device);
                 bool safeTest = false;
-                if (control == DS4Controls.GyroXNeg || control == DS4Controls.GyroZNeg)
+
+                switch (control)
                 {
-                    safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] > 67;
-                }
-                else
-                {
-                    safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] < -67;
+                    case DS4Controls.GyroXPos: safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroXNeg: safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroZPos: safeTest = SZSens[device] * fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroZNeg: safeTest = SZSens[device] * fieldMap.gryodirs[controlNum] < -67; break;
+                    default: break;
                 }
 
                 result = !sOff ? safeTest : false;
@@ -3086,41 +3088,45 @@ namespace DS4Windows
                 double SZD = getSZDeadzone(device);
                 bool sOff = isUsingSAforMouse(device);
 
-                if (control == DS4Controls.GyroXNeg || control == DS4Controls.GyroZNeg)
+                switch (control)
                 {
-                    if (!sOff && fieldMap.gryodirs[controlNum] < -SXD * 10)
+                    case DS4Controls.GyroXPos:
                     {
-                        if (alt)
+                        if (!sOff && fieldMap.gryodirs[controlNum] > SXD * 10)
                         {
-                            result = (byte)Math.Min(255, 127 + SXSens[device] * -fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SXSens[device] * fieldMap.gryodirs[controlNum]);
                         }
-                        else
-                        {
-                            result = (byte)Math.Max(0, 127 - SXSens[device] * -fieldMap.gryodirs[controlNum]);
-                        }
+                        else result = falseVal;
+                        break;
                     }
-                    else
+                    case DS4Controls.GyroXNeg:
                     {
-                        result = falseVal;
-                    }
-                }
-                else
-                {
-                    if (!sOff && fieldMap.gryodirs[controlNum] > SXD * 10)
-                    {
-                        if (alt)
+                        if (!sOff && fieldMap.gryodirs[controlNum] < -SXD * 10)
                         {
-                            result = (byte)Math.Min(255, 127 + SXSens[device] * fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SXSens[device] * -fieldMap.gryodirs[controlNum]);
                         }
-                        else
-                        {
-                            result = (byte)Math.Max(0, 127 - SXSens[device] * fieldMap.gryodirs[controlNum]);
-                        }
+                        else result = falseVal;
+                        break;
                     }
-                    else
+                    case DS4Controls.GyroZPos:
                     {
-                        result = falseVal;
+                        if (!sOff && fieldMap.gryodirs[controlNum] > SZD * 10)
+                        {
+                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SZSens[device] * fieldMap.gryodirs[controlNum]);
+                        }
+                        else return falseVal;
+                        break;
                     }
+                    case DS4Controls.GyroZNeg:
+                    {
+                        if (!sOff && fieldMap.gryodirs[controlNum] < -SZD * 10)
+                        {
+                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SZSens[device] * -fieldMap.gryodirs[controlNum]);
+                        }
+                        else result = falseVal;
+                        break;
+                    }
+                    default: break;
                 }
             }
 

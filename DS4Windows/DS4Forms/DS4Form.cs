@@ -1200,12 +1200,14 @@ namespace DS4Windows
                 Stream stream;
                 Stream profile = new StreamReader(appdatapath + "\\Profiles\\" + lBProfiles.SelectedItem.ToString() + ".xml").BaseStream;                
                 if (saveProfiles.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
                     if ((stream = saveProfiles.OpenFile()) != null)
                     {
                         profile.CopyTo(stream);
                         profile.Close();
                         stream.Close();
                     }
+                }
             }
         }
 
@@ -1278,9 +1280,13 @@ namespace DS4Windows
             if (em.Text == Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString()))
                 ShowOptions(i, "");
             else
+            {
                 for (int t = 0; t < em.DropDownItems.Count - 2; t++)
+                {
                     if (((ToolStripMenuItem)em.DropDownItems[t]).Checked)
                         ShowOptions(i, ((ToolStripMenuItem)em.DropDownItems[t]).Text);
+                }
+            }
         }
 
         private void lnkControllers_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -1293,13 +1299,19 @@ namespace DS4Windows
             // Prevent the Game Controllers window from throwing an error when controllers are un/hidden
             System.Diagnostics.Process[] rundll64 = System.Diagnostics.Process.GetProcessesByName("rundll64");
             foreach (System.Diagnostics.Process rundll64Instance in rundll64)
+            {
                 foreach (System.Diagnostics.ProcessModule module in rundll64Instance.Modules)
+                {
                     if (module.FileName.Contains("joy.cpl"))
                         module.Dispose();
+                }
+            }
 
-            UseExclusiveMode = hideDS4CheckBox.Checked;
+            bool exclusiveMode = hideDS4CheckBox.Checked;
+            UseExclusiveMode = exclusiveMode;
             if (Environment.OSVersion.Version.Major >= 10 && Environment.OSVersion.Version.Build < 10586)
-                btnConnectDS4Win10.Visible = hideDS4CheckBox.Checked;
+                btnConnectDS4Win10.Visible = exclusiveMode;
+
             btnStartStop_Clicked(false);
             btnStartStop_Clicked(false);
             Save();
@@ -1345,6 +1357,7 @@ namespace DS4Windows
                 else
                     ebns[tdevice].Text = Properties.Resources.EditProfile;
             }
+
             ControllerStatusChanged(); //to update profile name in notify icon
         }
 
@@ -1353,10 +1366,12 @@ namespace DS4Windows
             ToolStripMenuItem tS = (ToolStripMenuItem)sender;
             int tdevice = Int32.Parse(tS.Tag.ToString());
             if (!(e.ClickedItem is ToolStripSeparator))
+            {
                 if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1]) //if +New Profile not selected 
                     cbs[tdevice].SelectedIndex = tS.DropDownItems.IndexOf(e.ClickedItem);
                 else //if +New Profile selected
                     ShowOptions(tdevice, "");
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1377,6 +1392,7 @@ namespace DS4Windows
         {
             btnStartStop_Clicked();
         }
+
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Middle)
@@ -1385,6 +1401,7 @@ namespace DS4Windows
                 this.Close();
             }
         }
+
         private void notifyIcon1_BalloonTipClicked(object sender, EventArgs e)
         {
             this.Show();
@@ -1510,6 +1527,7 @@ namespace DS4Windows
                 case "cBCloseMini": lbLastMessage.Text = Properties.Resources.CloseMinimize; break;
                 default: lbLastMessage.Text = Properties.Resources.HoverOverItems; break;
             }
+
             if (lbLastMessage.Text != Properties.Resources.HoverOverItems)
                 lbLastMessage.ForeColor = Color.Black;
             else

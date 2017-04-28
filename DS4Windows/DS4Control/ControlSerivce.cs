@@ -337,6 +337,8 @@ namespace DS4Windows
             //ControllerStatusChanged(this);
         }
 
+        /* TODO: Check if this method is really necessary. If not, delete it. For now, it is not being used because
+         * input reports are read async with a timeout now. */
         public void TimeoutConnection(DS4Device d)
         {
             try
@@ -371,10 +373,11 @@ namespace DS4Windows
                 if (!d.IsAlive())
                     //return "Connecting..."; // awaiting the first battery charge indication
                 {
-                    var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
+                    /*var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
                     TimeoutThread.IsBackground = true;
                     TimeoutThread.Name = "TimeoutFor" + d.getMacAddress().ToString();
                     TimeoutThread.Start();
+                    */
                     return Properties.Resources.Connecting;
                 }
 
@@ -406,10 +409,11 @@ namespace DS4Windows
                 if (!d.IsAlive())
                 //return "Connecting..."; // awaiting the first battery charge indication
                 {
-                    var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
+                    /*var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
                     TimeoutThread.IsBackground = true;
                     TimeoutThread.Name = "TimeoutFor" + d.getMacAddress().ToString();
                     TimeoutThread.Start();
+                    */
                     return Properties.Resources.Connecting;
                 }
                 return d.getMacAddress();

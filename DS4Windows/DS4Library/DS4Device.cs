@@ -266,8 +266,8 @@ namespace DS4Windows
             get { return rightLightFastRumble; }
             set
             {
-                if (value == rightLightFastRumble) return;
-                rightLightFastRumble = value;
+                if (rightLightFastRumble != value)
+                    rightLightFastRumble = value;
             }
         }
 
@@ -276,8 +276,8 @@ namespace DS4Windows
             get { return leftHeavySlowRumble; }
             set
             {
-                if (value == leftHeavySlowRumble) return;
-                leftHeavySlowRumble = value;
+                if (leftHeavySlowRumble != value)
+                    leftHeavySlowRumble = value;
             }
         }
 
@@ -608,10 +608,10 @@ namespace DS4Windows
                 cState.L2 = inputReport[8];
                 cState.R2 = inputReport[9];
 
-                cState.Triangle = ((byte)inputReport[5] & (1 << 7)) != 0;
-                cState.Circle = ((byte)inputReport[5] & (1 << 6)) != 0;
-                cState.Cross = ((byte)inputReport[5] & (1 << 5)) != 0;
-                cState.Square = ((byte)inputReport[5] & (1 << 4)) != 0;
+                cState.Triangle = (inputReport[5] & (1 << 7)) != 0;
+                cState.Circle = (inputReport[5] & (1 << 6)) != 0;
+                cState.Cross = (inputReport[5] & (1 << 5)) != 0;
+                cState.Square = (inputReport[5] & (1 << 4)) != 0;
 
                 // First 4 bits denote dpad state. Clock representation
                 // with 8 meaning centered and 0 meaning DpadUp.
@@ -627,18 +627,18 @@ namespace DS4Windows
                     case 5: cState.DpadUp = false; cState.DpadDown = true; cState.DpadLeft = true; cState.DpadRight = false; break;
                     case 6: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = true; cState.DpadRight = false; break;
                     case 7: cState.DpadUp = true; cState.DpadDown = false; cState.DpadLeft = true; cState.DpadRight = false; break;
-                    case 8: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = false; break;
-                    default: break;
+                    case 8:
+                    default: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = false; break;
                 }
 
-                cState.R3 = ((byte)inputReport[6] & (1 << 7)) != 0;
-                cState.L3 = ((byte)inputReport[6] & (1 << 6)) != 0;
-                cState.Options = ((byte)inputReport[6] & (1 << 5)) != 0;
-                cState.Share = ((byte)inputReport[6] & (1 << 4)) != 0;
-                cState.R1 = ((byte)inputReport[6] & (1 << 1)) != 0;
-                cState.L1 = ((byte)inputReport[6] & (1 << 0)) != 0;
+                cState.R3 = (inputReport[6] & (1 << 7)) != 0;
+                cState.L3 = (inputReport[6] & (1 << 6)) != 0;
+                cState.Options = (inputReport[6] & (1 << 5)) != 0;
+                cState.Share = (inputReport[6] & (1 << 4)) != 0;
+                cState.R1 = (inputReport[6] & (1 << 1)) != 0;
+                cState.L1 = (inputReport[6] & (1 << 0)) != 0;
 
-                cState.PS = ((byte)inputReport[7] & (1 << 0)) != 0;
+                cState.PS = (inputReport[7] & (1 << 0)) != 0;
                 cState.TouchButton = (inputReport[7] & (1 << 2 - 1)) != 0;
                 cState.FrameCounter = (byte)(inputReport[7] >> 2);
 
@@ -847,7 +847,7 @@ namespace DS4Windows
                 string[] sbytes = Mac.Split(':');
                 for (int i = 0; i < 6; i++)
                 {
-                    //parse hex byte in reverse order
+                    // parse hex byte in reverse order
                     btAddr[5 - i] = Convert.ToByte(sbytes[i], 16);
                 }
 
@@ -998,18 +998,21 @@ namespace DS4Windows
                 DS4HapticState haptic = hapticState[i];
                 if (i == hapticStackIndex)
                     break; // rest haven't been used this time
+
                 if (haptic.IsLightBarSet())
                 {
                     lightBarColor = haptic.LightBarColor;
                     lightBarFlashDurationOn = haptic.LightBarFlashDurationOn;
                     lightBarFlashDurationOff = haptic.LightBarFlashDurationOff;
                 }
+
                 if (haptic.IsRumbleSet())
                 {
                     rumbleMotorStrengthLeftHeavySlow = haptic.RumbleMotorStrengthLeftHeavySlow;
                     rumbleMotorStrengthRightLightFast = haptic.RumbleMotorStrengthRightLightFast;
                 }
             }
+
             LightBarColor = lightBarColor;
             LightBarOnDuration = lightBarFlashDurationOn;
             LightBarOffDuration = lightBarFlashDurationOff;
@@ -1026,6 +1029,7 @@ namespace DS4Windows
                 Array.Copy(hapticState, newHaptics, hapsLen);
                 hapticState = newHaptics;
             }
+
             hapticState[hapticStackIndex++] = hs;
         }
 

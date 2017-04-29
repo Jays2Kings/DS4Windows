@@ -1927,7 +1927,17 @@ namespace DS4Windows
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ProfileActions");
                     profileActions[device].Clear();
                     if (!string.IsNullOrEmpty(Item.InnerText))
-                        profileActions[device].AddRange(Item.InnerText.Split('/'));
+                    {
+                        string[] actionNames = Item.InnerText.Split('/');
+                        for (int actIndex = 0, actLen = actionNames.Length; actIndex < actLen; actIndex++)
+                        {
+                            string tempActionName = actionNames[actIndex];
+                            if (!profileActions[device].Contains(tempActionName))
+                            {
+                                profileActions[device].Add(tempActionName);
+                            }
+                        }
+                    }
                 }
                 catch { profileActions[device].Clear(); missingSetting = true; }
 
@@ -1941,8 +1951,8 @@ namespace DS4Windows
                 profileActionIndexDict[device].Clear();
                 foreach (string actionname in profileActions[device])
                 {
-                    profileActionDict[device].Add(actionname, Global.GetAction(actionname));
-                    profileActionIndexDict[device].Add(actionname, Global.GetActionIndexOf(actionname));
+                    profileActionDict[device][actionname] = Global.GetAction(actionname);
+                    profileActionIndexDict[device][actionname] = Global.GetActionIndexOf(actionname);
                 }
 
                 DS4KeyType keyType;

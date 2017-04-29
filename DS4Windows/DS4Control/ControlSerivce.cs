@@ -316,7 +316,7 @@ namespace DS4Windows
                     }
                 }
 
-                ControllerStatusChanged(this);
+                //ControllerStatusChanged(this);
             }
 
             return true;
@@ -394,7 +394,7 @@ namespace DS4Windows
                     battery = Properties.Resources.Battery.Replace("*number*", d.getBattery().ToString());
                 }
 
-                return d.getMacAddress() + " (" + d.ConnectionType + "), " + battery;
+                return d.getMacAddress() + " (" + d.getConnectionType() + "), " + battery;
                 //return d.MacAddress + " (" + d.ConnectionType + "), Battery is " + battery + ", Touchpad in " + modeSwitcher[index].ToString();
             }
             else
@@ -583,6 +583,12 @@ namespace DS4Windows
                 {
                     OnBatteryStatusChange(this, ind, cState.Battery);
                     //ControllerStatusChanged(this);
+                }
+
+                if (!device.firstReport && device.IsAlive())
+                {
+                    device.firstReport = true;
+                    OnDeviceStatusChanged(this, ind);
                 }
 
                 if (getEnableTouchToggle(ind))

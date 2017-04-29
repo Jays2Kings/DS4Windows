@@ -179,6 +179,21 @@ namespace DS4Windows
         }
     }
 
+    public class DeviceStatusChangeEventArgs : EventArgs
+    {
+        private int index;
+
+        public DeviceStatusChangeEventArgs(int index)
+        {
+            this.index = index;
+        }
+
+        public int getIndex()
+        {
+            return index;
+        }
+    }
+
     public class MultiValueDict<Key, Value> : Dictionary<Key, List<Value>>
     {
         public void Add(Key key, Value val)
@@ -271,7 +286,17 @@ namespace DS4Windows
             }
         }
 
-        //general values
+        public static event EventHandler<DeviceStatusChangeEventArgs> DeviceStatusChange;
+        public static void OnDeviceStatusChanged(object sender, int index)
+        {
+            if (DeviceStatusChange != null)
+            {
+                DeviceStatusChangeEventArgs args = new DeviceStatusChangeEventArgs(index);
+                DeviceStatusChange(sender, args);
+            }
+        }
+
+        // general values
         public static bool UseExclusiveMode
         {
             set { m_Config.useExclusiveMode = value; }
@@ -376,7 +401,7 @@ namespace DS4Windows
             get { return m_Config.useWhiteIcon; }
         }
 
-        //controller/profile specfic values
+        // controller/profile specfic values
         public static int[] ButtonMouseSensitivity => m_Config.buttonMouseSensitivity;
         public static byte[] RumbleBoost => m_Config.rumble;
         public static byte getRumbleBoost(int index)

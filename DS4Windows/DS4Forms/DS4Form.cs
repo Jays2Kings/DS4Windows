@@ -27,6 +27,7 @@ namespace DS4Windows
         delegate void NotificationDelegate(object sender, DebugEventArgs args);
         delegate void BatteryStatusDelegate(object sender, BatteryReportArgs args);
         delegate void ControllerRemovedDelegate(object sender, ControllerRemovedArgs args);
+        delegate void DeviceStatusChangedDelegate(object sender, DeviceStatusChangeEventArgs args);
         protected Label[] Pads, Batteries;
         protected ComboBox[] cbs;
         protected Button[] ebns;
@@ -140,6 +141,7 @@ namespace DS4Windows
                 firstrun = true;
                 new SaveWhere(false).ShowDialog();
             }
+
             if (firstrun)
                 CheckDrivers();
             else
@@ -154,6 +156,7 @@ namespace DS4Windows
                 Close();
                 return;
             }
+
             Graphics g = this.CreateGraphics();
             try
             {
@@ -164,6 +167,9 @@ namespace DS4Windows
             {
                 g.Dispose();
             }
+
+            blankControllerTab();
+
             Program.rootHub.Debug += On_Debug;
 
             Log.GuiLog += On_Debug;
@@ -175,6 +181,7 @@ namespace DS4Windows
             Directory.CreateDirectory(appdatapath);
             Global.Load();
             if (!Save()) //if can't write to file
+            {
                 if (MessageBox.Show("Cannot write at current location\nCopy Settings to appdata?", "DS4Windows",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
                 {
@@ -202,12 +209,15 @@ namespace DS4Windows
                     Close();
                     return;
                 }
+            }
+
             //MessageBox.Show(Environment.OSVersion.VersionString);
             cBUseWhiteIcon.Checked = UseWhiteIcon;
             Icon = Properties.Resources.DS4W;
             notifyIcon1.Icon = UseWhiteIcon ? Properties.Resources.DS4W___White : Properties.Resources.DS4W;
             foreach (ToolStripMenuItem t in shortcuts)
                 t.DropDownItemClicked += Profile_Changed_Menu;
+
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
             hideDS4CheckBox.Checked = UseExclusiveMode;
             hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
@@ -219,6 +229,7 @@ namespace DS4Windows
             }
             else
                 btnConnectDS4Win10.Visible = false;
+
             cBDisconnectBT.Checked = DCBTatStop;
             cBQuickCharge.Checked = QuickCharge;
             nUDXIPorts.Value = FirstXinputPort;
@@ -233,6 +244,7 @@ namespace DS4Windows
             string lang = CultureInfo.CurrentCulture.ToString();
             if (lang.StartsWith("en"))
                 cBDownloadLangauge.Visible = false;
+
             cBDownloadLangauge.Checked = DownloadLang;
             cBFlashWhenLate.Checked = FlashWhenLate;
             nUDLatency.Value = FlashWhenLateAt;
@@ -266,6 +278,7 @@ namespace DS4Windows
                 }
                 catch { }
             }
+
             bool start = true;
             bool mini = false;
             for (int i = 0, argslen = arguements.Length; i < argslen; i++)
@@ -277,11 +290,13 @@ namespace DS4Windows
                 if (mini && start)
                     break;
             }
+
             if (!(startMinimizedCheckBox.Checked || mini))
             {
                 mAllowVisible = true;
                 Show();
             }
+
             Form_Resize(null, null);
             RefreshProfiles();
             opt = new Options(this);
@@ -300,10 +315,12 @@ namespace DS4Windows
                 else
                     lights[i].BackColor = MainColor[i].ToColorA;
             }
+
             LoadP();
             Global.ControllerStatusChange += ControllerStatusChange;
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
+            Global.DeviceStatusChange += DeviceStatusChanged;
             Enable_Controls(0, false);
             Enable_Controls(1, false);
             Enable_Controls(2, false);
@@ -311,9 +328,11 @@ namespace DS4Windows
             btnStartStop.Text = Properties.Resources.StartText;
             if (btnStartStop.Enabled && start)
                 btnStartStop_Clicked();
+
             startToolStripMenuItem.Text = btnStartStop.Text;
             if (!tLPControllers.Visible)
                 tabMain.SelectedIndex = 1;
+
             //cBNotifications.Checked = Notifications;
             cBoxNotifications.SelectedIndex = Notifications;
             cBSwipeProfiles.Checked = SwipeProfiles;
@@ -332,7 +351,6 @@ namespace DS4Windows
 
             Uri url = new Uri("http://23.236.26.40/ds4windows/files/builds/newest.txt"); //Sorry other devs, gonna have to find your own server
 
-
             if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
             {
                 wc.DownloadFileAsync(url, appdatapath + "\\version.txt");
@@ -345,6 +363,7 @@ namespace DS4Windows
                 System.Threading.Thread.Sleep(2000);
                 File.Delete(exepath + "\\Updater.exe");
             }
+
             //test.Start();
             hotkeysTimer.Start();
             hotkeysTimer.Tick += Hotkeys;
@@ -388,6 +407,27 @@ namespace DS4Windows
             UpdateTheUpdater();
 
             this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
+        }
+
+        private void blankControllerTab()
+        {
+            bool nocontrollers = true;
+            for (Int32 Index = 0, PadsLen = Pads.Length; Index < PadsLen; Index++)
+            {
+                // Make sure a controller exists
+                if (Index < ControlService.DS4_CONTROLLER_COUNT)
+                {
+                    Pads[Index].Text = "";
+
+                    statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], "");
+                    Batteries[Index].Text = Properties.Resources.NA;
+                    Pads[Index].Text = Properties.Resources.Disconnected;
+                    Enable_Controls(Index, false);
+                }
+            }
+
+            lbNoControllers.Visible = nocontrollers;
+            tLPControllers.Visible = !nocontrollers;
         }
 
         private async void UpdateTheUpdater()
@@ -945,6 +985,75 @@ namespace DS4Windows
             }
         }
 
+        protected void DeviceStatusChanged(object sender, DeviceStatusChangeEventArgs args)
+        {
+            if (this.InvokeRequired)
+            {
+                DeviceStatusChangedDelegate d = new DeviceStatusChangedDelegate(DeviceStatusChanged);
+                this.BeginInvoke(d, new object[] { sender, args });
+            }
+            else
+            {
+                bool nocontrollers = true;
+                for (int i = 0, arlen = Program.rootHub.DS4Controllers.Length; nocontrollers && i < arlen; i++)
+                {
+                    DS4Device dev = Program.rootHub.DS4Controllers[i];
+                    if (dev != null)
+                    {
+                        nocontrollers = false;
+                    }
+                }
+
+                string tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+                int Index = args.getIndex();
+                if (Index >= 0 && Index < ControlService.DS4_CONTROLLER_COUNT)
+                {
+                    Pads[Index].Text = Program.rootHub.getDS4MacAddress(Index);
+
+                    switch (Program.rootHub.getDS4Status(Index))
+                    {
+                        case "USB": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.USB; toolTip1.SetToolTip(statPB[Index], ""); break;
+                        case "BT": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
+                        case "SONYWA": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
+                        default: statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], ""); break;
+                    }
+
+                    Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
+                    if (Pads[Index].Text != String.Empty)
+                    {
+                        if (runningBat)
+                        {
+                            SendKeys.Send("A");
+                            runningBat = false;
+                        }
+
+                        Pads[Index].Enabled = true;
+                        if (Pads[Index].Text != Properties.Resources.Connecting)
+                        {
+                            Enable_Controls(Index, true);
+                        }
+                        else
+                            opt.inputtimer.Stop();
+                    }
+                    else
+                    {
+                        Pads[Index].Text = Properties.Resources.Disconnected;
+                        Enable_Controls(Index, false);
+                    }
+
+                    if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
+                        tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
+                }
+
+                lbNoControllers.Visible = nocontrollers;
+                tLPControllers.Visible = !nocontrollers;
+                if (tooltip.Length > 63)
+                    notifyIcon1.Text = tooltip.Substring(0, 63);
+                else
+                    notifyIcon1.Text = tooltip;
+            }
+        }
+
         protected void ControllerRemovedChange(object sender, ControllerRemovedArgs args)
         {
             if (this.InvokeRequired)
@@ -1358,7 +1467,8 @@ namespace DS4Windows
                     ebns[tdevice].Text = Properties.Resources.EditProfile;
             }
 
-            ControllerStatusChanged(); //to update profile name in notify icon
+            OnDeviceStatusChanged(this, tdevice); //to update profile name in notify icon
+            //ControllerStatusChanged(); //to update profile name in notify icon
         }
 
         private void Profile_Changed_Menu(object sender, ToolStripItemClickedEventArgs e)

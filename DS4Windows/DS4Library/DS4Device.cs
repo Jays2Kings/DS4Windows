@@ -115,7 +115,7 @@ namespace DS4Windows
             return RumbleMotorsExplicitlyOff || RumbleMotorStrengthLeftHeavySlow != 0 || RumbleMotorStrengthRightLightFast != 0;
         }
     }
-    
+
     public class DS4Device
     {
         private const int BT_OUTPUT_REPORT_LENGTH = 78;
@@ -530,6 +530,7 @@ namespace DS4Windows
         private byte priorInputReport30 = 0xff;
         public double Latency = 0;
         public string error;
+        public bool firstReport = false;
 
         private void performDs4Input()
         {
@@ -820,6 +821,7 @@ namespace DS4Windows
                     bool output = false;
                     for (int i = 0, arlen = outputReport.Length; !output && i < arlen; i++)
                         output = outputReport[i] != outputReportBuffer[i];
+
                     if (output)
                     {
                         outputRumble = true;

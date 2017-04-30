@@ -934,9 +934,11 @@ namespace DS4Windows
             lbLastMessage.Text = string.Empty;
         }
 
+        //delegate void OldHotPlugDelegate();
+        bool skipHotplug = false;
         protected override void WndProc(ref Message m)
         {
-            if (runHotPlug)
+            if (runHotPlug && !skipHotplug)
             {
                 try
                 {
@@ -946,7 +948,14 @@ namespace DS4Windows
 
                         lock (this)
                         {
-                            Program.rootHub.HotPlug();
+                            // Execute hotplug routine after a delay in time. Set flag so extra calls
+                            // to WndProc will be ignored
+                            skipHotplug = true;
+                            System.Threading.Tasks.Task.Delay(50).ContinueWith((t) => InnerHotplug());
+                            //OldHotPlugDelegate d = new OldHotPlugDelegate(InnerHotplug);
+                            //this.BeginInvoke(d);
+                            //skipHotplug = false;
+                            //Program.rootHub.HotPlug();
                         }
                     }
                 }
@@ -959,6 +968,19 @@ namespace DS4Windows
             // raised in the base WndProc.
             try { base.WndProc(ref m); }
             catch { }
+        }
+
+        delegate bool HotPlugDelegate();
+        protected void InnerHotplug()
+        {
+            lock (this)
+            {
+                // Reset flag and execute hotplug routine in main thread
+                skipHotplug = false;
+                HotPlugDelegate d = new HotPlugDelegate(Program.rootHub.HotPlug);
+                this.BeginInvoke(d);
+                //Program.rootHub.HotPlug();
+            }
         }
 
         protected void BatteryStatusUpdate(object sender, BatteryReportArgs args)

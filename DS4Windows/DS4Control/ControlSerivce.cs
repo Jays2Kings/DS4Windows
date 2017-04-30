@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 
 using System.IO;
-using System.Reflection;
 using System.Media;
 using System.Threading.Tasks;
 using static DS4Windows.Global;
+
 namespace DS4Windows
 {
     public class ControlService
@@ -587,16 +587,15 @@ namespace DS4Windows
                 device.getPreviousState(PreviousState[ind]);
                 DS4State pState = PreviousState[ind];
 
-                if (pState.Battery != cState.Battery)
-                {
-                    OnBatteryStatusChange(this, ind, cState.Battery);
-                    //ControllerStatusChanged(this);
-                }
-
                 if (!device.firstReport && device.IsAlive())
                 {
                     device.firstReport = true;
                     OnDeviceStatusChanged(this, ind);
+                }
+                else if (pState.Battery != cState.Battery)
+                {
+                    OnBatteryStatusChange(this, ind, cState.Battery);
+                    //ControllerStatusChanged(this);
                 }
 
                 if (getEnableTouchToggle(ind))

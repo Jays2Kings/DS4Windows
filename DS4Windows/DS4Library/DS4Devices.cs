@@ -36,14 +36,15 @@ namespace DS4Windows
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });
 
-                int devCount = hDevices.Count();
+                List<HidDevice> tempList = hDevices.ToList();
+                int devCount = tempList.Count();
                 string devicePlural = "device" + (devCount == 0 || devCount > 1 ? "s" : "");
                 //Log.LogToGui("Found " + devCount + " possible " + devicePlural + ". Examining " + devicePlural + ".", false);
 
                 for (int i = 0;  i < devCount; i++)
                 //foreach (HidDevice hDevice in hDevices)
                 {
-                    HidDevice hDevice = hDevices.ElementAt<HidDevice>(i);
+                    HidDevice hDevice = tempList[i];
                     if (DevicePaths.Contains(hDevice.DevicePath))
                         continue; // BT/USB endpoint already open once
 

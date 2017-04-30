@@ -128,6 +128,8 @@ namespace DS4Windows
 
         public void Reload(int deviceNum, string name)
         {
+            nUDRumbleBoost.ValueChanged -= rumbleBoostBar_ValueChanged;
+
             loading = true;
             device = deviceNum;
             filename = name;
@@ -506,6 +508,8 @@ namespace DS4Windows
             LoadActions(string.IsNullOrEmpty(filename));
             loading = false;
             saving = false;
+
+            nUDRumbleBoost.ValueChanged += new EventHandler(this.rumbleBoostBar_ValueChanged);
         }
 
         private string getDS4ControlsByName(DS4Controls key)

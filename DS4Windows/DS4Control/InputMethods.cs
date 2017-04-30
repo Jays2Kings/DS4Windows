@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.InteropServices;
+
 namespace DS4Windows
 {
     class InputMethods
     {
         private static INPUT[] sendInputs = new INPUT[2]; // will allow for keyboard + mouse/tablet input within one SendInput call, or two mouse events
         private static object lockob = new object();
+
         public static void MoveCursorBy(int x, int y)
         {
             lock (lockob)
@@ -43,6 +42,7 @@ namespace DS4Windows
                     sendInputs[inputs].Data.Mouse.Y = 0;
                     inputs++;
                 }
+
                 if (horizontal != 0)
                 {
                     sendInputs[inputs].Type = INPUT_MOUSE;
@@ -54,6 +54,7 @@ namespace DS4Windows
                     sendInputs[inputs].Data.Mouse.Y = 0;
                     inputs++;
                 }
+
                 SendInput(inputs, sendInputs, (int)inputs * Marshal.SizeOf(sendInputs[0]));
             }
         }
@@ -276,6 +277,7 @@ namespace DS4Windows
         private static extern ushort MapVirtualKey(uint uCode, uint uMapType);
         [DllImport("user32.dll", SetLastError = true)]
         static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+
         //Not used, just here
         public static void DownKeys(ushort key)
         {
@@ -292,5 +294,5 @@ namespace DS4Windows
             keybd_event((byte)key, 0, (int)KEYEVENTF_KEYUP, 0);
         }
     }
-
 }
+

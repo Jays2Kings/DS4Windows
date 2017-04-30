@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
 namespace DS4Windows
 {
     class MouseWheel

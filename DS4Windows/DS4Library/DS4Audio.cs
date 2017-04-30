@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using DS4Windows.DS4Library.CoreAudio;
 
 namespace DS4Windows.DS4Library

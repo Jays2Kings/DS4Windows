@@ -905,7 +905,11 @@ namespace DS4Windows
             disconnectReport[1] = 0x02;
             Array.Clear(disconnectReport, 2, 63);
 
-            result = hDevice.WriteFeatureReport(disconnectReport);
+            lock (outputReport)
+            {
+                result = hDevice.WriteFeatureReport(disconnectReport);
+            }
+
             if (result && remove)
             {
                 isDisconnecting = true;

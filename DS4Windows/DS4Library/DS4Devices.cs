@@ -146,6 +146,7 @@ namespace DS4Windows
                 {
                     DS4Device device = devices.ElementAt<DS4Device>(i);
                     device.StopUpdate();
+                    //device.runRemoval();
                     device.HidDevice.CloseDevice();
                 }
 
@@ -215,8 +216,6 @@ namespace DS4Windows
             {
                 throw new Exception("Error enabling device, error code = " + Marshal.GetLastWin32Error());
             }
-
-            System.Threading.Thread.Sleep(50);
 
             NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
         }

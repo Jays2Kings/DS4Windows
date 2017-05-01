@@ -161,6 +161,7 @@ namespace DS4Windows
         }
 
         private bool exitOutputThread = false;
+        private bool exitInputThread = false;
         private object exitLocker = new object();
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
@@ -421,7 +422,8 @@ namespace DS4Windows
             {
                 try
                 {
-                    ds4Input.Abort();
+                    exitInputThread = true;
+                    //ds4Input.Abort();
                     ds4Input.Join();
                 }
                 catch (Exception e)
@@ -540,7 +542,7 @@ namespace DS4Windows
             long oldtime = 0;
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            while (true)
+            while (!exitInputThread)
             {
                 string currerror = string.Empty;
                 long curtime = sw.ElapsedMilliseconds;
@@ -1051,6 +1053,11 @@ namespace DS4Windows
         public String ToString()
         {
             return Mac;
+        }
+
+        public void runRemoval()
+        {
+            Removal?.Invoke(this, EventArgs.Empty);
         }
 
         public void removeReportHandlers()

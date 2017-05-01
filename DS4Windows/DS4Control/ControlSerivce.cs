@@ -221,6 +221,7 @@ namespace DS4Windows
                             DS4LightBar.forcedFlash[i] = 0;
                             DS4LightBar.defaultLight = true;
                             DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i], ExposedState[i], touchPad[i]);
+                            DS4Controllers[i].IsRemoved = true;
                             System.Threading.Thread.Sleep(50);
                         }
 
@@ -229,6 +230,8 @@ namespace DS4Windows
                         anyUnplugged = true;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
+                        lag[i] = false;
+                        inWarnMonitor[i] = false;
                     }
                 }
 

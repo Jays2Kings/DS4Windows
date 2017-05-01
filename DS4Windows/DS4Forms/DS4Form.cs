@@ -922,6 +922,7 @@ namespace DS4Windows
 
             else if (btnStartStop.Text == Properties.Resources.StopText)
             {
+                blankControllerTab();
                 Program.rootHub.Stop(log);
                 hotkeysTimer.Stop();
                 btnStartStop.Text = Properties.Resources.StartText;
@@ -938,7 +939,7 @@ namespace DS4Windows
         bool skipHotplug = false;
         protected override void WndProc(ref Message m)
         {
-            if (runHotPlug && !skipHotplug)
+            if (runHotPlug)
             {
                 try
                 {
@@ -1933,12 +1934,14 @@ namespace DS4Windows
                 e.Cancel = true;
                 return;
             }
+
             if (cBCloseMini.Checked && !contextclose)
             {
                 this.WindowState = FormWindowState.Minimized;
                 e.Cancel = true;
                 return;
             }
+
             if (systemShutdown)
             // Reset the variable because the user might cancel the 
             // shutdown.
@@ -1946,6 +1949,7 @@ namespace DS4Windows
                 systemShutdown = false;
                 DS4LightBar.shuttingdown = true;
             }
+
             if (oldsize == new System.Drawing.Size(0, 0))
             {
                 FormWidth = this.Width;
@@ -1956,9 +1960,11 @@ namespace DS4Windows
                 FormWidth = oldsize.Width;
                 FormHeight = oldsize.Height;
             }
+
             if (!String.IsNullOrEmpty(appdatapath))
             {
                 Save();
+                blankControllerTab();
                 Program.rootHub.Stop();
             }
         }

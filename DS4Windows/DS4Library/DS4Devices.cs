@@ -23,6 +23,7 @@ namespace DS4Windows
             {
                 deviceInstanceId = deviceInstanceId.Remove(deviceInstanceId.Length - 1);
             }
+
             return deviceInstanceId;
         }
 
@@ -102,7 +103,6 @@ namespace DS4Windows
                             ds4Device.Removal += On_Removal;
                             Devices.Add(ds4Device.MacAddress, ds4Device);
                             DevicePaths.Add(hDevice.DevicePath);
-                            ds4Device.StartUpdate();
                         }
                     }
                 }
@@ -215,6 +215,8 @@ namespace DS4Windows
             {
                 throw new Exception("Error enabling device, error code = " + Marshal.GetLastWin32Error());
             }
+
+            System.Threading.Thread.Sleep(50);
 
             NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
         }

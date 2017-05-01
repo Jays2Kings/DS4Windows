@@ -106,6 +106,8 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(Properties.Resources.Starting);
 
+                LogDebug("Connection to Scp Virtual Bus established");
+
                 DS4Devices.isExclusiveMode = getUseExclusiveMode();
                 if (showlog)
                 {
@@ -120,9 +122,10 @@ namespace DS4Windows
                     //int ind = 0;
                     DS4LightBar.defaultLight = false;
                     //foreach (DS4Device device in devices)
+
                     for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                     {
-                        DS4Device device = devices.ElementAt<DS4Device>(i);
+                        DS4Device device = devices.ElementAt(i);
                         if (showlog)
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
 
@@ -135,10 +138,14 @@ namespace DS4Windows
                         device.LightBarColor = getMainColor(i);
 
                         if (!getDInputOnly(i))
+                        {
+                            LogDebug("Plugging in X360 Controller #" + (x360Bus.FirstController + i));
                             x360Bus.Plugin(i);
+                        }
 
                         device.Report += this.On_Report;
                         TouchPadOn(i, device);
+                        device.StartUpdate();
                         //string filename = ProfilePath[ind];
                         //ind++;
                         if (showlog)
@@ -197,11 +204,11 @@ namespace DS4Windows
                 {
                     if (DS4Controllers[i] != null)
                     {
-                        if (DCBTatStop && !DS4Controllers[i].isCharging() && showlog)
+                        if (DCBTatStop && !DS4Controllers[i].isCharging())
                         {
                             if (DS4Controllers[i].getConnectionType() == ConnectionType.BT)
                             {
-                                DS4Controllers[i].DisconnectBT();
+                                DS4Controllers[i].DisconnectBT(true);
                             }
                             else if (DS4Controllers[i].getConnectionType() == ConnectionType.SONYWA)
                             {
@@ -216,6 +223,7 @@ namespace DS4Windows
                             DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i], ExposedState[i], touchPad[i]);
                             System.Threading.Thread.Sleep(50);
                         }
+
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
                         x360Bus.Unplug(i);
                         anyUnplugged = true;
@@ -250,15 +258,17 @@ namespace DS4Windows
             {
                 // Do first run check for Quick Charge checks. Needed so old device will
                 // be removed before performing another controller scan
-                for (int i = 0, devlen = DS4Controllers.Length; i < devlen; i++)
+                if (getQuickCharge())
                 {
-                    DS4Device device = DS4Controllers[i];
-                    if (device != null)
+                    for (int i = 0, devlen = DS4Controllers.Length; i < devlen; i++)
                     {
-                        if (getQuickCharge() && device.getConnectionType() == ConnectionType.BT &&
-                            device.isCharging())
+                        DS4Device device = DS4Controllers[i];
+                        if (device != null)
                         {
-                            device.DisconnectBT();
+                            if (device.getConnectionType() == ConnectionType.BT && device.isCharging())
+                            {
+                                device.DisconnectBT();
+                            }
                         }
                     }
                 }
@@ -268,7 +278,7 @@ namespace DS4Windows
                 //foreach (DS4Device device in devices)
                 for (int i = 0, devlen = devices.Count(); i < devlen; i++)
                 {
-                    DS4Device device = devices.ElementAt<DS4Device>(i);
+                    DS4Device device = devices.ElementAt(i);
 
                     if (device.isDisconnectingStatus())
                         continue;
@@ -302,8 +312,13 @@ namespace DS4Windows
                             device.LightBarColor = getMainColor(Index);
                             device.Report += this.On_Report;
                             if (!getDInputOnly(Index))
+                            {
+                                LogDebug("Plugging in X360 Controller #" + (x360Bus.FirstController + Index));
                                 x360Bus.Plugin(Index);
+                            }
+
                             TouchPadOn(Index, device);
+                            device.StartUpdate();
 
                             //string filename = Path.GetFileName(ProfilePath[Index]);
                             if (System.IO.File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[Index] + ".xml"))
@@ -664,7 +679,7 @@ namespace DS4Windows
             }
         }
 
-        public void EasterTime(int ind)
+        /*public void EasterTime(int ind)
         {
             DS4State cState = CurrentState[ind];
             DS4StateExposed eState = ExposedState[ind];
@@ -743,6 +758,7 @@ namespace DS4Windows
             else if (!pb)
                 buttonsdown[ind] = false;
         }
+        */
 
         public string GetInputkeys(int ind)
         {

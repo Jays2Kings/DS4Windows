@@ -937,6 +937,7 @@ namespace DS4Windows
 
         //delegate void OldHotPlugDelegate();
         bool skipHotplug = false;
+        bool inHotPlug = false;
         protected override void WndProc(ref Message m)
         {
             if (runHotPlug)
@@ -947,17 +948,7 @@ namespace DS4Windows
                     {
                         Int32 Type = m.WParam.ToInt32();
 
-                        lock (this)
-                        {
-                            // Execute hotplug routine after a delay in time. Set flag so extra calls
-                            // to WndProc will be ignored
-                            skipHotplug = true;
-                            System.Threading.Tasks.Task.Delay(50).ContinueWith((t) => InnerHotplug());
-                            //OldHotPlugDelegate d = new OldHotPlugDelegate(InnerHotplug);
-                            //this.BeginInvoke(d);
-                            //skipHotplug = false;
-                            //Program.rootHub.HotPlug();
-                        }
+                        InnerHotplug2();
                     }
                 }
                 catch { }
@@ -981,6 +972,28 @@ namespace DS4Windows
                 HotPlugDelegate d = new HotPlugDelegate(Program.rootHub.HotPlug);
                 this.BeginInvoke(d);
                 //Program.rootHub.HotPlug();
+            }
+        }
+
+        protected async void InnerHotplug2()
+        {
+            if (inHotPlug)
+            {
+                await System.Threading.Tasks.Task.Run(() => { while (inHotPlug) { System.Threading.Thread.Sleep(50); } });
+            }
+
+            lock (this)
+            {
+                skipHotplug = true;
+                //System.Threading.Tasks.Task.Delay(50).ContinueWith((t) => InnerHotplug());
+                //System.Threading.Tasks.Task tempTask = System.Threading.Tasks.Task.Delay(50).ContinueWith((t) => { });
+                //tempTask.Wait();
+                //OldHotPlugDelegate d = new OldHotPlugDelegate(InnerHotplug);
+                //this.BeginInvoke(d);
+                //skipHotplug = false;
+                inHotPlug = true;
+                Program.rootHub.HotPlug();
+                inHotPlug = false;
             }
         }
 

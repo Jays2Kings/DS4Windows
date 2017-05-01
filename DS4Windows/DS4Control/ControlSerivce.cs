@@ -208,10 +208,14 @@ namespace DS4Windows
                         {
                             if (DS4Controllers[i].getConnectionType() == ConnectionType.BT)
                             {
-                                DS4Controllers[i].DisconnectBT(true);
+                                DS4Device device = DS4Controllers[i];
+                                device.StopUpdate();
+                                device.DisconnectBT(true);
                             }
                             else if (DS4Controllers[i].getConnectionType() == ConnectionType.SONYWA)
                             {
+                                DS4Device device = DS4Controllers[i];
+                                device.StopUpdate();
                                 DS4Controllers[i].DisconnectDongle(true);
                             }
                         }
@@ -270,7 +274,13 @@ namespace DS4Windows
                         {
                             if (device.getConnectionType() == ConnectionType.BT && device.isCharging())
                             {
-                                device.DisconnectBT();
+                                device.StopUpdate();
+                                device.DisconnectBT(true);
+                                /*Task temp = Task.Delay(50).ContinueWith((t) => {
+                                    while (!device.IsRemoved) { System.Threading.Thread.Sleep(10); }
+                                });
+                                temp.Wait(100);
+                                */
                             }
                         }
                     }
@@ -365,7 +375,7 @@ namespace DS4Windows
 
         /* TODO: Check if this method is really necessary. If not, delete it. For now, it is not being used because
          * input reports are read async with a timeout now. */
-        public void TimeoutConnection(DS4Device d)
+        /*public void TimeoutConnection(DS4Device d)
         {
             try
             {
@@ -390,6 +400,7 @@ namespace DS4Windows
                 Start(false);
             }
         }
+        */
 
         public string getDS4ControllerInfo(int index)
         {
@@ -682,6 +693,7 @@ namespace DS4Windows
             }
         }
 
+        /* TODO: Not used. Possible candidate for removal. Currently keeping for reference. */
         /*public void EasterTime(int ind)
         {
             DS4State cState = CurrentState[ind];
@@ -893,7 +905,8 @@ namespace DS4Windows
             return result;
         }
 
-        public DS4Controls GetInputkeysDS4(int ind)
+        /* TODO: Not used. Possible candidate for removal. Currently keeping for reference. */
+        /*public DS4Controls GetInputkeysDS4(int ind)
         {
             DS4State cState = CurrentState[ind];
             DS4StateExposed eState = ExposedState[ind];
@@ -1022,6 +1035,7 @@ namespace DS4Windows
 
             return result;
         }
+        */
 
         public bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };
         public byte[] oldtouchvalue = { 0, 0, 0, 0 };

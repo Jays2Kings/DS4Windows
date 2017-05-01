@@ -68,6 +68,7 @@ namespace DS4Windows
                                     startInfo.Verb = "runas";
                                     startInfo.Arguments = "re-enabledevice " + devicePathToInstanceId(hDevice.DevicePath);
                                     Process child = Process.Start(startInfo);
+
                                     if (!child.WaitForExit(5000))
                                     {
                                         child.Kill();
@@ -144,7 +145,7 @@ namespace DS4Windows
                 //foreach (DS4Device device in devices)
                 for (int i = 0, devCount = devices.Count(); i < devCount; i++)
                 {
-                    DS4Device device = devices.ElementAt<DS4Device>(i);
+                    DS4Device device = devices.ElementAt(i);
                     device.StopUpdate();
                     //device.runRemoval();
                     device.HidDevice.CloseDevice();

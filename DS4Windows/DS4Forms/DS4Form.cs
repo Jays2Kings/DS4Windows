@@ -960,21 +960,20 @@ namespace DS4Windows
         bool inHotPlug = false;
         protected override void WndProc(ref Message m)
         {
-            if (runHotPlug)
+            try
             {
-                try
+                if (m.Msg == ScpDevice.WM_DEVICECHANGE)
                 {
-                    if (m.Msg == ScpDevice.WM_DEVICECHANGE)
+                    if (runHotPlug)
                     {
                         Int32 Type = m.WParam.ToInt32();
-
                         InnerHotplug2();
                     }
                 }
-                catch { }
-                if (m.Msg == WM_QUERYENDSESSION)
-                    systemShutdown = true;
             }
+            catch { }
+            if (m.Msg == WM_QUERYENDSESSION)
+                systemShutdown = true;
 
             // If this is WM_QUERYENDSESSION, the closing event should be
             // raised in the base WndProc.
@@ -997,7 +996,6 @@ namespace DS4Windows
 
         protected async void InnerHotplug2()
         {
-
             await System.Threading.Tasks.Task.Delay(50);
 
             if (inHotPlug)

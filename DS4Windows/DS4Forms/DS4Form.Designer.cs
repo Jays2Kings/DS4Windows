@@ -119,6 +119,7 @@
             this.cBSwipeProfiles = new System.Windows.Forms.CheckBox();
             this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
             this.runStartupPanel = new System.Windows.Forms.Panel();
+            this.uacPictureBox = new System.Windows.Forms.PictureBox();
             this.runStartTaskRadio = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.runStartProgRadio = new System.Windows.Forms.RadioButton();
@@ -173,6 +174,7 @@
             this.tabSettings.SuspendLayout();
             this.fLPSettings.SuspendLayout();
             this.runStartupPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uacPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLatency)).BeginInit();
@@ -893,11 +895,18 @@
             // runStartupPanel
             // 
             this.runStartupPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.runStartupPanel.Controls.Add(this.uacPictureBox);
             this.runStartupPanel.Controls.Add(this.runStartTaskRadio);
             this.runStartupPanel.Controls.Add(this.label1);
             this.runStartupPanel.Controls.Add(this.runStartProgRadio);
             resources.ApplyResources(this.runStartupPanel, "runStartupPanel");
             this.runStartupPanel.Name = "runStartupPanel";
+            // 
+            // uacPictureBox
+            // 
+            resources.ApplyResources(this.uacPictureBox, "uacPictureBox");
+            this.uacPictureBox.Name = "uacPictureBox";
+            this.uacPictureBox.TabStop = false;
             // 
             // runStartTaskRadio
             // 
@@ -1231,6 +1240,7 @@
             this.fLPSettings.PerformLayout();
             this.runStartupPanel.ResumeLayout(false);
             this.runStartupPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uacPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1379,6 +1389,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton runStartProgRadio;
         private System.Windows.Forms.RadioButton runStartTaskRadio;
+        private System.Windows.Forms.PictureBox uacPictureBox;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

@@ -371,19 +371,24 @@ namespace DS4Windows
             if (!Directory.Exists(appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
 
+            bool isElevated = Global.IsAdministrator();
+            if (!isElevated)
+            {
+                Image tempImg = new Bitmap(uacPictureBox.Width, uacPictureBox.Height);
+                AddUACShieldToImage(tempImg);
+                uacPictureBox.BackgroundImage = tempImg;
+                uacPictureBox.Visible = true;
+                runStartTaskRadio.Enabled = false;
+            }
+            else
+            {
+                runStartTaskRadio.Enabled = true;
+            }
+
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk"))
             {
                 StartWindowsCheckBox.Checked = true;
                 runStartupPanel.Visible = true;
-
-                if (Global.IsAdministrator())
-                {
-                    runStartTaskRadio.Enabled = true;
-                }
-                else
-                {
-                    runStartTaskRadio.Enabled = false;
-                }
 
                 string lnkpath = WinProgs.ResolveShortcutAndArgument(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
                 string onlylnkpath = WinProgs.ResolveShortcut(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\DS4Windows.lnk");
@@ -407,6 +412,21 @@ namespace DS4Windows
             UpdateTheUpdater();
 
             this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
+        }
+
+        private Image AddUACShieldToImage(Image image)
+        {
+            Bitmap shield = SystemIcons.Shield.ToBitmap();
+            shield.MakeTransparent();
+
+            Graphics g = Graphics.FromImage(image);
+            g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+            double aspectRatio = shield.Width / (double)shield.Height;
+            int finalWidth = Convert.ToInt32(image.Height * aspectRatio);
+            int finalHeight = Convert.ToInt32(image.Width / aspectRatio);
+            g.DrawImage(shield, new Rectangle(0, 0, finalWidth, finalHeight));
+
+            return image;
         }
 
         private void blankControllerTab()

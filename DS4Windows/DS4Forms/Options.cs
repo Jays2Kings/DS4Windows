@@ -128,8 +128,6 @@ namespace DS4Windows
 
         public void Reload(int deviceNum, string name)
         {
-            nUDRumbleBoost.ValueChanged -= rumbleBoostBar_ValueChanged;
-
             loading = true;
             device = deviceNum;
             filename = name;
@@ -508,11 +506,10 @@ namespace DS4Windows
             LoadActions(string.IsNullOrEmpty(filename));
             loading = false;
             saving = false;
-
-            nUDRumbleBoost.ValueChanged += new EventHandler(this.rumbleBoostBar_ValueChanged);
         }
 
-        private string getDS4ControlsByName(DS4Controls key)
+        /* TODO: Possibly remove. Currently not used. */
+        /*private string getDS4ControlsByName(DS4Controls key)
         {
             switch (key)
             {
@@ -562,6 +559,7 @@ namespace DS4Windows
 
             return "";
         }
+        */
 
         public void LoadActions(bool newp)
         {
@@ -813,6 +811,7 @@ namespace DS4Windows
             {
                 switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
                 {
+                    case ("nothing"): break;
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
                     case ("Circle"): Show_ControlsBn(bnCircle, e); break;
                     case ("Square"): Show_ControlsBn(bnSquare, e); break;
@@ -846,6 +845,7 @@ namespace DS4Windows
                     case ("GyroXN"): Show_ControlsBn(bnGyroXN, e); break;
                     case ("GyroZP"): Show_ControlsBn(bnGyroZP, e); break;
                     case ("GyroZN"): Show_ControlsBn(bnGyroZN, e); break;
+                    default: break;
                 }
             }
         }
@@ -1388,12 +1388,15 @@ namespace DS4Windows
         }
         private void rumbleBoostBar_ValueChanged(object sender, EventArgs e)
         {
-            RumbleBoost[device] = (byte)nUDRumbleBoost.Value;
-            byte h = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
-            byte l = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
-            bool hB = btnRumbleHeavyTest.Text == Properties.Resources.TestLText;
-            bool lB = btnRumbleLightTest.Text == Properties.Resources.TestLText;
-            Program.rootHub.setRumble((byte)(hB ? h : 0), (byte)(lB ? l : 0), device);
+            if (!loading)
+            {
+                RumbleBoost[device] = (byte)nUDRumbleBoost.Value;
+                byte h = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
+                byte l = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
+                bool hB = btnRumbleHeavyTest.Text == Properties.Resources.TestLText;
+                bool lB = btnRumbleLightTest.Text == Properties.Resources.TestLText;
+                Program.rootHub.setRumble((byte)(hB ? h : 0), (byte)(lB ? l : 0), device);
+            }
         }
 
         private void btnRumbleHeavyTest_Click(object sender, EventArgs e)
@@ -2179,7 +2182,6 @@ namespace DS4Windows
             Toggle_Bn(scancode, false, false, false, button4);
         }*/
 
-
         private void SetPreset(object sender, EventArgs e)
         {
             bool scancode = false;
@@ -2538,8 +2540,10 @@ namespace DS4Windows
             {
                 List<string> pactions = new List<string>();
                 foreach (ListViewItem lvi in lVActions.Items)
+                {
                     if (lvi != null && lvi.Checked)
                         pactions.Add(lvi.Text);
+                }
 
                 ProfileActions[device] = pactions;
                 calculateProfileActionCount(device);

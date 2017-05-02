@@ -977,6 +977,9 @@ namespace DS4Windows
 
         protected async void InnerHotplug2()
         {
+
+            await System.Threading.Tasks.Task.Delay(50);
+
             if (inHotPlug)
             {
                 await System.Threading.Tasks.Task.Run(() => { while (inHotPlug) { System.Threading.Thread.Sleep(50); } });

@@ -649,17 +649,20 @@ namespace DS4Windows
                 // Update the GUI/whatever.
                 DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
 
-                x360Bus.Parse(cState, processingData[ind].Report, ind);
-                // We push the translated Xinput state, and simultaneously we
-                // pull back any possible rumble data coming from Xinput consumers.
-                if (x360Bus.Report(processingData[ind].Report, processingData[ind].Rumble))
+                if (!getDInputOnly(ind))
                 {
-                    Byte Big = (Byte)(processingData[ind].Rumble[3]);
-                    Byte Small = (Byte)(processingData[ind].Rumble[4]);
-
-                    if (processingData[ind].Rumble[1] == 0x08)
+                    x360Bus.Parse(cState, processingData[ind].Report, ind);
+                    // We push the translated Xinput state, and simultaneously we
+                    // pull back any possible rumble data coming from Xinput consumers.
+                    if (x360Bus.Report(processingData[ind].Report, processingData[ind].Rumble))
                     {
-                        setRumble(Big, Small, ind);
+                        Byte Big = (Byte)(processingData[ind].Rumble[3]);
+                        Byte Small = (Byte)(processingData[ind].Rumble[4]);
+
+                        if (processingData[ind].Rumble[1] == 0x08)
+                        {
+                            setRumble(Big, Small, ind);
+                        }
                     }
                 }
 

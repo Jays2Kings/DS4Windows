@@ -228,6 +228,17 @@ namespace DS4Windows
             X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None
         };
 
+        public static DS4Controls[] reverseX360ButtonMapping = new Func<DS4Controls[]>(() =>
+        {
+            DS4Controls[] temp = new DS4Controls[defaultButtonMapping.Length];
+            for (int i = 0, arlen = defaultButtonMapping.Length; i < arlen; i++)
+            {
+                temp[i] = (DS4Controls)defaultButtonMapping[i];
+            }
+
+            return temp;
+        })();
+
         public static void SaveWhere(string path)
         {
             appdatapath = path;

@@ -846,7 +846,8 @@ namespace DS4Windows
                     }
                     else if (actionType == DS4ControlSettings.ActionType.Key)
                     {
-                        ushort value = ushort.Parse(action.ToString());
+                        //ushort value = ushort.Parse(action.ToString());
+                        ushort value = Convert.ToUInt16(action);
                         if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                         {
                             resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
@@ -901,99 +902,80 @@ namespace DS4Windows
                             xboxControl = getX360ControlsByName(action.ToString());
                         }
 
-                        if (xboxControl >= X360Controls.X && xboxControl <= X360Controls.A)
+                        if (xboxControl >= X360Controls.LXNeg && xboxControl <= X360Controls.Start)
                         {
-                            switch (xboxControl)
-                            {
-                                case X360Controls.A: tempControlDict.Add(dcs.control, DS4Controls.Cross); break;
-                                case X360Controls.B: tempControlDict.Add(dcs.control, DS4Controls.Circle); break;
-                                case X360Controls.X: tempControlDict.Add(dcs.control, DS4Controls.Square); break;
-                                case X360Controls.Y: tempControlDict.Add(dcs.control, DS4Controls.Triangle); break;
-                                default: break;
-                            }
-                        }
-                        else if (xboxControl >= X360Controls.LB && xboxControl <= X360Controls.RS)
-                        {
-                            switch (xboxControl)
-                            {
-                                case X360Controls.LB: tempControlDict.Add(dcs.control, DS4Controls.L1); break;
-                                case X360Controls.LT: tempControlDict.Add(dcs.control, DS4Controls.L2); break;
-                                case X360Controls.LS: tempControlDict.Add(dcs.control, DS4Controls.L3); break;
-                                case X360Controls.RB: tempControlDict.Add(dcs.control, DS4Controls.R1); break;
-                                case X360Controls.RT: tempControlDict.Add(dcs.control, DS4Controls.R2); break;
-                                case X360Controls.RS: tempControlDict.Add(dcs.control, DS4Controls.R3); break;
-                                default: break;
-                            }
-                        }
-                        else if (xboxControl >= X360Controls.DpadUp && xboxControl <= X360Controls.DpadLeft)
-                        {
-                            switch (xboxControl)
-                            {
-                                case X360Controls.DpadUp: tempControlDict.Add(dcs.control, DS4Controls.DpadUp); break;
-                                case X360Controls.DpadDown: tempControlDict.Add(dcs.control, DS4Controls.DpadDown); break;
-                                case X360Controls.DpadLeft: tempControlDict.Add(dcs.control, DS4Controls.DpadLeft); break;
-                                case X360Controls.DpadRight: tempControlDict.Add(dcs.control, DS4Controls.DpadRight); break;
-                                default: break;
-                            }
-                        }
-                        else if (xboxControl >= X360Controls.LXNeg && xboxControl <= X360Controls.RYPos)
-                        {
-                            switch (xboxControl)
-                            {
-                                case X360Controls.LXNeg: tempControlDict.Add(dcs.control, DS4Controls.LXNeg); break;
-                                case X360Controls.LYNeg: tempControlDict.Add(dcs.control, DS4Controls.LYNeg); break;
-                                case X360Controls.RXNeg: tempControlDict.Add(dcs.control, DS4Controls.RXNeg); break;
-                                case X360Controls.RYNeg: tempControlDict.Add(dcs.control, DS4Controls.RYNeg); break;
-                                case X360Controls.LXPos: tempControlDict.Add(dcs.control, DS4Controls.LXPos); break;
-                                case X360Controls.LYPos: tempControlDict.Add(dcs.control, DS4Controls.LYPos); break;
-                                case X360Controls.RXPos: tempControlDict.Add(dcs.control, DS4Controls.RXPos); break;
-                                case X360Controls.RYPos: tempControlDict.Add(dcs.control, DS4Controls.RYPos); break;
-                                default: break;
-                            }
+                            DS4Controls tempDS4Control = reverseX360ButtonMapping[(int)xboxControl];
+                            tempControlDict.Add(dcs.control, tempDS4Control);
                         }
                         else if (xboxControl >= X360Controls.LeftMouse && xboxControl <= X360Controls.WDOWN)
                         {
                             switch (xboxControl)
                             {
                                 case X360Controls.LeftMouse:
+                                {
                                     keyvalue = 256;
                                     if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                                         deviceState.currentClicks.leftCount++;
+
                                     break;
+                                }
                                 case X360Controls.RightMouse:
+                                {
                                     keyvalue = 257;
                                     if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                                         deviceState.currentClicks.rightCount++;
+
                                     break;
+                                }
                                 case X360Controls.MiddleMouse:
+                                {
                                     keyvalue = 258;
                                     if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                                         deviceState.currentClicks.middleCount++;
+
                                     break;
+                                }
                                 case X360Controls.FourthMouse:
+                                {
                                     keyvalue = 259;
                                     if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                                         deviceState.currentClicks.fourthCount++;
+
                                     break;
+                                }
                                 case X360Controls.FifthMouse:
+                                {
                                     keyvalue = 260;
                                     if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                                         deviceState.currentClicks.fifthCount++;
+
                                     break;
+                                }
                                 case X360Controls.WUP:
+                                {
                                     if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                                    {
                                         if (isAnalog)
                                             getMouseWheelMapping(device, dcs.control, cState, eState, tp, false);
                                         else
                                             deviceState.currentClicks.wUpCount++;
+                                    }
+
                                     break;
+                                }
                                 case X360Controls.WDOWN:
+                                {
                                     if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                                    {
                                         if (isAnalog)
                                             getMouseWheelMapping(device, dcs.control, cState, eState, tp, true);
                                         else
                                             deviceState.currentClicks.wDownCount++;
+                                    }
+
                                     break;
+                                }
+
                                 default: break;
                             }
                         }
@@ -1002,44 +984,46 @@ namespace DS4Windows
                             switch (xboxControl)
                             {
                                 case X360Controls.MouseUp:
+                                {
                                     if (tempMouseDeltaY == 0)
                                     {
                                         tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 0);
                                         tempMouseDeltaY = -Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
                                     }
+
                                     break;
+                                }
                                 case X360Controls.MouseDown:
+                                {
                                     if (tempMouseDeltaY == 0)
                                     {
                                         tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 1);
                                         tempMouseDeltaY = Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
                                     }
+
                                     break;
+                                }
                                 case X360Controls.MouseLeft:
+                                {
                                     if (tempMouseDeltaX == 0)
                                     {
                                         tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 2);
                                         tempMouseDeltaX = -Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
                                     }
+
                                     break;
+                                }
                                 case X360Controls.MouseRight:
+                                {
                                     if (tempMouseDeltaX == 0)
                                     {
                                         tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 3);
                                         tempMouseDeltaX = Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
                                     }
-                                    break;
 
-                                default: break;
-                            }
-                        }
-                        else
-                        {
-                            switch (xboxControl)
-                            {
-                                case X360Controls.Start: tempControlDict.Add(dcs.control, DS4Controls.Options); break;
-                                case X360Controls.Guide: tempControlDict.Add(dcs.control, DS4Controls.PS); break;
-                                case X360Controls.Back: tempControlDict.Add(dcs.control, DS4Controls.Share); break;
+                                    break;
+                                }
+
                                 default: break;
                             }
                         }
@@ -1078,6 +1062,7 @@ namespace DS4Windows
                             p = dcs.shiftExtras;
                         else
                             p = dcs.extras;
+
                         string[] extraS = p.Split(',');
                         int extrasSLen = extraS.Length;
                         int[] extras = new int[extrasSLen];
@@ -1087,11 +1072,13 @@ namespace DS4Windows
                             if (int.TryParse(extraS[i], out b))
                                 extras[i] = b;
                         }
+
                         held[device] = true;
                         try
                         {
                             if (!(extras[0] == extras[1] && extras[1] == 0))
                                 ctrl.setRumble((byte)extras[0], (byte)extras[1], device);
+
                             if (extras[2] == 1)
                             {
                                 DS4Color color = new DS4Color { red = (byte)extras[3], green = (byte)extras[4], blue = (byte)extras[5] };
@@ -1099,6 +1086,7 @@ namespace DS4Windows
                                 DS4LightBar.forcedFlash[device] = (byte)extras[6];
                                 DS4LightBar.forcelight[device] = true;
                             }
+
                             if (extras[7] == 1)
                             {
                                 if (oldmouse[device] == -1)
@@ -1179,7 +1167,7 @@ namespace DS4Windows
             //foreach (KeyValuePair<DS4Controls, DS4Controls> entry in tempControlDict)
             for (int i = 0, keyCount = controlKeys.Count; i < keyCount; i++)
             {
-                DS4Controls key = controlKeys.ElementAt<DS4Controls>(i);
+                DS4Controls key = controlKeys.ElementAt(i);
                 DS4Controls dc = tempControlDict[key];
                 //DS4Controls key = entry.Key;
                 //DS4Controls dc = entry.Value;

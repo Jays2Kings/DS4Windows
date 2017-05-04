@@ -391,6 +391,11 @@ namespace DS4Windows
         {
             if (ds4Input == null)
             {
+                if (!hDevice.IsFileStreamOpen())
+                {
+                    hDevice.OpenFileStream(inputReport.Length);
+                }
+
                 Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> start");
                 sendOutputReport(true); // initialize the output report
                 ds4Output = new Thread(performDs4Output);

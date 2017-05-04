@@ -83,6 +83,25 @@ namespace DS4Windows
             IsExclusive = isExclusive;
         }
 
+        public void OpenFileStream(int reportSize)
+        {
+            if (fileStream == null && !safeReadHandle.IsInvalid)
+            {
+                fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, reportSize, true);
+            }
+        }
+
+        public bool IsFileStreamOpen()
+        {
+            bool result = false;
+            if (fileStream != null)
+            {
+                result = !fileStream.SafeFileHandle.IsInvalid && !fileStream.SafeFileHandle.IsClosed;
+            }
+
+            return result;
+        }
+
         public void CloseDevice()
         {
             if (!IsOpen) return;
@@ -140,6 +159,7 @@ namespace DS4Windows
                 NativeMethods.HidP_GetCaps(preparsedDataPointer, ref capabilities);
                 NativeMethods.HidD_FreePreparsedData(preparsedDataPointer);
             }
+
             return new HidDeviceCapabilities(capabilities);
         }
 
@@ -151,19 +171,25 @@ namespace DS4Windows
                 {
                     fileStream.Close();
                 }
-                catch (IOException)
-                {
-                }
+                catch (IOException) { }
+                catch (OperationCanceledException) { }
             }
 
             fileStream = null;
             Console.WriteLine("Close fs");
             if (safeReadHandle != null && !safeReadHandle.IsInvalid)
             {
-                safeReadHandle.Close();
-                Console.WriteLine("Close sh");
-
+                try
+                {
+                    if (!safeReadHandle.IsClosed)
+                    {
+                        safeReadHandle.Close();
+                        Console.WriteLine("Close sh");
+                    }
+                }
+                catch (IOException) { }
             }
+
             safeReadHandle = null;
         }
 
@@ -193,6 +219,7 @@ namespace DS4Windows
                 return ReadStatus.ReadError;
             }
         }
+
         public ReadStatus ReadFile(byte[] inputBuffer)
         {
             if (safeReadHandle == null)
@@ -223,6 +250,7 @@ namespace DS4Windows
                     safeReadHandle = OpenHandle(_devicePath, true);
                 if (fileStream == null && !safeReadHandle.IsInvalid)
                     fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, inputBuffer.Length, true);
+
                 if (!safeReadHandle.IsInvalid && fileStream.CanRead)
                 {
                     Task<ReadStatus> readFileTask = new Task<ReadStatus>(() => ReadWithFileStreamTask(inputBuffer));
@@ -260,9 +288,6 @@ namespace DS4Windows
                     return ReadStatus.ReadError;
                 }
             }
-
-
-
 
             return ReadStatus.ReadError;
         }

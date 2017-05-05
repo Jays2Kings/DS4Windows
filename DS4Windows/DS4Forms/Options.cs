@@ -2008,7 +2008,7 @@ namespace DS4Windows
         private void cBDinput_CheckedChanged(object sender, EventArgs e)
         {
             DinputOnly[device] = cBDinput.Checked;
-            if (device < 4)
+            if (!loading && device < 4)
             {
                 root.btnStartStop_Clicked(false);
                 root.btnStartStop_Clicked(false);
@@ -2049,7 +2049,6 @@ namespace DS4Windows
                 case "btnFlashColor": root.lbLastMessage.Text = Properties.Resources.FlashAtTip; break;
                 case "cbStartTouchpadOff": root.lbLastMessage.Text = Properties.Resources.TouchpadOffTip; break;
                 case "cBTPforControls": root.lbLastMessage.Text = Properties.Resources.UsingTPSwipes; break;
-                default: root.lbLastMessage.Text = Properties.Resources.HoverOverItems; break;
 
                 case "bnUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "bnLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
@@ -2070,9 +2069,10 @@ namespace DS4Windows
                 case "bnSwipeUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "bnSwipeLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "bnSwipeRight": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnSwipeDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;                    
-                case "bnL3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;                    
-                case "bnR3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;                    
+                case "bnSwipeDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnL3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnR3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                default: root.lbLastMessage.Text = Properties.Resources.HoverOverItems; break;
             }
 
             if (name.Contains("bnLS") || name.Contains("bnRS"))

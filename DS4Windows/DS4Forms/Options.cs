@@ -30,6 +30,9 @@ namespace DS4Windows
         public bool actionTabSeen = false;
         public static Size mSize { get; private set; }
         private Size settingsSize;
+        private Dictionary<Control, int> hoverIndexDict = new Dictionary<Control, int>();
+        private Dictionary<Control, Bitmap> hoverImageDict = new Dictionary<Control, Bitmap>();
+        private Dictionary<Control, Label> hoverLabelDict = new Dictionary<Control, Label>();
 
         public Options(DS4Form rt)
         {
@@ -124,6 +127,121 @@ namespace DS4Windows
             bnSwipeDown.Text = Properties.Resources.SwipeDown;
             bnSwipeLeft.Text = Properties.Resources.SwipeLeft;
             bnSwipeRight.Text = Properties.Resources.SwipeRight;
+
+            populateHoverIndexDict();
+            populateHoverImageDict();
+            populateHoverLabelDict();
+        }
+
+        private void populateHoverIndexDict()
+        {
+            hoverIndexDict.Clear();
+            hoverIndexDict[bnCross] = 0;
+            hoverIndexDict[bnCircle] = 1;
+            hoverIndexDict[bnSquare] = 2;
+            hoverIndexDict[bnTriangle] = 3;
+            hoverIndexDict[bnOptions] = 4;
+            hoverIndexDict[bnShare] = 5;
+            hoverIndexDict[bnUp] = 6;
+            hoverIndexDict[bnDown] = 7;
+            hoverIndexDict[bnLeft] = 8;
+            hoverIndexDict[bnRight] = 9;
+            hoverIndexDict[bnPS] = 10;
+            hoverIndexDict[bnL1] = 11;
+            hoverIndexDict[bnR1] = 12;
+            hoverIndexDict[bnL2] = 13;
+            hoverIndexDict[bnR2] = 14;
+            hoverIndexDict[bnL3] = 15;
+            hoverIndexDict[bnR3] = 16;
+            hoverIndexDict[bnTouchLeft] = 17;
+            hoverIndexDict[bnTouchRight] = 18;
+            hoverIndexDict[bnTouchMulti] = 19;
+            hoverIndexDict[bnTouchUpper] = 20;
+            hoverIndexDict[bnLSUp] = 21;
+            hoverIndexDict[bnLSDown] = 22;
+            hoverIndexDict[bnLSLeft] = 23;
+            hoverIndexDict[bnLSRight] = 24;
+            hoverIndexDict[bnRSUp] = 25;
+            hoverIndexDict[bnRSDown] = 26;
+            hoverIndexDict[bnRSLeft] = 27;
+            hoverIndexDict[bnRSRight] = 28;
+            hoverIndexDict[bnGyroZN] = 29;
+            hoverIndexDict[bnGyroZP] = 30;
+            hoverIndexDict[bnGyroXP] = 31;
+            hoverIndexDict[bnGyroXN] = 32;
+            hoverIndexDict[bnSwipeUp] = 33;
+            hoverIndexDict[bnSwipeDown] = 34;
+            hoverIndexDict[bnSwipeLeft] = 35;
+            hoverIndexDict[bnSwipeRight] = 36;
+        }
+
+        private void populateHoverImageDict()
+        {
+            hoverImageDict.Clear();
+            hoverImageDict[bnCross] = Properties.Resources.DS4_Config_Cross;
+            hoverImageDict[bnCircle] = Properties.Resources.DS4_Config_Circle;
+            hoverImageDict[bnSquare] = Properties.Resources.DS4_Config_Square;
+            hoverImageDict[bnTriangle] = Properties.Resources.DS4_Config_Triangle;
+            hoverImageDict[bnOptions] = Properties.Resources.DS4_Config_Options;
+            hoverImageDict[bnShare] = Properties.Resources.DS4_Config_Share;
+            hoverImageDict[bnUp] = Properties.Resources.DS4_Config_Up;
+            hoverImageDict[bnDown] = Properties.Resources.DS4_Config_Down;
+            hoverImageDict[bnLeft] = Properties.Resources.DS4_Config_Left;
+            hoverImageDict[bnRight] = Properties.Resources.DS4_Config_Right;
+            hoverImageDict[bnPS] = Properties.Resources.DS4_Config_PS;
+            hoverImageDict[bnL1] = Properties.Resources.DS4_Config_L1;
+            hoverImageDict[bnR1] = Properties.Resources.DS4_Config_R1;
+            hoverImageDict[bnL2] = Properties.Resources.DS4_Config_L2;
+            hoverImageDict[bnR2] = Properties.Resources.DS4_Config_R2;
+            hoverImageDict[bnTouchLeft] = Properties.Resources.DS4_Config_TouchLeft;
+            hoverImageDict[bnTouchRight] = Properties.Resources.DS4_Config_TouchRight;
+            hoverImageDict[bnTouchMulti] = Properties.Resources.DS4_Config_TouchMulti;
+            hoverImageDict[bnTouchUpper] = Properties.Resources.DS4_Config_TouchUpper;
+            hoverImageDict[bnL3] = Properties.Resources.DS4_Config_LS;
+            hoverImageDict[bnLSUp] = Properties.Resources.DS4_Config_LS;
+            hoverImageDict[bnLSDown] = Properties.Resources.DS4_Config_LS;
+            hoverImageDict[bnLSLeft] = Properties.Resources.DS4_Config_LS;
+            hoverImageDict[bnLSRight] = Properties.Resources.DS4_Config_LS;
+            hoverImageDict[bnR3] = Properties.Resources.DS4_Config_RS;
+            hoverImageDict[bnRSUp] = Properties.Resources.DS4_Config_RS;
+            hoverImageDict[bnRSDown] = Properties.Resources.DS4_Config_RS;
+            hoverImageDict[bnRSLeft] = Properties.Resources.DS4_Config_RS;
+            hoverImageDict[bnRSRight] = Properties.Resources.DS4_Config_RS;
+        }
+
+        private void populateHoverLabelDict()
+        {
+            hoverLabelDict.Clear();
+
+            hoverLabelDict[bnCross] = lbLCross;
+            hoverLabelDict[bnCircle] = lbLCircle;
+            hoverLabelDict[bnSquare] = lbLSquare;
+            hoverLabelDict[bnTriangle] = lbLTriangle;
+            hoverLabelDict[bnOptions] = lbLOptions;
+            hoverLabelDict[bnShare] = lbLShare;
+            hoverLabelDict[bnUp] = lbLUp;
+            hoverLabelDict[bnDown] = lbLDown;
+            hoverLabelDict[bnLeft] = lbLLeft;
+            hoverLabelDict[bnRight] = lbLright;
+            hoverLabelDict[bnPS] = lbLPS;
+            hoverLabelDict[bnL1] = lbLL1;
+            hoverLabelDict[bnR1] = lbLR1;
+            hoverLabelDict[bnL2] = lbLL2;
+            hoverLabelDict[bnR2] = lbLR2;
+            hoverLabelDict[bnTouchLeft] = lbLTouchLM;
+            hoverLabelDict[bnTouchRight] = lbLTouchRight;
+            hoverLabelDict[bnTouchMulti] = lbLTouchLM;
+            hoverLabelDict[bnTouchUpper] = lbLTouchUpper;
+            hoverLabelDict[bnL3] = lbLLS;
+            hoverLabelDict[bnLSUp] = lbLLS;
+            hoverLabelDict[bnLSDown] = lbLLS;
+            hoverLabelDict[bnLSLeft] = lbLLS;
+            hoverLabelDict[bnLSRight] = lbLLS;
+            hoverLabelDict[bnR3] = lbLRS;
+            hoverLabelDict[bnRSUp] = lbLRS;
+            hoverLabelDict[bnRSDown] = lbLRS;
+            hoverLabelDict[bnRSLeft] = lbLRS;
+            hoverLabelDict[bnRSRight] = lbLRS;
         }
 
         public void Reload(int deviceNum, string name)
@@ -894,10 +1012,17 @@ namespace DS4Windows
         private void button_MouseHover(object sender, EventArgs e)
         {
             bool swipesOn = lBControls.Items.Count > 33;
-            string name = ((Button)sender).Name;
+            Button senderControl = (Button)sender;
+            string name = senderControl.Name;
             if (e != null)
             {
-                switch (name)
+                int tempIndex = 0;
+                if (hoverIndexDict.TryGetValue(senderControl, out tempIndex))
+                {
+                    lBControls.SelectedIndex = tempIndex;
+                }
+
+                /*switch (name)
                 {
                     #region
                     case "bnCross": lBControls.SelectedIndex = 0; break;
@@ -946,6 +1071,7 @@ namespace DS4Windows
                         case "bnSwipeRight": if (swipesOn) lBControls.SelectedIndex = 36; break;
                     }
                 }
+                */
             }
 
             DS4ControlSettings dcs = getDS4CSetting(device, name);
@@ -953,17 +1079,29 @@ namespace DS4Windows
             { 
                 string tipText = lBControls.SelectedItem.ToString().Split(':')[0];
                 tipText += ": ";
-                tipText += UpdateButtonList(((Button)sender));
+                tipText += UpdateButtonList(senderControl);
                 if (GetDS4Action(device, name, true) != null && GetDS4STrigger(device, name) > 0)
                 {
                     tipText += "\n Shift: ";
-                    tipText += ShiftTrigger(GetDS4STrigger(device, name)) + " -> " + UpdateButtonList(((Button)sender), true);
+                    tipText += ShiftTrigger(GetDS4STrigger(device, name)) + " -> " + UpdateButtonList(senderControl, true);
                 }
 
                 lbControlName.Text = tipText;
             }
 
-            switch (name)
+            Bitmap tempBit = null;
+            if (hoverImageDict.TryGetValue(senderControl, out tempBit))
+            {
+                pBHoveredButton.Image = tempBit;
+            }
+
+            Label tempLabel = null;
+            if (hoverLabelDict.TryGetValue(senderControl, out tempLabel))
+            {
+                pBHoveredButton.Location = tempLabel.Location;
+            }
+
+            /*switch (name)
             {
                 #region
                 case "bnCross":
@@ -1084,6 +1222,7 @@ namespace DS4Windows
                     break;                    
                     #endregion
             }
+            */
 
             if (pBHoveredButton.Image != null)
                 pBHoveredButton.Size = new Size((int)(pBHoveredButton.Image.Size.Width * (dpix / 1.25f)), (int)(pBHoveredButton.Image.Size.Height * (dpix / 1.25f)));
@@ -1204,7 +1343,8 @@ namespace DS4Windows
             kbm360.ShowDialog();
         }        
 
-        public void ChangeButtonText(Control ctrl, bool shift, KeyValuePair<object, string> tag, bool SC, bool TG, bool MC, bool MR, int sTrigger = 0)
+        public void ChangeButtonText(Control ctrl, bool shift, KeyValuePair<object, string> tag,
+            bool SC, bool TG, bool MC, bool MR, int sTrigger = 0)
         {
             DS4KeyType kt = DS4KeyType.None;
             if (SC) kt |= DS4KeyType.ScanCode;
@@ -1631,21 +1771,23 @@ namespace DS4Windows
             {
                 if (tagO is int || tagO is ushort)
                 {
-                    return (Keys)int.Parse(tagO.ToString()) + (SC ? " (" + Properties.Resources.ScanCode + ")" : "");
+                    //return (Keys)int.Parse(tagO.ToString()) + (SC ? " (" + Properties.Resources.ScanCode + ")" : "");
+                    return (Keys)Convert.ToInt32(tagO) + (SC ? " (" + Properties.Resources.ScanCode + ")" : "");
                 }
                 else if (tagO is int[])
                 {
                     return Properties.Resources.Macro + (SC ? " (" + Properties.Resources.ScanCode + ")" : "");
                 }
-                else if (tagO is string || tagO is X360Controls)
+                else if (tagO is X360Controls)
                 {
                     string tag;
-                    if (tagO is X360Controls)
-                    {
-                        tag = KBM360.getX360ControlsByName((X360Controls)tagO);
-                    }
-                    else
-                        tag = tagO.ToString();
+                    tag = KBM360.getX360ControlsByName((X360Controls)tagO);
+                    return tag;
+                }
+                else if (tagO is string)
+                {
+                    string tag;
+                    tag = tagO.ToString();
                     return tag;
                 }
                 else
@@ -1658,9 +1800,11 @@ namespace DS4Windows
             else
                 return Properties.Resources.Unassigned;
         }
+
         private void Show_ControlsList(object sender, EventArgs e)
         {
             int controlSelectedIndex = lBControls.SelectedIndex;
+
             if (controlSelectedIndex == 0) Show_ControlsBn(bnCross, e);
             else if (controlSelectedIndex == 1) Show_ControlsBn(bnCircle, e);
             else if (controlSelectedIndex == 2) Show_ControlsBn(bnSquare, e);

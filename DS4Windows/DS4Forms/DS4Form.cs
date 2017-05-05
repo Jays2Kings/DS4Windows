@@ -35,7 +35,8 @@ namespace DS4Windows
         protected PictureBox[] statPB;
         protected ToolStripMenuItem[] shortcuts;
         WebClient wc = new WebClient();
-        Timer test = new Timer(), hotkeysTimer = new Timer();
+        //Timer test = new Timer(), hotkeysTimer = new Timer();
+        Timer hotkeysTimer = new Timer();
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
         string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
@@ -56,10 +57,11 @@ namespace DS4Windows
         public bool mAllowVisible;
         bool contextclose;
         string logFile = appdatapath + @"\DS4Service.log";
-        StreamWriter logWriter;
+        //StreamWriter logWriter;
         bool turnOffTemp;
         bool runningBat;
         //bool outputlog = false;
+        Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
 
         internal const int BCM_FIRST = 0x1600; // Normal button
         internal const int BCM_SETSHIELD = (BCM_FIRST + 0x000C); // Elevated button
@@ -306,7 +308,7 @@ namespace DS4Windows
             opt.Dock = DockStyle.Fill;
             opt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             tabProfiles.Controls.Add(opt);
-            NewVersion();
+            //NewVersion();
             for (int i = 0; i < 4; i++)
             {
                 LoadProfile(i, true, Program.rootHub);
@@ -367,7 +369,7 @@ namespace DS4Windows
             //test.Start();
             hotkeysTimer.Start();
             hotkeysTimer.Tick += Hotkeys;
-            test.Tick += test_Tick;
+            //test.Tick += test_Tick;
             if (!Directory.Exists(appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
 
@@ -378,6 +380,7 @@ namespace DS4Windows
                 AddUACShieldToImage(tempImg);
                 uacPictureBox.BackgroundImage = tempImg;
                 uacPictureBox.Visible = true;
+                new ToolTip().SetToolTip(uacPictureBox, Properties.Resources.UACTask);
                 runStartTaskRadio.Enabled = false;
             }
             else
@@ -412,6 +415,24 @@ namespace DS4Windows
             UpdateTheUpdater();
 
             this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
+            new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
+
+            populateHoverTextDict();
+        }
+
+        private void populateHoverTextDict()
+        {
+            hoverTextDict.Clear();
+            hoverTextDict[linkUninstall] = Properties.Resources.IfRemovingDS4Windows;
+            hoverTextDict[cBSwipeProfiles] = Properties.Resources.TwoFingerSwipe;
+            hoverTextDict[cBQuickCharge] = Properties.Resources.QuickCharge;
+            hoverTextDict[pnlXIPorts] = Properties.Resources.XinputPorts;
+            hoverTextDict[lbUseXIPorts] = Properties.Resources.XinputPorts;
+            hoverTextDict[nUDXIPorts] = Properties.Resources.XinputPorts;
+            hoverTextDict[lbLastXIPort] = Properties.Resources.XinputPorts;
+            hoverTextDict[cBCloseMini] = Properties.Resources.CloseMinimize;
+            hoverTextDict[uacPictureBox] = Properties.Resources.UACTask;
+            hoverTextDict[StartWindowsCheckBox] = Properties.Resources.RunAtStartup;
         }
 
         private Image AddUACShieldToImage(Image image)
@@ -465,7 +486,8 @@ namespace DS4Windows
             }
         }
 
-        void NewVersion()
+        /* TODO: Possibly remove */
+        /*void NewVersion()
         {
             if (File.Exists(exepath + "\\1.4.22.ds4w"))
             {
@@ -511,6 +533,7 @@ namespace DS4Windows
                 File.Delete(exepath + "\\1.4.22.ds4w");
             }
         }
+        */
 
         protected override void SetVisibleCore(bool value)
         {
@@ -1680,9 +1703,17 @@ namespace DS4Windows
 
         private void Items_MouseHover(object sender, EventArgs e)
         {
-            switch (((System.Windows.Forms.Control)sender).Name)
+            string hoverText = Properties.Resources.HoverOverItems;
+            string temp = "";
+            if (hoverTextDict.TryGetValue((Control)sender, out temp))
             {
+                hoverText = temp;
+            }
 
+            lbLastMessage.Text = hoverText;
+
+            /*switch (((System.Windows.Forms.Control)sender).Name)
+            {
                 //if (File.Exists(appdatapath + "\\Auto Profiles.xml"))
                 case "linkUninstall": lbLastMessage.Text = Properties.Resources.IfRemovingDS4Windows; break;
                 case "cBSwipeProfiles": lbLastMessage.Text = Properties.Resources.TwoFingerSwipe; break;
@@ -1694,8 +1725,10 @@ namespace DS4Windows
                 case "cBCloseMini": lbLastMessage.Text = Properties.Resources.CloseMinimize; break;
                 default: lbLastMessage.Text = Properties.Resources.HoverOverItems; break;
             }
+            */
 
-            if (lbLastMessage.Text != Properties.Resources.HoverOverItems)
+            //if (lbLastMessage.Text != Properties.Resources.HoverOverItems)
+            if (hoverText != Properties.Resources.HoverOverItems)
                 lbLastMessage.ForeColor = Color.Black;
             else
                 lbLastMessage.ForeColor = SystemColors.GrayText;
@@ -1749,11 +1782,14 @@ namespace DS4Windows
             bool therewasanxml = false;
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             for (int i = 0; i < files.Length; i++)
+            {
                 if (files[i].EndsWith(".xml"))
                 {
                     File.Copy(files[i], appdatapath + "\\Profiles\\" + Path.GetFileName(files[i]), true);
                     therewasanxml = true;
                 }
+            }
+
             if (therewasanxml)
                 RefreshProfiles();
         }

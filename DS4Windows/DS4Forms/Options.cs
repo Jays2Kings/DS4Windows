@@ -393,6 +393,23 @@ namespace DS4Windows
 
                 try
                 {
+                    nUDL2Maxzone.Value = (decimal)(L2Maxzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDL2Maxzone.Value = 1;
+                }
+                try
+                {
+                    nUDR2Maxzone.Value = (decimal)(R2Maxzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDR2Maxzone.Value = 1;
+                }
+
+                try
+                {
                     nUDLS.Value = Math.Round((decimal)(LSDeadzone[device] / 127d), 3);
                 }
                 catch
@@ -423,6 +440,23 @@ namespace DS4Windows
                 catch
                 {
                     nUDRSAntiDead.Value = 0;
+                }
+
+                try
+                {
+                    nUDLSMaxZone.Value = (decimal)(LSMaxzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDLSMaxZone.Value = 1;
+                }
+                try
+                {
+                    nUDRSMaxZone.Value = (decimal)(RSMaxzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDRSMaxZone.Value = 1;
                 }
 
                 try
@@ -589,10 +623,14 @@ namespace DS4Windows
                 nUDRainbow.Value = 0;
                 nUDL2.Value = 0;
                 nUDR2.Value = 0;
+                nUDL2Maxzone.Value = 1;
+                nUDR2Maxzone.Value = 1;
                 nUDLS.Value = 0;
                 nUDRS.Value = 0;
                 nUDLSAntiDead.Value = 0;
                 nUDRSAntiDead.Value = 0;
+                nUDLSMaxZone.Value = 1;
+                nUDRSMaxZone.Value = 1;
                 nUDSX.Value = .25m;
                 nUDSZ.Value = .25m;
 
@@ -2698,6 +2736,26 @@ namespace DS4Windows
         private void enableTouchToggleCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             EnableTouchToggle[device] = enableTouchToggleCheckbox.Checked;
+        }
+
+        private void nUDRSMaxZone_ValueChanged(object sender, EventArgs e)
+        {
+            RSMaxzone[device] = (int)(nUDRSMaxZone.Value * 100);
+        }
+
+        private void nUDLSMaxZone_ValueChanged(object sender, EventArgs e)
+        {
+            LSMaxzone[device] = (int)(nUDLSMaxZone.Value * 100);
+        }
+
+        private void nUDL2Maxzone_ValueChanged(object sender, EventArgs e)
+        {
+            L2Maxzone[device] = (int)(nUDL2Maxzone.Value * 100);
+        }
+
+        private void nUDR2Maxzone_ValueChanged(object sender, EventArgs e)
+        {
+            R2Maxzone[device] = (int)(nUDR2Maxzone.Value * 100);
         }
 
         private void Options_Resize(object sender, EventArgs e)

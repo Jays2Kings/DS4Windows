@@ -385,6 +385,7 @@ namespace DS4Windows
             percent /= 100f;
             return value1 * percent + value2 * (1 - percent);
         }
+
         static double Clamp(double min, double value, double max)
         {
             if (value > max)
@@ -393,6 +394,11 @@ namespace DS4Windows
                 return min;
             else
                 return value;
+        }
+
+        private static int ClampInt(int min, int value, int max)
+        {
+            return (value < min) ? min : (value > max) ? max : value;
         }
 
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState)
@@ -475,7 +481,8 @@ namespace DS4Windows
 
             int lsDeadzone = getLSDeadzone(device);
             int lsAntiDead = getLSAntiDeadzone(device);
-            if (lsDeadzone > 0 || lsAntiDead > 0)
+            int lsMaxZone = getLSMaxzone(device);
+            if (lsDeadzone > 0 || lsAntiDead > 0 || lsMaxZone != 100)
             {
                 double lsSquared = Math.Pow(cState.LX - 127.5f, 2) + Math.Pow(cState.LY - 127.5f, 2);
                 double lsDeadzoneSquared = Math.Pow(lsDeadzone, 2);
@@ -484,11 +491,19 @@ namespace DS4Windows
                     dState.LX = 127;
                     dState.LY = 127;
                 }
-                else if ((lsDeadzone > 0 && lsSquared > lsDeadzoneSquared) || lsAntiDead > 0)
+                else if ((lsDeadzone > 0 && lsSquared > lsDeadzoneSquared) || lsAntiDead > 0 || lsMaxZone != 100)
                 {
                     double r = Math.Atan2(-(dState.LY - 127.5f), (dState.LX - 127.5f));
                     double maxXValue = dState.LX >= 127.5 ? 127.5 : -127.5;
                     double maxYValue = dState.LY >= 127.5 ? 127.5 : -127.5;
+                    double ratio = lsMaxZone / 100.0;
+
+                    double maxZoneXNegValue = (ratio * -127.5f) + 127.5f;
+                    double maxZoneXPosValue = (ratio * 127.5f) + 127.5f;
+                    double maxZoneYNegValue = maxZoneXNegValue;
+                    double maxZoneYPosValue = maxZoneXPosValue;
+                    double maxZoneX = dState.LX >= 127.5 ? (maxZoneXPosValue - 127.5f) : (maxZoneXNegValue - 127.5f);
+                    double maxZoneY = dState.LY >= 127.5 ? (maxZoneYPosValue - 127.5f) : (maxZoneYNegValue - 127.5f);
 
                     double tempLsXDead = 0.0, tempLsYDead = 0.0;
                     double tempOutputX = 0.0, tempOutputY = 0.0;
@@ -499,14 +514,20 @@ namespace DS4Windows
 
                         if (lsSquared > lsDeadzoneSquared)
                         {
-                            tempOutputX = ((dState.LX - 127.5f - tempLsXDead) / (double)(maxXValue - tempLsXDead));
-                            tempOutputY = ((dState.LY - 127.5f - tempLsYDead) / (double)(maxYValue - tempLsYDead));
+                            double currentX = Clamp(maxZoneXNegValue, dState.LX, maxZoneXPosValue);
+                            double currentY = Clamp(maxZoneYNegValue, dState.LY, maxZoneYPosValue);
+                            //currentX = (byte)((dState.LX >= 127.5f) ? Math.Min(dState.LX, maxZoneX) : Math.Max(dState.LX, maxZoneX));
+                            //currentY = (byte)((dState.LY >= 127.5f) ? Math.Min(dState.LY, maxZoneY) : Math.Max(dState.LY, maxZoneY));
+                            tempOutputX = ((currentX - 127.5f - tempLsXDead) / (double)(maxZoneX - tempLsXDead));
+                            tempOutputY = ((currentY - 127.5f - tempLsYDead) / (double)(maxZoneY - tempLsYDead));
                         }
                     }
                     else
                     {
-                        tempOutputX = ((dState.LX - 127.5f) / (double)(maxXValue));
-                        tempOutputY = ((dState.LY - 127.5f) / (double)(maxYValue));
+                        double currentX = Clamp(maxZoneXNegValue, dState.LX, maxZoneXPosValue);
+                        double currentY = Clamp(maxZoneYNegValue, dState.LY, maxZoneYPosValue);
+                        tempOutputX = (currentX - 127.5f) / (double)(maxZoneX);
+                        tempOutputY = (currentY - 127.5f) / (double)(maxZoneY);
                     }
 
                     double tempLsXAntiDeadPercent = 0.0, tempLsYAntiDeadPercent = 0.0;
@@ -538,7 +559,8 @@ namespace DS4Windows
 
             int rsDeadzone = getRSDeadzone(device);
             int rsAntiDead = getRSAntiDeadzone(device);
-            if (rsDeadzone > 0 || rsAntiDead > 0)
+            int rsMaxZone = getRSMaxzone(device);
+            if (rsDeadzone > 0 || rsAntiDead > 0 || rsMaxZone != 100)
             {
                 double rsSquared = Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2);
                 double rsDeadzoneSquared = Math.Pow(rsDeadzone, 2);
@@ -547,11 +569,19 @@ namespace DS4Windows
                     dState.RX = 127;
                     dState.RY = 127;
                 }
-                else if ((rsDeadzone > 0 && rsSquared > rsDeadzoneSquared) || rsAntiDead > 0)
+                else if ((rsDeadzone > 0 && rsSquared > rsDeadzoneSquared) || rsAntiDead > 0 || rsMaxZone != 100)
                 {
                     double r = Math.Atan2(-(dState.RY - 127.5f), (dState.RX - 127.5f));
                     double maxXValue = dState.RX >= 127.5 ? 127.5 : -127.5;
                     double maxYValue = dState.RY >= 127.5 ? 127.5 : -127.5;
+                    double ratio = rsMaxZone / 100.0;
+
+                    double maxZoneXNegValue = (ratio * -127.5f) + 127.5f;
+                    double maxZoneXPosValue = (ratio * 127.5f) + 127.5f;
+                    double maxZoneYNegValue = maxZoneXNegValue;
+                    double maxZoneYPosValue = maxZoneXPosValue;
+                    double maxZoneX = dState.RX >= 127.5 ? (maxZoneXPosValue - 127.5f) : (maxZoneXNegValue - 127.5f);
+                    double maxZoneY = dState.RY >= 127.5 ? (maxZoneYPosValue - 127.5f) : (maxZoneYNegValue - 127.5f);
 
                     double tempRsXDead = 0.0, tempRsYDead = 0.0;
                     double tempOutputX = 0.0, tempOutputY = 0.0;
@@ -562,14 +592,24 @@ namespace DS4Windows
 
                         if (rsSquared > rsDeadzoneSquared)
                         {
-                            tempOutputX = ((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead));
-                            tempOutputY = ((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead));
+                            double currentX = Clamp(maxZoneXNegValue, dState.RX, maxZoneXPosValue);
+                            double currentY = Clamp(maxZoneYNegValue, dState.RY, maxZoneYPosValue);
+
+                            tempOutputX = ((currentX - 127.5f - tempRsXDead) / (double)(maxZoneX - tempRsXDead));
+                            tempOutputY = ((currentY - 127.5f - tempRsYDead) / (double)(maxZoneY - tempRsYDead));
+                            //tempOutputX = ((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead));
+                            //tempOutputY = ((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead));
                         }
                     }
                     else
                     {
-                        tempOutputX = ((dState.RX - 127.5f) / (double)(maxXValue));
-                        tempOutputY = ((dState.RY - 127.5f) / (double)(maxYValue));
+                        double currentX = Clamp(maxZoneXNegValue, dState.RX, maxZoneXPosValue);
+                        double currentY = Clamp(maxZoneYNegValue, dState.RY, maxZoneYPosValue);
+
+                        tempOutputX = (currentX - 127.5f) / (double)(maxZoneX);
+                        tempOutputY = (currentY - 127.5f) / (double)(maxZoneY);
+                        //tempOutputX = ((dState.RX - 127.5f) / (double)(maxXValue));
+                        //tempOutputY = ((dState.RY - 127.5f) / (double)(maxYValue));
                     }
 
                     double tempRsXAntiDeadPercent = 0.0, tempRsYAntiDeadPercent = 0.0;
@@ -601,15 +641,20 @@ namespace DS4Windows
 
             byte l2Deadzone = getL2Deadzone(device);
             int l2AntiDeadzone = getL2AntiDeadzone(device);
-            if (l2Deadzone > 0 || l2AntiDeadzone > 0)
+            int l2Maxzone = getL2Maxzone(device);
+            if (l2Deadzone > 0 || l2AntiDeadzone > 0 || l2Maxzone != 100)
             {
                 double tempL2Output = (cState.L2 / 255.0);
                 double tempL2AntiDead = 0.0;
+                double ratio = (l2Maxzone / 100.0);
+                double maxValue = 255 * ratio;
+
                 if (l2Deadzone > 0)
                 {
                     if (cState.L2 > l2Deadzone)
                     {
-                        tempL2Output = ((dState.L2 - l2Deadzone) / (double)(255 - l2Deadzone));
+                        double current = Clamp(0, dState.L2, maxValue);
+                        tempL2Output = ((current - l2Deadzone) / (double)(maxValue - l2Deadzone));
                     }
                     else
                     {
@@ -634,15 +679,20 @@ namespace DS4Windows
 
             byte r2Deadzone = getR2Deadzone(device);
             int r2AntiDeadzone = getR2AntiDeadzone(device);
-            if (r2Deadzone > 0 || r2AntiDeadzone > 0)
+            int r2Maxzone = getR2Maxzone(device);
+            if (r2Deadzone > 0 || r2AntiDeadzone > 0 || r2Maxzone != 100)
             {
                 double tempR2Output = (cState.R2 / 255.0);
                 double tempR2AntiDead = 0.0;
+                double ratio = (r2Maxzone / 100.0);
+                double maxValue = 255 * ratio;
+
                 if (r2Deadzone > 0)
                 {
                     if (cState.R2 > r2Deadzone)
                     {
-                        tempR2Output = ((dState.R2 - r2Deadzone) / (double)(255 - r2Deadzone));
+                        double current = Clamp(0, dState.R2, maxValue);
+                        tempR2Output = ((current - r2Deadzone) / (double)(maxValue - r2Deadzone));
                     }
                     else
                     {

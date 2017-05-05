@@ -312,6 +312,15 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.maxZoneTabPage = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nUDLSMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nUDRSMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.nUDL2Maxzone = new System.Windows.Forms.NumericUpDown();
+            this.nUDR2Maxzone = new System.Windows.Forms.NumericUpDown();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -389,6 +398,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
+            this.maxZoneTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -2566,6 +2580,7 @@
             this.tCSens.Controls.Add(this.tPDeadzone);
             this.tCSens.Controls.Add(this.tPCurve);
             this.tCSens.Controls.Add(this.antiDeadzoneTabPage);
+            this.tCSens.Controls.Add(this.maxZoneTabPage);
             resources.ApplyResources(this.tCSens, "tCSens");
             this.tCSens.Name = "tCSens";
             this.tCSens.SelectedIndex = 0;
@@ -3247,6 +3262,128 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
+            // maxZoneTabPage
+            // 
+            this.maxZoneTabPage.Controls.Add(this.nUDR2Maxzone);
+            this.maxZoneTabPage.Controls.Add(this.nUDL2Maxzone);
+            this.maxZoneTabPage.Controls.Add(this.label8);
+            this.maxZoneTabPage.Controls.Add(this.label7);
+            this.maxZoneTabPage.Controls.Add(this.nUDRSMaxZone);
+            this.maxZoneTabPage.Controls.Add(this.label6);
+            this.maxZoneTabPage.Controls.Add(this.nUDLSMaxZone);
+            this.maxZoneTabPage.Controls.Add(this.label5);
+            resources.ApplyResources(this.maxZoneTabPage, "maxZoneTabPage");
+            this.maxZoneTabPage.Name = "maxZoneTabPage";
+            this.maxZoneTabPage.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // nUDLSMaxZone
+            // 
+            this.nUDLSMaxZone.DecimalPlaces = 2;
+            this.nUDLSMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDLSMaxZone, "nUDLSMaxZone");
+            this.nUDLSMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDLSMaxZone.Name = "nUDLSMaxZone";
+            this.nUDLSMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDLSMaxZone.ValueChanged += new System.EventHandler(this.nUDLSMaxZone_ValueChanged);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // nUDRSMaxZone
+            // 
+            this.nUDRSMaxZone.DecimalPlaces = 2;
+            this.nUDRSMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRSMaxZone, "nUDRSMaxZone");
+            this.nUDRSMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRSMaxZone.Name = "nUDRSMaxZone";
+            this.nUDRSMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDRSMaxZone.ValueChanged += new System.EventHandler(this.nUDRSMaxZone_ValueChanged);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // nUDL2Maxzone
+            // 
+            this.nUDL2Maxzone.DecimalPlaces = 2;
+            this.nUDL2Maxzone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDL2Maxzone, "nUDL2Maxzone");
+            this.nUDL2Maxzone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDL2Maxzone.Name = "nUDL2Maxzone";
+            this.nUDL2Maxzone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDL2Maxzone.ValueChanged += new System.EventHandler(this.nUDL2Maxzone_ValueChanged);
+            // 
+            // nUDR2Maxzone
+            // 
+            this.nUDR2Maxzone.DecimalPlaces = 2;
+            this.nUDR2Maxzone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDR2Maxzone, "nUDR2Maxzone");
+            this.nUDR2Maxzone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2Maxzone.Name = "nUDR2Maxzone";
+            this.nUDR2Maxzone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDR2Maxzone.ValueChanged += new System.EventHandler(this.nUDR2Maxzone_ValueChanged);
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3351,6 +3488,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
+            this.maxZoneTabPage.ResumeLayout(false);
+            this.maxZoneTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3642,5 +3785,14 @@
         private System.Windows.Forms.NumericUpDown nUDL2AntiDead;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox enableTouchToggleCheckbox;
+        private System.Windows.Forms.TabPage maxZoneTabPage;
+        private System.Windows.Forms.NumericUpDown nUDRSMaxZone;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown nUDLSMaxZone;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown nUDR2Maxzone;
+        private System.Windows.Forms.NumericUpDown nUDL2Maxzone;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }

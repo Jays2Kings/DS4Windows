@@ -575,6 +575,16 @@ namespace DS4Windows
         {
             return m_Config.RSAntiDeadzone[index];
         }
+        public static int[] LSMaxzone => m_Config.LSMaxzone;
+        public static int getLSMaxzone(int index)
+        {
+            return m_Config.LSMaxzone[index];
+        }
+        public static int[] RSMaxzone => m_Config.RSMaxzone;
+        public static int getRSMaxzone(int index)
+        {
+            return m_Config.RSMaxzone[index];
+        }
         public static int[] L2AntiDeadzone => m_Config.l2AntiDeadzone;
         public static int getL2AntiDeadzone(int index)
         {
@@ -584,6 +594,16 @@ namespace DS4Windows
         public static int getR2AntiDeadzone(int index)
         {
             return m_Config.r2AntiDeadzone[index];
+        }
+        public static int[] L2Maxzone => m_Config.l2Maxzone;
+        public static int getL2Maxzone(int index)
+        {
+            return m_Config.l2Maxzone[index];
+        }
+        public static int[] R2Maxzone => m_Config.r2Maxzone;
+        public static int getR2Maxzone(int index)
+        {
+            return m_Config.r2Maxzone[index];
         }
         public static int[] LSCurve => m_Config.lsCurve;
         public static int getLSCurve(int index)
@@ -927,7 +947,9 @@ namespace DS4Windows
         public Byte[] l2Deadzone = { 0, 0, 0, 0, 0 }, r2Deadzone = { 0, 0, 0, 0, 0 };
         public int[] LSDeadzone = { 0, 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0, 0 };
         public int[] LSAntiDeadzone = { 0, 0, 0, 0, 0 }, RSAntiDeadzone = { 0, 0, 0, 0, 0 };
+        public int[] LSMaxzone = { 100, 100, 100, 100, 100 }, RSMaxzone = { 100, 100, 100, 100, 100 };
         public int[] l2AntiDeadzone = { 0, 0, 0, 0, 0 }, r2AntiDeadzone = { 0, 0, 0, 0, 0 };
+        public int[] l2Maxzone = { 100, 100, 100, 100, 100 }, r2Maxzone = { 100, 100, 100, 100, 100 };
         public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
         public double[] l2Sens = { 1, 1, 1, 1, 1 }, r2Sens = { 1, 1, 1, 1, 1 };
         public double[] LSSens = { 1, 1, 1, 1, 1 }, RSSens = { 1, 1, 1, 1, 1 };
@@ -1177,12 +1199,16 @@ namespace DS4Windows
                 XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = r2Deadzone[device].ToString(); Node.AppendChild(xmlRightTriggerMiddle);
                 XmlNode xmlL2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "L2AntiDeadZone", null); xmlL2AD.InnerText = l2AntiDeadzone[device].ToString(); Node.AppendChild(xmlL2AD);
                 XmlNode xmlR2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "R2AntiDeadZone", null); xmlR2AD.InnerText = r2AntiDeadzone[device].ToString(); Node.AppendChild(xmlR2AD);
+                XmlNode xmlL2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "L2MaxZone", null); xmlL2Maxzone.InnerText = l2Maxzone[device].ToString(); Node.AppendChild(xmlL2Maxzone);
+                XmlNode xmlR2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "R2MaxZone", null); xmlR2Maxzone.InnerText = r2Maxzone[device].ToString(); Node.AppendChild(xmlR2Maxzone);
                 XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
                 XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
                 XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = LSDeadzone[device].ToString(); Node.AppendChild(xmlLSD);
                 XmlNode xmlRSD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZone", null); xmlRSD.InnerText = RSDeadzone[device].ToString(); Node.AppendChild(xmlRSD);
                 XmlNode xmlLSAD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiDeadZone", null); xmlLSAD.InnerText = LSAntiDeadzone[device].ToString(); Node.AppendChild(xmlLSAD);
                 XmlNode xmlRSAD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiDeadZone", null); xmlRSAD.InnerText = RSAntiDeadzone[device].ToString(); Node.AppendChild(xmlRSAD);
+                XmlNode xmlLSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "LSMaxZone", null); xmlLSMaxZone.InnerText = LSMaxzone[device].ToString(); Node.AppendChild(xmlLSMaxZone);
+                XmlNode xmlRSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "RSMaxZone", null); xmlRSMaxZone.InnerText = RSMaxzone[device].ToString(); Node.AppendChild(xmlRSMaxZone);
                 XmlNode xmlSXD = m_Xdoc.CreateNode(XmlNodeType.Element, "SXDeadZone", null); xmlSXD.InnerText = SXDeadzone[device].ToString(); Node.AppendChild(xmlSXD);
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); Node.AppendChild(xmlSZD);
 
@@ -1871,6 +1897,18 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2AntiDeadZone"); int.TryParse(Item.InnerText, out r2AntiDeadzone[device]); }
                 catch { missingSetting = true; }
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2MaxZone"); int temp = 100;
+                    int.TryParse(Item.InnerText, out temp);
+                    l2Maxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                }
+                catch { missingSetting = true; }
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2MaxZone"); int temp = 100;
+                    int.TryParse(Item.InnerText, out temp);
+                    r2Maxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                }
+                catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseSensitivity"); int.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out rainbow[device]); }
@@ -1882,6 +1920,18 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiDeadZone"); int.TryParse(Item.InnerText, out LSAntiDeadzone[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiDeadZone"); int.TryParse(Item.InnerText, out RSAntiDeadzone[device]); }
+                catch { missingSetting = true; }
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSMaxZone"); int temp = 100;
+                    int.TryParse(Item.InnerText, out temp);
+                    LSMaxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                }
+                catch { missingSetting = true; }
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSMaxZone"); int temp = 100;
+                    int.TryParse(Item.InnerText, out temp);
+                    RSMaxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); double.TryParse(Item.InnerText, out SXDeadzone[device]); }
                 catch { missingSetting = true; }

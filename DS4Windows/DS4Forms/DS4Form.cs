@@ -332,8 +332,8 @@ namespace DS4Windows
                 btnStartStop_Clicked();
 
             startToolStripMenuItem.Text = btnStartStop.Text;
-            if (!tLPControllers.Visible)
-                tabMain.SelectedIndex = 1;
+            //if (!tLPControllers.Visible)
+            //    tabMain.SelectedIndex = 1;
 
             //cBNotifications.Checked = Notifications;
             cBoxNotifications.SelectedIndex = Notifications;
@@ -1447,6 +1447,9 @@ namespace DS4Windows
             {
                 lbLastMessage.Text = lvDebug.Items[lvDebugItemCount - 1].SubItems[1].Text;
             }
+
+            if (!lbNoControllers.Visible)
+                tabMain.SelectedIndex = 0;
         }
 
         private void editButtons_Click(object sender, EventArgs e)
@@ -1839,9 +1842,10 @@ namespace DS4Windows
 
                 if (tSTBProfile.Text != null && tSTBProfile.Text != "" && !tSTBProfile.Text.Contains("\\") && !tSTBProfile.Text.Contains("/") && !tSTBProfile.Text.Contains(":") && !tSTBProfile.Text.Contains("*") && !tSTBProfile.Text.Contains("?") && !tSTBProfile.Text.Contains("\"") && !tSTBProfile.Text.Contains("<") && !tSTBProfile.Text.Contains(">") && !tSTBProfile.Text.Contains("|"))
                 {
-                    System.IO.File.Delete(appdatapath + @"\Profiles\" + opt.filename + ".xml");
+                    File.Delete(appdatapath + @"\Profiles\" + opt.filename + ".xml");
                     ProfilePath[opt.device] = tSTBProfile.Text;
                     SaveProfile(opt.device, tSTBProfile.Text);
+                    cacheProfileCustomsFlags(opt.device);
                     Save();
                     opt.Close();
                 }

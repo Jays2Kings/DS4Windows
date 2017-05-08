@@ -2319,6 +2319,9 @@ namespace DS4Windows
             {
                 RemoveAction(lVActions.SelectedItems[0].Text);
                 lVActions.Items.Remove(lVActions.SelectedItems[0]);
+                calculateProfileActionCount(device);
+                calculateProfileActionDicts(device);
+                cacheProfileCustomsFlags(device);
             }
         }
 
@@ -2730,6 +2733,7 @@ namespace DS4Windows
                 ProfileActions[device] = pactions;
                 calculateProfileActionCount(device);
                 calculateProfileActionDicts(device);
+                cacheProfileCustomsFlags(device);
             }
         }
 

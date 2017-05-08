@@ -689,7 +689,7 @@ namespace DS4Windows
         public static List<DS4ControlSettings> getDS4CSettings(int device) => m_Config.ds4settings[device];
         public static DS4ControlSettings getDS4CSetting(int deviceNum, string control) => m_Config.getDS4CSetting(deviceNum, control);
         public static DS4ControlSettings getDS4CSetting(int deviceNum, DS4Controls control) => m_Config.getDS4CSetting(deviceNum, control);
-        public static bool HasCustomAction(int deviceNum) => m_Config.HasCustomActions(deviceNum);
+        public static bool HasCustomActions(int deviceNum) => m_Config.HasCustomActions(deviceNum);
         public static bool HasCustomExtras(int deviceNum) => m_Config.HasCustomExtras(deviceNum);
         public static bool containsCustomAction(int deviceNum)
         {
@@ -758,6 +758,12 @@ namespace DS4Windows
                 m_Config.profileActionDict[device].Add(actionname, Global.GetAction(actionname));
                 m_Config.profileActionIndexDict[device].Add(actionname, Global.GetActionIndexOf(actionname));
             }
+        }
+
+        public static void cacheProfileCustomsFlags(int device)
+        {
+            m_Config.containsCustomAction[device] = HasCustomActions(device);
+            m_Config.containsCustomExtras[device] = HasCustomExtras(device);
         }
 
         public static X360Controls getX360ControlsByName(string key)

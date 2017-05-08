@@ -1721,8 +1721,10 @@ namespace DS4Windows
                                 DS4Device d = ctrl.DS4Controllers[device];
                                 //cus
 
+                                DS4State tempPrevState = d.getPreviousState();
+                                DS4StateFieldMapping tempPrevMapping = new DS4StateFieldMapping(tempPrevState, eState, tp);
                                 bool activeCur = getBoolMapping2(device, action.trigger[0], cState, eState, tp, fieldMapping);
-                                bool activePrev = getBoolMapping2(device, action.trigger[0], d.getPreviousState(), eState, tp, fieldMapping);
+                                bool activePrev = getBoolMapping2(device, action.trigger[0], tempPrevState, eState, tp, tempPrevMapping);
                                 if (activeCur && !activePrev)
                                 {
                                     // pressed down

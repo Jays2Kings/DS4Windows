@@ -803,8 +803,8 @@ namespace DS4Windows
                 outputReportBuffer[8] = LightBarColor.blue; //blue
                 outputReportBuffer[9] = ledFlashOn; //flash on duration
                 outputReportBuffer[10] = ledFlashOff; //flash off duration
-                outputReportBuffer[19] = outputReportBuffer[20] = Convert.ToByte(audio.Volume);
-                outputReportBuffer[21] = Convert.ToByte(micAudio.Volume);
+                outputReportBuffer[19] = outputReportBuffer[20] = Convert.ToByte(audio.getVolume());
+                outputReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
             }
 
             bool quitOutputThread = false;

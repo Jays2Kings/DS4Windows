@@ -25,6 +25,16 @@ namespace DS4Windows.DS4Library
             }
         }
 
+        public uint getVolume()
+        {
+            float pfLevel = 0;
+
+            if (endpointVolume != null)
+                endpointVolume.GetMasterVolumeLevelScalar(out pfLevel);
+
+            return Convert.ToUInt32(pfLevel * 100);
+        }
+
         public DS4Audio(DataFlow audioFlags = DataFlow.Render)
         {
             var audioEnumerator = new MMDeviceEnumeratorComObject() as IMMDeviceEnumerator;

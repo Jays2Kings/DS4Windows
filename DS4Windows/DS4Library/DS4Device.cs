@@ -150,6 +150,7 @@ namespace DS4Windows
         private Thread ds4Input, ds4Output;
         private int battery;
         private DS4Audio audio = new DS4Audio();
+        private DS4Audio micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Render);
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
@@ -803,6 +804,7 @@ namespace DS4Windows
                 outputReportBuffer[9] = ledFlashOn; //flash on duration
                 outputReportBuffer[10] = ledFlashOff; //flash off duration
                 outputReportBuffer[19] = outputReportBuffer[20] = Convert.ToByte(audio.Volume);
+                outputReportBuffer[21] = Convert.ToByte(micAudio.Volume);
             }
 
             bool quitOutputThread = false;

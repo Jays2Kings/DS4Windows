@@ -25,11 +25,11 @@ namespace DS4Windows.DS4Library
             }
         }
 
-        public DS4Audio()
+        public DS4Audio(DataFlow audioFlags = DataFlow.Render)
         {
             var audioEnumerator = new MMDeviceEnumeratorComObject() as IMMDeviceEnumerator;
             IMMDeviceCollection audioDevices;
-            audioEnumerator.EnumAudioEndpoints(DataFlow.Render, DeviceState.Active, out audioDevices);
+            audioEnumerator.EnumAudioEndpoints(audioFlags, DeviceState.Active, out audioDevices);
 
             int numAudioDevices;
             Marshal.ThrowExceptionForHR(audioDevices.GetCount(out numAudioDevices));

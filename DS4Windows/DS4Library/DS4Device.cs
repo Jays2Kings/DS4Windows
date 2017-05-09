@@ -355,7 +355,7 @@ namespace DS4Windows
             return result;
         }
 
-        private SynchronizationContext context = null;
+        private SynchronizationContext uiContext = null;
 
         public DS4Device(HidDevice hidDevice)
         {            
@@ -388,7 +388,7 @@ namespace DS4Windows
 
             touchpad = new DS4Touchpad();
             sixAxis = new DS4SixAxis();
-            context = SynchronizationContext.Current;
+            uiContext = SynchronizationContext.Current;
         }
 
         public void StartUpdate()
@@ -402,14 +402,15 @@ namespace DS4Windows
 
                 //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> start");
                 sendOutputReport(true); // initialize the output report
-                ds4Output = new Thread(performDs4Output);
-                ds4Output.Priority = ThreadPriority.AboveNormal;
-                ds4Output.Name = "DS4 Output thread: " + Mac;
-                ds4Output.IsBackground = true;
+
                 if (conType == ConnectionType.BT)
                 {
                     // Only use the output thread for Bluetooth connections.
                     // USB will utilize overlapped IO instead.
+                    ds4Output = new Thread(performDs4Output);
+                    ds4Output.Priority = ThreadPriority.AboveNormal;
+                    ds4Output.Name = "DS4 Output thread: " + Mac;
+                    ds4Output.IsBackground = true;
                     ds4Output.Start();
                 }
 
@@ -578,7 +579,7 @@ namespace DS4Windows
                         sendOutputReport(true); // Kick Windows into noticing the disconnection.
                         StopOutputUpdate();
                         isDisconnecting = true;
-                        context.Send(new SendOrPostCallback(delegate (object state4)
+                        uiContext.Send(new SendOrPostCallback(delegate (object state4)
                         {
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
@@ -601,7 +602,7 @@ namespace DS4Windows
                         Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
                         StopOutputUpdate();
                         isDisconnecting = true;
-                        context.Send(new SendOrPostCallback(delegate (object state4)
+                        uiContext.Send(new SendOrPostCallback(delegate (object state4)
                         {
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
@@ -918,7 +919,7 @@ namespace DS4Windows
 
                     if (callRemoval)
                     {
-                        context.Send(new SendOrPostCallback(delegate (object state)
+                        uiContext.Send(new SendOrPostCallback(delegate (object state)
                         {
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
@@ -951,7 +952,7 @@ namespace DS4Windows
                 isDisconnecting = true;
                 StopOutputUpdate();
 
-                context.Send(new SendOrPostCallback(delegate (object state4)
+                uiContext.Send(new SendOrPostCallback(delegate (object state4)
                 {
                     Removal?.Invoke(this, EventArgs.Empty);
                 }), null);

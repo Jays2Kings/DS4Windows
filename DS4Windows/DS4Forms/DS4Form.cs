@@ -35,8 +35,8 @@ namespace DS4Windows
         protected PictureBox[] statPB;
         protected ToolStripMenuItem[] shortcuts;
         WebClient wc = new WebClient();
-        //Timer test = new Timer(), hotkeysTimer = new Timer();
         Timer hotkeysTimer = new Timer();
+        Timer autoProfilesTimer = new Timer();
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
         string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
@@ -318,6 +318,9 @@ namespace DS4Windows
                     lights[i].BackColor = MainColor[i].ToColorA;
             }
 
+            autoProfilesTimer.Tick += CheckAutoProfiles;
+            autoProfilesTimer.Interval = 1000;
+
             LoadP();
             Global.ControllerStatusChange += ControllerStatusChange;
             Global.BatteryStatusChange += BatteryStatusUpdate;
@@ -328,6 +331,13 @@ namespace DS4Windows
             Enable_Controls(2, false);
             Enable_Controls(3, false);
             btnStartStop.Text = Properties.Resources.StartText;
+
+            hotkeysTimer.Tick += Hotkeys;
+            if (SwipeProfiles)
+            {
+                hotkeysTimer.Start();
+            }
+
             if (btnStartStop.Enabled && start)
                 btnStartStop_Clicked();
 
@@ -366,10 +376,6 @@ namespace DS4Windows
                 File.Delete(exepath + "\\Updater.exe");
             }
 
-            //test.Start();
-            hotkeysTimer.Start();
-            hotkeysTimer.Tick += Hotkeys;
-            //test.Tick += test_Tick;
             if (!Directory.Exists(appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
 
@@ -542,6 +548,7 @@ namespace DS4Windows
                 value = false;
                 if (!this.IsHandleCreated) CreateHandle();
             }
+
             base.SetVisibleCore(value);
         }
 
@@ -572,6 +579,7 @@ namespace DS4Windows
             switch (e.Mode)
             {
                 case PowerModes.Resume:
+                {
                     if (btnStartStop.Text == Properties.Resources.StartText && wasrunning)
                     {
                         DS4LightBar.shuttingdown = false;
@@ -579,7 +587,9 @@ namespace DS4Windows
                         btnStartStop_Clicked();
                     }
                     break;
+                }
                 case PowerModes.Suspend:
+                {
                     if (btnStartStop.Text == Properties.Resources.StopText)
                     {
                         DS4LightBar.shuttingdown = true;
@@ -587,14 +597,9 @@ namespace DS4Windows
                         wasrunning = true;
                     }
                     break;
+                }
+                default: break;
             }
-        }
-
-        private void test_Tick(object sender, EventArgs e)
-        {
-            //testing values
-            lbTest.Visible = true;
-            lbTest.Text = ((int)(Program.rootHub.ExposedState[0].AccelX * 2) / 2f).ToString();
         }
 
         void Hotkeys(object sender, EventArgs e)
@@ -625,13 +630,24 @@ namespace DS4Windows
                 }
             }
 
+            if (bat != null && bat.HasExited && runningBat)
+            {
+                Process.Start("explorer.exe");
+                bat = null;
+                runningBat = false;
+            }
+        }
+
+        private void CheckAutoProfiles(object sender, EventArgs e)
+        {
             //Check for process for auto profiles
             if (tempProfileProgram == "null")
             {
-                for (int i = 0; i < programpaths.Count; i++)
+                string windowName = GetTopWindowName().ToLower().Replace('/', '\\');
+                for (int i = 0, pathsLen = programpaths.Count; i < pathsLen; i++)
                 {
                     string name = programpaths[i].ToLower().Replace('/', '\\');
-                    if (name == GetTopWindowName().ToLower().Replace('/', '\\'))
+                    if (name == windowName)
                     {
                         for (int j = 0; j < 4; j++)
                         {
@@ -649,6 +665,7 @@ namespace DS4Windows
                             {
                                 btnStartStop_Clicked();
                                 hotkeysTimer.Start();
+                                autoProfilesTimer.Start();
                                 btnStartStop.Text = Properties.Resources.StartText;
                             }
                         }
@@ -660,7 +677,8 @@ namespace DS4Windows
             }
             else
             {
-                if (tempProfileProgram != GetTopWindowName().ToLower().Replace('/', '\\'))
+                string windowName = GetTopWindowName().ToLower().Replace('/', '\\');
+                if (tempProfileProgram != windowName)
                 {
                     tempProfileProgram = "null";
                     for (int j = 0; j < 4; j++)
@@ -678,14 +696,7 @@ namespace DS4Windows
                 }
             }
 
-            if (bat != null && bat.HasExited && runningBat)
-            {
-                Process.Start("explorer.exe");
-                bat = null;
-                runningBat = false;
-            }
-
-            GC.Collect();
+            //GC.Collect();
         }
 
         public void LoadP()
@@ -716,7 +727,19 @@ namespace DS4Windows
                 else
                     turnOffTempProfiles.Add(false);
             }
+
+            int pathCount = programpaths.Count;
+            bool timerEnabled = autoProfilesTimer.Enabled;
+            if (pathCount > 0 && !timerEnabled)
+            {
+                autoProfilesTimer.Start();
+            }
+            else if (pathCount == 0 && timerEnabled)
+            {
+                autoProfilesTimer.Stop();
+            }
         }
+
         string originalsettingstext;
         private void CheckDrivers()
         {
@@ -947,6 +970,7 @@ namespace DS4Windows
                 this.ShowInTaskbar = true;
                 this.FormBorderStyle = FormBorderStyle.Sizable;
             }
+
             chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
@@ -954,12 +978,22 @@ namespace DS4Windows
         {
             btnStartStop_Clicked();
         }
+
         public void btnStartStop_Clicked(bool log = true)
         {
             if (btnStartStop.Text == Properties.Resources.StartText)
             {
                 Program.rootHub.Start(log);
-                hotkeysTimer.Start();
+                if (SwipeProfiles && !hotkeysTimer.Enabled)
+                {
+                    hotkeysTimer.Start();
+                }
+
+                if (programpaths.Count > 0 && !autoProfilesTimer.Enabled)
+                {
+                    autoProfilesTimer.Start();
+                }
+
                 btnStartStop.Text = Properties.Resources.StopText;
             }
             else if (btnStartStop.Text == Properties.Resources.StopText)
@@ -967,12 +1001,14 @@ namespace DS4Windows
                 blankControllerTab();
                 Program.rootHub.Stop(log);
                 hotkeysTimer.Stop();
+                autoProfilesTimer.Stop();
                 btnStartStop.Text = Properties.Resources.StartText;
                 blankControllerTab();
             }
 
             startToolStripMenuItem.Text = btnStartStop.Text;
         }
+
         protected void btnClear_Click(object sender, EventArgs e)
         {
             lvDebug.Items.Clear();
@@ -2046,7 +2082,17 @@ namespace DS4Windows
 
         private void cBSwipeProfiles_CheckedChanged(object sender, EventArgs e)
         {
-            SwipeProfiles = cBSwipeProfiles.Checked;
+            bool swipe = false;
+            SwipeProfiles = swipe = cBSwipeProfiles.Checked;
+            bool timerEnabled = hotkeysTimer.Enabled;
+            if (swipe && !timerEnabled)
+            {
+                hotkeysTimer.Start();
+            }
+            else if (!swipe && timerEnabled)
+            {
+                hotkeysTimer.Stop();
+            }
         }
 
         private void cBQuickCharge_CheckedChanged(object sender, EventArgs e)

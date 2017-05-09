@@ -7,6 +7,7 @@ using System.Xml;
 using System.Drawing;
 
 using System.Security.Principal;
+using System.Threading.Tasks;
 
 namespace DS4Windows
 {
@@ -2004,12 +2005,17 @@ namespace DS4Windows
 
                     if (!procFound)
                     {
-                        System.Diagnostics.Process tempProcess = new System.Diagnostics.Process();
-                        tempProcess.StartInfo.FileName = programPath;
-                        tempProcess.StartInfo.WorkingDirectory = new FileInfo(programPath).Directory.ToString();
-                        //tempProcess.StartInfo.UseShellExecute = false;
-                        try { tempProcess.Start(); }
-                        catch { }
+                        Task processTask = new Task(() =>
+                        {
+                            System.Diagnostics.Process tempProcess = new System.Diagnostics.Process();
+                            tempProcess.StartInfo.FileName = programPath;
+                            tempProcess.StartInfo.WorkingDirectory = new FileInfo(programPath).Directory.ToString();
+                            //tempProcess.StartInfo.UseShellExecute = false;
+                            try { tempProcess.Start(); }
+                            catch { }
+                        });
+
+                        processTask.Start();
                     }
                 }
 

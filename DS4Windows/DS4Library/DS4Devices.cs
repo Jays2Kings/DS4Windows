@@ -101,7 +101,7 @@ namespace DS4Windows
                         else
                         {
                             DS4Device ds4Device = new DS4Device(hDevice);
-                            ds4Device.Removal += On_Removal;
+                            //ds4Device.Removal += On_Removal;
                             Devices.Add(ds4Device.MacAddress, ds4Device);
                             DevicePaths.Add(hDevice.DevicePath);
                         }

@@ -355,6 +355,8 @@ namespace DS4Windows
             return result;
         }
 
+        private SynchronizationContext context = null;
+
         public DS4Device(HidDevice hidDevice)
         {            
             hDevice = hidDevice;
@@ -386,6 +388,7 @@ namespace DS4Windows
 
             touchpad = new DS4Touchpad();
             sixAxis = new DS4SixAxis();
+            context = SynchronizationContext.Current;
         }
 
         public void StartUpdate()
@@ -397,7 +400,7 @@ namespace DS4Windows
                     hDevice.OpenFileStream(inputReport.Length);
                 }
 
-                Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> start");
+                //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> start");
                 sendOutputReport(true); // initialize the output report
                 ds4Output = new Thread(performDs4Output);
                 ds4Output.Priority = ThreadPriority.AboveNormal;
@@ -575,8 +578,15 @@ namespace DS4Windows
                         sendOutputReport(true); // Kick Windows into noticing the disconnection.
                         StopOutputUpdate();
                         isDisconnecting = true;
+                        context.Send(new SendOrPostCallback(delegate (object state4)
+                        {
+                            Removal?.Invoke(this, EventArgs.Empty);
+                        }), null);
+
+                        /*
                         if (Removal != null)
                             Removal(this, EventArgs.Empty);
+                        */
                         return;
 
                     }
@@ -591,8 +601,13 @@ namespace DS4Windows
                         Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
                         StopOutputUpdate();
                         isDisconnecting = true;
-                        if (Removal != null)
-                            Removal(this, EventArgs.Empty);
+                        context.Send(new SendOrPostCallback(delegate (object state4)
+                        {
+                            Removal?.Invoke(this, EventArgs.Empty);
+                        }), null);
+
+                        //if (Removal != null)
+                        //    Removal(this, EventArgs.Empty);
                         return;
                     }
                     else
@@ -748,7 +763,6 @@ namespace DS4Windows
                     }
                 }
 
-                // XXX fix initialization ordering so the null checks all go away
                 if (Report != null)
                     Report(this, EventArgs.Empty);
 
@@ -803,8 +817,13 @@ namespace DS4Windows
                 outputReportBuffer[8] = LightBarColor.blue; //blue
                 outputReportBuffer[9] = ledFlashOn; //flash on duration
                 outputReportBuffer[10] = ledFlashOff; //flash off duration
-                outputReportBuffer[19] = outputReportBuffer[20] = Convert.ToByte(audio.getVolume());
-                outputReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
+                if (conType == ConnectionType.SONYWA)
+                {
+                    // Headphone volume levels
+                    outputReportBuffer[19] = outputReportBuffer[20] = Convert.ToByte(audio.getVolume());
+                    // Microphone volume level
+                    outputReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
+                }
             }
 
             bool quitOutputThread = false;
@@ -899,7 +918,12 @@ namespace DS4Windows
 
                     if (callRemoval)
                     {
-                        Removal?.Invoke(this, EventArgs.Empty);
+                        context.Send(new SendOrPostCallback(delegate (object state)
+                        {
+                            Removal?.Invoke(this, EventArgs.Empty);
+                        }), null);
+
+                        //Removal?.Invoke(this, EventArgs.Empty);
                     }
                 }
 
@@ -927,8 +951,15 @@ namespace DS4Windows
                 isDisconnecting = true;
                 StopOutputUpdate();
 
+                context.Send(new SendOrPostCallback(delegate (object state4)
+                {
+                    Removal?.Invoke(this, EventArgs.Empty);
+                }), null);
+
+                /*
                 if (Removal != null)
                     Removal(this, EventArgs.Empty);
+                */
             }
             else if (result && !remove)
             {

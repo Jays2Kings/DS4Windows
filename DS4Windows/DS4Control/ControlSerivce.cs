@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-using System.IO;
 using System.Media;
-using System.Threading.Tasks;
 using static DS4Windows.Global;
 
 namespace DS4Windows
@@ -93,7 +90,8 @@ namespace DS4Windows
             if (DS4Devices.isExclusiveMode && !device.isExclusive())
             {
                 await System.Threading.Tasks.Task.Delay(5);
-                String message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.getMacAddress()) + " " + Properties.Resources.QuitOtherPrograms;
+                string message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.getMacAddress()) + " " +
+                    Properties.Resources.QuitOtherPrograms;
                 LogDebug(message, true);
                 Log.LogToTray(message, true);
             }
@@ -131,7 +129,7 @@ namespace DS4Windows
 
                         WarnExclusiveModeFailure(device);
                         DS4Controllers[i] = device;
-                        device.Removal -= DS4Devices.On_Removal;
+                        //device.Removal -= DS4Devices.On_Removal;
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
                         touchPad[i] = new Mouse(i, device);
@@ -183,7 +181,7 @@ namespace DS4Windows
                 Log.LogToTray(logMessage);
             }
 
-            ControllerStatusChanged(this);
+            //ControllerStatusChanged(this);
             runHotPlug = true;
 
             return true;
@@ -202,21 +200,20 @@ namespace DS4Windows
                 bool anyUnplugged = false;                
                 for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
                 {
-                    if (DS4Controllers[i] != null)
+                    DS4Device tempDevice = DS4Controllers[i];
+                    if (tempDevice != null)
                     {
-                        if (DCBTatStop && !DS4Controllers[i].isCharging())
+                        if (DCBTatStop && !tempDevice.isCharging())
                         {
-                            if (DS4Controllers[i].getConnectionType() == ConnectionType.BT)
+                            if (tempDevice.getConnectionType() == ConnectionType.BT)
                             {
-                                DS4Device device = DS4Controllers[i];
-                                device.StopUpdate();
-                                device.DisconnectBT(true);
+                                tempDevice.StopUpdate();
+                                tempDevice.DisconnectBT(true);
                             }
-                            else if (DS4Controllers[i].getConnectionType() == ConnectionType.SONYWA)
+                            else if (tempDevice.getConnectionType() == ConnectionType.SONYWA)
                             {
-                                DS4Device device = DS4Controllers[i];
-                                device.StopUpdate();
-                                DS4Controllers[i].DisconnectDongle(true);
+                                tempDevice.StopUpdate();
+                                tempDevice.DisconnectDongle(true);
                             }
                         }
                         else
@@ -225,7 +222,7 @@ namespace DS4Windows
                             DS4LightBar.forcedFlash[i] = 0;
                             DS4LightBar.defaultLight = true;
                             DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i], ExposedState[i], touchPad[i]);
-                            DS4Controllers[i].IsRemoved = true;
+                            tempDevice.IsRemoved = true;
                             System.Threading.Thread.Sleep(50);
                         }
 
@@ -251,8 +248,6 @@ namespace DS4Windows
                 DS4Devices.stopControllers();
                 if (showlog)
                     LogDebug(Properties.Resources.StoppedDS4Windows);
-
-                ControllerStatusChanged(this);
             }
 
             runHotPlug = false;
@@ -318,7 +313,7 @@ namespace DS4Windows
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
                             WarnExclusiveModeFailure(device);
                             DS4Controllers[Index] = device;
-                            device.Removal -= DS4Devices.On_Removal;
+                            //device.Removal -= DS4Devices.On_Removal;
                             device.Removal += this.On_DS4Removal;
                             device.Removal += DS4Devices.On_Removal;
                             touchPad[Index] = new Mouse(Index, device);
@@ -570,6 +565,7 @@ namespace DS4Windows
                 }
             }
         }
+
         public bool[] lag = { false, false, false, false };
         public bool[] inWarnMonitor = { false, false, false, false };
         //Called every time the new input report has arrived
@@ -1111,7 +1107,7 @@ namespace DS4Windows
 
         public virtual void LogDebug(String Data, bool warning = false)
         {
-            Console.WriteLine(System.DateTime.Now.ToString("G") + "> " + Data);
+            //Console.WriteLine(System.DateTime.Now.ToString("G") + "> " + Data);
             if (Debug != null)
             {
                 DebugEventArgs args = new DebugEventArgs(Data, warning);

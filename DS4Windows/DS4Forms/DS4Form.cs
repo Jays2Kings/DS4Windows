@@ -962,14 +962,15 @@ namespace DS4Windows
                 hotkeysTimer.Start();
                 btnStartStop.Text = Properties.Resources.StopText;
             }
-
             else if (btnStartStop.Text == Properties.Resources.StopText)
             {
                 blankControllerTab();
                 Program.rootHub.Stop(log);
                 hotkeysTimer.Stop();
                 btnStartStop.Text = Properties.Resources.StartText;
+                blankControllerTab();
             }
+
             startToolStripMenuItem.Text = btnStartStop.Text;
         }
         protected void btnClear_Click(object sender, EventArgs e)

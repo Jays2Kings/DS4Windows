@@ -1970,13 +1970,45 @@ namespace DS4Windows
                 int shiftM = 0;
                 if (m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftModifier") != null)
                     int.TryParse(m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftModifier").InnerText, out shiftM);
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LaunchProgram");
                     launchProgram[device] = Item.InnerText;
-                    if (launchprogram == true && launchProgram[device] != string.Empty) System.Diagnostics.Process.Start(launchProgram[device]);
                 }
                 catch { launchProgram[device] = string.Empty; missingSetting = true; }
+
+                if (launchprogram == true && launchProgram[device] != string.Empty)
+                {
+                    string programPath = launchProgram[device];
+                    System.Diagnostics.Process[] localAll = System.Diagnostics.Process.GetProcesses();
+                    bool procFound = false;
+                    for (int procInd = 0, procsLen = localAll.Length; !procFound && procInd < procsLen; procInd++)
+                    {
+                        try
+                        {
+                            string temp = localAll[procInd].MainModule.FileName;
+                            if (temp == programPath)
+                            {
+                                procFound = true;
+                            }
+                        }
+                        // Ignore any process for which this information
+                        // is not exposed
+                        catch { }
+                    }
+
+                    if (!procFound)
+                    {
+                        System.Diagnostics.Process tempProcess = new System.Diagnostics.Process();
+                        tempProcess.StartInfo.FileName = programPath;
+                        tempProcess.StartInfo.WorkingDirectory = new FileInfo(programPath).Directory.ToString();
+                        //tempProcess.StartInfo.UseShellExecute = false;
+                        try { tempProcess.Start(); }
+                        catch { }
+                    }
+                }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/DinputOnly");

@@ -233,7 +233,11 @@ namespace DS4Windows
             DS4Controls[] temp = new DS4Controls[defaultButtonMapping.Length];
             for (int i = 0, arlen = defaultButtonMapping.Length; i < arlen; i++)
             {
-                temp[i] = (DS4Controls)defaultButtonMapping[i];
+                X360Controls mapping = defaultButtonMapping[i];
+                if (mapping != X360Controls.None)
+                {
+                    temp[(int)mapping] = (DS4Controls)i;
+                }
             }
 
             return temp;

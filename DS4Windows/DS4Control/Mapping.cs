@@ -1376,6 +1376,7 @@ namespace DS4Windows
             {
                 int actionDoneCount = actionDone.Count;
                 int totalActionCount = GetActions().Count;
+                DS4StateFieldMapping previousFieldMapping = null;
                 List<string> profileActions = getProfileActions(device);
                 //foreach (string actionname in profileActions)
                 for (int actionIndex = 0, profileListLen = profileActions.Count;
@@ -1722,9 +1723,15 @@ namespace DS4Windows
                                 //cus
 
                                 DS4State tempPrevState = d.getPreviousState();
-                                DS4StateFieldMapping tempPrevMapping = new DS4StateFieldMapping(tempPrevState, eState, tp);
+                                // Only create one instance of previous DS4StateFieldMapping in case more than one multi-action
+                                // button is assigned
+                                if (previousFieldMapping == null)
+                                {
+                                    previousFieldMapping = new DS4StateFieldMapping(tempPrevState, eState, tp);
+                                }
+
                                 bool activeCur = getBoolMapping2(device, action.trigger[0], cState, eState, tp, fieldMapping);
-                                bool activePrev = getBoolMapping2(device, action.trigger[0], tempPrevState, eState, tp, tempPrevMapping);
+                                bool activePrev = getBoolMapping2(device, action.trigger[0], tempPrevState, eState, tp, previousFieldMapping);
                                 if (activeCur && !activePrev)
                                 {
                                     // pressed down

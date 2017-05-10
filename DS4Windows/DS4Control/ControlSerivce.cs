@@ -20,8 +20,6 @@ namespace DS4Windows
         public DS4StateExposed[] ExposedState = new DS4StateExposed[DS4_CONTROLLER_COUNT];
         public bool recordingMacro = false;
         public event EventHandler<DebugEventArgs> Debug = null;
-        public bool eastertime = false;
-        private int eCode = 0;
         bool[] buttonsdown = { false, false, false, false };
         List<DS4Controls> dcs = new List<DS4Controls>();
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
@@ -399,9 +397,9 @@ namespace DS4Windows
 
         public string getDS4ControllerInfo(int index)
         {
-            if (DS4Controllers[index] != null)
+            DS4Device d = DS4Controllers[index];
+            if (d != null)
             {
-                DS4Device d = DS4Controllers[index];
                 if (!d.IsAlive())
                     //return "Connecting..."; // awaiting the first battery charge indication
                 {
@@ -435,9 +433,9 @@ namespace DS4Windows
 
         public string getDS4MacAddress(int index)
         {
-            if (DS4Controllers[index] != null)
+            DS4Device d = DS4Controllers[index];
+            if (d != null)
             {
-                DS4Device d = DS4Controllers[index];
                 if (!d.IsAlive())
                 //return "Connecting..."; // awaiting the first battery charge indication
                 {
@@ -456,10 +454,10 @@ namespace DS4Windows
 
         public string getShortDS4ControllerInfo(int index)
         {
-            if (DS4Controllers[index] != null)
+            DS4Device d = DS4Controllers[index];
+            if (d != null)
             {
-                DS4Device d = DS4Controllers[index];
-                String battery;
+                string battery;
                 if (!d.IsAlive())
                     battery = "...";
 
@@ -483,9 +481,9 @@ namespace DS4Windows
 
         public string getDS4Battery(int index)
         {
-            if (DS4Controllers[index] != null)
+            DS4Device d = DS4Controllers[index];
+            if (d != null)
             {
-                DS4Device d = DS4Controllers[index];
                 string battery;
                 if (!d.IsAlive())
                     battery = "...";
@@ -510,9 +508,9 @@ namespace DS4Windows
 
         public string getDS4Status(int index)
         {
-            if (DS4Controllers[index] != null)
+            DS4Device d = DS4Controllers[index];
+            if (d != null)
             {
-                DS4Device d = DS4Controllers[index];
                 return d.getConnectionType() + "";
             }
             else
@@ -628,10 +626,6 @@ namespace DS4Windows
                     CheckForTouchToggle(ind, cState, pState);
                 }
 
-                // Temporarily disable easter time routine
-                //if (eastertime)
-                //    EasterTime(ind);
-
                 cState = Mapping.SetCurveAndDeadzone(ind, cState);
 
                 if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
@@ -691,88 +685,6 @@ namespace DS4Windows
                 DS4LightBar.forcedFlash[ind] = 0;
             }
         }
-
-        /* TODO: Not used. Possible candidate for removal. Currently keeping for reference. */
-        /*public void EasterTime(int ind)
-        {
-            DS4State cState = CurrentState[ind];
-            DS4StateExposed eState = ExposedState[ind];
-            Mouse tp = touchPad[ind];
-
-            bool pb = false;
-            //foreach (DS4Controls dc in dcs)
-            for (int i = 0, dcslen = dcs.Count; i < dcslen; i++)
-            {
-                DS4Controls dc = dcs[i];
-                if (Mapping.getBoolMapping(ind, dc, cState, eState, tp))
-                {
-                    pb = true;
-                    break;
-                }
-            }
-
-            int temp = eCode;
-            //Looks like you found the easter egg code, since you're already cheating,
-            //I scrambled the code for you :)
-            if (pb && !buttonsdown[ind])
-            {
-                if (cState.Cross && eCode == 9)
-                    eCode++;
-                else if (!cState.Cross && eCode == 9)
-                    eCode = 0;
-                else if (cState.DpadLeft && eCode == 6)
-                    eCode++;
-                else if (!cState.DpadLeft && eCode == 6)
-                    eCode = 0;
-                else if (cState.DpadRight && eCode == 7)
-                    eCode++;
-                else if (!cState.DpadRight && eCode == 7)
-                    eCode = 0;
-                else if (cState.DpadLeft && eCode == 4)
-                    eCode++;
-                else if (!cState.DpadLeft && eCode == 4)
-                    eCode = 0;
-                else if (cState.DpadDown && eCode == 2)
-                    eCode++;
-                else if (!cState.DpadDown && eCode == 2)
-                    eCode = 0;
-                else if (cState.DpadRight && eCode == 5)
-                    eCode++;
-                else if (!cState.DpadRight && eCode == 5)
-                    eCode = 0;
-                else if (cState.DpadUp && eCode == 1)
-                    eCode++;
-                else if (!cState.DpadUp && eCode == 1)
-                    eCode = 0;
-                else if (cState.DpadDown && eCode == 3)
-                    eCode++;
-                else if (!cState.DpadDown && eCode == 3)
-                    eCode = 0;
-                else if (cState.Circle && eCode == 8)
-                    eCode++;
-                else if (!cState.Circle && eCode == 8)
-                    eCode = 0;
-
-                if (cState.DpadUp && eCode == 0)
-                    eCode++;
-
-                if (eCode == 10)
-                {
-                    string message = "(!)";
-                    sp.Play();
-                    LogDebug(message, true);
-                    eCode = 0;
-                }
-
-                if (temp != eCode)
-                    Console.WriteLine(eCode);
-
-                buttonsdown[ind] = true;
-            }
-            else if (!pb)
-                buttonsdown[ind] = false;
-        }
-        */
 
         public string GetInputkeys(int ind)
         {

@@ -24,7 +24,7 @@ namespace DS4Windows
         List<DS4Controls> dcs = new List<DS4Controls>();
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
-        SoundPlayer sp = new SoundPlayer();
+        //SoundPlayer sp = new SoundPlayer();
 
         private class X360Data
         {
@@ -36,7 +36,7 @@ namespace DS4Windows
 
         public ControlService()
         {
-            sp.Stream = Properties.Resources.EE;
+            //sp.Stream = Properties.Resources.EE;
             x360Bus = new X360Device();
             AddtoDS4List();
 
@@ -389,48 +389,13 @@ namespace DS4Windows
             //ControllerStatusChanged(this);
         }
 
-        /* TODO: Check if this method is really necessary. If not, delete it. For now, it is not being used because
-         * input reports are read async with a timeout now. */
-        /*public void TimeoutConnection(DS4Device d)
-        {
-            try
-            {
-                System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-                sw.Start();
-                while (!d.IsAlive())
-                {
-                    if (sw.ElapsedMilliseconds < 1000)
-                        System.Threading.Thread.SpinWait(500); 
-                        //If weve been waiting less than 1 second let the thread keep its processing chunk
-                    else
-                        System.Threading.Thread.Sleep(500); 
-                    //If weve been waiting more than 1 second give up some resources
-
-                    if (sw.ElapsedMilliseconds > 5000) throw new TimeoutException(); //Weve waited long enough
-                }
-                sw.Reset();
-            }
-            catch (TimeoutException)
-            {
-                Stop(false);
-                Start(false);
-            }
-        }
-        */
-
         public string getDS4ControllerInfo(int index)
         {
             DS4Device d = DS4Controllers[index];
             if (d != null)
             {
                 if (!d.IsAlive())
-                    //return "Connecting..."; // awaiting the first battery charge indication
                 {
-                    /*var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
-                    TimeoutThread.IsBackground = true;
-                    TimeoutThread.Name = "TimeoutFor" + d.getMacAddress().ToString();
-                    TimeoutThread.Start();
-                    */
                     return Properties.Resources.Connecting;
                 }
 
@@ -460,15 +425,10 @@ namespace DS4Windows
             if (d != null)
             {
                 if (!d.IsAlive())
-                //return "Connecting..."; // awaiting the first battery charge indication
                 {
-                    /*var TimeoutThread = new System.Threading.Thread(() => TimeoutConnection(d));
-                    TimeoutThread.IsBackground = true;
-                    TimeoutThread.Name = "TimeoutFor" + d.getMacAddress().ToString();
-                    TimeoutThread.Start();
-                    */
                     return Properties.Resources.Connecting;
                 }
+
                 return d.getMacAddress();
             }
             else
@@ -987,16 +947,20 @@ namespace DS4Windows
                     oldscrollvalue[deviceID] = getScrollSensitivity(deviceID);
                     getTouchSensitivity()[deviceID] = 0;
                     getScrollSensitivity()[deviceID] = 0;
-                    LogDebug(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
-                    Log.LogToTray(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
+                    LogDebug(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
+                        Properties.Resources.TouchpadMovementOff);
+                    Log.LogToTray(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
+                        Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }
                 else if (touchreleased[deviceID])
                 {
                     getTouchSensitivity()[deviceID] = oldtouchvalue[deviceID];
                     getScrollSensitivity()[deviceID] = oldscrollvalue[deviceID];
-                    LogDebug(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
-                    Log.LogToTray(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn : Properties.Resources.TouchpadMovementOff);
+                    LogDebug(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
+                        Properties.Resources.TouchpadMovementOff);
+                    Log.LogToTray(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
+                        Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }
             }
@@ -1071,8 +1035,9 @@ namespace DS4Windows
 
             if (deviceNum < 4)
             {
-                if (DS4Controllers[deviceNum] != null)
-                    DS4Controllers[deviceNum].setRumble((byte)lightBoosted, (byte)heavyBoosted);
+                DS4Device device = DS4Controllers[deviceNum];
+                if (device != null)
+                    device.setRumble((byte)lightBoosted, (byte)heavyBoosted);
             }
         }
 

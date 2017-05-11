@@ -1149,8 +1149,6 @@ namespace DS4Windows
                         {
                             Enable_Controls(Index, true);
                         }
-                        else
-                            opt.inputtimer.Stop();
                     }
                     else
                     {
@@ -1251,13 +1249,7 @@ namespace DS4Windows
                         if (Pads[Index].Text != Properties.Resources.Connecting)
                         {
                             Enable_Controls(Index, true);
-                            //if (opt != null)
-                            // if (opt.Visible && tabMain.SelectedIndex == 1)
-                            //opt.inputtimer.Start();
-                            //MinimumSize = new Size(MinimumSize.Width, 137 + 29 * Index);
                         }
-                        else
-                            opt.inputtimer.Stop();
                     }
                     else
                     {
@@ -1439,8 +1431,6 @@ namespace DS4Windows
 
         private void ShowOptions(int devID, string profile)
         {
-            //if (opt != null)
-                //opt.Close();
             Show();
             WindowState = FormWindowState.Normal;
             toolStrip1.Enabled = false;
@@ -1450,7 +1440,7 @@ namespace DS4Windows
                 tSTBProfile.Text = profile;
             else
                 tSTBProfile.Text = "<" + Properties.Resources.TypeProfileName + ">";
-            //opt = new Options(devID, profile, this);
+
             lBProfiles.SendToBack();
             toolStrip1.SendToBack();
             tSOptions.SendToBack();
@@ -1462,8 +1452,10 @@ namespace DS4Windows
                 if (Size.Width < (int)(20 * dpix) + Options.mSize.Width)
                     Size = new System.Drawing.Size((int)(20 * dpix) + Options.mSize.Width, Size.Height);
             }
+
             tabMain.SelectedIndex = 1;
             opt.Reload(devID, profile);
+            opt.inputtimer.Start();
             opt.Visible = true;
         }
 
@@ -1487,6 +1479,9 @@ namespace DS4Windows
 
             if (!lbNoControllers.Visible)
                 tabMain.SelectedIndex = 0;
+
+            opt.inputtimer.Stop();
+            opt.sixaxisTimer.Stop();
         }
 
         private void editButtons_Click(object sender, EventArgs e)
@@ -1734,10 +1729,11 @@ namespace DS4Windows
             else
                 lbLastMessage.Text = "";
 
-            if (tabMain.SelectedIndex != 1 || !opt.Visible)
+            /*if (tabMain.SelectedIndex != 1 || !opt.Visible)
                 opt.inputtimer.Stop();
             else if (opt.Visible && tabMain.SelectedIndex == 1)
                 opt.inputtimer.Start();
+            */
         }
 
         private void Items_MouseHover(object sender, EventArgs e)
@@ -2157,12 +2153,12 @@ namespace DS4Windows
                 toolTip1.Show(Properties.Resources.InputDelay.Replace("*number*", latency.ToString()), lb, lb.Size.Width, 0);
             }
         }
-        
 
         private void Pads_MouseLeave(object sender, EventArgs e)
         {
             toolTip1.Hide((Label)sender);
         }
+
         Process bat;
         private void btnConnectDS4Win10_Click(object sender, EventArgs e)
         {
@@ -2179,6 +2175,7 @@ namespace DS4Windows
                 bat = Process.Start(exepath + "\\ConnectDS4.bat");
             }
         }
+
         int currentCustomLed;
         private void EditCustomLed(object sender, EventArgs e)
         {
@@ -2205,6 +2202,7 @@ namespace DS4Windows
                 UseCustomLed[currentCustomLed] = true;
                 Global.Save();
             }
+
             DS4LightBar.forcedFlash[currentCustomLed] = 0;
             DS4LightBar.forcelight[currentCustomLed] = false;
         }

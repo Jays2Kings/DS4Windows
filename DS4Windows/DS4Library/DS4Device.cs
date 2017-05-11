@@ -149,8 +149,8 @@ namespace DS4Windows
         private byte ledFlashOn, ledFlashOff;
         private Thread ds4Input, ds4Output;
         private int battery;
-        private DS4Audio audio = new DS4Audio();
-        private DS4Audio micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Render);
+        private DS4Audio audio = null;
+        private DS4Audio micAudio = null;
         public DateTime lastActive = DateTime.UtcNow;
         public DateTime firstActive = DateTime.UtcNow;
         private bool charging;
@@ -173,6 +173,7 @@ namespace DS4Windows
         {
             return HidDevice.IsExclusive;
         }
+
         private bool isDisconnecting = false;
         public bool IsDisconnecting
         {
@@ -182,6 +183,7 @@ namespace DS4Windows
                 this.isDisconnecting = value;
             }
         }
+
         public bool isDisconnectingStatus()
         {
             return this.isDisconnecting;
@@ -375,6 +377,8 @@ namespace DS4Windows
                 else
                 {
                     warnInterval = WARN_INTERVAL_BT;
+                    audio = new DS4Audio();
+                    micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Render);
                 }
             }
             else

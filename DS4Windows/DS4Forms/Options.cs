@@ -658,7 +658,6 @@ namespace DS4Windows
             }
             
             UpdateLists();
-            inputtimer.Start();
             LoadActions(string.IsNullOrEmpty(filename));
             loading = false;
             saving = false;

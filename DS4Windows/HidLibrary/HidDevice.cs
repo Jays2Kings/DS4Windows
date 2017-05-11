@@ -300,6 +300,7 @@ namespace DS4Windows
                     safeReadHandle = OpenHandle(_devicePath, true);
                 if (fileStream == null && !safeReadHandle.IsInvalid)
                     fileStream = new FileStream(safeReadHandle, FileAccess.ReadWrite, inputBuffer.Length, true);
+
                 if (!safeReadHandle.IsInvalid && fileStream.CanRead)
                 {
                     Task<int> readTask = fileStream.ReadAsync(inputBuffer, 0, inputBuffer.Length);

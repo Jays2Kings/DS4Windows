@@ -263,7 +263,7 @@
     <value>Charging: *number*%</value>
   </data>
   <data name="ColorByBattery" xml:space="preserve">
-    <value>Color by Battey %</value>
+    <value>Color by Battery %</value>
   </data>
   <data name="Connecting" xml:space="preserve">
     <value>Connecting...</value>
@@ -296,7 +296,7 @@
     <value>Delete Profile?</value>
   </data>
   <data name="DimByBattery" xml:space="preserve">
-    <value>Dim by Battey %</value>
+    <value>Dim by Battery %</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
     <value>Disconnected</value>
@@ -774,5 +774,11 @@
   </data>
   <data name="SelectMacro" xml:space="preserve">
     <value>Select a macro</value>
+  </data>
+  <data name="RunAtStartup" xml:space="preserve">
+    <value>Tells Windows to start DS4Windows after login</value>
+  </data>
+  <data name="UACTask" xml:space="preserve">
+    <value>You need to run DS4Windows as the Administrator in order to activate this mode.</value>
   </data>
 </root>

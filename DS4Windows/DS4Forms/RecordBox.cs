@@ -87,7 +87,6 @@ namespace DS4Windows
         void AddtoDS4List()
         {
             dcs.Add(DS4Controls.Cross);
-            dcs.Add(DS4Controls.Cross);
             dcs.Add(DS4Controls.Circle);
             dcs.Add(DS4Controls.Square);
             dcs.Add(DS4Controls.Triangle);
@@ -121,7 +120,9 @@ namespace DS4Windows
             else
                 macros.Add(value);
         }
+
         bool[] pTP = new bool[4];
+
         void ds4_Tick(object sender, EventArgs e)
         {
             if (Program.rootHub.DS4Controllers[0] != null)
@@ -147,17 +148,25 @@ namespace DS4Windows
                         pTP[0] = tP.leftDown;
                         pTP[1] = tP.rightDown;
                     }
-                    foreach (DS4Controls dc in dcs)
+
+                    //foreach (DS4Controls dc in dcs)
+                    for (int controlIndex = 0, dcsLen = dcs.Count; controlIndex < dcsLen; controlIndex++)
+                    {
+                        DS4Controls dc = dcs[controlIndex];
                         if (Mapping.getBoolMapping(0, dc, cState, null, null))
                         {
                             int value = DS4ControltoInt(dc);
                             int count = 0;
-                            foreach (int i in macros)
+                            int macroLen = macros.Count;
+                            //foreach (int i in macros)
+                            for (int macroIndex = 0; macroIndex < macroLen; macroIndex++)
                             {
+                                int i = macros[macroIndex];
                                 if (i == value)
                                     count++;
                             }
-                            if (macros.Count == 0)
+
+                            if (macroLen == 0)
                             {
                                 AddMacroValue(value);
                                 lVMacros.Items.Add(DS4ControltoX360(dc), 0);
@@ -179,22 +188,28 @@ namespace DS4Windows
                                 AddMacroValue(value);
                                 lVMacros.Items.Add(DS4ControltoX360(dc), 0);
                             }
+
                             lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
                         }
                         else if (!Mapping.getBoolMapping(0, dc, cState, null, null))
                         {
-                            if (macros.Count != 0)
+                            int macroLen = macros.Count;
+                            if (macroLen != 0)
                             {
                                 int value = DS4ControltoInt(dc);
                                 int count = 0;
-                                foreach (int i in macros)
+                                //foreach (int i in macros)
+                                for (int macroIndex = 0; macroIndex < macroLen; macroIndex++)
                                 {
+                                    int i = macros[macroIndex];
                                     if (i == value)
                                         count++;
                                 }
+
                                 /*for (int i = macros.Count - 1; i >= 0; i--)
                                     if (macros.Count == 261)
                                         count++;*/
+
                                 if (count % 2 == 1)
                                 {
                                     if (cBRecordDelays.Checked)
@@ -204,12 +219,14 @@ namespace DS4Windows
                                         sw.Reset();
                                         sw.Start();
                                     }
+
                                     AddMacroValue(value);
                                     lVMacros.Items.Add(DS4ControltoX360(dc), 1);
                                     lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
                                 }
                             }
                         }
+                    }
                 }
             }
         }
@@ -279,8 +296,10 @@ namespace DS4Windows
             }
             return "None";
         }
+
         bool recordAfter = false;
         int recordAfterInt = 0;
+
         private void btnRecord_Click(object sender, EventArgs e)
         {
             if (btnRecord.Text != Properties.Resources.StopText)
@@ -784,8 +803,7 @@ namespace DS4Windows
                     kbm.macrostag = macros;
                     kbm.macros = macronames;
                     kbm.lBMacroOn.Visible = true;
-                    if (cBStyle.SelectedIndex == 1)
-                        kbm.macrorepeat = true;
+                    kbm.macrorepeat = cBStyle.SelectedIndex == 1;
                     saved = true;
                     if (sender != kbm)
                         kbm.Close();
@@ -796,8 +814,7 @@ namespace DS4Windows
                     sA.macros = macronames;
                     sA.lbMacroRecorded.Text = string.Join(", ", macronames);
                     //kbm.lBMacroOn.Visible = true;
-                    if (cBStyle.SelectedIndex == 1)
-                        sA.macrorepeat = true;
+                    sA.macrorepeat = cBStyle.SelectedIndex == 1;
                     saved = true;
                     //if (sender != sA)
                     // sA.Close();

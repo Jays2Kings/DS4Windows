@@ -30,9 +30,12 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>DS4Windows.Program</StartupObject>
@@ -52,7 +55,33 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.5.23\lib\net40\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.5.23.0, Culture=neutral, PublicKeyToken=0d013ddd5178a2ae, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.5.23\lib\net40\Microsoft.Win32.TaskScheduler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -72,6 +101,7 @@
   <ItemGroup>
     <Compile Include="DS4Control\ControlSerivce.cs" />
     <Compile Include="DS4Control\DS4LightBar.cs" />
+    <Compile Include="DS4Control\DS4StateFieldMapping.cs" />
     <Compile Include="DS4Control\InputMethods.cs" />
     <Compile Include="DS4Control\ITouchpadBehaviour.cs" />
     <Compile Include="DS4Control\Log.cs" />
@@ -98,6 +128,7 @@
     <Compile Include="DS4Control\X360Device.designer.cs">
       <DependentUpon>X360Device.cs</DependentUpon>
     </Compile>
+    <Compile Include="DS4Library\DS4Audio.cs" />
     <Compile Include="DS4Library\DS4Device.cs" />
     <Compile Include="DS4Library\DS4Devices.cs" />
     <Compile Include="DS4Library\DS4Sixaxis.cs" />
@@ -1004,6 +1035,7 @@
     <EmbeddedResource Include="Properties\Resources.zh-hans.resx" />
     <EmbeddedResource Include="Properties\Resources.zh-Hant.resx" />
     <None Include="app.manifest" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1034,7 +1066,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HidLibrary\LICENSE.htm" />
+    <Content Include="HidLibrary\LICENSE" />
     <Content Include="Resources\360 fades.png" />
     <None Include="Resources\360 map.png" />
     <None Include="Resources\360 highlight.png" />
@@ -1117,6 +1149,7 @@
     <Content Include="Resources\xbox_360_controller.png" />
     <Content Include="Resources\Y.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

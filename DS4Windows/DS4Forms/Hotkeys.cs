@@ -77,7 +77,7 @@ namespace DS4Windows
 
         private void lLChangelog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://docs.google.com/document/d/1l4xcgVQkGUskc5CQ0p069yW22Cd5WAH_yE3Fz2hXo0E/edit?usp=sharing");
+            Process.Start("https://docs.google.com/document/d/1CovpH08fbPSXrC6TmEprzgPwCe0tTjQ_HTFfDotpmxk/edit?usp=sharing");
         }
 
         private void linkDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

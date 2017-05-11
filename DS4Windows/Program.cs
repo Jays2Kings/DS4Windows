@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Globalization;
+using Microsoft.Win32.TaskScheduler;
 
 namespace DS4Windows
 {
@@ -32,7 +33,7 @@ namespace DS4Windows
         static void Main(string[] args)
         {
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("he");
-            for (int i = 0; i < args.Length; i++)
+            for (int i = 0, argsLen = args.Length; i < argsLen; i++)
             {
                 string s = args[i];
                 if (s == "driverinstall" || s == "-driverinstall")
@@ -58,8 +59,21 @@ namespace DS4Windows
                         return;
                     }
                 }
+                else if (s == "runtask" || s == "-runtask")
+                {
+                    TaskService ts = new TaskService();
+                    Task tasker = ts.FindTask("RunDS4Windows");
+                    if (tasker != null)
+                    {
+                        tasker.Run("");
+                    }
+
+                    Environment.ExitCode = 0;
+                    return;
+                }
             }
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;
+
             try
             {
                 Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.High;
@@ -68,6 +82,7 @@ namespace DS4Windows
             {
                 // Ignore problems raising the priority.
             }
+
             try
             {
                 // another instance is already running if OpenExsting succeeds.
@@ -77,6 +92,7 @@ namespace DS4Windows
                 return;    // return immediatly.
             }
             catch { /* don't care about errors */     }
+
             // Create the Event handle
             threadComEvent = new EventWaitHandle(false, EventResetMode.AutoReset, SingleAppComEventName);
             CreateInterAppComThread();

@@ -293,7 +293,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Color by Battey %.
+        ///   Looks up a localized string similar to Color by Battery %.
         /// </summary>
         internal static string ColorByBattery {
             get {
@@ -412,7 +412,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dim by Battey %.
+        ///   Looks up a localized string similar to Dim by Battery %.
         /// </summary>
         internal static string DimByBattery {
             get {
@@ -1574,6 +1574,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tells Windows to start DS4Windows after login.
+        /// </summary>
+        internal static string RunAtStartup {
+            get {
+                return ResourceManager.GetString("RunAtStartup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap saveprofile {
@@ -1942,6 +1951,15 @@ namespace DS4Windows.Properties {
         internal static string TypeProfileName {
             get {
                 return ResourceManager.GetString("TypeProfileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to run DS4Windows as the Administrator in order to activate this mode..
+        /// </summary>
+        internal static string UACTask {
+            get {
+                return ResourceManager.GetString("UACTask", resourceCulture);
             }
         }
         

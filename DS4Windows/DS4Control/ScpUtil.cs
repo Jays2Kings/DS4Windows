@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 using System.IO;
 using System.Reflection;
@@ -8,6 +7,8 @@ using System.Xml;
 using System.Drawing;
 
 using System.Security.Principal;
+using System.Threading.Tasks;
+
 namespace DS4Windows
 {
     [Flags]
@@ -19,7 +20,8 @@ namespace DS4Windows
     public class DS4ControlSettings
     {
         public DS4Controls control;
-        public string extras = "0,0,0,0,0,0,0,0";
+        //public string extras = "0,0,0,0,0,0,0,0";
+        public string extras = null;
         public DS4KeyType keyType = DS4KeyType.None;
         public enum ActionType : byte { Default, Key, Button, Macro };
         public ActionType actionType = ActionType.Default;
@@ -27,7 +29,8 @@ namespace DS4Windows
         public ActionType shiftActionType = ActionType.Default;
         public object shiftAction = null;
         public int shiftTrigger = 0;
-        public string shiftExtras = "0,0,0,0,0,0,0,0";
+        //public string shiftExtras = "0,0,0,0,0,0,0,0";
+        public string shiftExtras = null;
         public DS4KeyType shiftKeyType = DS4KeyType.None;
 
         public DS4ControlSettings(DS4Controls ctrl)
@@ -37,17 +40,19 @@ namespace DS4Windows
 
         public void Reset()
         {
-            extras = "0,0,0,0,0,0,0,0";
+            //extras = "0,0,0,0,0,0,0,0";
+            extras = null;
             keyType = DS4KeyType.None;
             actionType = ActionType.Default;
             action = null;
             shiftActionType = ActionType.Default;
             shiftAction = null;
             shiftTrigger = 0;
-            shiftExtras = "0,0,0,0,0,0,0,0";
+            //shiftExtras = "0,0,0,0,0,0,0,0";
+            shiftExtras = null;
             shiftKeyType = DS4KeyType.None;
         }
-    
+
         internal void UpdateSettings(bool shift, object act, string exts, DS4KeyType kt, int trigger = 0)
         {
             if (!shift)
@@ -60,6 +65,7 @@ namespace DS4Windows
                     actionType = ActionType.Macro;
                 else
                     actionType = ActionType.Default;
+
                 action = act;
                 extras = exts;
                 keyType = kt;
@@ -74,6 +80,7 @@ namespace DS4Windows
                     shiftActionType = ActionType.Macro;
                 else
                     shiftActionType = ActionType.Default;
+
                 shiftAction = act;
                 shiftExtras = exts;
                 shiftKeyType = kt;
@@ -136,13 +143,108 @@ namespace DS4Windows
         }
     }
 
+    public class BatteryReportArgs : EventArgs
+    {
+        private int index;
+        private int level;
+
+        public BatteryReportArgs(int index, int level)
+        {
+            this.index = index;
+            this.level = level;
+        }
+
+        public int getIndex()
+        {
+            return this.index;
+        }
+
+        public int getLevel()
+        {
+            return this.level;
+        }
+    }
+
+    public class ControllerRemovedArgs : EventArgs
+    {
+        private int index;
+
+        public ControllerRemovedArgs(int index)
+        {
+            this.index = index;
+        }
+
+        public int getIndex()
+        {
+            return this.index;
+        }
+    }
+
+    public class DeviceStatusChangeEventArgs : EventArgs
+    {
+        private int index;
+
+        public DeviceStatusChangeEventArgs(int index)
+        {
+            this.index = index;
+        }
+
+        public int getIndex()
+        {
+            return index;
+        }
+    }
+
+    public class MultiValueDict<Key, Value> : Dictionary<Key, List<Value>>
+    {
+        public void Add(Key key, Value val)
+        {
+            List<Value> values = null;
+            if (!this.TryGetValue(key, out values))
+            {
+                values = new List<Value>();
+                this.Add(key, values);
+            }
+
+            values.Add(val);
+        }
+    }
+
     public class Global
     {
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
         static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         public static string appdatapath;
+        public static bool runHotPlug = false;
+        public const int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
+        public static bool[] useDInputOnly = new bool[5] { false, false, false, false, false };
+
+        public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
+            X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
+            X360Controls.LB, X360Controls.LT, X360Controls.LS, X360Controls.RB, X360Controls.RT, X360Controls.RS, X360Controls.X,
+            X360Controls.Y, X360Controls.B, X360Controls.A, X360Controls.DpadUp, X360Controls.DpadRight, X360Controls.DpadDown,
+            X360Controls.DpadLeft, X360Controls.Guide, X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None,
+            X360Controls.Back, X360Controls.Start, X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None,
+            X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None
+        };
+
+        public static DS4Controls[] reverseX360ButtonMapping = new Func<DS4Controls[]>(() =>
+        {
+            DS4Controls[] temp = new DS4Controls[defaultButtonMapping.Length];
+            for (int i = 0, arlen = defaultButtonMapping.Length; i < arlen; i++)
+            {
+                X360Controls mapping = defaultButtonMapping[i];
+                if (mapping != X360Controls.None)
+                {
+                    temp[(int)mapping] = (DS4Controls)i;
+                }
+            }
+
+            return temp;
+        })();
 
         public static void SaveWhere(string path)
         {
@@ -182,11 +284,45 @@ namespace DS4Windows
                 ControllerStatusChange(sender, EventArgs.Empty);
         }
 
-        //general values
+        public static event EventHandler<BatteryReportArgs> BatteryStatusChange;
+        public static void OnBatteryStatusChange(object sender, int index, int level)
+        {
+            if (BatteryStatusChange != null)
+            {
+                BatteryReportArgs args = new BatteryReportArgs(index, level);
+                BatteryStatusChange(sender, args);
+            }
+        }
+
+        public static event EventHandler<ControllerRemovedArgs> ControllerRemoved;
+        public static void OnControllerRemoved(object sender, int index)
+        {
+            if (ControllerRemoved != null)
+            {
+                ControllerRemovedArgs args = new ControllerRemovedArgs(index);
+                ControllerRemoved(sender, args);
+            }
+        }
+
+        public static event EventHandler<DeviceStatusChangeEventArgs> DeviceStatusChange;
+        public static void OnDeviceStatusChanged(object sender, int index)
+        {
+            if (DeviceStatusChange != null)
+            {
+                DeviceStatusChangeEventArgs args = new DeviceStatusChangeEventArgs(index);
+                DeviceStatusChange(sender, args);
+            }
+        }
+
+        // general values
         public static bool UseExclusiveMode
         {
             set { m_Config.useExclusiveMode = value; }
             get { return m_Config.useExclusiveMode; }
+        }
+        public static bool getUseExclusiveMode()
+        {
+            return m_Config.useExclusiveMode;
         }
 
         public static DateTime LastChecked
@@ -225,6 +361,10 @@ namespace DS4Windows
             set { m_Config.quickCharge = value; }
             get { return m_Config.quickCharge; }
         }
+        public static bool getQuickCharge()
+        {
+            return m_Config.quickCharge;
+        }
         public static int FirstXinputPort
         {
             set { m_Config.firstXinputPort = value; }
@@ -260,10 +400,18 @@ namespace DS4Windows
             set { m_Config.flashWhenLate = value; }
             get { return m_Config.flashWhenLate; }
         }
+        public static bool getFlashWhenLate()
+        {
+            return m_Config.flashWhenLate;
+        }
         public static int FlashWhenLateAt
         {
             set { m_Config.flashWhenLateAt = value; }
             get { return m_Config.flashWhenLateAt; }
+        }
+        public static int getFlashWhenLateAt()
+        {
+            return m_Config.flashWhenLateAt;
         }
         public static bool UseWhiteIcon
         {
@@ -271,73 +419,294 @@ namespace DS4Windows
             get { return m_Config.useWhiteIcon; }
         }
 
-        //controller/profile specfic values
+        // controller/profile specfic values
         public static int[] ButtonMouseSensitivity => m_Config.buttonMouseSensitivity;
-        public static byte[] RumbleBoost => m_Config.rumble; 
+        public static byte[] RumbleBoost => m_Config.rumble;
+        public static byte getRumbleBoost(int index)
+        {
+            return m_Config.rumble[index];
+        }
         public static double[] Rainbow => m_Config.rainbow;
+        public static double getRainbow(int index)
+        {
+            return m_Config.rainbow[index];
+        }
         public static bool[] FlushHIDQueue => m_Config.flushHIDQueue;
-        public static int[] IdleDisconnectTimeout => m_Config.idleDisconnectTimeout; 
+        public static bool getFlushHIDQueue(int index)
+        {
+            return m_Config.flushHIDQueue[index];
+        }
+        public static bool[] EnableTouchToggle => m_Config.enableTouchToggle;
+        public static bool getEnableTouchToggle(int index)
+        {
+            return m_Config.enableTouchToggle[index];
+        }
+        public static int[] IdleDisconnectTimeout => m_Config.idleDisconnectTimeout;
+        public static int getIdleDisconnectTimeout(int index)
+        {
+            return m_Config.idleDisconnectTimeout[index];
+        }
         public static byte[] TouchSensitivity => m_Config.touchSensitivity;
+        public static byte[] getTouchSensitivity()
+        {
+            return m_Config.touchSensitivity;
+        }
+        public static byte getTouchSensitivity(int index)
+        {
+            return m_Config.touchSensitivity[index];
+        }
         public static byte[] FlashType => m_Config.flashType;
+        public static byte getFlashType(int index)
+        {
+            return m_Config.flashType[index];
+        }
+
         public static int[] FlashAt => m_Config.flashAt;
+        public static int getFlashAt(int index)
+        {
+            return m_Config.flashAt[index];
+        }
+
         public static bool[] LedAsBatteryIndicator => m_Config.ledAsBattery;
+        public static bool getLedAsBatteryIndicator(int index)
+        {
+            return m_Config.ledAsBattery[index];
+        }
         public static int[] ChargingType => m_Config.chargingType;
+        public static int getChargingType(int index)
+        {
+            return m_Config.chargingType[index];
+        }
         public static bool[] DinputOnly => m_Config.dinputOnly; 
+        public static bool getDInputOnly(int index)
+        {
+            return m_Config.dinputOnly[index];
+        }
+
         public static bool[] StartTouchpadOff => m_Config.startTouchpadOff; 
         public static bool[] UseTPforControls => m_Config.useTPforControls;
+        public static bool getUseTPforControls(int index)
+        {
+            return m_Config.useTPforControls[index];
+        }
         public static bool[] UseSAforMouse => m_Config.useSAforMouse;
+        public static bool isUsingSAforMouse(int index)
+        {
+            return m_Config.useSAforMouse[index];
+        }
         public static string[] SATriggers => m_Config.sATriggers;
         public static int[] GyroSensitivity => m_Config.gyroSensitivity;
         public static int[] GyroInvert => m_Config.gyroInvert;
-        public static DS4Color[] MainColor => m_Config.m_Leds; 
+        public static DS4Color[] MainColor => m_Config.m_Leds;
+        public static DS4Color getMainColor(int index)
+        {
+            return m_Config.m_Leds[index];
+        }
         public static DS4Color[] LowColor => m_Config.m_LowLeds;
+        public static DS4Color getLowColor(int index)
+        {
+            return m_Config.m_LowLeds[index];
+        }
         public static DS4Color[] ChargingColor => m_Config.m_ChargingLeds;
+        public static DS4Color getChargingColor(int index)
+        {
+            return m_Config.m_ChargingLeds[index];
+        }
         public static DS4Color[] CustomColor => m_Config.m_CustomLeds;
+        public static DS4Color getCustomColor(int index)
+        {
+            return m_Config.m_CustomLeds[index];
+        }
         public static bool[] UseCustomLed => m_Config.useCustomLeds;
+        public static bool getUseCustomLed(int index)
+        {
+            return m_Config.useCustomLeds[index];
+        }
 
-        public static  DS4Color[] FlashColor => m_Config.m_FlashLeds;
+        public static DS4Color[] FlashColor => m_Config.m_FlashLeds;
+        public static DS4Color getFlashColor(int index)
+        {
+            return m_Config.m_FlashLeds[index];
+        }
         public static byte[] TapSensitivity => m_Config.tapSensitivity;
         public static bool[] DoubleTap => m_Config.doubleTap; 
         public static int[] ScrollSensitivity => m_Config.scrollSensitivity;
+        public static int[] getScrollSensitivity()
+        {
+            return m_Config.scrollSensitivity;
+        }
+        public static int getScrollSensitivity(int index)
+        {
+            return m_Config.scrollSensitivity[index];
+        }
+
         public static bool[] LowerRCOn => m_Config.lowerRCOn;
         public static bool[] TouchpadJitterCompensation => m_Config.touchpadJitterCompensation;       
 
-        public static byte[] L2Deadzone => m_Config.l2Deadzone; 
+        public static byte[] L2Deadzone => m_Config.l2Deadzone;
+        public static byte getL2Deadzone(int index)
+        {
+            return m_Config.l2Deadzone[index];
+        }
         public static byte[] R2Deadzone => m_Config.r2Deadzone;
+        public static byte getR2Deadzone(int index)
+        {
+            return m_Config.r2Deadzone[index];
+        }
         public static double[] SXDeadzone => m_Config.SXDeadzone;
+        public static double getSXDeadzone(int index)
+        {
+            return m_Config.SXDeadzone[index];
+        }
         public static double[] SZDeadzone => m_Config.SZDeadzone;
+        public static double getSZDeadzone(int index)
+        {
+            return m_Config.SZDeadzone[index];
+        }
         public static int[] LSDeadzone => m_Config.LSDeadzone;
+        public static int getLSDeadzone(int index)
+        {
+            return m_Config.LSDeadzone[index];
+        }
         public static int[] RSDeadzone => m_Config.RSDeadzone;
+        public static int getRSDeadzone(int index)
+        {
+            return m_Config.RSDeadzone[index];
+        }
+        public static int[] LSAntiDeadzone => m_Config.LSAntiDeadzone;
+        public static int getLSAntiDeadzone(int index)
+        {
+            return m_Config.LSAntiDeadzone[index];
+        }
+        public static int[] RSAntiDeadzone => m_Config.RSAntiDeadzone;
+        public static int getRSAntiDeadzone(int index)
+        {
+            return m_Config.RSAntiDeadzone[index];
+        }
+        public static int[] LSMaxzone => m_Config.LSMaxzone;
+        public static int getLSMaxzone(int index)
+        {
+            return m_Config.LSMaxzone[index];
+        }
+        public static int[] RSMaxzone => m_Config.RSMaxzone;
+        public static int getRSMaxzone(int index)
+        {
+            return m_Config.RSMaxzone[index];
+        }
+        public static int[] L2AntiDeadzone => m_Config.l2AntiDeadzone;
+        public static int getL2AntiDeadzone(int index)
+        {
+            return m_Config.l2AntiDeadzone[index];
+        }
+        public static int[] R2AntiDeadzone => m_Config.r2AntiDeadzone;
+        public static int getR2AntiDeadzone(int index)
+        {
+            return m_Config.r2AntiDeadzone[index];
+        }
+        public static int[] L2Maxzone => m_Config.l2Maxzone;
+        public static int getL2Maxzone(int index)
+        {
+            return m_Config.l2Maxzone[index];
+        }
+        public static int[] R2Maxzone => m_Config.r2Maxzone;
+        public static int getR2Maxzone(int index)
+        {
+            return m_Config.r2Maxzone[index];
+        }
         public static int[] LSCurve => m_Config.lsCurve;
+        public static int getLSCurve(int index)
+        {
+            return m_Config.lsCurve[index];
+        }
         public static int[] RSCurve => m_Config.rsCurve;
+        public static int getRSCurve(int index)
+        {
+            return m_Config.rsCurve[index];
+        }
         public static double[] L2Sens => m_Config.l2Sens;
+        public static double getL2Sens(int index)
+        {
+            return m_Config.l2Sens[index];
+        }
         public static double[] R2Sens => m_Config.r2Sens;
+        public static double getR2Sens(int index)
+        {
+            return m_Config.r2Sens[index];
+        }
         public static double[] SXSens => m_Config.SXSens;
+        public static double getSXSens(int index)
+        {
+            return m_Config.SXSens[index];
+        }
         public static double[] SZSens => m_Config.SZSens;
+        public static double getSZSens(int index)
+        {
+            return m_Config.SZSens[index];
+        }
         public static double[] LSSens => m_Config.LSSens;
+        public static double getLSSens(int index)
+        {
+            return m_Config.LSSens[index];
+        }
         public static double[] RSSens => m_Config.RSSens;
+        public static double getRSSens(int index)
+        {
+            return m_Config.RSSens[index];
+        }
         public static bool[] MouseAccel => m_Config.mouseAccel;
+        public static bool getMouseAccel(int device)
+        {
+            return m_Config.mouseAccel[device];
+        }
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
+        public static bool[] DistanceProfiles = m_Config.distanceProfiles;
         public static List<string>[] ProfileActions => m_Config.profileActions;
+        public static int getProfileActionCount(int index)
+        {
+            return m_Config.profileActionCount[index];
+        }
+        public static void calculateProfileActionCount(int index)
+        {
+            m_Config.profileActionCount[index] = m_Config.profileActions[index].Count;
+        }
+        public static List<string> getProfileActions(int index)
+        {
+            return m_Config.profileActions[index];
+        }
         
         public static void UpdateDS4CSetting (int deviceNum, string buttonName, bool shift, object action, string exts, DS4KeyType kt, int trigger = 0)
         {
             m_Config.UpdateDS4CSetting(deviceNum, buttonName, shift, action, exts, kt, trigger);
+            m_Config.containsCustomAction[deviceNum] = m_Config.HasCustomActions(deviceNum);
+            m_Config.containsCustomExtras[deviceNum] = m_Config.HasCustomExtras(deviceNum);
         }
         public static void UpdateDS4Extra(int deviceNum, string buttonName, bool shift, string exts)
         {
             m_Config.UpdateDS4CExtra(deviceNum, buttonName, shift, exts);
+            m_Config.containsCustomAction[deviceNum] = m_Config.HasCustomActions(deviceNum);
+            m_Config.containsCustomExtras[deviceNum] = m_Config.HasCustomExtras(deviceNum);
         }
 
-    public static object GetDS4Action(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Action(deviceNum, buttonName, shift);
+        public static object GetDS4Action(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Action(deviceNum, buttonName, shift);
+        public static object GetDS4Action(int deviceNum, DS4Controls control, bool shift) => m_Config.GetDS4Action(deviceNum, control, shift);
         public static DS4KeyType GetDS4KeyType(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4KeyType(deviceNum, buttonName, shift);
         public static string GetDS4Extra(int deviceNum, string buttonName, bool shift) => m_Config.GetDS4Extra(deviceNum, buttonName, shift);
         public static int GetDS4STrigger(int deviceNum, string buttonName) => m_Config.GetDS4STrigger(deviceNum, buttonName);
+        public static int GetDS4STrigger(int deviceNum, DS4Controls control) => m_Config.GetDS4STrigger(deviceNum, control);
         public static List<DS4ControlSettings> getDS4CSettings(int device) => m_Config.ds4settings[device];
         public static DS4ControlSettings getDS4CSetting(int deviceNum, string control) => m_Config.getDS4CSetting(deviceNum, control);
-        public static bool HasCustomAction(int deviceNum) => m_Config.HasCustomActions(deviceNum);
+        public static DS4ControlSettings getDS4CSetting(int deviceNum, DS4Controls control) => m_Config.getDS4CSetting(deviceNum, control);
+        public static bool HasCustomActions(int deviceNum) => m_Config.HasCustomActions(deviceNum);
         public static bool HasCustomExtras(int deviceNum) => m_Config.HasCustomExtras(deviceNum);
+        public static bool containsCustomAction(int deviceNum)
+        {
+            return m_Config.containsCustomAction[deviceNum];
+        }
+        public static bool containsCustomExtras(int deviceNum)
+        {
+            return m_Config.containsCustomExtras[deviceNum];
+        }
 
         public static void SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
         {
@@ -356,10 +725,20 @@ namespace DS4Windows
 
         public static int GetActionIndexOf(string name)
         {
-            for (int i = 0; i < m_Config.actions.Count; i++)
+            for (int i = 0, actionCount = m_Config.actions.Count; i < actionCount; i++)
+            {
                 if (m_Config.actions[i].name == name)
                     return i;
+            }
+
             return -1;
+        }
+
+        public static int GetProfileActionIndexOf(int device, string name)
+        {
+            int index = -1;
+            m_Config.profileActionIndexDict[device].TryGetValue(name, out index);
+            return index;
         }
 
         public static SpecialAction GetAction(string name)
@@ -370,6 +749,50 @@ namespace DS4Windows
             return new SpecialAction("null", "null", "null", "null");
         }
 
+        public static SpecialAction GetProfileAction(int device, string name)
+        {
+            SpecialAction sA = null;
+            m_Config.profileActionDict[device].TryGetValue(name, out sA);
+            return sA;
+        }
+
+        public static void calculateProfileActionDicts(int device)
+        {
+            m_Config.profileActionDict[device].Clear();
+            m_Config.profileActionIndexDict[device].Clear();
+
+            foreach (string actionname in m_Config.profileActions[device])
+            {
+                m_Config.profileActionDict[device].Add(actionname, Global.GetAction(actionname));
+                m_Config.profileActionIndexDict[device].Add(actionname, Global.GetActionIndexOf(actionname));
+            }
+        }
+
+        public static void cacheProfileCustomsFlags(int device)
+        {
+            m_Config.containsCustomAction[device] = HasCustomActions(device);
+            m_Config.containsCustomExtras[device] = HasCustomExtras(device);
+        }
+
+        public static X360Controls getX360ControlsByName(string key)
+        {
+            return m_Config.getX360ControlsByName(key);
+        }
+
+        public static string getX360ControlString(X360Controls key)
+        {
+            return m_Config.getX360ControlString(key);
+        }
+
+        public static DS4Controls getDS4ControlsByName(string key)
+        {
+            return m_Config.getDS4ControlsByName(key);
+        }
+
+        public static X360Controls getDefaultX360ControlBinding(DS4Controls dc)
+        {
+            return defaultButtonMapping[(int)dc];
+        }
 
         /*public static X360Controls getCustomButton(int device, DS4Controls controlName) => m_Config.GetCustomButton(device, controlName);
         
@@ -403,19 +826,22 @@ namespace DS4Windows
         public static Dictionary<DS4Controls, ushort> getShiftCustomKeys(int device) => m_Config.shiftCustomMapKeys[device];        
         public static Dictionary<DS4Controls, string> getShiftCustomMacros(int device) => m_Config.shiftCustomMapMacros[device];        
         public static Dictionary<DS4Controls, string> getShiftCustomExtras(int device) => m_Config.shiftCustomMapExtras[device];        
-        public static Dictionary<DS4Controls, DS4KeyType> getShiftCustomKeyTypes(int device) => m_Config.shiftCustomMapKeyTypes[device]; */       
+        public static Dictionary<DS4Controls, DS4KeyType> getShiftCustomKeyTypes(int device) => m_Config.shiftCustomMapKeyTypes[device]; */
         public static bool Load() => m_Config.Load();
         
-        public static void LoadProfile(int device, bool launchprogram, ControlService control)
+        public static void LoadProfile(int device, bool launchprogram, ControlService control, bool xinputChange = true)
         {
-            m_Config.LoadProfile(device, launchprogram, control);
+            m_Config.LoadProfile(device, launchprogram, control, "", xinputChange);
             tempprofilename[device] = string.Empty;
+            tempprofileDistance[device] = false;
         }
 
-        public static void LoadTempProfile(int device, string name, bool launchprogram, ControlService control)
+        public static void LoadTempProfile(int device, string name, bool launchprogram,
+            ControlService control, bool xinputChange = true)
         {
             m_Config.LoadProfile(device, launchprogram, control, appdatapath + @"\Profiles\" + name + ".xml");
             tempprofilename[device] = name;
+            tempprofileDistance[device] = name.ToLower().Contains("distance");
         }
 
         public static bool Save()
@@ -430,15 +856,17 @@ namespace DS4Windows
 
         private static byte applyRatio(byte b1, byte b2, double r)
         {
-            if (r > 100)
-                r = 100;
-            else if (r < 0)
-                r = 0;
-            r /= 100f;
-            return (byte)Math.Round((b1 * (1 - r) + b2 *r),0);
+            if (r > 100.0)
+                r = 100.0;
+            else if (r < 0.0)
+                r = 0.0;
+
+            r /= 100.0;
+            return (byte)Math.Round((b1 * (1 - r) + b2 * r), 0);
         }
+
         public static DS4Color getTransitionedColor(DS4Color c1, DS4Color c2, double ratio)
-        {//;
+        {
             //Color cs = Color.FromArgb(c1.red, c1.green, c1.blue);
             c1.red = applyRatio(c1.red, c2.red, ratio);
             c1.green = applyRatio(c1.green, c2.green, ratio);
@@ -463,6 +891,7 @@ namespace DS4Windows
                 csR = HuetoRGB(hue2,sat2,bri2 - br*ratio);
             else
                 csR = HuetoRGB(hue2 - hr * ratio, sat2 - sr * ratio, bri2 - br * ratio);
+
             return csR;
         }
 
@@ -473,26 +902,39 @@ namespace DS4Windows
             float m = bri - C / 2;
             float R, G, B;
             if (0 <= hue && hue < 60)
-            {   R = C; G = X; B = 0;}
+            {
+                R = C; G = X; B = 0;
+            }
             else if (60 <= hue && hue < 120)
-            {R = X; G = C; B = 0; }
+            {
+                R = X; G = C; B = 0;
+            }
             else if (120 <= hue && hue < 180)
-            { R = 0; G = C; B = X; }
+            {
+                R = 0; G = C; B = X;
+            }
             else if (180 <= hue && hue < 240)
-            { R = 0; G = X; B = C; }
+            {
+                R = 0; G = X; B = C;
+            }
             else if (240 <= hue && hue < 300)
-                { R = X; G = 0; B = C; }
+            {
+                R = X; G = 0; B = C;
+            }
             else if (300 <= hue && hue < 360)
-                { R = C; G = 0; B = X; }
+            {
+                R = C; G = 0; B = X;
+            }
             else
-                { R = 255; G = 0; B = 0; }
+            {
+                R = 255; G = 0; B = 0;
+            }
+
             R += m; G += m; B += m;
-            R *= 255; G *= 255; B *= 255;
+            R *= 255.0f; G *= 255.0f; B *= 255.0f;
             return Color.FromArgb((int)R, (int)G, (int)B);
         }
-
     }
-
 
 
     public class BackingStore
@@ -505,17 +947,24 @@ namespace DS4Windows
         //fifth value used to for options, not fifth controller
         public int[] buttonMouseSensitivity = { 25, 25, 25, 25, 25 };
 
-        public bool[] flushHIDQueue = { true, true, true, true, true };
+        public bool[] flushHIDQueue = { false, false, false, false, false };
+        public bool[] enableTouchToggle = { true, true, true, true, true };
         public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
         public Boolean[] touchpadJitterCompensation = { true, true, true, true, true };
         public Boolean[] lowerRCOn = { false, false, false, false, false };
         public Boolean[] ledAsBattery = { false, false, false, false, false };
         public Byte[] flashType = { 0, 0, 0, 0, 0 };
         public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty, String.Empty };
+        // Cache properties instead of performing a string comparison every frame
+        public bool[] distanceProfiles = { false, false, false, false, false };
         public Byte[] rumble = { 100, 100, 100, 100, 100 };
         public Byte[] touchSensitivity = { 100, 100, 100, 100, 100 };
         public Byte[] l2Deadzone = { 0, 0, 0, 0, 0 }, r2Deadzone = { 0, 0, 0, 0, 0 };
         public int[] LSDeadzone = { 0, 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0, 0 };
+        public int[] LSAntiDeadzone = { 0, 0, 0, 0, 0 }, RSAntiDeadzone = { 0, 0, 0, 0, 0 };
+        public int[] LSMaxzone = { 100, 100, 100, 100, 100 }, RSMaxzone = { 100, 100, 100, 100, 100 };
+        public int[] l2AntiDeadzone = { 0, 0, 0, 0, 0 }, r2AntiDeadzone = { 0, 0, 0, 0, 0 };
+        public int[] l2Maxzone = { 100, 100, 100, 100, 100 }, r2Maxzone = { 100, 100, 100, 100, 100 };
         public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
         public double[] l2Sens = { 1, 1, 1, 1, 1 }, r2Sens = { 1, 1, 1, 1, 1 };
         public double[] LSSens = { 1, 1, 1, 1, 1 }, RSSens = { 1, 1, 1, 1, 1 };
@@ -528,7 +977,7 @@ namespace DS4Windows
         public bool[] mouseAccel = { true, true, true, true, true };
         public DS4Color[] m_LowLeds = new DS4Color[]
         {
-             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -544,7 +993,7 @@ namespace DS4Windows
         };
         public DS4Color[] m_ChargingLeds = new DS4Color[] 
         {
-             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -552,7 +1001,7 @@ namespace DS4Windows
         };
         public DS4Color[] m_FlashLeds = new DS4Color[] 
         {
-             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -561,7 +1010,7 @@ namespace DS4Windows
         public bool[] useCustomLeds = new bool[] { false, false, false, false };
         public DS4Color[] m_CustomLeds = new DS4Color[]
         {
-             new DS4Color(Color.Black),
+            new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
@@ -602,10 +1051,17 @@ namespace DS4Windows
         public Dictionary<DS4Controls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
         public Dictionary<DS4Controls, String>[] shiftCustomMapExtras = { null, null, null, null, null };*/
         public List<string>[] profileActions = { null, null, null, null, null };
+        public int[] profileActionCount = { 0, 0, 0, 0, 0 };
+        public Dictionary<string, SpecialAction>[] profileActionDict = { new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>() };
+        public Dictionary<string, int>[] profileActionIndexDict = { new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>() };
         public bool downloadLang = true;
         public bool useWhiteIcon;
         public bool flashWhenLate = true;
-        public int flashWhenLateAt = 10;
+        public int flashWhenLateAt = 20;
+        // Cache whether profile has custom action
+        public bool[] containsCustomAction = { false, false, false, false, false };
+        // Cache whether profile has custom extras
+        public bool[] containsCustomExtras = { false, false, false, false, false };
         public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
         public int[] gyroInvert = { 0, 0, 0, 0, 0 };
 
@@ -614,8 +1070,11 @@ namespace DS4Windows
             for (int i = 0; i < 5; i++)
             {
                 foreach (DS4Controls dc in Enum.GetValues(typeof(DS4Controls)))
+                {
                     if (dc != DS4Controls.None)
                         ds4settings[i].Add(new DS4ControlSettings(dc));
+                }
+
                 /*customMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
                 customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
                 customMapMacros[i] = new Dictionary<DS4Controls, String>();
@@ -627,8 +1086,10 @@ namespace DS4Windows
                 shiftCustomMapMacros[i] = new Dictionary<DS4Controls, String>();
                 shiftCustomMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
                 shiftCustomMapExtras[i] = new Dictionary<DS4Controls, string>();*/
+
                 profileActions[i] = new List<string>();
                 profileActions[i].Add("Disconnect Controller");
+                profileActionCount[i] = profileActions[i].Count;
             }
         }
 
@@ -725,6 +1186,7 @@ namespace DS4Windows
                 Node = m_Xdoc.CreateNode(XmlNodeType.Element, "DS4Windows", null);
 
                 XmlNode xmlFlushHIDQueue = m_Xdoc.CreateNode(XmlNodeType.Element, "flushHIDQueue", null); xmlFlushHIDQueue.InnerText = flushHIDQueue[device].ToString(); Node.AppendChild(xmlFlushHIDQueue);
+                XmlNode xmlTouchToggle = m_Xdoc.CreateNode(XmlNodeType.Element, "touchToggle", null); xmlTouchToggle.InnerText = enableTouchToggle[device].ToString(); Node.AppendChild(xmlTouchToggle);
                 XmlNode xmlIdleDisconnectTimeout = m_Xdoc.CreateNode(XmlNodeType.Element, "idleDisconnectTimeout", null); xmlIdleDisconnectTimeout.InnerText = idleDisconnectTimeout[device].ToString(); Node.AppendChild(xmlIdleDisconnectTimeout);
                 XmlNode xmlColor = m_Xdoc.CreateNode(XmlNodeType.Element, "Color", null);
                 xmlColor.InnerText = m_Leds[device].red.ToString() + "," + m_Leds[device].green.ToString() + "," + m_Leds[device].blue.ToString();
@@ -750,10 +1212,18 @@ namespace DS4Windows
                 XmlNode xmlScrollSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "scrollSensitivity", null); xmlScrollSensitivity.InnerText = scrollSensitivity[device].ToString(); Node.AppendChild(xmlScrollSensitivity);
                 XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = l2Deadzone[device].ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
                 XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = r2Deadzone[device].ToString(); Node.AppendChild(xmlRightTriggerMiddle);
+                XmlNode xmlL2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "L2AntiDeadZone", null); xmlL2AD.InnerText = l2AntiDeadzone[device].ToString(); Node.AppendChild(xmlL2AD);
+                XmlNode xmlR2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "R2AntiDeadZone", null); xmlR2AD.InnerText = r2AntiDeadzone[device].ToString(); Node.AppendChild(xmlR2AD);
+                XmlNode xmlL2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "L2MaxZone", null); xmlL2Maxzone.InnerText = l2Maxzone[device].ToString(); Node.AppendChild(xmlL2Maxzone);
+                XmlNode xmlR2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "R2MaxZone", null); xmlR2Maxzone.InnerText = r2Maxzone[device].ToString(); Node.AppendChild(xmlR2Maxzone);
                 XmlNode xmlButtonMouseSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "ButtonMouseSensitivity", null); xmlButtonMouseSensitivity.InnerText = buttonMouseSensitivity[device].ToString(); Node.AppendChild(xmlButtonMouseSensitivity);
                 XmlNode xmlRainbow = m_Xdoc.CreateNode(XmlNodeType.Element, "Rainbow", null); xmlRainbow.InnerText = rainbow[device].ToString(); Node.AppendChild(xmlRainbow);
                 XmlNode xmlLSD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSDeadZone", null); xmlLSD.InnerText = LSDeadzone[device].ToString(); Node.AppendChild(xmlLSD);
                 XmlNode xmlRSD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSDeadZone", null); xmlRSD.InnerText = RSDeadzone[device].ToString(); Node.AppendChild(xmlRSD);
+                XmlNode xmlLSAD = m_Xdoc.CreateNode(XmlNodeType.Element, "LSAntiDeadZone", null); xmlLSAD.InnerText = LSAntiDeadzone[device].ToString(); Node.AppendChild(xmlLSAD);
+                XmlNode xmlRSAD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiDeadZone", null); xmlRSAD.InnerText = RSAntiDeadzone[device].ToString(); Node.AppendChild(xmlRSAD);
+                XmlNode xmlLSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "LSMaxZone", null); xmlLSMaxZone.InnerText = LSMaxzone[device].ToString(); Node.AppendChild(xmlLSMaxZone);
+                XmlNode xmlRSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "RSMaxZone", null); xmlRSMaxZone.InnerText = RSMaxzone[device].ToString(); Node.AppendChild(xmlRSMaxZone);
                 XmlNode xmlSXD = m_Xdoc.CreateNode(XmlNodeType.Element, "SXDeadZone", null); xmlSXD.InnerText = SXDeadzone[device].ToString(); Node.AppendChild(xmlSXD);
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); Node.AppendChild(xmlSZD);
 
@@ -803,7 +1273,7 @@ namespace DS4Windows
                                 keyType += DS4KeyType.Unbound;
                         if (dcs.keyType.HasFlag(DS4KeyType.HoldMacro))
                             keyType += DS4KeyType.HoldMacro;
-                        if (dcs.keyType.HasFlag(DS4KeyType.Macro))
+                        else if (dcs.keyType.HasFlag(DS4KeyType.Macro))
                             keyType += DS4KeyType.Macro;
                         if (dcs.keyType.HasFlag(DS4KeyType.Toggle))
                             keyType += DS4KeyType.Toggle;
@@ -828,9 +1298,14 @@ namespace DS4Windows
                             buttonNode.InnerText = dcs.action.ToString();
                             Key.AppendChild(buttonNode);
                         }
-                        else if (dcs.action is string || dcs.action is X360Controls)
+                        else if (dcs.action is string)
                         {
                             buttonNode.InnerText = dcs.action.ToString();
+                            Button.AppendChild(buttonNode);
+                        }
+                        else if (dcs.action is X360Controls)
+                        {
+                            buttonNode.InnerText = getX360ControlString((X360Controls)dcs.action);
                             Button.AppendChild(buttonNode);
                         }
                     }
@@ -1037,7 +1512,7 @@ namespace DS4Windows
             return Saved;
         }
 
-        private DS4Controls getDS4ControlsByName(string key)
+        public DS4Controls getDS4ControlsByName(string key)
         {
 
             if (!key.StartsWith("bn"))
@@ -1173,7 +1648,7 @@ namespace DS4Windows
             return 0;
         }
 
-        private X360Controls getX360ControlsByName(string key)
+        public X360Controls getX360ControlsByName(string key)
         {
             X360Controls x3c;
             if (Enum.TryParse(key, true, out x3c))
@@ -1226,7 +1701,57 @@ namespace DS4Windows
             return X360Controls.Unbound;
         }
 
-        public Boolean LoadProfile(int device, bool launchprogram, ControlService control, string propath = "")
+        public string getX360ControlString(X360Controls key)
+        {
+            switch (key)
+            {
+                case X360Controls.Back: return "Back";
+                case X360Controls.LS: return "Left Stick";
+                case X360Controls.RS: return "Right Stick";
+                case X360Controls.Start: return "Start";
+                case X360Controls.DpadUp: return "Up Button";
+                case X360Controls.DpadRight: return "Right Button";
+                case X360Controls.DpadDown: return "Down Button";
+                case X360Controls.DpadLeft: return "Left Button";
+
+                case X360Controls.LB: return "Left Bumper";
+                case X360Controls.RB: return "Right Bumper";
+                case X360Controls.Y: return "Y Button";
+                case X360Controls.B: return "B Button";
+                case X360Controls.A: return "A Button";
+                case X360Controls.X: return "X Button";
+
+                case X360Controls.Guide: return "Guide";
+                case X360Controls.LXNeg: return "Left X-Axis-";
+                case X360Controls.LYNeg: return "Left Y-Axis-";
+                case X360Controls.RXNeg: return "Right X-Axis-";
+                case X360Controls.RYNeg: return "Right Y-Axis-";
+
+                case X360Controls.LXPos: return "Left X-Axis+";
+                case X360Controls.LYPos: return "Left Y-Axis+";
+                case X360Controls.RXPos: return "Right X-Axis+";
+                case X360Controls.RYPos: return "Right Y-Axis+";
+                case X360Controls.LT: return "Left Trigger";
+                case X360Controls.RT: return "Right Trigger";
+
+                case X360Controls.LeftMouse: return "Left Mouse Button";
+                case X360Controls.RightMouse: return "Right Mouse Button";
+                case X360Controls.MiddleMouse: return "Middle Mouse Button";
+                case X360Controls.FourthMouse: return "4th Mouse Button";
+                case X360Controls.FifthMouse: return "5th Mouse Button";
+                case X360Controls.WUP: return "Mouse Wheel Up";
+                case X360Controls.WDOWN: return "Mouse Wheel Down";
+                case X360Controls.MouseUp: return "Mouse Up";
+                case X360Controls.MouseDown: return "Mouse Down";
+                case X360Controls.MouseLeft: return "Mouse Left";
+                case X360Controls.MouseRight: return "Mouse Right";
+                case X360Controls.Unbound: return "Unbound";
+            }
+
+            return "Unbound";
+        }
+
+        public Boolean LoadProfile(int device, bool launchprogram, ControlService control, string propath = "", bool xinputChange = true)
         {
             Boolean Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
@@ -1246,6 +1771,7 @@ namespace DS4Windows
                 profilepath = Global.appdatapath + @"\Profiles\" + profilePath[device] + ".xml";
             else
                 profilepath = propath;
+
             if (File.Exists(profilepath))
             {
                 XmlNode Item;
@@ -1263,6 +1789,9 @@ namespace DS4Windows
                 }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
                 catch { missingSetting = true; }//rootname = }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/touchToggle"); Boolean.TryParse(Item.InnerText, out enableTouchToggle[device]); }
+                catch { missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/idleDisconnectTimeout"); Int32.TryParse(Item.InnerText, out idleDisconnectTimeout[device]); }
                 catch { missingSetting = true; }
@@ -1380,6 +1909,22 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RightTriggerMiddle"); byte.TryParse(Item.InnerText, out r2Deadzone[device]); }
                 catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2AntiDeadZone"); int.TryParse(Item.InnerText, out l2AntiDeadzone[device]); }
+                catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2AntiDeadZone"); int.TryParse(Item.InnerText, out r2AntiDeadzone[device]); }
+                catch { missingSetting = true; }
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2MaxZone"); int temp = 100;
+                    int.TryParse(Item.InnerText, out temp);
+                    l2Maxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                }
+                catch { missingSetting = true; }
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2MaxZone"); int temp = 100;
+                    int.TryParse(Item.InnerText, out temp);
+                    r2Maxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                }
+                catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseSensitivity"); int.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out rainbow[device]); }
@@ -1387,6 +1932,22 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone"); int.TryParse(Item.InnerText, out LSDeadzone[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone"); int.TryParse(Item.InnerText, out RSDeadzone[device]); }
+                catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiDeadZone"); int.TryParse(Item.InnerText, out LSAntiDeadzone[device]); }
+                catch { missingSetting = true; }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiDeadZone"); int.TryParse(Item.InnerText, out RSAntiDeadzone[device]); }
+                catch { missingSetting = true; }
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSMaxZone"); int temp = 100;
+                    int.TryParse(Item.InnerText, out temp);
+                    LSMaxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                }
+                catch { missingSetting = true; }
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSMaxZone"); int temp = 100;
+                    int.TryParse(Item.InnerText, out temp);
+                    RSMaxzone[device] = Math.Min(Math.Max(temp, 0), 100);
+                }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); double.TryParse(Item.InnerText, out SXDeadzone[device]); }
                 catch { missingSetting = true; }
@@ -1402,9 +1963,9 @@ namespace DS4Windows
                         LSSens[device] = 1;
                     if (!double.TryParse(s[1], out RSSens[device]) || RSSens[device] < .5f)
                         RSSens[device] = 1;
-                    if (!double.TryParse(s[2], out l2Sens[device]) || l2Sens[device] < .5f)
+                    if (!double.TryParse(s[2], out l2Sens[device]) || l2Sens[device] < .1f)
                         l2Sens[device] = 1;
-                    if (!double.TryParse(s[3], out r2Sens[device]) || r2Sens[device] < .5f)
+                    if (!double.TryParse(s[3], out r2Sens[device]) || r2Sens[device] < .1f)
                         r2Sens[device] = 1;
                     if (!double.TryParse(s[4], out SXSens[device]) || SXSens[device] < .5f)
                         SXSens[device] = 1;
@@ -1419,24 +1980,99 @@ namespace DS4Windows
                 int shiftM = 0;
                 if (m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftModifier") != null)
                     int.TryParse(m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftModifier").InnerText, out shiftM);
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LaunchProgram");
                     launchProgram[device] = Item.InnerText;
-                    if (launchprogram == true && launchProgram[device] != string.Empty) System.Diagnostics.Process.Start(launchProgram[device]);
                 }
                 catch { launchProgram[device] = string.Empty; missingSetting = true; }
+
+                if (launchprogram == true && launchProgram[device] != string.Empty)
+                {
+                    string programPath = launchProgram[device];
+                    System.Diagnostics.Process[] localAll = System.Diagnostics.Process.GetProcesses();
+                    bool procFound = false;
+                    for (int procInd = 0, procsLen = localAll.Length; !procFound && procInd < procsLen; procInd++)
+                    {
+                        try
+                        {
+                            string temp = localAll[procInd].MainModule.FileName;
+                            if (temp == programPath)
+                            {
+                                procFound = true;
+                            }
+                        }
+                        // Ignore any process for which this information
+                        // is not exposed
+                        catch { }
+                    }
+
+                    if (!procFound)
+                    {
+                        Task processTask = new Task(() =>
+                        {
+                            System.Diagnostics.Process tempProcess = new System.Diagnostics.Process();
+                            tempProcess.StartInfo.FileName = programPath;
+                            tempProcess.StartInfo.WorkingDirectory = new FileInfo(programPath).Directory.ToString();
+                            //tempProcess.StartInfo.UseShellExecute = false;
+                            try { tempProcess.Start(); }
+                            catch { }
+                        });
+
+                        processTask.Start();
+                    }
+                }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/DinputOnly");
-                    Boolean.TryParse(Item.InnerText, out dinputOnly[device]);
-                    if (device < 4)
-                    {
-                        if (dinputOnly[device] == true) control.x360Bus.Unplug(device);
-                        else if (control.DS4Controllers[device] != null && control.DS4Controllers[device].IsAlive()) control.x360Bus.Plugin(device);
-                    }
+                    bool.TryParse(Item.InnerText, out dinputOnly[device]);
                 }
                 catch { missingSetting = true; }
+
+                Global.useDInputOnly[device] = dinputOnly[device];
+
+                // Only change xinput devices under certain conditions. Avoid
+                // performing this upon program startup before loading devices.
+                if (xinputChange)
+                {
+                    bool changed = false;
+                    if (device < 4)
+                    {
+                        DS4Device tempDevice = control.DS4Controllers[device];
+                        if (dinputOnly[device] == true)
+                        {
+                            bool xinputResult = control.x360Bus.Unplug(device);
+                            if (xinputResult)
+                            {
+                                int xinputIndex = control.x360Bus.FirstController + device;
+                                Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
+                                Global.useDInputOnly[device] = false;
+                            }
+
+                            changed = true;
+                        }
+                        else if (tempDevice != null && tempDevice.IsAlive())
+                        {
+                            bool xinputResult = control.x360Bus.Plugin(device);
+                            if (xinputResult)
+                            {
+                                int xinputIndex = control.x360Bus.FirstController + device;
+                                Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
+                                Global.useDInputOnly[device] = true;
+                            }
+
+                            changed = true;
+                        }
+                    }
+
+                    if (changed)
+                    {
+                        System.Threading.Thread.Sleep(Global.XINPUT_UNPLUG_SETTLE_TIME);
+                    }
+                }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/StartTouchpadOff");
@@ -1468,12 +2104,33 @@ namespace DS4Windows
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ProfileActions");
                     profileActions[device].Clear();
                     if (!string.IsNullOrEmpty(Item.InnerText))
-                        profileActions[device].AddRange(Item.InnerText.Split('/'));
+                    {
+                        string[] actionNames = Item.InnerText.Split('/');
+                        for (int actIndex = 0, actLen = actionNames.Length; actIndex < actLen; actIndex++)
+                        {
+                            string tempActionName = actionNames[actIndex];
+                            if (!profileActions[device].Contains(tempActionName))
+                            {
+                                profileActions[device].Add(tempActionName);
+                            }
+                        }
+                    }
                 }
                 catch { profileActions[device].Clear(); missingSetting = true; }
 
                 foreach (DS4ControlSettings dcs in ds4settings[device])
                     dcs.Reset();
+
+                containsCustomAction[device] = false;
+                containsCustomExtras[device] = false;
+                profileActionCount[device] = profileActions[device].Count;
+                profileActionDict[device].Clear();
+                profileActionIndexDict[device].Clear();
+                foreach (string actionname in profileActions[device])
+                {
+                    profileActionDict[device][actionname] = Global.GetAction(actionname);
+                    profileActionIndexDict[device][actionname] = Global.GetActionIndexOf(actionname);
+                }
 
                 DS4KeyType keyType;
                 ushort wvk;
@@ -1648,6 +2305,8 @@ namespace DS4Windows
             if (missingSetting && Loaded)// && buttons != null)
                 SaveProfile(device, profilepath);
 
+            containsCustomAction[device] = HasCustomActions(device);
+            containsCustomExtras[device] = HasCustomExtras(device);
             return Loaded;
         }
 
@@ -1784,13 +2443,37 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/formHeight"); Int32.TryParse(Item.InnerText, out formHeight); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller1"); profilePath[0] = Item.InnerText; }
+                    try {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/Controller1"); profilePath[0] = Item.InnerText;
+                        if (profilePath[0].ToLower().Contains("distance"))
+                        {
+                            distanceProfiles[0] = true;
+                        }
+                    }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller2"); profilePath[1] = Item.InnerText; }
+                    try {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/Controller2"); profilePath[1] = Item.InnerText;
+                        if (profilePath[1].ToLower().Contains("distance"))
+                        {
+                            distanceProfiles[1] = true;
+                        }
+                    }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller3"); profilePath[2] = Item.InnerText; }
+                    try {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/Controller3"); profilePath[2] = Item.InnerText;
+                        if (profilePath[2].ToLower().Contains("distance"))
+                        {
+                            distanceProfiles[2] = true;
+                        }
+                    }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/Controller4"); profilePath[3] = Item.InnerText; }
+                    try {
+                        Item = m_Xdoc.SelectSingleNode("/Profile/Controller4"); profilePath[3] = Item.InnerText;
+                        if (profilePath[3].ToLower().Contains("distance"))
+                        {
+                            distanceProfiles[3] = true;
+                        }
+                    }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/LastChecked"); DateTime.TryParse(Item.InnerText, out lastChecked); }
                     catch { missingSetting = true; }
@@ -2100,7 +2783,6 @@ namespace DS4Windows
             catch { saved = false; }
             return saved;
         }
-        
 
         public void UpdateDS4CSetting(int deviceNum, string buttonName, bool shift, object action, string exts, DS4KeyType kt, int trigger = 0)
         {
@@ -2109,12 +2791,18 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     dcs.UpdateSettings(shift, action, exts, kt, trigger);
                     break;
                 }
+            }
         }
 
         public void UpdateDS4CExtra(int deviceNum, string buttonName, bool shift, string exts)
@@ -2124,15 +2812,22 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     if (shift)
                         dcs.shiftExtras = exts;
                     else
                         dcs.extras = exts;
+
                     break;
                 }
+            }
         }
 
         private void UpdateDS4CKeyType(int deviceNum, string buttonName, bool shift, DS4KeyType keyType)
@@ -2142,15 +2837,22 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     if (shift)
                         dcs.shiftKeyType = keyType;
                     else
                         dcs.keyType = keyType;
+
                     break;
                 }
+            }
         }
 
         public object GetDS4Action(int deviceNum, string buttonName, bool shift)
@@ -2160,7 +2862,12 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     if (shift)
@@ -2168,6 +2875,28 @@ namespace DS4Windows
                     else
                         return dcs.action;
                 }
+            }
+
+            return null;
+        }
+
+        public object GetDS4Action(int deviceNum, DS4Controls dc, bool shift)
+        {
+            int temp = (int)dc;
+            if (temp > 0)
+            {
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                if (shift)
+                {
+                    return dcs.shiftTrigger;
+                }
+                else
+                {
+                    return dcs.action;
+                }
+            }
+
             return null;
         }
 
@@ -2178,7 +2907,12 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     if (shift)
@@ -2186,6 +2920,8 @@ namespace DS4Windows
                     else
                         return dcs.extras;
                 }
+            }
+
             return null;
         }
 
@@ -2196,7 +2932,12 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                 {
                     if (shift)
@@ -2204,6 +2945,8 @@ namespace DS4Windows
                     else
                         return dcs.keyType;
                 }
+            }
+
             return DS4KeyType.None;
         }
 
@@ -2214,9 +2957,29 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
-                   return dcs.shiftTrigger;
+                    return dcs.shiftTrigger;
+            }
+
+            return 0;
+        }
+
+        public int GetDS4STrigger(int deviceNum, DS4Controls dc)
+        {
+            int temp = (int)dc;
+            if (temp > 0)
+            {
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                return dcs.shiftTrigger;
+            }
+
             return 0;
         }
 
@@ -2227,35 +2990,70 @@ namespace DS4Windows
                 dc = getDS4ControlsByName(buttonName);
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.control == dc)
                     return dcs;
+            }
+
+            return null;
+        }
+
+        public DS4ControlSettings getDS4CSetting(int deviceNum, DS4Controls dc)
+        {
+            int temp = (int)dc;
+            if (temp > 0)
+            {
+                int index = temp - 1;
+                DS4ControlSettings dcs = ds4settings[deviceNum][index];
+                return dcs;
+            }
+
             return null;
         }
 
         public bool HasCustomActions(int deviceNum)
         {
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.action != null || dcs.shiftAction != null)
                     return true;
+            }
+
             return false;
         }
 
 
         public bool HasCustomExtras(int deviceNum)
         {
-            foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
+            List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
+            for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
+            {
+                DS4ControlSettings dcs = ds4settingsList[i];
                 if (dcs.extras != null || dcs.shiftExtras != null)
                     return true;
+            }
+
             return false;
         }
     }
 
     public class SpecialAction
     {
+        public enum ActionTypeId { None, Key, Program, Profile, Macro, DisconnectBT, BatteryCheck, MultiAction, XboxGameDVR }
+
         public string name;
         public List<DS4Controls> trigger = new List<DS4Controls>();
         public string type;
+        public ActionTypeId typeID;
         public string controls;
         public List<int> macro = new List<int>();
         public string details;
@@ -2269,25 +3067,16 @@ namespace DS4Windows
         {
             this.name = name;
             this.type = type;
+            this.typeID = ActionTypeId.None;
             this.controls = controls;
             delayTime = delay;
             string[] ctrls = controls.Split('/');
             foreach (string s in ctrls)
                 trigger.Add(getDS4ControlsByName(s));
-            if (type == "Macro")
+
+            if (type == "Key")
             {
-                string[] macs = details.Split('/');
-                foreach (string s in macs)
-                {
-                    int v;
-                    if (int.TryParse(s, out v))
-                        macro.Add(v);
-                }
-                if (extras.Contains("Scan Code"))
-                    keyType |= DS4KeyType.ScanCode;
-            }
-            else if (type == "Key")
-            {
+                typeID = ActionTypeId.Key;
                 this.details = details.Split(' ')[0];
                 if (!string.IsNullOrEmpty(extras))
                 {
@@ -2303,12 +3092,51 @@ namespace DS4Windows
             }
             else if (type == "Program")
             {
+                typeID = ActionTypeId.Program;
                 this.details = details;
                 if (extras != string.Empty)
                     extra = extras;
             }
+            else if (type == "Profile")
+            {
+                typeID = ActionTypeId.Profile;
+                this.details = details;
+                if (extras != string.Empty)
+                {
+                    extra = extras;
+                }
+            }
+            else if (type == "Macro")
+            {
+                typeID = ActionTypeId.Macro;
+                string[] macs = details.Split('/');
+                foreach (string s in macs)
+                {
+                    int v;
+                    if (int.TryParse(s, out v))
+                        macro.Add(v);
+                }
+                if (extras.Contains("Scan Code"))
+                    keyType |= DS4KeyType.ScanCode;
+            }
+            else if (type == "DisconnectBT")
+            {
+                typeID = ActionTypeId.DisconnectBT;
+            }
+            else if (type == "BatteryCheck")
+            {
+                typeID = ActionTypeId.BatteryCheck;
+                string[] dets = details.Split('|');
+                this.details = string.Join(",", dets);
+            }
+            else if (type == "MultiAction")
+            {
+                typeID = ActionTypeId.MultiAction;
+                this.details = details;
+            }
             else if (type == "XboxGameDVR")
             {
+                this.typeID = ActionTypeId.XboxGameDVR;
                 string[] dets = details.Split(',');
                 List<string> macros = new List<string>();
                 //string dets = "";

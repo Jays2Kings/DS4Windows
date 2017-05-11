@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
@@ -522,7 +521,7 @@ namespace DS4Windows
 
         protected virtual Boolean GetDeviceHandle(String Path) 
         {
-            m_FileHandle = CreateFile(Path, (GENERIC_WRITE | GENERIC_READ), FILE_SHARE_READ | FILE_SHARE_WRITE, IntPtr.Zero, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OVERLAPPED, 0);
+            m_FileHandle = CreateFile(Path, (GENERIC_WRITE | GENERIC_READ), FILE_SHARE_READ | FILE_SHARE_WRITE, IntPtr.Zero, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OVERLAPPED | 0x20000000 | 0x80000000, 0);
 
             return !m_FileHandle.IsInvalid;
         }

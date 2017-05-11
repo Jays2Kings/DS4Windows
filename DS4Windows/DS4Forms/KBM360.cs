@@ -34,8 +34,9 @@ namespace DS4Windows
             device = deviceNum;
             ops = ooo;
             button = buton;
-            cBToggle.Checked = button.Font.Italic;
-            cBScanCode.Checked = button.Font.Bold;
+            DS4ControlSettings dcs = Global.getDS4CSetting(device, button.Name);
+            cBToggle.Checked = dcs.keyType.HasFlag(DS4KeyType.Toggle);
+            cBScanCode.Checked = dcs.keyType.HasFlag(DS4KeyType.ScanCode);
             oldSC = cBScanCode.Location;
             defaultText = btnDefault.Text;
             if (button.Name.StartsWith("bnShift"))
@@ -140,7 +141,17 @@ namespace DS4Windows
                 object keytag;
                 //ushort val;
                 if (((Button)sender).Tag != null && ((Button)sender).Tag.ToString().Contains("X360"))
-                    keytag = ((Button)sender).Tag.ToString().Substring(4);
+                {
+                    //keytag = ((Button)sender).Tag.ToString().Substring(4);
+                    keytag = Global.getX360ControlsByName(((Button)sender).Tag.ToString().Substring(4));
+                    DS4Controls psButton = Global.getDS4ControlsByName(button.Name);
+                    if ((X360Controls)keytag == Global.getDefaultX360ControlBinding(psButton) &&
+                        !cBScanCode.Checked && !cBToggle.Checked && !rBShiftModifer.Checked)
+                    {
+                        // Reset action
+                        keytag = null;
+                    }
+                }
                 else if (((Button)sender).Tag != null && ushort.TryParse(((Button)sender).Tag.ToString(), out val))
                     keytag = val;
                 else
@@ -454,7 +465,7 @@ namespace DS4Windows
                         lBMacroOn.Visible = true;
                         foreach (int i in tag)
                             macrostag.Add(i);
-                    if (Global.GetDS4KeyType(device, button.Name, rBShiftModifer.Checked).HasFlag(DS4KeyType.RepeatMacro))
+                    if (Global.GetDS4KeyType(device, button.Name, rBShiftModifer.Checked).HasFlag(DS4KeyType.HoldMacro))
                         macrorepeat = true;
                 }
                 else if (tagO is string || tagO is X360Controls)
@@ -509,55 +520,65 @@ namespace DS4Windows
                             }
                 }
             }
-            string[] extras = Global.GetDS4Extra(device, button.Name, rBShiftModifer.Checked).Split(',');
-            int b;
-            try
+            string dcExtras = Global.GetDS4Extra(device, button.Name, rBShiftModifer.Checked);
+            string[] extras = null;
+            if (!string.IsNullOrEmpty(dcExtras))
             {
-                if (int.TryParse(extras[0], out b)) nUDHeavy.Value = b;
-                if (int.TryParse(extras[1], out b)) nUDLight.Value = b;
-                if (int.TryParse(extras[2], out b))
-                    if (b == 1)
-                    {
-                        cBLightbar.Checked = true;
-                        if (int.TryParse(extras[3], out b)) tBRedBar.Value = b;
-                        if (int.TryParse(extras[4], out b)) tBGreenBar.Value = b;
-                        if (int.TryParse(extras[5], out b)) tBBlueBar.Value = b;
-                        if (int.TryParse(extras[6], out b)) nUDLightFlash.Value = b;
-                    }
-                    else
-                    {
-
-                        tBRedBar.Value = 255;
-                        tBGreenBar.Value = 255;
-                        tBBlueBar.Value = 255;
-                        nUDLightFlash.Value = 0;
-                        cBLightbar.Checked = false;
-                    }
-                if (int.TryParse(extras[7], out b))
-                    if (b == 1)
-                    {
-                        cBMouse.Checked = true;
-                        if (int.TryParse(extras[8], out b)) nUDMouse.Value = b;
-                    }
-                    else
-                    {
-                        nUDMouse.Value = 25;
-                        cBMouse.Checked = false;
-                    }
-
+                extras = dcExtras.Split(',');
             }
-            catch
+
+            if (extras != null)
             {
-                nUDHeavy.Value = 0;
-                nUDLight.Value = 0;
-                tBRedBar.Value = 255;
-                tBGreenBar.Value = 255;
-                tBBlueBar.Value = 255;
-                nUDLightFlash.Value = 0;
-                cBLightbar.Checked = false;
-                nUDMouse.Value = 25;
-                cBMouse.Checked = false;
+                int b;
+                try
+                {
+                    if (int.TryParse(extras[0], out b)) nUDHeavy.Value = b;
+                    if (int.TryParse(extras[1], out b)) nUDLight.Value = b;
+                    if (int.TryParse(extras[2], out b))
+                        if (b == 1)
+                        {
+                            cBLightbar.Checked = true;
+                            if (int.TryParse(extras[3], out b)) tBRedBar.Value = b;
+                            if (int.TryParse(extras[4], out b)) tBGreenBar.Value = b;
+                            if (int.TryParse(extras[5], out b)) tBBlueBar.Value = b;
+                            if (int.TryParse(extras[6], out b)) nUDLightFlash.Value = b;
+                        }
+                        else
+                        {
+
+                            tBRedBar.Value = 255;
+                            tBGreenBar.Value = 255;
+                            tBBlueBar.Value = 255;
+                            nUDLightFlash.Value = 0;
+                            cBLightbar.Checked = false;
+                        }
+                    if (int.TryParse(extras[7], out b))
+                        if (b == 1)
+                        {
+                            cBMouse.Checked = true;
+                            if (int.TryParse(extras[8], out b)) nUDMouse.Value = b;
+                        }
+                        else
+                        {
+                            nUDMouse.Value = 25;
+                            cBMouse.Checked = false;
+                        }
+
+                }
+                catch
+                {
+                    nUDHeavy.Value = 0;
+                    nUDLight.Value = 0;
+                    tBRedBar.Value = 255;
+                    tBGreenBar.Value = 255;
+                    tBBlueBar.Value = 255;
+                    nUDLightFlash.Value = 0;
+                    cBLightbar.Checked = false;
+                    nUDMouse.Value = 25;
+                    cBMouse.Checked = false;
+                }
             }
+
             extraChanged = false;
         }
 

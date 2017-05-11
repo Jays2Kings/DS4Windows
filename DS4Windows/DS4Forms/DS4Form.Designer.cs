@@ -118,6 +118,11 @@
             this.hideDS4CheckBox = new System.Windows.Forms.CheckBox();
             this.cBSwipeProfiles = new System.Windows.Forms.CheckBox();
             this.StartWindowsCheckBox = new System.Windows.Forms.CheckBox();
+            this.runStartupPanel = new System.Windows.Forms.Panel();
+            this.uacPictureBox = new System.Windows.Forms.PictureBox();
+            this.runStartTaskRadio = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.runStartProgRadio = new System.Windows.Forms.RadioButton();
             this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbNotifications = new System.Windows.Forms.Label();
@@ -129,6 +134,7 @@
             this.cBFlashWhenLate = new System.Windows.Forms.CheckBox();
             this.cBCloseMini = new System.Windows.Forms.CheckBox();
             this.cBQuickCharge = new System.Windows.Forms.CheckBox();
+            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
             this.cBDownloadLangauge = new System.Windows.Forms.CheckBox();
             this.cBUpdate = new System.Windows.Forms.CheckBox();
             this.pNUpdate = new System.Windows.Forms.Panel();
@@ -139,7 +145,6 @@
             this.lbUseXIPorts = new System.Windows.Forms.Label();
             this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
             this.lbLastXIPort = new System.Windows.Forms.Label();
-            this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
@@ -168,6 +173,8 @@
             this.toolStrip1.SuspendLayout();
             this.tabSettings.SuspendLayout();
             this.fLPSettings.SuspendLayout();
+            this.runStartupPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uacPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLatency)).BeginInit();
@@ -632,8 +639,8 @@
             this.lBProfiles.ContextMenuStrip = this.cMProfile;
             resources.ApplyResources(this.lBProfiles, "lBProfiles");
             this.lBProfiles.FormattingEnabled = true;
-            this.lBProfiles.MultiColumn = true;
             this.lBProfiles.Name = "lBProfiles";
+            this.lBProfiles.SelectedIndexChanged += new System.EventHandler(this.lBProfiles_SelectedIndexChanged);
             this.lBProfiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lBProfiles_KeyDown);
             this.lBProfiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseDoubleClick);
             this.lBProfiles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lBProfiles_MouseDown);
@@ -795,36 +802,36 @@
             // 
             // tsBEditProfile
             // 
-            this.tsBEditProfile.Image = global::DS4Windows.Properties.Resources.edit;
             resources.ApplyResources(this.tsBEditProfile, "tsBEditProfile");
+            this.tsBEditProfile.Image = global::DS4Windows.Properties.Resources.edit;
             this.tsBEditProfile.Name = "tsBEditProfile";
             this.tsBEditProfile.Click += new System.EventHandler(this.tsBNEditProfile_Click);
             // 
             // tsBDeleteProfile
             // 
-            this.tsBDeleteProfile.Image = global::DS4Windows.Properties.Resources.delete;
             resources.ApplyResources(this.tsBDeleteProfile, "tsBDeleteProfile");
+            this.tsBDeleteProfile.Image = global::DS4Windows.Properties.Resources.delete;
             this.tsBDeleteProfile.Name = "tsBDeleteProfile";
             this.tsBDeleteProfile.Click += new System.EventHandler(this.tsBDeleteProfle_Click);
             // 
             // tSBDupProfile
             // 
-            this.tSBDupProfile.Image = global::DS4Windows.Properties.Resources.copy;
             resources.ApplyResources(this.tSBDupProfile, "tSBDupProfile");
+            this.tSBDupProfile.Image = global::DS4Windows.Properties.Resources.copy;
             this.tSBDupProfile.Name = "tSBDupProfile";
             this.tSBDupProfile.Click += new System.EventHandler(this.tSBDupProfile_Click);
             // 
             // tSBImportProfile
             // 
-            this.tSBImportProfile.Image = global::DS4Windows.Properties.Resources.import;
             resources.ApplyResources(this.tSBImportProfile, "tSBImportProfile");
+            this.tSBImportProfile.Image = global::DS4Windows.Properties.Resources.import;
             this.tSBImportProfile.Name = "tSBImportProfile";
             this.tSBImportProfile.Click += new System.EventHandler(this.tSBImportProfile_Click);
             // 
             // tSBExportProfile
             // 
-            this.tSBExportProfile.Image = global::DS4Windows.Properties.Resources.export;
             resources.ApplyResources(this.tSBExportProfile, "tSBExportProfile");
+            this.tSBExportProfile.Image = global::DS4Windows.Properties.Resources.export;
             this.tSBExportProfile.Name = "tSBExportProfile";
             this.tSBExportProfile.Click += new System.EventHandler(this.tSBExportProfile_Click);
             // 
@@ -847,6 +854,7 @@
             this.fLPSettings.Controls.Add(this.hideDS4CheckBox);
             this.fLPSettings.Controls.Add(this.cBSwipeProfiles);
             this.fLPSettings.Controls.Add(this.StartWindowsCheckBox);
+            this.fLPSettings.Controls.Add(this.runStartupPanel);
             this.fLPSettings.Controls.Add(this.startMinimizedCheckBox);
             this.fLPSettings.Controls.Add(this.panel1);
             this.fLPSettings.Controls.Add(this.cBDisconnectBT);
@@ -883,6 +891,44 @@
             this.StartWindowsCheckBox.Name = "StartWindowsCheckBox";
             this.StartWindowsCheckBox.UseVisualStyleBackColor = true;
             this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
+            // 
+            // runStartupPanel
+            // 
+            this.runStartupPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.runStartupPanel.Controls.Add(this.uacPictureBox);
+            this.runStartupPanel.Controls.Add(this.runStartTaskRadio);
+            this.runStartupPanel.Controls.Add(this.label1);
+            this.runStartupPanel.Controls.Add(this.runStartProgRadio);
+            resources.ApplyResources(this.runStartupPanel, "runStartupPanel");
+            this.runStartupPanel.Name = "runStartupPanel";
+            // 
+            // uacPictureBox
+            // 
+            resources.ApplyResources(this.uacPictureBox, "uacPictureBox");
+            this.uacPictureBox.Name = "uacPictureBox";
+            this.uacPictureBox.TabStop = false;
+            // 
+            // runStartTaskRadio
+            // 
+            resources.ApplyResources(this.runStartTaskRadio, "runStartTaskRadio");
+            this.runStartTaskRadio.Name = "runStartTaskRadio";
+            this.runStartTaskRadio.TabStop = true;
+            this.runStartTaskRadio.UseVisualStyleBackColor = true;
+            this.runStartTaskRadio.Click += new System.EventHandler(this.runStartTaskRadio_Click);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // runStartProgRadio
+            // 
+            resources.ApplyResources(this.runStartProgRadio, "runStartProgRadio");
+            this.runStartProgRadio.Checked = true;
+            this.runStartProgRadio.Name = "runStartProgRadio";
+            this.runStartProgRadio.TabStop = true;
+            this.runStartProgRadio.UseVisualStyleBackColor = true;
+            this.runStartProgRadio.Click += new System.EventHandler(this.runStartProgRadio_Click);
             // 
             // startMinimizedCheckBox
             // 
@@ -940,7 +986,7 @@
             0});
             this.nUDLatency.Name = "nUDLatency";
             this.nUDLatency.Value = new decimal(new int[] {
-            10,
+            20,
             0,
             0,
             0});
@@ -973,6 +1019,13 @@
             this.cBQuickCharge.Name = "cBQuickCharge";
             this.cBQuickCharge.UseVisualStyleBackColor = true;
             this.cBQuickCharge.CheckedChanged += new System.EventHandler(this.cBQuickCharge_CheckedChanged);
+            // 
+            // cBUseWhiteIcon
+            // 
+            resources.ApplyResources(this.cBUseWhiteIcon, "cBUseWhiteIcon");
+            this.cBUseWhiteIcon.Name = "cBUseWhiteIcon";
+            this.cBUseWhiteIcon.UseVisualStyleBackColor = true;
+            this.cBUseWhiteIcon.CheckedChanged += new System.EventHandler(this.cBUseWhiteIcon_CheckedChanged);
             // 
             // cBDownloadLangauge
             // 
@@ -1068,13 +1121,6 @@
             resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
             this.lbLastXIPort.Name = "lbLastXIPort";
             // 
-            // cBUseWhiteIcon
-            // 
-            resources.ApplyResources(this.cBUseWhiteIcon, "cBUseWhiteIcon");
-            this.cBUseWhiteIcon.Name = "cBUseWhiteIcon";
-            this.cBUseWhiteIcon.UseVisualStyleBackColor = true;
-            this.cBUseWhiteIcon.CheckedChanged += new System.EventHandler(this.cBUseWhiteIcon_CheckedChanged);
-            // 
             // flowLayoutPanel1
             // 
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
@@ -1157,10 +1203,6 @@
             resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
             // 
-            // advColorDialog
-            // 
-            this.advColorDialog.OnUpdateColor += new DS4Windows.AdvancedColorDialog.ColorUpdateHandler(this.advColorDialog_OnUpdateColor);
-            // 
             // DS4Form
             // 
             this.AllowDrop = true;
@@ -1196,6 +1238,9 @@
             this.tabSettings.ResumeLayout(false);
             this.fLPSettings.ResumeLayout(false);
             this.fLPSettings.PerformLayout();
+            this.runStartupPanel.ResumeLayout(false);
+            this.runStartupPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uacPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1340,6 +1385,11 @@
         private System.Windows.Forms.ToolStripMenuItem useCustomColorToolStripMenuItem;
         private AdvancedColorDialog advColorDialog;
         private System.Windows.Forms.CheckBox cBUseWhiteIcon;
+        private System.Windows.Forms.Panel runStartupPanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton runStartProgRadio;
+        private System.Windows.Forms.RadioButton runStartTaskRadio;
+        private System.Windows.Forms.PictureBox uacPictureBox;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

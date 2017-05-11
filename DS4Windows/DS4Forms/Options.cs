@@ -27,8 +27,13 @@ namespace DS4Windows
         private float dpiy;
         public Dictionary<string, string> defaults = new Dictionary<string, string>();
         public bool saving, loading;
+        public bool actionTabSeen = false;
         public static Size mSize { get; private set; }
         private Size settingsSize;
+        private Dictionary<Control, int> hoverIndexDict = new Dictionary<Control, int>();
+        private Dictionary<Control, Bitmap> hoverImageDict = new Dictionary<Control, Bitmap>();
+        private Dictionary<Control, Label> hoverLabelDict = new Dictionary<Control, Label>();
+
         public Options(DS4Form rt)
         {
             InitializeComponent();
@@ -46,18 +51,31 @@ namespace DS4Windows
             colored = btnRainbow.Image;
             greyscale = GreyscaleImage((Bitmap)btnRainbow.Image);
             fLPSettings.FlowDirection = FlowDirection.TopDown;
+
             foreach (Control control in tPControls.Controls)
+            {
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                     buttons.Add((Button)control);
+            }
+
             foreach (Control control in fLPTouchSwipe.Controls)
+            {
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                     buttons.Add((Button)control);
+            }
+
             foreach (Control control in fLPTiltControls.Controls)
+            {
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                     buttons.Add((Button)control);
+            }
+
             foreach (Control control in pnlController.Controls)
+            {
                 if (control is Button && !((Button)control).Name.Contains("btn"))
                     buttons.Add((Button)control);
+            }
+
             foreach (Button b in buttons)
             {
                 defaults.Add(b.Name, b.Text);
@@ -67,18 +85,27 @@ namespace DS4Windows
             foreach (System.Windows.Forms.Control control in Controls)
             {
                 if (control.HasChildren)
+                {
                     foreach (System.Windows.Forms.Control ctrl in control.Controls)
                     {
                         if (ctrl.HasChildren)
+                        {
                             foreach (System.Windows.Forms.Control ctrl2 in ctrl.Controls)
                             {
                                 if (ctrl2.HasChildren)
+                                {
                                     foreach (System.Windows.Forms.Control ctrl3 in ctrl2.Controls)
                                         ctrl3.MouseHover += Items_MouseHover;
+                                }
+
                                 ctrl2.MouseHover += Items_MouseHover;
                             }
+                        }
+
                         ctrl.MouseHover += Items_MouseHover;
                     }
+                }
+
                 control.MouseHover += Items_MouseHover;
             }
             
@@ -87,6 +114,7 @@ namespace DS4Windows
                 b.MouseHover += button_MouseHover;
                 b.MouseLeave += button_MouseLeave;
             }
+
             advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             inputtimer.Tick += InputDS4;
             sixaxisTimer.Tick += ControllerReadout_Tick;
@@ -99,7 +127,122 @@ namespace DS4Windows
             bnSwipeDown.Text = Properties.Resources.SwipeDown;
             bnSwipeLeft.Text = Properties.Resources.SwipeLeft;
             bnSwipeRight.Text = Properties.Resources.SwipeRight;
-        }        
+
+            populateHoverIndexDict();
+            populateHoverImageDict();
+            populateHoverLabelDict();
+        }
+
+        private void populateHoverIndexDict()
+        {
+            hoverIndexDict.Clear();
+            hoverIndexDict[bnCross] = 0;
+            hoverIndexDict[bnCircle] = 1;
+            hoverIndexDict[bnSquare] = 2;
+            hoverIndexDict[bnTriangle] = 3;
+            hoverIndexDict[bnOptions] = 4;
+            hoverIndexDict[bnShare] = 5;
+            hoverIndexDict[bnUp] = 6;
+            hoverIndexDict[bnDown] = 7;
+            hoverIndexDict[bnLeft] = 8;
+            hoverIndexDict[bnRight] = 9;
+            hoverIndexDict[bnPS] = 10;
+            hoverIndexDict[bnL1] = 11;
+            hoverIndexDict[bnR1] = 12;
+            hoverIndexDict[bnL2] = 13;
+            hoverIndexDict[bnR2] = 14;
+            hoverIndexDict[bnL3] = 15;
+            hoverIndexDict[bnR3] = 16;
+            hoverIndexDict[bnTouchLeft] = 17;
+            hoverIndexDict[bnTouchRight] = 18;
+            hoverIndexDict[bnTouchMulti] = 19;
+            hoverIndexDict[bnTouchUpper] = 20;
+            hoverIndexDict[bnLSUp] = 21;
+            hoverIndexDict[bnLSDown] = 22;
+            hoverIndexDict[bnLSLeft] = 23;
+            hoverIndexDict[bnLSRight] = 24;
+            hoverIndexDict[bnRSUp] = 25;
+            hoverIndexDict[bnRSDown] = 26;
+            hoverIndexDict[bnRSLeft] = 27;
+            hoverIndexDict[bnRSRight] = 28;
+            hoverIndexDict[bnGyroZN] = 29;
+            hoverIndexDict[bnGyroZP] = 30;
+            hoverIndexDict[bnGyroXP] = 31;
+            hoverIndexDict[bnGyroXN] = 32;
+            hoverIndexDict[bnSwipeUp] = 33;
+            hoverIndexDict[bnSwipeDown] = 34;
+            hoverIndexDict[bnSwipeLeft] = 35;
+            hoverIndexDict[bnSwipeRight] = 36;
+        }
+
+        private void populateHoverImageDict()
+        {
+            hoverImageDict.Clear();
+            hoverImageDict[bnCross] = Properties.Resources.DS4_Config_Cross;
+            hoverImageDict[bnCircle] = Properties.Resources.DS4_Config_Circle;
+            hoverImageDict[bnSquare] = Properties.Resources.DS4_Config_Square;
+            hoverImageDict[bnTriangle] = Properties.Resources.DS4_Config_Triangle;
+            hoverImageDict[bnOptions] = Properties.Resources.DS4_Config_Options;
+            hoverImageDict[bnShare] = Properties.Resources.DS4_Config_Share;
+            hoverImageDict[bnUp] = Properties.Resources.DS4_Config_Up;
+            hoverImageDict[bnDown] = Properties.Resources.DS4_Config_Down;
+            hoverImageDict[bnLeft] = Properties.Resources.DS4_Config_Left;
+            hoverImageDict[bnRight] = Properties.Resources.DS4_Config_Right;
+            hoverImageDict[bnPS] = Properties.Resources.DS4_Config_PS;
+            hoverImageDict[bnL1] = Properties.Resources.DS4_Config_L1;
+            hoverImageDict[bnR1] = Properties.Resources.DS4_Config_R1;
+            hoverImageDict[bnL2] = Properties.Resources.DS4_Config_L2;
+            hoverImageDict[bnR2] = Properties.Resources.DS4_Config_R2;
+            hoverImageDict[bnTouchLeft] = Properties.Resources.DS4_Config_TouchLeft;
+            hoverImageDict[bnTouchRight] = Properties.Resources.DS4_Config_TouchRight;
+            hoverImageDict[bnTouchMulti] = Properties.Resources.DS4_Config_TouchMulti;
+            hoverImageDict[bnTouchUpper] = Properties.Resources.DS4_Config_TouchUpper;
+            hoverImageDict[bnL3] = Properties.Resources.DS4_Config_LS;
+            hoverImageDict[bnLSUp] = Properties.Resources.DS4_Config_LS;
+            hoverImageDict[bnLSDown] = Properties.Resources.DS4_Config_LS;
+            hoverImageDict[bnLSLeft] = Properties.Resources.DS4_Config_LS;
+            hoverImageDict[bnLSRight] = Properties.Resources.DS4_Config_LS;
+            hoverImageDict[bnR3] = Properties.Resources.DS4_Config_RS;
+            hoverImageDict[bnRSUp] = Properties.Resources.DS4_Config_RS;
+            hoverImageDict[bnRSDown] = Properties.Resources.DS4_Config_RS;
+            hoverImageDict[bnRSLeft] = Properties.Resources.DS4_Config_RS;
+            hoverImageDict[bnRSRight] = Properties.Resources.DS4_Config_RS;
+        }
+
+        private void populateHoverLabelDict()
+        {
+            hoverLabelDict.Clear();
+
+            hoverLabelDict[bnCross] = lbLCross;
+            hoverLabelDict[bnCircle] = lbLCircle;
+            hoverLabelDict[bnSquare] = lbLSquare;
+            hoverLabelDict[bnTriangle] = lbLTriangle;
+            hoverLabelDict[bnOptions] = lbLOptions;
+            hoverLabelDict[bnShare] = lbLShare;
+            hoverLabelDict[bnUp] = lbLUp;
+            hoverLabelDict[bnDown] = lbLDown;
+            hoverLabelDict[bnLeft] = lbLLeft;
+            hoverLabelDict[bnRight] = lbLright;
+            hoverLabelDict[bnPS] = lbLPS;
+            hoverLabelDict[bnL1] = lbLL1;
+            hoverLabelDict[bnR1] = lbLR1;
+            hoverLabelDict[bnL2] = lbLL2;
+            hoverLabelDict[bnR2] = lbLR2;
+            hoverLabelDict[bnTouchLeft] = lbLTouchLM;
+            hoverLabelDict[bnTouchRight] = lbLTouchRight;
+            hoverLabelDict[bnTouchMulti] = lbLTouchLM;
+            hoverLabelDict[bnTouchUpper] = lbLTouchUpper;
+            hoverLabelDict[bnL3] = lbLLS;
+            hoverLabelDict[bnLSUp] = lbLLS;
+            hoverLabelDict[bnLSDown] = lbLLS;
+            hoverLabelDict[bnLSLeft] = lbLLS;
+            hoverLabelDict[bnLSRight] = lbLLS;
+            hoverLabelDict[bnR3] = lbLRS;
+            hoverLabelDict[bnRSUp] = lbLRS;
+            hoverLabelDict[bnRSDown] = lbLRS;
+            hoverLabelDict[bnRSLeft] = lbLRS;
+            hoverLabelDict[bnRSRight] = lbLRS;
+        }
 
         public void Reload(int deviceNum, string name)
         {
@@ -128,10 +271,12 @@ namespace DS4Windows
             root.lbLastMessage.Text = "Hover over items to see description or more about";
             if (device < 4)
                 nUDSixaxis.Value = deviceNum + 1;
+
             if (filename != "")
             {
                 if (device == 4) //if temp device is called
                     ProfilePath[4] = name;
+
                 LoadProfile(device, false, Program.rootHub);
 
                 if (Rainbow[device] == 0)
@@ -144,6 +289,7 @@ namespace DS4Windows
                     btnRainbow.Image = colored;
                     ToggleRainbow(true);
                 }
+
                 DS4Color color = MainColor[device];
                 tBRedBar.Value = color.red;
                 tBGreenBar.Value = color.green;
@@ -171,14 +317,18 @@ namespace DS4Windows
                     cBFlashType.SelectedIndex = 0;
                 else
                     cBFlashType.SelectedIndex = FlashType[device];
+
                 DS4Color fColor = FlashColor[device];
                 if (fColor.Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
+                {
                     if (Rainbow[device] == 0)
                         btnFlashColor.BackColor = main;
                     else
                         btnFlashColor.BackgroundImage = rainbowImg;
+                }
                 else
                     btnFlashColor.BackColor = Color.FromArgb(fColor.red, fColor.green, fColor.blue);
+
                 nUDRumbleBoost.Value = RumbleBoost[device];
                 nUDTouch.Value = TouchSensitivity[device];
                 cBSlide.Checked = TouchSensitivity[device] > 0;
@@ -190,6 +340,7 @@ namespace DS4Windows
                 cBTouchpadJitterCompensation.Checked = TouchpadJitterCompensation[device];
                 cBlowerRCOn.Checked = LowerRCOn[device];
                 cBFlushHIDQueue.Checked = FlushHIDQueue[device];
+                enableTouchToggleCheckbox.Checked = getEnableTouchToggle(device);
                 nUDIdleDisconnect.Value = Math.Round((decimal)(IdleDisconnectTimeout[device] / 60d), 1);
                 cBIdleDisconnect.Checked = IdleDisconnectTimeout[device] > 0;
                 numUDMouseSens.Value = ButtonMouseSensitivity[device];
@@ -205,6 +356,7 @@ namespace DS4Windows
                     cBWhileCharging.SelectedIndex = 0;
                 else
                     cBWhileCharging.SelectedIndex = ChargingType[device];
+
                 try
                 {
                     nUDL2.Value = Math.Round((decimal)L2Deadzone[device] / 255, 2);
@@ -221,6 +373,41 @@ namespace DS4Windows
                 {
                     nUDR2.Value = 0;
                 }
+
+                try
+                {
+                    nUDL2AntiDead.Value = (decimal)(L2AntiDeadzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDL2AntiDead.Value = 0;
+                }
+                try
+                {
+                    nUDR2AntiDead.Value = (decimal)(R2AntiDeadzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDR2AntiDead.Value = 0;
+                }
+
+                try
+                {
+                    nUDL2Maxzone.Value = (decimal)(L2Maxzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDL2Maxzone.Value = 1;
+                }
+                try
+                {
+                    nUDR2Maxzone.Value = (decimal)(R2Maxzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDR2Maxzone.Value = 1;
+                }
+
                 try
                 {
                     nUDLS.Value = Math.Round((decimal)(LSDeadzone[device] / 127d), 3);
@@ -237,6 +424,41 @@ namespace DS4Windows
                 {
                     nUDRS.Value = 0;
                 }
+
+                try
+                {
+                    nUDLSAntiDead.Value = (decimal)(LSAntiDeadzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDLSAntiDead.Value = 0;
+                }
+                try
+                {
+                    nUDRSAntiDead.Value = (decimal)(RSAntiDeadzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDRSAntiDead.Value = 0;
+                }
+
+                try
+                {
+                    nUDLSMaxZone.Value = (decimal)(LSMaxzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDLSMaxZone.Value = 1;
+                }
+                try
+                {
+                    nUDRSMaxZone.Value = (decimal)(RSMaxzone[device] / 100d);
+                }
+                catch
+                {
+                    nUDRSMaxZone.Value = 1;
+                }
+
                 try
                 {
                     nUDSX.Value = (decimal)SXDeadzone[device];
@@ -301,12 +523,14 @@ namespace DS4Windows
                 {
                     nUDSZS.Value = 1;
                 }
+
                 if (LaunchProgram[device] != string.Empty)
                 {
                     cBLaunchProgram.Checked = true;
                     pBProgram.Image = Icon.ExtractAssociatedIcon(LaunchProgram[device]).ToBitmap();
                     btnBrowse.Text = Path.GetFileNameWithoutExtension(LaunchProgram[device]);
                 }
+
                 cBDinput.Checked = DinputOnly[device];
                 olddinputcheck = cBDinput.Checked;
                 cbStartTouchpadOff.Checked = StartTouchpadOff[device];
@@ -320,7 +544,7 @@ namespace DS4Windows
 
                 string[] satriggers = SATriggers[device].Split(',');
                 List<string> s = new List<string>();
-                for (int i = 0; i < satriggers.Length; i++)
+                for (int i = 0, satrigLen = satriggers.Length; i < satrigLen; i++)
                 {
                     int tr;
                     if (int.TryParse(satriggers[i], out tr))
@@ -370,6 +594,7 @@ namespace DS4Windows
                     case 3: tBRedBar.Value = 255; tBGreenBar.Value = 0; tBBlueBar.Value = 255; break;
                     case 4: tBRedBar.Value = 255; tBGreenBar.Value = 255; tBBlueBar.Value = 255; break;
                 }
+
                 tBLowBlueBar.Value = 0; tBLowGreenBar.Value = 0; tBLowBlueBar.Value = 0;
 
                 cBLightbyBattery.Checked = false;
@@ -387,7 +612,8 @@ namespace DS4Windows
                 cBDoubleTap.Checked = false;
                 cBTouchpadJitterCompensation.Checked = true;
                 cBlowerRCOn.Checked = false;
-                cBFlushHIDQueue.Checked = true;
+                cBFlushHIDQueue.Checked = false;
+                enableTouchToggleCheckbox.Checked = true;
                 nUDIdleDisconnect.Value = 5;
                 cBIdleDisconnect.Checked = true;
                 numUDMouseSens.Value = 25;
@@ -397,8 +623,14 @@ namespace DS4Windows
                 nUDRainbow.Value = 0;
                 nUDL2.Value = 0;
                 nUDR2.Value = 0;
+                nUDL2Maxzone.Value = 1;
+                nUDR2Maxzone.Value = 1;
                 nUDLS.Value = 0;
                 nUDRS.Value = 0;
+                nUDLSAntiDead.Value = 0;
+                nUDRSAntiDead.Value = 0;
+                nUDLSMaxZone.Value = 1;
+                nUDRSMaxZone.Value = 1;
                 nUDSX.Value = .25m;
                 nUDSZ.Value = .25m;
 
@@ -426,13 +658,13 @@ namespace DS4Windows
             }
             
             UpdateLists();
-            inputtimer.Start();
             LoadActions(string.IsNullOrEmpty(filename));
             loading = false;
             saving = false;
         }
 
-        private string getDS4ControlsByName(DS4Controls key)
+        /* TODO: Possibly remove. Currently not used. */
+        /*private string getDS4ControlsByName(DS4Controls key)
         {
             switch (key)
             {
@@ -479,8 +711,10 @@ namespace DS4Windows
                 case DS4Controls.SwipeLeft: return "bnSwipeLeft";
                 case DS4Controls.SwipeRight: return "bnSwipeRight";
             }
+
             return "";
         }
+        */
 
         public void LoadActions(bool newp)
         {
@@ -510,18 +744,26 @@ namespace DS4Windows
                         lvi.SubItems.Add(Properties.Resources.MultiAction);
                         break;
                 }
+
                 if (newp)
+                {
                     if (action.type == "DisconnectBT")
                         lvi.Checked = true;
                     else
                         lvi.Checked = false;
+                }
                 else
+                {
                     foreach (string s in pactions)
+                    {
                         if (s == action.name)
                         {
                             lvi.Checked = true;
                             break;
                         }
+                    }
+                }
+
                 lVActions.Items.Add(lvi);
             }
         }
@@ -535,6 +777,7 @@ namespace DS4Windows
             else
                 return value;
         }
+
         void EnableReadings(bool on)
         {
             lbL2Track.Enabled = on;
@@ -549,12 +792,14 @@ namespace DS4Windows
             btnSATrack.Visible = on;
             btnSATrackS.Visible = on;
         }
+
         void ControllerReadout_Tick(object sender, EventArgs e)
         {
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
             // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
             // We should try to indicate setpoints of the calibration when exposing this measurement....
-            if (Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1] == null)
+            DS4Device ds = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
+            if (ds == null)
             {
                 EnableReadings(false);
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", Properties.Resources.NA);
@@ -606,13 +851,18 @@ namespace DS4Windows
                     btnLSTrack.Location = new Point((int)(dpix * x / 2.09), (int)(dpiy * y / 2.09));
                     btnLSTrackS.Visible = nUDLSS.Value != 1;
                 }
+
                 if (nUDLSS.Value != 1)
+                {
                     btnLSTrackS.Location = new Point((int)((float)nUDLSS.Value * (btnLSTrack.Location.X - pnlLSTrack.Size.Width / 2f) + pnlLSTrack.Size.Width / 2f),
                         (int)((float)nUDLSS.Value * (btnLSTrack.Location.Y - pnlLSTrack.Size.Height / 2f) + pnlLSTrack.Size.Height / 2f));
+                }
+
 
                 x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RX;
                 y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RY;
                     btnRSTrackS.Visible = nUDRSS.Value != 1;
+
                 if (nUDRSCurve.Value > 0)
                 {
                     float max = x + y;
@@ -645,6 +895,7 @@ namespace DS4Windows
                     btnRSTrack.Location = new Point((int)(dpix * x / 2.09), (int)(dpiy * y / 2.09));
                     btnRSTrackS.Visible = nUDRSS.Value != 1;
                 }
+
                 if (nUDRSS.Value != 1)
                     btnRSTrackS.Location = new Point((int)((float)nUDRSS.Value * (btnRSTrack.Location.X - pnlRSTrack.Size.Width / 2f) + pnlRSTrack.Size.Width / 2f),
                         (int)((float)nUDRSS.Value * (btnRSTrack.Location.Y - pnlRSTrack.Size.Height / 2f) + pnlRSTrack.Size.Height / 2f));
@@ -661,6 +912,7 @@ namespace DS4Windows
                 lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 25), 
                     Math.Max((int)(((tBL2.Location.Y + tBL2.Size.Height) - (tBL2.Value * (float)nUDL2S.Value) / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
                     (int)(1 * ((tBL2.Location.Y + tBL2.Size.Height) - 255 / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20)));
+
                 if (tBL2.Value * (float)nUDL2S.Value >= 255)
                     lbL2Track.ForeColor = Color.Green;
                 else if (tBL2.Value * (float)nUDL2S.Value < (double)nUDL2.Value * 255)
@@ -672,6 +924,7 @@ namespace DS4Windows
                 lbR2Track.Location = new Point(tBR2.Location.X + (int)(dpix * 25),
                      Math.Max((int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - (tBR2.Value * (float)nUDR2S.Value) / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
                      (int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - 255 / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20)));
+
                 if (tBR2.Value * (float)nUDR2S.Value >= 255)
                     lbR2Track.ForeColor = Color.Green;
                 else if (tBR2.Value * (float)nUDR2S.Value < (double)nUDR2.Value * 255)
@@ -680,14 +933,15 @@ namespace DS4Windows
                     lbR2Track.ForeColor = Color.Black;
 
 
-                double latency = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1].Latency;
+                double latency = ds.Latency;
+                int warnInterval = ds.getWarnInterval();
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", latency.ToString());
-                if (latency > 10)
+                if (latency > warnInterval)
                 {
                     lbInputDelay.BackColor = Color.Red;
                     lbInputDelay.ForeColor = Color.White;
                 }
-                else if (latency > 5)
+                else if (latency > (warnInterval / 2))
                 {
                     lbInputDelay.BackColor = Color.Yellow;
                     lbInputDelay.ForeColor = Color.Black;
@@ -705,11 +959,14 @@ namespace DS4Windows
             percent /= 100f;
             return value1 * percent + value2 * (1 - percent);
         }
+
         private void InputDS4(object sender, EventArgs e)
         {
             if (Form.ActiveForm == root && cBControllerInput.Checked && tCControls.SelectedIndex < 1)
+            {
                 switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
                 {
+                    case ("nothing"): break;
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
                     case ("Circle"): Show_ControlsBn(bnCircle, e); break;
                     case ("Square"): Show_ControlsBn(bnSquare, e); break;
@@ -743,9 +1000,10 @@ namespace DS4Windows
                     case ("GyroXN"): Show_ControlsBn(bnGyroXN, e); break;
                     case ("GyroZP"): Show_ControlsBn(bnGyroZP, e); break;
                     case ("GyroZN"): Show_ControlsBn(bnGyroZN, e); break;
+                    default: break;
                 }
+            }
         }
-
 
         private void button_MouseHoverB(object sender, EventArgs e)
         {
@@ -791,10 +1049,17 @@ namespace DS4Windows
         private void button_MouseHover(object sender, EventArgs e)
         {
             bool swipesOn = lBControls.Items.Count > 33;
-            string name = ((Button)sender).Name;
+            Button senderControl = (Button)sender;
+            string name = senderControl.Name;
             if (e != null)
             {
-                switch (name)
+                int tempIndex = 0;
+                if (hoverIndexDict.TryGetValue(senderControl, out tempIndex))
+                {
+                    lBControls.SelectedIndex = tempIndex;
+                }
+
+                /*switch (name)
                 {
                     #region
                     case "bnCross": lBControls.SelectedIndex = 0; break;
@@ -832,7 +1097,9 @@ namespace DS4Windows
                     case "bnGyroXN": lBControls.SelectedIndex = 32; break;                        
                         #endregion
                 }
+
                 if (swipesOn)
+                {
                     switch (name)
                     {
                         case "bnSwipeUp": if (swipesOn) lBControls.SelectedIndex = 33; break;
@@ -840,21 +1107,38 @@ namespace DS4Windows
                         case "bnSwipeLeft": if (swipesOn) lBControls.SelectedIndex = 35; break;
                         case "bnSwipeRight": if (swipesOn) lBControls.SelectedIndex = 36; break;
                     }
+                }
+                */
             }
+
             DS4ControlSettings dcs = getDS4CSetting(device, name);
             if (lBControls.SelectedIndex >= 0)
             { 
                 string tipText = lBControls.SelectedItem.ToString().Split(':')[0];
                 tipText += ": ";
-                tipText += UpdateButtonList(((Button)sender));
+                tipText += UpdateButtonList(senderControl);
                 if (GetDS4Action(device, name, true) != null && GetDS4STrigger(device, name) > 0)
                 {
                     tipText += "\n Shift: ";
-                    tipText += ShiftTrigger(GetDS4STrigger(device, name)) + " -> " + UpdateButtonList(((Button)sender), true);
+                    tipText += ShiftTrigger(GetDS4STrigger(device, name)) + " -> " + UpdateButtonList(senderControl, true);
                 }
+
                 lbControlName.Text = tipText;
             }
-            switch (name)
+
+            Bitmap tempBit = null;
+            if (hoverImageDict.TryGetValue(senderControl, out tempBit))
+            {
+                pBHoveredButton.Image = tempBit;
+            }
+
+            Label tempLabel = null;
+            if (hoverLabelDict.TryGetValue(senderControl, out tempLabel))
+            {
+                pBHoveredButton.Location = tempLabel.Location;
+            }
+
+            /*switch (name)
             {
                 #region
                 case "bnCross":
@@ -975,6 +1259,8 @@ namespace DS4Windows
                     break;                    
                     #endregion
             }
+            */
+
             if (pBHoveredButton.Image != null)
                 pBHoveredButton.Size = new Size((int)(pBHoveredButton.Image.Size.Width * (dpix / 1.25f)), (int)(pBHoveredButton.Image.Size.Height * (dpix / 1.25f)));
         }
@@ -993,6 +1279,7 @@ namespace DS4Windows
                 trackBar.Maximum = value;
             else if (trackBar.Minimum > value)
                 trackBar.Minimum = value;
+
             trackBar.Value = value;
         }
 
@@ -1008,8 +1295,11 @@ namespace DS4Windows
                 FlashColor[device] = new DS4Color(btnFlashColor.BackColor);
             else
                 FlashColor[device] = new DS4Color(Color.Black);
+
             L2Deadzone[device] = (byte)Math.Round((nUDL2.Value * 255), 0);
             R2Deadzone[device] = (byte)Math.Round((nUDR2.Value * 255), 0);
+            L2AntiDeadzone[device] = (int)(nUDL2AntiDead.Value * 100);
+            R2AntiDeadzone[device] = (int)(nUDR2AntiDead.Value * 100);
             RumbleBoost[device] = (byte)nUDRumbleBoost.Value;
             TouchSensitivity[device] = (byte)nUDTouch.Value;
             TouchpadJitterCompensation[device] = cBTouchpadJitterCompensation.Checked;
@@ -1021,6 +1311,8 @@ namespace DS4Windows
             Rainbow[device] = (int)nUDRainbow.Value;
             RSDeadzone[device] = (int)Math.Round((nUDRS.Value * 127), 0);
             LSDeadzone[device] = (int)Math.Round((nUDLS.Value * 127), 0);
+            LSAntiDeadzone[device] = (int)(nUDLSAntiDead.Value * 100);
+            RSAntiDeadzone[device] = (int)(nUDRSAntiDead.Value * 100);
             ButtonMouseSensitivity[device] = (int)numUDMouseSens.Value;
             FlashAt[device] = (int)nUDflashLED.Value;
             SXDeadzone[device] = (double)nUDSX.Value;
@@ -1035,9 +1327,14 @@ namespace DS4Windows
             RSCurve[device] = (int)Math.Round(nUDRSCurve.Value, 0);
             List<string> pactions = new List<string>();
             foreach (ListViewItem lvi in lVActions.Items)
+            {
                 if (lvi.Checked)
                     pactions.Add(lvi.Text);
+            }
+
             ProfileActions[device] = pactions;
+            calculateProfileActionCount(device);
+            calculateProfileActionDicts(device);
             pnlTPMouse.Visible = rBTPMouse.Checked;
             pnlSAMouse.Visible = rBSAMouse.Checked;
             fLPTiltControls.Visible = rBSAControls.Checked;
@@ -1047,17 +1344,24 @@ namespace DS4Windows
             int invert = 0;
             if (cBGyroInvertX.Checked)
                 invert += 2;
+
             if (cBGyroInvertY.Checked)
                 invert += 1;
+
             GyroInvert[device] = invert;
 
             List<int> ints = new List<int>();
             for (int i = 0; i < cMGyroTriggers.Items.Count - 1; i++)
+            {
                 if (((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked)
                     ints.Add(i);
+            }
+
             if (ints.Count == 0)
                 ints.Add(-1);
+
             SATriggers[device] = string.Join(",", ints);
+
             if (nUDRainbow.Value == 0) btnRainbow.Image = greyscale;
             else btnRainbow.Image = colored;
         }
@@ -1076,13 +1380,14 @@ namespace DS4Windows
             kbm360.ShowDialog();
         }        
 
-        public void ChangeButtonText(Control ctrl, bool shift, KeyValuePair<object, string> tag, bool SC, bool TG, bool MC, bool MR, int sTrigger = 0)
+        public void ChangeButtonText(Control ctrl, bool shift, KeyValuePair<object, string> tag,
+            bool SC, bool TG, bool MC, bool MR, int sTrigger = 0)
         {
             DS4KeyType kt = DS4KeyType.None;
             if (SC) kt |= DS4KeyType.ScanCode;
             if (TG) kt |= DS4KeyType.Toggle;
             if (MC) kt |= DS4KeyType.Macro;
-            if (MR) kt |= DS4KeyType.RepeatMacro;
+            if (MR) kt |= DS4KeyType.HoldMacro;
             UpdateDS4CSetting(device, ctrl.Name, shift, tag.Key, tag.Value, kt, sTrigger);
         }
 
@@ -1137,26 +1442,30 @@ namespace DS4Windows
                 btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
                 if (FlashColor[device].Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
                     btnFlashColor.BackColor = main;
+
                 btnFlashColor.BackgroundImage = nUDRainbow.Enabled ? rainbowImg : null;
                 tBRedBar.Value = advColorDialog.Color.R;
                 tBGreenBar.Value = advColorDialog.Color.G;
                 tBBlueBar.Value = advColorDialog.Color.B;
             }
+
             if (device < 4)
                 DS4LightBar.forcelight[device] = false;
         }
         
         private void lowColorChooserButton_Click(object sender, EventArgs e)
         {
-            advColorDialog.Color = lowColorChooserButton.BackColor;
-            advColorDialog_OnUpdateColor(lowColorChooserButton.BackColor, e);
+            Color chooserBackColor = lowColorChooserButton.BackColor;
+            advColorDialog.Color = chooserBackColor;
+            advColorDialog_OnUpdateColor(chooserBackColor, e);
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
-                lowColorChooserButton.BackColor = advColorDialog.Color;
+                lowColorChooserButton.BackColor = chooserBackColor = advColorDialog.Color;
                 tBLowRedBar.Value = advColorDialog.Color.R;
                 tBLowGreenBar.Value = advColorDialog.Color.G;
                 tBLowBlueBar.Value = advColorDialog.Color.B;
             }
+
             if (device < 4)
                 DS4LightBar.forcelight[device] = false;
         }
@@ -1164,16 +1473,20 @@ namespace DS4Windows
 
         private void btnChargingColor_Click(object sender, EventArgs e)
         {
-            advColorDialog.Color = btnChargingColor.BackColor;
-            advColorDialog_OnUpdateColor(btnChargingColor.BackColor, e);
+            Color chargingBackColor = btnChargingColor.BackColor;
+            advColorDialog.Color = chargingBackColor;
+            advColorDialog_OnUpdateColor(chargingBackColor, e);
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
-                btnChargingColor.BackColor = advColorDialog.Color;
+                btnChargingColor.BackColor = chargingBackColor = advColorDialog.Color;
             }
+
             if (device < 4)
                 DS4LightBar.forcelight[device] = false;
-            ChargingColor[device] = new DS4Color(btnChargingColor.BackColor);
+
+            ChargingColor[device] = new DS4Color(chargingBackColor);
         }
+
         private void advColorDialog_OnUpdateColor(object sender, EventArgs e)
         {
             if (sender is Color && device < 4)
@@ -1185,6 +1498,7 @@ namespace DS4Windows
                 DS4LightBar.forcelight[device] = true;
             }
         }
+
         private void SetColorToolTip(TrackBar tb, int type)
         {
             if (tb != null)
@@ -1194,7 +1508,8 @@ namespace DS4Windows
                 int som = bgc + 11 * (int)(value * 0.0039215);
                 tb.BackColor = Color.FromArgb(tb.Name.ToLower().Contains("red") ? som : sat, tb.Name.ToLower().Contains("green") ? som : sat, tb.Name.ToLower().Contains("blue") ? som : sat);
             }
-            if (type == 0) //main
+
+            if (type == 0) // main
             {
                 alphacolor = Math.Max(tBRedBar.Value, Math.Max(tBGreenBar.Value, tBBlueBar.Value));
                 reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
@@ -1214,6 +1529,7 @@ namespace DS4Windows
                 lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
                 LowColor[device] = new DS4Color((byte)tBLowRedBar.Value, (byte)tBLowGreenBar.Value, (byte)tBLowBlueBar.Value);
             }
+
             if (!saving && !loading && tb != null)
                 tp.Show(tb.Value.ToString(), tb, (int)(dpix * 100), 0, 2000);
         }
@@ -1236,6 +1552,7 @@ namespace DS4Windows
             float X = (C * (1 - Math.Abs((hue / 60) % 2 - 1)));
             float m = L - C / 2;
             float R =0, G=0, B=0;
+
             if (light == 1) return Color.White;
             else if (rgb.R == rgb.G && rgb.G == rgb.B) return Color.White;
             else if (0 <= hue && hue < 60)    { R = C; G = X; }
@@ -1248,18 +1565,22 @@ namespace DS4Windows
         }
         private void rumbleBoostBar_ValueChanged(object sender, EventArgs e)
         {
-            RumbleBoost[device] = (byte)nUDRumbleBoost.Value;
-            byte h = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
-            byte l = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
-            bool hB = btnRumbleHeavyTest.Text == Properties.Resources.TestLText;
-            bool lB = btnRumbleLightTest.Text == Properties.Resources.TestLText;
-            Program.rootHub.setRumble((byte)(hB ? h : 0), (byte)(lB ? l : 0), device);
+            if (!loading)
+            {
+                RumbleBoost[device] = (byte)nUDRumbleBoost.Value;
+                byte h = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
+                byte l = (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100));
+                bool hB = btnRumbleHeavyTest.Text == Properties.Resources.TestLText;
+                bool lB = btnRumbleLightTest.Text == Properties.Resources.TestLText;
+                Program.rootHub.setRumble((byte)(hB ? h : 0), (byte)(lB ? l : 0), device);
+            }
         }
 
         private void btnRumbleHeavyTest_Click(object sender, EventArgs e)
         {
             DS4Device d = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
             if (d != null)
+            {
                 if (((Button)sender).Text == Properties.Resources.TestHText)
                 {
                     Program.rootHub.setRumble((byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), d.RightLightFastRumble, (int)nUDSixaxis.Value - 1);
@@ -1270,12 +1591,14 @@ namespace DS4Windows
                     Program.rootHub.setRumble(0, d.RightLightFastRumble, (int)nUDSixaxis.Value - 1);
                     ((Button)sender).Text = Properties.Resources.TestHText;
                 }
+            }
         }
 
         private void btnRumbleLightTest_Click(object sender, EventArgs e)
         {
             DS4Device d = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
             if (d != null)
+            {
                 if (((Button)sender).Text == Properties.Resources.TestLText)
                 {
                     Program.rootHub.setRumble(d.LeftHeavySlowRumble, (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), (int)nUDSixaxis.Value - 1);
@@ -1286,6 +1609,7 @@ namespace DS4Windows
                     Program.rootHub.setRumble(d.LeftHeavySlowRumble, 0, (int)nUDSixaxis.Value - 1);
                     ((Button)sender).Text = Properties.Resources.TestLText;
                 }
+            }
         }
 
         private void numUDTouch_ValueChanged(object sender, EventArgs e)
@@ -1302,12 +1626,14 @@ namespace DS4Windows
         {
             ScrollSensitivity[device] = (int)nUDScroll.Value;
         }
+
         private void ledAsBatteryIndicator_CheckedChanged(object sender, EventArgs e)
         {
-            LedAsBatteryIndicator[device] = cBLightbyBattery.Checked;
-            pnlLowBattery.Visible = cBLightbyBattery.Checked;
-            //pnlFull.Location = new Point(pnlFull.Location.X, (cBLightbyBattery.Checked ? (int)(dpix * 42) : (pnlFull.Location.Y + pnlLowBattery.Location.Y) / 2));
-            lbFull.Text = (cBLightbyBattery.Checked ? Properties.Resources.Full + ":" : Properties.Resources.Color + ":");
+            bool lightByBatteryChecked = cBLightbyBattery.Checked;
+            LedAsBatteryIndicator[device] = lightByBatteryChecked;
+            pnlLowBattery.Visible = lightByBatteryChecked;
+            //pnlFull.Location = new Point(pnlFull.Location.X, (lightByBatteryChecked ? (int)(dpix * 42) : (pnlFull.Location.Y + pnlLowBattery.Location.Y) / 2));
+            lbFull.Text = (lightByBatteryChecked ? Properties.Resources.Full + ":" : Properties.Resources.Color + ":");
         }
 
         private void lowerRCOffCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -1334,24 +1660,29 @@ namespace DS4Windows
 
         private void cBIdleDisconnect_CheckedChanged(object sender, EventArgs e)
         {
-            if (cBIdleDisconnect.Checked)
+            bool idleDisconnectChecked = cBIdleDisconnect.Checked;
+            if (idleDisconnectChecked)
                 nUDIdleDisconnect.Value = 5;
             else
                 nUDIdleDisconnect.Value = 0;
-            nUDIdleDisconnect.Enabled = cBIdleDisconnect.Checked;
+
+            nUDIdleDisconnect.Enabled = idleDisconnectChecked;
         }
 
         private void Options_FormClosing(object sender, FormClosingEventArgs e)
         {
             for (int i = 0; i < 4; i++)
-                LoadProfile(i, false, Program.rootHub); //Refreshes all profiles in case other controllers are using the same profile
+                LoadProfile(i, false, Program.rootHub); // Refreshes all profiles in case other controllers are using the same profile
+
             if (olddinputcheck != cBDinput.Checked)
             {
                 root.btnStartStop_Clicked(false);
                 root.btnStartStop_Clicked(false);
             }
+
             if (btnRumbleHeavyTest.Text == Properties.Resources.StopText)
                 Program.rootHub.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
+
             inputtimer.Stop();
             sixaxisTimer.Stop();
             root.OptionsClosed();
@@ -1377,30 +1708,36 @@ namespace DS4Windows
 
         private void cBSlide_CheckedChanged(object sender, EventArgs e)
         {
-            if (cBSlide.Checked)
+            bool slideChecked = cBSlide.Checked;
+            if (slideChecked)
                 nUDTouch.Value = 100;
             else
                 nUDTouch.Value = 0;
-            nUDTouch.Enabled = cBSlide.Checked;
+
+            nUDTouch.Enabled = slideChecked;
         }
 
         private void cBScroll_CheckedChanged(object sender, EventArgs e)
         {
-            if (cBScroll.Checked)
+            bool scrollChecked = cBScroll.Checked;
+            if (scrollChecked)
                 nUDScroll.Value = 5;
             else
                 nUDScroll.Value = 0;
-            nUDScroll.Enabled = cBScroll.Checked;
+
+            nUDScroll.Enabled = scrollChecked;
         }
 
         private void cBTap_CheckedChanged(object sender, EventArgs e)
         {
-            if (cBTap.Checked)
+            bool tapChecked = cBTap.Checked;
+            if (tapChecked)
                 nUDTap.Value = 100;
             else
                 nUDTap.Value = 0;
-            nUDTap.Enabled = cBTap.Checked;
-            cBDoubleTap.Enabled = cBTap.Checked;
+
+            nUDTap.Enabled = tapChecked;
+            cBDoubleTap.Enabled = tapChecked;
         }
 
         private void cBDoubleTap_CheckedChanged(object sender, EventArgs e)
@@ -1471,21 +1808,23 @@ namespace DS4Windows
             {
                 if (tagO is int || tagO is ushort)
                 {
-                    return (Keys)int.Parse(tagO.ToString()) + (SC ? " (" + Properties.Resources.ScanCode + ")" : "");
+                    //return (Keys)int.Parse(tagO.ToString()) + (SC ? " (" + Properties.Resources.ScanCode + ")" : "");
+                    return (Keys)Convert.ToInt32(tagO) + (SC ? " (" + Properties.Resources.ScanCode + ")" : "");
                 }
                 else if (tagO is int[])
                 {
                     return Properties.Resources.Macro + (SC ? " (" + Properties.Resources.ScanCode + ")" : "");
                 }
-                else if (tagO is string || tagO is X360Controls)
+                else if (tagO is X360Controls)
                 {
                     string tag;
-                    if (tagO is X360Controls)
-                    {
-                        tag = KBM360.getX360ControlsByName((X360Controls)tagO);
-                    }
-                    else
-                        tag = tagO.ToString();
+                    tag = KBM360.getX360ControlsByName((X360Controls)tagO);
+                    return tag;
+                }
+                else if (tagO is string)
+                {
+                    string tag;
+                    tag = tagO.ToString();
                     return tag;
                 }
                 else
@@ -1498,49 +1837,52 @@ namespace DS4Windows
             else
                 return Properties.Resources.Unassigned;
         }
+
         private void Show_ControlsList(object sender, EventArgs e)
         {
-            if (lBControls.SelectedIndex == 0) Show_ControlsBn(bnCross, e);
-            if (lBControls.SelectedIndex == 1) Show_ControlsBn(bnCircle, e);
-            if (lBControls.SelectedIndex == 2) Show_ControlsBn(bnSquare, e);
-            if (lBControls.SelectedIndex == 3) Show_ControlsBn(bnTriangle, e);
-            if (lBControls.SelectedIndex == 4) Show_ControlsBn(bnOptions, e);
-            if (lBControls.SelectedIndex == 5) Show_ControlsBn(bnShare, e);
-            if (lBControls.SelectedIndex == 6) Show_ControlsBn(bnUp, e);
-            if (lBControls.SelectedIndex == 7) Show_ControlsBn(bnDown, e);
-            if (lBControls.SelectedIndex == 8) Show_ControlsBn(bnLeft, e);
-            if (lBControls.SelectedIndex == 9) Show_ControlsBn(bnRight, e);
-            if (lBControls.SelectedIndex == 10) Show_ControlsBn(bnPS, e);
-            if (lBControls.SelectedIndex == 11) Show_ControlsBn(bnL1, e);
-            if (lBControls.SelectedIndex == 12) Show_ControlsBn(bnR1, e);
-            if (lBControls.SelectedIndex == 13) Show_ControlsBn(bnL2, e);
-            if (lBControls.SelectedIndex == 14) Show_ControlsBn(bnR2, e);
-            if (lBControls.SelectedIndex == 15) Show_ControlsBn(bnL3, e);
-            if (lBControls.SelectedIndex == 16) Show_ControlsBn(bnR3, e);
+            int controlSelectedIndex = lBControls.SelectedIndex;
 
-            if (lBControls.SelectedIndex == 17) Show_ControlsBn(bnTouchLeft, e);
-            if (lBControls.SelectedIndex == 18) Show_ControlsBn(bnTouchRight, e);
-            if (lBControls.SelectedIndex == 19) Show_ControlsBn(bnTouchMulti, e);
-            if (lBControls.SelectedIndex == 20) Show_ControlsBn(bnTouchUpper, e);
+            if (controlSelectedIndex == 0) Show_ControlsBn(bnCross, e);
+            else if (controlSelectedIndex == 1) Show_ControlsBn(bnCircle, e);
+            else if (controlSelectedIndex == 2) Show_ControlsBn(bnSquare, e);
+            else if (controlSelectedIndex == 3) Show_ControlsBn(bnTriangle, e);
+            else if (controlSelectedIndex == 4) Show_ControlsBn(bnOptions, e);
+            else if (controlSelectedIndex == 5) Show_ControlsBn(bnShare, e);
+            else if (controlSelectedIndex == 6) Show_ControlsBn(bnUp, e);
+            else if (controlSelectedIndex == 7) Show_ControlsBn(bnDown, e);
+            else if (controlSelectedIndex == 8) Show_ControlsBn(bnLeft, e);
+            else if (controlSelectedIndex == 9) Show_ControlsBn(bnRight, e);
+            else if (controlSelectedIndex == 10) Show_ControlsBn(bnPS, e);
+            else if (controlSelectedIndex == 11) Show_ControlsBn(bnL1, e);
+            else if (controlSelectedIndex == 12) Show_ControlsBn(bnR1, e);
+            else if (controlSelectedIndex == 13) Show_ControlsBn(bnL2, e);
+            else if (controlSelectedIndex == 14) Show_ControlsBn(bnR2, e);
+            else if (controlSelectedIndex == 15) Show_ControlsBn(bnL3, e);
+            else if (controlSelectedIndex == 16) Show_ControlsBn(bnR3, e);
 
-            if (lBControls.SelectedIndex == 21) Show_ControlsBn(bnLSUp, e);
-            if (lBControls.SelectedIndex == 22) Show_ControlsBn(bnLSDown, e);
-            if (lBControls.SelectedIndex == 23) Show_ControlsBn(bnLSLeft, e);
-            if (lBControls.SelectedIndex == 24) Show_ControlsBn(bnLSRight, e);
-            if (lBControls.SelectedIndex == 25) Show_ControlsBn(bnRSUp, e);
-            if (lBControls.SelectedIndex == 26) Show_ControlsBn(bnRSDown, e);
-            if (lBControls.SelectedIndex == 27) Show_ControlsBn(bnRSLeft, e);
-            if (lBControls.SelectedIndex == 28) Show_ControlsBn(bnRSRight, e);
+            else if (controlSelectedIndex == 17) Show_ControlsBn(bnTouchLeft, e);
+            else if (controlSelectedIndex == 18) Show_ControlsBn(bnTouchRight, e);
+            else if (controlSelectedIndex == 19) Show_ControlsBn(bnTouchMulti, e);
+            else if (controlSelectedIndex == 20) Show_ControlsBn(bnTouchUpper, e);
 
-            if (lBControls.SelectedIndex == 29) Show_ControlsBn(bnGyroZN, e);
-            if (lBControls.SelectedIndex == 30) Show_ControlsBn(bnGyroZP, e);
-            if (lBControls.SelectedIndex == 31) Show_ControlsBn(bnGyroXP, e);
-            if (lBControls.SelectedIndex == 32) Show_ControlsBn(bnGyroXN, e);
+            else if (controlSelectedIndex == 21) Show_ControlsBn(bnLSUp, e);
+            else if (controlSelectedIndex == 22) Show_ControlsBn(bnLSDown, e);
+            else if (controlSelectedIndex == 23) Show_ControlsBn(bnLSLeft, e);
+            else if (controlSelectedIndex == 24) Show_ControlsBn(bnLSRight, e);
+            else if (controlSelectedIndex == 25) Show_ControlsBn(bnRSUp, e);
+            else if (controlSelectedIndex == 26) Show_ControlsBn(bnRSDown, e);
+            else if (controlSelectedIndex == 27) Show_ControlsBn(bnRSLeft, e);
+            else if (controlSelectedIndex == 28) Show_ControlsBn(bnRSRight, e);
 
-            if (lBControls.SelectedIndex == 33) Show_ControlsBn(bnSwipeUp, e);
-            if (lBControls.SelectedIndex == 34) Show_ControlsBn(bnSwipeDown, e);
-            if (lBControls.SelectedIndex == 35) Show_ControlsBn(bnSwipeLeft, e);
-            if (lBControls.SelectedIndex == 36) Show_ControlsBn(bnSwipeRight, e);
+            else if (controlSelectedIndex == 29) Show_ControlsBn(bnGyroZN, e);
+            else if (controlSelectedIndex == 30) Show_ControlsBn(bnGyroZP, e);
+            else if (controlSelectedIndex == 31) Show_ControlsBn(bnGyroXP, e);
+            else if (controlSelectedIndex == 32) Show_ControlsBn(bnGyroXN, e);
+
+            else if (controlSelectedIndex == 33) Show_ControlsBn(bnSwipeUp, e);
+            else if (controlSelectedIndex == 34) Show_ControlsBn(bnSwipeDown, e);
+            else if (controlSelectedIndex == 35) Show_ControlsBn(bnSwipeLeft, e);
+            else if (controlSelectedIndex == 36) Show_ControlsBn(bnSwipeRight, e);
         }        
 
         private void List_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -1595,8 +1937,10 @@ namespace DS4Windows
                 btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
                 cBLightbyBattery.Text = Properties.Resources.ColorByBattery.Replace("*nl*", "\n");
             }
+
             if (FlashColor[device].Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
                 btnFlashColor.BackColor = main;
+
             btnFlashColor.BackgroundImage = nUDRainbow.Enabled ? rainbowImg : null;
             lbspc.Enabled = on;
             pnlLowBattery.Enabled = !on;
@@ -1608,9 +1952,9 @@ namespace DS4Windows
             Bitmap c = image;
             Bitmap d = new Bitmap(c.Width, c.Height);
 
-            for (int i = 0; i < c.Width; i++)
+            for (int i = 0, bitwidth = c.Width; i < bitwidth; i++)
             {
-                for (int x = 0; x < c.Height; x++)
+                for (int x = 0, bitheight = c.Height; x < bitheight; x++)
                 {
                     Color oc = c.GetPixel(i, x);
                     int grayScale = (int)((oc.R * 0.3) + (oc.G * 0.59) + (oc.B * 0.11));
@@ -1618,6 +1962,7 @@ namespace DS4Windows
                     d.SetPixel(i, x, nc);
                 }
             }
+
             return d;
         }
 
@@ -1626,8 +1971,10 @@ namespace DS4Windows
             Bitmap c = Properties.Resources.DS4_lightbar;
             Bitmap d = new Bitmap(c.Width, c.Height);
 
-            for (int i = 0; i < c.Width; i++)
-                for (int x = 0; x < c.Height; x++)
+            for (int i = 0, bitwidth = c.Width; i < bitwidth; i++)
+            {
+                for (int x = 0, bitheight = c.Height; x < bitheight; x++)
+                {
                     if (!nUDRainbow.Enabled)
                     {
                         Color col = c.GetPixel(i, x);
@@ -1639,6 +1986,9 @@ namespace DS4Windows
                         Color col = HuetoRGB((i / (float)c.Width) * 360, .5f, Color.Red);
                         d.SetPixel(i, x, Color.FromArgb(c.GetPixel(i, x).A, col));
                     }
+                }
+            }
+
             return d;
         }
 
@@ -1757,6 +2107,7 @@ namespace DS4Windows
         {
             if (nUDflashLED.Value % 10 != 0)
                 nUDflashLED.Value = Math.Round(nUDflashLED.Value / 10, 0) * 10;
+
             FlashAt[device] = (int)nUDflashLED.Value;
         }
 
@@ -1767,10 +2118,16 @@ namespace DS4Windows
         
         private void tabControls_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tCControls.SelectedIndex == 2)
+            int index = tCControls.SelectedIndex;
+            if (index == 2)
                 sixaxisTimer.Start();
             else
                 sixaxisTimer.Stop();
+
+            if (index == 1)
+            {
+                actionTabSeen = true;
+            }
         }
         
         private void DrawCircle(object sender, PaintEventArgs e)
@@ -1832,7 +2189,7 @@ namespace DS4Windows
         private void cBDinput_CheckedChanged(object sender, EventArgs e)
         {
             DinputOnly[device] = cBDinput.Checked;
-            if (device < 4)
+            if (!loading && device < 4)
             {
                 root.btnStartStop_Clicked(false);
                 root.btnStartStop_Clicked(false);
@@ -1844,12 +2201,12 @@ namespace DS4Windows
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
         }
 
-
         private void Items_MouseHover(object sender, EventArgs e)
         {
             string name = ((Control)sender).Name;
             if (name.Contains("btn") && !name.Contains("Flash") && !name.Contains("Stick") && !name.Contains("Rainbow"))
                 name = name.Remove(1, 1);
+
             switch (name)
             {
                 case "cBlowerRCOn": root.lbLastMessage.Text = Properties.Resources.BestUsedRightSide; break;
@@ -1872,7 +2229,6 @@ namespace DS4Windows
                 case "btnFlashColor": root.lbLastMessage.Text = Properties.Resources.FlashAtTip; break;
                 case "cbStartTouchpadOff": root.lbLastMessage.Text = Properties.Resources.TouchpadOffTip; break;
                 case "cBTPforControls": root.lbLastMessage.Text = Properties.Resources.UsingTPSwipes; break;
-                default: root.lbLastMessage.Text = Properties.Resources.HoverOverItems; break;
 
                 case "bnUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "bnLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
@@ -1893,12 +2249,15 @@ namespace DS4Windows
                 case "bnSwipeUp": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "bnSwipeLeft": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "bnSwipeRight": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
-                case "bnSwipeDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;                    
-                case "bnL3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;                    
-                case "bnR3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;                    
+                case "bnSwipeDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnL3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "bnR3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                default: root.lbLastMessage.Text = Properties.Resources.HoverOverItems; break;
             }
+
             if (name.Contains("bnLS") || name.Contains("bnRS"))
                 root.lbLastMessage.Text = Properties.Resources.RightClickPresets;
+
             if (root.lbLastMessage.Text != Properties.Resources.HoverOverItems)
                 root.lbLastMessage.ForeColor = Color.Black;
             else
@@ -1958,20 +2317,10 @@ namespace DS4Windows
             {
                 RemoveAction(lVActions.SelectedItems[0].Text);
                 lVActions.Items.Remove(lVActions.SelectedItems[0]);
+                calculateProfileActionCount(device);
+                calculateProfileActionDicts(device);
+                cacheProfileCustomsFlags(device);
             }
-        }
-
-        private void lVActions_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            List<string> pactions = new List<string>();
-            foreach (ListViewItem lvi in lVActions.Items)
-                if (lvi != null && lvi.Checked)
-                    pactions.Add(lvi.Text);
-            ProfileActions[device] = pactions;
-            /*if (lVActions.Items.Count >= 50)
-            {
-                btnNewAction.Enabled = false;
-            }*/
         }
 
         private void nUDLSCurve_ValueChanged(object sender, EventArgs e)
@@ -1989,6 +2338,7 @@ namespace DS4Windows
             string name = cMSPresets.SourceControl.Name;
             if (name.Contains("btn") && !name.Contains("Stick"))
                 name = name.Remove(1, 1);
+
             if (name == "bnUp" || name == "bnLeft" || name == "bnRight" || name == "bnDown")
                 controlToolStripMenuItem.Text = "Dpad";
             else if (name == "btnLeftStick" || name.Contains("bnLS") || name.Contains("bnL3"))
@@ -2003,6 +2353,7 @@ namespace DS4Windows
                 controlToolStripMenuItem.Text = "Touchpad Swipes";
             else
                 controlToolStripMenuItem.Text = "Select another control";
+
             MouseToolStripMenuItem.Visible = !(name == "lbTPSwipes" || name.StartsWith("bnSwipe"));
         }
 
@@ -2014,7 +2365,6 @@ namespace DS4Windows
             Toggle_Bn(scancode, false, false, false, button4);
         }*/
 
-
         private void SetPreset(object sender, EventArgs e)
         {
             bool scancode = false;
@@ -2022,7 +2372,8 @@ namespace DS4Windows
             KeyValuePair<object, string> tagL;
             KeyValuePair<object, string> tagR;
             KeyValuePair<object, string> tagD;
-            KeyValuePair<object, string> tagM = new KeyValuePair<object, string>(null, "0,0,0,0,0,0,0,0"); ;
+            KeyValuePair<object, string> tagM = new KeyValuePair<object, string>(null, "0,0,0,0,0,0,0,0");
+
             string name = ((ToolStripMenuItem)sender).Name;
             if (name.Contains("Dpad") || name.Contains("DPad"))
             {
@@ -2186,14 +2537,15 @@ namespace DS4Windows
             }
 
             Button button1, button2, button3, button4, button5 = null;
-            if (controlToolStripMenuItem.Text == "Dpad")
+            string toolStripMenuText = controlToolStripMenuItem.Text;
+            if (toolStripMenuText == "Dpad")
             {
                 button1 = bnUp;
                 button2 = bnLeft;
                 button3 = bnRight;
                 button4 = bnDown;
             }
-            else if (controlToolStripMenuItem.Text == "Left Stick")
+            else if (toolStripMenuText == "Left Stick")
             {
                 button1 = bnLSUp;
                 button2 = bnLSLeft;
@@ -2201,7 +2553,7 @@ namespace DS4Windows
                 button4 = bnLSDown;
                 button5 = bnL3;
             }
-            else if (controlToolStripMenuItem.Text == "Right Stick")
+            else if (toolStripMenuText == "Right Stick")
             {
                 button1 = bnRSUp;
                 button2 = bnRSLeft;
@@ -2209,21 +2561,21 @@ namespace DS4Windows
                 button4 = bnRSDown;
                 button5 = bnR3;
             }
-            else if (controlToolStripMenuItem.Text == "Face Buttons")
+            else if (toolStripMenuText == "Face Buttons")
             {
                 button1 = bnTriangle;
                 button2 = bnSquare;
                 button3 = bnCircle;
                 button4 = bnCross;
             }
-            else if (controlToolStripMenuItem.Text == "Sixaxis")
+            else if (toolStripMenuText == "Sixaxis")
             {
                 button1 = bnGyroZN;
                 button2 = bnGyroXP;
                 button3 = bnGyroXN;
                 button4 = bnGyroZP;
             }
-            else if (controlToolStripMenuItem.Text == "Touchpad Swipes")
+            else if (toolStripMenuText == "Touchpad Swipes")
             {
                 button1 = bnSwipeUp;
                 button2 = bnSwipeLeft;
@@ -2232,6 +2584,7 @@ namespace DS4Windows
             }
             else
                 button1 = button2 = button3 = button4 = null;
+
             ChangeButtonText(tagU, button1, scancode);
             ChangeButtonText(tagL, button2, scancode);
             ChangeButtonText(tagR, button3, scancode);
@@ -2256,6 +2609,7 @@ namespace DS4Windows
                 advColorDialog.Color = btnFlashColor.BackColor;
             else
                 advColorDialog.Color = Color.Black;
+
             advColorDialog_OnUpdateColor(lbPercentFlashBar.ForeColor, e);
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
@@ -2263,8 +2617,10 @@ namespace DS4Windows
                     btnFlashColor.BackColor = advColorDialog.Color;
                 else
                     btnFlashColor.BackColor = main;
+
                 FlashColor[device] = new DS4Color(advColorDialog.Color);
             }
+
             if (device < 4)
                 DS4LightBar.forcelight[device] = false;
         }
@@ -2292,16 +2648,20 @@ namespace DS4Windows
             List <int> ints = new List<int>();
             List<string> s = new List<string>();
             for (int i = 0; i < cMGyroTriggers.Items.Count - 1; i++)
+            {
                 if (((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked)
                 {
                     ints.Add(i);
                     s.Add(cMGyroTriggers.Items[i].Text);
                 }
+            }
+
             if (ints.Count == 0)
             {
                 ints.Add(-1);
                 s.Add(cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1].Text);
             }
+
             SATriggers[device] = string.Join(",", ints);
             if (s.Count > 0)
                 btnGyroTriggers.Text = string.Join(", ", s);
@@ -2312,8 +2672,10 @@ namespace DS4Windows
             int invert = 0;
             if (cBGyroInvertX.Checked)
                 invert += 2;
+
             if (cBGyroInvertY.Checked)
                 invert += 1;
+
             GyroInvert[device] = invert;
         }
 
@@ -2335,6 +2697,69 @@ namespace DS4Windows
             }
         }
 
+        private void nUDLSAntiDead_ValueChanged(object sender, EventArgs e)
+        {
+            LSAntiDeadzone[device] = (int)(nUDLSAntiDead.Value * 100);
+        }
+
+        private void nUDRSAntiDead_ValueChanged(object sender, EventArgs e)
+        {
+            RSAntiDeadzone[device] = (int)(nUDRSAntiDead.Value * 100);
+        }
+
+        private void nUDL2AntiDead_ValueChanged(object sender, EventArgs e)
+        {
+            L2AntiDeadzone[device] = (int)(nUDL2AntiDead.Value * 100);
+        }
+
+        private void nUDR2AntiDead_ValueChanged(object sender, EventArgs e)
+        {
+            R2AntiDeadzone[device] = (int)(nUDR2AntiDead.Value * 100);
+        }
+
+        private void lVActions_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (actionTabSeen)
+            {
+                List<string> pactions = new List<string>();
+                foreach (ListViewItem lvi in lVActions.Items)
+                {
+                    if (lvi != null && lvi.Checked)
+                        pactions.Add(lvi.Text);
+                }
+
+                ProfileActions[device] = pactions;
+                calculateProfileActionCount(device);
+                calculateProfileActionDicts(device);
+                cacheProfileCustomsFlags(device);
+            }
+        }
+
+        private void enableTouchToggleCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableTouchToggle[device] = enableTouchToggleCheckbox.Checked;
+        }
+
+        private void nUDRSMaxZone_ValueChanged(object sender, EventArgs e)
+        {
+            RSMaxzone[device] = (int)(nUDRSMaxZone.Value * 100);
+        }
+
+        private void nUDLSMaxZone_ValueChanged(object sender, EventArgs e)
+        {
+            LSMaxzone[device] = (int)(nUDLSMaxZone.Value * 100);
+        }
+
+        private void nUDL2Maxzone_ValueChanged(object sender, EventArgs e)
+        {
+            L2Maxzone[device] = (int)(nUDL2Maxzone.Value * 100);
+        }
+
+        private void nUDR2Maxzone_ValueChanged(object sender, EventArgs e)
+        {
+            R2Maxzone[device] = (int)(nUDR2Maxzone.Value * 100);
+        }
+
         private void Options_Resize(object sender, EventArgs e)
         {
             fLPSettings.AutoScroll = false;
@@ -2343,61 +2768,64 @@ namespace DS4Windows
 
         private void lBControls_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int controlSelectedIndex = lBControls.SelectedIndex;
+
             if (lBControls.SelectedItem != null)
             {
                 //lbControlName.Text = lBControls.SelectedItem.ToString();
-                if (lBControls.SelectedIndex == 0)
+                if (controlSelectedIndex == 0)
                     lbControlName.ForeColor = Color.FromArgb(153, 205, 204);
-                else if (lBControls.SelectedIndex == 1)
+                else if (controlSelectedIndex == 1)
                     lbControlName.ForeColor = Color.FromArgb(247, 131, 150);
-                else if (lBControls.SelectedIndex == 2)
+                else if (controlSelectedIndex == 2)
                     lbControlName.ForeColor = Color.FromArgb(237, 170, 217);
-                else if (lBControls.SelectedIndex == 3)
+                else if (controlSelectedIndex == 3)
                     lbControlName.ForeColor = Color.FromArgb(75, 194, 202);
                 else
                     lbControlName.ForeColor = Color.White;
             }
-            if (lBControls.SelectedIndex == 0) button_MouseHover(bnCross, null);
-            if (lBControls.SelectedIndex == 1) button_MouseHover(bnCircle, null);
-            if (lBControls.SelectedIndex == 2) button_MouseHover(bnSquare, null);
-            if (lBControls.SelectedIndex == 3) button_MouseHover(bnTriangle, null);
-            if (lBControls.SelectedIndex == 4) button_MouseHover(bnOptions, null);
-            if (lBControls.SelectedIndex == 5) button_MouseHover(bnShare, null);
-            if (lBControls.SelectedIndex == 6) button_MouseHover(bnUp, null);
-            if (lBControls.SelectedIndex == 7) button_MouseHover(bnDown, null);
-            if (lBControls.SelectedIndex == 8) button_MouseHover(bnLeft, null);
-            if (lBControls.SelectedIndex == 9) button_MouseHover(bnRight, null);
-            if (lBControls.SelectedIndex == 10) button_MouseHover(bnPS, null);
-            if (lBControls.SelectedIndex == 11) button_MouseHover(bnL1, null);
-            if (lBControls.SelectedIndex == 12) button_MouseHover(bnR1, null);
-            if (lBControls.SelectedIndex == 13) button_MouseHover(bnL2, null);
-            if (lBControls.SelectedIndex == 14) button_MouseHover(bnR2, null);
-            if (lBControls.SelectedIndex == 15) button_MouseHover(bnL3, null);
-            if (lBControls.SelectedIndex == 16) button_MouseHover(bnR3, null);
 
-            if (lBControls.SelectedIndex == 17) button_MouseHover(bnTouchLeft, null);
-            if (lBControls.SelectedIndex == 18) button_MouseHover(bnTouchRight, null);
-            if (lBControls.SelectedIndex == 19) button_MouseHover(bnTouchMulti, null);
-            if (lBControls.SelectedIndex == 20) button_MouseHover(bnTouchUpper, null);
+            if (controlSelectedIndex == 0) button_MouseHover(bnCross, null);
+            else if (controlSelectedIndex == 1) button_MouseHover(bnCircle, null);
+            else if (controlSelectedIndex == 2) button_MouseHover(bnSquare, null);
+            else if (controlSelectedIndex == 3) button_MouseHover(bnTriangle, null);
+            else if (controlSelectedIndex == 4) button_MouseHover(bnOptions, null);
+            else if (controlSelectedIndex == 5) button_MouseHover(bnShare, null);
+            else if (controlSelectedIndex == 6) button_MouseHover(bnUp, null);
+            else if (controlSelectedIndex == 7) button_MouseHover(bnDown, null);
+            else if (controlSelectedIndex == 8) button_MouseHover(bnLeft, null);
+            else if (controlSelectedIndex == 9) button_MouseHover(bnRight, null);
+            else if (controlSelectedIndex == 10) button_MouseHover(bnPS, null);
+            else if (controlSelectedIndex == 11) button_MouseHover(bnL1, null);
+            else if (controlSelectedIndex == 12) button_MouseHover(bnR1, null);
+            else if (controlSelectedIndex == 13) button_MouseHover(bnL2, null);
+            else if (controlSelectedIndex == 14) button_MouseHover(bnR2, null);
+            else if (controlSelectedIndex == 15) button_MouseHover(bnL3, null);
+            else if (controlSelectedIndex == 16) button_MouseHover(bnR3, null);
 
-            if (lBControls.SelectedIndex == 21) button_MouseHover(bnLSUp, null);
-            if (lBControls.SelectedIndex == 22) button_MouseHover(bnLSDown, null);
-            if (lBControls.SelectedIndex == 23) button_MouseHover(bnLSLeft, null);
-            if (lBControls.SelectedIndex == 24) button_MouseHover(bnLSRight, null);
-            if (lBControls.SelectedIndex == 25) button_MouseHover(bnRSUp, null);
-            if (lBControls.SelectedIndex == 26) button_MouseHover(bnRSDown, null);
-            if (lBControls.SelectedIndex == 27) button_MouseHover(bnRSLeft, null);
-            if (lBControls.SelectedIndex == 28) button_MouseHover(bnRSRight, null);
+            else if (controlSelectedIndex == 17) button_MouseHover(bnTouchLeft, null);
+            else if (controlSelectedIndex == 18) button_MouseHover(bnTouchRight, null);
+            else if (controlSelectedIndex == 19) button_MouseHover(bnTouchMulti, null);
+            else if (controlSelectedIndex == 20) button_MouseHover(bnTouchUpper, null);
 
-            if (lBControls.SelectedIndex == 29) button_MouseHover(bnGyroZN, null);
-            if (lBControls.SelectedIndex == 30) button_MouseHover(bnGyroZP, null);
-            if (lBControls.SelectedIndex == 31) button_MouseHover(bnGyroXP, null);
-            if (lBControls.SelectedIndex == 32) button_MouseHover(bnGyroXN, null);
+            else if (controlSelectedIndex == 21) button_MouseHover(bnLSUp, null);
+            else if (controlSelectedIndex == 22) button_MouseHover(bnLSDown, null);
+            else if (controlSelectedIndex == 23) button_MouseHover(bnLSLeft, null);
+            else if (controlSelectedIndex == 24) button_MouseHover(bnLSRight, null);
+            else if (controlSelectedIndex == 25) button_MouseHover(bnRSUp, null);
+            else if (controlSelectedIndex == 26) button_MouseHover(bnRSDown, null);
+            else if (controlSelectedIndex == 27) button_MouseHover(bnRSLeft, null);
+            else if (controlSelectedIndex == 28) button_MouseHover(bnRSRight, null);
 
-            if (lBControls.SelectedIndex == 33) button_MouseHover(bnSwipeUp, null);
-            if (lBControls.SelectedIndex == 34) button_MouseHover(bnSwipeDown, null);
-            if (lBControls.SelectedIndex == 35) button_MouseHover(bnSwipeLeft, null);
-            if (lBControls.SelectedIndex == 36) button_MouseHover(bnSwipeRight, null);
+            else if (controlSelectedIndex == 29) button_MouseHover(bnGyroZN, null);
+            else if (controlSelectedIndex == 30) button_MouseHover(bnGyroZP, null);
+            else if (controlSelectedIndex == 31) button_MouseHover(bnGyroXP, null);
+            else if (controlSelectedIndex == 32) button_MouseHover(bnGyroXN, null);
+
+            else if (controlSelectedIndex == 33) button_MouseHover(bnSwipeUp, null);
+            else if (controlSelectedIndex == 34) button_MouseHover(bnSwipeDown, null);
+            else if (controlSelectedIndex == 35) button_MouseHover(bnSwipeLeft, null);
+            else if (controlSelectedIndex == 36) button_MouseHover(bnSwipeRight, null);
         }
         
         private void nUDGyroSensitivity_ValueChanged(object sender, EventArgs e)
@@ -2408,7 +2836,7 @@ namespace DS4Windows
 
         private void cBFlashType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FlashType[device]= (byte)cBFlashType.SelectedIndex;
+            FlashType[device] = (byte)cBFlashType.SelectedIndex;
         }
 
         private void nUDRainbowB_ValueChanged(object sender, EventArgs e)

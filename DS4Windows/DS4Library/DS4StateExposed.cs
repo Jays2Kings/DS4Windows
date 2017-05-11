@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace DS4Windows
 {
     public class DS4StateExposed
@@ -48,8 +44,17 @@ namespace DS4Windows
 
         /// <summary> Holds raw DS4 input data from 14 to 19 </summary>
         public byte[] Accel { set { accel = value; } }
+        public void setAccel(byte[] value)
+        {
+            accel = value;
+        }
+
         /// <summary> Holds raw DS4 input data from 20 to 25 </summary>
         public byte[] Gyro { set { gyro = value; } }
+        public void setGyro(byte[] value)
+        {
+            gyro = value;
+        }
 
         /// <summary> Yaw leftward/counter-clockwise/turn to port or larboard side </summary>
         /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
@@ -63,11 +68,28 @@ namespace DS4Windows
         /// <summary> R side of controller upward </summary>
         /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
         public int GyroX { get { return (short)((ushort)(gyro[0] << 8) | gyro[1]) / 64; } }
+
+        public int getGyroX()
+        {
+            return (short)((ushort)(gyro[0] << 8) | gyro[1]) / 64;
+        }
+
         /// <summary> touchpad and button face side of controller upward </summary>
         /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
         public int GyroY { get { return (short)((ushort)(gyro[2] << 8) | gyro[3]) / 64; } }
+
+        public int getGyroY()
+        {
+            return (short)((ushort)(gyro[2] << 8) | gyro[3]) / 64;
+        }
+
         /// <summary> Audio/expansion ports upward and light bar/shoulders/bumpers/USB port downward </summary>
         /// <remarks> Add double the previous result to this delta and divide by three.</remarks>
-        public int GyroZ { get { return (short)((ushort)(gyro[4] << 8) | gyro[5]) / 64; } }        
+        public int GyroZ { get { return (short)((ushort)(gyro[4] << 8) | gyro[5]) / 64; } }
+
+        public int getGyroZ()
+        {
+            return (short)((ushort)(gyro[4] << 8) | gyro[5]) / 64;
+        }
     }
 }

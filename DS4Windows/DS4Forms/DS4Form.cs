@@ -311,7 +311,7 @@ namespace DS4Windows
             //NewVersion();
             for (int i = 0; i < 4; i++)
             {
-                LoadProfile(i, false, Program.rootHub);
+                LoadProfile(i, false, Program.rootHub, false);
                 if (UseCustomLed[i])
                     lights[i].BackColor = CustomColor[i].ToColorA;
                 else

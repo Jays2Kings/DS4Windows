@@ -1673,7 +1673,7 @@ namespace DS4Windows
         private void Options_FormClosing(object sender, FormClosingEventArgs e)
         {
             for (int i = 0; i < 4; i++)
-                LoadProfile(i, false, Program.rootHub); //Refreshes all profiles in case other controllers are using the same profile
+                LoadProfile(i, false, Program.rootHub); // Refreshes all profiles in case other controllers are using the same profile
 
             if (olddinputcheck != cBDinput.Checked)
             {
@@ -2201,7 +2201,6 @@ namespace DS4Windows
         {
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
         }
-
 
         private void Items_MouseHover(object sender, EventArgs e)
         {

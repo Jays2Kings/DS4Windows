@@ -135,8 +135,19 @@ namespace DS4Windows
 
                         if (!getDInputOnly(i))
                         {
-                            LogDebug("Plugging in X360 Controller #" + (x360Bus.FirstController + i));
-                            x360Bus.Plugin(i);
+                            int xinputIndex = x360Bus.FirstController + i;
+                            LogDebug("Plugging in X360 Controller #" + xinputIndex);
+                            bool xinputResult = x360Bus.Plugin(i);
+                            if (xinputResult)
+                            {
+                                LogDebug("X360 Controller # " + xinputIndex + " connected");
+                                useDInputOnly[i] = false;
+                            }
+                            else
+                            {
+                                LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
+                                useDInputOnly[i] = true;
+                            }
                         }
 
                         device.Report += this.On_Report;
@@ -226,6 +237,7 @@ namespace DS4Windows
 
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
                         x360Bus.Unplug(i);
+                        useDInputOnly[i] = false;
                         anyUnplugged = true;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
@@ -319,8 +331,19 @@ namespace DS4Windows
                             device.Report += this.On_Report;
                             if (!getDInputOnly(Index))
                             {
-                                LogDebug("Plugging in X360 Controller #" + (x360Bus.FirstController + Index));
-                                x360Bus.Plugin(Index);
+                                int xinputIndex = x360Bus.FirstController + i;
+                                LogDebug("Plugging in X360 Controller #" + xinputIndex);
+                                bool xinputResult = x360Bus.Plugin(i);
+                                if (xinputResult)
+                                {
+                                    LogDebug("X360 Controller # " + xinputIndex + " connected");
+                                    useDInputOnly[i] = false;
+                                }
+                                else
+                                {
+                                    LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
+                                    useDInputOnly[i] = true;
+                                }
                             }
 
                             TouchPadOn(Index, device);
@@ -517,7 +540,6 @@ namespace DS4Windows
                 return Properties.Resources.NoneText;
         }
 
-        private int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         //Called when DS4 is disconnected or timed out
         protected virtual void On_DS4Removal(object sender, EventArgs e)
         {
@@ -548,7 +570,9 @@ namespace DS4Windows
                     string removed = Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", (ind + 1).ToString());
                     if (device.getBattery() <= 20 &&
                         device.getConnectionType() == ConnectionType.BT && !device.isCharging())
+                    {
                         removed += ". " + Properties.Resources.ChargeController;
+                    }
 
                     LogDebug(removed);
                     Log.LogToTray(removed);
@@ -558,6 +582,7 @@ namespace DS4Windows
                     touchPad[ind] = null;
                     lag[ind] = false;
                     inWarnMonitor[ind] = false;
+                    useDInputOnly[ind] = false;
                     OnControllerRemoved(this, ind);
                     //ControllerStatusChanged(this);
                 }
@@ -639,7 +664,7 @@ namespace DS4Windows
                 // Update the GUI/whatever.
                 DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
 
-                if (!getDInputOnly(ind))
+                if (!useDInputOnly[ind])
                 {
                     x360Bus.Parse(cState, processingData[ind].Report, ind);
                     // We push the translated Xinput state, and simultaneously we

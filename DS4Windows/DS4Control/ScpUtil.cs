@@ -217,8 +217,10 @@ namespace DS4Windows
         static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         public static string appdatapath;
         public static bool runHotPlug = false;
+        public const int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
+        public static bool[] useDInputOnly = new bool[5] { false, false, false, false, false };
 
         public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
             X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
@@ -480,6 +482,7 @@ namespace DS4Windows
         {
             return m_Config.dinputOnly[index];
         }
+
         public static bool[] StartTouchpadOff => m_Config.startTouchpadOff; 
         public static bool[] UseTPforControls => m_Config.useTPforControls;
         public static bool getUseTPforControls(int index)
@@ -826,14 +829,15 @@ namespace DS4Windows
         public static Dictionary<DS4Controls, DS4KeyType> getShiftCustomKeyTypes(int device) => m_Config.shiftCustomMapKeyTypes[device]; */
         public static bool Load() => m_Config.Load();
         
-        public static void LoadProfile(int device, bool launchprogram, ControlService control)
+        public static void LoadProfile(int device, bool launchprogram, ControlService control, bool xinputChange = true)
         {
-            m_Config.LoadProfile(device, launchprogram, control);
+            m_Config.LoadProfile(device, launchprogram, control, "", xinputChange);
             tempprofilename[device] = string.Empty;
             tempprofileDistance[device] = false;
         }
 
-        public static void LoadTempProfile(int device, string name, bool launchprogram, ControlService control)
+        public static void LoadTempProfile(int device, string name, bool launchprogram,
+            ControlService control, bool xinputChange = true)
         {
             m_Config.LoadProfile(device, launchprogram, control, appdatapath + @"\Profiles\" + name + ".xml");
             tempprofilename[device] = name;
@@ -1747,7 +1751,7 @@ namespace DS4Windows
             return "Unbound";
         }
 
-        public Boolean LoadProfile(int device, bool launchprogram, ControlService control, string propath = "")
+        public Boolean LoadProfile(int device, bool launchprogram, ControlService control, string propath = "", bool xinputChange = true)
         {
             Boolean Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
@@ -1767,6 +1771,7 @@ namespace DS4Windows
                 profilepath = Global.appdatapath + @"\Profiles\" + profilePath[device] + ".xml";
             else
                 profilepath = propath;
+
             if (File.Exists(profilepath))
             {
                 XmlNode Item;
@@ -2022,14 +2027,52 @@ namespace DS4Windows
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/DinputOnly");
-                    Boolean.TryParse(Item.InnerText, out dinputOnly[device]);
-                    if (device < 4)
-                    {
-                        if (dinputOnly[device] == true) control.x360Bus.Unplug(device);
-                        else if (control.DS4Controllers[device] != null && control.DS4Controllers[device].IsAlive()) control.x360Bus.Plugin(device);
-                    }
+                    bool.TryParse(Item.InnerText, out dinputOnly[device]);
                 }
                 catch { missingSetting = true; }
+
+                Global.useDInputOnly[device] = dinputOnly[device];
+
+                // Only change xinput devices under certain conditions. Avoid
+                // performing this upon program startup before loading devices.
+                if (xinputChange)
+                {
+                    bool changed = false;
+                    if (device < 4)
+                    {
+                        DS4Device tempDevice = control.DS4Controllers[device];
+                        if (dinputOnly[device] == true)
+                        {
+                            bool xinputResult = control.x360Bus.Unplug(device);
+                            if (xinputResult)
+                            {
+                                int xinputIndex = control.x360Bus.FirstController + device;
+                                Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
+                                Global.useDInputOnly[device] = false;
+                            }
+
+                            changed = true;
+                        }
+                        else if (tempDevice != null && tempDevice.IsAlive())
+                        {
+                            bool xinputResult = control.x360Bus.Plugin(device);
+                            if (xinputResult)
+                            {
+                                int xinputIndex = control.x360Bus.FirstController + device;
+                                Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
+                                Global.useDInputOnly[device] = true;
+                            }
+
+                            changed = true;
+                        }
+                    }
+
+                    if (changed)
+                    {
+                        System.Threading.Thread.Sleep(Global.XINPUT_UNPLUG_SETTLE_TIME);
+                    }
+                }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/StartTouchpadOff");

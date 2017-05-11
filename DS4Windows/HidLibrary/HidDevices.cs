@@ -36,6 +36,12 @@ namespace DS4Windows
                                                                                   productIds.Contains(x.Attributes.ProductId));
         }
 
+        public static IEnumerable<HidDevice> Enumerate(int[] vendorIds, params int[] productIds)
+        {
+            return EnumerateDevices().Select(x => new HidDevice(x.Path, x.Description)).Where(x => vendorIds.Contains(x.Attributes.VendorId) &&
+                                                                                  productIds.Contains(x.Attributes.ProductId));
+        }
+
         public static IEnumerable<HidDevice> Enumerate(int vendorId)
         {
             return EnumerateDevices().Select(x => new HidDevice(x.Path, x.Description)).Where(x => x.Attributes.VendorId == vendorId);

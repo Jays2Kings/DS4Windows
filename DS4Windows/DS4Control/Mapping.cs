@@ -886,13 +886,15 @@ namespace DS4Windows
                         bool active = getBoolMapping2(device, dcs.control, cState, eState, tp, fieldMapping);
                         if (active)
                         {
-                            resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
                             PlayMacro(device, macroControl, string.Join("/", (int[])action), dcs.control, keyType);
                         }
                         else
                         {
                             EndMacro(device, macroControl, string.Join("/", (int[])action), dcs.control);
                         }
+
+                        // erase default mappings for things that are remapped
+                        resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
                     }
                     else if (actionType == DS4ControlSettings.ActionType.Key)
                     {
@@ -900,7 +902,6 @@ namespace DS4Windows
                         ushort value = Convert.ToUInt16(action);
                         if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                         {
-                            resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
                             SyntheticState.KeyPresses kp;
                             if (!deviceState.keyPresses.TryGetValue(value, out kp))
                                 deviceState.keyPresses[value] = kp = new SyntheticState.KeyPresses();
@@ -923,6 +924,9 @@ namespace DS4Windows
                         }
                         else
                             pressedonce[value] = false;
+
+                        // erase default mappings for things that are remapped
+                        resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
                     }
                     else if (actionType == DS4ControlSettings.ActionType.Button)
                     {
@@ -1096,7 +1100,8 @@ namespace DS4Windows
                             }
                         }
 
-                        resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping); // erase default mappings for things that are remapped                       
+                        // erase default mappings for things that are remapped
+                        resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
                     }
                 }
 
@@ -3401,6 +3406,8 @@ namespace DS4Windows
             else if (controlType == DS4StateFieldMapping.ControlType.AxisDir)
             {
                 fieldMap.axisdirs[controlNum] = 127;
+                int controlRelation = (controlNum % 2 == 0 ? controlNum - 1 : controlNum + 1);
+                fieldMap.axisdirs[controlRelation] = 127;
             }
             else if (controlType == DS4StateFieldMapping.ControlType.Trigger)
             {

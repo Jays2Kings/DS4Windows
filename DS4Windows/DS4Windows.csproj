@@ -99,7 +99,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DS4Control\ControlSerivce.cs" />
+    <Compile Include="DS4Control\ControlService.cs" />
     <Compile Include="DS4Control\DS4LightBar.cs" />
     <Compile Include="DS4Control\DS4StateFieldMapping.cs" />
     <Compile Include="DS4Control\InputMethods.cs" />

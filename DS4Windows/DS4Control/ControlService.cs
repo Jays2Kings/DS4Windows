@@ -127,7 +127,6 @@ namespace DS4Windows
 
                         WarnExclusiveModeFailure(device);
                         DS4Controllers[i] = device;
-                        //device.Removal -= DS4Devices.On_Removal;
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
                         touchPad[i] = new Mouse(i, device);
@@ -190,7 +189,6 @@ namespace DS4Windows
                 Log.LogToTray(logMessage);
             }
 
-            //ControllerStatusChanged(this);
             runHotPlug = true;
 
             return true;
@@ -281,11 +279,6 @@ namespace DS4Windows
                             {
                                 device.StopUpdate();
                                 device.DisconnectBT(true);
-                                /*Task temp = Task.Delay(50).ContinueWith((t) => {
-                                    while (!device.IsRemoved) { System.Threading.Thread.Sleep(10); }
-                                });
-                                temp.Wait(100);
-                                */
                             }
                         }
                     }
@@ -323,7 +316,6 @@ namespace DS4Windows
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
                             WarnExclusiveModeFailure(device);
                             DS4Controllers[Index] = device;
-                            //device.Removal -= DS4Devices.On_Removal;
                             device.Removal += this.On_DS4Removal;
                             device.Removal += DS4Devices.On_Removal;
                             touchPad[Index] = new Mouse(Index, device);
@@ -367,8 +359,6 @@ namespace DS4Windows
                         }
                     }
                 }
-
-                //ControllerStatusChanged(this);
             }
 
             return true;
@@ -551,7 +541,8 @@ namespace DS4Windows
 
         public bool[] lag = { false, false, false, false };
         public bool[] inWarnMonitor = { false, false, false, false };
-        //Called every time the new input report has arrived
+
+        //Called every time a new input report has arrived
         protected virtual void On_Report(object sender, EventArgs e)
         {
             DS4Device device = (DS4Device)sender;
@@ -800,138 +791,6 @@ namespace DS4Windows
 
             return result;
         }
-
-        /* TODO: Not used. Possible candidate for removal. Currently keeping for reference. */
-        /*public DS4Controls GetInputkeysDS4(int ind)
-        {
-            DS4State cState = CurrentState[ind];
-            DS4StateExposed eState = ExposedState[ind];
-            Mouse tp = touchPad[ind];
-            DS4Controls result = DS4Controls.None;
-
-            if (DS4Controllers[ind] != null)
-            {
-                if (Mapping.getBoolButtonMapping(cState.Cross))
-                {
-                    result = DS4Controls.Cross;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.Circle))
-                {
-                    result = DS4Controls.Circle;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.Triangle))
-                {
-                    result = DS4Controls.Triangle;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.Square))
-                {
-                    result = DS4Controls.Square;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.L1))
-                {
-                    result = DS4Controls.L1;
-                }
-                else if (Mapping.getBoolTriggerMapping(cState.L2))
-                {
-                    result = DS4Controls.L2;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.L3))
-                {
-                    result = DS4Controls.L3;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.R1))
-                {
-                    result = DS4Controls.R1;
-                }
-                else if (Mapping.getBoolTriggerMapping(cState.R2))
-                {
-                    result = DS4Controls.R2;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.R3))
-                {
-                    result = DS4Controls.R3;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.DpadUp))
-                {
-                    result = DS4Controls.DpadUp;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.DpadDown))
-                {
-                    result = DS4Controls.DpadDown;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.DpadLeft))
-                {
-                    result = DS4Controls.DpadLeft;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.DpadRight))
-                {
-                    result = DS4Controls.DpadRight;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.Share))
-                {
-                    result = DS4Controls.Share;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.Options))
-                {
-                    result = DS4Controls.Options;
-                }
-                else if (Mapping.getBoolButtonMapping(cState.PS))
-                {
-                    result = DS4Controls.PS;
-                }
-                else if (Mapping.getBoolAxisDirMapping(cState.LX, true))
-                {
-                    result = DS4Controls.LXPos;
-                }
-                else if (Mapping.getBoolAxisDirMapping(cState.LX, false))
-                {
-                    result = DS4Controls.LXNeg;
-                }
-                else if (Mapping.getBoolAxisDirMapping(cState.LY, true))
-                {
-                    result = DS4Controls.LYPos;
-                }
-                else if (Mapping.getBoolAxisDirMapping(cState.LY, false))
-                {
-                    result = DS4Controls.LYNeg;
-                }
-                else if (Mapping.getBoolAxisDirMapping(cState.RX, true))
-                {
-                    result = DS4Controls.RXPos;
-                }
-                else if (Mapping.getBoolAxisDirMapping(cState.RX, false))
-                {
-                    result = DS4Controls.RXNeg;
-                }
-                else if (Mapping.getBoolAxisDirMapping(cState.RY, true))
-                {
-                    result = DS4Controls.RYPos;
-                }
-                else if (Mapping.getBoolAxisDirMapping(cState.RY, false))
-                {
-                    result = DS4Controls.RYNeg;
-                }
-                else if (Mapping.getBoolTouchMapping(tp.leftDown))
-                {
-                    result = DS4Controls.TouchLeft;
-                }
-                else if (Mapping.getBoolTouchMapping(tp.rightDown))
-                {
-                    result = DS4Controls.TouchRight;
-                }
-                else if (Mapping.getBoolTouchMapping(tp.multiDown))
-                {
-                    result = DS4Controls.TouchMulti;
-                }
-                else if (Mapping.getBoolTouchMapping(tp.upperDown))
-                {
-                    result = DS4Controls.TouchUpper;
-                }
-            }
-
-            return result;
-        }
-        */
 
         public bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };
         public byte[] oldtouchvalue = { 0, 0, 0, 0 };

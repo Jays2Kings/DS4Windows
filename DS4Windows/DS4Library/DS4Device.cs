@@ -4,15 +4,9 @@ using System.ComponentModel;
 using System.Threading;
 
 using System.Runtime.InteropServices;
-using Microsoft.Win32.SafeHandles;
 using System.Diagnostics;
-using System.Threading.Tasks;
-
 
 using System.Linq;
-using System.Text;
-using System.IO;
-using System.Collections;
 using System.Drawing;
 using DS4Windows.DS4Library;
 
@@ -23,7 +17,7 @@ namespace DS4Windows
         public byte red;
         public byte green;
         public byte blue;
-        public DS4Color(System.Drawing.Color c)
+        public DS4Color(Color c)
         {
             red = c.R;
             green = c.G;
@@ -508,7 +502,8 @@ namespace DS4Windows
                                 int thisError = Marshal.GetLastWin32Error();
                                 if (lastError != thisError)
                                 {
-                                    Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
+                                    Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
+                                    Log.LogToGui(Mac.ToString() + " encountered write failure: " + thisError, true);
                                     lastError = thisError;
                                 }
                             }
@@ -579,7 +574,18 @@ namespace DS4Windows
                     }
                     else
                     {
-                        Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
+
+                        if (res == HidDevice.ReadStatus.WaitTimedOut)
+                        {
+                            Log.LogToGui(Mac.ToString() + " disconnected due to timeout", true);
+                        }
+                        else
+                        {
+                            int winError = Marshal.GetLastWin32Error();
+                            Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
+                            Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
+                        }
+
                         sendOutputReport(true); // Kick Windows into noticing the disconnection.
                         StopOutputUpdate();
                         isDisconnecting = true;
@@ -588,10 +594,6 @@ namespace DS4Windows
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
 
-                        /*
-                        if (Removal != null)
-                            Removal(this, EventArgs.Empty);
-                        */
                         return;
 
                     }
@@ -603,7 +605,17 @@ namespace DS4Windows
                     HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport, READ_STREAM_TIMEOUT);
                     if (res != HidDevice.ReadStatus.Success)
                     {
-                        Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + Marshal.GetLastWin32Error());
+                        if (res == HidDevice.ReadStatus.WaitTimedOut)
+                        {
+                            Log.LogToGui(Mac.ToString() + " disconnected due to timeout", true);
+                        }
+                        else
+                        {
+                            int winError = Marshal.GetLastWin32Error();
+                            Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
+                            Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
+                        }
+
                         StopOutputUpdate();
                         isDisconnecting = true;
                         uiContext.Send(new SendOrPostCallback(delegate (object state4)
@@ -611,8 +623,6 @@ namespace DS4Windows
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
 
-                        //if (Removal != null)
-                        //    Removal(this, EventArgs.Empty);
                         return;
                     }
                     else
@@ -756,6 +766,8 @@ namespace DS4Windows
 
                     if (shouldDisconnect)
                     {
+                        Log.LogToGui(Mac.ToString() + " disconnecting due to idle disconnect", false);
+
                         if (conType == ConnectionType.BT)
                         {
                             if (DisconnectBT(true))
@@ -843,7 +855,9 @@ namespace DS4Windows
                     {
                         if (!writeOutput())
                         {
-                            Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered synchronous write failure: " + Marshal.GetLastWin32Error());
+                            int winError = Marshal.GetLastWin32Error();
+                            Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered synchronous write failure: " + winError);
+                            Log.LogToGui(Mac.ToString() + " encountered synchronous write failure: " + winError, true);
                             quitOutputThread = true;
                         }
                     }
@@ -927,8 +941,6 @@ namespace DS4Windows
                         {
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
-
-                        //Removal?.Invoke(this, EventArgs.Empty);
                     }
                 }
 
@@ -960,11 +972,6 @@ namespace DS4Windows
                 {
                     Removal?.Invoke(this, EventArgs.Empty);
                 }), null);
-
-                /*
-                if (Removal != null)
-                    Removal(this, EventArgs.Empty);
-                */
             }
             else if (result && !remove)
             {

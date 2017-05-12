@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace DS4Windows
 {
     [Flags]
-    public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; //Increment by exponents of 2*, starting at 2^0
+    public enum DS4KeyType : byte { None = 0, ScanCode = 1, Toggle = 2, Unbound = 4, Macro = 8, HoldMacro = 16, RepeatMacro = 32 }; // Increment by exponents of 2*, starting at 2^0
     public enum Ds3PadId : byte { None = 0xFF, One = 0x00, Two = 0x01, Three = 0x02, Four = 0x03, All = 0x04 };
     public enum DS4Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, L1, L2, L3, R1, R2, R3, Square, Triangle, Circle, Cross, DpadUp, DpadRight, DpadDown, DpadLeft, PS, TouchLeft, TouchUpper, TouchMulti, TouchRight, Share, Options, GyroXPos, GyroXNeg, GyroZPos, GyroZNeg, SwipeLeft, SwipeRight, SwipeUp, SwipeDown };
     public enum X360Controls : byte { None, LXNeg, LXPos, LYNeg, LYPos, RXNeg, RXPos, RYNeg, RYPos, LB, LT, LS, RB, RT, RS, X, Y, B, A, DpadUp, DpadRight, DpadDown, DpadLeft, Guide, Back, Start, LeftMouse, RightMouse, MiddleMouse, FourthMouse, FifthMouse, WUP, WDOWN, MouseUp, MouseDown, MouseLeft, MouseRight, Unbound };
@@ -231,6 +231,7 @@ namespace DS4Windows
             X360Controls.None, X360Controls.None, X360Controls.None, X360Controls.None
         };
 
+        // Create mapping array at runtime
         public static DS4Controls[] reverseX360ButtonMapping = new Func<DS4Controls[]>(() =>
         {
             DS4Controls[] temp = new DS4Controls[defaultButtonMapping.Length];
@@ -252,6 +253,7 @@ namespace DS4Windows
             m_Config.m_Profile = appdatapath + "\\Profiles.xml";
             m_Config.m_Actions = appdatapath + "\\Actions.xml";
         }
+
         /// <summary>
         /// Check if Admin Rights are needed to write in Appliplation Directory
         /// </summary>
@@ -320,6 +322,7 @@ namespace DS4Windows
             set { m_Config.useExclusiveMode = value; }
             get { return m_Config.useExclusiveMode; }
         }
+
         public static bool getUseExclusiveMode()
         {
             return m_Config.useExclusiveMode;
@@ -336,83 +339,100 @@ namespace DS4Windows
             set { m_Config.CheckWhen = value; }
             get { return m_Config.CheckWhen; }
         }
+
         public static int Notifications
         {
             set { m_Config.notifications = value; }
             get { return m_Config.notifications; }
         }
+
         public static bool DCBTatStop
         {
             set { m_Config.disconnectBTAtStop = value; }
             get { return m_Config.disconnectBTAtStop; }
         }
+
         public static bool SwipeProfiles
         {
             set { m_Config.swipeProfiles = value; }
             get { return m_Config.swipeProfiles; }
         }
+
         public static bool DS4Mapping
         {
             set { m_Config.ds4Mapping = value; }
             get { return m_Config.ds4Mapping; }
         }
+
         public static bool QuickCharge
         {
             set { m_Config.quickCharge = value; }
             get { return m_Config.quickCharge; }
         }
+
         public static bool getQuickCharge()
         {
             return m_Config.quickCharge;
         }
+
         public static int FirstXinputPort
         {
             set { m_Config.firstXinputPort = value; }
             get { return m_Config.firstXinputPort; }
         }
+
         public static bool CloseMini
         {
             set { m_Config.closeMini = value; }
             get { return m_Config.closeMini; }
         }
+
         public static bool StartMinimized
         {
             set { m_Config.startMinimized = value; }
             get { return m_Config.startMinimized; }
         }
+
         public static int FormWidth
         {
             set { m_Config.formWidth = value; }
              get { return m_Config.formWidth;}
         }
+
         public static int FormHeight
         {
             set { m_Config.formHeight = value; }
             get { return m_Config.formHeight; }
         }
+
         public static bool DownloadLang
         {
             set { m_Config.downloadLang = value; }
             get { return m_Config.downloadLang; }
         }
+
         public static bool FlashWhenLate
         {
             set { m_Config.flashWhenLate = value; }
             get { return m_Config.flashWhenLate; }
         }
+
         public static bool getFlashWhenLate()
         {
             return m_Config.flashWhenLate;
         }
+
         public static int FlashWhenLateAt
         {
             set { m_Config.flashWhenLateAt = value; }
             get { return m_Config.flashWhenLateAt; }
         }
+
         public static int getFlashWhenLateAt()
         {
             return m_Config.flashWhenLateAt;
         }
+
         public static bool UseWhiteIcon
         {
             set { m_Config.useWhiteIcon = value; }
@@ -421,40 +441,48 @@ namespace DS4Windows
 
         // controller/profile specfic values
         public static int[] ButtonMouseSensitivity => m_Config.buttonMouseSensitivity;
+
         public static byte[] RumbleBoost => m_Config.rumble;
         public static byte getRumbleBoost(int index)
         {
             return m_Config.rumble[index];
         }
+
         public static double[] Rainbow => m_Config.rainbow;
         public static double getRainbow(int index)
         {
             return m_Config.rainbow[index];
         }
+
         public static bool[] FlushHIDQueue => m_Config.flushHIDQueue;
         public static bool getFlushHIDQueue(int index)
         {
             return m_Config.flushHIDQueue[index];
         }
+
         public static bool[] EnableTouchToggle => m_Config.enableTouchToggle;
         public static bool getEnableTouchToggle(int index)
         {
             return m_Config.enableTouchToggle[index];
         }
+
         public static int[] IdleDisconnectTimeout => m_Config.idleDisconnectTimeout;
         public static int getIdleDisconnectTimeout(int index)
         {
             return m_Config.idleDisconnectTimeout[index];
         }
+
         public static byte[] TouchSensitivity => m_Config.touchSensitivity;
         public static byte[] getTouchSensitivity()
         {
             return m_Config.touchSensitivity;
         }
+
         public static byte getTouchSensitivity(int index)
         {
             return m_Config.touchSensitivity[index];
         }
+
         public static byte[] FlashType => m_Config.flashType;
         public static byte getFlashType(int index)
         {
@@ -472,51 +500,61 @@ namespace DS4Windows
         {
             return m_Config.ledAsBattery[index];
         }
+
         public static int[] ChargingType => m_Config.chargingType;
         public static int getChargingType(int index)
         {
             return m_Config.chargingType[index];
         }
+
         public static bool[] DinputOnly => m_Config.dinputOnly; 
         public static bool getDInputOnly(int index)
         {
             return m_Config.dinputOnly[index];
         }
 
-        public static bool[] StartTouchpadOff => m_Config.startTouchpadOff; 
+        public static bool[] StartTouchpadOff => m_Config.startTouchpadOff;
+
         public static bool[] UseTPforControls => m_Config.useTPforControls;
         public static bool getUseTPforControls(int index)
         {
             return m_Config.useTPforControls[index];
         }
+
         public static bool[] UseSAforMouse => m_Config.useSAforMouse;
         public static bool isUsingSAforMouse(int index)
         {
             return m_Config.useSAforMouse[index];
         }
+
         public static string[] SATriggers => m_Config.sATriggers;
         public static int[] GyroSensitivity => m_Config.gyroSensitivity;
         public static int[] GyroInvert => m_Config.gyroInvert;
+
         public static DS4Color[] MainColor => m_Config.m_Leds;
         public static DS4Color getMainColor(int index)
         {
             return m_Config.m_Leds[index];
         }
+
         public static DS4Color[] LowColor => m_Config.m_LowLeds;
         public static DS4Color getLowColor(int index)
         {
             return m_Config.m_LowLeds[index];
         }
+
         public static DS4Color[] ChargingColor => m_Config.m_ChargingLeds;
         public static DS4Color getChargingColor(int index)
         {
             return m_Config.m_ChargingLeds[index];
         }
+
         public static DS4Color[] CustomColor => m_Config.m_CustomLeds;
         public static DS4Color getCustomColor(int index)
         {
             return m_Config.m_CustomLeds[index];
         }
+
         public static bool[] UseCustomLed => m_Config.useCustomLeds;
         public static bool getUseCustomLed(int index)
         {
@@ -528,8 +566,10 @@ namespace DS4Windows
         {
             return m_Config.m_FlashLeds[index];
         }
+
         public static byte[] TapSensitivity => m_Config.tapSensitivity;
-        public static bool[] DoubleTap => m_Config.doubleTap; 
+        public static bool[] DoubleTap => m_Config.doubleTap;
+
         public static int[] ScrollSensitivity => m_Config.scrollSensitivity;
         public static int[] getScrollSensitivity()
         {
@@ -548,128 +588,154 @@ namespace DS4Windows
         {
             return m_Config.l2Deadzone[index];
         }
+
         public static byte[] R2Deadzone => m_Config.r2Deadzone;
         public static byte getR2Deadzone(int index)
         {
             return m_Config.r2Deadzone[index];
         }
+
         public static double[] SXDeadzone => m_Config.SXDeadzone;
         public static double getSXDeadzone(int index)
         {
             return m_Config.SXDeadzone[index];
         }
+
         public static double[] SZDeadzone => m_Config.SZDeadzone;
         public static double getSZDeadzone(int index)
         {
             return m_Config.SZDeadzone[index];
         }
+
         public static int[] LSDeadzone => m_Config.LSDeadzone;
         public static int getLSDeadzone(int index)
         {
             return m_Config.LSDeadzone[index];
         }
+
         public static int[] RSDeadzone => m_Config.RSDeadzone;
         public static int getRSDeadzone(int index)
         {
             return m_Config.RSDeadzone[index];
         }
+
         public static int[] LSAntiDeadzone => m_Config.LSAntiDeadzone;
         public static int getLSAntiDeadzone(int index)
         {
             return m_Config.LSAntiDeadzone[index];
         }
+
         public static int[] RSAntiDeadzone => m_Config.RSAntiDeadzone;
         public static int getRSAntiDeadzone(int index)
         {
             return m_Config.RSAntiDeadzone[index];
         }
+
         public static int[] LSMaxzone => m_Config.LSMaxzone;
         public static int getLSMaxzone(int index)
         {
             return m_Config.LSMaxzone[index];
         }
+
         public static int[] RSMaxzone => m_Config.RSMaxzone;
         public static int getRSMaxzone(int index)
         {
             return m_Config.RSMaxzone[index];
         }
+
         public static int[] L2AntiDeadzone => m_Config.l2AntiDeadzone;
         public static int getL2AntiDeadzone(int index)
         {
             return m_Config.l2AntiDeadzone[index];
         }
+
         public static int[] R2AntiDeadzone => m_Config.r2AntiDeadzone;
         public static int getR2AntiDeadzone(int index)
         {
             return m_Config.r2AntiDeadzone[index];
         }
+
         public static int[] L2Maxzone => m_Config.l2Maxzone;
         public static int getL2Maxzone(int index)
         {
             return m_Config.l2Maxzone[index];
         }
+
         public static int[] R2Maxzone => m_Config.r2Maxzone;
         public static int getR2Maxzone(int index)
         {
             return m_Config.r2Maxzone[index];
         }
+
         public static int[] LSCurve => m_Config.lsCurve;
         public static int getLSCurve(int index)
         {
             return m_Config.lsCurve[index];
         }
+
         public static int[] RSCurve => m_Config.rsCurve;
         public static int getRSCurve(int index)
         {
             return m_Config.rsCurve[index];
         }
+
         public static double[] L2Sens => m_Config.l2Sens;
         public static double getL2Sens(int index)
         {
             return m_Config.l2Sens[index];
         }
+
         public static double[] R2Sens => m_Config.r2Sens;
         public static double getR2Sens(int index)
         {
             return m_Config.r2Sens[index];
         }
+
         public static double[] SXSens => m_Config.SXSens;
         public static double getSXSens(int index)
         {
             return m_Config.SXSens[index];
         }
+
         public static double[] SZSens => m_Config.SZSens;
         public static double getSZSens(int index)
         {
             return m_Config.SZSens[index];
         }
+
         public static double[] LSSens => m_Config.LSSens;
         public static double getLSSens(int index)
         {
             return m_Config.LSSens[index];
         }
+
         public static double[] RSSens => m_Config.RSSens;
         public static double getRSSens(int index)
         {
             return m_Config.RSSens[index];
         }
+
         public static bool[] MouseAccel => m_Config.mouseAccel;
         public static bool getMouseAccel(int device)
         {
             return m_Config.mouseAccel[device];
         }
+
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
         public static bool[] DistanceProfiles = m_Config.distanceProfiles;
+
         public static List<string>[] ProfileActions => m_Config.profileActions;
         public static int getProfileActionCount(int index)
         {
             return m_Config.profileActionCount[index];
         }
+
         public static void calculateProfileActionCount(int index)
         {
             m_Config.profileActionCount[index] = m_Config.profileActions[index].Count;
         }
+
         public static List<string> getProfileActions(int index)
         {
             return m_Config.profileActions[index];
@@ -681,6 +747,7 @@ namespace DS4Windows
             m_Config.containsCustomAction[deviceNum] = m_Config.HasCustomActions(deviceNum);
             m_Config.containsCustomExtras[deviceNum] = m_Config.HasCustomExtras(deviceNum);
         }
+
         public static void UpdateDS4Extra(int deviceNum, string buttonName, bool shift, string exts)
         {
             m_Config.UpdateDS4CExtra(deviceNum, buttonName, shift, exts);
@@ -699,10 +766,12 @@ namespace DS4Windows
         public static DS4ControlSettings getDS4CSetting(int deviceNum, DS4Controls control) => m_Config.getDS4CSetting(deviceNum, control);
         public static bool HasCustomActions(int deviceNum) => m_Config.HasCustomActions(deviceNum);
         public static bool HasCustomExtras(int deviceNum) => m_Config.HasCustomExtras(deviceNum);
+
         public static bool containsCustomAction(int deviceNum)
         {
             return m_Config.containsCustomAction[deviceNum];
         }
+
         public static bool containsCustomExtras(int deviceNum)
         {
             return m_Config.containsCustomExtras[deviceNum];
@@ -744,8 +813,11 @@ namespace DS4Windows
         public static SpecialAction GetAction(string name)
         {
             foreach (SpecialAction sA in m_Config.actions)
+            {
                 if (sA.name == name)
                     return sA;
+            }
+
             return new SpecialAction("null", "null", "null", "null");
         }
 
@@ -3063,6 +3135,7 @@ namespace DS4Windows
         public string extra;
         public bool pressRelease = false;
         public DS4KeyType keyType;
+
         public SpecialAction(string name, string controls, string type, string details, double delay = 0, string extras = "")
         {
             this.name = name;

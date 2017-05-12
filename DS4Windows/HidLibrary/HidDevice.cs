@@ -304,14 +304,21 @@ namespace DS4Windows
                 if (!safeReadHandle.IsInvalid && fileStream.CanRead)
                 {
                     Task<int> readTask = fileStream.ReadAsync(inputBuffer, 0, inputBuffer.Length);
-                    readTask.Wait(timeout);
-                    if (readTask.Result > 0)
+                    bool success = readTask.Wait(timeout);
+                    if (success)
                     {
-                        return ReadStatus.Success;
+                        if (readTask.Result > 0)
+                        {
+                            return ReadStatus.Success;
+                        }
+                        else
+                        {
+                            return ReadStatus.NoDataRead;
+                        }
                     }
                     else
                     {
-                        return ReadStatus.NoDataRead;
+                        return ReadStatus.WaitTimedOut;
                     }
                 }
 

@@ -1690,22 +1690,6 @@ namespace DS4Windows
             e.Cancel = true;
         }
 
-        private void Options_Closed(object sender, FormClosedEventArgs e)
-        {
-            /*for (int i = 0; i < 4; i++)
-                LoadProfile(i, false, Program.rootHub); //Refreshes all profiles in case other controllers are using the same profile
-            if (olddinputcheck != cBDinput.Checked)
-            {
-                root.btnStartStop_Clicked(false);
-                root.btnStartStop_Clicked(false);
-            }
-            if (btnRumbleHeavyTest.Text == Properties.Resources.StopText)
-                Program.rootHub.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
-            inputtimer.Stop();
-            sixaxisTimer.Stop();*/
-            //e.c
-        }
-
         private void cBSlide_CheckedChanged(object sender, EventArgs e)
         {
             bool slideChecked = cBSlide.Checked;

@@ -12,11 +12,9 @@ using System.Diagnostics;
 using System.Xml;
 using System.Text;
 using System.Globalization;
-using System.Threading.Tasks;
-using System.ServiceProcess;
 using Microsoft.Win32.TaskScheduler;
-using static DS4Windows.Global;
 using System.Security.Principal;
+using static DS4Windows.Global;
 
 namespace DS4Windows
 {
@@ -52,7 +50,7 @@ namespace DS4Windows
         delegate void ControllerStatusChangedDelegate(object sender, EventArgs e);
         delegate void HotKeysDelegate(object sender, EventArgs e);
         Options opt;
-        public System.Drawing.Size oldsize;
+        public Size oldsize;
         WinProgs WP;
         public bool mAllowVisible;
         bool contextclose;
@@ -115,6 +113,7 @@ namespace DS4Windows
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
             bool firstrun = false;
+
             if (File.Exists(exepath + "\\Auto Profiles.xml")
                 && File.Exists(appDataPpath + "\\Auto Profiles.xml"))
             {
@@ -158,7 +157,7 @@ namespace DS4Windows
                 AppCollectionThread.Start();
             }
 
-            if (String.IsNullOrEmpty(appdatapath))
+            if (string.IsNullOrEmpty(appdatapath))
             {
                 Close();
                 return;
@@ -262,7 +261,8 @@ namespace DS4Windows
                 try
                 {
                     string[] profiles = Directory.GetFiles(appdatapath + @"\Profiles\");
-                    foreach (String s in profiles)
+                    foreach (string s in profiles)
+                    {
                         if (Path.GetExtension(s) == ".xml")
                         {
                             xDoc.Load(s);
@@ -282,6 +282,7 @@ namespace DS4Windows
                             xDoc.Save(s);
                             LoadActions();
                         }
+                    }
                 }
                 catch { }
             }
@@ -313,7 +314,7 @@ namespace DS4Windows
             opt.Dock = DockStyle.Fill;
             opt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             tabProfiles.Controls.Add(opt);
-            //NewVersion();
+
             for (int i = 0; i < 4; i++)
             {
                 LoadProfile(i, false, Program.rootHub, false);
@@ -327,7 +328,7 @@ namespace DS4Windows
             autoProfilesTimer.Interval = 1000;
 
             LoadP();
-            //Global.ControllerStatusChange += ControllerStatusChange;
+
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
             Global.DeviceStatusChange += DeviceStatusChanged;
@@ -502,60 +503,12 @@ namespace DS4Windows
                 {
                     await System.Threading.Tasks.Task.Delay(500);
                 }
+
                 File.Delete(exepath + "\\DS4Updater.exe");
                 File.Move(exepath + "\\Update Files\\DS4Updater.exe", exepath + "\\DS4Updater.exe");
                 Directory.Delete(exepath + "\\Update Files");
             }
         }
-
-        /* TODO: Possibly remove */
-        /*void NewVersion()
-        {
-            if (File.Exists(exepath + "\\1.4.22.ds4w"))
-            {
-                bool dcexists = false;
-                foreach (SpecialAction action in GetActions())
-                {
-                    if (action.type == "DisconnectBT")
-                    {
-                        dcexists = true;
-                        break;
-                    }
-                }
-                if (!dcexists)
-                {
-                    try
-                    {
-                        XmlDocument xDoc = new XmlDocument();
-                        SaveAction("Disconnect Controller", "PS/Options", 5, "0", false);
-                        string[] profiles = Directory.GetFiles(appdatapath + @"\Profiles\");
-                        foreach (String s in profiles)
-                            if (Path.GetExtension(s) == ".xml")
-                            {
-                                xDoc.Load(s);
-                                XmlNode el = xDoc.SelectSingleNode("DS4Windows/ProfileActions");
-                                if (el != null)
-                                    if (string.IsNullOrEmpty(el.InnerText))
-                                        el.InnerText = "Disconnect Controller";
-                                    else
-                                        el.InnerText += "/Disconnect Controller";
-                                else
-                                {
-                                    XmlNode Node = xDoc.SelectSingleNode("DS4Windows");
-                                    el = xDoc.CreateElement("ProfileActions");
-                                    el.InnerText = "Disconnect Controller";
-                                    Node.AppendChild(el);
-                                }
-                                xDoc.Save(s);
-                                LoadActions();
-                            }
-                    }
-                    catch { }
-                }
-                File.Delete(exepath + "\\1.4.22.ds4w");
-            }
-        }
-        */
 
         protected override void SetVisibleCore(bool value)
         {
@@ -724,10 +677,12 @@ namespace DS4Windows
             programpaths.Clear();
             if (!File.Exists(appdatapath + "\\Auto Profiles.xml"))
                 return;
+
             doc.Load(appdatapath + "\\Auto Profiles.xml");
             XmlNodeList programslist = doc.SelectNodes("Programs/Program");
             foreach (XmlNode x in programslist)
                 programpaths.Add(x.Attributes["path"].Value);
+
             foreach (string s in programpaths)
             {
                 for (int i = 0; i < 4; i++)
@@ -735,6 +690,7 @@ namespace DS4Windows
                     proprofiles[i].Add(doc.SelectSingleNode("/Programs/Program[@path=\"" + s + "\"]"
                         + "/Controller" + (i + 1)).InnerText);
                 }
+
                 XmlNode item = doc.SelectSingleNode("/Programs/Program[@path=\"" + s + "\"]"
                         + "/TurnOff");
                 bool turnOff;
@@ -845,7 +801,7 @@ namespace DS4Windows
             {
                 profilenames.Clear();
                 string[] profiles = Directory.GetFiles(appdatapath + @"\Profiles\");
-                foreach (String s in profiles)
+                foreach (string s in profiles)
                 {
                     if (s.EndsWith(".xml"))
                         profilenames.Add(Path.GetFileNameWithoutExtension(s));
@@ -1042,8 +998,6 @@ namespace DS4Windows
             lbLastMessage.Text = string.Empty;
         }
 
-        //delegate void OldHotPlugDelegate();
-        bool skipHotplug = false;
         bool inHotPlug = false;
         protected override void WndProc(ref Message m)
         {
@@ -1068,19 +1022,6 @@ namespace DS4Windows
             catch { }
         }
 
-        delegate bool HotPlugDelegate();
-        protected void InnerHotplug()
-        {
-            lock (this)
-            {
-                // Reset flag and execute hotplug routine in main thread
-                skipHotplug = false;
-                HotPlugDelegate d = new HotPlugDelegate(Program.rootHub.HotPlug);
-                this.BeginInvoke(d);
-                //Program.rootHub.HotPlug();
-            }
-        }
-
         protected async void InnerHotplug2()
         {
             await System.Threading.Tasks.Task.Delay(50);
@@ -1092,13 +1033,6 @@ namespace DS4Windows
 
             lock (this)
             {
-                skipHotplug = true;
-                //System.Threading.Tasks.Task.Delay(50).ContinueWith((t) => InnerHotplug());
-                //System.Threading.Tasks.Task tempTask = System.Threading.Tasks.Task.Delay(50).ContinueWith((t) => { });
-                //tempTask.Wait();
-                //OldHotPlugDelegate d = new OldHotPlugDelegate(InnerHotplug);
-                //this.BeginInvoke(d);
-                //skipHotplug = false;
                 inHotPlug = true;
                 Program.rootHub.HotPlug();
                 inHotPlug = false;

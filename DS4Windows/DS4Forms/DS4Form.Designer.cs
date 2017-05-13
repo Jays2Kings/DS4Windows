@@ -33,7 +33,6 @@
             this.lvDebug = new System.Windows.Forms.ListView();
             this.chTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tmrUpdate = new System.Windows.Forms.Timer(this.components);
             this.pnlButton = new System.Windows.Forms.Panel();
             this.llbHelp = new System.Windows.Forms.LinkLabel();
             this.lbTest = new System.Windows.Forms.Label();
@@ -206,11 +205,6 @@
             // chData
             // 
             resources.ApplyResources(this.chData, "chData");
-            // 
-            // tmrUpdate
-            // 
-            this.tmrUpdate.Interval = 1;
-            this.tmrUpdate.Tick += new System.EventHandler(this.ControllerStatusChange);
             // 
             // pnlButton
             // 
@@ -442,7 +436,7 @@
             // 
             resources.ApplyResources(this.bnEditC3, "bnEditC3");
             this.bnEditC3.Name = "bnEditC3";
-            this.bnEditC3.Tag = "2";
+            this.bnEditC3.Tag = "";
             this.bnEditC3.UseVisualStyleBackColor = true;
             this.bnEditC3.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -450,7 +444,7 @@
             // 
             resources.ApplyResources(this.bnEditC4, "bnEditC4");
             this.bnEditC4.Name = "bnEditC4";
-            this.bnEditC4.Tag = "3";
+            this.bnEditC4.Tag = "";
             this.bnEditC4.UseVisualStyleBackColor = true;
             this.bnEditC4.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -483,7 +477,7 @@
             // 
             resources.ApplyResources(this.bnEditC2, "bnEditC2");
             this.bnEditC2.Name = "bnEditC2";
-            this.bnEditC2.Tag = "1";
+            this.bnEditC2.Tag = "";
             this.bnEditC2.UseVisualStyleBackColor = true;
             this.bnEditC2.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -509,7 +503,7 @@
             // 
             resources.ApplyResources(this.bnEditC1, "bnEditC1");
             this.bnEditC1.Name = "bnEditC1";
-            this.bnEditC1.Tag = "0";
+            this.bnEditC1.Tag = "";
             this.bnEditC1.UseVisualStyleBackColor = true;
             this.bnEditC1.Click += new System.EventHandler(this.editButtons_Click);
             // 
@@ -1265,7 +1259,6 @@
         private System.Windows.Forms.ListView lvDebug;
         private System.Windows.Forms.ColumnHeader chTime;
         private System.Windows.Forms.ColumnHeader chData;
-        private System.Windows.Forms.Timer tmrUpdate;
         private System.Windows.Forms.Panel pnlButton;
         private System.Windows.Forms.Button btnStartStop;
         private System.Windows.Forms.Button btnClear;

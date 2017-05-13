@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using System.Media;
+using System.Threading.Tasks;
 using static DS4Windows.Global;
 
 namespace DS4Windows
@@ -228,7 +230,8 @@ namespace DS4Windows
                             DS4LightBar.forcelight[i] = false;
                             DS4LightBar.forcedFlash[i] = 0;
                             DS4LightBar.defaultLight = true;
-                            DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i], ExposedState[i], touchPad[i]);
+                            DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i],
+                                ExposedState[i], touchPad[i]);
                             tempDevice.IsRemoved = true;
                             System.Threading.Thread.Sleep(50);
                         }
@@ -339,6 +342,7 @@ namespace DS4Windows
                             }
 
                             TouchPadOn(Index, device);
+                            CheckProfileOptions(Index, device);
                             device.StartUpdate();
 
                             //string filename = Path.GetFileName(ProfilePath[Index]);
@@ -362,6 +366,45 @@ namespace DS4Windows
             }
 
             return true;
+        }
+
+        private void CheckProfileOptions(int ind, DS4Device device)
+        {
+            string programPath = LaunchProgram[ind];
+            if (programPath != string.Empty)
+            {
+                System.Diagnostics.Process[] localAll = System.Diagnostics.Process.GetProcesses();
+                bool procFound = false;
+                for (int procInd = 0, procsLen = localAll.Length; !procFound && procInd < procsLen; procInd++)
+                {
+                    try
+                    {
+                        string temp = localAll[procInd].MainModule.FileName;
+                        if (temp == programPath)
+                        {
+                            procFound = true;
+                        }
+                    }
+                    // Ignore any process for which this information
+                    // is not exposed
+                    catch { }
+                }
+
+                if (!procFound)
+                {
+                    Task processTask = new Task(() =>
+                    {
+                        System.Diagnostics.Process tempProcess = new System.Diagnostics.Process();
+                        tempProcess.StartInfo.FileName = programPath;
+                        tempProcess.StartInfo.WorkingDirectory = new FileInfo(programPath).Directory.ToString();
+                        //tempProcess.StartInfo.UseShellExecute = false;
+                        try { tempProcess.Start(); }
+                        catch { }
+                    });
+
+                    processTask.Start();
+                }
+            }
         }
 
         public void TouchPadOn(int ind, DS4Device device)

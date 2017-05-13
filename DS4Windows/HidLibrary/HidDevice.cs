@@ -242,6 +242,25 @@ namespace DS4Windows
             }
         }
 
+        public ReadStatus ReadWithFileStream(byte[] inputBuffer)
+        {
+            try
+            {
+                if (fileStream.Read(inputBuffer, 0, inputBuffer.Length) > 0)
+                {
+                    return ReadStatus.Success;
+                }
+                else
+                {
+                    return ReadStatus.NoDataRead;
+                }
+            }
+            catch (Exception)
+            {
+                return ReadStatus.ReadError;
+            }
+        }
+
         public ReadStatus ReadWithFileStream(byte[] inputBuffer, int timeout)
         {
             try

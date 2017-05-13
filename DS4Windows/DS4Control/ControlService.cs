@@ -516,7 +516,20 @@ namespace DS4Windows
                 if (removingStatus)
                 {
                     CurrentState[ind].Battery = PreviousState[ind].Battery = 0; // Reset for the next connection's initial status change.
-                    x360Bus.Unplug(ind);
+                    if (!useDInputOnly[ind])
+                    {
+                        bool unplugResult = x360Bus.Unplug(ind);
+                        int xinputIndex = x360Bus.FirstController + ind;
+                        if (unplugResult)
+                        {
+                            LogDebug("X360 Controller # " + xinputIndex + " unplugged");
+                        }
+                        else
+                        {
+                            LogDebug("X360 Controller # " + xinputIndex + " failed to unplug");
+                        }
+                    }
+
                     string removed = Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", (ind + 1).ToString());
                     if (device.getBattery() <= 20 &&
                         device.getConnectionType() == ConnectionType.BT && !device.isCharging())

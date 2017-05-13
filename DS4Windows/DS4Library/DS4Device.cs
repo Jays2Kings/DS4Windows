@@ -352,6 +352,8 @@ namespace DS4Windows
         }
 
         private SynchronizationContext uiContext = null;
+        private Queue<Action> eventQueue = new Queue<Action>();
+        private object eventQueueLock = new object();
 
         public DS4Device(HidDevice hidDevice)
         {            
@@ -479,7 +481,8 @@ namespace DS4Windows
             }
             else
             {
-                return hDevice.WriteAsyncOutputReportViaInterrupt(outputReport);
+                return hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
+                //return hDevice.WriteAsyncOutputReportViaInterrupt(outputReport);
             }
         }
 
@@ -567,14 +570,15 @@ namespace DS4Windows
                 if (conType == ConnectionType.BT)
                 {
                     //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
-                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
+                    //HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
+                    HidDevice.ReadStatus res = hDevice.ReadWithFileStream(btInputReport);
+                    //HidDevice.ReadStatus res = hDevice.ReadFileOverlapped(btInputReport, READ_STREAM_TIMEOUT);
                     if (res == HidDevice.ReadStatus.Success)
                     {
                         Array.Copy(btInputReport, 2, inputReport, 0, inputReport.Length);
                     }
                     else
                     {
-
                         if (res == HidDevice.ReadStatus.WaitTimedOut)
                         {
                             Log.LogToGui(Mac.ToString() + " disconnected due to timeout", true);
@@ -595,14 +599,15 @@ namespace DS4Windows
                         }), null);
 
                         return;
-
                     }
                 }
                 else
                 {
                     //HidDevice.ReadStatus res = hDevice.ReadFile(inputReport);
                     //Array.Clear(inputReport, 0, inputReport.Length);
-                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport, READ_STREAM_TIMEOUT);
+                    //HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport, READ_STREAM_TIMEOUT);
+                    HidDevice.ReadStatus res = hDevice.ReadWithFileStream(inputReport);
+                    //HidDevice.ReadStatus res = hDevice.ReadFileOverlapped(inputReport, READ_STREAM_TIMEOUT);
                     if (res != HidDevice.ReadStatus.Success)
                     {
                         if (res == HidDevice.ReadStatus.WaitTimedOut)
@@ -797,6 +802,18 @@ namespace DS4Windows
                     error = currerror;
 
                 cState.CopyTo(pState);
+
+                /*lock (eventQueueLock)
+                {
+                    Action tempAct = null;
+                    //while (eventQueue.TryDequeue(out tempAct))
+                    for (int actInd = 0, actLen = eventQueue.Count; actInd < actLen; actInd++)
+                    {
+                        tempAct = eventQueue.Dequeue();
+                        tempAct.Invoke();
+                    }
+                }
+                */
             }
         }
 
@@ -1116,6 +1133,14 @@ namespace DS4Windows
         public void removeReportHandlers()
         {
             this.Report = null;
+        }
+
+        public void queueEvent(Action act)
+        {
+            lock (eventQueueLock)
+            {
+                eventQueue.Enqueue(act);
+            }
         }
     }
 }

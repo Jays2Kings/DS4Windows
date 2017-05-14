@@ -803,7 +803,7 @@ namespace DS4Windows
 
                 cState.CopyTo(pState);
 
-                /*lock (eventQueueLock)
+                lock (eventQueueLock)
                 {
                     Action tempAct = null;
                     //while (eventQueue.TryDequeue(out tempAct))
@@ -813,7 +813,6 @@ namespace DS4Windows
                         tempAct.Invoke();
                     }
                 }
-                */
             }
         }
 

@@ -153,6 +153,7 @@ namespace DS4Windows
 
                         device.Report += this.On_Report;
                         TouchPadOn(i, device);
+                        device.setIdleTimeout(getIdleDisconnectTimeout(i));
                         device.StartUpdate();
                         //string filename = ProfilePath[ind];
                         //ind++;
@@ -342,6 +343,7 @@ namespace DS4Windows
                             }
 
                             TouchPadOn(Index, device);
+                            device.setIdleTimeout(getIdleDisconnectTimeout(Index));
                             CheckProfileOptions(Index, device);
                             device.StartUpdate();
 
@@ -419,7 +421,6 @@ namespace DS4Windows
             device.SixAxis.SixAccelMoved += tPad.sixaxisMoved;
             //LogDebug("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
             //Log.LogToTray("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
-            //ControllerStatusChanged(this);
         }
 
         public string getDS4ControllerInfo(int index)
@@ -590,7 +591,6 @@ namespace DS4Windows
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = false;
                     OnControllerRemoved(this, ind);
-                    //ControllerStatusChanged(this);
                 }
             }
         }
@@ -650,7 +650,6 @@ namespace DS4Windows
                 else if (pState.Battery != cState.Battery)
                 {
                     OnBatteryStatusChange(this, ind, cState.Battery);
-                    //ControllerStatusChanged(this);
                 }
 
                 if (getEnableTouchToggle(ind))
@@ -690,8 +689,6 @@ namespace DS4Windows
 
                 // Output any synthetic events.
                 Mapping.Commit(ind);
-                // Pull settings updates.
-                device.setIdleTimeout(getIdleDisconnectTimeout(ind));
             }
         }
 

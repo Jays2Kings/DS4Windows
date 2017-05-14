@@ -1688,6 +1688,16 @@ namespace DS4Windows
             root.OptionsClosed();
             Visible = false;
             e.Cancel = true;
+
+            if (device < 4)
+            {
+                DS4Device tempDev = Program.rootHub.DS4Controllers[device];
+                if (tempDev != null)
+                {
+                    int discon = getIdleDisconnectTimeout(device);
+                    tempDev.queueEvent(() => { tempDev.setIdleTimeout(discon); });
+                }
+            }
         }
 
         private void cBSlide_CheckedChanged(object sender, EventArgs e)

@@ -2680,7 +2680,9 @@ namespace DS4Windows
 
         private void lVActions_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (actionTabSeen)
+            // Code can get executed even when control is not visible.
+            // Should not be happening
+            if (lVActions.Visible && actionTabSeen)
             {
                 List<string> pactions = new List<string>();
                 foreach (ListViewItem lvi in lVActions.Items)

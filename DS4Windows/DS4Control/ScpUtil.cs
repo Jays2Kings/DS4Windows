@@ -825,8 +825,10 @@ namespace DS4Windows
 
         public static SpecialAction GetAction(string name)
         {
-            foreach (SpecialAction sA in m_Config.actions)
+            //foreach (SpecialAction sA in m_Config.actions)
+            for (int i=0, actionCount = m_Config.actions.Count; i < actionCount; i++)
             {
+                SpecialAction sA = m_Config.actions[i];
                 if (sA.name == name)
                     return sA;
             }
@@ -848,8 +850,8 @@ namespace DS4Windows
 
             foreach (string actionname in m_Config.profileActions[device])
             {
-                m_Config.profileActionDict[device].Add(actionname, Global.GetAction(actionname));
-                m_Config.profileActionIndexDict[device].Add(actionname, Global.GetActionIndexOf(actionname));
+                m_Config.profileActionDict[device][actionname] = GetAction(actionname);
+                m_Config.profileActionIndexDict[device][actionname] = GetActionIndexOf(actionname);
             }
         }
 

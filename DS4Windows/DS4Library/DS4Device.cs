@@ -573,17 +573,19 @@ namespace DS4Windows
         public double Latency = 0;
         public string error;
         public bool firstReport = false;
+        public bool oldCharging = false;
 
         private void performDs4Input()
         {
             firstActive = DateTime.UtcNow;
             NativeMethods.HidD_SetNumInputBuffers(hDevice.safeReadHandle.DangerousGetHandle(), 2);
-            List<long> Latency = new List<long>(100);
+            List<long> Latency = new List<long>(101); // Set capacity at max + 1 to avoid any list resizing
             long oldtime = 0;
             Stopwatch sw = new Stopwatch();
             sw.Start();
             while (!exitInputThread)
             {
+                oldCharging = charging;
                 string currerror = string.Empty;
                 long curtime = sw.ElapsedMilliseconds;
                 this.lastTimeElapsed = curtime - oldtime;

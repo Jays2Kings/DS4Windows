@@ -657,7 +657,7 @@ namespace DS4Windows
                     device.firstReport = true;
                     OnDeviceStatusChanged(this, ind);
                 }
-                else if (pState.Battery != cState.Battery)
+                else if (pState.Battery != cState.Battery || device.oldCharging != device.isCharging())
                 {
                     OnBatteryStatusChange(this, ind, cState.Battery, device.isCharging());
                 }

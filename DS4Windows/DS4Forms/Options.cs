@@ -720,7 +720,7 @@ namespace DS4Windows
             }
         }
 
-        public double Clamp(double min, double value, double max)
+        /*public double Clamp(double min, double value, double max)
         {
             if (value > max)
                 return max;
@@ -729,6 +729,7 @@ namespace DS4Windows
             else
                 return value;
         }
+        */
 
         void EnableReadings(bool on)
         {
@@ -854,7 +855,7 @@ namespace DS4Windows
 
                 x = -Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + 127;
                 y = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + 127;
-                btnSATrack.Location = new Point((int)(dpix * Clamp(0, x / 2.09, pnlSATrack.Size.Width)), (int)(dpiy * Clamp(0, y / 2.09, pnlSATrack.Size.Height)));
+                btnSATrack.Location = new Point((int)(dpix * Global.Clamp(0, x / 2.09, pnlSATrack.Size.Width)), (int)(dpiy * Global.Clamp(0, y / 2.09, pnlSATrack.Size.Height)));
                 btnSATrackS.Visible = nUDSXS.Value != 1 || nUDSZS.Value != 1;
                 if (nUDSXS.Value != 1 || nUDSZS.Value != 1)
                     btnSATrackS.Location = new Point((int)((float)nUDSXS.Value * (btnSATrack.Location.X - pnlSATrack.Size.Width / 2f) + pnlSATrack.Size.Width / 2f),

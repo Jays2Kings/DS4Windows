@@ -1019,6 +1019,16 @@ namespace DS4Windows
             R *= 255.0f; G *= 255.0f; B *= 255.0f;
             return Color.FromArgb((int)R, (int)G, (int)B);
         }
+
+        public static double Clamp(double min, double value, double max)
+        {
+            return (value < min) ? min : (value > max) ? max : value;
+        }
+
+        private static int ClampInt(int min, int value, int max)
+        {
+            return (value < min) ? min : (value > max) ? max : value;
+        }
     }
 
 

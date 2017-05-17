@@ -2243,7 +2243,7 @@ namespace DS4Windows
                 tsBEditProfile.Enabled = false;
                 tsBDeleteProfile.Enabled = false;
                 tSBDupProfile.Enabled = false;
-                tSBImportProfile.Enabled = false;
+                tSBImportProfile.Enabled = true;
                 tSBExportProfile.Enabled = false;
             }
         }

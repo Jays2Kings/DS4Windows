@@ -817,8 +817,8 @@
             // 
             // tSBImportProfile
             // 
-            resources.ApplyResources(this.tSBImportProfile, "tSBImportProfile");
             this.tSBImportProfile.Image = global::DS4Windows.Properties.Resources.import;
+            resources.ApplyResources(this.tSBImportProfile, "tSBImportProfile");
             this.tSBImportProfile.Name = "tSBImportProfile";
             this.tSBImportProfile.Click += new System.EventHandler(this.tSBImportProfile_Click);
             // 

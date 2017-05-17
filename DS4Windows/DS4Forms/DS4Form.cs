@@ -1054,10 +1054,18 @@ namespace DS4Windows
             {
                 string battery;
                 int level = args.getLevel();
-                if (level >= 100)
-                    battery = Properties.Resources.Full;
+                bool charging = args.isCharging();
+                if (charging)
+                {
+                    if (level >= 100)
+                        battery = Properties.Resources.Full;
+                    else
+                        battery = level + "%+";
+                }
                 else
-                    battery = level + "%+";
+                {
+                    battery = level + "%";
+                }
 
                 Batteries[args.getIndex()].Text = battery;
             }
@@ -1166,6 +1174,7 @@ namespace DS4Windows
             }
         }
 
+        /* TODO: Possible remove method */
         /*protected void ControllerStatusChange(object sender, EventArgs e)
         {
             if (InvokeRequired)
@@ -1175,6 +1184,7 @@ namespace DS4Windows
         }
         */
 
+        /* TODO: Possible remove method */
         /*protected void ControllerStatusChanged()
         {
             String tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
@@ -1262,13 +1272,15 @@ namespace DS4Windows
             Batteries[device].Visible = on;
         }
 
-        void ScpForm_Report(object sender, EventArgs e)
+        /* TODO: Remove method in future */
+        /*void ScpForm_Report(object sender, EventArgs e)
         {
             if (InvokeRequired)
                 Invoke(new HotKeysDelegate(Hotkeys), new object[] { sender, e });
             else
                 Hotkeys(sender, e);
         }
+        */
 
         protected void On_Debug(object sender, DebugEventArgs e)
         {

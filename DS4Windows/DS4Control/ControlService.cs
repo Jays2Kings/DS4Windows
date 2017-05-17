@@ -659,7 +659,7 @@ namespace DS4Windows
                 }
                 else if (pState.Battery != cState.Battery)
                 {
-                    OnBatteryStatusChange(this, ind, cState.Battery);
+                    OnBatteryStatusChange(this, ind, cState.Battery, device.isCharging());
                 }
 
                 if (getEnableTouchToggle(ind))

@@ -147,21 +147,28 @@ namespace DS4Windows
     {
         private int index;
         private int level;
+        private bool charging;
 
-        public BatteryReportArgs(int index, int level)
+        public BatteryReportArgs(int index, int level, bool charging)
         {
             this.index = index;
             this.level = level;
+            this.charging = charging;
         }
 
         public int getIndex()
         {
-            return this.index;
+            return index;
         }
 
         public int getLevel()
         {
-            return this.level;
+            return level;
+        }
+
+        public bool isCharging()
+        {
+            return charging;
         }
     }
 
@@ -287,11 +294,11 @@ namespace DS4Windows
         }
 
         public static event EventHandler<BatteryReportArgs> BatteryStatusChange;
-        public static void OnBatteryStatusChange(object sender, int index, int level)
+        public static void OnBatteryStatusChange(object sender, int index, int level, bool charging)
         {
             if (BatteryStatusChange != null)
             {
-                BatteryReportArgs args = new BatteryReportArgs(index, level);
+                BatteryReportArgs args = new BatteryReportArgs(index, level, charging);
                 BatteryStatusChange(sender, args);
             }
         }

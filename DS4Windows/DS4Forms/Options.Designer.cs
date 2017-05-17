@@ -114,6 +114,8 @@
             this.bnSwipeRight = new System.Windows.Forms.Button();
             this.lbSwipeRight = new System.Windows.Forms.Label();
             this.gBOther = new System.Windows.Forms.GroupBox();
+            this.btPollRateLabel = new System.Windows.Forms.Label();
+            this.btPollRateComboBox = new System.Windows.Forms.ComboBox();
             this.enableTouchToggleCheckbox = new System.Windows.Forms.CheckBox();
             this.cBDinput = new System.Windows.Forms.CheckBox();
             this.pBProgram = new System.Windows.Forms.PictureBox();
@@ -1162,6 +1164,8 @@
             // gBOther
             // 
             this.gBOther.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBOther.Controls.Add(this.btPollRateLabel);
+            this.gBOther.Controls.Add(this.btPollRateComboBox);
             this.gBOther.Controls.Add(this.enableTouchToggleCheckbox);
             this.gBOther.Controls.Add(this.cBDinput);
             this.gBOther.Controls.Add(this.pBProgram);
@@ -1180,6 +1184,38 @@
             resources.ApplyResources(this.gBOther, "gBOther");
             this.gBOther.Name = "gBOther";
             this.gBOther.TabStop = false;
+            // 
+            // btPollRateLabel
+            // 
+            resources.ApplyResources(this.btPollRateLabel, "btPollRateLabel");
+            this.btPollRateLabel.Name = "btPollRateLabel";
+            // 
+            // btPollRateComboBox
+            // 
+            this.btPollRateComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.btPollRateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.btPollRateComboBox.FormattingEnabled = true;
+            this.btPollRateComboBox.Items.AddRange(new object[] {
+            resources.GetString("btPollRateComboBox.Items"),
+            resources.GetString("btPollRateComboBox.Items1"),
+            resources.GetString("btPollRateComboBox.Items2"),
+            resources.GetString("btPollRateComboBox.Items3"),
+            resources.GetString("btPollRateComboBox.Items4"),
+            resources.GetString("btPollRateComboBox.Items5"),
+            resources.GetString("btPollRateComboBox.Items6"),
+            resources.GetString("btPollRateComboBox.Items7"),
+            resources.GetString("btPollRateComboBox.Items8"),
+            resources.GetString("btPollRateComboBox.Items9"),
+            resources.GetString("btPollRateComboBox.Items10"),
+            resources.GetString("btPollRateComboBox.Items11"),
+            resources.GetString("btPollRateComboBox.Items12"),
+            resources.GetString("btPollRateComboBox.Items13"),
+            resources.GetString("btPollRateComboBox.Items14"),
+            resources.GetString("btPollRateComboBox.Items15"),
+            resources.GetString("btPollRateComboBox.Items16")});
+            resources.ApplyResources(this.btPollRateComboBox, "btPollRateComboBox");
+            this.btPollRateComboBox.Name = "btPollRateComboBox";
+            this.btPollRateComboBox.SelectedIndexChanged += new System.EventHandler(this.btPollRateComboBox_SelectedIndexChanged);
             // 
             // enableTouchToggleCheckbox
             // 
@@ -3793,5 +3829,7 @@
         private System.Windows.Forms.NumericUpDown nUDL2Maxzone;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label btPollRateLabel;
+        private System.Windows.Forms.ComboBox btPollRateComboBox;
     }
 }

@@ -781,4 +781,7 @@
   <data name="UACTask" xml:space="preserve">
     <value>You need to run DS4Windows as the Administrator in order to activate this mode.</value>
   </data>
+  <data name="BTPollRate" xml:space="preserve">
+    <value>Determines the poll rate used for the DS4 hardware when connected via Bluetooth</value>
+  </data>
 </root>

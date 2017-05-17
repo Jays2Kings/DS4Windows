@@ -721,6 +721,12 @@ namespace DS4Windows
             return m_Config.mouseAccel[device];
         }
 
+        public static int[] BTPollRate => m_Config.btPollRate;
+        public static int getBTPollRate(int index)
+        {
+            return m_Config.btPollRate[index];
+        }
+
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
         public static bool[] DistanceProfiles = m_Config.distanceProfiles;
@@ -1047,6 +1053,7 @@ namespace DS4Windows
         public double[] rainbow = { 0, 0, 0, 0, 0 };
         public int[] flashAt = { 0, 0, 0, 0, 0 };
         public bool[] mouseAccel = { true, true, true, true, true };
+        public int[] btPollRate = { 0, 0, 0, 0, 0 };
         public DS4Color[] m_LowLeds = new DS4Color[]
         {
             new DS4Color(Color.Black),
@@ -1317,6 +1324,7 @@ namespace DS4Windows
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
+                XmlNode xmlBTPollRate = m_Xdoc.CreateNode(XmlNodeType.Element, "BTPollRate", null); xmlBTPollRate.InnerText = btPollRate[device].ToString(); Node.AppendChild(xmlBTPollRate);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -1823,7 +1831,9 @@ namespace DS4Windows
             return "Unbound";
         }
 
-        public Boolean LoadProfile(int device, bool launchprogram, ControlService control, string propath = "", bool xinputChange = true)
+        /* TODO: Explicitly reset profile values back to default before loading new profile. */
+        public bool LoadProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true)
         {
             Boolean Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
@@ -1854,11 +1864,13 @@ namespace DS4Windows
                     rootname = "ScpControl";
                     missingSetting = true;
                 }
+
                 if (device < 4)
                 {
                     DS4LightBar.forcelight[device] = false;
                     DS4LightBar.forcedFlash[device] = 0;
                 }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
                 catch { missingSetting = true; }//rootname = }
 
@@ -1915,6 +1927,7 @@ namespace DS4Windows
                         colors = Item.InnerText.Split(',');
                     else
                         colors = new string[0];
+
                     m_LowLeds[device].red = byte.Parse(colors[0]);
                     m_LowLeds[device].green = byte.Parse(colors[1]);
                     m_LowLeds[device].blue = byte.Parse(colors[2]);
@@ -1923,11 +1936,11 @@ namespace DS4Windows
                 if (m_Xdoc.SelectSingleNode("/" + rootname + "/LowColor") == null)
                 {
                     //Old method of color saving
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowRed"); Byte.TryParse(Item.InnerText, out m_LowLeds[device].red); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowRed"); byte.TryParse(Item.InnerText, out m_LowLeds[device].red); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowGreen"); Byte.TryParse(Item.InnerText, out m_LowLeds[device].green); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowGreen"); byte.TryParse(Item.InnerText, out m_LowLeds[device].green); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowBlue"); Byte.TryParse(Item.InnerText, out m_LowLeds[device].blue); }
+                    try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowBlue"); byte.TryParse(Item.InnerText, out m_LowLeds[device].blue); }
                     catch { missingSetting = true; }
                 }
                 //New method for saving color
@@ -1982,45 +1995,45 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RightTriggerMiddle"); byte.TryParse(Item.InnerText, out r2Deadzone[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2AntiDeadZone"); int.TryParse(Item.InnerText, out l2AntiDeadzone[device]); }
-                catch { missingSetting = true; }
+                catch { l2AntiDeadzone[device] = 0; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2AntiDeadZone"); int.TryParse(Item.InnerText, out r2AntiDeadzone[device]); }
-                catch { missingSetting = true; }
+                catch { r2AntiDeadzone[device] = 0; missingSetting = true; }
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2MaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
                     l2Maxzone[device] = Math.Min(Math.Max(temp, 0), 100);
                 }
-                catch { missingSetting = true; }
+                catch { l2Maxzone[device] = 100; missingSetting = true; }
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2MaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
                     r2Maxzone[device] = Math.Min(Math.Max(temp, 0), 100);
                 }
-                catch { missingSetting = true; }
+                catch { r2Maxzone[device] = 100; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseSensitivity"); int.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out rainbow[device]); }
                 catch { rainbow[device] = 0; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSDeadZone"); int.TryParse(Item.InnerText, out LSDeadzone[device]); }
-                catch { missingSetting = true; }
+                catch { LSDeadzone[device] = 0; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSDeadZone"); int.TryParse(Item.InnerText, out RSDeadzone[device]); }
-                catch { missingSetting = true; }
+                catch { RSDeadzone[device] = 0; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSAntiDeadZone"); int.TryParse(Item.InnerText, out LSAntiDeadzone[device]); }
-                catch { missingSetting = true; }
+                catch { LSAntiDeadzone[device] = 0; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiDeadZone"); int.TryParse(Item.InnerText, out RSAntiDeadzone[device]); }
-                catch { missingSetting = true; }
+                catch { RSAntiDeadzone[device] = 0; missingSetting = true; }
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSMaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
                     LSMaxzone[device] = Math.Min(Math.Max(temp, 0), 100);
                 }
-                catch { missingSetting = true; }
+                catch { LSMaxzone[device] = 100; missingSetting = true; }
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSMaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
                     RSMaxzone[device] = Math.Min(Math.Max(temp, 0), 100);
                 }
-                catch { missingSetting = true; }
+                catch { RSMaxzone[device] = 100; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); double.TryParse(Item.InnerText, out SXDeadzone[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZDeadZone"); double.TryParse(Item.InnerText, out SZDeadzone[device]); }
@@ -2049,6 +2062,7 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/MouseAcceleration"); bool.TryParse(Item.InnerText, out mouseAccel[device]); }
                 catch { missingSetting = true; }
+
                 int shiftM = 0;
                 if (m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftModifier") != null)
                     int.TryParse(m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftModifier").InnerText, out shiftM);
@@ -2101,54 +2115,60 @@ namespace DS4Windows
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/DinputOnly");
                     bool.TryParse(Item.InnerText, out dinputOnly[device]);
                 }
-                catch { missingSetting = true; }
+                catch { dinputOnly[device] = false; missingSetting = true; }
 
+                bool oldUseDInputOnly = Global.useDInputOnly[device];
                 Global.useDInputOnly[device] = dinputOnly[device];
 
                 // Only change xinput devices under certain conditions. Avoid
                 // performing this upon program startup before loading devices.
                 if (xinputChange)
                 {
-                    bool changed = false;
                     if (device < 4)
                     {
+                        //bool changed = false;
                         DS4Device tempDevice = control.DS4Controllers[device];
-                        if (dinputOnly[device] == true)
+
+                        if (dinputOnly[device] != oldUseDInputOnly)
                         {
-                            bool xinputResult = control.x360Bus.Unplug(device);
-                            if (xinputResult)
+                            if (dinputOnly[device] == true)
                             {
-                                int xinputIndex = control.x360Bus.FirstController + device;
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
-                                Global.useDInputOnly[device] = false;
+                                bool xinputResult = control.x360Bus.Unplug(device);
+                                if (xinputResult)
+                                {
+                                    int xinputIndex = control.x360Bus.FirstController + device;
+                                    Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
+                                    Global.useDInputOnly[device] = true;
+                                }
+
+                                //changed = true;
+                            }
+                            else if (tempDevice != null && tempDevice.IsAlive())
+                            {
+                                bool xinputResult = control.x360Bus.Plugin(device);
+                                if (xinputResult)
+                                {
+                                    int xinputIndex = control.x360Bus.FirstController + device;
+                                    Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
+                                    Global.useDInputOnly[device] = false;
+                                }
+
+                                //changed = true;
                             }
 
-                            changed = true;
-                        }
-                        else if (tempDevice != null && tempDevice.IsAlive())
-                        {
-                            bool xinputResult = control.x360Bus.Plugin(device);
-                            if (xinputResult)
+                            /*if (changed)
                             {
-                                int xinputIndex = control.x360Bus.FirstController + device;
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
-                                Global.useDInputOnly[device] = true;
+                                System.Threading.Thread.Sleep(Global.XINPUT_UNPLUG_SETTLE_TIME);
                             }
-
-                            changed = true;
+                            */
                         }
-                    }
-
-                    if (changed)
-                    {
-                        System.Threading.Thread.Sleep(Global.XINPUT_UNPLUG_SETTLE_TIME);
                     }
                 }
 
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/StartTouchpadOff");
-                    Boolean.TryParse(Item.InnerText, out startTouchpadOff[device]);
+                    bool.TryParse(Item.InnerText, out startTouchpadOff[device]);
                     if (startTouchpadOff[device] == true) control.StartTPOff(device);
                 }
                 catch { startTouchpadOff[device] = false; missingSetting = true; }
@@ -2171,6 +2191,14 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSCurve"); int.TryParse(Item.InnerText, out rsCurve[device]); }
                 catch { missingSetting = true; }
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/BTPollRate");
+                    int temp = 0;
+                    int.TryParse(Item.InnerText, out temp);
+                    btPollRate[device] = (temp >= 0 && temp <= 16) ? temp : 0;
+                }
+                catch { btPollRate[device] = 0; missingSetting = true; }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ProfileActions");
@@ -2373,12 +2401,29 @@ namespace DS4Windows
                 this.shiftCustomMapMacros[device] = shiftCustomMapMacros;
                 this.shiftCustomMapExtras[device] = shiftCustomMapExtras;
             }*/
+
             // Only add missing settings if the actual load was graceful
             if (missingSetting && Loaded)// && buttons != null)
                 SaveProfile(device, profilepath);
 
             containsCustomAction[device] = HasCustomActions(device);
             containsCustomExtras[device] = HasCustomExtras(device);
+
+            // If a device exists, make sure to transfer relevant profile device
+            // options to device instance
+            if (device < 4)
+            {
+                DS4Device tempDev = control.DS4Controllers[device];
+                if (tempDev != null)
+                {
+                    tempDev.queueEvent(() =>
+                    {
+                        tempDev.setIdleTimeout(idleDisconnectTimeout[device]);
+                        tempDev.setBTPollRate(btPollRate[device]);
+                    });
+                }
+            }
+
             return Loaded;
         }
 

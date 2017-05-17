@@ -625,7 +625,7 @@
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;lbButtonMouseSens.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="cBlowerRCOn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -781,7 +781,7 @@
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;lbIdleMinutes.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="nUDIdleDisconnect.Location" type="System.Drawing.Point, System.Drawing">
     <value>115, 64</value>
@@ -802,7 +802,7 @@
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;nUDIdleDisconnect.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="nUDR2.Location" type="System.Drawing.Point, System.Drawing">
     <value>105, 29</value>
@@ -859,7 +859,7 @@
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;cBFlushHIDQueue.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="nUDRumbleBoost.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 18</value>
@@ -1285,7 +1285,7 @@
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;numUDMouseSens.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="nUDLS.Location" type="System.Drawing.Point, System.Drawing">
     <value>30, 3</value>
@@ -1911,6 +1911,108 @@
   <data name="&gt;&gt;gBTouchpad.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btPollRateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btPollRateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btPollRateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 227</value>
+  </data>
+  <data name="btPollRateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
+  </data>
+  <data name="btPollRateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>259</value>
+  </data>
+  <data name="btPollRateLabel.Text" xml:space="preserve">
+    <value>BT Poll Rate</value>
+  </data>
+  <data name="&gt;&gt;btPollRateLabel.Name" xml:space="preserve">
+    <value>btPollRateLabel</value>
+  </data>
+  <data name="&gt;&gt;btPollRateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btPollRateLabel.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;btPollRateLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btPollRateComboBox.Items" xml:space="preserve">
+    <value>Full (1 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items1" xml:space="preserve">
+    <value>1000 Hz (1 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items2" xml:space="preserve">
+    <value>500 Hz (2 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items3" xml:space="preserve">
+    <value>333 Hz (3 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items4" xml:space="preserve">
+    <value>250 Hz (4 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items5" xml:space="preserve">
+    <value>200 Hz (5 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items6" xml:space="preserve">
+    <value>166 Hz (6 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items7" xml:space="preserve">
+    <value>142 Hz (7 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items8" xml:space="preserve">
+    <value>125 Hz (8 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items9" xml:space="preserve">
+    <value>111 Hz (9 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items10" xml:space="preserve">
+    <value>100 Hz (10 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items11" xml:space="preserve">
+    <value>90 Hz (11 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items12" xml:space="preserve">
+    <value>83 Hz (12 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items13" xml:space="preserve">
+    <value>76 Hz (13 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items14" xml:space="preserve">
+    <value>71 Hz (14 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items15" xml:space="preserve">
+    <value>66 Hz (15 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Items16" xml:space="preserve">
+    <value>62 Hz (16 ms)</value>
+  </data>
+  <data name="btPollRateComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 224</value>
+  </data>
+  <data name="btPollRateComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="btPollRateComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>258</value>
+  </data>
+  <data name="&gt;&gt;btPollRateComboBox.Name" xml:space="preserve">
+    <value>btPollRateComboBox</value>
+  </data>
+  <data name="&gt;&gt;btPollRateComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btPollRateComboBox.Parent" xml:space="preserve">
+    <value>gBOther</value>
+  </data>
+  <data name="&gt;&gt;btPollRateComboBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="enableTouchToggleCheckbox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1942,7 +2044,7 @@
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;enableTouchToggleCheckbox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="cBDinput.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1975,7 +2077,7 @@
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;cBDinput.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="pBProgram.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2002,7 +2104,7 @@
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;pBProgram.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="cBLaunchProgram.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2036,7 +2138,7 @@ with profile</value>
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;cBLaunchProgram.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="btnBrowse.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
@@ -2069,7 +2171,7 @@ with profile</value>
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;btnBrowse.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="lbUseController.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2099,7 +2201,7 @@ with profile</value>
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;lbUseController.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="cBMouseAccel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2132,7 +2234,7 @@ with profile</value>
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;cBMouseAccel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="nUDSixaxis.Location" type="System.Drawing.Point, System.Drawing">
     <value>85, 95</value>
@@ -2153,7 +2255,7 @@ with profile</value>
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;nUDSixaxis.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="cBControllerInput.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2186,7 +2288,7 @@ with profile</value>
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;cBControllerInput.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="cBIdleDisconnect.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2219,13 +2321,13 @@ with profile</value>
     <value>gBOther</value>
   </data>
   <data name="&gt;&gt;cBIdleDisconnect.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="gBOther.Location" type="System.Drawing.Point, System.Drawing">
     <value>281, 221</value>
   </data>
   <data name="gBOther.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 236</value>
+    <value>272, 256</value>
   </data>
   <data name="gBOther.TabIndex" type="System.Int32, mscorlib">
     <value>247</value>
@@ -3518,7 +3620,7 @@ with profile</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="lbL2TrackS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 448</value>
+    <value>438, 455</value>
   </data>
   <data name="lbL2TrackS.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -5618,7 +5720,7 @@ with profile</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tPControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 448</value>
+    <value>438, 455</value>
   </data>
   <data name="tPControls.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -5663,7 +5765,7 @@ with profile</value>
     <value>0, 66</value>
   </data>
   <data name="lVActions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 382</value>
+    <value>438, 389</value>
   </data>
   <data name="lVActions.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -5852,7 +5954,7 @@ with profile</value>
     <value>0, 0</value>
   </data>
   <data name="pnlActions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 448</value>
+    <value>438, 455</value>
   </data>
   <data name="pnlActions.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -5873,7 +5975,7 @@ with profile</value>
     <value>4, 22</value>
   </data>
   <data name="tPSpecial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 448</value>
+    <value>438, 455</value>
   </data>
   <data name="tPSpecial.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -5900,7 +6002,7 @@ with profile</value>
     <value>0, 0</value>
   </data>
   <data name="tCControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>446, 474</value>
+    <value>446, 481</value>
   </data>
   <data name="tCControls.TabIndex" type="System.Int32, mscorlib">
     <value>253</value>
@@ -7310,7 +7412,7 @@ with profile</value>
     <value>2, 2, 2, 2</value>
   </data>
   <data name="fLPSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>564, 474</value>
+    <value>564, 481</value>
   </data>
   <data name="fLPSettings.TabIndex" type="System.Int32, mscorlib">
     <value>254</value>
@@ -7472,7 +7574,7 @@ with profile</value>
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1010, 474</value>
+    <value>1010, 481</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -7778,7 +7880,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.69.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.70.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

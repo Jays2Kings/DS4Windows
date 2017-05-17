@@ -1890,6 +1890,7 @@ namespace DS4Windows
                                     }
                                 }
                             }
+
                             untriggeraction[device] = null;
                             LoadProfile(device, false, ctrl);
                         }

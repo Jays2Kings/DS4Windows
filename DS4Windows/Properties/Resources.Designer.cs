@@ -212,6 +212,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Determines the poll rate used for the DS4 hardware when connected via Bluetooth.
+        /// </summary>
+        internal static string BTPollRate {
+            get {
+                return ResourceManager.GetString("BTPollRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot move files to new location, Please rename the DS4Tool folder to &quot;DS4Windows&quot;.
         /// </summary>
         internal static string CannotMoveFiles {

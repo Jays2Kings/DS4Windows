@@ -82,19 +82,19 @@ namespace DS4Windows
                 b.Text = "";
             }
             
-            foreach (System.Windows.Forms.Control control in Controls)
+            foreach (Control control in Controls)
             {
                 if (control.HasChildren)
                 {
-                    foreach (System.Windows.Forms.Control ctrl in control.Controls)
+                    foreach (Control ctrl in control.Controls)
                     {
                         if (ctrl.HasChildren)
                         {
-                            foreach (System.Windows.Forms.Control ctrl2 in ctrl.Controls)
+                            foreach (Control ctrl2 in ctrl.Controls)
                             {
                                 if (ctrl2.HasChildren)
                                 {
-                                    foreach (System.Windows.Forms.Control ctrl3 in ctrl2.Controls)
+                                    foreach (Control ctrl3 in ctrl2.Controls)
                                         ctrl3.MouseHover += Items_MouseHover;
                                 }
 
@@ -313,10 +313,11 @@ namespace DS4Windows
 
                 DS4Color cColor = ChargingColor[device];
                 btnChargingColor.BackColor = Color.FromArgb(cColor.red, cColor.green, cColor.blue);
-                if (FlashType[device] > cBFlashType.Items.Count - 1)
+                byte tempFlashType = FlashType[device];
+                if (tempFlashType > cBFlashType.Items.Count - 1)
                     cBFlashType.SelectedIndex = 0;
                 else
-                    cBFlashType.SelectedIndex = FlashType[device];
+                    cBFlashType.SelectedIndex = tempFlashType;
 
                 DS4Color fColor = FlashColor[device];
                 if (fColor.Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
@@ -352,10 +353,13 @@ namespace DS4Windows
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 lowColorChooserButton.BackColor = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
                 nUDRainbow.Value = (decimal)Rainbow[device];
-                if (ChargingType[device] > cBWhileCharging.Items.Count - 1)
+                int tempWhileCharging = ChargingType[device];
+                if (tempWhileCharging > cBWhileCharging.Items.Count - 1)
                     cBWhileCharging.SelectedIndex = 0;
                 else
-                    cBWhileCharging.SelectedIndex = ChargingType[device];
+                    cBWhileCharging.SelectedIndex = tempWhileCharging;
+
+                btPollRateComboBox.SelectedIndex = getBTPollRate(device);
 
                 try
                 {
@@ -579,6 +583,7 @@ namespace DS4Windows
             {
                 cBFlashType.SelectedIndex = 0;
                 cBWhileCharging.SelectedIndex = 0;
+                btPollRateComboBox.SelectedIndex = 0;
                 rBTPMouse.Checked = true;
                 rBSAControls.Checked = true;
                 ToggleRainbow(false);
@@ -662,59 +667,6 @@ namespace DS4Windows
             loading = false;
             saving = false;
         }
-
-        /* TODO: Possibly remove. Currently not used. */
-        /*private string getDS4ControlsByName(DS4Controls key)
-        {
-            switch (key)
-            {
-                case DS4Controls.Share: return "bnShare";
-                case DS4Controls.L3: return "bnL3";
-                case DS4Controls.R3: return "bnR3";
-                case DS4Controls.Options: return "bnOptions";
-                case DS4Controls.DpadUp: return "bnUp";
-                case DS4Controls.DpadRight: return "bnRight";
-                case DS4Controls.DpadDown: return "bnDown";
-                case DS4Controls.DpadLeft: return "bnLeft";
-
-                case DS4Controls.L1: return "bnL1";
-                case DS4Controls.R1: return "bnR1";
-                case DS4Controls.Triangle: return "bnTriangle";
-                case DS4Controls.Circle: return "bnCircle";
-                case DS4Controls.Cross: return "bnCross";
-                case DS4Controls.Square: return "bnSquare";
-
-                case DS4Controls.PS: return "bnPS";
-                case DS4Controls.LXNeg: return "bnLSLeft";
-                case DS4Controls.LYNeg: return "bnLSUp";
-                case DS4Controls.RXNeg: return "bnRSLeft";
-                case DS4Controls.RYNeg: return "bnRSUp";
-
-                case DS4Controls.LXPos: return "bnLSRight";
-                case DS4Controls.LYPos: return "bnLSDown";
-                case DS4Controls.RXPos: return "bnRSRight";
-                case DS4Controls.RYPos: return "bnRSDown";
-                case DS4Controls.L2: return "bnL2";
-                case DS4Controls.R2: return "bnR2";
-
-                case DS4Controls.TouchLeft: return "bnTouchLeft";
-                case DS4Controls.TouchMulti: return "bnTouchMulti";
-                case DS4Controls.TouchUpper: return "bnTouchUpper";
-                case DS4Controls.TouchRight: return "bnTouchRight";
-                case DS4Controls.GyroXPos: return "bnGyroXP";
-                case DS4Controls.GyroXNeg: return "bnGyroXN";
-                case DS4Controls.GyroZPos: return "bnGyroZP";
-                case DS4Controls.GyroZNeg: return "bnGyroZN";
-
-                case DS4Controls.SwipeUp: return "bnSwipeUp";
-                case DS4Controls.SwipeDown: return "bnSwipeDown";
-                case DS4Controls.SwipeLeft: return "bnSwipeLeft";
-                case DS4Controls.SwipeRight: return "bnSwipeRight";
-            }
-
-            return "";
-        }
-        */
 
         public void LoadActions(bool newp)
         {
@@ -1296,6 +1248,7 @@ namespace DS4Windows
             else
                 FlashColor[device] = new DS4Color(Color.Black);
 
+            BTPollRate[device] = btPollRateComboBox.SelectedIndex;
             L2Deadzone[device] = (byte)Math.Round((nUDL2.Value * 255), 0);
             R2Deadzone[device] = (byte)Math.Round((nUDR2.Value * 255), 0);
             L2AntiDeadzone[device] = (int)(nUDL2AntiDead.Value * 100);
@@ -1683,21 +1636,32 @@ namespace DS4Windows
             if (btnRumbleHeavyTest.Text == Properties.Resources.StopText)
                 Program.rootHub.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
 
+            if (saving)
+            {
+                if (device < 4)
+                {
+                    DS4Device tempDev = Program.rootHub.DS4Controllers[device];
+                    if (tempDev != null)
+                    {
+                        int discon = getIdleDisconnectTimeout(device);
+                        int btCurrentIndex = btPollRateComboBox.SelectedIndex;
+                        tempDev.queueEvent(() =>
+                        {
+                            tempDev.setIdleTimeout(discon);
+                            if (btCurrentIndex >= 0)
+                            {
+                                tempDev.setBTPollRate(btCurrentIndex);
+                            }
+                        });
+                    }
+                }
+            }
+
             inputtimer.Stop();
             sixaxisTimer.Stop();
             root.OptionsClosed();
             Visible = false;
             e.Cancel = true;
-
-            if (device < 4)
-            {
-                DS4Device tempDev = Program.rootHub.DS4Controllers[device];
-                if (tempDev != null)
-                {
-                    int discon = getIdleDisconnectTimeout(device);
-                    tempDev.queueEvent(() => { tempDev.setIdleTimeout(discon); });
-                }
-            }
         }
 
         private void cBSlide_CheckedChanged(object sender, EventArgs e)
@@ -2246,6 +2210,8 @@ namespace DS4Windows
                 case "bnSwipeDown": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "bnL3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
                 case "bnR3": root.lbLastMessage.Text = Properties.Resources.RightClickPresets; break;
+                case "btPollRateLabel": root.lbLastMessage.Text = Properties.Resources.BTPollRate; break;
+                case "btPollRateComboBox": root.lbLastMessage.Text = Properties.Resources.BTPollRate; break;
                 default: root.lbLastMessage.Text = Properties.Resources.HoverOverItems; break;
             }
 
@@ -2752,6 +2718,12 @@ namespace DS4Windows
         private void nUDR2Maxzone_ValueChanged(object sender, EventArgs e)
         {
             R2Maxzone[device] = (int)(nUDR2Maxzone.Value * 100);
+        }
+
+        private void btPollRateComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int currentIndex = btPollRateComboBox.SelectedIndex;
+            BTPollRate[device] = currentIndex;
         }
 
         private void Options_Resize(object sender, EventArgs e)

@@ -34,11 +34,6 @@ namespace DS4Windows
         public static void updateLightBar(DS4Device device, int deviceNum, DS4State cState,
             DS4StateExposed eState, Mouse tp)
         {
-            /*
-             * TODO: Remove more property usage and use explicit getter methods instead.
-             * Testing in proper optimized release builds shows that it is
-             * still necessary to reduce lag.
-             */
             DS4Color color;
             if (!defaultLight && !forcelight[deviceNum])
             {

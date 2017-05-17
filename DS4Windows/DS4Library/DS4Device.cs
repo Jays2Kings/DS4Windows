@@ -330,6 +330,34 @@ namespace DS4Windows
             return ledFlashOff;
         }
 
+        // Specify the poll rate interval used for the DS4 hardware when
+        // connected via Bluetooth
+        private int btPollRate = 0;
+        public int BTPollRate
+        {
+            get { return btPollRate; }
+            set
+            {
+                if (btPollRate != value && value >= 0 && value <= 16)
+                {
+                    btPollRate = value;
+                }
+            }
+        }
+
+        public int getBTPollRate()
+        {
+            return btPollRate;
+        }
+
+        public void setBTPollRate(int value)
+        {
+            if (btPollRate != value && value >= 0 && value <= 16)
+            {
+                btPollRate = value;
+            }
+        }
+
         public DS4Touchpad Touchpad { get { return touchpad; } }
         public DS4SixAxis SixAxis { get { return sixAxis; } }
 
@@ -806,12 +834,14 @@ namespace DS4Windows
                 lock (eventQueueLock)
                 {
                     Action tempAct = null;
-                    //while (eventQueue.TryDequeue(out tempAct))
                     for (int actInd = 0, actLen = eventQueue.Count; actInd < actLen; actInd++)
+                    //foreach (Action tempAct in eventQueue)
                     {
                         tempAct = eventQueue.Dequeue();
                         tempAct.Invoke();
                     }
+
+                    //eventQueue.Clear();
                 }
             }
         }
@@ -829,7 +859,9 @@ namespace DS4Windows
             if (conType == ConnectionType.BT)
             {
                 outputReportBuffer[0] = 0x11;
-                outputReportBuffer[1] = 0x80;
+                //outputReportBuffer[1] = 0x80;
+                //outputReportBuffer[1] = 0x84;
+                outputReportBuffer[1] = (byte)(0x80 | btPollRate);
                 outputReportBuffer[3] = 0xff;
                 outputReportBuffer[6] = rightLightFastRumble; //fast motor
                 outputReportBuffer[7] = leftHeavySlowRumble; //slow motor

@@ -153,13 +153,13 @@ namespace DS4Windows
 
                         device.Report += this.On_Report;
                         TouchPadOn(i, device);
-                        device.setIdleTimeout(getIdleDisconnectTimeout(i));
+                        CheckProfileOptions(i, device, true);
                         device.StartUpdate();
                         //string filename = ProfilePath[ind];
                         //ind++;
                         if (showlog)
                         {
-                            if (System.IO.File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[i] + ".xml"))
+                            if (File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[i] + ".xml"))
                             {
                                 string prolog = Properties.Resources.UsingProfile.Replace("*number*", (i + 1).ToString()).Replace("*Profile name*", ProfilePath[i]);
                                 LogDebug(prolog);
@@ -343,12 +343,11 @@ namespace DS4Windows
                             }
 
                             TouchPadOn(Index, device);
-                            device.setIdleTimeout(getIdleDisconnectTimeout(Index));
                             CheckProfileOptions(Index, device);
                             device.StartUpdate();
 
                             //string filename = Path.GetFileName(ProfilePath[Index]);
-                            if (System.IO.File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[Index] + ".xml"))
+                            if (File.Exists(appdatapath + "\\Profiles\\" + ProfilePath[Index] + ".xml"))
                             {
                                 string prolog = Properties.Resources.UsingProfile.Replace("*number*", (Index + 1).ToString()).Replace("*Profile name*", ProfilePath[Index]);
                                 LogDebug(prolog);
@@ -370,7 +369,18 @@ namespace DS4Windows
             return true;
         }
 
-        private void CheckProfileOptions(int ind, DS4Device device)
+        private void CheckProfileOptions(int ind, DS4Device device, bool startUp=false)
+        {
+            device.setIdleTimeout(getIdleDisconnectTimeout(ind));
+            device.setBTPollRate(getBTPollRate(ind));
+
+            if (!startUp)
+            {
+                CheckLauchProfileOption(ind, device);
+            }
+        }
+
+        private void CheckLauchProfileOption(int ind, DS4Device device)
         {
             string programPath = LaunchProgram[ind];
             if (programPath != string.Empty)

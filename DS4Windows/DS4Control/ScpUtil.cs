@@ -1039,7 +1039,7 @@ namespace DS4Windows
         public String m_Actions = Global.appdatapath + "\\Actions.xml";
 
         protected XmlDocument m_Xdoc = new XmlDocument();
-        //fifth value used to for options, not fifth controller
+        // fifth value used for options, not fifth controller
         public int[] buttonMouseSensitivity = { 25, 25, 25, 25, 25 };
 
         public bool[] flushHIDQueue = { false, false, false, false, false };
@@ -1087,7 +1087,7 @@ namespace DS4Windows
             new DS4Color(Color.Pink),
             new DS4Color(Color.White)
         };
-        public DS4Color[] m_ChargingLeds = new DS4Color[] 
+        public DS4Color[] m_ChargingLeds = new DS4Color[]
         {
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -1095,7 +1095,7 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
-        public DS4Color[] m_FlashLeds = new DS4Color[] 
+        public DS4Color[] m_FlashLeds = new DS4Color[]
         {
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -1848,11 +1848,10 @@ namespace DS4Windows
             return "Unbound";
         }
 
-        /* TODO: Explicitly reset profile values back to default before loading new profile. */
         public bool LoadProfile(int device, bool launchprogram, ControlService control,
             string propath = "", bool xinputChange = true)
         {
-            Boolean Loaded = true;
+            bool Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
             Dictionary<DS4Controls, UInt16> customMapKeys = new Dictionary<DS4Controls, UInt16>();
             Dictionary<DS4Controls, X360Controls> customMapButtons = new Dictionary<DS4Controls, X360Controls>();
@@ -1864,7 +1863,7 @@ namespace DS4Windows
             Dictionary<DS4Controls, String> shiftCustomMapMacros = new Dictionary<DS4Controls, String>();
             Dictionary<DS4Controls, String> shiftCustomMapExtras = new Dictionary<DS4Controls, String>();
             string rootname = "DS4Windows";
-            Boolean missingSetting = false;
+            bool missingSetting = false;
             string profilepath;
             if (propath == "")
                 profilepath = Global.appdatapath + @"\Profiles\" + profilePath[device] + ".xml";
@@ -1887,6 +1886,9 @@ namespace DS4Windows
                     DS4LightBar.forcelight[device] = false;
                     DS4LightBar.forcedFlash[device] = 0;
                 }
+
+                // Make sure to reset currently set profile values before parsing
+                ResetProfile(device);
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/flushHIDQueue"); Boolean.TryParse(Item.InnerText, out flushHIDQueue[device]); }
                 catch { missingSetting = true; }//rootname = }
@@ -2705,12 +2707,12 @@ namespace DS4Windows
             for (int i = 0; i < 4; i++)
             {
                 XmlNode xmlCustomLed = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed" + (1 + i), null);
-                xmlCustomLed.InnerText = useCustomLeds[i] + ":" + m_CustomLeds[i].red + ","+ m_CustomLeds[i].green + "," + m_CustomLeds[i].blue;
+                xmlCustomLed.InnerText = useCustomLeds[i] + ":" + m_CustomLeds[i].red + "," + m_CustomLeds[i].green + "," + m_CustomLeds[i].blue;
                 Node.AppendChild(xmlCustomLed);
             }
-           /* XmlNode xmlCustomLed2 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed2", null); xmlCustomLed2.InnerText = profilePath[1]; Node.AppendChild(xmlCustomLed2);
-            XmlNode xmlCustomLed3 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed3", null); xmlCustomLed3.InnerText = profilePath[2]; Node.AppendChild(xmlCustomLed3);
-            XmlNode xmlCustomLed4 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed4", null); xmlCustomLed4.InnerText = profilePath[3]; Node.AppendChild(xmlCustomLed4);*/
+            /* XmlNode xmlCustomLed2 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed2", null); xmlCustomLed2.InnerText = profilePath[1]; Node.AppendChild(xmlCustomLed2);
+             XmlNode xmlCustomLed3 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed3", null); xmlCustomLed3.InnerText = profilePath[2]; Node.AppendChild(xmlCustomLed3);
+             XmlNode xmlCustomLed4 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed4", null); xmlCustomLed4.InnerText = profilePath[3]; Node.AppendChild(xmlCustomLed4);*/
 
             m_Xdoc.AppendChild(Node);
 
@@ -3177,6 +3179,67 @@ namespace DS4Windows
             }
 
             return false;
+        }
+
+        private void ResetProfile(int device)
+        {
+            buttonMouseSensitivity[device] = 25;
+            flushHIDQueue[device] = false;
+            enableTouchToggle[device] = false;
+            idleDisconnectTimeout[device] = 0;
+            touchpadJitterCompensation[device] = false;
+            lowerRCOn[device] = false;
+            ledAsBattery[device] = false;
+            flashType[device] = 0;
+            rumble[device] = 100;
+            touchSensitivity[device] = 100;
+            l2Deadzone[device] = r2Deadzone[device] = 0;
+            LSDeadzone[device] = RSDeadzone[device] = 0;
+            LSAntiDeadzone[device] = RSAntiDeadzone[device] = 0;
+            LSMaxzone[device] = RSMaxzone[device] = 100;
+            l2AntiDeadzone[device] = r2AntiDeadzone[device] = 0;
+            l2Maxzone[device] = r2Maxzone[device] = 100;
+            SXDeadzone[device] = SZDeadzone[device] = 0.25;
+            l2Sens[device] = r2Sens[device] = 1;
+            LSSens[device] = RSSens[device] = 1;
+            SXSens[device] = SZSens[device] = 1;
+            tapSensitivity[device] = 0;
+            doubleTap[device] = false;
+            scrollSensitivity[device] = 0;
+            rainbow[device] = 0;
+            flashAt[device] = 0;
+            mouseAccel[device] = true;
+            btPollRate[device] = 0;
+
+            m_LowLeds[device] = new DS4Color(Color.Black);
+
+            Color tempColor = Color.Blue;
+            switch(device)
+            {
+                case 0: tempColor = Color.Blue; break;
+                case 1: tempColor = Color.Red; break;
+                case 2: tempColor = Color.Green; break;
+                case 3: tempColor = Color.Pink; break;
+                case 4: tempColor = Color.White; break;
+                default: tempColor = Color.Blue; break;
+            }
+
+            m_Leds[device] = new DS4Color(tempColor);
+            m_ChargingLeds[device] = new DS4Color(Color.Black);
+            m_FlashLeds[device] = new DS4Color(Color.Black);
+            useCustomLeds[device] = false;
+            m_CustomLeds[device] = new DS4Color(Color.Black);
+
+            chargingType[device] = 0;
+            launchProgram[device] = string.Empty;
+            dinputOnly[device] = false;
+            startTouchpadOff[device] = false;
+            useTPforControls[device] = false;
+            useSAforMouse[device] = false;
+            sATriggers[device] = "";
+            lsCurve[device] = rsCurve[device] = 0;
+            gyroSensitivity[device] = 100;
+            gyroInvert[device] = 0;
         }
     }
 

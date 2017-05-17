@@ -1942,7 +1942,7 @@
     <value>0</value>
   </data>
   <data name="btPollRateComboBox.Items" xml:space="preserve">
-    <value>Full (1 ms)</value>
+    <value>Max (1 ms)</value>
   </data>
   <data name="btPollRateComboBox.Items1" xml:space="preserve">
     <value>1000 Hz (1 ms)</value>

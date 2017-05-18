@@ -327,9 +327,9 @@ namespace DS4Windows
                             device.Report += this.On_Report;
                             if (!getDInputOnly(Index))
                             {
-                                int xinputIndex = x360Bus.FirstController + i;
+                                int xinputIndex = x360Bus.FirstController + Index;
                                 LogDebug("Plugging in X360 Controller #" + xinputIndex);
-                                bool xinputResult = x360Bus.Plugin(i);
+                                bool xinputResult = x360Bus.Plugin(Index);
                                 if (xinputResult)
                                 {
                                     LogDebug("X360 Controller # " + xinputIndex + " connected");
@@ -687,8 +687,8 @@ namespace DS4Windows
                     // pull back any possible rumble data coming from Xinput consumers.
                     if (x360Bus.Report(processingData[ind].Report, processingData[ind].Rumble))
                     {
-                        Byte Big = (Byte)(processingData[ind].Rumble[3]);
-                        Byte Small = (Byte)(processingData[ind].Rumble[4]);
+                        byte Big = processingData[ind].Rumble[3];
+                        byte Small = processingData[ind].Rumble[4];
 
                         if (processingData[ind].Rumble[1] == 0x08)
                         {

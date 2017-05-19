@@ -333,12 +333,12 @@ namespace DS4Windows
                                 if (xinputResult)
                                 {
                                     LogDebug("X360 Controller # " + xinputIndex + " connected");
-                                    useDInputOnly[i] = false;
+                                    useDInputOnly[Index] = false;
                                 }
                                 else
                                 {
                                     LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
-                                    useDInputOnly[i] = true;
+                                    useDInputOnly[Index] = true;
                                 }
                             }
 

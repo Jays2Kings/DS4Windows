@@ -132,7 +132,7 @@ namespace DS4Windows
         private byte[] accel = new byte[6];
         private byte[] gyro = new byte[6];
         private byte[] inputReport;
-        private byte[] inputReport2;
+        //private byte[] inputReport2;
         private byte[] btInputReport = null;
         private byte[] outputReportBuffer, outputReport;
         private readonly DS4Touchpad touchpad = null;
@@ -391,7 +391,7 @@ namespace DS4Windows
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
             {
                 inputReport = new byte[64];
-                inputReport2 = new byte[64];
+                //inputReport2 = new byte[64];
                 outputReport = new byte[hDevice.Capabilities.OutputReportByteLength];
                 outputReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength];
                 if (conType == ConnectionType.USB)
@@ -534,7 +534,7 @@ namespace DS4Windows
                                 if (lastError != thisError)
                                 {
                                     Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
-                                    Log.LogToGui(Mac.ToString() + " encountered write failure: " + thisError, true);
+                                    //Log.LogToGui(Mac.ToString() + " encountered write failure: " + thisError, true);
                                     lastError = thisError;
                                 }
                             }
@@ -579,23 +579,29 @@ namespace DS4Windows
         {
             firstActive = DateTime.UtcNow;
             NativeMethods.HidD_SetNumInputBuffers(hDevice.safeReadHandle.DangerousGetHandle(), 2);
-            List<long> Latency = new List<long>(101); // Set capacity at max + 1 to avoid any list resizing
+            List<long> latencyList = new List<long>(51); // Set capacity at max + 1 to avoid any list resizing
+            int tempLatencyCount = 0;
             long oldtime = 0;
             Stopwatch sw = new Stopwatch();
             sw.Start();
+
             while (!exitInputThread)
             {
                 oldCharging = charging;
                 string currerror = string.Empty;
                 long curtime = sw.ElapsedMilliseconds;
                 this.lastTimeElapsed = curtime - oldtime;
-                Latency.Add(this.lastTimeElapsed);
+                latencyList.Add(this.lastTimeElapsed);
+                tempLatencyCount++;
                 oldtime = curtime;
 
-                if (Latency.Count > 100)
-                    Latency.RemoveAt(0);
+                if (tempLatencyCount > 50)
+                {
+                    latencyList.RemoveAt(0);
+                    tempLatencyCount--;
+                }
 
-                this.Latency = Latency.Average();
+                Latency = latencyList.Average();
 
                 if (conType == ConnectionType.BT)
                 {
@@ -617,7 +623,7 @@ namespace DS4Windows
                         {
                             int winError = Marshal.GetLastWin32Error();
                             Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
-                            Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
+                            //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                         }
 
                         sendOutputReport(true); // Kick Windows into noticing the disconnection.
@@ -648,7 +654,7 @@ namespace DS4Windows
                         {
                             int winError = Marshal.GetLastWin32Error();
                             Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
-                            Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
+                            //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                         }
 
                         StopOutputUpdate();
@@ -672,7 +678,7 @@ namespace DS4Windows
 	                continue;
 	            }
 
-                DateTime utcNow = System.DateTime.UtcNow; // timestamp with UTC in case system time zone changes
+                DateTime utcNow = DateTime.UtcNow; // timestamp with UTC in case system time zone changes
                 resetHapticState();
                 cState.ReportTimeStamp = utcNow;
                 cState.LX = inputReport[1];
@@ -825,11 +831,10 @@ namespace DS4Windows
                 }
                 sendOutputReport(syncWriteReport);
 
-                if (!string.IsNullOrEmpty(error))
-                    error = string.Empty;
-
                 if (!string.IsNullOrEmpty(currerror))
                     error = currerror;
+                else if (!string.IsNullOrEmpty(error))
+                    error = string.Empty;
 
                 cState.CopyTo(pState);
 
@@ -863,27 +868,27 @@ namespace DS4Windows
                 outputReportBuffer[0] = 0x11;
                 //outputReportBuffer[1] = 0x80;
                 //outputReportBuffer[1] = 0x84;
-                outputReportBuffer[1] = (byte)(0x80 | btPollRate);
+                outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
                 outputReportBuffer[3] = 0xff;
-                outputReportBuffer[6] = rightLightFastRumble; //fast motor
-                outputReportBuffer[7] = leftHeavySlowRumble; //slow motor
-                outputReportBuffer[8] = LightBarColor.red; //red
-                outputReportBuffer[9] = LightBarColor.green; //green
-                outputReportBuffer[10] = LightBarColor.blue; //blue
-                outputReportBuffer[11] = ledFlashOn; //flash on duration
-                outputReportBuffer[12] = ledFlashOff; //flash off duration
+                outputReportBuffer[6] = rightLightFastRumble; // fast motor
+                outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
+                outputReportBuffer[8] = LightBarColor.red; // red
+                outputReportBuffer[9] = LightBarColor.green; // green
+                outputReportBuffer[10] = LightBarColor.blue; // blue
+                outputReportBuffer[11] = ledFlashOn; // flash on duration
+                outputReportBuffer[12] = ledFlashOff; // flash off duration
             }
             else
             {
                 outputReportBuffer[0] = 0x05;
                 outputReportBuffer[1] = 0xff;
-                outputReportBuffer[4] = rightLightFastRumble; //fast motor
-                outputReportBuffer[5] = leftHeavySlowRumble; //slow  motor
-                outputReportBuffer[6] = LightBarColor.red; //red
-                outputReportBuffer[7] = LightBarColor.green; //green
-                outputReportBuffer[8] = LightBarColor.blue; //blue
-                outputReportBuffer[9] = ledFlashOn; //flash on duration
-                outputReportBuffer[10] = ledFlashOff; //flash off duration
+                outputReportBuffer[4] = rightLightFastRumble; // fast motor
+                outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor
+                outputReportBuffer[6] = LightBarColor.red; // red
+                outputReportBuffer[7] = LightBarColor.green; // green
+                outputReportBuffer[8] = LightBarColor.blue; // blue
+                outputReportBuffer[9] = ledFlashOn; // flash on duration
+                outputReportBuffer[10] = ledFlashOff; // flash off duration
                 if (conType == ConnectionType.SONYWA)
                 {
                     // Headphone volume levels
@@ -907,7 +912,7 @@ namespace DS4Windows
                         {
                             int winError = Marshal.GetLastWin32Error();
                             Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered synchronous write failure: " + winError);
-                            Log.LogToGui(Mac.ToString() + " encountered synchronous write failure: " + winError, true);
+                            //Log.LogToGui(Mac.ToString() + " encountered synchronous write failure: " + winError, true);
                             quitOutputThread = true;
                         }
                     }

@@ -1047,11 +1047,11 @@ namespace DS4Windows
         public bool[] flushHIDQueue = { false, false, false, false, false };
         public bool[] enableTouchToggle = { true, true, true, true, true };
         public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
-        public Boolean[] touchpadJitterCompensation = { true, true, true, true, true };
-        public Boolean[] lowerRCOn = { false, false, false, false, false };
-        public Boolean[] ledAsBattery = { false, false, false, false, false };
-        public Byte[] flashType = { 0, 0, 0, 0, 0 };
-        public String[] profilePath = { String.Empty, String.Empty, String.Empty, String.Empty, String.Empty };
+        public bool[] touchpadJitterCompensation = { true, true, true, true, true };
+        public bool[] lowerRCOn = { false, false, false, false, false };
+        public bool[] ledAsBattery = { false, false, false, false, false };
+        public byte[] flashType = { 0, 0, 0, 0, 0 };
+        public string[] profilePath = { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         // Cache properties instead of performing a string comparison every frame
         public bool[] distanceProfiles = { false, false, false, false, false };
         public Byte[] rumble = { 100, 100, 100, 100, 100 };
@@ -1368,16 +1368,21 @@ namespace DS4Windows
                         string keyType = string.Empty;
 
                         if (dcs.action is string)
+                        {
                             if (dcs.action.ToString() == "Unbound")
                                 keyType += DS4KeyType.Unbound;
+                        }
+
                         if (dcs.keyType.HasFlag(DS4KeyType.HoldMacro))
                             keyType += DS4KeyType.HoldMacro;
                         else if (dcs.keyType.HasFlag(DS4KeyType.Macro))
                             keyType += DS4KeyType.Macro;
+
                         if (dcs.keyType.HasFlag(DS4KeyType.Toggle))
                             keyType += DS4KeyType.Toggle;
                         if (dcs.keyType.HasFlag(DS4KeyType.ScanCode))
                             keyType += DS4KeyType.ScanCode;
+
                         if (keyType != string.Empty)
                         {
                             buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, dcs.control.ToString(), null);
@@ -1411,12 +1416,17 @@ namespace DS4Windows
 
                     bool hasvalue = false;
                     if (!string.IsNullOrEmpty(dcs.extras))
+                    {
                         foreach (string s in dcs.extras.Split(','))
+                        {
                             if (s != "0")
                             {
                                 hasvalue = true;
                                 break;
                             }
+                        }
+                    }
+
                     if (hasvalue)
                     {
                         XmlNode extraNode = m_Xdoc.CreateNode(XmlNodeType.Element, dcs.control.ToString(), null);
@@ -1430,8 +1440,11 @@ namespace DS4Windows
                         string keyType = string.Empty;
 
                         if (dcs.shiftAction is string)
+                        {
                             if (dcs.shiftAction.ToString() == "Unbound")
                                 keyType += DS4KeyType.Unbound;
+                        }
+
                         if (dcs.shiftKeyType.HasFlag(DS4KeyType.HoldMacro))
                             keyType += DS4KeyType.HoldMacro;
                         if (dcs.shiftKeyType.HasFlag(DS4KeyType.Macro))
@@ -1440,6 +1453,7 @@ namespace DS4Windows
                             keyType += DS4KeyType.Toggle;
                         if (dcs.shiftKeyType.HasFlag(DS4KeyType.ScanCode))
                             keyType += DS4KeyType.ScanCode;
+
                         if (keyType != string.Empty)
                         {
                             buttonNode = m_Xdoc.CreateElement(dcs.control.ToString());
@@ -1466,14 +1480,20 @@ namespace DS4Windows
                             ShiftButton.AppendChild(buttonNode);
                         }
                     }
+
                     hasvalue = false;
                     if (!string.IsNullOrEmpty(dcs.shiftExtras))
+                    {
                         foreach (string s in dcs.shiftExtras.Split(','))
+                        {
                             if (s != "0")
                             {
                                 hasvalue = true;
                                 break;
                             }
+                        }
+                    }
+
                     if (hasvalue)
                     {
                         XmlNode extraNode = m_Xdoc.CreateNode(XmlNodeType.Element, dcs.control.ToString(), null);
@@ -1481,6 +1501,7 @@ namespace DS4Windows
                         ShiftExtras.AppendChild(extraNode);
                     }
                 }
+
                 Node.AppendChild(NodeControl);
                 if (Button.HasChildNodes)
                     NodeControl.AppendChild(Button);
@@ -1616,6 +1637,7 @@ namespace DS4Windows
 
             if (!key.StartsWith("bn"))
                 return (DS4Controls)Enum.Parse(typeof(DS4Controls), key, true);
+
             switch (key)
             {
                 case "bnShare": return DS4Controls.Share;
@@ -1744,6 +1766,7 @@ namespace DS4Windows
                 case "bnShiftSwipeLeft": return DS4Controls.SwipeLeft;
                 case "bnShiftSwipeRight": return DS4Controls.SwipeRight;
             }
+
             return 0;
         }
 
@@ -1752,6 +1775,7 @@ namespace DS4Windows
             X360Controls x3c;
             if (Enum.TryParse(key, true, out x3c))
                 return x3c;
+
             switch (key)
             {
                 case "Back": return X360Controls.Back;
@@ -1795,8 +1819,8 @@ namespace DS4Windows
                 case "Mouse Left": return X360Controls.MouseLeft;
                 case "Mouse Right": return X360Controls.MouseRight;
                 case "Unbound": return X360Controls.Unbound;
-
             }
+
             return X360Controls.Unbound;
         }
 
@@ -1909,11 +1933,13 @@ namespace DS4Windows
                         colors = Item.InnerText.Split(',');
                     else
                         colors = new string[0];
+
                     m_Leds[device].red = byte.Parse(colors[0]);
                     m_Leds[device].green = byte.Parse(colors[1]);
                     m_Leds[device].blue = byte.Parse(colors[2]);
                 }
                 catch { missingSetting = true; }
+
                 if (m_Xdoc.SelectSingleNode("/" + rootname + "/Color") == null)
                 {
                     //Old method of color saving
@@ -1925,6 +1951,7 @@ namespace DS4Windows
                     try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Blue"); Byte.TryParse(Item.InnerText, out m_Leds[device].blue); }
                     catch { missingSetting = true; }
                 }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RumbleBoost"); Byte.TryParse(Item.InnerText, out rumble[device]); }
                 catch { missingSetting = true; }
 
@@ -1939,6 +1966,7 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/touchSensitivity"); Byte.TryParse(Item.InnerText, out touchSensitivity[device]); }
                 catch { missingSetting = true; }
+
                 //New method for saving color
                 try
                 {
@@ -1954,6 +1982,7 @@ namespace DS4Windows
                     m_LowLeds[device].blue = byte.Parse(colors[2]);
                 }
                 catch { missingSetting = true; }
+
                 if (m_Xdoc.SelectSingleNode("/" + rootname + "/LowColor") == null)
                 {
                     //Old method of color saving
@@ -1964,6 +1993,7 @@ namespace DS4Windows
                     try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LowBlue"); byte.TryParse(Item.InnerText, out m_LowLeds[device].blue); }
                     catch { missingSetting = true; }
                 }
+
                 //New method for saving color
                 try
                 {
@@ -1979,6 +2009,7 @@ namespace DS4Windows
                     m_ChargingLeds[device].blue = byte.Parse(colors[2]);
                 }
                 catch { missingSetting = true; }
+
                 if (m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingColor") == null)
                 {
                     try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingRed"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device].red); }
@@ -1988,6 +2019,7 @@ namespace DS4Windows
                     try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingBlue"); Byte.TryParse(Item.InnerText, out m_ChargingLeds[device].blue); }
                     catch { missingSetting = true; }
                 }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/FlashColor");
@@ -2001,6 +2033,7 @@ namespace DS4Windows
                     m_FlashLeds[device].blue = byte.Parse(colors[2]);
                 }
                 catch { missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/touchpadJitterCompensation"); bool.TryParse(Item.InnerText, out touchpadJitterCompensation[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/lowerRCOn"); bool.TryParse(Item.InnerText, out lowerRCOn[device]); }
@@ -2019,18 +2052,21 @@ namespace DS4Windows
                 catch { l2AntiDeadzone[device] = 0; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2AntiDeadZone"); int.TryParse(Item.InnerText, out r2AntiDeadzone[device]); }
                 catch { r2AntiDeadzone[device] = 0; missingSetting = true; }
+
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2MaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
                     l2Maxzone[device] = Math.Min(Math.Max(temp, 0), 100);
                 }
                 catch { l2Maxzone[device] = 100; missingSetting = true; }
+
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2MaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
                     r2Maxzone[device] = Math.Min(Math.Max(temp, 0), 100);
                 }
                 catch { r2Maxzone[device] = 100; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseSensitivity"); int.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out rainbow[device]); }
@@ -2043,22 +2079,26 @@ namespace DS4Windows
                 catch { LSAntiDeadzone[device] = 0; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSAntiDeadZone"); int.TryParse(Item.InnerText, out RSAntiDeadzone[device]); }
                 catch { RSAntiDeadzone[device] = 0; missingSetting = true; }
+
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSMaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
                     LSMaxzone[device] = Math.Min(Math.Max(temp, 0), 100);
                 }
                 catch { LSMaxzone[device] = 100; missingSetting = true; }
+
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSMaxZone"); int temp = 100;
                     int.TryParse(Item.InnerText, out temp);
                     RSMaxzone[device] = Math.Min(Math.Max(temp, 0), 100);
                 }
                 catch { RSMaxzone[device] = 100; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); double.TryParse(Item.InnerText, out SXDeadzone[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZDeadZone"); double.TryParse(Item.InnerText, out SZDeadzone[device]); }
                 catch { missingSetting = true; }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Sensitivity");
@@ -2079,6 +2119,7 @@ namespace DS4Windows
                         SZSens[device] = 1;
                 }
                 catch { missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ChargingType"); int.TryParse(Item.InnerText, out chargingType[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/MouseAcceleration"); bool.TryParse(Item.InnerText, out mouseAccel[device]); }
@@ -2193,6 +2234,7 @@ namespace DS4Windows
                     if (startTouchpadOff[device] == true) control.StartTPOff(device);
                 }
                 catch { startTouchpadOff[device] = false; missingSetting = true; }
+
                 try
                 { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls"); Boolean.TryParse(Item.InnerText, out useTPforControls[device]); }
                 catch { useTPforControls[device] = false; missingSetting = true; }
@@ -2212,6 +2254,7 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSCurve"); int.TryParse(Item.InnerText, out rsCurve[device]); }
                 catch { missingSetting = true; }
+
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/BTPollRate");
                     int temp = 0;
@@ -2560,10 +2603,11 @@ namespace DS4Windows
 
                 }
         }
+
         public bool Load()
         {
-            Boolean Loaded = true;
-            Boolean missingSetting = false;
+            bool Loaded = true;
+            bool missingSetting = false;
 
             try
             {
@@ -2588,7 +2632,7 @@ namespace DS4Windows
                             distanceProfiles[0] = true;
                         }
                     }
-                    catch { missingSetting = true; }
+                    catch { profilePath[0] = string.Empty; distanceProfiles[0] = false; missingSetting = true; }
                     try {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Controller2"); profilePath[1] = Item.InnerText;
                         if (profilePath[1].ToLower().Contains("distance"))
@@ -2596,7 +2640,7 @@ namespace DS4Windows
                             distanceProfiles[1] = true;
                         }
                     }
-                    catch { missingSetting = true; }
+                    catch { profilePath[1] = string.Empty; distanceProfiles[1] = false; missingSetting = true; }
                     try {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Controller3"); profilePath[2] = Item.InnerText;
                         if (profilePath[2].ToLower().Contains("distance"))
@@ -2604,7 +2648,7 @@ namespace DS4Windows
                             distanceProfiles[2] = true;
                         }
                     }
-                    catch { missingSetting = true; }
+                    catch { profilePath[2] = string.Empty; distanceProfiles[2] = false; missingSetting = true; }
                     try {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Controller4"); profilePath[3] = Item.InnerText;
                         if (profilePath[3].ToLower().Contains("distance"))
@@ -2612,7 +2656,7 @@ namespace DS4Windows
                             distanceProfiles[3] = true;
                         }
                     }
-                    catch { missingSetting = true; }
+                    catch { profilePath[3] = string.Empty; distanceProfiles[3] = false; missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/LastChecked"); DateTime.TryParse(Item.InnerText, out lastChecked); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CheckWhen"); Int32.TryParse(Item.InnerText, out CheckWhen); }
@@ -2658,13 +2702,16 @@ namespace DS4Windows
                 }
             }
             catch { }
+
             if (missingSetting)
                 Save();
+
             return Loaded;
         }
+
         public bool Save()
         {
-            Boolean Saved = true;
+            bool Saved = true;
 
             XmlNode Node;
 
@@ -2802,12 +2849,14 @@ namespace DS4Windows
                     el.AppendChild(m_Xdoc.CreateElement("Details")).InnerText = details;
                     break;
             }
+
             if (edit)
             {
                 XmlNode oldxmlprocess = m_Xdoc.SelectSingleNode("/Actions/Action[@Name=\"" + name + "\"]");
                 Node.ReplaceChild(el, oldxmlprocess);
             }
             else { Node.AppendChild(el); }
+
             m_Xdoc.AppendChild(Node);
             try { m_Xdoc.Save(m_Actions); }
             catch { saved = false; }
@@ -2822,6 +2871,7 @@ namespace DS4Windows
             XmlNode Item = m_Xdoc.SelectSingleNode("/Actions/Action[@Name=\"" + name + "\"]");
             if (Item != null)
                 Node.RemoveChild(Item);
+
             m_Xdoc.AppendChild(Node);
             m_Xdoc.Save(m_Actions);
             LoadActions();
@@ -2835,6 +2885,7 @@ namespace DS4Windows
                 SaveAction("Disconnect Controller", "PS/Options", 5, "0", false);
                 saved = false;
             }
+
             try
             {
                 actions.Clear();
@@ -3419,6 +3470,7 @@ namespace DS4Windows
                 case "Tilt Left": return DS4Controls.GyroXPos;
                 case "Tilt Right": return DS4Controls.GyroXNeg;
             }
+
             return 0;
         }
     }

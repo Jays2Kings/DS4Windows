@@ -3,10 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using System.Xml;
 using static DS4Windows.Global;
-using System.Runtime.InteropServices;
 
 namespace DS4Windows
 {
@@ -271,6 +268,8 @@ namespace DS4Windows
             root.lbLastMessage.Text = "Hover over items to see description or more about";
             if (device < 4)
                 nUDSixaxis.Value = deviceNum + 1;
+
+            lVActions.ItemCheck -= this.lVActions_ItemCheck;
 
             if (filename != "")
             {
@@ -664,6 +663,7 @@ namespace DS4Windows
             
             UpdateLists();
             LoadActions(string.IsNullOrEmpty(filename));
+            lVActions.ItemCheck += new ItemCheckEventHandler(this.lVActions_ItemCheck);
             loading = false;
             saving = false;
         }
@@ -1304,6 +1304,7 @@ namespace DS4Windows
             ProfileActions[device] = pactions;
             calculateProfileActionCount(device);
             calculateProfileActionDicts(device);
+            cacheProfileCustomsFlags(device);
             pnlTPMouse.Visible = rBTPMouse.Checked;
             pnlSAMouse.Visible = rBSAMouse.Checked;
             fLPTiltControls.Visible = rBSAControls.Checked;
@@ -1530,6 +1531,7 @@ namespace DS4Windows
             else if (300 <= hue && hue < 360) { R = C; B = X; }
             return Color.FromArgb((int)((R + m) * 255), (int)((G + m) * 255), (int)((B + m) * 255));
         }
+
         private void rumbleBoostBar_ValueChanged(object sender, EventArgs e)
         {
             if (!loading)
@@ -1545,17 +1547,18 @@ namespace DS4Windows
 
         private void btnRumbleHeavyTest_Click(object sender, EventArgs e)
         {
-            DS4Device d = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
+            int tempDeviceNum = (int)nUDSixaxis.Value - 1;
+            DS4Device d = Program.rootHub.DS4Controllers[tempDeviceNum];
             if (d != null)
             {
                 if (((Button)sender).Text == Properties.Resources.TestHText)
                 {
-                    Program.rootHub.setRumble((byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), d.RightLightFastRumble, (int)nUDSixaxis.Value - 1);
+                    Program.rootHub.setRumble((byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), d.RightLightFastRumble, tempDeviceNum);
                     ((Button)sender).Text = Properties.Resources.StopHText;
                 }
                 else
                 {
-                    Program.rootHub.setRumble(0, d.RightLightFastRumble, (int)nUDSixaxis.Value - 1);
+                    Program.rootHub.setRumble(0, d.RightLightFastRumble, tempDeviceNum);
                     ((Button)sender).Text = Properties.Resources.TestHText;
                 }
             }
@@ -1563,17 +1566,18 @@ namespace DS4Windows
 
         private void btnRumbleLightTest_Click(object sender, EventArgs e)
         {
-            DS4Device d = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
+            int tempDeviceNum = (int)nUDSixaxis.Value - 1;
+            DS4Device d = Program.rootHub.DS4Controllers[tempDeviceNum];
             if (d != null)
             {
                 if (((Button)sender).Text == Properties.Resources.TestLText)
                 {
-                    Program.rootHub.setRumble(d.LeftHeavySlowRumble, (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), (int)nUDSixaxis.Value - 1);
+                    Program.rootHub.setRumble(d.LeftHeavySlowRumble, (byte)Math.Min(255, (255 * nUDRumbleBoost.Value / 100)), tempDeviceNum);
                     ((Button)sender).Text = Properties.Resources.StopLText;
                 }
                 else
                 {
-                    Program.rootHub.setRumble(d.LeftHeavySlowRumble, 0, (int)nUDSixaxis.Value - 1);
+                    Program.rootHub.setRumble(d.LeftHeavySlowRumble, 0, tempDeviceNum);
                     ((Button)sender).Text = Properties.Resources.TestLText;
                 }
             }
@@ -1621,8 +1625,6 @@ namespace DS4Windows
         private void nUDIdleDisconnect_ValueChanged(object sender, EventArgs e)
         {
             IdleDisconnectTimeout[device] = (int)(nUDIdleDisconnect.Value * 60);
-            //if (nUDIdleDisconnect.Value == 0)
-                //cBIdleDisconnect.Checked = false;
         }
 
         private void cBIdleDisconnect_CheckedChanged(object sender, EventArgs e)
@@ -1674,6 +1676,7 @@ namespace DS4Windows
             inputtimer.Stop();
             sixaxisTimer.Stop();
             root.OptionsClosed();
+            lVActions.ItemCheck -= this.lVActions_ItemCheck;
             Visible = false;
             e.Cancel = true;
         }
@@ -1870,8 +1873,9 @@ namespace DS4Windows
 
         private void numUDRainbow_ValueChanged(object sender, EventArgs e)
         {
-            Rainbow[device]= (double)nUDRainbow.Value;
-            if ((double)nUDRainbow.Value <= 0.5)
+            double tempRainbow = (double)nUDRainbow.Value;
+            Rainbow[device] = tempRainbow;
+            if (tempRainbow <= 0.5)
             {
                 btnRainbow.Image = greyscale;
                 ToggleRainbow(false);
@@ -2056,7 +2060,6 @@ namespace DS4Windows
         private void numUDMouseSens_ValueChanged(object sender, EventArgs e)
         {
             ButtonMouseSensitivity[device] = (int)numUDMouseSens.Value;
-            //ButtonMouseSensitivity(device, (int)numUDMouseSens.Value);
         }
 
         private void LightBar_MouseDown(object sender, MouseEventArgs e)
@@ -2139,7 +2142,7 @@ namespace DS4Windows
        
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            if( openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 cBLaunchProgram.Checked = true;
                 LaunchProgram[device] = openFileDialog1.FileName;
@@ -2259,7 +2262,7 @@ namespace DS4Windows
 
         private void cBControllerInput_CheckedChanged(object sender, EventArgs e)
         {
-            DS4Mapping=cBControllerInput.Checked;
+            DS4Mapping = cBControllerInput.Checked;
         }
 
         private void btnAddAction_Click(object sender, EventArgs e)
@@ -2680,9 +2683,7 @@ namespace DS4Windows
 
         private void lVActions_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            // Code can get executed even when control is not visible.
-            // Should not be happening
-            if (lVActions.Visible && actionTabSeen)
+            if (actionTabSeen)
             {
                 List<string> pactions = new List<string>();
                 foreach (ListViewItem lvi in lVActions.Items)

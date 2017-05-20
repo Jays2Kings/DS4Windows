@@ -2556,7 +2556,6 @@
             this.lVActions.ShowItemToolTips = true;
             this.lVActions.UseCompatibleStateImageBehavior = false;
             this.lVActions.View = System.Windows.Forms.View.Details;
-            this.lVActions.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lVActions_ItemCheck);
             // 
             // cHName
             // 

@@ -751,7 +751,8 @@ namespace DS4Windows
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
             // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
             // We should try to indicate setpoints of the calibration when exposing this measurement....
-            DS4Device ds = Program.rootHub.DS4Controllers[(int)nUDSixaxis.Value - 1];
+            int tempDeviceNum = (int)nUDSixaxis.Value - 1;
+            DS4Device ds = Program.rootHub.DS4Controllers[tempDeviceNum];
             if (ds == null)
             {
                 EnableReadings(false);
@@ -762,23 +763,26 @@ namespace DS4Windows
             else
             {
                 EnableReadings(true);
-                SetDynamicTrackBarValue(tBsixaxisGyroX, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + tBsixaxisGyroX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroY, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroY + tBsixaxisGyroY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroZ, (Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelX, (int)(Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelX + tBsixaxisAccelX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelY, (int)(Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelY + tBsixaxisAccelY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelZ, (int)(Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroX, (Program.rootHub.ExposedState[tempDeviceNum].GyroX + tBsixaxisGyroX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroY, (Program.rootHub.ExposedState[tempDeviceNum].GyroY + tBsixaxisGyroY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroZ, (Program.rootHub.ExposedState[tempDeviceNum].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelX, (int)(Program.rootHub.ExposedState[tempDeviceNum].AccelX + tBsixaxisAccelX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelY, (int)(Program.rootHub.ExposedState[tempDeviceNum].AccelY + tBsixaxisAccelY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelZ, (int)(Program.rootHub.ExposedState[tempDeviceNum].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
 
-                int x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LX;
-                int y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).LY;
-                btnLSTrackS.Visible = nUDLSS.Value != 1;
-                if (nUDLSCurve.Value > 0)
+                int x = Program.rootHub.getDS4State(tempDeviceNum).LX;
+                int y = Program.rootHub.getDS4State(tempDeviceNum).LY;
+
+                double tempLSS = (double)nUDLSS.Value;
+                btnLSTrackS.Visible = tempLSS != 1;
+                double tempLSCurve = (double)nUDLSCurve.Value;
+                if (tempLSCurve > 0.0)
                 {
                     float max = x + y;
                     double curvex;
                     double curvey;
-                    double multimax = TValue(382.5, max, (double)nUDLSCurve.Value);
-                    double multimin = TValue(127.5, max, (double)nUDLSCurve.Value);
+                    double multimax = TValue(382.5, max, tempLSCurve);
+                    double multimin = TValue(127.5, max, tempLSCurve);
                     if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
                     {
                         curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
@@ -802,27 +806,28 @@ namespace DS4Windows
                 else
                 {
                     btnLSTrack.Location = new Point((int)(dpix * x / 2.09), (int)(dpiy * y / 2.09));
-                    btnLSTrackS.Visible = nUDLSS.Value != 1;
+                    btnLSTrackS.Visible = tempLSS != 1;
                 }
 
-                if (nUDLSS.Value != 1)
+                if (tempLSS != 1)
                 {
-                    btnLSTrackS.Location = new Point((int)((float)nUDLSS.Value * (btnLSTrack.Location.X - pnlLSTrack.Size.Width / 2f) + pnlLSTrack.Size.Width / 2f),
-                        (int)((float)nUDLSS.Value * (btnLSTrack.Location.Y - pnlLSTrack.Size.Height / 2f) + pnlLSTrack.Size.Height / 2f));
+                    btnLSTrackS.Location = new Point((int)(tempLSS * (btnLSTrack.Location.X - pnlLSTrack.Size.Width / 2f) + pnlLSTrack.Size.Width / 2f),
+                        (int)(tempLSS * (btnLSTrack.Location.Y - pnlLSTrack.Size.Height / 2f) + pnlLSTrack.Size.Height / 2f));
                 }
 
+                x = Program.rootHub.getDS4State(tempDeviceNum).RX;
+                y = Program.rootHub.getDS4State(tempDeviceNum).RY;
 
-                x = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RX;
-                y = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).RY;
-                    btnRSTrackS.Visible = nUDRSS.Value != 1;
-
-                if (nUDRSCurve.Value > 0)
+                double tempRSS = (double)nUDRSS.Value;
+                btnRSTrackS.Visible = tempRSS != 1;
+                double tempRSCurve = (double)nUDRSCurve.Value;
+                if (tempRSCurve > 0.0)
                 {
                     float max = x + y;
                     double curvex;
                     double curvey;
-                    double multimax = TValue(382.5, max, (double)nUDRSCurve.Value);
-                    double multimin = TValue(127.5, max, (double)nUDRSCurve.Value);
+                    double multimax = TValue(382.5, max, tempRSCurve);
+                    double multimin = TValue(127.5, max, tempRSCurve);
                     if ((x > 127.5f && y > 127.5f) || (x < 127.5f && y < 127.5f))
                     {
                         curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
@@ -846,45 +851,55 @@ namespace DS4Windows
                 else
                 {
                     btnRSTrack.Location = new Point((int)(dpix * x / 2.09), (int)(dpiy * y / 2.09));
-                    btnRSTrackS.Visible = nUDRSS.Value != 1;
+                    btnRSTrackS.Visible = tempRSS != 1;
                 }
 
-                if (nUDRSS.Value != 1)
-                    btnRSTrackS.Location = new Point((int)((float)nUDRSS.Value * (btnRSTrack.Location.X - pnlRSTrack.Size.Width / 2f) + pnlRSTrack.Size.Width / 2f),
-                        (int)((float)nUDRSS.Value * (btnRSTrack.Location.Y - pnlRSTrack.Size.Height / 2f) + pnlRSTrack.Size.Height / 2f));
+                if (tempRSS != 1)
+                {
+                    btnRSTrackS.Location = new Point((int)(tempRSS * (btnRSTrack.Location.X - pnlRSTrack.Size.Width / 2f) + pnlRSTrack.Size.Width / 2f),
+                        (int)(tempRSS * (btnRSTrack.Location.Y - pnlRSTrack.Size.Height / 2f) + pnlRSTrack.Size.Height / 2f));
+                }
 
-                x = -Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroX + 127;
-                y = Program.rootHub.ExposedState[(int)nUDSixaxis.Value - 1].GyroZ + 127;
+                x = -Program.rootHub.ExposedState[tempDeviceNum].GyroX + 127;
+                y = Program.rootHub.ExposedState[tempDeviceNum].GyroZ + 127;
                 btnSATrack.Location = new Point((int)(dpix * Global.Clamp(0, x / 2.09, pnlSATrack.Size.Width)), (int)(dpiy * Global.Clamp(0, y / 2.09, pnlSATrack.Size.Height)));
-                btnSATrackS.Visible = nUDSXS.Value != 1 || nUDSZS.Value != 1;
-                if (nUDSXS.Value != 1 || nUDSZS.Value != 1)
-                    btnSATrackS.Location = new Point((int)((float)nUDSXS.Value * (btnSATrack.Location.X - pnlSATrack.Size.Width / 2f) + pnlSATrack.Size.Width / 2f),
-                        (int)((float)nUDSZS.Value * (btnSATrack.Location.Y - pnlSATrack.Size.Height / 2f) + pnlSATrack.Size.Height / 2f));
 
-                tBL2.Value = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).L2;
+                double tempSXS = (double)nUDSXS.Value;
+                double tempSZS = (double)nUDSZS.Value;
+                btnSATrackS.Visible = tempSXS != 1 || tempSZS != 1;
+                if (tempSXS != 1 || tempSZS != 1)
+                {
+                    btnSATrackS.Location = new Point((int)(tempSXS * (btnSATrack.Location.X - pnlSATrack.Size.Width / 2f) + pnlSATrack.Size.Width / 2f),
+                        (int)(tempSZS * (btnSATrack.Location.Y - pnlSATrack.Size.Height / 2f) + pnlSATrack.Size.Height / 2f));
+                }
+
+                double tempL2 = (double)nUDL2.Value;
+                double tempL2S = (double)nUDL2S.Value;
+                tBL2.Value = Program.rootHub.getDS4State(tempDeviceNum).L2;
                 lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 25), 
-                    Math.Max((int)(((tBL2.Location.Y + tBL2.Size.Height) - (tBL2.Value * (float)nUDL2S.Value) / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
+                    Math.Max((int)(((tBL2.Location.Y + tBL2.Size.Height) - (tBL2.Value * tempL2S) / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
                     (int)(1 * ((tBL2.Location.Y + tBL2.Size.Height) - 255 / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20)));
 
-                if (tBL2.Value * (float)nUDL2S.Value >= 255)
+                if (tBL2.Value * tempL2S >= 255)
                     lbL2Track.ForeColor = Color.Green;
-                else if (tBL2.Value * (float)nUDL2S.Value < (double)nUDL2.Value * 255)
+                else if (tBL2.Value * tempL2S < tempL2 * 255)
                     lbL2Track.ForeColor = Color.Red;
                 else
                     lbL2Track.ForeColor = Color.Black;
 
-                tBR2.Value = Program.rootHub.getDS4State((int)nUDSixaxis.Value - 1).R2;
+                double tempR2 = (double)nUDR2.Value;
+                double tempR2S = (double)nUDR2S.Value;
+                tBR2.Value = Program.rootHub.getDS4State(tempDeviceNum).R2;
                 lbR2Track.Location = new Point(tBR2.Location.X + (int)(dpix * 25),
-                     Math.Max((int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - (tBR2.Value * (float)nUDR2S.Value) / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
+                     Math.Max((int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - (tBR2.Value * tempR2S) / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
                      (int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - 255 / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20)));
 
-                if (tBR2.Value * (float)nUDR2S.Value >= 255)
+                if (tBR2.Value * tempR2S >= 255)
                     lbR2Track.ForeColor = Color.Green;
-                else if (tBR2.Value * (float)nUDR2S.Value < (double)nUDR2.Value * 255)
+                else if (tBR2.Value * tempR2S < tempR2 * 255)
                     lbR2Track.ForeColor = Color.Red;
                 else
                     lbR2Track.ForeColor = Color.Black;
-
 
                 double latency = ds.Latency;
                 int warnInterval = ds.getWarnInterval();
@@ -917,7 +932,8 @@ namespace DS4Windows
         {
             if (Form.ActiveForm == root && cBControllerInput.Checked && tCControls.SelectedIndex < 1)
             {
-                switch (Program.rootHub.GetInputkeys((int)nUDSixaxis.Value - 1))
+                int tempDeviceNum = (int)nUDSixaxis.Value - 1;
+                switch (Program.rootHub.GetInputkeys(tempDeviceNum))
                 {
                     case ("nothing"): break;
                     case ("Cross"): Show_ControlsBn(bnCross, e); break;
@@ -1218,7 +1234,6 @@ namespace DS4Windows
                 pBHoveredButton.Size = new Size((int)(pBHoveredButton.Image.Size.Width * (dpix / 1.25f)), (int)(pBHoveredButton.Image.Size.Height * (dpix / 1.25f)));
         }
 
-
         private void button_MouseLeave(object sender, EventArgs e)
         {
             pBHoveredButton.Image = null;
@@ -1345,15 +1360,15 @@ namespace DS4Windows
             UpdateDS4CSetting(device, ctrl.Name, shift, tag.Key, tag.Value, kt, sTrigger);
         }
 
-         public void ChangeButtonText(KeyValuePair<object, string> tag, Control ctrl, bool SC)
-         {
-             if (ctrl is Button)
-             {
+        public void ChangeButtonText(KeyValuePair<object, string> tag, Control ctrl, bool SC)
+        {
+            if (ctrl is Button)
+            {
                 DS4KeyType kt = DS4KeyType.None;
                 if (SC) kt |= DS4KeyType.ScanCode;
                 UpdateDS4CSetting(device, ctrl.Name, false, tag.Key, tag.Value, kt);
             }
-         }
+        }
 
         /*public void Toggle_Bn(bool SC, bool TG, bool MC,  bool MR)
         {
@@ -1384,7 +1399,6 @@ namespace DS4Windows
                         btn.Font = new Font(btn.Font, FontStyle.Regular);
             }
         }*/
-
 
         private void btnLightbar_Click(object sender, EventArgs e)
         {
@@ -1423,7 +1437,6 @@ namespace DS4Windows
             if (device < 4)
                 DS4LightBar.forcelight[device] = false;
         }
-
 
         private void btnChargingColor_Click(object sender, EventArgs e)
         {
@@ -2645,19 +2658,6 @@ namespace DS4Windows
             lbControlName.Text = lbControlTip.Text;
         }
 
-        private void nUDSens_ValueChanged(object sender, EventArgs e)
-        {
-            if (!loading)
-            {
-                L2Sens[device] = (double)nUDL2S.Value;
-                R2Sens[device] = (double)nUDR2S.Value;
-                LSSens[device] = (double)nUDLSS.Value;
-                RSSens[device] = (double)nUDRSS.Value;
-                SXSens[device] = (double)nUDSXS.Value;
-                SZSens[device] = (double)nUDSZS.Value;
-            }
-        }
-
         private void nUDLSAntiDead_ValueChanged(object sender, EventArgs e)
         {
             LSAntiDeadzone[device] = (int)(nUDLSAntiDead.Value * 100);
@@ -2727,6 +2727,54 @@ namespace DS4Windows
         {
             int currentIndex = btPollRateComboBox.SelectedIndex;
             BTPollRate[device] = currentIndex;
+        }
+
+        private void nUDL2Sens_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                L2Sens[device] = (double)nUDL2S.Value;
+            }
+        }
+
+        private void nUDLSSens_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                LSSens[device] = (double)nUDLSS.Value;
+            }
+        }
+
+        private void nUDR2Sens_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                R2Sens[device] = (double)nUDR2S.Value;
+            }
+        }
+
+        private void nUDRSSens_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                RSSens[device] = (double)nUDRSS.Value;
+            }
+        }
+
+        private void nUDSXSens_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                SXSens[device] = (double)nUDSXS.Value;
+            }
+        }
+
+        private void nUDSZSens_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                SZSens[device] = (double)nUDSZS.Value;
+            }
         }
 
         private void Options_Resize(object sender, EventArgs e)
@@ -2801,7 +2849,6 @@ namespace DS4Windows
         {
             GyroSensitivity[device] = (int)Math.Round(nUDGyroSensitivity.Value, 0);
         }
-        
 
         private void cBFlashType_SelectedIndexChanged(object sender, EventArgs e)
         {

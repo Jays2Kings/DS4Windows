@@ -3069,7 +3069,7 @@
             0,
             0,
             0});
-            this.nUDL2S.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDL2S.ValueChanged += new System.EventHandler(this.nUDL2Sens_ValueChanged);
             // 
             // nUDLSS
             // 
@@ -3096,7 +3096,7 @@
             0,
             0,
             0});
-            this.nUDLSS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDLSS.ValueChanged += new System.EventHandler(this.nUDLSSens_ValueChanged);
             // 
             // lbSixaxisXS
             // 
@@ -3128,7 +3128,7 @@
             0,
             0,
             0});
-            this.nUDR2S.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDR2S.ValueChanged += new System.EventHandler(this.nUDR2Sens_ValueChanged);
             // 
             // lbSixaxisZS
             // 
@@ -3160,7 +3160,7 @@
             0,
             0,
             0});
-            this.nUDRSS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDRSS.ValueChanged += new System.EventHandler(this.nUDRSSens_ValueChanged);
             // 
             // lbR2LS
             // 
@@ -3192,7 +3192,7 @@
             0,
             0,
             0});
-            this.nUDSXS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDSXS.ValueChanged += new System.EventHandler(this.nUDSXSens_ValueChanged);
             // 
             // lbRSS
             // 
@@ -3229,7 +3229,7 @@
             0,
             0,
             0});
-            this.nUDSZS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDSZS.ValueChanged += new System.EventHandler(this.nUDSZSens_ValueChanged);
             // 
             // cMGyroTriggers
             // 

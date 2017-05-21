@@ -1105,9 +1105,10 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
-        public bool[] useCustomLeds = new bool[] { false, false, false, false };
+        public bool[] useCustomLeds = new bool[] { false, false, false, false, false };
         public DS4Color[] m_CustomLeds = new DS4Color[]
         {
+            new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -2697,7 +2698,7 @@ namespace DS4Windows
                             bool.TryParse(ss[0], out useCustomLeds[i]);
                             DS4Color.TryParse(ss[1], ref m_CustomLeds[i]);
                         }
-                        catch { missingSetting = true; }
+                        catch { useCustomLeds[i] = false; m_CustomLeds[i] = new DS4Color(Color.Black); missingSetting = true; }
                     }
                 }
             }

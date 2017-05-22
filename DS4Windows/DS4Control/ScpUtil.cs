@@ -3314,6 +3314,9 @@ namespace DS4Windows
         public string extra;
         public bool pressRelease = false;
         public DS4KeyType keyType;
+        public bool tappedOnce = false;
+        public bool firstTouch = false;
+        public bool secondtouchbegin = false;
 
         public SpecialAction(string name, string controls, string type, string details, double delay = 0, string extras = "")
         {

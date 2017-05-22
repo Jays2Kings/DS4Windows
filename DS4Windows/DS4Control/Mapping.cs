@@ -82,7 +82,7 @@ namespace DS4Windows
         public static DateTime[] oldnowAction = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
         public static int[] untriggerindex = { -1, -1, -1, -1 };
         public static DateTime[] oldnowKeyAct = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
-        private static bool tappedOnce = false, firstTouch = false, secondtouchbegin = false;
+        //private static bool tappedOnce = false, firstTouch = false, secondtouchbegin = false;
         private static DateTime pastTime, firstTap, TimeofEnd;
         private static DS4Controls[] shiftTriggerMapping = { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
             DS4Controls.Triangle, DS4Controls.Options, DS4Controls.Share, DS4Controls.DpadUp, DS4Controls.DpadDown,
@@ -1718,6 +1718,9 @@ namespace DS4Windows
                             {
                                 actionFound = true;
 
+                                bool tappedOnce = action.tappedOnce, firstTouch = action.firstTouch,
+                                    secondtouchbegin = action.secondtouchbegin;
+
                                 /*if (getCustomButton(device, action.trigger[0]) != X360Controls.Unbound)
                                     getCustomButtons(device)[action.trigger[0]] = X360Controls.Unbound;
                                 if (getCustomMacro(device, action.trigger[0]) != "0")
@@ -1744,26 +1747,33 @@ namespace DS4Windows
                                     pastTime = DateTime.UtcNow;
                                     if (pastTime <= (firstTap + TimeSpan.FromMilliseconds(150)))
                                     {
-                                        tappedOnce = false;
-                                        secondtouchbegin = true;
+                                        action.tappedOnce = tappedOnce = false;
+                                        action.secondtouchbegin = secondtouchbegin = true;
+                                        //tappedOnce = false;
+                                        //secondtouchbegin = true;
                                     }
                                     else
-                                        firstTouch = true;
+                                        action.firstTouch = firstTouch = true;
+                                        //firstTouch = true;
                                 }
                                 else if (!activeCur && activePrev)
                                 {
                                     // released
                                     if (secondtouchbegin)
                                     {
-                                        firstTouch = false;
-                                        secondtouchbegin = false;
+                                        action.firstTouch = firstTouch = false;
+                                        action.secondtouchbegin = secondtouchbegin = false;
+                                        //firstTouch = false;
+                                        //secondtouchbegin = false;
                                     }
                                     else if (firstTouch)
                                     {
-                                        firstTouch = false;
+                                        action.firstTouch = firstTouch = false;
+                                        //firstTouch = false;
                                         if (DateTime.UtcNow <= (pastTime + TimeSpan.FromMilliseconds(200)) && !tappedOnce)
                                         {
-                                            tappedOnce = true;
+                                            action.tappedOnce = tappedOnce = true;
+                                            //tappedOnce = true;
                                             firstTap = DateTime.UtcNow;
                                             TimeofEnd = DateTime.UtcNow;
                                         }
@@ -1789,11 +1799,14 @@ namespace DS4Windows
                                             case 4: macro = "91/164/71/71/164/91"; break;
                                         }
                                     }
+
                                     if ((DateTime.UtcNow - TimeofEnd) > TimeSpan.FromMilliseconds(150))
                                     {
                                         if (macro != "")
                                             PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+
                                         tappedOnce = false;
+                                        action.tappedOnce = false;
                                     }
                                     //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
                                 }
@@ -1814,9 +1827,12 @@ namespace DS4Windows
                                             case 4: macro = "91/164/71/71/164/91"; break;
                                         }
                                     }
+
                                     if (macro != "")
                                         PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+
                                     firstTouch = false;
+                                    action.firstTouch = false;
                                 }
                                 else if (secondtouchbegin) //if double tap
                                 {
@@ -1835,9 +1851,12 @@ namespace DS4Windows
                                             case 4: macro = "91/164/71/71/164/91"; break;
                                         }
                                     }
+
                                     if (macro != "")
                                         PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+
                                     secondtouchbegin = false;
+                                    action.secondtouchbegin = false;
                                 }
                             }
                             else

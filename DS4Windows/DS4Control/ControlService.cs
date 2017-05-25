@@ -131,6 +131,8 @@ namespace DS4Windows
                         DS4Controllers[i] = device;
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
+                        device.SyncChange += DS4Devices.UpdateSerial;
+                        device.SerialChange += this.On_SerialChange;
                         touchPad[i] = new Mouse(i, device);
                         device.LightBarColor = getMainColor(i);
 
@@ -322,6 +324,8 @@ namespace DS4Windows
                             DS4Controllers[Index] = device;
                             device.Removal += this.On_DS4Removal;
                             device.Removal += DS4Devices.On_Removal;
+                            device.SyncChange += DS4Devices.UpdateSerial;
+                            device.SerialChange += this.On_SerialChange;
                             touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = getMainColor(Index);
                             device.Report += this.On_Report;
@@ -544,6 +548,23 @@ namespace DS4Windows
                 return Properties.Resources.NoneText;
         }
 
+        protected void On_SerialChange(object sender, EventArgs e)
+        {
+            DS4Device device = (DS4Device)sender;
+            int ind = -1;
+            for (int i = 0, arlength = DS4_CONTROLLER_COUNT; ind == -1 && i < arlength; i++)
+            {
+                DS4Device tempDev = DS4Controllers[i];
+                if (tempDev != null && device == tempDev)
+                    ind = i;
+            }
+
+            if (ind >= 0)
+            {
+                OnDeviceSerialChange(this, ind, device.getMacAddress());
+            }
+        }
+
         //Called when DS4 is disconnected or timed out
         protected virtual void On_DS4Removal(object sender, EventArgs e)
         {
@@ -595,6 +616,7 @@ namespace DS4Windows
                     Log.LogToTray(removed);
                     System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                     device.IsRemoved = true;
+                    device.Synced = false;
                     DS4Controllers[ind] = null;
                     touchPad[ind] = null;
                     lag[ind] = false;

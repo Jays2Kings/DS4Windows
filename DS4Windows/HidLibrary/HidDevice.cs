@@ -471,6 +471,11 @@ namespace DS4Windows
             return NativeMethods.HidD_GetFeature(safeReadHandle.DangerousGetHandle(), inputBuffer, inputBuffer.Length);
         }
 
+        public void resetSerial()
+        {
+            serial = null;
+        }
+
         public string readSerial()
         {
             if (serial != null)

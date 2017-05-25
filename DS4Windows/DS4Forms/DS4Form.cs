@@ -26,6 +26,7 @@ namespace DS4Windows
         delegate void BatteryStatusDelegate(object sender, BatteryReportArgs args);
         delegate void ControllerRemovedDelegate(object sender, ControllerRemovedArgs args);
         delegate void DeviceStatusChangedDelegate(object sender, DeviceStatusChangeEventArgs args);
+        delegate void DeviceSerialChangedDelegate(object sender, SerialChangeArgs args);
         protected Label[] Pads, Batteries;
         protected ComboBox[] cbs;
         protected Button[] ebns;
@@ -332,6 +333,8 @@ namespace DS4Windows
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
             Global.DeviceStatusChange += DeviceStatusChanged;
+            Global.DeviceSerialChange += DeviceSerialChanged;
+
             Enable_Controls(0, false);
             Enable_Controls(1, false);
             Enable_Controls(2, false);
@@ -1068,6 +1071,24 @@ namespace DS4Windows
                 }
 
                 Batteries[args.getIndex()].Text = battery;
+            }
+        }
+
+        protected void DeviceSerialChanged(object sender, SerialChangeArgs args)
+        {
+            if (InvokeRequired)
+            {
+                DeviceSerialChangedDelegate d = new DeviceSerialChangedDelegate(DeviceSerialChanged);
+                this.BeginInvoke(d, new object[] { sender, args });
+            }
+            else
+            {
+                int devIndex = args.getIndex();
+                string serial = args.getSerial();
+                if (devIndex >= 0 && devIndex < ControlService.DS4_CONTROLLER_COUNT)
+                {
+                    Pads[devIndex].Text = serial;
+                }
             }
         }
 

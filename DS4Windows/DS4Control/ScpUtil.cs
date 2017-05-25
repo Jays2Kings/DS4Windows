@@ -202,6 +202,28 @@ namespace DS4Windows
         }
     }
 
+    public class SerialChangeArgs : EventArgs
+    {
+        private int index;
+        private string serial;
+
+        public SerialChangeArgs(int index, string serial)
+        {
+            this.index = index;
+            this.serial = serial;
+        }
+
+        public int getIndex()
+        {
+            return index;
+        }
+
+        public string getSerial()
+        {
+            return serial;
+        }
+    }
+
     public class MultiValueDict<Key, Value> : Dictionary<Key, List<Value>>
     {
         public void Add(Key key, Value val)
@@ -320,6 +342,16 @@ namespace DS4Windows
             {
                 DeviceStatusChangeEventArgs args = new DeviceStatusChangeEventArgs(index);
                 DeviceStatusChange(sender, args);
+            }
+        }
+
+        public static event EventHandler<SerialChangeArgs> DeviceSerialChange;
+        public static void OnDeviceSerialChange(object sender, int index, string serial)
+        {
+            if (DeviceSerialChange != null)
+            {
+                SerialChangeArgs args = new SerialChangeArgs(index, serial);
+                DeviceSerialChange(sender, args);
             }
         }
 

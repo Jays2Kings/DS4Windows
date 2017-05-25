@@ -124,6 +124,7 @@ namespace DS4Windows
         // and when a USB cable is connected
         private const int BATTERY_MAX = 8;
         private const int BATTERY_MAX_USB = 11;
+        public const string blankSerial = "00:00:00:00:00:00";
         private HidDevice hDevice;
         private string Mac;
         private DS4State cState = new DS4State();
@@ -158,8 +159,11 @@ namespace DS4Windows
         private bool exitOutputThread = false;
         private bool exitInputThread = false;
         private object exitLocker = new object();
+
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
+        public event EventHandler<EventArgs> SyncChange = null;
+        public event EventHandler<EventArgs> SerialChange = null;
 
         public HidDevice HidDevice => hDevice;
         public bool IsExclusive => HidDevice.IsExclusive;
@@ -397,12 +401,14 @@ namespace DS4Windows
                 if (conType == ConnectionType.USB)
                 {
                     warnInterval = WARN_INTERVAL_USB;
+                    synced = true;
                 }
                 else
                 {
                     warnInterval = WARN_INTERVAL_BT;
                     audio = new DS4Audio();
                     micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Render);
+                    synced = isValidSerial();
                 }
             }
             else
@@ -412,6 +418,7 @@ namespace DS4Windows
                 outputReport = new byte[BT_OUTPUT_REPORT_LENGTH];
                 outputReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
                 warnInterval = WARN_INTERVAL_BT;
+                synced = isValidSerial();
             }
 
             touchpad = new DS4Touchpad();
@@ -570,6 +577,25 @@ namespace DS4Windows
         }
 
         private byte priorInputReport30 = 0xff;
+
+        private bool synced = false;
+        public bool Synced
+        {
+            get { return synced; }
+            set
+            {
+                if (synced != value)
+                {
+                    synced = value;
+                }
+            }
+        }
+
+        public bool isSynced()
+        {
+            return synced;
+        }
+
         public double Latency = 0;
         public string error;
         public bool firstReport = false;
@@ -771,6 +797,16 @@ namespace DS4Windows
                         Console.Write(" " + inputReport[i].ToString("x2"));
                     Console.WriteLine();
                 } */
+
+                if (conType == ConnectionType.SONYWA)
+                {
+                    bool noneSynced = inputReport[31] == 0;
+                    if (noneSynced != synced)
+                    {
+                        SyncChange?.Invoke(this, EventArgs.Empty);
+                        synced = noneSynced;
+                    }
+                }
 
                 bool ds4Idle = cState.FrameCounter == pState.FrameCounter;
                 if (!ds4Idle)
@@ -1179,6 +1215,27 @@ namespace DS4Windows
             {
                 eventQueue.Enqueue(act);
             }
+        }
+
+        public void updateSerial()
+        {
+            hDevice.resetSerial();
+            string tempMac = hDevice.readSerial();
+            if (tempMac != Mac)
+            {
+                Mac = tempMac;
+                SerialChange?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public bool isValidSerial()
+        {
+            return !Mac.Equals(blankSerial);
+        }
+
+        public static bool isValidSerial(string test)
+        {
+            return !test.Equals(blankSerial);
         }
     }
 }

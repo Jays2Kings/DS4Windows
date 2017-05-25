@@ -95,7 +95,7 @@ namespace DS4Windows
                     if (hDevice.IsOpen)
                     {
                         string serial = hDevice.readSerial();
-                        bool validSerial = !serial.Equals("00:00:00:00:00:00");
+                        bool validSerial = !serial.Equals(DS4Device.blankSerial);
                         if (Devices.ContainsKey(serial))
                             continue; // happens when the BT endpoint already is open and the USB is plugged into the same host
                         else
@@ -162,9 +162,31 @@ namespace DS4Windows
             lock (Devices)
             {
                 DS4Device device = (DS4Device)sender;
-                device.HidDevice.CloseDevice();
-                Devices.Remove(device.MacAddress);
-                DevicePaths.Remove(device.HidDevice.DevicePath);
+                if (device != null)
+                {
+                    device.HidDevice.CloseDevice();
+                    Devices.Remove(device.MacAddress);
+                    DevicePaths.Remove(device.HidDevice.DevicePath);
+                }
+            }
+        }
+
+        public static void UpdateSerial(object sender, EventArgs e)
+        {
+            lock (Devices)
+            {
+                DS4Device device = (DS4Device)sender;
+                if (device != null)
+                {
+                    string serial = device.getMacAddress();
+                    if (Devices.ContainsKey(serial))
+                    {
+                        Devices.Remove(serial);
+                        device.updateSerial();
+                        serial = device.getMacAddress();
+                        Devices.Add(serial, device);
+                    }
+                }
             }
         }
 

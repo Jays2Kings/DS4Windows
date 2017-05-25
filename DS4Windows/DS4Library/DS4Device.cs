@@ -800,7 +800,7 @@ namespace DS4Windows
 
                 if (conType == ConnectionType.SONYWA)
                 {
-                    bool noneSynced = inputReport[31] == 0;
+                    bool noneSynced = inputReport[31] != 0;
                     if (noneSynced != synced)
                     {
                         SyncChange?.Invoke(this, EventArgs.Empty);

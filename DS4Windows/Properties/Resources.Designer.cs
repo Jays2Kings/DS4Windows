@@ -1121,7 +1121,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Also dim light by idle timeout if on.
+        ///   Looks up a localized string similar to Also dim light by idle timeout if enabled when DS4 is fully charged.
         /// </summary>
         internal static string LightByBatteryTip {
             get {

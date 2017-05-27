@@ -614,7 +614,7 @@
     <value>Use Sixaxis to help calculate touchpad movement</value>
   </data>
   <data name="LightByBatteryTip" xml:space="preserve">
-    <value>Also dim light by idle timeout if on</value>
+    <value>Also dim light by idle timeout if enabled when DS4 is fully charged</value>
   </data>
   <data name="Macro" xml:space="preserve">
     <value>Macro</value>

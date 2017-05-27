@@ -153,7 +153,7 @@ namespace DS4Windows
                     double botratio = timeratio.TotalMilliseconds;
                     double topratio = TimeSpan.FromSeconds(idleDisconnectTimeout).TotalMilliseconds;
                     double ratio = 100.0 * (botratio / topratio);
-                    if (ratio >= 50.0 && ratio <= 100.0)
+                    if (ratio >= 50.0 && ratio < 100.0)
                         color = getTransitionedColor(color, new DS4Color(0, 0, 0), (uint)((ratio - 50) * 2));
                     else if (ratio >= 100.0)
                         color = getTransitionedColor(color, new DS4Color(0, 0, 0), 100.0);

@@ -760,6 +760,7 @@ namespace DS4Windows
                     int tempBattery = (inputReport[30] & 0x0f) * 100 / maxBatteryValue;
                     battery = Math.Min((byte)tempBattery, (byte)100);
                     cState.Battery = (byte)battery;
+                    //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
                     if (inputReport[30] != priorInputReport30)
                     {
                         priorInputReport30 = inputReport[30];

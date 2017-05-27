@@ -803,8 +803,8 @@ namespace DS4Windows
                     bool controllerSynced = inputReport[31] == 0;
                     if (controllerSynced != synced)
                     {
-                        SyncChange?.Invoke(this, EventArgs.Empty);
                         synced = controllerSynced;
+                        SyncChange?.Invoke(this, EventArgs.Empty);
                     }
                 }
 

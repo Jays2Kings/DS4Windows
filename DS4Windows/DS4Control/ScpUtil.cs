@@ -3349,6 +3349,9 @@ namespace DS4Windows
         public bool tappedOnce = false;
         public bool firstTouch = false;
         public bool secondtouchbegin = false;
+        public DateTime pastTime;
+        public DateTime firstTap;
+        public DateTime TimeofEnd;
 
         public SpecialAction(string name, string controls, string type, string details, double delay = 0, string extras = "")
         {

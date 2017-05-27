@@ -83,7 +83,7 @@ namespace DS4Windows
         public static int[] untriggerindex = { -1, -1, -1, -1 };
         public static DateTime[] oldnowKeyAct = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
         //private static bool tappedOnce = false, firstTouch = false, secondtouchbegin = false;
-        private static DateTime pastTime, firstTap, TimeofEnd;
+        //private static DateTime pastTime, firstTap, TimeofEnd;
         private static DS4Controls[] shiftTriggerMapping = { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
             DS4Controls.Triangle, DS4Controls.Options, DS4Controls.Share, DS4Controls.DpadUp, DS4Controls.DpadDown,
             DS4Controls.DpadLeft, DS4Controls.DpadRight, DS4Controls.PS, DS4Controls.L1, DS4Controls.R1, DS4Controls.L2,
@@ -1720,6 +1720,8 @@ namespace DS4Windows
 
                                 bool tappedOnce = action.tappedOnce, firstTouch = action.firstTouch,
                                     secondtouchbegin = action.secondtouchbegin;
+                                //DateTime pastTime = action.pastTime, firstTap = action.firstTap,
+                                //    TimeofEnd = action.TimeofEnd;
 
                                 /*if (getCustomButton(device, action.trigger[0]) != X360Controls.Unbound)
                                     getCustomButtons(device)[action.trigger[0]] = X360Controls.Unbound;
@@ -1744,8 +1746,8 @@ namespace DS4Windows
                                 if (activeCur && !activePrev)
                                 {
                                     // pressed down
-                                    pastTime = DateTime.UtcNow;
-                                    if (pastTime <= (firstTap + TimeSpan.FromMilliseconds(150)))
+                                    action.pastTime = DateTime.UtcNow;
+                                    if (action.pastTime <= (action.firstTap + TimeSpan.FromMilliseconds(150)))
                                     {
                                         action.tappedOnce = tappedOnce = false;
                                         action.secondtouchbegin = secondtouchbegin = true;
@@ -1770,12 +1772,12 @@ namespace DS4Windows
                                     {
                                         action.firstTouch = firstTouch = false;
                                         //firstTouch = false;
-                                        if (DateTime.UtcNow <= (pastTime + TimeSpan.FromMilliseconds(200)) && !tappedOnce)
+                                        if (DateTime.UtcNow <= (action.pastTime + TimeSpan.FromMilliseconds(200)) && !tappedOnce)
                                         {
                                             action.tappedOnce = tappedOnce = true;
                                             //tappedOnce = true;
-                                            firstTap = DateTime.UtcNow;
-                                            TimeofEnd = DateTime.UtcNow;
+                                            action.firstTap = DateTime.UtcNow;
+                                            action.TimeofEnd = DateTime.UtcNow;
                                         }
                                     }
                                 }
@@ -1800,7 +1802,7 @@ namespace DS4Windows
                                         }
                                     }
 
-                                    if ((DateTime.UtcNow - TimeofEnd) > TimeSpan.FromMilliseconds(150))
+                                    if ((DateTime.UtcNow - action.TimeofEnd) > TimeSpan.FromMilliseconds(150))
                                     {
                                         if (macro != "")
                                             PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
@@ -1810,7 +1812,7 @@ namespace DS4Windows
                                     }
                                     //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
                                 }
-                                else if (firstTouch && (DateTime.UtcNow - pastTime) > TimeSpan.FromMilliseconds(1000)) //helddown
+                                else if (firstTouch && (DateTime.UtcNow - action.pastTime) > TimeSpan.FromMilliseconds(1000)) //helddown
                                 {
                                     if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
                                     {

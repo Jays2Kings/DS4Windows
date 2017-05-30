@@ -699,9 +699,6 @@ namespace DS4Windows
                     cState = MappedState[ind];
                 }
 
-                // Update the GUI/whatever.
-                DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
-
                 if (!useDInputOnly[ind])
                 {
                     x360Bus.Parse(cState, processingData[ind].Report, ind);
@@ -718,6 +715,9 @@ namespace DS4Windows
                         }
                     }
                 }
+
+                // Update the GUI/whatever.
+                DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
 
                 // Output any synthetic events.
                 Mapping.Commit(ind);

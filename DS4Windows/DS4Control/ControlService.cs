@@ -89,7 +89,7 @@ namespace DS4Windows
         {
             if (DS4Devices.isExclusiveMode && !device.isExclusive())
             {
-                await System.Threading.Tasks.Task.Delay(5);
+                await Task.Delay(5);
                 string message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.getMacAddress()) + " " +
                     Properties.Resources.QuitOtherPrograms;
                 LogDebug(message, true);
@@ -716,11 +716,11 @@ namespace DS4Windows
                     }
                 }
 
-                // Update the GUI/whatever.
-                DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
-
                 // Output any synthetic events.
                 Mapping.Commit(ind);
+
+                // Update the GUI/whatever.
+                DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
             }
         }
 

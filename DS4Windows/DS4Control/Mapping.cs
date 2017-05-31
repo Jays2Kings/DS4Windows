@@ -135,6 +135,7 @@ namespace DS4Windows
         public static int mouseaccel = 0;
         public static int prevmouseaccel = 0;
         private static double horizontalRemainder = 0.0, verticalRemainder = 0.0;
+        private const int MOUSESPEEDFACTOR = 40;
 
         public static void Commit(int device)
         {
@@ -1042,7 +1043,7 @@ namespace DS4Windows
                                 {
                                     if (tempMouseDeltaY == 0)
                                     {
-                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 0);
+                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 0, ctrl);
                                         tempMouseDeltaY = -Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
                                     }
 
@@ -1052,7 +1053,7 @@ namespace DS4Windows
                                 {
                                     if (tempMouseDeltaY == 0)
                                     {
-                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 1);
+                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 1, ctrl);
                                         tempMouseDeltaY = Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
                                     }
 
@@ -1062,7 +1063,7 @@ namespace DS4Windows
                                 {
                                     if (tempMouseDeltaX == 0)
                                     {
-                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 2);
+                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 2, ctrl);
                                         tempMouseDeltaX = -Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
                                     }
 
@@ -1072,7 +1073,7 @@ namespace DS4Windows
                                 {
                                     if (tempMouseDeltaX == 0)
                                     {
-                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 3);
+                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 3, ctrl);
                                         tempMouseDeltaX = Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
                                     }
 
@@ -2176,7 +2177,7 @@ namespace DS4Windows
         }
 
         private static double getMouseMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState,
-            DS4StateFieldMapping fieldMapping, int mnum)
+            DS4StateFieldMapping fieldMapping, int mnum, ControlService ctrl)
         {
             int controlnum = DS4ControltoInt(control);
 
@@ -2195,6 +2196,7 @@ namespace DS4Windows
 
             int controlNum = (int)control;
             DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[controlNum];
+            long timeElapsed = ctrl.DS4Controllers[device].getLastTimeElapsed();
 
             if (controlType == DS4StateFieldMapping.ControlType.Button)
             {
@@ -2206,37 +2208,94 @@ namespace DS4Windows
                 switch (control)
                 {
                     case DS4Controls.LXNeg:
+                    {
                         if (cState.LX < 127 - deadzoneL)
-                            value = -(cState.LX - 127 - deadzoneL) / 2550d * speed;
+                        {
+                            double diff = -(cState.LX - 127 - deadzoneL) / (double)(0 - 127 - deadzoneL);
+                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = -(cState.LX - 127 - deadzoneL) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.LXPos:
+                    {
                         if (cState.LX > 127 + deadzoneL)
-                            value = (cState.LX - 127 + deadzoneL) / 2550d * speed;
+                        {
+                            double diff = (cState.LX - 127 + deadzoneL) / (double)(255 - 127 + deadzoneL);
+                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = (cState.LX - 127 + deadzoneL) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.RXNeg:
+                    {
                         if (cState.RX < 127 - deadzoneR)
-                            value = -(cState.RX - 127 - deadzoneR) / 2550d * speed;
+                        {
+                            double diff = -(cState.RX - 127 - deadzoneR) / (double)(0 - 127 - deadzoneR);
+                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = -(cState.RX - 127 - deadzoneR) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.RXPos:
+                    {
                         if (cState.RX > 127 + deadzoneR)
-                            value = (cState.RX - 127 + deadzoneR) / 2550d * speed;
+                        {
+                            double diff = (cState.RX - 127 + deadzoneR) / (double)(255 - 127 + deadzoneR);
+                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = (cState.RX - 127 + deadzoneR) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.LYNeg:
+                    {
                         if (cState.LY < 127 - deadzoneL)
-                            value = -(cState.LY - 127 - deadzoneL) / 2550d * speed;
+                        {
+                            double diff = -(cState.LY - 127 - deadzoneL) / (double)(0 - 127 - deadzoneL);
+                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = -(cState.LY - 127 - deadzoneL) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.LYPos:
+                    {
                         if (cState.LY > 127 + deadzoneL)
-                            value = (cState.LY - 127 + deadzoneL) / 2550d * speed;
+                        {
+                            double diff = (cState.LY - 127 + deadzoneL) / (double)(255 - 127 + deadzoneL);
+                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = (cState.LY - 127 + deadzoneL) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.RYNeg:
+                    {
                         if (cState.RY < 127 - deadzoneR)
-                            value = -(cState.RY - 127 - deadzoneR) / 2550d * speed;
+                        {
+                            double diff = -(cState.RY - 127 - deadzoneR) / (double)(0 - 127 - deadzoneR);
+                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = -(cState.RY - 127 - deadzoneR) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.RYPos:
+                    {
                         if (cState.RY > 127 + deadzoneR)
-                            value = (cState.RY - 127 + deadzoneR) / 2550d * speed;
+                        {
+                            double diff = (cState.RY - 127 + deadzoneR) / (double)(255 - 127 + deadzoneR);
+                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = (cState.RY - 127 + deadzoneR) / 2550d * speed;
+                        }
+
                         break;
+                    }
+
                     default: break;
                 }
             }

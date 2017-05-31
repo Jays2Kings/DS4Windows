@@ -136,6 +136,7 @@ namespace DS4Windows
         public static int prevmouseaccel = 0;
         private static double horizontalRemainder = 0.0, verticalRemainder = 0.0;
         private const int MOUSESPEEDFACTOR = 40;
+        private const double MOUSESTICKOFFSET = 0.025;
 
         public static void Commit(int device)
         {
@@ -2197,6 +2198,7 @@ namespace DS4Windows
             int controlNum = (int)control;
             DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[controlNum];
             long timeElapsed = ctrl.DS4Controllers[device].getLastTimeElapsed();
+            //double mouseOffset = 0.025;
 
             if (controlType == DS4StateFieldMapping.ControlType.Button)
             {
@@ -2212,7 +2214,8 @@ namespace DS4Windows
                         if (cState.LX < 127 - deadzoneL)
                         {
                             double diff = -(cState.LX - 127 - deadzoneL) / (double)(0 - 127 - deadzoneL);
-                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - MOUSESTICKOFFSET) * diff + MOUSESTICKOFFSET;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = -(cState.LX - 127 - deadzoneL) / 2550d * speed;
                         }
 
@@ -2223,7 +2226,8 @@ namespace DS4Windows
                         if (cState.LX > 127 + deadzoneL)
                         {
                             double diff = (cState.LX - 127 + deadzoneL) / (double)(255 - 127 + deadzoneL);
-                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - MOUSESTICKOFFSET) * diff + MOUSESTICKOFFSET;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = (cState.LX - 127 + deadzoneL) / 2550d * speed;
                         }
 
@@ -2234,7 +2238,8 @@ namespace DS4Windows
                         if (cState.RX < 127 - deadzoneR)
                         {
                             double diff = -(cState.RX - 127 - deadzoneR) / (double)(0 - 127 - deadzoneR);
-                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - MOUSESTICKOFFSET) * diff + MOUSESTICKOFFSET;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = -(cState.RX - 127 - deadzoneR) / 2550d * speed;
                         }
 
@@ -2245,7 +2250,8 @@ namespace DS4Windows
                         if (cState.RX > 127 + deadzoneR)
                         {
                             double diff = (cState.RX - 127 + deadzoneR) / (double)(255 - 127 + deadzoneR);
-                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - MOUSESTICKOFFSET) * diff + MOUSESTICKOFFSET;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = (cState.RX - 127 + deadzoneR) / 2550d * speed;
                         }
 
@@ -2256,7 +2262,8 @@ namespace DS4Windows
                         if (cState.LY < 127 - deadzoneL)
                         {
                             double diff = -(cState.LY - 127 - deadzoneL) / (double)(0 - 127 - deadzoneL);
-                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - MOUSESTICKOFFSET) * diff + MOUSESTICKOFFSET;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = -(cState.LY - 127 - deadzoneL) / 2550d * speed;
                         }
 
@@ -2267,7 +2274,8 @@ namespace DS4Windows
                         if (cState.LY > 127 + deadzoneL)
                         {
                             double diff = (cState.LY - 127 + deadzoneL) / (double)(255 - 127 + deadzoneL);
-                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - MOUSESTICKOFFSET) * diff + MOUSESTICKOFFSET;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = (cState.LY - 127 + deadzoneL) / 2550d * speed;
                         }
 
@@ -2278,7 +2286,8 @@ namespace DS4Windows
                         if (cState.RY < 127 - deadzoneR)
                         {
                             double diff = -(cState.RY - 127 - deadzoneR) / (double)(0 - 127 - deadzoneR);
-                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - MOUSESTICKOFFSET) * diff + MOUSESTICKOFFSET;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = -(cState.RY - 127 - deadzoneR) / 2550d * speed;
                         }
 
@@ -2289,7 +2298,8 @@ namespace DS4Windows
                         if (cState.RY > 127 + deadzoneR)
                         {
                             double diff = (cState.RY - 127 + deadzoneR) / (double)(255 - 127 + deadzoneR);
-                            value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - MOUSESTICKOFFSET) * diff + MOUSESTICKOFFSET;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = (cState.RY - 127 + deadzoneR) / 2550d * speed;
                         }
 

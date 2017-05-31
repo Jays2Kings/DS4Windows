@@ -2387,8 +2387,11 @@ namespace DS4Windows
                 horizontalRemainder = 0.0;
             }
 
-            mouseX = (int)rawMouseX;
-            horizontalRemainder = rawMouseX - mouseX;
+            double mouseXTemp = rawMouseX - (Math.IEEERemainder(rawMouseX * 1000.0, 1.0) / 1000.0);
+            mouseX = (int)mouseXTemp;
+            horizontalRemainder = mouseXTemp - mouseX;
+            //mouseX = (int)rawMouseX;
+            //horizontalRemainder = rawMouseX - mouseX;
 
             if ((rawMouseY > 0.0 && verticalRemainder > 0.0) || (rawMouseY < 0.0 && verticalRemainder < 0.0))
             {
@@ -2399,8 +2402,11 @@ namespace DS4Windows
                 verticalRemainder = 0.0;
             }
 
-            mouseY = (int)rawMouseY;
-            verticalRemainder = rawMouseY - mouseY;
+            double mouseYTemp = rawMouseY - (Math.IEEERemainder(rawMouseY * 1000.0, 1.0) / 1000.0);
+            mouseY = (int)mouseYTemp;
+            verticalRemainder = mouseYTemp - mouseY;
+            //mouseY = (int)rawMouseY;
+            //verticalRemainder = rawMouseY - mouseY;
         }
 
         public static bool compare(byte b1, byte b2)

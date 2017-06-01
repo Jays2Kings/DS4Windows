@@ -115,7 +115,7 @@ namespace DS4Windows
         private const int BT_OUTPUT_REPORT_LENGTH = 78;
         private const int BT_INPUT_REPORT_LENGTH = 547;
         // Use large value for worst case scenario
-        private const int READ_STREAM_TIMEOUT = 100;
+        private const int READ_STREAM_TIMEOUT = 1000;
         // Isolated BT report can have latency as high as 15 ms
         // due to hardware.
         private const int WARN_INTERVAL_BT = 20;
@@ -387,6 +387,10 @@ namespace DS4Windows
         private Queue<Action> eventQueue = new Queue<Action>();
         private object eventQueueLock = new object();
 
+        private Thread timeoutCheckThread = null;
+        private bool timeoutExecuted = false;
+        private bool timeoutEvent = false;
+
         public DS4Device(HidDevice hidDevice)
         {            
             hDevice = hidDevice;
@@ -426,6 +430,23 @@ namespace DS4Windows
             uiContext = SynchronizationContext.Current;
         }
 
+        private void timeoutTestThread()
+        {
+            while (!timeoutExecuted)
+            {
+                if (timeoutEvent)
+                {
+                    timeoutExecuted = true;
+                    this.sendOutputReport(true); // Kick Windows into noticing the disconnection.
+                }
+                else
+                {
+                    timeoutEvent = true;
+                    Thread.Sleep(READ_STREAM_TIMEOUT);
+                }
+            }
+        }
+
         public void StartUpdate()
         {
             if (ds4Input == null)
@@ -447,6 +468,10 @@ namespace DS4Windows
                     ds4Output.Name = "DS4 Output thread: " + Mac;
                     ds4Output.IsBackground = true;
                     ds4Output.Start();
+
+                    timeoutCheckThread = new Thread(timeoutTestThread);
+                    timeoutCheckThread.IsBackground = true;
+                    timeoutCheckThread.Start();
                 }
 
                 ds4Input = new Thread(performDs4Input);
@@ -610,6 +635,7 @@ namespace DS4Windows
             long oldtime = 0;
             Stopwatch sw = new Stopwatch();
             sw.Start();
+            timeoutEvent = false;
 
             while (!exitInputThread)
             {
@@ -634,6 +660,7 @@ namespace DS4Windows
                     //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
                     //HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
                     HidDevice.ReadStatus res = hDevice.ReadWithFileStream(btInputReport);
+                    timeoutEvent = false;
                     //HidDevice.ReadStatus res = hDevice.ReadFileOverlapped(btInputReport, READ_STREAM_TIMEOUT);
                     if (res == HidDevice.ReadStatus.Success)
                     {
@@ -888,6 +915,8 @@ namespace DS4Windows
                     //eventQueue.Clear();
                 }
             }
+
+            timeoutExecuted = true;
         }
 
         public void FlushHID()

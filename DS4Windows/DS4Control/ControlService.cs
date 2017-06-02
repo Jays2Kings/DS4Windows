@@ -770,7 +770,7 @@ namespace DS4Windows
                 }
                 else if (Mapping.getBoolButtonMapping(cState.Square))
                 {
-                    result = "Triangle";
+                    result = "Square";
                 }
                 else if (Mapping.getBoolButtonMapping(cState.L1))
                 {
@@ -810,7 +810,7 @@ namespace DS4Windows
                 }
                 else if (Mapping.getBoolButtonMapping(cState.DpadRight))
                 {
-                    result = "DpadRight";
+                    result = "Right";
                 }
                 else if (Mapping.getBoolButtonMapping(cState.Share))
                 {

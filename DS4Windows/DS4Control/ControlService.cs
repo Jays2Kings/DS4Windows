@@ -5,6 +5,7 @@ using System.Linq;
 
 using System.Media;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using static DS4Windows.Global;
 
 namespace DS4Windows
@@ -614,7 +615,17 @@ namespace DS4Windows
 
                     LogDebug(removed);
                     Log.LogToTray(removed);
-                    System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
+                    /*Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    while (sw.ElapsedMilliseconds < XINPUT_UNPLUG_SETTLE_TIME)
+                    {
+                        // Use SpinWait to keep control of current thread. Using Sleep could potentially
+                        // cause other events to get run out of order
+                        System.Threading.Thread.SpinWait(500);
+                    }
+                    sw.Stop();
+                    */
+
                     device.IsRemoved = true;
                     device.Synced = false;
                     DS4Controllers[ind] = null;
@@ -622,6 +633,7 @@ namespace DS4Windows
                     lag[ind] = false;
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = false;
+                    System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                     OnControllerRemoved(this, ind);
                 }
             }

@@ -625,8 +625,8 @@ namespace DS4Windows
                         {
                             if (proprofiles[j][i] != "(none)" && proprofiles[j][i] != Properties.Resources.noneProfile)
                             {
-                                LoadTempProfile(j, proprofiles[j][i], true, Program.rootHub); //j is controller index, i is filename
-                                if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
+                                LoadTempProfile(j, proprofiles[j][i], true, Program.rootHub); // j is controller index, i is filename
+                                //if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
                             }
                         }
 

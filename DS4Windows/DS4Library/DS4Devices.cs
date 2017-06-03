@@ -192,6 +192,7 @@ namespace DS4Windows
 
         public static void reEnableDevice(string deviceInstanceId)
         {
+            Stopwatch sw = new Stopwatch();
             bool success;
             Guid hidGuid = new Guid();
             NativeMethods.HidD_GetHidGuid(ref hidGuid);
@@ -226,7 +227,14 @@ namespace DS4Windows
                 throw new Exception("Error disabling device, error code = " + Marshal.GetLastWin32Error());
             }
 
-            System.Threading.Thread.Sleep(50);
+            sw.Start();
+            while (sw.ElapsedMilliseconds < 50)
+            {
+                // Use SpinWait to keep control of current thread. Using Sleep could potentially
+                // cause other events to get run out of order
+                System.Threading.Thread.SpinWait(100);
+            }
+            sw.Stop();
 
             propChangeParams.stateChange = NativeMethods.DICS_ENABLE;
             success = NativeMethods.SetupDiSetClassInstallParams(deviceInfoSet, ref deviceInfoData, ref propChangeParams, Marshal.SizeOf(propChangeParams));

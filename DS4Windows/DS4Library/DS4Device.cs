@@ -630,7 +630,8 @@ namespace DS4Windows
         {
             firstActive = DateTime.UtcNow;
             NativeMethods.HidD_SetNumInputBuffers(hDevice.safeReadHandle.DangerousGetHandle(), 2);
-            List<long> latencyList = new List<long>(51); // Set capacity at max + 1 to avoid any list resizing
+            //List<long> latencyList = new List<long>(51); // Set capacity at max + 1 to avoid any list resizing
+            Queue<long> latencyQueue = new Queue<long>(51); // Set capacity at max + 1 to avoid any resizing
             int tempLatencyCount = 0;
             long oldtime = 0;
             Stopwatch sw = new Stopwatch();
@@ -643,17 +644,21 @@ namespace DS4Windows
                 string currerror = string.Empty;
                 long curtime = sw.ElapsedMilliseconds;
                 this.lastTimeElapsed = curtime - oldtime;
-                latencyList.Add(this.lastTimeElapsed);
+                //latencyList.Add(this.lastTimeElapsed);
+                latencyQueue.Enqueue(this.lastTimeElapsed);
                 tempLatencyCount++;
                 oldtime = curtime;
 
                 if (tempLatencyCount > 50)
                 {
-                    latencyList.RemoveAt(0);
+                    //latencyList.RemoveAt(0);
+                    latencyQueue.Dequeue();
                     tempLatencyCount--;
                 }
 
-                Latency = latencyList.Average();
+                //Latency = latencyList.Average();
+                //latencyList.Average();
+                Latency = latencyQueue.Average();
 
                 if (conType == ConnectionType.BT)
                 {

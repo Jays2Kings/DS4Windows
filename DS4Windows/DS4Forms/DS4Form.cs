@@ -1183,7 +1183,7 @@ namespace DS4Windows
                     }
                 }
 
-                string tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+                //string tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
                 int Index = args.getIndex();
                 if (Index >= 0 && Index < ControlService.DS4_CONTROLLER_COUNT)
                 {

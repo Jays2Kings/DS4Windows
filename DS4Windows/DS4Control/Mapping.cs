@@ -1740,7 +1740,7 @@ namespace DS4Windows
                                 // button is assigned
                                 if (previousFieldMapping == null)
                                 {
-                                    previousFieldMapping = new DS4StateFieldMapping(tempPrevState, eState, tp);
+                                    previousFieldMapping = new DS4StateFieldMapping(tempPrevState, eState, tp, true);
                                 }
 
                                 bool activeCur = getBoolMapping2(device, action.trigger[0], cState, eState, tp, fieldMapping);

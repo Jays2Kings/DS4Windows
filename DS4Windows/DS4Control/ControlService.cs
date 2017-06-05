@@ -433,6 +433,8 @@ namespace DS4Windows
             device.Touchpad.TouchesMoved += tPad.touchesMoved;
             device.Touchpad.TouchesEnded += tPad.touchesEnded;
             device.Touchpad.TouchUnchanged += tPad.touchUnchanged;
+            //device.Touchpad.PreTouchProcess += delegate { touchPad[ind].populatePriorButtonStates(); };
+            device.Touchpad.PreTouchProcess += (sender, args) => { touchPad[ind].populatePriorButtonStates(); };
             device.SixAxis.SixAccelMoved += tPad.sixaxisMoved;
             //LogDebug("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
             //Log.LogToTray("Touchpad mode for " + device.MacAddress + " is now " + tmode.ToString());
@@ -642,7 +644,7 @@ namespace DS4Windows
         public bool[] lag = { false, false, false, false };
         public bool[] inWarnMonitor = { false, false, false, false };
 
-        //Called every time a new input report has arrived
+        // Called every time a new input report has arrived
         protected virtual void On_Report(object sender, EventArgs e)
         {
             DS4Device device = (DS4Device)sender;

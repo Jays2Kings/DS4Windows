@@ -23,7 +23,7 @@ namespace DS4Windows
             Square = Triangle = Circle = Cross = false;
             DpadUp = DpadDown = DpadLeft = DpadRight = false;
             L1 = L3 = R1 = R3 = false;
-            Share = Options = PS = Touch1 = Touch2 = TouchButton =  TouchRight = TouchLeft = false;
+            Share = Options = PS = Touch1 = Touch2 = TouchButton = TouchRight = TouchLeft = false;
             LX = RX = LY = RY = 127;
             L2 = R2 = 0;
             FrameCounter = 255; // only actually has 6 bits, so this is a null indicator

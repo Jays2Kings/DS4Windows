@@ -61,6 +61,9 @@ namespace DS4Windows
         bool runningBat;
         //bool outputlog = false;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
+        // 0 index is used for application version text. 1 - 4 indices are used for controller status
+        string[] notifyText = { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
+            string.Empty, string.Empty, string.Empty, string.Empty };
 
         internal const int BCM_FIRST = 0x1600; // Normal button
         internal const int BCM_SETSHIELD = (BCM_FIRST + 0x000C); // Elevated button
@@ -990,7 +993,7 @@ namespace DS4Windows
                 autoProfilesTimer.Stop();
                 btnStartStop.Text = Properties.Resources.StartText;
                 blankControllerTab();
-                generateNotifyText();
+                populateFullNotifyText();
             }
 
             startToolStripMenuItem.Text = btnStartStop.Text;
@@ -1075,18 +1078,66 @@ namespace DS4Windows
                 Batteries[args.getIndex()].Text = battery;
 
                 // Update device battery level display for tray icon
-                generateNotifyText();
+                generateDeviceNotifyText(args.getIndex());
+                populateNotifyText();
             }
         }
 
-        protected void generateNotifyText()
+        protected void populateFullNotifyText()
         {
-            string tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+            for (int i = 0; i < ControlService.DS4_CONTROLLER_COUNT; i++)
+            {
+                string temp = Program.rootHub.getShortDS4ControllerInfo(i);
+                if (temp != Properties.Resources.NoneText)
+                {
+                    notifyText[i + 1] += (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+                }
+                else
+                {
+                    notifyText[i + 1] = string.Empty;
+                }
+            }
+
+            populateNotifyText();
+
+            /*string tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
             for (int i = 0; i < ControlService.DS4_CONTROLLER_COUNT; i++)
             {
                 string temp = Program.rootHub.getShortDS4ControllerInfo(i);
                 if (temp != Properties.Resources.NoneText)
                     tooltip += "\n" + (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+            }
+
+            if (tooltip.Length > 63)
+                notifyIcon1.Text = tooltip.Substring(0, 63);
+            else
+                notifyIcon1.Text = tooltip;
+            */
+        }
+
+        protected void generateDeviceNotifyText(int index)
+        {
+            string temp = Program.rootHub.getShortDS4ControllerInfo(index);
+            if (temp != Properties.Resources.NoneText)
+            {
+                notifyText[index + 1] += (index + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+            }
+            else
+            {
+                notifyText[index + 1] = string.Empty;
+            }
+        }
+
+        protected void populateNotifyText()
+        {
+            string tooltip = notifyText[0];
+            for (int i = 1; i < 5; i++)
+            {
+                string temp = notifyText[i];
+                if (!string.IsNullOrEmpty(temp))
+                {
+                    tooltip += "\n" + notifyText[i]; // Carefully stay under the 63 character limit.
+                }
             }
 
             if (tooltip.Length > 63)
@@ -1167,16 +1218,19 @@ namespace DS4Windows
                         Enable_Controls(Index, false);
                     }
 
-                    if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
-                        tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
+                    generateDeviceNotifyText(Index);
+                    populateNotifyText();
+                    //if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
+                    //    tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
                 }
 
                 lbNoControllers.Visible = nocontrollers;
                 tLPControllers.Visible = !nocontrollers;
-                if (tooltip.Length > 63)
+                /*if (tooltip.Length > 63)
                     notifyIcon1.Text = tooltip.Substring(0, 63);
                 else
                     notifyIcon1.Text = tooltip;
+                */
             }
         }
 
@@ -1215,7 +1269,8 @@ namespace DS4Windows
                 tLPControllers.Visible = !nocontrollers;
 
                 // Update device battery level display for tray icon
-                generateNotifyText();
+                generateDeviceNotifyText(devIndex);
+                populateNotifyText();
             }
         }
 

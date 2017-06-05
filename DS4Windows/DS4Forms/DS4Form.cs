@@ -370,7 +370,7 @@ namespace DS4Windows
                 nUDUpdateTime.Value = checkwhen;
             }
 
-            Uri url = new Uri("http://23.236.26.40/ds4windows/files/builds/newest.txt"); //Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("http://23.236.26.40/ds4windows/files/builds/newest.txt"); // Sorry other devs, gonna have to find your own server
 
             if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
             {
@@ -990,6 +990,7 @@ namespace DS4Windows
                 autoProfilesTimer.Stop();
                 btnStartStop.Text = Properties.Resources.StartText;
                 blankControllerTab();
+                generateNotifyText();
             }
 
             startToolStripMenuItem.Text = btnStartStop.Text;
@@ -1058,6 +1059,7 @@ namespace DS4Windows
                 string battery;
                 int level = args.getLevel();
                 bool charging = args.isCharging();
+                int Index = args.getIndex();
                 if (charging)
                 {
                     if (level >= 100)
@@ -1071,7 +1073,26 @@ namespace DS4Windows
                 }
 
                 Batteries[args.getIndex()].Text = battery;
+
+                // Update device battery level display for tray icon
+                generateNotifyText();
             }
+        }
+
+        protected void generateNotifyText()
+        {
+            string tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+            for (int i = 0; i < ControlService.DS4_CONTROLLER_COUNT; i++)
+            {
+                string temp = Program.rootHub.getShortDS4ControllerInfo(i);
+                if (temp != Properties.Resources.NoneText)
+                    tooltip += "\n" + (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+            }
+
+            if (tooltip.Length > 63)
+                notifyIcon1.Text = tooltip.Substring(0, 63);
+            else
+                notifyIcon1.Text = tooltip;
         }
 
         protected void DeviceSerialChanged(object sender, SerialChangeArgs args)
@@ -1192,6 +1213,9 @@ namespace DS4Windows
 
                 lbNoControllers.Visible = nocontrollers;
                 tLPControllers.Visible = !nocontrollers;
+
+                // Update device battery level display for tray icon
+                generateNotifyText();
             }
         }
 

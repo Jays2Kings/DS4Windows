@@ -249,7 +249,7 @@ namespace DS4Windows
         public const int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
-        public static bool[] useDInputOnly = new bool[5] { false, false, false, false, false };
+        public static bool[] useDInputOnly = new bool[5] { true, true, true, true, true };
 
         public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
             X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,

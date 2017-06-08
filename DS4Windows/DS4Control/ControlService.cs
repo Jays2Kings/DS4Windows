@@ -7,6 +7,7 @@ using System.Media;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using static DS4Windows.Global;
+using System.Threading;
 
 namespace DS4Windows
 {
@@ -242,7 +243,7 @@ namespace DS4Windows
 
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
                         x360Bus.Unplug(i);
-                        useDInputOnly[i] = false;
+                        useDInputOnly[i] = true;
                         anyUnplugged = true;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
@@ -634,7 +635,7 @@ namespace DS4Windows
                     touchPad[ind] = null;
                     lag[ind] = false;
                     inWarnMonitor[ind] = false;
-                    useDInputOnly[ind] = false;
+                    useDInputOnly[ind] = true;
                     System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                     OnControllerRemoved(this, ind);
                 }
@@ -671,9 +672,23 @@ namespace DS4Windows
                 {
                     int flashWhenLateAt = getFlashWhenLateAt();
                     if (!lag[ind] && device.Latency >= flashWhenLateAt)
-                        LagFlashWarning(ind, true);
+                    {
+                        device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state4)
+                        {
+                            LagFlashWarning(ind, true);
+                        }), null);
+
+                        //LagFlashWarning(ind, true);
+                    }
                     else if (lag[ind] && device.Latency < flashWhenLateAt)
-                        LagFlashWarning(ind, false);
+                    {
+                        device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state4)
+                        {
+                            LagFlashWarning(ind, false);
+                        }), null);
+
+                        //LagFlashWarning(ind, false);
+                    }
                 }
                 else
                 {
@@ -691,11 +706,22 @@ namespace DS4Windows
                 if (!device.firstReport && device.IsAlive())
                 {
                     device.firstReport = true;
-                    OnDeviceStatusChanged(this, ind);
+                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state4)
+                    {
+                        OnDeviceStatusChanged(this, ind);
+                    }), null);
+
+                    //OnDeviceStatusChanged(this, ind);
+
                 }
                 else if (pState.Battery != cState.Battery || device.oldCharging != device.isCharging())
                 {
-                    OnBatteryStatusChange(this, ind, cState.Battery, device.isCharging());
+                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state4)
+                    {
+                        OnBatteryStatusChange(this, ind, cState.Battery, device.isCharging());
+                    }), null);
+
+                    //OnBatteryStatusChange(this, ind, cState.Battery, device.isCharging());
                 }
 
                 if (getEnableTouchToggle(ind))

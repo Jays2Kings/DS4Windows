@@ -109,7 +109,7 @@ namespace DS4Windows
                                 // Grab reference to exclusively opened HidDevice so device
                                 // stays hidden to other processes
                                 DisabledDevices.Add(hDevice);
-                                DevicePaths.Add(hDevice.DevicePath);
+                                //DevicePaths.Add(hDevice.DevicePath);
                             }
 
                             continue;
@@ -184,7 +184,7 @@ namespace DS4Windows
                     device.HidDevice.CloseDevice();
                     Devices.Remove(device.MacAddress);
                     DevicePaths.Remove(device.HidDevice.DevicePath);
-                    purgeHiddenExclusiveDevices();
+                    //purgeHiddenExclusiveDevices();
                 }
             }
         }

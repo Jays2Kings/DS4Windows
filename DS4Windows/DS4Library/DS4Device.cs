@@ -384,6 +384,11 @@ namespace DS4Windows
         }
 
         private SynchronizationContext uiContext = null;
+        public SynchronizationContext getUiContext()
+        {
+            return uiContext;
+        }
+
         private Queue<Action> eventQueue = new Queue<Action>();
         private object eventQueueLock = new object();
 
@@ -692,6 +697,7 @@ namespace DS4Windows
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
 
+                        timeoutExecuted = true;
                         return;
                     }
                 }
@@ -722,6 +728,7 @@ namespace DS4Windows
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
 
+                        timeoutExecuted = true;
                         return;
                     }
                     else

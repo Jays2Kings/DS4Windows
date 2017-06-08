@@ -128,14 +128,14 @@ namespace DS4Windows
 
         // Define here to save some time processing.
         // It is enough to feel a difference during gameplay.
-        public static int rsOutCurveMode = 0;
-        public static int lsOutCurveMode = 0;
+        private static int rsOutCurveMode = 0;
+        private static int lsOutCurveMode = 0;
 
-        //special macros
+        // Special macros
         static bool altTabDone = true;
         static DateTime altTabNow = DateTime.UtcNow, oldAltTabNow = DateTime.UtcNow - TimeSpan.FromSeconds(1);
 
-        //mouse
+        // Mouse
         public static int mcounter = 34;
         public static int mouseaccel = 0;
         public static int prevmouseaccel = 0;

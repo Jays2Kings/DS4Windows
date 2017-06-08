@@ -6689,7 +6689,7 @@ with profile</value>
     <value>1</value>
   </data>
   <data name="tPCurve.Text" xml:space="preserve">
-    <value>Curve</value>
+    <value>Curve (Input)</value>
   </data>
   <data name="&gt;&gt;tPCurve.Name" xml:space="preserve">
     <value>tPCurve</value>
@@ -6839,7 +6839,7 @@ with profile</value>
     <value>4</value>
   </data>
   <data name="tPOutCurve.Text" xml:space="preserve">
-    <value>Out Curve</value>
+    <value>Output Curve</value>
   </data>
   <data name="&gt;&gt;tPOutCurve.Name" xml:space="preserve">
     <value>tPOutCurve</value>

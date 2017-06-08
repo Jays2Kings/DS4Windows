@@ -644,8 +644,8 @@ namespace DS4Windows
 
         public bool[] lag = { false, false, false, false };
         public bool[] inWarnMonitor = { false, false, false, false };
-        private byte[] currentBattery = { 0, 0, 0, 0, 0 };
-        private bool[] charging = { false, false, false, false, false };
+        private byte[] currentBattery = { 0, 0, 0, 0 };
+        private bool[] charging = { false, false, false, false };
 
         // Called every time a new input report has arrived
         protected virtual void On_Report(object sender, EventArgs e)

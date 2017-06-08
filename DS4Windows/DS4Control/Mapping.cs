@@ -128,8 +128,8 @@ namespace DS4Windows
 
         // Define here to save some time processing.
         // It is enough to feel a difference during gameplay.
-        private static int rsOutCurveMode = 0;
-        private static int lsOutCurveMode = 0;
+        private static int[] rsOutCurveModeArray = { 0, 0, 0, 0 };
+        private static int[] lsOutCurveModeArray = { 0, 0, 0, 0 };
 
         // Special macros
         static bool altTabDone = true;
@@ -745,7 +745,7 @@ namespace DS4Windows
             if (r2Sens != 1.0)
                 dState.R2 = (byte)Global.Clamp(0, r2Sens * dState.R2, 255);
 
-            lsOutCurveMode = getLsOutCurveMode(device);
+            int lsOutCurveMode = lsOutCurveModeArray[device] = getLsOutCurveMode(device);
             if (lsOutCurveMode != 0)
             {
                 double tempX = (dState.LX - 127.5f) / 127.5;
@@ -805,7 +805,7 @@ namespace DS4Windows
                 }
             }
 
-            rsOutCurveMode = getRsOutCurveMode(device);
+            int rsOutCurveMode = rsOutCurveModeArray[device] = getRsOutCurveMode(device);
             if (rsOutCurveMode != 0)
             {
                 double tempX = (dState.RX - 127.5f) / 127.5;

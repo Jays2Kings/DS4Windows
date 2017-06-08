@@ -644,6 +644,8 @@ namespace DS4Windows
 
         public bool[] lag = { false, false, false, false };
         public bool[] inWarnMonitor = { false, false, false, false };
+        private byte[] currentBattery = { 0, 0, 0, 0, 0 };
+        private bool[] charging = { false, false, false, false, false };
 
         // Called every time a new input report has arrived
         protected virtual void On_Report(object sender, EventArgs e)
@@ -673,7 +675,7 @@ namespace DS4Windows
                     int flashWhenLateAt = getFlashWhenLateAt();
                     if (!lag[ind] && device.Latency >= flashWhenLateAt)
                     {
-                        device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state4)
+                        device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
                         {
                             LagFlashWarning(ind, true);
                         }), null);
@@ -682,7 +684,7 @@ namespace DS4Windows
                     }
                     else if (lag[ind] && device.Latency < flashWhenLateAt)
                     {
-                        device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state4)
+                        device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
                         {
                             LagFlashWarning(ind, false);
                         }), null);
@@ -706,7 +708,7 @@ namespace DS4Windows
                 if (!device.firstReport && device.IsAlive())
                 {
                     device.firstReport = true;
-                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state4)
+                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
                     {
                         OnDeviceStatusChanged(this, ind);
                     }), null);
@@ -716,9 +718,11 @@ namespace DS4Windows
                 }
                 else if (pState.Battery != cState.Battery || device.oldCharging != device.isCharging())
                 {
-                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state4)
+                    byte tempBattery = currentBattery[ind] = cState.Battery;
+                    bool tempCharging = charging[ind] = device.isCharging();
+                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
                     {
-                        OnBatteryStatusChange(this, ind, cState.Battery, device.isCharging());
+                        OnBatteryStatusChange(this, ind, tempBattery, tempCharging);
                     }), null);
 
                     //OnBatteryStatusChange(this, ind, cState.Battery, device.isCharging());

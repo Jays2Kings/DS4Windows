@@ -126,6 +126,11 @@ namespace DS4Windows
             32  // DS4Controls.GyroZNeg
         };
 
+        // Define here to save some time processing.
+        // It is enough to feel a difference during gameplay.
+        public static int rsOutCurveMode = 0;
+        public static int lsOutCurveMode = 0;
+
         //special macros
         static bool altTabDone = true;
         static DateTime altTabNow = DateTime.UtcNow, oldAltTabNow = DateTime.UtcNow - TimeSpan.FromSeconds(1);
@@ -740,7 +745,7 @@ namespace DS4Windows
             if (r2Sens != 1.0)
                 dState.R2 = (byte)Global.Clamp(0, r2Sens * dState.R2, 255);
 
-            int lsOutCurveMode = getLsOutCurveMode(device);
+            lsOutCurveMode = getLsOutCurveMode(device);
             if (lsOutCurveMode != 0)
             {
                 double tempX = (dState.LX - 127.5f) / 127.5;
@@ -800,7 +805,7 @@ namespace DS4Windows
                 }
             }
 
-            int rsOutCurveMode = getRsOutCurveMode(device);
+            rsOutCurveMode = getRsOutCurveMode(device);
             if (rsOutCurveMode != 0)
             {
                 double tempX = (dState.RX - 127.5f) / 127.5;

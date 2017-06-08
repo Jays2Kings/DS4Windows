@@ -323,6 +323,11 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tPOutCurve = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lsOutCurveComboBox = new System.Windows.Forms.ComboBox();
+            this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -405,6 +410,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
+            this.tPOutCurve.SuspendLayout();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -2613,9 +2619,10 @@
             // tCSens
             // 
             this.tCSens.Controls.Add(this.tPDeadzone);
-            this.tCSens.Controls.Add(this.tPCurve);
             this.tCSens.Controls.Add(this.antiDeadzoneTabPage);
             this.tCSens.Controls.Add(this.maxZoneTabPage);
+            this.tCSens.Controls.Add(this.tPCurve);
+            this.tCSens.Controls.Add(this.tPOutCurve);
             resources.ApplyResources(this.tCSens, "tCSens");
             this.tCSens.Name = "tCSens";
             this.tCSens.SelectedIndex = 0;
@@ -3419,6 +3426,54 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
+            // tPOutCurve
+            // 
+            this.tPOutCurve.Controls.Add(this.rsOutCurveComboBox);
+            this.tPOutCurve.Controls.Add(this.lsOutCurveComboBox);
+            this.tPOutCurve.Controls.Add(this.label10);
+            this.tPOutCurve.Controls.Add(this.label9);
+            resources.ApplyResources(this.tPOutCurve, "tPOutCurve");
+            this.tPOutCurve.Name = "tPOutCurve";
+            this.tPOutCurve.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // lsOutCurveComboBox
+            // 
+            this.lsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.lsOutCurveComboBox.DropDownWidth = 100;
+            this.lsOutCurveComboBox.FormattingEnabled = true;
+            this.lsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("lsOutCurveComboBox.Items"),
+            resources.GetString("lsOutCurveComboBox.Items1"),
+            resources.GetString("lsOutCurveComboBox.Items2"),
+            resources.GetString("lsOutCurveComboBox.Items3")});
+            resources.ApplyResources(this.lsOutCurveComboBox, "lsOutCurveComboBox");
+            this.lsOutCurveComboBox.Name = "lsOutCurveComboBox";
+            this.lsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.lsOutCurveComboBox_SelectedIndexChanged);
+            // 
+            // rsOutCurveComboBox
+            // 
+            this.rsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rsOutCurveComboBox.DropDownWidth = 100;
+            this.rsOutCurveComboBox.FormattingEnabled = true;
+            this.rsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("rsOutCurveComboBox.Items"),
+            resources.GetString("rsOutCurveComboBox.Items1"),
+            resources.GetString("rsOutCurveComboBox.Items2"),
+            resources.GetString("rsOutCurveComboBox.Items3")});
+            resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
+            this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
+            this.rsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.rsOutCurveComboBox_SelectedIndexChanged);
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3528,6 +3583,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
+            this.tPOutCurve.ResumeLayout(false);
+            this.tPOutCurve.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3830,5 +3887,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label btPollRateLabel;
         private System.Windows.Forms.ComboBox btPollRateComboBox;
+        private System.Windows.Forms.TabPage tPOutCurve;
+        private System.Windows.Forms.ComboBox rsOutCurveComboBox;
+        private System.Windows.Forms.ComboBox lsOutCurveComboBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -766,6 +766,18 @@ namespace DS4Windows
             return m_Config.btPollRate[index];
         }
 
+        public static int[] lsOutCurveMode => m_Config.lsOutCurveMode;
+        public static int getLsOutCurveMode(int index)
+        {
+            return m_Config.lsOutCurveMode[index];
+        }
+
+        public static int[] rsOutCurveMode => m_Config.rsOutCurveMode;
+        public static int getRsOutCurveMode(int index)
+        {
+            return m_Config.rsOutCurveMode[index];
+        }
+
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
         public static bool[] DistanceProfiles = m_Config.distanceProfiles;
@@ -1105,6 +1117,9 @@ namespace DS4Windows
         public int[] flashAt = { 0, 0, 0, 0, 0 };
         public bool[] mouseAccel = { true, true, true, true, true };
         public int[] btPollRate = { 0, 0, 0, 0, 0 };
+        public int[] lsOutCurveMode = { 0, 0, 0, 0, 0 };
+        public int[] rsOutCurveMode = { 0, 0, 0, 0, 0 };
+
         public DS4Color[] m_LowLeds = new DS4Color[]
         {
             new DS4Color(Color.Black),
@@ -1294,6 +1309,36 @@ namespace DS4Windows
             catch { return 0; }
         }*/
 
+        private string outputCurveString(int id)
+        {
+            string result = "linear";
+            switch (id)
+            {
+                case 0: break;
+                case 1: result = "enhanced-precision"; break;
+                case 2: result = "quadratic"; break;
+                case 3: result = "cubic"; break;
+                default: break;
+            }
+
+            return result;
+        }
+
+        private int outputCurveId(string name)
+        {
+            int id = 0;
+            switch (name)
+            {
+                case "linear": id = 0; break;
+                case "enhanced-precision": id = 1; break;
+                case "quadratic": id = 2; break;
+                case "cubic": id = 3; break;
+                default: break;
+            }
+
+            return id;
+        }
+
         public bool SaveProfile(int device, string propath)
         {
             bool Saved = true;
@@ -1377,6 +1422,8 @@ namespace DS4Windows
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
                 XmlNode xmlBTPollRate = m_Xdoc.CreateNode(XmlNodeType.Element, "BTPollRate", null); xmlBTPollRate.InnerText = btPollRate[device].ToString(); Node.AppendChild(xmlBTPollRate);
+                XmlNode xmlLsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputCurveMode", null); xmlLsOutputCurveMode.InnerText = outputCurveString(lsOutCurveMode[device]); Node.AppendChild(xmlLsOutputCurveMode);
+                XmlNode xmlRsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveMode", null); xmlRsOutputCurveMode.InnerText = outputCurveString(rsOutCurveMode[device]); Node.AppendChild(xmlRsOutputCurveMode);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -2295,6 +2342,12 @@ namespace DS4Windows
                     btPollRate[device] = (temp >= 0 && temp <= 16) ? temp : 0;
                 }
                 catch { btPollRate[device] = 0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputCurveMode"); lsOutCurveMode[device] = outputCurveId(Item.InnerText); }
+                catch { lsOutCurveMode[device] = 0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputCurveMode"); rsOutCurveMode[device] = outputCurveId(Item.InnerText); }
+                catch { rsOutCurveMode[device] = 0; missingSetting = true; }
 
                 try
                 {
@@ -3326,6 +3379,8 @@ namespace DS4Windows
             lsCurve[device] = rsCurve[device] = 0;
             gyroSensitivity[device] = 100;
             gyroInvert[device] = 0;
+            lsOutCurveMode[device] = 0;
+            rsOutCurveMode[device] = 0;
         }
     }
 

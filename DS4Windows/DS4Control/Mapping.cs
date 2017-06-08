@@ -740,6 +740,126 @@ namespace DS4Windows
             if (r2Sens != 1.0)
                 dState.R2 = (byte)Global.Clamp(0, r2Sens * dState.R2, 255);
 
+            int lsOutCurveMode = getLsOutCurveMode(device);
+            if (lsOutCurveMode != 0)
+            {
+                double tempX = (dState.LX - 127.5f) / 127.5;
+                double tempY = (dState.LY - 127.5f) / 127.5;
+                double signX = tempX >= 0.0 ? 1.0 : -1.0;
+                double signY = tempY >= 0.0 ? 1.0 : -1.0;
+
+                if (lsOutCurveMode == 1)
+                {
+                    double absX = Math.Abs(tempX);
+                    double absY = Math.Abs(tempY);
+                    double outputX = 0.0;
+                    double outputY = 0.0;
+
+                    if (absX <= 0.4)
+                    {
+                        outputX = 0.38 * absX;
+                    }
+                    else if (absX <= 0.75)
+                    {
+                        outputX = absX - 0.248;
+                    }
+                    else if (absX > 0.75)
+                    {
+                        outputX = (absX * 1.992) - 0.992;
+                    }
+
+                    if (absY <= 0.4)
+                    {
+                        outputY = 0.38 * absY;
+                    }
+                    else if (absY <= 0.75)
+                    {
+                        outputY = absY - 0.248;
+                    }
+                    else if (absY > 0.75)
+                    {
+                        outputY = (absY * 1.992) - 0.992;
+                    }
+
+                    dState.LX = (byte)(outputX * signX * 127.5f + 127.5f);
+                    dState.LY = (byte)(outputY * signY * 127.5f + 127.5f);
+                }
+                else if (lsOutCurveMode == 2)
+                {
+                    double outputX = tempX * tempX;
+                    double outputY = tempY * tempY;
+                    dState.LX = (byte)(outputX * signX * 127.5f + 127.5f);
+                    dState.LY = (byte)(outputY * signY * 127.5f + 127.5f);
+                }
+                else if (lsOutCurveMode == 3)
+                {
+                    double outputX = tempX * tempX * tempX;
+                    double outputY = tempY * tempY * tempY;
+                    dState.LX = (byte)(outputX * 127.5f + 127.5f);
+                    dState.LY = (byte)(outputY * 127.5f + 127.5f);
+                }
+            }
+
+            int rsOutCurveMode = getRsOutCurveMode(device);
+            if (rsOutCurveMode != 0)
+            {
+                double tempX = (dState.RX - 127.5f) / 127.5;
+                double tempY = (dState.RY - 127.5f) / 127.5;
+                double signX = tempX >= 0.0 ? 1.0 : -1.0;
+                double signY = tempY >= 0.0 ? 1.0 : -1.0;
+
+                if (rsOutCurveMode == 1)
+                {
+                    double absX = Math.Abs(tempX);
+                    double absY = Math.Abs(tempY);
+                    double outputX = 0.0;
+                    double outputY = 0.0;
+
+                    if (absX <= 0.4)
+                    {
+                        outputX = 0.38 * absX;
+                    }
+                    else if (absX <= 0.75)
+                    {
+                        outputX = absX - 0.248;
+                    }
+                    else if (absX > 0.75)
+                    {
+                        outputX = (absX * 1.992) - 0.992;
+                    }
+
+                    if (absY <= 0.4)
+                    {
+                        outputY = 0.38 * absY;
+                    }
+                    else if (absY <= 0.75)
+                    {
+                        outputY = absY - 0.248;
+                    }
+                    else if (absY > 0.75)
+                    {
+                        outputY = (absY * 1.992) - 0.992;
+                    }
+
+                    dState.RX = (byte)(outputX * signX * 127.5f + 127.5f);
+                    dState.RY = (byte)(outputY * signY * 127.5f + 127.5f);
+                }
+                else if (rsOutCurveMode == 2)
+                {
+                    double outputX = tempX * tempX;
+                    double outputY = tempY * tempY;
+                    dState.RX = (byte)(outputX * signX * 127.5f + 127.5f);
+                    dState.RY = (byte)(outputY * signY * 127.5f + 127.5f);
+                }
+                else if (rsOutCurveMode == 3)
+                {
+                    double outputX = tempX * tempX * tempX;
+                    double outputY = tempY * tempY * tempY;
+                    dState.RX = (byte)(outputX * 127.5f + 127.5f);
+                    dState.RY = (byte)(outputY * 127.5f + 127.5f);
+                }
+            }
+
             return dState;
         }
 

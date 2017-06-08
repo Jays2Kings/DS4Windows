@@ -359,6 +359,8 @@ namespace DS4Windows
                     cBWhileCharging.SelectedIndex = tempWhileCharging;
 
                 btPollRateComboBox.SelectedIndex = getBTPollRate(device);
+                lsOutCurveComboBox.SelectedIndex = getLsOutCurveMode(device);
+                rsOutCurveComboBox.SelectedIndex = getRsOutCurveMode(device);
 
                 try
                 {
@@ -583,6 +585,8 @@ namespace DS4Windows
                 cBFlashType.SelectedIndex = 0;
                 cBWhileCharging.SelectedIndex = 0;
                 btPollRateComboBox.SelectedIndex = 0;
+                lsOutCurveComboBox.SelectedIndex = 0;
+                rsOutCurveComboBox.SelectedIndex = 0;
                 rBTPMouse.Checked = true;
                 rBSAControls.Checked = true;
                 ToggleRainbow(false);
@@ -1265,6 +1269,8 @@ namespace DS4Windows
                 FlashColor[device] = new DS4Color(Color.Black);
 
             BTPollRate[device] = btPollRateComboBox.SelectedIndex;
+            lsOutCurveMode[device] = lsOutCurveComboBox.SelectedIndex;
+            rsOutCurveMode[device] = rsOutCurveComboBox.SelectedIndex;
             L2Deadzone[device] = (byte)Math.Round((nUDL2.Value * 255), 0);
             R2Deadzone[device] = (byte)Math.Round((nUDR2.Value * 255), 0);
             L2AntiDeadzone[device] = (int)(nUDL2AntiDead.Value * 100);
@@ -2778,6 +2784,22 @@ namespace DS4Windows
             if (!loading)
             {
                 SZSens[device] = (double)nUDSZS.Value;
+            }
+        }
+
+        private void lsOutCurveComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                lsOutCurveMode[device] = lsOutCurveComboBox.SelectedIndex;
+            }
+        }
+
+        private void rsOutCurveComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                rsOutCurveMode[device] = rsOutCurveComboBox.SelectedIndex;
             }
         }
 

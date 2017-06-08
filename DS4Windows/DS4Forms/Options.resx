@@ -6046,201 +6046,6 @@ with profile</value>
   <data name="&gt;&gt;tPDeadzone.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="nUDLSCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 16</value>
-  </data>
-  <data name="nUDLSCurve.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="nUDLSCurve.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 20</value>
-  </data>
-  <data name="nUDLSCurve.TabIndex" type="System.Int32, mscorlib">
-    <value>206</value>
-  </data>
-  <data name="&gt;&gt;nUDLSCurve.Name" xml:space="preserve">
-    <value>nUDLSCurve</value>
-  </data>
-  <data name="&gt;&gt;nUDLSCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDLSCurve.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;nUDLSCurve.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="nUDRSCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 16</value>
-  </data>
-  <data name="nUDRSCurve.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="nUDRSCurve.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 20</value>
-  </data>
-  <data name="nUDRSCurve.TabIndex" type="System.Int32, mscorlib">
-    <value>207</value>
-  </data>
-  <data name="&gt;&gt;nUDRSCurve.Name" xml:space="preserve">
-    <value>nUDRSCurve</value>
-  </data>
-  <data name="&gt;&gt;nUDRSCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDRSCurve.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;nUDRSCurve.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lbRSCurve.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRSCurve.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRSCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 18</value>
-  </data>
-  <data name="lbRSCurve.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 13</value>
-  </data>
-  <data name="lbRSCurve.TabIndex" type="System.Int32, mscorlib">
-    <value>205</value>
-  </data>
-  <data name="lbRSCurve.Text" xml:space="preserve">
-    <value>RS</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurve.Name" xml:space="preserve">
-    <value>lbRSCurve</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurve.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurve.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lbRSCurvePercent.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbRSCurvePercent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbRSCurvePercent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 18</value>
-  </data>
-  <data name="lbRSCurvePercent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 13</value>
-  </data>
-  <data name="lbRSCurvePercent.TabIndex" type="System.Int32, mscorlib">
-    <value>204</value>
-  </data>
-  <data name="lbRSCurvePercent.Text" xml:space="preserve">
-    <value>%</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurvePercent.Name" xml:space="preserve">
-    <value>lbRSCurvePercent</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurvePercent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurvePercent.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurvePercent.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lbLSCurvePercent.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbLSCurvePercent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbLSCurvePercent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>91, 18</value>
-  </data>
-  <data name="lbLSCurvePercent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 13</value>
-  </data>
-  <data name="lbLSCurvePercent.TabIndex" type="System.Int32, mscorlib">
-    <value>204</value>
-  </data>
-  <data name="lbLSCurvePercent.Text" xml:space="preserve">
-    <value>%</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurvePercent.Name" xml:space="preserve">
-    <value>lbLSCurvePercent</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurvePercent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurvePercent.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurvePercent.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lbLSCurve.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbLSCurve.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbLSCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 18</value>
-  </data>
-  <data name="lbLSCurve.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 13</value>
-  </data>
-  <data name="lbLSCurve.TabIndex" type="System.Int32, mscorlib">
-    <value>204</value>
-  </data>
-  <data name="lbLSCurve.Text" xml:space="preserve">
-    <value>LS</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurve.Name" xml:space="preserve">
-    <value>lbLSCurve</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurve.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurve.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="tPCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tPCurve.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tPCurve.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 52</value>
-  </data>
-  <data name="tPCurve.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tPCurve.Text" xml:space="preserve">
-    <value>Curve</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Name" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Parent" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="nUDR2AntiDead.Location" type="System.Drawing.Point, System.Drawing">
     <value>158, 30</value>
   </data>
@@ -6470,7 +6275,7 @@ with profile</value>
     <value>tCSens</value>
   </data>
   <data name="&gt;&gt;antiDeadzoneTabPage.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="nUDR2Maxzone.Location" type="System.Drawing.Point, System.Drawing">
     <value>161, 29</value>
@@ -6701,7 +6506,352 @@ with profile</value>
     <value>tCSens</value>
   </data>
   <data name="&gt;&gt;maxZoneTabPage.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="nUDLSCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 16</value>
+  </data>
+  <data name="nUDLSCurve.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="nUDLSCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
+  </data>
+  <data name="nUDLSCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>206</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.Name" xml:space="preserve">
+    <value>nUDLSCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="nUDRSCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>153, 16</value>
+  </data>
+  <data name="nUDRSCurve.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="nUDRSCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
+  </data>
+  <data name="nUDRSCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>207</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.Name" xml:space="preserve">
+    <value>nUDRSCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbRSCurve.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRSCurve.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRSCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>130, 18</value>
+  </data>
+  <data name="lbRSCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 13</value>
+  </data>
+  <data name="lbRSCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>205</value>
+  </data>
+  <data name="lbRSCurve.Text" xml:space="preserve">
+    <value>RS</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.Name" xml:space="preserve">
+    <value>lbRSCurve</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbRSCurvePercent.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbRSCurvePercent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRSCurvePercent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 18</value>
+  </data>
+  <data name="lbRSCurvePercent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="lbRSCurvePercent.TabIndex" type="System.Int32, mscorlib">
+    <value>204</value>
+  </data>
+  <data name="lbRSCurvePercent.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.Name" xml:space="preserve">
+    <value>lbRSCurvePercent</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="lbLSCurvePercent.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbLSCurvePercent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbLSCurvePercent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>91, 18</value>
+  </data>
+  <data name="lbLSCurvePercent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="lbLSCurvePercent.TabIndex" type="System.Int32, mscorlib">
+    <value>204</value>
+  </data>
+  <data name="lbLSCurvePercent.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.Name" xml:space="preserve">
+    <value>lbLSCurvePercent</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lbLSCurve.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbLSCurve.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbLSCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 18</value>
+  </data>
+  <data name="lbLSCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 13</value>
+  </data>
+  <data name="lbLSCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>204</value>
+  </data>
+  <data name="lbLSCurve.Text" xml:space="preserve">
+    <value>LS</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.Name" xml:space="preserve">
+    <value>lbLSCurve</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tPCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tPCurve.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tPCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 52</value>
+  </data>
+  <data name="tPCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tPCurve.Text" xml:space="preserve">
+    <value>Curve</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.Name" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.Parent" xml:space="preserve">
+    <value>tCSens</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="rsOutCurveComboBox.Items" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="rsOutCurveComboBox.Items1" xml:space="preserve">
+    <value>Enhanced Precison</value>
+  </data>
+  <data name="rsOutCurveComboBox.Items2" xml:space="preserve">
+    <value>Quadratic</value>
+  </data>
+  <data name="rsOutCurveComboBox.Items3" xml:space="preserve">
+    <value>Cubic</value>
+  </data>
+  <data name="rsOutCurveComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 16</value>
+  </data>
+  <data name="rsOutCurveComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 21</value>
+  </data>
+  <data name="rsOutCurveComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;rsOutCurveComboBox.Name" xml:space="preserve">
+    <value>rsOutCurveComboBox</value>
+  </data>
+  <data name="&gt;&gt;rsOutCurveComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rsOutCurveComboBox.Parent" xml:space="preserve">
+    <value>tPOutCurve</value>
+  </data>
+  <data name="&gt;&gt;rsOutCurveComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lsOutCurveComboBox.Items" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="lsOutCurveComboBox.Items1" xml:space="preserve">
+    <value>Enhanced Precision</value>
+  </data>
+  <data name="lsOutCurveComboBox.Items2" xml:space="preserve">
+    <value>Quadratic</value>
+  </data>
+  <data name="lsOutCurveComboBox.Items3" xml:space="preserve">
+    <value>Cubic</value>
+  </data>
+  <data name="lsOutCurveComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 15</value>
+  </data>
+  <data name="lsOutCurveComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 21</value>
+  </data>
+  <data name="lsOutCurveComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lsOutCurveComboBox.Name" xml:space="preserve">
+    <value>lsOutCurveComboBox</value>
+  </data>
+  <data name="&gt;&gt;lsOutCurveComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lsOutCurveComboBox.Parent" xml:space="preserve">
+    <value>tPOutCurve</value>
+  </data>
+  <data name="&gt;&gt;lsOutCurveComboBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 20</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>RS:</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>tPOutCurve</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 19</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 13</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>LS:</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>tPOutCurve</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tPOutCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tPOutCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 52</value>
+  </data>
+  <data name="tPOutCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tPOutCurve.Text" xml:space="preserve">
+    <value>Out Curve</value>
+  </data>
+  <data name="&gt;&gt;tPOutCurve.Name" xml:space="preserve">
+    <value>tPOutCurve</value>
+  </data>
+  <data name="&gt;&gt;tPOutCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tPOutCurve.Parent" xml:space="preserve">
+    <value>tCSens</value>
+  </data>
+  <data name="&gt;&gt;tPOutCurve.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="tCSens.Location" type="System.Drawing.Point, System.Drawing">
     <value>281, 55</value>
@@ -7880,7 +8030,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.71.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.74.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

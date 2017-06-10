@@ -276,7 +276,7 @@ namespace DS4Windows
             {
                 // Do first run check for Quick Charge checks. Needed so old device will
                 // be removed before performing another controller scan
-                if (getQuickCharge())
+                /*if (getQuickCharge())
                 {
                     for (int i = 0, devlen = DS4Controllers.Length; i < devlen; i++)
                     {
@@ -291,6 +291,7 @@ namespace DS4Windows
                         }
                     }
                 }
+                */
 
                 DS4Devices.findControllers();
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();

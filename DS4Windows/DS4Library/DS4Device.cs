@@ -639,6 +639,8 @@ namespace DS4Windows
             Queue<long> latencyQueue = new Queue<long>(51); // Set capacity at max + 1 to avoid any resizing
             int tempLatencyCount = 0;
             long oldtime = 0;
+            string currerror = string.Empty;
+            long curtime = 0;
             Stopwatch sw = new Stopwatch();
             sw.Start();
             timeoutEvent = false;
@@ -646,8 +648,8 @@ namespace DS4Windows
             while (!exitInputThread)
             {
                 oldCharging = charging;
-                string currerror = string.Empty;
-                long curtime = sw.ElapsedMilliseconds;
+                currerror = string.Empty;
+                curtime = sw.ElapsedMilliseconds;
                 this.lastTimeElapsed = curtime - oldtime;
                 //latencyList.Add(this.lastTimeElapsed);
                 latencyQueue.Enqueue(this.lastTimeElapsed);
@@ -888,12 +890,25 @@ namespace DS4Windows
                         if (conType == ConnectionType.BT)
                         {
                             if (DisconnectBT(true))
+                            {
+                                timeoutExecuted = true;
                                 return; // all done
+                            }
                         }
                         else if (conType == ConnectionType.SONYWA)
                         {
                             DisconnectDongle();
                         }
+                    }
+                }
+
+                if (oldCharging != charging && conType == ConnectionType.BT)
+                {
+                    if (Global.getQuickCharge() && charging)
+                    {
+                        DisconnectBT(true);
+                        timeoutExecuted = true;
+                        return;
                     }
                 }
 

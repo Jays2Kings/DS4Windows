@@ -164,6 +164,7 @@ namespace DS4Windows
         public event EventHandler<EventArgs> Removal = null;
         public event EventHandler<EventArgs> SyncChange = null;
         public event EventHandler<EventArgs> SerialChange = null;
+        public event EventHandler<EventArgs> PublishRemoval = null;
 
         public HidDevice HidDevice => hDevice;
         public bool IsExclusive => HidDevice.IsExclusive;
@@ -388,6 +389,10 @@ namespace DS4Windows
         {
             return uiContext;
         }
+        public void setUiContext(SynchronizationContext uiContext)
+        {
+            this.uiContext = uiContext;
+        }
 
         private Queue<Action> eventQueue = new Queue<Action>();
         private object eventQueueLock = new object();
@@ -432,7 +437,6 @@ namespace DS4Windows
 
             touchpad = new DS4Touchpad();
             sixAxis = new DS4SixAxis();
-            uiContext = SynchronizationContext.Current;
         }
 
         private void timeoutTestThread()
@@ -699,6 +703,9 @@ namespace DS4Windows
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
 
+                        //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
+                        //Removal?.Invoke(this, EventArgs.Empty);
+
                         timeoutExecuted = true;
                         return;
                     }
@@ -729,6 +736,9 @@ namespace DS4Windows
                         {
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
+
+                        //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
+                        //Removal?.Invoke(this, EventArgs.Empty);
 
                         timeoutExecuted = true;
                         return;
@@ -1089,6 +1099,8 @@ namespace DS4Windows
                         {
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
+
+                        //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
                     }
                 }
 
@@ -1120,6 +1132,9 @@ namespace DS4Windows
                 {
                     Removal?.Invoke(this, EventArgs.Empty);
                 }), null);
+
+                //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
+                //Removal?.Invoke(this, EventArgs.Empty);
             }
             else if (result && !remove)
             {

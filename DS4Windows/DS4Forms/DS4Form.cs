@@ -1005,7 +1005,9 @@ namespace DS4Windows
             lbLastMessage.Text = string.Empty;
         }
 
-        bool inHotPlug = false;
+        private bool inHotPlug = false;
+        private int hotplugCounter = 0;
+        private object hotplugCounterLock = new object();
         protected override void WndProc(ref Message m)
         {
             try
@@ -1015,7 +1017,15 @@ namespace DS4Windows
                     if (runHotPlug)
                     {
                         Int32 Type = m.WParam.ToInt32();
-                        InnerHotplug2();
+                        lock (hotplugCounterLock)
+                        {
+                            hotplugCounter++;
+                        }
+
+                        if (!inHotPlug)
+                        {
+                            InnerHotplug2();
+                        }
                     }
                 }
             }
@@ -1031,17 +1041,35 @@ namespace DS4Windows
 
         protected async void InnerHotplug2()
         {
-            await System.Threading.Tasks.Task.Delay(50);
+            //await System.Threading.Tasks.Task.Delay(50);
 
-            if (inHotPlug)
+            /*if (inHotPlug)
             {
                 await System.Threading.Tasks.Task.Run(() => { while (inHotPlug) { System.Threading.Thread.Sleep(50); } });
             }
+            */
 
-            lock (this)
+            //lock (this)
             {
                 inHotPlug = true;
-                Program.rootHub.HotPlug();
+                System.Threading.SynchronizationContext uiContext = System.Threading.SynchronizationContext.Current;
+                int tempCount = 0;
+                lock (hotplugCounterLock)
+                {
+                    tempCount = hotplugCounter;
+                }
+
+                while (tempCount > 0)
+                {
+                    await System.Threading.Tasks.Task.Run(() => { Program.rootHub.HotPlug(uiContext); });
+                    lock (hotplugCounterLock)
+                    {
+                        hotplugCounter--;
+                        tempCount = hotplugCounter;
+                    }
+                }
+
+                //Program.rootHub.HotPlug();
                 inHotPlug = false;
             }
         }

@@ -131,6 +131,7 @@ namespace DS4Windows
 
                         WarnExclusiveModeFailure(device);
                         DS4Controllers[i] = device;
+                        device.setUiContext(SynchronizationContext.Current);
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
                         device.SyncChange += DS4Devices.UpdateSerial;
@@ -270,29 +271,10 @@ namespace DS4Windows
             return true;
         }
 
-        public bool HotPlug()
+        public bool HotPlug(SynchronizationContext uiContext)
         {
             if (running)
             {
-                // Do first run check for Quick Charge checks. Needed so old device will
-                // be removed before performing another controller scan
-                /*if (getQuickCharge())
-                {
-                    for (int i = 0, devlen = DS4Controllers.Length; i < devlen; i++)
-                    {
-                        DS4Device device = DS4Controllers[i];
-                        if (device != null)
-                        {
-                            if (device.getConnectionType() == ConnectionType.BT && device.isCharging())
-                            {
-                                device.StopUpdate();
-                                device.DisconnectBT(true);
-                            }
-                        }
-                    }
-                }
-                */
-
                 DS4Devices.findControllers();
                 IEnumerable<DS4Device> devices = DS4Devices.getDS4Controllers();
                 //foreach (DS4Device device in devices)
@@ -325,6 +307,7 @@ namespace DS4Windows
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
                             WarnExclusiveModeFailure(device);
                             DS4Controllers[Index] = device;
+                            device.setUiContext(uiContext);
                             device.Removal += this.On_DS4Removal;
                             device.Removal += DS4Devices.On_Removal;
                             device.SyncChange += DS4Devices.UpdateSerial;

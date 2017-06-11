@@ -16,6 +16,12 @@ namespace DS4Windows
         public byte Battery; // 0 for charging, 10/20/30/40/50/60/70/80/90/100 for percentage of full
         public double LSAngle; // Calculated bearing of the LS X,Y coordinates
         public double RSAngle; // Calculated bearing of the RS X,Y coordinates
+        public double LSAngleRad; // Calculated bearing of the LS X,Y coordinates (in radians)
+        public double RSAngleRad; // Calculated bearing of the RS X,Y coordinates (in radians)
+        public double LXUnit;
+        public double LYUnit;
+        public double RXUnit;
+        public double RYUnit;
         public static readonly int DEFAULT_AXISDIR_VALUE = 127;
 
         public DS4State()
@@ -30,7 +36,13 @@ namespace DS4Windows
             TouchPacketCounter = 255; // 8 bits, no great junk value
             Battery = 0;
             LSAngle = 0.0;
+            LSAngleRad = 0.0;
             RSAngle = 0.0;
+            RSAngleRad = 0.0;
+            LXUnit = 0.0;
+            LYUnit = 0.0;
+            RXUnit = 0.0;
+            RYUnit = 0.0;
         }
 
         public DS4State(DS4State state)
@@ -68,7 +80,13 @@ namespace DS4Windows
             FrameCounter = state.FrameCounter;
             Battery = state.Battery;
             LSAngle = state.LSAngle;
+            LSAngleRad = state.LSAngleRad;
             RSAngle = state.RSAngle;
+            RSAngleRad = state.RSAngleRad;
+            LXUnit = state.LXUnit;
+            LYUnit = state.LYUnit;
+            RXUnit = state.RXUnit;
+            RYUnit = state.RYUnit;
         }
 
         public DS4State Clone()
@@ -111,18 +129,30 @@ namespace DS4Windows
             state.FrameCounter = FrameCounter;
             state.Battery = Battery;
             state.LSAngle = LSAngle;
+            state.LSAngleRad = LSAngleRad;
             state.RSAngle = RSAngle;
+            state.RSAngleRad = RSAngleRad;
+            state.LXUnit = LXUnit;
+            state.LYUnit = LYUnit;
+            state.RXUnit = RXUnit;
+            state.RYUnit = RYUnit;
         }
 
         public void calculateStickAngles()
         {
             double lsangle = Math.Atan2((LX - 127), -(LY - 127));
+            LSAngleRad = lsangle;
             lsangle = (lsangle >= 0 ? lsangle : (2 * Math.PI + lsangle)) * 180 / Math.PI;
             LSAngle = lsangle;
+            LXUnit = Math.Abs(Math.Cos(LSAngleRad));
+            LYUnit = Math.Abs(Math.Sin(LSAngleRad));
 
             double rsangle = Math.Atan2((RX - 127), -(RY - 127));
+            RSAngleRad = rsangle;
             rsangle = (rsangle >= 0 ? rsangle : (2 * Math.PI + rsangle)) * 180 / Math.PI;
             RSAngle = rsangle;
+            RXUnit = Math.Abs(Math.Cos(RSAngleRad));
+            RYUnit = Math.Abs(Math.Sin(LSAngleRad));
         }
     }
 }

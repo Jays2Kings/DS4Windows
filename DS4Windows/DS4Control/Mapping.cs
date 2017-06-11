@@ -142,8 +142,6 @@ namespace DS4Windows
         private static double horizontalRemainder = 0.0, verticalRemainder = 0.0;
         private const int MOUSESPEEDFACTOR = 40;
         private const double MOUSESTICKOFFSET = 0.03;
-        private static double tempMouseOffsetX = 0.0;
-        private static double tempMouseOffsetY = 0.0;
 
         public static void Commit(int device)
         {
@@ -2326,6 +2324,7 @@ namespace DS4Windows
             DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[controlNum];
             long timeElapsed = ctrl.DS4Controllers[device].getLastTimeElapsed();
             //double mouseOffset = 0.025;
+            double tempMouseOffsetX = 0.0, tempMouseOffsetY = 0.0;
 
             if (controlType == DS4StateFieldMapping.ControlType.Button)
             {

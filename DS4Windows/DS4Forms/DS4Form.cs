@@ -182,7 +182,7 @@ namespace DS4Windows
                 }
                 else
                 {
-                    MessageBox.Show("DS4Windows cannot edit settings here, This will now close", "DS4Windows");
+                    MessageBox.Show("DS4Windows cannot edit settings here. This will now close", "DS4Windows");
                     appdatapath = null;
                     Close();
                     return;

@@ -198,7 +198,7 @@ namespace DS4Windows
             hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
             if (Environment.OSVersion.Version.Major >= 10 && Environment.OSVersion.Version.Build < 10586)
             {
-                toolTip1.SetToolTip(hideDS4CheckBox, "For Windows 10, use button on the main tab to connect exclusivly");
+                toolTip1.SetToolTip(hideDS4CheckBox, "For Windows 10, use button on the main tab to connect exclusively");
                 btnConnectDS4Win10.Visible = hideDS4CheckBox.Checked;
                 toolTip1.SetToolTip(btnConnectDS4Win10, "This will temporarily kill the taskbar until you connect a controller");
             }

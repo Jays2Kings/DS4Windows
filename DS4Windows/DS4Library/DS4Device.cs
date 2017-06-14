@@ -649,6 +649,9 @@ namespace DS4Windows
             sw.Start();
             timeoutEvent = false;
 
+            int maxBatteryValue = 0;
+            int tempBattery = 0;
+
             while (!exitInputThread)
             {
                 oldCharging = charging;
@@ -807,8 +810,8 @@ namespace DS4Windows
                 try
                 {
                     charging = (inputReport[30] & 0x10) != 0;
-                    int maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
-                    int tempBattery = (inputReport[30] & 0x0f) * 100 / maxBatteryValue;
+                    maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
+                    tempBattery = (inputReport[30] & 0x0f) * 100 / maxBatteryValue;
                     battery = Math.Min((byte)tempBattery, (byte)100);
                     cState.Battery = (byte)battery;
                     //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);

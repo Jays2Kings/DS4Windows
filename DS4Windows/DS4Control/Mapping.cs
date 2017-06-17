@@ -2343,7 +2343,7 @@ namespace DS4Windows
                             //tempMouseOffsetX = Math.Abs(Math.Cos(cState.LSAngleRad)) * MOUSESTICKOFFSET;
                             //tempMouseOffsetX = MOUSESTICKOFFSET;
                             tempMouseOffsetX = cState.LXUnit * MOUSESTICKOFFSET;
-                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetX) * diff + tempMouseOffsetX;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetX) * diff + (tempMouseOffsetX * -1.0);
                             //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = -(cState.LX - 127 - deadzoneL) / 2550d * speed;
                         }
@@ -2373,7 +2373,7 @@ namespace DS4Windows
                             tempMouseOffsetX = cState.RXUnit * MOUSESTICKOFFSET;
                             //tempMouseOffsetX = MOUSESTICKOFFSET;
                             //tempMouseOffsetX = Math.Abs(Math.Cos(cState.RSAngleRad)) * MOUSESTICKOFFSET;
-                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetX) * diff + tempMouseOffsetX;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetX) * diff + (tempMouseOffsetX * -1.0);
                             //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = -(cState.RX - 127 - deadzoneR) / 2550d * speed;
                         }
@@ -2403,7 +2403,7 @@ namespace DS4Windows
                             tempMouseOffsetY = cState.LYUnit * MOUSESTICKOFFSET;
                             //tempMouseOffsetY = MOUSESTICKOFFSET;
                             //tempMouseOffsetY = Math.Abs(Math.Sin(cState.LSAngleRad)) * MOUSESTICKOFFSET;
-                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetY) * diff + tempMouseOffsetY;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetY) * diff + (tempMouseOffsetY * -1.0);
                             //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = -(cState.LY - 127 - deadzoneL) / 2550d * speed;
                         }
@@ -2433,7 +2433,7 @@ namespace DS4Windows
                             tempMouseOffsetY = cState.RYUnit * MOUSESTICKOFFSET;
                             //tempMouseOffsetY = MOUSESTICKOFFSET;
                             //tempMouseOffsetY = Math.Abs(Math.Sin(cState.RSAngleRad)) * MOUSESTICKOFFSET;
-                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetY) * diff + tempMouseOffsetY;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetY) * diff + (tempMouseOffsetY * -1.0);
                             //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
                             //value = -(cState.RY - 127 - deadzoneR) / 2550d * speed;
                         }

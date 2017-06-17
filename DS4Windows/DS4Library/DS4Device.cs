@@ -915,7 +915,7 @@ namespace DS4Windows
                     }
                 }
 
-                if (oldCharging != charging && conType == ConnectionType.BT)
+                if (conType == ConnectionType.BT && oldCharging != charging)
                 {
                     if (Global.getQuickCharge() && charging)
                     {

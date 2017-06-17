@@ -421,7 +421,7 @@ namespace DS4Windows
                 {
                     warnInterval = WARN_INTERVAL_BT;
                     audio = new DS4Audio();
-                    micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Render);
+                    micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture);
                     synced = isValidSerial();
                 }
             }

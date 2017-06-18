@@ -5,7 +5,6 @@ using System.Linq;
 
 using System.Media;
 using System.Threading.Tasks;
-using System.Diagnostics;
 using static DS4Windows.Global;
 using System.Threading;
 
@@ -13,7 +12,7 @@ namespace DS4Windows
 {
     public class ControlService
     {
-        public X360Device x360Bus;
+        public X360Device x360Bus = null;
         public const int DS4_CONTROLLER_COUNT = 4;
         public DS4Device[] DS4Controllers = new DS4Device[DS4_CONTROLLER_COUNT];
         public Mouse[] touchPad = new Mouse[DS4_CONTROLLER_COUNT];
@@ -41,7 +40,17 @@ namespace DS4Windows
         public ControlService()
         {
             //sp.Stream = Properties.Resources.EE;
-            x360Bus = new X360Device();
+            // Cause thread affinity to not be tied to main GUI thread
+            Thread x360Thread = new Thread(() => { x360Bus = new X360Device(); });
+            x360Thread.IsBackground = true;
+            x360Thread.Priority = ThreadPriority.AboveNormal;
+            x360Thread.Name = "SCP Virtual Bus Thread";
+            x360Thread.Start();
+            while (!x360Thread.ThreadState.HasFlag(ThreadState.Stopped))
+            {
+                Thread.SpinWait(500);
+            }
+
             AddtoDS4List();
 
             for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)

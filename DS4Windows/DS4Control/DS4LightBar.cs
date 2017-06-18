@@ -43,7 +43,7 @@ namespace DS4Windows
                     {
                         DS4Color fullColor = getCustomColor(deviceNum);
                         DS4Color lowColor = getLowColor(deviceNum);
-                        color = getTransitionedColor(lowColor, fullColor, device.Battery);
+                        color = getTransitionedColor(lowColor, fullColor, device.getBattery());
                     }
                     else
                         color = getCustomColor(deviceNum);
@@ -70,7 +70,7 @@ namespace DS4Windows
                             counters[deviceNum] = 0;
 
                         if (getLedAsBatteryIndicator(deviceNum))
-                            color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(2.55 * device.getBattery()));
+                            color = HuetoRGB((float)counters[deviceNum] % 360, (byte)(device.getBattery() * 2.55));
                         else
                             color = HuetoRGB((float)counters[deviceNum] % 360, 255);
 
@@ -82,7 +82,7 @@ namespace DS4Windows
                             DS4Color fullColor = getMainColor(deviceNum);
                             DS4Color lowColor = getLowColor(deviceNum);
 
-                            color = getTransitionedColor(lowColor, fullColor, (uint)device.getBattery());
+                            color = getTransitionedColor(lowColor, fullColor, device.getBattery());
                         }
                     }
                     else

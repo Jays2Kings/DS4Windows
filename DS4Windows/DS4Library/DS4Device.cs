@@ -264,6 +264,12 @@ namespace DS4Windows
             return lastTimeElapsed;
         }
 
+        public double lastTimeElapsedDouble = 0.0;
+        public double getLastTimeElapsedDouble()
+        {
+            return lastTimeElapsedDouble;
+        }
+
         public byte RightLightFastRumble
         {
             get { return rightLightFastRumble; }
@@ -630,10 +636,12 @@ namespace DS4Windows
             return synced;
         }
 
-        public double Latency = 0;
+        public double Latency = 0.0;
         public string error;
         public bool firstReport = false;
         public bool oldCharging = false;
+        double curTimeDouble = 0.0;
+        double oldTimeDouble = 0.0;
 
         private void performDs4Input()
         {
@@ -656,12 +664,15 @@ namespace DS4Windows
             {
                 oldCharging = charging;
                 currerror = string.Empty;
+                curTimeDouble = sw.Elapsed.TotalMilliseconds;
                 curtime = sw.ElapsedMilliseconds;
-                this.lastTimeElapsed = curtime - oldtime;
+                lastTimeElapsed = curtime - oldtime;
+                lastTimeElapsedDouble = (curTimeDouble - oldTimeDouble);
                 //latencyList.Add(this.lastTimeElapsed);
                 latencyQueue.Enqueue(this.lastTimeElapsed);
                 tempLatencyCount++;
                 oldtime = curtime;
+                oldTimeDouble = curTimeDouble;
 
                 if (tempLatencyCount > 50)
                 {

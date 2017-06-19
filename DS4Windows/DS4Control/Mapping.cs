@@ -2322,7 +2322,8 @@ namespace DS4Windows
 
             int controlNum = (int)control;
             DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[controlNum];
-            long timeElapsed = ctrl.DS4Controllers[device].getLastTimeElapsed();
+            //long timeElapsed = ctrl.DS4Controllers[device].getLastTimeElapsed();
+            double timeElapsed = ctrl.DS4Controllers[device].lastTimeElapsedDouble;
             //double mouseOffset = 0.025;
             double tempMouseOffsetX = 0.0, tempMouseOffsetY = 0.0;
 

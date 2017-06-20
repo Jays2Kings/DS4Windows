@@ -72,6 +72,7 @@ namespace DS4Windows
                     return;
                 }
             }
+
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;
 
             try
@@ -126,6 +127,7 @@ namespace DS4Windows
         {
             BackgroundWorker worker = sender as BackgroundWorker;
             WaitHandle[] waitHandles = new WaitHandle[] { threadComEvent };
+            Thread.CurrentThread.Priority = ThreadPriority.Lowest;
 
             while (!worker.CancellationPending)
             {
@@ -143,7 +145,6 @@ namespace DS4Windows
                 }
             }
         }
-
 
         /// <summary>
         /// When this method is called using a Invoke then this runs in the thread
@@ -169,6 +170,7 @@ namespace DS4Windows
                     SetForegroundWindow(wp.form.Handle);
                 }
             }
+
             SetForegroundWindow(frm.Handle);
         }
     }

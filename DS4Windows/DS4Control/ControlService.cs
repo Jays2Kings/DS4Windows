@@ -43,7 +43,7 @@ namespace DS4Windows
             // Cause thread affinity to not be tied to main GUI thread
             Thread x360Thread = new Thread(() => { x360Bus = new X360Device(); });
             x360Thread.IsBackground = true;
-            x360Thread.Priority = ThreadPriority.AboveNormal;
+            x360Thread.Priority = ThreadPriority.Normal;
             x360Thread.Name = "SCP Virtual Bus Thread";
             x360Thread.Start();
             while (!x360Thread.ThreadState.HasFlag(ThreadState.Stopped))

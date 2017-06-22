@@ -34,6 +34,8 @@ namespace DS4Windows
         bool Touch1 { get { return _state.Touch1; } }  
         bool Touch2 { get { return _state.Touch2; } }  
         bool TouchButton { get { return _state.TouchButton; } } 
+        bool Touch1Finger { get { return _state.Touch1Finger;  } }
+        bool Touch2Fingers { get { return _state.Touch2Fingers; } }
         byte LX { get { return _state.LX; } }  
         byte RX { get { return _state.RX; } }  
         byte LY { get { return _state.LY; } }  

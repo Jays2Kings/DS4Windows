@@ -82,8 +82,8 @@ namespace DS4Windows
                 case 11: return s.DpadRight;
                 case 12: return s.L3;
                 case 13: return s.R3;
-                case 14: return s.Touch1;
-                case 15: return s.Touch2;
+                case 14: return s.Touch1Finger;
+                case 15: return s.Touch2Fingers;
                 case 16: return s.Options;
                 case 17: return s.Share;
                 case 18: return s.PS;

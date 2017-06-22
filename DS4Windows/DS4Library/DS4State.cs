@@ -8,7 +8,7 @@ namespace DS4Windows
         public bool Square, Triangle, Circle, Cross;
         public bool DpadUp, DpadDown, DpadLeft, DpadRight;
         public bool L1, L3, R1, R3;
-        public bool Share, Options, PS, Touch1, Touch2, TouchButton, TouchRight, TouchLeft;
+        public bool Share, Options, PS, Touch1, Touch2, TouchButton, TouchRight, TouchLeft, Touch1Finger, Touch2Fingers;
         public byte Touch1Identifier, Touch2Identifier;
         public byte LX, RX, LY, RY, L2, R2;
         public byte FrameCounter; // 0, 1, 2...62, 63, 0....
@@ -30,6 +30,7 @@ namespace DS4Windows
             DpadUp = DpadDown = DpadLeft = DpadRight = false;
             L1 = L3 = R1 = R3 = false;
             Share = Options = PS = Touch1 = Touch2 = TouchButton = TouchRight = TouchLeft = false;
+            Touch1Finger = Touch2Fingers = false;
             LX = RX = LY = RY = 127;
             L2 = R2 = 0;
             FrameCounter = 255; // only actually has 6 bits, so this is a null indicator
@@ -73,6 +74,8 @@ namespace DS4Windows
             Touch2Identifier = state.Touch2Identifier;
             TouchButton = state.TouchButton;
             TouchPacketCounter = state.TouchPacketCounter;
+            Touch1Finger = state.Touch1Finger;
+            Touch2Fingers = state.Touch2Fingers;
             LX = state.LX;
             RX = state.RX;
             LY = state.LY;
@@ -122,6 +125,8 @@ namespace DS4Windows
             state.TouchRight = TouchRight;
             state.TouchButton = TouchButton;
             state.TouchPacketCounter = TouchPacketCounter;
+            state.Touch1Finger = Touch1Finger;
+            state.Touch2Fingers = Touch2Fingers;
             state.LX = LX;
             state.RX = RX;
             state.LY = LY;

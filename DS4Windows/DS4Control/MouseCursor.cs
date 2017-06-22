@@ -109,6 +109,11 @@ namespace DS4Windows
             vDirection = yMotion > 0.0 ? Direction.Positive : yMotion < 0.0 ? Direction.Negative : Direction.Neutral;
         }
 
+        public void mouseRemainderReset()
+        {
+            hRemainder = vRemainder = 0.0;
+        }
+
         public void touchesBegan(TouchpadEventArgs arg)
         {
             if (arg.touches.Length == 1)

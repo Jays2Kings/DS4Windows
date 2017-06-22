@@ -58,6 +58,8 @@ namespace DS4Windows
                     cursor.sixaxisMoved(arg);
                 else if (!useReverseRatchet && !triggeractivated)
                     cursor.sixaxisMoved(arg);
+                else
+                    cursor.mouseRemainderReset();
 
                 dev.getCurrentState(s);
             }

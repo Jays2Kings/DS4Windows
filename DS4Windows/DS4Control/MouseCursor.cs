@@ -26,6 +26,12 @@ namespace DS4Windows
             //Console.WriteLine(arg.sixAxis.deltaX);
 
             double coefficient = Global.GyroSensitivity[deviceNumber] / 100f * 0.008;
+            double offset = 0.1;
+            double tempAngle = System.Math.Atan2(-deltaY, deltaX);
+            double normX = System.Math.Abs(System.Math.Cos(tempAngle));
+            double normY = System.Math.Abs(System.Math.Sin(tempAngle));
+            int signX = System.Math.Sign(deltaX);
+            int signY = System.Math.Sign(deltaY);
 
             if ((hRemainder > 0) != (deltaX > 0))
             {
@@ -37,15 +43,56 @@ namespace DS4Windows
                 vRemainder = 0.0;
             }
 
-            double xMotion = coefficient * deltaX;
-            xMotion += hRemainder;
-            int xAction = (int)xMotion;
-            hRemainder = xMotion - xAction;
+            int deadzone = 15;
+            //int deadzone = 0;
+            int deadzoneX = (int)System.Math.Abs(normX * deadzone);
+            int deadzoneY = (int)System.Math.Abs(normY * deadzone);
+
+            if (System.Math.Abs(deltaX) > deadzoneX)
+            {
+                deltaX -= signX * deadzoneX;
+            }
+            else
+            {
+                deltaX = 0;
+            }
+
+            if (System.Math.Abs(deltaY) > deadzoneY)
+            {
+                deltaY -= signY * deadzoneY;
+            }
+            else
+            {
+                deltaY = 0;
+            }
+
+            double xMotion = deltaX != 0 ? coefficient * deltaX + (normX * (offset * signX)) : 0;
+            int xAction = 0;
+            if (xMotion != 0.0)
+            {
+                xMotion += hRemainder;
+                xAction = (int)xMotion;
+                hRemainder = xMotion - xAction;
+            }
+            else
+            {
+                hRemainder = 0.0;
+            }
+
             //hRemainder -= (int)hRemainder;
-            double yMotion = coefficient * deltaY;
-            yMotion += vRemainder;
-            int yAction = (int)yMotion;
-            vRemainder = yMotion - yAction;
+            double yMotion = deltaY != 0 ? coefficient * deltaY + (normY * (offset * signY)) : 0;
+            int yAction = 0;
+            if (yMotion != 0.0)
+            {
+                yMotion += vRemainder;
+                yAction = (int)yMotion;
+                vRemainder = yMotion - yAction;
+            }
+            else
+            {
+                vRemainder = 0.0;
+            }
+
             //vRemainder -= (int)vRemainder;
 
             int gyroInvert = Global.GyroInvert[deviceNumber];

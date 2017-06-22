@@ -21,22 +21,32 @@ namespace DS4Windows
         public virtual void sixaxisMoved(SixAxisEventArgs arg)
         {
             int deltaX = 0, deltaY = 0;
-            deltaX = -arg.sixAxis.accelX;
-            deltaY = -arg.sixAxis.accelY;
+            deltaX = -arg.sixAxis.gyroXFull;
+            deltaY = -arg.sixAxis.gyroYFull;
             //Console.WriteLine(arg.sixAxis.deltaX);
 
-            double coefficient = Global.GyroSensitivity[deviceNumber] / 100f;
-            //Collect rounding errors instead of losing motion.
+            double coefficient = Global.GyroSensitivity[deviceNumber] / 100f * 0.008;
+
+            if ((hRemainder > 0) != (deltaX > 0))
+            {
+                hRemainder = 0.0;
+            }
+
+            if ((vRemainder > 0) != (deltaY > 0))
+            {
+                vRemainder = 0.0;
+            }
+
             double xMotion = coefficient * deltaX;
             xMotion += hRemainder;
             int xAction = (int)xMotion;
-            hRemainder += xMotion - xAction;
-            hRemainder -= (int)hRemainder;
+            hRemainder = xMotion - xAction;
+            //hRemainder -= (int)hRemainder;
             double yMotion = coefficient * deltaY;
             yMotion += vRemainder;
             int yAction = (int)yMotion;
-            vRemainder += yMotion - yAction;
-            vRemainder -= (int)vRemainder;
+            vRemainder = yMotion - yAction;
+            //vRemainder -= (int)vRemainder;
 
             int gyroInvert = Global.GyroInvert[deviceNumber];
             if (gyroInvert == 2 || gyroInvert == 3)

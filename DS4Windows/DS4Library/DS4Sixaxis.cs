@@ -5,45 +5,47 @@ namespace DS4Windows
     public class SixAxisEventArgs : EventArgs
     {
         public readonly SixAxis sixAxis;
-        public readonly System.DateTime timeStamp;
-        public SixAxisEventArgs(System.DateTime utcTimestamp, SixAxis sa)
+        public readonly DateTime timeStamp;
+        public SixAxisEventArgs(DateTime utcTimestamp, SixAxis sa)
         {
             sixAxis = sa;
-            this.timeStamp = utcTimestamp;
+            timeStamp = utcTimestamp;
         }
     }
 
     public class SixAxis
     {
         public readonly int gyroX, gyroY, gyroZ, deltaX, deltaY, deltaZ, accelX, accelY, accelZ;
+        public readonly int gyroXFull, gyroYFull;
         public readonly byte touchID;
         public readonly SixAxis previousAxis;
         public SixAxis(int X, int Y, int Z, int aX, int aY, int aZ, SixAxis prevAxis = null)
         {
-            gyroX = X;
-            gyroY = Y;
-            gyroZ = Z;
-            accelX = aX;
-            accelY = aY;
-            accelZ = aZ;
+            gyroX = X / 256;
+            gyroY = Y / 256;
+            gyroZ = Z / 256;
+            gyroXFull = X;
+            gyroYFull = Y;
+            accelX = aX / 64;
+            accelY = aY / 64;
+            accelZ = aZ / 64;
             previousAxis = prevAxis;
             if (previousAxis != null)
             {
-                deltaX = X - previousAxis.gyroX;
-                deltaY = Y - previousAxis.gyroY;
-                deltaZ = Z - previousAxis.gyroZ;
+                deltaX = aX - previousAxis.gyroX;
+                deltaY = aY - previousAxis.gyroY;
+                deltaZ = aZ - previousAxis.gyroZ;
             }
         }
     }
 
     public class DS4SixAxis
     {
-        public event EventHandler<SixAxisEventArgs> SixAxisMoved = null; // deltaX/deltaY are set because one or both fingers were already down on a prior sensor reading
+        //public event EventHandler<SixAxisEventArgs> SixAxisMoved = null; // deltaX/deltaY are set because one or both fingers were already down on a prior sensor reading
         public event EventHandler<SixAxisEventArgs> SixAccelMoved = null; // no status change for the touchpad itself... but other sensors may have changed, or you may just want to do some processing
 
         internal int lastGyroX, lastGyroY, lastGyroZ, lastAX, lastAY, lastAZ; // tracks 0, 1 or 2 touches; we maintain touch 1 and 2 separately
         internal byte[] previousPacket = new byte[8];
-        
 
         public void handleSixaxis(byte[] gyro, byte[] accel, DS4State state)
         {
@@ -56,12 +58,14 @@ namespace DS4Windows
             }*/
             /* byte touchID1 = (byte)(data[0 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x7F);
              byte touchID2 = (byte)(data[4 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x7F);*/
-            int currentX = (short)((ushort)(gyro[0] << 8) | gyro[1]) / 64;
-            int currentY = (short)((ushort)(gyro[2] << 8) | gyro[3]) / 64;
-            int currentZ = (short)((ushort)(gyro[4] << 8) | gyro[5]) / 64;
-            int AccelX = (short)((ushort)(accel[2] << 8) | accel[3]) / 256;
-            int AccelY = (short)((ushort)(accel[0] << 8) | accel[1]) / 256;
-            int AccelZ = (short)((ushort)(accel[4] << 8) | accel[5]) / 256;
+
+            int currentX = (short)((ushort)(gyro[3] << 8) | gyro[2]); // Gyro Pitch
+            int currentY = (short)((ushort)(gyro[1] << 8) | gyro[0]); // Gyro Yaw
+            int currentZ = (short)((ushort)(gyro[5] << 8) | gyro[4]); // Gyro Roll
+            int AccelX = (short)((ushort)(accel[1] << 8) | accel[0]); // Accel Pitch
+            int AccelY = (short)((ushort)(accel[3] << 8) | accel[2]); // Accel Roll
+            int AccelZ = (short)((ushort)(accel[5] << 8) | accel[4]); // Accel Yaw
+
             SixAxisEventArgs args;
             //if (sensors.Touch1 || sensors.Touch2)
             {

@@ -814,8 +814,8 @@ namespace DS4Windows
                 cState.FrameCounter = (byte)(inputReport[7] >> 2);
 
                 // Store Gyro and Accel values
-                Array.Copy(inputReport, 14, accel, 0, 6);
-                Array.Copy(inputReport, 20, gyro, 0, 6);
+                Array.Copy(inputReport, 13, gyro, 0, 6);
+                Array.Copy(inputReport, 19, accel, 0, 6);
                 sixAxis.handleSixaxis(gyro, accel, cState);
 
                 try

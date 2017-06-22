@@ -361,6 +361,7 @@ namespace DS4Windows
                 btPollRateComboBox.SelectedIndex = getBTPollRate(device);
                 lsOutCurveComboBox.SelectedIndex = getLsOutCurveMode(device);
                 rsOutCurveComboBox.SelectedIndex = getRsOutCurveMode(device);
+                gyroTriggerBehavior.Checked = getGyroTriggerTurns(device);
 
                 try
                 {
@@ -594,6 +595,7 @@ namespace DS4Windows
                 cbStartTouchpadOff.Checked = false;
                 rBSAControls.Checked = true;
                 rBTPMouse.Checked = true;
+                gyroTriggerBehavior.Checked = true;
                 switch (device)
                 {
                     case 0: tBRedBar.Value = 0; tBGreenBar.Value = 0; tBBlueBar.Value = 255; break;
@@ -1297,6 +1299,7 @@ namespace DS4Windows
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
             UseTPforControls[device] = rBTPControls.Checked;
             UseSAforMouse[device] = rBSAMouse.Checked;
+            GyroTriggerTurns[device] = gyroTriggerBehavior.Checked;
             DS4Mapping = cBControllerInput.Checked;
             LSCurve[device] = (int)Math.Round(nUDLSCurve.Value, 0);
             RSCurve[device] = (int)Math.Round(nUDRSCurve.Value, 0);
@@ -2800,6 +2803,14 @@ namespace DS4Windows
             if (!loading)
             {
                 rsOutCurveMode[device] = rsOutCurveComboBox.SelectedIndex;
+            }
+        }
+
+        private void gyroTriggerBehavior_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                GyroTriggerTurns[device] = gyroTriggerBehavior.Checked;
             }
         }
 

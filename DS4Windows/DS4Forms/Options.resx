@@ -6943,6 +6943,39 @@ with profile</value>
   <data name="&gt;&gt;rBSAMouse.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="gyroTriggerBehavior.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="gyroTriggerBehavior.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="gyroTriggerBehavior.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 41</value>
+  </data>
+  <data name="gyroTriggerBehavior.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="gyroTriggerBehavior.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 17</value>
+  </data>
+  <data name="gyroTriggerBehavior.TabIndex" type="System.Int32, mscorlib">
+    <value>262</value>
+  </data>
+  <data name="gyroTriggerBehavior.Text" xml:space="preserve">
+    <value>Trigger Behavior - Turns Gyro</value>
+  </data>
+  <data name="&gt;&gt;gyroTriggerBehavior.Name" xml:space="preserve">
+    <value>gyroTriggerBehavior</value>
+  </data>
+  <data name="&gt;&gt;gyroTriggerBehavior.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroTriggerBehavior.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;gyroTriggerBehavior.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBGyroInvertY.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -6950,7 +6983,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="cBGyroInvertY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 76</value>
+    <value>94, 94</value>
   </data>
   <data name="cBGyroInvertY.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -6974,7 +7007,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;cBGyroInvertY.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBGyroInvertX.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6983,7 +7016,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="cBGyroInvertX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 76</value>
+    <value>51, 94</value>
   </data>
   <data name="cBGyroInvertX.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -7007,7 +7040,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;cBGyroInvertX.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="lbGyroInvert.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7016,7 +7049,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbGyroInvert.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 77</value>
+    <value>6, 95</value>
   </data>
   <data name="lbGyroInvert.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 13</value>
@@ -7040,7 +7073,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroInvert.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="lbGyroTriggers.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7073,7 +7106,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroTriggers.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnGyroTriggers.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -7103,10 +7136,10 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;btnGyroTriggers.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="nUDGyroSensitivity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>110, 45</value>
+    <value>110, 65</value>
   </data>
   <data name="nUDGyroSensitivity.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 20</value>
@@ -7124,7 +7157,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;nUDGyroSensitivity.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lbGyroSens.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7133,7 +7166,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="lbGyroSens.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 46</value>
+    <value>6, 66</value>
   </data>
   <data name="lbGyroSens.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 13</value>
@@ -7157,7 +7190,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroSens.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="pnlSAMouse.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 43</value>
@@ -7726,6 +7759,9 @@ with profile</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1010, 481</value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -8030,7 +8066,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.74.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.80.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

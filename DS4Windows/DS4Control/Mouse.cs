@@ -34,21 +34,29 @@ namespace DS4Windows
 
         public virtual void sixaxisMoved(object sender, SixAxisEventArgs arg)
         {
-            if (Global.UseSAforMouse[deviceNum] && Global.GyroSensitivity[deviceNum] > 0)
+            if (Global.isUsingSAforMouse(deviceNum) && Global.getGyroSensitivity(deviceNum) > 0)
             {
                 bool triggeractivated = true;
+                bool useReverseRatchet = Global.getGyroTriggerTurns(deviceNum);
                 int i = 0;
-                string[] ss = Global.SATriggers[deviceNum].Split(',');
+                string[] ss = Global.getSATriggers(deviceNum).Split(',');
                 if (!string.IsNullOrEmpty(ss[0]))
                 {
-                    foreach (string s in ss)
+                    string s = string.Empty;
+                    for (int index = 0, arlen = ss.Length; triggeractivated && index < arlen; index++)
+                    //foreach (string s in ss)
                     {
+                        s = ss[index];
                         if (!(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                        {
                             triggeractivated = false;
+                        }
                     }
                 }
 
-                if (triggeractivated)
+                if (useReverseRatchet && triggeractivated)
+                    cursor.sixaxisMoved(arg);
+                else if (!useReverseRatchet && !triggeractivated)
                     cursor.sixaxisMoved(arg);
 
                 dev.getCurrentState(s);

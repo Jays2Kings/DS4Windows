@@ -328,6 +328,7 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gyroTriggerBehavior = new System.Windows.Forms.CheckBox();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -3012,6 +3013,7 @@
             // 
             // pnlSAMouse
             // 
+            this.pnlSAMouse.Controls.Add(this.gyroTriggerBehavior);
             this.pnlSAMouse.Controls.Add(this.cBGyroInvertY);
             this.pnlSAMouse.Controls.Add(this.cBGyroInvertX);
             this.pnlSAMouse.Controls.Add(this.lbGyroInvert);
@@ -3474,6 +3476,15 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
+            // gyroTriggerBehavior
+            // 
+            resources.ApplyResources(this.gyroTriggerBehavior, "gyroTriggerBehavior");
+            this.gyroTriggerBehavior.Checked = true;
+            this.gyroTriggerBehavior.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gyroTriggerBehavior.Name = "gyroTriggerBehavior";
+            this.gyroTriggerBehavior.UseVisualStyleBackColor = true;
+            this.gyroTriggerBehavior.CheckedChanged += new System.EventHandler(this.gyroTriggerBehavior_CheckedChanged);
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3892,5 +3903,6 @@
         private System.Windows.Forms.ComboBox lsOutCurveComboBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox gyroTriggerBehavior;
     }
 }

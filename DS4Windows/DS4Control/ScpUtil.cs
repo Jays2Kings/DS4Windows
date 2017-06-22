@@ -567,8 +567,28 @@ namespace DS4Windows
         }
 
         public static string[] SATriggers => m_Config.sATriggers;
+        public static string getSATriggers(int index)
+        {
+            return m_Config.sATriggers[index];
+        }
+
         public static int[] GyroSensitivity => m_Config.gyroSensitivity;
+        public static int getGyroSensitivity(int index)
+        {
+            return m_Config.gyroSensitivity[index];
+        }
+
         public static int[] GyroInvert => m_Config.gyroInvert;
+        public static int getGyroInvert(int index)
+        {
+            return m_Config.gyroInvert[index];
+        }
+
+        public static bool[] GyroTriggerTurns => m_Config.gyroTriggerTurns;
+        public static bool getGyroTriggerTurns(int index)
+        {
+            return m_Config.gyroTriggerTurns[index];
+        }
 
         public static DS4Color[] MainColor => m_Config.m_Leds;
         public static DS4Color getMainColor(int index)
@@ -1206,10 +1226,13 @@ namespace DS4Windows
         public int flashWhenLateAt = 20;
         // Cache whether profile has custom action
         public bool[] containsCustomAction = { false, false, false, false, false };
+
         // Cache whether profile has custom extras
         public bool[] containsCustomExtras = { false, false, false, false, false };
+
         public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
         public int[] gyroInvert = { 0, 0, 0, 0, 0 };
+        public bool[] gyroTriggerTurns = { true, true, true, true, true };
 
         public BackingStore()
         {
@@ -1418,6 +1441,7 @@ namespace DS4Windows
                 XmlNode xmlSATriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggers", null); xmlSATriggers.InnerText = sATriggers[device].ToString(); Node.AppendChild(xmlSATriggers);
                 XmlNode xmlGyroSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSensitivity", null); xmlGyroSensitivity.InnerText = gyroSensitivity[device].ToString(); Node.AppendChild(xmlGyroSensitivity);
                 XmlNode xmlGyroInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroInvert", null); xmlGyroInvert.InnerText = gyroInvert[device].ToString(); Node.AppendChild(xmlGyroInvert);
+                XmlNode xmlGyroTriggerTurns = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroTriggerTurns", null); xmlGyroTriggerTurns.InnerText = gyroTriggerTurns[device].ToString(); Node.AppendChild(xmlGyroTriggerTurns);
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
@@ -2315,25 +2339,29 @@ namespace DS4Windows
                 }
                 catch { startTouchpadOff[device] = false; missingSetting = true; }
 
-                try
-                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls"); Boolean.TryParse(Item.InnerText, out useTPforControls[device]); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseTPforControls"); bool.TryParse(Item.InnerText, out useTPforControls[device]); }
                 catch { useTPforControls[device] = false; missingSetting = true; }
-                try
-                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseSAforMouse"); Boolean.TryParse(Item.InnerText, out useSAforMouse[device]); }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/UseSAforMouse"); bool.TryParse(Item.InnerText, out useSAforMouse[device]); }
                 catch { useSAforMouse[device] = false; missingSetting = true; }
-                try
-                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggers"); sATriggers[device] = Item.InnerText; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggers"); sATriggers[device] = Item.InnerText; }
                 catch { sATriggers[device] = ""; missingSetting = true; }
-                try
-                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSensitivity"); int.TryParse(Item.InnerText, out gyroSensitivity[device]); }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSensitivity"); int.TryParse(Item.InnerText, out gyroSensitivity[device]); }
                 catch { gyroSensitivity[device] = 100; missingSetting = true; }
-                try
-                { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroInvert"); int.TryParse(Item.InnerText, out gyroInvert[device]); }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroInvert"); int.TryParse(Item.InnerText, out gyroInvert[device]); }
                 catch { gyroInvert[device] = 0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroTriggerTurns"); bool.TryParse(Item.InnerText, out gyroTriggerTurns[device]); }
+                catch { gyroTriggerTurns[device] = true; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
-                catch { missingSetting = true; }
+                catch { lsCurve[device] = 0; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSCurve"); int.TryParse(Item.InnerText, out rsCurve[device]); }
-                catch { missingSetting = true; }
+                catch { rsCurve[device] = 0; missingSetting = true; }
 
                 try {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/BTPollRate");
@@ -3381,6 +3409,7 @@ namespace DS4Windows
             gyroInvert[device] = 0;
             lsOutCurveMode[device] = 0;
             rsOutCurveMode[device] = 0;
+            gyroTriggerTurns[device] = true;
         }
     }
 

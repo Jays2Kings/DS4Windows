@@ -813,11 +813,6 @@ namespace DS4Windows
                 cState.TouchButton = (inputReport[7] & (1 << 2 - 1)) != 0;
                 cState.FrameCounter = (byte)(inputReport[7] >> 2);
 
-                // Store Gyro and Accel values
-                Array.Copy(inputReport, 13, gyro, 0, 6);
-                Array.Copy(inputReport, 19, accel, 0, 6);
-                sixAxis.handleSixaxis(gyro, accel, cState);
-
                 try
                 {
                     charging = (inputReport[30] & 0x10) != 0;
@@ -854,6 +849,11 @@ namespace DS4Windows
                     }
                 }
                 catch { currerror = "Index out of bounds: touchpad"; }
+
+                // Store Gyro and Accel values
+                Array.Copy(inputReport, 13, gyro, 0, 6);
+                Array.Copy(inputReport, 19, accel, 0, 6);
+                sixAxis.handleSixaxis(gyro, accel, cState);
 
                 /* Debug output of incoming HID data:
                 if (cState.L2 == 0xff && cState.R2 == 0xff)

@@ -32,12 +32,15 @@ namespace DS4Windows
             wheel = new MouseWheel(deviceNum);
         }
 
+        bool triggeractivated = false;
+        bool useReverseRatchet = false;
+
         public virtual void sixaxisMoved(object sender, SixAxisEventArgs arg)
         {
             if (Global.isUsingSAforMouse(deviceNum) && Global.getGyroSensitivity(deviceNum) > 0)
             {
-                bool triggeractivated = true;
-                bool useReverseRatchet = Global.getGyroTriggerTurns(deviceNum);
+                triggeractivated = true;
+                useReverseRatchet = Global.getGyroTriggerTurns(deviceNum);
                 int i = 0;
                 string[] ss = Global.getSATriggers(deviceNum).Split(',');
                 if (!string.IsNullOrEmpty(ss[0]))

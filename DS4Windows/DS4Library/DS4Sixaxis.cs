@@ -32,9 +32,9 @@ namespace DS4Windows
             previousAxis = prevAxis;
             if (previousAxis != null)
             {
-                deltaX = aX - previousAxis.gyroX;
-                deltaY = aY - previousAxis.gyroY;
-                deltaZ = aZ - previousAxis.gyroZ;
+                deltaX = gyroX - previousAxis.gyroX;
+                deltaY = gyroY - previousAxis.gyroY;
+                deltaZ = gyroZ - previousAxis.gyroZ;
             }
         }
     }

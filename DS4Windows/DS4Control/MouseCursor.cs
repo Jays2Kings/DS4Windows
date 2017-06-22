@@ -43,7 +43,7 @@ namespace DS4Windows
                 vRemainder = 0.0;
             }
 
-            int deadzone = 15;
+            int deadzone = 14;
             //int deadzone = 0;
             int deadzoneX = (int)System.Math.Abs(normX * deadzone);
             int deadzoneY = (int)System.Math.Abs(normY * deadzone);

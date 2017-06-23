@@ -876,8 +876,8 @@ namespace DS4Windows
                     }
                 }
 
-                bool ds4ActiveFrame = cState.FrameCounter == pState.FrameCounter;
-                if (!ds4ActiveFrame)
+                bool ds4InactiveFrame = cState.FrameCounter == pState.FrameCounter;
+                if (!ds4InactiveFrame)
                 {
                     isRemoved = false;
                 }

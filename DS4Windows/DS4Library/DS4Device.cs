@@ -876,26 +876,32 @@ namespace DS4Windows
                     }
                 }
 
-                bool ds4Idle = cState.FrameCounter == pState.FrameCounter;
-                if (!ds4Idle)
+                bool ds4ActiveFrame = cState.FrameCounter == pState.FrameCounter;
+                if (!ds4ActiveFrame)
                 {
                     isRemoved = false;
                 }
 
                 if (conType == ConnectionType.USB)
                 {
-                    lastActive = utcNow;
+                    if (idleTimeout == 0)
+                    {
+                        lastActive = utcNow;
+                    }
+                    else if (!isDS4Idle())
+                    {
+                        lastActive = utcNow;
+                    }
                 }
                 else
                 {
                     bool shouldDisconnect = false;
-                    int idleTime = idleTimeout;
-                    if (!isRemoved && idleTime > 0)
+                    if (!isRemoved && idleTimeout > 0)
                     {
                         bool idleInput = isDS4Idle();
                         if (idleInput)
                         {
-                            DateTime timeout = lastActive + TimeSpan.FromSeconds(idleTime);
+                            DateTime timeout = lastActive + TimeSpan.FromSeconds(idleTimeout);
                             if (!charging)
                                 shouldDisconnect = utcNow >= timeout;
                         }

@@ -928,6 +928,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check to have gyro active while trigger is active. Uncheck to disable gyro while trigger is active..
+        /// </summary>
+        internal static string GyroTriggerBehavior {
+            get {
+                return ResourceManager.GetString("GyroTriggerBehavior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GyroX, Left and Right Tilt.
         /// </summary>
         internal static string GyroX {

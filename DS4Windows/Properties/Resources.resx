@@ -784,4 +784,7 @@
   <data name="BTPollRate" xml:space="preserve">
     <value>Determines the poll rate used for the DS4 hardware when connected via Bluetooth</value>
   </data>
+  <data name="GyroTriggerBehavior" xml:space="preserve">
+    <value>Check to have gyro active while trigger is active. Uncheck to disable gyro while trigger is active.</value>
+  </data>
 </root>

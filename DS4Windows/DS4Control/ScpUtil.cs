@@ -578,6 +578,12 @@ namespace DS4Windows
             return m_Config.gyroSensitivity[index];
         }
 
+        public static int[] GyroSensVerticalScale => m_Config.gyroSensVerticalScale;
+        public static int getGyroSensVerticalScale(int index)
+        {
+            return m_Config.gyroSensVerticalScale[index];
+        }
+
         public static int[] GyroInvert => m_Config.gyroInvert;
         public static int getGyroInvert(int index)
         {
@@ -1231,6 +1237,7 @@ namespace DS4Windows
         public bool[] containsCustomExtras = { false, false, false, false, false };
 
         public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
+        public int[] gyroSensVerticalScale = { 100, 100, 100, 100, 100 };
         public int[] gyroInvert = { 0, 0, 0, 0, 0 };
         public bool[] gyroTriggerTurns = { true, true, true, true, true };
 
@@ -1440,6 +1447,7 @@ namespace DS4Windows
                 XmlNode xmlUseSAforMouse = m_Xdoc.CreateNode(XmlNodeType.Element, "UseSAforMouse", null); xmlUseSAforMouse.InnerText = useSAforMouse[device].ToString(); Node.AppendChild(xmlUseSAforMouse);
                 XmlNode xmlSATriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggers", null); xmlSATriggers.InnerText = sATriggers[device].ToString(); Node.AppendChild(xmlSATriggers);
                 XmlNode xmlGyroSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSensitivity", null); xmlGyroSensitivity.InnerText = gyroSensitivity[device].ToString(); Node.AppendChild(xmlGyroSensitivity);
+                XmlNode xmlGyroSensVerticalScale = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSensVerticalScale", null); xmlGyroSensVerticalScale.InnerText = gyroSensVerticalScale[device].ToString(); Node.AppendChild(xmlGyroSensVerticalScale);
                 XmlNode xmlGyroInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroInvert", null); xmlGyroInvert.InnerText = gyroInvert[device].ToString(); Node.AppendChild(xmlGyroInvert);
                 XmlNode xmlGyroTriggerTurns = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroTriggerTurns", null); xmlGyroTriggerTurns.InnerText = gyroTriggerTurns[device].ToString(); Node.AppendChild(xmlGyroTriggerTurns);
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
@@ -2350,6 +2358,9 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSensitivity"); int.TryParse(Item.InnerText, out gyroSensitivity[device]); }
                 catch { gyroSensitivity[device] = 100; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSensVerticalScale"); int.TryParse(Item.InnerText, out gyroSensVerticalScale[device]); }
+                catch { gyroSensVerticalScale[device] = 100; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroInvert"); int.TryParse(Item.InnerText, out gyroInvert[device]); }
                 catch { gyroInvert[device] = 0; missingSetting = true; }
@@ -3406,6 +3417,7 @@ namespace DS4Windows
             sATriggers[device] = "";
             lsCurve[device] = rsCurve[device] = 0;
             gyroSensitivity[device] = 100;
+            gyroSensVerticalScale[device] = 100;
             gyroInvert[device] = 0;
             lsOutCurveMode[device] = 0;
             rsOutCurveMode[device] = 0;

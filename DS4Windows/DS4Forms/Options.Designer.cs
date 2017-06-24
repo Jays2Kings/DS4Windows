@@ -287,6 +287,9 @@
             this.rBSAControls = new System.Windows.Forms.RadioButton();
             this.rBSAMouse = new System.Windows.Forms.RadioButton();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.nUDGyroMouseVertScale = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.gyroTriggerBehavior = new System.Windows.Forms.CheckBox();
             this.cBGyroInvertY = new System.Windows.Forms.CheckBox();
             this.cBGyroInvertX = new System.Windows.Forms.CheckBox();
             this.lbGyroInvert = new System.Windows.Forms.Label();
@@ -328,8 +331,8 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gyroTriggerBehavior = new System.Windows.Forms.CheckBox();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -403,6 +406,7 @@
             this.fLPSettings.SuspendLayout();
             this.gBGyro.SuspendLayout();
             this.pnlSAMouse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).BeginInit();
             this.gBSensitivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).BeginInit();
@@ -3013,6 +3017,9 @@
             // 
             // pnlSAMouse
             // 
+            this.pnlSAMouse.Controls.Add(this.label12);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroMouseVertScale);
+            this.pnlSAMouse.Controls.Add(this.label11);
             this.pnlSAMouse.Controls.Add(this.gyroTriggerBehavior);
             this.pnlSAMouse.Controls.Add(this.cBGyroInvertY);
             this.pnlSAMouse.Controls.Add(this.cBGyroInvertX);
@@ -3023,6 +3030,41 @@
             this.pnlSAMouse.Controls.Add(this.lbGyroSens);
             resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
             this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // nUDGyroMouseVertScale
+            // 
+            this.nUDGyroMouseVertScale.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDGyroMouseVertScale, "nUDGyroMouseVertScale");
+            this.nUDGyroMouseVertScale.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDGyroMouseVertScale.Name = "nUDGyroMouseVertScale";
+            this.nUDGyroMouseVertScale.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nUDGyroMouseVertScale.ValueChanged += new System.EventHandler(this.nUDGyroMouseVertScale_ValueChanged);
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // gyroTriggerBehavior
+            // 
+            resources.ApplyResources(this.gyroTriggerBehavior, "gyroTriggerBehavior");
+            this.gyroTriggerBehavior.Checked = true;
+            this.gyroTriggerBehavior.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gyroTriggerBehavior.Name = "gyroTriggerBehavior";
+            this.gyroTriggerBehavior.UseVisualStyleBackColor = true;
+            this.gyroTriggerBehavior.CheckedChanged += new System.EventHandler(this.gyroTriggerBehavior_CheckedChanged);
             // 
             // cBGyroInvertY
             // 
@@ -3476,14 +3518,10 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
-            // gyroTriggerBehavior
+            // label12
             // 
-            resources.ApplyResources(this.gyroTriggerBehavior, "gyroTriggerBehavior");
-            this.gyroTriggerBehavior.Checked = true;
-            this.gyroTriggerBehavior.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.gyroTriggerBehavior.Name = "gyroTriggerBehavior";
-            this.gyroTriggerBehavior.UseVisualStyleBackColor = true;
-            this.gyroTriggerBehavior.CheckedChanged += new System.EventHandler(this.gyroTriggerBehavior_CheckedChanged);
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
             // 
             // Options
             // 
@@ -3586,6 +3624,7 @@
             this.gBGyro.PerformLayout();
             this.pnlSAMouse.ResumeLayout(false);
             this.pnlSAMouse.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).EndInit();
             this.gBSensitivity.ResumeLayout(false);
             this.gBSensitivity.PerformLayout();
@@ -3904,5 +3943,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox gyroTriggerBehavior;
+        private System.Windows.Forms.NumericUpDown nUDGyroMouseVertScale;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }

@@ -361,7 +361,6 @@ namespace DS4Windows
                 btPollRateComboBox.SelectedIndex = getBTPollRate(device);
                 lsOutCurveComboBox.SelectedIndex = getLsOutCurveMode(device);
                 rsOutCurveComboBox.SelectedIndex = getRsOutCurveMode(device);
-                gyroTriggerBehavior.Checked = getGyroTriggerTurns(device);
 
                 try
                 {
@@ -575,6 +574,8 @@ namespace DS4Windows
                     }
                 }
                 nUDGyroSensitivity.Value = GyroSensitivity[device];
+                gyroTriggerBehavior.Checked = GyroTriggerTurns[device];
+                nUDGyroMouseVertScale.Value = GyroSensVerticalScale[device];
                 int invert = GyroInvert[device];
                 cBGyroInvertX.Checked = invert == 2 || invert == 3;
                 cBGyroInvertY.Checked = invert == 1 || invert == 3;
@@ -595,7 +596,7 @@ namespace DS4Windows
                 cbStartTouchpadOff.Checked = false;
                 rBSAControls.Checked = true;
                 rBTPMouse.Checked = true;
-                gyroTriggerBehavior.Checked = true;
+
                 switch (device)
                 {
                     case 0: tBRedBar.Value = 0; tBGreenBar.Value = 0; tBBlueBar.Value = 255; break;
@@ -662,6 +663,8 @@ namespace DS4Windows
                 cBControllerInput.Checked = DS4Mapping;
                 ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = true;
                 nUDGyroSensitivity.Value = 100;
+                nUDGyroMouseVertScale.Value = 100;
+                gyroTriggerBehavior.Checked = true;
                 cBGyroInvertX.Checked = false;
                 cBGyroInvertY.Checked = false;
                 Set();
@@ -1299,7 +1302,6 @@ namespace DS4Windows
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
             UseTPforControls[device] = rBTPControls.Checked;
             UseSAforMouse[device] = rBSAMouse.Checked;
-            GyroTriggerTurns[device] = gyroTriggerBehavior.Checked;
             DS4Mapping = cBControllerInput.Checked;
             LSCurve[device] = (int)Math.Round(nUDLSCurve.Value, 0);
             RSCurve[device] = (int)Math.Round(nUDRSCurve.Value, 0);
@@ -1320,6 +1322,9 @@ namespace DS4Windows
             fLPTouchSwipe.Visible = rBTPControls.Checked;
 
             GyroSensitivity[device] = (int)Math.Round(nUDGyroSensitivity.Value, 0);
+            GyroTriggerTurns[device] = gyroTriggerBehavior.Checked;
+            GyroSensVerticalScale[device] = (int)nUDGyroMouseVertScale.Value;
+
             int invert = 0;
             if (cBGyroInvertX.Checked)
                 invert += 2;
@@ -1330,7 +1335,7 @@ namespace DS4Windows
             GyroInvert[device] = invert;
 
             List<int> ints = new List<int>();
-            for (int i = 0; i < cMGyroTriggers.Items.Count - 1; i++)
+            for (int i = 0, trigLen = cMGyroTriggers.Items.Count - 1; i < trigLen; i++)
             {
                 if (((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked)
                     ints.Add(i);
@@ -2241,6 +2246,7 @@ namespace DS4Windows
                 case "nUDSixaxis": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;
                 case "cBControllerInput": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;
                 case "lbUseController": root.lbLastMessage.Text = Properties.Resources.UseControllerForMapping; break;
+                case "gyroTriggerBehavior": root.lbLastMessage.Text = Properties.Resources.GyroTriggerBehavior; break;
                 default: root.lbLastMessage.Text = Properties.Resources.HoverOverItems; break;
             }
 
@@ -2811,6 +2817,14 @@ namespace DS4Windows
             if (!loading)
             {
                 GyroTriggerTurns[device] = gyroTriggerBehavior.Checked;
+            }
+        }
+
+        private void nUDGyroMouseVertScale_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                GyroSensVerticalScale[device] = (int)nUDGyroMouseVertScale.Value;
             }
         }
 

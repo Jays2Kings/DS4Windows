@@ -18,6 +18,8 @@ namespace DS4Windows
         private Direction horizontalDirection = Direction.Neutral, verticalDirection = Direction.Neutral;
         private Direction hDirection = Direction.Neutral, vDirection = Direction.Neutral;
 
+        double verticalScale = 0.0;
+
         public virtual void sixaxisMoved(SixAxisEventArgs arg)
         {
             int deltaX = 0, deltaY = 0;
@@ -25,8 +27,8 @@ namespace DS4Windows
             deltaY = -arg.sixAxis.gyroYFull;
             //Console.WriteLine(arg.sixAxis.deltaX);
 
-            double coefficient = Global.GyroSensitivity[deviceNumber] / 100f * 0.008;
-            double offset = 0.1;
+            double coefficient = (Global.getGyroSensitivity(deviceNumber) * 0.1) * 0.008;
+            double offset = 0.12;
             double tempAngle = System.Math.Atan2(-deltaY, deltaX);
             double normX = System.Math.Abs(System.Math.Cos(tempAngle));
             double normY = System.Math.Abs(System.Math.Sin(tempAngle));
@@ -43,7 +45,7 @@ namespace DS4Windows
                 vRemainder = 0.0;
             }
 
-            int deadzone = 14;
+            int deadzone = 13;
             //int deadzone = 0;
             int deadzoneX = (int)System.Math.Abs(normX * deadzone);
             int deadzoneY = (int)System.Math.Abs(normY * deadzone);
@@ -80,7 +82,8 @@ namespace DS4Windows
             }
 
             //hRemainder -= (int)hRemainder;
-            double yMotion = deltaY != 0 ? coefficient * deltaY + (normY * (offset * signY)) : 0;
+            verticalScale = Global.getGyroSensVerticalScale(deviceNumber) * 0.1;
+            double yMotion = deltaY != 0 ? (coefficient * verticalScale) * deltaY + (normY * (offset * signY)) : 0;
             int yAction = 0;
             if (yMotion != 0.0)
             {
@@ -95,7 +98,7 @@ namespace DS4Windows
 
             //vRemainder -= (int)vRemainder;
 
-            int gyroInvert = Global.GyroInvert[deviceNumber];
+            int gyroInvert = Global.getGyroInvert(deviceNumber);
             if (gyroInvert == 2 || gyroInvert == 3)
                 xAction *= -1;
 

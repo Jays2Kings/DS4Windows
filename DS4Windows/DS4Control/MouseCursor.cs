@@ -27,8 +27,8 @@ namespace DS4Windows
             deltaY = -arg.sixAxis.gyroYFull;
             //Console.WriteLine(arg.sixAxis.deltaX);
 
-            double coefficient = (Global.getGyroSensitivity(deviceNumber) * 0.1) * 0.008;
-            double offset = 0.12;
+            double coefficient = (Global.getGyroSensitivity(deviceNumber) * 0.01) * 0.0085;
+            double offset = 0.16;
             double tempAngle = System.Math.Atan2(-deltaY, deltaX);
             double normX = System.Math.Abs(System.Math.Cos(tempAngle));
             double normY = System.Math.Abs(System.Math.Sin(tempAngle));
@@ -45,7 +45,7 @@ namespace DS4Windows
                 vRemainder = 0.0;
             }
 
-            int deadzone = 13;
+            int deadzone = 12;
             //int deadzone = 0;
             int deadzoneX = (int)System.Math.Abs(normX * deadzone);
             int deadzoneY = (int)System.Math.Abs(normY * deadzone);
@@ -82,7 +82,7 @@ namespace DS4Windows
             }
 
             //hRemainder -= (int)hRemainder;
-            verticalScale = Global.getGyroSensVerticalScale(deviceNumber) * 0.1;
+            verticalScale = Global.getGyroSensVerticalScale(deviceNumber) * 0.01;
             double yMotion = deltaY != 0 ? (coefficient * verticalScale) * deltaY + (normY * (offset * signY)) : 0;
             int yAction = 0;
             if (yMotion != 0.0)

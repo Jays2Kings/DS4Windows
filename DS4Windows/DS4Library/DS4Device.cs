@@ -642,6 +642,9 @@ namespace DS4Windows
         public bool oldCharging = false;
         double curTimeDouble = 0.0;
         double oldTimeDouble = 0.0;
+        DateTime utcNow = DateTime.UtcNow;
+        bool ds4InactiveFrame = true;
+        bool idleInput = true;
 
         private void performDs4Input()
         {
@@ -656,6 +659,8 @@ namespace DS4Windows
             Stopwatch sw = new Stopwatch();
             sw.Start();
             timeoutEvent = false;
+            ds4InactiveFrame = true;
+            idleInput = true;
 
             int maxBatteryValue = 0;
             int tempBattery = 0;
@@ -769,7 +774,7 @@ namespace DS4Windows
 	                continue;
 	            }
 
-                DateTime utcNow = DateTime.UtcNow; // timestamp with UTC in case system time zone changes
+                utcNow = DateTime.UtcNow; // timestamp with UTC in case system time zone changes
                 resetHapticState();
                 cState.ReportTimeStamp = utcNow;
                 cState.LX = inputReport[1];
@@ -876,7 +881,7 @@ namespace DS4Windows
                     }
                 }
 
-                bool ds4InactiveFrame = cState.FrameCounter == pState.FrameCounter;
+                ds4InactiveFrame = cState.FrameCounter == pState.FrameCounter;
                 if (!ds4InactiveFrame)
                 {
                     isRemoved = false;
@@ -888,9 +893,13 @@ namespace DS4Windows
                     {
                         lastActive = utcNow;
                     }
-                    else if (!isDS4Idle())
+                    else
                     {
-                        lastActive = utcNow;
+                        idleInput = isDS4Idle();
+                        if (!idleInput)
+                        {
+                            lastActive = utcNow;
+                        }
                     }
                 }
                 else
@@ -898,7 +907,7 @@ namespace DS4Windows
                     bool shouldDisconnect = false;
                     if (!isRemoved && idleTimeout > 0)
                     {
-                        bool idleInput = isDS4Idle();
+                        idleInput = isDS4Idle();
                         if (idleInput)
                         {
                             DateTime timeout = lastActive + TimeSpan.FromSeconds(idleTimeout);

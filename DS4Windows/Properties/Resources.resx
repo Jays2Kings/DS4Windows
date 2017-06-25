@@ -787,4 +787,10 @@
   <data name="GyroTriggerBehavior" xml:space="preserve">
     <value>Check to have gyro active while trigger is active. Uncheck to disable gyro while trigger is active.</value>
   </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>This will disconnect all your connected controllers. Proceed?</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm...</value>
+  </data>
 </root>

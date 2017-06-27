@@ -373,7 +373,7 @@ namespace DS4Windows
                 nUDUpdateTime.Value = checkwhen;
             }
 
-            Uri url = new Uri("http://23.236.26.40/ds4windows/files/builds/newest.txt"); // Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("http://23.239.26.40/ds4windows/files/builds/newest.txt"); // Sorry other devs, gonna have to find your own server
 
             if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
             {
@@ -2067,7 +2067,7 @@ namespace DS4Windows
         private void lLBUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // Sorry other devs, gonna have to find your own server
-            Uri url = new Uri("http://23.236.26.40/ds4windows/files/builds/newest.txt");
+            Uri url = new Uri("http://23.239.26.40/ds4windows/files/builds/newest.txt");
             WebClient wct = new WebClient();
             wct.DownloadFileAsync(url, appdatapath + "\\version.txt");
             wct.DownloadFileCompleted += wct_DownloadFileCompleted;

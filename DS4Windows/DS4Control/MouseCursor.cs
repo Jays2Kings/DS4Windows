@@ -27,8 +27,8 @@ namespace DS4Windows
             deltaY = -arg.sixAxis.gyroYFull;
             //Console.WriteLine(arg.sixAxis.deltaX);
 
-            double coefficient = (Global.getGyroSensitivity(deviceNumber) * 0.01) * 0.0085;
-            double offset = 0.16;
+            double coefficient = (Global.getGyroSensitivity(deviceNumber) * 0.01) * 0.0095;
+            double offset = 0.14725;
             double tempAngle = System.Math.Atan2(-deltaY, deltaX);
             double normX = System.Math.Abs(System.Math.Cos(tempAngle));
             double normY = System.Math.Abs(System.Math.Sin(tempAngle));

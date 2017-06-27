@@ -16,7 +16,8 @@ namespace DS4Windows
     public class SixAxis
     {
         public readonly int gyroX, gyroY, gyroZ, deltaX, deltaY, deltaZ, accelX, accelY, accelZ;
-        public readonly int gyroXFull, gyroYFull;
+        public readonly int gyroXFull, gyroYFull, gyroZFull;
+        public readonly int accelXFull, accelYFull, accelZFull;
         public readonly byte touchID;
         public readonly SixAxis previousAxis;
         public SixAxis(int X, int Y, int Z, int aX, int aY, int aZ, SixAxis prevAxis = null)
@@ -26,9 +27,15 @@ namespace DS4Windows
             gyroZ = Z / 256;
             gyroXFull = X;
             gyroYFull = Y;
+            gyroZFull = Z;
+
             accelX = aX / 64;
             accelY = aY / 64;
             accelZ = aZ / 64;
+            accelXFull = aX;
+            accelYFull = aY;
+            accelZFull = aZ;
+
             previousAxis = prevAxis;
             if (previousAxis != null)
             {

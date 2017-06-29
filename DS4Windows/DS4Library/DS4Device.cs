@@ -77,7 +77,7 @@ namespace DS4Windows
             try
             {
                 string[] ss = value.Split(',');
-                return byte.TryParse(ss[0], out ds4color.red) &&byte.TryParse(ss[1], out ds4color.green) && byte.TryParse(ss[2], out ds4color.blue);
+                return byte.TryParse(ss[0], out ds4color.red) && byte.TryParse(ss[1], out ds4color.green) && byte.TryParse(ss[2], out ds4color.blue);
             }
             catch { return false; }
         }
@@ -650,7 +650,6 @@ namespace DS4Windows
         {
             firstActive = DateTime.UtcNow;
             NativeMethods.HidD_SetNumInputBuffers(hDevice.safeReadHandle.DangerousGetHandle(), 2);
-            //List<long> latencyList = new List<long>(51); // Set capacity at max + 1 to avoid any list resizing
             Queue<long> latencyQueue = new Queue<long>(51); // Set capacity at max + 1 to avoid any resizing
             int tempLatencyCount = 0;
             long oldtime = 0;
@@ -765,10 +764,10 @@ namespace DS4Windows
                 }
 
                 if (conType == ConnectionType.BT && btInputReport[0] != 0x11)
-	            {
-	                //Received incorrect report, skip it
-	                continue;
-	            }
+                {
+                    //Received incorrect report, skip it
+                    continue;
+                }
 
                 utcNow = DateTime.UtcNow; // timestamp with UTC in case system time zone changes
                 resetHapticState();
@@ -865,7 +864,8 @@ namespace DS4Windows
                     for (int i = 0; i < inputReport.Length; i++)
                         Console.Write(" " + inputReport[i].ToString("x2"));
                     Console.WriteLine();
-                } */
+                }
+                */
 
                 if (conType == ConnectionType.SONYWA)
                 {
@@ -970,13 +970,10 @@ namespace DS4Windows
                 {
                     Action tempAct = null;
                     for (int actInd = 0, actLen = eventQueue.Count; actInd < actLen; actInd++)
-                    //foreach (Action tempAct in eventQueue)
                     {
                         tempAct = eventQueue.Dequeue();
                         tempAct.Invoke();
                     }
-
-                    //eventQueue.Clear();
                 }
             }
 
@@ -1293,7 +1290,7 @@ namespace DS4Windows
         }
 
         override
-        public String ToString()
+        public string ToString()
         {
             return Mac;
         }

@@ -668,21 +668,19 @@ namespace DS4Windows
                     int flashWhenLateAt = getFlashWhenLateAt();
                     if (!lag[ind] && device.Latency >= flashWhenLateAt)
                     {
+                        lag[ind] = true;
                         device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
                         {
                             LagFlashWarning(ind, true);
                         }), null);
-
-                        //LagFlashWarning(ind, true);
                     }
                     else if (lag[ind] && device.Latency < flashWhenLateAt)
                     {
+                        lag[ind] = false;
                         device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
                         {
                             LagFlashWarning(ind, false);
                         }), null);
-
-                        //LagFlashWarning(ind, false);
                     }
                 }
                 else
@@ -705,9 +703,6 @@ namespace DS4Windows
                     {
                         OnDeviceStatusChanged(this, ind);
                     }), null);
-
-                    //OnDeviceStatusChanged(this, ind);
-
                 }
                 else if (pState.Battery != cState.Battery || device.oldCharging != device.isCharging())
                 {
@@ -717,8 +712,6 @@ namespace DS4Windows
                     {
                         OnBatteryStatusChange(this, ind, tempBattery, tempCharging);
                     }), null);
-
-                    //OnBatteryStatusChange(this, ind, cState.Battery, device.isCharging());
                 }
 
                 if (getEnableTouchToggle(ind))

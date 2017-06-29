@@ -671,23 +671,19 @@ namespace DS4Windows
                 currerror = string.Empty;
                 curTimeDouble = sw.Elapsed.TotalMilliseconds;
                 curtime = sw.ElapsedMilliseconds;
-                lastTimeElapsed = curtime - oldtime;
-                lastTimeElapsedDouble = (curTimeDouble - oldTimeDouble);
-                //latencyList.Add(this.lastTimeElapsed);
-                latencyQueue.Enqueue(this.lastTimeElapsed);
-                tempLatencyCount++;
-                oldtime = curtime;
-                oldTimeDouble = curTimeDouble;
 
-                if (tempLatencyCount > 50)
+                if (tempLatencyCount >= 50)
                 {
-                    //latencyList.RemoveAt(0);
                     latencyQueue.Dequeue();
                     tempLatencyCount--;
                 }
 
-                //Latency = latencyList.Average();
-                //latencyList.Average();
+                lastTimeElapsed = curtime - oldtime;
+                lastTimeElapsedDouble = (curTimeDouble - oldTimeDouble);
+                latencyQueue.Enqueue(this.lastTimeElapsed);
+                tempLatencyCount++;
+                oldtime = curtime;
+                oldTimeDouble = curTimeDouble;
                 Latency = latencyQueue.Average();
 
                 if (conType == ConnectionType.BT)

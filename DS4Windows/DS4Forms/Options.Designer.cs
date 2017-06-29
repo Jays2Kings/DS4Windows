@@ -287,6 +287,7 @@
             this.rBSAControls = new System.Windows.Forms.RadioButton();
             this.rBSAMouse = new System.Windows.Forms.RadioButton();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.nUDGyroMouseVertScale = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.gyroTriggerBehavior = new System.Windows.Forms.CheckBox();
@@ -331,8 +332,11 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nUDGyroSmoothWeight = new System.Windows.Forms.NumericUpDown();
+            this.lbSmoothWeight = new System.Windows.Forms.Label();
+            this.cBGyroSmooth = new System.Windows.Forms.CheckBox();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lbGyroSmooth = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -416,6 +420,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -3017,6 +3022,10 @@
             // 
             // pnlSAMouse
             // 
+            this.pnlSAMouse.Controls.Add(this.lbGyroSmooth);
+            this.pnlSAMouse.Controls.Add(this.cBGyroSmooth);
+            this.pnlSAMouse.Controls.Add(this.lbSmoothWeight);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroSmoothWeight);
             this.pnlSAMouse.Controls.Add(this.label12);
             this.pnlSAMouse.Controls.Add(this.nUDGyroMouseVertScale);
             this.pnlSAMouse.Controls.Add(this.label11);
@@ -3030,6 +3039,11 @@
             this.pnlSAMouse.Controls.Add(this.lbGyroSens);
             resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
             this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
             // 
             // nUDGyroMouseVertScale
             // 
@@ -3518,10 +3532,39 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
-            // label12
+            // nUDGyroSmoothWeight
             // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
+            this.nUDGyroSmoothWeight.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDGyroSmoothWeight, "nUDGyroSmoothWeight");
+            this.nUDGyroSmoothWeight.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDGyroSmoothWeight.Name = "nUDGyroSmoothWeight";
+            this.nUDGyroSmoothWeight.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.nUDGyroSmoothWeight.ValueChanged += new System.EventHandler(this.nUDGyroSmoothWeight_ValueChanged);
+            // 
+            // lbSmoothWeight
+            // 
+            resources.ApplyResources(this.lbSmoothWeight, "lbSmoothWeight");
+            this.lbSmoothWeight.Name = "lbSmoothWeight";
+            // 
+            // cBGyroSmooth
+            // 
+            resources.ApplyResources(this.cBGyroSmooth, "cBGyroSmooth");
+            this.cBGyroSmooth.Name = "cBGyroSmooth";
+            this.cBGyroSmooth.UseVisualStyleBackColor = true;
+            this.cBGyroSmooth.CheckedChanged += new System.EventHandler(this.cBGyroSmooth_CheckedChanged);
+            // 
+            // lbGyroSmooth
+            // 
+            resources.ApplyResources(this.lbGyroSmooth, "lbGyroSmooth");
+            this.lbGyroSmooth.Name = "lbGyroSmooth";
             // 
             // Options
             // 
@@ -3635,6 +3678,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3946,5 +3990,9 @@
         private System.Windows.Forms.NumericUpDown nUDGyroMouseVertScale;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbSmoothWeight;
+        private System.Windows.Forms.NumericUpDown nUDGyroSmoothWeight;
+        private System.Windows.Forms.CheckBox cBGyroSmooth;
+        private System.Windows.Forms.Label lbGyroSmooth;
     }
 }

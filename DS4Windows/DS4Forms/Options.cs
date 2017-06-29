@@ -581,6 +581,9 @@ namespace DS4Windows
                 cBGyroInvertY.Checked = invert == 1 || invert == 3;
                 if (s.Count > 0)
                     btnGyroTriggers.Text = string.Join(", ", s);
+
+                cBGyroSmooth.Checked = nUDGyroSmoothWeight.Enabled = GyroSmoothing[device];
+                nUDGyroSmoothWeight.Value = (decimal)(GyroSmoothingWeight[device]);
             }
             else
             {
@@ -667,6 +670,8 @@ namespace DS4Windows
                 gyroTriggerBehavior.Checked = true;
                 cBGyroInvertX.Checked = false;
                 cBGyroInvertY.Checked = false;
+                cBGyroSmooth.Checked = false;
+                nUDGyroSmoothWeight.Value = 0.5m;
                 Set();
             }
             
@@ -1324,6 +1329,8 @@ namespace DS4Windows
             GyroSensitivity[device] = (int)Math.Round(nUDGyroSensitivity.Value, 0);
             GyroTriggerTurns[device] = gyroTriggerBehavior.Checked;
             GyroSensVerticalScale[device] = (int)nUDGyroMouseVertScale.Value;
+            GyroSmoothing[device] = cBGyroSmooth.Checked;
+            GyroSmoothingWeight[device] = (double)nUDGyroSmoothWeight.Value;
 
             int invert = 0;
             if (cBGyroInvertX.Checked)
@@ -2825,6 +2832,24 @@ namespace DS4Windows
             if (!loading)
             {
                 GyroSensVerticalScale[device] = (int)nUDGyroMouseVertScale.Value;
+            }
+        }
+
+        private void nUDGyroSmoothWeight_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                GyroSmoothingWeight[device] = (double)nUDGyroSmoothWeight.Value;
+            }
+        }
+
+        private void cBGyroSmooth_CheckedChanged(object sender, EventArgs e)
+        {
+            bool value = cBGyroSmooth.Checked;
+            nUDGyroSmoothWeight.Enabled = value;
+            if (!loading)
+            {
+                GyroSmoothing[device] = value;
             }
         }
 

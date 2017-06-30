@@ -1118,7 +1118,7 @@ namespace DS4Windows
                 string temp = Program.rootHub.getShortDS4ControllerInfo(i);
                 if (temp != Properties.Resources.NoneText)
                 {
-                    notifyText[i + 1] += (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+                    notifyText[i + 1] = (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
                 }
                 else
                 {
@@ -1148,7 +1148,7 @@ namespace DS4Windows
             string temp = Program.rootHub.getShortDS4ControllerInfo(index);
             if (temp != Properties.Resources.NoneText)
             {
-                notifyText[index + 1] += (index + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+                notifyText[index + 1] = (index + 1) + ": " + temp; // Carefully stay under the 63 character limit.
             }
             else
             {

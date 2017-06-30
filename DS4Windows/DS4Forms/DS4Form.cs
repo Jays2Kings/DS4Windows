@@ -2166,6 +2166,33 @@ namespace DS4Windows
                 return;
             }
 
+            //in case user accidentally clicks on the close button whilst "Close Minimizes" checkbox is unchecked
+            if (!cBCloseMini.Checked && !contextclose)
+            {
+                DS4Device[] devices = Program.rootHub.DS4Controllers;
+                int controllerLen = devices.Length;
+                bool nocontrollers = true;
+
+                for (Int32 i = 0, PadsLen = Pads.Length; nocontrollers && i < PadsLen; i++)
+                {
+                    DS4Device d = devices[i];
+                    if (d != null)
+                    {
+                        nocontrollers = false;
+                    }
+                }
+
+                if (!nocontrollers)
+                {
+                    if (MessageBox.Show(Properties.Resources.CloseConfirm, Properties.Resources.Confirm,
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+            }
+
             if (cBCloseMini.Checked && !contextclose)
             {
                 this.WindowState = FormWindowState.Minimized;

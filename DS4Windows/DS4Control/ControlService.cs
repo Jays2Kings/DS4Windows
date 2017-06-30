@@ -143,12 +143,13 @@ namespace DS4Windows
                         device.setUiContext(SynchronizationContext.Current);
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
+                        device.SyncChange += this.On_SyncChange;
                         device.SyncChange += DS4Devices.UpdateSerial;
                         device.SerialChange += this.On_SerialChange;
                         touchPad[i] = new Mouse(i, device);
                         device.LightBarColor = getMainColor(i);
 
-                        if (!getDInputOnly(i))
+                        if (!getDInputOnly(i) && device.isSynced())
                         {
                             int xinputIndex = x360Bus.FirstController + i;
                             LogDebug("Plugging in X360 Controller #" + xinputIndex);
@@ -319,12 +320,13 @@ namespace DS4Windows
                             device.setUiContext(uiContext);
                             device.Removal += this.On_DS4Removal;
                             device.Removal += DS4Devices.On_Removal;
+                            device.SyncChange += this.On_SyncChange;
                             device.SyncChange += DS4Devices.UpdateSerial;
                             device.SerialChange += this.On_SerialChange;
                             touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = getMainColor(Index);
                             device.Report += this.On_Report;
-                            if (!getDInputOnly(Index))
+                            if (!getDInputOnly(Index) && device.isSynced())
                             {
                                 int xinputIndex = x360Bus.FirstController + Index;
                                 LogDebug("Plugging in X360 Controller #" + xinputIndex);
@@ -559,6 +561,60 @@ namespace DS4Windows
             if (ind >= 0)
             {
                 OnDeviceSerialChange(this, ind, device.getMacAddress());
+            }
+        }
+
+        protected void On_SyncChange(object sender, EventArgs e)
+        {
+            DS4Device device = (DS4Device)sender;
+            int ind = -1;
+            for (int i = 0, arlength = DS4_CONTROLLER_COUNT; ind == -1 && i < arlength; i++)
+            {
+                DS4Device tempDev = DS4Controllers[i];
+                if (tempDev != null && device == tempDev)
+                    ind = i;
+            }
+
+            if (ind >= 0)
+            {
+                bool synced = device.isSynced();
+
+                if (!synced)
+                {
+                    if (!useDInputOnly[ind])
+                    {
+                        bool unplugResult = x360Bus.Unplug(ind);
+                        int xinputIndex = x360Bus.FirstController + ind;
+                        if (unplugResult)
+                        {
+                            LogDebug("X360 Controller # " + xinputIndex + " unplugged");
+                            useDInputOnly[ind] = true;
+                        }
+                        else
+                        {
+                            LogDebug("X360 Controller # " + xinputIndex + " failed to unplug");
+                        }
+                    }
+                }
+                else
+                {
+                    if (!getDInputOnly(ind))
+                    {
+                        int xinputIndex = x360Bus.FirstController + ind;
+                        LogDebug("Plugging in X360 Controller #" + xinputIndex);
+                        bool xinputResult = x360Bus.Plugin(ind);
+                        if (xinputResult)
+                        {
+                            LogDebug("X360 Controller # " + xinputIndex + " connected");
+                            useDInputOnly[ind] = false;
+                        }
+                        else
+                        {
+                            LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
+                            useDInputOnly[ind] = true;
+                        }
+                    }
+                }
             }
         }
 

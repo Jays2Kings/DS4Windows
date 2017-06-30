@@ -756,6 +756,18 @@ namespace DS4Windows
             return m_Config.rsCurve[index];
         }
 
+        public static double[] LSRotation => m_Config.LSRotation;
+        public static double getLSRotation(int index)
+        {
+            return m_Config.LSRotation[index];
+        }
+
+        public static double[] RSRotation => m_Config.RSRotation;
+        public static double getRSRotation(int index)
+        {
+            return m_Config.RSRotation[index];
+        }
+
         public static double[] L2Sens => m_Config.l2Sens;
         public static double getL2Sens(int index)
         {
@@ -1144,6 +1156,7 @@ namespace DS4Windows
         public int[] LSMaxzone = { 100, 100, 100, 100, 100 }, RSMaxzone = { 100, 100, 100, 100, 100 };
         public int[] l2AntiDeadzone = { 0, 0, 0, 0, 0 }, r2AntiDeadzone = { 0, 0, 0, 0, 0 };
         public int[] l2Maxzone = { 100, 100, 100, 100, 100 }, r2Maxzone = { 100, 100, 100, 100, 100 };
+        public double[] LSRotation = { 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = { 0.0, 0.0, 0.0, 0.0, 0.0 };
         public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
         public double[] l2Sens = { 1, 1, 1, 1, 1 }, r2Sens = { 1, 1, 1, 1, 1 };
         public double[] LSSens = { 1, 1, 1, 1, 1 }, RSSens = { 1, 1, 1, 1, 1 };
@@ -1444,6 +1457,9 @@ namespace DS4Windows
                 XmlNode xmlRSAD = m_Xdoc.CreateNode(XmlNodeType.Element, "RSAntiDeadZone", null); xmlRSAD.InnerText = RSAntiDeadzone[device].ToString(); Node.AppendChild(xmlRSAD);
                 XmlNode xmlLSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "LSMaxZone", null); xmlLSMaxZone.InnerText = LSMaxzone[device].ToString(); Node.AppendChild(xmlLSMaxZone);
                 XmlNode xmlRSMaxZone = m_Xdoc.CreateNode(XmlNodeType.Element, "RSMaxZone", null); xmlRSMaxZone.InnerText = RSMaxzone[device].ToString(); Node.AppendChild(xmlRSMaxZone);
+                XmlNode xmlLSRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "LSRotation", null); xmlLSRotation.InnerText = Convert.ToInt32(LSRotation[device] * 180.0 / Math.PI).ToString(); Node.AppendChild(xmlLSRotation);
+                XmlNode xmlRSRotation = m_Xdoc.CreateNode(XmlNodeType.Element, "RSRotation", null); xmlRSRotation.InnerText = Convert.ToInt32(RSRotation[device] * 180.0 / Math.PI).ToString(); Node.AppendChild(xmlRSRotation);
+
                 XmlNode xmlSXD = m_Xdoc.CreateNode(XmlNodeType.Element, "SXDeadZone", null); xmlSXD.InnerText = SXDeadzone[device].ToString(); Node.AppendChild(xmlSXD);
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); Node.AppendChild(xmlSZD);
 
@@ -2195,6 +2211,24 @@ namespace DS4Windows
                 }
                 catch { r2Maxzone[device] = 100; missingSetting = true; }
 
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSRotation"); int temp = 0;
+                    int.TryParse(Item.InnerText, out temp);
+                    temp = Math.Min(Math.Max(temp, -180), 180);
+                    LSRotation[device] = temp * Math.PI / 180.0;
+                }
+                catch { LSRotation[device] = 0.0; missingSetting = true; }
+
+                try
+                {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSRotation"); int temp = 0;
+                    int.TryParse(Item.InnerText, out temp);
+                    temp = Math.Min(Math.Max(temp, -180), 180);
+                    RSRotation[device] = temp * Math.PI / 180.0;
+                }
+                catch { RSRotation[device] = 0.0; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ButtonMouseSensitivity"); int.TryParse(Item.InnerText, out buttonMouseSensitivity[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/Rainbow"); double.TryParse(Item.InnerText, out rainbow[device]); }
@@ -2387,7 +2421,7 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSmoothing"); bool.TryParse(Item.InnerText, out gyroSmoothing[device]); }
                 catch { gyroSmoothing[device] = false; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSmoothingWeight"); int temp = 0; int.TryParse(Item.InnerText, out temp); gyroSmoothWeight[device] = Convert.ToDouble(temp * 0.01); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSmoothingWeight"); int temp = 0; int.TryParse(Item.InnerText, out temp); gyroSmoothWeight[device] = Math.Min(Math.Max(0.0, Convert.ToDouble(temp * 0.01)), 1.0); }
                 catch { gyroSmoothWeight[device] = 0.5; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
@@ -3399,6 +3433,8 @@ namespace DS4Windows
             LSMaxzone[device] = RSMaxzone[device] = 100;
             l2AntiDeadzone[device] = r2AntiDeadzone[device] = 0;
             l2Maxzone[device] = r2Maxzone[device] = 100;
+            LSRotation[device] = 0.0;
+            RSRotation[device] = 0.0;
             SXDeadzone[device] = SZDeadzone[device] = 0.25;
             l2Sens[device] = r2Sens[device] = 1;
             LSSens[device] = RSSens[device] = 1;

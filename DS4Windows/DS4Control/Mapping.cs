@@ -409,8 +409,17 @@ namespace DS4Windows
             return (value < min) ? min : (value > max) ? max : value;
         }
 
+        private static double[] tempDoubleArray = { 0.0, 0.0, 0.0, 0.0 };
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState)
         {
+            double rotation = tempDoubleArray[device] = getLSRotation(device);
+            if (rotation != 0.0)
+                cState.rotateLSCoordinates(rotation);
+
+            double rotationRS = tempDoubleArray[device] = getRSRotation(device);
+            if (rotationRS != 0.0)
+                cState.rotateRSCoordinates(rotationRS);
+
             DS4State dState = new DS4State(cState);
             int x;
             int y;

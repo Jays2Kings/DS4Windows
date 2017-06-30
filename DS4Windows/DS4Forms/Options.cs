@@ -466,6 +466,24 @@ namespace DS4Windows
 
                 try
                 {
+                    nUDLSRotation.Value = (decimal)(LSRotation[device] * 180.0 / Math.PI);
+                }
+                catch
+                {
+                    nUDLSRotation.Value = 0.0m;
+                }
+
+                try
+                {
+                    nUDRSRotation.Value = (decimal)(RSRotation[device] * 180.0 / Math.PI);
+                }
+                catch
+                {
+                    nUDRSRotation.Value = 0.0m;
+                }
+
+                try
+                {
                     nUDSX.Value = (decimal)SXDeadzone[device];
                 }
                 catch
@@ -645,6 +663,8 @@ namespace DS4Windows
                 nUDRSAntiDead.Value = 0;
                 nUDLSMaxZone.Value = 1;
                 nUDRSMaxZone.Value = 1;
+                nUDLSRotation.Value = 0;
+                nUDRSRotation.Value = 0;
                 nUDSX.Value = .25m;
                 nUDSZ.Value = .25m;
 
@@ -1298,6 +1318,10 @@ namespace DS4Windows
             LSDeadzone[device] = (int)Math.Round((nUDLS.Value * 127), 0);
             LSAntiDeadzone[device] = (int)(nUDLSAntiDead.Value * 100);
             RSAntiDeadzone[device] = (int)(nUDRSAntiDead.Value * 100);
+            LSMaxzone[device] = (int)(nUDLSMaxZone.Value * 100);
+            RSMaxzone[device] = (int)(nUDRSMaxZone.Value * 100);
+            LSRotation[device] = (double)nUDLSRotation.Value * Math.PI / 180.0;
+            RSRotation[device] = (double)nUDRSRotation.Value * Math.PI / 180.0;
             ButtonMouseSensitivity[device] = (int)numUDMouseSens.Value;
             FlashAt[device] = (int)nUDflashLED.Value;
             SXDeadzone[device] = (double)nUDSX.Value;
@@ -2850,6 +2874,22 @@ namespace DS4Windows
             if (!loading)
             {
                 GyroSmoothing[device] = value;
+            }
+        }
+
+        private void nUDLSRotation_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                LSRotation[device] = (double)nUDLSRotation.Value * Math.PI / 180.0;
+            }
+        }
+
+        private void nUDRSRotation_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                RSRotation[device] = (double)nUDRSRotation.Value * Math.PI / 180.0;
             }
         }
 

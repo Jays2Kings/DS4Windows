@@ -7651,87 +7651,6 @@ with profile</value>
   <data name="&gt;&gt;lbActionsTip.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;tPDeadzone.Name" xml:space="preserve">
-    <value>tPDeadzone</value>
-  </data>
-  <data name="&gt;&gt;tPDeadzone.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tPDeadzone.Parent" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;tPDeadzone.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;antiDeadzoneTabPage.Name" xml:space="preserve">
-    <value>antiDeadzoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;antiDeadzoneTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;antiDeadzoneTabPage.Parent" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;antiDeadzoneTabPage.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;maxZoneTabPage.Name" xml:space="preserve">
-    <value>maxZoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;maxZoneTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxZoneTabPage.Parent" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;maxZoneTabPage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Name" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Parent" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;tPOutCurve.Name" xml:space="preserve">
-    <value>tPOutCurve</value>
-  </data>
-  <data name="&gt;&gt;tPOutCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tPOutCurve.Parent" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;tPOutCurve.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tCSens.Location" type="System.Drawing.Point, System.Drawing">
-    <value>281, 55</value>
-  </data>
-  <data name="tCSens.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 78</value>
-  </data>
-  <data name="tCSens.TabIndex" type="System.Int32, mscorlib">
-    <value>234</value>
-  </data>
-  <data name="&gt;&gt;tCSens.Name" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;tCSens.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tCSens.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;tCSens.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="tPDeadzone.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
@@ -7881,6 +7800,444 @@ with profile</value>
   </data>
   <data name="&gt;&gt;antiDeadzoneTabPage.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="&gt;&gt;nUDR2Maxzone.Name" xml:space="preserve">
+    <value>nUDR2Maxzone</value>
+  </data>
+  <data name="&gt;&gt;nUDR2Maxzone.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDR2Maxzone.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;nUDR2Maxzone.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;nUDL2Maxzone.Name" xml:space="preserve">
+    <value>nUDL2Maxzone</value>
+  </data>
+  <data name="&gt;&gt;nUDL2Maxzone.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDL2Maxzone.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;nUDL2Maxzone.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;nUDRSMaxZone.Name" xml:space="preserve">
+    <value>nUDRSMaxZone</value>
+  </data>
+  <data name="&gt;&gt;nUDRSMaxZone.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDRSMaxZone.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;nUDRSMaxZone.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;nUDLSMaxZone.Name" xml:space="preserve">
+    <value>nUDLSMaxZone</value>
+  </data>
+  <data name="&gt;&gt;nUDLSMaxZone.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDLSMaxZone.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;nUDLSMaxZone.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="maxZoneTabPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="maxZoneTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="maxZoneTabPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 52</value>
+  </data>
+  <data name="maxZoneTabPage.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="maxZoneTabPage.Text" xml:space="preserve">
+    <value>Max Zone</value>
+  </data>
+  <data name="&gt;&gt;maxZoneTabPage.Name" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;maxZoneTabPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxZoneTabPage.Parent" xml:space="preserve">
+    <value>tCSens</value>
+  </data>
+  <data name="&gt;&gt;maxZoneTabPage.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.Name" xml:space="preserve">
+    <value>nUDLSCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDLSCurve.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.Name" xml:space="preserve">
+    <value>nUDRSCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;nUDRSCurve.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.Name" xml:space="preserve">
+    <value>lbRSCurve</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurve.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.Name" xml:space="preserve">
+    <value>lbRSCurvePercent</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbRSCurvePercent.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.Name" xml:space="preserve">
+    <value>lbLSCurvePercent</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurvePercent.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.Name" xml:space="preserve">
+    <value>lbLSCurve</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.Parent" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;lbLSCurve.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tPCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tPCurve.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tPCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 52</value>
+  </data>
+  <data name="tPCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tPCurve.Text" xml:space="preserve">
+    <value>Curve (Input)</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.Name" xml:space="preserve">
+    <value>tPCurve</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.Parent" xml:space="preserve">
+    <value>tCSens</value>
+  </data>
+  <data name="&gt;&gt;tPCurve.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;rsOutCurveComboBox.Name" xml:space="preserve">
+    <value>rsOutCurveComboBox</value>
+  </data>
+  <data name="&gt;&gt;rsOutCurveComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rsOutCurveComboBox.Parent" xml:space="preserve">
+    <value>tPOutCurve</value>
+  </data>
+  <data name="&gt;&gt;rsOutCurveComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lsOutCurveComboBox.Name" xml:space="preserve">
+    <value>lsOutCurveComboBox</value>
+  </data>
+  <data name="&gt;&gt;lsOutCurveComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lsOutCurveComboBox.Parent" xml:space="preserve">
+    <value>tPOutCurve</value>
+  </data>
+  <data name="&gt;&gt;lsOutCurveComboBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>tPOutCurve</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>tPOutCurve</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tPOutCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tPOutCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 52</value>
+  </data>
+  <data name="tPOutCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tPOutCurve.Text" xml:space="preserve">
+    <value>Output Curve</value>
+  </data>
+  <data name="&gt;&gt;tPOutCurve.Name" xml:space="preserve">
+    <value>tPOutCurve</value>
+  </data>
+  <data name="&gt;&gt;tPOutCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tPOutCurve.Parent" xml:space="preserve">
+    <value>tCSens</value>
+  </data>
+  <data name="&gt;&gt;tPOutCurve.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="nUDRSRotation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 21</value>
+  </data>
+  <data name="nUDRSRotation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 20</value>
+  </data>
+  <data name="nUDRSRotation.TabIndex" type="System.Int32, mscorlib">
+    <value>219</value>
+  </data>
+  <data name="&gt;&gt;nUDRSRotation.Name" xml:space="preserve">
+    <value>nUDRSRotation</value>
+  </data>
+  <data name="&gt;&gt;nUDRSRotation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDRSRotation.Parent" xml:space="preserve">
+    <value>tpRotation</value>
+  </data>
+  <data name="&gt;&gt;nUDRSRotation.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label14.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>125, 23</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, mscorlib">
+    <value>218</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>RS:</value>
+  </data>
+  <data name="&gt;&gt;label14.Name" xml:space="preserve">
+    <value>label14</value>
+  </data>
+  <data name="&gt;&gt;label14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
+    <value>tpRotation</value>
+  </data>
+  <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="nUDLSRotation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 20</value>
+  </data>
+  <data name="nUDLSRotation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="nUDLSRotation.TabIndex" type="System.Int32, mscorlib">
+    <value>217</value>
+  </data>
+  <data name="&gt;&gt;nUDLSRotation.Name" xml:space="preserve">
+    <value>nUDLSRotation</value>
+  </data>
+  <data name="&gt;&gt;nUDLSRotation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDLSRotation.Parent" xml:space="preserve">
+    <value>tpRotation</value>
+  </data>
+  <data name="&gt;&gt;nUDLSRotation.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label13.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 13</value>
+  </data>
+  <data name="label13.TabIndex" type="System.Int32, mscorlib">
+    <value>216</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>LS:</value>
+  </data>
+  <data name="&gt;&gt;label13.Name" xml:space="preserve">
+    <value>label13</value>
+  </data>
+  <data name="&gt;&gt;label13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
+    <value>tpRotation</value>
+  </data>
+  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tpRotation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tpRotation.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tpRotation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 52</value>
+  </data>
+  <data name="tpRotation.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="tpRotation.Text" xml:space="preserve">
+    <value>Rotation</value>
+  </data>
+  <data name="&gt;&gt;tpRotation.Name" xml:space="preserve">
+    <value>tpRotation</value>
+  </data>
+  <data name="&gt;&gt;tpRotation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tpRotation.Parent" xml:space="preserve">
+    <value>tCSens</value>
+  </data>
+  <data name="&gt;&gt;tpRotation.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tCSens.Location" type="System.Drawing.Point, System.Drawing">
+    <value>281, 55</value>
+  </data>
+  <data name="tCSens.Size" type="System.Drawing.Size, System.Drawing">
+    <value>272, 78</value>
+  </data>
+  <data name="tCSens.TabIndex" type="System.Int32, mscorlib">
+    <value>234</value>
+  </data>
+  <data name="&gt;&gt;tCSens.Name" xml:space="preserve">
+    <value>tCSens</value>
+  </data>
+  <data name="&gt;&gt;tCSens.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tCSens.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;tCSens.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="nUDR2AntiDead.Location" type="System.Drawing.Point, System.Drawing">
     <value>158, 30</value>
@@ -8086,129 +8443,6 @@ with profile</value>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;nUDR2Maxzone.Name" xml:space="preserve">
-    <value>nUDR2Maxzone</value>
-  </data>
-  <data name="&gt;&gt;nUDR2Maxzone.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDR2Maxzone.Parent" xml:space="preserve">
-    <value>maxZoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;nUDR2Maxzone.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;nUDL2Maxzone.Name" xml:space="preserve">
-    <value>nUDL2Maxzone</value>
-  </data>
-  <data name="&gt;&gt;nUDL2Maxzone.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDL2Maxzone.Parent" xml:space="preserve">
-    <value>maxZoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;nUDL2Maxzone.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>maxZoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>maxZoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;nUDRSMaxZone.Name" xml:space="preserve">
-    <value>nUDRSMaxZone</value>
-  </data>
-  <data name="&gt;&gt;nUDRSMaxZone.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDRSMaxZone.Parent" xml:space="preserve">
-    <value>maxZoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;nUDRSMaxZone.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>maxZoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;nUDLSMaxZone.Name" xml:space="preserve">
-    <value>nUDLSMaxZone</value>
-  </data>
-  <data name="&gt;&gt;nUDLSMaxZone.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDLSMaxZone.Parent" xml:space="preserve">
-    <value>maxZoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;nUDLSMaxZone.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>maxZoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="maxZoneTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="maxZoneTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="maxZoneTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 52</value>
-  </data>
-  <data name="maxZoneTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="maxZoneTabPage.Text" xml:space="preserve">
-    <value>Max Zone</value>
-  </data>
-  <data name="&gt;&gt;maxZoneTabPage.Name" xml:space="preserve">
-    <value>maxZoneTabPage</value>
-  </data>
-  <data name="&gt;&gt;maxZoneTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxZoneTabPage.Parent" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;maxZoneTabPage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="nUDR2Maxzone.Location" type="System.Drawing.Point, System.Drawing">
     <value>161, 29</value>
   </data>
@@ -8413,105 +8647,6 @@ with profile</value>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;nUDLSCurve.Name" xml:space="preserve">
-    <value>nUDLSCurve</value>
-  </data>
-  <data name="&gt;&gt;nUDLSCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDLSCurve.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;nUDLSCurve.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;nUDRSCurve.Name" xml:space="preserve">
-    <value>nUDRSCurve</value>
-  </data>
-  <data name="&gt;&gt;nUDRSCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDRSCurve.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;nUDRSCurve.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurve.Name" xml:space="preserve">
-    <value>lbRSCurve</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurve.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurve.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurvePercent.Name" xml:space="preserve">
-    <value>lbRSCurvePercent</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurvePercent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurvePercent.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;lbRSCurvePercent.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurvePercent.Name" xml:space="preserve">
-    <value>lbLSCurvePercent</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurvePercent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurvePercent.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurvePercent.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurve.Name" xml:space="preserve">
-    <value>lbLSCurve</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurve.Parent" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;lbLSCurve.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="tPCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tPCurve.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tPCurve.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 52</value>
-  </data>
-  <data name="tPCurve.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tPCurve.Text" xml:space="preserve">
-    <value>Curve (Input)</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Name" xml:space="preserve">
-    <value>tPCurve</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.Parent" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;tPCurve.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="nUDLSCurve.Location" type="System.Drawing.Point, System.Drawing">
     <value>36, 16</value>
   </data>
@@ -8680,78 +8815,6 @@ with profile</value>
   <data name="&gt;&gt;lbLSCurve.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;rsOutCurveComboBox.Name" xml:space="preserve">
-    <value>rsOutCurveComboBox</value>
-  </data>
-  <data name="&gt;&gt;rsOutCurveComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rsOutCurveComboBox.Parent" xml:space="preserve">
-    <value>tPOutCurve</value>
-  </data>
-  <data name="&gt;&gt;rsOutCurveComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lsOutCurveComboBox.Name" xml:space="preserve">
-    <value>lsOutCurveComboBox</value>
-  </data>
-  <data name="&gt;&gt;lsOutCurveComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lsOutCurveComboBox.Parent" xml:space="preserve">
-    <value>tPOutCurve</value>
-  </data>
-  <data name="&gt;&gt;lsOutCurveComboBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label10.Name" xml:space="preserve">
-    <value>label10</value>
-  </data>
-  <data name="&gt;&gt;label10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
-    <value>tPOutCurve</value>
-  </data>
-  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>tPOutCurve</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tPOutCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tPOutCurve.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 52</value>
-  </data>
-  <data name="tPOutCurve.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="tPOutCurve.Text" xml:space="preserve">
-    <value>Output Curve</value>
-  </data>
-  <data name="&gt;&gt;tPOutCurve.Name" xml:space="preserve">
-    <value>tPOutCurve</value>
-  </data>
-  <data name="&gt;&gt;tPOutCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tPOutCurve.Parent" xml:space="preserve">
-    <value>tCSens</value>
-  </data>
-  <data name="&gt;&gt;tPOutCurve.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="rsOutCurveComboBox.Items" xml:space="preserve">
     <value>Linear</value>
   </data>
@@ -8881,6 +8944,264 @@ with profile</value>
   <data name="fLPSettings.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;rBSAControls.Name" xml:space="preserve">
+    <value>rBSAControls</value>
+  </data>
+  <data name="&gt;&gt;rBSAControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBSAControls.Parent" xml:space="preserve">
+    <value>gBGyro</value>
+  </data>
+  <data name="&gt;&gt;rBSAControls.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rBSAMouse.Name" xml:space="preserve">
+    <value>rBSAMouse</value>
+  </data>
+  <data name="&gt;&gt;rBSAMouse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBSAMouse.Parent" xml:space="preserve">
+    <value>gBGyro</value>
+  </data>
+  <data name="&gt;&gt;rBSAMouse.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;pnlSAMouse.Name" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;pnlSAMouse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlSAMouse.Parent" xml:space="preserve">
+    <value>gBGyro</value>
+  </data>
+  <data name="&gt;&gt;pnlSAMouse.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="gBGyro.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 253</value>
+  </data>
+  <data name="gBGyro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>272, 224</value>
+  </data>
+  <data name="gBGyro.TabIndex" type="System.Int32, mscorlib">
+    <value>248</value>
+  </data>
+  <data name="gBGyro.Text" xml:space="preserve">
+    <value>Gyro</value>
+  </data>
+  <data name="&gt;&gt;gBGyro.Name" xml:space="preserve">
+    <value>gBGyro</value>
+  </data>
+  <data name="&gt;&gt;gBGyro.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBGyro.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;gBGyro.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lbL2S.Name" xml:space="preserve">
+    <value>lbL2S</value>
+  </data>
+  <data name="&gt;&gt;lbL2S.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbL2S.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;lbL2S.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;nUDL2S.Name" xml:space="preserve">
+    <value>nUDL2S</value>
+  </data>
+  <data name="&gt;&gt;nUDL2S.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDL2S.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;nUDL2S.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;nUDLSS.Name" xml:space="preserve">
+    <value>nUDLSS</value>
+  </data>
+  <data name="&gt;&gt;nUDLSS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDLSS.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;nUDLSS.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lbSixaxisXS.Name" xml:space="preserve">
+    <value>lbSixaxisXS</value>
+  </data>
+  <data name="&gt;&gt;lbSixaxisXS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbSixaxisXS.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;lbSixaxisXS.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;nUDR2S.Name" xml:space="preserve">
+    <value>nUDR2S</value>
+  </data>
+  <data name="&gt;&gt;nUDR2S.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDR2S.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;nUDR2S.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lbSixaxisZS.Name" xml:space="preserve">
+    <value>lbSixaxisZS</value>
+  </data>
+  <data name="&gt;&gt;lbSixaxisZS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbSixaxisZS.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;lbSixaxisZS.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;nUDRSS.Name" xml:space="preserve">
+    <value>nUDRSS</value>
+  </data>
+  <data name="&gt;&gt;nUDRSS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDRSS.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;nUDRSS.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;lbR2LS.Name" xml:space="preserve">
+    <value>lbR2LS</value>
+  </data>
+  <data name="&gt;&gt;lbR2LS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbR2LS.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;lbR2LS.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;nUDSXS.Name" xml:space="preserve">
+    <value>nUDSXS</value>
+  </data>
+  <data name="&gt;&gt;nUDSXS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSXS.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;nUDSXS.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;lbRSS.Name" xml:space="preserve">
+    <value>lbRSS</value>
+  </data>
+  <data name="&gt;&gt;lbRSS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbRSS.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;lbRSS.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;lbLSS.Name" xml:space="preserve">
+    <value>lbLSS</value>
+  </data>
+  <data name="&gt;&gt;lbLSS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbLSS.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;lbLSS.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;nUDSZS.Name" xml:space="preserve">
+    <value>nUDSZS</value>
+  </data>
+  <data name="&gt;&gt;nUDSZS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSZS.Parent" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;nUDSZS.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="gBSensitivity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>281, 139</value>
+  </data>
+  <data name="gBSensitivity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>272, 76</value>
+  </data>
+  <data name="gBSensitivity.TabIndex" type="System.Int32, mscorlib">
+    <value>257</value>
+  </data>
+  <data name="gBSensitivity.Text" xml:space="preserve">
+    <value>Sensitivity</value>
+  </data>
+  <data name="&gt;&gt;gBSensitivity.Name" xml:space="preserve">
+    <value>gBSensitivity</value>
+  </data>
+  <data name="&gt;&gt;gBSensitivity.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBSensitivity.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;gBSensitivity.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="fLPSettings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="fLPSettings.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>TopDown</value>
+  </data>
+  <data name="fLPSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>446, 0</value>
+  </data>
+  <data name="fLPSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="fLPSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>564, 481</value>
+  </data>
+  <data name="fLPSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>254</value>
+  </data>
+  <data name="&gt;&gt;fLPSettings.Name" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;fLPSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fLPSettings.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;fLPSettings.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="rBSAControls.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -8946,6 +9267,210 @@ with profile</value>
   </data>
   <data name="&gt;&gt;rBSAMouse.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="&gt;&gt;lbGyroSmooth.Name" xml:space="preserve">
+    <value>lbGyroSmooth</value>
+  </data>
+  <data name="&gt;&gt;lbGyroSmooth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbGyroSmooth.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;lbGyroSmooth.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cBGyroSmooth.Name" xml:space="preserve">
+    <value>cBGyroSmooth</value>
+  </data>
+  <data name="&gt;&gt;cBGyroSmooth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBGyroSmooth.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;cBGyroSmooth.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lbSmoothWeight.Name" xml:space="preserve">
+    <value>lbSmoothWeight</value>
+  </data>
+  <data name="&gt;&gt;lbSmoothWeight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbSmoothWeight.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;lbSmoothWeight.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroSmoothWeight.Name" xml:space="preserve">
+    <value>nUDGyroSmoothWeight</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroSmoothWeight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroSmoothWeight.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroSmoothWeight.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label12.Name" xml:space="preserve">
+    <value>label12</value>
+  </data>
+  <data name="&gt;&gt;label12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroMouseVertScale.Name" xml:space="preserve">
+    <value>nUDGyroMouseVertScale</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroMouseVertScale.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroMouseVertScale.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroMouseVertScale.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;gyroTriggerBehavior.Name" xml:space="preserve">
+    <value>gyroTriggerBehavior</value>
+  </data>
+  <data name="&gt;&gt;gyroTriggerBehavior.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gyroTriggerBehavior.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;gyroTriggerBehavior.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;cBGyroInvertY.Name" xml:space="preserve">
+    <value>cBGyroInvertY</value>
+  </data>
+  <data name="&gt;&gt;cBGyroInvertY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBGyroInvertY.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;cBGyroInvertY.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;cBGyroInvertX.Name" xml:space="preserve">
+    <value>cBGyroInvertX</value>
+  </data>
+  <data name="&gt;&gt;cBGyroInvertX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBGyroInvertX.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;cBGyroInvertX.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;lbGyroInvert.Name" xml:space="preserve">
+    <value>lbGyroInvert</value>
+  </data>
+  <data name="&gt;&gt;lbGyroInvert.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbGyroInvert.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;lbGyroInvert.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;lbGyroTriggers.Name" xml:space="preserve">
+    <value>lbGyroTriggers</value>
+  </data>
+  <data name="&gt;&gt;lbGyroTriggers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbGyroTriggers.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;lbGyroTriggers.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;btnGyroTriggers.Name" xml:space="preserve">
+    <value>btnGyroTriggers</value>
+  </data>
+  <data name="&gt;&gt;btnGyroTriggers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnGyroTriggers.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;btnGyroTriggers.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroSensitivity.Name" xml:space="preserve">
+    <value>nUDGyroSensitivity</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroSensitivity.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroSensitivity.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;nUDGyroSensitivity.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;lbGyroSens.Name" xml:space="preserve">
+    <value>lbGyroSens</value>
+  </data>
+  <data name="&gt;&gt;lbGyroSens.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbGyroSens.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;lbGyroSens.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="pnlSAMouse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 43</value>
+  </data>
+  <data name="pnlSAMouse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pnlSAMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 170</value>
+  </data>
+  <data name="pnlSAMouse.TabIndex" type="System.Int32, mscorlib">
+    <value>259</value>
+  </data>
+  <data name="&gt;&gt;pnlSAMouse.Name" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;pnlSAMouse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlSAMouse.Parent" xml:space="preserve">
+    <value>gBGyro</value>
+  </data>
+  <data name="&gt;&gt;pnlSAMouse.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="lbGyroSmooth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9387,252 +9912,6 @@ with profile</value>
   </data>
   <data name="&gt;&gt;lbGyroSens.ZOrder" xml:space="preserve">
     <value>14</value>
-  </data>
-  <data name="pnlSAMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 43</value>
-  </data>
-  <data name="pnlSAMouse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="pnlSAMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 170</value>
-  </data>
-  <data name="pnlSAMouse.TabIndex" type="System.Int32, mscorlib">
-    <value>259</value>
-  </data>
-  <data name="&gt;&gt;pnlSAMouse.Name" xml:space="preserve">
-    <value>pnlSAMouse</value>
-  </data>
-  <data name="&gt;&gt;pnlSAMouse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlSAMouse.Parent" xml:space="preserve">
-    <value>gBGyro</value>
-  </data>
-  <data name="&gt;&gt;pnlSAMouse.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="gBGyro.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 253</value>
-  </data>
-  <data name="gBGyro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 224</value>
-  </data>
-  <data name="gBGyro.TabIndex" type="System.Int32, mscorlib">
-    <value>248</value>
-  </data>
-  <data name="gBGyro.Text" xml:space="preserve">
-    <value>Gyro</value>
-  </data>
-  <data name="&gt;&gt;gBGyro.Name" xml:space="preserve">
-    <value>gBGyro</value>
-  </data>
-  <data name="&gt;&gt;gBGyro.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gBGyro.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;gBGyro.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lbL2S.Name" xml:space="preserve">
-    <value>lbL2S</value>
-  </data>
-  <data name="&gt;&gt;lbL2S.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbL2S.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;lbL2S.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;nUDL2S.Name" xml:space="preserve">
-    <value>nUDL2S</value>
-  </data>
-  <data name="&gt;&gt;nUDL2S.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDL2S.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;nUDL2S.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;nUDLSS.Name" xml:space="preserve">
-    <value>nUDLSS</value>
-  </data>
-  <data name="&gt;&gt;nUDLSS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDLSS.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;nUDLSS.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lbSixaxisXS.Name" xml:space="preserve">
-    <value>lbSixaxisXS</value>
-  </data>
-  <data name="&gt;&gt;lbSixaxisXS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbSixaxisXS.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;lbSixaxisXS.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;nUDR2S.Name" xml:space="preserve">
-    <value>nUDR2S</value>
-  </data>
-  <data name="&gt;&gt;nUDR2S.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDR2S.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;nUDR2S.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lbSixaxisZS.Name" xml:space="preserve">
-    <value>lbSixaxisZS</value>
-  </data>
-  <data name="&gt;&gt;lbSixaxisZS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbSixaxisZS.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;lbSixaxisZS.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;nUDRSS.Name" xml:space="preserve">
-    <value>nUDRSS</value>
-  </data>
-  <data name="&gt;&gt;nUDRSS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDRSS.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;nUDRSS.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;lbR2LS.Name" xml:space="preserve">
-    <value>lbR2LS</value>
-  </data>
-  <data name="&gt;&gt;lbR2LS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbR2LS.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;lbR2LS.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;nUDSXS.Name" xml:space="preserve">
-    <value>nUDSXS</value>
-  </data>
-  <data name="&gt;&gt;nUDSXS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDSXS.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;nUDSXS.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;lbRSS.Name" xml:space="preserve">
-    <value>lbRSS</value>
-  </data>
-  <data name="&gt;&gt;lbRSS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRSS.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;lbRSS.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;lbLSS.Name" xml:space="preserve">
-    <value>lbLSS</value>
-  </data>
-  <data name="&gt;&gt;lbLSS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbLSS.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;lbLSS.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;nUDSZS.Name" xml:space="preserve">
-    <value>nUDSZS</value>
-  </data>
-  <data name="&gt;&gt;nUDSZS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDSZS.Parent" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;nUDSZS.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="gBSensitivity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>281, 139</value>
-  </data>
-  <data name="gBSensitivity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 76</value>
-  </data>
-  <data name="gBSensitivity.TabIndex" type="System.Int32, mscorlib">
-    <value>257</value>
-  </data>
-  <data name="gBSensitivity.Text" xml:space="preserve">
-    <value>Sensitivity</value>
-  </data>
-  <data name="&gt;&gt;gBSensitivity.Name" xml:space="preserve">
-    <value>gBSensitivity</value>
-  </data>
-  <data name="&gt;&gt;gBSensitivity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gBSensitivity.Parent" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;gBSensitivity.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="fLPSettings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="fLPSettings.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
-    <value>TopDown</value>
-  </data>
-  <data name="fLPSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>446, 0</value>
-  </data>
-  <data name="fLPSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="fLPSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>564, 481</value>
-  </data>
-  <data name="fLPSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>254</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.Name" xml:space="preserve">
-    <value>fLPSettings</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;fLPSettings.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="lbL2S.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -10099,9 +10378,6 @@ with profile</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1010, 481</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -10406,7 +10682,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.81.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.82.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

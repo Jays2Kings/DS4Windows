@@ -159,5 +159,25 @@ namespace DS4Windows
             RXUnit = Math.Abs(Math.Cos(RSAngleRad));
             RYUnit = Math.Abs(Math.Sin(LSAngleRad));
         }
+
+        public void rotateLSCoordinates(double rotation)
+        {
+            double sinAngle = Math.Sin(rotation), cosAngle = Math.Cos(rotation);
+            double tempLX = LX - 127.5, tempLY = LY - 127.5;
+            Byte tempx = (Byte)(tempLX * cosAngle - tempLY * sinAngle + 127.5);
+            Byte tempy = (Byte)(tempLX * sinAngle + tempLY * cosAngle + 127.5);
+            LX = tempx;
+            LY = tempy;
+        }
+
+        public void rotateRSCoordinates(double rotation)
+        {
+            double sinAngle = Math.Sin(rotation), cosAngle = Math.Cos(rotation);
+            double tempRX = RX - 127.5, tempRY = RY - 127.5;
+            Byte tempx = (Byte)(tempRX * cosAngle - tempRY * sinAngle + 127.5);
+            Byte tempy = (Byte)(tempRX * sinAngle + tempRY * cosAngle + 127.5);
+            RX = tempx;
+            RY = tempy;
+        }
     }
 }

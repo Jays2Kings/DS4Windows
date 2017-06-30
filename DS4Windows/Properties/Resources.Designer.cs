@@ -275,6 +275,15 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This will disconnect all your connected controllers. Proceed?.
+        /// </summary>
+        internal static string CloseConfirm {
+            get {
+                return ResourceManager.GetString("CloseConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close DS4Windows?.
         /// </summary>
         internal static string CloseDS4W {
@@ -307,6 +316,15 @@ namespace DS4Windows.Properties {
         internal static string ColorByBattery {
             get {
                 return ResourceManager.GetString("ColorByBattery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm....
+        /// </summary>
+        internal static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
             }
         }
         

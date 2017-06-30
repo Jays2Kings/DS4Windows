@@ -2157,6 +2157,7 @@ namespace DS4Windows
             linkSetup.LinkColor = Color.Blue;
         }
 
+        bool tempBool = false;
         protected void ScpForm_Closing(object sender, FormClosingEventArgs e)
         {
             if (opt.Visible)
@@ -2166,7 +2167,30 @@ namespace DS4Windows
                 return;
             }
 
-            if (cBCloseMini.Checked && !contextclose)
+            bool closeMini = tempBool = cBCloseMini.Checked;
+            DS4Device d = null;
+            tempBool = true;
+            //in case user accidentally clicks on the close button whilst "Close Minimizes" checkbox is unchecked
+            if (!closeMini && !contextclose)
+            {
+                for (int i = 0, PadsLen = Pads.Length; tempBool && i < PadsLen; i++)
+                {
+                    d = Program.rootHub.DS4Controllers[i];
+                    tempBool = (d != null) ? false : tempBool;
+                }
+
+                bool nocontrollers = tempBool;
+                if (!nocontrollers)
+                {
+                    if (MessageBox.Show(Properties.Resources.CloseConfirm, Properties.Resources.Confirm,
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+            }
+            else if (closeMini && !contextclose)
             {
                 this.WindowState = FormWindowState.Minimized;
                 e.Cancel = true;

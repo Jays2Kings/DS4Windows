@@ -2083,8 +2083,8 @@ namespace DS4Windows
             LastChecked = DateTime.Now;
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version2 = fvi.FileVersion;
-            string newversion2 = File.ReadAllText(appdatapath + "\\version.txt");
-            if (version2.Replace(',', '.').CompareTo(File.ReadAllText(appdatapath + "\\version.txt")) == -1)//CompareVersions();
+            string newversion2 = File.ReadAllText(appdatapath + "\\version.txt").Trim();
+            if (version2.Replace(',', '.').CompareTo(newversion2) == -1)//CompareVersions();
             {
                 if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2),
                     Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

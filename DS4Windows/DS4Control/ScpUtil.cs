@@ -1268,6 +1268,8 @@ namespace DS4Windows
         public bool[] gyroSmoothing = { false, false, false, false, false };
         public double[] gyroSmoothWeight = { 0.5, 0.5, 0.5, 0.5, 0.5 };
 
+        bool tempBool = false;
+
         public BackingStore()
         {
             for (int i = 0; i < 5; i++)
@@ -2352,7 +2354,9 @@ namespace DS4Windows
                     {
                         //bool changed = false;
                         DS4Device tempDevice = control.DS4Controllers[device];
-
+                        bool exists = tempBool = (tempDevice != null);
+                        bool synced = tempBool = exists ? tempDevice.isSynced() : false;
+                        bool isAlive = tempBool = exists ? tempDevice.IsAlive() : false;
                         if (dinputOnly[device] != oldUseDInputOnly)
                         {
                             if (dinputOnly[device] == true)
@@ -2367,7 +2371,7 @@ namespace DS4Windows
 
                                 //changed = true;
                             }
-                            else if (tempDevice != null && tempDevice.IsAlive())
+                            else if (synced && isAlive)
                             {
                                 bool xinputResult = control.x360Bus.Plugin(device);
                                 if (xinputResult)

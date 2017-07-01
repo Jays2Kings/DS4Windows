@@ -130,6 +130,7 @@ namespace DS4Windows
         // It is enough to feel a difference during gameplay.
         private static int[] rsOutCurveModeArray = { 0, 0, 0, 0 };
         private static int[] lsOutCurveModeArray = { 0, 0, 0, 0 };
+        static bool tempBool = false;
 
         // Special macros
         static bool altTabDone = true;
@@ -1746,12 +1747,18 @@ namespace DS4Windows
                                 actionFound = true;
 
                                 DS4Device d = ctrl.DS4Controllers[device];
-                                if (!d.isCharging())
+                                bool synced = tempBool = d.isSynced();
+                                if (synced && !d.isCharging())
                                 {
                                     ConnectionType deviceConn = d.getConnectionType();
+                                    bool exclusive = tempBool = d.isExclusive();
                                     if (deviceConn == ConnectionType.BT)
                                     {
                                         d.DisconnectBT();
+                                    }
+                                    else if (deviceConn == ConnectionType.SONYWA && exclusive)
+                                    {
+                                        d.DisconnectDongle();
                                     }
 
                                     //foreach (DS4Controls dc in action.trigger)

@@ -1008,7 +1008,9 @@ namespace DS4Windows
             else
             {
                 outputReportBuffer[0] = 0x05;
-                outputReportBuffer[1] = 0xff;
+                // enable lightbar and rumble. input rate
+                outputReportBuffer[1] = (conType == ConnectionType.USB) ?
+                    (byte)0x03 : (byte)(0x03 | (btPollRate << 4));
                 outputReportBuffer[4] = rightLightFastRumble; // fast motor
                 outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor
                 outputReportBuffer[6] = LightBarColor.red; // red
@@ -1019,7 +1021,8 @@ namespace DS4Windows
                 if (conType == ConnectionType.SONYWA)
                 {
                     // Headphone volume levels
-                    outputReportBuffer[19] = outputReportBuffer[20] = Convert.ToByte(audio.getVolume());
+                    outputReportBuffer[19] = outputReportBuffer[20] =
+                        Convert.ToByte(audio.getVolume());
                     // Microphone volume level
                     outputReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
                 }

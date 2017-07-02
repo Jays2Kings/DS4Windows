@@ -997,7 +997,7 @@ namespace DS4Windows
                 //outputReportBuffer[1] = 0x84;
                 outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
                 // enable lightbar and rumble
-                outputReportBuffer[3] = 0x07;
+                outputReportBuffer[3] = 0xf7;
                 outputReportBuffer[6] = rightLightFastRumble; // fast motor
                 outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
                 outputReportBuffer[8] = ligtBarColor.red; // red

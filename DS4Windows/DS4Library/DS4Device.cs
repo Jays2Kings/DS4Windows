@@ -996,7 +996,7 @@ namespace DS4Windows
                 //outputReportBuffer[1] = 0x80;
                 //outputReportBuffer[1] = 0x84;
                 outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
-                // enable lightbar and rumble
+                // enable lightbar, rumble, blink
                 outputReportBuffer[3] = 0xf7;
                 outputReportBuffer[6] = rightLightFastRumble; // fast motor
                 outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
@@ -1009,9 +1009,8 @@ namespace DS4Windows
             else
             {
                 outputReportBuffer[0] = 0x05;
-                // enable lightbar and rumble. input rate
-                outputReportBuffer[1] = (conType == ConnectionType.USB) ?
-                    (byte)0x03 : (byte)(0x03 | (btPollRate << 4));
+                // enable lightbar, rumble, blink
+                outputReportBuffer[1] = 0xf7;
                 outputReportBuffer[4] = rightLightFastRumble; // fast motor
                 outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor
                 outputReportBuffer[6] = ligtBarColor.red; // red

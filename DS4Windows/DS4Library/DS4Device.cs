@@ -810,7 +810,7 @@ namespace DS4Windows
                 cState.L1 = (inputReport[6] & (1 << 0)) != 0;
 
                 cState.PS = (inputReport[7] & (1 << 0)) != 0;
-                cState.TouchButton = (inputReport[7] & (1 << 2 - 1)) != 0;
+                cState.TouchButton = (inputReport[7] & 0x02) != 0;
                 cState.FrameCounter = (byte)(inputReport[7] >> 2);
 
                 try
@@ -997,12 +997,12 @@ namespace DS4Windows
                 //outputReportBuffer[1] = 0x84;
                 outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
                 // enable lightbar and rumble
-                outputReportBuffer[3] = 0x03;
+                outputReportBuffer[3] = 0x07;
                 outputReportBuffer[6] = rightLightFastRumble; // fast motor
                 outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
-                outputReportBuffer[8] = LightBarColor.red; // red
-                outputReportBuffer[9] = LightBarColor.green; // green
-                outputReportBuffer[10] = LightBarColor.blue; // blue
+                outputReportBuffer[8] = ligtBarColor.red; // red
+                outputReportBuffer[9] = ligtBarColor.green; // green
+                outputReportBuffer[10] = ligtBarColor.blue; // blue
                 outputReportBuffer[11] = ledFlashOn; // flash on duration
                 outputReportBuffer[12] = ledFlashOff; // flash off duration
             }
@@ -1014,9 +1014,9 @@ namespace DS4Windows
                     (byte)0x03 : (byte)(0x03 | (btPollRate << 4));
                 outputReportBuffer[4] = rightLightFastRumble; // fast motor
                 outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor
-                outputReportBuffer[6] = LightBarColor.red; // red
-                outputReportBuffer[7] = LightBarColor.green; // green
-                outputReportBuffer[8] = LightBarColor.blue; // blue
+                outputReportBuffer[6] = ligtBarColor.red; // red
+                outputReportBuffer[7] = ligtBarColor.green; // green
+                outputReportBuffer[8] = ligtBarColor.blue; // blue
                 outputReportBuffer[9] = ledFlashOn; // flash on duration
                 outputReportBuffer[10] = ledFlashOff; // flash off duration
                 if (conType == ConnectionType.SONYWA)
@@ -1249,9 +1249,10 @@ namespace DS4Windows
         // Use the "most recently set" haptic state for each of light bar/motor.
         private void setHapticState()
         {
-            DS4Color lightBarColor = LightBarColor;
-            byte lightBarFlashDurationOn = LightBarOnDuration, lightBarFlashDurationOff = LightBarOffDuration;
-            byte rumbleMotorStrengthLeftHeavySlow = LeftHeavySlowRumble, rumbleMotorStrengthRightLightFast = rightLightFastRumble;
+            DS4Color lightBarColor = ligtBarColor;
+            byte lightBarFlashDurationOn = ledFlashOn, lightBarFlashDurationOff = ledFlashOff;
+            byte rumbleMotorStrengthLeftHeavySlow = leftHeavySlowRumble,
+                rumbleMotorStrengthRightLightFast = rightLightFastRumble;
             int hapticLen = hapticState.Length;
             for (int i=0; i < hapticLen; i++)
             {
@@ -1273,11 +1274,11 @@ namespace DS4Windows
                 }
             }
 
-            LightBarColor = lightBarColor;
-            LightBarOnDuration = lightBarFlashDurationOn;
-            LightBarOffDuration = lightBarFlashDurationOff;
-            LeftHeavySlowRumble = rumbleMotorStrengthLeftHeavySlow;
-            RightLightFastRumble = rumbleMotorStrengthRightLightFast;
+            ligtBarColor = lightBarColor;
+            ledFlashOn = lightBarFlashDurationOn;
+            ledFlashOff = lightBarFlashDurationOff;
+            leftHeavySlowRumble = rumbleMotorStrengthLeftHeavySlow;
+            rightLightFastRumble = rumbleMotorStrengthRightLightFast;
         }
 
         public void pushHapticState(DS4HapticState hs)

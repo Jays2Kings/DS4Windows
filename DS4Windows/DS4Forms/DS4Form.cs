@@ -2168,10 +2168,11 @@ namespace DS4Windows
             }
 
             bool closeMini = tempBool = cBCloseMini.Checked;
+            bool userClosing = e.CloseReason == CloseReason.UserClosing;
             DS4Device d = null;
-            tempBool = true;
+            bool nocontrollers = tempBool = true;
             //in case user accidentally clicks on the close button whilst "Close Minimizes" checkbox is unchecked
-            if (!closeMini && !contextclose)
+            if (userClosing && !closeMini && !contextclose)
             {
                 for (int i = 0, PadsLen = Pads.Length; tempBool && i < PadsLen; i++)
                 {
@@ -2179,7 +2180,7 @@ namespace DS4Windows
                     tempBool = (d != null) ? false : tempBool;
                 }
 
-                bool nocontrollers = tempBool;
+                nocontrollers = tempBool;
                 if (!nocontrollers)
                 {
                     if (MessageBox.Show(Properties.Resources.CloseConfirm, Properties.Resources.Confirm,
@@ -2190,7 +2191,7 @@ namespace DS4Windows
                     }
                 }
             }
-            else if (closeMini && !contextclose)
+            else if (userClosing && closeMini && !contextclose)
             {
                 this.WindowState = FormWindowState.Minimized;
                 e.Cancel = true;

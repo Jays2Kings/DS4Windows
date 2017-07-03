@@ -96,21 +96,22 @@ namespace DS4Windows
 
             // Create the Event handle
             threadComEvent = new EventWaitHandle(false, EventResetMode.AutoReset, SingleAppComEventName);
-            CreateInterAppComThread();
+            //CreateInterAppComThread();
 
-            if (mutex.WaitOne(TimeSpan.Zero, true))
-            {
+            //if (mutex.WaitOne(TimeSpan.Zero, true))
+            //{
                 rootHub = new ControlService();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new DS4Form(args));
-                mutex.ReleaseMutex();
-            }
+                //mutex.ReleaseMutex();
+            //}
 
             // End the communication thread.
-            singleAppComThread.CancelAsync();
-            while (singleAppComThread.IsBusy)
-                Thread.Sleep(50);
+            //singleAppComThread.CancelAsync();
+            //threadComEvent.Set();  // signal the other instance.
+            //while (singleAppComThread.IsBusy)
+            //    Thread.Sleep(50);
             threadComEvent.Close();
         }
 
@@ -120,7 +121,7 @@ namespace DS4Windows
             singleAppComThread.WorkerReportsProgress = false;
             singleAppComThread.WorkerSupportsCancellation = true;
             singleAppComThread.DoWork += new DoWorkEventHandler(singleAppComThread_DoWork);
-            singleAppComThread.RunWorkerAsync();
+            //singleAppComThread.RunWorkerAsync();
         }
 
         static private void singleAppComThread_DoWork(object sender, DoWorkEventArgs e)
@@ -132,12 +133,12 @@ namespace DS4Windows
             while (!worker.CancellationPending)
             {
                 // check every second for a signal.
-                if (WaitHandle.WaitAny(waitHandles, 1000) == 0)
+                if (WaitHandle.WaitAny(waitHandles) == 0)
                 {
                     // The user tried to start another instance. We can't allow that, 
                     // so bring the other instance back into view and enable that one. 
                     // That form is created in another thread, so we need some thread sync magic.
-                    if (Application.OpenForms.Count > 0)
+                    if (!worker.CancellationPending && Application.OpenForms.Count > 0)
                     {
                         Form mainForm = Application.OpenForms[0];
                         mainForm.Invoke(new SetFormVisableDelegate(ThreadFormVisable), mainForm);

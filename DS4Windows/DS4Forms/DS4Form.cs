@@ -12,11 +12,9 @@ using System.Diagnostics;
 using System.Xml;
 using System.Text;
 using System.Globalization;
-using System.Threading.Tasks;
-using System.ServiceProcess;
 using Microsoft.Win32.TaskScheduler;
-using static DS4Windows.Global;
 using System.Security.Principal;
+using static DS4Windows.Global;
 
 namespace DS4Windows
 {
@@ -28,6 +26,7 @@ namespace DS4Windows
         delegate void BatteryStatusDelegate(object sender, BatteryReportArgs args);
         delegate void ControllerRemovedDelegate(object sender, ControllerRemovedArgs args);
         delegate void DeviceStatusChangedDelegate(object sender, DeviceStatusChangeEventArgs args);
+        delegate void DeviceSerialChangedDelegate(object sender, SerialChangeArgs args);
         protected Label[] Pads, Batteries;
         protected ComboBox[] cbs;
         protected Button[] ebns;
@@ -52,7 +51,7 @@ namespace DS4Windows
         delegate void ControllerStatusChangedDelegate(object sender, EventArgs e);
         delegate void HotKeysDelegate(object sender, EventArgs e);
         Options opt;
-        public System.Drawing.Size oldsize;
+        public Size oldsize;
         WinProgs WP;
         public bool mAllowVisible;
         bool contextclose;
@@ -62,6 +61,9 @@ namespace DS4Windows
         bool runningBat;
         //bool outputlog = false;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
+        // 0 index is used for application version text. 1 - 4 indices are used for controller status
+        string[] notifyText = { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
+            string.Empty, string.Empty, string.Empty, string.Empty };
 
         internal const int BCM_FIRST = 0x1600; // Normal button
         internal const int BCM_SETSHIELD = (BCM_FIRST + 0x000C); // Elevated button
@@ -91,6 +93,11 @@ namespace DS4Windows
         {
             InitializeComponent();
 
+            bnEditC1.Tag = 0;
+            bnEditC2.Tag = 1;
+            bnEditC3.Tag = 2;
+            bnEditC4.Tag = 3;
+
             this.StartWindowsCheckBox.CheckedChanged -= this.StartWindowsCheckBox_CheckedChanged;
 
             saveProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
@@ -110,6 +117,7 @@ namespace DS4Windows
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
             bool firstrun = false;
+
             if (File.Exists(exepath + "\\Auto Profiles.xml")
                 && File.Exists(appDataPpath + "\\Auto Profiles.xml"))
             {
@@ -153,7 +161,7 @@ namespace DS4Windows
                 AppCollectionThread.Start();
             }
 
-            if (String.IsNullOrEmpty(appdatapath))
+            if (string.IsNullOrEmpty(appdatapath))
             {
                 Close();
                 return;
@@ -257,7 +265,8 @@ namespace DS4Windows
                 try
                 {
                     string[] profiles = Directory.GetFiles(appdatapath + @"\Profiles\");
-                    foreach (String s in profiles)
+                    foreach (string s in profiles)
+                    {
                         if (Path.GetExtension(s) == ".xml")
                         {
                             xDoc.Load(s);
@@ -277,6 +286,7 @@ namespace DS4Windows
                             xDoc.Save(s);
                             LoadActions();
                         }
+                    }
                 }
                 catch { }
             }
@@ -308,7 +318,7 @@ namespace DS4Windows
             opt.Dock = DockStyle.Fill;
             opt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             tabProfiles.Controls.Add(opt);
-            //NewVersion();
+
             for (int i = 0; i < 4; i++)
             {
                 LoadProfile(i, false, Program.rootHub, false);
@@ -322,10 +332,12 @@ namespace DS4Windows
             autoProfilesTimer.Interval = 1000;
 
             LoadP();
-            Global.ControllerStatusChange += ControllerStatusChange;
+
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
             Global.DeviceStatusChange += DeviceStatusChanged;
+            Global.DeviceSerialChange += DeviceSerialChanged;
+
             Enable_Controls(0, false);
             Enable_Controls(1, false);
             Enable_Controls(2, false);
@@ -361,7 +373,7 @@ namespace DS4Windows
                 nUDUpdateTime.Value = checkwhen;
             }
 
-            Uri url = new Uri("http://23.236.26.40/ds4windows/files/builds/newest.txt"); //Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("http://23.239.26.40/ds4windows/files/builds/newest.txt"); // Sorry other devs, gonna have to find your own server
 
             if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
             {
@@ -420,10 +432,21 @@ namespace DS4Windows
 
             UpdateTheUpdater();
 
-            this.StartWindowsCheckBox.CheckedChanged += new System.EventHandler(this.StartWindowsCheckBox_CheckedChanged);
+            this.StartWindowsCheckBox.CheckedChanged += new EventHandler(this.StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
 
             populateHoverTextDict();
+
+            foreach (Control control in fLPSettings.Controls)
+            {
+                if (control.HasChildren)
+                {
+                    foreach (Control ctrl in control.Controls)
+                        ctrl.MouseHover += Items_MouseHover;
+                }
+
+                control.MouseHover += Items_MouseHover;
+            }
         }
 
         private void populateHoverTextDict()
@@ -486,60 +509,12 @@ namespace DS4Windows
                 {
                     await System.Threading.Tasks.Task.Delay(500);
                 }
+
                 File.Delete(exepath + "\\DS4Updater.exe");
                 File.Move(exepath + "\\Update Files\\DS4Updater.exe", exepath + "\\DS4Updater.exe");
                 Directory.Delete(exepath + "\\Update Files");
             }
         }
-
-        /* TODO: Possibly remove */
-        /*void NewVersion()
-        {
-            if (File.Exists(exepath + "\\1.4.22.ds4w"))
-            {
-                bool dcexists = false;
-                foreach (SpecialAction action in GetActions())
-                {
-                    if (action.type == "DisconnectBT")
-                    {
-                        dcexists = true;
-                        break;
-                    }
-                }
-                if (!dcexists)
-                {
-                    try
-                    {
-                        XmlDocument xDoc = new XmlDocument();
-                        SaveAction("Disconnect Controller", "PS/Options", 5, "0", false);
-                        string[] profiles = Directory.GetFiles(appdatapath + @"\Profiles\");
-                        foreach (String s in profiles)
-                            if (Path.GetExtension(s) == ".xml")
-                            {
-                                xDoc.Load(s);
-                                XmlNode el = xDoc.SelectSingleNode("DS4Windows/ProfileActions");
-                                if (el != null)
-                                    if (string.IsNullOrEmpty(el.InnerText))
-                                        el.InnerText = "Disconnect Controller";
-                                    else
-                                        el.InnerText += "/Disconnect Controller";
-                                else
-                                {
-                                    XmlNode Node = xDoc.SelectSingleNode("DS4Windows");
-                                    el = xDoc.CreateElement("ProfileActions");
-                                    el.InnerText = "Disconnect Controller";
-                                    Node.AppendChild(el);
-                                }
-                                xDoc.Save(s);
-                                LoadActions();
-                            }
-                    }
-                    catch { }
-                }
-                File.Delete(exepath + "\\1.4.22.ds4w");
-            }
-        }
-        */
 
         protected override void SetVisibleCore(bool value)
         {
@@ -653,8 +628,8 @@ namespace DS4Windows
                         {
                             if (proprofiles[j][i] != "(none)" && proprofiles[j][i] != Properties.Resources.noneProfile)
                             {
-                                LoadTempProfile(j, proprofiles[j][i], true, Program.rootHub); //j is controller index, i is filename
-                                if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
+                                LoadTempProfile(j, proprofiles[j][i], true, Program.rootHub); // j is controller index, i is filename
+                                //if (LaunchProgram[j] != string.Empty) Process.Start(LaunchProgram[j]);
                             }
                         }
 
@@ -708,10 +683,12 @@ namespace DS4Windows
             programpaths.Clear();
             if (!File.Exists(appdatapath + "\\Auto Profiles.xml"))
                 return;
+
             doc.Load(appdatapath + "\\Auto Profiles.xml");
             XmlNodeList programslist = doc.SelectNodes("Programs/Program");
             foreach (XmlNode x in programslist)
                 programpaths.Add(x.Attributes["path"].Value);
+
             foreach (string s in programpaths)
             {
                 for (int i = 0; i < 4; i++)
@@ -719,6 +696,7 @@ namespace DS4Windows
                     proprofiles[i].Add(doc.SelectSingleNode("/Programs/Program[@path=\"" + s + "\"]"
                         + "/Controller" + (i + 1)).InnerText);
                 }
+
                 XmlNode item = doc.SelectSingleNode("/Programs/Program[@path=\"" + s + "\"]"
                         + "/TurnOff");
                 bool turnOff;
@@ -786,9 +764,11 @@ namespace DS4Windows
         {
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
-            string newversion = File.ReadAllText(appdatapath + "\\version.txt");
+            string newversion = File.ReadAllText(appdatapath + "\\version.txt").Trim();
             if (version.Replace(',', '.').CompareTo(newversion) == -1)//CompareVersions();
-                if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion), Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
+                    Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
@@ -803,17 +783,20 @@ namespace DS4Windows
                             Process.Start("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
                         }
                     }
+
                     Process p = new Process();
                     p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
                     if (!cBDownloadLangauge.Checked)
                         p.StartInfo.Arguments = "-skipLang";
                     if (AdminNeeded())
                         p.StartInfo.Verb = "runas";
+
                     try { p.Start(); Close(); }
                     catch { }
                 }
                 else
                     File.Delete(appdatapath + "\\version.txt");
+            }
             else
                 File.Delete(appdatapath + "\\version.txt");
         }
@@ -824,9 +807,12 @@ namespace DS4Windows
             {
                 profilenames.Clear();
                 string[] profiles = Directory.GetFiles(appdatapath + @"\Profiles\");
-                foreach (String s in profiles)
+                foreach (string s in profiles)
+                {
                     if (s.EndsWith(".xml"))
                         profilenames.Add(Path.GetFileNameWithoutExtension(s));
+                }
+
                 lBProfiles.Items.Clear();
                 lBProfiles.Items.AddRange(profilenames.ToArray());
                 if (lBProfiles.Items.Count == 0)
@@ -843,7 +829,9 @@ namespace DS4Windows
                     cbs[i].Items.AddRange(profilenames.ToArray());
                     foreach (string s in profilenames)
                         shortcuts[i].DropDownItems.Add(s);
-                    for (int j = 0; j < cbs[i].Items.Count; j++)
+
+                    for (int j = 0, itemCount = cbs[i].Items.Count; j < itemCount; j++)
+                    {
                         if (cbs[i].Items[j].ToString() == Path.GetFileNameWithoutExtension(ProfilePath[i]))
                         {
                             cbs[i].SelectedIndex = j;
@@ -859,6 +847,7 @@ namespace DS4Windows
                             shortcuts[i].Text = Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString());
                             ebns[i].Text = Properties.Resources.New;
                         }
+                    }
                 }
             }
             catch (DirectoryNotFoundException)
@@ -890,7 +879,7 @@ namespace DS4Windows
             tabAutoProfiles.Controls.Clear();
             WP = new WinProgs(profilenames.ToArray(), this);
             WP.TopLevel = false;
-            WP.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            WP.FormBorderStyle = FormBorderStyle.None;
             WP.Visible = true;
             WP.Dock = DockStyle.Fill;
             tabAutoProfiles.Controls.Add(WP);
@@ -1004,6 +993,7 @@ namespace DS4Windows
                 autoProfilesTimer.Stop();
                 btnStartStop.Text = Properties.Resources.StartText;
                 blankControllerTab();
+                populateFullNotifyText();
             }
 
             startToolStripMenuItem.Text = btnStartStop.Text;
@@ -1015,9 +1005,9 @@ namespace DS4Windows
             lbLastMessage.Text = string.Empty;
         }
 
-        //delegate void OldHotPlugDelegate();
-        bool skipHotplug = false;
-        bool inHotPlug = false;
+        private bool inHotPlug = false;
+        private int hotplugCounter = 0;
+        private object hotplugCounterLock = new object();
         protected override void WndProc(ref Message m)
         {
             try
@@ -1027,7 +1017,15 @@ namespace DS4Windows
                     if (runHotPlug)
                     {
                         Int32 Type = m.WParam.ToInt32();
-                        InnerHotplug2();
+                        lock (hotplugCounterLock)
+                        {
+                            hotplugCounter++;
+                        }
+
+                        if (!inHotPlug)
+                        {
+                            InnerHotplug2();
+                        }
                     }
                 }
             }
@@ -1041,39 +1039,37 @@ namespace DS4Windows
             catch { }
         }
 
-        delegate bool HotPlugDelegate();
-        protected void InnerHotplug()
-        {
-            lock (this)
-            {
-                // Reset flag and execute hotplug routine in main thread
-                skipHotplug = false;
-                HotPlugDelegate d = new HotPlugDelegate(Program.rootHub.HotPlug);
-                this.BeginInvoke(d);
-                //Program.rootHub.HotPlug();
-            }
-        }
-
         protected async void InnerHotplug2()
         {
-            await System.Threading.Tasks.Task.Delay(50);
+            //await System.Threading.Tasks.Task.Delay(50);
 
-            if (inHotPlug)
+            /*if (inHotPlug)
             {
                 await System.Threading.Tasks.Task.Run(() => { while (inHotPlug) { System.Threading.Thread.Sleep(50); } });
             }
+            */
 
-            lock (this)
+            //lock (this)
             {
-                skipHotplug = true;
-                //System.Threading.Tasks.Task.Delay(50).ContinueWith((t) => InnerHotplug());
-                //System.Threading.Tasks.Task tempTask = System.Threading.Tasks.Task.Delay(50).ContinueWith((t) => { });
-                //tempTask.Wait();
-                //OldHotPlugDelegate d = new OldHotPlugDelegate(InnerHotplug);
-                //this.BeginInvoke(d);
-                //skipHotplug = false;
                 inHotPlug = true;
-                Program.rootHub.HotPlug();
+                System.Threading.SynchronizationContext uiContext = System.Threading.SynchronizationContext.Current;
+                int tempCount = 0;
+                lock (hotplugCounterLock)
+                {
+                    tempCount = hotplugCounter;
+                }
+
+                while (tempCount > 0)
+                {
+                    await System.Threading.Tasks.Task.Run(() => { Program.rootHub.HotPlug(uiContext); });
+                    lock (hotplugCounterLock)
+                    {
+                        hotplugCounter--;
+                        tempCount = hotplugCounter;
+                    }
+                }
+
+                //Program.rootHub.HotPlug();
                 inHotPlug = false;
             }
         }
@@ -1093,12 +1089,106 @@ namespace DS4Windows
             {
                 string battery;
                 int level = args.getLevel();
-                if (level >= 100)
-                    battery = Properties.Resources.Full;
+                bool charging = args.isCharging();
+                int Index = args.getIndex();
+                if (charging)
+                {
+                    if (level >= 100)
+                        battery = Properties.Resources.Full;
+                    else
+                        battery = level + "%+";
+                }
                 else
-                    battery = level + "%+";
+                {
+                    battery = level + "%";
+                }
 
                 Batteries[args.getIndex()].Text = battery;
+
+                // Update device battery level display for tray icon
+                generateDeviceNotifyText(args.getIndex());
+                populateNotifyText();
+            }
+        }
+
+        protected void populateFullNotifyText()
+        {
+            for (int i = 0; i < ControlService.DS4_CONTROLLER_COUNT; i++)
+            {
+                string temp = Program.rootHub.getShortDS4ControllerInfo(i);
+                if (temp != Properties.Resources.NoneText)
+                {
+                    notifyText[i + 1] = (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+                }
+                else
+                {
+                    notifyText[i + 1] = string.Empty;
+                }
+            }
+
+            populateNotifyText();
+
+            /*string tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+            for (int i = 0; i < ControlService.DS4_CONTROLLER_COUNT; i++)
+            {
+                string temp = Program.rootHub.getShortDS4ControllerInfo(i);
+                if (temp != Properties.Resources.NoneText)
+                    tooltip += "\n" + (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+            }
+
+            if (tooltip.Length > 63)
+                notifyIcon1.Text = tooltip.Substring(0, 63);
+            else
+                notifyIcon1.Text = tooltip;
+            */
+        }
+
+        protected void generateDeviceNotifyText(int index)
+        {
+            string temp = Program.rootHub.getShortDS4ControllerInfo(index);
+            if (temp != Properties.Resources.NoneText)
+            {
+                notifyText[index + 1] = (index + 1) + ": " + temp; // Carefully stay under the 63 character limit.
+            }
+            else
+            {
+                notifyText[index + 1] = string.Empty;
+            }
+        }
+
+        protected void populateNotifyText()
+        {
+            string tooltip = notifyText[0];
+            for (int i = 1; i < 5; i++)
+            {
+                string temp = notifyText[i];
+                if (!string.IsNullOrEmpty(temp))
+                {
+                    tooltip += "\n" + notifyText[i]; // Carefully stay under the 63 character limit.
+                }
+            }
+
+            if (tooltip.Length > 63)
+                notifyIcon1.Text = tooltip.Substring(0, 63);
+            else
+                notifyIcon1.Text = tooltip;
+        }
+
+        protected void DeviceSerialChanged(object sender, SerialChangeArgs args)
+        {
+            if (InvokeRequired)
+            {
+                DeviceSerialChangedDelegate d = new DeviceSerialChangedDelegate(DeviceSerialChanged);
+                this.BeginInvoke(d, new object[] { sender, args });
+            }
+            else
+            {
+                int devIndex = args.getIndex();
+                string serial = args.getSerial();
+                if (devIndex >= 0 && devIndex < ControlService.DS4_CONTROLLER_COUNT)
+                {
+                    Pads[devIndex].Text = serial;
+                }
             }
         }
 
@@ -1121,7 +1211,7 @@ namespace DS4Windows
                     }
                 }
 
-                string tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+                //string tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
                 int Index = args.getIndex();
                 if (Index >= 0 && Index < ControlService.DS4_CONTROLLER_COUNT)
                 {
@@ -1156,16 +1246,19 @@ namespace DS4Windows
                         Enable_Controls(Index, false);
                     }
 
-                    if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
-                        tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
+                    generateDeviceNotifyText(Index);
+                    populateNotifyText();
+                    //if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
+                    //    tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
                 }
 
                 lbNoControllers.Visible = nocontrollers;
                 tLPControllers.Visible = !nocontrollers;
-                if (tooltip.Length > 63)
+                /*if (tooltip.Length > 63)
                     notifyIcon1.Text = tooltip.Substring(0, 63);
                 else
                     notifyIcon1.Text = tooltip;
+                */
             }
         }
 
@@ -1202,18 +1295,25 @@ namespace DS4Windows
 
                 lbNoControllers.Visible = nocontrollers;
                 tLPControllers.Visible = !nocontrollers;
+
+                // Update device battery level display for tray icon
+                generateDeviceNotifyText(devIndex);
+                populateNotifyText();
             }
         }
 
-        protected void ControllerStatusChange(object sender, EventArgs e)
+        /* TODO: Possible remove method */
+        /*protected void ControllerStatusChange(object sender, EventArgs e)
         {
             if (InvokeRequired)
                 Invoke(new ControllerStatusChangedDelegate(ControllerStatusChange), new object[] { sender, e });
             else
                 ControllerStatusChanged();
         }
+        */
 
-        protected void ControllerStatusChanged()
+        /* TODO: Possible remove method */
+        /*protected void ControllerStatusChanged()
         {
             String tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
             bool nocontrollers = true;
@@ -1270,15 +1370,23 @@ namespace DS4Windows
             else
                 notifyIcon1.Text = tooltip;
         }
+        */
 
         private void pBStatus_MouseClick(object sender, MouseEventArgs e)
         {
             int i = Int32.Parse(((PictureBox)sender).Tag.ToString());
-            if (e.Button == System.Windows.Forms.MouseButtons.Right && Program.rootHub.getDS4Status(i) == "BT" && !Program.rootHub.DS4Controllers[i].Charging)
-                Program.rootHub.DS4Controllers[i].DisconnectBT();
-            else if (e.Button == System.Windows.Forms.MouseButtons.Right && Program.rootHub.getDS4Status(i) == "SONYWA" && !Program.rootHub.DS4Controllers[i].Charging)
+            DS4Device d = Program.rootHub.DS4Controllers[i];
+            if (d != null)
             {
-                Program.rootHub.DS4Controllers[i].DisconnectDongle();
+                if (e.Button == MouseButtons.Right && Program.rootHub.getDS4Status(i) == "BT" && !d.Charging)
+                {
+                    d.DisconnectBT();
+                }
+                else if (e.Button == MouseButtons.Right &&
+                    Program.rootHub.getDS4Status(i) == "SONYWA" && !d.Charging)
+                {
+                    d.DisconnectDongle();
+                }
             }
         }
 
@@ -1292,13 +1400,15 @@ namespace DS4Windows
             Batteries[device].Visible = on;
         }
 
-        void ScpForm_Report(object sender, EventArgs e)
+        /* TODO: Remove method in future */
+        /*void ScpForm_Report(object sender, EventArgs e)
         {
             if (InvokeRequired)
                 Invoke(new HotKeysDelegate(Hotkeys), new object[] { sender, e });
             else
                 Hotkeys(sender, e);
         }
+        */
 
         protected void On_Debug(object sender, DebugEventArgs e)
         {
@@ -1321,12 +1431,11 @@ namespace DS4Windows
             {
                 if (e.KeyValue == 13)
                     ShowOptions(4, lBProfiles.SelectedItem.ToString());
-                if (e.KeyValue == 46)
+                else if (e.KeyValue == 46)
                     tsBDeleteProfle_Click(this, e);
-                if (e.KeyValue == 68 && e.Modifiers == Keys.Control)
+                else if (e.KeyValue == 68 && e.Modifiers == Keys.Control)
                     tSBDupProfile_Click(this, e);
             }
-
         }
 
         private void assignToController1ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1354,7 +1463,6 @@ namespace DS4Windows
             ShowOptions(4, "");
         }
 
-
         private void tsBNEditProfile_Click(object sender, EventArgs e)
         {
             if (lBProfiles.SelectedIndex >= 0)
@@ -1366,9 +1474,11 @@ namespace DS4Windows
             if (lBProfiles.SelectedIndex >= 0)
             {
                 string filename = lBProfiles.SelectedItem.ToString();
-                if (MessageBox.Show(Properties.Resources.ProfileCannotRestore.Replace("*Profile name*", "\"" + filename + "\""), Properties.Resources.DeleteProfile, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(Properties.Resources.ProfileCannotRestore.Replace("*Profile name*", "\"" + filename + "\""),
+                    Properties.Resources.DeleteProfile,
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    System.IO.File.Delete(appdatapath + @"\Profiles\" + filename + ".xml");
+                    File.Delete(appdatapath + @"\Profiles\" + filename + ".xml");
                     RefreshProfiles();
                 }
             }
@@ -1384,7 +1494,7 @@ namespace DS4Windows
                 MTB.TopLevel = false;
                 MTB.Dock = DockStyle.Top;
                 MTB.Visible = true;
-                MTB.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                MTB.FormBorderStyle = FormBorderStyle.None;
                 tabProfiles.Controls.Add(MTB);
                 lBProfiles.SendToBack();
                 toolStrip1.SendToBack();
@@ -1394,19 +1504,19 @@ namespace DS4Windows
             }
         }
 
-
-
         private void tSBImportProfile_Click(object sender, EventArgs e)
         {
             if (appdatapath == Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName)
                 openProfiles.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + @"\Profiles\";
             else
                 openProfiles.InitialDirectory = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + @"\Profiles\";
-            if (openProfiles.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+
+            if (openProfiles.ShowDialog() == DialogResult.OK)
             {
                 string[] files = openProfiles.FileNames;
-                for (int i = 0; i < files.Length; i++)
+                for (int i = 0, arlen = files.Length; i < arlen; i++)
                     File.Copy(openProfiles.FileNames[i], appdatapath + "\\Profiles\\" + Path.GetFileName(files[i]), true);
+
                 RefreshProfiles();
             }
         }
@@ -1417,7 +1527,7 @@ namespace DS4Windows
             {
                 Stream stream;
                 Stream profile = new StreamReader(appdatapath + "\\Profiles\\" + lBProfiles.SelectedItem.ToString() + ".xml").BaseStream;                
-                if (saveProfiles.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (saveProfiles.ShowDialog() == DialogResult.OK)
                 {
                     if ((stream = saveProfiles.OpenFile()) != null)
                     {
@@ -1432,6 +1542,7 @@ namespace DS4Windows
         private void ShowOptions(int devID, string profile)
         {
             Show();
+            tabMain.SelectedIndex = 1;
             WindowState = FormWindowState.Normal;
             toolStrip1.Enabled = false;
             tSOptions.Visible = true;
@@ -1448,12 +1559,12 @@ namespace DS4Windows
             oldsize = Size;
             {
                 if (Size.Height < (int)(90 * dpiy) + Options.mSize.Height)
-                    Size = new System.Drawing.Size(Size.Width, (int)(90 * dpiy) + Options.mSize.Height);
+                    Size = new Size(Size.Width, (int)(90 * dpiy) + Options.mSize.Height);
+
                 if (Size.Width < (int)(20 * dpix) + Options.mSize.Width)
-                    Size = new System.Drawing.Size((int)(20 * dpix) + Options.mSize.Width, Size.Height);
+                    Size = new Size((int)(20 * dpix) + Options.mSize.Width, Size.Height);
             }
 
-            tabMain.SelectedIndex = 1;
             opt.Reload(devID, profile);
             opt.inputtimer.Start();
             opt.Visible = true;
@@ -1487,11 +1598,13 @@ namespace DS4Windows
         private void editButtons_Click(object sender, EventArgs e)
         {
             Button bn = (Button)sender;
-            int i = Int32.Parse(bn.Tag.ToString());
-            if (cbs[i].Text == "(" + Properties.Resources.NoProfileLoaded + ")")
-                ShowOptions(i, "");
+            //int i = Int32.Parse(bn.Tag.ToString());
+            int i = Convert.ToInt32(bn.Tag);
+            string profileText = cbs[i].Text;
+            if (profileText != "(" + Properties.Resources.NoProfileLoaded + ")")
+                ShowOptions(i, profileText);
             else
-                ShowOptions(i, cbs[i].Text);
+                ShowOptions(i, "");
         }
 
         private void editMenu_Click(object sender, EventArgs e)
@@ -1505,7 +1618,7 @@ namespace DS4Windows
                 ShowOptions(i, "");
             else
             {
-                for (int t = 0; t < em.DropDownItems.Count - 2; t++)
+                for (int t = 0, itemCount = em.DropDownItems.Count - 2; t < itemCount; t++)
                 {
                     if (((ToolStripMenuItem)em.DropDownItems[t]).Checked)
                         ShowOptions(i, ((ToolStripMenuItem)em.DropDownItems[t]).Text);
@@ -1515,16 +1628,16 @@ namespace DS4Windows
 
         private void lnkControllers_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("control", "joy.cpl");
+            Process.Start("control", "joy.cpl");
         }
 
         private void hideDS4CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Prevent the Game Controllers window from throwing an error when controllers are un/hidden
-            System.Diagnostics.Process[] rundll64 = System.Diagnostics.Process.GetProcessesByName("rundll64");
-            foreach (System.Diagnostics.Process rundll64Instance in rundll64)
+            Process[] rundll64 = Process.GetProcessesByName("rundll64");
+            foreach (Process rundll64Instance in rundll64)
             {
-                foreach (System.Diagnostics.ProcessModule module in rundll64Instance.Modules)
+                foreach (ProcessModule module in rundll64Instance.Modules)
                 {
                     if (module.FileName.Contains("joy.cpl"))
                         module.Dispose();
@@ -1583,7 +1696,6 @@ namespace DS4Windows
             }
 
             OnDeviceStatusChanged(this, tdevice); //to update profile name in notify icon
-            //ControllerStatusChanged(); //to update profile name in notify icon
         }
 
         private void Profile_Changed_Menu(object sender, ToolStripItemClickedEventArgs e)
@@ -1620,7 +1732,7 @@ namespace DS4Windows
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Middle)
+            if (e.Button == MouseButtons.Middle)
             {
                 contextclose = true;
                 this.Close();
@@ -1672,7 +1784,7 @@ namespace DS4Windows
 
         private void appShortcutToStartup()
         {
-            Type t = Type.GetTypeFromCLSID(new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8")); //Windows Script Host Shell Object
+            Type t = Type.GetTypeFromCLSID(new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8")); // Windows Script Host Shell Object
             dynamic shell = Activator.CreateInstance(t);
             try
             {
@@ -1709,23 +1821,18 @@ namespace DS4Windows
 
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lbLastMessage.Visible = tabMain.SelectedTab != tabLog;
-            if (tabMain.SelectedTab == tabLog)
+            TabPage currentTab = tabMain.SelectedTab;
+            lbLastMessage.Visible = currentTab != tabLog;
+            if (currentTab == tabLog)
                 chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
-            if (tabMain.SelectedTab == tabSettings)
+
+            if (currentTab == tabSettings)
             {
                 lbLastMessage.ForeColor = SystemColors.GrayText;
                 lbLastMessage.Text = Properties.Resources.HoverOverItems;
-                foreach (System.Windows.Forms.Control control in fLPSettings.Controls)
-                {
-                    if (control.HasChildren)
-                        foreach (System.Windows.Forms.Control ctrl in control.Controls)
-                            ctrl.MouseHover += Items_MouseHover;
-                    control.MouseHover += Items_MouseHover;
-                }
             }
             else if (lvDebug.Items.Count > 0)
-                lbLastMessage.Text = lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
+                lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
             else
                 lbLastMessage.Text = "";
 
@@ -1772,7 +1879,7 @@ namespace DS4Windows
         private void lBProfiles_MouseDown(object sender, MouseEventArgs e)
         {
             lBProfiles.SelectedIndex = lBProfiles.IndexFromPoint(e.X, e.Y);
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
                 if (lBProfiles.SelectedIndex < 0)
                 {
@@ -1797,6 +1904,7 @@ namespace DS4Windows
                                                       assignToController2ToolStripMenuItem,
                                                       assignToController3ToolStripMenuItem, 
                                                       assignToController4ToolStripMenuItem };
+
                     for (int i = 0; i < 4; i++)
                     {
                         if (lBProfiles.SelectedIndex == cbs[i].SelectedIndex)
@@ -1804,6 +1912,7 @@ namespace DS4Windows
                         else
                             assigns[i].Checked = false;
                     }
+
                     deleteToolStripMenuItem.Visible = true;
                     editToolStripMenuItem.Visible = true;
                     duplicateToolStripMenuItem.Visible = true;
@@ -1837,14 +1946,17 @@ namespace DS4Windows
                 e.Effect = DragDropEffects.None; // Unknown data, ignore it
         }
 
-
-
         private void tBProfile_TextChanged(object sender, EventArgs e)
         {
-            if (tSTBProfile.Text != null && tSTBProfile.Text != "" && !tSTBProfile.Text.Contains("\\") && !tSTBProfile.Text.Contains("/") && !tSTBProfile.Text.Contains(":") && !tSTBProfile.Text.Contains("*") && !tSTBProfile.Text.Contains("?") && !tSTBProfile.Text.Contains("\"") && !tSTBProfile.Text.Contains("<") && !tSTBProfile.Text.Contains(">") && !tSTBProfile.Text.Contains("|"))
-                tSTBProfile.ForeColor = System.Drawing.SystemColors.WindowText;
+            if (tSTBProfile.Text != null && tSTBProfile.Text != "" &&
+                !tSTBProfile.Text.Contains("\\") && !tSTBProfile.Text.Contains("/") &&
+                !tSTBProfile.Text.Contains(":") && !tSTBProfile.Text.Contains("*") &&
+                !tSTBProfile.Text.Contains("?") && !tSTBProfile.Text.Contains("\"") &&
+                !tSTBProfile.Text.Contains("<") && !tSTBProfile.Text.Contains(">") &&
+                !tSTBProfile.Text.Contains("|"))
+                tSTBProfile.ForeColor = SystemColors.WindowText;
             else
-                tSTBProfile.ForeColor = System.Drawing.SystemColors.GrayText;
+                tSTBProfile.ForeColor = SystemColors.GrayText;
         }
 
         private void tBProfile_Enter(object sender, EventArgs e)
@@ -1872,7 +1984,12 @@ namespace DS4Windows
                 opt.saving = true;
                 opt.Set();
 
-                if (tSTBProfile.Text != null && tSTBProfile.Text != "" && !tSTBProfile.Text.Contains("\\") && !tSTBProfile.Text.Contains("/") && !tSTBProfile.Text.Contains(":") && !tSTBProfile.Text.Contains("*") && !tSTBProfile.Text.Contains("?") && !tSTBProfile.Text.Contains("\"") && !tSTBProfile.Text.Contains("<") && !tSTBProfile.Text.Contains(">") && !tSTBProfile.Text.Contains("|"))
+                if (tSTBProfile.Text != null && tSTBProfile.Text != "" &&
+                    !tSTBProfile.Text.Contains("\\") && !tSTBProfile.Text.Contains("/") &&
+                    !tSTBProfile.Text.Contains(":") && !tSTBProfile.Text.Contains("*") &&
+                    !tSTBProfile.Text.Contains("?") && !tSTBProfile.Text.Contains("\"") &&
+                    !tSTBProfile.Text.Contains("<") && !tSTBProfile.Text.Contains(">") &&
+                    !tSTBProfile.Text.Contains("|"))
                 {
                     File.Delete(appdatapath + @"\Profiles\" + opt.filename + ".xml");
                     ProfilePath[opt.device] = tSTBProfile.Text;
@@ -1911,15 +2028,18 @@ namespace DS4Windows
 
         private void nUDUpdateTime_ValueChanged(object sender, EventArgs e)
         {
-            if (cBUpdateTime.SelectedIndex == 0)
+            int currentIndex = cBUpdateTime.SelectedIndex;
+            if (currentIndex == 0)
                 CheckWhen = (int)nUDUpdateTime.Value;
-            else if (cBUpdateTime.SelectedIndex == 1)
+            else if (currentIndex == 1)
                 CheckWhen = (int)nUDUpdateTime.Value * 24;
+
             if (nUDUpdateTime.Value < 1)
                 cBUpdate.Checked = false;
+
             if (nUDUpdateTime.Value == 1)
             {
-                int index = cBUpdateTime.SelectedIndex;
+                int index = currentIndex;
                 cBUpdateTime.Items.Clear();
                 cBUpdateTime.Items.Add(Properties.Resources.Hour);
                 cBUpdateTime.Items.Add(Properties.Resources.Day);
@@ -1927,7 +2047,7 @@ namespace DS4Windows
             }
             else if (cBUpdateTime.Items[0].ToString() == Properties.Resources.Hour)
             {
-                int index = cBUpdateTime.SelectedIndex;
+                int index = currentIndex;
                 cBUpdateTime.Items.Clear();
                 cBUpdateTime.Items.Add(Properties.Resources.Hours);
                 cBUpdateTime.Items.Add(Properties.Resources.Days);
@@ -1937,15 +2057,17 @@ namespace DS4Windows
 
         private void cBUpdateTime_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cBUpdateTime.SelectedIndex == 0)
+            int index = cBUpdateTime.SelectedIndex;
+            if (index == 0)
                 CheckWhen = (int)nUDUpdateTime.Value;
-            else if (cBUpdateTime.SelectedIndex == 1)
+            else if (index == 1)
                 CheckWhen = (int)nUDUpdateTime.Value * 24;
         }
 
         private void lLBUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Uri url = new Uri("http://23.236.26.40/ds4windows/files/builds/newest.txt"); //Sorry other devs, gonna have to find your own server
+            // Sorry other devs, gonna have to find your own server
+            Uri url = new Uri("http://23.239.26.40/ds4windows/files/builds/newest.txt");
             WebClient wct = new WebClient();
             wct.DownloadFileAsync(url, appdatapath + "\\version.txt");
             wct.DownloadFileCompleted += wct_DownloadFileCompleted;
@@ -1961,9 +2083,11 @@ namespace DS4Windows
             LastChecked = DateTime.Now;
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version2 = fvi.FileVersion;
-            string newversion2 = File.ReadAllText(appdatapath + "\\version.txt");
-            if (version2.Replace(',', '.').CompareTo(File.ReadAllText(appdatapath + "\\version.txt")) == -1)//CompareVersions();
-                if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2), Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            string newversion2 = File.ReadAllText(appdatapath + "\\version.txt").Trim();
+            if (version2.Replace(',', '.').CompareTo(newversion2) == -1)//CompareVersions();
+            {
+                if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2),
+                    Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                          && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
@@ -1978,17 +2102,21 @@ namespace DS4Windows
                             Process.Start("http://ds4windows.com/Files/DS4Updater.exe");
                         }
                     }
+
                     Process p = new Process();
                     p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
                     if (!cBDownloadLangauge.Checked)
                         p.StartInfo.Arguments = "-skipLang";
+
                     if (AdminNeeded())
                         p.StartInfo.Verb = "runas";
+
                     try { p.Start(); Close(); }
                     catch { }
                 }
                 else
                     File.Delete(appdatapath + "\\version.txt");
+            }
             else
             {
                 File.Delete(appdatapath + "\\version.txt");
@@ -1998,19 +2126,16 @@ namespace DS4Windows
 
         private void linkProfiles_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(appdatapath + "\\Profiles");
+            Process.Start(appdatapath + "\\Profiles");
         }
 
         private void linkUninstall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (File.Exists(appdatapath + "\\Virtual Bus Driver\\ScpDriver.exe"))
-                try { System.Diagnostics.Process.Start(appdatapath + "\\Virtual Bus Driver\\ScpDriver.exe"); }
-                catch { System.Diagnostics.Process.Start(appdatapath + "\\Virtual Bus Driver"); }
-        }
-
-        private void cBNotifications_CheckedChanged(object sender, EventArgs e)
-        {
-            //Notifications = cBNotifications.Checked;
+            {
+                try { Process.Start(appdatapath + "\\Virtual Bus Driver\\ScpDriver.exe"); }
+                catch { Process.Start(appdatapath + "\\Virtual Bus Driver"); }
+            }
         }
 
         private void cBoxNotifications_SelectedIndexChanged(object sender, EventArgs e)
@@ -2032,6 +2157,7 @@ namespace DS4Windows
             linkSetup.LinkColor = Color.Blue;
         }
 
+        bool tempBool = false;
         protected void ScpForm_Closing(object sender, FormClosingEventArgs e)
         {
             if (opt.Visible)
@@ -2041,7 +2167,31 @@ namespace DS4Windows
                 return;
             }
 
-            if (cBCloseMini.Checked && !contextclose)
+            bool closeMini = tempBool = cBCloseMini.Checked;
+            bool userClosing = e.CloseReason == CloseReason.UserClosing;
+            DS4Device d = null;
+            bool nocontrollers = tempBool = true;
+            //in case user accidentally clicks on the close button whilst "Close Minimizes" checkbox is unchecked
+            if (userClosing && !closeMini && !contextclose)
+            {
+                for (int i = 0, PadsLen = Pads.Length; tempBool && i < PadsLen; i++)
+                {
+                    d = Program.rootHub.DS4Controllers[i];
+                    tempBool = (d != null) ? false : tempBool;
+                }
+
+                nocontrollers = tempBool;
+                if (!nocontrollers)
+                {
+                    if (MessageBox.Show(Properties.Resources.CloseConfirm, Properties.Resources.Confirm,
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+            }
+            else if (userClosing && closeMini && !contextclose)
             {
                 this.WindowState = FormWindowState.Minimized;
                 e.Cancel = true;
@@ -2056,7 +2206,7 @@ namespace DS4Windows
                 DS4LightBar.shuttingdown = true;
             }
 
-            if (oldsize == new System.Drawing.Size(0, 0))
+            if (oldsize == new Size(0, 0))
             {
                 FormWidth = this.Width;
                 FormHeight = this.Height;
@@ -2067,7 +2217,7 @@ namespace DS4Windows
                 FormHeight = oldsize.Height;
             }
 
-            if (!String.IsNullOrEmpty(appdatapath))
+            if (!string.IsNullOrEmpty(appdatapath))
             {
                 Save();
                 blankControllerTab();
@@ -2109,6 +2259,7 @@ namespace DS4Windows
         {
             //oldxiport = (int)Math.Round(nUDXIPorts.Value,0);
         }
+
         int oldxiport;
         private void pnlXIPorts_MouseLeave(object sender, EventArgs e)
         {
@@ -2146,9 +2297,10 @@ namespace DS4Windows
         {
             Label lb = (Label)sender;
             int i = Int32.Parse(lb.Tag.ToString());
-            if (Program.rootHub.DS4Controllers[i] != null && Program.rootHub.DS4Controllers[i].ConnectionType == ConnectionType.BT)
+            DS4Device d = Program.rootHub.DS4Controllers[i];
+            if (d != null && d.ConnectionType == ConnectionType.BT)
             {
-                double latency = Program.rootHub.DS4Controllers[i].Latency;
+                double latency = d.Latency;
                 toolTip1.Hide(Pads[i]);
                 toolTip1.Show(Properties.Resources.InputDelay.Replace("*number*", latency.ToString()), lb, lb.Size.Width, 0);
             }
@@ -2244,7 +2396,7 @@ namespace DS4Windows
                 tsBEditProfile.Enabled = false;
                 tsBDeleteProfile.Enabled = false;
                 tSBDupProfile.Enabled = false;
-                tSBImportProfile.Enabled = false;
+                tSBImportProfile.Enabled = true;
                 tSBExportProfile.Enabled = false;
             }
         }

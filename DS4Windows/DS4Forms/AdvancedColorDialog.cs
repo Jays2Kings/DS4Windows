@@ -160,7 +160,7 @@ namespace DS4Windows
                     if (Byte.TryParse(WindowsEnumerator.WindowText(EditWindows[3].hWnd), out red))
                         if (Byte.TryParse(WindowsEnumerator.WindowText(EditWindows[4].hWnd), out green))
                             if (Byte.TryParse(WindowsEnumerator.WindowText(EditWindows[5].hWnd), out blue))
-                                OnUpdateColor(Color.FromArgb(red, green, blue), EventArgs.Empty);
+                                OnUpdateColor?.Invoke(Color.FromArgb(red, green, blue), EventArgs.Empty);
                 }
             }
             // Always call the base class hook procedure. 

@@ -77,7 +77,7 @@ namespace DS4Windows
             try
             {
                 string[] ss = value.Split(',');
-                return byte.TryParse(ss[0], out ds4color.red) &&byte.TryParse(ss[1], out ds4color.green) && byte.TryParse(ss[2], out ds4color.blue);
+                return byte.TryParse(ss[0], out ds4color.red) && byte.TryParse(ss[1], out ds4color.green) && byte.TryParse(ss[2], out ds4color.blue);
             }
             catch { return false; }
         }
@@ -115,7 +115,7 @@ namespace DS4Windows
         private const int BT_OUTPUT_REPORT_LENGTH = 78;
         private const int BT_INPUT_REPORT_LENGTH = 547;
         // Use large value for worst case scenario
-        private const int READ_STREAM_TIMEOUT = 100;
+        private const int READ_STREAM_TIMEOUT = 1000;
         // Isolated BT report can have latency as high as 15 ms
         // due to hardware.
         private const int WARN_INTERVAL_BT = 20;
@@ -124,6 +124,7 @@ namespace DS4Windows
         // and when a USB cable is connected
         private const int BATTERY_MAX = 8;
         private const int BATTERY_MAX_USB = 11;
+        public const string blankSerial = "00:00:00:00:00:00";
         private HidDevice hDevice;
         private string Mac;
         private DS4State cState = new DS4State();
@@ -132,7 +133,7 @@ namespace DS4Windows
         private byte[] accel = new byte[6];
         private byte[] gyro = new byte[6];
         private byte[] inputReport;
-        private byte[] inputReport2;
+        //private byte[] inputReport2;
         private byte[] btInputReport = null;
         private byte[] outputReportBuffer, outputReport;
         private readonly DS4Touchpad touchpad = null;
@@ -158,8 +159,12 @@ namespace DS4Windows
         private bool exitOutputThread = false;
         private bool exitInputThread = false;
         private object exitLocker = new object();
+
         public event EventHandler<EventArgs> Report = null;
         public event EventHandler<EventArgs> Removal = null;
+        public event EventHandler<EventArgs> SyncChange = null;
+        public event EventHandler<EventArgs> SerialChange = null;
+        public event EventHandler<EventArgs> PublishRemoval = null;
 
         public HidDevice HidDevice => hDevice;
         public bool IsExclusive => HidDevice.IsExclusive;
@@ -259,6 +264,12 @@ namespace DS4Windows
             return lastTimeElapsed;
         }
 
+        public double lastTimeElapsedDouble = 0.0;
+        public double getLastTimeElapsedDouble()
+        {
+            return lastTimeElapsedDouble;
+        }
+
         public byte RightLightFastRumble
         {
             get { return rightLightFastRumble; }
@@ -330,6 +341,34 @@ namespace DS4Windows
             return ledFlashOff;
         }
 
+        // Specify the poll rate interval used for the DS4 hardware when
+        // connected via Bluetooth
+        private int btPollRate = 0;
+        public int BTPollRate
+        {
+            get { return btPollRate; }
+            set
+            {
+                if (btPollRate != value && value >= 0 && value <= 16)
+                {
+                    btPollRate = value;
+                }
+            }
+        }
+
+        public int getBTPollRate()
+        {
+            return btPollRate;
+        }
+
+        public void setBTPollRate(int value)
+        {
+            if (btPollRate != value && value >= 0 && value <= 16)
+            {
+                btPollRate = value;
+            }
+        }
+
         public DS4Touchpad Touchpad { get { return touchpad; } }
         public DS4SixAxis SixAxis { get { return sixAxis; } }
 
@@ -352,6 +391,21 @@ namespace DS4Windows
         }
 
         private SynchronizationContext uiContext = null;
+        public SynchronizationContext getUiContext()
+        {
+            return uiContext;
+        }
+        public void setUiContext(SynchronizationContext uiContext)
+        {
+            this.uiContext = uiContext;
+        }
+
+        private Queue<Action> eventQueue = new Queue<Action>();
+        private object eventQueueLock = new object();
+
+        private Thread timeoutCheckThread = null;
+        private bool timeoutExecuted = false;
+        private bool timeoutEvent = false;
 
         public DS4Device(HidDevice hidDevice)
         {            
@@ -361,18 +415,20 @@ namespace DS4Windows
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
             {
                 inputReport = new byte[64];
-                inputReport2 = new byte[64];
+                //inputReport2 = new byte[64];
                 outputReport = new byte[hDevice.Capabilities.OutputReportByteLength];
                 outputReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength];
                 if (conType == ConnectionType.USB)
                 {
                     warnInterval = WARN_INTERVAL_USB;
+                    synced = true;
                 }
                 else
                 {
                     warnInterval = WARN_INTERVAL_BT;
                     audio = new DS4Audio();
-                    micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Render);
+                    micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture);
+                    synced = isValidSerial();
                 }
             }
             else
@@ -382,11 +438,28 @@ namespace DS4Windows
                 outputReport = new byte[BT_OUTPUT_REPORT_LENGTH];
                 outputReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
                 warnInterval = WARN_INTERVAL_BT;
+                synced = isValidSerial();
             }
 
             touchpad = new DS4Touchpad();
             sixAxis = new DS4SixAxis();
-            uiContext = SynchronizationContext.Current;
+        }
+
+        private void timeoutTestThread()
+        {
+            while (!timeoutExecuted)
+            {
+                if (timeoutEvent)
+                {
+                    timeoutExecuted = true;
+                    this.sendOutputReport(true); // Kick Windows into noticing the disconnection.
+                }
+                else
+                {
+                    timeoutEvent = true;
+                    Thread.Sleep(READ_STREAM_TIMEOUT);
+                }
+            }
         }
 
         public void StartUpdate()
@@ -410,6 +483,10 @@ namespace DS4Windows
                     ds4Output.Name = "DS4 Output thread: " + Mac;
                     ds4Output.IsBackground = true;
                     ds4Output.Start();
+
+                    timeoutCheckThread = new Thread(timeoutTestThread);
+                    timeoutCheckThread.IsBackground = true;
+                    timeoutCheckThread.Start();
                 }
 
                 ds4Input = new Thread(performDs4Input);
@@ -479,7 +556,8 @@ namespace DS4Windows
             }
             else
             {
-                return hDevice.WriteAsyncOutputReportViaInterrupt(outputReport);
+                return hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
+                //return hDevice.WriteAsyncOutputReportViaInterrupt(outputReport);
             }
         }
 
@@ -503,7 +581,7 @@ namespace DS4Windows
                                 if (lastError != thisError)
                                 {
                                     Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
-                                    Log.LogToGui(Mac.ToString() + " encountered write failure: " + thisError, true);
+                                    //Log.LogToGui(Mac.ToString() + " encountered write failure: " + thisError, true);
                                     lastError = thisError;
                                 }
                             }
@@ -539,42 +617,87 @@ namespace DS4Windows
         }
 
         private byte priorInputReport30 = 0xff;
-        public double Latency = 0;
+
+        private bool synced = false;
+        public bool Synced
+        {
+            get { return synced; }
+            set
+            {
+                if (synced != value)
+                {
+                    synced = value;
+                }
+            }
+        }
+
+        public bool isSynced()
+        {
+            return synced;
+        }
+
+        public double Latency = 0.0;
         public string error;
         public bool firstReport = false;
+        public bool oldCharging = false;
+        double curTimeDouble = 0.0;
+        double oldTimeDouble = 0.0;
+        DateTime utcNow = DateTime.UtcNow;
+        bool ds4InactiveFrame = true;
+        bool idleInput = true;
 
         private void performDs4Input()
         {
             firstActive = DateTime.UtcNow;
             NativeMethods.HidD_SetNumInputBuffers(hDevice.safeReadHandle.DangerousGetHandle(), 2);
-            List<long> Latency = new List<long>(100);
+            Queue<long> latencyQueue = new Queue<long>(51); // Set capacity at max + 1 to avoid any resizing
+            int tempLatencyCount = 0;
             long oldtime = 0;
+            string currerror = string.Empty;
+            long curtime = 0;
             Stopwatch sw = new Stopwatch();
             sw.Start();
+            timeoutEvent = false;
+            ds4InactiveFrame = true;
+            idleInput = true;
+
+            int maxBatteryValue = 0;
+            int tempBattery = 0;
+
             while (!exitInputThread)
             {
-                string currerror = string.Empty;
-                long curtime = sw.ElapsedMilliseconds;
-                this.lastTimeElapsed = curtime - oldtime;
-                Latency.Add(this.lastTimeElapsed);
+                oldCharging = charging;
+                currerror = string.Empty;
+                curTimeDouble = sw.Elapsed.TotalMilliseconds;
+                curtime = sw.ElapsedMilliseconds;
+
+                if (tempLatencyCount >= 50)
+                {
+                    latencyQueue.Dequeue();
+                    tempLatencyCount--;
+                }
+
+                lastTimeElapsed = curtime - oldtime;
+                lastTimeElapsedDouble = (curTimeDouble - oldTimeDouble);
+                latencyQueue.Enqueue(this.lastTimeElapsed);
+                tempLatencyCount++;
                 oldtime = curtime;
-
-                if (Latency.Count > 100)
-                    Latency.RemoveAt(0);
-
-                this.Latency = Latency.Average();
+                oldTimeDouble = curTimeDouble;
+                Latency = latencyQueue.Average();
 
                 if (conType == ConnectionType.BT)
                 {
                     //HidDevice.ReadStatus res = hDevice.ReadFile(btInputReport);
-                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
+                    //HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
+                    HidDevice.ReadStatus res = hDevice.ReadWithFileStream(btInputReport);
+                    timeoutEvent = false;
+                    //HidDevice.ReadStatus res = hDevice.ReadFileOverlapped(btInputReport, READ_STREAM_TIMEOUT);
                     if (res == HidDevice.ReadStatus.Success)
                     {
                         Array.Copy(btInputReport, 2, inputReport, 0, inputReport.Length);
                     }
                     else
                     {
-
                         if (res == HidDevice.ReadStatus.WaitTimedOut)
                         {
                             Log.LogToGui(Mac.ToString() + " disconnected due to timeout", true);
@@ -583,7 +706,7 @@ namespace DS4Windows
                         {
                             int winError = Marshal.GetLastWin32Error();
                             Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
-                            Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
+                            //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                         }
 
                         sendOutputReport(true); // Kick Windows into noticing the disconnection.
@@ -594,15 +717,20 @@ namespace DS4Windows
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
 
-                        return;
+                        //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
+                        //Removal?.Invoke(this, EventArgs.Empty);
 
+                        timeoutExecuted = true;
+                        return;
                     }
                 }
                 else
                 {
                     //HidDevice.ReadStatus res = hDevice.ReadFile(inputReport);
                     //Array.Clear(inputReport, 0, inputReport.Length);
-                    HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport, READ_STREAM_TIMEOUT);
+                    //HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport, READ_STREAM_TIMEOUT);
+                    HidDevice.ReadStatus res = hDevice.ReadWithFileStream(inputReport);
+                    //HidDevice.ReadStatus res = hDevice.ReadFileOverlapped(inputReport, READ_STREAM_TIMEOUT);
                     if (res != HidDevice.ReadStatus.Success)
                     {
                         if (res == HidDevice.ReadStatus.WaitTimedOut)
@@ -613,7 +741,7 @@ namespace DS4Windows
                         {
                             int winError = Marshal.GetLastWin32Error();
                             Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
-                            Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
+                            //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                         }
 
                         StopOutputUpdate();
@@ -623,6 +751,10 @@ namespace DS4Windows
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
 
+                        //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
+                        //Removal?.Invoke(this, EventArgs.Empty);
+
+                        timeoutExecuted = true;
                         return;
                     }
                     else
@@ -632,12 +764,12 @@ namespace DS4Windows
                 }
 
                 if (conType == ConnectionType.BT && btInputReport[0] != 0x11)
-	            {
-	                //Received incorrect report, skip it
-	                continue;
-	            }
+                {
+                    //Received incorrect report, skip it
+                    continue;
+                }
 
-                DateTime utcNow = System.DateTime.UtcNow; // timestamp with UTC in case system time zone changes
+                utcNow = DateTime.UtcNow; // timestamp with UTC in case system time zone changes
                 resetHapticState();
                 cState.ReportTimeStamp = utcNow;
                 cState.LX = inputReport[1];
@@ -678,21 +810,17 @@ namespace DS4Windows
                 cState.L1 = (inputReport[6] & (1 << 0)) != 0;
 
                 cState.PS = (inputReport[7] & (1 << 0)) != 0;
-                cState.TouchButton = (inputReport[7] & (1 << 2 - 1)) != 0;
+                cState.TouchButton = (inputReport[7] & 0x02) != 0;
                 cState.FrameCounter = (byte)(inputReport[7] >> 2);
-
-                // Store Gyro and Accel values
-                Array.Copy(inputReport, 14, accel, 0, 6);
-                Array.Copy(inputReport, 20, gyro, 0, 6);
-                sixAxis.handleSixaxis(gyro, accel, cState);
 
                 try
                 {
                     charging = (inputReport[30] & 0x10) != 0;
-                    int maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
-                    int tempBattery = (inputReport[30] & 0x0f) * 100 / maxBatteryValue;
+                    maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
+                    tempBattery = (inputReport[30] & 0x0f) * 100 / maxBatteryValue;
                     battery = Math.Min((byte)tempBattery, (byte)100);
                     cState.Battery = (byte)battery;
+                    //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
                     if (inputReport[30] != priorInputReport30)
                     {
                         priorInputReport30 = inputReport[30];
@@ -710,10 +838,12 @@ namespace DS4Windows
                     //for (int touches = inputReport[-1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET - 1], touchOffset = 0; touches > 0; touches--, touchOffset += 9)
                     {
                         cState.TouchPacketCounter = inputReport[-1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset];
-                        cState.Touch1 = (inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // >= 1 touch detected
+                        cState.Touch1 = (inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // finger 1 detected
                         cState.Touch1Identifier = (byte)(inputReport[0 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
-                        cState.Touch2 = (inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // 2 touches detected
+                        cState.Touch2 = (inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] >> 7) != 0 ? false : true; // finger 2 detected
                         cState.Touch2Identifier = (byte)(inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
+                        cState.Touch1Finger = cState.Touch1 || cState.Touch2; // >= 1 touch detected
+                        cState.Touch2Fingers = cState.Touch1 && cState.Touch2; // 2 touches detected
                         cState.TouchLeft = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) >= 1920 * 2 / 5) ? false : true;
                         cState.TouchRight = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) < 1920 * 2 / 5) ? false : true;
                         // Even when idling there is still a touch packet indicating no touch 1 or 2
@@ -722,6 +852,11 @@ namespace DS4Windows
                 }
                 catch { currerror = "Index out of bounds: touchpad"; }
 
+                // Store Gyro and Accel values
+                Array.Copy(inputReport, 13, gyro, 0, 6);
+                Array.Copy(inputReport, 19, accel, 0, 6);
+                sixAxis.handleSixaxis(gyro, accel, cState);
+
                 /* Debug output of incoming HID data:
                 if (cState.L2 == 0xff && cState.R2 == 0xff)
                 {
@@ -729,28 +864,49 @@ namespace DS4Windows
                     for (int i = 0; i < inputReport.Length; i++)
                         Console.Write(" " + inputReport[i].ToString("x2"));
                     Console.WriteLine();
-                } */
+                }
+                */
 
-                bool ds4Idle = cState.FrameCounter == pState.FrameCounter;
-                if (!ds4Idle)
+                if (conType == ConnectionType.SONYWA)
+                {
+                    bool controllerSynced = inputReport[31] == 0;
+                    if (controllerSynced != synced)
+                    {
+                        synced = controllerSynced;
+                        SyncChange?.Invoke(this, EventArgs.Empty);
+                    }
+                }
+
+                ds4InactiveFrame = cState.FrameCounter == pState.FrameCounter;
+                if (!ds4InactiveFrame)
                 {
                     isRemoved = false;
                 }
 
                 if (conType == ConnectionType.USB)
                 {
-                    lastActive = utcNow;
+                    if (idleTimeout == 0)
+                    {
+                        lastActive = utcNow;
+                    }
+                    else
+                    {
+                        idleInput = isDS4Idle();
+                        if (!idleInput)
+                        {
+                            lastActive = utcNow;
+                        }
+                    }
                 }
                 else
                 {
                     bool shouldDisconnect = false;
-                    int idleTime = idleTimeout;
-                    if (!isRemoved && idleTime > 0)
+                    if (!isRemoved && idleTimeout > 0)
                     {
-                        bool idleInput = isDS4Idle();
+                        idleInput = isDS4Idle();
                         if (idleInput)
                         {
-                            DateTime timeout = lastActive + TimeSpan.FromSeconds(idleTime);
+                            DateTime timeout = lastActive + TimeSpan.FromSeconds(idleTimeout);
                             if (!charging)
                                 shouldDisconnect = utcNow >= timeout;
                         }
@@ -771,12 +927,25 @@ namespace DS4Windows
                         if (conType == ConnectionType.BT)
                         {
                             if (DisconnectBT(true))
+                            {
+                                timeoutExecuted = true;
                                 return; // all done
+                            }
                         }
                         else if (conType == ConnectionType.SONYWA)
                         {
                             DisconnectDongle();
                         }
+                    }
+                }
+
+                if (conType == ConnectionType.BT && oldCharging != charging)
+                {
+                    if (Global.getQuickCharge() && charging)
+                    {
+                        DisconnectBT(true);
+                        timeoutExecuted = true;
+                        return;
                     }
                 }
 
@@ -790,14 +959,25 @@ namespace DS4Windows
                 }
                 sendOutputReport(syncWriteReport);
 
-                if (!string.IsNullOrEmpty(error))
-                    error = string.Empty;
-
                 if (!string.IsNullOrEmpty(currerror))
                     error = currerror;
+                else if (!string.IsNullOrEmpty(error))
+                    error = string.Empty;
 
                 cState.CopyTo(pState);
+
+                lock (eventQueueLock)
+                {
+                    Action tempAct = null;
+                    for (int actInd = 0, actLen = eventQueue.Count; actInd < actLen; actInd++)
+                    {
+                        tempAct = eventQueue.Dequeue();
+                        tempAct.Invoke();
+                    }
+                }
             }
+
+            timeoutExecuted = true;
         }
 
         public void FlushHID()
@@ -813,31 +993,36 @@ namespace DS4Windows
             if (conType == ConnectionType.BT)
             {
                 outputReportBuffer[0] = 0x11;
-                outputReportBuffer[1] = 0x80;
-                outputReportBuffer[3] = 0xff;
-                outputReportBuffer[6] = rightLightFastRumble; //fast motor
-                outputReportBuffer[7] = leftHeavySlowRumble; //slow motor
-                outputReportBuffer[8] = LightBarColor.red; //red
-                outputReportBuffer[9] = LightBarColor.green; //green
-                outputReportBuffer[10] = LightBarColor.blue; //blue
-                outputReportBuffer[11] = ledFlashOn; //flash on duration
-                outputReportBuffer[12] = ledFlashOff; //flash off duration
+                //outputReportBuffer[1] = 0x80;
+                //outputReportBuffer[1] = 0x84;
+                outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
+                // enable lightbar, rumble, flash
+                outputReportBuffer[3] = 0xf7;
+                outputReportBuffer[6] = rightLightFastRumble; // fast motor
+                outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
+                outputReportBuffer[8] = ligtBarColor.red; // red
+                outputReportBuffer[9] = ligtBarColor.green; // green
+                outputReportBuffer[10] = ligtBarColor.blue; // blue
+                outputReportBuffer[11] = ledFlashOn; // flash on duration
+                outputReportBuffer[12] = ledFlashOff; // flash off duration
             }
             else
             {
                 outputReportBuffer[0] = 0x05;
-                outputReportBuffer[1] = 0xff;
-                outputReportBuffer[4] = rightLightFastRumble; //fast motor
-                outputReportBuffer[5] = leftHeavySlowRumble; //slow  motor
-                outputReportBuffer[6] = LightBarColor.red; //red
-                outputReportBuffer[7] = LightBarColor.green; //green
-                outputReportBuffer[8] = LightBarColor.blue; //blue
-                outputReportBuffer[9] = ledFlashOn; //flash on duration
-                outputReportBuffer[10] = ledFlashOff; //flash off duration
+                // enable lightbar, rumble, flash
+                outputReportBuffer[1] = 0xf7;
+                outputReportBuffer[4] = rightLightFastRumble; // fast motor
+                outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor
+                outputReportBuffer[6] = ligtBarColor.red; // red
+                outputReportBuffer[7] = ligtBarColor.green; // green
+                outputReportBuffer[8] = ligtBarColor.blue; // blue
+                outputReportBuffer[9] = ledFlashOn; // flash on duration
+                outputReportBuffer[10] = ledFlashOff; // flash off duration
                 if (conType == ConnectionType.SONYWA)
                 {
                     // Headphone volume levels
-                    outputReportBuffer[19] = outputReportBuffer[20] = Convert.ToByte(audio.getVolume());
+                    outputReportBuffer[19] = outputReportBuffer[20] =
+                        Convert.ToByte(audio.getVolume());
                     // Microphone volume level
                     outputReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
                 }
@@ -857,7 +1042,7 @@ namespace DS4Windows
                         {
                             int winError = Marshal.GetLastWin32Error();
                             Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered synchronous write failure: " + winError);
-                            Log.LogToGui(Mac.ToString() + " encountered synchronous write failure: " + winError, true);
+                            //Log.LogToGui(Mac.ToString() + " encountered synchronous write failure: " + winError, true);
                             quitOutputThread = true;
                         }
                     }
@@ -941,6 +1126,8 @@ namespace DS4Windows
                         {
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
+
+                        //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
                     }
                 }
 
@@ -972,6 +1159,9 @@ namespace DS4Windows
                 {
                     Removal?.Invoke(this, EventArgs.Empty);
                 }), null);
+
+                //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
+                //Removal?.Invoke(this, EventArgs.Empty);
             }
             else if (result && !remove)
             {
@@ -1058,9 +1248,10 @@ namespace DS4Windows
         // Use the "most recently set" haptic state for each of light bar/motor.
         private void setHapticState()
         {
-            DS4Color lightBarColor = LightBarColor;
-            byte lightBarFlashDurationOn = LightBarOnDuration, lightBarFlashDurationOff = LightBarOffDuration;
-            byte rumbleMotorStrengthLeftHeavySlow = LeftHeavySlowRumble, rumbleMotorStrengthRightLightFast = rightLightFastRumble;
+            DS4Color lightBarColor = ligtBarColor;
+            byte lightBarFlashDurationOn = ledFlashOn, lightBarFlashDurationOff = ledFlashOff;
+            byte rumbleMotorStrengthLeftHeavySlow = leftHeavySlowRumble,
+                rumbleMotorStrengthRightLightFast = rightLightFastRumble;
             int hapticLen = hapticState.Length;
             for (int i=0; i < hapticLen; i++)
             {
@@ -1082,11 +1273,11 @@ namespace DS4Windows
                 }
             }
 
-            LightBarColor = lightBarColor;
-            LightBarOnDuration = lightBarFlashDurationOn;
-            LightBarOffDuration = lightBarFlashDurationOff;
-            LeftHeavySlowRumble = rumbleMotorStrengthLeftHeavySlow;
-            RightLightFastRumble = rumbleMotorStrengthRightLightFast;
+            ligtBarColor = lightBarColor;
+            ledFlashOn = lightBarFlashDurationOn;
+            ledFlashOff = lightBarFlashDurationOff;
+            leftHeavySlowRumble = rumbleMotorStrengthLeftHeavySlow;
+            rightLightFastRumble = rumbleMotorStrengthRightLightFast;
         }
 
         public void pushHapticState(DS4HapticState hs)
@@ -1103,7 +1294,7 @@ namespace DS4Windows
         }
 
         override
-        public String ToString()
+        public string ToString()
         {
             return Mac;
         }
@@ -1116,6 +1307,35 @@ namespace DS4Windows
         public void removeReportHandlers()
         {
             this.Report = null;
+        }
+
+        public void queueEvent(Action act)
+        {
+            lock (eventQueueLock)
+            {
+                eventQueue.Enqueue(act);
+            }
+        }
+
+        public void updateSerial()
+        {
+            hDevice.resetSerial();
+            string tempMac = hDevice.readSerial();
+            if (tempMac != Mac)
+            {
+                Mac = tempMac;
+                SerialChange?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public bool isValidSerial()
+        {
+            return !Mac.Equals(blankSerial);
+        }
+
+        public static bool isValidSerial(string test)
+        {
+            return !test.Equals(blankSerial);
         }
     }
 }

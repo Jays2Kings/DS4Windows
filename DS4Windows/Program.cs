@@ -15,15 +15,14 @@ namespace DS4Windows
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool SetForegroundWindow(IntPtr hWnd);
 
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
         // Add "global\" in front of the EventName, then only one instance is allowed on the
         // whole system, including other users. But the application can not be brought
         // into view, of course. 
-        private static String SingleAppComEventName = "{a52b5b20-d9ee-4f32-8518-307fa14aa0c6}";
-        static Mutex mutex = new Mutex(true, "{FI329DM2-DS4W-J2K2-HYES-92H21B3WJARG}");
+        private static string SingleAppComEventName = "{a52b5b20-d9ee-4f32-8518-307fa14aa0c6}";
+        //static Mutex mutex = new Mutex(true, "{FI329DM2-DS4W-J2K2-HYES-92H21B3WJARG}");
         private static BackgroundWorker singleAppComThread = null;
         private static EventWaitHandle threadComEvent = null;
+        private static bool exitComThread = false;
         public static ControlService rootHub;
 
         /// <summary>
@@ -72,11 +71,13 @@ namespace DS4Windows
                     return;
                 }
             }
+
             System.Runtime.GCSettings.LatencyMode = System.Runtime.GCLatencyMode.LowLatency;
 
             try
             {
-                Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.High;
+                Process.GetCurrentProcess().PriorityClass = 
+                    ProcessPriorityClass.High;
             }
             catch
             {
@@ -94,20 +95,20 @@ namespace DS4Windows
             catch { /* don't care about errors */     }
 
             // Create the Event handle
-            threadComEvent = new EventWaitHandle(false, EventResetMode.AutoReset, SingleAppComEventName);
+            threadComEvent = new EventWaitHandle(false, EventResetMode.ManualReset, SingleAppComEventName);
             CreateInterAppComThread();
 
-            if (mutex.WaitOne(TimeSpan.Zero, true))
-            {
+            //if (mutex.WaitOne(TimeSpan.Zero, true))
+            //{
                 rootHub = new ControlService();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new DS4Form(args));
-                mutex.ReleaseMutex();
-            }
+            //mutex.ReleaseMutex();
+            //}
 
-            // End the communication thread.
-            singleAppComThread.CancelAsync();
+            exitComThread = true;
+            threadComEvent.Set();  // signal the other instance.
             while (singleAppComThread.IsBusy)
                 Thread.Sleep(50);
             threadComEvent.Close();
@@ -116,8 +117,8 @@ namespace DS4Windows
         static private void CreateInterAppComThread()
         {
             singleAppComThread = new BackgroundWorker();
-            singleAppComThread.WorkerReportsProgress = false;
-            singleAppComThread.WorkerSupportsCancellation = true;
+            //singleAppComThread.WorkerReportsProgress = false;
+            //singleAppComThread.WorkerSupportsCancellation = true;
             singleAppComThread.DoWork += new DoWorkEventHandler(singleAppComThread_DoWork);
             singleAppComThread.RunWorkerAsync();
         }
@@ -126,16 +127,18 @@ namespace DS4Windows
         {
             BackgroundWorker worker = sender as BackgroundWorker;
             WaitHandle[] waitHandles = new WaitHandle[] { threadComEvent };
+            Thread.CurrentThread.Priority = ThreadPriority.Lowest;
 
-            while (!worker.CancellationPending)
+            while (!exitComThread)
             {
                 // check every second for a signal.
-                if (WaitHandle.WaitAny(waitHandles, 1000) == 0)
+                if (WaitHandle.WaitAny(waitHandles) == 0)
                 {
+                    threadComEvent.Reset();
                     // The user tried to start another instance. We can't allow that, 
                     // so bring the other instance back into view and enable that one. 
                     // That form is created in another thread, so we need some thread sync magic.
-                    if (Application.OpenForms.Count > 0)
+                    if (!exitComThread && Application.OpenForms.Count > 0)
                     {
                         Form mainForm = Application.OpenForms[0];
                         mainForm.Invoke(new SetFormVisableDelegate(ThreadFormVisable), mainForm);
@@ -143,7 +146,6 @@ namespace DS4Windows
                 }
             }
         }
-
 
         /// <summary>
         /// When this method is called using a Invoke then this runs in the thread
@@ -169,6 +171,7 @@ namespace DS4Windows
                     SetForegroundWindow(wp.form.Handle);
                 }
             }
+
             SetForegroundWindow(frm.Handle);
         }
     }

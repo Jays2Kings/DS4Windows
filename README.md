@@ -2,9 +2,9 @@
 
 Like those other ds4tools, but sexier.
 
-DS4Windows is a portable program that allows you to get the best experience while using a DualShock 4 on your PC. By emulating a Xbox 360 controller, many more games are accessible.
+DS4Windows is a portable program that allows you to get the best DualShock 4 experience on your PC. By emulating a Xbox 360 controller, many more games are accessible.
 
-You can find the latest and older versions [here](https://github.com/Jays2Kings/DS4Windows/releases).
+You can find the latest and older versions [here](https://github.com/Ryochan7/DS4Windows/releases).
 
 ## Requirements
 

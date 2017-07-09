@@ -82,8 +82,8 @@ namespace DS4Windows
         public static DateTime[] oldnowAction = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
         public static int[] untriggerindex = { -1, -1, -1, -1 };
         public static DateTime[] oldnowKeyAct = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
-        private static bool tappedOnce = false, firstTouch = false, secondtouchbegin = false;
-        private static DateTime pastTime, firstTap, TimeofEnd;
+        //private static bool tappedOnce = false, firstTouch = false, secondtouchbegin = false;
+        //private static DateTime pastTime, firstTap, TimeofEnd;
         private static DS4Controls[] shiftTriggerMapping = { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
             DS4Controls.Triangle, DS4Controls.Options, DS4Controls.Share, DS4Controls.DpadUp, DS4Controls.DpadDown,
             DS4Controls.DpadLeft, DS4Controls.DpadRight, DS4Controls.PS, DS4Controls.L1, DS4Controls.R1, DS4Controls.L2,
@@ -126,15 +126,23 @@ namespace DS4Windows
             32  // DS4Controls.GyroZNeg
         };
 
-        //special macros
+        // Define here to save some time processing.
+        // It is enough to feel a difference during gameplay.
+        private static int[] rsOutCurveModeArray = { 0, 0, 0, 0 };
+        private static int[] lsOutCurveModeArray = { 0, 0, 0, 0 };
+        static bool tempBool = false;
+
+        // Special macros
         static bool altTabDone = true;
         static DateTime altTabNow = DateTime.UtcNow, oldAltTabNow = DateTime.UtcNow - TimeSpan.FromSeconds(1);
 
-        //mouse
+        // Mouse
         public static int mcounter = 34;
         public static int mouseaccel = 0;
         public static int prevmouseaccel = 0;
         private static double horizontalRemainder = 0.0, verticalRemainder = 0.0;
+        private const int MOUSESPEEDFACTOR = 40;
+        private const double MOUSESTICKOFFSET = 0.03;
 
         public static void Commit(int device)
         {
@@ -386,7 +394,7 @@ namespace DS4Windows
             return value1 * percent + value2 * (1 - percent);
         }
 
-        static double Clamp(double min, double value, double max)
+        /*static double Clamp(double min, double value, double max)
         {
             if (value > max)
                 return max;
@@ -395,14 +403,24 @@ namespace DS4Windows
             else
                 return value;
         }
+        */
 
         private static int ClampInt(int min, int value, int max)
         {
             return (value < min) ? min : (value > max) ? max : value;
         }
 
+        private static double[] tempDoubleArray = { 0.0, 0.0, 0.0, 0.0 };
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState)
         {
+            double rotation = tempDoubleArray[device] = getLSRotation(device);
+            if (rotation != 0.0)
+                cState.rotateLSCoordinates(rotation);
+
+            double rotationRS = tempDoubleArray[device] = getRSRotation(device);
+            if (rotationRS != 0.0)
+                cState.rotateRSCoordinates(rotationRS);
+
             DS4State dState = new DS4State(cState);
             int x;
             int y;
@@ -514,8 +532,8 @@ namespace DS4Windows
 
                         if (lsSquared > lsDeadzoneSquared)
                         {
-                            double currentX = Clamp(maxZoneXNegValue, dState.LX, maxZoneXPosValue);
-                            double currentY = Clamp(maxZoneYNegValue, dState.LY, maxZoneYPosValue);
+                            double currentX = Global.Clamp(maxZoneXNegValue, dState.LX, maxZoneXPosValue);
+                            double currentY = Global.Clamp(maxZoneYNegValue, dState.LY, maxZoneYPosValue);
                             //currentX = (byte)((dState.LX >= 127.5f) ? Math.Min(dState.LX, maxZoneX) : Math.Max(dState.LX, maxZoneX));
                             //currentY = (byte)((dState.LY >= 127.5f) ? Math.Min(dState.LY, maxZoneY) : Math.Max(dState.LY, maxZoneY));
                             tempOutputX = ((currentX - 127.5f - tempLsXDead) / (double)(maxZoneX - tempLsXDead));
@@ -524,8 +542,8 @@ namespace DS4Windows
                     }
                     else
                     {
-                        double currentX = Clamp(maxZoneXNegValue, dState.LX, maxZoneXPosValue);
-                        double currentY = Clamp(maxZoneYNegValue, dState.LY, maxZoneYPosValue);
+                        double currentX = Global.Clamp(maxZoneXNegValue, dState.LX, maxZoneXPosValue);
+                        double currentY = Global.Clamp(maxZoneYNegValue, dState.LY, maxZoneYPosValue);
                         tempOutputX = (currentX - 127.5f) / (double)(maxZoneX);
                         tempOutputY = (currentY - 127.5f) / (double)(maxZoneY);
                     }
@@ -592,8 +610,8 @@ namespace DS4Windows
 
                         if (rsSquared > rsDeadzoneSquared)
                         {
-                            double currentX = Clamp(maxZoneXNegValue, dState.RX, maxZoneXPosValue);
-                            double currentY = Clamp(maxZoneYNegValue, dState.RY, maxZoneYPosValue);
+                            double currentX = Global.Clamp(maxZoneXNegValue, dState.RX, maxZoneXPosValue);
+                            double currentY = Global.Clamp(maxZoneYNegValue, dState.RY, maxZoneYPosValue);
 
                             tempOutputX = ((currentX - 127.5f - tempRsXDead) / (double)(maxZoneX - tempRsXDead));
                             tempOutputY = ((currentY - 127.5f - tempRsYDead) / (double)(maxZoneY - tempRsYDead));
@@ -603,8 +621,8 @@ namespace DS4Windows
                     }
                     else
                     {
-                        double currentX = Clamp(maxZoneXNegValue, dState.RX, maxZoneXPosValue);
-                        double currentY = Clamp(maxZoneYNegValue, dState.RY, maxZoneYPosValue);
+                        double currentX = Global.Clamp(maxZoneXNegValue, dState.RX, maxZoneXPosValue);
+                        double currentY = Global.Clamp(maxZoneYNegValue, dState.RY, maxZoneYPosValue);
 
                         tempOutputX = (currentX - 127.5f) / (double)(maxZoneX);
                         tempOutputY = (currentY - 127.5f) / (double)(maxZoneY);
@@ -653,7 +671,7 @@ namespace DS4Windows
                 {
                     if (cState.L2 > l2Deadzone)
                     {
-                        double current = Clamp(0, dState.L2, maxValue);
+                        double current = Global.Clamp(0, dState.L2, maxValue);
                         tempL2Output = ((current - l2Deadzone) / (double)(maxValue - l2Deadzone));
                     }
                     else
@@ -691,7 +709,7 @@ namespace DS4Windows
                 {
                     if (cState.R2 > r2Deadzone)
                     {
-                        double current = Clamp(0, dState.R2, maxValue);
+                        double current = Global.Clamp(0, dState.R2, maxValue);
                         tempR2Output = ((current - r2Deadzone) / (double)(maxValue - r2Deadzone));
                     }
                     else
@@ -718,24 +736,144 @@ namespace DS4Windows
             double lsSens = getLSSens(device);
             if (lsSens != 1.0)
             {
-                dState.LX = (byte)Clamp(0, lsSens * (dState.LX - 127.5f) + 127.5f, 255);
-                dState.LY = (byte)Clamp(0, lsSens * (dState.LY - 127.5f) + 127.5f, 255);
+                dState.LX = (byte)Global.Clamp(0, lsSens * (dState.LX - 127.5f) + 127.5f, 255);
+                dState.LY = (byte)Global.Clamp(0, lsSens * (dState.LY - 127.5f) + 127.5f, 255);
             }
 
             double rsSens = getRSSens(device);
             if (rsSens != 1.0)
             {
-                dState.RX = (byte)Clamp(0, rsSens * (dState.RX - 127.5f) + 127.5f, 255);
-                dState.RY = (byte)Clamp(0, rsSens * (dState.RY - 127.5f) + 127.5f, 255);
+                dState.RX = (byte)Global.Clamp(0, rsSens * (dState.RX - 127.5f) + 127.5f, 255);
+                dState.RY = (byte)Global.Clamp(0, rsSens * (dState.RY - 127.5f) + 127.5f, 255);
             }
 
             double l2Sens = getL2Sens(device);
             if (l2Sens != 1.0)
-                dState.L2 = (byte)Clamp(0, l2Sens * dState.L2, 255);
+                dState.L2 = (byte)Global.Clamp(0, l2Sens * dState.L2, 255);
 
             double r2Sens = getR2Sens(device);
             if (r2Sens != 1.0)
-                dState.R2 = (byte)Clamp(0, r2Sens * dState.R2, 255);
+                dState.R2 = (byte)Global.Clamp(0, r2Sens * dState.R2, 255);
+
+            int lsOutCurveMode = lsOutCurveModeArray[device] = getLsOutCurveMode(device);
+            if (lsOutCurveMode != 0)
+            {
+                double tempX = (dState.LX - 127.5f) / 127.5;
+                double tempY = (dState.LY - 127.5f) / 127.5;
+                double signX = tempX >= 0.0 ? 1.0 : -1.0;
+                double signY = tempY >= 0.0 ? 1.0 : -1.0;
+
+                if (lsOutCurveMode == 1)
+                {
+                    double absX = Math.Abs(tempX);
+                    double absY = Math.Abs(tempY);
+                    double outputX = 0.0;
+                    double outputY = 0.0;
+
+                    if (absX <= 0.4)
+                    {
+                        outputX = 0.38 * absX;
+                    }
+                    else if (absX <= 0.75)
+                    {
+                        outputX = absX - 0.248;
+                    }
+                    else if (absX > 0.75)
+                    {
+                        outputX = (absX * 1.992) - 0.992;
+                    }
+
+                    if (absY <= 0.4)
+                    {
+                        outputY = 0.38 * absY;
+                    }
+                    else if (absY <= 0.75)
+                    {
+                        outputY = absY - 0.248;
+                    }
+                    else if (absY > 0.75)
+                    {
+                        outputY = (absY * 1.992) - 0.992;
+                    }
+
+                    dState.LX = (byte)(outputX * signX * 127.5f + 127.5f);
+                    dState.LY = (byte)(outputY * signY * 127.5f + 127.5f);
+                }
+                else if (lsOutCurveMode == 2)
+                {
+                    double outputX = tempX * tempX;
+                    double outputY = tempY * tempY;
+                    dState.LX = (byte)(outputX * signX * 127.5f + 127.5f);
+                    dState.LY = (byte)(outputY * signY * 127.5f + 127.5f);
+                }
+                else if (lsOutCurveMode == 3)
+                {
+                    double outputX = tempX * tempX * tempX;
+                    double outputY = tempY * tempY * tempY;
+                    dState.LX = (byte)(outputX * 127.5f + 127.5f);
+                    dState.LY = (byte)(outputY * 127.5f + 127.5f);
+                }
+            }
+
+            int rsOutCurveMode = rsOutCurveModeArray[device] = getRsOutCurveMode(device);
+            if (rsOutCurveMode != 0)
+            {
+                double tempX = (dState.RX - 127.5f) / 127.5;
+                double tempY = (dState.RY - 127.5f) / 127.5;
+                double signX = tempX >= 0.0 ? 1.0 : -1.0;
+                double signY = tempY >= 0.0 ? 1.0 : -1.0;
+
+                if (rsOutCurveMode == 1)
+                {
+                    double absX = Math.Abs(tempX);
+                    double absY = Math.Abs(tempY);
+                    double outputX = 0.0;
+                    double outputY = 0.0;
+
+                    if (absX <= 0.4)
+                    {
+                        outputX = 0.38 * absX;
+                    }
+                    else if (absX <= 0.75)
+                    {
+                        outputX = absX - 0.248;
+                    }
+                    else if (absX > 0.75)
+                    {
+                        outputX = (absX * 1.992) - 0.992;
+                    }
+
+                    if (absY <= 0.4)
+                    {
+                        outputY = 0.38 * absY;
+                    }
+                    else if (absY <= 0.75)
+                    {
+                        outputY = absY - 0.248;
+                    }
+                    else if (absY > 0.75)
+                    {
+                        outputY = (absY * 1.992) - 0.992;
+                    }
+
+                    dState.RX = (byte)(outputX * signX * 127.5f + 127.5f);
+                    dState.RY = (byte)(outputY * signY * 127.5f + 127.5f);
+                }
+                else if (rsOutCurveMode == 2)
+                {
+                    double outputX = tempX * tempX;
+                    double outputY = tempY * tempY;
+                    dState.RX = (byte)(outputX * signX * 127.5f + 127.5f);
+                    dState.RY = (byte)(outputY * signY * 127.5f + 127.5f);
+                }
+                else if (rsOutCurveMode == 3)
+                {
+                    double outputX = tempX * tempX * tempX;
+                    double outputY = tempY * tempY * tempY;
+                    dState.RX = (byte)(outputX * 127.5f + 127.5f);
+                    dState.RY = (byte)(outputY * 127.5f + 127.5f);
+                }
+            }
 
             return dState;
         }
@@ -1041,7 +1179,7 @@ namespace DS4Windows
                                 {
                                     if (tempMouseDeltaY == 0)
                                     {
-                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 0);
+                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 0, ctrl);
                                         tempMouseDeltaY = -Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
                                     }
 
@@ -1051,7 +1189,7 @@ namespace DS4Windows
                                 {
                                     if (tempMouseDeltaY == 0)
                                     {
-                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 1);
+                                        tempMouseDeltaY = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 1, ctrl);
                                         tempMouseDeltaY = Math.Abs((tempMouseDeltaY == -2147483648 ? 0 : tempMouseDeltaY));
                                     }
 
@@ -1061,7 +1199,7 @@ namespace DS4Windows
                                 {
                                     if (tempMouseDeltaX == 0)
                                     {
-                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 2);
+                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 2, ctrl);
                                         tempMouseDeltaX = -Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
                                     }
 
@@ -1071,7 +1209,7 @@ namespace DS4Windows
                                 {
                                     if (tempMouseDeltaX == 0)
                                     {
-                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 3);
+                                        tempMouseDeltaX = getMouseMapping(device, dcs.control, cState, eState, fieldMapping, 3, ctrl);
                                         tempMouseDeltaX = Math.Abs((tempMouseDeltaX == -2147483648 ? 0 : tempMouseDeltaX));
                                     }
 
@@ -1609,12 +1747,18 @@ namespace DS4Windows
                                 actionFound = true;
 
                                 DS4Device d = ctrl.DS4Controllers[device];
-                                if (!d.isCharging())
+                                bool synced = tempBool = d.isSynced();
+                                if (synced && !d.isCharging())
                                 {
                                     ConnectionType deviceConn = d.getConnectionType();
+                                    bool exclusive = tempBool = d.isExclusive();
                                     if (deviceConn == ConnectionType.BT)
                                     {
                                         d.DisconnectBT();
+                                    }
+                                    else if (deviceConn == ConnectionType.SONYWA && exclusive)
+                                    {
+                                        d.DisconnectDongle();
                                     }
 
                                     //foreach (DS4Controls dc in action.trigger)
@@ -1717,6 +1861,11 @@ namespace DS4Windows
                             {
                                 actionFound = true;
 
+                                bool tappedOnce = action.tappedOnce, firstTouch = action.firstTouch,
+                                    secondtouchbegin = action.secondtouchbegin;
+                                //DateTime pastTime = action.pastTime, firstTap = action.firstTap,
+                                //    TimeofEnd = action.TimeofEnd;
+
                                 /*if (getCustomButton(device, action.trigger[0]) != X360Controls.Unbound)
                                     getCustomButtons(device)[action.trigger[0]] = X360Controls.Unbound;
                                 if (getCustomMacro(device, action.trigger[0]) != "0")
@@ -1732,7 +1881,7 @@ namespace DS4Windows
                                 // button is assigned
                                 if (previousFieldMapping == null)
                                 {
-                                    previousFieldMapping = new DS4StateFieldMapping(tempPrevState, eState, tp);
+                                    previousFieldMapping = new DS4StateFieldMapping(tempPrevState, eState, tp, true);
                                 }
 
                                 bool activeCur = getBoolMapping2(device, action.trigger[0], cState, eState, tp, fieldMapping);
@@ -1740,31 +1889,38 @@ namespace DS4Windows
                                 if (activeCur && !activePrev)
                                 {
                                     // pressed down
-                                    pastTime = DateTime.UtcNow;
-                                    if (pastTime <= (firstTap + TimeSpan.FromMilliseconds(150)))
+                                    action.pastTime = DateTime.UtcNow;
+                                    if (action.pastTime <= (action.firstTap + TimeSpan.FromMilliseconds(150)))
                                     {
-                                        tappedOnce = false;
-                                        secondtouchbegin = true;
+                                        action.tappedOnce = tappedOnce = false;
+                                        action.secondtouchbegin = secondtouchbegin = true;
+                                        //tappedOnce = false;
+                                        //secondtouchbegin = true;
                                     }
                                     else
-                                        firstTouch = true;
+                                        action.firstTouch = firstTouch = true;
+                                        //firstTouch = true;
                                 }
                                 else if (!activeCur && activePrev)
                                 {
                                     // released
                                     if (secondtouchbegin)
                                     {
-                                        firstTouch = false;
-                                        secondtouchbegin = false;
+                                        action.firstTouch = firstTouch = false;
+                                        action.secondtouchbegin = secondtouchbegin = false;
+                                        //firstTouch = false;
+                                        //secondtouchbegin = false;
                                     }
                                     else if (firstTouch)
                                     {
-                                        firstTouch = false;
-                                        if (DateTime.UtcNow <= (pastTime + TimeSpan.FromMilliseconds(200)) && !tappedOnce)
+                                        action.firstTouch = firstTouch = false;
+                                        //firstTouch = false;
+                                        if (DateTime.UtcNow <= (action.pastTime + TimeSpan.FromMilliseconds(200)) && !tappedOnce)
                                         {
-                                            tappedOnce = true;
-                                            firstTap = DateTime.UtcNow;
-                                            TimeofEnd = DateTime.UtcNow;
+                                            action.tappedOnce = tappedOnce = true;
+                                            //tappedOnce = true;
+                                            action.firstTap = DateTime.UtcNow;
+                                            action.TimeofEnd = DateTime.UtcNow;
                                         }
                                     }
                                 }
@@ -1788,15 +1944,18 @@ namespace DS4Windows
                                             case 4: macro = "91/164/71/71/164/91"; break;
                                         }
                                     }
-                                    if ((DateTime.UtcNow - TimeofEnd) > TimeSpan.FromMilliseconds(150))
+
+                                    if ((DateTime.UtcNow - action.TimeofEnd) > TimeSpan.FromMilliseconds(150))
                                     {
                                         if (macro != "")
                                             PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+
                                         tappedOnce = false;
+                                        action.tappedOnce = false;
                                     }
                                     //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
                                 }
-                                else if (firstTouch && (DateTime.UtcNow - pastTime) > TimeSpan.FromMilliseconds(1000)) //helddown
+                                else if (firstTouch && (DateTime.UtcNow - action.pastTime) > TimeSpan.FromMilliseconds(1000)) //helddown
                                 {
                                     if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
                                     {
@@ -1813,9 +1972,12 @@ namespace DS4Windows
                                             case 4: macro = "91/164/71/71/164/91"; break;
                                         }
                                     }
+
                                     if (macro != "")
                                         PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+
                                     firstTouch = false;
+                                    action.firstTouch = false;
                                 }
                                 else if (secondtouchbegin) //if double tap
                                 {
@@ -1834,9 +1996,12 @@ namespace DS4Windows
                                             case 4: macro = "91/164/71/71/164/91"; break;
                                         }
                                     }
+
                                     if (macro != "")
                                         PlayMacro(device, macroControl, macro, DS4Controls.None, DS4KeyType.None);
+
                                     secondtouchbegin = false;
+                                    action.secondtouchbegin = false;
                                 }
                             }
                             else
@@ -1890,6 +2055,7 @@ namespace DS4Windows
                                     }
                                 }
                             }
+
                             untriggeraction[device] = null;
                             LoadProfile(device, false, ctrl);
                         }
@@ -2153,7 +2319,7 @@ namespace DS4Windows
         }
 
         private static double getMouseMapping(int device, DS4Controls control, DS4State cState, DS4StateExposed eState,
-            DS4StateFieldMapping fieldMapping, int mnum)
+            DS4StateFieldMapping fieldMapping, int mnum, ControlService ctrl)
         {
             int controlnum = DS4ControltoInt(control);
 
@@ -2172,6 +2338,10 @@ namespace DS4Windows
 
             int controlNum = (int)control;
             DS4StateFieldMapping.ControlType controlType = DS4StateFieldMapping.mappedType[controlNum];
+            //long timeElapsed = ctrl.DS4Controllers[device].getLastTimeElapsed();
+            double timeElapsed = ctrl.DS4Controllers[device].lastTimeElapsedDouble;
+            //double mouseOffset = 0.025;
+            double tempMouseOffsetX = 0.0, tempMouseOffsetY = 0.0;
 
             if (controlType == DS4StateFieldMapping.ControlType.Button)
             {
@@ -2183,37 +2353,126 @@ namespace DS4Windows
                 switch (control)
                 {
                     case DS4Controls.LXNeg:
+                    {
                         if (cState.LX < 127 - deadzoneL)
-                            value = -(cState.LX - 127 - deadzoneL) / 2550d * speed;
+                        {
+                            double diff = -(cState.LX - 127 - deadzoneL) / (double)(0 - 127 - deadzoneL);
+                            //tempMouseOffsetX = Math.Abs(Math.Cos(cState.LSAngleRad)) * MOUSESTICKOFFSET;
+                            //tempMouseOffsetX = MOUSESTICKOFFSET;
+                            tempMouseOffsetX = cState.LXUnit * MOUSESTICKOFFSET;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetX) * diff + (tempMouseOffsetX * -1.0);
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = -(cState.LX - 127 - deadzoneL) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.LXPos:
+                    {
                         if (cState.LX > 127 + deadzoneL)
-                            value = (cState.LX - 127 + deadzoneL) / 2550d * speed;
+                        {
+                            double diff = (cState.LX - 127 + deadzoneL) / (double)(255 - 127 + deadzoneL);
+                            tempMouseOffsetX = cState.LXUnit * MOUSESTICKOFFSET;
+                            //tempMouseOffsetX = Math.Abs(Math.Cos(cState.LSAngleRad)) * MOUSESTICKOFFSET;
+                            //tempMouseOffsetX = MOUSESTICKOFFSET;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetX) * diff + tempMouseOffsetX;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = (cState.LX - 127 + deadzoneL) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.RXNeg:
+                    {
                         if (cState.RX < 127 - deadzoneR)
-                            value = -(cState.RX - 127 - deadzoneR) / 2550d * speed;
+                        {
+                            double diff = -(cState.RX - 127 - deadzoneR) / (double)(0 - 127 - deadzoneR);
+                            tempMouseOffsetX = cState.RXUnit * MOUSESTICKOFFSET;
+                            //tempMouseOffsetX = MOUSESTICKOFFSET;
+                            //tempMouseOffsetX = Math.Abs(Math.Cos(cState.RSAngleRad)) * MOUSESTICKOFFSET;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetX) * diff + (tempMouseOffsetX * -1.0);
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = -(cState.RX - 127 - deadzoneR) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.RXPos:
+                    {
                         if (cState.RX > 127 + deadzoneR)
-                            value = (cState.RX - 127 + deadzoneR) / 2550d * speed;
+                        {
+                            double diff = (cState.RX - 127 + deadzoneR) / (double)(255 - 127 + deadzoneR);
+                            tempMouseOffsetX = cState.RXUnit * MOUSESTICKOFFSET;
+                            //tempMouseOffsetX = MOUSESTICKOFFSET;
+                            //tempMouseOffsetX = Math.Abs(Math.Cos(cState.RSAngleRad)) * MOUSESTICKOFFSET;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetX) * diff + tempMouseOffsetX;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = (cState.RX - 127 + deadzoneR) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.LYNeg:
+                    {
                         if (cState.LY < 127 - deadzoneL)
-                            value = -(cState.LY - 127 - deadzoneL) / 2550d * speed;
+                        {
+                            double diff = -(cState.LY - 127 - deadzoneL) / (double)(0 - 127 - deadzoneL);
+                            tempMouseOffsetY = cState.LYUnit * MOUSESTICKOFFSET;
+                            //tempMouseOffsetY = MOUSESTICKOFFSET;
+                            //tempMouseOffsetY = Math.Abs(Math.Sin(cState.LSAngleRad)) * MOUSESTICKOFFSET;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetY) * diff + (tempMouseOffsetY * -1.0);
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = -(cState.LY - 127 - deadzoneL) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.LYPos:
+                    {
                         if (cState.LY > 127 + deadzoneL)
-                            value = (cState.LY - 127 + deadzoneL) / 2550d * speed;
+                        {
+                            double diff = (cState.LY - 127 + deadzoneL) / (double)(255 - 127 + deadzoneL);
+                            tempMouseOffsetY = cState.LYUnit * MOUSESTICKOFFSET;
+                            //tempMouseOffsetY = MOUSESTICKOFFSET;
+                            //tempMouseOffsetY = Math.Abs(Math.Sin(cState.LSAngleRad)) * MOUSESTICKOFFSET;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetY) * diff + tempMouseOffsetY;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = (cState.LY - 127 + deadzoneL) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.RYNeg:
+                    {
                         if (cState.RY < 127 - deadzoneR)
-                            value = -(cState.RY - 127 - deadzoneR) / 2550d * speed;
+                        {
+                            double diff = -(cState.RY - 127 - deadzoneR) / (double)(0 - 127 - deadzoneR);
+                            tempMouseOffsetY = cState.RYUnit * MOUSESTICKOFFSET;
+                            //tempMouseOffsetY = MOUSESTICKOFFSET;
+                            //tempMouseOffsetY = Math.Abs(Math.Sin(cState.RSAngleRad)) * MOUSESTICKOFFSET;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetY) * diff + (tempMouseOffsetY * -1.0);
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = -(cState.RY - 127 - deadzoneR) / 2550d * speed;
+                        }
+
                         break;
+                    }
                     case DS4Controls.RYPos:
+                    {
                         if (cState.RY > 127 + deadzoneR)
-                            value = (cState.RY - 127 + deadzoneR) / 2550d * speed;
+                        {
+                            double diff = (cState.RY - 127 + deadzoneR) / (double)(255 - 127 + deadzoneR);
+                            tempMouseOffsetY = cState.RYUnit * MOUSESTICKOFFSET;
+                            //tempMouseOffsetY = MOUSESTICKOFFSET;
+                            //tempMouseOffsetY = Math.Abs(Math.Sin(cState.RSAngleRad)) * MOUSESTICKOFFSET;
+                            value = ((speed * MOUSESPEEDFACTOR * (timeElapsed * 0.001)) - tempMouseOffsetY) * diff + tempMouseOffsetY;
+                            //value = diff * MOUSESPEEDFACTOR * (timeElapsed * 0.001) * speed;
+                            //value = (cState.RY - 127 + deadzoneR) / 2550d * speed;
+                        }
+
                         break;
+                    }
+
                     default: break;
                 }
             }
@@ -2295,8 +2554,13 @@ namespace DS4Windows
                 horizontalRemainder = 0.0;
             }
 
-            mouseX = (int)rawMouseX;
-            horizontalRemainder = rawMouseX - mouseX;
+            //double mouseXTemp = rawMouseX - (Math.IEEERemainder(rawMouseX * 1000.0, 1.0) / 1000.0);
+            double mouseXTemp = rawMouseX - (remainderCutoff(rawMouseX * 1000.0, 1.0) / 1000.0);
+            //double mouseXTemp = rawMouseX - (rawMouseX * 1000.0 - (1.0 * (int)(rawMouseX * 1000.0 / 1.0)));
+            mouseX = (int)mouseXTemp;
+            horizontalRemainder = mouseXTemp - mouseX;
+            //mouseX = (int)rawMouseX;
+            //horizontalRemainder = rawMouseX - mouseX;
 
             if ((rawMouseY > 0.0 && verticalRemainder > 0.0) || (rawMouseY < 0.0 && verticalRemainder < 0.0))
             {
@@ -2307,8 +2571,17 @@ namespace DS4Windows
                 verticalRemainder = 0.0;
             }
 
-            mouseY = (int)rawMouseY;
-            verticalRemainder = rawMouseY - mouseY;
+            //double mouseYTemp = rawMouseY - (Math.IEEERemainder(rawMouseY * 1000.0, 1.0) / 1000.0);
+            double mouseYTemp = rawMouseY - (remainderCutoff(rawMouseY * 1000.0, 1.0) / 1000.0);
+            mouseY = (int)mouseYTemp;
+            verticalRemainder = mouseYTemp - mouseY;
+            //mouseY = (int)rawMouseY;
+            //verticalRemainder = rawMouseY - mouseY;
+        }
+
+        private static double remainderCutoff(double dividend, double divisor)
+        {
+            return dividend - (divisor * (int)(dividend / divisor));
         }
 
         public static bool compare(byte b1, byte b2)

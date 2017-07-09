@@ -114,6 +114,8 @@
             this.bnSwipeRight = new System.Windows.Forms.Button();
             this.lbSwipeRight = new System.Windows.Forms.Label();
             this.gBOther = new System.Windows.Forms.GroupBox();
+            this.btPollRateLabel = new System.Windows.Forms.Label();
+            this.btPollRateComboBox = new System.Windows.Forms.ComboBox();
             this.enableTouchToggleCheckbox = new System.Windows.Forms.CheckBox();
             this.cBDinput = new System.Windows.Forms.CheckBox();
             this.pBProgram = new System.Windows.Forms.PictureBox();
@@ -250,13 +252,6 @@
             this.lbActionsTip = new System.Windows.Forms.Label();
             this.tCSens = new System.Windows.Forms.TabControl();
             this.tPDeadzone = new System.Windows.Forms.TabPage();
-            this.tPCurve = new System.Windows.Forms.TabPage();
-            this.nUDLSCurve = new System.Windows.Forms.NumericUpDown();
-            this.nUDRSCurve = new System.Windows.Forms.NumericUpDown();
-            this.lbRSCurve = new System.Windows.Forms.Label();
-            this.lbRSCurvePercent = new System.Windows.Forms.Label();
-            this.lbLSCurvePercent = new System.Windows.Forms.Label();
-            this.lbLSCurve = new System.Windows.Forms.Label();
             this.antiDeadzoneTabPage = new System.Windows.Forms.TabPage();
             this.nUDR2AntiDead = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -275,11 +270,31 @@
             this.label6 = new System.Windows.Forms.Label();
             this.nUDLSMaxZone = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.tPCurve = new System.Windows.Forms.TabPage();
+            this.nUDLSCurve = new System.Windows.Forms.NumericUpDown();
+            this.nUDRSCurve = new System.Windows.Forms.NumericUpDown();
+            this.lbRSCurve = new System.Windows.Forms.Label();
+            this.lbRSCurvePercent = new System.Windows.Forms.Label();
+            this.lbLSCurvePercent = new System.Windows.Forms.Label();
+            this.lbLSCurve = new System.Windows.Forms.Label();
+            this.tPOutCurve = new System.Windows.Forms.TabPage();
+            this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
+            this.lsOutCurveComboBox = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.fLPSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.gBGyro = new System.Windows.Forms.GroupBox();
             this.rBSAControls = new System.Windows.Forms.RadioButton();
             this.rBSAMouse = new System.Windows.Forms.RadioButton();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.lbGyroSmooth = new System.Windows.Forms.Label();
+            this.cBGyroSmooth = new System.Windows.Forms.CheckBox();
+            this.lbSmoothWeight = new System.Windows.Forms.Label();
+            this.nUDGyroSmoothWeight = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.nUDGyroMouseVertScale = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.gyroTriggerBehavior = new System.Windows.Forms.CheckBox();
             this.cBGyroInvertY = new System.Windows.Forms.CheckBox();
             this.cBGyroInvertX = new System.Windows.Forms.CheckBox();
             this.lbGyroInvert = new System.Windows.Forms.Label();
@@ -322,6 +337,11 @@
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
+            this.tpRotation = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.nUDLSRotation = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.nUDRSRotation = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -378,9 +398,6 @@
             this.fLPActionButtons.SuspendLayout();
             this.tCSens.SuspendLayout();
             this.tPDeadzone.SuspendLayout();
-            this.tPCurve.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
             this.antiDeadzoneTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2AntiDead)).BeginInit();
@@ -391,9 +408,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).BeginInit();
+            this.tPCurve.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
+            this.tPOutCurve.SuspendLayout();
             this.fLPSettings.SuspendLayout();
             this.gBGyro.SuspendLayout();
             this.pnlSAMouse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).BeginInit();
             this.gBSensitivity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2S)).BeginInit();
@@ -403,6 +426,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
+            this.tpRotation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -1162,6 +1188,8 @@
             // gBOther
             // 
             this.gBOther.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBOther.Controls.Add(this.btPollRateLabel);
+            this.gBOther.Controls.Add(this.btPollRateComboBox);
             this.gBOther.Controls.Add(this.enableTouchToggleCheckbox);
             this.gBOther.Controls.Add(this.cBDinput);
             this.gBOther.Controls.Add(this.pBProgram);
@@ -1180,6 +1208,38 @@
             resources.ApplyResources(this.gBOther, "gBOther");
             this.gBOther.Name = "gBOther";
             this.gBOther.TabStop = false;
+            // 
+            // btPollRateLabel
+            // 
+            resources.ApplyResources(this.btPollRateLabel, "btPollRateLabel");
+            this.btPollRateLabel.Name = "btPollRateLabel";
+            // 
+            // btPollRateComboBox
+            // 
+            this.btPollRateComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.btPollRateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.btPollRateComboBox.FormattingEnabled = true;
+            this.btPollRateComboBox.Items.AddRange(new object[] {
+            resources.GetString("btPollRateComboBox.Items"),
+            resources.GetString("btPollRateComboBox.Items1"),
+            resources.GetString("btPollRateComboBox.Items2"),
+            resources.GetString("btPollRateComboBox.Items3"),
+            resources.GetString("btPollRateComboBox.Items4"),
+            resources.GetString("btPollRateComboBox.Items5"),
+            resources.GetString("btPollRateComboBox.Items6"),
+            resources.GetString("btPollRateComboBox.Items7"),
+            resources.GetString("btPollRateComboBox.Items8"),
+            resources.GetString("btPollRateComboBox.Items9"),
+            resources.GetString("btPollRateComboBox.Items10"),
+            resources.GetString("btPollRateComboBox.Items11"),
+            resources.GetString("btPollRateComboBox.Items12"),
+            resources.GetString("btPollRateComboBox.Items13"),
+            resources.GetString("btPollRateComboBox.Items14"),
+            resources.GetString("btPollRateComboBox.Items15"),
+            resources.GetString("btPollRateComboBox.Items16")});
+            resources.ApplyResources(this.btPollRateComboBox, "btPollRateComboBox");
+            this.btPollRateComboBox.Name = "btPollRateComboBox";
+            this.btPollRateComboBox.SelectedIndexChanged += new System.EventHandler(this.btPollRateComboBox_SelectedIndexChanged);
             // 
             // enableTouchToggleCheckbox
             // 
@@ -2520,7 +2580,6 @@
             this.lVActions.ShowItemToolTips = true;
             this.lVActions.UseCompatibleStateImageBehavior = false;
             this.lVActions.View = System.Windows.Forms.View.Details;
-            this.lVActions.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lVActions_ItemCheck);
             // 
             // cHName
             // 
@@ -2578,9 +2637,11 @@
             // tCSens
             // 
             this.tCSens.Controls.Add(this.tPDeadzone);
-            this.tCSens.Controls.Add(this.tPCurve);
             this.tCSens.Controls.Add(this.antiDeadzoneTabPage);
             this.tCSens.Controls.Add(this.maxZoneTabPage);
+            this.tCSens.Controls.Add(this.tPCurve);
+            this.tCSens.Controls.Add(this.tPOutCurve);
+            this.tCSens.Controls.Add(this.tpRotation);
             resources.ApplyResources(this.tCSens, "tCSens");
             this.tCSens.Name = "tCSens";
             this.tCSens.SelectedIndex = 0;
@@ -2602,60 +2663,6 @@
             this.tPDeadzone.Controls.Add(this.nUDSZ);
             resources.ApplyResources(this.tPDeadzone, "tPDeadzone");
             this.tPDeadzone.Name = "tPDeadzone";
-            // 
-            // tPCurve
-            // 
-            this.tPCurve.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tPCurve.Controls.Add(this.nUDLSCurve);
-            this.tPCurve.Controls.Add(this.nUDRSCurve);
-            this.tPCurve.Controls.Add(this.lbRSCurve);
-            this.tPCurve.Controls.Add(this.lbRSCurvePercent);
-            this.tPCurve.Controls.Add(this.lbLSCurvePercent);
-            this.tPCurve.Controls.Add(this.lbLSCurve);
-            resources.ApplyResources(this.tPCurve, "tPCurve");
-            this.tPCurve.Name = "tPCurve";
-            // 
-            // nUDLSCurve
-            // 
-            this.nUDLSCurve.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDLSCurve, "nUDLSCurve");
-            this.nUDLSCurve.Name = "nUDLSCurve";
-            this.nUDLSCurve.ValueChanged += new System.EventHandler(this.nUDLSCurve_ValueChanged);
-            // 
-            // nUDRSCurve
-            // 
-            this.nUDRSCurve.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDRSCurve, "nUDRSCurve");
-            this.nUDRSCurve.Name = "nUDRSCurve";
-            this.nUDRSCurve.ValueChanged += new System.EventHandler(this.nUDRSCurve_ValueChanged);
-            // 
-            // lbRSCurve
-            // 
-            resources.ApplyResources(this.lbRSCurve, "lbRSCurve");
-            this.lbRSCurve.Name = "lbRSCurve";
-            // 
-            // lbRSCurvePercent
-            // 
-            resources.ApplyResources(this.lbRSCurvePercent, "lbRSCurvePercent");
-            this.lbRSCurvePercent.Name = "lbRSCurvePercent";
-            // 
-            // lbLSCurvePercent
-            // 
-            resources.ApplyResources(this.lbLSCurvePercent, "lbLSCurvePercent");
-            this.lbLSCurvePercent.Name = "lbLSCurvePercent";
-            // 
-            // lbLSCurve
-            // 
-            resources.ApplyResources(this.lbLSCurve, "lbLSCurve");
-            this.lbLSCurve.Name = "lbLSCurve";
             // 
             // antiDeadzoneTabPage
             // 
@@ -2881,6 +2888,108 @@
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
+            // tPCurve
+            // 
+            this.tPCurve.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tPCurve.Controls.Add(this.nUDLSCurve);
+            this.tPCurve.Controls.Add(this.nUDRSCurve);
+            this.tPCurve.Controls.Add(this.lbRSCurve);
+            this.tPCurve.Controls.Add(this.lbRSCurvePercent);
+            this.tPCurve.Controls.Add(this.lbLSCurvePercent);
+            this.tPCurve.Controls.Add(this.lbLSCurve);
+            resources.ApplyResources(this.tPCurve, "tPCurve");
+            this.tPCurve.Name = "tPCurve";
+            // 
+            // nUDLSCurve
+            // 
+            this.nUDLSCurve.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDLSCurve, "nUDLSCurve");
+            this.nUDLSCurve.Name = "nUDLSCurve";
+            this.nUDLSCurve.ValueChanged += new System.EventHandler(this.nUDLSCurve_ValueChanged);
+            // 
+            // nUDRSCurve
+            // 
+            this.nUDRSCurve.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDRSCurve, "nUDRSCurve");
+            this.nUDRSCurve.Name = "nUDRSCurve";
+            this.nUDRSCurve.ValueChanged += new System.EventHandler(this.nUDRSCurve_ValueChanged);
+            // 
+            // lbRSCurve
+            // 
+            resources.ApplyResources(this.lbRSCurve, "lbRSCurve");
+            this.lbRSCurve.Name = "lbRSCurve";
+            // 
+            // lbRSCurvePercent
+            // 
+            resources.ApplyResources(this.lbRSCurvePercent, "lbRSCurvePercent");
+            this.lbRSCurvePercent.Name = "lbRSCurvePercent";
+            // 
+            // lbLSCurvePercent
+            // 
+            resources.ApplyResources(this.lbLSCurvePercent, "lbLSCurvePercent");
+            this.lbLSCurvePercent.Name = "lbLSCurvePercent";
+            // 
+            // lbLSCurve
+            // 
+            resources.ApplyResources(this.lbLSCurve, "lbLSCurve");
+            this.lbLSCurve.Name = "lbLSCurve";
+            // 
+            // tPOutCurve
+            // 
+            this.tPOutCurve.Controls.Add(this.rsOutCurveComboBox);
+            this.tPOutCurve.Controls.Add(this.lsOutCurveComboBox);
+            this.tPOutCurve.Controls.Add(this.label10);
+            this.tPOutCurve.Controls.Add(this.label9);
+            resources.ApplyResources(this.tPOutCurve, "tPOutCurve");
+            this.tPOutCurve.Name = "tPOutCurve";
+            this.tPOutCurve.UseVisualStyleBackColor = true;
+            // 
+            // rsOutCurveComboBox
+            // 
+            this.rsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rsOutCurveComboBox.DropDownWidth = 100;
+            this.rsOutCurveComboBox.FormattingEnabled = true;
+            this.rsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("rsOutCurveComboBox.Items"),
+            resources.GetString("rsOutCurveComboBox.Items1"),
+            resources.GetString("rsOutCurveComboBox.Items2"),
+            resources.GetString("rsOutCurveComboBox.Items3")});
+            resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
+            this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
+            this.rsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.rsOutCurveComboBox_SelectedIndexChanged);
+            // 
+            // lsOutCurveComboBox
+            // 
+            this.lsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.lsOutCurveComboBox.DropDownWidth = 100;
+            this.lsOutCurveComboBox.FormattingEnabled = true;
+            this.lsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("lsOutCurveComboBox.Items"),
+            resources.GetString("lsOutCurveComboBox.Items1"),
+            resources.GetString("lsOutCurveComboBox.Items2"),
+            resources.GetString("lsOutCurveComboBox.Items3")});
+            resources.ApplyResources(this.lsOutCurveComboBox, "lsOutCurveComboBox");
+            this.lsOutCurveComboBox.Name = "lsOutCurveComboBox";
+            this.lsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.lsOutCurveComboBox_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
             // fLPSettings
             // 
             resources.ApplyResources(this.fLPSettings, "fLPSettings");
@@ -2922,6 +3031,14 @@
             // 
             // pnlSAMouse
             // 
+            this.pnlSAMouse.Controls.Add(this.lbGyroSmooth);
+            this.pnlSAMouse.Controls.Add(this.cBGyroSmooth);
+            this.pnlSAMouse.Controls.Add(this.lbSmoothWeight);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroSmoothWeight);
+            this.pnlSAMouse.Controls.Add(this.label12);
+            this.pnlSAMouse.Controls.Add(this.nUDGyroMouseVertScale);
+            this.pnlSAMouse.Controls.Add(this.label11);
+            this.pnlSAMouse.Controls.Add(this.gyroTriggerBehavior);
             this.pnlSAMouse.Controls.Add(this.cBGyroInvertY);
             this.pnlSAMouse.Controls.Add(this.cBGyroInvertX);
             this.pnlSAMouse.Controls.Add(this.lbGyroInvert);
@@ -2931,6 +3048,80 @@
             this.pnlSAMouse.Controls.Add(this.lbGyroSens);
             resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
             this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // lbGyroSmooth
+            // 
+            resources.ApplyResources(this.lbGyroSmooth, "lbGyroSmooth");
+            this.lbGyroSmooth.Name = "lbGyroSmooth";
+            // 
+            // cBGyroSmooth
+            // 
+            resources.ApplyResources(this.cBGyroSmooth, "cBGyroSmooth");
+            this.cBGyroSmooth.Name = "cBGyroSmooth";
+            this.cBGyroSmooth.UseVisualStyleBackColor = true;
+            this.cBGyroSmooth.CheckedChanged += new System.EventHandler(this.cBGyroSmooth_CheckedChanged);
+            // 
+            // lbSmoothWeight
+            // 
+            resources.ApplyResources(this.lbSmoothWeight, "lbSmoothWeight");
+            this.lbSmoothWeight.Name = "lbSmoothWeight";
+            // 
+            // nUDGyroSmoothWeight
+            // 
+            this.nUDGyroSmoothWeight.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDGyroSmoothWeight, "nUDGyroSmoothWeight");
+            this.nUDGyroSmoothWeight.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDGyroSmoothWeight.Name = "nUDGyroSmoothWeight";
+            this.nUDGyroSmoothWeight.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.nUDGyroSmoothWeight.ValueChanged += new System.EventHandler(this.nUDGyroSmoothWeight_ValueChanged);
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // nUDGyroMouseVertScale
+            // 
+            this.nUDGyroMouseVertScale.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDGyroMouseVertScale, "nUDGyroMouseVertScale");
+            this.nUDGyroMouseVertScale.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDGyroMouseVertScale.Name = "nUDGyroMouseVertScale";
+            this.nUDGyroMouseVertScale.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nUDGyroMouseVertScale.ValueChanged += new System.EventHandler(this.nUDGyroMouseVertScale_ValueChanged);
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // gyroTriggerBehavior
+            // 
+            resources.ApplyResources(this.gyroTriggerBehavior, "gyroTriggerBehavior");
+            this.gyroTriggerBehavior.Checked = true;
+            this.gyroTriggerBehavior.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gyroTriggerBehavior.Name = "gyroTriggerBehavior";
+            this.gyroTriggerBehavior.UseVisualStyleBackColor = true;
+            this.gyroTriggerBehavior.CheckedChanged += new System.EventHandler(this.gyroTriggerBehavior_CheckedChanged);
             // 
             // cBGyroInvertY
             // 
@@ -3033,7 +3224,7 @@
             0,
             0,
             0});
-            this.nUDL2S.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDL2S.ValueChanged += new System.EventHandler(this.nUDL2Sens_ValueChanged);
             // 
             // nUDLSS
             // 
@@ -3060,7 +3251,7 @@
             0,
             0,
             0});
-            this.nUDLSS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDLSS.ValueChanged += new System.EventHandler(this.nUDLSSens_ValueChanged);
             // 
             // lbSixaxisXS
             // 
@@ -3092,7 +3283,7 @@
             0,
             0,
             0});
-            this.nUDR2S.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDR2S.ValueChanged += new System.EventHandler(this.nUDR2Sens_ValueChanged);
             // 
             // lbSixaxisZS
             // 
@@ -3124,7 +3315,7 @@
             0,
             0,
             0});
-            this.nUDRSS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDRSS.ValueChanged += new System.EventHandler(this.nUDRSSens_ValueChanged);
             // 
             // lbR2LS
             // 
@@ -3156,7 +3347,7 @@
             0,
             0,
             0});
-            this.nUDSXS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDSXS.ValueChanged += new System.EventHandler(this.nUDSXSens_ValueChanged);
             // 
             // lbRSS
             // 
@@ -3193,7 +3384,7 @@
             0,
             0,
             0});
-            this.nUDSZS.ValueChanged += new System.EventHandler(this.nUDSens_ValueChanged);
+            this.nUDSZS.ValueChanged += new System.EventHandler(this.nUDSZSens_ValueChanged);
             // 
             // cMGyroTriggers
             // 
@@ -3384,6 +3575,58 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
+            // tpRotation
+            // 
+            this.tpRotation.Controls.Add(this.nUDRSRotation);
+            this.tpRotation.Controls.Add(this.label14);
+            this.tpRotation.Controls.Add(this.nUDLSRotation);
+            this.tpRotation.Controls.Add(this.label13);
+            resources.ApplyResources(this.tpRotation, "tpRotation");
+            this.tpRotation.Name = "tpRotation";
+            this.tpRotation.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // nUDLSRotation
+            // 
+            resources.ApplyResources(this.nUDLSRotation, "nUDLSRotation");
+            this.nUDLSRotation.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDLSRotation.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nUDLSRotation.Name = "nUDLSRotation";
+            this.nUDLSRotation.ValueChanged += new System.EventHandler(this.nUDLSRotation_ValueChanged);
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // nUDRSRotation
+            // 
+            resources.ApplyResources(this.nUDRSRotation, "nUDRSRotation");
+            this.nUDRSRotation.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDRSRotation.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nUDRSRotation.Name = "nUDRSRotation";
+            this.nUDRSRotation.ValueChanged += new System.EventHandler(this.nUDRSRotation_ValueChanged);
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3462,10 +3705,6 @@
             this.tCSens.ResumeLayout(false);
             this.tPDeadzone.ResumeLayout(false);
             this.tPDeadzone.PerformLayout();
-            this.tPCurve.ResumeLayout(false);
-            this.tPCurve.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
             this.antiDeadzoneTabPage.ResumeLayout(false);
             this.antiDeadzoneTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2AntiDead)).EndInit();
@@ -3478,11 +3717,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).EndInit();
+            this.tPCurve.ResumeLayout(false);
+            this.tPCurve.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
+            this.tPOutCurve.ResumeLayout(false);
+            this.tPOutCurve.PerformLayout();
             this.fLPSettings.ResumeLayout(false);
             this.gBGyro.ResumeLayout(false);
             this.gBGyro.PerformLayout();
             this.pnlSAMouse.ResumeLayout(false);
             this.pnlSAMouse.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSmoothWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGyroMouseVertScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGyroSensitivity)).EndInit();
             this.gBSensitivity.ResumeLayout(false);
             this.gBSensitivity.PerformLayout();
@@ -3493,6 +3740,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
+            this.tpRotation.ResumeLayout(false);
+            this.tpRotation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3793,5 +4044,25 @@
         private System.Windows.Forms.NumericUpDown nUDL2Maxzone;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label btPollRateLabel;
+        private System.Windows.Forms.ComboBox btPollRateComboBox;
+        private System.Windows.Forms.TabPage tPOutCurve;
+        private System.Windows.Forms.ComboBox rsOutCurveComboBox;
+        private System.Windows.Forms.ComboBox lsOutCurveComboBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox gyroTriggerBehavior;
+        private System.Windows.Forms.NumericUpDown nUDGyroMouseVertScale;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbSmoothWeight;
+        private System.Windows.Forms.NumericUpDown nUDGyroSmoothWeight;
+        private System.Windows.Forms.CheckBox cBGyroSmooth;
+        private System.Windows.Forms.Label lbGyroSmooth;
+        private System.Windows.Forms.TabPage tpRotation;
+        private System.Windows.Forms.NumericUpDown nUDRSRotation;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.NumericUpDown nUDLSRotation;
+        private System.Windows.Forms.Label label13;
     }
 }

@@ -614,7 +614,7 @@
     <value>Use Sixaxis to help calculate touchpad movement</value>
   </data>
   <data name="LightByBatteryTip" xml:space="preserve">
-    <value>Also dim light by idle timeout if on</value>
+    <value>Also dim light by idle timeout if enabled when DS4 is fully charged</value>
   </data>
   <data name="Macro" xml:space="preserve">
     <value>Macro</value>
@@ -780,5 +780,17 @@
   </data>
   <data name="UACTask" xml:space="preserve">
     <value>You need to run DS4Windows as the Administrator in order to activate this mode.</value>
+  </data>
+  <data name="BTPollRate" xml:space="preserve">
+    <value>Determines the poll rate used for the DS4 hardware when connected via Bluetooth</value>
+  </data>
+  <data name="GyroTriggerBehavior" xml:space="preserve">
+    <value>Check to have gyro active while trigger is active. Uncheck to disable gyro while trigger is active.</value>
+  </data>
+  <data name="CloseConfirm" xml:space="preserve">
+    <value>This will disconnect all your connected controllers. Proceed?</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm...</value>
   </data>
 </root>

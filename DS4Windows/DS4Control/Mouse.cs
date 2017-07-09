@@ -13,10 +13,14 @@ namespace DS4Windows
         private readonly MouseWheel wheel;
         private bool tappedOnce = false, secondtouchbegin = false;
         public bool swipeLeft, swipeRight, swipeUp, swipeDown;
+        public bool priorSwipeLeft, priorSwipeRight, priorSwipeUp, priorSwipeDown;
         public byte swipeLeftB, swipeRightB, swipeUpB, swipeDownB, swipedB;
+        public byte priorSwipeLeftB, priorSwipeRightB, priorSwipeUpB, priorSwipeDownB, priorSwipedB;
         public bool slideleft, slideright;
+        public bool priorSlideLeft, priorSlideright;
         // touch area stuff
         public bool leftDown, rightDown, upperDown, multiDown;
+        public bool priorLeftDown, priorRightDown, priorUpperDown, priorMultiDown;
         protected DS4Controls pushed = DS4Controls.None;
         protected Mapping.Click clicked = Mapping.Click.None;
 
@@ -28,19 +32,38 @@ namespace DS4Windows
             wheel = new MouseWheel(deviceNum);
         }
 
+        bool triggeractivated = false;
+        bool useReverseRatchet = false;
+
         public virtual void sixaxisMoved(object sender, SixAxisEventArgs arg)
         {
-            if (Global.UseSAforMouse[deviceNum] && Global.GyroSensitivity[deviceNum] > 0)
+            if (Global.isUsingSAforMouse(deviceNum) && Global.getGyroSensitivity(deviceNum) > 0)
             {
-                bool triggeractivated = true;
+                triggeractivated = true;
+                useReverseRatchet = Global.getGyroTriggerTurns(deviceNum);
                 int i = 0;
-                string[] ss = Global.SATriggers[deviceNum].Split(',');
+                string[] ss = Global.getSATriggers(deviceNum).Split(',');
                 if (!string.IsNullOrEmpty(ss[0]))
-                    foreach (string s in ss)
+                {
+                    string s = string.Empty;
+                    for (int index = 0, arlen = ss.Length; triggeractivated && index < arlen; index++)
+                    //foreach (string s in ss)
+                    {
+                        s = ss[index];
                         if (!(int.TryParse(s, out i) && getDS4ControlsByName(i)))
+                        {
                             triggeractivated = false;
-                if (triggeractivated)
+                        }
+                    }
+                }
+
+                if (useReverseRatchet && triggeractivated)
                     cursor.sixaxisMoved(arg);
+                else if (!useReverseRatchet && !triggeractivated)
+                    cursor.sixaxisMoved(arg);
+                else
+                    cursor.mouseRemainderReset();
+
                 dev.getCurrentState(s);
             }
         }
@@ -64,8 +87,8 @@ namespace DS4Windows
                 case 11: return s.DpadRight;
                 case 12: return s.L3;
                 case 13: return s.R3;
-                case 14: return s.Touch1;
-                case 15: return s.Touch2;
+                case 14: return s.Touch1Finger;
+                case 15: return s.Touch2Fingers;
                 case 16: return s.Options;
                 case 17: return s.Share;
                 case 18: return s.PS;
@@ -91,6 +114,7 @@ namespace DS4Windows
                     if (arg.touches[0].hwY - firstTouch.hwY > 300) swipeDown = true;
                     if (arg.touches[0].hwY - firstTouch.hwY < -300) swipeUp = true;
                 }
+
                 swipeUpB = (byte)Math.Min(255, Math.Max(0, (firstTouch.hwY - arg.touches[0].hwY) * 1.5f));
                 swipeDownB = (byte)Math.Min(255, Math.Max(0, (arg.touches[0].hwY - firstTouch.hwY) * 1.5f));
                 swipeLeftB = (byte)Math.Min(255, Math.Max(0, firstTouch.hwX - arg.touches[0].hwX));
@@ -98,14 +122,17 @@ namespace DS4Windows
             }
 
             if (Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 50 && arg.touches.Length == 2)
+            {
                 if (arg.touches[0].hwX - firstTouch.hwX > 200 && !slideleft)
                     slideright = true;
                 else if (firstTouch.hwX - arg.touches[0].hwX > 200 && !slideright)
                     slideleft = true;
+            }
 
             dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
+
         public virtual void touchesBegan(object sender, TouchpadEventArgs arg)
         {
             if (!Global.UseTPforControls[deviceNum])
@@ -127,6 +154,7 @@ namespace DS4Windows
             dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
+
         public virtual void touchesEnded(object sender, TouchpadEventArgs arg)
         {
             slideright = slideleft = false;
@@ -143,7 +171,9 @@ namespace DS4Windows
 
                 DateTime test = arg.timeStamp;
                 if (test <= (pastTime + TimeSpan.FromMilliseconds((double)tapSensitivity * 2)) && !arg.touchButtonPressed && !tappedOnce)
+                {
                     if (Math.Abs(firstTouch.hwX - arg.touches[0].hwX) < 10 && Math.Abs(firstTouch.hwY - arg.touches[0].hwY) < 10)
+                    {
                         if (Global.DoubleTap[deviceNum])
                         {
                             tappedOnce = true;
@@ -152,6 +182,8 @@ namespace DS4Windows
                         }
                         else
                             Mapping.MapClick(deviceNum, Mapping.Click.Left); //this way no delay if disabled
+                    }
+                }
             }
 
             dev.getCurrentState(s);
@@ -191,8 +223,10 @@ namespace DS4Windows
 
             if (Global.GetDS4Action(deviceNum, DS4Controls.TouchUpper, false) == null && upperDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Middle);
+
             if (Global.GetDS4Action(deviceNum, DS4Controls.TouchRight, false) == null && rightDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Left);
+
             if (Global.GetDS4Action(deviceNum, DS4Controls.TouchMulti, false) == null && multiDown)
                 Mapping.MapClick(deviceNum, Mapping.Click.Right);
 
@@ -252,6 +286,19 @@ namespace DS4Windows
 
             dev.getCurrentState(s);
             synthesizeMouseButtons();
+        }
+
+        public void populatePriorButtonStates()
+        {
+            priorUpperDown = upperDown;
+            priorLeftDown = leftDown;
+            priorRightDown = rightDown;
+            priorMultiDown = multiDown;
+
+            priorSwipeLeft = swipeLeft; priorSwipeRight = swipeRight;
+            priorSwipeUp = swipeUp; priorSwipeDown = swipeDown;
+            priorSwipeLeftB = swipeLeftB; priorSwipeRightB = swipeRightB; priorSwipeUpB = swipeUpB;
+            priorSwipeDownB = swipeDownB; priorSwipedB = swipedB;
         }
 
         public DS4State getDS4State()

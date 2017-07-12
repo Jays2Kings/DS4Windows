@@ -16,7 +16,7 @@ namespace DS4Windows
     public class SixAxis
     {
         public readonly int gyroX, gyroY, gyroZ, deltaX, deltaY, deltaZ, accelX, accelY, accelZ;
-        public readonly int gyroXFull, gyroYFull, gyroZFull;
+        public readonly int gyroYawFull, gyroPitchFull, gyroRollFull;
         public readonly int accelXFull, accelYFull, accelZFull;
         public readonly byte touchID;
         public readonly SixAxis previousAxis;
@@ -25,9 +25,9 @@ namespace DS4Windows
             gyroX = X / 256;
             gyroY = Y / 256;
             gyroZ = Z / 256;
-            gyroXFull = X;
-            gyroYFull = Y;
-            gyroZFull = Z;
+            gyroYawFull = X;
+            gyroPitchFull = Y;
+            gyroRollFull = Z;
 
             accelX = aX / 64;
             accelY = aY / 64;
@@ -56,42 +56,14 @@ namespace DS4Windows
 
         public void handleSixaxis(byte[] gyro, byte[] accel, DS4State state)
         {
-            //bool touchPadIsDown = sensors.TouchButton;
-            /*if (!PacketChanged(data, touchPacketOffset) && touchPadIsDown == lastTouchPadIsDown)
-            {
-                if (SixAxisUnchanged != null)
-                    SixAxisUnchanged(this, EventArgs.Empty);
-                return;
-            }*/
-            /* byte touchID1 = (byte)(data[0 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x7F);
-             byte touchID2 = (byte)(data[4 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x7F);*/
-
-            int currentX = (short)((ushort)(gyro[3] << 8) | gyro[2]); // Gyro Pitch
-            int currentY = (short)((ushort)(gyro[1] << 8) | gyro[0]); // Gyro Yaw
+            int currentX = (short)((ushort)(gyro[3] << 8) | gyro[2]); // Gyro Yaw
+            int currentY = (short)((ushort)(gyro[1] << 8) | gyro[0]); // Gyro Pitch
             int currentZ = (short)((ushort)(gyro[5] << 8) | gyro[4]); // Gyro Roll
-            int AccelX = (short)((ushort)(accel[1] << 8) | accel[0]); // Accel Pitch
-            int AccelY = (short)((ushort)(accel[3] << 8) | accel[2]); // Accel Roll
-            int AccelZ = (short)((ushort)(accel[5] << 8) | accel[4]); // Accel Yaw
+            int AccelX = (short)((ushort)(accel[1] << 8) | accel[0]);
+            int AccelY = (short)((ushort)(accel[3] << 8) | accel[2]);
+            int AccelZ = (short)((ushort)(accel[5] << 8) | accel[4]);
 
             SixAxisEventArgs args;
-            //if (sensors.Touch1 || sensors.Touch2)
-            {
-               /* if (SixAxisMoved != null)
-                {
-                    SixAxis sPrev, now;
-                    sPrev = new SixAxis(lastGyroX, lastGyroY, lastGyroZ, lastAX,lastAY,lastAZ);
-                    now = new SixAxis(currentX, currentY, currentZ, AccelX, AccelY, AccelZ, sPrev);
-                    args = new SixAxisEventArgs(state.ReportTimeStamp, now);
-                    SixAxisMoved(this, args);
-                }
-
-                lastGyroX = currentX;
-                lastGyroY = currentY;
-                lastGyroZ = currentZ;
-                lastAX = AccelX;
-                lastAY = AccelY;
-                lastAZ = AccelZ;*/
-            }
             if (AccelX != 0 || AccelY != 0 || AccelZ != 0)
             {
                 if (SixAccelMoved != null)

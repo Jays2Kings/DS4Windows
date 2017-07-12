@@ -133,7 +133,6 @@ namespace DS4Windows
         private byte[] accel = new byte[6];
         private byte[] gyro = new byte[6];
         private byte[] inputReport;
-        //private byte[] inputReport2;
         private byte[] btInputReport = null;
         private byte[] outputReportBuffer, outputReport;
         private readonly DS4Touchpad touchpad = null;
@@ -164,7 +163,7 @@ namespace DS4Windows
         public event EventHandler<EventArgs> Removal = null;
         public event EventHandler<EventArgs> SyncChange = null;
         public event EventHandler<EventArgs> SerialChange = null;
-        public event EventHandler<EventArgs> PublishRemoval = null;
+        //public event EventHandler<EventArgs> PublishRemoval = null;
 
         public HidDevice HidDevice => hDevice;
         public bool IsExclusive => HidDevice.IsExclusive;
@@ -415,7 +414,6 @@ namespace DS4Windows
             if (conType == ConnectionType.USB || conType == ConnectionType.SONYWA)
             {
                 inputReport = new byte[64];
-                //inputReport2 = new byte[64];
                 outputReport = new byte[hDevice.Capabilities.OutputReportByteLength];
                 outputReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength];
                 if (conType == ConnectionType.USB)
@@ -668,8 +666,6 @@ namespace DS4Windows
             {
                 oldCharging = charging;
                 currerror = string.Empty;
-                curTimeDouble = sw.Elapsed.TotalMilliseconds;
-                curtime = sw.ElapsedMilliseconds;
 
                 if (tempLatencyCount >= 50)
                 {
@@ -677,12 +673,9 @@ namespace DS4Windows
                     tempLatencyCount--;
                 }
 
-                lastTimeElapsed = curtime - oldtime;
-                lastTimeElapsedDouble = (curTimeDouble - oldTimeDouble);
                 latencyQueue.Enqueue(this.lastTimeElapsed);
                 tempLatencyCount++;
-                oldtime = curtime;
-                oldTimeDouble = curTimeDouble;
+
                 Latency = latencyQueue.Average();
 
                 if (conType == ConnectionType.BT)
@@ -691,7 +684,6 @@ namespace DS4Windows
                     //HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(btInputReport, READ_STREAM_TIMEOUT);
                     HidDevice.ReadStatus res = hDevice.ReadWithFileStream(btInputReport);
                     timeoutEvent = false;
-                    //HidDevice.ReadStatus res = hDevice.ReadFileOverlapped(btInputReport, READ_STREAM_TIMEOUT);
                     if (res == HidDevice.ReadStatus.Success)
                     {
                         Array.Copy(btInputReport, 2, inputReport, 0, inputReport.Length);
@@ -705,7 +697,7 @@ namespace DS4Windows
                         else
                         {
                             int winError = Marshal.GetLastWin32Error();
-                            Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
+                            Console.WriteLine(Mac.ToString() + " " + DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
                             //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                         }
 
@@ -730,7 +722,6 @@ namespace DS4Windows
                     //Array.Clear(inputReport, 0, inputReport.Length);
                     //HidDevice.ReadStatus res = hDevice.ReadAsyncWithFileStream(inputReport, READ_STREAM_TIMEOUT);
                     HidDevice.ReadStatus res = hDevice.ReadWithFileStream(inputReport);
-                    //HidDevice.ReadStatus res = hDevice.ReadFileOverlapped(inputReport, READ_STREAM_TIMEOUT);
                     if (res != HidDevice.ReadStatus.Success)
                     {
                         if (res == HidDevice.ReadStatus.WaitTimedOut)
@@ -740,7 +731,7 @@ namespace DS4Windows
                         else
                         {
                             int winError = Marshal.GetLastWin32Error();
-                            Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
+                            Console.WriteLine(Mac.ToString() + " " + DateTime.UtcNow.ToString("o") + "> disconnect due to read failure: " + winError);
                             //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                         }
 
@@ -757,11 +748,16 @@ namespace DS4Windows
                         timeoutExecuted = true;
                         return;
                     }
-                    else
-                    {
-                        //Array.Copy(inputReport2, 0, inputReport, 0, inputReport.Length);
-                    }
                 }
+
+                curTimeDouble = sw.Elapsed.TotalMilliseconds;
+                curtime = sw.ElapsedMilliseconds;
+
+                lastTimeElapsed = curtime - oldtime;
+                lastTimeElapsedDouble = (curTimeDouble - oldTimeDouble);
+
+                oldtime = curtime;
+                oldTimeDouble = curTimeDouble;
 
                 if (conType == ConnectionType.BT && btInputReport[0] != 0x11)
                 {
@@ -996,7 +992,7 @@ namespace DS4Windows
                 //outputReportBuffer[1] = 0x80;
                 //outputReportBuffer[1] = 0x84;
                 outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
-                // enable lightbar, rumble, flash
+                // enable rumble (0x01), lightbar (0x02), flash (0x04)
                 outputReportBuffer[3] = 0xf7;
                 outputReportBuffer[6] = rightLightFastRumble; // fast motor
                 outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
@@ -1009,7 +1005,7 @@ namespace DS4Windows
             else
             {
                 outputReportBuffer[0] = 0x05;
-                // enable lightbar, rumble, flash
+                // enable rumble (0x01), lightbar (0x02), flash (0x04)
                 outputReportBuffer[1] = 0xf7;
                 outputReportBuffer[4] = rightLightFastRumble; // fast motor
                 outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor

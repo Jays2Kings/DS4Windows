@@ -1167,7 +1167,7 @@ namespace DS4Windows
         public double[] rainbow = { 0, 0, 0, 0, 0 };
         public int[] flashAt = { 0, 0, 0, 0, 0 };
         public bool[] mouseAccel = { true, true, true, true, true };
-        public int[] btPollRate = { 0, 0, 0, 0, 0 };
+        public int[] btPollRate = { 4, 4, 4, 4, 4 };
         public int[] lsOutCurveMode = { 0, 0, 0, 0, 0 };
         public int[] rsOutCurveMode = { 0, 0, 0, 0, 0 };
 
@@ -2440,7 +2440,7 @@ namespace DS4Windows
                     int.TryParse(Item.InnerText, out temp);
                     btPollRate[device] = (temp >= 0 && temp <= 16) ? temp : 0;
                 }
-                catch { btPollRate[device] = 0; missingSetting = true; }
+                catch { btPollRate[device] = 4; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputCurveMode"); lsOutCurveMode[device] = outputCurveId(Item.InnerText); }
                 catch { lsOutCurveMode[device] = 0; missingSetting = true; }
@@ -3449,7 +3449,7 @@ namespace DS4Windows
             rainbow[device] = 0;
             flashAt[device] = 0;
             mouseAccel[device] = true;
-            btPollRate[device] = 0;
+            btPollRate[device] = 4;
 
             m_LowLeds[device] = new DS4Color(Color.Black);
 

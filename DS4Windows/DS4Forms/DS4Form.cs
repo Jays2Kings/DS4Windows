@@ -1701,7 +1701,7 @@ namespace DS4Windows
         private void Profile_Changed_Menu(object sender, ToolStripItemClickedEventArgs e)
         {
             ToolStripMenuItem tS = (ToolStripMenuItem)sender;
-            int tdevice = Int32.Parse(tS.Tag.ToString());
+            int tdevice = Convert.ToInt32(tS.Tag);
             if (!(e.ClickedItem is ToolStripSeparator))
             {
                 if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1]) //if +New Profile not selected 
@@ -2223,6 +2223,9 @@ namespace DS4Windows
                 blankControllerTab();
                 Program.rootHub.Stop();
             }
+
+            // Make sure to stop event generation routines. Should fix odd crashes on shutdown
+            Application.Exit();
         }
 
         private void cBSwipeProfiles_CheckedChanged(object sender, EventArgs e)

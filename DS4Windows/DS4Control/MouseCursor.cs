@@ -36,8 +36,8 @@ namespace DS4Windows
         public virtual void sixaxisMoved(SixAxisEventArgs arg)
         {
             int deltaX = 0, deltaY = 0;
-            deltaX = -arg.sixAxis.gyroXFull;
-            deltaY = -arg.sixAxis.gyroYFull;
+            deltaX = -arg.sixAxis.gyroYawFull;
+            deltaY = -arg.sixAxis.gyroPitchFull;
             //Console.WriteLine(arg.sixAxis.deltaX);
 
             gyroSmooth = Global.getGyroSmoothing(deviceNumber);

@@ -2760,25 +2760,25 @@ namespace DS4Windows
                 {
                     case DS4Controls.GyroXPos:
                     {
-                        int gyroX = eState.GyroX;
+                        int gyroX = eState.AccelX;
                         result = (byte)(!sOff && sxsens * gyroX > SXD * 10 ? Math.Min(255, sxsens * gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
-                        int gyroX = eState.GyroX;
+                        int gyroX = eState.AccelX;
                         result = (byte)(!sOff && sxsens * gyroX < -SXD * 10 ? Math.Min(255, sxsens * -gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
-                        int gyroZ = eState.GyroZ;
+                        int gyroZ = eState.AccelZ;
                         result = (byte)(!sOff && szsens * gyroZ > SZD * 10 ? Math.Min(255, szsens * gyroZ * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
-                        int gyroZ = eState.GyroZ;
+                        int gyroZ = eState.AccelZ;
                         result = (byte)(!sOff && szsens * gyroZ < -SZD * 10 ? Math.Min(255, szsens * -gyroZ * 2) : 0);
                         break;
                     }
@@ -2882,10 +2882,10 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.GyroX > 67 : false; break;
-                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * eState.GyroX < -67 : false; break;
-                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.GyroZ > 67 : false; break;
-                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.GyroZ < -67 : false; break;
+                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.AccelX > 67 : false; break;
+                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * eState.AccelX < -67 : false; break;
+                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.AccelZ > 67 : false; break;
+                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.AccelZ < -67 : false; break;
                     default: break;
                 }
             }
@@ -3309,10 +3309,10 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.GyroX > 67 : false; break;
-                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * eState.GyroX < -67 : false; break;
-                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.GyroZ > 67 : false; break;
-                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.GyroZ < -67 : false; break;
+                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.AccelX > 67 : false; break;
+                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * eState.AccelX < -67 : false; break;
+                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.AccelZ > 67 : false; break;
+                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.AccelZ < -67 : false; break;
                     default: break;
                 }
             }
@@ -3548,36 +3548,36 @@ namespace DS4Windows
                 {
                     case DS4Controls.GyroXPos:
                     {
-                        if (!sOff && eState.GyroX > SXD * 10)
+                        if (!sOff && eState.AccelX > SXD * 10)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * eState.GyroX); else result = (byte)Math.Max(0, 127 - SXSens[device] * eState.GyroX);
+                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * eState.AccelX); else result = (byte)Math.Max(0, 127 - SXSens[device] * eState.AccelX);
                         }
                         else result = falseVal;
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
-                        if (!sOff && eState.GyroX < -SXD * 10)
+                        if (!sOff && eState.AccelX < -SXD * 10)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * -eState.GyroX); else result = (byte)Math.Max(0, 127 - SXSens[device] * -eState.GyroX);
+                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * -eState.AccelX); else result = (byte)Math.Max(0, 127 - SXSens[device] * -eState.AccelX);
                         }
                         else result = falseVal;
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
-                        if (!sOff && eState.GyroZ > SZD * 10)
+                        if (!sOff && eState.AccelZ > SZD * 10)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * eState.GyroZ); else result = (byte)Math.Max(0, 127 - SZSens[device] * eState.GyroZ);
+                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * eState.AccelZ); else result = (byte)Math.Max(0, 127 - SZSens[device] * eState.AccelZ);
                         }
                         else return falseVal;
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
-                        if (!sOff && eState.GyroZ < -SZD * 10)
+                        if (!sOff && eState.AccelZ < -SZD * 10)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * -eState.GyroZ); else result = (byte)Math.Max(0, 127 - SZSens[device] * -eState.GyroZ);
+                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * -eState.AccelZ); else result = (byte)Math.Max(0, 127 - SZSens[device] * -eState.AccelZ);
                         }
                         else result = falseVal;
                         break;

@@ -805,11 +805,11 @@ namespace DS4Windows
             else
             {
                 EnableReadings(true);
-                SetDynamicTrackBarValue(tBsixaxisGyroX, (Program.rootHub.ExposedState[tempDeviceNum].GyroX + tBsixaxisGyroX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroY, (Program.rootHub.ExposedState[tempDeviceNum].GyroY + tBsixaxisGyroY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroZ, (Program.rootHub.ExposedState[tempDeviceNum].GyroZ + tBsixaxisGyroZ.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelX, (int)(Program.rootHub.ExposedState[tempDeviceNum].AccelX + tBsixaxisAccelX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelY, (int)(Program.rootHub.ExposedState[tempDeviceNum].AccelY + tBsixaxisAccelY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroX, (-Program.rootHub.ExposedState[tempDeviceNum].GyroYaw + tBsixaxisGyroX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroY, (Program.rootHub.ExposedState[tempDeviceNum].GyroPitch + tBsixaxisGyroY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroZ, (-Program.rootHub.ExposedState[tempDeviceNum].GyroRoll + tBsixaxisGyroZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelX, (int)(-Program.rootHub.ExposedState[tempDeviceNum].AccelX + tBsixaxisAccelX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelY, (int)(-Program.rootHub.ExposedState[tempDeviceNum].AccelY + tBsixaxisAccelY.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisAccelZ, (int)(Program.rootHub.ExposedState[tempDeviceNum].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
 
                 int x = Program.rootHub.getDS4State(tempDeviceNum).LX;
@@ -902,8 +902,8 @@ namespace DS4Windows
                         (int)(tempRSS * (btnRSTrack.Location.Y - pnlRSTrack.Size.Height / 2f) + pnlRSTrack.Size.Height / 2f));
                 }
 
-                x = -Program.rootHub.ExposedState[tempDeviceNum].GyroX + 127;
-                y = Program.rootHub.ExposedState[tempDeviceNum].GyroZ + 127;
+                x = -Program.rootHub.ExposedState[tempDeviceNum].AccelX + 127;
+                y = Program.rootHub.ExposedState[tempDeviceNum].AccelZ + 127;
                 btnSATrack.Location = new Point((int)(dpix * Global.Clamp(0, x / 2.09, pnlSATrack.Size.Width)), (int)(dpiy * Global.Clamp(0, y / 2.09, pnlSATrack.Size.Height)));
 
                 double tempSXS = (double)nUDSXS.Value;

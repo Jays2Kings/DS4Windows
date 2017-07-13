@@ -48,7 +48,6 @@ namespace DS4Windows
 
     public class DS4SixAxis
     {
-        //public event EventHandler<SixAxisEventArgs> SixAxisMoved = null; // deltaX/deltaY are set because one or both fingers were already down on a prior sensor reading
         public event EventHandler<SixAxisEventArgs> SixAccelMoved = null; // no status change for the touchpad itself... but other sensors may have changed, or you may just want to do some processing
 
         internal int lastGyroX, lastGyroY, lastGyroZ, lastAX, lastAY, lastAZ; // tracks 0, 1 or 2 touches; we maintain touch 1 and 2 separately

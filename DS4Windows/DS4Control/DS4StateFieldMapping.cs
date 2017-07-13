@@ -90,11 +90,11 @@ namespace DS4Windows
             buttons[(int)DS4Controls.TouchUpper] = tp != null ? (!priorMouse ? tp.upperDown : tp.priorUpperDown) : false;
             buttons[(int)DS4Controls.TouchMulti] = tp != null ? (!priorMouse ? tp.multiDown : tp.priorMultiDown) : false;
 
-            int gyroX = exposeState.getGyroX();
+            int gyroX = exposeState.getAccelX();
             gryodirs[(int)DS4Controls.GyroXPos] = gyroX > 0 ? gyroX : 0;
             gryodirs[(int)DS4Controls.GyroXNeg] = gyroX < 0 ? gyroX : 0;
 
-            int gyroZ = exposeState.getGyroZ();
+            int gyroZ = exposeState.getAccelZ();
             gryodirs[(int)DS4Controls.GyroZPos] = gyroZ > 0 ? gyroZ : 0;
             gryodirs[(int)DS4Controls.GyroZNeg] = gyroZ < 0 ? gyroZ : 0;
 

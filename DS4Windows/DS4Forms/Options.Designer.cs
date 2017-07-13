@@ -282,6 +282,11 @@
             this.lsOutCurveComboBox = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.tpRotation = new System.Windows.Forms.TabPage();
+            this.nUDRSRotation = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.nUDLSRotation = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
             this.fLPSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.gBGyro = new System.Windows.Forms.GroupBox();
             this.rBSAControls = new System.Windows.Forms.RadioButton();
@@ -337,11 +342,8 @@
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            this.tpRotation = new System.Windows.Forms.TabPage();
-            this.label13 = new System.Windows.Forms.Label();
-            this.nUDLSRotation = new System.Windows.Forms.NumericUpDown();
-            this.label14 = new System.Windows.Forms.Label();
-            this.nUDRSRotation = new System.Windows.Forms.NumericUpDown();
+            this.touchpadInvertComboBox = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -412,6 +414,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
             this.tPOutCurve.SuspendLayout();
+            this.tpRotation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).BeginInit();
             this.fLPSettings.SuspendLayout();
             this.gBGyro.SuspendLayout();
             this.pnlSAMouse.SuspendLayout();
@@ -426,9 +431,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
-            this.tpRotation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -887,6 +889,8 @@
             // 
             // pnlTPMouse
             // 
+            this.pnlTPMouse.Controls.Add(this.label15);
+            this.pnlTPMouse.Controls.Add(this.touchpadInvertComboBox);
             this.pnlTPMouse.Controls.Add(this.nUDScroll);
             this.pnlTPMouse.Controls.Add(this.cBDoubleTap);
             this.pnlTPMouse.Controls.Add(this.cBScroll);
@@ -2990,6 +2994,58 @@
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
             // 
+            // tpRotation
+            // 
+            this.tpRotation.Controls.Add(this.nUDRSRotation);
+            this.tpRotation.Controls.Add(this.label14);
+            this.tpRotation.Controls.Add(this.nUDLSRotation);
+            this.tpRotation.Controls.Add(this.label13);
+            resources.ApplyResources(this.tpRotation, "tpRotation");
+            this.tpRotation.Name = "tpRotation";
+            this.tpRotation.UseVisualStyleBackColor = true;
+            // 
+            // nUDRSRotation
+            // 
+            resources.ApplyResources(this.nUDRSRotation, "nUDRSRotation");
+            this.nUDRSRotation.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDRSRotation.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nUDRSRotation.Name = "nUDRSRotation";
+            this.nUDRSRotation.ValueChanged += new System.EventHandler(this.nUDRSRotation_ValueChanged);
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // nUDLSRotation
+            // 
+            resources.ApplyResources(this.nUDLSRotation, "nUDLSRotation");
+            this.nUDLSRotation.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDLSRotation.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nUDLSRotation.Name = "nUDLSRotation";
+            this.nUDLSRotation.ValueChanged += new System.EventHandler(this.nUDLSRotation_ValueChanged);
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
             // fLPSettings
             // 
             resources.ApplyResources(this.fLPSettings, "fLPSettings");
@@ -3575,57 +3631,23 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
-            // tpRotation
+            // touchpadInvertComboBox
             // 
-            this.tpRotation.Controls.Add(this.nUDRSRotation);
-            this.tpRotation.Controls.Add(this.label14);
-            this.tpRotation.Controls.Add(this.nUDLSRotation);
-            this.tpRotation.Controls.Add(this.label13);
-            resources.ApplyResources(this.tpRotation, "tpRotation");
-            this.tpRotation.Name = "tpRotation";
-            this.tpRotation.UseVisualStyleBackColor = true;
+            this.touchpadInvertComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.touchpadInvertComboBox.FormattingEnabled = true;
+            this.touchpadInvertComboBox.Items.AddRange(new object[] {
+            resources.GetString("touchpadInvertComboBox.Items"),
+            resources.GetString("touchpadInvertComboBox.Items1"),
+            resources.GetString("touchpadInvertComboBox.Items2"),
+            resources.GetString("touchpadInvertComboBox.Items3")});
+            resources.ApplyResources(this.touchpadInvertComboBox, "touchpadInvertComboBox");
+            this.touchpadInvertComboBox.Name = "touchpadInvertComboBox";
+            this.touchpadInvertComboBox.SelectedIndexChanged += new System.EventHandler(this.touchpadInvertComboBox_SelectedIndexChanged);
             // 
-            // label13
+            // label15
             // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            // 
-            // nUDLSRotation
-            // 
-            resources.ApplyResources(this.nUDLSRotation, "nUDLSRotation");
-            this.nUDLSRotation.Maximum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            0});
-            this.nUDLSRotation.Minimum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            -2147483648});
-            this.nUDLSRotation.Name = "nUDLSRotation";
-            this.nUDLSRotation.ValueChanged += new System.EventHandler(this.nUDLSRotation_ValueChanged);
-            // 
-            // label14
-            // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.Name = "label14";
-            // 
-            // nUDRSRotation
-            // 
-            resources.ApplyResources(this.nUDRSRotation, "nUDRSRotation");
-            this.nUDRSRotation.Maximum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            0});
-            this.nUDRSRotation.Minimum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            -2147483648});
-            this.nUDRSRotation.Name = "nUDRSRotation";
-            this.nUDRSRotation.ValueChanged += new System.EventHandler(this.nUDRSRotation_ValueChanged);
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
             // 
             // Options
             // 
@@ -3723,6 +3745,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
             this.tPOutCurve.ResumeLayout(false);
             this.tPOutCurve.PerformLayout();
+            this.tpRotation.ResumeLayout(false);
+            this.tpRotation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).EndInit();
             this.fLPSettings.ResumeLayout(false);
             this.gBGyro.ResumeLayout(false);
             this.gBGyro.PerformLayout();
@@ -3740,10 +3766,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
-            this.tpRotation.ResumeLayout(false);
-            this.tpRotation.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4064,5 +4086,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.NumericUpDown nUDLSRotation;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox touchpadInvertComboBox;
     }
 }

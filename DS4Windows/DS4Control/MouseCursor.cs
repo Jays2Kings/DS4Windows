@@ -32,6 +32,7 @@ namespace DS4Windows
         double verticalScale = 0.0;
         bool gyroSmooth = false;
         //double gyroSmoothWeight = 0.0;
+        int tempInt = 0;
 
         public virtual void sixaxisMoved(SixAxisEventArgs arg)
         {
@@ -279,7 +280,7 @@ namespace DS4Windows
                 }
             }
 
-            double coefficient = Global.TouchSensitivity[deviceNumber] / 100.0;
+            double coefficient = Global.TouchSensitivity[deviceNumber] * 0.01;
             // Collect rounding errors instead of losing motion.
             double xMotion = coefficient * deltaX;
             if (xMotion > 0.0)
@@ -308,6 +309,13 @@ namespace DS4Windows
             }
             int yAction = (int)yMotion;
             verticalRemainder = yMotion - yAction;
+
+            int touchpadInvert = tempInt = Global.getTouchpadInvert(deviceNumber);
+            if ((touchpadInvert & 0x02) == 2)
+                xAction *= -1;
+
+            if ((touchpadInvert & 0x01) == 1)
+                yAction *= -1;
 
             if (yAction != 0 || xAction != 0)
                 InputMethods.MoveCursorBy(xAction, yAction);

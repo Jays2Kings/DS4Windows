@@ -658,7 +658,13 @@ namespace DS4Windows
         }
 
         public static bool[] LowerRCOn => m_Config.lowerRCOn;
-        public static bool[] TouchpadJitterCompensation => m_Config.touchpadJitterCompensation;       
+        public static bool[] TouchpadJitterCompensation => m_Config.touchpadJitterCompensation;
+
+        public static int[] TouchpadInvert => m_Config.touchpadInvert;
+        public static int getTouchpadInvert(int index)
+        {
+            return m_Config.touchpadInvert[index];
+        }
 
         public static byte[] L2Deadzone => m_Config.l2Deadzone;
         public static byte getL2Deadzone(int index)
@@ -1164,6 +1170,7 @@ namespace DS4Windows
         public Byte[] tapSensitivity = { 0, 0, 0, 0, 0 };
         public bool[] doubleTap = { false, false, false, false, false };
         public int[] scrollSensitivity = { 0, 0, 0, 0, 0 };
+        public int[] touchpadInvert = { 0, 0, 0, 0, 0 };
         public double[] rainbow = { 0, 0, 0, 0, 0 };
         public int[] flashAt = { 0, 0, 0, 0, 0 };
         public bool[] mouseAccel = { true, true, true, true, true };
@@ -1447,6 +1454,7 @@ namespace DS4Windows
                 XmlNode xmlScrollSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "scrollSensitivity", null); xmlScrollSensitivity.InnerText = scrollSensitivity[device].ToString(); Node.AppendChild(xmlScrollSensitivity);
                 XmlNode xmlLeftTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "LeftTriggerMiddle", null); xmlLeftTriggerMiddle.InnerText = l2Deadzone[device].ToString(); Node.AppendChild(xmlLeftTriggerMiddle);
                 XmlNode xmlRightTriggerMiddle = m_Xdoc.CreateNode(XmlNodeType.Element, "RightTriggerMiddle", null); xmlRightTriggerMiddle.InnerText = r2Deadzone[device].ToString(); Node.AppendChild(xmlRightTriggerMiddle);
+                XmlNode xmlTouchpadInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchpadInvert", null); xmlTouchpadInvert.InnerText = touchpadInvert[device].ToString(); Node.AppendChild(xmlTouchpadInvert);
                 XmlNode xmlL2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "L2AntiDeadZone", null); xmlL2AD.InnerText = l2AntiDeadzone[device].ToString(); Node.AppendChild(xmlL2AD);
                 XmlNode xmlR2AD = m_Xdoc.CreateNode(XmlNodeType.Element, "R2AntiDeadZone", null); xmlR2AD.InnerText = r2AntiDeadzone[device].ToString(); Node.AppendChild(xmlR2AD);
                 XmlNode xmlL2Maxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "L2MaxZone", null); xmlL2Maxzone.InnerText = l2Maxzone[device].ToString(); Node.AppendChild(xmlL2Maxzone);
@@ -2190,12 +2198,18 @@ namespace DS4Windows
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/scrollSensitivity"); int.TryParse(Item.InnerText, out scrollSensitivity[device]); }
                 catch { missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchpadInvert"); int temp = 0; int.TryParse(Item.InnerText, out temp); touchpadInvert[device] = Math.Min(Math.Max(temp, 0), 3); }
+                catch { touchpadInvert[device] = 0; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LeftTriggerMiddle"); byte.TryParse(Item.InnerText, out l2Deadzone[device]); }
                 catch { missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RightTriggerMiddle"); byte.TryParse(Item.InnerText, out r2Deadzone[device]); }
                 catch { missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2AntiDeadZone"); int.TryParse(Item.InnerText, out l2AntiDeadzone[device]); }
                 catch { l2AntiDeadzone[device] = 0; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2AntiDeadZone"); int.TryParse(Item.InnerText, out r2AntiDeadzone[device]); }
                 catch { r2AntiDeadzone[device] = 0; missingSetting = true; }
 
@@ -3446,6 +3460,7 @@ namespace DS4Windows
             tapSensitivity[device] = 0;
             doubleTap[device] = false;
             scrollSensitivity[device] = 0;
+            touchpadInvert[device] = 0;
             rainbow[device] = 0;
             flashAt[device] = 0;
             mouseAccel[device] = true;

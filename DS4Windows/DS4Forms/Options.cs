@@ -30,6 +30,9 @@ namespace DS4Windows
         private Dictionary<Control, int> hoverIndexDict = new Dictionary<Control, int>();
         private Dictionary<Control, Bitmap> hoverImageDict = new Dictionary<Control, Bitmap>();
         private Dictionary<Control, Label> hoverLabelDict = new Dictionary<Control, Label>();
+        private int[] touchpadInvertToValue = new int[4] { 0, 2, 1, 3 };
+
+        int tempInt = 0;
 
         public Options(DS4Form rt)
         {
@@ -338,6 +341,10 @@ namespace DS4Windows
                 cBTap.Checked = TapSensitivity[device] > 0;
                 cBDoubleTap.Checked = DoubleTap[device];
                 cBTouchpadJitterCompensation.Checked = TouchpadJitterCompensation[device];
+
+                tempInt = TouchpadInvert[device];
+                touchpadInvertComboBox.SelectedIndex = touchpadInvertToValue[tempInt];
+
                 cBlowerRCOn.Checked = LowerRCOn[device];
                 cBFlushHIDQueue.Checked = FlushHIDQueue[device];
                 enableTouchToggleCheckbox.Checked = getEnableTouchToggle(device);
@@ -643,6 +650,7 @@ namespace DS4Windows
                 cBTap.Checked = false;
                 cBDoubleTap.Checked = false;
                 cBTouchpadJitterCompensation.Checked = true;
+                touchpadInvertComboBox.SelectedIndex = 0;
                 cBlowerRCOn.Checked = false;
                 cBFlushHIDQueue.Checked = false;
                 enableTouchToggleCheckbox.Checked = true;
@@ -1312,6 +1320,10 @@ namespace DS4Windows
             ScrollSensitivity[device] = (int)nUDScroll.Value;
             DoubleTap[device] = cBDoubleTap.Checked;
             TapSensitivity[device] = (byte)nUDTap.Value;
+
+            tempInt = touchpadInvertComboBox.SelectedIndex;
+            TouchpadInvert[device] = touchpadInvertToValue[tempInt];
+
             IdleDisconnectTimeout[device] = (int)(nUDIdleDisconnect.Value * 60);
             Rainbow[device] = (int)nUDRainbow.Value;
             RSDeadzone[device] = (int)Math.Round((nUDRS.Value * 127), 0);
@@ -2890,6 +2902,15 @@ namespace DS4Windows
             if (!loading)
             {
                 RSRotation[device] = (double)nUDRSRotation.Value * Math.PI / 180.0;
+            }
+        }
+
+        private void touchpadInvertComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                tempInt = touchpadInvertToValue[touchpadInvertComboBox.SelectedIndex];
+                TouchpadInvert[device] = tempInt;
             }
         }
 

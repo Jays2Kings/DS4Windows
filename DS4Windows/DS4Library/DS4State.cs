@@ -8,7 +8,8 @@ namespace DS4Windows
         public bool Square, Triangle, Circle, Cross;
         public bool DpadUp, DpadDown, DpadLeft, DpadRight;
         public bool L1, L3, R1, R3;
-        public bool Share, Options, PS, Touch1, Touch2, TouchButton, TouchRight, TouchLeft, Touch1Finger, Touch2Fingers;
+        public bool Share, Options, PS, Touch1, Touch2, TouchButton, TouchRight,
+            TouchLeft, Touch1Finger, Touch2Fingers;
         public byte Touch1Identifier, Touch2Identifier;
         public byte LX, RX, LY, RY, L2, R2;
         public byte FrameCounter; // 0, 1, 2...62, 63, 0....

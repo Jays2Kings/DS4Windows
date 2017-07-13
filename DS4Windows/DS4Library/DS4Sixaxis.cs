@@ -25,9 +25,9 @@ namespace DS4Windows
             gyroX = X / 256;
             gyroY = Y / 256;
             gyroZ = Z / 256;
-            gyroYawFull = X;
+            gyroYawFull = -X;
             gyroPitchFull = Y;
-            gyroRollFull = Z;
+            gyroRollFull = -Z;
 
             accelX = aX / 64;
             accelY = aY / 64;

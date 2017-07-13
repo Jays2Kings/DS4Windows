@@ -37,7 +37,7 @@ namespace DS4Windows
         public virtual void sixaxisMoved(SixAxisEventArgs arg)
         {
             int deltaX = 0, deltaY = 0;
-            deltaX = -arg.sixAxis.gyroYawFull;
+            deltaX = arg.sixAxis.gyroYawFull;
             deltaY = -arg.sixAxis.gyroPitchFull;
             //Console.WriteLine(arg.sixAxis.deltaX);
 
@@ -61,12 +61,12 @@ namespace DS4Windows
             int signX = System.Math.Sign(deltaX);
             int signY = System.Math.Sign(deltaY);
 
-            if ((hRemainder > 0) != (deltaX > 0))
+            if (deltaX == 0 || (hRemainder > 0 != deltaX > 0))
             {
                 hRemainder = 0.0;
             }
 
-            if ((vRemainder > 0) != (deltaY > 0))
+            if (deltaY == 0 || (vRemainder > 0 != deltaY > 0))
             {
                 vRemainder = 0.0;
             }
@@ -170,10 +170,10 @@ namespace DS4Windows
             //vRemainder -= (int)vRemainder;
 
             int gyroInvert = Global.getGyroInvert(deviceNumber);
-            if (gyroInvert == 2 || gyroInvert == 3)
+            if ((gyroInvert & 0x02) == 2)
                 xAction *= -1;
 
-            if (gyroInvert == 1 || gyroInvert == 3)
+            if ((gyroInvert & 0x01) == 1)
                 yAction *= -1;
 
             if (yAction != 0 || xAction != 0)

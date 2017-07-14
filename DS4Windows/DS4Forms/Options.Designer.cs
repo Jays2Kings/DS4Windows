@@ -76,6 +76,8 @@
             this.nUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.pnlTPMouse = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.touchpadInvertComboBox = new System.Windows.Forms.ComboBox();
             this.cbStartTouchpadOff = new System.Windows.Forms.CheckBox();
             this.rBTPControls = new System.Windows.Forms.RadioButton();
             this.rBTPMouse = new System.Windows.Forms.RadioButton();
@@ -342,8 +344,8 @@
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            this.touchpadInvertComboBox = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -903,6 +905,24 @@
             this.pnlTPMouse.Controls.Add(this.cbStartTouchpadOff);
             resources.ApplyResources(this.pnlTPMouse, "pnlTPMouse");
             this.pnlTPMouse.Name = "pnlTPMouse";
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // touchpadInvertComboBox
+            // 
+            this.touchpadInvertComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.touchpadInvertComboBox.FormattingEnabled = true;
+            this.touchpadInvertComboBox.Items.AddRange(new object[] {
+            resources.GetString("touchpadInvertComboBox.Items"),
+            resources.GetString("touchpadInvertComboBox.Items1"),
+            resources.GetString("touchpadInvertComboBox.Items2"),
+            resources.GetString("touchpadInvertComboBox.Items3")});
+            resources.ApplyResources(this.touchpadInvertComboBox, "touchpadInvertComboBox");
+            this.touchpadInvertComboBox.Name = "touchpadInvertComboBox";
+            this.touchpadInvertComboBox.SelectedIndexChanged += new System.EventHandler(this.touchpadInvertComboBox_SelectedIndexChanged);
             // 
             // cbStartTouchpadOff
             // 
@@ -3087,6 +3107,8 @@
             // 
             // pnlSAMouse
             // 
+            this.pnlSAMouse.Controls.Add(this.cBGyroMouseXAxis);
+            this.pnlSAMouse.Controls.Add(this.label16);
             this.pnlSAMouse.Controls.Add(this.lbGyroSmooth);
             this.pnlSAMouse.Controls.Add(this.cBGyroSmooth);
             this.pnlSAMouse.Controls.Add(this.lbSmoothWeight);
@@ -3631,23 +3653,21 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
-            // touchpadInvertComboBox
+            // label16
             // 
-            this.touchpadInvertComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.touchpadInvertComboBox.FormattingEnabled = true;
-            this.touchpadInvertComboBox.Items.AddRange(new object[] {
-            resources.GetString("touchpadInvertComboBox.Items"),
-            resources.GetString("touchpadInvertComboBox.Items1"),
-            resources.GetString("touchpadInvertComboBox.Items2"),
-            resources.GetString("touchpadInvertComboBox.Items3")});
-            resources.ApplyResources(this.touchpadInvertComboBox, "touchpadInvertComboBox");
-            this.touchpadInvertComboBox.Name = "touchpadInvertComboBox";
-            this.touchpadInvertComboBox.SelectedIndexChanged += new System.EventHandler(this.touchpadInvertComboBox_SelectedIndexChanged);
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
             // 
-            // label15
+            // cBGyroMouseXAxis
             // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
+            this.cBGyroMouseXAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBGyroMouseXAxis.FormattingEnabled = true;
+            this.cBGyroMouseXAxis.Items.AddRange(new object[] {
+            resources.GetString("cBGyroMouseXAxis.Items"),
+            resources.GetString("cBGyroMouseXAxis.Items1")});
+            resources.ApplyResources(this.cBGyroMouseXAxis, "cBGyroMouseXAxis");
+            this.cBGyroMouseXAxis.Name = "cBGyroMouseXAxis";
+            this.cBGyroMouseXAxis.SelectedIndexChanged += new System.EventHandler(this.cBGyroMouseXAxis_SelectedIndexChanged);
             // 
             // Options
             // 
@@ -4088,5 +4108,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox touchpadInvertComboBox;
+        private System.Windows.Forms.ComboBox cBGyroMouseXAxis;
+        private System.Windows.Forms.Label label16;
     }
 }

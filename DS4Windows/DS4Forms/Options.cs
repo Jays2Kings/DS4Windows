@@ -574,27 +574,28 @@ namespace DS4Windows
 
                 string[] satriggers = SATriggers[device].Split(',');
                 List<string> s = new List<string>();
+                int gyroTriggerCount = cMGyroTriggers.Items.Count;
                 for (int i = 0, satrigLen = satriggers.Length; i < satrigLen; i++)
                 {
-                    int tr;
+                    int tr = 0;
                     if (int.TryParse(satriggers[i], out tr))
                     {
-                        if (tr < cMGyroTriggers.Items.Count && tr > -1)
+                        if (tr < gyroTriggerCount && tr > -1)
                         {
                             ((ToolStripMenuItem)cMGyroTriggers.Items[tr]).Checked = true;
                             s.Add(cMGyroTriggers.Items[tr].Text);
                         }
                         else
                         {
-                            ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = true;
-                            s.Add(cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1].Text);
+                            ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = true;
+                            s.Add(cMGyroTriggers.Items[gyroTriggerCount - 1].Text);
                             break;
                         }
                     }
                     else
                     {
-                        ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = true;
-                        s.Add(cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1].Text);
+                        ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = true;
+                        s.Add(cMGyroTriggers.Items[gyroTriggerCount - 1].Text);
                         break;
                     }
                 }
@@ -602,13 +603,14 @@ namespace DS4Windows
                 gyroTriggerBehavior.Checked = GyroTriggerTurns[device];
                 nUDGyroMouseVertScale.Value = GyroSensVerticalScale[device];
                 int invert = GyroInvert[device];
-                cBGyroInvertX.Checked = invert == 2 || invert == 3;
-                cBGyroInvertY.Checked = invert == 1 || invert == 3;
+                cBGyroInvertX.Checked = (invert & 0x02) == 2;
+                cBGyroInvertY.Checked = (invert & 0x01) == 1;
                 if (s.Count > 0)
                     btnGyroTriggers.Text = string.Join(", ", s);
 
                 cBGyroSmooth.Checked = nUDGyroSmoothWeight.Enabled = GyroSmoothing[device];
                 nUDGyroSmoothWeight.Value = (decimal)(GyroSmoothingWeight[device]);
+                cBGyroMouseXAxis.SelectedIndex = GyroMouseHorizontalAxis[device];
             }
             else
             {
@@ -700,6 +702,7 @@ namespace DS4Windows
                 cBGyroInvertY.Checked = false;
                 cBGyroSmooth.Checked = false;
                 nUDGyroSmoothWeight.Value = 0.5m;
+                cBGyroMouseXAxis.SelectedIndex = 0;
                 Set();
             }
             
@@ -724,7 +727,7 @@ namespace DS4Windows
                     case "Macro": lvi.SubItems.Add(Properties.Resources.Macro + (action.keyType.HasFlag(DS4KeyType.ScanCode) ? " (" + Properties.Resources.ScanCode + ")" : "")); break;
                     case "Program": lvi.SubItems.Add(Properties.Resources.LaunchProgram.Replace("*program*", Path.GetFileNameWithoutExtension(action.details))); break;
                     case "Profile": lvi.SubItems.Add(Properties.Resources.LoadProfile.Replace("*profile*", action.details)); break;
-                    case "Key": lvi.SubItems.Add(((Keys)int.Parse(action.details)).ToString() + (action.uTrigger.Count > 0 ? " (Toggle)" : "")); break;
+                    case "Key": lvi.SubItems.Add(((Keys)Convert.ToInt32(action.details)).ToString() + (action.uTrigger.Count > 0 ? " (Toggle)" : "")); break;
                     case "DisconnectBT":
                         lvi.SubItems.Add(Properties.Resources.DisconnectBT);
                         break;
@@ -762,18 +765,7 @@ namespace DS4Windows
             }
         }
 
-        /*public double Clamp(double min, double value, double max)
-        {
-            if (value > max)
-                return max;
-            else if (value < min)
-                return min;
-            else
-                return value;
-        }
-        */
-
-        void EnableReadings(bool on)
+        private void EnableReadings(bool on)
         {
             lbL2Track.Enabled = on;
             lbR2Track.Enabled = on;
@@ -788,13 +780,14 @@ namespace DS4Windows
             btnSATrackS.Visible = on;
         }
 
-        void ControllerReadout_Tick(object sender, EventArgs e)
+        private void ControllerReadout_Tick(object sender, EventArgs e)
         {
             // MEMS gyro data is all calibrated to roughly -1G..1G for values -0x2000..0x1fff
             // Enough additional acceleration and we are no longer mostly measuring Earth's gravity...
             // We should try to indicate setpoints of the calibration when exposing this measurement....
             int tempDeviceNum = (int)nUDSixaxis.Value - 1;
             DS4Device ds = Program.rootHub.DS4Controllers[tempDeviceNum];
+
             if (ds == null)
             {
                 EnableReadings(false);
@@ -805,15 +798,19 @@ namespace DS4Windows
             else
             {
                 EnableReadings(true);
-                SetDynamicTrackBarValue(tBsixaxisGyroX, (-Program.rootHub.ExposedState[tempDeviceNum].GyroYaw + tBsixaxisGyroX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroY, (Program.rootHub.ExposedState[tempDeviceNum].GyroPitch + tBsixaxisGyroY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroZ, (-Program.rootHub.ExposedState[tempDeviceNum].GyroRoll + tBsixaxisGyroZ.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelX, (int)(-Program.rootHub.ExposedState[tempDeviceNum].AccelX + tBsixaxisAccelX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelY, (int)(-Program.rootHub.ExposedState[tempDeviceNum].AccelY + tBsixaxisAccelY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelZ, (int)(Program.rootHub.ExposedState[tempDeviceNum].AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
 
-                int x = Program.rootHub.getDS4State(tempDeviceNum).LX;
-                int y = Program.rootHub.getDS4State(tempDeviceNum).LY;
+                DS4StateExposed exposeState = Program.rootHub.ExposedState[tempDeviceNum];
+                DS4State baseState = Program.rootHub.getDS4State(tempDeviceNum);
+
+                SetDynamicTrackBarValue(tBsixaxisGyroX, (-exposeState.GyroYaw + tBsixaxisGyroX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroY, (exposeState.GyroPitch + tBsixaxisGyroY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroZ, (-exposeState.GyroRoll + tBsixaxisGyroZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelX, (-exposeState.AccelX + tBsixaxisAccelX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelY, (-exposeState.AccelY + tBsixaxisAccelY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelZ, (exposeState.AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
+
+                int x = baseState.LX;
+                int y = baseState.LY;
 
                 double tempLSS = (double)nUDLSS.Value;
                 btnLSTrackS.Visible = tempLSS != 1;
@@ -857,8 +854,8 @@ namespace DS4Windows
                         (int)(tempLSS * (btnLSTrack.Location.Y - pnlLSTrack.Size.Height / 2f) + pnlLSTrack.Size.Height / 2f));
                 }
 
-                x = Program.rootHub.getDS4State(tempDeviceNum).RX;
-                y = Program.rootHub.getDS4State(tempDeviceNum).RY;
+                x = baseState.RX;
+                y = baseState.RY;
 
                 double tempRSS = (double)nUDRSS.Value;
                 btnRSTrackS.Visible = tempRSS != 1;
@@ -902,8 +899,8 @@ namespace DS4Windows
                         (int)(tempRSS * (btnRSTrack.Location.Y - pnlRSTrack.Size.Height / 2f) + pnlRSTrack.Size.Height / 2f));
                 }
 
-                x = -Program.rootHub.ExposedState[tempDeviceNum].AccelX + 127;
-                y = Program.rootHub.ExposedState[tempDeviceNum].AccelZ + 127;
+                x = -exposeState.AccelX + 127;
+                y = exposeState.AccelZ + 127;
                 btnSATrack.Location = new Point((int)(dpix * Global.Clamp(0, x / 2.09, pnlSATrack.Size.Width)), (int)(dpiy * Global.Clamp(0, y / 2.09, pnlSATrack.Size.Height)));
 
                 double tempSXS = (double)nUDSXS.Value;
@@ -917,7 +914,7 @@ namespace DS4Windows
 
                 double tempL2 = (double)nUDL2.Value;
                 double tempL2S = (double)nUDL2S.Value;
-                tBL2.Value = Program.rootHub.getDS4State(tempDeviceNum).L2;
+                tBL2.Value = baseState.L2;
                 lbL2Track.Location = new Point(tBL2.Location.X - (int)(dpix * 25), 
                     Math.Max((int)(((tBL2.Location.Y + tBL2.Size.Height) - (tBL2.Value * tempL2S) / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
                     (int)(1 * ((tBL2.Location.Y + tBL2.Size.Height) - 255 / (tBL2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20)));
@@ -931,7 +928,7 @@ namespace DS4Windows
 
                 double tempR2 = (double)nUDR2.Value;
                 double tempR2S = (double)nUDR2S.Value;
-                tBR2.Value = Program.rootHub.getDS4State(tempDeviceNum).R2;
+                tBR2.Value = baseState.R2;
                 lbR2Track.Location = new Point(tBR2.Location.X + (int)(dpix * 25),
                      Math.Max((int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - (tBR2.Value * tempR2S) / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20),
                      (int)(1 * ((tBR2.Location.Y + tBR2.Size.Height) - 255 / (tBR2.Size.Height * .0209f / Math.Pow(dpix, 2))) - dpix * 20)));
@@ -951,7 +948,7 @@ namespace DS4Windows
                     lbInputDelay.BackColor = Color.Red;
                     lbInputDelay.ForeColor = Color.White;
                 }
-                else if (latency > (warnInterval / 2))
+                else if (latency > (warnInterval * 0.5))
                 {
                     lbInputDelay.BackColor = Color.Yellow;
                     lbInputDelay.ForeColor = Color.Black;
@@ -1367,6 +1364,7 @@ namespace DS4Windows
             GyroSensVerticalScale[device] = (int)nUDGyroMouseVertScale.Value;
             GyroSmoothing[device] = cBGyroSmooth.Checked;
             GyroSmoothingWeight[device] = (double)nUDGyroSmoothWeight.Value;
+            GyroMouseHorizontalAxis[device] = cBGyroMouseXAxis.SelectedIndex;
 
             int invert = 0;
             if (cBGyroInvertX.Checked)
@@ -2911,6 +2909,14 @@ namespace DS4Windows
             {
                 tempInt = touchpadInvertToValue[touchpadInvertComboBox.SelectedIndex];
                 TouchpadInvert[device] = tempInt;
+            }
+        }
+
+        private void cBGyroMouseXAxis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                GyroMouseHorizontalAxis[device] = cBGyroMouseXAxis.SelectedIndex;
             }
         }
 

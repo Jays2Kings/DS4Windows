@@ -37,7 +37,8 @@ namespace DS4Windows
         public virtual void sixaxisMoved(SixAxisEventArgs arg)
         {
             int deltaX = 0, deltaY = 0;
-            deltaX = arg.sixAxis.gyroYawFull;
+            deltaX = Global.getGyroMouseHorizontalAxis(deviceNumber) == 0 ? arg.sixAxis.gyroYawFull :
+                arg.sixAxis.gyroRollFull;
             deltaY = -arg.sixAxis.gyroPitchFull;
             //Console.WriteLine(arg.sixAxis.deltaX);
 

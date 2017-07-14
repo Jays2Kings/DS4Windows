@@ -608,6 +608,12 @@ namespace DS4Windows
             return m_Config.gyroSmoothWeight[index];
         }
 
+        public static int[] GyroMouseHorizontalAxis => m_Config.gyroMouseHorizontalAxis;
+        public static int getGyroMouseHorizontalAxis(int index)
+        {
+            return m_Config.gyroMouseHorizontalAxis[index];
+        }
+
         public static DS4Color[] MainColor => m_Config.m_Leds;
         public static DS4Color getMainColor(int index)
         {
@@ -1274,6 +1280,7 @@ namespace DS4Windows
         public bool[] gyroTriggerTurns = { true, true, true, true, true };
         public bool[] gyroSmoothing = { false, false, false, false, false };
         public double[] gyroSmoothWeight = { 0.5, 0.5, 0.5, 0.5, 0.5 };
+        public int[] gyroMouseHorizontalAxis = new int[5] { 0, 0, 0, 0, 0 };
 
         bool tempBool = false;
 
@@ -1492,6 +1499,7 @@ namespace DS4Windows
                 XmlNode xmlGyroTriggerTurns = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroTriggerTurns", null); xmlGyroTriggerTurns.InnerText = gyroTriggerTurns[device].ToString(); Node.AppendChild(xmlGyroTriggerTurns);
                 XmlNode xmlGyroSmoothWeight = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSmoothingWeight", null); xmlGyroSmoothWeight.InnerText = Convert.ToInt32(gyroSmoothWeight[device] * 100).ToString(); Node.AppendChild(xmlGyroSmoothWeight);
                 XmlNode xmlGyroSmoothing = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSmoothing", null); xmlGyroSmoothing.InnerText = gyroSmoothing[device].ToString(); Node.AppendChild(xmlGyroSmoothing);
+                XmlNode xmlGyroMouseHAxis = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroMouseHAxis", null); xmlGyroMouseHAxis.InnerText = gyroMouseHorizontalAxis[device].ToString(); Node.AppendChild(xmlGyroMouseHAxis);
                 XmlNode xmlLSC = m_Xdoc.CreateNode(XmlNodeType.Element, "LSCurve", null); xmlLSC.InnerText = lsCurve[device].ToString(); Node.AppendChild(xmlLSC);
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
@@ -2441,6 +2449,9 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSmoothingWeight"); int temp = 0; int.TryParse(Item.InnerText, out temp); gyroSmoothWeight[device] = Math.Min(Math.Max(0.0, Convert.ToDouble(temp * 0.01)), 1.0); }
                 catch { gyroSmoothWeight[device] = 0.5; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroMouseHAxis"); int temp = 0; int.TryParse(Item.InnerText, out temp); gyroMouseHorizontalAxis[device] = Math.Min(Math.Max(0, temp), 1); }
+                catch { gyroMouseHorizontalAxis[device] = 0; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSCurve"); int.TryParse(Item.InnerText, out lsCurve[device]); }
                 catch { lsCurve[device] = 0; missingSetting = true; }
@@ -3499,6 +3510,7 @@ namespace DS4Windows
             gyroTriggerTurns[device] = true;
             gyroSmoothing[device] = false;
             gyroSmoothWeight[device] = 0.5;
+            gyroMouseHorizontalAxis[device] = 0;
             lsOutCurveMode[device] = 0;
             rsOutCurveMode[device] = 0;
         }

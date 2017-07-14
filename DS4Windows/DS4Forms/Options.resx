@@ -7126,6 +7126,60 @@ with profile</value>
   <data name="&gt;&gt;rBSAMouse.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="cBGyroMouseXAxis.Items" xml:space="preserve">
+    <value>Yaw</value>
+  </data>
+  <data name="cBGyroMouseXAxis.Items1" xml:space="preserve">
+    <value>Roll</value>
+  </data>
+  <data name="cBGyroMouseXAxis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 93</value>
+  </data>
+  <data name="cBGyroMouseXAxis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 21</value>
+  </data>
+  <data name="cBGyroMouseXAxis.TabIndex" type="System.Int32, mscorlib">
+    <value>271</value>
+  </data>
+  <data name="&gt;&gt;cBGyroMouseXAxis.Name" xml:space="preserve">
+    <value>cBGyroMouseXAxis</value>
+  </data>
+  <data name="&gt;&gt;cBGyroMouseXAxis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBGyroMouseXAxis.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;cBGyroMouseXAxis.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>167, 74</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 13</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>270</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>X Axis:</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>pnlSAMouse</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="lbGyroSmooth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -7151,7 +7205,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroSmooth.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="cBGyroSmooth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7181,7 +7235,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;cBGyroSmooth.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="lbSmoothWeight.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7211,7 +7265,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbSmoothWeight.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="nUDGyroSmoothWeight.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -7235,7 +7289,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;nUDGyroSmoothWeight.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7265,7 +7319,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="nUDGyroMouseVertScale.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 93</value>
@@ -7286,7 +7340,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;nUDGyroMouseVertScale.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7316,7 +7370,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="gyroTriggerBehavior.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7349,7 +7403,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;gyroTriggerBehavior.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="cBGyroInvertY.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7382,7 +7436,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;cBGyroInvertY.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="cBGyroInvertX.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7415,7 +7469,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;cBGyroInvertX.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="lbGyroInvert.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7448,7 +7502,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroInvert.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="lbGyroTriggers.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7481,7 +7535,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroTriggers.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="btnGyroTriggers.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -7511,7 +7565,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;btnGyroTriggers.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="nUDGyroSensitivity.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 67</value>
@@ -7532,7 +7586,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;nUDGyroSensitivity.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="lbGyroSens.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7565,7 +7619,7 @@ with profile</value>
     <value>pnlSAMouse</value>
   </data>
   <data name="&gt;&gt;lbGyroSens.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="pnlSAMouse.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 43</value>

@@ -56,9 +56,9 @@ namespace DS4Windows
             gyro = value;
         }
 
-        public int GyroYaw { get { return (short)((ushort)(gyro[3] << 8) | gyro[2]) / 256; } }
+        public int GyroYaw { get { return -(short)((ushort)(gyro[3] << 8) | gyro[2]) / 256; } }
         public int GyroPitch { get { return (short)((ushort)(gyro[1] << 8) | gyro[0]) / 256; } }
-        public int GyroRoll { get { return (short)((ushort)(gyro[5] << 8) | gyro[4]) / 256; } }
+        public int GyroRoll { get { return -(short)((ushort)(gyro[5] << 8) | gyro[4]) / 256; } }
 
         public int AccelX { get { return (short)((ushort)(accel[1] << 8) | accel[0]) / 64; } }
         public int getAccelX()

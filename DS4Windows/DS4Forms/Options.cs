@@ -802,9 +802,9 @@ namespace DS4Windows
                 DS4StateExposed exposeState = Program.rootHub.ExposedState[tempDeviceNum];
                 DS4State baseState = Program.rootHub.getDS4State(tempDeviceNum);
 
-                SetDynamicTrackBarValue(tBsixaxisGyroX, (-exposeState.GyroYaw + tBsixaxisGyroX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroX, (exposeState.GyroYaw + tBsixaxisGyroX.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisGyroY, (exposeState.GyroPitch + tBsixaxisGyroY.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisGyroZ, (-exposeState.GyroRoll + tBsixaxisGyroZ.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisGyroZ, (exposeState.GyroRoll + tBsixaxisGyroZ.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisAccelX, (-exposeState.AccelX + tBsixaxisAccelX.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisAccelY, (-exposeState.AccelY + tBsixaxisAccelY.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisAccelZ, (exposeState.AccelZ + tBsixaxisAccelZ.Value * 2) / 3);

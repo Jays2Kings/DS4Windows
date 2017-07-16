@@ -31,8 +31,9 @@ namespace DS4Windows
         double coefficient = 0.0;
         double verticalScale = 0.0;
         bool gyroSmooth = false;
-        //double gyroSmoothWeight = 0.0;
+
         int tempInt = 0;
+        double tempDouble = 0.0;
 
         public virtual void sixaxisMoved(SixAxisEventArgs arg)
         {
@@ -40,7 +41,7 @@ namespace DS4Windows
             deltaX = Global.getGyroMouseHorizontalAxis(deviceNumber) == 0 ? arg.sixAxis.gyroYawFull :
                 arg.sixAxis.gyroRollFull;
             deltaY = -arg.sixAxis.gyroPitchFull;
-            //Console.WriteLine(arg.sixAxis.deltaX);
+            tempDouble = arg.sixAxis.elapsed * 0.001 * 250.0;
 
             gyroSmooth = Global.getGyroSmoothing(deviceNumber);
             double gyroSmoothWeight = 0.0;
@@ -95,32 +96,23 @@ namespace DS4Windows
                 deltaY = 0;
             }
 
-            double xMotion = deltaX != 0 ? coefficient * deltaX + (normX * (offset * signX)) : 0;
+            double xMotion = deltaX != 0 ? coefficient * (deltaX * tempDouble)
+                + (normX * (offset * signX)) : 0;
+
             int xAction = 0;
             if (xMotion != 0.0)
             {
                 xMotion += hRemainder;
-                //xAction = (int)xMotion;
-                //hRemainder = xMotion - xAction;
-            }
-            else
-            {
-                //hRemainder = 0.0;
             }
 
-            //hRemainder -= (int)hRemainder;
             verticalScale = Global.getGyroSensVerticalScale(deviceNumber) * 0.01;
-            double yMotion = deltaY != 0 ? (coefficient * verticalScale) * deltaY + (normY * (offset * signY)) : 0;
+            double yMotion = deltaY != 0 ? (coefficient * verticalScale) * (deltaY * tempDouble)
+                + (normY * (offset * signY)) : 0;
+
             int yAction = 0;
             if (yMotion != 0.0)
             {
                 yMotion += vRemainder;
-                //yAction = (int)yMotion;
-                //vRemainder = yMotion - yAction;
-            }
-            else
-            {
-                //vRemainder = 0.0;
             }
 
             if (gyroSmooth)
@@ -133,9 +125,10 @@ namespace DS4Windows
                 double currentWeight = 1.0;
                 double finalWeight = 0.0;
                 double x_out = 0.0, y_out = 0.0;
+                int idx = 0;
                 for (int i = 0; i < SMOOTH_BUFFER_LEN; i++)
                 {
-                    int idx = System.Math.Abs(smoothBufferTail - i - 1) % SMOOTH_BUFFER_LEN;
+                    idx = System.Math.Abs(smoothBufferTail - i - 1) % SMOOTH_BUFFER_LEN;
                     x_out += xSmoothBuffer[idx] * currentWeight;
                     y_out += ySmoothBuffer[idx] * currentWeight;
                     finalWeight += currentWeight;
@@ -167,8 +160,6 @@ namespace DS4Windows
             {
                 vRemainder = 0.0;
             }
-
-            //vRemainder -= (int)vRemainder;
 
             int gyroInvert = Global.getGyroInvert(deviceNumber);
             if ((gyroInvert & 0x02) == 2)

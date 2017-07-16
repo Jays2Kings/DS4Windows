@@ -851,7 +851,7 @@ namespace DS4Windows
                 // Store Gyro and Accel values
                 Array.Copy(inputReport, 13, gyro, 0, 6);
                 Array.Copy(inputReport, 19, accel, 0, 6);
-                sixAxis.handleSixaxis(gyro, accel, cState);
+                sixAxis.handleSixaxis(gyro, accel, cState, lastTimeElapsedDouble);
 
                 /* Debug output of incoming HID data:
                 if (cState.L2 == 0xff && cState.R2 == 0xff)

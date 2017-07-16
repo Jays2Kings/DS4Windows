@@ -21,7 +21,7 @@ namespace DS4Windows
         private double GYRO_MOUSE_COEFFICIENT = 0.0095;
         private int GYRO_MOUSE_DEADZONE = 12;
         private double GYRO_MOUSE_OFFSET = 0.1463;
-        private double GYRO_SMOOTH_MOUSE_OFFSET = 0.14698;
+        private double GYRO_SMOOTH_MOUSE_OFFSET = 0.14695;
 
         private const int SMOOTH_BUFFER_LEN = 3;
         private double[] xSmoothBuffer = new double[SMOOTH_BUFFER_LEN];
@@ -41,7 +41,7 @@ namespace DS4Windows
             deltaX = Global.getGyroMouseHorizontalAxis(deviceNumber) == 0 ? arg.sixAxis.gyroYawFull :
                 arg.sixAxis.gyroRollFull;
             deltaY = -arg.sixAxis.gyroPitchFull;
-            tempDouble = arg.sixAxis.elapsed * 0.001 * 250.0;
+            tempDouble = arg.sixAxis.elapsed * 0.001 * 250.0; // Base default speed on 4 ms
 
             gyroSmooth = Global.getGyroSmoothing(deviceNumber);
             double gyroSmoothWeight = 0.0;

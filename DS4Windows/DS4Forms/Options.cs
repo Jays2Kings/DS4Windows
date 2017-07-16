@@ -805,8 +805,8 @@ namespace DS4Windows
                 SetDynamicTrackBarValue(tBsixaxisGyroX, (exposeState.GyroYaw + tBsixaxisGyroX.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisGyroY, (exposeState.GyroPitch + tBsixaxisGyroY.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisGyroZ, (exposeState.GyroRoll + tBsixaxisGyroZ.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelX, (-exposeState.AccelX + tBsixaxisAccelX.Value * 2) / 3);
-                SetDynamicTrackBarValue(tBsixaxisAccelY, (-exposeState.AccelY + tBsixaxisAccelY.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelX, (exposeState.AccelX + tBsixaxisAccelX.Value * 2) / 3);
+                SetDynamicTrackBarValue(tBsixaxisAccelY, (exposeState.AccelY + tBsixaxisAccelY.Value * 2) / 3);
                 SetDynamicTrackBarValue(tBsixaxisAccelZ, (exposeState.AccelZ + tBsixaxisAccelZ.Value * 2) / 3);
 
                 int x = baseState.LX;
@@ -899,7 +899,7 @@ namespace DS4Windows
                         (int)(tempRSS * (btnRSTrack.Location.Y - pnlRSTrack.Size.Height / 2f) + pnlRSTrack.Size.Height / 2f));
                 }
 
-                x = -exposeState.AccelX + 127;
+                x = exposeState.AccelX + 127;
                 y = exposeState.AccelZ + 127;
                 btnSATrack.Location = new Point((int)(dpix * Global.Clamp(0, x / 2.09, pnlSATrack.Size.Width)), (int)(dpiy * Global.Clamp(0, y / 2.09, pnlSATrack.Size.Height)));
 

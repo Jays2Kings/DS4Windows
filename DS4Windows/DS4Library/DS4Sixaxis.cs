@@ -23,18 +23,18 @@ namespace DS4Windows
         public readonly SixAxis previousAxis = null;
         public SixAxis(int X, int Y, int Z, int aX, int aY, int aZ, double milliseconds, SixAxis prevAxis = null)
         {
-            gyroX = X / 256;
+            gyroX = -X / 256;
             gyroY = Y / 256;
-            gyroZ = Z / 256;
+            gyroZ = -Z / 256;
             gyroYawFull = -X;
             gyroPitchFull = Y;
             gyroRollFull = -Z;
 
-            accelX = aX / 64;
-            accelY = aY / 64;
+            accelX = -aX / 64;
+            accelY = -aY / 64;
             accelZ = aZ / 64;
-            accelXFull = aX;
-            accelYFull = aY;
+            accelXFull = -aX;
+            accelYFull = -aY;
             accelZFull = aZ;
             elapsed = milliseconds;
 

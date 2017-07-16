@@ -74,6 +74,7 @@ namespace DS4Windows
                     sPrev = new SixAxis(lastGyroX, lastGyroY, lastGyroZ, lastAX, lastAY, lastAZ, lastMilliseconds);
                     now = new SixAxis(currentX, currentY, currentZ, AccelX, AccelY, AccelZ, milliseconds, sPrev);
                     args = new SixAxisEventArgs(state.ReportTimeStamp, now);
+                    state.Motion = now;
                     SixAccelMoved(this, args);
                 }
 

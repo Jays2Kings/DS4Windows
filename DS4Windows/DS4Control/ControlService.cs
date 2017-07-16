@@ -747,7 +747,7 @@ namespace DS4Windows
                     }
                 }
 
-                device.getExposedState(ExposedState[ind], CurrentState[ind]);
+                device.getCurrentState(CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
                 device.getPreviousState(PreviousState[ind]);
                 DS4State pState = PreviousState[ind];

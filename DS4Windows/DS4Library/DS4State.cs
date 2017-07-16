@@ -23,6 +23,7 @@ namespace DS4Windows
         public double LYUnit;
         public double RXUnit;
         public double RYUnit;
+        public SixAxis Motion = null;
         public static readonly int DEFAULT_AXISDIR_VALUE = 127;
 
         public DS4State()
@@ -45,6 +46,7 @@ namespace DS4Windows
             LYUnit = 0.0;
             RXUnit = 0.0;
             RYUnit = 0.0;
+            Motion = null;
         }
 
         public DS4State(DS4State state)
@@ -91,6 +93,7 @@ namespace DS4Windows
             LYUnit = state.LYUnit;
             RXUnit = state.RXUnit;
             RYUnit = state.RYUnit;
+            Motion = state.Motion;
         }
 
         public DS4State Clone()
@@ -142,6 +145,7 @@ namespace DS4Windows
             state.LYUnit = LYUnit;
             state.RXUnit = RXUnit;
             state.RYUnit = RYUnit;
+            state.Motion = Motion;
         }
 
         public void calculateStickAngles()

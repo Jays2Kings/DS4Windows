@@ -21,7 +21,7 @@ namespace DS4Windows
         private double GYRO_MOUSE_COEFFICIENT = 0.0095;
         private int GYRO_MOUSE_DEADZONE = 12;
         private double GYRO_MOUSE_OFFSET = 0.1463;
-        private double GYRO_SMOOTH_MOUSE_OFFSET = 0.14695;
+        private double GYRO_SMOOTH_MOUSE_OFFSET = 0.14696;
 
         private const int SMOOTH_BUFFER_LEN = 3;
         private double[] xSmoothBuffer = new double[SMOOTH_BUFFER_LEN];

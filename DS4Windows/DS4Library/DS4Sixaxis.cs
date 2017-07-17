@@ -15,7 +15,7 @@ namespace DS4Windows
 
     public class SixAxis
     {
-        public readonly int gyroX, gyroY, gyroZ, deltaX, deltaY, deltaZ, accelX, accelY, accelZ;
+        public readonly int gyroYaw, gyroPitch, gyroRoll, deltaX, deltaY, deltaZ, accelX, accelY, accelZ;
         public readonly int gyroYawFull, gyroPitchFull, gyroRollFull;
         public readonly int accelXFull, accelYFull, accelZFull;
         public readonly byte touchID;
@@ -23,16 +23,18 @@ namespace DS4Windows
         public readonly SixAxis previousAxis = null;
         public SixAxis(int X, int Y, int Z, int aX, int aY, int aZ, double milliseconds, SixAxis prevAxis = null)
         {
-            gyroX = -X / 256;
-            gyroY = Y / 256;
-            gyroZ = -Z / 256;
+            gyroYaw = -X / 256;
+            gyroPitch = Y / 256;
+            gyroRoll = -Z / 256;
             gyroYawFull = -X;
             gyroPitchFull = Y;
             gyroRollFull = -Z;
 
+            // Put accel ranges between 0 - 128 abs
             accelX = -aX / 64;
             accelY = -aY / 64;
             accelZ = aZ / 64;
+
             accelXFull = -aX;
             accelYFull = -aY;
             accelZFull = aZ;
@@ -41,26 +43,29 @@ namespace DS4Windows
             previousAxis = prevAxis;
             if (previousAxis != null)
             {
-                deltaX = gyroX - previousAxis.gyroX;
-                deltaY = gyroY - previousAxis.gyroY;
-                deltaZ = gyroZ - previousAxis.gyroZ;
+                deltaX = gyroYaw - previousAxis.gyroYaw;
+                deltaY = gyroPitch - previousAxis.gyroPitch;
+                deltaZ = gyroRoll - previousAxis.gyroRoll;
             }
         }
     }
 
     public class DS4SixAxis
     {
-        public event EventHandler<SixAxisEventArgs> SixAccelMoved = null; // no status change for the touchpad itself... but other sensors may have changed, or you may just want to do some processing
+        // no status change for the touchpad itself... but other sensors may have changed, or you may just want to do some processing
+        public event EventHandler<SixAxisEventArgs> SixAccelMoved = null;
 
-        internal int lastGyroX, lastGyroY, lastGyroZ, lastAX, lastAY, lastAZ; // tracks 0, 1 or 2 touches; we maintain touch 1 and 2 separately
+        internal int lastGyroYaw, lastGyroPitch, lastGyroRoll,
+            lastAX, lastAY, lastAZ; // tracks 0, 1 or 2 touches; we maintain touch 1 and 2 separately
+
         internal double lastMilliseconds;
         internal byte[] previousPacket = new byte[8];
 
         public void handleSixaxis(byte[] gyro, byte[] accel, DS4State state, double milliseconds)
         {
-            int currentX = (short)((ushort)(gyro[3] << 8) | gyro[2]); // Gyro Yaw
-            int currentY = (short)((ushort)(gyro[1] << 8) | gyro[0]); // Gyro Pitch
-            int currentZ = (short)((ushort)(gyro[5] << 8) | gyro[4]); // Gyro Roll
+            int currentYaw = (short)((ushort)(gyro[3] << 8) | gyro[2]);   // Gyro Yaw
+            int currentPitch = (short)((ushort)(gyro[1] << 8) | gyro[0]); // Gyro Pitch
+            int currentRoll = (short)((ushort)(gyro[5] << 8) | gyro[4]);  // Gyro Roll
             int AccelX = (short)((ushort)(accel[1] << 8) | accel[0]);
             int AccelY = (short)((ushort)(accel[3] << 8) | accel[2]);
             int AccelZ = (short)((ushort)(accel[5] << 8) | accel[4]);
@@ -71,16 +76,20 @@ namespace DS4Windows
                 if (SixAccelMoved != null)
                 {
                     SixAxis sPrev = null, now = null;
-                    sPrev = new SixAxis(lastGyroX, lastGyroY, lastGyroZ, lastAX, lastAY, lastAZ, lastMilliseconds);
-                    now = new SixAxis(currentX, currentY, currentZ, AccelX, AccelY, AccelZ, milliseconds, sPrev);
+                    sPrev = new SixAxis(lastGyroYaw, lastGyroPitch, lastGyroRoll,
+                        lastAX, lastAY, lastAZ, lastMilliseconds);
+
+                    now = new SixAxis(currentYaw, currentPitch, currentRoll,
+                        AccelX, AccelY, AccelZ, milliseconds, sPrev);
+
                     args = new SixAxisEventArgs(state.ReportTimeStamp, now);
                     state.Motion = now;
                     SixAccelMoved(this, args);
                 }
 
-                lastGyroX = currentX;
-                lastGyroY = currentY;
-                lastGyroZ = currentZ;
+                lastGyroYaw = currentYaw;
+                lastGyroPitch = currentPitch;
+                lastGyroRoll = currentRoll;
                 lastAX = AccelX;
                 lastAY = AccelY;
                 lastAZ = AccelZ;

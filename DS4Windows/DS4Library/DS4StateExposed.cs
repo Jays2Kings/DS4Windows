@@ -43,9 +43,9 @@ namespace DS4Windows
         byte R2 { get { return _state.R2; } } 
         int Battery { get { return _state.Battery; } }
 
-        public int GyroYaw { get { return _state.Motion.gyroX; } }
-        public int GyroPitch { get { return _state.Motion.gyroY; } }
-        public int GyroRoll { get { return _state.Motion.gyroZ; } }
+        public int GyroYaw { get { return _state.Motion.gyroYaw; } }
+        public int GyroPitch { get { return _state.Motion.gyroPitch; } }
+        public int GyroRoll { get { return _state.Motion.gyroRoll; } }
 
         public int AccelX { get { return _state.Motion.accelX; } }
         public int getAccelX()

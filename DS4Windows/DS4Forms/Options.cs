@@ -616,7 +616,7 @@ namespace DS4Windows
             {
                 cBFlashType.SelectedIndex = 0;
                 cBWhileCharging.SelectedIndex = 0;
-                btPollRateComboBox.SelectedIndex = 0;
+                btPollRateComboBox.SelectedIndex = 4;
                 lsOutCurveComboBox.SelectedIndex = 0;
                 rsOutCurveComboBox.SelectedIndex = 0;
                 rBTPMouse.Checked = true;

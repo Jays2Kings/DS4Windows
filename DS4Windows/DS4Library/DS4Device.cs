@@ -1196,14 +1196,6 @@ namespace DS4Windows
             return pState.Clone();
         }
 
-        /*public void getExposedState(DS4StateExposed expState, DS4State state)
-        {
-            cState.CopyTo(state);
-            //expState.setAccel(accel);
-            //expState.setGyro(gyro);
-        }
-        */
-
         public void getCurrentState(DS4State state)
         {
             cState.CopyTo(state);

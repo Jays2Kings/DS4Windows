@@ -875,6 +875,58 @@ namespace DS4Windows
                 }
             }
 
+            bool sOff = isUsingSAforMouse(device);
+            if (!sOff)
+            {
+                double SXD = 10 * getSXDeadzone(device);
+                double SZD = 10 * getSZDeadzone(device);
+                double sxsens = getSXSens(device);
+                double szsens = getSZSens(device);
+
+                int gyroX = cState.Motion.accelX;
+                int gyroZ = cState.Motion.accelZ;
+
+                if (SXD > 0.0)
+                {
+                    int absx = Math.Abs(gyroX);
+                    if (absx > SXD)
+                    {
+                        cState.Motion.accelX = Math.Sign(gyroX) *
+                            (int)Math.Min(128, sxsens * 128 * ((absx - SXD) / (128 - SXD)));
+                    }
+                    else
+                    {
+                        cState.Motion.accelX = 0;
+                    }
+                }
+                else
+                {
+                    int absx = Math.Abs(gyroX);
+                    cState.Motion.accelX = Math.Sign(gyroX) *
+                        (int)Math.Min(128, sxsens * 128 * (absx / (double)(128)));
+                }
+
+                if (SZD > 0.0)
+                {
+                    int absz = Math.Abs(gyroZ);
+                    if (absz > SZD)
+                    {
+                        cState.Motion.accelZ = Math.Sign(gyroZ) *
+                            (int)Math.Min(128, szsens * 128 * ((absz - SZD) / (128 - SZD)));
+                    }
+                    else
+                    {
+                        cState.Motion.accelZ = 0;
+                    }
+                }
+                else
+                {
+                    int absz = Math.Abs(gyroZ);
+                    cState.Motion.accelZ = Math.Sign(gyroZ) *
+                        (int)Math.Min(128, szsens * 128 * ((absz) / (double)(128)));
+                }
+            }
+
             return dState;
         }
 
@@ -2483,33 +2535,33 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                double SXD = getSXDeadzone(device);
-                double SZD = getSZDeadzone(device);
+                //double SXD = getSXDeadzone(device);
+                //double SZD = getSZDeadzone(device);
 
                 switch (control)
                 {
                     case DS4Controls.GyroXPos:
                     {
                         int gyroX = fieldMapping.gryodirs[controlNum];
-                        value = (byte)(gyroX > SXD * 10 ? Math.Pow(root + speed / divide, gyroX) : 0);
+                        value = (byte)(gyroX > 0 ? Math.Pow(root + speed / divide, gyroX) : 0);
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
                         int gyroX = fieldMapping.gryodirs[controlNum];
-                        value = (byte)(gyroX < -SXD * 10 ? Math.Pow(root + speed / divide, -gyroX) : 0);
+                        value = (byte)(gyroX < 0 ? Math.Pow(root + speed / divide, -gyroX) : 0);
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
                         int gyroZ = fieldMapping.gryodirs[controlNum];
-                        value = (byte)(gyroZ > SZD * 10 ? Math.Pow(root + speed / divide, gyroZ) : 0);
+                        value = (byte)(gyroZ > 0 ? Math.Pow(root + speed / divide, gyroZ) : 0);
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
                         int gyroZ = fieldMapping.gryodirs[controlNum];
-                        value = (byte)(gyroZ < -SZD * 10 ? Math.Pow(root + speed / divide, -gyroZ) : 0);
+                        value = (byte)(gyroZ < 0 ? Math.Pow(root + speed / divide, -gyroZ) : 0);
                         break;
                     }
                     default: break;
@@ -2633,36 +2685,40 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                double SXD = getSXDeadzone(device);
-                double SZD = getSZDeadzone(device);
+                //double SXD = getSXDeadzone(device);
+                //double SZD = getSZDeadzone(device);
                 bool sOff = isUsingSAforMouse(device);
-                double sxsens = getSXSens(device);
-                double szsens = getSZSens(device);
+                //double sxsens = getSXSens(device);
+                //double szsens = getSZSens(device);
 
                 switch (control)
                 {
                     case DS4Controls.GyroXPos:
                     {
                         int gyroX = fieldMap.gryodirs[controlNum];
-                        result = (byte)(!sOff && sxsens * gyroX > SXD * 10 ? Math.Min(255, sxsens * gyroX * 2) : 0);
+                        //result = (byte)(!sOff && sxsens * gyroX > SXD * 10 ? Math.Min(255, sxsens * gyroX * 2) : 0);
+                        result = (byte)(!sOff ? Math.Min(255, gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
                         int gyroX = fieldMap.gryodirs[controlNum];
-                        result = (byte)(!sOff && sxsens * gyroX < -SXD * 10 ? Math.Min(255, sxsens * -gyroX * 2) : 0);
+                        //result = (byte)(!sOff && sxsens * gyroX < -SXD * 10 ? Math.Min(255, sxsens * -gyroX * 2) : 0);
+                        result = (byte)(!sOff ? Math.Min(255, -gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
                         int gyroZ = fieldMap.gryodirs[controlNum];
-                        result = (byte)(!sOff && szsens * gyroZ > SZD * 10 ? Math.Min(255, szsens * gyroZ * 2) : 0);
+                        //result = (byte)(!sOff && szsens * gyroZ > SZD * 10 ? Math.Min(255, szsens * gyroZ * 2) : 0);
+                        result = (byte)(!sOff ? Math.Min(255, gyroZ * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
                         int gyroZ = fieldMap.gryodirs[controlNum];
-                        result = (byte)(!sOff && szsens * gyroZ < -SZD * 10 ? Math.Min(255, szsens * -gyroZ * 2) : 0);
+                        //result = (byte)(!sOff && szsens * gyroZ < -SZD * 10 ? Math.Min(255, szsens * -gyroZ * 2) : 0);
+                        result = (byte)(!sOff ? Math.Min(255, -gyroZ * 2) : 0);
                         break;
                     }
                     default: break;
@@ -2975,117 +3031,117 @@ namespace DS4Windows
                 switch (control)
                 {
                     case DS4Controls.LXNeg:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.LSAngle;
-                                result = cState.LX < 127 && (angle >= 210 && angle <= 330);
-                            }
-                            else
-                            {
-                                result = cState.LX < 127;
-                            }
-
-                            break;
+                            double angle = cState.LSAngle;
+                            result = cState.LX < 127 && (angle >= 210 && angle <= 330);
                         }
+                        else
+                        {
+                            result = cState.LX < 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.LYNeg:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.LSAngle;
-                                result = cState.LY < 127 && (angle >= 300 || angle <= 60);
-                            }
-                            else
-                            {
-                                result = cState.LY < 127;
-                            }
-
-                            break;
+                            double angle = cState.LSAngle;
+                            result = cState.LY < 127 && (angle >= 300 || angle <= 60);
                         }
+                        else
+                        {
+                            result = cState.LY < 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.RXNeg:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.RSAngle;
-                                result = cState.RX < 127 && (angle >= 210 && angle <= 330);
-                            }
-                            else
-                            {
-                                result = cState.RX < 127;
-                            }
-
-                            break;
+                            double angle = cState.RSAngle;
+                            result = cState.RX < 127 && (angle >= 210 && angle <= 330);
                         }
+                        else
+                        {
+                            result = cState.RX < 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.RYNeg:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.RSAngle;
-                                result = cState.RY < 127 && (angle >= 300 || angle <= 60);
-                            }
-                            else
-                            {
-                                result = cState.RY < 127;
-                            }
-
-                            break;
+                            double angle = cState.RSAngle;
+                            result = cState.RY < 127 && (angle >= 300 || angle <= 60);
                         }
+                        else
+                        {
+                            result = cState.RY < 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.LXPos:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.LSAngle;
-                                result = cState.LX > 127 && (angle >= 30 && angle <= 150);
-                            }
-                            else
-                            {
-                                result = cState.LX > 127;
-                            }
-
-                            break;
+                            double angle = cState.LSAngle;
+                            result = cState.LX > 127 && (angle >= 30 && angle <= 150);
                         }
+                        else
+                        {
+                            result = cState.LX > 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.LYPos:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.LSAngle;
-                                result = cState.LY > 127 && (angle >= 120 && angle <= 240);
-                            }
-                            else
-                            {
-                                result = cState.LY > 127;
-                            }
-
-                            break;
+                            double angle = cState.LSAngle;
+                            result = cState.LY > 127 && (angle >= 120 && angle <= 240);
                         }
+                        else
+                        {
+                            result = cState.LY > 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.RXPos:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.RSAngle;
-                                result = cState.RX > 127 && (angle >= 30 && angle <= 150);
-                            }
-                            else
-                            {
-                                result = cState.RX > 127;
-                            }
-
-                            break;
+                            double angle = cState.RSAngle;
+                            result = cState.RX > 127 && (angle >= 30 && angle <= 150);
                         }
+                        else
+                        {
+                            result = cState.RX > 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.RYPos:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.RSAngle;
-                                result = cState.RY > 127 && (angle >= 120 && angle <= 240);
-                            }
-                            else
-                            {
-                                result = cState.RY > 127;
-                            }
-
-                            break;
+                            double angle = cState.RSAngle;
+                            result = cState.RY > 127 && (angle >= 120 && angle <= 240);
                         }
+                        else
+                        {
+                            result = cState.RY > 127;
+                        }
+
+                        break;
+                    }
                     default: break;
                 }
             }
@@ -3108,10 +3164,10 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] > 67; break;
-                    case DS4Controls.GyroXNeg: safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] < -67; break;
-                    case DS4Controls.GyroZPos: safeTest = SZSens[device] * fieldMap.gryodirs[controlNum] > 67; break;
-                    case DS4Controls.GyroZNeg: safeTest = SZSens[device] * fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroXPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroXNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroZPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroZNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
                     default: break;
                 }
 
@@ -3408,44 +3464,44 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                double SXD = getSXDeadzone(device);
-                double SZD = getSZDeadzone(device);
+                //double SXD = getSXDeadzone(device);
+                //double SZD = getSZDeadzone(device);
                 bool sOff = isUsingSAforMouse(device);
 
                 switch (control)
                 {
                     case DS4Controls.GyroXPos:
                     {
-                        if (!sOff && fieldMap.gryodirs[controlNum] > SXD * 10)
+                        if (!sOff && fieldMap.gryodirs[controlNum] > 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SXSens[device] * fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 127 + fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - fieldMap.gryodirs[controlNum]);
                         }
                         else result = falseVal;
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
-                        if (!sOff && fieldMap.gryodirs[controlNum] < -SXD * 10)
+                        if (!sOff && fieldMap.gryodirs[controlNum] < 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SXSens[device] * -fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 127 + -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - -fieldMap.gryodirs[controlNum]);
                         }
                         else result = falseVal;
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
-                        if (!sOff && fieldMap.gryodirs[controlNum] > SZD * 10)
+                        if (!sOff && fieldMap.gryodirs[controlNum] > 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SZSens[device] * fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 127 + fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - fieldMap.gryodirs[controlNum]);
                         }
                         else return falseVal;
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
-                        if (!sOff && fieldMap.gryodirs[controlNum] < -SZD * 10)
+                        if (!sOff && fieldMap.gryodirs[controlNum] < 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SZSens[device] * -fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 127 + -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - -fieldMap.gryodirs[controlNum]);
                         }
                         else result = falseVal;
                         break;

@@ -15,13 +15,14 @@ namespace DS4Windows
 
     public class SixAxis
     {
-        public readonly int gyroYaw, gyroPitch, gyroRoll, deltaX, deltaY, deltaZ, accelX, accelY, accelZ;
+        public int gyroYaw, gyroPitch, gyroRoll, deltaX, deltaY, deltaZ, accelX, accelY, accelZ;
         public readonly int gyroYawFull, gyroPitchFull, gyroRollFull;
-        public readonly int accelXFull, accelYFull, accelZFull;
+        public int accelXFull, accelYFull, accelZFull;
         public readonly byte touchID;
         public readonly double elapsed;
         public readonly SixAxis previousAxis = null;
-        public SixAxis(int X, int Y, int Z, int aX, int aY, int aZ, double milliseconds, SixAxis prevAxis = null)
+        public SixAxis(int X, int Y, int Z, int aX, int aY, int aZ,
+            double milliseconds, SixAxis prevAxis = null)
         {
             gyroYaw = -X / 256;
             gyroPitch = Y / 256;

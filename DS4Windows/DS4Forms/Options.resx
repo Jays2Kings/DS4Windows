@@ -1338,6 +1338,9 @@
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
     <value>141, 66</value>
   </data>
@@ -6337,11 +6340,113 @@ with profile</value>
   <data name="&gt;&gt;antiDeadzoneTabPage.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="nUDSixAxisZMaxZone.Location" type="System.Drawing.Point, System.Drawing">
+    <value>220, 29</value>
+  </data>
+  <data name="nUDSixAxisZMaxZone.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="nUDSixAxisZMaxZone.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;nUDSixAxisZMaxZone.Name" xml:space="preserve">
+    <value>nUDSixAxisZMaxZone</value>
+  </data>
+  <data name="&gt;&gt;nUDSixAxisZMaxZone.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSixAxisZMaxZone.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;nUDSixAxisZMaxZone.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="nUDSixAxisXMaxZone.Location" type="System.Drawing.Point, System.Drawing">
+    <value>220, 3</value>
+  </data>
+  <data name="nUDSixAxisXMaxZone.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="nUDSixAxisXMaxZone.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;nUDSixAxisXMaxZone.Name" xml:space="preserve">
+    <value>nUDSixAxisXMaxZone</value>
+  </data>
+  <data name="&gt;&gt;nUDSixAxisXMaxZone.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSixAxisXMaxZone.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;nUDSixAxisXMaxZone.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 31</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
+  </data>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Sixaxis Z:</value>
+  </data>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
+  </data>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label17.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 6</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
+  </data>
+  <data name="label17.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Sixaxis X:</value>
+  </data>
+  <data name="&gt;&gt;label17.Name" xml:space="preserve">
+    <value>label17</value>
+  </data>
+  <data name="&gt;&gt;label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
+    <value>maxZoneTabPage</value>
+  </data>
+  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="nUDR2Maxzone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 29</value>
+    <value>114, 29</value>
   </data>
   <data name="nUDR2Maxzone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
+    <value>40, 20</value>
   </data>
   <data name="nUDR2Maxzone.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -6356,13 +6461,13 @@ with profile</value>
     <value>maxZoneTabPage</value>
   </data>
   <data name="&gt;&gt;nUDR2Maxzone.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="nUDL2Maxzone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 29</value>
+    <value>36, 29</value>
   </data>
   <data name="nUDL2Maxzone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 20</value>
+    <value>41, 20</value>
   </data>
   <data name="nUDL2Maxzone.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -6377,7 +6482,7 @@ with profile</value>
     <value>maxZoneTabPage</value>
   </data>
   <data name="&gt;&gt;nUDL2Maxzone.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6386,7 +6491,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 31</value>
+    <value>85, 31</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 13</value>
@@ -6407,7 +6512,7 @@ with profile</value>
     <value>maxZoneTabPage</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6437,13 +6542,13 @@ with profile</value>
     <value>maxZoneTabPage</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="nUDRSMaxZone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 3</value>
+    <value>114, 4</value>
   </data>
   <data name="nUDRSMaxZone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 20</value>
+    <value>40, 20</value>
   </data>
   <data name="nUDRSMaxZone.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -6458,7 +6563,7 @@ with profile</value>
     <value>maxZoneTabPage</value>
   </data>
   <data name="&gt;&gt;nUDRSMaxZone.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>8</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6467,7 +6572,7 @@ with profile</value>
     <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 5</value>
+    <value>85, 5</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>25, 13</value>
@@ -6488,13 +6593,13 @@ with profile</value>
     <value>maxZoneTabPage</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>9</value>
   </data>
   <data name="nUDLSMaxZone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 3</value>
+    <value>37, 3</value>
   </data>
   <data name="nUDLSMaxZone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 20</value>
+    <value>40, 20</value>
   </data>
   <data name="nUDLSMaxZone.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -6509,7 +6614,7 @@ with profile</value>
     <value>maxZoneTabPage</value>
   </data>
   <data name="&gt;&gt;nUDLSMaxZone.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>10</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6539,7 +6644,7 @@ with profile</value>
     <value>maxZoneTabPage</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>11</value>
   </data>
   <data name="maxZoneTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -6937,6 +7042,9 @@ with profile</value>
   <data name="label14.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
     <value>125, 23</value>
   </data>
@@ -6984,6 +7092,9 @@ with profile</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -7156,6 +7267,9 @@ with profile</value>
   <data name="label16.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
     <value>167, 74</value>
   </data>
@@ -7182,6 +7296,9 @@ with profile</value>
   </data>
   <data name="lbGyroSmooth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lbGyroSmooth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lbGyroSmooth.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 145</value>
@@ -8188,6 +8305,9 @@ with profile</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1011, 481</value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -8492,7 +8612,7 @@ with profile</value>
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.84.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.85.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

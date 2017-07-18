@@ -294,6 +294,8 @@
             this.rBSAControls = new System.Windows.Forms.RadioButton();
             this.rBSAMouse = new System.Windows.Forms.RadioButton();
             this.pnlSAMouse = new System.Windows.Forms.Panel();
+            this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.lbGyroSmooth = new System.Windows.Forms.Label();
             this.cBGyroSmooth = new System.Windows.Forms.CheckBox();
             this.lbSmoothWeight = new System.Windows.Forms.Label();
@@ -343,9 +345,11 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.nUDSixAxisXMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.nUDSixAxisZMaxZone = new System.Windows.Forms.NumericUpDown();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            this.label16 = new System.Windows.Forms.Label();
-            this.cBGyroMouseXAxis = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -433,6 +437,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -2792,6 +2798,10 @@
             // 
             // maxZoneTabPage
             // 
+            this.maxZoneTabPage.Controls.Add(this.nUDSixAxisZMaxZone);
+            this.maxZoneTabPage.Controls.Add(this.nUDSixAxisXMaxZone);
+            this.maxZoneTabPage.Controls.Add(this.label18);
+            this.maxZoneTabPage.Controls.Add(this.label17);
             this.maxZoneTabPage.Controls.Add(this.nUDR2Maxzone);
             this.maxZoneTabPage.Controls.Add(this.nUDL2Maxzone);
             this.maxZoneTabPage.Controls.Add(this.label8);
@@ -3126,6 +3136,22 @@
             this.pnlSAMouse.Controls.Add(this.lbGyroSens);
             resources.ApplyResources(this.pnlSAMouse, "pnlSAMouse");
             this.pnlSAMouse.Name = "pnlSAMouse";
+            // 
+            // cBGyroMouseXAxis
+            // 
+            this.cBGyroMouseXAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBGyroMouseXAxis.FormattingEnabled = true;
+            this.cBGyroMouseXAxis.Items.AddRange(new object[] {
+            resources.GetString("cBGyroMouseXAxis.Items"),
+            resources.GetString("cBGyroMouseXAxis.Items1")});
+            resources.ApplyResources(this.cBGyroMouseXAxis, "cBGyroMouseXAxis");
+            this.cBGyroMouseXAxis.Name = "cBGyroMouseXAxis";
+            this.cBGyroMouseXAxis.SelectedIndexChanged += new System.EventHandler(this.cBGyroMouseXAxis_SelectedIndexChanged);
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
             // 
             // lbGyroSmooth
             // 
@@ -3653,21 +3679,59 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
-            // label16
+            // label17
             // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.Name = "label16";
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
             // 
-            // cBGyroMouseXAxis
+            // label18
             // 
-            this.cBGyroMouseXAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBGyroMouseXAxis.FormattingEnabled = true;
-            this.cBGyroMouseXAxis.Items.AddRange(new object[] {
-            resources.GetString("cBGyroMouseXAxis.Items"),
-            resources.GetString("cBGyroMouseXAxis.Items1")});
-            resources.ApplyResources(this.cBGyroMouseXAxis, "cBGyroMouseXAxis");
-            this.cBGyroMouseXAxis.Name = "cBGyroMouseXAxis";
-            this.cBGyroMouseXAxis.SelectedIndexChanged += new System.EventHandler(this.cBGyroMouseXAxis_SelectedIndexChanged);
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // nUDSixAxisXMaxZone
+            // 
+            this.nUDSixAxisXMaxZone.DecimalPlaces = 2;
+            this.nUDSixAxisXMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixAxisXMaxZone, "nUDSixAxisXMaxZone");
+            this.nUDSixAxisXMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisXMaxZone.Name = "nUDSixAxisXMaxZone";
+            this.nUDSixAxisXMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisXMaxZone.ValueChanged += new System.EventHandler(this.nUDSixAxisXMaxZone_ValueChanged);
+            // 
+            // nUDSixAxisZMaxZone
+            // 
+            this.nUDSixAxisZMaxZone.DecimalPlaces = 2;
+            this.nUDSixAxisZMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixAxisZMaxZone, "nUDSixAxisZMaxZone");
+            this.nUDSixAxisZMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisZMaxZone.Name = "nUDSixAxisZMaxZone";
+            this.nUDSixAxisZMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisZMaxZone.ValueChanged += new System.EventHandler(this.nUDSixAxisZMaxZone_ValueChanged);
             // 
             // Options
             // 
@@ -3786,6 +3850,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4110,5 +4176,9 @@
         private System.Windows.Forms.ComboBox touchpadInvertComboBox;
         private System.Windows.Forms.ComboBox cBGyroMouseXAxis;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.NumericUpDown nUDSixAxisZMaxZone;
+        private System.Windows.Forms.NumericUpDown nUDSixAxisXMaxZone;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
     }
 }

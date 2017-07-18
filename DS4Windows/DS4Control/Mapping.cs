@@ -872,21 +872,26 @@ namespace DS4Windows
             bool sOff = tempBool = isUsingSAforMouse(device);
             if (sOff == false)
             {
-                double SXD = 10 * getSXDeadzone(device);
-                double SZD = 10 * getSZDeadzone(device);
+                int SXD = (int)(10d * getSXDeadzone(device));
+                int SZD = (int)(10d * getSZDeadzone(device));
+                double SXMax = getSXMaxzone(device);
+                double SZMax = getSZMaxzone(device);
                 double sxsens = getSXSens(device);
                 double szsens = getSZSens(device);
 
                 int gyroX = cState.Motion.accelX;
                 int gyroZ = cState.Motion.accelZ;
 
-                if (SXD > 0.0)
+                int absx = Math.Abs(gyroX);
+                int absz = Math.Abs(gyroZ);
+
+                if (SXD > 0 || SXMax < 1.0)
                 {
-                    int absx = Math.Abs(gyroX);
+                    int maxValue = (int)(SXMax * 128d);
                     if (absx > SXD)
                     {
                         cState.Motion.accelX = Math.Sign(gyroX) *
-                            (int)Math.Min(128, sxsens * 128 * ((absx - SXD) / (128 - SXD)));
+                            (int)Math.Min(128d, sxsens * 128d * ((absx - SXD) / (double)(maxValue - SXD)));
                     }
                     else
                     {
@@ -895,18 +900,17 @@ namespace DS4Windows
                 }
                 else
                 {
-                    int absx = Math.Abs(gyroX);
                     cState.Motion.accelX = Math.Sign(gyroX) *
-                        (int)Math.Min(128, sxsens * 128 * (absx / (double)(128)));
+                        (int)Math.Min(128d, sxsens * 128d * (absx / 128d));
                 }
 
-                if (SZD > 0.0)
+                if (SZD > 0 || SZMax < 1.0)
                 {
-                    int absz = Math.Abs(gyroZ);
+                    int maxValue = (int)(SZMax * 128d);
                     if (absz > SZD)
                     {
                         cState.Motion.accelZ = Math.Sign(gyroZ) *
-                            (int)Math.Min(128, szsens * 128 * ((absz - SZD) / (128 - SZD)));
+                            (int)Math.Min(128d, szsens * 128d * ((absz - SZD) / (double)(maxValue - SZD)));
                     }
                     else
                     {
@@ -915,9 +919,8 @@ namespace DS4Windows
                 }
                 else
                 {
-                    int absz = Math.Abs(gyroZ);
                     cState.Motion.accelZ = Math.Sign(gyroZ) *
-                        (int)Math.Min(128, szsens * 128 * ((absz) / (double)(128)));
+                        (int)Math.Min(128d, szsens * 128d * ((absz) / 128d));
                 }
             }
 

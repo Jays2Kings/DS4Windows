@@ -497,6 +497,7 @@ namespace DS4Windows
                 {
                     nUDSX.Value = 0.25m;
                 }
+
                 try
                 {
                     nUDSZ.Value = (decimal)SZDeadzone[device];
@@ -505,6 +506,25 @@ namespace DS4Windows
                 {
                     nUDSZ.Value = 0.25m;
                 }
+
+                try
+                {
+                    nUDSixAxisXMaxZone.Value = (decimal)SXMaxzone[device];
+                }
+                catch
+                {
+                    nUDSixAxisXMaxZone.Value = 1.0m;
+                }
+
+                try
+                {
+                    nUDSixAxisZMaxZone.Value = (decimal)SZMaxzone[device];
+                }
+                catch
+                {
+                    nUDSixAxisZMaxZone.Value = 1.0m;
+                }
+
                 try
                 {
                     nUDL2S.Value = Math.Round((decimal)L2Sens[device], 2);
@@ -677,6 +697,8 @@ namespace DS4Windows
                 nUDRSRotation.Value = 0;
                 nUDSX.Value = .25m;
                 nUDSZ.Value = .25m;
+                nUDSixAxisXMaxZone.Value = 1.0m;
+                nUDSixAxisZMaxZone.Value = 1.0m;
 
                 nUDL2S.Value = 1;
                 nUDR2S.Value = 1;
@@ -1335,6 +1357,8 @@ namespace DS4Windows
             FlashAt[device] = (int)nUDflashLED.Value;
             SXDeadzone[device] = (double)nUDSX.Value;
             SZDeadzone[device] = (double)nUDSZ.Value;
+            SXMaxzone[device] = (double)nUDSixAxisXMaxZone.Value;
+            SZMaxzone[device] = (double)nUDSixAxisZMaxZone.Value;
             MouseAccel[device] = cBMouseAccel.Checked;
             DinputOnly[device] = cBDinput.Checked;
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
@@ -2917,6 +2941,22 @@ namespace DS4Windows
             if (!loading)
             {
                 GyroMouseHorizontalAxis[device] = cBGyroMouseXAxis.SelectedIndex;
+            }
+        }
+
+        private void nUDSixAxisXMaxZone_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                SXMaxzone[device] = (double)nUDSixAxisXMaxZone.Value;
+            }
+        }
+
+        private void nUDSixAxisZMaxZone_ValueChanged(object sender, EventArgs e)
+        {
+            if (!loading)
+            {
+                SZMaxzone[device] = (double)nUDSixAxisZMaxZone.Value;
             }
         }
 

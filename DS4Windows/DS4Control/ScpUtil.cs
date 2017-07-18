@@ -696,6 +696,18 @@ namespace DS4Windows
             return m_Config.SZDeadzone[index];
         }
 
+        public static double[] SXMaxzone => m_Config.SXMaxzone;
+        public static double getSXMaxzone(int index)
+        {
+            return m_Config.SXMaxzone[index];
+        }
+
+        public static double[] SZMaxzone => m_Config.SZMaxzone;
+        public static double getSZMaxzone(int index)
+        {
+            return m_Config.SZMaxzone[index];
+        }
+
         public static int[] LSDeadzone => m_Config.LSDeadzone;
         public static int getLSDeadzone(int index)
         {
@@ -1170,6 +1182,8 @@ namespace DS4Windows
         public int[] l2Maxzone = { 100, 100, 100, 100, 100 }, r2Maxzone = { 100, 100, 100, 100, 100 };
         public double[] LSRotation = { 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = { 0.0, 0.0, 0.0, 0.0, 0.0 };
         public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
+        public double[] SXMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 },
+            SZMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
         public double[] l2Sens = { 1, 1, 1, 1, 1 }, r2Sens = { 1, 1, 1, 1, 1 };
         public double[] LSSens = { 1, 1, 1, 1, 1 }, RSSens = { 1, 1, 1, 1, 1 };
         public double[] SXSens = { 1, 1, 1, 1, 1 }, SZSens = { 1, 1, 1, 1, 1 };
@@ -1479,6 +1493,9 @@ namespace DS4Windows
 
                 XmlNode xmlSXD = m_Xdoc.CreateNode(XmlNodeType.Element, "SXDeadZone", null); xmlSXD.InnerText = SXDeadzone[device].ToString(); Node.AppendChild(xmlSXD);
                 XmlNode xmlSZD = m_Xdoc.CreateNode(XmlNodeType.Element, "SZDeadZone", null); xmlSZD.InnerText = SZDeadzone[device].ToString(); Node.AppendChild(xmlSZD);
+
+                XmlNode xmlSXMaxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "SXMaxZone", null); xmlSXMaxzone.InnerText = Convert.ToInt32(SXMaxzone[device] * 100.0).ToString(); Node.AppendChild(xmlSXMaxzone);
+                XmlNode xmlSZMaxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "SZMaxZone", null); xmlSZMaxzone.InnerText = Convert.ToInt32(SZMaxzone[device] * 100.0).ToString(); Node.AppendChild(xmlSZMaxzone);
 
                 XmlNode xmlSens = m_Xdoc.CreateNode(XmlNodeType.Element, "Sensitivity", null);
                 xmlSens.InnerText = $"{LSSens[device]}|{RSSens[device]}|{l2Sens[device]}|{r2Sens[device]}|{SXSens[device]}|{SZSens[device]}";
@@ -2281,9 +2298,23 @@ namespace DS4Windows
                 catch { RSMaxzone[device] = 100; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); double.TryParse(Item.InnerText, out SXDeadzone[device]); }
-                catch { missingSetting = true; }
+                catch { SXDeadzone[device] = 0.25; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZDeadZone"); double.TryParse(Item.InnerText, out SZDeadzone[device]); }
-                catch { missingSetting = true; }
+                catch { SZDeadzone[device] = 0.25; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXMaxZone");
+                    int temp = 0;
+                    int.TryParse(Item.InnerText, out temp);
+                    SXMaxzone[device] = Math.Min(Math.Max(temp * 0.01, 0.0), 1.0);
+                }
+                catch { SXMaxzone[device] = 1.0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZMaxZone");
+                    int temp = 0;
+                    int.TryParse(Item.InnerText, out temp);
+                    SZMaxzone[device] = Math.Min(Math.Max(temp * 0.01, 0.0), 1.0);
+                }
+                catch { SZMaxzone[device] = 1.0; missingSetting = true; }
 
                 try
                 {
@@ -3465,6 +3496,7 @@ namespace DS4Windows
             LSRotation[device] = 0.0;
             RSRotation[device] = 0.0;
             SXDeadzone[device] = SZDeadzone[device] = 0.25;
+            SXMaxzone[device] = SZMaxzone[device] = 1.0;
             l2Sens[device] = r2Sens[device] = 1;
             LSSens[device] = RSSens[device] = 1;
             SXSens[device] = SZSens[device] = 1;

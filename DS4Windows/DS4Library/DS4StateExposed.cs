@@ -15,37 +15,51 @@ namespace DS4Windows
             _state = state;
         }
 
-        bool Square { get { return _state.Square; } }  
-        bool Triangle { get { return _state.Triangle; } }  
-        bool Circle { get { return _state.Circle; } }  
-        bool Cross { get { return _state.Cross; } } 
-        bool DpadUp { get { return _state.DpadUp; } }  
-        bool DpadDown { get { return _state.DpadDown; } }  
-        bool DpadLeft { get { return _state.DpadLeft; } }  
-        bool DpadRight { get { return _state.DpadRight; } } 
-        bool L1 { get { return _state.L1; } }  
-        bool L3 { get { return _state.L3; } }  
-        bool R1 { get { return _state.R1; } }  
-        bool R3 { get { return _state.R3; } } 
-        bool Share { get { return _state.Share; } }  
-        bool Options { get { return _state.Options; } }  
-        bool PS { get { return _state.PS; } }  
-        bool Touch1 { get { return _state.Touch1; } }  
-        bool Touch2 { get { return _state.Touch2; } }  
-        bool TouchButton { get { return _state.TouchButton; } } 
-        bool Touch1Finger { get { return _state.Touch1Finger;  } }
+        bool Square { get { return _state.Square; } }
+        bool Triangle { get { return _state.Triangle; } }
+        bool Circle { get { return _state.Circle; } }
+        bool Cross { get { return _state.Cross; } }
+        bool DpadUp { get { return _state.DpadUp; } }
+        bool DpadDown { get { return _state.DpadDown; } }
+        bool DpadLeft { get { return _state.DpadLeft; } }
+        bool DpadRight { get { return _state.DpadRight; } }
+        bool L1 { get { return _state.L1; } }
+        bool L3 { get { return _state.L3; } }
+        bool R1 { get { return _state.R1; } }
+        bool R3 { get { return _state.R3; } }
+        bool Share { get { return _state.Share; } }
+        bool Options { get { return _state.Options; } }
+        bool PS { get { return _state.PS; } }
+        bool Touch1 { get { return _state.Touch1; } }
+        bool Touch2 { get { return _state.Touch2; } }
+        bool TouchButton { get { return _state.TouchButton; } }
+        bool Touch1Finger { get { return _state.Touch1Finger; } }
         bool Touch2Fingers { get { return _state.Touch2Fingers; } }
-        byte LX { get { return _state.LX; } }  
-        byte RX { get { return _state.RX; } }  
-        byte LY { get { return _state.LY; } }  
-        byte RY { get { return _state.RY; } }  
-        byte L2 { get { return _state.L2; } }  
-        byte R2 { get { return _state.R2; } } 
+        byte LX { get { return _state.LX; } }
+        byte RX { get { return _state.RX; } }
+        byte LY { get { return _state.LY; } }
+        byte RY { get { return _state.RY; } }
+        byte L2 { get { return _state.L2; } }
+        byte R2 { get { return _state.R2; } }
         int Battery { get { return _state.Battery; } }
 
         public int GyroYaw { get { return _state.Motion.gyroYaw; } }
+        public int getGyroYaw()
+        {
+            return _state.Motion.gyroYaw;
+        }
+
         public int GyroPitch { get { return _state.Motion.gyroPitch; } }
+        public int getGyroPitch()
+        {
+            return _state.Motion.gyroPitch;
+        }
+
         public int GyroRoll { get { return _state.Motion.gyroRoll; } }
+        public int getGyroRoll()
+        {
+            return _state.Motion.gyroRoll;
+        }
 
         public int AccelX { get { return _state.Motion.accelX; } }
         public int getAccelX()

@@ -15,7 +15,8 @@ namespace DS4Windows
         /** Indicate x/y direction for doing jitter compensation, etc. */
         public enum Direction { Negative, Neutral, Positive }
         // Track direction vector separately and very trivially for now.
-        private Direction horizontalDirection = Direction.Neutral, verticalDirection = Direction.Neutral;
+        private Direction horizontalDirection = Direction.Neutral,
+            verticalDirection = Direction.Neutral;
         private Direction hDirection = Direction.Neutral, vDirection = Direction.Neutral;
 
         private double GYRO_MOUSE_COEFFICIENT = 0.0095;

@@ -249,7 +249,7 @@ namespace DS4Windows
                             DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i],
                                 ExposedState[i], touchPad[i]);
                             tempDevice.IsRemoved = true;
-                            System.Threading.Thread.Sleep(50);
+                            Thread.Sleep(50);
                         }
 
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
@@ -264,7 +264,7 @@ namespace DS4Windows
                 }
 
                 if (anyUnplugged)
-                    System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
+                    Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
 
                 x360Bus.UnplugAll();
                 x360Bus.Stop();
@@ -963,9 +963,11 @@ namespace DS4Windows
             return result;
         }
 
-        public bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };
-        public byte[] oldtouchvalue = { 0, 0, 0, 0 };
-        public int[] oldscrollvalue = { 0, 0, 0, 0 };
+        public bool[] touchreleased = new bool[4] { true, true, true, true },
+            touchslid = new bool[4] { false, false, false, false };
+
+        public byte[] oldtouchvalue = new byte[4] { 0, 0, 0, 0 };
+        public int[] oldscrollvalue = new int[4] { 0, 0, 0, 0 };
 
         protected virtual void CheckForTouchToggle(int deviceID, DS4State cState, DS4State pState)
         {

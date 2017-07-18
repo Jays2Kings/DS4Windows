@@ -53,20 +53,19 @@ namespace DS4Windows
 
     public class DS4SixAxis
     {
-        // no status change for the touchpad itself... but other sensors may have changed, or you may just want to do some processing
         public event EventHandler<SixAxisEventArgs> SixAccelMoved = null;
 
         internal int lastGyroYaw, lastGyroPitch, lastGyroRoll,
-            lastAX, lastAY, lastAZ; // tracks 0, 1 or 2 touches; we maintain touch 1 and 2 separately
+            lastAX, lastAY, lastAZ;
 
         internal double lastMilliseconds;
         internal byte[] previousPacket = new byte[8];
 
         public void handleSixaxis(byte[] gyro, byte[] accel, DS4State state, double milliseconds)
         {
-            int currentYaw = (short)((ushort)(gyro[3] << 8) | gyro[2]);   // Gyro Yaw
-            int currentPitch = (short)((ushort)(gyro[1] << 8) | gyro[0]); // Gyro Pitch
-            int currentRoll = (short)((ushort)(gyro[5] << 8) | gyro[4]);  // Gyro Roll
+            int currentYaw = (short)((ushort)(gyro[3] << 8) | gyro[2]);
+            int currentPitch = (short)((ushort)(gyro[1] << 8) | gyro[0]);
+            int currentRoll = (short)((ushort)(gyro[5] << 8) | gyro[4]);
             int AccelX = (short)((ushort)(accel[1] << 8) | accel[0]);
             int AccelY = (short)((ushort)(accel[3] << 8) | accel[2]);
             int AccelZ = (short)((ushort)(accel[5] << 8) | accel[4]);

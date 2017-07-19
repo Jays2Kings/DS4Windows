@@ -527,6 +527,24 @@ namespace DS4Windows
 
                 try
                 {
+                    nUDSixaxisXAntiDead.Value = (decimal)SXAntiDeadzone[device];
+                }
+                catch
+                {
+                    nUDSixaxisXAntiDead.Value = 0.0m;
+                }
+
+                try
+                {
+                    nUDSixaxisZAntiDead.Value = (decimal)SZAntiDeadzone[device];
+                }
+                catch
+                {
+                    nUDSixaxisZAntiDead.Value = 0.0m;
+                }
+
+                try
+                {
                     nUDL2S.Value = Math.Round((decimal)L2Sens[device], 2);
                 }
                 catch
@@ -699,6 +717,8 @@ namespace DS4Windows
                 nUDSZ.Value = .25m;
                 nUDSixAxisXMaxZone.Value = 1.0m;
                 nUDSixAxisZMaxZone.Value = 1.0m;
+                nUDSixaxisXAntiDead.Value = 0.0m;
+                nUDSixaxisZAntiDead.Value = 0.0m;
 
                 nUDL2S.Value = 1;
                 nUDR2S.Value = 1;
@@ -1359,6 +1379,8 @@ namespace DS4Windows
             SZDeadzone[device] = (double)nUDSZ.Value;
             SXMaxzone[device] = (double)nUDSixAxisXMaxZone.Value;
             SZMaxzone[device] = (double)nUDSixAxisZMaxZone.Value;
+            SXAntiDeadzone[device] = (double)nUDSixaxisXAntiDead.Value;
+            SZAntiDeadzone[device] = (double)nUDSixaxisZAntiDead.Value;
             MouseAccel[device] = cBMouseAccel.Checked;
             DinputOnly[device] = cBDinput.Checked;
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;
@@ -2957,6 +2979,22 @@ namespace DS4Windows
             if (!loading)
             {
                 SZMaxzone[device] = (double)nUDSixAxisZMaxZone.Value;
+            }
+        }
+
+        private void nUDSixaxisXAntiDead_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                SXAntiDeadzone[device] = (double)nUDSixaxisXAntiDead.Value;
+            }
+        }
+
+        private void nUDSixaxisZAntiDead_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                SZAntiDeadzone[device] = (double)nUDSixaxisZAntiDead.Value;
             }
         }
 

@@ -264,6 +264,10 @@
             this.nUDLSAntiDead = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.maxZoneTabPage = new System.Windows.Forms.TabPage();
+            this.nUDSixAxisZMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.nUDSixAxisXMaxZone = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.nUDR2Maxzone = new System.Windows.Forms.NumericUpDown();
             this.nUDL2Maxzone = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
@@ -345,11 +349,11 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.nUDSixAxisXMaxZone = new System.Windows.Forms.NumericUpDown();
-            this.nUDSixAxisZMaxZone = new System.Windows.Forms.NumericUpDown();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.nUDSixaxisXAntiDead = new System.Windows.Forms.NumericUpDown();
+            this.nUDSixaxisZAntiDead = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -412,6 +416,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSAntiDead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).BeginInit();
             this.maxZoneTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).BeginInit();
@@ -437,8 +443,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisXAntiDead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisZAntiDead)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -2696,6 +2702,10 @@
             // 
             // antiDeadzoneTabPage
             // 
+            this.antiDeadzoneTabPage.Controls.Add(this.nUDSixaxisZAntiDead);
+            this.antiDeadzoneTabPage.Controls.Add(this.nUDSixaxisXAntiDead);
+            this.antiDeadzoneTabPage.Controls.Add(this.label20);
+            this.antiDeadzoneTabPage.Controls.Add(this.label19);
             this.antiDeadzoneTabPage.Controls.Add(this.nUDR2AntiDead);
             this.antiDeadzoneTabPage.Controls.Add(this.label3);
             this.antiDeadzoneTabPage.Controls.Add(this.nUDL2AntiDead);
@@ -2813,6 +2823,60 @@
             resources.ApplyResources(this.maxZoneTabPage, "maxZoneTabPage");
             this.maxZoneTabPage.Name = "maxZoneTabPage";
             this.maxZoneTabPage.UseVisualStyleBackColor = true;
+            // 
+            // nUDSixAxisZMaxZone
+            // 
+            this.nUDSixAxisZMaxZone.DecimalPlaces = 2;
+            this.nUDSixAxisZMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixAxisZMaxZone, "nUDSixAxisZMaxZone");
+            this.nUDSixAxisZMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisZMaxZone.Name = "nUDSixAxisZMaxZone";
+            this.nUDSixAxisZMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisZMaxZone.ValueChanged += new System.EventHandler(this.nUDSixAxisZMaxZone_ValueChanged);
+            // 
+            // nUDSixAxisXMaxZone
+            // 
+            this.nUDSixAxisXMaxZone.DecimalPlaces = 2;
+            this.nUDSixAxisXMaxZone.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSixAxisXMaxZone, "nUDSixAxisXMaxZone");
+            this.nUDSixAxisXMaxZone.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisXMaxZone.Name = "nUDSixAxisXMaxZone";
+            this.nUDSixAxisXMaxZone.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSixAxisXMaxZone.ValueChanged += new System.EventHandler(this.nUDSixAxisXMaxZone_ValueChanged);
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
             // 
             // nUDR2Maxzone
             // 
@@ -3679,59 +3743,49 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
-            // label17
+            // label19
             // 
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
             // 
-            // label18
+            // label20
             // 
-            resources.ApplyResources(this.label18, "label18");
-            this.label18.Name = "label18";
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
             // 
-            // nUDSixAxisXMaxZone
+            // nUDSixaxisXAntiDead
             // 
-            this.nUDSixAxisXMaxZone.DecimalPlaces = 2;
-            this.nUDSixAxisXMaxZone.Increment = new decimal(new int[] {
+            this.nUDSixaxisXAntiDead.DecimalPlaces = 2;
+            this.nUDSixaxisXAntiDead.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDSixAxisXMaxZone, "nUDSixAxisXMaxZone");
-            this.nUDSixAxisXMaxZone.Maximum = new decimal(new int[] {
+            resources.ApplyResources(this.nUDSixaxisXAntiDead, "nUDSixaxisXAntiDead");
+            this.nUDSixaxisXAntiDead.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.nUDSixAxisXMaxZone.Name = "nUDSixAxisXMaxZone";
-            this.nUDSixAxisXMaxZone.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSixAxisXMaxZone.ValueChanged += new System.EventHandler(this.nUDSixAxisXMaxZone_ValueChanged);
+            this.nUDSixaxisXAntiDead.Name = "nUDSixaxisXAntiDead";
+            this.nUDSixaxisXAntiDead.ValueChanged += new System.EventHandler(this.nUDSixaxisXAntiDead_ValueChanged);
             // 
-            // nUDSixAxisZMaxZone
+            // nUDSixaxisZAntiDead
             // 
-            this.nUDSixAxisZMaxZone.DecimalPlaces = 2;
-            this.nUDSixAxisZMaxZone.Increment = new decimal(new int[] {
+            this.nUDSixaxisZAntiDead.DecimalPlaces = 2;
+            this.nUDSixaxisZAntiDead.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDSixAxisZMaxZone, "nUDSixAxisZMaxZone");
-            this.nUDSixAxisZMaxZone.Maximum = new decimal(new int[] {
+            resources.ApplyResources(this.nUDSixaxisZAntiDead, "nUDSixaxisZAntiDead");
+            this.nUDSixaxisZAntiDead.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.nUDSixAxisZMaxZone.Name = "nUDSixAxisZMaxZone";
-            this.nUDSixAxisZMaxZone.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSixAxisZMaxZone.ValueChanged += new System.EventHandler(this.nUDSixAxisZMaxZone_ValueChanged);
+            this.nUDSixaxisZAntiDead.Name = "nUDSixaxisZAntiDead";
+            this.nUDSixaxisZAntiDead.ValueChanged += new System.EventHandler(this.nUDSixaxisZAntiDead_ValueChanged);
             // 
             // Options
             // 
@@ -3819,6 +3873,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSAntiDead)).EndInit();
             this.maxZoneTabPage.ResumeLayout(false);
             this.maxZoneTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDR2Maxzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).EndInit();
@@ -3850,8 +3906,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisXMaxZone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSixAxisZMaxZone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisXAntiDead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSixaxisZAntiDead)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4180,5 +4236,9 @@
         private System.Windows.Forms.NumericUpDown nUDSixAxisXMaxZone;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.NumericUpDown nUDSixaxisZAntiDead;
+        private System.Windows.Forms.NumericUpDown nUDSixaxisXAntiDead;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
     }
 }

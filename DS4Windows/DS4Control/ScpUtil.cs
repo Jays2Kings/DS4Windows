@@ -696,18 +696,6 @@ namespace DS4Windows
             return m_Config.SZDeadzone[index];
         }
 
-        public static double[] SXMaxzone => m_Config.SXMaxzone;
-        public static double getSXMaxzone(int index)
-        {
-            return m_Config.SXMaxzone[index];
-        }
-
-        public static double[] SZMaxzone => m_Config.SZMaxzone;
-        public static double getSZMaxzone(int index)
-        {
-            return m_Config.SZMaxzone[index];
-        }
-
         public static int[] LSDeadzone => m_Config.LSDeadzone;
         public static int getLSDeadzone(int index)
         {
@@ -732,6 +720,18 @@ namespace DS4Windows
             return m_Config.RSAntiDeadzone[index];
         }
 
+        public static double[] SXAntiDeadzone => m_Config.SXAntiDeadzone;
+        public static double getSXAntiDeadzone(int index)
+        {
+            return m_Config.SXAntiDeadzone[index];
+        }
+
+        public static double[] SZAntiDeadzone => m_Config.SZAntiDeadzone;
+        public static double getSZAntiDeadzone(int index)
+        {
+            return m_Config.SZAntiDeadzone[index];
+        }
+
         public static int[] LSMaxzone => m_Config.LSMaxzone;
         public static int getLSMaxzone(int index)
         {
@@ -742,6 +742,18 @@ namespace DS4Windows
         public static int getRSMaxzone(int index)
         {
             return m_Config.RSMaxzone[index];
+        }
+
+        public static double[] SXMaxzone => m_Config.SXMaxzone;
+        public static double getSXMaxzone(int index)
+        {
+            return m_Config.SXMaxzone[index];
+        }
+
+        public static double[] SZMaxzone => m_Config.SZMaxzone;
+        public static double getSZMaxzone(int index)
+        {
+            return m_Config.SZMaxzone[index];
         }
 
         public static int[] L2AntiDeadzone => m_Config.l2AntiDeadzone;
@@ -1184,6 +1196,8 @@ namespace DS4Windows
         public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
         public double[] SXMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 },
             SZMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
+        public double[] SXAntiDeadzone = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 },
+            SZAntiDeadzone = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
         public double[] l2Sens = { 1, 1, 1, 1, 1 }, r2Sens = { 1, 1, 1, 1, 1 };
         public double[] LSSens = { 1, 1, 1, 1, 1 }, RSSens = { 1, 1, 1, 1, 1 };
         public double[] SXSens = { 1, 1, 1, 1, 1 }, SZSens = { 1, 1, 1, 1, 1 };
@@ -1496,6 +1510,9 @@ namespace DS4Windows
 
                 XmlNode xmlSXMaxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "SXMaxZone", null); xmlSXMaxzone.InnerText = Convert.ToInt32(SXMaxzone[device] * 100.0).ToString(); Node.AppendChild(xmlSXMaxzone);
                 XmlNode xmlSZMaxzone = m_Xdoc.CreateNode(XmlNodeType.Element, "SZMaxZone", null); xmlSZMaxzone.InnerText = Convert.ToInt32(SZMaxzone[device] * 100.0).ToString(); Node.AppendChild(xmlSZMaxzone);
+
+                XmlNode xmlSXAntiDeadzone = m_Xdoc.CreateNode(XmlNodeType.Element, "SXAntiDeadZone", null); xmlSXAntiDeadzone.InnerText = Convert.ToInt32(SXAntiDeadzone[device] * 100.0).ToString(); Node.AppendChild(xmlSXAntiDeadzone);
+                XmlNode xmlSZAntiDeadzone = m_Xdoc.CreateNode(XmlNodeType.Element, "SZAntiDeadZone", null); xmlSZAntiDeadzone.InnerText = Convert.ToInt32(SZAntiDeadzone[device] * 100.0).ToString(); Node.AppendChild(xmlSZAntiDeadzone);
 
                 XmlNode xmlSens = m_Xdoc.CreateNode(XmlNodeType.Element, "Sensitivity", null);
                 xmlSens.InnerText = $"{LSSens[device]}|{RSSens[device]}|{l2Sens[device]}|{r2Sens[device]}|{SXSens[device]}|{SZSens[device]}";
@@ -2315,6 +2332,20 @@ namespace DS4Windows
                     SZMaxzone[device] = Math.Min(Math.Max(temp * 0.01, 0.0), 1.0);
                 }
                 catch { SZMaxzone[device] = 1.0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXAntiDeadZone");
+                    int temp = 0;
+                    int.TryParse(Item.InnerText, out temp);
+                    SXAntiDeadzone[device] = Math.Min(Math.Max(temp * 0.01, 0.0), 1.0);
+                }
+                catch { SXAntiDeadzone[device] = 0.0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZAntiDeadZone");
+                    int temp = 0;
+                    int.TryParse(Item.InnerText, out temp);
+                    SZAntiDeadzone[device] = Math.Min(Math.Max(temp * 0.01, 0.0), 1.0);
+                }
+                catch { SZAntiDeadzone[device] = 0.0; missingSetting = true; }
 
                 try
                 {
@@ -3497,6 +3528,7 @@ namespace DS4Windows
             RSRotation[device] = 0.0;
             SXDeadzone[device] = SZDeadzone[device] = 0.25;
             SXMaxzone[device] = SZMaxzone[device] = 1.0;
+            SXAntiDeadzone[device] = SZAntiDeadzone[device] = 0.0;
             l2Sens[device] = r2Sens[device] = 1;
             LSSens[device] = RSSens[device] = 1;
             SXSens[device] = SZSens[device] = 1;

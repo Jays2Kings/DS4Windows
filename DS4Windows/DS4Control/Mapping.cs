@@ -876,51 +876,52 @@ namespace DS4Windows
                 int SZD = (int)(10d * getSZDeadzone(device));
                 double SXMax = getSXMaxzone(device);
                 double SZMax = getSZMaxzone(device);
+                double sxAntiDead = getSXAntiDeadzone(device);
+                double szAntiDead = getSZAntiDeadzone(device);
                 double sxsens = getSXSens(device);
                 double szsens = getSZSens(device);
 
-                int gyroX = cState.Motion.accelX;
-                int gyroZ = cState.Motion.accelZ;
+                int gyroX = cState.Motion.accelX, gyroZ = cState.Motion.accelZ;
+                int absx = Math.Abs(gyroX), absz = Math.Abs(gyroZ);
 
-                int absx = Math.Abs(gyroX);
-                int absz = Math.Abs(gyroZ);
-
-                if (SXD > 0 || SXMax < 1.0)
+                if (SXD > 0 || SXMax < 1.0 || sxAntiDead > 0)
                 {
                     int maxValue = (int)(SXMax * 128d);
                     if (absx > SXD)
                     {
-                        cState.Motion.accelX = Math.Sign(gyroX) *
-                            (int)Math.Min(128d, sxsens * 128d * ((absx - SXD) / (double)(maxValue - SXD)));
+                        double ratioX = (absx - SXD) / (double)(maxValue - SXD);
+                        dState.Motion.accelX = Math.Sign(gyroX) *
+                            (int)Math.Min(128d, sxsens * 128d * ((1.0 - sxAntiDead) * ratioX + sxAntiDead));
                     }
                     else
                     {
-                        cState.Motion.accelX = 0;
+                        dState.Motion.accelX = 0;
                     }
                 }
                 else
                 {
-                    cState.Motion.accelX = Math.Sign(gyroX) *
+                    dState.Motion.accelX = Math.Sign(gyroX) *
                         (int)Math.Min(128d, sxsens * 128d * (absx / 128d));
                 }
 
-                if (SZD > 0 || SZMax < 1.0)
+                if (SZD > 0 || SZMax < 1.0 || szAntiDead > 0)
                 {
                     int maxValue = (int)(SZMax * 128d);
                     if (absz > SZD)
                     {
-                        cState.Motion.accelZ = Math.Sign(gyroZ) *
-                            (int)Math.Min(128d, szsens * 128d * ((absz - SZD) / (double)(maxValue - SZD)));
+                        double ratioZ = (absz - SZD) / (double)(maxValue - SZD);
+                        dState.Motion.accelZ = Math.Sign(gyroZ) *
+                            (int)Math.Min(128d, szsens * 128d * ((1.0 - szAntiDead) * ratioZ + szAntiDead));
                     }
                     else
                     {
-                        cState.Motion.accelZ = 0;
+                        dState.Motion.accelZ = 0;
                     }
                 }
                 else
                 {
-                    cState.Motion.accelZ = Math.Sign(gyroZ) *
-                        (int)Math.Min(128d, szsens * 128d * ((absz) / 128d));
+                    dState.Motion.accelZ = Math.Sign(gyroZ) *
+                        (int)Math.Min(128d, szsens * 128d * (absz / 128d));
                 }
             }
 

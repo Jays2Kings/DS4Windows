@@ -889,7 +889,7 @@ namespace DS4Windows
                     int maxValue = (int)(SXMax * 128d);
                     if (absx > SXD)
                     {
-                        double ratioX = (absx - SXD) / (double)(maxValue - SXD);
+                        double ratioX = absx < maxValue ? (absx - SXD) / (double)(maxValue - SXD) : 1.0;
                         dState.Motion.accelX = Math.Sign(gyroX) *
                             (int)Math.Min(128d, sxsens * 128d * ((1.0 - sxAntiDead) * ratioX + sxAntiDead));
                     }
@@ -909,7 +909,7 @@ namespace DS4Windows
                     int maxValue = (int)(SZMax * 128d);
                     if (absz > SZD)
                     {
-                        double ratioZ = (absz - SZD) / (double)(maxValue - SZD);
+                        double ratioZ = absz < maxValue ? (absz - SZD) / (double)(maxValue - SZD) : 1.0;
                         dState.Motion.accelZ = Math.Sign(gyroZ) *
                             (int)Math.Min(128d, szsens * 128d * ((1.0 - szAntiDead) * ratioZ + szAntiDead));
                     }

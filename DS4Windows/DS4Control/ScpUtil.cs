@@ -876,6 +876,18 @@ namespace DS4Windows
             return m_Config.r2OutCurveMode[index];
         }
 
+        public static int[] sxOutCurveMode => m_Config.sxOutCurveMode;
+        public static int getSXOutCurveMode(int index)
+        {
+            return m_Config.sxOutCurveMode[index];
+        }
+
+        public static int[] szOutCurveMode => m_Config.szOutCurveMode;
+        public static int getSZOutCurveMode(int index)
+        {
+            return m_Config.szOutCurveMode[index];
+        }
+
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
         public static bool[] DistanceProfiles = m_Config.distanceProfiles;
@@ -1225,6 +1237,8 @@ namespace DS4Windows
         public int[] rsOutCurveMode = { 0, 0, 0, 0, 0 };
         public int[] l2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] r2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] sxOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] szOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
 
         public DS4Color[] m_LowLeds = new DS4Color[]
         {
@@ -1585,6 +1599,9 @@ namespace DS4Windows
 
                 XmlNode xmlL2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveMode", null); xmlL2OutputCurveMode.InnerText = axisOutputCurveString(l2OutCurveMode[device]); Node.AppendChild(xmlL2OutputCurveMode);
                 XmlNode xmlR2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "R2OutputCurveMode", null); xmlR2OutputCurveMode.InnerText = axisOutputCurveString(r2OutCurveMode[device]); Node.AppendChild(xmlR2OutputCurveMode);
+
+                XmlNode xmlSXOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "SXOutputCurveMode", null); xmlSXOutputCurveMode.InnerText = axisOutputCurveString(sxOutCurveMode[device]); Node.AppendChild(xmlSXOutputCurveMode);
+                XmlNode xmlSZOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "SZOutputCurveMode", null); xmlSZOutputCurveMode.InnerText = axisOutputCurveString(szOutCurveMode[device]); Node.AppendChild(xmlSZOutputCurveMode);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -2585,6 +2602,12 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2OutputCurveMode"); r2OutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
                 catch { r2OutCurveMode[device] = 0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXOutputCurveMode"); sxOutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
+                catch { sxOutCurveMode[device] = 0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZOutputCurveMode"); szOutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
+                catch { szOutCurveMode[device] = 0; missingSetting = true; }
 
                 try
                 {
@@ -3630,6 +3653,7 @@ namespace DS4Windows
             rsOutCurveMode[device] = 0;
             l2OutCurveMode[device] = 0;
             r2OutCurveMode[device] = 0;
+            sxOutCurveMode[device] = szOutCurveMode[device] = 0;
         }
     }
 

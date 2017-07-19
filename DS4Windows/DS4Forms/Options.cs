@@ -370,6 +370,8 @@ namespace DS4Windows
                 rsOutCurveComboBox.SelectedIndex = getRsOutCurveMode(device);
                 cBL2OutputCurve.SelectedIndex = getL2OutCurveMode(device);
                 cBR2OutputCurve.SelectedIndex = getR2OutCurveMode(device);
+                cBSixaxisXOutputCurve.SelectedIndex = getSXOutCurveMode(device);
+                cBSixaxisZOutputCurve.SelectedIndex = getSZOutCurveMode(device);
 
                 try
                 {
@@ -661,6 +663,8 @@ namespace DS4Windows
                 rsOutCurveComboBox.SelectedIndex = 0;
                 cBL2OutputCurve.SelectedIndex = 0;
                 cBR2OutputCurve.SelectedIndex = 0;
+                cBSixaxisXOutputCurve.SelectedIndex = 0;
+                cBSixaxisZOutputCurve.SelectedIndex = 0;
                 rBTPMouse.Checked = true;
                 rBSAControls.Checked = true;
                 ToggleRainbow(false);
@@ -1354,6 +1358,8 @@ namespace DS4Windows
             rsOutCurveMode[device] = rsOutCurveComboBox.SelectedIndex;
             l2OutCurveMode[device] = cBL2OutputCurve.SelectedIndex;
             r2OutCurveMode[device] = cBR2OutputCurve.SelectedIndex;
+            sxOutCurveMode[device] = cBSixaxisXOutputCurve.SelectedIndex;
+            szOutCurveMode[device] = cBSixaxisZOutputCurve.SelectedIndex;
             L2Deadzone[device] = (byte)Math.Round((nUDL2.Value * 255), 0);
             R2Deadzone[device] = (byte)Math.Round((nUDR2.Value * 255), 0);
             L2AntiDeadzone[device] = (int)(nUDL2AntiDead.Value * 100);
@@ -3017,6 +3023,22 @@ namespace DS4Windows
             if (loading == false)
             {
                 r2OutCurveMode[device] = cBR2OutputCurve.SelectedIndex;
+            }
+        }
+
+        private void cBSixaxisXOutputCurve_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                sxOutCurveMode[device] = cBSixaxisXOutputCurve.SelectedIndex;
+            }
+        }
+
+        private void cBSixaxisZOutputCurve_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                szOutCurveMode[device] = cBSixaxisZOutputCurve.SelectedIndex;
             }
         }
 

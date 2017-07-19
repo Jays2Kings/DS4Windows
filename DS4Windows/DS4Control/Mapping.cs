@@ -77,8 +77,6 @@ namespace DS4Windows
         public static int[] prevFadetimer = new int[4] { 0, 0, 0, 0 };
         public static DS4Color[] lastColor = new DS4Color[4];
         public static List<ActionState> actionDone = new List<ActionState>();
-        //public static List<bool>[] actionDone = { new List<bool>(), new List<bool>(), new List<bool>(), new List<bool>() };
-        //public static bool[,] actionDone = new bool[4, 50];
         public static SpecialAction[] untriggeraction = new SpecialAction[4];
         public static DateTime[] nowAction = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
         public static DateTime[] oldnowAction = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
@@ -134,6 +132,8 @@ namespace DS4Windows
         private static int[] rsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
         private static int[] lsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
         static bool tempBool = false;
+        private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
+        private static int[] tempIntArray = new int[4] { 0, 0, 0, 0 };
 
         // Special macros
         static bool altTabDone = true;
@@ -404,7 +404,6 @@ namespace DS4Windows
             return (value < min) ? min : (value > max) ? max : value;
         }
 
-        private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState)
         {
             double rotation = tempDoubleArray[device] = getLSRotation(device);
@@ -743,7 +742,7 @@ namespace DS4Windows
                 dState.R2 = (byte)Global.Clamp(0, r2Sens * dState.R2, 255);
 
             int lsOutCurveMode = lsOutCurveModeArray[device] = getLsOutCurveMode(device);
-            if (lsOutCurveMode != 0)
+            if (lsOutCurveMode > 0)
             {
                 double tempX = (dState.LX - 127.5) / 127.5;
                 double tempY = (dState.LY - 127.5) / 127.5;
@@ -803,7 +802,7 @@ namespace DS4Windows
             }
 
             int rsOutCurveMode = rsOutCurveModeArray[device] = getRsOutCurveMode(device);
-            if (rsOutCurveMode != 0)
+            if (rsOutCurveMode > 0)
             {
                 double tempX = (dState.RX - 127.5) / 127.5;
                 double tempY = (dState.RY - 127.5) / 127.5;
@@ -947,6 +946,40 @@ namespace DS4Windows
                 {
                     dState.Motion.accelZ = Math.Sign(gyroZ) *
                         (int)Math.Min(128d, szsens * 128d * (absz / 128d));
+                }
+
+                int sxOutCurveMode = tempIntArray[device] = getSXOutCurveMode(device);
+                if (sxOutCurveMode > 0)
+                {
+                    double temp = Math.Abs(dState.Motion.accelX) / 128.0;
+                    double sign = Math.Sign(temp);
+                    if (sxOutCurveMode == 1)
+                    {
+                        double output = temp * temp;
+                        dState.Motion.accelX = (byte)(output * sign * 128.0);
+                    }
+                    else if (sxOutCurveMode == 2)
+                    {
+                        double output = temp * temp * temp;
+                        dState.Motion.accelX = (byte)(output * 128.0);
+                    }
+                }
+
+                int szOutCurveMode = tempIntArray[device] = getSZOutCurveMode(device);
+                if (szOutCurveMode > 0)
+                {
+                    double temp = Math.Abs(dState.Motion.accelZ) / 128.0;
+                    double sign = Math.Sign(temp);
+                    if (szOutCurveMode == 1)
+                    {
+                        double output = temp * temp;
+                        dState.Motion.accelZ = (byte)(output * sign * 128.0);
+                    }
+                    else if (szOutCurveMode == 2)
+                    {
+                        double output = temp * temp * temp;
+                        dState.Motion.accelZ = (byte)(output * 128.0);
+                    }
                 }
             }
 

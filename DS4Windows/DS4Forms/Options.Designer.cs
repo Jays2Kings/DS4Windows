@@ -280,6 +280,19 @@
             this.label6 = new System.Windows.Forms.Label();
             this.nUDLSMaxZone = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.tPOutCurve = new System.Windows.Forms.TabPage();
+            this.cBSixaxisZOutputCurve = new System.Windows.Forms.ComboBox();
+            this.cBSixaxisXOutputCurve = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cBR2OutputCurve = new System.Windows.Forms.ComboBox();
+            this.cBL2OutputCurve = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
+            this.lsOutCurveComboBox = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tPCurve = new System.Windows.Forms.TabPage();
             this.nUDLSCurve = new System.Windows.Forms.NumericUpDown();
             this.nUDRSCurve = new System.Windows.Forms.NumericUpDown();
@@ -287,11 +300,6 @@
             this.lbRSCurvePercent = new System.Windows.Forms.Label();
             this.lbLSCurvePercent = new System.Windows.Forms.Label();
             this.lbLSCurve = new System.Windows.Forms.Label();
-            this.tPOutCurve = new System.Windows.Forms.TabPage();
-            this.rsOutCurveComboBox = new System.Windows.Forms.ComboBox();
-            this.lsOutCurveComboBox = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.tpRotation = new System.Windows.Forms.TabPage();
             this.nUDRSRotation = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
@@ -354,10 +362,6 @@
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cBL2OutputCurve = new System.Windows.Forms.ComboBox();
-            this.cBR2OutputCurve = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBGreenBar)).BeginInit();
@@ -428,10 +432,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).BeginInit();
+            this.tPOutCurve.SuspendLayout();
             this.tPCurve.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).BeginInit();
-            this.tPOutCurve.SuspendLayout();
             this.tpRotation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSRotation)).BeginInit();
@@ -3034,6 +3038,134 @@
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
+            // tPOutCurve
+            // 
+            this.tPOutCurve.Controls.Add(this.cBSixaxisZOutputCurve);
+            this.tPOutCurve.Controls.Add(this.cBSixaxisXOutputCurve);
+            this.tPOutCurve.Controls.Add(this.label24);
+            this.tPOutCurve.Controls.Add(this.label23);
+            this.tPOutCurve.Controls.Add(this.cBR2OutputCurve);
+            this.tPOutCurve.Controls.Add(this.cBL2OutputCurve);
+            this.tPOutCurve.Controls.Add(this.label22);
+            this.tPOutCurve.Controls.Add(this.label21);
+            this.tPOutCurve.Controls.Add(this.rsOutCurveComboBox);
+            this.tPOutCurve.Controls.Add(this.lsOutCurveComboBox);
+            this.tPOutCurve.Controls.Add(this.label10);
+            this.tPOutCurve.Controls.Add(this.label9);
+            resources.ApplyResources(this.tPOutCurve, "tPOutCurve");
+            this.tPOutCurve.Name = "tPOutCurve";
+            this.tPOutCurve.UseVisualStyleBackColor = true;
+            // 
+            // cBSixaxisZOutputCurve
+            // 
+            this.cBSixaxisZOutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSixaxisZOutputCurve.DropDownWidth = 70;
+            this.cBSixaxisZOutputCurve.FormattingEnabled = true;
+            this.cBSixaxisZOutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBSixaxisZOutputCurve.Items"),
+            resources.GetString("cBSixaxisZOutputCurve.Items1"),
+            resources.GetString("cBSixaxisZOutputCurve.Items2")});
+            resources.ApplyResources(this.cBSixaxisZOutputCurve, "cBSixaxisZOutputCurve");
+            this.cBSixaxisZOutputCurve.Name = "cBSixaxisZOutputCurve";
+            this.cBSixaxisZOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisZOutputCurve_SelectedIndexChanged);
+            // 
+            // cBSixaxisXOutputCurve
+            // 
+            this.cBSixaxisXOutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBSixaxisXOutputCurve.DropDownWidth = 70;
+            this.cBSixaxisXOutputCurve.FormattingEnabled = true;
+            this.cBSixaxisXOutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBSixaxisXOutputCurve.Items"),
+            resources.GetString("cBSixaxisXOutputCurve.Items1"),
+            resources.GetString("cBSixaxisXOutputCurve.Items2")});
+            resources.ApplyResources(this.cBSixaxisXOutputCurve, "cBSixaxisXOutputCurve");
+            this.cBSixaxisXOutputCurve.Name = "cBSixaxisXOutputCurve";
+            this.cBSixaxisXOutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBSixaxisXOutputCurve_SelectedIndexChanged);
+            // 
+            // label24
+            // 
+            resources.ApplyResources(this.label24, "label24");
+            this.label24.Name = "label24";
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
+            // 
+            // cBR2OutputCurve
+            // 
+            this.cBR2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBR2OutputCurve.DropDownWidth = 70;
+            this.cBR2OutputCurve.FormattingEnabled = true;
+            this.cBR2OutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBR2OutputCurve.Items"),
+            resources.GetString("cBR2OutputCurve.Items1"),
+            resources.GetString("cBR2OutputCurve.Items2")});
+            resources.ApplyResources(this.cBR2OutputCurve, "cBR2OutputCurve");
+            this.cBR2OutputCurve.Name = "cBR2OutputCurve";
+            this.cBR2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBR2OutputCurve_SelectedIndexChanged);
+            // 
+            // cBL2OutputCurve
+            // 
+            this.cBL2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBL2OutputCurve.DropDownWidth = 70;
+            this.cBL2OutputCurve.FormattingEnabled = true;
+            this.cBL2OutputCurve.Items.AddRange(new object[] {
+            resources.GetString("cBL2OutputCurve.Items"),
+            resources.GetString("cBL2OutputCurve.Items1"),
+            resources.GetString("cBL2OutputCurve.Items2")});
+            resources.ApplyResources(this.cBL2OutputCurve, "cBL2OutputCurve");
+            this.cBL2OutputCurve.Name = "cBL2OutputCurve";
+            this.cBL2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBL2OutputCurve_SelectedIndexChanged);
+            // 
+            // label22
+            // 
+            resources.ApplyResources(this.label22, "label22");
+            this.label22.Name = "label22";
+            // 
+            // label21
+            // 
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
+            // 
+            // rsOutCurveComboBox
+            // 
+            this.rsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rsOutCurveComboBox.DropDownWidth = 120;
+            this.rsOutCurveComboBox.FormattingEnabled = true;
+            this.rsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("rsOutCurveComboBox.Items"),
+            resources.GetString("rsOutCurveComboBox.Items1"),
+            resources.GetString("rsOutCurveComboBox.Items2"),
+            resources.GetString("rsOutCurveComboBox.Items3")});
+            resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
+            this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
+            this.rsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.rsOutCurveComboBox_SelectedIndexChanged);
+            // 
+            // lsOutCurveComboBox
+            // 
+            this.lsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.lsOutCurveComboBox.DropDownWidth = 120;
+            this.lsOutCurveComboBox.FormattingEnabled = true;
+            this.lsOutCurveComboBox.Items.AddRange(new object[] {
+            resources.GetString("lsOutCurveComboBox.Items"),
+            resources.GetString("lsOutCurveComboBox.Items1"),
+            resources.GetString("lsOutCurveComboBox.Items2"),
+            resources.GetString("lsOutCurveComboBox.Items3")});
+            resources.ApplyResources(this.lsOutCurveComboBox, "lsOutCurveComboBox");
+            this.lsOutCurveComboBox.Name = "lsOutCurveComboBox";
+            this.lsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.lsOutCurveComboBox_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
             // tPCurve
             // 
             this.tPCurve.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -3087,58 +3219,6 @@
             // 
             resources.ApplyResources(this.lbLSCurve, "lbLSCurve");
             this.lbLSCurve.Name = "lbLSCurve";
-            // 
-            // tPOutCurve
-            // 
-            this.tPOutCurve.Controls.Add(this.cBR2OutputCurve);
-            this.tPOutCurve.Controls.Add(this.cBL2OutputCurve);
-            this.tPOutCurve.Controls.Add(this.label22);
-            this.tPOutCurve.Controls.Add(this.label21);
-            this.tPOutCurve.Controls.Add(this.rsOutCurveComboBox);
-            this.tPOutCurve.Controls.Add(this.lsOutCurveComboBox);
-            this.tPOutCurve.Controls.Add(this.label10);
-            this.tPOutCurve.Controls.Add(this.label9);
-            resources.ApplyResources(this.tPOutCurve, "tPOutCurve");
-            this.tPOutCurve.Name = "tPOutCurve";
-            this.tPOutCurve.UseVisualStyleBackColor = true;
-            // 
-            // rsOutCurveComboBox
-            // 
-            this.rsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.rsOutCurveComboBox.DropDownWidth = 100;
-            this.rsOutCurveComboBox.FormattingEnabled = true;
-            this.rsOutCurveComboBox.Items.AddRange(new object[] {
-            resources.GetString("rsOutCurveComboBox.Items"),
-            resources.GetString("rsOutCurveComboBox.Items1"),
-            resources.GetString("rsOutCurveComboBox.Items2"),
-            resources.GetString("rsOutCurveComboBox.Items3")});
-            resources.ApplyResources(this.rsOutCurveComboBox, "rsOutCurveComboBox");
-            this.rsOutCurveComboBox.Name = "rsOutCurveComboBox";
-            this.rsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.rsOutCurveComboBox_SelectedIndexChanged);
-            // 
-            // lsOutCurveComboBox
-            // 
-            this.lsOutCurveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.lsOutCurveComboBox.DropDownWidth = 100;
-            this.lsOutCurveComboBox.FormattingEnabled = true;
-            this.lsOutCurveComboBox.Items.AddRange(new object[] {
-            resources.GetString("lsOutCurveComboBox.Items"),
-            resources.GetString("lsOutCurveComboBox.Items1"),
-            resources.GetString("lsOutCurveComboBox.Items2"),
-            resources.GetString("lsOutCurveComboBox.Items3")});
-            resources.ApplyResources(this.lsOutCurveComboBox, "lsOutCurveComboBox");
-            this.lsOutCurveComboBox.Name = "lsOutCurveComboBox";
-            this.lsOutCurveComboBox.SelectedIndexChanged += new System.EventHandler(this.lsOutCurveComboBox_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
             // 
             // tpRotation
             // 
@@ -3795,40 +3875,6 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
-            // label21
-            // 
-            resources.ApplyResources(this.label21, "label21");
-            this.label21.Name = "label21";
-            // 
-            // label22
-            // 
-            resources.ApplyResources(this.label22, "label22");
-            this.label22.Name = "label22";
-            // 
-            // cBL2OutputCurve
-            // 
-            this.cBL2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBL2OutputCurve.FormattingEnabled = true;
-            this.cBL2OutputCurve.Items.AddRange(new object[] {
-            resources.GetString("cBL2OutputCurve.Items"),
-            resources.GetString("cBL2OutputCurve.Items1"),
-            resources.GetString("cBL2OutputCurve.Items2")});
-            resources.ApplyResources(this.cBL2OutputCurve, "cBL2OutputCurve");
-            this.cBL2OutputCurve.Name = "cBL2OutputCurve";
-            this.cBL2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBL2OutputCurve_SelectedIndexChanged);
-            // 
-            // cBR2OutputCurve
-            // 
-            this.cBR2OutputCurve.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBR2OutputCurve.FormattingEnabled = true;
-            this.cBR2OutputCurve.Items.AddRange(new object[] {
-            resources.GetString("cBR2OutputCurve.Items"),
-            resources.GetString("cBR2OutputCurve.Items1"),
-            resources.GetString("cBR2OutputCurve.Items2")});
-            resources.ApplyResources(this.cBR2OutputCurve, "cBR2OutputCurve");
-            this.cBR2OutputCurve.Name = "cBR2OutputCurve";
-            this.cBR2OutputCurve.SelectedIndexChanged += new System.EventHandler(this.cBR2OutputCurve_SelectedIndexChanged);
-            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3923,12 +3969,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2Maxzone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSMaxZone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSMaxZone)).EndInit();
+            this.tPOutCurve.ResumeLayout(false);
+            this.tPOutCurve.PerformLayout();
             this.tPCurve.ResumeLayout(false);
             this.tPCurve.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLSCurve)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSCurve)).EndInit();
-            this.tPOutCurve.ResumeLayout(false);
-            this.tPOutCurve.PerformLayout();
             this.tpRotation.ResumeLayout(false);
             this.tpRotation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRSRotation)).EndInit();
@@ -4286,5 +4332,9 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox cBR2OutputCurve;
         private System.Windows.Forms.ComboBox cBL2OutputCurve;
+        private System.Windows.Forms.ComboBox cBSixaxisZOutputCurve;
+        private System.Windows.Forms.ComboBox cBSixaxisXOutputCurve;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
     }
 }

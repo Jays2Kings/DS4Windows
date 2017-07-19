@@ -368,6 +368,8 @@ namespace DS4Windows
                 btPollRateComboBox.SelectedIndex = getBTPollRate(device);
                 lsOutCurveComboBox.SelectedIndex = getLsOutCurveMode(device);
                 rsOutCurveComboBox.SelectedIndex = getRsOutCurveMode(device);
+                cBL2OutputCurve.SelectedIndex = getL2OutCurveMode(device);
+                cBR2OutputCurve.SelectedIndex = getR2OutCurveMode(device);
 
                 try
                 {
@@ -657,6 +659,8 @@ namespace DS4Windows
                 btPollRateComboBox.SelectedIndex = 4;
                 lsOutCurveComboBox.SelectedIndex = 0;
                 rsOutCurveComboBox.SelectedIndex = 0;
+                cBL2OutputCurve.SelectedIndex = 0;
+                cBR2OutputCurve.SelectedIndex = 0;
                 rBTPMouse.Checked = true;
                 rBSAControls.Checked = true;
                 ToggleRainbow(false);
@@ -1348,6 +1352,8 @@ namespace DS4Windows
             BTPollRate[device] = btPollRateComboBox.SelectedIndex;
             lsOutCurveMode[device] = lsOutCurveComboBox.SelectedIndex;
             rsOutCurveMode[device] = rsOutCurveComboBox.SelectedIndex;
+            l2OutCurveMode[device] = cBL2OutputCurve.SelectedIndex;
+            r2OutCurveMode[device] = cBR2OutputCurve.SelectedIndex;
             L2Deadzone[device] = (byte)Math.Round((nUDL2.Value * 255), 0);
             R2Deadzone[device] = (byte)Math.Round((nUDR2.Value * 255), 0);
             L2AntiDeadzone[device] = (int)(nUDL2AntiDead.Value * 100);
@@ -2995,6 +3001,22 @@ namespace DS4Windows
             if (loading == false)
             {
                 SZAntiDeadzone[device] = (double)nUDSixaxisZAntiDead.Value;
+            }
+        }
+
+        private void cBL2OutputCurve_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                l2OutCurveMode[device] = cBL2OutputCurve.SelectedIndex;
+            }
+        }
+
+        private void cBR2OutputCurve_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                r2OutCurveMode[device] = cBR2OutputCurve.SelectedIndex;
             }
         }
 

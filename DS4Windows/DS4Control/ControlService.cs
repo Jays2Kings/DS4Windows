@@ -23,7 +23,7 @@ namespace DS4Windows
         public DS4StateExposed[] ExposedState = new DS4StateExposed[DS4_CONTROLLER_COUNT];
         public bool recordingMacro = false;
         public event EventHandler<DebugEventArgs> Debug = null;
-        bool[] buttonsdown = { false, false, false, false };
+        bool[] buttonsdown = new bool[4] { false, false, false, false };
         List<DS4Controls> dcs = new List<DS4Controls>();
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
@@ -691,10 +691,10 @@ namespace DS4Windows
             }
         }
 
-        public bool[] lag = { false, false, false, false };
-        public bool[] inWarnMonitor = { false, false, false, false };
-        private byte[] currentBattery = { 0, 0, 0, 0 };
-        private bool[] charging = { false, false, false, false };
+        public bool[] lag = new bool[4] { false, false, false, false };
+        public bool[] inWarnMonitor = new bool[4] { false, false, false, false };
+        private byte[] currentBattery = new byte[4] { 0, 0, 0, 0 };
+        private bool[] charging = new bool[4] { false, false, false, false };
 
         // Called every time a new input report has arrived
         protected virtual void On_Report(object sender, EventArgs e)

@@ -864,6 +864,18 @@ namespace DS4Windows
             return m_Config.rsOutCurveMode[index];
         }
 
+        public static int[] l2OutCurveMode => m_Config.l2OutCurveMode;
+        public static int getL2OutCurveMode(int index)
+        {
+            return m_Config.l2OutCurveMode[index];
+        }
+
+        public static int[] r2OutCurveMode => m_Config.r2OutCurveMode;
+        public static int getR2OutCurveMode(int index)
+        {
+            return m_Config.r2OutCurveMode[index];
+        }
+
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
         public static bool[] DistanceProfiles = m_Config.distanceProfiles;
@@ -1211,6 +1223,8 @@ namespace DS4Windows
         public int[] btPollRate = { 4, 4, 4, 4, 4 };
         public int[] lsOutCurveMode = { 0, 0, 0, 0, 0 };
         public int[] rsOutCurveMode = { 0, 0, 0, 0, 0 };
+        public int[] l2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] r2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
 
         public DS4Color[] m_LowLeds = new DS4Color[]
         {
@@ -1410,7 +1424,7 @@ namespace DS4Windows
             catch { return 0; }
         }*/
 
-        private string outputCurveString(int id)
+        private string stickOutputCurveString(int id)
         {
             string result = "linear";
             switch (id)
@@ -1425,7 +1439,7 @@ namespace DS4Windows
             return result;
         }
 
-        private int outputCurveId(string name)
+        private int stickOutputCurveId(string name)
         {
             int id = 0;
             switch (name)
@@ -1434,6 +1448,34 @@ namespace DS4Windows
                 case "enhanced-precision": id = 1; break;
                 case "quadratic": id = 2; break;
                 case "cubic": id = 3; break;
+                default: break;
+            }
+
+            return id;
+        }
+
+        private string axisOutputCurveString(int id)
+        {
+            string result = "linear";
+            switch (id)
+            {
+                case 0: break;
+                case 1: result = "quadratic"; break;
+                case 2: result = "cubic"; break;
+                default: break;
+            }
+
+            return result;
+        }
+
+        private int axisOutputCurveId(string name)
+        {
+            int id = 0;
+            switch (name)
+            {
+                case "linear": id = 0; break;
+                case "quadratic": id = 1; break;
+                case "cubic": id = 2; break;
                 default: break;
             }
 
@@ -1538,8 +1580,11 @@ namespace DS4Windows
                 XmlNode xmlRSC = m_Xdoc.CreateNode(XmlNodeType.Element, "RSCurve", null); xmlRSC.InnerText = rsCurve[device].ToString(); Node.AppendChild(xmlRSC);
                 XmlNode xmlProfileActions = m_Xdoc.CreateNode(XmlNodeType.Element, "ProfileActions", null); xmlProfileActions.InnerText = string.Join("/", profileActions[device]); Node.AppendChild(xmlProfileActions);
                 XmlNode xmlBTPollRate = m_Xdoc.CreateNode(XmlNodeType.Element, "BTPollRate", null); xmlBTPollRate.InnerText = btPollRate[device].ToString(); Node.AppendChild(xmlBTPollRate);
-                XmlNode xmlLsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputCurveMode", null); xmlLsOutputCurveMode.InnerText = outputCurveString(lsOutCurveMode[device]); Node.AppendChild(xmlLsOutputCurveMode);
-                XmlNode xmlRsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveMode", null); xmlRsOutputCurveMode.InnerText = outputCurveString(rsOutCurveMode[device]); Node.AppendChild(xmlRsOutputCurveMode);
+                XmlNode xmlLsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "LSOutputCurveMode", null); xmlLsOutputCurveMode.InnerText = stickOutputCurveString(lsOutCurveMode[device]); Node.AppendChild(xmlLsOutputCurveMode);
+                XmlNode xmlRsOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "RSOutputCurveMode", null); xmlRsOutputCurveMode.InnerText = stickOutputCurveString(rsOutCurveMode[device]); Node.AppendChild(xmlRsOutputCurveMode);
+
+                XmlNode xmlL2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "L2OutputCurveMode", null); xmlL2OutputCurveMode.InnerText = axisOutputCurveString(l2OutCurveMode[device]); Node.AppendChild(xmlL2OutputCurveMode);
+                XmlNode xmlR2OutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "R2OutputCurveMode", null); xmlR2OutputCurveMode.InnerText = axisOutputCurveString(r2OutCurveMode[device]); Node.AppendChild(xmlR2OutputCurveMode);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -2529,11 +2574,17 @@ namespace DS4Windows
                 }
                 catch { btPollRate[device] = 4; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputCurveMode"); lsOutCurveMode[device] = outputCurveId(Item.InnerText); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/LSOutputCurveMode"); lsOutCurveMode[device] = stickOutputCurveId(Item.InnerText); }
                 catch { lsOutCurveMode[device] = 0; missingSetting = true; }
 
-                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputCurveMode"); rsOutCurveMode[device] = outputCurveId(Item.InnerText); }
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/RSOutputCurveMode"); rsOutCurveMode[device] = stickOutputCurveId(Item.InnerText); }
                 catch { rsOutCurveMode[device] = 0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/L2OutputCurveMode"); l2OutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
+                catch { l2OutCurveMode[device] = 0; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/R2OutputCurveMode"); r2OutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
+                catch { r2OutCurveMode[device] = 0; missingSetting = true; }
 
                 try
                 {
@@ -3577,6 +3628,8 @@ namespace DS4Windows
             gyroMouseHorizontalAxis[device] = 0;
             lsOutCurveMode[device] = 0;
             rsOutCurveMode[device] = 0;
+            l2OutCurveMode[device] = 0;
+            r2OutCurveMode[device] = 0;
         }
     }
 

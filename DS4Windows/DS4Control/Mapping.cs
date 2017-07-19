@@ -404,7 +404,7 @@ namespace DS4Windows
             return (value < min) ? min : (value > max) ? max : value;
         }
 
-        private static double[] tempDoubleArray = { 0.0, 0.0, 0.0, 0.0 };
+        private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState)
         {
             double rotation = tempDoubleArray[device] = getLSRotation(device);
@@ -436,7 +436,6 @@ namespace DS4Windows
                 {
                     curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
                     curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
-                    //btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbLSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbLSTrack.Location.Y));
                 }
                 else
                 {
@@ -528,8 +527,6 @@ namespace DS4Windows
                         {
                             double currentX = Global.Clamp(maxZoneXNegValue, dState.LX, maxZoneXPosValue);
                             double currentY = Global.Clamp(maxZoneYNegValue, dState.LY, maxZoneYPosValue);
-                            //currentX = (byte)((dState.LX >= 127.5f) ? Math.Min(dState.LX, maxZoneX) : Math.Max(dState.LX, maxZoneX));
-                            //currentY = (byte)((dState.LY >= 127.5f) ? Math.Min(dState.LY, maxZoneY) : Math.Max(dState.LY, maxZoneY));
                             tempOutputX = ((currentX - 127.5f - tempLsXDead) / (maxZoneX - tempLsXDead));
                             tempOutputY = ((currentY - 127.5f - tempLsYDead) / (maxZoneY - tempLsYDead));
                         }
@@ -609,8 +606,6 @@ namespace DS4Windows
 
                             tempOutputX = ((currentX - 127.5f - tempRsXDead) / (maxZoneX - tempRsXDead));
                             tempOutputY = ((currentY - 127.5f - tempRsYDead) / (maxZoneY - tempRsYDead));
-                            //tempOutputX = ((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead));
-                            //tempOutputY = ((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead));
                         }
                     }
                     else
@@ -620,8 +615,6 @@ namespace DS4Windows
 
                         tempOutputX = (currentX - 127.5f) / maxZoneX;
                         tempOutputY = (currentY - 127.5f) / maxZoneY;
-                        //tempOutputX = ((dState.RX - 127.5f) / (double)(maxXValue));
-                        //tempOutputY = ((dState.RY - 127.5f) / (double)(maxYValue));
                     }
 
                     double tempRsXAntiDeadPercent = 0.0, tempRsYAntiDeadPercent = 0.0;
@@ -752,8 +745,8 @@ namespace DS4Windows
             int lsOutCurveMode = lsOutCurveModeArray[device] = getLsOutCurveMode(device);
             if (lsOutCurveMode != 0)
             {
-                double tempX = (dState.LX - 127.5f) / 127.5;
-                double tempY = (dState.LY - 127.5f) / 127.5;
+                double tempX = (dState.LX - 127.5) / 127.5;
+                double tempY = (dState.LY - 127.5) / 127.5;
                 double signX = tempX >= 0.0 ? 1.0 : -1.0;
                 double signY = tempY >= 0.0 ? 1.0 : -1.0;
 
@@ -790,30 +783,30 @@ namespace DS4Windows
                         outputY = (absY * 1.992) - 0.992;
                     }
 
-                    dState.LX = (byte)(outputX * signX * 127.5f + 127.5f);
-                    dState.LY = (byte)(outputY * signY * 127.5f + 127.5f);
+                    dState.LX = (byte)(outputX * signX * 127.5 + 127.5);
+                    dState.LY = (byte)(outputY * signY * 127.5 + 127.5);
                 }
                 else if (lsOutCurveMode == 2)
                 {
                     double outputX = tempX * tempX;
                     double outputY = tempY * tempY;
-                    dState.LX = (byte)(outputX * signX * 127.5f + 127.5f);
-                    dState.LY = (byte)(outputY * signY * 127.5f + 127.5f);
+                    dState.LX = (byte)(outputX * signX * 127.5 + 127.5);
+                    dState.LY = (byte)(outputY * signY * 127.5 + 127.5);
                 }
                 else if (lsOutCurveMode == 3)
                 {
                     double outputX = tempX * tempX * tempX;
                     double outputY = tempY * tempY * tempY;
-                    dState.LX = (byte)(outputX * 127.5f + 127.5f);
-                    dState.LY = (byte)(outputY * 127.5f + 127.5f);
+                    dState.LX = (byte)(outputX * 127.5 + 127.5);
+                    dState.LY = (byte)(outputY * 127.5 + 127.5);
                 }
             }
 
             int rsOutCurveMode = rsOutCurveModeArray[device] = getRsOutCurveMode(device);
             if (rsOutCurveMode != 0)
             {
-                double tempX = (dState.RX - 127.5f) / 127.5;
-                double tempY = (dState.RY - 127.5f) / 127.5;
+                double tempX = (dState.RX - 127.5) / 127.5;
+                double tempY = (dState.RY - 127.5) / 127.5;
                 double signX = tempX >= 0.0 ? 1.0 : -1.0;
                 double signY = tempY >= 0.0 ? 1.0 : -1.0;
 
@@ -850,22 +843,54 @@ namespace DS4Windows
                         outputY = (absY * 1.992) - 0.992;
                     }
 
-                    dState.RX = (byte)(outputX * signX * 127.5f + 127.5f);
-                    dState.RY = (byte)(outputY * signY * 127.5f + 127.5f);
+                    dState.RX = (byte)(outputX * signX * 127.5 + 127.5);
+                    dState.RY = (byte)(outputY * signY * 127.5 + 127.5);
                 }
                 else if (rsOutCurveMode == 2)
                 {
                     double outputX = tempX * tempX;
                     double outputY = tempY * tempY;
-                    dState.RX = (byte)(outputX * signX * 127.5f + 127.5f);
-                    dState.RY = (byte)(outputY * signY * 127.5f + 127.5f);
+                    dState.RX = (byte)(outputX * signX * 127.5 + 127.5);
+                    dState.RY = (byte)(outputY * signY * 127.5 + 127.5);
                 }
                 else if (rsOutCurveMode == 3)
                 {
                     double outputX = tempX * tempX * tempX;
                     double outputY = tempY * tempY * tempY;
-                    dState.RX = (byte)(outputX * 127.5f + 127.5f);
-                    dState.RY = (byte)(outputY * 127.5f + 127.5f);
+                    dState.RX = (byte)(outputX * 127.5 + 127.5);
+                    dState.RY = (byte)(outputY * 127.5 + 127.5);
+                }
+            }
+
+            int l2OutCurveMode = getL2OutCurveMode(device);
+            if (l2OutCurveMode > 0)
+            {
+                double temp = dState.L2 / 255.0;
+                if (l2OutCurveMode == 1)
+                {
+                    double output = temp * temp;
+                    dState.L2 = (byte)(output * 255.0);
+                }
+                else if (l2OutCurveMode == 2)
+                {
+                    double output = temp * temp * temp;
+                    dState.L2 = (byte)(output * 255.0);
+                }
+            }
+
+            int r2OutCurveMode = getR2OutCurveMode(device);
+            if (r2OutCurveMode > 0)
+            {
+                double temp = dState.R2 / 255.0;
+                if (r2OutCurveMode == 1)
+                {
+                    double output = temp * temp;
+                    dState.R2 = (byte)(output * 255.0);
+                }
+                else if (r2OutCurveMode == 2)
+                {
+                    double output = temp * temp * temp;
+                    dState.R2 = (byte)(output * 255.0);
                 }
             }
 

@@ -169,20 +169,16 @@ namespace DS4Windows
         {
             double sinAngle = Math.Sin(rotation), cosAngle = Math.Cos(rotation);
             double tempLX = LX - 127.5, tempLY = LY - 127.5;
-            Byte tempx = (Byte)(tempLX * cosAngle - tempLY * sinAngle + 127.5);
-            Byte tempy = (Byte)(tempLX * sinAngle + tempLY * cosAngle + 127.5);
-            LX = tempx;
-            LY = tempy;
+            LX = (Byte)(Global.Clamp(-127.5, (tempLX * cosAngle - tempLY * sinAngle), 127.5) + 127.5);
+            LY = (Byte)(Global.Clamp(-127.5, (tempLX * sinAngle + tempLY * cosAngle), 127.5) + 127.5);
         }
 
         public void rotateRSCoordinates(double rotation)
         {
             double sinAngle = Math.Sin(rotation), cosAngle = Math.Cos(rotation);
             double tempRX = RX - 127.5, tempRY = RY - 127.5;
-            Byte tempx = (Byte)(tempRX * cosAngle - tempRY * sinAngle + 127.5);
-            Byte tempy = (Byte)(tempRX * sinAngle + tempRY * cosAngle + 127.5);
-            RX = tempx;
-            RY = tempy;
+            RX = (Byte)(Global.Clamp(-127.5, (tempRX * cosAngle - tempRY * sinAngle), 127.5) + 127.5);
+            RY = (Byte)(Global.Clamp(-127.5, (tempRX * sinAngle + tempRY * cosAngle), 127.5) + 127.5);
         }
     }
 }

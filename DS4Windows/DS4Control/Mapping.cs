@@ -1440,28 +1440,28 @@ namespace DS4Windows
             if (macroControl[24]) MappedState.RY = 0;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LXNeg), device, cState, eState, tp, fieldMapping), DS4Controls.LXNeg))
-                tempControlDict.Add(DS4Controls.LXNeg, DS4Controls.LXNeg);
+                tempControlDict[DS4Controls.LXNeg] = DS4Controls.LXNeg;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LXPos), device, cState, eState, tp, fieldMapping), DS4Controls.LXPos))
-                tempControlDict.Add(DS4Controls.LXPos, DS4Controls.LXPos);
+                tempControlDict[DS4Controls.LXPos] = DS4Controls.LXPos;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LYNeg), device, cState, eState, tp, fieldMapping), DS4Controls.LYNeg))
-                tempControlDict.Add(DS4Controls.LYNeg, DS4Controls.LYNeg);
+                tempControlDict[DS4Controls.LYNeg] = DS4Controls.LYNeg;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LYPos), device, cState, eState, tp, fieldMapping), DS4Controls.LYPos))
-                tempControlDict.Add(DS4Controls.LYPos, DS4Controls.LYPos);
+                tempControlDict[DS4Controls.LYPos] = DS4Controls.LYPos;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RXNeg), device, cState, eState, tp, fieldMapping), DS4Controls.RXNeg))
-                tempControlDict.Add(DS4Controls.RXNeg, DS4Controls.RXNeg);
+                tempControlDict[DS4Controls.RXNeg] = DS4Controls.RXNeg;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RXPos), device, cState, eState, tp, fieldMapping), DS4Controls.RXPos))
-                tempControlDict.Add(DS4Controls.RXPos, DS4Controls.RXPos);
+                tempControlDict[DS4Controls.RXPos] = DS4Controls.RXPos;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RYNeg), device, cState, eState, tp, fieldMapping), DS4Controls.RYNeg))
-                tempControlDict.Add(DS4Controls.RYNeg, DS4Controls.RYNeg);
+                tempControlDict[DS4Controls.RYNeg] = DS4Controls.RYNeg;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RYPos), device, cState, eState, tp, fieldMapping), DS4Controls.RYPos))
-                tempControlDict.Add(DS4Controls.RYPos, DS4Controls.RYPos);
+                tempControlDict[DS4Controls.RYPos] = DS4Controls.RYPos;
 
             Dictionary<DS4Controls, DS4Controls>.KeyCollection controlKeys = tempControlDict.Keys;
             //Dictionary<DS4Controls, List<DS4Controls>>.KeyCollection controlKeys = tempControlDict.Keys;

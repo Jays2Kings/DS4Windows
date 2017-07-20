@@ -15,7 +15,7 @@ namespace DS4Windows
 
     public class SixAxis
     {
-        public int gyroYaw, gyroPitch, gyroRoll, deltaX, deltaY, deltaZ, accelX, accelY, accelZ;
+        public int gyroYaw, gyroPitch, gyroRoll, accelX, accelY, accelZ;
         public readonly int gyroYawFull, gyroPitchFull, gyroRollFull;
         public int accelXFull, accelYFull, accelZFull;
         public readonly byte touchID;
@@ -42,12 +42,6 @@ namespace DS4Windows
             elapsed = milliseconds;
 
             previousAxis = prevAxis;
-            if (previousAxis != null)
-            {
-                deltaX = gyroYaw - previousAxis.gyroYaw;
-                deltaY = gyroPitch - previousAxis.gyroPitch;
-                deltaZ = gyroRoll - previousAxis.gyroRoll;
-            }
         }
     }
 

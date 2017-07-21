@@ -18,13 +18,18 @@ namespace DS4Windows
             { 140, 140 },
             { 168, 112 },
             { 196, 84 },
-            { 224, 56}, // on 80% of the time at 80, etc.
+            { 224, 56 }, // on 80% of the time at 80, etc.
             { 252, 28 } // on 90% of the time at 90
         };
+
         static double[] counters = new double[4] { 0, 0, 0, 0 };
-        public static Stopwatch[] fadewatches = { new Stopwatch(), new Stopwatch(), new Stopwatch(), new Stopwatch() };
+        public static Stopwatch[] fadewatches = new Stopwatch[4]
+            { new Stopwatch(), new Stopwatch(), new Stopwatch(), new Stopwatch() };
+
         static bool[] fadedirection = new bool[4] { false, false, false, false };
-        static DateTime[] oldnow = { DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow };
+        static DateTime[] oldnow = new DateTime[4]
+            { DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow };
+
         public static bool[] forcelight = new bool[4] { false, false, false, false };
         public static DS4Color[] forcedColor = new DS4Color[4];
         public static byte[] forcedFlash = new byte[4];
@@ -290,10 +295,6 @@ namespace DS4Windows
             byte tempLightBarOnDuration = device.getLightBarOnDuration();
             if (tempLightBarOnDuration != haptics.LightBarFlashDurationOn && tempLightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
                 haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
-
-            // Comment out code for now. This condition gets hit too often and bogs down the GUI
-            //if (device.LightBarOnDuration == 1) //helps better reset the color
-            //    System.Threading.Thread.Sleep(5);
 
             device.pushHapticState(haptics);
         }

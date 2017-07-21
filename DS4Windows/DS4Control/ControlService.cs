@@ -23,7 +23,7 @@ namespace DS4Windows
         public DS4StateExposed[] ExposedState = new DS4StateExposed[DS4_CONTROLLER_COUNT];
         public bool recordingMacro = false;
         public event EventHandler<DebugEventArgs> Debug = null;
-        bool[] buttonsdown = { false, false, false, false };
+        bool[] buttonsdown = new bool[4] { false, false, false, false };
         List<DS4Controls> dcs = new List<DS4Controls>();
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
@@ -249,7 +249,7 @@ namespace DS4Windows
                             DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i],
                                 ExposedState[i], touchPad[i]);
                             tempDevice.IsRemoved = true;
-                            System.Threading.Thread.Sleep(50);
+                            Thread.Sleep(50);
                         }
 
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
@@ -264,7 +264,7 @@ namespace DS4Windows
                 }
 
                 if (anyUnplugged)
-                    System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
+                    Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
 
                 x360Bus.UnplugAll();
                 x360Bus.Stop();
@@ -691,10 +691,10 @@ namespace DS4Windows
             }
         }
 
-        public bool[] lag = { false, false, false, false };
-        public bool[] inWarnMonitor = { false, false, false, false };
-        private byte[] currentBattery = { 0, 0, 0, 0 };
-        private bool[] charging = { false, false, false, false };
+        public bool[] lag = new bool[4] { false, false, false, false };
+        public bool[] inWarnMonitor = new bool[4] { false, false, false, false };
+        private byte[] currentBattery = new byte[4] { 0, 0, 0, 0 };
+        private bool[] charging = new bool[4] { false, false, false, false };
 
         // Called every time a new input report has arrived
         protected virtual void On_Report(object sender, EventArgs e)
@@ -747,7 +747,7 @@ namespace DS4Windows
                     }
                 }
 
-                device.getExposedState(ExposedState[ind], CurrentState[ind]);
+                device.getCurrentState(CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
                 device.getPreviousState(PreviousState[ind]);
                 DS4State pState = PreviousState[ind];
@@ -963,9 +963,11 @@ namespace DS4Windows
             return result;
         }
 
-        public bool[] touchreleased = { true, true, true, true }, touchslid = { false, false, false, false };
-        public byte[] oldtouchvalue = { 0, 0, 0, 0 };
-        public int[] oldscrollvalue = { 0, 0, 0, 0 };
+        public bool[] touchreleased = new bool[4] { true, true, true, true },
+            touchslid = new bool[4] { false, false, false, false };
+
+        public byte[] oldtouchvalue = new byte[4] { 0, 0, 0, 0 };
+        public int[] oldscrollvalue = new int[4] { 0, 0, 0, 0 };
 
         protected virtual void CheckForTouchToggle(int deviceID, DS4State cState, DS4State pState)
         {

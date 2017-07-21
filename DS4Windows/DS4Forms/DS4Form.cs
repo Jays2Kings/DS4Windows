@@ -56,10 +56,8 @@ namespace DS4Windows
         public bool mAllowVisible;
         bool contextclose;
         string logFile = appdatapath + @"\DS4Service.log";
-        //StreamWriter logWriter;
         bool turnOffTemp;
         bool runningBat;
-        //bool outputlog = false;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
         string[] notifyText = { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
@@ -114,6 +112,7 @@ namespace DS4Windows
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
+
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
             bool firstrun = false;
@@ -184,16 +183,14 @@ namespace DS4Windows
 
             Log.GuiLog += On_Debug;
             logFile = appdatapath + "\\DS4Windows.log";
-            //logWriter = File.AppendText(logFile);
             Log.TrayIconLog += ShowNotification;
-            // tmrUpdate.Enabled = true; TODO remove tmrUpdate and leave tick()
 
             Directory.CreateDirectory(appdatapath);
             Global.Load();
             if (!Save()) //if can't write to file
             {
                 if (MessageBox.Show("Cannot write at current location\nCopy Settings to appdata?", "DS4Windows",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     try
                     {
@@ -270,12 +267,14 @@ namespace DS4Windows
                         if (Path.GetExtension(s) == ".xml")
                         {
                             xDoc.Load(s);
-                            XmlNode el = xDoc.SelectSingleNode("DS4Windows/ProfileActions"); //.CreateElement("Action");
+                            XmlNode el = xDoc.SelectSingleNode("DS4Windows/ProfileActions");
                             if (el != null)
+                            {
                                 if (string.IsNullOrEmpty(el.InnerText))
                                     el.InnerText = "Disconnect Controller";
                                 else
                                     el.InnerText += "/Disconnect Controller";
+                            }
                             else
                             {
                                 XmlNode Node = xDoc.SelectSingleNode("DS4Windows");
@@ -283,6 +282,7 @@ namespace DS4Windows
                                 el.InnerText = "Disconnect Controller";
                                 Node.AppendChild(el);
                             }
+
                             xDoc.Save(s);
                             LoadActions();
                         }
@@ -312,11 +312,10 @@ namespace DS4Windows
             Form_Resize(null, null);
             RefreshProfiles();
             opt = new Options(this);
-            //opt.Text = "Options for Controller " + (devID + 1);
             opt.Icon = this.Icon;
             opt.TopLevel = false;
             opt.Dock = DockStyle.Fill;
-            opt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            opt.FormBorderStyle = FormBorderStyle.None;
             tabProfiles.Controls.Add(opt);
 
             for (int i = 0; i < 4; i++)
@@ -1374,7 +1373,7 @@ namespace DS4Windows
 
         private void pBStatus_MouseClick(object sender, MouseEventArgs e)
         {
-            int i = Int32.Parse(((PictureBox)sender).Tag.ToString());
+            int i = Convert.ToInt32(((PictureBox)sender).Tag);
             DS4Device d = Program.rootHub.DS4Controllers[i];
             if (d != null)
             {
@@ -1412,8 +1411,6 @@ namespace DS4Windows
 
         protected void On_Debug(object sender, DebugEventArgs e)
         {
-            //logWriter.WriteLine(e.Time + ":\t" + e.Data);
-            //logWriter.Flush();
             LogDebug(e.Time, e.Data, e.Warning);
         }
 
@@ -1613,7 +1610,7 @@ namespace DS4Windows
             this.Show();
             WindowState = FormWindowState.Normal;
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
-            int i = Int32.Parse(em.Tag.ToString());
+            int i = Convert.ToInt32(em.Tag);
             if (em.Text == Properties.Resources.ContextNew.Replace("*number*", (i + 1).ToString()))
                 ShowOptions(i, "");
             else
@@ -1668,7 +1665,7 @@ namespace DS4Windows
         private void Profile_Changed(object sender, EventArgs e) //cbs[i] changed
         {
             ComboBox cb = (ComboBox)sender;
-            int tdevice = Int32.Parse(cb.Tag.ToString());
+            int tdevice = Convert.ToInt32(cb.Tag);
             if (cb.Items[cb.Items.Count - 1].ToString() == "+" + Properties.Resources.PlusNewProfile)
             {
                 if (cb.SelectedIndex < cb.Items.Count - 1)
@@ -1701,7 +1698,7 @@ namespace DS4Windows
         private void Profile_Changed_Menu(object sender, ToolStripItemClickedEventArgs e)
         {
             ToolStripMenuItem tS = (ToolStripMenuItem)sender;
-            int tdevice = Int32.Parse(tS.Tag.ToString());
+            int tdevice = Convert.ToInt32(tS.Tag);
             if (!(e.ClickedItem is ToolStripSeparator))
             {
                 if (e.ClickedItem != tS.DropDownItems[tS.DropDownItems.Count - 1]) //if +New Profile not selected 
@@ -1835,12 +1832,6 @@ namespace DS4Windows
                 lbLastMessage.Text = lvDebug.Items[lvDebug.Items.Count - 1].SubItems[1].Text;
             else
                 lbLastMessage.Text = "";
-
-            /*if (tabMain.SelectedIndex != 1 || !opt.Visible)
-                opt.inputtimer.Stop();
-            else if (opt.Visible && tabMain.SelectedIndex == 1)
-                opt.inputtimer.Start();
-            */
         }
 
         private void Items_MouseHover(object sender, EventArgs e)
@@ -1853,23 +1844,6 @@ namespace DS4Windows
             }
 
             lbLastMessage.Text = hoverText;
-
-            /*switch (((System.Windows.Forms.Control)sender).Name)
-            {
-                //if (File.Exists(appdatapath + "\\Auto Profiles.xml"))
-                case "linkUninstall": lbLastMessage.Text = Properties.Resources.IfRemovingDS4Windows; break;
-                case "cBSwipeProfiles": lbLastMessage.Text = Properties.Resources.TwoFingerSwipe; break;
-                case "cBQuickCharge": lbLastMessage.Text = Properties.Resources.QuickCharge; break;
-                case "pnlXIPorts": lbLastMessage.Text = Properties.Resources.XinputPorts; break;
-                case "lbUseXIPorts": lbLastMessage.Text = Properties.Resources.XinputPorts; break;
-                case "nUDXIPorts": lbLastMessage.Text = Properties.Resources.XinputPorts; break;
-                case "lbLastXIPort": lbLastMessage.Text = Properties.Resources.XinputPorts; break;
-                case "cBCloseMini": lbLastMessage.Text = Properties.Resources.CloseMinimize; break;
-                default: lbLastMessage.Text = Properties.Resources.HoverOverItems; break;
-            }
-            */
-
-            //if (lbLastMessage.Text != Properties.Resources.HoverOverItems)
             if (hoverText != Properties.Resources.HoverOverItems)
                 lbLastMessage.ForeColor = Color.Black;
             else
@@ -2223,6 +2197,9 @@ namespace DS4Windows
                 blankControllerTab();
                 Program.rootHub.Stop();
             }
+
+            // Make sure to stop event generation routines. Should fix odd crashes on shutdown
+            Application.Exit();
         }
 
         private void cBSwipeProfiles_CheckedChanged(object sender, EventArgs e)
@@ -2296,7 +2273,7 @@ namespace DS4Windows
         private void Pads_MouseHover(object sender, EventArgs e)
         {
             Label lb = (Label)sender;
-            int i = Int32.Parse(lb.Tag.ToString());
+            int i = Convert.ToInt32(lb.Tag);
             DS4Device d = Program.rootHub.DS4Controllers[i];
             if (d != null && d.ConnectionType == ConnectionType.BT)
             {
@@ -2331,10 +2308,12 @@ namespace DS4Windows
         int currentCustomLed;
         private void EditCustomLed(object sender, EventArgs e)
         {
-            currentCustomLed = int.Parse(((Button)sender).Tag.ToString());
-            useCustomColorToolStripMenuItem.Checked = UseCustomLed[currentCustomLed];
-            useProfileColorToolStripMenuItem.Checked = !UseCustomLed[currentCustomLed];
-            cMCustomLed.Show((Button)sender, new Point(0, ((Button)sender).Height));
+            Button btn = (Button)sender;
+            currentCustomLed = Convert.ToInt32(btn.Tag);
+            bool customLedChecked = UseCustomLed[currentCustomLed];
+            useCustomColorToolStripMenuItem.Checked = customLedChecked;
+            useProfileColorToolStripMenuItem.Checked = !customLedChecked;
+            cMCustomLed.Show(btn, new Point(0, btn.Height));
         }
 
         private void useProfileColorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2422,7 +2401,7 @@ namespace DS4Windows
                 if (principal.IsInRole(WindowsBuiltInRole.Administrator))
                 {
                     TaskService ts = new TaskService();
-                    Microsoft.Win32.TaskScheduler.Task tasker = ts.FindTask("RunDS4Windows");
+                    Task tasker = ts.FindTask("RunDS4Windows");
                     if (tasker != null)
                     {
                         ts.RootFolder.DeleteTask("RunDS4Windows");
@@ -2444,7 +2423,7 @@ namespace DS4Windows
                 if (principal.IsInRole(WindowsBuiltInRole.Administrator))
                 {
                     TaskService ts = new TaskService();
-                    Microsoft.Win32.TaskScheduler.Task tasker = ts.FindTask("RunDS4Windows");
+                    Task tasker = ts.FindTask("RunDS4Windows");
                     if (tasker != null)
                     {
                         ts.RootFolder.DeleteTask("RunDS4Windows");

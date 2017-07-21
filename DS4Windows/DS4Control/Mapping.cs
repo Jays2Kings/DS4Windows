@@ -59,7 +59,9 @@ namespace DS4Windows
         }
 
         public static SyntheticState globalState = new SyntheticState();
-        public static SyntheticState[] deviceState = { new SyntheticState(), new SyntheticState(), new SyntheticState(), new SyntheticState() };
+        public static SyntheticState[] deviceState = new SyntheticState[4]
+            { new SyntheticState(), new SyntheticState(), new SyntheticState(),
+              new SyntheticState() };
 
         // TODO When we disconnect, process a null/dead state to release any keys or buttons.
         public static DateTime oldnow = DateTime.UtcNow;
@@ -71,25 +73,24 @@ namespace DS4Windows
         static bool[] macroControl = new bool[25];
 
         //actions
-        public static int[] fadetimer = { 0, 0, 0, 0 };
-        public static int[] prevFadetimer = { 0, 0, 0, 0 };
+        public static int[] fadetimer = new int[4] { 0, 0, 0, 0 };
+        public static int[] prevFadetimer = new int[4] { 0, 0, 0, 0 };
         public static DS4Color[] lastColor = new DS4Color[4];
         public static List<ActionState> actionDone = new List<ActionState>();
-        //public static List<bool>[] actionDone = { new List<bool>(), new List<bool>(), new List<bool>(), new List<bool>() };
-        //public static bool[,] actionDone = new bool[4, 50];
         public static SpecialAction[] untriggeraction = new SpecialAction[4];
         public static DateTime[] nowAction = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
         public static DateTime[] oldnowAction = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
-        public static int[] untriggerindex = { -1, -1, -1, -1 };
-        public static DateTime[] oldnowKeyAct = { DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
-        //private static bool tappedOnce = false, firstTouch = false, secondtouchbegin = false;
-        //private static DateTime pastTime, firstTap, TimeofEnd;
+        public static int[] untriggerindex = new int[4] { -1, -1, -1, -1 };
+        public static DateTime[] oldnowKeyAct = new DateTime[4] { DateTime.MinValue,
+            DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
+
         private static DS4Controls[] shiftTriggerMapping = { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
             DS4Controls.Triangle, DS4Controls.Options, DS4Controls.Share, DS4Controls.DpadUp, DS4Controls.DpadDown,
             DS4Controls.DpadLeft, DS4Controls.DpadRight, DS4Controls.PS, DS4Controls.L1, DS4Controls.R1, DS4Controls.L2,
             DS4Controls.R2, DS4Controls.L3, DS4Controls.R3, DS4Controls.TouchLeft, DS4Controls.TouchUpper, DS4Controls.TouchMulti,
             DS4Controls.TouchRight, DS4Controls.GyroZNeg, DS4Controls.GyroZPos, DS4Controls.GyroXPos, DS4Controls.GyroXNeg
         };
+
         private static int[] ds4ControlMapping = { 0, // DS4Control.None
             16, // DS4Controls.LXNeg
             20, // DS4Controls.LXPos
@@ -128,13 +129,16 @@ namespace DS4Windows
 
         // Define here to save some time processing.
         // It is enough to feel a difference during gameplay.
-        private static int[] rsOutCurveModeArray = { 0, 0, 0, 0 };
-        private static int[] lsOutCurveModeArray = { 0, 0, 0, 0 };
+        private static int[] rsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
+        private static int[] lsOutCurveModeArray = new int[4] { 0, 0, 0, 0 };
         static bool tempBool = false;
+        private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
+        private static int[] tempIntArray = new int[4] { 0, 0, 0, 0 };
 
         // Special macros
         static bool altTabDone = true;
-        static DateTime altTabNow = DateTime.UtcNow, oldAltTabNow = DateTime.UtcNow - TimeSpan.FromSeconds(1);
+        static DateTime altTabNow = DateTime.UtcNow,
+            oldAltTabNow = DateTime.UtcNow - TimeSpan.FromSeconds(1);
 
         // Mouse
         public static int mcounter = 34;
@@ -347,6 +351,7 @@ namespace DS4Windows
             }
             state.SavePrevious(true);
         }
+
         public enum Click { None, Left, Middle, Right, Fourth, Fifth, WUP, WDOWN };
         public static void MapClick(int device, Click mouseClick)
         {
@@ -394,31 +399,19 @@ namespace DS4Windows
             return value1 * percent + value2 * (1 - percent);
         }
 
-        /*static double Clamp(double min, double value, double max)
-        {
-            if (value > max)
-                return max;
-            else if (value < min)
-                return min;
-            else
-                return value;
-        }
-        */
-
         private static int ClampInt(int min, int value, int max)
         {
             return (value < min) ? min : (value > max) ? max : value;
         }
 
-        private static double[] tempDoubleArray = { 0.0, 0.0, 0.0, 0.0 };
         public static DS4State SetCurveAndDeadzone(int device, DS4State cState)
         {
             double rotation = tempDoubleArray[device] = getLSRotation(device);
-            if (rotation != 0.0)
+            if (rotation > 0.0 || rotation < 0.0)
                 cState.rotateLSCoordinates(rotation);
 
             double rotationRS = tempDoubleArray[device] = getRSRotation(device);
-            if (rotationRS != 0.0)
+            if (rotationRS > 0.0 || rotationRS < 0.0)
                 cState.rotateRSCoordinates(rotationRS);
 
             DS4State dState = new DS4State(cState);
@@ -442,7 +435,6 @@ namespace DS4Windows
                 {
                     curvex = (x > 127.5f ? Math.Min(x, (x / max) * multimax) : Math.Max(x, (x / max) * multimin));
                     curvey = (y > 127.5f ? Math.Min(y, (y / max) * multimax) : Math.Max(y, (y / max) * multimin));
-                    //btnLSTrack.Location = new Point((int)(dpix * curvex / 2.09 + lbLSTrack.Location.X), (int)(dpiy * curvey / 2.09 + lbLSTrack.Location.Y));
                 }
                 else
                 {
@@ -511,17 +503,17 @@ namespace DS4Windows
                 }
                 else if ((lsDeadzone > 0 && lsSquared > lsDeadzoneSquared) || lsAntiDead > 0 || lsMaxZone != 100)
                 {
-                    double r = Math.Atan2(-(dState.LY - 127.5f), (dState.LX - 127.5f));
+                    double r = Math.Atan2(-(dState.LY - 127.5), (dState.LX - 127.5));
                     double maxXValue = dState.LX >= 127.5 ? 127.5 : -127.5;
                     double maxYValue = dState.LY >= 127.5 ? 127.5 : -127.5;
                     double ratio = lsMaxZone / 100.0;
 
-                    double maxZoneXNegValue = (ratio * -127.5f) + 127.5f;
-                    double maxZoneXPosValue = (ratio * 127.5f) + 127.5f;
+                    double maxZoneXNegValue = (ratio * -127.5) + 127.5;
+                    double maxZoneXPosValue = (ratio * 127.5) + 127.5;
                     double maxZoneYNegValue = maxZoneXNegValue;
                     double maxZoneYPosValue = maxZoneXPosValue;
-                    double maxZoneX = dState.LX >= 127.5 ? (maxZoneXPosValue - 127.5f) : (maxZoneXNegValue - 127.5f);
-                    double maxZoneY = dState.LY >= 127.5 ? (maxZoneYPosValue - 127.5f) : (maxZoneYNegValue - 127.5f);
+                    double maxZoneX = dState.LX >= 127.5 ? (maxZoneXPosValue - 127.5) : (maxZoneXNegValue - 127.5);
+                    double maxZoneY = dState.LY >= 127.5 ? (maxZoneYPosValue - 127.5) : (maxZoneYNegValue - 127.5);
 
                     double tempLsXDead = 0.0, tempLsYDead = 0.0;
                     double tempOutputX = 0.0, tempOutputY = 0.0;
@@ -534,18 +526,16 @@ namespace DS4Windows
                         {
                             double currentX = Global.Clamp(maxZoneXNegValue, dState.LX, maxZoneXPosValue);
                             double currentY = Global.Clamp(maxZoneYNegValue, dState.LY, maxZoneYPosValue);
-                            //currentX = (byte)((dState.LX >= 127.5f) ? Math.Min(dState.LX, maxZoneX) : Math.Max(dState.LX, maxZoneX));
-                            //currentY = (byte)((dState.LY >= 127.5f) ? Math.Min(dState.LY, maxZoneY) : Math.Max(dState.LY, maxZoneY));
-                            tempOutputX = ((currentX - 127.5f - tempLsXDead) / (double)(maxZoneX - tempLsXDead));
-                            tempOutputY = ((currentY - 127.5f - tempLsYDead) / (double)(maxZoneY - tempLsYDead));
+                            tempOutputX = ((currentX - 127.5 - tempLsXDead) / (maxZoneX - tempLsXDead));
+                            tempOutputY = ((currentY - 127.5 - tempLsYDead) / (maxZoneY - tempLsYDead));
                         }
                     }
                     else
                     {
                         double currentX = Global.Clamp(maxZoneXNegValue, dState.LX, maxZoneXPosValue);
                         double currentY = Global.Clamp(maxZoneYNegValue, dState.LY, maxZoneYPosValue);
-                        tempOutputX = (currentX - 127.5f) / (double)(maxZoneX);
-                        tempOutputY = (currentY - 127.5f) / (double)(maxZoneY);
+                        tempOutputX = (currentX - 127.5) / maxZoneX;
+                        tempOutputY = (currentY - 127.5) / maxZoneY;
                     }
 
                     double tempLsXAntiDeadPercent = 0.0, tempLsYAntiDeadPercent = 0.0;
@@ -557,7 +547,7 @@ namespace DS4Windows
 
                     if (tempOutputX > 0.0)
                     {
-                        dState.LX = (byte)((((1.0 - tempLsXAntiDeadPercent) * tempOutputX + tempLsXAntiDeadPercent)) * maxXValue + 127.5f);
+                        dState.LX = (byte)((((1.0 - tempLsXAntiDeadPercent) * tempOutputX + tempLsXAntiDeadPercent)) * maxXValue + 127.5);
                     }
                     else
                     {
@@ -566,7 +556,7 @@ namespace DS4Windows
 
                     if (tempOutputY > 0.0)
                     {
-                        dState.LY = (byte)((((1.0 - tempLsYAntiDeadPercent) * tempOutputY + tempLsYAntiDeadPercent)) * maxYValue + 127.5f);
+                        dState.LY = (byte)((((1.0 - tempLsYAntiDeadPercent) * tempOutputY + tempLsYAntiDeadPercent)) * maxYValue + 127.5);
                     }
                     else
                     {
@@ -580,7 +570,7 @@ namespace DS4Windows
             int rsMaxZone = getRSMaxzone(device);
             if (rsDeadzone > 0 || rsAntiDead > 0 || rsMaxZone != 100)
             {
-                double rsSquared = Math.Pow(cState.RX - 127.5f, 2) + Math.Pow(cState.RY - 127.5f, 2);
+                double rsSquared = Math.Pow(cState.RX - 127.5, 2) + Math.Pow(cState.RY - 127.5, 2);
                 double rsDeadzoneSquared = Math.Pow(rsDeadzone, 2);
                 if (rsDeadzone > 0 && rsSquared <= rsDeadzoneSquared)
                 {
@@ -589,17 +579,17 @@ namespace DS4Windows
                 }
                 else if ((rsDeadzone > 0 && rsSquared > rsDeadzoneSquared) || rsAntiDead > 0 || rsMaxZone != 100)
                 {
-                    double r = Math.Atan2(-(dState.RY - 127.5f), (dState.RX - 127.5f));
+                    double r = Math.Atan2(-(dState.RY - 127.5), (dState.RX - 127.5));
                     double maxXValue = dState.RX >= 127.5 ? 127.5 : -127.5;
                     double maxYValue = dState.RY >= 127.5 ? 127.5 : -127.5;
                     double ratio = rsMaxZone / 100.0;
 
-                    double maxZoneXNegValue = (ratio * -127.5f) + 127.5f;
-                    double maxZoneXPosValue = (ratio * 127.5f) + 127.5f;
+                    double maxZoneXNegValue = (ratio * -127.5) + 127.5;
+                    double maxZoneXPosValue = (ratio * 127.5) + 127.5;
                     double maxZoneYNegValue = maxZoneXNegValue;
                     double maxZoneYPosValue = maxZoneXPosValue;
-                    double maxZoneX = dState.RX >= 127.5 ? (maxZoneXPosValue - 127.5f) : (maxZoneXNegValue - 127.5f);
-                    double maxZoneY = dState.RY >= 127.5 ? (maxZoneYPosValue - 127.5f) : (maxZoneYNegValue - 127.5f);
+                    double maxZoneX = dState.RX >= 127.5 ? (maxZoneXPosValue - 127.5) : (maxZoneXNegValue - 127.5);
+                    double maxZoneY = dState.RY >= 127.5 ? (maxZoneYPosValue - 127.5) : (maxZoneYNegValue - 127.5);
 
                     double tempRsXDead = 0.0, tempRsYDead = 0.0;
                     double tempOutputX = 0.0, tempOutputY = 0.0;
@@ -613,10 +603,8 @@ namespace DS4Windows
                             double currentX = Global.Clamp(maxZoneXNegValue, dState.RX, maxZoneXPosValue);
                             double currentY = Global.Clamp(maxZoneYNegValue, dState.RY, maxZoneYPosValue);
 
-                            tempOutputX = ((currentX - 127.5f - tempRsXDead) / (double)(maxZoneX - tempRsXDead));
-                            tempOutputY = ((currentY - 127.5f - tempRsYDead) / (double)(maxZoneY - tempRsYDead));
-                            //tempOutputX = ((dState.RX - 127.5f - tempRsXDead) / (double)(maxXValue - tempRsXDead));
-                            //tempOutputY = ((dState.RY - 127.5f - tempRsYDead) / (double)(maxYValue - tempRsYDead));
+                            tempOutputX = ((currentX - 127.5 - tempRsXDead) / (maxZoneX - tempRsXDead));
+                            tempOutputY = ((currentY - 127.5 - tempRsYDead) / (maxZoneY - tempRsYDead));
                         }
                     }
                     else
@@ -624,10 +612,8 @@ namespace DS4Windows
                         double currentX = Global.Clamp(maxZoneXNegValue, dState.RX, maxZoneXPosValue);
                         double currentY = Global.Clamp(maxZoneYNegValue, dState.RY, maxZoneYPosValue);
 
-                        tempOutputX = (currentX - 127.5f) / (double)(maxZoneX);
-                        tempOutputY = (currentY - 127.5f) / (double)(maxZoneY);
-                        //tempOutputX = ((dState.RX - 127.5f) / (double)(maxXValue));
-                        //tempOutputY = ((dState.RY - 127.5f) / (double)(maxYValue));
+                        tempOutputX = (currentX - 127.5) / maxZoneX;
+                        tempOutputY = (currentY - 127.5) / maxZoneY;
                     }
 
                     double tempRsXAntiDeadPercent = 0.0, tempRsYAntiDeadPercent = 0.0;
@@ -639,7 +625,7 @@ namespace DS4Windows
 
                     if (tempOutputX > 0.0)
                     {
-                        dState.RX = (byte)((((1.0 - tempRsXAntiDeadPercent) * tempOutputX + tempRsXAntiDeadPercent)) * maxXValue + 127.5f);
+                        dState.RX = (byte)((((1.0 - tempRsXAntiDeadPercent) * tempOutputX + tempRsXAntiDeadPercent)) * maxXValue + 127.5);
                     }
                     else
                     {
@@ -648,7 +634,7 @@ namespace DS4Windows
 
                     if (tempOutputY > 0.0)
                     {
-                        dState.RY = (byte)((((1.0 - tempRsYAntiDeadPercent) * tempOutputY + tempRsYAntiDeadPercent)) * maxYValue + 127.5f);
+                        dState.RY = (byte)((((1.0 - tempRsYAntiDeadPercent) * tempOutputY + tempRsYAntiDeadPercent)) * maxYValue + 127.5);
                     }
                     else
                     {
@@ -662,17 +648,17 @@ namespace DS4Windows
             int l2Maxzone = getL2Maxzone(device);
             if (l2Deadzone > 0 || l2AntiDeadzone > 0 || l2Maxzone != 100)
             {
-                double tempL2Output = (cState.L2 / 255.0);
+                double tempL2Output = cState.L2 / 255.0;
                 double tempL2AntiDead = 0.0;
-                double ratio = (l2Maxzone / 100.0);
-                double maxValue = 255 * ratio;
+                double ratio = l2Maxzone / 100.0;
+                double maxValue = 255.0 * ratio;
 
                 if (l2Deadzone > 0)
                 {
                     if (cState.L2 > l2Deadzone)
                     {
                         double current = Global.Clamp(0, dState.L2, maxValue);
-                        tempL2Output = ((current - l2Deadzone) / (double)(maxValue - l2Deadzone));
+                        tempL2Output = (current - l2Deadzone) / (maxValue - l2Deadzone);
                     }
                     else
                     {
@@ -687,7 +673,7 @@ namespace DS4Windows
 
                 if (tempL2Output > 0.0)
                 {
-                    dState.L2 = (byte)(((1.0 - tempL2AntiDead) * tempL2Output + tempL2AntiDead) * 255);
+                    dState.L2 = (byte)(((1.0 - tempL2AntiDead) * tempL2Output + tempL2AntiDead) * 255.0);
                 }
                 else
                 {
@@ -700,9 +686,9 @@ namespace DS4Windows
             int r2Maxzone = getR2Maxzone(device);
             if (r2Deadzone > 0 || r2AntiDeadzone > 0 || r2Maxzone != 100)
             {
-                double tempR2Output = (cState.R2 / 255.0);
+                double tempR2Output = cState.R2 / 255.0;
                 double tempR2AntiDead = 0.0;
-                double ratio = (r2Maxzone / 100.0);
+                double ratio = r2Maxzone / 100.0;
                 double maxValue = 255 * ratio;
 
                 if (r2Deadzone > 0)
@@ -710,7 +696,7 @@ namespace DS4Windows
                     if (cState.R2 > r2Deadzone)
                     {
                         double current = Global.Clamp(0, dState.R2, maxValue);
-                        tempR2Output = ((current - r2Deadzone) / (double)(maxValue - r2Deadzone));
+                        tempR2Output = (current - r2Deadzone) / (maxValue - r2Deadzone);
                     }
                     else
                     {
@@ -725,7 +711,7 @@ namespace DS4Windows
 
                 if (tempR2Output > 0.0)
                 {
-                    dState.R2 = (byte)(((1.0 - tempR2AntiDead) * tempR2Output + tempR2AntiDead) * 255);
+                    dState.R2 = (byte)(((1.0 - tempR2AntiDead) * tempR2Output + tempR2AntiDead) * 255.0);
                 }
                 else
                 {
@@ -736,15 +722,15 @@ namespace DS4Windows
             double lsSens = getLSSens(device);
             if (lsSens != 1.0)
             {
-                dState.LX = (byte)Global.Clamp(0, lsSens * (dState.LX - 127.5f) + 127.5f, 255);
-                dState.LY = (byte)Global.Clamp(0, lsSens * (dState.LY - 127.5f) + 127.5f, 255);
+                dState.LX = (byte)Global.Clamp(0, lsSens * (dState.LX - 127.5) + 127.5, 255);
+                dState.LY = (byte)Global.Clamp(0, lsSens * (dState.LY - 127.5) + 127.5, 255);
             }
 
             double rsSens = getRSSens(device);
             if (rsSens != 1.0)
             {
-                dState.RX = (byte)Global.Clamp(0, rsSens * (dState.RX - 127.5f) + 127.5f, 255);
-                dState.RY = (byte)Global.Clamp(0, rsSens * (dState.RY - 127.5f) + 127.5f, 255);
+                dState.RX = (byte)Global.Clamp(0, rsSens * (dState.RX - 127.5) + 127.5, 255);
+                dState.RY = (byte)Global.Clamp(0, rsSens * (dState.RY - 127.5) + 127.5, 255);
             }
 
             double l2Sens = getL2Sens(device);
@@ -756,10 +742,10 @@ namespace DS4Windows
                 dState.R2 = (byte)Global.Clamp(0, r2Sens * dState.R2, 255);
 
             int lsOutCurveMode = lsOutCurveModeArray[device] = getLsOutCurveMode(device);
-            if (lsOutCurveMode != 0)
+            if (lsOutCurveMode > 0)
             {
-                double tempX = (dState.LX - 127.5f) / 127.5;
-                double tempY = (dState.LY - 127.5f) / 127.5;
+                double tempX = (dState.LX - 127.5) / 127.5;
+                double tempY = (dState.LY - 127.5) / 127.5;
                 double signX = tempX >= 0.0 ? 1.0 : -1.0;
                 double signY = tempY >= 0.0 ? 1.0 : -1.0;
 
@@ -796,30 +782,30 @@ namespace DS4Windows
                         outputY = (absY * 1.992) - 0.992;
                     }
 
-                    dState.LX = (byte)(outputX * signX * 127.5f + 127.5f);
-                    dState.LY = (byte)(outputY * signY * 127.5f + 127.5f);
+                    dState.LX = (byte)(outputX * signX * 127.5 + 127.5);
+                    dState.LY = (byte)(outputY * signY * 127.5 + 127.5);
                 }
                 else if (lsOutCurveMode == 2)
                 {
                     double outputX = tempX * tempX;
                     double outputY = tempY * tempY;
-                    dState.LX = (byte)(outputX * signX * 127.5f + 127.5f);
-                    dState.LY = (byte)(outputY * signY * 127.5f + 127.5f);
+                    dState.LX = (byte)(outputX * signX * 127.5 + 127.5);
+                    dState.LY = (byte)(outputY * signY * 127.5 + 127.5);
                 }
                 else if (lsOutCurveMode == 3)
                 {
                     double outputX = tempX * tempX * tempX;
                     double outputY = tempY * tempY * tempY;
-                    dState.LX = (byte)(outputX * 127.5f + 127.5f);
-                    dState.LY = (byte)(outputY * 127.5f + 127.5f);
+                    dState.LX = (byte)(outputX * 127.5 + 127.5);
+                    dState.LY = (byte)(outputY * 127.5 + 127.5);
                 }
             }
 
             int rsOutCurveMode = rsOutCurveModeArray[device] = getRsOutCurveMode(device);
-            if (rsOutCurveMode != 0)
+            if (rsOutCurveMode > 0)
             {
-                double tempX = (dState.RX - 127.5f) / 127.5;
-                double tempY = (dState.RY - 127.5f) / 127.5;
+                double tempX = (dState.RX - 127.5) / 127.5;
+                double tempY = (dState.RY - 127.5) / 127.5;
                 double signX = tempX >= 0.0 ? 1.0 : -1.0;
                 double signY = tempY >= 0.0 ? 1.0 : -1.0;
 
@@ -856,22 +842,144 @@ namespace DS4Windows
                         outputY = (absY * 1.992) - 0.992;
                     }
 
-                    dState.RX = (byte)(outputX * signX * 127.5f + 127.5f);
-                    dState.RY = (byte)(outputY * signY * 127.5f + 127.5f);
+                    dState.RX = (byte)(outputX * signX * 127.5 + 127.5);
+                    dState.RY = (byte)(outputY * signY * 127.5 + 127.5);
                 }
                 else if (rsOutCurveMode == 2)
                 {
                     double outputX = tempX * tempX;
                     double outputY = tempY * tempY;
-                    dState.RX = (byte)(outputX * signX * 127.5f + 127.5f);
-                    dState.RY = (byte)(outputY * signY * 127.5f + 127.5f);
+                    dState.RX = (byte)(outputX * signX * 127.5 + 127.5);
+                    dState.RY = (byte)(outputY * signY * 127.5 + 127.5);
                 }
                 else if (rsOutCurveMode == 3)
                 {
                     double outputX = tempX * tempX * tempX;
                     double outputY = tempY * tempY * tempY;
-                    dState.RX = (byte)(outputX * 127.5f + 127.5f);
-                    dState.RY = (byte)(outputY * 127.5f + 127.5f);
+                    dState.RX = (byte)(outputX * 127.5 + 127.5);
+                    dState.RY = (byte)(outputY * 127.5 + 127.5);
+                }
+            }
+
+            int l2OutCurveMode = tempIntArray[device] = getL2OutCurveMode(device);
+            if (l2OutCurveMode > 0)
+            {
+                double temp = dState.L2 / 255.0;
+                if (l2OutCurveMode == 1)
+                {
+                    double output = temp * temp;
+                    dState.L2 = (byte)(output * 255.0);
+                }
+                else if (l2OutCurveMode == 2)
+                {
+                    double output = temp * temp * temp;
+                    dState.L2 = (byte)(output * 255.0);
+                }
+            }
+
+            int r2OutCurveMode = tempIntArray[device] = getR2OutCurveMode(device);
+            if (r2OutCurveMode > 0)
+            {
+                double temp = dState.R2 / 255.0;
+                if (r2OutCurveMode == 1)
+                {
+                    double output = temp * temp;
+                    dState.R2 = (byte)(output * 255.0);
+                }
+                else if (r2OutCurveMode == 2)
+                {
+                    double output = temp * temp * temp;
+                    dState.R2 = (byte)(output * 255.0);
+                }
+            }
+
+            bool sOff = tempBool = isUsingSAforMouse(device);
+            if (sOff == false)
+            {
+                int SXD = (int)(10d * getSXDeadzone(device));
+                int SZD = (int)(10d * getSZDeadzone(device));
+                double SXMax = getSXMaxzone(device);
+                double SZMax = getSZMaxzone(device);
+                double sxAntiDead = getSXAntiDeadzone(device);
+                double szAntiDead = getSZAntiDeadzone(device);
+                double sxsens = getSXSens(device);
+                double szsens = getSZSens(device);
+
+                int gyroX = cState.Motion.accelX, gyroZ = cState.Motion.accelZ;
+                int absx = Math.Abs(gyroX), absz = Math.Abs(gyroZ);
+
+                if (SXD > 0 || SXMax < 1.0 || sxAntiDead > 0)
+                {
+                    int maxValue = (int)(SXMax * 128d);
+                    if (absx > SXD)
+                    {
+                        double ratioX = absx < maxValue ? (absx - SXD) / (double)(maxValue - SXD) : 1.0;
+                        dState.Motion.accelX = Math.Sign(gyroX) *
+                            (int)Math.Min(128d, sxsens * 128d * ((1.0 - sxAntiDead) * ratioX + sxAntiDead));
+                    }
+                    else
+                    {
+                        dState.Motion.accelX = 0;
+                    }
+                }
+                else
+                {
+                    dState.Motion.accelX = Math.Sign(gyroX) *
+                        (int)Math.Min(128d, sxsens * 128d * (absx / 128d));
+                }
+
+                if (SZD > 0 || SZMax < 1.0 || szAntiDead > 0)
+                {
+                    int maxValue = (int)(SZMax * 128d);
+                    if (absz > SZD)
+                    {
+                        double ratioZ = absz < maxValue ? (absz - SZD) / (double)(maxValue - SZD) : 1.0;
+                        dState.Motion.accelZ = Math.Sign(gyroZ) *
+                            (int)Math.Min(128d, szsens * 128d * ((1.0 - szAntiDead) * ratioZ + szAntiDead));
+                    }
+                    else
+                    {
+                        dState.Motion.accelZ = 0;
+                    }
+                }
+                else
+                {
+                    dState.Motion.accelZ = Math.Sign(gyroZ) *
+                        (int)Math.Min(128d, szsens * 128d * (absz / 128d));
+                }
+
+                int sxOutCurveMode = tempIntArray[device] = getSXOutCurveMode(device);
+                if (sxOutCurveMode > 0)
+                {
+                    double temp = Math.Abs(dState.Motion.accelX) / 128.0;
+                    double sign = Math.Sign(temp);
+                    if (sxOutCurveMode == 1)
+                    {
+                        double output = temp * temp;
+                        dState.Motion.accelX = (byte)(output * sign * 128.0);
+                    }
+                    else if (sxOutCurveMode == 2)
+                    {
+                        double output = temp * temp * temp;
+                        dState.Motion.accelX = (byte)(output * 128.0);
+                    }
+                }
+
+                int szOutCurveMode = tempIntArray[device] = getSZOutCurveMode(device);
+                if (szOutCurveMode > 0)
+                {
+                    double temp = Math.Abs(dState.Motion.accelZ) / 128.0;
+                    double sign = Math.Sign(temp);
+                    if (szOutCurveMode == 1)
+                    {
+                        double output = temp * temp;
+                        dState.Motion.accelZ = (byte)(output * sign * 128.0);
+                    }
+                    else if (szOutCurveMode == 2)
+                    {
+                        double output = temp * temp * temp;
+                        dState.Motion.accelZ = (byte)(output * 128.0);
+                    }
                 }
             }
 
@@ -916,6 +1024,7 @@ namespace DS4Windows
             X360Controls x3c;
             if (Enum.TryParse(key, true, out x3c))
                 return x3c;
+
             switch (key)
             {
                 case "Back": return X360Controls.Back;
@@ -959,8 +1068,9 @@ namespace DS4Windows
                 case "Mouse Left": return X360Controls.MouseLeft;
                 case "Mouse Right": return X360Controls.MouseRight;
                 case "Unbound": return X360Controls.Unbound;
-
+                default: break;
             }
+
             return X360Controls.Unbound;
         }
 
@@ -1036,7 +1146,6 @@ namespace DS4Windows
                     }
                     else if (actionType == DS4ControlSettings.ActionType.Key)
                     {
-                        //ushort value = ushort.Parse(action.ToString());
                         ushort value = Convert.ToUInt16(action);
                         if (getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
                         {
@@ -1331,28 +1440,28 @@ namespace DS4Windows
             if (macroControl[24]) MappedState.RY = 0;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LXNeg), device, cState, eState, tp, fieldMapping), DS4Controls.LXNeg))
-                tempControlDict.Add(DS4Controls.LXNeg, DS4Controls.LXNeg);
+                tempControlDict[DS4Controls.LXNeg] = DS4Controls.LXNeg;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LXPos), device, cState, eState, tp, fieldMapping), DS4Controls.LXPos))
-                tempControlDict.Add(DS4Controls.LXPos, DS4Controls.LXPos);
+                tempControlDict[DS4Controls.LXPos] = DS4Controls.LXPos;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LYNeg), device, cState, eState, tp, fieldMapping), DS4Controls.LYNeg))
-                tempControlDict.Add(DS4Controls.LYNeg, DS4Controls.LYNeg);
+                tempControlDict[DS4Controls.LYNeg] = DS4Controls.LYNeg;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LYPos), device, cState, eState, tp, fieldMapping), DS4Controls.LYPos))
-                tempControlDict.Add(DS4Controls.LYPos, DS4Controls.LYPos);
+                tempControlDict[DS4Controls.LYPos] = DS4Controls.LYPos;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RXNeg), device, cState, eState, tp, fieldMapping), DS4Controls.RXNeg))
-                tempControlDict.Add(DS4Controls.RXNeg, DS4Controls.RXNeg);
+                tempControlDict[DS4Controls.RXNeg] = DS4Controls.RXNeg;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RXPos), device, cState, eState, tp, fieldMapping), DS4Controls.RXPos))
-                tempControlDict.Add(DS4Controls.RXPos, DS4Controls.RXPos);
+                tempControlDict[DS4Controls.RXPos] = DS4Controls.RXPos;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RYNeg), device, cState, eState, tp, fieldMapping), DS4Controls.RYNeg))
-                tempControlDict.Add(DS4Controls.RYNeg, DS4Controls.RYNeg);
+                tempControlDict[DS4Controls.RYNeg] = DS4Controls.RYNeg;
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.RYPos), device, cState, eState, tp, fieldMapping), DS4Controls.RYPos))
-                tempControlDict.Add(DS4Controls.RYPos, DS4Controls.RYPos);
+                tempControlDict[DS4Controls.RYPos] = DS4Controls.RYPos;
 
             Dictionary<DS4Controls, DS4Controls>.KeyCollection controlKeys = tempControlDict.Keys;
             //Dictionary<DS4Controls, List<DS4Controls>>.KeyCollection controlKeys = tempControlDict.Keys;
@@ -2483,33 +2592,33 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                double SXD = getSXDeadzone(device);
-                double SZD = getSZDeadzone(device);
+                //double SXD = getSXDeadzone(device);
+                //double SZD = getSZDeadzone(device);
 
                 switch (control)
                 {
                     case DS4Controls.GyroXPos:
                     {
                         int gyroX = fieldMapping.gryodirs[controlNum];
-                        value = (byte)(gyroX > SXD * 10 ? Math.Pow(root + speed / divide, gyroX) : 0);
+                        value = (byte)(gyroX > 0 ? Math.Pow(root + speed / divide, gyroX) : 0);
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
                         int gyroX = fieldMapping.gryodirs[controlNum];
-                        value = (byte)(gyroX < -SXD * 10 ? Math.Pow(root + speed / divide, -gyroX) : 0);
+                        value = (byte)(gyroX < 0 ? Math.Pow(root + speed / divide, -gyroX) : 0);
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
                         int gyroZ = fieldMapping.gryodirs[controlNum];
-                        value = (byte)(gyroZ > SZD * 10 ? Math.Pow(root + speed / divide, gyroZ) : 0);
+                        value = (byte)(gyroZ > 0 ? Math.Pow(root + speed / divide, gyroZ) : 0);
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
                         int gyroZ = fieldMapping.gryodirs[controlNum];
-                        value = (byte)(gyroZ < -SZD * 10 ? Math.Pow(root + speed / divide, -gyroZ) : 0);
+                        value = (byte)(gyroZ < 0 ? Math.Pow(root + speed / divide, -gyroZ) : 0);
                         break;
                     }
                     default: break;
@@ -2535,7 +2644,7 @@ namespace DS4Windows
                     mcounter = 34;
                 }
 
-                value *= 1 + (double)Math.Min(20000, (mouseaccel)) / 10000d;
+                value *= 1 + Math.Min(20000, (mouseaccel)) / 10000d;
                 prevmouseaccel = mouseaccel;
             }
 
@@ -2633,36 +2742,32 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                double SXD = getSXDeadzone(device);
-                double SZD = getSZDeadzone(device);
                 bool sOff = isUsingSAforMouse(device);
-                double sxsens = getSXSens(device);
-                double szsens = getSZSens(device);
 
                 switch (control)
                 {
                     case DS4Controls.GyroXPos:
                     {
                         int gyroX = fieldMap.gryodirs[controlNum];
-                        result = (byte)(!sOff && sxsens * gyroX > SXD * 10 ? Math.Min(255, sxsens * gyroX * 2) : 0);
+                        result = (byte)(sOff == false ? Math.Min(255, gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
                         int gyroX = fieldMap.gryodirs[controlNum];
-                        result = (byte)(!sOff && sxsens * gyroX < -SXD * 10 ? Math.Min(255, sxsens * -gyroX * 2) : 0);
+                        result = (byte)(sOff == false ? Math.Min(255, -gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
                         int gyroZ = fieldMap.gryodirs[controlNum];
-                        result = (byte)(!sOff && szsens * gyroZ > SZD * 10 ? Math.Min(255, szsens * gyroZ * 2) : 0);
+                        result = (byte)(sOff == false ? Math.Min(255, gyroZ * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
                         int gyroZ = fieldMap.gryodirs[controlNum];
-                        result = (byte)(!sOff && szsens * gyroZ < -SZD * 10 ? Math.Min(255, szsens * -gyroZ * 2) : 0);
+                        result = (byte)(sOff == false ? Math.Min(255, -gyroZ * 2) : 0);
                         break;
                     }
                     default: break;
@@ -2760,25 +2865,25 @@ namespace DS4Windows
                 {
                     case DS4Controls.GyroXPos:
                     {
-                        int gyroX = eState.GyroX;
+                        int gyroX = -eState.AccelX;
                         result = (byte)(!sOff && sxsens * gyroX > SXD * 10 ? Math.Min(255, sxsens * gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
-                        int gyroX = eState.GyroX;
+                        int gyroX = -eState.AccelX;
                         result = (byte)(!sOff && sxsens * gyroX < -SXD * 10 ? Math.Min(255, sxsens * -gyroX * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
-                        int gyroZ = eState.GyroZ;
+                        int gyroZ = eState.AccelZ;
                         result = (byte)(!sOff && szsens * gyroZ > SZD * 10 ? Math.Min(255, szsens * gyroZ * 2) : 0);
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
-                        int gyroZ = eState.GyroZ;
+                        int gyroZ = eState.AccelZ;
                         result = (byte)(!sOff && szsens * gyroZ < -SZD * 10 ? Math.Min(255, szsens * -gyroZ * 2) : 0);
                         break;
                     }
@@ -2882,10 +2987,10 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.GyroX > 67 : false; break;
-                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * eState.GyroX < -67 : false; break;
-                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.GyroZ > 67 : false; break;
-                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.GyroZ < -67 : false; break;
+                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * -eState.AccelX > 67 : false; break;
+                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * -eState.AccelX < -67 : false; break;
+                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.AccelZ > 67 : false; break;
+                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.AccelZ < -67 : false; break;
                     default: break;
                 }
             }
@@ -2946,14 +3051,14 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] > 67; break;
-                    case DS4Controls.GyroXNeg: safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] < -67; break;
-                    case DS4Controls.GyroZPos: safeTest = SZSens[device] * fieldMap.gryodirs[controlNum] > 67; break;
-                    case DS4Controls.GyroZNeg: safeTest = SZSens[device] * fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroXPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroXNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroZPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroZNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
                     default: break;
                 }
 
-                result = !sOff ? safeTest : false;
+                result = sOff == false ? safeTest : false;
             }
 
             return result;
@@ -2975,117 +3080,117 @@ namespace DS4Windows
                 switch (control)
                 {
                     case DS4Controls.LXNeg:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.LSAngle;
-                                result = cState.LX < 127 && (angle >= 210 && angle <= 330);
-                            }
-                            else
-                            {
-                                result = cState.LX < 127;
-                            }
-
-                            break;
+                            double angle = cState.LSAngle;
+                            result = cState.LX < 127 && (angle >= 210 && angle <= 330);
                         }
+                        else
+                        {
+                            result = cState.LX < 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.LYNeg:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.LSAngle;
-                                result = cState.LY < 127 && (angle >= 300 || angle <= 60);
-                            }
-                            else
-                            {
-                                result = cState.LY < 127;
-                            }
-
-                            break;
+                            double angle = cState.LSAngle;
+                            result = cState.LY < 127 && (angle >= 300 || angle <= 60);
                         }
+                        else
+                        {
+                            result = cState.LY < 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.RXNeg:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.RSAngle;
-                                result = cState.RX < 127 && (angle >= 210 && angle <= 330);
-                            }
-                            else
-                            {
-                                result = cState.RX < 127;
-                            }
-
-                            break;
+                            double angle = cState.RSAngle;
+                            result = cState.RX < 127 && (angle >= 210 && angle <= 330);
                         }
+                        else
+                        {
+                            result = cState.RX < 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.RYNeg:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.RSAngle;
-                                result = cState.RY < 127 && (angle >= 300 || angle <= 60);
-                            }
-                            else
-                            {
-                                result = cState.RY < 127;
-                            }
-
-                            break;
+                            double angle = cState.RSAngle;
+                            result = cState.RY < 127 && (angle >= 300 || angle <= 60);
                         }
+                        else
+                        {
+                            result = cState.RY < 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.LXPos:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.LSAngle;
-                                result = cState.LX > 127 && (angle >= 30 && angle <= 150);
-                            }
-                            else
-                            {
-                                result = cState.LX > 127;
-                            }
-
-                            break;
+                            double angle = cState.LSAngle;
+                            result = cState.LX > 127 && (angle >= 30 && angle <= 150);
                         }
+                        else
+                        {
+                            result = cState.LX > 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.LYPos:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.LSAngle;
-                                result = cState.LY > 127 && (angle >= 120 && angle <= 240);
-                            }
-                            else
-                            {
-                                result = cState.LY > 127;
-                            }
-
-                            break;
+                            double angle = cState.LSAngle;
+                            result = cState.LY > 127 && (angle >= 120 && angle <= 240);
                         }
+                        else
+                        {
+                            result = cState.LY > 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.RXPos:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.RSAngle;
-                                result = cState.RX > 127 && (angle >= 30 && angle <= 150);
-                            }
-                            else
-                            {
-                                result = cState.RX > 127;
-                            }
-
-                            break;
+                            double angle = cState.RSAngle;
+                            result = cState.RX > 127 && (angle >= 30 && angle <= 150);
                         }
+                        else
+                        {
+                            result = cState.RX > 127;
+                        }
+
+                        break;
+                    }
                     case DS4Controls.RYPos:
+                    {
+                        if (!analog)
                         {
-                            if (!analog)
-                            {
-                                double angle = cState.RSAngle;
-                                result = cState.RY > 127 && (angle >= 120 && angle <= 240);
-                            }
-                            else
-                            {
-                                result = cState.RY > 127;
-                            }
-
-                            break;
+                            double angle = cState.RSAngle;
+                            result = cState.RY > 127 && (angle >= 120 && angle <= 240);
                         }
+                        else
+                        {
+                            result = cState.RY > 127;
+                        }
+
+                        break;
+                    }
                     default: break;
                 }
             }
@@ -3108,14 +3213,14 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] > 67; break;
-                    case DS4Controls.GyroXNeg: safeTest = SXSens[device] * fieldMap.gryodirs[controlNum] < -67; break;
-                    case DS4Controls.GyroZPos: safeTest = SZSens[device] * fieldMap.gryodirs[controlNum] > 67; break;
-                    case DS4Controls.GyroZNeg: safeTest = SZSens[device] * fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroXPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroXNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroZPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
+                    case DS4Controls.GyroZNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
                     default: break;
                 }
 
-                result = !sOff ? safeTest : false;
+                result = sOff == false ? safeTest : false;
             }
 
             return result;
@@ -3309,10 +3414,10 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.GyroX > 67 : false; break;
-                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * eState.GyroX < -67 : false; break;
-                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.GyroZ > 67 : false; break;
-                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.GyroZ < -67 : false; break;
+                    case DS4Controls.GyroXPos: result = !sOff ? SXSens[device] * eState.AccelX > 67 : false; break;
+                    case DS4Controls.GyroXNeg: result = !sOff ? SXSens[device] * eState.AccelX < -67 : false; break;
+                    case DS4Controls.GyroZPos: result = !sOff ? SZSens[device] * eState.AccelZ > 67 : false; break;
+                    case DS4Controls.GyroZNeg: result = !sOff ? SZSens[device] * eState.AccelZ < -67 : false; break;
                     default: break;
                 }
             }
@@ -3365,7 +3470,7 @@ namespace DS4Windows
 
             if (controlType == DS4StateFieldMapping.ControlType.Button)
             {
-                result = (byte)(fieldMap.buttons[controlNum] ? trueVal : falseVal);
+                result = fieldMap.buttons[controlNum] ? trueVal : falseVal;
             }
             else if (controlType == DS4StateFieldMapping.ControlType.AxisDir)
             {
@@ -3393,7 +3498,7 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.Touch)
             {
-                result = (byte)(fieldMap.buttons[controlNum] ? trueVal : falseVal);
+                result = fieldMap.buttons[controlNum] ? trueVal : falseVal;
             }
             else if (controlType == DS4StateFieldMapping.ControlType.SwipeDir)
             {
@@ -3408,44 +3513,42 @@ namespace DS4Windows
             }
             else if (controlType == DS4StateFieldMapping.ControlType.GyroDir)
             {
-                double SXD = getSXDeadzone(device);
-                double SZD = getSZDeadzone(device);
                 bool sOff = isUsingSAforMouse(device);
 
                 switch (control)
                 {
                     case DS4Controls.GyroXPos:
                     {
-                        if (!sOff && fieldMap.gryodirs[controlNum] > SXD * 10)
+                        if (sOff == false && fieldMap.gryodirs[controlNum] > 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SXSens[device] * fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 127 + fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - fieldMap.gryodirs[controlNum]);
                         }
                         else result = falseVal;
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
-                        if (!sOff && fieldMap.gryodirs[controlNum] < -SXD * 10)
+                        if (sOff == false && fieldMap.gryodirs[controlNum] < 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SXSens[device] * -fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 127 + -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - -fieldMap.gryodirs[controlNum]);
                         }
                         else result = falseVal;
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
-                        if (!sOff && fieldMap.gryodirs[controlNum] > SZD * 10)
+                        if (sOff == false && fieldMap.gryodirs[controlNum] > 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SZSens[device] * fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 127 + fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - fieldMap.gryodirs[controlNum]);
                         }
                         else return falseVal;
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
-                        if (!sOff && fieldMap.gryodirs[controlNum] < -SZD * 10)
+                        if (sOff == false && fieldMap.gryodirs[controlNum] < 0)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - SZSens[device] * -fieldMap.gryodirs[controlNum]);
+                            if (alt) result = (byte)Math.Min(255, 127 + -fieldMap.gryodirs[controlNum]); else result = (byte)Math.Max(0, 127 - -fieldMap.gryodirs[controlNum]);
                         }
                         else result = falseVal;
                         break;
@@ -3548,36 +3651,36 @@ namespace DS4Windows
                 {
                     case DS4Controls.GyroXPos:
                     {
-                        if (!sOff && eState.GyroX > SXD * 10)
+                        if (!sOff && -eState.AccelX > SXD * 10)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * eState.GyroX); else result = (byte)Math.Max(0, 127 - SXSens[device] * eState.GyroX);
+                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * -eState.AccelX); else result = (byte)Math.Max(0, 127 - SXSens[device] * -eState.AccelX);
                         }
                         else result = falseVal;
                         break;
                     }
                     case DS4Controls.GyroXNeg:
                     {
-                        if (!sOff && eState.GyroX < -SXD * 10)
+                        if (!sOff && -eState.AccelX < -SXD * 10)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * -eState.GyroX); else result = (byte)Math.Max(0, 127 - SXSens[device] * -eState.GyroX);
+                            if (alt) result = (byte)Math.Min(255, 127 + SXSens[device] * eState.AccelX); else result = (byte)Math.Max(0, 127 - SXSens[device] * eState.AccelX);
                         }
                         else result = falseVal;
                         break;
                     }
                     case DS4Controls.GyroZPos:
                     {
-                        if (!sOff && eState.GyroZ > SZD * 10)
+                        if (!sOff && eState.AccelZ > SZD * 10)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * eState.GyroZ); else result = (byte)Math.Max(0, 127 - SZSens[device] * eState.GyroZ);
+                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * eState.AccelZ); else result = (byte)Math.Max(0, 127 - SZSens[device] * eState.AccelZ);
                         }
                         else return falseVal;
                         break;
                     }
                     case DS4Controls.GyroZNeg:
                     {
-                        if (!sOff && eState.GyroZ < -SZD * 10)
+                        if (!sOff && eState.AccelZ < -SZD * 10)
                         {
-                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * -eState.GyroZ); else result = (byte)Math.Max(0, 127 - SZSens[device] * -eState.GyroZ);
+                            if (alt) result = (byte)Math.Min(255, 127 + SZSens[device] * -eState.AccelZ); else result = (byte)Math.Max(0, 127 - SZSens[device] * -eState.AccelZ);
                         }
                         else result = falseVal;
                         break;

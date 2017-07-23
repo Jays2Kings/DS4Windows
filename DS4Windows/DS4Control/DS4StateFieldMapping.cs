@@ -12,7 +12,7 @@ namespace DS4Windows
         public byte[] swipedirs = new byte[(int)DS4Controls.SwipeDown + 1];
         public bool[] swipedirbools = new bool[(int)DS4Controls.SwipeDown + 1];
 
-        public static ControlType[] mappedType = { ControlType.Unknown, // DS4Controls.None
+        public static ControlType[] mappedType = new ControlType[38] { ControlType.Unknown, // DS4Controls.None
             ControlType.AxisDir, // DS4Controls.LXNeg
             ControlType.AxisDir, // DS4Controls.LXPos
             ControlType.AxisDir, // DS4Controls.LYNeg

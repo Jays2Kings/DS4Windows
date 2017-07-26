@@ -1234,6 +1234,11 @@ namespace DS4Windows
             pState.CopyTo(state);
         }
 
+        public DS4State getCurrentStateRef()
+        {
+            return cState;
+        }
+
         private bool isDS4Idle()
         {
             if (cState.Square || cState.Cross || cState.Circle || cState.Triangle)

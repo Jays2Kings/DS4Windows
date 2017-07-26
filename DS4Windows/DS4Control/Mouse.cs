@@ -39,6 +39,8 @@ namespace DS4Windows
         {
             if (Global.isUsingSAforMouse(deviceNum) && Global.getGyroSensitivity(deviceNum) > 0)
             {
+                s = dev.getCurrentStateRef();
+
                 triggeractivated = true;
                 useReverseRatchet = Global.getGyroTriggerTurns(deviceNum);
                 int i = 0;
@@ -64,7 +66,7 @@ namespace DS4Windows
                 else
                     cursor.mouseRemainderReset();
 
-                dev.getCurrentState(s);
+                //dev.getCurrentState(s);
             }
         }
 
@@ -129,7 +131,8 @@ namespace DS4Windows
                     slideleft = true;
             }
 
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
+            //dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
 
@@ -151,7 +154,8 @@ namespace DS4Windows
                     secondtouchbegin = true;
             }
 
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
+            //dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
 
@@ -186,7 +190,8 @@ namespace DS4Windows
                 }
             }
 
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
+            //dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
 
@@ -202,7 +207,8 @@ namespace DS4Windows
 
         public virtual void touchUnchanged(object sender, EventArgs unused)
         {
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
+            //dev.getCurrentState(s);
             //if (s.Touch1 || s.Touch2 || s.TouchButton)
             synthesizeMouseButtons();
         }
@@ -262,7 +268,8 @@ namespace DS4Windows
             pushed = DS4Controls.None;
             upperDown = leftDown = rightDown = multiDown = false;
             dev.setRumble(0, 0);
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
+            //dev.getCurrentState(s);
             if (s.Touch1 || s.Touch2)
                 synthesizeMouseButtons();
         }
@@ -284,7 +291,8 @@ namespace DS4Windows
                     rightDown = true;
             }
 
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
+            //dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
 

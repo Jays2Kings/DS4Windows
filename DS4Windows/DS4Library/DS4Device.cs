@@ -644,6 +644,10 @@ namespace DS4Windows
         bool ds4InactiveFrame = true;
         bool idleInput = true;
 
+        bool timeStampInit = false;
+        uint timeStampPrevious = 0;
+        uint deltaTimeCurrent = 0;
+
         private void performDs4Input()
         {
             firstActive = DateTime.UtcNow;
@@ -661,6 +665,9 @@ namespace DS4Windows
 
             int maxBatteryValue = 0;
             int tempBattery = 0;
+            uint tempStamp = 0;
+            double elapsedDeltaTime = 0.0;
+            uint tempDelta = 0;
 
             while (!exitInputThread)
             {
@@ -848,10 +855,31 @@ namespace DS4Windows
                 }
                 catch { currerror = "Index out of bounds: touchpad"; }
 
+                tempStamp = (uint)((ushort)(inputReport[11] << 8) | inputReport[10]);
+                if (timeStampInit == false)
+                {
+                    timeStampInit = true;
+                    deltaTimeCurrent = tempStamp * 16u / 3u;
+                }
+                else if (timeStampPrevious > tempStamp)
+                {
+                    tempDelta = ushort.MaxValue - timeStampPrevious + tempStamp + 1u;
+                    deltaTimeCurrent = tempDelta * 16u / 3u;
+                }
+                else
+                {
+                    tempDelta = tempStamp - timeStampPrevious;
+                    deltaTimeCurrent = tempDelta * 16u / 3u;
+                }
+
+                cState.elapsedNanoSec = deltaTimeCurrent;
+                timeStampPrevious = tempStamp;
+                elapsedDeltaTime = 0.000001 * deltaTimeCurrent; // Convert from nanoseconds to seconds
+
                 // Store Gyro and Accel values
                 Array.Copy(inputReport, 13, gyro, 0, 6);
                 Array.Copy(inputReport, 19, accel, 0, 6);
-                sixAxis.handleSixaxis(gyro, accel, cState, lastTimeElapsedDouble);
+                sixAxis.handleSixaxis(gyro, accel, cState, elapsedDeltaTime);
 
                 /* Debug output of incoming HID data:
                 if (cState.L2 == 0xff && cState.R2 == 0xff)

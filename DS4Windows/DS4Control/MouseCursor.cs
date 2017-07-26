@@ -42,7 +42,8 @@ namespace DS4Windows
             deltaX = Global.getGyroMouseHorizontalAxis(deviceNumber) == 0 ? arg.sixAxis.gyroYawFull :
                 arg.sixAxis.gyroRollFull;
             deltaY = -arg.sixAxis.gyroPitchFull;
-            tempDouble = arg.sixAxis.elapsed * 0.001 * 200.0; // Base default speed on 5 ms
+            //tempDouble = arg.sixAxis.elapsed * 0.001 * 200.0; // Base default speed on 5 ms
+            tempDouble = arg.sixAxis.elapsed * 200.0; // Base default speed on 5 ms
 
             gyroSmooth = Global.getGyroSmoothing(deviceNumber);
             double gyroSmoothWeight = 0.0;

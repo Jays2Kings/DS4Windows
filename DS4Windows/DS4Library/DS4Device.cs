@@ -847,8 +847,9 @@ namespace DS4Windows
                         cState.Touch2Identifier = (byte)(inputReport[4 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0x7f);
                         cState.Touch1Finger = cState.Touch1 || cState.Touch2; // >= 1 touch detected
                         cState.Touch2Fingers = cState.Touch1 && cState.Touch2; // 2 touches detected
-                        cState.TouchLeft = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) >= 1920 * 2 / 5) ? false : true;
-                        cState.TouchRight = (inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] + ((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) * 255) < 1920 * 2 / 5) ? false : true;
+                        int touchX = (((inputReport[2 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset] & 0xF) << 8) | inputReport[1 + DS4Touchpad.TOUCHPAD_DATA_OFFSET + touchOffset]);
+                        cState.TouchLeft = touchX >= 1920 * 2 / 5 ? false : true;
+                        cState.TouchRight = touchX < 1920 * 2 / 5 ? false : true;
                         // Even when idling there is still a touch packet indicating no touch 1 or 2
                         touchpad.handleTouchpad(inputReport, cState, touchOffset);
                     }
@@ -872,9 +873,9 @@ namespace DS4Windows
                     deltaTimeCurrent = tempDelta * 16u / 3u;
                 }
 
-                cState.elapsedNanoSec = deltaTimeCurrent;
+                cState.elapsedMicroSec = deltaTimeCurrent;
                 timeStampPrevious = tempStamp;
-                elapsedDeltaTime = 0.000001 * deltaTimeCurrent; // Convert from nanoseconds to seconds
+                elapsedDeltaTime = 0.000001 * deltaTimeCurrent; // Convert from microseconds to seconds
 
                 // Store Gyro and Accel values
                 Array.Copy(inputReport, 13, gyro, 0, 6);

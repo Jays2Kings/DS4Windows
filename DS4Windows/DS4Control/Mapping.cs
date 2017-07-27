@@ -1989,7 +1989,7 @@ namespace DS4Windows
                                 DS4Device d = ctrl.DS4Controllers[device];
                                 //cus
 
-                                DS4State tempPrevState = d.getPreviousState();
+                                DS4State tempPrevState = d.getPreviousStateRef();
                                 // Only create one instance of previous DS4StateFieldMapping in case more than one multi-action
                                 // button is assigned
                                 if (previousFieldMapping == null)

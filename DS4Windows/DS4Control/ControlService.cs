@@ -695,6 +695,7 @@ namespace DS4Windows
         public bool[] inWarnMonitor = new bool[4] { false, false, false, false };
         private byte[] currentBattery = new byte[4] { 0, 0, 0, 0 };
         private bool[] charging = new bool[4] { false, false, false, false };
+        private string[] tempStrings = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
 
         // Called every time a new input report has arrived
         protected virtual void On_Report(object sender, EventArgs e)
@@ -714,9 +715,13 @@ namespace DS4Windows
                 if (getFlushHIDQueue(ind))
                     device.FlushHID();
 
-                if (!string.IsNullOrEmpty(device.error))
+                string devError = tempStrings[ind] = device.error;
+                if (!string.IsNullOrEmpty(devError))
                 {
-                    LogDebug(device.error);
+                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
+                    {
+                        LogDebug(devError);
+                    }), null);
                 }
 
                 if (inWarnMonitor[ind])
@@ -749,8 +754,9 @@ namespace DS4Windows
 
                 device.getCurrentState(CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
-                device.getPreviousState(PreviousState[ind]);
-                DS4State pState = PreviousState[ind];
+                DS4State pState = device.getPreviousStateRef();
+                //device.getPreviousState(PreviousState[ind]);
+                //DS4State pState = PreviousState[ind];
 
                 if (!device.firstReport && device.IsAlive())
                 {

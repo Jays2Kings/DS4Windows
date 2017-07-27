@@ -1239,6 +1239,11 @@ namespace DS4Windows
             return cState;
         }
 
+        public DS4State getPreviousStateRef()
+        {
+            return pState;
+        }
+
         private bool isDS4Idle()
         {
             if (cState.Square || cState.Cross || cState.Circle || cState.Triangle)

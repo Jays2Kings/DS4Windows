@@ -1040,37 +1040,26 @@ namespace DS4Windows
 
         protected async void InnerHotplug2()
         {
-            //await System.Threading.Tasks.Task.Delay(50);
-
-            /*if (inHotPlug)
+            inHotPlug = true;
+            System.Threading.SynchronizationContext uiContext =
+                System.Threading.SynchronizationContext.Current;
+            bool loopHotplug = false;
+            lock (hotplugCounterLock)
             {
-                await System.Threading.Tasks.Task.Run(() => { while (inHotPlug) { System.Threading.Thread.Sleep(50); } });
+                loopHotplug = hotplugCounter > 0;
             }
-            */
 
-            //lock (this)
+            while (loopHotplug == true)
             {
-                inHotPlug = true;
-                System.Threading.SynchronizationContext uiContext = System.Threading.SynchronizationContext.Current;
-                int tempCount = 0;
+                await System.Threading.Tasks.Task.Run(() => { Program.rootHub.HotPlug(uiContext); });
                 lock (hotplugCounterLock)
                 {
-                    tempCount = hotplugCounter;
+                    hotplugCounter--;
+                    loopHotplug = hotplugCounter > 0;
                 }
-
-                while (tempCount > 0)
-                {
-                    await System.Threading.Tasks.Task.Run(() => { Program.rootHub.HotPlug(uiContext); });
-                    lock (hotplugCounterLock)
-                    {
-                        hotplugCounter--;
-                        tempCount = hotplugCounter;
-                    }
-                }
-
-                //Program.rootHub.HotPlug();
-                inHotPlug = false;
             }
+
+            inHotPlug = false;
         }
 
         protected void BatteryStatusUpdate(object sender, BatteryReportArgs args)

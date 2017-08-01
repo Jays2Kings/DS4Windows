@@ -284,6 +284,7 @@ namespace DS4Windows
                 throw new Exception("Error disabling device, error code = " + Marshal.GetLastWin32Error());
             }
 
+            //System.Threading.Thread.Sleep(50);
             sw.Start();
             while (sw.ElapsedMilliseconds < 50)
             {
@@ -305,6 +306,15 @@ namespace DS4Windows
                 throw new Exception("Error enabling device, error code = " + Marshal.GetLastWin32Error());
             }
 
+            //System.Threading.Thread.Sleep(10);
+            sw.Restart();
+            while (sw.ElapsedMilliseconds < 10)
+            {
+                // Use SpinWait to keep control of current thread. Using Sleep could potentially
+                // cause other events to get run out of order
+                System.Threading.Thread.SpinWait(20);
+            }
+            sw.Stop();
             NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
         }
     }

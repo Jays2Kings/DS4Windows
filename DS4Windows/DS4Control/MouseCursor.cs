@@ -76,7 +76,6 @@ namespace DS4Windows
             }
 
             int deadzone = GYRO_MOUSE_DEADZONE;
-            //int deadzone = 0;
             int deadzoneX = (int)System.Math.Abs(normX * deadzone);
             int deadzoneY = (int)System.Math.Abs(normY * deadzone);
 
@@ -106,6 +105,10 @@ namespace DS4Windows
             {
                 xMotion += hRemainder;
             }
+            else
+            {
+                hRemainder = 0.0;
+            }
 
             verticalScale = Global.getGyroSensVerticalScale(deviceNumber) * 0.01;
             double yMotion = deltaY != 0 ? (coefficient * verticalScale) * (deltaY * tempDouble)
@@ -115,6 +118,10 @@ namespace DS4Windows
             if (yMotion != 0.0)
             {
                 yMotion += vRemainder;
+            }
+            else
+            {
+                vRemainder = 0.0;
             }
 
             if (gyroSmooth)
@@ -143,24 +150,17 @@ namespace DS4Windows
                 yMotion = y_out;
             }
 
+            hRemainder = vRemainder = 0.0;
             if (xMotion != 0.0)
             {
                 xAction = (int)xMotion;
                 hRemainder = xMotion - xAction;
-            }
-            else
-            {
-                hRemainder = 0.0;
             }
 
             if (yMotion != 0.0)
             {
                 yAction = (int)yMotion;
                 vRemainder = yMotion - yAction;
-            }
-            else
-            {
-                vRemainder = 0.0;
             }
 
             int gyroInvert = Global.getGyroInvert(deviceNumber);
@@ -196,7 +196,7 @@ namespace DS4Windows
         }
 
         private byte lastTouchID;
-        public void touchesMoved(TouchpadEventArgs arg, bool dragging)
+        public void touchesMoved(TouchpadEventArgs arg, bool dragging, bool disableInvert = false)
         {
             int touchesLen = arg.touches.Length;
             if ((!dragging && touchesLen != 1) || (dragging && touchesLen < 1))
@@ -304,12 +304,15 @@ namespace DS4Windows
             int yAction = (int)yMotion;
             verticalRemainder = yMotion - yAction;
 
-            int touchpadInvert = tempInt = Global.getTouchpadInvert(deviceNumber);
-            if ((touchpadInvert & 0x02) == 2)
-                xAction *= -1;
+            if (disableInvert == false)
+            {
+                int touchpadInvert = tempInt = Global.getTouchpadInvert(deviceNumber);
+                if ((touchpadInvert & 0x02) == 2)
+                    xAction *= -1;
 
-            if ((touchpadInvert & 0x01) == 1)
-                yAction *= -1;
+                if ((touchpadInvert & 0x01) == 1)
+                    yAction *= -1;
+            }
 
             if (yAction != 0 || xAction != 0)
                 InputMethods.MoveCursorBy(xAction, yAction);

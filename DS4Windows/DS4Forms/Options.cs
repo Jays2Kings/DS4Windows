@@ -641,6 +641,26 @@ namespace DS4Windows
                         break;
                     }
                 }
+
+                btnGyroTriggers.Text = string.Join(", ", s);
+                s.Clear();
+
+                int[] touchDisInvTriggers = TouchDisInvertTriggers[device];
+                int touchDisableInvCount = cMTouchDisableInvert.Items.Count;
+                for (int i = 0, trigLen = touchDisInvTriggers.Length; i < trigLen; i++)
+                {
+                    int tr = touchDisInvTriggers[i];
+                    if (tr < touchDisableInvCount && tr > -1)
+                    {
+                        ToolStripMenuItem current = (ToolStripMenuItem)cMTouchDisableInvert.Items[tr];
+                        current.Checked = true;
+                        s.Add(current.Text);
+                    }
+                }
+
+                if (s.Count > 0)
+                    touchpadDisInvertButton.Text = string.Join(", ", s);
+
                 nUDGyroSensitivity.Value = GyroSensitivity[device];
                 gyroTriggerBehavior.Checked = GyroTriggerTurns[device];
                 nUDGyroMouseVertScale.Value = GyroSensVerticalScale[device];
@@ -744,7 +764,18 @@ namespace DS4Windows
                 nUDLSCurve.Value = 0;
                 nUDRSCurve.Value = 0;
                 cBControllerInput.Checked = DS4Mapping;
+
+                for (int i = 0, arlen = cMGyroTriggers.Items.Count - 1; i < arlen; i++)
+                {
+                    ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
+                }
                 ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = true;
+
+                for (int i = 0, arlen = cMTouchDisableInvert.Items.Count; i < arlen; i++)
+                {
+                    ((ToolStripMenuItem)cMTouchDisableInvert.Items[i]).Checked = false;
+                }
+
                 nUDGyroSensitivity.Value = 100;
                 nUDGyroMouseVertScale.Value = 100;
                 gyroTriggerBehavior.Checked = true;
@@ -1116,57 +1147,6 @@ namespace DS4Windows
                 {
                     lBControls.SelectedIndex = tempIndex;
                 }
-
-                /*switch (name)
-                {
-                    #region
-                    case "bnCross": lBControls.SelectedIndex = 0; break;
-                    case "bnCircle": lBControls.SelectedIndex = 1; break;
-                    case "bnSquare": lBControls.SelectedIndex = 2; break;
-                    case "bnTriangle": lBControls.SelectedIndex = 3; break;
-                    case "bnOptions": lBControls.SelectedIndex = 4; break;
-                    case "bnShare": lBControls.SelectedIndex = 5; break;
-                    case "bnUp": lBControls.SelectedIndex = 6; break;
-                    case "bnDown": lBControls.SelectedIndex = 7; break;
-                    case "bnLeft": lBControls.SelectedIndex = 8; break;
-                    case "bnRight": lBControls.SelectedIndex = 9; break;
-                    case "bnPS": lBControls.SelectedIndex = 10; break;
-                    case "bnL1": lBControls.SelectedIndex = 11; break;
-                    case "bnR1": lBControls.SelectedIndex = 12; break;
-                    case "bnL2": lBControls.SelectedIndex = 13; break;
-                    case "bnR2": lBControls.SelectedIndex = 14; break;
-                    case "bnL3": lBControls.SelectedIndex = 15; break;
-                    case "bnR3": lBControls.SelectedIndex = 16; break;
-                    case "bnTouchLeft": lBControls.SelectedIndex = 17; break;
-                    case "bnTouchRight": lBControls.SelectedIndex = 18; break;
-                    case "bnTouchMulti": lBControls.SelectedIndex = 19; break;
-                    case "bnTouchUpper": lBControls.SelectedIndex = 20; break;
-                    case "bnLSUp": lBControls.SelectedIndex = 21; break;
-                    case "bnLSDown": lBControls.SelectedIndex = 22; break;
-                    case "bnLSLeft": lBControls.SelectedIndex = 23; break;
-                    case "bnLSRight": lBControls.SelectedIndex = 24; break;
-                    case "bnRSUp": lBControls.SelectedIndex = 25; break;
-                    case "bnRSDown": lBControls.SelectedIndex = 26; break;
-                    case "bnRSLeft": lBControls.SelectedIndex = 27; break;
-                    case "bnRSRight": lBControls.SelectedIndex = 28; break;
-                    case "bnGyroZN": lBControls.SelectedIndex = 29; break;
-                    case "bnGyroZP": lBControls.SelectedIndex = 30; break;
-                    case "bnGyroXP": lBControls.SelectedIndex = 31; break;
-                    case "bnGyroXN": lBControls.SelectedIndex = 32; break;                        
-                        #endregion
-                }
-
-                if (swipesOn)
-                {
-                    switch (name)
-                    {
-                        case "bnSwipeUp": if (swipesOn) lBControls.SelectedIndex = 33; break;
-                        case "bnSwipeDown": if (swipesOn) lBControls.SelectedIndex = 34; break;
-                        case "bnSwipeLeft": if (swipesOn) lBControls.SelectedIndex = 35; break;
-                        case "bnSwipeRight": if (swipesOn) lBControls.SelectedIndex = 36; break;
-                    }
-                }
-                */
             }
 
             DS4ControlSettings dcs = getDS4CSetting(device, name);
@@ -1195,129 +1175,6 @@ namespace DS4Windows
             {
                 pBHoveredButton.Location = tempLabel.Location;
             }
-
-            /*switch (name)
-            {
-                #region
-                case "bnCross":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_Cross;
-                    pBHoveredButton.Location = lbLCross.Location;
-                    break;
-                case "bnCircle":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_Circle;
-                    pBHoveredButton.Location = lbLCircle.Location;
-                    break;
-                case "bnSquare":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_Square;
-                    pBHoveredButton.Location = lbLSquare.Location;
-                    break;
-                case "bnTriangle":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_Triangle;
-                    pBHoveredButton.Location = lbLTriangle.Location;
-                    break;
-                case "bnOptions":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_Options;
-                    pBHoveredButton.Location = lbLOptions.Location;
-                    break;
-                case "bnShare":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_Share;
-                    pBHoveredButton.Location = lbLShare.Location;
-                    break;
-                case "bnUp":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_Up;
-                    pBHoveredButton.Location = lbLUp.Location;
-                    break;
-                case "bnDown":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_Down;
-                    pBHoveredButton.Location = lbLDown.Location;
-                    break;
-                case "bnLeft":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_Left;
-                    pBHoveredButton.Location = lbLLeft.Location;
-                    break;
-                case "bnRight":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_Right;
-                    pBHoveredButton.Location = lbLright.Location;
-                    break;
-                case "bnPS":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_PS;
-                    pBHoveredButton.Location = lbLPS.Location;
-                    break;
-                case "bnL1":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_L1;
-                    pBHoveredButton.Location = lbLL1.Location;
-                    break;
-                case "bnR1":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_R1;
-                    pBHoveredButton.Location = lbLR1.Location;
-                    break;
-                case "bnL2":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_L2;
-                    pBHoveredButton.Location = lbLL2.Location;
-                    break;
-                case "bnR2":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_R2;
-                    pBHoveredButton.Location = lbLR2.Location;
-                    break;
-                case "bnTouchLeft":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_TouchLeft;
-                    pBHoveredButton.Location = lbLTouchLM.Location;
-                    break;
-                case "bnTouchRight":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_TouchRight;
-                    pBHoveredButton.Location = lbLTouchRight.Location;
-                    break;
-                case "bnTouchMulti":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_TouchMulti;
-                    pBHoveredButton.Location = lbLTouchLM.Location;
-                    break;
-                case "bnTouchUpper":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_TouchUpper;
-                    pBHoveredButton.Location = lbLTouchUpper.Location;
-                    break;
-                case "bnL3":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_LS;
-                    pBHoveredButton.Location = lbLLS.Location;
-                    break;
-                case "bnLSUp":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_LS;
-                    pBHoveredButton.Location = lbLLS.Location;
-                    break;
-                case "bnLSDown":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_LS;
-                    pBHoveredButton.Location = lbLLS.Location;
-                    break;
-                case "bnLSLeft":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_LS;
-                    pBHoveredButton.Location = lbLLS.Location;
-                    break;
-                case "bnLSRight":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_LS;
-                    pBHoveredButton.Location = lbLLS.Location;
-                    break;
-                case "bnR3":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_RS;
-                    pBHoveredButton.Location = lbLRS.Location;
-                    break;
-                case "bnRSUp":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_RS;
-                    pBHoveredButton.Location = lbLRS.Location;
-                    break;
-                case "bnRSDown":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_RS;
-                    pBHoveredButton.Location = lbLRS.Location;
-                    break;
-                case "bnRSLeft":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_RS;
-                    pBHoveredButton.Location = lbLRS.Location;
-                    break;
-                case "bnRSRight":
-                    pBHoveredButton.Image = Properties.Resources.DS4_Config_RS;
-                    pBHoveredButton.Location = lbLRS.Location;
-                    break;                    
-                    #endregion
-            }
-            */
 
             if (pBHoveredButton.Image != null)
                 pBHoveredButton.Size = new Size((int)(pBHoveredButton.Image.Size.Width * (dpix / 1.25f)), (int)(pBHoveredButton.Image.Size.Height * (dpix / 1.25f)));
@@ -1445,6 +1302,18 @@ namespace DS4Windows
 
             SATriggers[device] = string.Join(",", ints);
 
+            ints.Clear();
+            for (int i = 0, trigLen = cMTouchDisableInvert.Items.Count - 1; i < trigLen; i++)
+            {
+                if (((ToolStripMenuItem)cMTouchDisableInvert.Items[i]).Checked)
+                    ints.Add(i);
+            }
+
+            if (ints.Count == 0)
+                ints.Add(-1);
+
+            TouchDisInvertTriggers[device] = ints.ToArray();
+
             if (nUDRainbow.Value == 0) btnRainbow.Image = greyscale;
             else btnRainbow.Image = colored;
         }
@@ -1483,36 +1352,6 @@ namespace DS4Windows
                 UpdateDS4CSetting(device, ctrl.Name, false, tag.Key, tag.Value, kt);
             }
         }
-
-        /*public void Toggle_Bn(bool SC, bool TG, bool MC,  bool MR)
-        {
-            if (lastSelected.Tag is KeyValuePair<int, string> || lastSelected.Tag is KeyValuePair<UInt16, string> || lastSelected.Tag is KeyValuePair<int[], string>)
-                lastSelected.Font = new Font(lastSelected.Font, 
-                    (SC ? FontStyle.Bold : FontStyle.Regular) | (TG ? FontStyle.Italic : FontStyle.Regular) | 
-                    (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
-            else if (lastSelected.Tag is KeyValuePair<string, string>)
-                if (lastSelected.Tag.ToString().Contains("Mouse Button"))
-                    lastSelected.Font = new Font(lastSelected.Font, TG ? FontStyle.Italic : FontStyle.Regular);
-            else
-                lastSelected.Font = new Font(lastSelected.Font, FontStyle.Regular);
-        }
-
-        public void Toggle_Bn(bool SC, bool TG, bool MC, bool MR, System.Windows.Forms.Control ctrl)
-        {
-            if (ctrl is Button)
-            {
-                Button btn = (Button)ctrl;
-                if (btn.Tag is KeyValuePair<int, string> || btn.Tag is KeyValuePair<UInt16, string> || btn.Tag is KeyValuePair<int[], string>)
-                    btn.Font = new Font(btn.Font,
-                        (SC ? FontStyle.Bold : FontStyle.Regular) | (TG ? FontStyle.Italic : FontStyle.Regular) |
-                        (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
-                else if (btn.Tag is KeyValuePair<string, string>)
-                    if (btn.Tag.ToString().Contains("Mouse Button"))
-                        btn.Font = new Font(btn.Font, TG ? FontStyle.Italic : FontStyle.Regular);
-                    else
-                        btn.Font = new Font(btn.Font, FontStyle.Regular);
-            }
-        }*/
 
         private void btnLightbar_Click(object sender, EventArgs e)
         {
@@ -2451,14 +2290,6 @@ namespace DS4Windows
             MouseToolStripMenuItem.Visible = !(name == "lbTPSwipes" || name.StartsWith("bnSwipe"));
         }
 
-        /*private void BatchToggle_Bn(bool scancode, Button button1, Button button2, Button button3, Button button4)
-        {
-            Toggle_Bn(scancode, false, false, false, button1);
-            Toggle_Bn(scancode, false, false, false, button2);
-            Toggle_Bn(scancode, false, false, false, button3);
-            Toggle_Bn(scancode, false, false, false, button4);
-        }*/
-
         private void SetPreset(object sender, EventArgs e)
         {
             bool scancode = false;
@@ -2728,37 +2559,45 @@ namespace DS4Windows
 
         private void btnGyroTriggers_Click(object sender, EventArgs e)
         {
-            cMGyroTriggers.Show((Control)sender, new Point(0, ((Control)sender).Height));
+            Control button = (Control)sender;
+            cMGyroTriggers.Show(button, new Point(0, button.Height));
         }
 
         private void SATrigger_CheckedChanged(object sender, EventArgs e)
         {
-            if (sender != cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1] && ((ToolStripMenuItem)sender).Checked)
-                ((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked = false;
-            if (((ToolStripMenuItem)cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1]).Checked) //always on
-                for (int i = 0; i < cMGyroTriggers.Items.Count - 1; i++)
-                    ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
-
-            List <int> ints = new List<int>();
-            List<string> s = new List<string>();
-            for (int i = 0; i < cMGyroTriggers.Items.Count - 1; i++)
+            if (loading == false)
             {
-                if (((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked)
+                int gyroTriggerCount = cMGyroTriggers.Items.Count;
+                if (sender != cMGyroTriggers.Items[gyroTriggerCount - 1] && ((ToolStripMenuItem)sender).Checked)
+                    ((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked = false;
+
+                if (((ToolStripMenuItem)cMGyroTriggers.Items[gyroTriggerCount - 1]).Checked) //always on
                 {
-                    ints.Add(i);
-                    s.Add(cMGyroTriggers.Items[i].Text);
+                    for (int i = 0; i < gyroTriggerCount - 1; i++)
+                        ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
                 }
-            }
 
-            if (ints.Count == 0)
-            {
-                ints.Add(-1);
-                s.Add(cMGyroTriggers.Items[cMGyroTriggers.Items.Count - 1].Text);
-            }
+                List<int> ints = new List<int>();
+                List<string> s = new List<string>();
+                for (int i = 0; i < gyroTriggerCount - 1; i++)
+                {
+                    if (((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked)
+                    {
+                        ints.Add(i);
+                        s.Add(cMGyroTriggers.Items[i].Text);
+                    }
+                }
 
-            SATriggers[device] = string.Join(",", ints);
-            if (s.Count > 0)
-                btnGyroTriggers.Text = string.Join(", ", s);
+                if (ints.Count == 0)
+                {
+                    ints.Add(-1);
+                    s.Add(cMGyroTriggers.Items[gyroTriggerCount - 1].Text);
+                }
+
+                SATriggers[device] = string.Join(",", ints);
+                if (s.Count > 0)
+                    btnGyroTriggers.Text = string.Join(", ", s);
+            }
         }
 
         private void cBGyroInvert_CheckChanged(object sender, EventArgs e)
@@ -3042,6 +2881,42 @@ namespace DS4Windows
             }
         }
 
+        private void TouchDisableInvert_CheckedChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                int touchDisableInvCount = cMTouchDisableInvert.Items.Count;
+
+                List<int> ints = new List<int>();
+                List<string> s = new List<string>();
+                for (int i = 0; i < touchDisableInvCount - 1; i++)
+                {
+                    ToolStripMenuItem current = (ToolStripMenuItem)cMTouchDisableInvert.Items[i];
+                    if (current.Checked)
+                    {
+                        ints.Add(i);
+                        s.Add(current.Text);
+                    }
+                }
+
+                if (ints.Count == 0)
+                {
+                    ints.Add(-1);
+                    s.Add("None");
+                }
+
+                TouchDisInvertTriggers[device] = ints.ToArray();
+                if (s.Count > 0)
+                    touchpadDisInvertButton.Text = string.Join(", ", s);
+            }
+        }
+
+        private void touchpadDisInvertButton_Click(object sender, EventArgs e)
+        {
+            Control button = (Control)sender;
+            cMTouchDisableInvert.Show(button, new Point(0, button.Height));
+        }
+
         private void Options_Resize(object sender, EventArgs e)
         {
             fLPSettings.AutoScroll = false;
@@ -3054,7 +2929,6 @@ namespace DS4Windows
 
             if (lBControls.SelectedItem != null)
             {
-                //lbControlName.Text = lBControls.SelectedItem.ToString();
                 if (controlSelectedIndex == 0)
                     lbControlName.ForeColor = Color.FromArgb(153, 205, 204);
                 else if (controlSelectedIndex == 1)

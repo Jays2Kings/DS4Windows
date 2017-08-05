@@ -572,6 +572,12 @@ namespace DS4Windows
             return m_Config.sATriggers[index];
         }
 
+        public static int[][] TouchDisInvertTriggers => m_Config.touchDisInvertTriggers;
+        public static int[] getTouchDisInvertTriggers(int index)
+        {
+            return m_Config.touchDisInvertTriggers[index];
+        }
+
         public static int[] GyroSensitivity => m_Config.gyroSensitivity;
         public static int getGyroSensitivity(int index)
         {
@@ -1287,7 +1293,9 @@ namespace DS4Windows
         public bool[] startTouchpadOff = { false, false, false, false, false };
         public bool[] useTPforControls = { false, false, false, false, false };
         public bool[] useSAforMouse = { false, false, false, false, false };
-        public string[] sATriggers = { "", "", "", "", "" };
+        public string[] sATriggers = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public int[][] touchDisInvertTriggers = new int[5][] { new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 },
+            new int[1] { -1 }, new int[1] { -1 } };
         public int[] lsCurve = { 0, 0, 0, 0, 0 };
         public int[] rsCurve = { 0, 0, 0, 0, 0 };
         public Boolean useExclusiveMode = false;
@@ -1305,17 +1313,6 @@ namespace DS4Windows
         public bool closeMini = false;
         public List<SpecialAction> actions = new List<SpecialAction>();
         public List<DS4ControlSettings>[] ds4settings = { new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>() };
-        /*public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = { null, null, null, null, null };
-        public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null, null };
-        public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null, null };
-        public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null, null };
-        public Dictionary<DS4Controls, String>[] customMapExtras = { null, null, null, null, null };
-
-        public Dictionary<DS4Controls, DS4KeyType>[] shiftCustomMapKeyTypes = { null, null, null, null, null };
-        public Dictionary<DS4Controls, UInt16>[] shiftCustomMapKeys = { null, null, null, null, null };
-        public Dictionary<DS4Controls, String>[] shiftCustomMapMacros = { null, null, null, null, null };
-        public Dictionary<DS4Controls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
-        public Dictionary<DS4Controls, String>[] shiftCustomMapExtras = { null, null, null, null, null };*/
         public List<string>[] profileActions = { null, null, null, null, null };
         public int[] profileActionCount = { 0, 0, 0, 0, 0 };
         public Dictionary<string, SpecialAction>[] profileActionDict = { new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>() };
@@ -1325,10 +1322,10 @@ namespace DS4Windows
         public bool flashWhenLate = true;
         public int flashWhenLateAt = 20;
         // Cache whether profile has custom action
-        public bool[] containsCustomAction = { false, false, false, false, false };
+        public bool[] containsCustomAction = new bool[5] { false, false, false, false, false };
 
         // Cache whether profile has custom extras
-        public bool[] containsCustomExtras = { false, false, false, false, false };
+        public bool[] containsCustomExtras = new bool[5] { false, false, false, false, false };
 
         public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
         public int[] gyroSensVerticalScale = { 100, 100, 100, 100, 100 };
@@ -1349,18 +1346,6 @@ namespace DS4Windows
                     if (dc != DS4Controls.None)
                         ds4settings[i].Add(new DS4ControlSettings(dc));
                 }
-
-                /*customMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
-                customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
-                customMapMacros[i] = new Dictionary<DS4Controls, String>();
-                customMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
-                customMapExtras[i] = new Dictionary<DS4Controls, string>();
-
-                shiftCustomMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
-                shiftCustomMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
-                shiftCustomMapMacros[i] = new Dictionary<DS4Controls, String>();
-                shiftCustomMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
-                shiftCustomMapExtras[i] = new Dictionary<DS4Controls, string>();*/
 
                 profileActions[i] = new List<string>();
                 profileActions[i].Add("Disconnect Controller");
@@ -1583,6 +1568,12 @@ namespace DS4Windows
                 XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null); xmlUseTPforControls.InnerText = useTPforControls[device].ToString(); Node.AppendChild(xmlUseTPforControls);
                 XmlNode xmlUseSAforMouse = m_Xdoc.CreateNode(XmlNodeType.Element, "UseSAforMouse", null); xmlUseSAforMouse.InnerText = useSAforMouse[device].ToString(); Node.AppendChild(xmlUseSAforMouse);
                 XmlNode xmlSATriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggers", null); xmlSATriggers.InnerText = sATriggers[device].ToString(); Node.AppendChild(xmlSATriggers);
+
+                XmlNode xmlTouchDisInvTriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchDisInvTriggers", null);
+                string tempTouchDisInv = string.Join(",", touchDisInvertTriggers[device]);
+                xmlTouchDisInvTriggers.InnerText = tempTouchDisInv;
+                Node.AppendChild(xmlTouchDisInvTriggers);
+
                 XmlNode xmlGyroSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSensitivity", null); xmlGyroSensitivity.InnerText = gyroSensitivity[device].ToString(); Node.AppendChild(xmlGyroSensitivity);
                 XmlNode xmlGyroSensVerticalScale = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSensVerticalScale", null); xmlGyroSensVerticalScale.InnerText = gyroSensVerticalScale[device].ToString(); Node.AppendChild(xmlGyroSensVerticalScale);
                 XmlNode xmlGyroInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroInvert", null); xmlGyroInvert.InnerText = gyroInvert[device].ToString(); Node.AppendChild(xmlGyroInvert);
@@ -2555,6 +2546,21 @@ namespace DS4Windows
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggers"); sATriggers[device] = Item.InnerText; }
                 catch { sATriggers[device] = ""; missingSetting = true; }
+
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchDisInvTriggers");
+                    string[] triggers = Item.InnerText.Split(',');
+                    int temp = -1;
+                    List<int> tempIntList = new List<int>();
+                    for (int i = 0, arlen = triggers.Length; i < arlen; i++)
+                    {
+                        if (int.TryParse(triggers[i], out temp))
+                            tempIntList.Add(temp);
+                    }
+
+                    touchDisInvertTriggers[device] = tempIntList.ToArray();
+                }
+                catch { touchDisInvertTriggers[device] = new int[1] { -1 }; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSensitivity"); int.TryParse(Item.InnerText, out gyroSensitivity[device]); }
                 catch { gyroSensitivity[device] = 100; missingSetting = true; }
@@ -3640,7 +3646,8 @@ namespace DS4Windows
             startTouchpadOff[device] = false;
             useTPforControls[device] = false;
             useSAforMouse[device] = false;
-            sATriggers[device] = "";
+            sATriggers[device] = string.Empty;
+            touchDisInvertTriggers[device] = new int[1] { -1 };
             lsCurve[device] = rsCurve[device] = 0;
             gyroSensitivity[device] = 100;
             gyroSensVerticalScale[device] = 100;

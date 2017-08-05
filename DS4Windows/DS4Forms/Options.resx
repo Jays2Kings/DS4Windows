@@ -430,7 +430,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;cBDoubleTap.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="cBTap.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -463,7 +463,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;cBTap.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="nUDTap.Location" type="System.Drawing.Point, System.Drawing">
     <value>63, 39</value>
@@ -484,7 +484,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;nUDTap.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="cBScroll.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -517,7 +517,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;cBScroll.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="cBSlide.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -550,7 +550,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;cBSlide.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="nUDScroll.Location" type="System.Drawing.Point, System.Drawing">
     <value>167, 9</value>
@@ -571,7 +571,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;nUDScroll.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="nUDTouch.Location" type="System.Drawing.Point, System.Drawing">
     <value>63, 9</value>
@@ -592,7 +592,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;nUDTouch.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="lbButtonMouseSens.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -658,7 +658,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;cBlowerRCOn.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="cBTouchpadJitterCompensation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -691,7 +691,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;cBTouchpadJitterCompensation.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="lbL2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1335,6 +1335,63 @@
   <data name="&gt;&gt;nUDL2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="touchpadDisInvertButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="touchpadDisInvertButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 103</value>
+  </data>
+  <data name="touchpadDisInvertButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 23</value>
+  </data>
+  <data name="touchpadDisInvertButton.TabIndex" type="System.Int32, mscorlib">
+    <value>237</value>
+  </data>
+  <data name="touchpadDisInvertButton.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;touchpadDisInvertButton.Name" xml:space="preserve">
+    <value>touchpadDisInvertButton</value>
+  </data>
+  <data name="&gt;&gt;touchpadDisInvertButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;touchpadDisInvertButton.Parent" xml:space="preserve">
+    <value>pnlTPMouse</value>
+  </data>
+  <data name="&gt;&gt;touchpadDisInvertButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label25.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label25.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 87</value>
+  </data>
+  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 13</value>
+  </data>
+  <data name="label25.TabIndex" type="System.Int32, mscorlib">
+    <value>236</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Disable Invert:</value>
+  </data>
+  <data name="&gt;&gt;label25.Name" xml:space="preserve">
+    <value>label25</value>
+  </data>
+  <data name="&gt;&gt;label25.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label25.Parent" xml:space="preserve">
+    <value>pnlTPMouse</value>
+  </data>
+  <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1363,7 +1420,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="touchpadInvertComboBox.Items" xml:space="preserve">
     <value>None</value>
@@ -1378,10 +1435,10 @@
     <value>Both X and Y Axes</value>
   </data>
   <data name="touchpadInvertComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 82</value>
+    <value>178, 62</value>
   </data>
   <data name="touchpadInvertComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 21</value>
+    <value>85, 21</value>
   </data>
   <data name="touchpadInvertComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>234</value>
@@ -1396,7 +1453,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;touchpadInvertComboBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="cbStartTouchpadOff.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1426,7 +1483,7 @@
     <value>pnlTPMouse</value>
   </data>
   <data name="&gt;&gt;cbStartTouchpadOff.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="pnlTPMouse.Location" type="System.Drawing.Point, System.Drawing">
     <value>-3, 39</value>
@@ -6080,7 +6137,7 @@ with profile</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tCControls.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="tPDeadzone.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -8498,7 +8555,7 @@ with profile</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;fLPSettings.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="cMGyroTriggers.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>482, 17</value>
@@ -8632,11 +8689,140 @@ with profile</value>
   <data name="&gt;&gt;cMGyroTriggers.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="cMTouchDisableInvert.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 63</value>
+  </metadata>
+  <data name="crossTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="crossTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Cross</value>
+  </data>
+  <data name="circleTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="circleTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Circle</value>
+  </data>
+  <data name="squareTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="squareTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Square</value>
+  </data>
+  <data name="triangleTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="triangleTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Triangle</value>
+  </data>
+  <data name="l1TouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="l1TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>L1</value>
+  </data>
+  <data name="l2TouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="l2TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>L2</value>
+  </data>
+  <data name="r1TouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="r1TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>R1</value>
+  </data>
+  <data name="r2TouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="r2TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>R2</value>
+  </data>
+  <data name="upTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="upTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="downTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="downTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="leftTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="leftTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="rightTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="rightTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="l3TouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="l3TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>L3</value>
+  </data>
+  <data name="r3TouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="r3TouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>R3</value>
+  </data>
+  <data name="oneFingerTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="oneFingerTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Finger on Touchpad</value>
+  </data>
+  <data name="twoFingerTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="twoFingerTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>2 Fingers on Touchpad</value>
+  </data>
+  <data name="optionsTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="optionsTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="shareTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="shareTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="psTouchInvStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="psTouchInvStripMenuItem.Text" xml:space="preserve">
+    <value>PS</value>
+  </data>
+  <data name="cMTouchDisableInvert.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 444</value>
+  </data>
+  <data name="&gt;&gt;cMTouchDisableInvert.Name" xml:space="preserve">
+    <value>cMTouchDisableInvert</value>
+  </data>
+  <data name="&gt;&gt;cMTouchDisableInvert.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="advColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>647, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>176</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
@@ -8947,11 +9133,125 @@ with profile</value>
   <data name="&gt;&gt;alwaysOnToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;crossTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>crossTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;crossTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;circleTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>circleTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;circleTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;squareTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>squareTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;squareTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;triangleTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>triangleTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;triangleTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;l1TouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>l1TouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;l1TouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;l2TouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>l2TouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;l2TouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;r1TouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>r1TouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;r1TouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;r2TouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>r2TouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;r2TouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>upTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;upTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;downTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>downTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;downTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>leftTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;leftTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>rightTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;rightTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;l3TouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>l3TouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;l3TouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;r3TouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>r3TouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;r3TouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oneFingerTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>oneFingerTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;oneFingerTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;twoFingerTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>twoFingerTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;twoFingerTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optionsTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>optionsTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;optionsTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;shareTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>shareTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;shareTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;psTouchInvStripMenuItem.Name" xml:space="preserve">
+    <value>psTouchInvStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;psTouchInvStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;advColorDialog.Name" xml:space="preserve">
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.85.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.87.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Options</value>

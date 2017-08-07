@@ -19,10 +19,11 @@ namespace DS4Windows
             verticalDirection = Direction.Neutral;
         private Direction hDirection = Direction.Neutral, vDirection = Direction.Neutral;
 
-        private double GYRO_MOUSE_COEFFICIENT = 0.0095;
-        private int GYRO_MOUSE_DEADZONE = 12;
-        private double GYRO_MOUSE_OFFSET = 0.1463;
-        private double GYRO_SMOOTH_MOUSE_OFFSET = 0.14698;
+        private const double GYRO_MOUSE_COEFFICIENT = 0.0095;
+        private const int GYRO_MOUSE_DEADZONE = 12;
+        private const double GYRO_MOUSE_OFFSET = 0.1463;
+        private const double GYRO_SMOOTH_MOUSE_OFFSET = 0.14698;
+        private const double TOUCHPAD_MOUSE_OFFSET = 0.015;
 
         private const int SMOOTH_BUFFER_LEN = 3;
         private double[] xSmoothBuffer = new double[SMOOTH_BUFFER_LEN];
@@ -75,9 +76,8 @@ namespace DS4Windows
                 vRemainder = 0.0;
             }
 
-            int deadzone = GYRO_MOUSE_DEADZONE;
-            int deadzoneX = (int)System.Math.Abs(normX * deadzone);
-            int deadzoneY = (int)System.Math.Abs(normY * deadzone);
+            int deadzoneX = (int)System.Math.Abs(normX * GYRO_MOUSE_DEADZONE);
+            int deadzoneY = (int)System.Math.Abs(normY * GYRO_MOUSE_DEADZONE);
 
             if (System.Math.Abs(deltaX) > deadzoneX)
             {
@@ -202,7 +202,7 @@ namespace DS4Windows
             if ((!dragging && touchesLen != 1) || (dragging && touchesLen < 1))
                 return;
 
-            int deltaX, deltaY;
+            int deltaX = 0, deltaY = 0;
             if (arg.touches[0].touchID != lastTouchID)
             {
                 deltaX = deltaY = 0;
@@ -274,32 +274,38 @@ namespace DS4Windows
                 }
             }
 
+            double tempAngle = System.Math.Atan2(-deltaY, deltaX);
+            double normX = System.Math.Abs(System.Math.Cos(tempAngle));
+            double normY = System.Math.Abs(System.Math.Sin(tempAngle));
+            int signX = System.Math.Sign(deltaX);
+            int signY = System.Math.Sign(deltaY);
+
             double coefficient = Global.TouchSensitivity[deviceNumber] * 0.01;
             // Collect rounding errors instead of losing motion.
-            double xMotion = coefficient * deltaX;
-            if (xMotion > 0.0)
+            double xMotion = deltaX != 0 ?
+                coefficient * deltaX + (normX * (TOUCHPAD_MOUSE_OFFSET * signX)) : 0.0;
+
+            if (xMotion > 0.0 && horizontalRemainder > 0.0)
             {
-                if (horizontalRemainder > 0.0)
-                    xMotion += horizontalRemainder;
+                xMotion += horizontalRemainder;
             }
-            else if (xMotion < 0.0)
+            else if (xMotion < 0.0 && horizontalRemainder < 0.0)
             {
-                if (horizontalRemainder < 0.0)
-                    xMotion += horizontalRemainder;
+                xMotion += horizontalRemainder;
             }
             int xAction = (int)xMotion;
             horizontalRemainder = xMotion - xAction;
 
-            double yMotion = coefficient * deltaY;
-            if (yMotion > 0.0)
+            double yMotion = deltaY != 0 ?
+                coefficient * deltaY + (normY * (TOUCHPAD_MOUSE_OFFSET * signY)) : 0.0;
+
+            if (yMotion > 0.0 && verticalRemainder > 0.0)
             {
-                if (verticalRemainder > 0.0)
-                    yMotion += verticalRemainder;
+                yMotion += verticalRemainder;
             }
-            else if (yMotion < 0.0)
+            else if (yMotion < 0.0 && verticalRemainder < 0.0)
             {
-                if (verticalRemainder < 0.0)
-                    yMotion += verticalRemainder;
+                yMotion += verticalRemainder;
             }
             int yAction = (int)yMotion;
             verticalRemainder = yMotion - yAction;

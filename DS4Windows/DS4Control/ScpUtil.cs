@@ -671,6 +671,10 @@ namespace DS4Windows
 
         public static bool[] LowerRCOn => m_Config.lowerRCOn;
         public static bool[] TouchpadJitterCompensation => m_Config.touchpadJitterCompensation;
+        public static bool getTouchpadJitterCompensation(int index)
+        {
+            return m_Config.touchpadJitterCompensation[index];
+        }
 
         public static int[] TouchpadInvert => m_Config.touchpadInvert;
         public static int getTouchpadInvert(int index)
@@ -1207,7 +1211,7 @@ namespace DS4Windows
         public bool[] flushHIDQueue = { false, false, false, false, false };
         public bool[] enableTouchToggle = { true, true, true, true, true };
         public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
-        public bool[] touchpadJitterCompensation = { true, true, true, true, true };
+        public bool[] touchpadJitterCompensation = new bool[5] { false, false, false, false, false };
         public bool[] lowerRCOn = { false, false, false, false, false };
         public bool[] ledAsBattery = { false, false, false, false, false };
         public byte[] flashType = { 0, 0, 0, 0, 0 };

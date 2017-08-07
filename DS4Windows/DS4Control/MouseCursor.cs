@@ -210,7 +210,7 @@ namespace DS4Windows
                 horizontalDirection = verticalDirection = Direction.Neutral;
                 lastTouchID = arg.touches[0].touchID;
             }
-            else if (Global.TouchpadJitterCompensation[deviceNumber])
+            else if (Global.getTouchpadJitterCompensation(deviceNumber))
             {
                 // Often the DS4's internal jitter compensation kicks in and starts hiding changes, ironically creating jitter...
                 if (dragging && touchesLen > 1)

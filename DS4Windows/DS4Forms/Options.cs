@@ -717,7 +717,7 @@ namespace DS4Windows
                 nUDTap.Value = 0;
                 cBTap.Checked = false;
                 cBDoubleTap.Checked = false;
-                cBTouchpadJitterCompensation.Checked = true;
+                cBTouchpadJitterCompensation.Checked = false;
                 touchpadInvertComboBox.SelectedIndex = 0;
                 cBlowerRCOn.Checked = false;
                 cBFlushHIDQueue.Checked = false;

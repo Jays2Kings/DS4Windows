@@ -672,8 +672,6 @@
             // cBTouchpadJitterCompensation
             // 
             resources.ApplyResources(this.cBTouchpadJitterCompensation, "cBTouchpadJitterCompensation");
-            this.cBTouchpadJitterCompensation.Checked = true;
-            this.cBTouchpadJitterCompensation.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBTouchpadJitterCompensation.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.cBTouchpadJitterCompensation.Name = "cBTouchpadJitterCompensation";
             this.cBTouchpadJitterCompensation.UseVisualStyleBackColor = true;

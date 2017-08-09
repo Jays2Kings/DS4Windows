@@ -914,17 +914,17 @@ namespace DS4Windows
                     if (absx > SXD)
                     {
                         double ratioX = absx < maxValue ? (absx - SXD) / (double)(maxValue - SXD) : 1.0;
-                        dState.Motion.accelX = Math.Sign(gyroX) *
+                        dState.Motion.outputAccelX = Math.Sign(gyroX) *
                             (int)Math.Min(128d, sxsens * 128d * ((1.0 - sxAntiDead) * ratioX + sxAntiDead));
                     }
                     else
                     {
-                        dState.Motion.accelX = 0;
+                        dState.Motion.outputAccelX = 0;
                     }
                 }
                 else
                 {
-                    dState.Motion.accelX = Math.Sign(gyroX) *
+                    dState.Motion.outputAccelX = Math.Sign(gyroX) *
                         (int)Math.Min(128d, sxsens * 128d * (absx / 128d));
                 }
 
@@ -934,51 +934,51 @@ namespace DS4Windows
                     if (absz > SZD)
                     {
                         double ratioZ = absz < maxValue ? (absz - SZD) / (double)(maxValue - SZD) : 1.0;
-                        dState.Motion.accelZ = Math.Sign(gyroZ) *
+                        dState.Motion.outputAccelZ = Math.Sign(gyroZ) *
                             (int)Math.Min(128d, szsens * 128d * ((1.0 - szAntiDead) * ratioZ + szAntiDead));
                     }
                     else
                     {
-                        dState.Motion.accelZ = 0;
+                        dState.Motion.outputAccelZ = 0;
                     }
                 }
                 else
                 {
-                    dState.Motion.accelZ = Math.Sign(gyroZ) *
+                    dState.Motion.outputAccelZ = Math.Sign(gyroZ) *
                         (int)Math.Min(128d, szsens * 128d * (absz / 128d));
                 }
 
                 int sxOutCurveMode = tempIntArray[device] = getSXOutCurveMode(device);
                 if (sxOutCurveMode > 0)
                 {
-                    double temp = Math.Abs(dState.Motion.accelX) / 128.0;
+                    double temp = Math.Abs(dState.Motion.outputAccelX) / 128.0;
                     double sign = Math.Sign(temp);
                     if (sxOutCurveMode == 1)
                     {
                         double output = temp * temp;
-                        dState.Motion.accelX = (byte)(output * sign * 128.0);
+                        dState.Motion.outputAccelX = (byte)(output * sign * 128.0);
                     }
                     else if (sxOutCurveMode == 2)
                     {
                         double output = temp * temp * temp;
-                        dState.Motion.accelX = (byte)(output * 128.0);
+                        dState.Motion.outputAccelX = (byte)(output * 128.0);
                     }
                 }
 
                 int szOutCurveMode = tempIntArray[device] = getSZOutCurveMode(device);
                 if (szOutCurveMode > 0)
                 {
-                    double temp = Math.Abs(dState.Motion.accelZ) / 128.0;
+                    double temp = Math.Abs(dState.Motion.outputAccelZ) / 128.0;
                     double sign = Math.Sign(temp);
                     if (szOutCurveMode == 1)
                     {
                         double output = temp * temp;
-                        dState.Motion.accelZ = (byte)(output * sign * 128.0);
+                        dState.Motion.outputAccelZ = (byte)(output * sign * 128.0);
                     }
                     else if (szOutCurveMode == 2)
                     {
                         double output = temp * temp * temp;
-                        dState.Motion.accelZ = (byte)(output * 128.0);
+                        dState.Motion.outputAccelZ = (byte)(output * 128.0);
                     }
                 }
             }

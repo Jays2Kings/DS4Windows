@@ -15,23 +15,35 @@ namespace DS4Windows
 
     public class SixAxis
     {
+        public const int ACC_RES_PER_G = 8192;
+        private const float F_ACC_RES_PER_G = ACC_RES_PER_G;
+
         public int gyroYaw, gyroPitch, gyroRoll, accelX, accelY, accelZ;
         public int outputAccelX, outputAccelY, outputAccelZ;
+        public double accelXG, accelYG, accelZG;
         public readonly int gyroYawFull, gyroPitchFull, gyroRollFull;
         public readonly int accelXFull, accelYFull, accelZFull;
         public readonly byte touchID;
         public readonly double elapsed;
         public readonly SixAxis previousAxis = null;
 
-        public SixAxis(int X, int Y, int Z, int aX, int aY, int aZ,
+        double recip = 1d / 8192d;
+        double tempDouble = 0d;
+
+        public SixAxis(int X, int Y, int Z,
+            int aX, int aY, int aZ,
             double elapsedDelta, SixAxis prevAxis = null)
         {
             gyroYaw = -X / 256;
             gyroPitch = Y / 256;
             gyroRoll = -Z / 256;
-            gyroYawFull = -X;
-            gyroPitchFull = Y;
-            gyroRollFull = -Z;
+
+            gyroYawFull = -X; gyroPitchFull = Y; gyroRollFull = -Z;
+            accelXFull = -aX; accelYFull = -aY; accelZFull = aZ;
+
+            accelXG = tempDouble = accelXFull / F_ACC_RES_PER_G;
+            accelYG = tempDouble = accelYFull / F_ACC_RES_PER_G;
+            accelZG = tempDouble = accelZFull / F_ACC_RES_PER_G;
 
             // Put accel ranges between 0 - 128 abs
             accelX = -aX / 64;
@@ -40,10 +52,6 @@ namespace DS4Windows
             outputAccelX = accelX;
             outputAccelY = accelY;
             outputAccelZ = accelZ;
-
-            accelXFull = -aX;
-            accelYFull = -aY;
-            accelZFull = aZ;
 
             elapsed = elapsedDelta;
             previousAxis = prevAxis;

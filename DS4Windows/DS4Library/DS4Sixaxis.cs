@@ -24,7 +24,7 @@ namespace DS4Windows
         public readonly SixAxis previousAxis = null;
 
         public SixAxis(int X, int Y, int Z, int aX, int aY, int aZ,
-            double milliseconds, SixAxis prevAxis = null)
+            double elapsedDelta, SixAxis prevAxis = null)
         {
             gyroYaw = -X / 256;
             gyroPitch = Y / 256;
@@ -44,8 +44,8 @@ namespace DS4Windows
             accelXFull = -aX;
             accelYFull = -aY;
             accelZFull = aZ;
-            elapsed = milliseconds;
 
+            elapsed = elapsedDelta;
             previousAxis = prevAxis;
         }
     }
@@ -54,13 +54,14 @@ namespace DS4Windows
     {
         public event EventHandler<SixAxisEventArgs> SixAccelMoved = null;
 
-        internal int lastGyroYaw, lastGyroPitch, lastGyroRoll,
+        private int lastGyroYaw, lastGyroPitch, lastGyroRoll,
             lastAX, lastAY, lastAZ;
 
-        internal double lastMilliseconds;
-        internal byte[] previousPacket = new byte[8];
+        private double lastElapsedDelta;
+        private byte[] previousPacket = new byte[8];
 
-        public void handleSixaxis(byte[] gyro, byte[] accel, DS4State state, double milliseconds)
+        public void handleSixaxis(byte[] gyro, byte[] accel, DS4State state,
+            double elapsedDelta)
         {
             int currentYaw = (short)((ushort)(gyro[3] << 8) | gyro[2]);
             int currentPitch = (short)((ushort)(gyro[1] << 8) | gyro[0]);
@@ -76,10 +77,10 @@ namespace DS4Windows
                 {
                     SixAxis sPrev = null, now = null;
                     sPrev = new SixAxis(lastGyroYaw, lastGyroPitch, lastGyroRoll,
-                        lastAX, lastAY, lastAZ, lastMilliseconds);
+                        lastAX, lastAY, lastAZ, lastElapsedDelta);
 
                     now = new SixAxis(currentYaw, currentPitch, currentRoll,
-                        AccelX, AccelY, AccelZ, milliseconds, sPrev);
+                        AccelX, AccelY, AccelZ, elapsedDelta, sPrev);
 
                     args = new SixAxisEventArgs(state.ReportTimeStamp, now);
                     state.Motion = now;
@@ -92,7 +93,7 @@ namespace DS4Windows
                 lastAX = AccelX;
                 lastAY = AccelY;
                 lastAZ = AccelZ;
-                lastMilliseconds = milliseconds;
+                lastElapsedDelta = elapsedDelta;
             }
         }
     }

@@ -17,10 +17,13 @@ namespace DS4Windows
     {
         public const int ACC_RES_PER_G = 8192;
         private const float F_ACC_RES_PER_G = ACC_RES_PER_G;
+        public const int GYRO_RES_IN_DEG_SEC = 16;
+        private const float F_GYRO_RES_IN_DEG_SEC = GYRO_RES_IN_DEG_SEC;
 
         public int gyroYaw, gyroPitch, gyroRoll, accelX, accelY, accelZ;
         public int outputAccelX, outputAccelY, outputAccelZ;
         public double accelXG, accelYG, accelZG;
+        public double angVelYaw, angVelPitch, angVelRoll;
         public readonly int gyroYawFull, gyroPitchFull, gyroRollFull;
         public readonly int accelXFull, accelYFull, accelZFull;
         public readonly byte touchID;
@@ -40,6 +43,10 @@ namespace DS4Windows
 
             gyroYawFull = -X; gyroPitchFull = Y; gyroRollFull = -Z;
             accelXFull = -aX; accelYFull = -aY; accelZFull = aZ;
+
+            angVelYaw = tempDouble = gyroYawFull / F_GYRO_RES_IN_DEG_SEC;
+            angVelPitch = tempDouble = gyroPitchFull / F_GYRO_RES_IN_DEG_SEC;
+            angVelRoll = tempDouble = gyroRollFull / F_GYRO_RES_IN_DEG_SEC;
 
             accelXG = tempDouble = accelXFull / F_ACC_RES_PER_G;
             accelYG = tempDouble = accelYFull / F_ACC_RES_PER_G;

@@ -1659,9 +1659,12 @@ namespace DS4Windows
             {
                 if (cb.SelectedIndex < cb.Items.Count - 1)
                 {
-                    for (int i = 0; i < shortcuts[tdevice].DropDownItems.Count; i++)
+                    for (int i = 0, arlen = shortcuts[tdevice].DropDownItems.Count; i < arlen; i++)
+                    {
                         if (!(shortcuts[tdevice].DropDownItems[i] is ToolStripSeparator))
                             ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[i]).Checked = false;
+                    }
+
                     ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[cb.SelectedIndex]).Checked = true;
                     LogDebug(DateTime.Now, Properties.Resources.UsingProfile.Replace("*number*", (tdevice + 1).ToString()).Replace("*Profile name*", cb.Text), false);
                     shortcuts[tdevice].Text = Properties.Resources.ContextEdit.Replace("*number*", (tdevice + 1).ToString());
@@ -1675,6 +1678,7 @@ namespace DS4Windows
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
                     ShowOptions(tdevice, "");
+
                 if (cb.Text == "(" + Properties.Resources.NoProfileLoaded + ")")
                     ebns[tdevice].Text = Properties.Resources.New;
                 else

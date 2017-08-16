@@ -19,7 +19,6 @@ namespace DS4Windows
         // whole system, including other users. But the application can not be brought
         // into view, of course. 
         private static string SingleAppComEventName = "{a52b5b20-d9ee-4f32-8518-307fa14aa0c6}";
-        //static Mutex mutex = new Mutex(true, "{FI329DM2-DS4W-J2K2-HYES-92H21B3WJARG}");
         private static BackgroundWorker singleAppComThread = null;
         private static EventWaitHandle threadComEvent = null;
         private static bool exitComThread = false;
@@ -117,8 +116,6 @@ namespace DS4Windows
         static private void CreateInterAppComThread()
         {
             singleAppComThread = new BackgroundWorker();
-            //singleAppComThread.WorkerReportsProgress = false;
-            //singleAppComThread.WorkerSupportsCancellation = true;
             singleAppComThread.DoWork += new DoWorkEventHandler(singleAppComThread_DoWork);
             singleAppComThread.RunWorkerAsync();
         }
@@ -141,7 +138,7 @@ namespace DS4Windows
                     if (!exitComThread && Application.OpenForms.Count > 0)
                     {
                         Form mainForm = Application.OpenForms[0];
-                        mainForm.Invoke(new SetFormVisableDelegate(ThreadFormVisable), mainForm);
+                        mainForm?.Invoke(new SetFormVisableDelegate(ThreadFormVisable), mainForm);
                     }
                 }
             }

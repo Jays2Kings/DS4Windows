@@ -44,9 +44,9 @@ namespace DS4Windows
             gyroYawFull = -X; gyroPitchFull = Y; gyroRollFull = -Z;
             accelXFull = -aX; accelYFull = -aY; accelZFull = aZ;
 
-            angVelYaw = tempDouble = gyroYawFull / F_GYRO_RES_IN_DEG_SEC;
-            angVelPitch = tempDouble = gyroPitchFull / F_GYRO_RES_IN_DEG_SEC;
-            angVelRoll = tempDouble = gyroRollFull / F_GYRO_RES_IN_DEG_SEC;
+            angVelYaw = gyroYawFull / F_GYRO_RES_IN_DEG_SEC;
+            angVelPitch = gyroPitchFull / F_GYRO_RES_IN_DEG_SEC;
+            angVelRoll = gyroRollFull / F_GYRO_RES_IN_DEG_SEC;
 
             accelXG = tempDouble = accelXFull / F_ACC_RES_PER_G;
             accelYG = tempDouble = accelYFull / F_ACC_RES_PER_G;

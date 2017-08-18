@@ -36,6 +36,7 @@ namespace DS4Windows
 
         int tempInt = 0;
         double tempDouble = 0.0;
+        bool tempBool = false;
 
         public virtual void sixaxisMoved(SixAxisEventArgs arg)
         {
@@ -210,56 +211,6 @@ namespace DS4Windows
                 horizontalDirection = verticalDirection = Direction.Neutral;
                 lastTouchID = arg.touches[0].touchID;
             }
-            else if (Global.getTouchpadJitterCompensation(deviceNumber))
-            {
-                // Often the DS4's internal jitter compensation kicks in and starts hiding changes, ironically creating jitter...
-                if (dragging && touchesLen > 1)
-                {
-                    deltaX = arg.touches[1].deltaX;
-                    deltaY = arg.touches[1].deltaY;
-                }
-                else
-                {
-                    deltaX = arg.touches[0].deltaX;
-                    deltaY = arg.touches[0].deltaY;
-                }
-
-                // allow only very fine, slow motions, when changing direction, even from neutral
-                // TODO maybe just consume it completely?
-                if (deltaX <= -1)
-                {
-                    if (horizontalDirection != Direction.Negative)
-                    {
-                        deltaX = -1;
-                        horizontalRemainder = 0.0;
-                    }
-                }
-                else if (deltaX >= 1)
-                {
-                    if (horizontalDirection != Direction.Positive)
-                    {
-                        deltaX = 1;
-                        horizontalRemainder = 0.0;
-                    }
-                }
-
-                if (deltaY <= -1)
-                {
-                    if (verticalDirection != Direction.Negative)
-                    {
-                        deltaY = -1;
-                        verticalRemainder = 0.0;
-                    }
-                }
-                else if (deltaY >= 1)
-                {
-                    if (verticalDirection != Direction.Positive)
-                    {
-                        deltaY = 1;
-                        verticalRemainder = 0.0;
-                    }
-                }
-            }
             else
             {
                 if (dragging && touchesLen > 1)
@@ -279,11 +230,32 @@ namespace DS4Windows
             double normY = System.Math.Abs(System.Math.Sin(tempAngle));
             int signX = System.Math.Sign(deltaX);
             int signY = System.Math.Sign(deltaY);
+            double coefficient = Global.getTouchSensitivity(deviceNumber) * 0.01;
+            bool touchpadCompenstation = Global.getTouchpadJitterCompensation(deviceNumber);
 
-            double coefficient = Global.TouchSensitivity[deviceNumber] * 0.01;
             // Collect rounding errors instead of losing motion.
             double xMotion = deltaX != 0 ?
                 coefficient * deltaX + (normX * (TOUCHPAD_MOUSE_OFFSET * signX)) : 0.0;
+
+            double yMotion = deltaY != 0 ?
+                coefficient * deltaY + (normY * (TOUCHPAD_MOUSE_OFFSET * signY)) : 0.0;
+
+            if (touchpadCompenstation)
+            {
+                double absX = System.Math.Abs(xMotion);
+                if (absX <= normX * 1.0)
+                {
+                    int signx = System.Math.Sign(xMotion);
+                    xMotion = signx * System.Math.Pow(absX, 1.0725);
+                }
+
+                double absY = System.Math.Abs(yMotion);
+                if (absY <= normY * 1.0)
+                {
+                    int signy = System.Math.Sign(yMotion);
+                    yMotion = signy * System.Math.Pow(absY, 1.0725);
+                }
+            }
 
             if (xMotion > 0.0 && horizontalRemainder > 0.0)
             {
@@ -295,9 +267,6 @@ namespace DS4Windows
             }
             int xAction = (int)xMotion;
             horizontalRemainder = xMotion - xAction;
-
-            double yMotion = deltaY != 0 ?
-                coefficient * deltaY + (normY * (TOUCHPAD_MOUSE_OFFSET * signY)) : 0.0;
 
             if (yMotion > 0.0 && verticalRemainder > 0.0)
             {

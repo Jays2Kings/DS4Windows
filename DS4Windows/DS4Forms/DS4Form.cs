@@ -1252,113 +1252,31 @@ namespace DS4Windows
 
         protected void ControllerRemovedChange(object sender, ControllerRemovedArgs args)
         {
-            if (this.InvokeRequired)
-            {
-                try
-                {
-                    ControllerRemovedDelegate d = new ControllerRemovedDelegate(ControllerRemovedChange);
-                    this.BeginInvoke(d, new object[] { sender, args });
-                }
-                catch { }
-            }
-            else
-            {
-                int devIndex = args.getIndex();
-                Pads[devIndex].Text = Properties.Resources.Disconnected;
-                Enable_Controls(devIndex, false);
-                statPB[devIndex].Visible = false;
-                toolTip1.SetToolTip(statPB[devIndex], "");
+            int devIndex = args.getIndex();
+            Pads[devIndex].Text = Properties.Resources.Disconnected;
+            Enable_Controls(devIndex, false);
+            statPB[devIndex].Visible = false;
+            toolTip1.SetToolTip(statPB[devIndex], "");
 
-                DS4Device[] devices = Program.rootHub.DS4Controllers;
-                int controllerLen = devices.Length;
-                bool nocontrollers = true;
-                for (Int32 i = 0, PadsLen = Pads.Length; nocontrollers && i < PadsLen; i++)
-                {
-                    DS4Device d = devices[i];
-                    if (d != null)
-                    {
-                        nocontrollers = false;
-                    }
-                }
-
-                lbNoControllers.Visible = nocontrollers;
-                tLPControllers.Visible = !nocontrollers;
-
-                // Update device battery level display for tray icon
-                generateDeviceNotifyText(devIndex);
-                populateNotifyText();
-            }
-        }
-
-        /* TODO: Possible remove method */
-        /*protected void ControllerStatusChange(object sender, EventArgs e)
-        {
-            if (InvokeRequired)
-                Invoke(new ControllerStatusChangedDelegate(ControllerStatusChange), new object[] { sender, e });
-            else
-                ControllerStatusChanged();
-        }
-        */
-
-        /* TODO: Possible remove method */
-        /*protected void ControllerStatusChanged()
-        {
-            String tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
-            bool nocontrollers = true;
             DS4Device[] devices = Program.rootHub.DS4Controllers;
             int controllerLen = devices.Length;
-            for (Int32 Index = 0, PadsLen = Pads.Length; Index < PadsLen; Index++)
+            bool nocontrollers = true;
+            for (Int32 i = 0, PadsLen = Pads.Length; nocontrollers && i < PadsLen; i++)
             {
-                // Make sure a controller exists
-                if (Index < controllerLen)
+                DS4Device d = devices[i];
+                if (d != null)
                 {
-                    Pads[Index].Text = Program.rootHub.getDS4MacAddress(Index);
-                    DS4Device d = devices[Index];
-
-                    switch (Program.rootHub.getDS4Status(Index))
-                    {
-                        case "USB": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.USB; toolTip1.SetToolTip(statPB[Index], ""); break;
-                        case "BT": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
-                        case "SONYWA": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
-                        default: statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], ""); break;
-                    }
-
-                    Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
-                    if (Pads[Index].Text != String.Empty)
-                    {
-                        if (runningBat)
-                        {
-                            SendKeys.Send("A");
-                            runningBat = false;
-                        }
-
-                        Pads[Index].Enabled = true;
-                        nocontrollers = false;
-                        if (Pads[Index].Text != Properties.Resources.Connecting)
-                        {
-                            Enable_Controls(Index, true);
-                        }
-                    }
-                    else
-                    {
-                        Pads[Index].Text = Properties.Resources.Disconnected;
-                        Enable_Controls(Index, false);
-                    }
-                    //if (((Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index)).Length > 50)
-                    //MessageBox.Show(((Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index)).Length.ToString());
-                    if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
-                        tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
+                    nocontrollers = false;
                 }
             }
 
             lbNoControllers.Visible = nocontrollers;
             tLPControllers.Visible = !nocontrollers;
-            if (tooltip.Length > 63)
-                notifyIcon1.Text = tooltip.Substring(0, 63);
-            else
-                notifyIcon1.Text = tooltip;
+
+            // Update device battery level display for tray icon
+            generateDeviceNotifyText(devIndex);
+            populateNotifyText();
         }
-        */
 
         private void pBStatus_MouseClick(object sender, MouseEventArgs e)
         {
@@ -1387,16 +1305,6 @@ namespace DS4Windows
             shortcuts[device].Visible = on;
             Batteries[device].Visible = on;
         }
-
-        /* TODO: Remove method in future */
-        /*void ScpForm_Report(object sender, EventArgs e)
-        {
-            if (InvokeRequired)
-                Invoke(new HotKeysDelegate(Hotkeys), new object[] { sender, e });
-            else
-                Hotkeys(sender, e);
-        }
-        */
 
         protected void On_Debug(object sender, DebugEventArgs e)
         {

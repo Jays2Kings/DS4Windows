@@ -1303,7 +1303,7 @@ namespace DS4Windows
             SATriggers[device] = string.Join(",", ints);
 
             ints.Clear();
-            for (int i = 0, trigLen = cMTouchDisableInvert.Items.Count - 1; i < trigLen; i++)
+            for (int i = 0, trigLen = cMTouchDisableInvert.Items.Count; i < trigLen; i++)
             {
                 if (((ToolStripMenuItem)cMTouchDisableInvert.Items[i]).Checked)
                     ints.Add(i);
@@ -2889,7 +2889,7 @@ namespace DS4Windows
 
                 List<int> ints = new List<int>();
                 List<string> s = new List<string>();
-                for (int i = 0; i < touchDisableInvCount - 1; i++)
+                for (int i = 0; i < touchDisableInvCount; i++)
                 {
                     ToolStripMenuItem current = (ToolStripMenuItem)cMTouchDisableInvert.Items[i];
                     if (current.Checked)

@@ -157,9 +157,12 @@ namespace DS4Windows
                     TimeSpan timeratio = new TimeSpan(DateTime.UtcNow.Ticks - device.lastActive.Ticks);
                     double botratio = timeratio.TotalMilliseconds;
                     double topratio = TimeSpan.FromSeconds(idleDisconnectTimeout).TotalMilliseconds;
-                    double ratio = 100.0 * (botratio / topratio);
+                    double ratio = 100.0 * (botratio / topratio), elapsed = ratio;
                     if (ratio >= 50.0 && ratio < 100.0)
-                        color = getTransitionedColor(color, new DS4Color(0, 0, 0), (uint)((ratio - 50) * 2));
+                    {
+                        color = getTransitionedColor(color, new DS4Color(0, 0, 0),
+                            (uint)(-100.0 * (elapsed = 0.02 * (ratio - 50.0)) * (elapsed - 2.0)));
+                    }
                     else if (ratio >= 100.0)
                         color = getTransitionedColor(color, new DS4Color(0, 0, 0), 100.0);
                 }

@@ -231,32 +231,30 @@ namespace DS4Windows
             int signX = System.Math.Sign(deltaX);
             int signY = System.Math.Sign(deltaY);
             double coefficient = Global.getTouchSensitivity(deviceNumber) * 0.01;
-            bool touchpadCompenstation = Global.getTouchpadJitterCompensation(deviceNumber);
+            bool jitterCompenstation = Global.getTouchpadJitterCompensation(deviceNumber);
 
-            // Collect rounding errors instead of losing motion.
             double xMotion = deltaX != 0 ?
                 coefficient * deltaX + (normX * (TOUCHPAD_MOUSE_OFFSET * signX)) : 0.0;
 
             double yMotion = deltaY != 0 ?
                 coefficient * deltaY + (normY * (TOUCHPAD_MOUSE_OFFSET * signY)) : 0.0;
 
-            if (touchpadCompenstation)
+            if (jitterCompenstation)
             {
                 double absX = System.Math.Abs(xMotion);
                 if (absX <= normX * 1.0)
                 {
-                    int signx = System.Math.Sign(xMotion);
-                    xMotion = signx * System.Math.Pow(absX, 1.0725);
+                    xMotion = signX * System.Math.Pow(absX, 1.0725);
                 }
 
                 double absY = System.Math.Abs(yMotion);
                 if (absY <= normY * 1.0)
                 {
-                    int signy = System.Math.Sign(yMotion);
-                    yMotion = signy * System.Math.Pow(absY, 1.0725);
+                    yMotion = signY * System.Math.Pow(absY, 1.0725);
                 }
             }
 
+            // Collect rounding errors instead of losing motion.
             if (xMotion > 0.0 && horizontalRemainder > 0.0)
             {
                 xMotion += horizontalRemainder;

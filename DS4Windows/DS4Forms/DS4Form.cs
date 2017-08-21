@@ -23,8 +23,6 @@ namespace DS4Windows
         public string[] arguements;
         delegate void LogDebugDelegate(DateTime Time, String Data, bool warning);
         delegate void NotificationDelegate(object sender, DebugEventArgs args);
-        delegate void BatteryStatusDelegate(object sender, BatteryReportArgs args);
-        delegate void ControllerRemovedDelegate(object sender, ControllerRemovedArgs args);
         delegate void DeviceStatusChangedDelegate(object sender, DeviceStatusChangeEventArgs args);
         delegate void DeviceSerialChangedDelegate(object sender, SerialChangeArgs args);
         protected Label[] Pads, Batteries;
@@ -1064,39 +1062,27 @@ namespace DS4Windows
 
         protected void BatteryStatusUpdate(object sender, BatteryReportArgs args)
         {
-            if (this.InvokeRequired)
+            string battery;
+            int level = args.getLevel();
+            bool charging = args.isCharging();
+            int Index = args.getIndex();
+            if (charging)
             {
-                try
-                {
-                    BatteryStatusDelegate d = new BatteryStatusDelegate(BatteryStatusUpdate);
-                    this.BeginInvoke(d, new object[] { sender, args });
-                }
-                catch { }
+                if (level >= 100)
+                    battery = Properties.Resources.Full;
+                else
+                    battery = level + "%+";
             }
             else
             {
-                string battery;
-                int level = args.getLevel();
-                bool charging = args.isCharging();
-                int Index = args.getIndex();
-                if (charging)
-                {
-                    if (level >= 100)
-                        battery = Properties.Resources.Full;
-                    else
-                        battery = level + "%+";
-                }
-                else
-                {
-                    battery = level + "%";
-                }
-
-                Batteries[args.getIndex()].Text = battery;
-
-                // Update device battery level display for tray icon
-                generateDeviceNotifyText(args.getIndex());
-                populateNotifyText();
+                battery = level + "%";
             }
+
+            Batteries[args.getIndex()].Text = battery;
+
+            // Update device battery level display for tray icon
+            generateDeviceNotifyText(args.getIndex());
+            populateNotifyText();
         }
 
         protected void populateFullNotifyText()

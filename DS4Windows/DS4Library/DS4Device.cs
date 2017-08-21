@@ -483,6 +483,8 @@ namespace DS4Windows
                     ds4Output.Start();
 
                     timeoutCheckThread = new Thread(timeoutTestThread);
+                    timeoutCheckThread.Priority = ThreadPriority.BelowNormal;
+                    timeoutCheckThread.Name = "DS4 Timeout thread: " + Mac;
                     timeoutCheckThread.IsBackground = true;
                     timeoutCheckThread.Start();
                 }

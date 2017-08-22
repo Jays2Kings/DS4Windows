@@ -224,21 +224,6 @@ namespace DS4Windows
         }
     }
 
-    public class MultiValueDict<Key, Value> : Dictionary<Key, List<Value>>
-    {
-        public void Add(Key key, Value val)
-        {
-            List<Value> values = null;
-            if (!this.TryGetValue(key, out values))
-            {
-                values = new List<Value>();
-                this.Add(key, values);
-            }
-
-            values.Add(val);
-        }
-    }
-
     public class Global
     {
         protected static BackingStore m_Config = new BackingStore();
@@ -954,7 +939,8 @@ namespace DS4Windows
             return m_Config.containsCustomExtras[deviceNum];
         }
 
-        public static void SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
+        public static void SaveAction(string name, string controls, int mode,
+            string details, bool edit, string extras = "")
         {
             m_Config.SaveAction(name, controls, mode, details, edit, extras);
             Mapping.actionDone.Add(new Mapping.ActionState());
@@ -1045,39 +1031,6 @@ namespace DS4Windows
             return defaultButtonMapping[(int)dc];
         }
 
-        /*public static X360Controls getCustomButton(int device, DS4Controls controlName) => m_Config.GetCustomButton(device, controlName);
-        
-        public static ushort getCustomKey(int device, DS4Controls controlName) => m_Config.GetCustomKey(device, controlName);
-        
-        public static string getCustomMacro(int device, DS4Controls controlName) => m_Config.GetCustomMacro(device, controlName);
-        
-        public static string getCustomExtras(int device, DS4Controls controlName) => m_Config.GetCustomExtras(device, controlName);
-        
-        public static DS4KeyType getCustomKeyType(int device, DS4Controls controlName) => m_Config.GetCustomKeyType(device, controlName);
-        
-        public static bool getHasCustomKeysorButtons(int device) => m_Config.customMapButtons[device].Count > 0
-                || m_Config.customMapKeys[device].Count > 0;
-        
-        public static bool getHasCustomExtras(int device) => m_Config.customMapExtras[device].Count > 0;        
-        public static Dictionary<DS4Controls, X360Controls> getCustomButtons(int device) => m_Config.customMapButtons[device];        
-        public static Dictionary<DS4Controls, ushort> getCustomKeys(int device) => m_Config.customMapKeys[device];        
-        public static Dictionary<DS4Controls, string> getCustomMacros(int device) => m_Config.customMapMacros[device];        
-        public static Dictionary<DS4Controls, string> getCustomExtras(int device) => m_Config.customMapExtras[device];
-        public static Dictionary<DS4Controls, DS4KeyType> getCustomKeyTypes(int device) => m_Config.customMapKeyTypes[device];        
-
-        public static X360Controls getShiftCustomButton(int device, DS4Controls controlName) => m_Config.GetShiftCustomButton(device, controlName);        
-        public static ushort getShiftCustomKey(int device, DS4Controls controlName) => m_Config.GetShiftCustomKey(device, controlName);        
-        public static string getShiftCustomMacro(int device, DS4Controls controlName) => m_Config.GetShiftCustomMacro(device, controlName);        
-        public static string getShiftCustomExtras(int device, DS4Controls controlName) => m_Config.GetShiftCustomExtras(device, controlName);        
-        public static DS4KeyType getShiftCustomKeyType(int device, DS4Controls controlName) => m_Config.GetShiftCustomKeyType(device, controlName);        
-        public static bool getHasShiftCustomKeysorButtons(int device) => m_Config.shiftCustomMapButtons[device].Count > 0
-                || m_Config.shiftCustomMapKeys[device].Count > 0;        
-        public static bool getHasShiftCustomExtras(int device) => m_Config.shiftCustomMapExtras[device].Count > 0;        
-        public static Dictionary<DS4Controls, X360Controls> getShiftCustomButtons(int device) => m_Config.shiftCustomMapButtons[device];        
-        public static Dictionary<DS4Controls, ushort> getShiftCustomKeys(int device) => m_Config.shiftCustomMapKeys[device];        
-        public static Dictionary<DS4Controls, string> getShiftCustomMacros(int device) => m_Config.shiftCustomMapMacros[device];        
-        public static Dictionary<DS4Controls, string> getShiftCustomExtras(int device) => m_Config.shiftCustomMapExtras[device];        
-        public static Dictionary<DS4Controls, DS4KeyType> getShiftCustomKeyTypes(int device) => m_Config.shiftCustomMapKeyTypes[device]; */
         public static bool Load() => m_Config.Load();
         
         public static void LoadProfile(int device, bool launchprogram, ControlService control, bool xinputChange = true)
@@ -1197,7 +1150,6 @@ namespace DS4Windows
         }
     }
 
-
     public class BackingStore
     {
         //public String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + "\\Profiles.xml";
@@ -1206,51 +1158,51 @@ namespace DS4Windows
 
         protected XmlDocument m_Xdoc = new XmlDocument();
         // fifth value used for options, not fifth controller
-        public int[] buttonMouseSensitivity = { 25, 25, 25, 25, 25 };
+        public int[] buttonMouseSensitivity = new int[5] { 25, 25, 25, 25, 25 };
 
-        public bool[] flushHIDQueue = { false, false, false, false, false };
-        public bool[] enableTouchToggle = { true, true, true, true, true };
-        public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
+        public bool[] flushHIDQueue = new bool[5] { false, false, false, false, false };
+        public bool[] enableTouchToggle = new bool[5] { true, true, true, true, true };
+        public int[] idleDisconnectTimeout = new int[5] { 0, 0, 0, 0, 0 };
         public bool[] touchpadJitterCompensation = new bool[5] { false, false, false, false, false };
-        public bool[] lowerRCOn = { false, false, false, false, false };
-        public bool[] ledAsBattery = { false, false, false, false, false };
-        public byte[] flashType = { 0, 0, 0, 0, 0 };
-        public string[] profilePath = { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public bool[] lowerRCOn = new bool[5] { false, false, false, false, false };
+        public bool[] ledAsBattery = new bool[5] { false, false, false, false, false };
+        public byte[] flashType = new byte[5] { 0, 0, 0, 0, 0 };
+        public string[] profilePath = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         // Cache properties instead of performing a string comparison every frame
-        public bool[] distanceProfiles = { false, false, false, false, false };
-        public Byte[] rumble = { 100, 100, 100, 100, 100 };
-        public Byte[] touchSensitivity = { 100, 100, 100, 100, 100 };
-        public Byte[] l2Deadzone = { 0, 0, 0, 0, 0 }, r2Deadzone = { 0, 0, 0, 0, 0 };
-        public int[] LSDeadzone = { 0, 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0, 0 };
-        public int[] LSAntiDeadzone = { 0, 0, 0, 0, 0 }, RSAntiDeadzone = { 0, 0, 0, 0, 0 };
-        public int[] LSMaxzone = { 100, 100, 100, 100, 100 }, RSMaxzone = { 100, 100, 100, 100, 100 };
-        public int[] l2AntiDeadzone = { 0, 0, 0, 0, 0 }, r2AntiDeadzone = { 0, 0, 0, 0, 0 };
-        public int[] l2Maxzone = { 100, 100, 100, 100, 100 }, r2Maxzone = { 100, 100, 100, 100, 100 };
-        public double[] LSRotation = { 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = { 0.0, 0.0, 0.0, 0.0, 0.0 };
-        public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
+        public bool[] distanceProfiles = new bool[5] { false, false, false, false, false };
+        public Byte[] rumble = new Byte[5] { 100, 100, 100, 100, 100 };
+        public Byte[] touchSensitivity = new Byte[5] { 100, 100, 100, 100, 100 };
+        public Byte[] l2Deadzone = new Byte[5] { 0, 0, 0, 0, 0 }, r2Deadzone = new Byte[5] { 0, 0, 0, 0, 0 };
+        public int[] LSDeadzone = new int[5] { 0, 0, 0, 0, 0 }, RSDeadzone = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] LSAntiDeadzone = new int[5] { 0, 0, 0, 0, 0 }, RSAntiDeadzone = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] LSMaxzone = new int[5] { 100, 100, 100, 100, 100 }, RSMaxzone = new int[5] { 100, 100, 100, 100, 100 };
+        public int[] l2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 }, r2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] l2Maxzone = new int[5] { 100, 100, 100, 100, 100 }, r2Maxzone = new int[5] { 100, 100, 100, 100, 100 };
+        public double[] LSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+        public double[] SXDeadzone = new double[5] { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = new double[5] { 0.25, 0.25, 0.25, 0.25, 0.25 };
         public double[] SXMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 },
             SZMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
         public double[] SXAntiDeadzone = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 },
             SZAntiDeadzone = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
-        public double[] l2Sens = { 1, 1, 1, 1, 1 }, r2Sens = { 1, 1, 1, 1, 1 };
-        public double[] LSSens = { 1, 1, 1, 1, 1 }, RSSens = { 1, 1, 1, 1, 1 };
-        public double[] SXSens = { 1, 1, 1, 1, 1 }, SZSens = { 1, 1, 1, 1, 1 };
-        public Byte[] tapSensitivity = { 0, 0, 0, 0, 0 };
-        public bool[] doubleTap = { false, false, false, false, false };
-        public int[] scrollSensitivity = { 0, 0, 0, 0, 0 };
-        public int[] touchpadInvert = { 0, 0, 0, 0, 0 };
-        public double[] rainbow = { 0, 0, 0, 0, 0 };
-        public int[] flashAt = { 0, 0, 0, 0, 0 };
-        public bool[] mouseAccel = { true, true, true, true, true };
-        public int[] btPollRate = { 4, 4, 4, 4, 4 };
-        public int[] lsOutCurveMode = { 0, 0, 0, 0, 0 };
-        public int[] rsOutCurveMode = { 0, 0, 0, 0, 0 };
+        public double[] l2Sens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 }, r2Sens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
+        public double[] LSSens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 }, RSSens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
+        public double[] SXSens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 }, SZSens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
+        public Byte[] tapSensitivity = new Byte[5] { 0, 0, 0, 0, 0 };
+        public bool[] doubleTap = new bool[5] { false, false, false, false, false };
+        public int[] scrollSensitivity = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] touchpadInvert = new int[5] { 0, 0, 0, 0, 0 };
+        public double[] rainbow = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+        public int[] flashAt = new int[5] { 0, 0, 0, 0, 0 };
+        public bool[] mouseAccel = new bool[5] { true, true, true, true, true };
+        public int[] btPollRate = new int[5] { 4, 4, 4, 4, 4 };
+        public int[] lsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] rsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] l2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] r2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] sxOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] szOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
 
-        public DS4Color[] m_LowLeds = new DS4Color[]
+        public DS4Color[] m_LowLeds = new DS4Color[5]
         {
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -1258,7 +1210,7 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
-        public DS4Color[] m_Leds = new DS4Color[]
+        public DS4Color[] m_Leds = new DS4Color[5]
         {
             new DS4Color(Color.Blue),
             new DS4Color(Color.Red),
@@ -1266,7 +1218,7 @@ namespace DS4Windows
             new DS4Color(Color.Pink),
             new DS4Color(Color.White)
         };
-        public DS4Color[] m_ChargingLeds = new DS4Color[]
+        public DS4Color[] m_ChargingLeds = new DS4Color[5]
         {
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -1274,7 +1226,7 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
-        public DS4Color[] m_FlashLeds = new DS4Color[]
+        public DS4Color[] m_FlashLeds = new DS4Color[5]
         {
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -1282,8 +1234,8 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
-        public bool[] useCustomLeds = new bool[] { false, false, false, false, false };
-        public DS4Color[] m_CustomLeds = new DS4Color[]
+        public bool[] useCustomLeds = new bool[5] { false, false, false, false, false };
+        public DS4Color[] m_CustomLeds = new DS4Color[5]
         {
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -1291,17 +1243,18 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
-        public int[] chargingType = { 0, 0, 0, 0, 0 };
-        public string[] launchProgram = { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
-        public bool[] dinputOnly = { false, false, false, false, false };
-        public bool[] startTouchpadOff = { false, false, false, false, false };
-        public bool[] useTPforControls = { false, false, false, false, false };
-        public bool[] useSAforMouse = { false, false, false, false, false };
+
+        public int[] chargingType = new int[5] { 0, 0, 0, 0, 0 };
+        public string[] launchProgram = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public bool[] dinputOnly = new bool[5] { false, false, false, false, false };
+        public bool[] startTouchpadOff = new bool[5] { false, false, false, false, false };
+        public bool[] useTPforControls = new bool[5] { false, false, false, false, false };
+        public bool[] useSAforMouse = new bool[5] { false, false, false, false, false };
         public string[] sATriggers = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public int[][] touchDisInvertTriggers = new int[5][] { new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 },
             new int[1] { -1 }, new int[1] { -1 } };
-        public int[] lsCurve = { 0, 0, 0, 0, 0 };
-        public int[] rsCurve = { 0, 0, 0, 0, 0 };
+        public int[] lsCurve = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] rsCurve = new int[5] { 0, 0, 0, 0, 0 };
         public Boolean useExclusiveMode = false;
         public Int32 formWidth = 782;
         public Int32 formHeight = 550;
@@ -1316,11 +1269,20 @@ namespace DS4Windows
         public int firstXinputPort = 1;
         public bool closeMini = false;
         public List<SpecialAction> actions = new List<SpecialAction>();
-        public List<DS4ControlSettings>[] ds4settings = { new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>() };
-        public List<string>[] profileActions = { null, null, null, null, null };
-        public int[] profileActionCount = { 0, 0, 0, 0, 0 };
-        public Dictionary<string, SpecialAction>[] profileActionDict = { new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>() };
-        public Dictionary<string, int>[] profileActionIndexDict = { new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>() };
+        public List<DS4ControlSettings>[] ds4settings = new List<DS4ControlSettings>[5]
+            { new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(),
+              new List<DS4ControlSettings>(), new List<DS4ControlSettings>() };
+
+        public List<string>[] profileActions = new List<string>[5] { null, null, null, null, null };
+        public int[] profileActionCount = new int[5] { 0, 0, 0, 0, 0 };
+        public Dictionary<string, SpecialAction>[] profileActionDict = new Dictionary<string, SpecialAction>[5]
+            { new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(),
+              new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>() };
+
+        public Dictionary<string, int>[] profileActionIndexDict = new Dictionary<string, int>[5]
+            { new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(),
+              new Dictionary<string, int>(), new Dictionary<string, int>() };
+
         public bool downloadLang = true;
         public bool useWhiteIcon;
         public bool flashWhenLate = true;
@@ -1331,12 +1293,12 @@ namespace DS4Windows
         // Cache whether profile has custom extras
         public bool[] containsCustomExtras = new bool[5] { false, false, false, false, false };
 
-        public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
-        public int[] gyroSensVerticalScale = { 100, 100, 100, 100, 100 };
-        public int[] gyroInvert = { 0, 0, 0, 0, 0 };
-        public bool[] gyroTriggerTurns = { true, true, true, true, true };
-        public bool[] gyroSmoothing = { false, false, false, false, false };
-        public double[] gyroSmoothWeight = { 0.5, 0.5, 0.5, 0.5, 0.5 };
+        public int[] gyroSensitivity = new int[5] { 100, 100, 100, 100, 100 };
+        public int[] gyroSensVerticalScale = new int[5] { 100, 100, 100, 100, 100 };
+        public int[] gyroInvert = new int[5] { 0, 0, 0, 0, 0 };
+        public bool[] gyroTriggerTurns = new bool[5] { true, true, true, true, true };
+        public bool[] gyroSmoothing = new bool[5] { false, false, false, false, false };
+        public double[] gyroSmoothWeight = new double[5] { 0.5, 0.5, 0.5, 0.5, 0.5 };
         public int[] gyroMouseHorizontalAxis = new int[5] { 0, 0, 0, 0, 0 };
 
         bool tempBool = false;
@@ -1356,76 +1318,6 @@ namespace DS4Windows
                 profileActionCount[i] = profileActions[i].Count;
             }
         }
-
-        /*public X360Controls GetCustomButton(int device, DS4Controls controlName)
-        {
-            if (customMapButtons[device].ContainsKey(controlName))
-                return customMapButtons[device][controlName];
-            else return X360Controls.None;
-        }
-        public UInt16 GetCustomKey(int device, DS4Controls controlName)
-        {
-            if (customMapKeys[device].ContainsKey(controlName))
-                return customMapKeys[device][controlName];
-            else return 0;
-        }
-        public string GetCustomMacro(int device, DS4Controls controlName)
-        {
-            if (customMapMacros[device].ContainsKey(controlName))
-                return customMapMacros[device][controlName];
-            else return "0";
-        }
-        public string GetCustomExtras(int device, DS4Controls controlName)
-        {
-            if (customMapExtras[device].ContainsKey(controlName))
-                return customMapExtras[device][controlName];
-            else return "0";
-        }
-        public DS4KeyType GetCustomKeyType(int device, DS4Controls controlName)
-        {
-            try
-            {
-                if (customMapKeyTypes[device].ContainsKey(controlName))
-                    return customMapKeyTypes[device][controlName];
-                else return 0;
-            }
-            catch { return 0; }
-        }
-
-        public X360Controls GetShiftCustomButton(int device, DS4Controls controlName)
-        {
-            if (shiftCustomMapButtons[device].ContainsKey(controlName))
-                return shiftCustomMapButtons[device][controlName];
-            else return X360Controls.None;
-        }
-        public UInt16 GetShiftCustomKey(int device, DS4Controls controlName)
-        {
-            if (shiftCustomMapKeys[device].ContainsKey(controlName))
-                return shiftCustomMapKeys[device][controlName];
-            else return 0;
-        }
-        public string GetShiftCustomMacro(int device, DS4Controls controlName)
-        {
-            if (shiftCustomMapMacros[device].ContainsKey(controlName))
-                return shiftCustomMapMacros[device][controlName];
-            else return "0";
-        }
-        public string GetShiftCustomExtras(int device, DS4Controls controlName)
-        {
-            if (customMapExtras[device].ContainsKey(controlName))
-                return customMapExtras[device][controlName];
-            else return "0";
-        }
-        public DS4KeyType GetShiftCustomKeyType(int device, DS4Controls controlName)
-        {
-            try
-            {
-                if (shiftCustomMapKeyTypes[device].ContainsKey(controlName))
-                    return shiftCustomMapKeyTypes[device][controlName];
-                else return 0;
-            }
-            catch { return 0; }
-        }*/
 
         private string stickOutputCurveString(int id)
         {
@@ -1780,104 +1672,7 @@ namespace DS4Windows
                     NodeShiftControl.AppendChild(ShiftKeyType);
                 if (ShiftExtras.HasChildNodes)
                     NodeShiftControl.AppendChild(ShiftExtras);
-                /*else if (xmlControls != null)
-                {
-                    Node.AppendChild(xmlControls);
-                }*/
-                /*if (shiftModifier[device] > 0)
-                {
-                    XmlNode NodeShiftControl = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftControl", null);
-
-                    XmlNode ShiftKey = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
-                    XmlNode ShiftMacro = m_Xdoc.CreateNode(XmlNodeType.Element, "Macro", null);
-                    XmlNode ShiftKeyType = m_Xdoc.CreateNode(XmlNodeType.Element, "KeyType", null);
-                    XmlNode ShiftButton = m_Xdoc.CreateNode(XmlNodeType.Element, "Button", null);
-                    XmlNode ShiftExtras = m_Xdoc.CreateNode(XmlNodeType.Element, "Extras", null);
-                    if (shiftbuttons != null)
-                    {
-                        foreach (var button in shiftbuttons)
-                        {
-                            // Save even if string (for xbox controller buttons)
-                            if (button.Tag != null)
-                            {
-                                XmlNode buttonNode;
-                                string keyType = String.Empty;
-                                if (button.Tag is KeyValuePair<string, string>)
-                                    if (((KeyValuePair<string, string>)button.Tag).Key == "Unbound")
-                                        keyType += DS4KeyType.Unbound;
-
-                                if (button.Font.Strikeout)
-                                    keyType += DS4KeyType.HoldMacro;
-                                if (button.Font.Underline)
-                                    keyType += DS4KeyType.Macro;
-                                if (button.Font.Italic)
-                                    keyType += DS4KeyType.Toggle;
-                                if (button.Font.Bold)
-                                    keyType += DS4KeyType.ScanCode;
-                                if (keyType != String.Empty)
-                                {
-                                    buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
-                                    buttonNode.InnerText = keyType;
-                                    ShiftKeyType.AppendChild(buttonNode);
-                                }
-
-                                string[] extras;
-                                buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
-                                if (button.Tag is KeyValuePair<IEnumerable<int>, string> || button.Tag is KeyValuePair<Int32[], string> || button.Tag is KeyValuePair<UInt16[], string>)
-                                {
-                                    KeyValuePair<Int32[], string> tag = (KeyValuePair<Int32[], string>)button.Tag;
-                                    int[] ii = tag.Key;
-                                    buttonNode.InnerText = string.Join("/", ii);
-                                    ShiftMacro.AppendChild(buttonNode);
-                                    extras = tag.Value.Split(',');
-                                }
-                                else if (button.Tag is KeyValuePair<Int32, string> || button.Tag is KeyValuePair<UInt16, string> || button.Tag is KeyValuePair<byte, string>)
-                                {
-                                    KeyValuePair<int, string> tag = (KeyValuePair<int, string>)button.Tag;
-                                    buttonNode.InnerText = tag.Key.ToString();
-                                    ShiftKey.AppendChild(buttonNode);
-                                    extras = tag.Value.Split(',');
-                                }
-                                else if (button.Tag is KeyValuePair<string, string>)
-                                {
-                                    KeyValuePair<string, string> tag = (KeyValuePair<string, string>)button.Tag;
-                                    buttonNode.InnerText = tag.Key;
-                                    ShiftButton.AppendChild(buttonNode);
-                                    extras = tag.Value.Split(',');
-                                }
-                                else
-                                {
-                                    KeyValuePair<object, string> tag = (KeyValuePair<object, string>)button.Tag;
-                                    extras = tag.Value.Split(',');
-                                }
-                                bool hasvalue = false;
-                                foreach (string s in extras)
-                                    if (s != "0")
-                                    {
-                                        hasvalue = true;
-                                        break;
-                                    }
-                                if (hasvalue && !string.IsNullOrEmpty(String.Join(",", extras)))
-                                {
-                                    XmlNode extraNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
-                                    extraNode.InnerText = String.Join(",", extras);
-                                    ShiftExtras.AppendChild(extraNode);
-                                }
-                            }
-                        }
-                        Node.AppendChild(NodeShiftControl);
-                        if (ShiftButton.HasChildNodes)
-                            NodeShiftControl.AppendChild(ShiftButton);
-                        if (ShiftMacro.HasChildNodes)
-                            NodeShiftControl.AppendChild(ShiftMacro);
-                        if (ShiftKey.HasChildNodes)
-                            NodeShiftControl.AppendChild(ShiftKey);
-                        if (ShiftKeyType.HasChildNodes)
-                            NodeShiftControl.AppendChild(ShiftKeyType);
-                    }
-                    else if (xmlShiftControls != null)
-                        Node.AppendChild(xmlShiftControls);
-                }*/
+                
                 m_Xdoc.AppendChild(Node);
                 m_Xdoc.Save(path);
             }
@@ -1887,7 +1682,6 @@ namespace DS4Windows
 
         public DS4Controls getDS4ControlsByName(string key)
         {
-
             if (!key.StartsWith("bn"))
                 return (DS4Controls)Enum.Parse(typeof(DS4Controls), key, true);
 

@@ -32,8 +32,8 @@ namespace DS4Windows
         protected PictureBox[] statPB;
         protected ToolStripMenuItem[] shortcuts;
         WebClient wc = new WebClient();
-        Timer hotkeysTimer = new Timer();
-        Timer autoProfilesTimer = new Timer();
+        System.Timers.Timer hotkeysTimer = new System.Timers.Timer();
+        System.Timers.Timer autoProfilesTimer = new System.Timers.Timer();
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
         string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
@@ -325,7 +325,7 @@ namespace DS4Windows
                     lights[i].BackColor = MainColor[i].ToColorA;
             }
 
-            autoProfilesTimer.Tick += CheckAutoProfiles;
+            autoProfilesTimer.Elapsed += CheckAutoProfiles;
             autoProfilesTimer.Interval = 1000;
 
             LoadP();
@@ -341,7 +341,7 @@ namespace DS4Windows
             Enable_Controls(3, false);
             btnStartStop.Text = Properties.Resources.StartText;
 
-            hotkeysTimer.Tick += Hotkeys;
+            hotkeysTimer.Elapsed += Hotkeys;
             if (SwipeProfiles)
             {
                 hotkeysTimer.Start();

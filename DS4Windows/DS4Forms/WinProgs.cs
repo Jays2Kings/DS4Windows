@@ -169,7 +169,7 @@ namespace DS4Windows
             appsloaded = true;
         }
 
-        void appstimer_Tick(object sender, EventArgs e)
+        void addLoadedApps()
         {
             if (appsloaded)
             {
@@ -208,7 +208,6 @@ namespace DS4Windows
                 bnAddPrograms.Text = Properties.Resources.AddPrograms;
                 bnAddPrograms.Enabled = true;
                 appsloaded = false;
-                ((Timer)sender).Stop();
             }
         }
 
@@ -380,42 +379,24 @@ namespace DS4Windows
             form.RefreshAutoProfilesPage();
         }
 
-        private void addSteamGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void addSteamGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var AppCollectionThread = new System.Threading.Thread(() => GetApps(steamgamesdir));
-                AppCollectionThread.IsBackground = true;
-                AppCollectionThread.Start();
-            }
-            catch { }
-
             bnAddPrograms.Text = Properties.Resources.Loading;
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addSteamGamesToolStripMenuItem);
-            Timer appstimer = new Timer();
-            appstimer.Start();
-            appstimer.Tick += appstimer_Tick;
+            await System.Threading.Tasks.Task.Run(() => GetApps(steamgamesdir));
+            addLoadedApps();
         }
         
-        private void addDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void addDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    var AppCollectionThread = new System.Threading.Thread(() => GetApps(fbd.SelectedPath));
-                    AppCollectionThread.IsBackground = true;
-                    AppCollectionThread.Start();
-                }
-                catch { }
-
                 bnAddPrograms.Text = Properties.Resources.Loading;
                 bnAddPrograms.Enabled = false;
-                Timer appstimer = new Timer();
-                appstimer.Start();
-                appstimer.Tick += appstimer_Tick;
+                await System.Threading.Tasks.Task.Run(() => GetApps(fbd.SelectedPath));
+                addLoadedApps();
             }
         }
 
@@ -437,40 +418,22 @@ namespace DS4Windows
             }
         }
 
-        private void addOriginGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void addOriginGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var AppCollectionThread = new System.Threading.Thread(() => GetApps(origingamesdir));
-                AppCollectionThread.IsBackground = true;
-                AppCollectionThread.Start();
-            }
-            catch { }
-
             bnAddPrograms.Text = Properties.Resources.Loading;
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addOriginGamesToolStripMenuItem);
-            Timer appstimer = new Timer();
-            appstimer.Start();
-            appstimer.Tick += appstimer_Tick;
+            await System.Threading.Tasks.Task.Run(() => GetApps(origingamesdir));
+            addLoadedApps();
         }
 
-        private void addProgramsFromStartMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void addProgramsFromStartMenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var AppCollectionThread = new System.Threading.Thread(() => GetShortcuts(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs"));
-                AppCollectionThread.IsBackground = true;
-                AppCollectionThread.Start();
-            }
-            catch { }
-
             bnAddPrograms.Text = Properties.Resources.Loading;
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addProgramsFromStartMenuToolStripMenuItem);
-            Timer appstimer = new Timer();
-            appstimer.Start();
-            appstimer.Tick += appstimer_Tick;
+            await System.Threading.Tasks.Task.Run(() => GetShortcuts(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs"));
+            addLoadedApps();
         }
 
         public static string GetTargetPath(string filePath)

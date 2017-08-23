@@ -20,7 +20,7 @@ namespace DS4Windows
 {
     public partial class DS4Form : Form
     {
-        public string[] arguements;
+        public string[] cmdArguments;
         delegate void LogDebugDelegate(DateTime Time, String Data, bool warning);
         delegate void NotificationDelegate(object sender, DebugEventArgs args);
         delegate void DeviceStatusChangedDelegate(object sender, DeviceStatusChangeEventArgs args);
@@ -37,7 +37,7 @@ namespace DS4Windows
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
         string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
-        string tempProfileProgram = "null";
+        string tempProfileProgram = string.Empty;
         float dpix, dpiy;
         List<string> profilenames = new List<string>();
         List<string> programpaths = new List<string>();
@@ -46,7 +46,6 @@ namespace DS4Windows
         private static int WM_QUERYENDSESSION = 0x11;
         private static bool systemShutdown = false;
         private bool wasrunning = false;
-        delegate void ControllerStatusChangedDelegate(object sender, EventArgs e);
         delegate void HotKeysDelegate(object sender, EventArgs e);
         Options opt;
         public Size oldsize;
@@ -58,7 +57,7 @@ namespace DS4Windows
         bool runningBat;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
-        string[] notifyText = { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
+        string[] notifyText = new string[5] { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
             string.Empty, string.Empty, string.Empty, string.Empty };
 
         internal const int BCM_FIRST = 0x1600; // Normal button
@@ -69,9 +68,6 @@ namespace DS4Windows
 
         [DllImport("user32.dll")]
         private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
-
-        [DllImport("user32.dll")]
-        private static extern int SendMessage(IntPtr hwnd, int wMsg, int wParam, uint lParam);
 
         [DllImport("kernel32.dll")]
         private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
@@ -88,6 +84,7 @@ namespace DS4Windows
         public DS4Form(string[] args)
         {
             InitializeComponent();
+            ThemeUtil.SetTheme(lvDebug);
 
             bnEditC1.Tag = 0;
             bnEditC2.Tag = 1;
@@ -98,8 +95,8 @@ namespace DS4Windows
 
             saveProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
             openProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
-            arguements = args;
-            ThemeUtil.SetTheme(lvDebug);
+            cmdArguments = args;
+
             Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
             Batteries = new Label[4] { lbBatt1, lbBatt2, lbBatt3, lbBatt4 };
             cbs = new ComboBox[4] { cBController1, cBController2, cBController3, cBController4 };
@@ -149,14 +146,9 @@ namespace DS4Windows
                 new SaveWhere(false).ShowDialog();
             }
 
-            if (firstrun)
-                CheckDrivers();
-            else
-            {
-                var AppCollectionThread = new System.Threading.Thread(() => CheckDrivers());
-                AppCollectionThread.IsBackground = true;
-                AppCollectionThread.Start();
-            }
+            System.Threading.Thread AppCollectionThread = new System.Threading.Thread(() => CheckDrivers());
+            AppCollectionThread.IsBackground = true;
+            AppCollectionThread.Start();
 
             if (string.IsNullOrEmpty(appdatapath))
             {
@@ -216,7 +208,6 @@ namespace DS4Windows
                 }
             }
 
-            //MessageBox.Show(Environment.OSVersion.VersionString);
             cBUseWhiteIcon.Checked = UseWhiteIcon;
             Icon = Properties.Resources.DS4W;
             notifyIcon1.Icon = UseWhiteIcon ? Properties.Resources.DS4W___White : Properties.Resources.DS4W;
@@ -291,12 +282,13 @@ namespace DS4Windows
 
             bool start = true;
             bool mini = false;
-            for (int i = 0, argslen = arguements.Length; i < argslen; i++)
+            for (int i = 0, argslen = cmdArguments.Length; i < argslen; i++)
             {
-                if (arguements[i] == "-stop")
+                if (cmdArguments[i] == "-stop")
                     start = false;
-                if (arguements[i] == "-m")
+                else if (cmdArguments[i] == "-m")
                     mini = true;
+
                 if (mini && start)
                     break;
             }
@@ -351,10 +343,6 @@ namespace DS4Windows
                 btnStartStop_Clicked();
 
             startToolStripMenuItem.Text = btnStartStop.Text;
-            //if (!tLPControllers.Visible)
-            //    tabMain.SelectedIndex = 1;
-
-            //cBNotifications.Checked = Notifications;
             cBoxNotifications.SelectedIndex = Notifications;
             cBSwipeProfiles.Checked = SwipeProfiles;
             int checkwhen = CheckWhen;
@@ -524,12 +512,6 @@ namespace DS4Windows
             base.SetVisibleCore(value);
         }
 
-        private void showToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mAllowVisible = true;
-            Show();
-        }
-
         public static string GetTopWindowName()
         {
             IntPtr hWnd = GetForegroundWindow();
@@ -613,7 +595,7 @@ namespace DS4Windows
         private void CheckAutoProfiles(object sender, EventArgs e)
         {
             //Check for process for auto profiles
-            if (tempProfileProgram == "null")
+            if (string.IsNullOrEmpty(tempProfileProgram))
             {
                 string windowName = GetTopWindowName().ToLower().Replace('/', '\\');
                 for (int i = 0, pathsLen = programpaths.Count; i < pathsLen; i++)
@@ -652,7 +634,7 @@ namespace DS4Windows
                 string windowName = GetTopWindowName().ToLower().Replace('/', '\\');
                 if (tempProfileProgram != windowName)
                 {
-                    tempProfileProgram = "null";
+                    tempProfileProgram = string.Empty;
                     for (int j = 0; j < 4; j++)
                         LoadProfile(j, false, Program.rootHub);
 

@@ -101,6 +101,7 @@ namespace DS4Windows
             foreach (XmlNode x in programslist)
                 programpaths.Add(x.Attributes["path"].Value);
 
+            lVPrograms.BeginUpdate();
             foreach (string st in programpaths)
             {
                 if (File.Exists(st))
@@ -121,6 +122,7 @@ namespace DS4Windows
                     RemoveP(st, false, false);
                 }
             }
+            lVPrograms.EndUpdate();
         }
 
         private void GetApps(string path)
@@ -188,6 +190,7 @@ namespace DS4Windows
                     }
                 }
 
+                lVPrograms.BeginUpdate();
                 foreach (string st in lodsf)
                 {
                     if (File.Exists(st))
@@ -200,6 +203,7 @@ namespace DS4Windows
                         lVPrograms.Items.Add(lvi);
                     }
                 }
+                lVPrograms.EndUpdate();
 
                 bnAddPrograms.Text = Properties.Resources.AddPrograms;
                 bnAddPrograms.Enabled = true;

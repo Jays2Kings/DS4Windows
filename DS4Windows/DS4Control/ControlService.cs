@@ -839,131 +839,73 @@ namespace DS4Windows
             }
         }
 
-        public string GetInputkeys(int ind)
+        public DS4Controls GetActiveInputControl(int ind)
         {
             DS4State cState = CurrentState[ind];
             DS4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
-            string result = "nothing";
+            DS4Controls result = DS4Controls.None;
 
             if (DS4Controllers[ind] != null)
             {
                 if (Mapping.getBoolButtonMapping(cState.Cross))
-                {
-                    result = "Cross";
-                }
+                    result = DS4Controls.Cross;
                 else if (Mapping.getBoolButtonMapping(cState.Circle))
-                {
-                    result = "Circle";
-                }
+                    result = DS4Controls.Circle;
                 else if (Mapping.getBoolButtonMapping(cState.Triangle))
-                {
-                    result = "Triangle";
-                }
+                    result = DS4Controls.Triangle;
                 else if (Mapping.getBoolButtonMapping(cState.Square))
-                {
-                    result = "Square";
-                }
+                    result = DS4Controls.Square;
                 else if (Mapping.getBoolButtonMapping(cState.L1))
-                {
-                    result = "L1";
-                }
+                    result = DS4Controls.L1;
                 else if (Mapping.getBoolTriggerMapping(cState.L2))
-                {
-                    result = "L2";
-                }
+                    result = DS4Controls.L2;
                 else if (Mapping.getBoolButtonMapping(cState.L3))
-                {
-                    result = "L3";
-                }
+                    result = DS4Controls.L3;
                 else if (Mapping.getBoolButtonMapping(cState.R1))
-                {
-                    result = "R1";
-                }
+                    result = DS4Controls.R1;
                 else if (Mapping.getBoolTriggerMapping(cState.R2))
-                {
-                    result = "R2";
-                }
+                    result = DS4Controls.R2;
                 else if (Mapping.getBoolButtonMapping(cState.R3))
-                {
-                    result = "R3";
-                }
+                    result = DS4Controls.R3;
                 else if (Mapping.getBoolButtonMapping(cState.DpadUp))
-                {
-                    result = "Up";
-                }
+                    result = DS4Controls.DpadUp;
                 else if (Mapping.getBoolButtonMapping(cState.DpadDown))
-                {
-                    result = "Down";
-                }
+                    result = DS4Controls.DpadDown;
                 else if (Mapping.getBoolButtonMapping(cState.DpadLeft))
-                {
-                    result = "Left";
-                }
+                    result = DS4Controls.DpadLeft;
                 else if (Mapping.getBoolButtonMapping(cState.DpadRight))
-                {
-                    result = "Right";
-                }
+                    result = DS4Controls.DpadRight;
                 else if (Mapping.getBoolButtonMapping(cState.Share))
-                {
-                    result = "Share";
-                }
+                    result = DS4Controls.Share;
                 else if (Mapping.getBoolButtonMapping(cState.Options))
-                {
-                    result = "Options";
-                }
+                    result = DS4Controls.Options;
                 else if (Mapping.getBoolButtonMapping(cState.PS))
-                {
-                    result = "PS";
-                }
+                    result = DS4Controls.PS;
                 else if (Mapping.getBoolAxisDirMapping(cState.LX, true))
-                {
-                    result = "LS Right";
-                }
+                    result = DS4Controls.LXPos;
                 else if (Mapping.getBoolAxisDirMapping(cState.LX, false))
-                {
-                    result = "LS Left";
-                }
+                    result = DS4Controls.LXNeg;
                 else if (Mapping.getBoolAxisDirMapping(cState.LY, true))
-                {
-                    result = "LS Down";
-                }
+                    result = DS4Controls.LYPos;
                 else if (Mapping.getBoolAxisDirMapping(cState.LY, false))
-                {
-                    result = "LS Up";
-                }
+                    result = DS4Controls.LYNeg;
                 else if (Mapping.getBoolAxisDirMapping(cState.RX, true))
-                {
-                    result = "RS Right";
-                }
+                    result = DS4Controls.RXPos;
                 else if (Mapping.getBoolAxisDirMapping(cState.RX, false))
-                {
-                    result = "RS Left";
-                }
+                    result = DS4Controls.RXNeg;
                 else if (Mapping.getBoolAxisDirMapping(cState.RY, true))
-                {
-                    result = "RS Down";
-                }
+                    result = DS4Controls.RYPos;
                 else if (Mapping.getBoolAxisDirMapping(cState.RY, false))
-                {
-                    result = "RS Up";
-                }
+                    result = DS4Controls.RYNeg;
                 else if (Mapping.getBoolTouchMapping(tp.leftDown))
-                {
-                    result = "Touch Left";
-                }
+                    result = DS4Controls.TouchLeft;
                 else if (Mapping.getBoolTouchMapping(tp.rightDown))
-                {
-                    result = "Touch Right";
-                }
+                    result = DS4Controls.TouchRight;
                 else if (Mapping.getBoolTouchMapping(tp.multiDown))
-                {
-                    result = "Touch Multi";
-                }
+                    result = DS4Controls.TouchMulti;
                 else if (Mapping.getBoolTouchMapping(tp.upperDown))
-                {
-                    result = "Touch Upper";
-                }
+                    result = DS4Controls.TouchUpper;
             }
 
             return result;

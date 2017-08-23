@@ -1670,6 +1670,7 @@ namespace DS4Windows
 
         public void UpdateLists()
         {
+            lBControls.BeginUpdate();
             lBControls.Items[0] = "Cross : " + UpdateButtonList(bnCross);
             lBControls.Items[1] = "Circle : " + UpdateButtonList(bnCircle);
             lBControls.Items[2] = "Square : " + UpdateButtonList(bnSquare);
@@ -1715,6 +1716,8 @@ namespace DS4Windows
                 lbSwipeLeft.Text = UpdateButtonList(bnSwipeLeft);
                 lbSwipeRight.Text = UpdateButtonList(bnSwipeRight);
             }
+
+            lBControls.EndUpdate();
 
             lbGyroXN.Text = UpdateButtonList(bnGyroXN);
             lbGyroZN.Text = UpdateButtonList(bnGyroZN);
@@ -2205,10 +2208,12 @@ namespace DS4Windows
             }
             else if (rBTPMouse.Checked && lBControls.Items.Count > 33)
             {
+                lBControls.BeginUpdate();
                 lBControls.Items.RemoveAt(36);
                 lBControls.Items.RemoveAt(35);
                 lBControls.Items.RemoveAt(34);
                 lBControls.Items.RemoveAt(33);
+                lBControls.EndUpdate();
             }
         }
 

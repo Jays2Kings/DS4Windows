@@ -49,7 +49,6 @@ namespace DS4Windows
         delegate void HotKeysDelegate(object sender, EventArgs e);
         Options opt;
         public Size oldsize;
-        WinProgs WP;
         public bool mAllowVisible;
         bool contextclose;
         string logFile = appdatapath + @"\DS4Service.log";
@@ -856,7 +855,7 @@ namespace DS4Windows
         public void RefreshAutoProfilesPage()
         {
             tabAutoProfiles.Controls.Clear();
-            WP = new WinProgs(profilenames.ToArray(), this);
+            WinProgs WP = new WinProgs(profilenames.ToArray(), this);
             WP.TopLevel = false;
             WP.FormBorderStyle = FormBorderStyle.None;
             WP.Visible = true;

@@ -1403,7 +1403,9 @@ namespace DS4Windows
         private void ShowOptions(int devID, string profile)
         {
             Show();
-            tabMain.SelectedIndex = 1;
+
+            lBProfiles.Visible = false;
+
             WindowState = FormWindowState.Normal;
             toolStrip1.Enabled = false;
             tSOptions.Visible = true;
@@ -1429,11 +1431,16 @@ namespace DS4Windows
             opt.Reload(devID, profile);
             opt.inputtimer.Start();
             opt.Visible = true;
+            tabMain.SelectedIndex = 1;
         }
 
         public void OptionsClosed()
         {
             RefreshProfiles();
+
+            if (!lbNoControllers.Visible)
+                tabMain.SelectedIndex = 0;
+
             Size = oldsize;
             oldsize = new Size(0, 0);
             tSBKeepSize.Text = Properties.Resources.KeepThisSize;
@@ -1449,11 +1456,10 @@ namespace DS4Windows
                 lbLastMessage.Text = lvDebug.Items[lvDebugItemCount - 1].SubItems[1].Text;
             }
 
-            if (!lbNoControllers.Visible)
-                tabMain.SelectedIndex = 0;
-
             opt.inputtimer.Stop();
             opt.sixaxisTimer.Stop();
+
+            lBProfiles.Visible = true;
         }
 
         private void editButtons_Click(object sender, EventArgs e)

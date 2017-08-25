@@ -96,11 +96,10 @@ namespace DS4Windows
             dcs.Add(DS4Controls.SwipeRight);
         }
 
-        private async void WarnExclusiveModeFailure(DS4Device device)
+        private void WarnExclusiveModeFailure(DS4Device device)
         {
             if (DS4Devices.isExclusiveMode && !device.isExclusive())
             {
-                await Task.Delay(5);
                 string message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.getMacAddress()) + " " +
                     Properties.Resources.QuitOtherPrograms;
                 LogDebug(message, true);
@@ -138,7 +137,9 @@ namespace DS4Windows
                         if (showlog)
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
 
-                        WarnExclusiveModeFailure(device);
+                        Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
+                        task.Start();
+
                         DS4Controllers[i] = device;
                         device.setUiContext(SynchronizationContext.Current);
                         device.Removal += this.On_DS4Removal;
@@ -315,7 +316,8 @@ namespace DS4Windows
                         if (DS4Controllers[Index] == null)
                         {
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
-                            WarnExclusiveModeFailure(device);
+                            Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
+                            task.Start();
                             DS4Controllers[Index] = device;
                             device.setUiContext(uiContext);
                             device.Removal += this.On_DS4Removal;

@@ -414,7 +414,7 @@ namespace DS4Windows
                 }
             }
 
-            UpdateTheUpdater();
+            System.Threading.Tasks.Task.Run(() => { UpdateTheUpdater(); });
 
             this.StartWindowsCheckBox.CheckedChanged += new EventHandler(this.StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
@@ -484,14 +484,14 @@ namespace DS4Windows
             tLPControllers.Visible = !nocontrollers;
         }
 
-        private async void UpdateTheUpdater()
+        private void UpdateTheUpdater()
         {
             if (File.Exists(exepath + "\\Update Files\\DS4Updater.exe"))
             {
                 Process[] processes = Process.GetProcessesByName("DS4Updater");
                 while (processes.Length > 0)
                 {
-                    await System.Threading.Tasks.Task.Delay(500);
+                    System.Threading.Thread.Sleep(500);
                 }
 
                 File.Delete(exepath + "\\DS4Updater.exe");

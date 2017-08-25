@@ -14,6 +14,7 @@ using System.Text;
 using System.Globalization;
 using Microsoft.Win32.TaskScheduler;
 using System.Security.Principal;
+using System.Threading;
 using static DS4Windows.Global;
 
 namespace DS4Windows
@@ -145,7 +146,7 @@ namespace DS4Windows
                 new SaveWhere(false).ShowDialog();
             }
 
-            System.Threading.Thread AppCollectionThread = new System.Threading.Thread(() => CheckDrivers());
+            Thread AppCollectionThread = new Thread(() => CheckDrivers());
             AppCollectionThread.IsBackground = true;
             AppCollectionThread.Start();
 
@@ -368,7 +369,7 @@ namespace DS4Windows
 
             if (File.Exists(exepath + "\\Updater.exe"))
             {
-                System.Threading.Thread.Sleep(2000);
+                Thread.Sleep(2000);
                 File.Delete(exepath + "\\Updater.exe");
             }
 
@@ -491,7 +492,7 @@ namespace DS4Windows
                 Process[] processes = Process.GetProcessesByName("DS4Updater");
                 while (processes.Length > 0)
                 {
-                    System.Threading.Thread.Sleep(500);
+                    Thread.Sleep(500);
                 }
 
                 File.Delete(exepath + "\\DS4Updater.exe");
@@ -1000,10 +1001,11 @@ namespace DS4Windows
                             hotplugCounter++;
                         }
 
+                        var uiContext = SynchronizationContext.Current;
                         if (!inHotPlug)
                         {
                             inHotPlug = true;
-                            System.Threading.Tasks.Task.Run(() => { InnerHotplug2(); });
+                            System.Threading.Tasks.Task.Run(() => { InnerHotplug2(uiContext); });
                         }
                     }
                 }
@@ -1018,11 +1020,10 @@ namespace DS4Windows
             catch { }
         }
 
-        protected void InnerHotplug2()
+        private void InnerHotplug2(SynchronizationContext uiContext)
         {
             inHotPlug = true;
-            System.Threading.SynchronizationContext uiContext =
-                System.Threading.SynchronizationContext.Current;
+            
             bool loopHotplug = false;
             lock (hotplugCounterLock)
             {
@@ -1032,7 +1033,7 @@ namespace DS4Windows
             while (loopHotplug == true)
             {
                 Program.rootHub.HotPlug(uiContext);
-                //System.Threading.Tasks.Task.Run(() => { Program.rootHub.HotPlug(uiContext); });
+                //Tasks.Task.Run(() => { Program.rootHub.HotPlug(uiContext); });
                 lock (hotplugCounterLock)
                 {
                     hotplugCounter--;

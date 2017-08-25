@@ -1002,7 +1002,8 @@ namespace DS4Windows
 
                         if (!inHotPlug)
                         {
-                            InnerHotplug2();
+                            inHotPlug = true;
+                            System.Threading.Tasks.Task.Run(() => { InnerHotplug2(); });
                         }
                     }
                 }
@@ -1017,7 +1018,7 @@ namespace DS4Windows
             catch { }
         }
 
-        protected async void InnerHotplug2()
+        protected void InnerHotplug2()
         {
             inHotPlug = true;
             System.Threading.SynchronizationContext uiContext =
@@ -1030,7 +1031,8 @@ namespace DS4Windows
 
             while (loopHotplug == true)
             {
-                await System.Threading.Tasks.Task.Run(() => { Program.rootHub.HotPlug(uiContext); });
+                Program.rootHub.HotPlug(uiContext);
+                //System.Threading.Tasks.Task.Run(() => { Program.rootHub.HotPlug(uiContext); });
                 lock (hotplugCounterLock)
                 {
                     hotplugCounter--;

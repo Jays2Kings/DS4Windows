@@ -16,6 +16,7 @@ using Microsoft.Win32.TaskScheduler;
 using System.Security.Principal;
 using System.Threading;
 using System.Drawing.Drawing2D;
+using TaskRunner = System.Threading.Tasks.Task;
 using static DS4Windows.Global;
 
 namespace DS4Windows
@@ -416,7 +417,7 @@ namespace DS4Windows
                 }
             }
 
-            System.Threading.Tasks.Task.Run(() => { UpdateTheUpdater(); });
+            TaskRunner.Run(() => { UpdateTheUpdater(); });
 
             this.StartWindowsCheckBox.CheckedChanged += new EventHandler(this.StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
@@ -465,14 +466,11 @@ namespace DS4Windows
 
         private void blankControllerTab()
         {
-            bool nocontrollers = true;
-            for (Int32 Index = 0, PadsLen = Pads.Length; Index < PadsLen; Index++)
+            for (int Index = 0, PadsLen = Pads.Length;
+                Index < PadsLen; Index++)
             {
-                // Make sure a controller exists
                 if (Index < ControlService.DS4_CONTROLLER_COUNT)
                 {
-                    Pads[Index].Text = "";
-
                     statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], "");
                     Batteries[Index].Text = Properties.Resources.NA;
                     Pads[Index].Text = Properties.Resources.Disconnected;
@@ -480,8 +478,8 @@ namespace DS4Windows
                 }
             }
 
-            lbNoControllers.Visible = nocontrollers;
-            tLPControllers.Visible = !nocontrollers;
+            lbNoControllers.Visible = true;
+            tLPControllers.Visible = false;
         }
 
         private void UpdateTheUpdater()
@@ -946,32 +944,59 @@ namespace DS4Windows
             btnStartStop_Clicked();
         }
 
+        private void serviceStartup(bool log)
+        {
+            var uiContext = SynchronizationContext.Current;
+            TaskRunner.Run(() =>
+            {
+                Program.rootHub.Start(uiContext, log);
+                this.Invoke((System.Action)(() => { serviceStartupFinish(); }));
+            });
+        }
+
+        private void serviceStartupFinish()
+        {
+            if (SwipeProfiles && !hotkeysTimer.Enabled)
+            {
+                hotkeysTimer.Start();
+            }
+
+            if (programpaths.Count > 0 && !autoProfilesTimer.Enabled)
+            {
+                autoProfilesTimer.Start();
+            }
+
+            btnStartStop.Text = Properties.Resources.StopText;
+        }
+
+        private void serviceShutdown(bool log)
+        {
+            TaskRunner.Run(() =>
+            {
+                Program.rootHub.Stop(log);
+                this.Invoke((System.Action)(() => { serviceShutdownFinish(); }));
+            });
+        }
+
+        private void serviceShutdownFinish()
+        {
+            hotkeysTimer.Stop();
+            autoProfilesTimer.Stop();
+            btnStartStop.Text = Properties.Resources.StartText;
+            blankControllerTab();
+            populateFullNotifyText();
+        }
+
         public void btnStartStop_Clicked(bool log = true)
         {
             if (btnStartStop.Text == Properties.Resources.StartText)
             {
-                Program.rootHub.Start(log);
-                if (SwipeProfiles && !hotkeysTimer.Enabled)
-                {
-                    hotkeysTimer.Start();
-                }
-
-                if (programpaths.Count > 0 && !autoProfilesTimer.Enabled)
-                {
-                    autoProfilesTimer.Start();
-                }
-
-                btnStartStop.Text = Properties.Resources.StopText;
+                serviceStartup(log);
             }
             else if (btnStartStop.Text == Properties.Resources.StopText)
             {
                 blankControllerTab();
-                Program.rootHub.Stop(log);
-                hotkeysTimer.Stop();
-                autoProfilesTimer.Stop();
-                btnStartStop.Text = Properties.Resources.StartText;
-                blankControllerTab();
-                populateFullNotifyText();
+                serviceShutdown(log);
             }
 
             startToolStripMenuItem.Text = btnStartStop.Text;
@@ -1004,7 +1029,7 @@ namespace DS4Windows
                         if (!inHotPlug)
                         {
                             inHotPlug = true;
-                            System.Threading.Tasks.Task.Run(() => { InnerHotplug2(uiContext); });
+                            TaskRunner.Run(() => { InnerHotplug2(uiContext); });
                         }
                     }
                 }
@@ -1032,7 +1057,7 @@ namespace DS4Windows
             while (loopHotplug == true)
             {
                 Program.rootHub.HotPlug(uiContext);
-                //Tasks.Task.Run(() => { Program.rootHub.HotPlug(uiContext); });
+                //TaskRunner.Run(() => { Program.rootHub.HotPlug(uiContext); });
                 lock (hotplugCounterLock)
                 {
                     hotplugCounter--;

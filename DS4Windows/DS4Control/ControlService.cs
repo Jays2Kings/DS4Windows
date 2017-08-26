@@ -107,7 +107,7 @@ namespace DS4Windows
             }
         }
 
-        public bool Start(bool showlog = true)
+        public bool Start(object tempui, bool showlog = true)
         {
             if (x360Bus.Open() && x360Bus.Start())
             {
@@ -141,7 +141,7 @@ namespace DS4Windows
                         task.Start();
 
                         DS4Controllers[i] = device;
-                        device.setUiContext(SynchronizationContext.Current);
+                        device.setUiContext(tempui as SynchronizationContext);
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
                         device.SyncChange += this.On_SyncChange;

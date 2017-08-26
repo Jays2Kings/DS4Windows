@@ -1029,7 +1029,7 @@ namespace DS4Windows
                         if (!inHotPlug)
                         {
                             inHotPlug = true;
-                            TaskRunner.Run(() => { InnerHotplug2(uiContext); });
+                            TaskRunner.Run(() => { Thread.Sleep(10); InnerHotplug2(uiContext); });
                         }
                     }
                 }
@@ -1047,7 +1047,7 @@ namespace DS4Windows
         private void InnerHotplug2(SynchronizationContext uiContext)
         {
             inHotPlug = true;
-            
+
             bool loopHotplug = false;
             lock (hotplugCounterLock)
             {

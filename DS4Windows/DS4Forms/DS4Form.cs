@@ -15,6 +15,7 @@ using System.Globalization;
 using Microsoft.Win32.TaskScheduler;
 using System.Security.Principal;
 using System.Threading;
+using System.Drawing.Drawing2D;
 using static DS4Windows.Global;
 
 namespace DS4Windows
@@ -449,19 +450,17 @@ namespace DS4Windows
             hoverTextDict[StartWindowsCheckBox] = Properties.Resources.RunAtStartup;
         }
 
-        private Image AddUACShieldToImage(Image image)
+        private void AddUACShieldToImage(Image image)
         {
             Bitmap shield = SystemIcons.Shield.ToBitmap();
             shield.MakeTransparent();
 
             Graphics g = Graphics.FromImage(image);
-            g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+            g.CompositingMode = CompositingMode.SourceOver;
             double aspectRatio = shield.Width / (double)shield.Height;
             int finalWidth = Convert.ToInt32(image.Height * aspectRatio);
             int finalHeight = Convert.ToInt32(image.Width / aspectRatio);
             g.DrawImage(shield, new Rectangle(0, 0, finalWidth, finalHeight));
-
-            return image;
         }
 
         private void blankControllerTab()

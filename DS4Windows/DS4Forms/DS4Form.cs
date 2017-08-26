@@ -1029,7 +1029,7 @@ namespace DS4Windows
                         if (!inHotPlug)
                         {
                             inHotPlug = true;
-                            TaskRunner.Run(() => { Thread.Sleep(10); InnerHotplug2(uiContext); });
+                            TaskRunner.Run(() => { Thread.Sleep(100); InnerHotplug2(uiContext); });
                         }
                     }
                 }

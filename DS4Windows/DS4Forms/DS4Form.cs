@@ -148,9 +148,7 @@ namespace DS4Windows
                 new SaveWhere(false).ShowDialog();
             }
 
-            Thread AppCollectionThread = new Thread(() => CheckDrivers());
-            AppCollectionThread.IsBackground = true;
-            AppCollectionThread.Start();
+            TaskRunner.Run(() => CheckDrivers());
 
             if (string.IsNullOrEmpty(appdatapath))
             {
@@ -949,6 +947,7 @@ namespace DS4Windows
             var uiContext = SynchronizationContext.Current;
             TaskRunner.Run(() =>
             {
+                //Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
                 Program.rootHub.Start(uiContext, log);
                 this.Invoke((System.Action)(() => { serviceStartupFinish(); }));
             });

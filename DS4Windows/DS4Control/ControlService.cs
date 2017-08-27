@@ -41,15 +41,9 @@ namespace DS4Windows
         {
             //sp.Stream = Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
-            Thread x360Thread = new Thread(() => { x360Bus = new X360Device(); });
-            x360Thread.IsBackground = true;
-            x360Thread.Priority = ThreadPriority.Normal;
-            x360Thread.Name = "SCP Virtual Bus Thread";
-            x360Thread.Start();
-            while (!x360Thread.ThreadState.HasFlag(ThreadState.Stopped))
-            {
-                Thread.SpinWait(500);
-            }
+            Task.Run(() => {
+                Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
+                x360Bus = new X360Device(); }).Wait();
 
             AddtoDS4List();
 
@@ -209,7 +203,6 @@ namespace DS4Windows
             }
 
             runHotPlug = true;
-
             return true;
         }
 

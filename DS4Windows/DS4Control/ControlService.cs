@@ -41,9 +41,10 @@ namespace DS4Windows
         {
             //sp.Stream = Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
-            Task.Run(() => {
-                Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
-                x360Bus = new X360Device(); }).Wait();
+            Task x360task = new Task(() => { Thread.CurrentThread.Priority = ThreadPriority.AboveNormal; x360Bus = new X360Device(); });
+            x360task.Start();
+            while (!x360task.IsCompleted)
+                Thread.SpinWait(500);
 
             AddtoDS4List();
 

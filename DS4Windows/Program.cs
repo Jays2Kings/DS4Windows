@@ -95,7 +95,7 @@ namespace DS4Windows
 
             // Create the Event handle
             threadComEvent = new EventWaitHandle(false, EventResetMode.ManualReset, SingleAppComEventName);
-            CreateInterAppComThread();
+            System.Threading.Tasks.Task.Run(() => { Thread.CurrentThread.Priority = ThreadPriority.Lowest; CreateInterAppComThread(); }).Wait();
 
             //if (mutex.WaitOne(TimeSpan.Zero, true))
             //{

@@ -919,19 +919,19 @@ namespace DS4Windows
 
         protected void Form_Resize(object sender, EventArgs e)
         {
-            if (FormWindowState.Minimized == this.WindowState)
+            if (FormWindowState.Minimized == WindowState)
             {
-                this.Hide();
-                this.ShowInTaskbar = false;
-                this.FormBorderStyle = FormBorderStyle.None;
+                Hide();
+                ShowInTaskbar = false;
+                FormBorderStyle = FormBorderStyle.None;
             }
 
-            else if (FormWindowState.Normal == this.WindowState)
+            else if (FormWindowState.Normal == WindowState)
             {
                 //mAllowVisible = true;
-                this.Show();
-                this.ShowInTaskbar = true;
-                this.FormBorderStyle = FormBorderStyle.Sizable;
+                Show();
+                ShowInTaskbar = true;
+                FormBorderStyle = FormBorderStyle.Sizable;
             }
 
             chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);

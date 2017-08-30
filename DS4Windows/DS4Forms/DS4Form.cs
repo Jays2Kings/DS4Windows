@@ -17,6 +17,7 @@ using System.Security.Principal;
 using System.Threading;
 using System.Drawing.Drawing2D;
 using TaskRunner = System.Threading.Tasks.Task;
+using NonFormTimer = System.Timers.Timer;
 using static DS4Windows.Global;
 
 namespace DS4Windows
@@ -28,28 +29,27 @@ namespace DS4Windows
         delegate void NotificationDelegate(object sender, DebugEventArgs args);
         delegate void DeviceStatusChangedDelegate(object sender, DeviceStatusChangeEventArgs args);
         delegate void DeviceSerialChangedDelegate(object sender, SerialChangeArgs args);
-        protected Label[] Pads, Batteries;
-        protected ComboBox[] cbs;
-        protected Button[] ebns;
-        protected Button[] lights;
-        protected PictureBox[] statPB;
-        protected ToolStripMenuItem[] shortcuts;
+        private Label[] Pads, Batteries;
+        private ComboBox[] cbs;
+        private Button[] ebns;
+        private Button[] lights;
+        private PictureBox[] statPB;
+        private ToolStripMenuItem[] shortcuts;
         WebClient wc = new WebClient();
-        System.Timers.Timer hotkeysTimer = new System.Timers.Timer();
-        System.Timers.Timer autoProfilesTimer = new System.Timers.Timer();
+        NonFormTimer hotkeysTimer = new NonFormTimer();
+        NonFormTimer autoProfilesTimer = new NonFormTimer();
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
         string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
         string tempProfileProgram = string.Empty;
-        float dpix, dpiy;
+        double dpix, dpiy;
         List<string> profilenames = new List<string>();
         List<string> programpaths = new List<string>();
         List<string>[] proprofiles;
         List<bool> turnOffTempProfiles;
-        private static int WM_QUERYENDSESSION = 0x11;
-        private static bool systemShutdown = false;
+        
+        private bool systemShutdown = false;
         private bool wasrunning = false;
-        delegate void HotKeysDelegate(object sender, EventArgs e);
         Options opt;
         public Size oldsize;
         public bool mAllowVisible;
@@ -59,11 +59,12 @@ namespace DS4Windows
         bool runningBat;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
-        string[] notifyText = new string[5] { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
+        string[] notifyText = new string[5]
+            { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
             string.Empty, string.Empty, string.Empty, string.Empty };
 
-        internal const int BCM_FIRST = 0x1600; // Normal button
-        internal const int BCM_SETSHIELD = (BCM_FIRST + 0x000C); // Elevated button
+        internal const string UPDATER_VERSION = "1.1.404.0";
+        internal static int WM_QUERYENDSESSION = 0x11;
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -78,9 +79,6 @@ namespace DS4Windows
         private static extern bool CloseHandle(IntPtr handle);
 
         [DllImport("psapi.dll")]
-        private static extern uint GetModuleBaseName(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
-
-        [DllImport("psapi.dll")]
         private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
 
         public DS4Form(string[] args)
@@ -93,7 +91,7 @@ namespace DS4Windows
             bnEditC3.Tag = 2;
             bnEditC4.Tag = 3;
 
-            this.StartWindowsCheckBox.CheckedChanged -= this.StartWindowsCheckBox_CheckedChanged;
+            StartWindowsCheckBox.CheckedChanged -= StartWindowsCheckBox_CheckedChanged;
 
             saveProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
             openProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
@@ -156,7 +154,7 @@ namespace DS4Windows
                 return;
             }
 
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
             try
             {
                 dpix = g.DpiX / 100f * 1.041666666667f;
@@ -376,7 +374,7 @@ namespace DS4Windows
             if (!Directory.Exists(appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
 
-            bool isElevated = Global.IsAdministrator();
+            bool isElevated = IsAdministrator();
             if (!isElevated)
             {
                 Image tempImg = new Bitmap(uacPictureBox.Width, uacPictureBox.Height);
@@ -417,7 +415,7 @@ namespace DS4Windows
 
             TaskRunner.Run(() => { UpdateTheUpdater(); });
 
-            this.StartWindowsCheckBox.CheckedChanged += new EventHandler(this.StartWindowsCheckBox_CheckedChanged);
+            StartWindowsCheckBox.CheckedChanged += new EventHandler(StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
 
             populateHoverTextDict();
@@ -501,7 +499,7 @@ namespace DS4Windows
             if (!mAllowVisible)
             {
                 value = false;
-                if (!this.IsHandleCreated) CreateHandle();
+                if (!IsHandleCreated) CreateHandle();
             }
 
             base.SetVisibleCore(value);
@@ -739,7 +737,7 @@ namespace DS4Windows
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             string newversion = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version.Replace(',', '.').CompareTo(newversion) == -1)//CompareVersions();
+            if (version.Replace(',', '.').CompareTo(newversion) == -1)
             {
                 if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
                     Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -949,7 +947,7 @@ namespace DS4Windows
             {
                 //Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
                 Program.rootHub.Start(uiContext, log);
-                this.Invoke((System.Action)(() => { serviceStartupFinish(); }));
+                Invoke((System.Action)(() => { serviceStartupFinish(); }));
             });
         }
 
@@ -973,7 +971,7 @@ namespace DS4Windows
             TaskRunner.Run(() =>
             {
                 Program.rootHub.Stop(log);
-                this.Invoke((System.Action)(() => { serviceShutdownFinish(); }));
+                Invoke((System.Action)(() => { serviceShutdownFinish(); }));
             });
         }
 
@@ -1503,7 +1501,7 @@ namespace DS4Windows
         private void editMenu_Click(object sender, EventArgs e)
         {
             mAllowVisible = true;
-            this.Show();
+            Show();
             WindowState = FormWindowState.Normal;
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
             int i = Convert.ToInt32(em.Tag);
@@ -1611,13 +1609,13 @@ namespace DS4Windows
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             contextclose = true;
-            this.Close();
+            Close();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mAllowVisible = true;
-            this.Show();
+            Show();
             Focus();
             WindowState = FormWindowState.Normal;
         }
@@ -1632,13 +1630,13 @@ namespace DS4Windows
             if (e.Button == MouseButtons.Middle)
             {
                 contextclose = true;
-                this.Close();
+                Close();
             }
         }
 
         private void notifyIcon1_BalloonTipClicked(object sender, EventArgs e)
         {
-            this.Show();
+            Show();
             WindowState = FormWindowState.Normal;
         }
 
@@ -1958,22 +1956,22 @@ namespace DS4Windows
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version2 = fvi.FileVersion;
             string newversion2 = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version2.Replace(',', '.').CompareTo(newversion2) == -1)//CompareVersions();
+            if (version2.Replace(',', '.').CompareTo(newversion2) == -1)
             {
                 if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2),
                     Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
-                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
+                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) == -1)))
                     {
-                        Uri url2 = new Uri("http://ds4windows.com/Files/DS4Updater.exe");
+                        Uri url2 = new Uri("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
                         WebClient wc2 = new WebClient();
                         if (appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
-                            Process.Start("http://ds4windows.com/Files/DS4Updater.exe");
+                            Process.Start("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
                         }
                     }
 
@@ -2067,7 +2065,7 @@ namespace DS4Windows
             }
             else if (userClosing && closeMini && !contextclose)
             {
-                this.WindowState = FormWindowState.Minimized;
+                WindowState = FormWindowState.Minimized;
                 e.Cancel = true;
                 return;
             }

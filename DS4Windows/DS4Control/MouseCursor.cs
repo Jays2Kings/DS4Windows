@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace DS4Windows
 {
     class MouseCursor
@@ -61,11 +62,11 @@ namespace DS4Windows
                 }
             }
 
-            double tempAngle = System.Math.Atan2(-deltaY, deltaX);
-            double normX = System.Math.Abs(System.Math.Cos(tempAngle));
-            double normY = System.Math.Abs(System.Math.Sin(tempAngle));
-            int signX = System.Math.Sign(deltaX);
-            int signY = System.Math.Sign(deltaY);
+            double tempAngle = Math.Atan2(-deltaY, deltaX);
+            double normX = Math.Abs(Math.Cos(tempAngle));
+            double normY = Math.Abs(Math.Sin(tempAngle));
+            int signX = Math.Sign(deltaX);
+            int signY = Math.Sign(deltaY);
 
             if (deltaX == 0 || (hRemainder > 0 != deltaX > 0))
             {
@@ -77,10 +78,10 @@ namespace DS4Windows
                 vRemainder = 0.0;
             }
 
-            int deadzoneX = (int)System.Math.Abs(normX * GYRO_MOUSE_DEADZONE);
-            int deadzoneY = (int)System.Math.Abs(normY * GYRO_MOUSE_DEADZONE);
+            int deadzoneX = (int)Math.Abs(normX * GYRO_MOUSE_DEADZONE);
+            int deadzoneY = (int)Math.Abs(normY * GYRO_MOUSE_DEADZONE);
 
-            if (System.Math.Abs(deltaX) > deadzoneX)
+            if (Math.Abs(deltaX) > deadzoneX)
             {
                 deltaX -= signX * deadzoneX;
             }
@@ -89,7 +90,7 @@ namespace DS4Windows
                 deltaX = 0;
             }
 
-            if (System.Math.Abs(deltaY) > deadzoneY)
+            if (Math.Abs(deltaY) > deadzoneY)
             {
                 deltaY -= signY * deadzoneY;
             }
@@ -138,7 +139,7 @@ namespace DS4Windows
                 int idx = 0;
                 for (int i = 0; i < SMOOTH_BUFFER_LEN; i++)
                 {
-                    idx = System.Math.Abs(smoothBufferTail - i - 1) % SMOOTH_BUFFER_LEN;
+                    idx = Math.Abs(smoothBufferTail - i - 1) % SMOOTH_BUFFER_LEN;
                     x_out += xSmoothBuffer[idx] * currentWeight;
                     y_out += ySmoothBuffer[idx] * currentWeight;
                     finalWeight += currentWeight;
@@ -225,11 +226,11 @@ namespace DS4Windows
                 }
             }
 
-            double tempAngle = System.Math.Atan2(-deltaY, deltaX);
-            double normX = System.Math.Abs(System.Math.Cos(tempAngle));
-            double normY = System.Math.Abs(System.Math.Sin(tempAngle));
-            int signX = System.Math.Sign(deltaX);
-            int signY = System.Math.Sign(deltaY);
+            double tempAngle = Math.Atan2(-deltaY, deltaX);
+            double normX = Math.Abs(Math.Cos(tempAngle));
+            double normY = Math.Abs(Math.Sin(tempAngle));
+            int signX = Math.Sign(deltaX);
+            int signY = Math.Sign(deltaY);
             double coefficient = Global.getTouchSensitivity(deviceNumber) * 0.01;
             bool jitterCompenstation = Global.getTouchpadJitterCompensation(deviceNumber);
 
@@ -241,16 +242,16 @@ namespace DS4Windows
 
             if (jitterCompenstation)
             {
-                double absX = System.Math.Abs(xMotion);
+                double absX = Math.Abs(xMotion);
                 if (absX <= normX * 0.4)
                 {
-                    xMotion = signX * System.Math.Pow(absX / 0.4f, 1.44) * 0.4;
+                    xMotion = signX * Math.Pow(absX / 0.4f, 1.44) * 0.4;
                 }
 
-                double absY = System.Math.Abs(yMotion);
+                double absY = Math.Abs(yMotion);
                 if (absY <= normY * 0.4)
                 {
-                    yMotion = signY * System.Math.Pow(absY / 0.4f, 1.44) * 0.4;
+                    yMotion = signY * Math.Pow(absY / 0.4f, 1.44) * 0.4;
                 }
             }
 

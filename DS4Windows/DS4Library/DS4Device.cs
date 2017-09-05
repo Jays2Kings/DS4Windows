@@ -112,18 +112,18 @@ namespace DS4Windows
 
     public class DS4Device
     {
-        private const int BT_OUTPUT_REPORT_LENGTH = 78;
-        private const int BT_INPUT_REPORT_LENGTH = 547;
+        internal const int BT_OUTPUT_REPORT_LENGTH = 78;
+        internal const int BT_INPUT_REPORT_LENGTH = 547;
         // Use large value for worst case scenario
-        private const int READ_STREAM_TIMEOUT = 3000;
+        internal const int READ_STREAM_TIMEOUT = 3000;
         // Isolated BT report can have latency as high as 15 ms
         // due to hardware.
-        private const int WARN_INTERVAL_BT = 20;
-        private const int WARN_INTERVAL_USB = 10;
+        internal const int WARN_INTERVAL_BT = 20;
+        internal const int WARN_INTERVAL_USB = 10;
         // Maximum values for battery level when no USB cable is connected
         // and when a USB cable is connected
-        private const int BATTERY_MAX = 8;
-        private const int BATTERY_MAX_USB = 11;
+        internal const int BATTERY_MAX = 8;
+        internal const int BATTERY_MAX_USB = 11;
         public const string blankSerial = "00:00:00:00:00:00";
         private HidDevice hDevice;
         private string Mac;
@@ -664,6 +664,7 @@ namespace DS4Windows
             timeoutEvent = false;
             ds4InactiveFrame = true;
             idleInput = true;
+            bool syncWriteReport = true;
 
             int maxBatteryValue = 0;
             int tempBattery = 0;
@@ -818,21 +819,17 @@ namespace DS4Windows
                 cState.TouchButton = (inputReport[7] & 0x02) != 0;
                 cState.FrameCounter = (byte)(inputReport[7] >> 2);
 
-                try
+                charging = (inputReport[30] & 0x10) != 0;
+                maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
+                tempBattery = (inputReport[30] & 0x0f) * 100 / maxBatteryValue;
+                battery = Math.Min((byte)tempBattery, (byte)100);
+                cState.Battery = (byte)battery;
+                //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
+                if (inputReport[30] != priorInputReport30)
                 {
-                    charging = (inputReport[30] & 0x10) != 0;
-                    maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
-                    tempBattery = (inputReport[30] & 0x0f) * 100 / maxBatteryValue;
-                    battery = Math.Min((byte)tempBattery, (byte)100);
-                    cState.Battery = (byte)battery;
-                    //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
-                    if (inputReport[30] != priorInputReport30)
-                    {
-                        priorInputReport30 = inputReport[30];
-                        //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
-                    }
+                    priorInputReport30 = inputReport[30];
+                    //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
                 }
-                catch { currerror = "Index out of bounds: battery"; }
 
                 // XXX DS4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
                 try
@@ -979,7 +976,6 @@ namespace DS4Windows
                 if (Report != null)
                     Report(this, EventArgs.Empty);
 
-                bool syncWriteReport = true;
                 if (conType == ConnectionType.BT)
                 {
                     syncWriteReport = false;

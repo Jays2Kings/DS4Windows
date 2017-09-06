@@ -19,7 +19,6 @@ namespace DS4Windows
         // whole system, including other users. But the application can not be brought
         // into view, of course. 
         private static string SingleAppComEventName = "{a52b5b20-d9ee-4f32-8518-307fa14aa0c6}";
-        private static BackgroundWorker singleAppComThread = null;
         private static EventWaitHandle threadComEvent = null;
         private static bool exitComThread = false;
         public static ControlService rootHub;
@@ -112,30 +111,21 @@ namespace DS4Windows
 
             exitComThread = true;
             threadComEvent.Set();  // signal the other instance.
-            while (singleAppComThread.IsBusy)
-                Thread.Sleep(50);
+            while (testThread.IsAlive)
+                Thread.SpinWait(500);
             threadComEvent.Close();
         }
 
         private static void CreateTempWorkerThread()
         {
-            testThread = new Thread(CreateInterAppComThread);
+            testThread = new Thread(singleAppComThread_DoWork);
             testThread.Priority = ThreadPriority.Lowest;
             testThread.IsBackground = true;
             testThread.Start();
         }
 
-        private static void CreateInterAppComThread()
+        private static void singleAppComThread_DoWork()
         {
-            singleAppComThread = new BackgroundWorker();
-            singleAppComThread.DoWork += new DoWorkEventHandler(singleAppComThread_DoWork);
-            singleAppComThread.RunWorkerAsync();
-        }
-
-        static private void singleAppComThread_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Thread.CurrentThread.Priority = ThreadPriority.Lowest;
-            BackgroundWorker worker = sender as BackgroundWorker;
             WaitHandle[] waitHandles = new WaitHandle[] { threadComEvent };
 
             while (!exitComThread)

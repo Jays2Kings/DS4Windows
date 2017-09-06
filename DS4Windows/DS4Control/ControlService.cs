@@ -27,6 +27,7 @@ namespace DS4Windows
         List<DS4Controls> dcs = new List<DS4Controls>();
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
+        Thread tempThread;
         //SoundPlayer sp = new SoundPlayer();
 
         private class X360Data
@@ -41,10 +42,19 @@ namespace DS4Windows
         {
             //sp.Stream = Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
-            Task x360task = new Task(() => { Thread.CurrentThread.Priority = ThreadPriority.AboveNormal; x360Bus = new X360Device(); });
+            /*Task x360task = new Task(() => { Thread.CurrentThread.Priority = ThreadPriority.AboveNormal; x360Bus = new X360Device(); });
             x360task.Start();
             while (!x360task.IsCompleted)
                 Thread.SpinWait(500);
+            */
+            tempThread = new Thread(() => { x360Bus = new X360Device(); });
+            tempThread.Priority = ThreadPriority.AboveNormal;
+            tempThread.IsBackground = true;
+            tempThread.Start();
+            while (tempThread.IsAlive)
+            {
+                Thread.SpinWait(500);
+            }
 
             AddtoDS4List();
 

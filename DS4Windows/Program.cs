@@ -23,6 +23,7 @@ namespace DS4Windows
         private static EventWaitHandle threadComEvent = null;
         private static bool exitComThread = false;
         public static ControlService rootHub;
+        private static Thread testThread;
 
         /// <summary>
         /// The main entry point for the application.
@@ -95,7 +96,10 @@ namespace DS4Windows
 
             // Create the Event handle
             threadComEvent = new EventWaitHandle(false, EventResetMode.ManualReset, SingleAppComEventName);
-            System.Threading.Tasks.Task.Run(() => { Thread.CurrentThread.Priority = ThreadPriority.Lowest; CreateInterAppComThread(); }).Wait();
+            //System.Threading.Tasks.Task.Run(() => CreateTempWorkerThread());
+            //CreateInterAppComThread();
+            CreateTempWorkerThread();
+            //System.Threading.Tasks.Task.Run(() => { Thread.CurrentThread.Priority = ThreadPriority.Lowest; CreateInterAppComThread(); Thread.CurrentThread.Priority = ThreadPriority.Lowest; }).Wait();
 
             //if (mutex.WaitOne(TimeSpan.Zero, true))
             //{
@@ -113,7 +117,15 @@ namespace DS4Windows
             threadComEvent.Close();
         }
 
-        static private void CreateInterAppComThread()
+        private static void CreateTempWorkerThread()
+        {
+            testThread = new Thread(CreateInterAppComThread);
+            testThread.Priority = ThreadPriority.Lowest;
+            testThread.IsBackground = true;
+            testThread.Start();
+        }
+
+        private static void CreateInterAppComThread()
         {
             singleAppComThread = new BackgroundWorker();
             singleAppComThread.DoWork += new DoWorkEventHandler(singleAppComThread_DoWork);
@@ -122,9 +134,9 @@ namespace DS4Windows
 
         static private void singleAppComThread_DoWork(object sender, DoWorkEventArgs e)
         {
+            Thread.CurrentThread.Priority = ThreadPriority.Lowest;
             BackgroundWorker worker = sender as BackgroundWorker;
             WaitHandle[] waitHandles = new WaitHandle[] { threadComEvent };
-            Thread.CurrentThread.Priority = ThreadPriority.Lowest;
 
             while (!exitComThread)
             {

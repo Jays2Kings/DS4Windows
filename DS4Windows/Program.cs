@@ -102,7 +102,8 @@ namespace DS4Windows
 
             //if (mutex.WaitOne(TimeSpan.Zero, true))
             //{
-                rootHub = new ControlService();
+                createControlService();
+                //rootHub = new ControlService();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new DS4Form(args));
@@ -114,6 +115,16 @@ namespace DS4Windows
             while (testThread.IsAlive)
                 Thread.SpinWait(500);
             threadComEvent.Close();
+        }
+
+        private static void createControlService()
+        {
+            Thread temp = new Thread(() => { rootHub = new ControlService(); });
+            temp.Priority = ThreadPriority.Normal;
+            temp.IsBackground = true;
+            temp.Start();
+            while (temp.IsAlive)
+                Thread.SpinWait(500);
         }
 
         private static void CreateTempWorkerThread()

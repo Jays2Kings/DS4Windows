@@ -23,6 +23,7 @@ namespace DS4Windows
         private static bool exitComThread = false;
         public static ControlService rootHub;
         private static Thread testThread;
+        private static Thread controlThread;
 
         /// <summary>
         /// The main entry point for the application.
@@ -119,11 +120,11 @@ namespace DS4Windows
 
         private static void createControlService()
         {
-            Thread temp = new Thread(() => { rootHub = new ControlService(); });
-            temp.Priority = ThreadPriority.Normal;
-            temp.IsBackground = true;
-            temp.Start();
-            while (temp.IsAlive)
+            controlThread = new Thread(() => { rootHub = new ControlService(); });
+            controlThread.Priority = ThreadPriority.Normal;
+            controlThread.IsBackground = true;
+            controlThread.Start();
+            while (controlThread.IsAlive)
                 Thread.SpinWait(500);
         }
 

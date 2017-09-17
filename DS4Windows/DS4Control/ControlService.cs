@@ -783,9 +783,7 @@ namespace DS4Windows
                 }
 
                 if (getEnableTouchToggle(ind))
-                {
                     CheckForTouchToggle(ind, cState, pState);
-                }
 
                 cState = Mapping.SetCurveAndDeadzone(ind, cState);
 
@@ -933,9 +931,9 @@ namespace DS4Windows
                     oldscrollvalue[deviceID] = getScrollSensitivity(deviceID);
                     getTouchSensitivity()[deviceID] = 0;
                     getScrollSensitivity()[deviceID] = 0;
-                    LogDebug(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
+                    LogDebug(oldtouchvalue[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn :
                         Properties.Resources.TouchpadMovementOff);
-                    Log.LogToTray(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
+                    Log.LogToTray(oldtouchvalue[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn :
                         Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }
@@ -943,9 +941,9 @@ namespace DS4Windows
                 {
                     getTouchSensitivity()[deviceID] = oldtouchvalue[deviceID];
                     getScrollSensitivity()[deviceID] = oldscrollvalue[deviceID];
-                    LogDebug(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
+                    LogDebug(oldtouchvalue[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn :
                         Properties.Resources.TouchpadMovementOff);
-                    Log.LogToTray(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
+                    Log.LogToTray(oldtouchvalue[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn :
                         Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }

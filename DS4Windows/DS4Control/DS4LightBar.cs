@@ -123,7 +123,8 @@ namespace DS4Windows
                             {
                                 if (elapsed < PULSE_FLASH_DURATION)
                                 {
-                                    ratio = 100.0 * (elapsed / (double)PULSE_FLASH_DURATION);
+                                    elapsed = elapsed / 40;
+                                    ratio = 100.0 * (elapsed / ((double)PULSE_FLASH_DURATION * 0.025));
                                 }
                                 else
                                 {
@@ -135,7 +136,8 @@ namespace DS4Windows
                             {
                                 if (elapsed < PULSE_FLASH_DURATION)
                                 {
-                                    ratio = (0 - 100.0) * (elapsed / (double)PULSE_FLASH_DURATION) + 100.0;
+                                    elapsed = elapsed / 40;
+                                    ratio = (0 - 100.0) * (elapsed / ((double)PULSE_FLASH_DURATION * 0.025)) + 100.0;
                                 }
                                 else
                                 {

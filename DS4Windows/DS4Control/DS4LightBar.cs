@@ -34,8 +34,9 @@ namespace DS4Windows
         public static DS4Color[] forcedColor = new DS4Color[4];
         public static byte[] forcedFlash = new byte[4];
         internal const int PULSE_FLASH_DURATION = 2000;
-        internal const int PULSE_FLASH_SEGMENTS = PULSE_FLASH_DURATION / 40;
+        internal const double PULSE_FLASH_SEGMENTS = PULSE_FLASH_DURATION / 40;
         internal const int PULSE_CHARGING_DURATION = 4000;
+        internal const double PULSE_CHARGING_SEGMENTS = PULSE_CHARGING_DURATION / 40;
 
         public static void updateLightBar(DS4Device device, int deviceNum, DS4State cState,
             DS4StateExposed eState, Mouse tp)
@@ -83,13 +84,9 @@ namespace DS4Windows
                     }
                     else if (getLedAsBatteryIndicator(deviceNum))
                     {
-                        //if (device.Charging == false || device.Battery >= 100) // when charged, don't show the charging animation
-                        {
-                            DS4Color fullColor = getMainColor(deviceNum);
-                            DS4Color lowColor = getLowColor(deviceNum);
-
-                            color = getTransitionedColor(lowColor, fullColor, device.getBattery());
-                        }
+                        DS4Color fullColor = getMainColor(deviceNum);
+                        DS4Color lowColor = getLowColor(deviceNum);
+                        color = getTransitionedColor(lowColor, fullColor, device.getBattery());
                     }
                     else
                     {
@@ -193,7 +190,8 @@ namespace DS4Windows
                                 {
                                     if (elapsed < PULSE_CHARGING_DURATION)
                                     {
-                                        ratio = 100.0 * (elapsed / (double)PULSE_CHARGING_DURATION);
+                                        elapsed = elapsed / 40;
+                                        ratio = 100.0 * (elapsed / PULSE_CHARGING_SEGMENTS);
                                     }
                                     else
                                     {
@@ -205,7 +203,8 @@ namespace DS4Windows
                                 {
                                     if (elapsed < PULSE_CHARGING_DURATION)
                                     {
-                                        ratio = (0 - 100.0) * (elapsed / (double)PULSE_CHARGING_DURATION) + 100.0;
+                                        elapsed = elapsed / 40;
+                                        ratio = (0 - 100.0) * (elapsed / PULSE_CHARGING_SEGMENTS) + 100.0;
                                     }
                                     else
                                     {

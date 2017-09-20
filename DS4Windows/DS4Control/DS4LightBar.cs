@@ -34,6 +34,7 @@ namespace DS4Windows
         public static DS4Color[] forcedColor = new DS4Color[4];
         public static byte[] forcedFlash = new byte[4];
         internal const int PULSE_FLASH_DURATION = 2000;
+        internal const int PULSE_FLASH_SEGMENTS = PULSE_FLASH_DURATION / 40;
         internal const int PULSE_CHARGING_DURATION = 4000;
 
         public static void updateLightBar(DS4Device device, int deviceNum, DS4State cState,
@@ -124,7 +125,7 @@ namespace DS4Windows
                                 if (elapsed < PULSE_FLASH_DURATION)
                                 {
                                     elapsed = elapsed / 40;
-                                    ratio = 100.0 * (elapsed / ((double)PULSE_FLASH_DURATION * 0.025));
+                                    ratio = 100.0 * (elapsed / PULSE_FLASH_SEGMENTS);
                                 }
                                 else
                                 {
@@ -137,7 +138,7 @@ namespace DS4Windows
                                 if (elapsed < PULSE_FLASH_DURATION)
                                 {
                                     elapsed = elapsed / 40;
-                                    ratio = (0 - 100.0) * (elapsed / ((double)PULSE_FLASH_DURATION * 0.025)) + 100.0;
+                                    ratio = (0 - 100.0) * (elapsed / PULSE_FLASH_SEGMENTS) + 100.0;
                                 }
                                 else
                                 {

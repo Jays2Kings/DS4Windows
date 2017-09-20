@@ -24,16 +24,51 @@ namespace DS4Windows
         public int outputAccelX, outputAccelY, outputAccelZ;
         public double accelXG, accelYG, accelZG;
         public double angVelYaw, angVelPitch, angVelRoll;
-        public readonly int gyroYawFull, gyroPitchFull, gyroRollFull;
-        public readonly int accelXFull, accelYFull, accelZFull;
-        public readonly byte touchID;
-        public readonly double elapsed;
-        public readonly SixAxis previousAxis = null;
+        public int gyroYawFull, gyroPitchFull, gyroRollFull;
+        public int accelXFull, accelYFull, accelZFull;
+        public double elapsed;
+        public SixAxis previousAxis = null;
 
         double recip = 1d / 8192d;
         double tempDouble = 0d;
 
         public SixAxis(int X, int Y, int Z,
+            int aX, int aY, int aZ,
+            double elapsedDelta, SixAxis prevAxis = null)
+        {
+            populate(X, Y, Z, aX, aY, aZ, elapsedDelta, prevAxis);
+        }
+
+        public void copy(SixAxis src)
+        {
+            gyroYaw = src.gyroYaw;
+            gyroPitch = src.gyroPitch;
+            gyroRoll = src.gyroRoll;
+
+            gyroYawFull = src.gyroYawFull;
+            accelXFull = src.accelXFull; accelYFull = src.accelYFull; accelZFull = src.accelZFull;
+
+            angVelYaw = src.angVelYaw;
+            angVelPitch = src.angVelPitch;
+            angVelRoll = src.angVelRoll;
+
+            accelXG = src.accelXG;
+            accelYG = src.accelYG;
+            accelZG = src.accelZG;
+
+            // Put accel ranges between 0 - 128 abs
+            accelX = src.accelX;
+            accelY = src.accelY;
+            accelZ = src.accelZ;
+            outputAccelX = accelX;
+            outputAccelY = accelY;
+            outputAccelZ = accelZ;
+
+            elapsed = src.elapsed;
+            previousAxis = src.previousAxis;
+        }
+
+        public void populate(int X, int Y, int Z,
             int aX, int aY, int aZ,
             double elapsedDelta, SixAxis prevAxis = null)
         {
@@ -68,12 +103,13 @@ namespace DS4Windows
     public class DS4SixAxis
     {
         public event EventHandler<SixAxisEventArgs> SixAccelMoved = null;
+        private SixAxis sPrev = null, now = null;
 
-        private int lastGyroYaw, lastGyroPitch, lastGyroRoll,
-            lastAX, lastAY, lastAZ;
-
-        private double lastElapsedDelta;
-        private byte[] previousPacket = new byte[8];
+        public DS4SixAxis()
+        {
+            sPrev = new SixAxis(0, 0, 0, 0, 0, 0, 0.0);
+            now = new SixAxis(0, 0, 0, 0, 0, 0, 0.0);
+        }
 
         public void handleSixaxis(byte[] gyro, byte[] accel, DS4State state,
             double elapsedDelta)
@@ -90,25 +126,14 @@ namespace DS4Windows
             {
                 if (SixAccelMoved != null)
                 {
-                    SixAxis sPrev = null, now = null;
-                    sPrev = new SixAxis(lastGyroYaw, lastGyroPitch, lastGyroRoll,
-                        lastAX, lastAY, lastAZ, lastElapsedDelta);
-
-                    now = new SixAxis(currentYaw, currentPitch, currentRoll,
+                    sPrev.copy(now);
+                    now.populate(currentYaw, currentPitch, currentRoll,
                         AccelX, AccelY, AccelZ, elapsedDelta, sPrev);
 
                     args = new SixAxisEventArgs(state.ReportTimeStamp, now);
                     state.Motion = now;
                     SixAccelMoved(this, args);
                 }
-
-                lastGyroYaw = currentYaw;
-                lastGyroPitch = currentPitch;
-                lastGyroRoll = currentRoll;
-                lastAX = AccelX;
-                lastAY = AccelY;
-                lastAZ = AccelZ;
-                lastElapsedDelta = elapsedDelta;
             }
         }
     }

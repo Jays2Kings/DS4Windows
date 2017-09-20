@@ -24,7 +24,6 @@ namespace DS4Windows
         public bool recordingMacro = false;
         public event EventHandler<DebugEventArgs> Debug = null;
         bool[] buttonsdown = new bool[4] { false, false, false, false };
-        List<DS4Controls> dcs = new List<DS4Controls>();
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
         Thread tempThread;
@@ -56,8 +55,6 @@ namespace DS4Windows
                 Thread.SpinWait(500);
             }
 
-            AddtoDS4List();
-
             for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
             {
                 processingData[i] = new X360Data();
@@ -66,39 +63,6 @@ namespace DS4Windows
                 PreviousState[i] = new DS4State();
                 ExposedState[i] = new DS4StateExposed(CurrentState[i]);
             }
-        }
-
-        void AddtoDS4List()
-        {
-            dcs.Add(DS4Controls.Cross);
-            dcs.Add(DS4Controls.Circle);
-            dcs.Add(DS4Controls.Square);
-            dcs.Add(DS4Controls.Triangle);
-            dcs.Add(DS4Controls.Options);
-            dcs.Add(DS4Controls.Share);
-            dcs.Add(DS4Controls.DpadUp);
-            dcs.Add(DS4Controls.DpadDown);
-            dcs.Add(DS4Controls.DpadLeft);
-            dcs.Add(DS4Controls.DpadRight);
-            dcs.Add(DS4Controls.PS);
-            dcs.Add(DS4Controls.L1);
-            dcs.Add(DS4Controls.R1);
-            dcs.Add(DS4Controls.L2);
-            dcs.Add(DS4Controls.R2);
-            dcs.Add(DS4Controls.L3);
-            dcs.Add(DS4Controls.R3);
-            dcs.Add(DS4Controls.LXPos);
-            dcs.Add(DS4Controls.LXNeg);
-            dcs.Add(DS4Controls.LYPos);
-            dcs.Add(DS4Controls.LYNeg);
-            dcs.Add(DS4Controls.RXPos);
-            dcs.Add(DS4Controls.RXNeg);
-            dcs.Add(DS4Controls.RYPos);
-            dcs.Add(DS4Controls.RYNeg);
-            dcs.Add(DS4Controls.SwipeUp);
-            dcs.Add(DS4Controls.SwipeDown);
-            dcs.Add(DS4Controls.SwipeLeft);
-            dcs.Add(DS4Controls.SwipeRight);
         }
 
         private void WarnExclusiveModeFailure(DS4Device device)

@@ -38,8 +38,7 @@ namespace DS4Windows
         internal const int PULSE_CHARGING_DURATION = 4000;
         internal const double PULSE_CHARGING_SEGMENTS = PULSE_CHARGING_DURATION / 40;
 
-        public static void updateLightBar(DS4Device device, int deviceNum, DS4State cState,
-            DS4StateExposed eState, Mouse tp)
+        public static void updateLightBar(DS4Device device, int deviceNum)
         {
             DS4Color color;
             if (!defaultLight && !forcelight[deviceNum])

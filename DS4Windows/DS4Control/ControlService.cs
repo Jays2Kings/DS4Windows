@@ -215,8 +215,7 @@ namespace DS4Windows
                             DS4LightBar.forcelight[i] = false;
                             DS4LightBar.forcedFlash[i] = 0;
                             DS4LightBar.defaultLight = true;
-                            DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i],
-                                ExposedState[i], touchPad[i]);
+                            DS4LightBar.updateLightBar(DS4Controllers[i], i);
                             tempDevice.IsRemoved = true;
                             Thread.Sleep(50);
                         }
@@ -780,7 +779,7 @@ namespace DS4Windows
                 Mapping.Commit(ind);
 
                 // Update the GUI/whatever.
-                DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
+                DS4LightBar.updateLightBar(device, ind);
             }
         }
 

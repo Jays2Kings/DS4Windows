@@ -139,7 +139,7 @@ namespace DS4Windows
                 int idx = 0;
                 for (int i = 0; i < SMOOTH_BUFFER_LEN; i++)
                 {
-                    idx = Math.Abs(smoothBufferTail - i - 1) % SMOOTH_BUFFER_LEN;
+                    idx = (smoothBufferTail - i - 1 + SMOOTH_BUFFER_LEN) % SMOOTH_BUFFER_LEN;
                     x_out += xSmoothBuffer[idx] * currentWeight;
                     y_out += ySmoothBuffer[idx] * currentWeight;
                     finalWeight += currentWeight;

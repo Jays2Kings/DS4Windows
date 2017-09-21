@@ -1163,7 +1163,7 @@ namespace DS4Windows
         public bool[] flushHIDQueue = new bool[5] { false, false, false, false, false };
         public bool[] enableTouchToggle = new bool[5] { true, true, true, true, true };
         public int[] idleDisconnectTimeout = new int[5] { 0, 0, 0, 0, 0 };
-        public bool[] touchpadJitterCompensation = new bool[5] { false, false, false, false, false };
+        public bool[] touchpadJitterCompensation = new bool[5] { true, true, true, true, true };
         public bool[] lowerRCOn = new bool[5] { false, false, false, false, false };
         public bool[] ledAsBattery = new bool[5] { false, false, false, false, false };
         public byte[] flashType = new byte[5] { 0, 0, 0, 0, 0 };
@@ -3390,7 +3390,7 @@ namespace DS4Windows
             flushHIDQueue[device] = false;
             enableTouchToggle[device] = false;
             idleDisconnectTimeout[device] = 0;
-            touchpadJitterCompensation[device] = false;
+            touchpadJitterCompensation[device] = true;
             lowerRCOn[device] = false;
             ledAsBattery[device] = false;
             flashType[device] = 0;

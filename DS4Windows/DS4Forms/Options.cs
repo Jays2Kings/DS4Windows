@@ -614,6 +614,16 @@ namespace DS4Windows
                 nUDRSCurve.Value = RSCurve[device];
                 cBControllerInput.Checked = DS4Mapping;
 
+                for (int i = 0, arlen = cMGyroTriggers.Items.Count; i < arlen; i++)
+                {
+                    ((ToolStripMenuItem)cMGyroTriggers.Items[i]).Checked = false;
+                }
+
+                for (int i = 0, arlen = cMTouchDisableInvert.Items.Count; i < arlen; i++)
+                {
+                    ((ToolStripMenuItem)cMTouchDisableInvert.Items[i]).Checked = false;
+                }
+
                 string[] satriggers = SATriggers[device].Split(',');
                 List<string> s = new List<string>();
                 int gyroTriggerCount = cMGyroTriggers.Items.Count;

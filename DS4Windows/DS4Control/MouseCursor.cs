@@ -243,15 +243,15 @@ namespace DS4Windows
             if (jitterCompenstation)
             {
                 double absX = Math.Abs(xMotion);
-                if (absX <= normX * 0.4)
+                if (absX <= normX * 0.34)
                 {
-                    xMotion = signX * Math.Pow(absX / 0.4f, 1.44) * 0.4;
+                    xMotion = signX * Math.Pow(absX / 0.34f, 1.44) * 0.34;
                 }
 
                 double absY = Math.Abs(yMotion);
-                if (absY <= normY * 0.4)
+                if (absY <= normY * 0.34)
                 {
-                    yMotion = signY * Math.Pow(absY / 0.4f, 1.44) * 0.4;
+                    yMotion = signY * Math.Pow(absY / 0.34f, 1.44) * 0.34;
                 }
             }
 

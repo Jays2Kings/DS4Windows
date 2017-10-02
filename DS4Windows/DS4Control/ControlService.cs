@@ -191,6 +191,8 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingX360);
 
+                LogDebug("Closing connection to Scp Virtual Bus");
+
                 bool anyUnplugged = false;                
                 for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
                 {

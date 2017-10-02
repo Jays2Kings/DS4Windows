@@ -57,6 +57,8 @@ namespace DS4Windows
         string logFile = appdatapath + @"\DS4Service.log";
         bool turnOffTemp;
         bool runningBat;
+        private bool changingService;
+        public bool ChangingService => changingService;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
         string[] notifyText = new string[5]
@@ -943,11 +945,13 @@ namespace DS4Windows
         private void serviceStartup(bool log)
         {
             var uiContext = SynchronizationContext.Current;
+            changingService = true;
             TaskRunner.Run(() =>
             {
                 //Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
                 Program.rootHub.Start(uiContext, log);
                 Invoke((System.Action)(() => { serviceStartupFinish(); }));
+                changingService = false;
             });
         }
 
@@ -968,10 +972,12 @@ namespace DS4Windows
 
         private void serviceShutdown(bool log)
         {
+            changingService = true;
             TaskRunner.Run(() =>
             {
                 Program.rootHub.Stop(log);
                 Invoke((System.Action)(() => { serviceShutdownFinish(); }));
+                changingService = false;
             });
         }
 

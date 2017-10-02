@@ -1604,7 +1604,7 @@ namespace DS4Windows
             if (olddinputcheck != cBDinput.Checked)
             {
                 root.btnStartStop_Clicked(false);
-                root.btnStartStop_Clicked(false);
+                finishDInputChange();
             }
 
             if (btnRumbleHeavyTest.Text == Properties.Resources.StopText)
@@ -2128,8 +2128,21 @@ namespace DS4Windows
             if (!loading && device < 4)
             {
                 root.btnStartStop_Clicked(false);
-                root.btnStartStop_Clicked(false);
+                finishDInputChange();
             }
+        }
+
+        private async void finishDInputChange()
+        {
+            await System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                while (root.ChangingService)
+                {
+                    System.Threading.Thread.Sleep(10);
+                }
+            });
+
+            root.btnStartStop_Clicked(false);
         }
 
         private void cbStartTouchpadOff_CheckedChanged(object sender, EventArgs e)

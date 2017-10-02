@@ -419,6 +419,13 @@ namespace DS4Windows
                 if (conType == ConnectionType.USB)
                 {
                     warnInterval = WARN_INTERVAL_USB;
+                    HidDeviceAttributes tempAttr = hDevice.Attributes;
+                    if (tempAttr.VendorId == 0x054C && tempAttr.ProductId == 0x09CC)
+                    {
+                        audio = new DS4Audio();
+                        micAudio = new DS4Audio(DS4Library.CoreAudio.DataFlow.Capture);
+                    }
+
                     synced = true;
                 }
                 else
@@ -1041,7 +1048,7 @@ namespace DS4Windows
                 outputReportBuffer[8] = ligtBarColor.blue; // blue
                 outputReportBuffer[9] = ledFlashOn; // flash on duration
                 outputReportBuffer[10] = ledFlashOff; // flash off duration
-                if (conType == ConnectionType.SONYWA)
+                if (audio != null)
                 {
                     // Headphone volume levels
                     outputReportBuffer[19] = outputReportBuffer[20] =

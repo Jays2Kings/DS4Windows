@@ -967,7 +967,7 @@ namespace DS4Windows
                 autoProfilesTimer.Start();
             }
 
-            btnStartStop.Text = Properties.Resources.StopText;
+            startToolStripMenuItem.Text = btnStartStop.Text = Properties.Resources.StopText;
         }
 
         private void serviceShutdown(bool log)
@@ -985,7 +985,7 @@ namespace DS4Windows
         {
             hotkeysTimer.Stop();
             autoProfilesTimer.Stop();
-            btnStartStop.Text = Properties.Resources.StartText;
+            startToolStripMenuItem.Text = btnStartStop.Text = Properties.Resources.StartText;
             blankControllerTab();
             populateFullNotifyText();
         }
@@ -1001,8 +1001,6 @@ namespace DS4Windows
                 blankControllerTab();
                 serviceShutdown(log);
             }
-
-            startToolStripMenuItem.Text = btnStartStop.Text;
         }
 
         protected void btnClear_Click(object sender, EventArgs e)

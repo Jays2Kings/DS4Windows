@@ -9,7 +9,9 @@ namespace DS4Windows
 {
     public class DS4Devices
     {
+        // (HID device path, DS4Device)
         private static Dictionary<string, DS4Device> Devices = new Dictionary<string, DS4Device>();
+        private static HashSet<string> deviceSerials = new HashSet<string>();
         private static HashSet<string> DevicePaths = new HashSet<string>();
         // Keep instance of opened exclusive mode devices not in use (Charging while using BT connection)
         private static List<HidDevice> DisabledDevices = new List<HidDevice>();
@@ -101,7 +103,7 @@ namespace DS4Windows
                     {
                         string serial = hDevice.readSerial();
                         bool validSerial = !serial.Equals(DS4Device.blankSerial);
-                        if (Devices.ContainsKey(serial))
+                        if (validSerial && deviceSerials.Contains(serial))
                         {
                             // happens when the BT endpoint already is open and the USB is plugged into the same host
                             if (isExclusiveMode && hDevice.IsExclusive &&
@@ -119,27 +121,11 @@ namespace DS4Windows
                         {
                             DS4Device ds4Device = new DS4Device(hDevice);
                             //ds4Device.Removal += On_Removal;
-                            Devices.Add(ds4Device.MacAddress, ds4Device);
+                            Devices.Add(hDevice.DevicePath, ds4Device);
                             DevicePaths.Add(hDevice.DevicePath);
                         }
                     }
                 }
-            }
-        }
-
-        //allows to get DS4Device by specifying unique MAC address
-        //format for MAC address is XX:XX:XX:XX:XX:XX
-        public static DS4Device getDS4Controller(string mac)
-        {
-            lock (Devices)
-            {
-                DS4Device device = null;
-                try
-                {
-                    Devices.TryGetValue(mac, out device);
-                }
-                catch (ArgumentNullException) { }
-                return device;
             }
         }
         
@@ -170,6 +156,7 @@ namespace DS4Windows
 
                 Devices.Clear();
                 DevicePaths.Clear();
+                deviceSerials.Clear();
                 DisabledDevices.Clear();
             }
         }
@@ -183,8 +170,9 @@ namespace DS4Windows
                 if (device != null)
                 {
                     device.HidDevice.CloseDevice();
-                    Devices.Remove(device.MacAddress);
+                    Devices.Remove(device.HidDevice.DevicePath);
                     DevicePaths.Remove(device.HidDevice.DevicePath);
+                    deviceSerials.Remove(device.MacAddress);
                     //purgeHiddenExclusiveDevices();
                 }
             }
@@ -197,13 +185,17 @@ namespace DS4Windows
                 DS4Device device = (DS4Device)sender;
                 if (device != null)
                 {
+                    string devPath = device.HidDevice.DevicePath;
                     string serial = device.getMacAddress();
-                    if (Devices.ContainsKey(serial))
+                    if (Devices.ContainsKey(devPath))
                     {
-                        Devices.Remove(serial);
+                        deviceSerials.Remove(serial);
                         device.updateSerial();
                         serial = device.getMacAddress();
-                        Devices.Add(serial, device);
+                        if (DS4Device.isValidSerial(serial))
+                        {
+                            deviceSerials.Add(serial);
+                        }
                     }
                 }
             }

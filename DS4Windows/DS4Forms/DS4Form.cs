@@ -2177,7 +2177,7 @@ namespace DS4Windows
             Label lb = (Label)sender;
             int i = Convert.ToInt32(lb.Tag);
             DS4Device d = Program.rootHub.DS4Controllers[i];
-            if (d != null && d.ConnectionType == ConnectionType.BT)
+            if (d != null)
             {
                 double latency = d.Latency;
                 toolTip1.Hide(Pads[i]);

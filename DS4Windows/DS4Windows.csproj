@@ -1147,6 +1147,20 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rem Copy compiled l18n assemblies to alt folder
+GOTO END
+if not exist $(TargetDir)Lang mkdir $(TargetDir)Lang
+set langs=ar cs de de-DE el es fi fr fr-FR he hu id it it-IT ja ko nl pl ^
+
+pt-BR ro-RO ru-RU  sl sv tr uk vi zh-CN zh-Hans zh-Hant
+
+for %25%25l in (%25langs%25) do (
+  xcopy $(TargetDir)%25%25l $(TargetDir)Lang\%25%25l\ /s /y
+)
+
+:END</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

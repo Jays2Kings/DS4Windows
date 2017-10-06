@@ -127,7 +127,7 @@
     <value>No elimines los otros ajustes aún</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Para aquellos que prefieren un programa portable Nota: esta opción no funciona si esta en una carpeta admin son o sin UAC</value>
+    <value>Para aquellos que prefieren un programa portable. Nota: esta opción no funciona si esta en una carpeta admin con o sin UAC</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Para aquellos que prefieren una instalación de ajustes regular se guarda en %appdata%/ds4tool</value>

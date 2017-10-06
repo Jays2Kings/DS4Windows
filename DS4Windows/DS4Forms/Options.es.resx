@@ -185,7 +185,7 @@
     <value>158, 21</value>
   </data>
   <data name="cBTouchpadJitterCompensation.Text" xml:space="preserve">
-    <value>Compensación Jitter</value>
+    <value>Compensación de nervios</value>
   </data>
   <data name="lbIdleMinutes.Location" type="System.Drawing.Point, System.Drawing">
     <value>257, 56</value>
@@ -386,7 +386,7 @@
     <value>202, 21</value>
   </data>
   <data name="cBLaunchProgram.Text" xml:space="preserve">
-    <value>Lanzar Programa con perfil</value>
+    <value>Abrir Programa con el perfil</value>
   </data>
   <data name="btnBrowse.Text" xml:space="preserve">
     <value>Explorar...</value>
@@ -395,7 +395,7 @@
     <value>129, 17</value>
   </data>
   <data name="lbUseController.Text" xml:space="preserve">
-    <value>Utilizar Controlador</value>
+    <value>Utilizar Control</value>
   </data>
   <data name="cBMouseAccel.Location" type="System.Drawing.Point, System.Drawing">
     <value>227, 11</value>
@@ -413,7 +413,7 @@
     <value>164, 21</value>
   </data>
   <data name="cBControllerInput.Text" xml:space="preserve">
-    <value>para Mapeo y lectura</value>
+    <value>para asignación y lectura</value>
   </data>
   <data name="cBIdleDisconnect.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 21</value>
@@ -461,7 +461,7 @@
     <value>Barra de luz</value>
   </data>
   <data name="btnRumbleLightTest.Text" xml:space="preserve">
-    <value>Prueba Ligera</value>
+    <value>Prueba Rapida</value>
   </data>
   <data name="gBRumble.Text" xml:space="preserve">
     <value>Vibración</value>
@@ -497,7 +497,7 @@
     <value>212, 156</value>
   </data>
   <data name="tPController.Text" xml:space="preserve">
-    <value>Lecturas del Controlador</value>
+    <value>Lecturas del Control</value>
   </data>
   <data name="cBShiftControl.Items" xml:space="preserve">
     <value>(nada)/Shift desactivado</value>
@@ -512,7 +512,7 @@
     <value>164, 17</value>
   </data>
   <data name="lbtoUse.Text" xml:space="preserve">
-    <value>para usar estos contoles</value>
+    <value>para usar estos controles</value>
   </data>
   <data name="tPShiftMod.Text" xml:space="preserve">
     <value>Modificador de Shift</value>
@@ -563,10 +563,10 @@
     <value>Dpad</value>
   </data>
   <data name="fingerOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
-    <value>Un dedo en el Touchpad</value>
+    <value>Un dedo en el panel táctil</value>
   </data>
   <data name="fingersOnTouchpadToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dos dedos en el Touchpad</value>
+    <value>Dos dedos en el panel táctil</value>
   </data>
   <data name="gBSensitivity,Text" xml:space="preserve">
     <value>Sensibilidad</value>

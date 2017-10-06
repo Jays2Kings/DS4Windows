@@ -219,18 +219,18 @@ namespace DS4Windows
 
                     if (globalState.currentClicks.wUpCount != 0 && globalState.previousClicks.wUpCount == 0)
                     {
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, 100);
+                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, 120);
                         oldnow = DateTime.UtcNow;
-                        wheel = 100;
+                        wheel = 120;
                     }
                     else if (globalState.currentClicks.wUpCount == 0 && globalState.previousClicks.wUpCount != 0)
                         wheel = 0;
 
                     if (globalState.currentClicks.wDownCount != 0 && globalState.previousClicks.wDownCount == 0)
                     {
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, -100);
+                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, -120);
                         oldnow = DateTime.UtcNow;
-                        wheel = -100;
+                        wheel = -120;
                     }
                     if (globalState.currentClicks.wDownCount == 0 && globalState.previousClicks.wDownCount != 0)
                         wheel = 0;

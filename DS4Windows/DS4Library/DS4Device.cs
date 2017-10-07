@@ -570,50 +570,54 @@ namespace DS4Windows
 
         private void performDs4Output()
         {
-            lock (outputReport)
+            try
             {
-                try
+                int lastError = 0;
+                while (!exitOutputThread)
                 {
-                    int lastError = 0;
-                    while (!exitOutputThread)
-                    {
-                        bool result = false;
-                        if (outputRumble)
-                        {
-                            result = writeOutput();
+                    bool result = false;
 
-                            if (!result)
-                            {
-                                int thisError = Marshal.GetLastWin32Error();
-                                if (lastError != thisError)
-                                {
-                                    Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
-                                    //Log.LogToGui(Mac.ToString() + " encountered write failure: " + thisError, true);
-                                    lastError = thisError;
-                                }
-                            }
-                            else
-                            {
-                                outputRumble = false;
-                            }
+                    if (outputRumble)
+                    {
+                        lock (outputReportBuffer)
+                        {
+                            outputReportBuffer.CopyTo(outputReport, 0);
+                            outputRumble = false;
                         }
 
-                        if (!outputRumble)
+                        result = writeOutput();
+
+                        if (!result)
                         {
-                            lastError = 0;
-                            Monitor.Wait(outputReport);
-                            /*if (testRumble.IsRumbleSet()) // repeat test rumbles periodically; rumble has auto-shut-off in the DS4 firmware
-                                Monitor.Wait(outputReport, 10000); // DS4 firmware stops it after 5 seconds, so let the motors rest for that long, too.
-                            else
-                                Monitor.Wait(outputReport);
-                            */
+                            outputRumble = true;
+                            int thisError = Marshal.GetLastWin32Error();
+                            if (lastError != thisError)
+                            {
+                                Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered write failure: " + thisError);
+                                //Log.LogToGui(Mac.ToString() + " encountered write failure: " + thisError, true);
+                                lastError = thisError;
+                            }
                         }
                     }
-                }
-                catch (ThreadInterruptedException)
-                {
 
+                    if (!outputRumble)
+                    {
+                        lastError = 0;
+                        lock (outputReportBuffer)
+                        {
+                            Monitor.Wait(outputReportBuffer);
+                        }
+
+                        /*if (testRumble.IsRumbleSet()) // repeat test rumbles periodically; rumble has auto-shut-off in the DS4 firmware
+                            Monitor.Wait(outputReport, 10000); // DS4 firmware stops it after 5 seconds, so let the motors rest for that long, too.
+                        else
+                            Monitor.Wait(outputReport);
+                        */
+                    }
                 }
+            }
+            catch (ThreadInterruptedException)
+            {
             }
         }
 
@@ -1020,48 +1024,47 @@ namespace DS4Windows
             setTestRumble();
             setHapticState();
 
-            if (conType == ConnectionType.BT)
-            {
-                outputReportBuffer[0] = 0x11;
-                //outputReportBuffer[1] = 0x80;
-                //outputReportBuffer[1] = 0x84;
-                outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
-                // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                outputReportBuffer[3] = 0xf7;
-                outputReportBuffer[6] = rightLightFastRumble; // fast motor
-                outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
-                outputReportBuffer[8] = ligtBarColor.red; // red
-                outputReportBuffer[9] = ligtBarColor.green; // green
-                outputReportBuffer[10] = ligtBarColor.blue; // blue
-                outputReportBuffer[11] = ledFlashOn; // flash on duration
-                outputReportBuffer[12] = ledFlashOff; // flash off duration
-            }
-            else
-            {
-                outputReportBuffer[0] = 0x05;
-                // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                outputReportBuffer[1] = 0xf7;
-                outputReportBuffer[4] = rightLightFastRumble; // fast motor
-                outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor
-                outputReportBuffer[6] = ligtBarColor.red; // red
-                outputReportBuffer[7] = ligtBarColor.green; // green
-                outputReportBuffer[8] = ligtBarColor.blue; // blue
-                outputReportBuffer[9] = ledFlashOn; // flash on duration
-                outputReportBuffer[10] = ledFlashOff; // flash off duration
-                if (audio != null)
-                {
-                    // Headphone volume levels
-                    outputReportBuffer[19] = outputReportBuffer[20] =
-                        Convert.ToByte(audio.getVolume());
-                    // Microphone volume level
-                    outputReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
-                }
-            }
-
             bool quitOutputThread = false;
-
-            lock (outputReport)
+            lock (outputReportBuffer)
             {
+                if (conType == ConnectionType.BT)
+                {
+                    outputReportBuffer[0] = 0x11;
+                    //outputReportBuffer[1] = 0x80;
+                    //outputReportBuffer[1] = 0x84;
+                    outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
+                    // enable rumble (0x01), lightbar (0x02), flash (0x04)
+                    outputReportBuffer[3] = 0xf7;
+                    outputReportBuffer[6] = rightLightFastRumble; // fast motor
+                    outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
+                    outputReportBuffer[8] = ligtBarColor.red; // red
+                    outputReportBuffer[9] = ligtBarColor.green; // green
+                    outputReportBuffer[10] = ligtBarColor.blue; // blue
+                    outputReportBuffer[11] = ledFlashOn; // flash on duration
+                    outputReportBuffer[12] = ledFlashOff; // flash off duration
+                }
+                else
+                {
+                    outputReportBuffer[0] = 0x05;
+                    // enable rumble (0x01), lightbar (0x02), flash (0x04)
+                    outputReportBuffer[1] = 0xf7;
+                    outputReportBuffer[4] = rightLightFastRumble; // fast motor
+                    outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor
+                    outputReportBuffer[6] = ligtBarColor.red; // red
+                    outputReportBuffer[7] = ligtBarColor.green; // green
+                    outputReportBuffer[8] = ligtBarColor.blue; // blue
+                    outputReportBuffer[9] = ledFlashOn; // flash on duration
+                    outputReportBuffer[10] = ledFlashOff; // flash off duration
+                    if (audio != null)
+                    {
+                        // Headphone volume levels
+                        outputReportBuffer[19] = outputReportBuffer[20] =
+                            Convert.ToByte(audio.getVolume());
+                        // Microphone volume level
+                        outputReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
+                    }
+                }
+
                 if (synchronous)
                 {
                     outputRumble = false;
@@ -1090,8 +1093,7 @@ namespace DS4Windows
                     if (output)
                     {
                         outputRumble = true;
-                        outputReportBuffer.CopyTo(outputReport, 0);
-                        Monitor.Pulse(outputReport);
+                        Monitor.Pulse(outputReportBuffer);
                     }
                 }
             }

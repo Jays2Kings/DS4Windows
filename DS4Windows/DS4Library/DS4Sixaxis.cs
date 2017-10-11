@@ -123,7 +123,7 @@ namespace DS4Windows
         }
 
         int temInt = 0;
-        public void setCalibrationData(ref byte[] calibData)
+        public void setCalibrationData(ref byte[] calibData, bool fromUSB)
         {
             int pitchPlus, pitchMinus, yawPlus, yawMinus, rollPlus, rollMinus,
                 accelXPlus, accelXMinus, accelYPlus, accelYMinus, accelZPlus, accelZMinus,
@@ -133,7 +133,7 @@ namespace DS4Windows
             calibrationData[1].bias = (short)((ushort)(calibData[4] << 8) | calibData[3]);
             calibrationData[2].bias = (short)((ushort)(calibData[6] << 8) | calibData[5]);
 
-            if (calibData[0] == 5)
+            if (!fromUSB)
             {
                 pitchPlus = temInt = (short)((ushort)(calibData[8] << 8) | calibData[7]);
                 yawPlus = temInt = (short)((ushort)(calibData[10] << 8) | calibData[9]);
@@ -145,10 +145,10 @@ namespace DS4Windows
             else
             {
                 pitchPlus = temInt = (short)((ushort)(calibData[8] << 8) | calibData[7]);
-                yawPlus = temInt = (short)((ushort)(calibData[10] << 8) | calibData[9]);
-                rollPlus = temInt = (short)((ushort)(calibData[12] << 8) | calibData[11]);
-                pitchMinus = temInt = (short)((ushort)(calibData[14] << 8) | calibData[13]);
-                yawMinus = temInt = (short)((ushort)(calibData[16] << 8) | calibData[15]);
+                pitchMinus = temInt = (short)((ushort)(calibData[10] << 8) | calibData[9]);
+                yawPlus = temInt = (short)((ushort)(calibData[12] << 8) | calibData[11]);
+                yawMinus = temInt = (short)((ushort)(calibData[14] << 8) | calibData[13]);
+                rollPlus = temInt = (short)((ushort)(calibData[16] << 8) | calibData[15]);
                 rollMinus = temInt = (short)((ushort)(calibData[18] << 8) | calibData[17]);
             }
 

@@ -452,7 +452,7 @@ namespace DS4Windows
             byte[] calibration = new byte[41];
             calibration[0] = conType == ConnectionType.BT ? (byte)0x05 : (byte)0x02;
             hDevice.readFeatureData(calibration);
-            sixAxis.setCalibrationData(ref calibration);
+            sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
         }
 
         private void timeoutTestThread()

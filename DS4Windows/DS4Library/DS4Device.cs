@@ -472,6 +472,14 @@ namespace DS4Windows
             }
         }
 
+        public void refreshCalibration()
+        {
+            byte[] calibration = new byte[41];
+            calibration[0] = conType == ConnectionType.BT ? (byte)0x05 : (byte)0x02;
+            hDevice.readFeatureData(calibration);
+            sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
+        }
+
         public void StartUpdate()
         {
             if (ds4Input == null)

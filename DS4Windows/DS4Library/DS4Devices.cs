@@ -197,6 +197,8 @@ namespace DS4Windows
                         {
                             deviceSerials.Add(serial);
                         }
+
+                        device.refreshCalibration();
                     }
                 }
             }

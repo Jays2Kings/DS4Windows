@@ -449,10 +449,7 @@ namespace DS4Windows
             touchpad = new DS4Touchpad();
             sixAxis = new DS4SixAxis();
 
-            byte[] calibration = new byte[41];
-            calibration[0] = conType == ConnectionType.BT ? (byte)0x05 : (byte)0x02;
-            hDevice.readFeatureData(calibration);
-            sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
+            refreshCalibration();
         }
 
         private void timeoutTestThread()

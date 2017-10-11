@@ -29,8 +29,7 @@ namespace DS4Windows
         public double elapsed;
         public SixAxis previousAxis = null;
 
-        double recip = 1d / 8192d;
-        double tempDouble = 0d;
+        private double tempDouble = 0d;
 
         public SixAxis(int X, int Y, int Z,
             int aX, int aY, int aZ,

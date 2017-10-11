@@ -123,6 +123,7 @@ namespace DS4Windows
                             //ds4Device.Removal += On_Removal;
                             Devices.Add(hDevice.DevicePath, ds4Device);
                             DevicePaths.Add(hDevice.DevicePath);
+                            deviceSerials.Add(serial);
                         }
                     }
                 }

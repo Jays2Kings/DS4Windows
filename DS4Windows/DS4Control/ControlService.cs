@@ -896,20 +896,16 @@ namespace DS4Windows
                     oldscrollvalue[deviceID] = getScrollSensitivity(deviceID);
                     getTouchSensitivity()[deviceID] = 0;
                     getScrollSensitivity()[deviceID] = 0;
-                    LogDebug(oldtouchvalue[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn :
-                        Properties.Resources.TouchpadMovementOff);
-                    Log.LogToTray(oldtouchvalue[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn :
-                        Properties.Resources.TouchpadMovementOff);
+                    LogDebug(Properties.Resources.TouchpadMovementOff);
+                    Log.LogToTray(Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }
                 else if (touchreleased[deviceID])
                 {
                     getTouchSensitivity()[deviceID] = oldtouchvalue[deviceID];
                     getScrollSensitivity()[deviceID] = oldscrollvalue[deviceID];
-                    LogDebug(oldtouchvalue[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn :
-                        Properties.Resources.TouchpadMovementOff);
-                    Log.LogToTray(oldtouchvalue[deviceID] > 0 ? Properties.Resources.TouchpadMovementOn :
-                        Properties.Resources.TouchpadMovementOff);
+                    LogDebug(Properties.Resources.TouchpadMovementOn);
+                    Log.LogToTray(Properties.Resources.TouchpadMovementOn);
                     touchreleased[deviceID] = false;
                 }
             }

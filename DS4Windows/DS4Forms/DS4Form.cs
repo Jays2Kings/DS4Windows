@@ -1547,10 +1547,10 @@ namespace DS4Windows
             hideDS4CheckBox.Enabled = false;
             Save();
             btnStartStop_Clicked(false);
-            finishHideDS4CheckBox();
+            finishHideDS4Check();
         }
 
-        private async void finishHideDS4CheckBox()
+        private async void finishHideDS4Check()
         {
             await TaskRunner.Factory.StartNew(() =>
             {

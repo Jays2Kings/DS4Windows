@@ -21,7 +21,7 @@ namespace DS4Windows
         private Direction hDirection = Direction.Neutral, vDirection = Direction.Neutral;
 
         private const double GYRO_MOUSE_COEFFICIENT = 0.0095;
-        private const int GYRO_MOUSE_DEADZONE = 12;
+        private const int GYRO_MOUSE_DEADZONE = 10;
         private const double GYRO_MOUSE_OFFSET = 0.1463;
         private const double GYRO_SMOOTH_MOUSE_OFFSET = 0.14698;
         private const double TOUCHPAD_MOUSE_OFFSET = 0.015;

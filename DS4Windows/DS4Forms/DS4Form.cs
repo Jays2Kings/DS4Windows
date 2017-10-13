@@ -1544,9 +1544,33 @@ namespace DS4Windows
             if (Environment.OSVersion.Version.Major >= 10 && Environment.OSVersion.Version.Build < 10586)
                 btnConnectDS4Win10.Visible = exclusiveMode;
 
-            btnStartStop_Clicked(false);
-            btnStartStop_Clicked(false);
+            hideDS4CheckBox.Enabled = false;
             Save();
+            btnStartStop_Clicked(false);
+            finishHideDS4CheckBox();
+        }
+
+        private async void finishHideDS4CheckBox()
+        {
+            await TaskRunner.Factory.StartNew(() =>
+            {
+                while (changingService)
+                {
+                    Thread.Sleep(10);
+                }
+            });
+
+            btnStartStop_Clicked(false);
+
+            await TaskRunner.Factory.StartNew(() =>
+            {
+                while (changingService)
+                {
+                    Thread.Sleep(10);
+                }
+            });
+
+            hideDS4CheckBox.Enabled = true;
         }
 
         private void startMinimizedCheckBox_CheckedChanged(object sender, EventArgs e)

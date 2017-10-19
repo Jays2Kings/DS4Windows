@@ -35,6 +35,7 @@ namespace DS4Windows
         private Button[] lights;
         private PictureBox[] statPB;
         private ToolStripMenuItem[] shortcuts;
+        protected CheckBox[] linkedProfileCB;
         WebClient wc = new WebClient();
         NonFormTimer hotkeysTimer = new NonFormTimer();
         NonFormTimer autoProfilesTimer = new NonFormTimer();
@@ -109,6 +110,8 @@ namespace DS4Windows
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
+
+            linkedProfileCB = new CheckBox[4] { linkCB1, linkCB2, linkCB3, linkCB4 };
 
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
@@ -312,6 +315,7 @@ namespace DS4Windows
             autoProfilesTimer.Interval = 1000;
 
             LoadP();
+            LoadLinkedProfiles();
 
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
@@ -1159,9 +1163,35 @@ namespace DS4Windows
             {
                 int devIndex = args.getIndex();
                 string serial = args.getSerial();
-                if (devIndex >= 0 && devIndex < ControlService.DS4_CONTROLLER_COUNT)
+                DS4Device device = (devIndex >= 0 && devIndex < ControlService.DS4_CONTROLLER_COUNT) ?
+                    Program.rootHub.DS4Controllers[devIndex] : null;
+                if (device != null)
                 {
                     Pads[devIndex].Text = serial;
+                    if (device.isSynced())
+                    {
+                        linkedProfileCB[devIndex].Enabled = true;
+                    }
+                    else
+                    {
+                        linkedProfileCB[devIndex].Enabled = false;
+                    }
+
+                    if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                    {
+                        ProfilePath[devIndex] = getLinkedProfile(device.getMacAddress());
+                        int profileIndex = cbs[devIndex].FindString(ProfilePath[devIndex]);
+                        if (profileIndex >= 0)
+                        {
+                            cbs[devIndex].SelectedIndex = profileIndex;
+                        }
+                    }
+                    else
+                    {
+                        ProfilePath[devIndex] = OlderProfilePath[devIndex];                        
+                    }
+
+                    linkedProfileCB[devIndex].Checked = false;
                 }
             }
         }
@@ -1191,6 +1221,20 @@ namespace DS4Windows
                 {
                     Pads[Index].Text = Program.rootHub.getDS4MacAddress(Index);
 
+                    linkedProfileCB[Index].CheckedChanged -= linkCB_CheckedChanged;
+                    if (DS4Device.isValidSerial(Pads[Index].Text))
+                    {
+                        linkedProfileCB[Index].Checked = containsLinkedProfile(Pads[Index].Text);
+                        linkedProfileCB[Index].Enabled = true;
+                    }
+                    else
+                    {
+                        linkedProfileCB[Index].Checked = false;
+                        linkedProfileCB[Index].Enabled = false;
+                    }
+
+                    linkedProfileCB[Index].CheckedChanged += linkCB_CheckedChanged;
+
                     switch (Program.rootHub.getDS4Status(Index))
                     {
                         case "USB": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.USB; toolTip1.SetToolTip(statPB[Index], ""); break;
@@ -1200,6 +1244,14 @@ namespace DS4Windows
                     }
 
                     Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
+                    int profileIndex = cbs[Index].FindString(ProfilePath[Index]);
+                    if (profileIndex >= 0)
+                    {
+                        cbs[Index].SelectedValueChanged -= Profile_Changed;
+                        cbs[Index].SelectedIndex = profileIndex;
+                        cbs[Index].SelectedValueChanged += Profile_Changed;
+                    }
+
                     if (UseCustomLed[Index])
                         lights[Index].BackColor = CustomColor[Index].ToColorA;
                     else
@@ -1295,6 +1347,7 @@ namespace DS4Windows
             cbs[device].Visible = on;
             shortcuts[device].Visible = on;
             Batteries[device].Visible = on;
+            linkedProfileCB[device].Visible = on;
         }
 
         protected void On_Debug(object sender, DebugEventArgs e)
@@ -1604,6 +1657,20 @@ namespace DS4Windows
                         lights[tdevice].BackColor = CustomColor[tdevice].ToColorA;
                     else
                         lights[tdevice].BackColor = MainColor[tdevice].ToColorA;
+
+                    if (linkedProfileCB[tdevice].Checked)
+                    {
+                        DS4Device device = Program.rootHub.DS4Controllers[tdevice];
+                        if (device != null && device.isValidSerial())
+                        {
+                            changeLinkedProfile(device.getMacAddress(), ProfilePath[tdevice]);
+                            SaveLinkedProfiles();
+                        }
+                    }
+                    else
+                    {
+                        OlderProfilePath[tdevice] = ProfilePath[tdevice];
+                    }
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
                     ShowOptions(tdevice, "");
@@ -2357,6 +2424,37 @@ namespace DS4Windows
         private void cBDownloadLangauge_CheckedChanged(object sender, EventArgs e)
         {
             DownloadLang = cBDownloadLangauge.Checked;
+        }
+
+        private void linkCB_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox linkCb = (CheckBox)sender;
+            int i = Convert.ToInt32(linkCb.Tag);
+            bool check = linkCb.Checked;
+            Global.linkedProfileCheck[i] = check;
+            DS4Device device = Program.rootHub.DS4Controllers[i];
+            if (device != null && device.isSynced())
+            {
+                if (check)
+                {
+                    if (device.isValidSerial())
+                    {
+                        changeLinkedProfile(device.getMacAddress(), ProfilePath[i]);
+                    }
+                }
+                else
+                {
+                    removeLinkedProfile(device.getMacAddress());
+                    ProfilePath[i] = OlderProfilePath[i];
+                    int profileIndex = cbs[i].FindString(ProfilePath[i]);
+                    if (profileIndex >= 0)
+                    {
+                        cbs[i].SelectedIndex = profileIndex;
+                    }
+                }
+
+                SaveLinkedProfiles();
+            }
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

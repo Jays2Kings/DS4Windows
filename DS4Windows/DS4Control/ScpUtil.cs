@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using System.IO;
 using System.Reflection;
@@ -235,8 +236,9 @@ namespace DS4Windows
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
         public static bool[] useDInputOnly = new bool[5] { true, true, true, true, true };
+        public static bool[] linkedProfileCheck = new bool[4] { true, true, true, true };
 
-        public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
+    public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
             X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
             X360Controls.LB, X360Controls.LT, X360Controls.LS, X360Controls.RB, X360Controls.RT, X360Controls.RS, X360Controls.X,
             X360Controls.Y, X360Controls.B, X360Controls.A, X360Controls.DpadUp, X360Controls.DpadRight, X360Controls.DpadDown,
@@ -266,6 +268,7 @@ namespace DS4Windows
             appdatapath = path;
             m_Config.m_Profile = appdatapath + "\\Profiles.xml";
             m_Config.m_Actions = appdatapath + "\\Actions.xml";
+            m_Config.m_linkedProfiles = Global.appdatapath + "\\LinkedProfiles.xml";
         }
 
         /// <summary>
@@ -885,6 +888,7 @@ namespace DS4Windows
 
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
+        public static string[] OlderProfilePath => m_Config.olderProfilePath;
         public static bool[] DistanceProfiles = m_Config.distanceProfiles;
 
         public static List<string>[] ProfileActions => m_Config.profileActions;
@@ -1031,11 +1035,45 @@ namespace DS4Windows
             return defaultButtonMapping[(int)dc];
         }
 
+        public static bool containsLinkedProfile(string serial)
+        {
+            string tempSerial = serial.Replace(":", string.Empty);
+            return m_Config.linkedProfiles.ContainsKey(tempSerial);
+        }
+
+        public static string getLinkedProfile(string serial)
+        {
+            string temp = string.Empty;
+            string tempSerial = serial.Replace(":", string.Empty);
+            if (m_Config.linkedProfiles.ContainsKey(tempSerial))
+            {
+                temp = m_Config.linkedProfiles[tempSerial];
+            }
+
+            return temp;
+        }
+
+        public static void changeLinkedProfile(string serial, string profile)
+        {
+            string tempSerial = serial.Replace(":", string.Empty);
+            m_Config.linkedProfiles[tempSerial] = profile;
+        }
+
+        public static void removeLinkedProfile(string serial)
+        {
+            string tempSerial = serial.Replace(":", string.Empty);
+            if (m_Config.linkedProfiles.ContainsKey(tempSerial))
+            {
+                m_Config.linkedProfiles.Remove(tempSerial);
+            }
+        }
+
         public static bool Load() => m_Config.Load();
         
-        public static void LoadProfile(int device, bool launchprogram, ControlService control, bool xinputChange = true)
+        public static void LoadProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
         {
-            m_Config.LoadProfile(device, launchprogram, control, "", xinputChange);
+            m_Config.LoadProfile(device, launchprogram, control, "", xinputChange, postLoad);
             tempprofilename[device] = string.Empty;
             tempprofileDistance[device] = false;
         }
@@ -1056,6 +1094,16 @@ namespace DS4Windows
         public static void SaveProfile(int device, string propath)
         {
             m_Config.SaveProfile(device, propath);
+        }
+
+        public static bool SaveLinkedProfiles()
+        {
+            return m_Config.SaveLinkedProfiles();
+        }
+
+        public static bool LoadLinkedProfiles()
+        {
+            return m_Config.LoadLinkedProfiles();
         }
 
         private static byte applyRatio(byte b1, byte b2, double r)
@@ -1155,6 +1203,7 @@ namespace DS4Windows
         //public String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + "\\Profiles.xml";
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         public String m_Actions = Global.appdatapath + "\\Actions.xml";
+        public string m_linkedProfiles = Global.appdatapath + "\\LinkedProfiles.xml";
 
         protected XmlDocument m_Xdoc = new XmlDocument();
         // fifth value used for options, not fifth controller
@@ -1168,6 +1217,8 @@ namespace DS4Windows
         public bool[] ledAsBattery = new bool[5] { false, false, false, false, false };
         public byte[] flashType = new byte[5] { 0, 0, 0, 0, 0 };
         public string[] profilePath = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public string[] olderProfilePath = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public Dictionary<string, string> linkedProfiles = new Dictionary<string, string>();
         // Cache properties instead of performing a string comparison every frame
         public bool[] distanceProfiles = new bool[5] { false, false, false, false, false };
         public Byte[] rumble = new Byte[5] { 100, 100, 100, 100, 100 };
@@ -1922,7 +1973,7 @@ namespace DS4Windows
         }
 
         public bool LoadProfile(int device, bool launchprogram, ControlService control,
-            string propath = "", bool xinputChange = true)
+            string propath = "", bool xinputChange = true, bool postLoad = true)
         {
             bool Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
@@ -2625,7 +2676,7 @@ namespace DS4Windows
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance
-            if (device < 4)
+            if (postLoad && device < 4)
             {
                 DS4Device tempDev = control.DS4Controllers[device];
                 if (tempDev != null)
@@ -2781,32 +2832,40 @@ namespace DS4Windows
                         {
                             distanceProfiles[0] = true;
                         }
+
+                        olderProfilePath[0] = profilePath[0];
                     }
-                    catch { profilePath[0] = string.Empty; distanceProfiles[0] = false; missingSetting = true; }
+                    catch { profilePath[0] = olderProfilePath[0] = string.Empty; distanceProfiles[0] = false; missingSetting = true; }
                     try {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Controller2"); profilePath[1] = Item.InnerText;
                         if (profilePath[1].ToLower().Contains("distance"))
                         {
                             distanceProfiles[1] = true;
                         }
+
+                        olderProfilePath[1] = profilePath[1];
                     }
-                    catch { profilePath[1] = string.Empty; distanceProfiles[1] = false; missingSetting = true; }
+                    catch { profilePath[1] = olderProfilePath[1] = string.Empty; distanceProfiles[1] = false; missingSetting = true; }
                     try {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Controller3"); profilePath[2] = Item.InnerText;
                         if (profilePath[2].ToLower().Contains("distance"))
                         {
                             distanceProfiles[2] = true;
                         }
+
+                        olderProfilePath[2] = profilePath[2];
                     }
-                    catch { profilePath[2] = string.Empty; distanceProfiles[2] = false; missingSetting = true; }
+                    catch { profilePath[2] = olderProfilePath[2] = string.Empty; distanceProfiles[2] = false; missingSetting = true; }
                     try {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Controller4"); profilePath[3] = Item.InnerText;
                         if (profilePath[3].ToLower().Contains("distance"))
                         {
                             distanceProfiles[3] = true;
                         }
+
+                        olderProfilePath[3] = profilePath[3];
                     }
-                    catch { profilePath[3] = string.Empty; distanceProfiles[3] = false; missingSetting = true; }
+                    catch { profilePath[3] = olderProfilePath[3] = string.Empty; distanceProfiles[3] = false; missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/LastChecked"); DateTime.TryParse(Item.InnerText, out lastChecked); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CheckWhen"); Int32.TryParse(Item.InnerText, out CheckWhen); }
@@ -2884,10 +2943,10 @@ namespace DS4Windows
             XmlNode xmlFormWidth = m_Xdoc.CreateNode(XmlNodeType.Element, "formWidth", null); xmlFormWidth.InnerText = formWidth.ToString(); Node.AppendChild(xmlFormWidth);
             XmlNode xmlFormHeight = m_Xdoc.CreateNode(XmlNodeType.Element, "formHeight", null); xmlFormHeight.InnerText = formHeight.ToString(); Node.AppendChild(xmlFormHeight);
 
-            XmlNode xmlController1 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller1", null); xmlController1.InnerText = profilePath[0]; Node.AppendChild(xmlController1);
-            XmlNode xmlController2 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller2", null); xmlController2.InnerText = profilePath[1]; Node.AppendChild(xmlController2);
-            XmlNode xmlController3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null); xmlController3.InnerText = profilePath[2]; Node.AppendChild(xmlController3);
-            XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); xmlController4.InnerText = profilePath[3]; Node.AppendChild(xmlController4);
+            XmlNode xmlController1 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller1", null); xmlController1.InnerText = !Global.linkedProfileCheck[0] ? profilePath[0] : olderProfilePath[0]; Node.AppendChild(xmlController1);
+            XmlNode xmlController2 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller2", null); xmlController2.InnerText = !Global.linkedProfileCheck[1] ? profilePath[1] : olderProfilePath[1]; Node.AppendChild(xmlController2);
+            XmlNode xmlController3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null); xmlController3.InnerText = !Global.linkedProfileCheck[2] ? profilePath[2] : olderProfilePath[2]; Node.AppendChild(xmlController3);
+            XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); xmlController4.InnerText = !Global.linkedProfileCheck[3] ? profilePath[3] : olderProfilePath[3]; Node.AppendChild(xmlController4);
 
             XmlNode xmlLastChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastChecked", null); xmlLastChecked.InnerText = lastChecked.ToString(); Node.AppendChild(xmlLastChecked);
             XmlNode xmlCheckWhen = m_Xdoc.CreateNode(XmlNodeType.Element, "CheckWhen", null); xmlCheckWhen.InnerText = CheckWhen.ToString(); Node.AppendChild(xmlCheckWhen);
@@ -3120,6 +3179,105 @@ namespace DS4Windows
                 }
             }
             catch { saved = false; }
+            return saved;
+        }
+
+        public bool createLinkedProfiles()
+        {
+            bool saved = true;
+            XmlDocument m_Xdoc = new XmlDocument();
+            XmlNode Node;
+
+            Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", string.Empty);
+            m_Xdoc.AppendChild(Node);
+
+            Node = m_Xdoc.CreateComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
+            m_Xdoc.AppendChild(Node);
+
+            Node = m_Xdoc.CreateWhitespace("\r\n");
+            m_Xdoc.AppendChild(Node);
+
+            Node = m_Xdoc.CreateNode(XmlNodeType.Element, "LinkedControllers", "");
+            m_Xdoc.AppendChild(Node);
+
+            try { m_Xdoc.Save(m_linkedProfiles); }
+            catch (UnauthorizedAccessException) { Log.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
+
+            return saved;
+        }
+
+        public bool LoadLinkedProfiles()
+        {
+            bool loaded = true;
+            if (File.Exists(m_linkedProfiles))
+            {
+                XmlDocument linkedXdoc = new XmlDocument();
+                XmlNode Node;
+                linkedXdoc.Load(m_linkedProfiles);
+                linkedProfiles.Clear();
+
+                try
+                {
+                    Node = linkedXdoc.SelectSingleNode("/LinkedControllers");
+                    XmlNodeList links = Node.ChildNodes;
+                    for (int i = 0, listLen = links.Count; i < listLen; i++)
+                    {
+                        XmlNode current = links[i];
+                        string serial = current.Name.Replace("MAC", string.Empty);
+                        string profile = current.InnerText;
+                        linkedProfiles[serial] = profile;
+                    }
+                }
+                catch { loaded = false; }
+            }
+            else
+            {
+                Log.LogToGui("LinkedProfiles.xml can't be found.", false);
+                loaded = false;
+            }
+
+            return loaded;
+        }
+
+        public bool SaveLinkedProfiles()
+        {
+            bool saved = true;
+            if (File.Exists(m_linkedProfiles))
+            {
+                XmlDocument linkedXdoc = new XmlDocument();
+                XmlNode Node;
+
+                Node = linkedXdoc.CreateXmlDeclaration("1.0", "utf-8", string.Empty);
+                linkedXdoc.AppendChild(Node);
+
+                Node = linkedXdoc.CreateComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
+                linkedXdoc.AppendChild(Node);
+
+                Node = linkedXdoc.CreateWhitespace("\r\n");
+                linkedXdoc.AppendChild(Node);
+
+                Node = linkedXdoc.CreateNode(XmlNodeType.Element, "LinkedControllers", "");
+                linkedXdoc.AppendChild(Node);
+
+                Dictionary<string, string>.KeyCollection serials = linkedProfiles.Keys;
+                for (int i = 0, itemCount = linkedProfiles.Count; i < itemCount; i++)
+                {
+                    string serial = serials.ElementAt(i);
+                    string profile = linkedProfiles[serial];
+                    XmlElement link = linkedXdoc.CreateElement("MAC" + serial);
+                    link.InnerText = profile;
+                    Node.AppendChild(link);
+                }
+
+                try { linkedXdoc.Save(m_linkedProfiles); }
+                catch (UnauthorizedAccessException) { Log.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
+            }
+            else
+            {
+                saved = createLinkedProfiles();
+                saved = saved && SaveLinkedProfiles();
+            }
+
             return saved;
         }
 

@@ -116,7 +116,15 @@ namespace DS4Windows
                         device.SyncChange += this.On_SyncChange;
                         device.SyncChange += DS4Devices.UpdateSerial;
                         device.SerialChange += this.On_SerialChange;
-                        LoadProfile(i, false, this, false);
+                        if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                        {
+                            ProfilePath[i] = getLinkedProfile(device.getMacAddress());
+                        }
+                        else
+                        {
+                            ProfilePath[i] = OlderProfilePath[i];
+                        }
+                        LoadProfile(i, false, this, false, false);
                         touchPad[i] = new Mouse(i, device);
                         device.LightBarColor = getMainColor(i);
 
@@ -295,7 +303,16 @@ namespace DS4Windows
                             device.SyncChange += this.On_SyncChange;
                             device.SyncChange += DS4Devices.UpdateSerial;
                             device.SerialChange += this.On_SerialChange;
-                            LoadProfile(i, false, this, false);
+                            if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                            {
+                                ProfilePath[i] = getLinkedProfile(device.getMacAddress());
+                            }
+                            else
+                            {
+                                ProfilePath[i] = OlderProfilePath[i];
+                            }
+
+                            LoadProfile(i, false, this, false, false);
                             touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = getMainColor(Index);
                             device.Report += this.On_Report;

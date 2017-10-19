@@ -308,15 +308,6 @@ namespace DS4Windows
             opt.FormBorderStyle = FormBorderStyle.None;
             tabProfiles.Controls.Add(opt);
 
-            for (int i = 0; i < 4; i++)
-            {
-                LoadProfile(i, false, Program.rootHub, false);
-                if (UseCustomLed[i])
-                    lights[i].BackColor = CustomColor[i].ToColorA;
-                else
-                    lights[i].BackColor = MainColor[i].ToColorA;
-            }
-
             autoProfilesTimer.Elapsed += CheckAutoProfiles;
             autoProfilesTimer.Interval = 1000;
 
@@ -1209,6 +1200,11 @@ namespace DS4Windows
                     }
 
                     Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
+                    if (UseCustomLed[Index])
+                        lights[Index].BackColor = CustomColor[Index].ToColorA;
+                    else
+                        lights[Index].BackColor = MainColor[Index].ToColorA;
+
                     if (Pads[Index].Text != String.Empty)
                     {
                         if (runningBat)

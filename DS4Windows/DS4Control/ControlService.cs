@@ -116,6 +116,7 @@ namespace DS4Windows
                         device.SyncChange += this.On_SyncChange;
                         device.SyncChange += DS4Devices.UpdateSerial;
                         device.SerialChange += this.On_SerialChange;
+                        LoadProfile(i, false, this, false);
                         touchPad[i] = new Mouse(i, device);
                         device.LightBarColor = getMainColor(i);
 
@@ -294,6 +295,7 @@ namespace DS4Windows
                             device.SyncChange += this.On_SyncChange;
                             device.SyncChange += DS4Devices.UpdateSerial;
                             device.SerialChange += this.On_SerialChange;
+                            LoadProfile(i, false, this, false);
                             touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = getMainColor(Index);
                             device.Report += this.On_Report;
@@ -729,9 +731,9 @@ namespace DS4Windows
                 //device.getPreviousState(PreviousState[ind]);
                 //DS4State pState = PreviousState[ind];
 
-                if (!device.firstReport && device.IsAlive())
+                if (device.firstReport && device.IsAlive())
                 {
-                    device.firstReport = true;
+                    device.firstReport = false;
                     device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
                     {
                         OnDeviceStatusChanged(this, ind);

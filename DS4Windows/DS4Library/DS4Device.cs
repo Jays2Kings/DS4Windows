@@ -659,7 +659,7 @@ namespace DS4Windows
 
         public double Latency = 0.0;
         public string error;
-        public bool firstReport = false;
+        public bool firstReport = true;
         public bool oldCharging = false;
         double curTimeDouble = 0.0;
         double oldTimeDouble = 0.0;

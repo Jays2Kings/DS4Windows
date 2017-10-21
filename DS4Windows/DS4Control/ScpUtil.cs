@@ -2692,119 +2692,6 @@ namespace DS4Windows
             return Loaded;
         }
 
-        public void LoadButtons(System.Windows.Forms.Control[] buttons, string control, Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes,
-           Dictionary<DS4Controls, UInt16> customMapKeys, Dictionary<DS4Controls, X360Controls> customMapButtons, Dictionary<DS4Controls, String> customMapMacros, Dictionary<DS4Controls, String> customMapExtras)
-        {
-            XmlNode Item;
-            DS4KeyType keyType;
-            UInt16 wvk;
-            string rootname = "DS4Windows";
-            foreach (var button in buttons)
-                try
-                {
-                    if (m_Xdoc.SelectSingleNode(rootname) == null)
-                    {
-                        rootname = "ScpControl";
-                    }
-                    //bool foundBinding = false;
-                    button.Font = new Font(button.Font, FontStyle.Regular);
-                    Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/KeyType/{0}", button.Name));
-                    if (Item != null)
-                    {
-                        //foundBinding = true;
-                        keyType = DS4KeyType.None;
-                        if (Item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
-                        {
-                            keyType = DS4KeyType.Unbound;
-                            button.Tag = "Unbound";
-                            button.Text = "Unbound";
-                        }
-                        else
-                        {
-                            bool SC = Item.InnerText.Contains(DS4KeyType.ScanCode.ToString());
-                            bool TG = Item.InnerText.Contains(DS4KeyType.Toggle.ToString());
-                            bool MC = Item.InnerText.Contains(DS4KeyType.Macro.ToString());
-                            bool MR = Item.InnerText.Contains(DS4KeyType.HoldMacro.ToString());
-                            button.Font = new Font(button.Font,
-                                (SC ? FontStyle.Bold : FontStyle.Regular) | (TG ? FontStyle.Italic : FontStyle.Regular) |
-                                (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
-                            if (Item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
-                                keyType |= DS4KeyType.ScanCode;
-                            if (Item.InnerText.Contains(DS4KeyType.Toggle.ToString()))
-                                keyType |= DS4KeyType.Toggle;
-                            if (Item.InnerText.Contains(DS4KeyType.Macro.ToString()))
-                                keyType |= DS4KeyType.Macro;
-                        }
-                        if (keyType != DS4KeyType.None)
-                            customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
-                    }
-                    string extras;
-                    Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Extras/{0}", button.Name));
-                    if (Item != null)
-                    {
-                        if (Item.InnerText != string.Empty)
-                        {
-                            extras = Item.InnerText;
-                            customMapExtras.Add(getDS4ControlsByName(button.Name), Item.InnerText);
-                        }
-                        else
-                        {
-                            m_Xdoc.RemoveChild(Item);
-                            extras = "0,0,0,0,0,0,0,0";
-                        }
-                    }
-                    else
-                        extras = "0,0,0,0,0,0,0,0";
-                    Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Macro/{0}", button.Name));
-                    if (Item != null)
-                    {
-                        string[] splitter = Item.InnerText.Split('/');
-                        int[] keys = new int[splitter.Length];
-                        for (int i = 0; i < keys.Length; i++)
-                        {
-                            keys[i] = int.Parse(splitter[i]);
-                            if (keys[i] < 255) splitter[i] = ((System.Windows.Forms.Keys)keys[i]).ToString();
-                            else if (keys[i] == 256) splitter[i] = "Left Mouse Button";
-                            else if (keys[i] == 257) splitter[i] = "Right Mouse Button";
-                            else if (keys[i] == 258) splitter[i] = "Middle Mouse Button";
-                            else if (keys[i] == 259) splitter[i] = "4th Mouse Button";
-                            else if (keys[i] == 260) splitter[i] = "5th Mouse Button";
-                            else if (keys[i] > 300) splitter[i] = "Wait " + (keys[i] - 300) + "ms";
-                        }
-                        button.Text = "Macro";
-                        button.Tag = new KeyValuePair<int[], string>(keys, extras);
-                        customMapMacros.Add(getDS4ControlsByName(button.Name), Item.InnerText);
-                    }
-                    else if (m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Key/{0}", button.Name)) != null)
-                    {
-                        Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Key/{0}", button.Name));
-                        if (UInt16.TryParse(Item.InnerText, out wvk))
-                        {
-                            //foundBinding = true;
-                            customMapKeys.Add(getDS4ControlsByName(Item.Name), wvk);
-                            button.Tag = new KeyValuePair<int, string>(wvk, extras);
-                            button.Text = ((System.Windows.Forms.Keys)wvk).ToString();
-                        }
-                    }
-                    else if (m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Button/{0}", button.Name)) != null)
-                    {
-                        Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Button/{0}", button.Name));
-                        //foundBinding = true;
-                        button.Tag = new KeyValuePair<string, string>(Item.InnerText, extras);
-                        button.Text = Item.InnerText;
-                        customMapButtons.Add(getDS4ControlsByName(button.Name), getX360ControlsByName(Item.InnerText));
-                    }
-                    else
-                    {
-                        button.Tag = new KeyValuePair<object, string>(null, extras);
-                    }
-                }
-                catch
-                {
-
-                }
-        }
-
         public bool Load()
         {
             bool Loaded = true;
@@ -2978,8 +2865,6 @@ namespace DS4Windows
             catch (UnauthorizedAccessException) { Saved = false; }
             return Saved;
         }
-
-
 
         private void CreateAction()
         {

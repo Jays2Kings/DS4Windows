@@ -2003,7 +2003,7 @@ namespace DS4Windows
                                 {
                                     // pressed down
                                     action.pastTime = DateTime.UtcNow;
-                                    if (action.pastTime <= (action.firstTap + TimeSpan.FromMilliseconds(150)))
+                                    if (action.pastTime <= (action.firstTap + TimeSpan.FromMilliseconds(100)))
                                     {
                                         action.tappedOnce = tappedOnce = false;
                                         action.secondtouchbegin = secondtouchbegin = true;
@@ -2028,7 +2028,7 @@ namespace DS4Windows
                                     {
                                         action.firstTouch = firstTouch = false;
                                         //firstTouch = false;
-                                        if (DateTime.UtcNow <= (action.pastTime + TimeSpan.FromMilliseconds(200)) && !tappedOnce)
+                                        if (DateTime.UtcNow <= (action.pastTime + TimeSpan.FromMilliseconds(150)) && !tappedOnce)
                                         {
                                             action.tappedOnce = tappedOnce = true;
                                             //tappedOnce = true;
@@ -2068,7 +2068,7 @@ namespace DS4Windows
                                     }
                                     //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
                                 }
-                                else if (firstTouch && (DateTime.UtcNow - action.pastTime) > TimeSpan.FromMilliseconds(1000)) //helddown
+                                else if (firstTouch && (DateTime.UtcNow - action.pastTime) > TimeSpan.FromMilliseconds(500)) //helddown
                                 {
                                     if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
                                     {

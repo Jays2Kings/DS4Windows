@@ -1131,6 +1131,64 @@ namespace DS4Windows
                     keyType = dcs.keyType;
                 }
 
+                if (usingExtra == DS4Controls.None || usingExtra == dcs.control)
+                {
+                    bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && dcs.shiftExtras != "0,0,0,0,0,0,0,0" && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
+                    bool regE = !string.IsNullOrEmpty(dcs.extras) && dcs.extras != "0,0,0,0,0,0,0,0";
+                    if ((regE || shiftE) && getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                    {
+                        usingExtra = dcs.control;
+                        string p;
+                        if (shiftE)
+                            p = dcs.shiftExtras;
+                        else
+                            p = dcs.extras;
+
+                        string[] extraS = p.Split(',');
+                        int extrasSLen = extraS.Length;
+                        int[] extras = new int[extrasSLen];
+                        for (int i = 0; i < extrasSLen; i++)
+                        {
+                            int b;
+                            if (int.TryParse(extraS[i], out b))
+                                extras[i] = b;
+                        }
+
+                        held[device] = true;
+                        try
+                        {
+                            if (!(extras[0] == extras[1] && extras[1] == 0))
+                                ctrl.setRumble((byte)extras[0], (byte)extras[1], device);
+
+                            if (extras[2] == 1)
+                            {
+                                DS4Color color = new DS4Color { red = (byte)extras[3], green = (byte)extras[4], blue = (byte)extras[5] };
+                                DS4LightBar.forcedColor[device] = color;
+                                DS4LightBar.forcedFlash[device] = (byte)extras[6];
+                                DS4LightBar.forcelight[device] = true;
+                            }
+
+                            if (extras[7] == 1)
+                            {
+                                if (oldmouse[device] == -1)
+                                    oldmouse[device] = ButtonMouseSensitivity[device];
+                                ButtonMouseSensitivity[device] = extras[8];
+                            }
+                        }
+                        catch { }
+                    }
+                    else if ((regE || shiftE) && held[device])
+                    {
+                        DS4LightBar.forcelight[device] = false;
+                        DS4LightBar.forcedFlash[device] = 0;
+                        ButtonMouseSensitivity[device] = oldmouse[device];
+                        oldmouse[device] = -1;
+                        ctrl.setRumble(0, 0, device);
+                        held[device] = false;
+                        usingExtra = DS4Controls.None;
+                    }
+                }
+
                 if (action != null)
                 {
                     if (actionType == DS4ControlSettings.ActionType.Macro)
@@ -1353,64 +1411,6 @@ namespace DS4Windows
 
                         // erase default mappings for things that are remapped
                         resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
-                    }
-                }
-
-                if (usingExtra == DS4Controls.None || usingExtra == dcs.control)
-                {
-                    bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && dcs.shiftExtras != "0,0,0,0,0,0,0,0" && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
-                    bool regE = !string.IsNullOrEmpty(dcs.extras) && dcs.extras != "0,0,0,0,0,0,0,0";
-                    if ((regE || shiftE) && getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                    {
-                        usingExtra = dcs.control;
-                        string p;
-                        if (shiftE)
-                            p = dcs.shiftExtras;
-                        else
-                            p = dcs.extras;
-
-                        string[] extraS = p.Split(',');
-                        int extrasSLen = extraS.Length;
-                        int[] extras = new int[extrasSLen];
-                        for (int i = 0; i < extrasSLen; i++)
-                        {
-                            int b;
-                            if (int.TryParse(extraS[i], out b))
-                                extras[i] = b;
-                        }
-
-                        held[device] = true;
-                        try
-                        {
-                            if (!(extras[0] == extras[1] && extras[1] == 0))
-                                ctrl.setRumble((byte)extras[0], (byte)extras[1], device);
-
-                            if (extras[2] == 1)
-                            {
-                                DS4Color color = new DS4Color { red = (byte)extras[3], green = (byte)extras[4], blue = (byte)extras[5] };
-                                DS4LightBar.forcedColor[device] = color;
-                                DS4LightBar.forcedFlash[device] = (byte)extras[6];
-                                DS4LightBar.forcelight[device] = true;
-                            }
-
-                            if (extras[7] == 1)
-                            {
-                                if (oldmouse[device] == -1)
-                                    oldmouse[device] = ButtonMouseSensitivity[device];
-                                ButtonMouseSensitivity[device] = extras[8];
-                            }
-                        }
-                        catch { }
-                    }
-                    else if ((regE || shiftE) && held[device])
-                    {
-                        DS4LightBar.forcelight[device] = false;
-                        DS4LightBar.forcedFlash[device] = 0;
-                        ButtonMouseSensitivity[device] = oldmouse[device];
-                        oldmouse[device] = -1;
-                        ctrl.setRumble(0, 0, device);
-                        held[device] = false;
-                        usingExtra = DS4Controls.None;
                     }
                 }
             }

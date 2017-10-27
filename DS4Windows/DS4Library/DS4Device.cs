@@ -578,11 +578,13 @@ namespace DS4Windows
             }
         }
 
+        private byte outputPendCount = 0;
         private void performDs4Output()
         {
             try
             {
                 int lastError = 0;
+                outputPendCount = 3;
                 while (!exitOutputThread)
                 {
                     bool result = false;
@@ -593,6 +595,7 @@ namespace DS4Windows
                         {
                             outputReportBuffer.CopyTo(outputReport, 0);
                             outputRumble = false;
+                            outputPendCount--;
                         }
 
                         result = writeOutput();
@@ -1096,12 +1099,17 @@ namespace DS4Windows
                 }
                 else
                 {
-                    bool output = false;
+                    bool output = outputPendCount > 0;
                     for (int i = 0, arlen = outputReport.Length; !output && i < arlen; i++)
                         output = outputReport[i] != outputReportBuffer[i];
 
                     if (output)
                     {
+                        if (outputPendCount == 0)
+                        {
+                            outputPendCount = 3;
+                        }
+
                         outputRumble = true;
                         Monitor.Pulse(outputReportBuffer);
                     }

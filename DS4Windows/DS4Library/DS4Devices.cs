@@ -7,6 +7,17 @@ using System.Security.Principal;
 
 namespace DS4Windows
 {
+    public class VidPidInfo
+    {
+        public readonly int vid;
+        public readonly int pid;
+        internal VidPidInfo(int vid, int pid)
+        {
+            this.vid = vid;
+            this.pid = pid;
+        }
+    }
+
     public class DS4Devices
     {
         // (HID device path, DS4Device)
@@ -17,8 +28,14 @@ namespace DS4Windows
         private static List<HidDevice> DisabledDevices = new List<HidDevice>();
         private static Stopwatch sw = new Stopwatch();
         public static bool isExclusiveMode = false;
-        private static int[] vids = { 0x054C, 0x1532 };
-        private static int[] pid = { 0xBA0, 0x5C4, 0x09CC, 0x1000 };
+        internal const int SONY_VID = 0x054C;
+        internal const int RAZER_VID = 0x1532;
+
+        private static VidPidInfo[] knownDevices =
+        {
+            new VidPidInfo(SONY_VID, 0xBA0), new VidPidInfo(SONY_VID, 0x5C4),
+            new VidPidInfo(SONY_VID, 0x09CC), new VidPidInfo(RAZER_VID, 0x1000)
+        };
 
         private static string devicePathToInstanceId(string devicePath)
         {
@@ -39,7 +56,7 @@ namespace DS4Windows
         {
             lock (Devices)
             {
-                IEnumerable<HidDevice> hDevices = HidDevices.Enumerate(vids, pid);
+                IEnumerable<HidDevice> hDevices = HidDevices.EnumerateDS4(knownDevices);
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });
 

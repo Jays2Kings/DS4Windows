@@ -37,8 +37,9 @@ namespace DS4Windows
         {
             lock (Devices)
             {
+                int[] vids = { 0x054C };
                 int[] pid = { 0xBA0, 0x5C4, 0x09CC };
-                IEnumerable<HidDevice> hDevices = HidDevices.Enumerate(0x054C, pid);
+                IEnumerable<HidDevice> hDevices = HidDevices.Enumerate(vids, pid);
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });
 

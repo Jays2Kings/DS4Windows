@@ -1,20 +1,12 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Net;
-using System.Text.RegularExpressions;
 
 using System.Xml;
 using System.Runtime.InteropServices;
-//using Ookii.Dialogs;
 
 namespace DS4Windows
 {
@@ -43,8 +35,10 @@ namespace DS4Windows
                 cbs[i].Items.Add(Properties.Resources.noneProfile);
                 cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
             }
+
             if (!File.Exists(Global.appdatapath + @"\Auto Profiles.xml"))
                 Create();
+
             LoadP();
 
             if (Directory.Exists(@"C:\Program Files (x86)\Steam\steamapps\common"))
@@ -64,7 +58,7 @@ namespace DS4Windows
 
         public bool Create()
         {
-            Boolean Saved = true;
+            bool Saved = true;
 
             try
             {
@@ -101,10 +95,13 @@ namespace DS4Windows
             programpaths.Clear();
             if (!File.Exists(Global.appdatapath + "\\Auto Profiles.xml"))
                 return;
+
             doc.Load(Global.appdatapath + "\\Auto Profiles.xml");
             XmlNodeList programslist = doc.SelectNodes("Programs/Program");
             foreach (XmlNode x in programslist)
                 programpaths.Add(x.Attributes["path"].Value);
+
+            lVPrograms.BeginUpdate();
             foreach (string st in programpaths)
             {
                 if (File.Exists(st))
@@ -125,14 +122,8 @@ namespace DS4Windows
                     RemoveP(st, false, false);
                 }
             }
+            lVPrograms.EndUpdate();
         }
-
-
-        private void bnLoadSteam_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void GetApps(string path)
         {
@@ -147,6 +138,7 @@ namespace DS4Windows
                 }
                 catch { }
             }
+
             appsloaded = true;
         }
 
@@ -162,8 +154,10 @@ namespace DS4Windows
                 }
                 catch { }
             }
+
             return lods;
         }
+
         private void GetShortcuts(string path)
         {
             lodsf.Clear();
@@ -171,22 +165,32 @@ namespace DS4Windows
             lodsf.AddRange(Directory.GetFiles(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs", "*.lnk", SearchOption.AllDirectories));
             for (int i = 0; i < lodsf.Count; i++)
                 lodsf[i] = GetTargetPath(lodsf[i]);
+
             appsloaded = true;
         }
 
-        void appstimer_Tick(object sender, EventArgs e)
+        void addLoadedApps()
         {
             if (appsloaded)
             {
                 bnAddPrograms.Text = Properties.Resources.AddingToList;
                 for (int i = lodsf.Count - 1; i >= 0; i--)
+                {
                     if (lodsf[i].Contains("etup") || lodsf[i].Contains("dotnet") || lodsf[i].Contains("SETUP")
                         || lodsf[i].Contains("edist") || lodsf[i].Contains("nstall") || String.IsNullOrEmpty(lodsf[i]))
                         lodsf.RemoveAt(i);
+                }
+
                 for (int i = lodsf.Count - 1; i >= 0; i--)
+                {
                     for (int j = programpaths.Count - 1; j >= 0; j--)
+                    {
                         if (lodsf[i].ToLower().Replace('/', '\\') == programpaths[j].ToLower().Replace('/', '\\'))
                             lodsf.RemoveAt(i);
+                    }
+                }
+
+                lVPrograms.BeginUpdate();
                 foreach (string st in lodsf)
                 {
                     if (File.Exists(st))
@@ -199,13 +203,13 @@ namespace DS4Windows
                         lVPrograms.Items.Add(lvi);
                     }
                 }
+                lVPrograms.EndUpdate();
+
                 bnAddPrograms.Text = Properties.Resources.AddPrograms;
                 bnAddPrograms.Enabled = true;
                 appsloaded = false;
-                ((Timer)sender).Stop();
             }
         }
-
 
         public void Save(string name)
         {
@@ -226,16 +230,20 @@ namespace DS4Windows
             el.AppendChild(m_Xdoc.CreateElement("Controller3")).InnerText = cBProfile3.Text;
             el.AppendChild(m_Xdoc.CreateElement("Controller4")).InnerText = cBProfile4.Text;
             el.AppendChild(m_Xdoc.CreateElement("TurnOff")).InnerText = cBTurnOffDS4W.Checked.ToString();
+
             try
             {
                 XmlNode oldxmlprocess = m_Xdoc.SelectSingleNode("/Programs/Program[@path=\"" + lBProgramPath.Text + "\"]");
                 Node.ReplaceChild(el, oldxmlprocess);
             }
             catch { Node.AppendChild(el); }
+
             m_Xdoc.AppendChild(Node);
             m_Xdoc.Save(m_Profile);
+
             if (lVPrograms.SelectedItems.Count > 0)
                 lVPrograms.SelectedItems[0].Checked = true;
+
             form.LoadP();
         }
 
@@ -251,7 +259,9 @@ namespace DS4Windows
                 {
                     Item = doc.SelectSingleNode("/Programs/Program[@path=\"" + name + "\"]" + "/Controller" + (i + 1));
                     if (Item != null)
+                    {
                         for (int j = 0; j < cbs[i].Items.Count; j++)
+                        {
                             if (cbs[i].Items[j].ToString() == Item.InnerText)
                             {
                                 cbs[i].SelectedIndex = j;
@@ -260,9 +270,12 @@ namespace DS4Windows
                             }
                             else
                                 cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+                        }
+                    }
                     else
                         cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
                 }
+
                 Item = doc.SelectSingleNode("/Programs/Program[@path=\"" + name + "\"]" + "/TurnOff");
                 bool turnOff;
                 if (Item != null && bool.TryParse(Item.InnerText, out turnOff))
@@ -276,6 +289,7 @@ namespace DS4Windows
             {
                 for (int i = 0; i < 4; i++)
                     cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+
                 cBTurnOffDS4W.Checked = false;
                 bnSave.Enabled = false;
             }
@@ -283,22 +297,24 @@ namespace DS4Windows
 
         public void RemoveP(string name, bool uncheck, bool reload = true)
         {
-
             XmlDocument doc = new XmlDocument();
             doc.Load(m_Profile);
             XmlNode Node = doc.SelectSingleNode("Programs");
             XmlNode Item = doc.SelectSingleNode("/Programs/Program[@path=\"" + name + "\"]");
             if (Item != null)
                 Node.RemoveChild(Item);
+
             doc.AppendChild(Node);
             doc.Save(m_Profile);
             if (lVPrograms.SelectedItems.Count > 0 && uncheck)
                 lVPrograms.SelectedItems[0].Checked = false;
+
             for (int i = 0; i < 4; i++)
                 cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+
             bnSave.Enabled = false;
             if (reload)
-            form.LoadP();
+                form.LoadP();
         }
 
         private void CBProfile_IndexChanged(object sender, EventArgs e)
@@ -306,6 +322,7 @@ namespace DS4Windows
             int last = cbs[0].Items.Count - 1;
             if (lBProgramPath.Text != string.Empty)
                 bnSave.Enabled = true;
+
             if (cbs[0].SelectedIndex == last && cbs[1].SelectedIndex == last &&
                 cbs[2].SelectedIndex == last && cbs[3].SelectedIndex == last && !cBTurnOffDS4W.Checked)
                 bnSave.Enabled = false;
@@ -315,6 +332,7 @@ namespace DS4Windows
         {
             if (lBProgramPath.Text != "")
                 Save(lBProgramPath.Text);
+
             bnSave.Enabled = false;
         }
 
@@ -328,8 +346,10 @@ namespace DS4Windows
             if (lBProgramPath.Text != "")
                 LoadP(lBProgramPath.Text);
             else
+            {
                 for (int i = 0; i < 4; i++)
                     cbs[i].SelectedIndex = cbs[i].Items.Count - 1;
+            }
         }
 
         private void bnDelete_Click(object sender, EventArgs e)
@@ -359,41 +379,24 @@ namespace DS4Windows
             form.RefreshAutoProfilesPage();
         }
 
-
-        private void addSteamGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void addSteamGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var AppCollectionThread = new System.Threading.Thread(() => GetApps(steamgamesdir));
-                AppCollectionThread.IsBackground = true;
-                AppCollectionThread.Start();
-            }
-            catch { }
             bnAddPrograms.Text = Properties.Resources.Loading;
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addSteamGamesToolStripMenuItem);
-            Timer appstimer = new Timer();
-            appstimer.Start();
-            appstimer.Tick += appstimer_Tick;
+            await System.Threading.Tasks.Task.Run(() => GetApps(steamgamesdir));
+            addLoadedApps();
         }
         
-        private void addDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void addDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    var AppCollectionThread = new System.Threading.Thread(() => GetApps(fbd.SelectedPath));
-                    AppCollectionThread.IsBackground = true;
-                    AppCollectionThread.Start();
-                }
-                catch { }
                 bnAddPrograms.Text = Properties.Resources.Loading;
                 bnAddPrograms.Enabled = false;
-                Timer appstimer = new Timer();
-                appstimer.Start();
-                appstimer.Tick += appstimer_Tick;
+                await System.Threading.Tasks.Task.Run(() => GetApps(fbd.SelectedPath));
+                addLoadedApps();
             }
         }
 
@@ -406,6 +409,7 @@ namespace DS4Windows
                 {
                     file = GetTargetPath(file);
                 }
+
                 lBProgramPath.Text = file;
                 iLIcons.Images.Add(Icon.ExtractAssociatedIcon(file));
                 ListViewItem lvi = new ListViewItem(Path.GetFileNameWithoutExtension(file), lVPrograms.Items.Count);
@@ -414,39 +418,22 @@ namespace DS4Windows
             }
         }
 
-        private void addOriginGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void addOriginGamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var AppCollectionThread = new System.Threading.Thread(() => GetApps(origingamesdir));
-                AppCollectionThread.IsBackground = true;
-                AppCollectionThread.Start();
-            }
-            catch { }
             bnAddPrograms.Text = Properties.Resources.Loading;
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addOriginGamesToolStripMenuItem);
-            Timer appstimer = new Timer();
-            appstimer.Start();
-            appstimer.Tick += appstimer_Tick;
+            await System.Threading.Tasks.Task.Run(() => GetApps(origingamesdir));
+            addLoadedApps();
         }
 
-        private void addProgramsFromStartMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void addProgramsFromStartMenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs");
-            try
-            {
-                var AppCollectionThread = new System.Threading.Thread(() => GetShortcuts(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs"));
-                AppCollectionThread.IsBackground = true;
-                AppCollectionThread.Start();
-            }
-            catch { }
             bnAddPrograms.Text = Properties.Resources.Loading;
             bnAddPrograms.Enabled = false;
             cMSPrograms.Items.Remove(addProgramsFromStartMenuToolStripMenuItem);
-            Timer appstimer = new Timer();
-            appstimer.Start();
-            appstimer.Tick += appstimer_Tick;
+            await System.Threading.Tasks.Task.Run(() => GetShortcuts(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) + "\\Programs"));
+            addLoadedApps();
         }
 
         public static string GetTargetPath(string filePath)
@@ -545,6 +532,7 @@ namespace DS4Windows
             }
         }
     }
+
     class NativeMethods2
     {
         [DllImport("msi.dll", CharSet = CharSet.Auto)]

@@ -92,10 +92,10 @@ namespace DS4Windows
 
             byte touchID1 = (byte)(data[0 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x7F);
             byte touchID2 = (byte)(data[4 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x7F);
-            int currentX1 = data[1 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] + ((data[2 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0xF) * 255);
-            int currentY1 = ((data[2 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0xF0) >> 4) + (data[3 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] * 16);
-            int currentX2 = data[5 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] + ((data[6 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0xF) * 255);
-            int currentY2 = ((data[6 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0xF0) >> 4) + (data[7 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] * 16);
+            int currentX1 = ((data[2 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x0F) << 8) | data[1 + TOUCHPAD_DATA_OFFSET + touchPacketOffset];
+            int currentY1 = (data[3 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] << 4) | ((data[2 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0xF0) >> 4);
+            int currentX2 = ((data[6 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x0F) << 8) | data[5 + TOUCHPAD_DATA_OFFSET + touchPacketOffset];
+            int currentY2 = (data[7 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] << 4) | ((data[6 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0xF0) >> 4);
 
             TouchpadEventArgs args;
             if (sensors.Touch1 || sensors.Touch2)

@@ -83,6 +83,11 @@
             this.bnLight1 = new System.Windows.Forms.Button();
             this.bnLight2 = new System.Windows.Forms.Button();
             this.bnLight4 = new System.Windows.Forms.Button();
+            this.lbLinkProfile = new System.Windows.Forms.Label();
+            this.linkCB1 = new System.Windows.Forms.CheckBox();
+            this.linkCB2 = new System.Windows.Forms.CheckBox();
+            this.linkCB3 = new System.Windows.Forms.CheckBox();
+            this.linkCB4 = new System.Windows.Forms.CheckBox();
             this.lbNoControllers = new System.Windows.Forms.Label();
             this.tabProfiles = new System.Windows.Forms.TabPage();
             this.lBProfiles = new System.Windows.Forms.ListBox();
@@ -367,21 +372,21 @@
             // tLPControllers
             // 
             resources.ApplyResources(this.tLPControllers, "tLPControllers");
-            this.tLPControllers.Controls.Add(this.bnLight3, 5, 3);
+            this.tLPControllers.Controls.Add(this.bnLight3, 6, 3);
             this.tLPControllers.Controls.Add(this.pBStatus1, 1, 1);
             this.tLPControllers.Controls.Add(this.lbPad1, 0, 1);
             this.tLPControllers.Controls.Add(this.lbPad2, 0, 2);
-            this.tLPControllers.Controls.Add(this.bnEditC3, 4, 3);
-            this.tLPControllers.Controls.Add(this.bnEditC4, 4, 4);
+            this.tLPControllers.Controls.Add(this.bnEditC3, 5, 3);
+            this.tLPControllers.Controls.Add(this.bnEditC4, 5, 4);
             this.tLPControllers.Controls.Add(this.lbPad3, 0, 3);
             this.tLPControllers.Controls.Add(this.lbPad4, 0, 4);
-            this.tLPControllers.Controls.Add(this.cBController1, 3, 1);
-            this.tLPControllers.Controls.Add(this.bnEditC2, 4, 2);
-            this.tLPControllers.Controls.Add(this.cBController2, 3, 2);
-            this.tLPControllers.Controls.Add(this.cBController3, 3, 3);
-            this.tLPControllers.Controls.Add(this.bnEditC1, 4, 1);
-            this.tLPControllers.Controls.Add(this.cBController4, 3, 4);
-            this.tLPControllers.Controls.Add(this.lbSelectedProfile, 3, 0);
+            this.tLPControllers.Controls.Add(this.cBController1, 4, 1);
+            this.tLPControllers.Controls.Add(this.bnEditC2, 5, 2);
+            this.tLPControllers.Controls.Add(this.cBController2, 4, 2);
+            this.tLPControllers.Controls.Add(this.cBController3, 4, 3);
+            this.tLPControllers.Controls.Add(this.bnEditC1, 5, 1);
+            this.tLPControllers.Controls.Add(this.cBController4, 4, 4);
+            this.tLPControllers.Controls.Add(this.lbSelectedProfile, 4, 0);
             this.tLPControllers.Controls.Add(this.lbID, 0, 0);
             this.tLPControllers.Controls.Add(this.lbStatus, 1, 0);
             this.tLPControllers.Controls.Add(this.lbBattery, 2, 0);
@@ -392,9 +397,14 @@
             this.tLPControllers.Controls.Add(this.pBStatus2, 1, 2);
             this.tLPControllers.Controls.Add(this.pBStatus3, 1, 3);
             this.tLPControllers.Controls.Add(this.pBStatus4, 1, 4);
-            this.tLPControllers.Controls.Add(this.bnLight1, 5, 1);
-            this.tLPControllers.Controls.Add(this.bnLight2, 5, 2);
-            this.tLPControllers.Controls.Add(this.bnLight4, 5, 4);
+            this.tLPControllers.Controls.Add(this.bnLight1, 6, 1);
+            this.tLPControllers.Controls.Add(this.bnLight2, 6, 2);
+            this.tLPControllers.Controls.Add(this.bnLight4, 6, 4);
+            this.tLPControllers.Controls.Add(this.lbLinkProfile, 3, 0);
+            this.tLPControllers.Controls.Add(this.linkCB1, 3, 1);
+            this.tLPControllers.Controls.Add(this.linkCB2, 3, 2);
+            this.tLPControllers.Controls.Add(this.linkCB3, 3, 3);
+            this.tLPControllers.Controls.Add(this.linkCB4, 3, 4);
             this.tLPControllers.Name = "tLPControllers";
             // 
             // bnLight3
@@ -612,6 +622,43 @@
             this.bnLight4.Tag = "3";
             this.bnLight4.UseVisualStyleBackColor = false;
             this.bnLight4.Click += new System.EventHandler(this.EditCustomLed);
+            // 
+            // lbLinkProfile
+            // 
+            resources.ApplyResources(this.lbLinkProfile, "lbLinkProfile");
+            this.lbLinkProfile.Name = "lbLinkProfile";
+            // 
+            // linkCB1
+            // 
+            resources.ApplyResources(this.linkCB1, "linkCB1");
+            this.linkCB1.Name = "linkCB1";
+            this.linkCB1.Tag = "0";
+            this.linkCB1.UseVisualStyleBackColor = true;
+            this.linkCB1.CheckedChanged += new System.EventHandler(this.linkCB_CheckedChanged);
+            // 
+            // linkCB2
+            // 
+            resources.ApplyResources(this.linkCB2, "linkCB2");
+            this.linkCB2.Name = "linkCB2";
+            this.linkCB2.Tag = "1";
+            this.linkCB2.UseVisualStyleBackColor = true;
+            this.linkCB2.CheckedChanged += new System.EventHandler(this.linkCB_CheckedChanged);
+            // 
+            // linkCB3
+            // 
+            resources.ApplyResources(this.linkCB3, "linkCB3");
+            this.linkCB3.Name = "linkCB3";
+            this.linkCB3.Tag = "2";
+            this.linkCB3.UseVisualStyleBackColor = true;
+            this.linkCB3.CheckedChanged += new System.EventHandler(this.linkCB_CheckedChanged);
+            // 
+            // linkCB4
+            // 
+            resources.ApplyResources(this.linkCB4, "linkCB4");
+            this.linkCB4.Name = "linkCB4";
+            this.linkCB4.Tag = "3";
+            this.linkCB4.UseVisualStyleBackColor = true;
+            this.linkCB4.CheckedChanged += new System.EventHandler(this.linkCB_CheckedChanged);
             // 
             // lbNoControllers
             // 
@@ -1302,7 +1349,6 @@
         private System.Windows.Forms.Label lbSelectedProfile;
         private System.Windows.Forms.Label lbID;
         private System.Windows.Forms.Label lbStatus;
-        private System.Windows.Forms.Label lbBattery;
         private System.Windows.Forms.Label lbBatt1;
         private System.Windows.Forms.Label lbBatt2;
         private System.Windows.Forms.Label lbBatt3;
@@ -1383,6 +1429,12 @@
         private System.Windows.Forms.RadioButton runStartProgRadio;
         private System.Windows.Forms.RadioButton runStartTaskRadio;
         private System.Windows.Forms.PictureBox uacPictureBox;
+        private System.Windows.Forms.Label lbBattery;
+        private System.Windows.Forms.Label lbLinkProfile;
+        private System.Windows.Forms.CheckBox linkCB1;
+        private System.Windows.Forms.CheckBox linkCB2;
+        private System.Windows.Forms.CheckBox linkCB3;
+        private System.Windows.Forms.CheckBox linkCB4;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

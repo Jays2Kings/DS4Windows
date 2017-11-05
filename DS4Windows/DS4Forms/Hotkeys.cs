@@ -63,7 +63,7 @@ namespace DS4Windows
 
         private void linkJays2Kings_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://ds4windows.com");
+            Process.Start("https://github.com/Jays2Kings/");
         }
 
         private void linkElectro_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -88,13 +88,11 @@ namespace DS4Windows
 
         private void linkDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=2FTZ9BZEHSQ8Q&lc=US&item_name=DS4Windows&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted");
             Process.Start("https://paypal.me/ryochan7");
         }
 
         private void linkSourceCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Process.Start("https://github.com/Jays2Kings/DS4Windows");
             Process.Start("https://github.com/Ryochan7/DS4Windows");
         }
 

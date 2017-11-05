@@ -14,66 +14,66 @@ using System.Text;
 using System.Globalization;
 using Microsoft.Win32.TaskScheduler;
 using System.Security.Principal;
+using System.Threading;
+using System.Drawing.Drawing2D;
+using TaskRunner = System.Threading.Tasks.Task;
+using NonFormTimer = System.Timers.Timer;
 using static DS4Windows.Global;
 
 namespace DS4Windows
 {
     public partial class DS4Form : Form
     {
-        public string[] arguements;
+        public string[] cmdArguments;
         delegate void LogDebugDelegate(DateTime Time, String Data, bool warning);
         delegate void NotificationDelegate(object sender, DebugEventArgs args);
-        delegate void BatteryStatusDelegate(object sender, BatteryReportArgs args);
-        delegate void ControllerRemovedDelegate(object sender, ControllerRemovedArgs args);
         delegate void DeviceStatusChangedDelegate(object sender, DeviceStatusChangeEventArgs args);
         delegate void DeviceSerialChangedDelegate(object sender, SerialChangeArgs args);
-        protected Label[] Pads, Batteries;
-        protected ComboBox[] cbs;
-        protected Button[] ebns;
-        protected Button[] lights;
-        protected PictureBox[] statPB;
-        protected ToolStripMenuItem[] shortcuts;
+        private Label[] Pads, Batteries;
+        private ComboBox[] cbs;
+        private Button[] ebns;
+        private Button[] lights;
+        private PictureBox[] statPB;
+        private ToolStripMenuItem[] shortcuts;
+        protected CheckBox[] linkedProfileCB;
         WebClient wc = new WebClient();
-        Timer hotkeysTimer = new Timer();
-        Timer autoProfilesTimer = new Timer();
+        NonFormTimer hotkeysTimer = new NonFormTimer();
+        NonFormTimer autoProfilesTimer = new NonFormTimer();
         string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
         string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
-        string tempProfileProgram = "null";
-        float dpix, dpiy;
+        string tempProfileProgram = string.Empty;
+        double dpix, dpiy;
         List<string> profilenames = new List<string>();
         List<string> programpaths = new List<string>();
         List<string>[] proprofiles;
         List<bool> turnOffTempProfiles;
-        private static int WM_QUERYENDSESSION = 0x11;
-        private static bool systemShutdown = false;
+        
+        private bool systemShutdown = false;
         private bool wasrunning = false;
-        delegate void ControllerStatusChangedDelegate(object sender, EventArgs e);
-        delegate void HotKeysDelegate(object sender, EventArgs e);
         Options opt;
         public Size oldsize;
-        WinProgs WP;
         public bool mAllowVisible;
         bool contextclose;
         string logFile = appdatapath + @"\DS4Service.log";
         bool turnOffTemp;
         bool runningBat;
+        private bool changingService;
+        public bool ChangingService => changingService;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
-        string[] notifyText = { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
+        string[] notifyText = new string[5]
+            { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
             string.Empty, string.Empty, string.Empty, string.Empty };
 
-        internal const int BCM_FIRST = 0x1600; // Normal button
-        internal const int BCM_SETSHIELD = (BCM_FIRST + 0x000C); // Elevated button
+        internal const string UPDATER_VERSION = "1.1.404.0";
+        internal static int WM_QUERYENDSESSION = 0x11;
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
         private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
-
-        [DllImport("user32.dll")]
-        private static extern int SendMessage(IntPtr hwnd, int wMsg, int wParam, uint lParam);
 
         [DllImport("kernel32.dll")]
         private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
@@ -82,26 +82,24 @@ namespace DS4Windows
         private static extern bool CloseHandle(IntPtr handle);
 
         [DllImport("psapi.dll")]
-        private static extern uint GetModuleBaseName(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
-
-        [DllImport("psapi.dll")]
         private static extern uint GetModuleFileNameEx(IntPtr hWnd, IntPtr hModule, StringBuilder lpFileName, int nSize);
 
         public DS4Form(string[] args)
         {
             InitializeComponent();
+            ThemeUtil.SetTheme(lvDebug);
 
             bnEditC1.Tag = 0;
             bnEditC2.Tag = 1;
             bnEditC3.Tag = 2;
             bnEditC4.Tag = 3;
 
-            this.StartWindowsCheckBox.CheckedChanged -= this.StartWindowsCheckBox_CheckedChanged;
+            StartWindowsCheckBox.CheckedChanged -= StartWindowsCheckBox_CheckedChanged;
 
             saveProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
             openProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
-            arguements = args;
-            ThemeUtil.SetTheme(lvDebug);
+            cmdArguments = args;
+
             Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
             Batteries = new Label[4] { lbBatt1, lbBatt2, lbBatt3, lbBatt4 };
             cbs = new ComboBox[4] { cBController1, cBController2, cBController3, cBController4 };
@@ -112,6 +110,8 @@ namespace DS4Windows
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
+
+            linkedProfileCB = new CheckBox[4] { linkCB1, linkCB2, linkCB3, linkCB4 };
 
             SystemEvents.PowerModeChanged += OnPowerChange;
             tSOptions.Visible = false;
@@ -151,14 +151,7 @@ namespace DS4Windows
                 new SaveWhere(false).ShowDialog();
             }
 
-            if (firstrun)
-                CheckDrivers();
-            else
-            {
-                var AppCollectionThread = new System.Threading.Thread(() => CheckDrivers());
-                AppCollectionThread.IsBackground = true;
-                AppCollectionThread.Start();
-            }
+            TaskRunner.Run(() => CheckDrivers());
 
             if (string.IsNullOrEmpty(appdatapath))
             {
@@ -166,7 +159,7 @@ namespace DS4Windows
                 return;
             }
 
-            Graphics g = this.CreateGraphics();
+            Graphics g = CreateGraphics();
             try
             {
                 dpix = g.DpiX / 100f * 1.041666666667f;
@@ -218,7 +211,6 @@ namespace DS4Windows
                 }
             }
 
-            //MessageBox.Show(Environment.OSVersion.VersionString);
             cBUseWhiteIcon.Checked = UseWhiteIcon;
             Icon = Properties.Resources.DS4W;
             notifyIcon1.Icon = UseWhiteIcon ? Properties.Resources.DS4W___White : Properties.Resources.DS4W;
@@ -293,12 +285,13 @@ namespace DS4Windows
 
             bool start = true;
             bool mini = false;
-            for (int i = 0, argslen = arguements.Length; i < argslen; i++)
+            for (int i = 0, argslen = cmdArguments.Length; i < argslen; i++)
             {
-                if (arguements[i] == "-stop")
+                if (cmdArguments[i] == "-stop")
                     start = false;
-                if (arguements[i] == "-m")
+                else if (cmdArguments[i] == "-m")
                     mini = true;
+
                 if (mini && start)
                     break;
             }
@@ -318,19 +311,11 @@ namespace DS4Windows
             opt.FormBorderStyle = FormBorderStyle.None;
             tabProfiles.Controls.Add(opt);
 
-            for (int i = 0; i < 4; i++)
-            {
-                LoadProfile(i, false, Program.rootHub, false);
-                if (UseCustomLed[i])
-                    lights[i].BackColor = CustomColor[i].ToColorA;
-                else
-                    lights[i].BackColor = MainColor[i].ToColorA;
-            }
-
-            autoProfilesTimer.Tick += CheckAutoProfiles;
+            autoProfilesTimer.Elapsed += CheckAutoProfiles;
             autoProfilesTimer.Interval = 1000;
 
             LoadP();
+            LoadLinkedProfiles();
 
             Global.BatteryStatusChange += BatteryStatusUpdate;
             Global.ControllerRemoved += ControllerRemovedChange;
@@ -343,7 +328,7 @@ namespace DS4Windows
             Enable_Controls(3, false);
             btnStartStop.Text = Properties.Resources.StartText;
 
-            hotkeysTimer.Tick += Hotkeys;
+            hotkeysTimer.Elapsed += Hotkeys;
             if (SwipeProfiles)
             {
                 hotkeysTimer.Start();
@@ -353,10 +338,6 @@ namespace DS4Windows
                 btnStartStop_Clicked();
 
             startToolStripMenuItem.Text = btnStartStop.Text;
-            //if (!tLPControllers.Visible)
-            //    tabMain.SelectedIndex = 1;
-
-            //cBNotifications.Checked = Notifications;
             cBoxNotifications.SelectedIndex = Notifications;
             cBSwipeProfiles.Checked = SwipeProfiles;
             int checkwhen = CheckWhen;
@@ -383,14 +364,14 @@ namespace DS4Windows
 
             if (File.Exists(exepath + "\\Updater.exe"))
             {
-                System.Threading.Thread.Sleep(2000);
+                Thread.Sleep(2000);
                 File.Delete(exepath + "\\Updater.exe");
             }
 
             if (!Directory.Exists(appdatapath + "\\Virtual Bus Driver"))
                 linkUninstall.Visible = false;
 
-            bool isElevated = Global.IsAdministrator();
+            bool isElevated = IsAdministrator();
             if (!isElevated)
             {
                 Image tempImg = new Bitmap(uacPictureBox.Width, uacPictureBox.Height);
@@ -429,9 +410,9 @@ namespace DS4Windows
                 }
             }
 
-            UpdateTheUpdater();
+            TaskRunner.Run(() => { UpdateTheUpdater(); });
 
-            this.StartWindowsCheckBox.CheckedChanged += new EventHandler(this.StartWindowsCheckBox_CheckedChanged);
+            StartWindowsCheckBox.CheckedChanged += new EventHandler(StartWindowsCheckBox_CheckedChanged);
             new ToolTip().SetToolTip(StartWindowsCheckBox, Properties.Resources.RunAtStartup);
 
             populateHoverTextDict();
@@ -463,31 +444,26 @@ namespace DS4Windows
             hoverTextDict[StartWindowsCheckBox] = Properties.Resources.RunAtStartup;
         }
 
-        private Image AddUACShieldToImage(Image image)
+        private void AddUACShieldToImage(Image image)
         {
             Bitmap shield = SystemIcons.Shield.ToBitmap();
             shield.MakeTransparent();
 
             Graphics g = Graphics.FromImage(image);
-            g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+            g.CompositingMode = CompositingMode.SourceOver;
             double aspectRatio = shield.Width / (double)shield.Height;
             int finalWidth = Convert.ToInt32(image.Height * aspectRatio);
             int finalHeight = Convert.ToInt32(image.Width / aspectRatio);
             g.DrawImage(shield, new Rectangle(0, 0, finalWidth, finalHeight));
-
-            return image;
         }
 
         private void blankControllerTab()
         {
-            bool nocontrollers = true;
-            for (Int32 Index = 0, PadsLen = Pads.Length; Index < PadsLen; Index++)
+            for (int Index = 0, PadsLen = Pads.Length;
+                Index < PadsLen; Index++)
             {
-                // Make sure a controller exists
                 if (Index < ControlService.DS4_CONTROLLER_COUNT)
                 {
-                    Pads[Index].Text = "";
-
                     statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], "");
                     Batteries[Index].Text = Properties.Resources.NA;
                     Pads[Index].Text = Properties.Resources.Disconnected;
@@ -495,18 +471,18 @@ namespace DS4Windows
                 }
             }
 
-            lbNoControllers.Visible = nocontrollers;
-            tLPControllers.Visible = !nocontrollers;
+            lbNoControllers.Visible = true;
+            tLPControllers.Visible = false;
         }
 
-        private async void UpdateTheUpdater()
+        private void UpdateTheUpdater()
         {
             if (File.Exists(exepath + "\\Update Files\\DS4Updater.exe"))
             {
                 Process[] processes = Process.GetProcessesByName("DS4Updater");
                 while (processes.Length > 0)
                 {
-                    await System.Threading.Tasks.Task.Delay(500);
+                    Thread.Sleep(500);
                 }
 
                 File.Delete(exepath + "\\DS4Updater.exe");
@@ -520,16 +496,10 @@ namespace DS4Windows
             if (!mAllowVisible)
             {
                 value = false;
-                if (!this.IsHandleCreated) CreateHandle();
+                if (!IsHandleCreated) CreateHandle();
             }
 
             base.SetVisibleCore(value);
-        }
-
-        private void showToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mAllowVisible = true;
-            Show();
         }
 
         public static string GetTopWindowName()
@@ -615,7 +585,7 @@ namespace DS4Windows
         private void CheckAutoProfiles(object sender, EventArgs e)
         {
             //Check for process for auto profiles
-            if (tempProfileProgram == "null")
+            if (string.IsNullOrEmpty(tempProfileProgram))
             {
                 string windowName = GetTopWindowName().ToLower().Replace('/', '\\');
                 for (int i = 0, pathsLen = programpaths.Count; i < pathsLen; i++)
@@ -654,7 +624,7 @@ namespace DS4Windows
                 string windowName = GetTopWindowName().ToLower().Replace('/', '\\');
                 if (tempProfileProgram != windowName)
                 {
-                    tempProfileProgram = "null";
+                    tempProfileProgram = string.Empty;
                     for (int j = 0; j < 4; j++)
                         LoadProfile(j, false, Program.rootHub);
 
@@ -764,7 +734,7 @@ namespace DS4Windows
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
             string newversion = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version.Replace(',', '.').CompareTo(newversion) == -1)//CompareVersions();
+            if (version.Replace(',', '.').CompareTo(newversion) == -1)
             {
                 if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
                     Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -876,7 +846,7 @@ namespace DS4Windows
         public void RefreshAutoProfilesPage()
         {
             tabAutoProfiles.Controls.Clear();
-            WP = new WinProgs(profilenames.ToArray(), this);
+            WinProgs WP = new WinProgs(profilenames.ToArray(), this);
             WP.TopLevel = false;
             WP.FormBorderStyle = FormBorderStyle.None;
             WP.Visible = true;
@@ -944,19 +914,19 @@ namespace DS4Windows
 
         protected void Form_Resize(object sender, EventArgs e)
         {
-            if (FormWindowState.Minimized == this.WindowState)
+            if (FormWindowState.Minimized == WindowState)
             {
-                this.Hide();
-                this.ShowInTaskbar = false;
-                this.FormBorderStyle = FormBorderStyle.None;
+                Hide();
+                ShowInTaskbar = false;
+                FormBorderStyle = FormBorderStyle.None;
             }
 
-            else if (FormWindowState.Normal == this.WindowState)
+            else if (FormWindowState.Normal == WindowState)
             {
                 //mAllowVisible = true;
-                this.Show();
-                this.ShowInTaskbar = true;
-                this.FormBorderStyle = FormBorderStyle.Sizable;
+                Show();
+                ShowInTaskbar = true;
+                FormBorderStyle = FormBorderStyle.Sizable;
             }
 
             chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
@@ -967,35 +937,65 @@ namespace DS4Windows
             btnStartStop_Clicked();
         }
 
+        private void serviceStartup(bool log)
+        {
+            var uiContext = SynchronizationContext.Current;
+            changingService = true;
+            TaskRunner.Run(() =>
+            {
+                //Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
+                Program.rootHub.Start(uiContext, log);
+                Invoke((System.Action)(() => { serviceStartupFinish(); }));
+                changingService = false;
+            });
+        }
+
+        private void serviceStartupFinish()
+        {
+            if (SwipeProfiles && !hotkeysTimer.Enabled)
+            {
+                hotkeysTimer.Start();
+            }
+
+            if (programpaths.Count > 0 && !autoProfilesTimer.Enabled)
+            {
+                autoProfilesTimer.Start();
+            }
+
+            startToolStripMenuItem.Text = btnStartStop.Text = Properties.Resources.StopText;
+        }
+
+        private void serviceShutdown(bool log)
+        {
+            changingService = true;
+            TaskRunner.Run(() =>
+            {
+                Program.rootHub.Stop(log);
+                Invoke((System.Action)(() => { serviceShutdownFinish(); }));
+                changingService = false;
+            });
+        }
+
+        private void serviceShutdownFinish()
+        {
+            hotkeysTimer.Stop();
+            autoProfilesTimer.Stop();
+            startToolStripMenuItem.Text = btnStartStop.Text = Properties.Resources.StartText;
+            blankControllerTab();
+            populateFullNotifyText();
+        }
+
         public void btnStartStop_Clicked(bool log = true)
         {
             if (btnStartStop.Text == Properties.Resources.StartText)
             {
-                Program.rootHub.Start(log);
-                if (SwipeProfiles && !hotkeysTimer.Enabled)
-                {
-                    hotkeysTimer.Start();
-                }
-
-                if (programpaths.Count > 0 && !autoProfilesTimer.Enabled)
-                {
-                    autoProfilesTimer.Start();
-                }
-
-                btnStartStop.Text = Properties.Resources.StopText;
+                serviceStartup(log);
             }
             else if (btnStartStop.Text == Properties.Resources.StopText)
             {
                 blankControllerTab();
-                Program.rootHub.Stop(log);
-                hotkeysTimer.Stop();
-                autoProfilesTimer.Stop();
-                btnStartStop.Text = Properties.Resources.StartText;
-                blankControllerTab();
-                populateFullNotifyText();
+                serviceShutdown(log);
             }
-
-            startToolStripMenuItem.Text = btnStartStop.Text;
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
@@ -1021,9 +1021,11 @@ namespace DS4Windows
                             hotplugCounter++;
                         }
 
+                        var uiContext = SynchronizationContext.Current;
                         if (!inHotPlug)
                         {
-                            InnerHotplug2();
+                            inHotPlug = true;
+                            TaskRunner.Run(() => { Thread.Sleep(100); InnerHotplug2(uiContext); });
                         }
                     }
                 }
@@ -1038,76 +1040,53 @@ namespace DS4Windows
             catch { }
         }
 
-        protected async void InnerHotplug2()
+        private void InnerHotplug2(SynchronizationContext uiContext)
         {
-            //await System.Threading.Tasks.Task.Delay(50);
+            inHotPlug = true;
 
-            /*if (inHotPlug)
+            bool loopHotplug = false;
+            lock (hotplugCounterLock)
             {
-                await System.Threading.Tasks.Task.Run(() => { while (inHotPlug) { System.Threading.Thread.Sleep(50); } });
+                loopHotplug = hotplugCounter > 0;
             }
-            */
 
-            //lock (this)
+            while (loopHotplug == true)
             {
-                inHotPlug = true;
-                System.Threading.SynchronizationContext uiContext = System.Threading.SynchronizationContext.Current;
-                int tempCount = 0;
+                Program.rootHub.HotPlug(uiContext);
+                //TaskRunner.Run(() => { Program.rootHub.HotPlug(uiContext); });
                 lock (hotplugCounterLock)
                 {
-                    tempCount = hotplugCounter;
+                    hotplugCounter--;
+                    loopHotplug = hotplugCounter > 0;
                 }
-
-                while (tempCount > 0)
-                {
-                    await System.Threading.Tasks.Task.Run(() => { Program.rootHub.HotPlug(uiContext); });
-                    lock (hotplugCounterLock)
-                    {
-                        hotplugCounter--;
-                        tempCount = hotplugCounter;
-                    }
-                }
-
-                //Program.rootHub.HotPlug();
-                inHotPlug = false;
             }
+
+            inHotPlug = false;
         }
 
         protected void BatteryStatusUpdate(object sender, BatteryReportArgs args)
         {
-            if (this.InvokeRequired)
+            string battery;
+            int level = args.getLevel();
+            bool charging = args.isCharging();
+            int Index = args.getIndex();
+            if (charging)
             {
-                try
-                {
-                    BatteryStatusDelegate d = new BatteryStatusDelegate(BatteryStatusUpdate);
-                    this.BeginInvoke(d, new object[] { sender, args });
-                }
-                catch { }
+                if (level >= 100)
+                    battery = Properties.Resources.Full;
+                else
+                    battery = level + "%+";
             }
             else
             {
-                string battery;
-                int level = args.getLevel();
-                bool charging = args.isCharging();
-                int Index = args.getIndex();
-                if (charging)
-                {
-                    if (level >= 100)
-                        battery = Properties.Resources.Full;
-                    else
-                        battery = level + "%+";
-                }
-                else
-                {
-                    battery = level + "%";
-                }
-
-                Batteries[args.getIndex()].Text = battery;
-
-                // Update device battery level display for tray icon
-                generateDeviceNotifyText(args.getIndex());
-                populateNotifyText();
+                battery = level + "%";
             }
+
+            Batteries[args.getIndex()].Text = battery;
+
+            // Update device battery level display for tray icon
+            generateDeviceNotifyText(args.getIndex());
+            populateNotifyText();
         }
 
         protected void populateFullNotifyText()
@@ -1184,9 +1163,35 @@ namespace DS4Windows
             {
                 int devIndex = args.getIndex();
                 string serial = args.getSerial();
-                if (devIndex >= 0 && devIndex < ControlService.DS4_CONTROLLER_COUNT)
+                DS4Device device = (devIndex >= 0 && devIndex < ControlService.DS4_CONTROLLER_COUNT) ?
+                    Program.rootHub.DS4Controllers[devIndex] : null;
+                if (device != null)
                 {
                     Pads[devIndex].Text = serial;
+                    if (device.isSynced())
+                    {
+                        linkedProfileCB[devIndex].Enabled = true;
+                    }
+                    else
+                    {
+                        linkedProfileCB[devIndex].Enabled = false;
+                    }
+
+                    if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                    {
+                        ProfilePath[devIndex] = getLinkedProfile(device.getMacAddress());
+                        int profileIndex = cbs[devIndex].FindString(ProfilePath[devIndex]);
+                        if (profileIndex >= 0)
+                        {
+                            cbs[devIndex].SelectedIndex = profileIndex;
+                        }
+                    }
+                    else
+                    {
+                        ProfilePath[devIndex] = OlderProfilePath[devIndex];                        
+                    }
+
+                    linkedProfileCB[devIndex].Checked = false;
                 }
             }
         }
@@ -1216,6 +1221,20 @@ namespace DS4Windows
                 {
                     Pads[Index].Text = Program.rootHub.getDS4MacAddress(Index);
 
+                    linkedProfileCB[Index].CheckedChanged -= linkCB_CheckedChanged;
+                    if (DS4Device.isValidSerial(Pads[Index].Text))
+                    {
+                        linkedProfileCB[Index].Checked = containsLinkedProfile(Pads[Index].Text);
+                        linkedProfileCB[Index].Enabled = true;
+                    }
+                    else
+                    {
+                        linkedProfileCB[Index].Checked = false;
+                        linkedProfileCB[Index].Enabled = false;
+                    }
+
+                    linkedProfileCB[Index].CheckedChanged += linkCB_CheckedChanged;
+
                     switch (Program.rootHub.getDS4Status(Index))
                     {
                         case "USB": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.USB; toolTip1.SetToolTip(statPB[Index], ""); break;
@@ -1225,6 +1244,19 @@ namespace DS4Windows
                     }
 
                     Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
+                    int profileIndex = cbs[Index].FindString(ProfilePath[Index]);
+                    if (profileIndex >= 0)
+                    {
+                        cbs[Index].SelectedValueChanged -= Profile_Changed;
+                        cbs[Index].SelectedIndex = profileIndex;
+                        cbs[Index].SelectedValueChanged += Profile_Changed;
+                    }
+
+                    if (UseCustomLed[Index])
+                        lights[Index].BackColor = CustomColor[Index].ToColorA;
+                    else
+                        lights[Index].BackColor = MainColor[Index].ToColorA;
+
                     if (Pads[Index].Text != String.Empty)
                     {
                         if (runningBat)
@@ -1263,113 +1295,31 @@ namespace DS4Windows
 
         protected void ControllerRemovedChange(object sender, ControllerRemovedArgs args)
         {
-            if (this.InvokeRequired)
-            {
-                try
-                {
-                    ControllerRemovedDelegate d = new ControllerRemovedDelegate(ControllerRemovedChange);
-                    this.BeginInvoke(d, new object[] { sender, args });
-                }
-                catch { }
-            }
-            else
-            {
-                int devIndex = args.getIndex();
-                Pads[devIndex].Text = Properties.Resources.Disconnected;
-                Enable_Controls(devIndex, false);
-                statPB[devIndex].Visible = false;
-                toolTip1.SetToolTip(statPB[devIndex], "");
+            int devIndex = args.getIndex();
+            Pads[devIndex].Text = Properties.Resources.Disconnected;
+            Enable_Controls(devIndex, false);
+            statPB[devIndex].Visible = false;
+            toolTip1.SetToolTip(statPB[devIndex], "");
 
-                DS4Device[] devices = Program.rootHub.DS4Controllers;
-                int controllerLen = devices.Length;
-                bool nocontrollers = true;
-                for (Int32 i = 0, PadsLen = Pads.Length; nocontrollers && i < PadsLen; i++)
-                {
-                    DS4Device d = devices[i];
-                    if (d != null)
-                    {
-                        nocontrollers = false;
-                    }
-                }
-
-                lbNoControllers.Visible = nocontrollers;
-                tLPControllers.Visible = !nocontrollers;
-
-                // Update device battery level display for tray icon
-                generateDeviceNotifyText(devIndex);
-                populateNotifyText();
-            }
-        }
-
-        /* TODO: Possible remove method */
-        /*protected void ControllerStatusChange(object sender, EventArgs e)
-        {
-            if (InvokeRequired)
-                Invoke(new ControllerStatusChangedDelegate(ControllerStatusChange), new object[] { sender, e });
-            else
-                ControllerStatusChanged();
-        }
-        */
-
-        /* TODO: Possible remove method */
-        /*protected void ControllerStatusChanged()
-        {
-            String tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
-            bool nocontrollers = true;
             DS4Device[] devices = Program.rootHub.DS4Controllers;
             int controllerLen = devices.Length;
-            for (Int32 Index = 0, PadsLen = Pads.Length; Index < PadsLen; Index++)
+            bool nocontrollers = true;
+            for (Int32 i = 0, PadsLen = Pads.Length; nocontrollers && i < PadsLen; i++)
             {
-                // Make sure a controller exists
-                if (Index < controllerLen)
+                DS4Device d = devices[i];
+                if (d != null)
                 {
-                    Pads[Index].Text = Program.rootHub.getDS4MacAddress(Index);
-                    DS4Device d = devices[Index];
-
-                    switch (Program.rootHub.getDS4Status(Index))
-                    {
-                        case "USB": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.USB; toolTip1.SetToolTip(statPB[Index], ""); break;
-                        case "BT": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
-                        case "SONYWA": statPB[Index].Visible = true; statPB[Index].Image = Properties.Resources.BT; toolTip1.SetToolTip(statPB[Index], "Right click to disconnect"); break;
-                        default: statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], ""); break;
-                    }
-
-                    Batteries[Index].Text = Program.rootHub.getDS4Battery(Index);
-                    if (Pads[Index].Text != String.Empty)
-                    {
-                        if (runningBat)
-                        {
-                            SendKeys.Send("A");
-                            runningBat = false;
-                        }
-
-                        Pads[Index].Enabled = true;
-                        nocontrollers = false;
-                        if (Pads[Index].Text != Properties.Resources.Connecting)
-                        {
-                            Enable_Controls(Index, true);
-                        }
-                    }
-                    else
-                    {
-                        Pads[Index].Text = Properties.Resources.Disconnected;
-                        Enable_Controls(Index, false);
-                    }
-                    //if (((Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index)).Length > 50)
-                    //MessageBox.Show(((Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index)).Length.ToString());
-                    if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
-                        tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
+                    nocontrollers = false;
                 }
             }
 
             lbNoControllers.Visible = nocontrollers;
             tLPControllers.Visible = !nocontrollers;
-            if (tooltip.Length > 63)
-                notifyIcon1.Text = tooltip.Substring(0, 63);
-            else
-                notifyIcon1.Text = tooltip;
+
+            // Update device battery level display for tray icon
+            generateDeviceNotifyText(devIndex);
+            populateNotifyText();
         }
-        */
 
         private void pBStatus_MouseClick(object sender, MouseEventArgs e)
         {
@@ -1397,17 +1347,8 @@ namespace DS4Windows
             cbs[device].Visible = on;
             shortcuts[device].Visible = on;
             Batteries[device].Visible = on;
+            linkedProfileCB[device].Visible = on;
         }
-
-        /* TODO: Remove method in future */
-        /*void ScpForm_Report(object sender, EventArgs e)
-        {
-            if (InvokeRequired)
-                Invoke(new HotKeysDelegate(Hotkeys), new object[] { sender, e });
-            else
-                Hotkeys(sender, e);
-        }
-        */
 
         protected void On_Debug(object sender, DebugEventArgs e)
         {
@@ -1539,7 +1480,9 @@ namespace DS4Windows
         private void ShowOptions(int devID, string profile)
         {
             Show();
-            tabMain.SelectedIndex = 1;
+
+            lBProfiles.Visible = false;
+
             WindowState = FormWindowState.Normal;
             toolStrip1.Enabled = false;
             tSOptions.Visible = true;
@@ -1565,11 +1508,16 @@ namespace DS4Windows
             opt.Reload(devID, profile);
             opt.inputtimer.Start();
             opt.Visible = true;
+            tabMain.SelectedIndex = 1;
         }
 
         public void OptionsClosed()
         {
             RefreshProfiles();
+
+            if (!lbNoControllers.Visible)
+                tabMain.SelectedIndex = 0;
+
             Size = oldsize;
             oldsize = new Size(0, 0);
             tSBKeepSize.Text = Properties.Resources.KeepThisSize;
@@ -1585,11 +1533,10 @@ namespace DS4Windows
                 lbLastMessage.Text = lvDebug.Items[lvDebugItemCount - 1].SubItems[1].Text;
             }
 
-            if (!lbNoControllers.Visible)
-                tabMain.SelectedIndex = 0;
-
             opt.inputtimer.Stop();
             opt.sixaxisTimer.Stop();
+
+            lBProfiles.Visible = true;
         }
 
         private void editButtons_Click(object sender, EventArgs e)
@@ -1607,7 +1554,7 @@ namespace DS4Windows
         private void editMenu_Click(object sender, EventArgs e)
         {
             mAllowVisible = true;
-            this.Show();
+            Show();
             WindowState = FormWindowState.Normal;
             ToolStripMenuItem em = (ToolStripMenuItem)sender;
             int i = Convert.ToInt32(em.Tag);
@@ -1646,9 +1593,33 @@ namespace DS4Windows
             if (Environment.OSVersion.Version.Major >= 10 && Environment.OSVersion.Version.Build < 10586)
                 btnConnectDS4Win10.Visible = exclusiveMode;
 
-            btnStartStop_Clicked(false);
-            btnStartStop_Clicked(false);
+            hideDS4CheckBox.Enabled = false;
             Save();
+            btnStartStop_Clicked(false);
+            finishHideDS4Check();
+        }
+
+        private async void finishHideDS4Check()
+        {
+            await TaskRunner.Factory.StartNew(() =>
+            {
+                while (changingService)
+                {
+                    Thread.Sleep(10);
+                }
+            });
+
+            btnStartStop_Clicked(false);
+
+            await TaskRunner.Factory.StartNew(() =>
+            {
+                while (changingService)
+                {
+                    Thread.Sleep(10);
+                }
+            });
+
+            hideDS4CheckBox.Enabled = true;
         }
 
         private void startMinimizedCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -1670,9 +1641,12 @@ namespace DS4Windows
             {
                 if (cb.SelectedIndex < cb.Items.Count - 1)
                 {
-                    for (int i = 0; i < shortcuts[tdevice].DropDownItems.Count; i++)
+                    for (int i = 0, arlen = shortcuts[tdevice].DropDownItems.Count; i < arlen; i++)
+                    {
                         if (!(shortcuts[tdevice].DropDownItems[i] is ToolStripSeparator))
                             ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[i]).Checked = false;
+                    }
+
                     ((ToolStripMenuItem)shortcuts[tdevice].DropDownItems[cb.SelectedIndex]).Checked = true;
                     LogDebug(DateTime.Now, Properties.Resources.UsingProfile.Replace("*number*", (tdevice + 1).ToString()).Replace("*Profile name*", cb.Text), false);
                     shortcuts[tdevice].Text = Properties.Resources.ContextEdit.Replace("*number*", (tdevice + 1).ToString());
@@ -1683,9 +1657,24 @@ namespace DS4Windows
                         lights[tdevice].BackColor = CustomColor[tdevice].ToColorA;
                     else
                         lights[tdevice].BackColor = MainColor[tdevice].ToColorA;
+
+                    if (linkedProfileCB[tdevice].Checked)
+                    {
+                        DS4Device device = Program.rootHub.DS4Controllers[tdevice];
+                        if (device != null && device.isValidSerial())
+                        {
+                            changeLinkedProfile(device.getMacAddress(), ProfilePath[tdevice]);
+                            SaveLinkedProfiles();
+                        }
+                    }
+                    else
+                    {
+                        OlderProfilePath[tdevice] = ProfilePath[tdevice];
+                    }
                 }
                 else if (cb.SelectedIndex == cb.Items.Count - 1 && cb.Items.Count > 1) //if +New Profile selected
                     ShowOptions(tdevice, "");
+
                 if (cb.Text == "(" + Properties.Resources.NoProfileLoaded + ")")
                     ebns[tdevice].Text = Properties.Resources.New;
                 else
@@ -1711,13 +1700,13 @@ namespace DS4Windows
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             contextclose = true;
-            this.Close();
+            Close();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mAllowVisible = true;
-            this.Show();
+            Show();
             Focus();
             WindowState = FormWindowState.Normal;
         }
@@ -1732,13 +1721,13 @@ namespace DS4Windows
             if (e.Button == MouseButtons.Middle)
             {
                 contextclose = true;
-                this.Close();
+                Close();
             }
         }
 
         private void notifyIcon1_BalloonTipClicked(object sender, EventArgs e)
         {
-            this.Show();
+            Show();
             WindowState = FormWindowState.Normal;
         }
 
@@ -2058,22 +2047,22 @@ namespace DS4Windows
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version2 = fvi.FileVersion;
             string newversion2 = File.ReadAllText(appdatapath + "\\version.txt").Trim();
-            if (version2.Replace(',', '.').CompareTo(newversion2) == -1)//CompareVersions();
+            if (version2.Replace(',', '.').CompareTo(newversion2) == -1)
             {
                 if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2),
                     Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
-                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
+                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) == -1)))
                     {
-                        Uri url2 = new Uri("http://ds4windows.com/Files/DS4Updater.exe");
+                        Uri url2 = new Uri("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
                         WebClient wc2 = new WebClient();
                         if (appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
-                            Process.Start("http://ds4windows.com/Files/DS4Updater.exe");
+                            Process.Start("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
                         }
                     }
 
@@ -2167,7 +2156,7 @@ namespace DS4Windows
             }
             else if (userClosing && closeMini && !contextclose)
             {
-                this.WindowState = FormWindowState.Minimized;
+                WindowState = FormWindowState.Minimized;
                 e.Cancel = true;
                 return;
             }
@@ -2275,7 +2264,7 @@ namespace DS4Windows
             Label lb = (Label)sender;
             int i = Convert.ToInt32(lb.Tag);
             DS4Device d = Program.rootHub.DS4Controllers[i];
-            if (d != null && d.ConnectionType == ConnectionType.BT)
+            if (d != null)
             {
                 double latency = d.Latency;
                 toolTip1.Hide(Pads[i]);
@@ -2435,6 +2424,37 @@ namespace DS4Windows
         private void cBDownloadLangauge_CheckedChanged(object sender, EventArgs e)
         {
             DownloadLang = cBDownloadLangauge.Checked;
+        }
+
+        private void linkCB_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox linkCb = (CheckBox)sender;
+            int i = Convert.ToInt32(linkCb.Tag);
+            bool check = linkCb.Checked;
+            Global.linkedProfileCheck[i] = check;
+            DS4Device device = Program.rootHub.DS4Controllers[i];
+            if (device != null && device.isSynced())
+            {
+                if (check)
+                {
+                    if (device.isValidSerial())
+                    {
+                        changeLinkedProfile(device.getMacAddress(), ProfilePath[i]);
+                    }
+                }
+                else
+                {
+                    removeLinkedProfile(device.getMacAddress());
+                    ProfilePath[i] = OlderProfilePath[i];
+                    int profileIndex = cbs[i].FindString(ProfilePath[i]);
+                    if (profileIndex >= 0)
+                    {
+                        cbs[i].SelectedIndex = profileIndex;
+                    }
+                }
+
+                SaveLinkedProfiles();
+            }
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

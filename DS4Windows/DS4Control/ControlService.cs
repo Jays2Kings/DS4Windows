@@ -24,9 +24,9 @@ namespace DS4Windows
         public bool recordingMacro = false;
         public event EventHandler<DebugEventArgs> Debug = null;
         bool[] buttonsdown = new bool[4] { false, false, false, false };
-        List<DS4Controls> dcs = new List<DS4Controls>();
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
+        Thread tempThread;
         //SoundPlayer sp = new SoundPlayer();
 
         private class X360Data
@@ -41,17 +41,19 @@ namespace DS4Windows
         {
             //sp.Stream = Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
-            Thread x360Thread = new Thread(() => { x360Bus = new X360Device(); });
-            x360Thread.IsBackground = true;
-            x360Thread.Priority = ThreadPriority.Normal;
-            x360Thread.Name = "SCP Virtual Bus Thread";
-            x360Thread.Start();
-            while (!x360Thread.ThreadState.HasFlag(ThreadState.Stopped))
+            /*Task x360task = new Task(() => { Thread.CurrentThread.Priority = ThreadPriority.AboveNormal; x360Bus = new X360Device(); });
+            x360task.Start();
+            while (!x360task.IsCompleted)
+                Thread.SpinWait(500);
+            */
+            tempThread = new Thread(() => { x360Bus = new X360Device(); });
+            tempThread.Priority = ThreadPriority.AboveNormal;
+            tempThread.IsBackground = true;
+            tempThread.Start();
+            while (tempThread.IsAlive)
             {
                 Thread.SpinWait(500);
             }
-
-            AddtoDS4List();
 
             for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
             {
@@ -63,44 +65,10 @@ namespace DS4Windows
             }
         }
 
-        void AddtoDS4List()
-        {
-            dcs.Add(DS4Controls.Cross);
-            dcs.Add(DS4Controls.Circle);
-            dcs.Add(DS4Controls.Square);
-            dcs.Add(DS4Controls.Triangle);
-            dcs.Add(DS4Controls.Options);
-            dcs.Add(DS4Controls.Share);
-            dcs.Add(DS4Controls.DpadUp);
-            dcs.Add(DS4Controls.DpadDown);
-            dcs.Add(DS4Controls.DpadLeft);
-            dcs.Add(DS4Controls.DpadRight);
-            dcs.Add(DS4Controls.PS);
-            dcs.Add(DS4Controls.L1);
-            dcs.Add(DS4Controls.R1);
-            dcs.Add(DS4Controls.L2);
-            dcs.Add(DS4Controls.R2);
-            dcs.Add(DS4Controls.L3);
-            dcs.Add(DS4Controls.R3);
-            dcs.Add(DS4Controls.LXPos);
-            dcs.Add(DS4Controls.LXNeg);
-            dcs.Add(DS4Controls.LYPos);
-            dcs.Add(DS4Controls.LYNeg);
-            dcs.Add(DS4Controls.RXPos);
-            dcs.Add(DS4Controls.RXNeg);
-            dcs.Add(DS4Controls.RYPos);
-            dcs.Add(DS4Controls.RYNeg);
-            dcs.Add(DS4Controls.SwipeUp);
-            dcs.Add(DS4Controls.SwipeDown);
-            dcs.Add(DS4Controls.SwipeLeft);
-            dcs.Add(DS4Controls.SwipeRight);
-        }
-
-        private async void WarnExclusiveModeFailure(DS4Device device)
+        private void WarnExclusiveModeFailure(DS4Device device)
         {
             if (DS4Devices.isExclusiveMode && !device.isExclusive())
             {
-                await Task.Delay(5);
                 string message = Properties.Resources.CouldNotOpenDS4.Replace("*Mac address*", device.getMacAddress()) + " " +
                     Properties.Resources.QuitOtherPrograms;
                 LogDebug(message, true);
@@ -108,7 +76,7 @@ namespace DS4Windows
             }
         }
 
-        public bool Start(bool showlog = true)
+        public bool Start(object tempui, bool showlog = true)
         {
             if (x360Bus.Open() && x360Bus.Start())
             {
@@ -138,14 +106,25 @@ namespace DS4Windows
                         if (showlog)
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
 
-                        WarnExclusiveModeFailure(device);
+                        Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
+                        task.Start();
+
                         DS4Controllers[i] = device;
-                        device.setUiContext(SynchronizationContext.Current);
+                        device.setUiContext(tempui as SynchronizationContext);
                         device.Removal += this.On_DS4Removal;
                         device.Removal += DS4Devices.On_Removal;
                         device.SyncChange += this.On_SyncChange;
                         device.SyncChange += DS4Devices.UpdateSerial;
                         device.SerialChange += this.On_SerialChange;
+                        if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                        {
+                            ProfilePath[i] = getLinkedProfile(device.getMacAddress());
+                        }
+                        else
+                        {
+                            ProfilePath[i] = OlderProfilePath[i];
+                        }
+                        LoadProfile(i, false, this, false, false);
                         touchPad[i] = new Mouse(i, device);
                         device.LightBarColor = getMainColor(i);
 
@@ -208,7 +187,6 @@ namespace DS4Windows
             }
 
             runHotPlug = true;
-
             return true;
         }
 
@@ -221,6 +199,8 @@ namespace DS4Windows
 
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingX360);
+
+                LogDebug("Closing connection to Scp Virtual Bus");
 
                 bool anyUnplugged = false;                
                 for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
@@ -246,8 +226,7 @@ namespace DS4Windows
                             DS4LightBar.forcelight[i] = false;
                             DS4LightBar.forcedFlash[i] = 0;
                             DS4LightBar.defaultLight = true;
-                            DS4LightBar.updateLightBar(DS4Controllers[i], i, CurrentState[i],
-                                ExposedState[i], touchPad[i]);
+                            DS4LightBar.updateLightBar(DS4Controllers[i], i);
                             tempDevice.IsRemoved = true;
                             Thread.Sleep(50);
                         }
@@ -315,7 +294,8 @@ namespace DS4Windows
                         if (DS4Controllers[Index] == null)
                         {
                             LogDebug(Properties.Resources.FoundController + device.getMacAddress() + " (" + device.getConnectionType() + ")");
-                            WarnExclusiveModeFailure(device);
+                            Task task = new Task(() => { Thread.Sleep(5); WarnExclusiveModeFailure(device); });
+                            task.Start();
                             DS4Controllers[Index] = device;
                             device.setUiContext(uiContext);
                             device.Removal += this.On_DS4Removal;
@@ -323,6 +303,16 @@ namespace DS4Windows
                             device.SyncChange += this.On_SyncChange;
                             device.SyncChange += DS4Devices.UpdateSerial;
                             device.SerialChange += this.On_SerialChange;
+                            if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
+                            {
+                                ProfilePath[i] = getLinkedProfile(device.getMacAddress());
+                            }
+                            else
+                            {
+                                ProfilePath[i] = OlderProfilePath[i];
+                            }
+
+                            LoadProfile(i, false, this, false, false);
                             touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = getMainColor(Index);
                             device.Report += this.On_Report;
@@ -695,6 +685,7 @@ namespace DS4Windows
         public bool[] inWarnMonitor = new bool[4] { false, false, false, false };
         private byte[] currentBattery = new byte[4] { 0, 0, 0, 0 };
         private bool[] charging = new bool[4] { false, false, false, false };
+        private string[] tempStrings = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
 
         // Called every time a new input report has arrived
         protected virtual void On_Report(object sender, EventArgs e)
@@ -714,9 +705,13 @@ namespace DS4Windows
                 if (getFlushHIDQueue(ind))
                     device.FlushHID();
 
-                if (!string.IsNullOrEmpty(device.error))
+                string devError = tempStrings[ind] = device.error;
+                if (!string.IsNullOrEmpty(devError))
                 {
-                    LogDebug(device.error);
+                    device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
+                    {
+                        LogDebug(devError);
+                    }), null);
                 }
 
                 if (inWarnMonitor[ind])
@@ -749,12 +744,13 @@ namespace DS4Windows
 
                 device.getCurrentState(CurrentState[ind]);
                 DS4State cState = CurrentState[ind];
-                device.getPreviousState(PreviousState[ind]);
-                DS4State pState = PreviousState[ind];
+                DS4State pState = device.getPreviousStateRef();
+                //device.getPreviousState(PreviousState[ind]);
+                //DS4State pState = PreviousState[ind];
 
-                if (!device.firstReport && device.IsAlive())
+                if (device.firstReport && device.IsAlive())
                 {
-                    device.firstReport = true;
+                    device.firstReport = false;
                     device.getUiContext()?.Post(new SendOrPostCallback(delegate (object state)
                     {
                         OnDeviceStatusChanged(this, ind);
@@ -771,9 +767,7 @@ namespace DS4Windows
                 }
 
                 if (getEnableTouchToggle(ind))
-                {
                     CheckForTouchToggle(ind, cState, pState);
-                }
 
                 cState = Mapping.SetCurveAndDeadzone(ind, cState);
 
@@ -806,7 +800,7 @@ namespace DS4Windows
                 Mapping.Commit(ind);
 
                 // Update the GUI/whatever.
-                DS4LightBar.updateLightBar(device, ind, cState, ExposedState[ind], touchPad[ind]);
+                DS4LightBar.updateLightBar(device, ind);
             }
         }
 
@@ -833,131 +827,73 @@ namespace DS4Windows
             }
         }
 
-        public string GetInputkeys(int ind)
+        public DS4Controls GetActiveInputControl(int ind)
         {
             DS4State cState = CurrentState[ind];
             DS4StateExposed eState = ExposedState[ind];
             Mouse tp = touchPad[ind];
-            string result = "nothing";
+            DS4Controls result = DS4Controls.None;
 
             if (DS4Controllers[ind] != null)
             {
                 if (Mapping.getBoolButtonMapping(cState.Cross))
-                {
-                    result = "Cross";
-                }
+                    result = DS4Controls.Cross;
                 else if (Mapping.getBoolButtonMapping(cState.Circle))
-                {
-                    result = "Circle";
-                }
+                    result = DS4Controls.Circle;
                 else if (Mapping.getBoolButtonMapping(cState.Triangle))
-                {
-                    result = "Triangle";
-                }
+                    result = DS4Controls.Triangle;
                 else if (Mapping.getBoolButtonMapping(cState.Square))
-                {
-                    result = "Square";
-                }
+                    result = DS4Controls.Square;
                 else if (Mapping.getBoolButtonMapping(cState.L1))
-                {
-                    result = "L1";
-                }
+                    result = DS4Controls.L1;
                 else if (Mapping.getBoolTriggerMapping(cState.L2))
-                {
-                    result = "L2";
-                }
+                    result = DS4Controls.L2;
                 else if (Mapping.getBoolButtonMapping(cState.L3))
-                {
-                    result = "L3";
-                }
+                    result = DS4Controls.L3;
                 else if (Mapping.getBoolButtonMapping(cState.R1))
-                {
-                    result = "R1";
-                }
+                    result = DS4Controls.R1;
                 else if (Mapping.getBoolTriggerMapping(cState.R2))
-                {
-                    result = "R2";
-                }
+                    result = DS4Controls.R2;
                 else if (Mapping.getBoolButtonMapping(cState.R3))
-                {
-                    result = "R3";
-                }
+                    result = DS4Controls.R3;
                 else if (Mapping.getBoolButtonMapping(cState.DpadUp))
-                {
-                    result = "Up";
-                }
+                    result = DS4Controls.DpadUp;
                 else if (Mapping.getBoolButtonMapping(cState.DpadDown))
-                {
-                    result = "Down";
-                }
+                    result = DS4Controls.DpadDown;
                 else if (Mapping.getBoolButtonMapping(cState.DpadLeft))
-                {
-                    result = "Left";
-                }
+                    result = DS4Controls.DpadLeft;
                 else if (Mapping.getBoolButtonMapping(cState.DpadRight))
-                {
-                    result = "Right";
-                }
+                    result = DS4Controls.DpadRight;
                 else if (Mapping.getBoolButtonMapping(cState.Share))
-                {
-                    result = "Share";
-                }
+                    result = DS4Controls.Share;
                 else if (Mapping.getBoolButtonMapping(cState.Options))
-                {
-                    result = "Options";
-                }
+                    result = DS4Controls.Options;
                 else if (Mapping.getBoolButtonMapping(cState.PS))
-                {
-                    result = "PS";
-                }
+                    result = DS4Controls.PS;
                 else if (Mapping.getBoolAxisDirMapping(cState.LX, true))
-                {
-                    result = "LS Right";
-                }
+                    result = DS4Controls.LXPos;
                 else if (Mapping.getBoolAxisDirMapping(cState.LX, false))
-                {
-                    result = "LS Left";
-                }
+                    result = DS4Controls.LXNeg;
                 else if (Mapping.getBoolAxisDirMapping(cState.LY, true))
-                {
-                    result = "LS Down";
-                }
+                    result = DS4Controls.LYPos;
                 else if (Mapping.getBoolAxisDirMapping(cState.LY, false))
-                {
-                    result = "LS Up";
-                }
+                    result = DS4Controls.LYNeg;
                 else if (Mapping.getBoolAxisDirMapping(cState.RX, true))
-                {
-                    result = "RS Right";
-                }
+                    result = DS4Controls.RXPos;
                 else if (Mapping.getBoolAxisDirMapping(cState.RX, false))
-                {
-                    result = "RS Left";
-                }
+                    result = DS4Controls.RXNeg;
                 else if (Mapping.getBoolAxisDirMapping(cState.RY, true))
-                {
-                    result = "RS Down";
-                }
+                    result = DS4Controls.RYPos;
                 else if (Mapping.getBoolAxisDirMapping(cState.RY, false))
-                {
-                    result = "RS Up";
-                }
+                    result = DS4Controls.RYNeg;
                 else if (Mapping.getBoolTouchMapping(tp.leftDown))
-                {
-                    result = "Touch Left";
-                }
+                    result = DS4Controls.TouchLeft;
                 else if (Mapping.getBoolTouchMapping(tp.rightDown))
-                {
-                    result = "Touch Right";
-                }
+                    result = DS4Controls.TouchRight;
                 else if (Mapping.getBoolTouchMapping(tp.multiDown))
-                {
-                    result = "Touch Multi";
-                }
+                    result = DS4Controls.TouchMulti;
                 else if (Mapping.getBoolTouchMapping(tp.upperDown))
-                {
-                    result = "Touch Upper";
-                }
+                    result = DS4Controls.TouchUpper;
             }
 
             return result;
@@ -979,20 +915,16 @@ namespace DS4Windows
                     oldscrollvalue[deviceID] = getScrollSensitivity(deviceID);
                     getTouchSensitivity()[deviceID] = 0;
                     getScrollSensitivity()[deviceID] = 0;
-                    LogDebug(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
-                        Properties.Resources.TouchpadMovementOff);
-                    Log.LogToTray(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
-                        Properties.Resources.TouchpadMovementOff);
+                    LogDebug(Properties.Resources.TouchpadMovementOff);
+                    Log.LogToTray(Properties.Resources.TouchpadMovementOff);
                     touchreleased[deviceID] = false;
                 }
                 else if (touchreleased[deviceID])
                 {
                     getTouchSensitivity()[deviceID] = oldtouchvalue[deviceID];
                     getScrollSensitivity()[deviceID] = oldscrollvalue[deviceID];
-                    LogDebug(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
-                        Properties.Resources.TouchpadMovementOff);
-                    Log.LogToTray(getTouchSensitivity(deviceID) > 0 ? Properties.Resources.TouchpadMovementOn :
-                        Properties.Resources.TouchpadMovementOff);
+                    LogDebug(Properties.Resources.TouchpadMovementOn);
+                    Log.LogToTray(Properties.Resources.TouchpadMovementOn);
                     touchreleased[deviceID] = false;
                 }
             }

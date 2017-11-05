@@ -78,5 +78,23 @@ namespace DS4Windows
         {
             return _state.Motion.accelZ;
         }
+
+        public int OutputAccelX { get { return _state.Motion.outputAccelX; } }
+        public int getOutputAccelX()
+        {
+            return _state.Motion.outputAccelX;
+        }
+
+        public int OutputAccelY { get { return _state.Motion.outputAccelY; } }
+        public int getOutputAccelY()
+        {
+            return _state.Motion.outputAccelY;
+        }
+
+        public int OutputAccelZ { get { return _state.Motion.outputAccelZ; } }
+        public int getOutputAccelZ()
+        {
+            return _state.Motion.outputAccelZ;
+        }
     }
 }

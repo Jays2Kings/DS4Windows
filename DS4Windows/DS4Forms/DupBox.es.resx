@@ -121,7 +121,7 @@
     <value>Guardar</value>
   </data>
   <data name="tBProfile.Text" xml:space="preserve">
-    <value>&lt;Escribe nuevo nombre aqui&gt;</value>
+    <value>&lt;Escribe el nuevo nombre aqui&gt;</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cancelar</value>

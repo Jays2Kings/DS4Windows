@@ -11,7 +11,7 @@ website at [ds4windows.com](http://ds4windows.com).
 
 ## Requirements
 
-- [Microsoft .NET 4.5 or higher (needed to unzip the driver and for macros to work properly)](http://www.microsoft.com/en-us/download/details.aspx?id=42642)
+- [Microsoft .NET 4.5.2 or higher (needed to unzip the driver and for macros to work properly)](http://www.microsoft.com/en-us/download/details.aspx?id=42642)
 - SCP Virtual Bus Driver (Downloaded & Installed with DS4Windows)
 - Microsoft 360 Driver (link inside DS4Windows, already installed on Windows 7 SP1 and higher or if you've used a 360 controller before)
 - Sony DualShock 4 (This should be obvious)

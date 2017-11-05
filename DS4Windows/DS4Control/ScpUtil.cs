@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using System.IO;
 using System.Reflection;
@@ -224,21 +225,6 @@ namespace DS4Windows
         }
     }
 
-    public class MultiValueDict<Key, Value> : Dictionary<Key, List<Value>>
-    {
-        public void Add(Key key, Value val)
-        {
-            List<Value> values = null;
-            if (!this.TryGetValue(key, out values))
-            {
-                values = new List<Value>();
-                this.Add(key, values);
-            }
-
-            values.Add(val);
-        }
-    }
-
     public class Global
     {
         protected static BackingStore m_Config = new BackingStore();
@@ -250,8 +236,9 @@ namespace DS4Windows
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
         public static bool[] useDInputOnly = new bool[5] { true, true, true, true, true };
+        public static bool[] linkedProfileCheck = new bool[4] { true, true, true, true };
 
-        public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
+    public static X360Controls[] defaultButtonMapping = { X360Controls.None, X360Controls.LXNeg, X360Controls.LXPos,
             X360Controls.LYNeg, X360Controls.LYPos, X360Controls.RXNeg, X360Controls.RXPos, X360Controls.RYNeg, X360Controls.RYPos,
             X360Controls.LB, X360Controls.LT, X360Controls.LS, X360Controls.RB, X360Controls.RT, X360Controls.RS, X360Controls.X,
             X360Controls.Y, X360Controls.B, X360Controls.A, X360Controls.DpadUp, X360Controls.DpadRight, X360Controls.DpadDown,
@@ -281,6 +268,7 @@ namespace DS4Windows
             appdatapath = path;
             m_Config.m_Profile = appdatapath + "\\Profiles.xml";
             m_Config.m_Actions = appdatapath + "\\Actions.xml";
+            m_Config.m_linkedProfiles = Global.appdatapath + "\\LinkedProfiles.xml";
         }
 
         /// <summary>
@@ -572,6 +560,12 @@ namespace DS4Windows
             return m_Config.sATriggers[index];
         }
 
+        public static int[][] TouchDisInvertTriggers => m_Config.touchDisInvertTriggers;
+        public static int[] getTouchDisInvertTriggers(int index)
+        {
+            return m_Config.touchDisInvertTriggers[index];
+        }
+
         public static int[] GyroSensitivity => m_Config.gyroSensitivity;
         public static int getGyroSensitivity(int index)
         {
@@ -665,6 +659,10 @@ namespace DS4Windows
 
         public static bool[] LowerRCOn => m_Config.lowerRCOn;
         public static bool[] TouchpadJitterCompensation => m_Config.touchpadJitterCompensation;
+        public static bool getTouchpadJitterCompensation(int index)
+        {
+            return m_Config.touchpadJitterCompensation[index];
+        }
 
         public static int[] TouchpadInvert => m_Config.touchpadInvert;
         public static int getTouchpadInvert(int index)
@@ -890,6 +888,7 @@ namespace DS4Windows
 
         public static string[] LaunchProgram => m_Config.launchProgram;
         public static string[] ProfilePath => m_Config.profilePath;
+        public static string[] OlderProfilePath => m_Config.olderProfilePath;
         public static bool[] DistanceProfiles = m_Config.distanceProfiles;
 
         public static List<string>[] ProfileActions => m_Config.profileActions;
@@ -944,7 +943,8 @@ namespace DS4Windows
             return m_Config.containsCustomExtras[deviceNum];
         }
 
-        public static void SaveAction(string name, string controls, int mode, string details, bool edit, string extras = "")
+        public static void SaveAction(string name, string controls, int mode,
+            string details, bool edit, string extras = "")
         {
             m_Config.SaveAction(name, controls, mode, details, edit, extras);
             Mapping.actionDone.Add(new Mapping.ActionState());
@@ -1035,44 +1035,45 @@ namespace DS4Windows
             return defaultButtonMapping[(int)dc];
         }
 
-        /*public static X360Controls getCustomButton(int device, DS4Controls controlName) => m_Config.GetCustomButton(device, controlName);
-        
-        public static ushort getCustomKey(int device, DS4Controls controlName) => m_Config.GetCustomKey(device, controlName);
-        
-        public static string getCustomMacro(int device, DS4Controls controlName) => m_Config.GetCustomMacro(device, controlName);
-        
-        public static string getCustomExtras(int device, DS4Controls controlName) => m_Config.GetCustomExtras(device, controlName);
-        
-        public static DS4KeyType getCustomKeyType(int device, DS4Controls controlName) => m_Config.GetCustomKeyType(device, controlName);
-        
-        public static bool getHasCustomKeysorButtons(int device) => m_Config.customMapButtons[device].Count > 0
-                || m_Config.customMapKeys[device].Count > 0;
-        
-        public static bool getHasCustomExtras(int device) => m_Config.customMapExtras[device].Count > 0;        
-        public static Dictionary<DS4Controls, X360Controls> getCustomButtons(int device) => m_Config.customMapButtons[device];        
-        public static Dictionary<DS4Controls, ushort> getCustomKeys(int device) => m_Config.customMapKeys[device];        
-        public static Dictionary<DS4Controls, string> getCustomMacros(int device) => m_Config.customMapMacros[device];        
-        public static Dictionary<DS4Controls, string> getCustomExtras(int device) => m_Config.customMapExtras[device];
-        public static Dictionary<DS4Controls, DS4KeyType> getCustomKeyTypes(int device) => m_Config.customMapKeyTypes[device];        
+        public static bool containsLinkedProfile(string serial)
+        {
+            string tempSerial = serial.Replace(":", string.Empty);
+            return m_Config.linkedProfiles.ContainsKey(tempSerial);
+        }
 
-        public static X360Controls getShiftCustomButton(int device, DS4Controls controlName) => m_Config.GetShiftCustomButton(device, controlName);        
-        public static ushort getShiftCustomKey(int device, DS4Controls controlName) => m_Config.GetShiftCustomKey(device, controlName);        
-        public static string getShiftCustomMacro(int device, DS4Controls controlName) => m_Config.GetShiftCustomMacro(device, controlName);        
-        public static string getShiftCustomExtras(int device, DS4Controls controlName) => m_Config.GetShiftCustomExtras(device, controlName);        
-        public static DS4KeyType getShiftCustomKeyType(int device, DS4Controls controlName) => m_Config.GetShiftCustomKeyType(device, controlName);        
-        public static bool getHasShiftCustomKeysorButtons(int device) => m_Config.shiftCustomMapButtons[device].Count > 0
-                || m_Config.shiftCustomMapKeys[device].Count > 0;        
-        public static bool getHasShiftCustomExtras(int device) => m_Config.shiftCustomMapExtras[device].Count > 0;        
-        public static Dictionary<DS4Controls, X360Controls> getShiftCustomButtons(int device) => m_Config.shiftCustomMapButtons[device];        
-        public static Dictionary<DS4Controls, ushort> getShiftCustomKeys(int device) => m_Config.shiftCustomMapKeys[device];        
-        public static Dictionary<DS4Controls, string> getShiftCustomMacros(int device) => m_Config.shiftCustomMapMacros[device];        
-        public static Dictionary<DS4Controls, string> getShiftCustomExtras(int device) => m_Config.shiftCustomMapExtras[device];        
-        public static Dictionary<DS4Controls, DS4KeyType> getShiftCustomKeyTypes(int device) => m_Config.shiftCustomMapKeyTypes[device]; */
+        public static string getLinkedProfile(string serial)
+        {
+            string temp = string.Empty;
+            string tempSerial = serial.Replace(":", string.Empty);
+            if (m_Config.linkedProfiles.ContainsKey(tempSerial))
+            {
+                temp = m_Config.linkedProfiles[tempSerial];
+            }
+
+            return temp;
+        }
+
+        public static void changeLinkedProfile(string serial, string profile)
+        {
+            string tempSerial = serial.Replace(":", string.Empty);
+            m_Config.linkedProfiles[tempSerial] = profile;
+        }
+
+        public static void removeLinkedProfile(string serial)
+        {
+            string tempSerial = serial.Replace(":", string.Empty);
+            if (m_Config.linkedProfiles.ContainsKey(tempSerial))
+            {
+                m_Config.linkedProfiles.Remove(tempSerial);
+            }
+        }
+
         public static bool Load() => m_Config.Load();
         
-        public static void LoadProfile(int device, bool launchprogram, ControlService control, bool xinputChange = true)
+        public static void LoadProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
         {
-            m_Config.LoadProfile(device, launchprogram, control, "", xinputChange);
+            m_Config.LoadProfile(device, launchprogram, control, "", xinputChange, postLoad);
             tempprofilename[device] = string.Empty;
             tempprofileDistance[device] = false;
         }
@@ -1093,6 +1094,16 @@ namespace DS4Windows
         public static void SaveProfile(int device, string propath)
         {
             m_Config.SaveProfile(device, propath);
+        }
+
+        public static bool SaveLinkedProfiles()
+        {
+            return m_Config.SaveLinkedProfiles();
+        }
+
+        public static bool LoadLinkedProfiles()
+        {
+            return m_Config.LoadLinkedProfiles();
         }
 
         private static byte applyRatio(byte b1, byte b2, double r)
@@ -1187,60 +1198,62 @@ namespace DS4Windows
         }
     }
 
-
     public class BackingStore
     {
         //public String m_Profile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool" + "\\Profiles.xml";
         public String m_Profile = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName + "\\Profiles.xml";
         public String m_Actions = Global.appdatapath + "\\Actions.xml";
+        public string m_linkedProfiles = Global.appdatapath + "\\LinkedProfiles.xml";
 
         protected XmlDocument m_Xdoc = new XmlDocument();
         // fifth value used for options, not fifth controller
-        public int[] buttonMouseSensitivity = { 25, 25, 25, 25, 25 };
+        public int[] buttonMouseSensitivity = new int[5] { 25, 25, 25, 25, 25 };
 
-        public bool[] flushHIDQueue = { false, false, false, false, false };
-        public bool[] enableTouchToggle = { true, true, true, true, true };
-        public int[] idleDisconnectTimeout = { 0, 0, 0, 0, 0 };
-        public bool[] touchpadJitterCompensation = { true, true, true, true, true };
-        public bool[] lowerRCOn = { false, false, false, false, false };
-        public bool[] ledAsBattery = { false, false, false, false, false };
-        public byte[] flashType = { 0, 0, 0, 0, 0 };
-        public string[] profilePath = { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public bool[] flushHIDQueue = new bool[5] { false, false, false, false, false };
+        public bool[] enableTouchToggle = new bool[5] { true, true, true, true, true };
+        public int[] idleDisconnectTimeout = new int[5] { 0, 0, 0, 0, 0 };
+        public bool[] touchpadJitterCompensation = new bool[5] { true, true, true, true, true };
+        public bool[] lowerRCOn = new bool[5] { false, false, false, false, false };
+        public bool[] ledAsBattery = new bool[5] { false, false, false, false, false };
+        public byte[] flashType = new byte[5] { 0, 0, 0, 0, 0 };
+        public string[] profilePath = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public string[] olderProfilePath = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public Dictionary<string, string> linkedProfiles = new Dictionary<string, string>();
         // Cache properties instead of performing a string comparison every frame
-        public bool[] distanceProfiles = { false, false, false, false, false };
-        public Byte[] rumble = { 100, 100, 100, 100, 100 };
-        public Byte[] touchSensitivity = { 100, 100, 100, 100, 100 };
-        public Byte[] l2Deadzone = { 0, 0, 0, 0, 0 }, r2Deadzone = { 0, 0, 0, 0, 0 };
-        public int[] LSDeadzone = { 0, 0, 0, 0, 0 }, RSDeadzone = { 0, 0, 0, 0, 0 };
-        public int[] LSAntiDeadzone = { 0, 0, 0, 0, 0 }, RSAntiDeadzone = { 0, 0, 0, 0, 0 };
-        public int[] LSMaxzone = { 100, 100, 100, 100, 100 }, RSMaxzone = { 100, 100, 100, 100, 100 };
-        public int[] l2AntiDeadzone = { 0, 0, 0, 0, 0 }, r2AntiDeadzone = { 0, 0, 0, 0, 0 };
-        public int[] l2Maxzone = { 100, 100, 100, 100, 100 }, r2Maxzone = { 100, 100, 100, 100, 100 };
-        public double[] LSRotation = { 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = { 0.0, 0.0, 0.0, 0.0, 0.0 };
-        public double[] SXDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = { 0.25, 0.25, 0.25, 0.25, 0.25 };
+        public bool[] distanceProfiles = new bool[5] { false, false, false, false, false };
+        public Byte[] rumble = new Byte[5] { 100, 100, 100, 100, 100 };
+        public Byte[] touchSensitivity = new Byte[5] { 100, 100, 100, 100, 100 };
+        public Byte[] l2Deadzone = new Byte[5] { 0, 0, 0, 0, 0 }, r2Deadzone = new Byte[5] { 0, 0, 0, 0, 0 };
+        public int[] LSDeadzone = new int[5] { 0, 0, 0, 0, 0 }, RSDeadzone = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] LSAntiDeadzone = new int[5] { 0, 0, 0, 0, 0 }, RSAntiDeadzone = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] LSMaxzone = new int[5] { 100, 100, 100, 100, 100 }, RSMaxzone = new int[5] { 100, 100, 100, 100, 100 };
+        public int[] l2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 }, r2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] l2Maxzone = new int[5] { 100, 100, 100, 100, 100 }, r2Maxzone = new int[5] { 100, 100, 100, 100, 100 };
+        public double[] LSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+        public double[] SXDeadzone = new double[5] { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = new double[5] { 0.25, 0.25, 0.25, 0.25, 0.25 };
         public double[] SXMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 },
             SZMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
         public double[] SXAntiDeadzone = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 },
             SZAntiDeadzone = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
-        public double[] l2Sens = { 1, 1, 1, 1, 1 }, r2Sens = { 1, 1, 1, 1, 1 };
-        public double[] LSSens = { 1, 1, 1, 1, 1 }, RSSens = { 1, 1, 1, 1, 1 };
-        public double[] SXSens = { 1, 1, 1, 1, 1 }, SZSens = { 1, 1, 1, 1, 1 };
-        public Byte[] tapSensitivity = { 0, 0, 0, 0, 0 };
-        public bool[] doubleTap = { false, false, false, false, false };
-        public int[] scrollSensitivity = { 0, 0, 0, 0, 0 };
-        public int[] touchpadInvert = { 0, 0, 0, 0, 0 };
-        public double[] rainbow = { 0, 0, 0, 0, 0 };
-        public int[] flashAt = { 0, 0, 0, 0, 0 };
-        public bool[] mouseAccel = { true, true, true, true, true };
-        public int[] btPollRate = { 4, 4, 4, 4, 4 };
-        public int[] lsOutCurveMode = { 0, 0, 0, 0, 0 };
-        public int[] rsOutCurveMode = { 0, 0, 0, 0, 0 };
+        public double[] l2Sens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 }, r2Sens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
+        public double[] LSSens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 }, RSSens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
+        public double[] SXSens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 }, SZSens = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
+        public Byte[] tapSensitivity = new Byte[5] { 0, 0, 0, 0, 0 };
+        public bool[] doubleTap = new bool[5] { false, false, false, false, false };
+        public int[] scrollSensitivity = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] touchpadInvert = new int[5] { 0, 0, 0, 0, 0 };
+        public double[] rainbow = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+        public int[] flashAt = new int[5] { 0, 0, 0, 0, 0 };
+        public bool[] mouseAccel = new bool[5] { true, true, true, true, true };
+        public int[] btPollRate = new int[5] { 4, 4, 4, 4, 4 };
+        public int[] lsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] rsOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] l2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] r2OutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] sxOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
         public int[] szOutCurveMode = new int[5] { 0, 0, 0, 0, 0 };
 
-        public DS4Color[] m_LowLeds = new DS4Color[]
+        public DS4Color[] m_LowLeds = new DS4Color[5]
         {
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -1248,7 +1261,7 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
-        public DS4Color[] m_Leds = new DS4Color[]
+        public DS4Color[] m_Leds = new DS4Color[5]
         {
             new DS4Color(Color.Blue),
             new DS4Color(Color.Red),
@@ -1256,7 +1269,7 @@ namespace DS4Windows
             new DS4Color(Color.Pink),
             new DS4Color(Color.White)
         };
-        public DS4Color[] m_ChargingLeds = new DS4Color[]
+        public DS4Color[] m_ChargingLeds = new DS4Color[5]
         {
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -1264,7 +1277,7 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
-        public DS4Color[] m_FlashLeds = new DS4Color[]
+        public DS4Color[] m_FlashLeds = new DS4Color[5]
         {
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -1272,8 +1285,8 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
-        public bool[] useCustomLeds = new bool[] { false, false, false, false, false };
-        public DS4Color[] m_CustomLeds = new DS4Color[]
+        public bool[] useCustomLeds = new bool[5] { false, false, false, false, false };
+        public DS4Color[] m_CustomLeds = new DS4Color[5]
         {
             new DS4Color(Color.Black),
             new DS4Color(Color.Black),
@@ -1281,15 +1294,18 @@ namespace DS4Windows
             new DS4Color(Color.Black),
             new DS4Color(Color.Black)
         };
-        public int[] chargingType = { 0, 0, 0, 0, 0 };
-        public string[] launchProgram = { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
-        public bool[] dinputOnly = { false, false, false, false, false };
-        public bool[] startTouchpadOff = { false, false, false, false, false };
-        public bool[] useTPforControls = { false, false, false, false, false };
-        public bool[] useSAforMouse = { false, false, false, false, false };
-        public string[] sATriggers = { "", "", "", "", "" };
-        public int[] lsCurve = { 0, 0, 0, 0, 0 };
-        public int[] rsCurve = { 0, 0, 0, 0, 0 };
+
+        public int[] chargingType = new int[5] { 0, 0, 0, 0, 0 };
+        public string[] launchProgram = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public bool[] dinputOnly = new bool[5] { false, false, false, false, false };
+        public bool[] startTouchpadOff = new bool[5] { false, false, false, false, false };
+        public bool[] useTPforControls = new bool[5] { false, false, false, false, false };
+        public bool[] useSAforMouse = new bool[5] { false, false, false, false, false };
+        public string[] sATriggers = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public int[][] touchDisInvertTriggers = new int[5][] { new int[1] { -1 }, new int[1] { -1 }, new int[1] { -1 },
+            new int[1] { -1 }, new int[1] { -1 } };
+        public int[] lsCurve = new int[5] { 0, 0, 0, 0, 0 };
+        public int[] rsCurve = new int[5] { 0, 0, 0, 0, 0 };
         public Boolean useExclusiveMode = false;
         public Int32 formWidth = 782;
         public Int32 formHeight = 550;
@@ -1304,38 +1320,36 @@ namespace DS4Windows
         public int firstXinputPort = 1;
         public bool closeMini = false;
         public List<SpecialAction> actions = new List<SpecialAction>();
-        public List<DS4ControlSettings>[] ds4settings = { new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>() };
-        /*public Dictionary<DS4Controls, DS4KeyType>[] customMapKeyTypes = { null, null, null, null, null };
-        public Dictionary<DS4Controls, UInt16>[] customMapKeys = { null, null, null, null, null };
-        public Dictionary<DS4Controls, String>[] customMapMacros = { null, null, null, null, null };
-        public Dictionary<DS4Controls, X360Controls>[] customMapButtons = { null, null, null, null, null };
-        public Dictionary<DS4Controls, String>[] customMapExtras = { null, null, null, null, null };
+        public List<DS4ControlSettings>[] ds4settings = new List<DS4ControlSettings>[5]
+            { new List<DS4ControlSettings>(), new List<DS4ControlSettings>(), new List<DS4ControlSettings>(),
+              new List<DS4ControlSettings>(), new List<DS4ControlSettings>() };
 
-        public Dictionary<DS4Controls, DS4KeyType>[] shiftCustomMapKeyTypes = { null, null, null, null, null };
-        public Dictionary<DS4Controls, UInt16>[] shiftCustomMapKeys = { null, null, null, null, null };
-        public Dictionary<DS4Controls, String>[] shiftCustomMapMacros = { null, null, null, null, null };
-        public Dictionary<DS4Controls, X360Controls>[] shiftCustomMapButtons = { null, null, null, null, null };
-        public Dictionary<DS4Controls, String>[] shiftCustomMapExtras = { null, null, null, null, null };*/
-        public List<string>[] profileActions = { null, null, null, null, null };
-        public int[] profileActionCount = { 0, 0, 0, 0, 0 };
-        public Dictionary<string, SpecialAction>[] profileActionDict = { new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>() };
-        public Dictionary<string, int>[] profileActionIndexDict = { new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>() };
+        public List<string>[] profileActions = new List<string>[5] { null, null, null, null, null };
+        public int[] profileActionCount = new int[5] { 0, 0, 0, 0, 0 };
+        public Dictionary<string, SpecialAction>[] profileActionDict = new Dictionary<string, SpecialAction>[5]
+            { new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>(),
+              new Dictionary<string, SpecialAction>(), new Dictionary<string, SpecialAction>() };
+
+        public Dictionary<string, int>[] profileActionIndexDict = new Dictionary<string, int>[5]
+            { new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(),
+              new Dictionary<string, int>(), new Dictionary<string, int>() };
+
         public bool downloadLang = true;
         public bool useWhiteIcon;
         public bool flashWhenLate = true;
         public int flashWhenLateAt = 20;
         // Cache whether profile has custom action
-        public bool[] containsCustomAction = { false, false, false, false, false };
+        public bool[] containsCustomAction = new bool[5] { false, false, false, false, false };
 
         // Cache whether profile has custom extras
-        public bool[] containsCustomExtras = { false, false, false, false, false };
+        public bool[] containsCustomExtras = new bool[5] { false, false, false, false, false };
 
-        public int[] gyroSensitivity = { 100, 100, 100, 100, 100 };
-        public int[] gyroSensVerticalScale = { 100, 100, 100, 100, 100 };
-        public int[] gyroInvert = { 0, 0, 0, 0, 0 };
-        public bool[] gyroTriggerTurns = { true, true, true, true, true };
-        public bool[] gyroSmoothing = { false, false, false, false, false };
-        public double[] gyroSmoothWeight = { 0.5, 0.5, 0.5, 0.5, 0.5 };
+        public int[] gyroSensitivity = new int[5] { 100, 100, 100, 100, 100 };
+        public int[] gyroSensVerticalScale = new int[5] { 100, 100, 100, 100, 100 };
+        public int[] gyroInvert = new int[5] { 0, 0, 0, 0, 0 };
+        public bool[] gyroTriggerTurns = new bool[5] { true, true, true, true, true };
+        public bool[] gyroSmoothing = new bool[5] { false, false, false, false, false };
+        public double[] gyroSmoothWeight = new double[5] { 0.5, 0.5, 0.5, 0.5, 0.5 };
         public int[] gyroMouseHorizontalAxis = new int[5] { 0, 0, 0, 0, 0 };
 
         bool tempBool = false;
@@ -1350,93 +1364,11 @@ namespace DS4Windows
                         ds4settings[i].Add(new DS4ControlSettings(dc));
                 }
 
-                /*customMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
-                customMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
-                customMapMacros[i] = new Dictionary<DS4Controls, String>();
-                customMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
-                customMapExtras[i] = new Dictionary<DS4Controls, string>();
-
-                shiftCustomMapKeyTypes[i] = new Dictionary<DS4Controls, DS4KeyType>();
-                shiftCustomMapKeys[i] = new Dictionary<DS4Controls, UInt16>();
-                shiftCustomMapMacros[i] = new Dictionary<DS4Controls, String>();
-                shiftCustomMapButtons[i] = new Dictionary<DS4Controls, X360Controls>();
-                shiftCustomMapExtras[i] = new Dictionary<DS4Controls, string>();*/
-
                 profileActions[i] = new List<string>();
                 profileActions[i].Add("Disconnect Controller");
                 profileActionCount[i] = profileActions[i].Count;
             }
         }
-
-        /*public X360Controls GetCustomButton(int device, DS4Controls controlName)
-        {
-            if (customMapButtons[device].ContainsKey(controlName))
-                return customMapButtons[device][controlName];
-            else return X360Controls.None;
-        }
-        public UInt16 GetCustomKey(int device, DS4Controls controlName)
-        {
-            if (customMapKeys[device].ContainsKey(controlName))
-                return customMapKeys[device][controlName];
-            else return 0;
-        }
-        public string GetCustomMacro(int device, DS4Controls controlName)
-        {
-            if (customMapMacros[device].ContainsKey(controlName))
-                return customMapMacros[device][controlName];
-            else return "0";
-        }
-        public string GetCustomExtras(int device, DS4Controls controlName)
-        {
-            if (customMapExtras[device].ContainsKey(controlName))
-                return customMapExtras[device][controlName];
-            else return "0";
-        }
-        public DS4KeyType GetCustomKeyType(int device, DS4Controls controlName)
-        {
-            try
-            {
-                if (customMapKeyTypes[device].ContainsKey(controlName))
-                    return customMapKeyTypes[device][controlName];
-                else return 0;
-            }
-            catch { return 0; }
-        }
-
-        public X360Controls GetShiftCustomButton(int device, DS4Controls controlName)
-        {
-            if (shiftCustomMapButtons[device].ContainsKey(controlName))
-                return shiftCustomMapButtons[device][controlName];
-            else return X360Controls.None;
-        }
-        public UInt16 GetShiftCustomKey(int device, DS4Controls controlName)
-        {
-            if (shiftCustomMapKeys[device].ContainsKey(controlName))
-                return shiftCustomMapKeys[device][controlName];
-            else return 0;
-        }
-        public string GetShiftCustomMacro(int device, DS4Controls controlName)
-        {
-            if (shiftCustomMapMacros[device].ContainsKey(controlName))
-                return shiftCustomMapMacros[device][controlName];
-            else return "0";
-        }
-        public string GetShiftCustomExtras(int device, DS4Controls controlName)
-        {
-            if (customMapExtras[device].ContainsKey(controlName))
-                return customMapExtras[device][controlName];
-            else return "0";
-        }
-        public DS4KeyType GetShiftCustomKeyType(int device, DS4Controls controlName)
-        {
-            try
-            {
-                if (shiftCustomMapKeyTypes[device].ContainsKey(controlName))
-                    return shiftCustomMapKeyTypes[device][controlName];
-                else return 0;
-            }
-            catch { return 0; }
-        }*/
 
         private string stickOutputCurveString(int id)
         {
@@ -1583,6 +1515,12 @@ namespace DS4Windows
                 XmlNode xmlUseTPforControls = m_Xdoc.CreateNode(XmlNodeType.Element, "UseTPforControls", null); xmlUseTPforControls.InnerText = useTPforControls[device].ToString(); Node.AppendChild(xmlUseTPforControls);
                 XmlNode xmlUseSAforMouse = m_Xdoc.CreateNode(XmlNodeType.Element, "UseSAforMouse", null); xmlUseSAforMouse.InnerText = useSAforMouse[device].ToString(); Node.AppendChild(xmlUseSAforMouse);
                 XmlNode xmlSATriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "SATriggers", null); xmlSATriggers.InnerText = sATriggers[device].ToString(); Node.AppendChild(xmlSATriggers);
+
+                XmlNode xmlTouchDisInvTriggers = m_Xdoc.CreateNode(XmlNodeType.Element, "TouchDisInvTriggers", null);
+                string tempTouchDisInv = string.Join(",", touchDisInvertTriggers[device]);
+                xmlTouchDisInvTriggers.InnerText = tempTouchDisInv;
+                Node.AppendChild(xmlTouchDisInvTriggers);
+
                 XmlNode xmlGyroSensitivity = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSensitivity", null); xmlGyroSensitivity.InnerText = gyroSensitivity[device].ToString(); Node.AppendChild(xmlGyroSensitivity);
                 XmlNode xmlGyroSensVerticalScale = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroSensVerticalScale", null); xmlGyroSensVerticalScale.InnerText = gyroSensVerticalScale[device].ToString(); Node.AppendChild(xmlGyroSensVerticalScale);
                 XmlNode xmlGyroInvert = m_Xdoc.CreateNode(XmlNodeType.Element, "GyroInvert", null); xmlGyroInvert.InnerText = gyroInvert[device].ToString(); Node.AppendChild(xmlGyroInvert);
@@ -1785,104 +1723,7 @@ namespace DS4Windows
                     NodeShiftControl.AppendChild(ShiftKeyType);
                 if (ShiftExtras.HasChildNodes)
                     NodeShiftControl.AppendChild(ShiftExtras);
-                /*else if (xmlControls != null)
-                {
-                    Node.AppendChild(xmlControls);
-                }*/
-                /*if (shiftModifier[device] > 0)
-                {
-                    XmlNode NodeShiftControl = m_Xdoc.CreateNode(XmlNodeType.Element, "ShiftControl", null);
-
-                    XmlNode ShiftKey = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
-                    XmlNode ShiftMacro = m_Xdoc.CreateNode(XmlNodeType.Element, "Macro", null);
-                    XmlNode ShiftKeyType = m_Xdoc.CreateNode(XmlNodeType.Element, "KeyType", null);
-                    XmlNode ShiftButton = m_Xdoc.CreateNode(XmlNodeType.Element, "Button", null);
-                    XmlNode ShiftExtras = m_Xdoc.CreateNode(XmlNodeType.Element, "Extras", null);
-                    if (shiftbuttons != null)
-                    {
-                        foreach (var button in shiftbuttons)
-                        {
-                            // Save even if string (for xbox controller buttons)
-                            if (button.Tag != null)
-                            {
-                                XmlNode buttonNode;
-                                string keyType = String.Empty;
-                                if (button.Tag is KeyValuePair<string, string>)
-                                    if (((KeyValuePair<string, string>)button.Tag).Key == "Unbound")
-                                        keyType += DS4KeyType.Unbound;
-
-                                if (button.Font.Strikeout)
-                                    keyType += DS4KeyType.HoldMacro;
-                                if (button.Font.Underline)
-                                    keyType += DS4KeyType.Macro;
-                                if (button.Font.Italic)
-                                    keyType += DS4KeyType.Toggle;
-                                if (button.Font.Bold)
-                                    keyType += DS4KeyType.ScanCode;
-                                if (keyType != String.Empty)
-                                {
-                                    buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
-                                    buttonNode.InnerText = keyType;
-                                    ShiftKeyType.AppendChild(buttonNode);
-                                }
-
-                                string[] extras;
-                                buttonNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
-                                if (button.Tag is KeyValuePair<IEnumerable<int>, string> || button.Tag is KeyValuePair<Int32[], string> || button.Tag is KeyValuePair<UInt16[], string>)
-                                {
-                                    KeyValuePair<Int32[], string> tag = (KeyValuePair<Int32[], string>)button.Tag;
-                                    int[] ii = tag.Key;
-                                    buttonNode.InnerText = string.Join("/", ii);
-                                    ShiftMacro.AppendChild(buttonNode);
-                                    extras = tag.Value.Split(',');
-                                }
-                                else if (button.Tag is KeyValuePair<Int32, string> || button.Tag is KeyValuePair<UInt16, string> || button.Tag is KeyValuePair<byte, string>)
-                                {
-                                    KeyValuePair<int, string> tag = (KeyValuePair<int, string>)button.Tag;
-                                    buttonNode.InnerText = tag.Key.ToString();
-                                    ShiftKey.AppendChild(buttonNode);
-                                    extras = tag.Value.Split(',');
-                                }
-                                else if (button.Tag is KeyValuePair<string, string>)
-                                {
-                                    KeyValuePair<string, string> tag = (KeyValuePair<string, string>)button.Tag;
-                                    buttonNode.InnerText = tag.Key;
-                                    ShiftButton.AppendChild(buttonNode);
-                                    extras = tag.Value.Split(',');
-                                }
-                                else
-                                {
-                                    KeyValuePair<object, string> tag = (KeyValuePair<object, string>)button.Tag;
-                                    extras = tag.Value.Split(',');
-                                }
-                                bool hasvalue = false;
-                                foreach (string s in extras)
-                                    if (s != "0")
-                                    {
-                                        hasvalue = true;
-                                        break;
-                                    }
-                                if (hasvalue && !string.IsNullOrEmpty(String.Join(",", extras)))
-                                {
-                                    XmlNode extraNode = m_Xdoc.CreateNode(XmlNodeType.Element, button.Name, null);
-                                    extraNode.InnerText = String.Join(",", extras);
-                                    ShiftExtras.AppendChild(extraNode);
-                                }
-                            }
-                        }
-                        Node.AppendChild(NodeShiftControl);
-                        if (ShiftButton.HasChildNodes)
-                            NodeShiftControl.AppendChild(ShiftButton);
-                        if (ShiftMacro.HasChildNodes)
-                            NodeShiftControl.AppendChild(ShiftMacro);
-                        if (ShiftKey.HasChildNodes)
-                            NodeShiftControl.AppendChild(ShiftKey);
-                        if (ShiftKeyType.HasChildNodes)
-                            NodeShiftControl.AppendChild(ShiftKeyType);
-                    }
-                    else if (xmlShiftControls != null)
-                        Node.AppendChild(xmlShiftControls);
-                }*/
+                
                 m_Xdoc.AppendChild(Node);
                 m_Xdoc.Save(path);
             }
@@ -1892,7 +1733,6 @@ namespace DS4Windows
 
         public DS4Controls getDS4ControlsByName(string key)
         {
-
             if (!key.StartsWith("bn"))
                 return (DS4Controls)Enum.Parse(typeof(DS4Controls), key, true);
 
@@ -2133,7 +1973,7 @@ namespace DS4Windows
         }
 
         public bool LoadProfile(int device, bool launchprogram, ControlService control,
-            string propath = "", bool xinputChange = true)
+            string propath = "", bool xinputChange = true, bool postLoad = true)
         {
             bool Loaded = true;
             Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes = new Dictionary<DS4Controls, DS4KeyType>();
@@ -2556,6 +2396,21 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SATriggers"); sATriggers[device] = Item.InnerText; }
                 catch { sATriggers[device] = ""; missingSetting = true; }
 
+                try {
+                    Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TouchDisInvTriggers");
+                    string[] triggers = Item.InnerText.Split(',');
+                    int temp = -1;
+                    List<int> tempIntList = new List<int>();
+                    for (int i = 0, arlen = triggers.Length; i < arlen; i++)
+                    {
+                        if (int.TryParse(triggers[i], out temp))
+                            tempIntList.Add(temp);
+                    }
+
+                    touchDisInvertTriggers[device] = tempIntList.ToArray();
+                }
+                catch { touchDisInvertTriggers[device] = new int[1] { -1 }; missingSetting = true; }
+
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/GyroSensitivity"); int.TryParse(Item.InnerText, out gyroSensitivity[device]); }
                 catch { gyroSensitivity[device] = 100; missingSetting = true; }
 
@@ -2821,7 +2676,7 @@ namespace DS4Windows
 
             // If a device exists, make sure to transfer relevant profile device
             // options to device instance
-            if (device < 4)
+            if (postLoad && device < 4)
             {
                 DS4Device tempDev = control.DS4Controllers[device];
                 if (tempDev != null)
@@ -2835,119 +2690,6 @@ namespace DS4Windows
             }
 
             return Loaded;
-        }
-
-        public void LoadButtons(System.Windows.Forms.Control[] buttons, string control, Dictionary<DS4Controls, DS4KeyType> customMapKeyTypes,
-           Dictionary<DS4Controls, UInt16> customMapKeys, Dictionary<DS4Controls, X360Controls> customMapButtons, Dictionary<DS4Controls, String> customMapMacros, Dictionary<DS4Controls, String> customMapExtras)
-        {
-            XmlNode Item;
-            DS4KeyType keyType;
-            UInt16 wvk;
-            string rootname = "DS4Windows";
-            foreach (var button in buttons)
-                try
-                {
-                    if (m_Xdoc.SelectSingleNode(rootname) == null)
-                    {
-                        rootname = "ScpControl";
-                    }
-                    //bool foundBinding = false;
-                    button.Font = new Font(button.Font, FontStyle.Regular);
-                    Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/KeyType/{0}", button.Name));
-                    if (Item != null)
-                    {
-                        //foundBinding = true;
-                        keyType = DS4KeyType.None;
-                        if (Item.InnerText.Contains(DS4KeyType.Unbound.ToString()))
-                        {
-                            keyType = DS4KeyType.Unbound;
-                            button.Tag = "Unbound";
-                            button.Text = "Unbound";
-                        }
-                        else
-                        {
-                            bool SC = Item.InnerText.Contains(DS4KeyType.ScanCode.ToString());
-                            bool TG = Item.InnerText.Contains(DS4KeyType.Toggle.ToString());
-                            bool MC = Item.InnerText.Contains(DS4KeyType.Macro.ToString());
-                            bool MR = Item.InnerText.Contains(DS4KeyType.HoldMacro.ToString());
-                            button.Font = new Font(button.Font,
-                                (SC ? FontStyle.Bold : FontStyle.Regular) | (TG ? FontStyle.Italic : FontStyle.Regular) |
-                                (MC ? FontStyle.Underline : FontStyle.Regular) | (MR ? FontStyle.Strikeout : FontStyle.Regular));
-                            if (Item.InnerText.Contains(DS4KeyType.ScanCode.ToString()))
-                                keyType |= DS4KeyType.ScanCode;
-                            if (Item.InnerText.Contains(DS4KeyType.Toggle.ToString()))
-                                keyType |= DS4KeyType.Toggle;
-                            if (Item.InnerText.Contains(DS4KeyType.Macro.ToString()))
-                                keyType |= DS4KeyType.Macro;
-                        }
-                        if (keyType != DS4KeyType.None)
-                            customMapKeyTypes.Add(getDS4ControlsByName(Item.Name), keyType);
-                    }
-                    string extras;
-                    Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Extras/{0}", button.Name));
-                    if (Item != null)
-                    {
-                        if (Item.InnerText != string.Empty)
-                        {
-                            extras = Item.InnerText;
-                            customMapExtras.Add(getDS4ControlsByName(button.Name), Item.InnerText);
-                        }
-                        else
-                        {
-                            m_Xdoc.RemoveChild(Item);
-                            extras = "0,0,0,0,0,0,0,0";
-                        }
-                    }
-                    else
-                        extras = "0,0,0,0,0,0,0,0";
-                    Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Macro/{0}", button.Name));
-                    if (Item != null)
-                    {
-                        string[] splitter = Item.InnerText.Split('/');
-                        int[] keys = new int[splitter.Length];
-                        for (int i = 0; i < keys.Length; i++)
-                        {
-                            keys[i] = int.Parse(splitter[i]);
-                            if (keys[i] < 255) splitter[i] = ((System.Windows.Forms.Keys)keys[i]).ToString();
-                            else if (keys[i] == 256) splitter[i] = "Left Mouse Button";
-                            else if (keys[i] == 257) splitter[i] = "Right Mouse Button";
-                            else if (keys[i] == 258) splitter[i] = "Middle Mouse Button";
-                            else if (keys[i] == 259) splitter[i] = "4th Mouse Button";
-                            else if (keys[i] == 260) splitter[i] = "5th Mouse Button";
-                            else if (keys[i] > 300) splitter[i] = "Wait " + (keys[i] - 300) + "ms";
-                        }
-                        button.Text = "Macro";
-                        button.Tag = new KeyValuePair<int[], string>(keys, extras);
-                        customMapMacros.Add(getDS4ControlsByName(button.Name), Item.InnerText);
-                    }
-                    else if (m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Key/{0}", button.Name)) != null)
-                    {
-                        Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Key/{0}", button.Name));
-                        if (UInt16.TryParse(Item.InnerText, out wvk))
-                        {
-                            //foundBinding = true;
-                            customMapKeys.Add(getDS4ControlsByName(Item.Name), wvk);
-                            button.Tag = new KeyValuePair<int, string>(wvk, extras);
-                            button.Text = ((System.Windows.Forms.Keys)wvk).ToString();
-                        }
-                    }
-                    else if (m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Button/{0}", button.Name)) != null)
-                    {
-                        Item = m_Xdoc.SelectSingleNode(String.Format("/" + rootname + "/" + control + "/Button/{0}", button.Name));
-                        //foundBinding = true;
-                        button.Tag = new KeyValuePair<string, string>(Item.InnerText, extras);
-                        button.Text = Item.InnerText;
-                        customMapButtons.Add(getDS4ControlsByName(button.Name), getX360ControlsByName(Item.InnerText));
-                    }
-                    else
-                    {
-                        button.Tag = new KeyValuePair<object, string>(null, extras);
-                    }
-                }
-                catch
-                {
-
-                }
         }
 
         public bool Load()
@@ -2977,32 +2719,40 @@ namespace DS4Windows
                         {
                             distanceProfiles[0] = true;
                         }
+
+                        olderProfilePath[0] = profilePath[0];
                     }
-                    catch { profilePath[0] = string.Empty; distanceProfiles[0] = false; missingSetting = true; }
+                    catch { profilePath[0] = olderProfilePath[0] = string.Empty; distanceProfiles[0] = false; missingSetting = true; }
                     try {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Controller2"); profilePath[1] = Item.InnerText;
                         if (profilePath[1].ToLower().Contains("distance"))
                         {
                             distanceProfiles[1] = true;
                         }
+
+                        olderProfilePath[1] = profilePath[1];
                     }
-                    catch { profilePath[1] = string.Empty; distanceProfiles[1] = false; missingSetting = true; }
+                    catch { profilePath[1] = olderProfilePath[1] = string.Empty; distanceProfiles[1] = false; missingSetting = true; }
                     try {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Controller3"); profilePath[2] = Item.InnerText;
                         if (profilePath[2].ToLower().Contains("distance"))
                         {
                             distanceProfiles[2] = true;
                         }
+
+                        olderProfilePath[2] = profilePath[2];
                     }
-                    catch { profilePath[2] = string.Empty; distanceProfiles[2] = false; missingSetting = true; }
+                    catch { profilePath[2] = olderProfilePath[2] = string.Empty; distanceProfiles[2] = false; missingSetting = true; }
                     try {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Controller4"); profilePath[3] = Item.InnerText;
                         if (profilePath[3].ToLower().Contains("distance"))
                         {
                             distanceProfiles[3] = true;
                         }
+
+                        olderProfilePath[3] = profilePath[3];
                     }
-                    catch { profilePath[3] = string.Empty; distanceProfiles[3] = false; missingSetting = true; }
+                    catch { profilePath[3] = olderProfilePath[3] = string.Empty; distanceProfiles[3] = false; missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/LastChecked"); DateTime.TryParse(Item.InnerText, out lastChecked); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CheckWhen"); Int32.TryParse(Item.InnerText, out CheckWhen); }
@@ -3080,10 +2830,10 @@ namespace DS4Windows
             XmlNode xmlFormWidth = m_Xdoc.CreateNode(XmlNodeType.Element, "formWidth", null); xmlFormWidth.InnerText = formWidth.ToString(); Node.AppendChild(xmlFormWidth);
             XmlNode xmlFormHeight = m_Xdoc.CreateNode(XmlNodeType.Element, "formHeight", null); xmlFormHeight.InnerText = formHeight.ToString(); Node.AppendChild(xmlFormHeight);
 
-            XmlNode xmlController1 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller1", null); xmlController1.InnerText = profilePath[0]; Node.AppendChild(xmlController1);
-            XmlNode xmlController2 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller2", null); xmlController2.InnerText = profilePath[1]; Node.AppendChild(xmlController2);
-            XmlNode xmlController3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null); xmlController3.InnerText = profilePath[2]; Node.AppendChild(xmlController3);
-            XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); xmlController4.InnerText = profilePath[3]; Node.AppendChild(xmlController4);
+            XmlNode xmlController1 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller1", null); xmlController1.InnerText = !Global.linkedProfileCheck[0] ? profilePath[0] : olderProfilePath[0]; Node.AppendChild(xmlController1);
+            XmlNode xmlController2 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller2", null); xmlController2.InnerText = !Global.linkedProfileCheck[1] ? profilePath[1] : olderProfilePath[1]; Node.AppendChild(xmlController2);
+            XmlNode xmlController3 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller3", null); xmlController3.InnerText = !Global.linkedProfileCheck[2] ? profilePath[2] : olderProfilePath[2]; Node.AppendChild(xmlController3);
+            XmlNode xmlController4 = m_Xdoc.CreateNode(XmlNodeType.Element, "Controller4", null); xmlController4.InnerText = !Global.linkedProfileCheck[3] ? profilePath[3] : olderProfilePath[3]; Node.AppendChild(xmlController4);
 
             XmlNode xmlLastChecked = m_Xdoc.CreateNode(XmlNodeType.Element, "LastChecked", null); xmlLastChecked.InnerText = lastChecked.ToString(); Node.AppendChild(xmlLastChecked);
             XmlNode xmlCheckWhen = m_Xdoc.CreateNode(XmlNodeType.Element, "CheckWhen", null); xmlCheckWhen.InnerText = CheckWhen.ToString(); Node.AppendChild(xmlCheckWhen);
@@ -3115,8 +2865,6 @@ namespace DS4Windows
             catch (UnauthorizedAccessException) { Saved = false; }
             return Saved;
         }
-
-
 
         private void CreateAction()
         {
@@ -3316,6 +3064,105 @@ namespace DS4Windows
                 }
             }
             catch { saved = false; }
+            return saved;
+        }
+
+        public bool createLinkedProfiles()
+        {
+            bool saved = true;
+            XmlDocument m_Xdoc = new XmlDocument();
+            XmlNode Node;
+
+            Node = m_Xdoc.CreateXmlDeclaration("1.0", "utf-8", string.Empty);
+            m_Xdoc.AppendChild(Node);
+
+            Node = m_Xdoc.CreateComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
+            m_Xdoc.AppendChild(Node);
+
+            Node = m_Xdoc.CreateWhitespace("\r\n");
+            m_Xdoc.AppendChild(Node);
+
+            Node = m_Xdoc.CreateNode(XmlNodeType.Element, "LinkedControllers", "");
+            m_Xdoc.AppendChild(Node);
+
+            try { m_Xdoc.Save(m_linkedProfiles); }
+            catch (UnauthorizedAccessException) { Log.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
+
+            return saved;
+        }
+
+        public bool LoadLinkedProfiles()
+        {
+            bool loaded = true;
+            if (File.Exists(m_linkedProfiles))
+            {
+                XmlDocument linkedXdoc = new XmlDocument();
+                XmlNode Node;
+                linkedXdoc.Load(m_linkedProfiles);
+                linkedProfiles.Clear();
+
+                try
+                {
+                    Node = linkedXdoc.SelectSingleNode("/LinkedControllers");
+                    XmlNodeList links = Node.ChildNodes;
+                    for (int i = 0, listLen = links.Count; i < listLen; i++)
+                    {
+                        XmlNode current = links[i];
+                        string serial = current.Name.Replace("MAC", string.Empty);
+                        string profile = current.InnerText;
+                        linkedProfiles[serial] = profile;
+                    }
+                }
+                catch { loaded = false; }
+            }
+            else
+            {
+                Log.LogToGui("LinkedProfiles.xml can't be found.", false);
+                loaded = false;
+            }
+
+            return loaded;
+        }
+
+        public bool SaveLinkedProfiles()
+        {
+            bool saved = true;
+            if (File.Exists(m_linkedProfiles))
+            {
+                XmlDocument linkedXdoc = new XmlDocument();
+                XmlNode Node;
+
+                Node = linkedXdoc.CreateXmlDeclaration("1.0", "utf-8", string.Empty);
+                linkedXdoc.AppendChild(Node);
+
+                Node = linkedXdoc.CreateComment(string.Format(" Mac Address and Profile Linking Data. {0} ", DateTime.Now));
+                linkedXdoc.AppendChild(Node);
+
+                Node = linkedXdoc.CreateWhitespace("\r\n");
+                linkedXdoc.AppendChild(Node);
+
+                Node = linkedXdoc.CreateNode(XmlNodeType.Element, "LinkedControllers", "");
+                linkedXdoc.AppendChild(Node);
+
+                Dictionary<string, string>.KeyCollection serials = linkedProfiles.Keys;
+                for (int i = 0, itemCount = linkedProfiles.Count; i < itemCount; i++)
+                {
+                    string serial = serials.ElementAt(i);
+                    string profile = linkedProfiles[serial];
+                    XmlElement link = linkedXdoc.CreateElement("MAC" + serial);
+                    link.InnerText = profile;
+                    Node.AppendChild(link);
+                }
+
+                try { linkedXdoc.Save(m_linkedProfiles); }
+                catch (UnauthorizedAccessException) { Log.LogToGui("Unauthorized Access - Save failed to path: " + m_linkedProfiles, false); saved = false; }
+            }
+            else
+            {
+                saved = createLinkedProfiles();
+                saved = saved && SaveLinkedProfiles();
+            }
+
             return saved;
         }
 
@@ -3586,7 +3433,7 @@ namespace DS4Windows
             flushHIDQueue[device] = false;
             enableTouchToggle[device] = false;
             idleDisconnectTimeout[device] = 0;
-            touchpadJitterCompensation[device] = false;
+            touchpadJitterCompensation[device] = true;
             lowerRCOn[device] = false;
             ledAsBattery[device] = false;
             flashType[device] = 0;
@@ -3640,7 +3487,8 @@ namespace DS4Windows
             startTouchpadOff[device] = false;
             useTPforControls[device] = false;
             useSAforMouse[device] = false;
-            sATriggers[device] = "";
+            sATriggers[device] = string.Empty;
+            touchDisInvertTriggers[device] = new int[1] { -1 };
             lsCurve[device] = rsCurve[device] = 0;
             gyroSensitivity[device] = 100;
             gyroSensVerticalScale[device] = 100;

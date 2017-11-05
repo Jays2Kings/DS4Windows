@@ -140,23 +140,23 @@
     <value>540, 458</value>
   </data>
   <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Ocultar Controlador DS4: Hides the DS4's regular input (Dinput) from other programs, check if you are getting double input in games or R2 pauses games
-Click left side of touchpad: Left Touch
-Click right side of touchpad: Right Touch
-Click touchpad with 2 fingers: Multitouch
-Click upper part of touchpad: Upper Touch
-PS + Options o mantener PS por 10 segundos: Desconectar Controlador (Solo Bluetooth)
-Tocar Touchpad + PS: Turn off touchpad movement (clicking still works)
-Pad click on lower right: Right click (Best used when right side is used as a mouse button)
-Two fingers up/down on touchpad*: Scroll Up/Down
-Tap then hold touchpad*: Left mouse drag
-2 finger touchpad swipe left or right: Cycle through profiles
-Shift Modifer: Hold an action to use another set of controls
-When mapping keyboard and mouse:
-Toggle: The key will remain in a ""held down"" state until pressed again
-Macro: Assign multiple keys to one input
-Scan Code: Keys are interpreted differently. May be needed for certain games
-*If enabled</value>
+    <value>Ocultar Control DS4: Oculta la entrada regular del DS4 (Dinput) de otros programas, comprueba si tienes doble entrada en juegos o que R2 pause juegos
+Haga clic en el lado izquierdo del panel táctil: Toque izquierdo
+Haga clic en el lado derecho del panel táctil: Toque derecho
+Haga clic en el panel táctil con 2 dedos: Multi toque
+Haga clic en la parte superior del panel táctil: Toque superior
+PS + Options o mantener PS por 10 segundos: Desconectar Control (Solo Bluetooth)
+Clic en el panel táctil + PS: Desactiva el movimiento del panel táctil (el clic sigue funcionando)
+Clic en la parte inferior derecha del panel: Haga clic derecho (Mejor utilizado cuando el lado derecho se utiliza como un botón del ratón)
+Dos dedos arriba / abajo en el panel táctil*: Desplazar hacia arriba / abajo
+Toque y mantenga pulsado el panel táctil*: Arrastrar el ratón hacia la izquierda
+Deslizar el dedo hacia la izquierda o la derecha: Ciclo a través de perfiles
+Modificador de cambio: Realizar una acción para utilizar otro conjunto de controles
+Al asignar el teclado y el ratón:
+Palanca: La tecla permanecerá en estado "" presionado "" hasta que se vuelva a pulsar
+Macro: Asignar varias teclas a una entrada
+Código de exploración: Las claves se interpretan de manera diferente. Puede ser necesario para ciertos juegos
+*Si está activado</value>
   </data>
   <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>563, 386</value>

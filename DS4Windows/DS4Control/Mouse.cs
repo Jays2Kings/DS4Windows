@@ -39,6 +39,8 @@ namespace DS4Windows
         {
             if (Global.isUsingSAforMouse(deviceNum) && Global.getGyroSensitivity(deviceNum) > 0)
             {
+                s = dev.getCurrentStateRef();
+
                 triggeractivated = true;
                 useReverseRatchet = Global.getGyroTriggerTurns(deviceNum);
                 int i = 0;
@@ -46,8 +48,8 @@ namespace DS4Windows
                 if (!string.IsNullOrEmpty(ss[0]))
                 {
                     string s = string.Empty;
-                    for (int index = 0, arlen = ss.Length; triggeractivated && index < arlen; index++)
-                    //foreach (string s in ss)
+                    for (int index = 0, arlen = ss.Length;
+                        triggeractivated && index < arlen; index++)
                     {
                         s = ss[index];
                         if (!(int.TryParse(s, out i) && getDS4ControlsByName(i)))
@@ -63,8 +65,6 @@ namespace DS4Windows
                     cursor.sixaxisMoved(arg);
                 else
                     cursor.mouseRemainderReset();
-
-                dev.getCurrentState(s);
             }
         }
 
@@ -98,11 +98,22 @@ namespace DS4Windows
             return false;
         }
 
+        private bool tempBool = false;
         public virtual void touchesMoved(object sender, TouchpadEventArgs arg)
         {
-            if (!Global.UseTPforControls[deviceNum])
+            s = dev.getCurrentStateRef();
+
+            if (Global.getUseTPforControls(deviceNum) == false)
             {
-                cursor.touchesMoved(arg, dragging || dragging2);
+                int[] disArray = Global.getTouchDisInvertTriggers(deviceNum);
+                tempBool = true;
+                for (int i = 0, arlen = disArray.Length; tempBool && i < arlen; i++)
+                {
+                    if (getDS4ControlsByName(disArray[i]) == false)
+                        tempBool = false;
+                }
+
+                cursor.touchesMoved(arg, dragging || dragging2, tempBool);
                 wheel.touchesMoved(arg, dragging || dragging2);
             }
             else
@@ -129,7 +140,6 @@ namespace DS4Windows
                     slideleft = true;
             }
 
-            dev.getCurrentState(s);
             synthesizeMouseButtons();
         }
 
@@ -151,7 +161,7 @@ namespace DS4Windows
                     secondtouchbegin = true;
             }
 
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
             synthesizeMouseButtons();
         }
 
@@ -186,7 +196,7 @@ namespace DS4Windows
                 }
             }
 
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
             synthesizeMouseButtons();
         }
 
@@ -202,8 +212,7 @@ namespace DS4Windows
 
         public virtual void touchUnchanged(object sender, EventArgs unused)
         {
-            dev.getCurrentState(s);
-            //if (s.Touch1 || s.Touch2 || s.TouchButton)
+            s = dev.getCurrentStateRef();
             synthesizeMouseButtons();
         }
 
@@ -254,7 +263,6 @@ namespace DS4Windows
             }
 
             s = remapped;
-            //remapped.CopyTo(s);
         }
 
         public virtual void touchButtonUp(object sender, TouchpadEventArgs arg)
@@ -262,7 +270,7 @@ namespace DS4Windows
             pushed = DS4Controls.None;
             upperDown = leftDown = rightDown = multiDown = false;
             dev.setRumble(0, 0);
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
             if (s.Touch1 || s.Touch2)
                 synthesizeMouseButtons();
         }
@@ -284,7 +292,7 @@ namespace DS4Windows
                     rightDown = true;
             }
 
-            dev.getCurrentState(s);
+            s = dev.getCurrentStateRef();
             synthesizeMouseButtons();
         }
 

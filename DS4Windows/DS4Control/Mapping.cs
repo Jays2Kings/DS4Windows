@@ -84,14 +84,14 @@ namespace DS4Windows
         public static DateTime[] oldnowKeyAct = new DateTime[4] { DateTime.MinValue,
             DateTime.MinValue, DateTime.MinValue, DateTime.MinValue };
 
-        private static DS4Controls[] shiftTriggerMapping = { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
+        private static DS4Controls[] shiftTriggerMapping = new DS4Controls[26] { DS4Controls.None, DS4Controls.Cross, DS4Controls.Circle, DS4Controls.Square,
             DS4Controls.Triangle, DS4Controls.Options, DS4Controls.Share, DS4Controls.DpadUp, DS4Controls.DpadDown,
             DS4Controls.DpadLeft, DS4Controls.DpadRight, DS4Controls.PS, DS4Controls.L1, DS4Controls.R1, DS4Controls.L2,
             DS4Controls.R2, DS4Controls.L3, DS4Controls.R3, DS4Controls.TouchLeft, DS4Controls.TouchUpper, DS4Controls.TouchMulti,
-            DS4Controls.TouchRight, DS4Controls.GyroZNeg, DS4Controls.GyroZPos, DS4Controls.GyroXPos, DS4Controls.GyroXNeg
+            DS4Controls.TouchRight, DS4Controls.GyroZNeg, DS4Controls.GyroZPos, DS4Controls.GyroXPos, DS4Controls.GyroXNeg,
         };
 
-        private static int[] ds4ControlMapping = { 0, // DS4Control.None
+        private static int[] ds4ControlMapping = new int[34] { 0, // DS4Control.None
             16, // DS4Controls.LXNeg
             20, // DS4Controls.LXPos
             17, // DS4Controls.LYNeg
@@ -145,8 +145,8 @@ namespace DS4Windows
         public static int mouseaccel = 0;
         public static int prevmouseaccel = 0;
         private static double horizontalRemainder = 0.0, verticalRemainder = 0.0;
-        private const int MOUSESPEEDFACTOR = 40;
-        private const double MOUSESTICKOFFSET = 0.03;
+        private const int MOUSESPEEDFACTOR = 30;
+        private const double MOUSESTICKOFFSET = 0.032;
 
         public static void Commit(int device)
         {
@@ -219,18 +219,18 @@ namespace DS4Windows
 
                     if (globalState.currentClicks.wUpCount != 0 && globalState.previousClicks.wUpCount == 0)
                     {
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, 100);
+                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, 120);
                         oldnow = DateTime.UtcNow;
-                        wheel = 100;
+                        wheel = 120;
                     }
                     else if (globalState.currentClicks.wUpCount == 0 && globalState.previousClicks.wUpCount != 0)
                         wheel = 0;
 
                     if (globalState.currentClicks.wDownCount != 0 && globalState.previousClicks.wDownCount == 0)
                     {
-                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, -100);
+                        InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_WHEEL, -120);
                         oldnow = DateTime.UtcNow;
-                        wheel = -100;
+                        wheel = -120;
                     }
                     if (globalState.currentClicks.wDownCount == 0 && globalState.previousClicks.wDownCount != 0)
                         wheel = 0;
@@ -914,17 +914,17 @@ namespace DS4Windows
                     if (absx > SXD)
                     {
                         double ratioX = absx < maxValue ? (absx - SXD) / (double)(maxValue - SXD) : 1.0;
-                        dState.Motion.accelX = Math.Sign(gyroX) *
+                        dState.Motion.outputAccelX = Math.Sign(gyroX) *
                             (int)Math.Min(128d, sxsens * 128d * ((1.0 - sxAntiDead) * ratioX + sxAntiDead));
                     }
                     else
                     {
-                        dState.Motion.accelX = 0;
+                        dState.Motion.outputAccelX = 0;
                     }
                 }
                 else
                 {
-                    dState.Motion.accelX = Math.Sign(gyroX) *
+                    dState.Motion.outputAccelX = Math.Sign(gyroX) *
                         (int)Math.Min(128d, sxsens * 128d * (absx / 128d));
                 }
 
@@ -934,51 +934,51 @@ namespace DS4Windows
                     if (absz > SZD)
                     {
                         double ratioZ = absz < maxValue ? (absz - SZD) / (double)(maxValue - SZD) : 1.0;
-                        dState.Motion.accelZ = Math.Sign(gyroZ) *
+                        dState.Motion.outputAccelZ = Math.Sign(gyroZ) *
                             (int)Math.Min(128d, szsens * 128d * ((1.0 - szAntiDead) * ratioZ + szAntiDead));
                     }
                     else
                     {
-                        dState.Motion.accelZ = 0;
+                        dState.Motion.outputAccelZ = 0;
                     }
                 }
                 else
                 {
-                    dState.Motion.accelZ = Math.Sign(gyroZ) *
+                    dState.Motion.outputAccelZ = Math.Sign(gyroZ) *
                         (int)Math.Min(128d, szsens * 128d * (absz / 128d));
                 }
 
                 int sxOutCurveMode = tempIntArray[device] = getSXOutCurveMode(device);
                 if (sxOutCurveMode > 0)
                 {
-                    double temp = Math.Abs(dState.Motion.accelX) / 128.0;
+                    double temp = Math.Abs(dState.Motion.outputAccelX) / 128.0;
                     double sign = Math.Sign(temp);
                     if (sxOutCurveMode == 1)
                     {
                         double output = temp * temp;
-                        dState.Motion.accelX = (byte)(output * sign * 128.0);
+                        dState.Motion.outputAccelX = (byte)(output * sign * 128.0);
                     }
                     else if (sxOutCurveMode == 2)
                     {
                         double output = temp * temp * temp;
-                        dState.Motion.accelX = (byte)(output * 128.0);
+                        dState.Motion.outputAccelX = (byte)(output * 128.0);
                     }
                 }
 
                 int szOutCurveMode = tempIntArray[device] = getSZOutCurveMode(device);
                 if (szOutCurveMode > 0)
                 {
-                    double temp = Math.Abs(dState.Motion.accelZ) / 128.0;
+                    double temp = Math.Abs(dState.Motion.outputAccelZ) / 128.0;
                     double sign = Math.Sign(temp);
                     if (szOutCurveMode == 1)
                     {
                         double output = temp * temp;
-                        dState.Motion.accelZ = (byte)(output * sign * 128.0);
+                        dState.Motion.outputAccelZ = (byte)(output * sign * 128.0);
                     }
                     else if (szOutCurveMode == 2)
                     {
                         double output = temp * temp * temp;
-                        dState.Motion.accelZ = (byte)(output * 128.0);
+                        dState.Motion.outputAccelZ = (byte)(output * 128.0);
                     }
                 }
             }
@@ -1010,10 +1010,14 @@ namespace DS4Windows
             {
                 result = false;
             }
-            else
+            else if (trigger < 26)
             {
                 DS4Controls ds = shiftTriggerMapping[trigger];
                 result = getBoolMapping2(device, ds, cState, eState, tp, fieldMapping);
+            }
+            else if (trigger == 26)
+            {
+                result = cState.Touch1Finger;
             }
 
             return result;
@@ -1125,6 +1129,64 @@ namespace DS4Windows
                     action = dcs.action;
                     actionType = dcs.actionType;
                     keyType = dcs.keyType;
+                }
+
+                if (usingExtra == DS4Controls.None || usingExtra == dcs.control)
+                {
+                    bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
+                    bool regE = !string.IsNullOrEmpty(dcs.extras);
+                    if ((regE || shiftE) && getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
+                    {
+                        usingExtra = dcs.control;
+                        string p;
+                        if (shiftE)
+                            p = dcs.shiftExtras;
+                        else
+                            p = dcs.extras;
+
+                        string[] extraS = p.Split(',');
+                        int extrasSLen = extraS.Length;
+                        int[] extras = new int[extrasSLen];
+                        for (int i = 0; i < extrasSLen; i++)
+                        {
+                            int b;
+                            if (int.TryParse(extraS[i], out b))
+                                extras[i] = b;
+                        }
+
+                        held[device] = true;
+                        try
+                        {
+                            if (!(extras[0] == extras[1] && extras[1] == 0))
+                                ctrl.setRumble((byte)extras[0], (byte)extras[1], device);
+
+                            if (extras[2] == 1)
+                            {
+                                DS4Color color = new DS4Color { red = (byte)extras[3], green = (byte)extras[4], blue = (byte)extras[5] };
+                                DS4LightBar.forcedColor[device] = color;
+                                DS4LightBar.forcedFlash[device] = (byte)extras[6];
+                                DS4LightBar.forcelight[device] = true;
+                            }
+
+                            if (extras[7] == 1)
+                            {
+                                if (oldmouse[device] == -1)
+                                    oldmouse[device] = ButtonMouseSensitivity[device];
+                                ButtonMouseSensitivity[device] = extras[8];
+                            }
+                        }
+                        catch { }
+                    }
+                    else if ((regE || shiftE) && held[device])
+                    {
+                        DS4LightBar.forcelight[device] = false;
+                        DS4LightBar.forcedFlash[device] = 0;
+                        ButtonMouseSensitivity[device] = oldmouse[device];
+                        oldmouse[device] = -1;
+                        ctrl.setRumble(0, 0, device);
+                        held[device] = false;
+                        usingExtra = DS4Controls.None;
+                    }
                 }
 
                 if (action != null)
@@ -1349,64 +1411,6 @@ namespace DS4Windows
 
                         // erase default mappings for things that are remapped
                         resetToDefaultValue2(dcs.control, MappedState, outputfieldMapping);
-                    }
-                }
-
-                if (usingExtra == DS4Controls.None || usingExtra == dcs.control)
-                {
-                    bool shiftE = !string.IsNullOrEmpty(dcs.shiftExtras) && dcs.shiftExtras != "0,0,0,0,0,0,0,0" && ShiftTrigger2(dcs.shiftTrigger, device, cState, eState, tp, fieldMapping);
-                    bool regE = !string.IsNullOrEmpty(dcs.extras) && dcs.extras != "0,0,0,0,0,0,0,0";
-                    if ((regE || shiftE) && getBoolActionMapping2(device, dcs.control, cState, eState, tp, fieldMapping))
-                    {
-                        usingExtra = dcs.control;
-                        string p;
-                        if (shiftE)
-                            p = dcs.shiftExtras;
-                        else
-                            p = dcs.extras;
-
-                        string[] extraS = p.Split(',');
-                        int extrasSLen = extraS.Length;
-                        int[] extras = new int[extrasSLen];
-                        for (int i = 0; i < extrasSLen; i++)
-                        {
-                            int b;
-                            if (int.TryParse(extraS[i], out b))
-                                extras[i] = b;
-                        }
-
-                        held[device] = true;
-                        try
-                        {
-                            if (!(extras[0] == extras[1] && extras[1] == 0))
-                                ctrl.setRumble((byte)extras[0], (byte)extras[1], device);
-
-                            if (extras[2] == 1)
-                            {
-                                DS4Color color = new DS4Color { red = (byte)extras[3], green = (byte)extras[4], blue = (byte)extras[5] };
-                                DS4LightBar.forcedColor[device] = color;
-                                DS4LightBar.forcedFlash[device] = (byte)extras[6];
-                                DS4LightBar.forcelight[device] = true;
-                            }
-
-                            if (extras[7] == 1)
-                            {
-                                if (oldmouse[device] == -1)
-                                    oldmouse[device] = ButtonMouseSensitivity[device];
-                                ButtonMouseSensitivity[device] = extras[8];
-                            }
-                        }
-                        catch { }
-                    }
-                    else if ((regE || shiftE) && held[device])
-                    {
-                        DS4LightBar.forcelight[device] = false;
-                        DS4LightBar.forcedFlash[device] = 0;
-                        ButtonMouseSensitivity[device] = oldmouse[device];
-                        oldmouse[device] = -1;
-                        ctrl.setRumble(0, 0, device);
-                        held[device] = false;
-                        usingExtra = DS4Controls.None;
                     }
                 }
             }
@@ -1985,7 +1989,7 @@ namespace DS4Windows
                                 DS4Device d = ctrl.DS4Controllers[device];
                                 //cus
 
-                                DS4State tempPrevState = d.getPreviousState();
+                                DS4State tempPrevState = d.getPreviousStateRef();
                                 // Only create one instance of previous DS4StateFieldMapping in case more than one multi-action
                                 // button is assigned
                                 if (previousFieldMapping == null)
@@ -1999,7 +2003,7 @@ namespace DS4Windows
                                 {
                                     // pressed down
                                     action.pastTime = DateTime.UtcNow;
-                                    if (action.pastTime <= (action.firstTap + TimeSpan.FromMilliseconds(150)))
+                                    if (action.pastTime <= (action.firstTap + TimeSpan.FromMilliseconds(100)))
                                     {
                                         action.tappedOnce = tappedOnce = false;
                                         action.secondtouchbegin = secondtouchbegin = true;
@@ -2024,7 +2028,7 @@ namespace DS4Windows
                                     {
                                         action.firstTouch = firstTouch = false;
                                         //firstTouch = false;
-                                        if (DateTime.UtcNow <= (action.pastTime + TimeSpan.FromMilliseconds(200)) && !tappedOnce)
+                                        if (DateTime.UtcNow <= (action.pastTime + TimeSpan.FromMilliseconds(150)) && !tappedOnce)
                                         {
                                             action.tappedOnce = tappedOnce = true;
                                             //tappedOnce = true;
@@ -2064,7 +2068,7 @@ namespace DS4Windows
                                     }
                                     //if it fails the method resets, and tries again with a new tester value (gives tap a delay so tap and hold can work)
                                 }
-                                else if (firstTouch && (DateTime.UtcNow - action.pastTime) > TimeSpan.FromMilliseconds(1000)) //helddown
+                                else if (firstTouch && (DateTime.UtcNow - action.pastTime) > TimeSpan.FromMilliseconds(500)) //helddown
                                 {
                                     if (action.typeID == SpecialAction.ActionTypeId.MultiAction)
                                     {

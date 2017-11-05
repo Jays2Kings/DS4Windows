@@ -154,3 +154,6 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+
+.vs/DS4Windows/*/sqlite3/storage.ide
+

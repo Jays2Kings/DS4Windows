@@ -56,6 +56,18 @@ namespace DS4Windows.DS4Library
                     Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
                     endpointVolume = interfacePointer as IAudioEndpointVolume;
                 }
+                else if (deviceName.Contains("Headset Earphone (Wireless Controller)"))
+                {
+                    object interfacePointer;
+                    Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
+                    endpointVolume = interfacePointer as IAudioEndpointVolume;
+                }
+                else if (deviceName.Contains("Headset Microphone (Wireless Controller)"))
+                {
+                    object interfacePointer;
+                    Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
+                    endpointVolume = interfacePointer as IAudioEndpointVolume;
+                }
 
                 Marshal.ReleaseComObject(audioDevice);
             }

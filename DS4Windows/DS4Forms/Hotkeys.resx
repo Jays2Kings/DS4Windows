@@ -190,7 +190,7 @@
     <value>0</value>
   </data>
   <data name="lbAbout.Text" xml:space="preserve">
-    <value>DS4Windows - Jays2Kings Build (Version</value>
+    <value>DS4Windows - Ryochan7 Build (Version</value>
   </data>
   <data name="lbAbout.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
@@ -482,685 +482,6 @@
   </data>
   <data name="tLPTranslators.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
-  </data>
-  <data name="&gt;&gt;lbuk.Name" xml:space="preserve">
-    <value>lbuk</value>
-  </data>
-  <data name="&gt;&gt;lbuk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbuk.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbuk.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lbUkrainianT.Name" xml:space="preserve">
-    <value>lbUkrainianT</value>
-  </data>
-  <data name="&gt;&gt;lbUkrainianT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbUkrainianT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbUkrainianT.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lbid.Name" xml:space="preserve">
-    <value>lbid</value>
-  </data>
-  <data name="&gt;&gt;lbid.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbid.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbid.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lbIndonesianT.Name" xml:space="preserve">
-    <value>lbIndonesianT</value>
-  </data>
-  <data name="&gt;&gt;lbIndonesianT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbIndonesianT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbIndonesianT.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lbhu.Name" xml:space="preserve">
-    <value>lbhu</value>
-  </data>
-  <data name="&gt;&gt;lbhu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbhu.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbhu.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lbHungarianT.Name" xml:space="preserve">
-    <value>lbHungarianT</value>
-  </data>
-  <data name="&gt;&gt;lbHungarianT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbHungarianT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbHungarianT.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lbel.Name" xml:space="preserve">
-    <value>lbel</value>
-  </data>
-  <data name="&gt;&gt;lbel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbel.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;lbGreekT.Name" xml:space="preserve">
-    <value>lbGreekT</value>
-  </data>
-  <data name="&gt;&gt;lbGreekT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbGreekT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbGreekT.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;lbfi.Name" xml:space="preserve">
-    <value>lbfi</value>
-  </data>
-  <data name="&gt;&gt;lbfi.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbfi.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbfi.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;lbFinnishT.Name" xml:space="preserve">
-    <value>lbFinnishT</value>
-  </data>
-  <data name="&gt;&gt;lbFinnishT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbFinnishT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbFinnishT.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;lbcs.Name" xml:space="preserve">
-    <value>lbcs</value>
-  </data>
-  <data name="&gt;&gt;lbcs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbcs.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbcs.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;lbCzechT.Name" xml:space="preserve">
-    <value>lbCzechT</value>
-  </data>
-  <data name="&gt;&gt;lbCzechT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbCzechT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbCzechT.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;lbpt.Name" xml:space="preserve">
-    <value>lbpt</value>
-  </data>
-  <data name="&gt;&gt;lbpt.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbpt.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbpt.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;lbPortugueseT.Name" xml:space="preserve">
-    <value>lbPortugueseT</value>
-  </data>
-  <data name="&gt;&gt;lbPortugueseT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbPortugueseT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbPortugueseT.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;lbes.Name" xml:space="preserve">
-    <value>lbes</value>
-  </data>
-  <data name="&gt;&gt;lbes.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbes.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbes.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;lbSpanishT.Name" xml:space="preserve">
-    <value>lbSpanishT</value>
-  </data>
-  <data name="&gt;&gt;lbSpanishT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbSpanishT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbSpanishT.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;lbpl.Name" xml:space="preserve">
-    <value>lbpl</value>
-  </data>
-  <data name="&gt;&gt;lbpl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbpl.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbpl.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;lbPolishT.Name" xml:space="preserve">
-    <value>lbPolishT</value>
-  </data>
-  <data name="&gt;&gt;lbPolishT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbPolishT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbPolishT.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;lbde.Name" xml:space="preserve">
-    <value>lbde</value>
-  </data>
-  <data name="&gt;&gt;lbde.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbde.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbde.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;lbGermanT.Name" xml:space="preserve">
-    <value>lbGermanT</value>
-  </data>
-  <data name="&gt;&gt;lbGermanT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbGermanT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbGermanT.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="&gt;&gt;lbItalianT.Name" xml:space="preserve">
-    <value>lbItalianT</value>
-  </data>
-  <data name="&gt;&gt;lbItalianT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbItalianT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbItalianT.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;lbitIT.Name" xml:space="preserve">
-    <value>lbitIT</value>
-  </data>
-  <data name="&gt;&gt;lbitIT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbitIT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbitIT.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;lbruRU.Name" xml:space="preserve">
-    <value>lbruRU</value>
-  </data>
-  <data name="&gt;&gt;lbruRU.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbruRU.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbruRU.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;lbRussianT.Name" xml:space="preserve">
-    <value>lbRussianT</value>
-  </data>
-  <data name="&gt;&gt;lbRussianT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRussianT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbRussianT.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="&gt;&gt;lbroRO.Name" xml:space="preserve">
-    <value>lbroRO</value>
-  </data>
-  <data name="&gt;&gt;lbroRO.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbroRO.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbroRO.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;lbRomanianT.Name" xml:space="preserve">
-    <value>lbRomanianT</value>
-  </data>
-  <data name="&gt;&gt;lbRomanianT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbRomanianT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbRomanianT.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;lbtr.Name" xml:space="preserve">
-    <value>lbtr</value>
-  </data>
-  <data name="&gt;&gt;lbtr.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbtr.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbtr.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
-  <data name="&gt;&gt;lbTurkishT.Name" xml:space="preserve">
-    <value>lbTurkishT</value>
-  </data>
-  <data name="&gt;&gt;lbTurkishT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbTurkishT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbTurkishT.ZOrder" xml:space="preserve">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;lbzhHans.Name" xml:space="preserve">
-    <value>lbzhHans</value>
-  </data>
-  <data name="&gt;&gt;lbzhHans.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbzhHans.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbzhHans.ZOrder" xml:space="preserve">
-    <value>28</value>
-  </data>
-  <data name="&gt;&gt;lbChineseST.Name" xml:space="preserve">
-    <value>lbChineseST</value>
-  </data>
-  <data name="&gt;&gt;lbChineseST.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbChineseST.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbChineseST.ZOrder" xml:space="preserve">
-    <value>29</value>
-  </data>
-  <data name="&gt;&gt;lbzhHant.Name" xml:space="preserve">
-    <value>lbzhHant</value>
-  </data>
-  <data name="&gt;&gt;lbzhHant.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbzhHant.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbzhHant.ZOrder" xml:space="preserve">
-    <value>30</value>
-  </data>
-  <data name="&gt;&gt;lbChineseTT.Name" xml:space="preserve">
-    <value>lbChineseTT</value>
-  </data>
-  <data name="&gt;&gt;lbChineseTT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbChineseTT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbChineseTT.ZOrder" xml:space="preserve">
-    <value>31</value>
-  </data>
-  <data name="&gt;&gt;lbar.Name" xml:space="preserve">
-    <value>lbar</value>
-  </data>
-  <data name="&gt;&gt;lbar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbar.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbar.ZOrder" xml:space="preserve">
-    <value>32</value>
-  </data>
-  <data name="&gt;&gt;lbArabicT.Name" xml:space="preserve">
-    <value>lbArabicT</value>
-  </data>
-  <data name="&gt;&gt;lbArabicT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbArabicT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbArabicT.ZOrder" xml:space="preserve">
-    <value>33</value>
-  </data>
-  <data name="&gt;&gt;lbhe.Name" xml:space="preserve">
-    <value>lbhe</value>
-  </data>
-  <data name="&gt;&gt;lbhe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbhe.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbhe.ZOrder" xml:space="preserve">
-    <value>34</value>
-  </data>
-  <data name="&gt;&gt;lbHebrewT.Name" xml:space="preserve">
-    <value>lbHebrewT</value>
-  </data>
-  <data name="&gt;&gt;lbHebrewT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbHebrewT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbHebrewT.ZOrder" xml:space="preserve">
-    <value>35</value>
-  </data>
-  <data name="&gt;&gt;lbfrFR.Name" xml:space="preserve">
-    <value>lbfrFR</value>
-  </data>
-  <data name="&gt;&gt;lbfrFR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbfrFR.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbfrFR.ZOrder" xml:space="preserve">
-    <value>36</value>
-  </data>
-  <data name="&gt;&gt;lbFrenchT.Name" xml:space="preserve">
-    <value>lbFrenchT</value>
-  </data>
-  <data name="&gt;&gt;lbFrenchT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbFrenchT.Parent" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbFrenchT.ZOrder" xml:space="preserve">
-    <value>37</value>
-  </data>
-  <data name="tLPTranslators.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="tLPTranslators.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 130</value>
-  </data>
-  <data name="tLPTranslators.RowCount" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="tLPTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>553, 301</value>
-  </data>
-  <data name="tLPTranslators.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="&gt;&gt;tLPTranslators.Name" xml:space="preserve">
-    <value>tLPTranslators</value>
-  </data>
-  <data name="&gt;&gt;tLPTranslators.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tLPTranslators.Parent" xml:space="preserve">
-    <value>tPCredits</value>
-  </data>
-  <data name="&gt;&gt;tLPTranslators.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tLPTranslators.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbuk" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbUkrainianT" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbid" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbIndonesianT" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbhu" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbHungarianT" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbel" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbGreekT" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbfi" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFinnishT" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbcs" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbCzechT" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbpt" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPortugueseT" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbes" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSpanishT" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbpl" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPolishT" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbde" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbGermanT" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbItalianT" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbitIT" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbruRU" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRussianT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbroRO" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRomanianT" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbtr" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbTurkishT" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbzhHans" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseST" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbzhHant" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseTT" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbar" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbArabicT" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbhe" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbHebrewT" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbfrFR" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFrenchT" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Absolute,16,Absolute,16,Absolute,16,Absolute,16,Absolute,16,Absolute,16,Absolute,16" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="lbTranslators.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="lbTranslators.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbTranslators.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbTranslators.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 114</value>
-  </data>
-  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 13</value>
-  </data>
-  <data name="lbTranslators.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="lbTranslators.Text" xml:space="preserve">
-    <value>Translators</value>
-  </data>
-  <data name="&gt;&gt;lbTranslators.Name" xml:space="preserve">
-    <value>lbTranslators</value>
-  </data>
-  <data name="&gt;&gt;lbTranslators.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbTranslators.Parent" xml:space="preserve">
-    <value>tPCredits</value>
-  </data>
-  <data name="&gt;&gt;lbTranslators.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="linkSourceCode.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkSourceCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkSourceCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 3</value>
-  </data>
-  <data name="linkSourceCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
-  </data>
-  <data name="linkSourceCode.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="linkSourceCode.Text" xml:space="preserve">
-    <value>Source Code</value>
-  </data>
-  <data name="&gt;&gt;linkSourceCode.Name" xml:space="preserve">
-    <value>linkSourceCode</value>
-  </data>
-  <data name="&gt;&gt;linkSourceCode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkSourceCode.Parent" xml:space="preserve">
-    <value>tPCredits</value>
-  </data>
-  <data name="&gt;&gt;linkSourceCode.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="lbLinkText.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbLinkText.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="lbLinkText.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 431</value>
-  </data>
-  <data name="lbLinkText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 13</value>
-  </data>
-  <data name="lbLinkText.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="lbLinkText.Text" xml:space="preserve">
-    <value>Links displayed here</value>
-  </data>
-  <data name="&gt;&gt;lbLinkText.Name" xml:space="preserve">
-    <value>lbLinkText</value>
-  </data>
-  <data name="&gt;&gt;lbLinkText.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbLinkText.Parent" xml:space="preserve">
-    <value>tPCredits</value>
-  </data>
-  <data name="&gt;&gt;lbLinkText.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="tPCredits.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tPCredits.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>559, 447</value>
-  </data>
-  <data name="tPCredits.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tPCredits.Text" xml:space="preserve">
-    <value>Credits</value>
-  </data>
-  <data name="&gt;&gt;tPCredits.Name" xml:space="preserve">
-    <value>tPCredits</value>
-  </data>
-  <data name="&gt;&gt;tPCredits.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tPCredits.Parent" xml:space="preserve">
-    <value>tCAbout</value>
-  </data>
-  <data name="&gt;&gt;tPCredits.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tCAbout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 36</value>
-  </data>
-  <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>567, 473</value>
-  </data>
-  <data name="tCAbout.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;tCAbout.Name" xml:space="preserve">
-    <value>tCAbout</value>
-  </data>
-  <data name="&gt;&gt;tCAbout.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tCAbout.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tCAbout.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lbHotkeys.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="lbHotkeys.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbHotkeys.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>536, 454</value>
-  </data>
-  <data name="lbHotkeys.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Hide DS4 Controller: Hides the DS4's regular input (Dinput) from other programs, check if you are getting double input in games or R2 pauses games
-Click left side of touchpad: Left Touch
-Click right side of touchpad: Right Touch
-Click touchpad with 2 fingers: Multitouch
-Click upper part of touchpad: Upper Touch
-PS + Options or hold PS for 10 secs: Disconnect Controller (Only on Bluetooth)
-Touch Touchpad + PS: Turn off touchpad movement (clicking still works)
-Pad click on lower right: Right click (Best used when right side is used as a mouse button)
-Two fingers up/down on touchpad*: Scroll Up/Down
-Tap then hold touchpad*: Left mouse drag
-2 finger touchpad swipe left or right: Cycle through profiles
-Shift Modifer: Hold an action to use another set of controls
-When mapping keyboard and mouse:
-Toggle: The key will remain in a "held down" state until pressed again
-Macro: Assign multiple keys to one input
-Scan Code: Keys are interpreted differently. May be needed for certain games
-*If enabled</value>
-  </data>
-  <data name="&gt;&gt;lbHotkeys.Name" xml:space="preserve">
-    <value>lbHotkeys</value>
-  </data>
-  <data name="&gt;&gt;lbHotkeys.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbHotkeys.Parent" xml:space="preserve">
-    <value>tPHotkeys</value>
-  </data>
-  <data name="&gt;&gt;lbHotkeys.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="lbuk.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2361,6 +1682,229 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   </data>
   <data name="&gt;&gt;lbFrenchT.ZOrder" xml:space="preserve">
     <value>37</value>
+  </data>
+  <data name="tLPTranslators.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="tLPTranslators.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 130</value>
+  </data>
+  <data name="tLPTranslators.RowCount" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="tLPTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>553, 301</value>
+  </data>
+  <data name="tLPTranslators.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;tLPTranslators.Name" xml:space="preserve">
+    <value>tLPTranslators</value>
+  </data>
+  <data name="&gt;&gt;tLPTranslators.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tLPTranslators.Parent" xml:space="preserve">
+    <value>tPCredits</value>
+  </data>
+  <data name="&gt;&gt;tLPTranslators.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tLPTranslators.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbuk" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbUkrainianT" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbid" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbIndonesianT" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbhu" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbHungarianT" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbel" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbGreekT" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbfi" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFinnishT" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbcs" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbCzechT" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbpt" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPortugueseT" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbes" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSpanishT" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbpl" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPolishT" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbde" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbGermanT" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbItalianT" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbitIT" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbruRU" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRussianT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbroRO" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRomanianT" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbtr" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbTurkishT" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbzhHans" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseST" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbzhHant" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseTT" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbar" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbArabicT" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbhe" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbHebrewT" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbfrFR" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFrenchT" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Absolute,16,Absolute,16,Absolute,16,Absolute,16,Absolute,16,Absolute,16,Absolute,16" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="lbTranslators.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="lbTranslators.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbTranslators.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbTranslators.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 114</value>
+  </data>
+  <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 13</value>
+  </data>
+  <data name="lbTranslators.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lbTranslators.Text" xml:space="preserve">
+    <value>Translators</value>
+  </data>
+  <data name="&gt;&gt;lbTranslators.Name" xml:space="preserve">
+    <value>lbTranslators</value>
+  </data>
+  <data name="&gt;&gt;lbTranslators.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbTranslators.Parent" xml:space="preserve">
+    <value>tPCredits</value>
+  </data>
+  <data name="&gt;&gt;lbTranslators.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="linkSourceCode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkSourceCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="linkSourceCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 3</value>
+  </data>
+  <data name="linkSourceCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 13</value>
+  </data>
+  <data name="linkSourceCode.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="linkSourceCode.Text" xml:space="preserve">
+    <value>Source Code</value>
+  </data>
+  <data name="&gt;&gt;linkSourceCode.Name" xml:space="preserve">
+    <value>linkSourceCode</value>
+  </data>
+  <data name="&gt;&gt;linkSourceCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkSourceCode.Parent" xml:space="preserve">
+    <value>tPCredits</value>
+  </data>
+  <data name="&gt;&gt;linkSourceCode.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="lbLinkText.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbLinkText.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="lbLinkText.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 431</value>
+  </data>
+  <data name="lbLinkText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 13</value>
+  </data>
+  <data name="lbLinkText.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lbLinkText.Text" xml:space="preserve">
+    <value>Links displayed here</value>
+  </data>
+  <data name="&gt;&gt;lbLinkText.Name" xml:space="preserve">
+    <value>lbLinkText</value>
+  </data>
+  <data name="&gt;&gt;lbLinkText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbLinkText.Parent" xml:space="preserve">
+    <value>tPCredits</value>
+  </data>
+  <data name="&gt;&gt;lbLinkText.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="tPCredits.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tPCredits.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
+    <value>559, 447</value>
+  </data>
+  <data name="tPCredits.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tPCredits.Text" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="&gt;&gt;tPCredits.Name" xml:space="preserve">
+    <value>tPCredits</value>
+  </data>
+  <data name="&gt;&gt;tPCredits.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tPCredits.Parent" xml:space="preserve">
+    <value>tCAbout</value>
+  </data>
+  <data name="&gt;&gt;tPCredits.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tCAbout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 36</value>
+  </data>
+  <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>567, 473</value>
+  </data>
+  <data name="tCAbout.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;tCAbout.Name" xml:space="preserve">
+    <value>tCAbout</value>
+  </data>
+  <data name="&gt;&gt;tCAbout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tCAbout.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tCAbout.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbHotkeys.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="lbHotkeys.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbHotkeys.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>536, 454</value>
+  </data>
+  <data name="lbHotkeys.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="lbHotkeys.Text" xml:space="preserve">
+    <value>Hide DS4 Controller: Hides the DS4's regular input (Dinput) from other programs, check if you are getting double input in games or R2 pauses games
+Click left side of touchpad: Left Touch
+Click right side of touchpad: Right Touch
+Click touchpad with 2 fingers: Multitouch
+Click upper part of touchpad: Upper Touch
+PS + Options or hold PS for 10 secs: Disconnect Controller (Only on Bluetooth)
+Touch Touchpad + PS: Turn off touchpad movement (clicking still works)
+Pad click on lower right: Right click (Best used when right side is used as a mouse button)
+Two fingers up/down on touchpad*: Scroll Up/Down
+Tap then hold touchpad*: Left mouse drag
+2 finger touchpad swipe left or right: Cycle through profiles
+Shift Modifer: Hold an action to use another set of controls
+When mapping keyboard and mouse:
+Toggle: The key will remain in a "held down" state until pressed again
+Macro: Assign multiple keys to one input
+Scan Code: Keys are interpreted differently. May be needed for certain games
+*If enabled</value>
+  </data>
+  <data name="&gt;&gt;lbHotkeys.Name" xml:space="preserve">
+    <value>lbHotkeys</value>
+  </data>
+  <data name="&gt;&gt;lbHotkeys.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbHotkeys.Parent" xml:space="preserve">
+    <value>tPHotkeys</value>
+  </data>
+  <data name="&gt;&gt;lbHotkeys.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

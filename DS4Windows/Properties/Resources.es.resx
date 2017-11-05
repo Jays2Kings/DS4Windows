@@ -124,10 +124,10 @@
     <value>Agregar programas</value>
   </data>
   <data name="AlwaysRainbow" xml:space="preserve">
-    <value>Siempre Modo Alcoiris</value>
+    <value>Siempre en Modo Arcoiris</value>
   </data>
   <data name="AssignProfile" xml:space="preserve">
-    <value>Asignar a Controlador *number*</value>
+    <value>Asignar al Control *number*</value>
   </data>
   <data name="Battery" xml:space="preserve">
     <value>Batería: *number*%</value>
@@ -157,13 +157,13 @@
     <value>Conectando...</value>
   </data>
   <data name="ContextEdit" xml:space="preserve">
-    <value>Editar perfil para el Controlador *number*</value>
+    <value>Editar perfil para el Control *number*</value>
   </data>
   <data name="ContextNew" xml:space="preserve">
-    <value>Crear perfil para el Controlador *number*</value>
+    <value>Crear perfil para el Control *number*</value>
   </data>
   <data name="ControllerWasRemoved" xml:space="preserve">
-    <value>Controlador *Mac address* perdió la conexión o fue desconectado</value>
+    <value>Control *Mac address* perdió la conexión o fue desconectado</value>
   </data>
   <data name="CopyComplete" xml:space="preserve">
     <value>Copia completa, por favor reinicia DS4Windows y elimina preferencias del directorio de programa</value>
@@ -184,7 +184,7 @@
     <value>Borrar perfil?</value>
   </data>
   <data name="DinputOnly" xml:space="preserve">
-    <value>Apagar la entrada X360 y utilizar solo la entrada nativa DS4, ocultar ds4 debe estar apagado</value>
+    <value>Apagar la entrada de Xbox 360 y utilizar solo la entrada nativa DS4, ocultar DS4 debe estar apagado</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
     <value>Desconectado</value>
@@ -211,7 +211,7 @@
     <value>Brillar HID</value>
   </data>
   <data name="FoundController" xml:space="preserve">
-    <value>Controlador Encontrado:</value>
+    <value>Control Encontrado:</value>
   </data>
   <data name="Full" xml:space="preserve">
     <value>Completo</value>
@@ -283,7 +283,7 @@
     <value>Carpeta de Perfil se ha movido a Carpeta de Programa</value>
   </data>
   <data name="QuitOtherPrograms" xml:space="preserve">
-    <value>Debes salir de otras aplicaciones como Steam, Uplay antes de activar la opción "Ocultar controlador DS4"</value>
+    <value>Debes salir de otras aplicaciones como Steam, Uplay antes de activar la opción "Ocultar control DS4"</value>
   </data>
   <data name="RecordText" xml:space="preserve">
     <value>Grabar</value>
@@ -292,7 +292,7 @@
     <value>Guardar Macro grabado?</value>
   </data>
   <data name="SearchingController" xml:space="preserve">
-    <value>Buscando controladores...</value>
+    <value>Buscando controles...</value>
   </data>
   <data name="SelectActionTitle" xml:space="preserve">
     <value>Selecciona una acción para *action*</value>
@@ -316,10 +316,10 @@
     <value>DS4Windows detenido</value>
   </data>
   <data name="StoppingDS4" xml:space="preserve">
-    <value>Deteniendo Controladores DS4</value>
+    <value>Deteniendo Controles DS4</value>
   </data>
   <data name="StoppingX360" xml:space="preserve">
-    <value>Deteniendo Controladores X360</value>
+    <value>Deteniendo Controles X360</value>
   </data>
   <data name="StopText" xml:space="preserve">
     <value>Detener</value>
@@ -349,10 +349,10 @@
     <value>Inclinacion Arriba</value>
   </data>
   <data name="TouchpadMovementOff" xml:space="preserve">
-    <value>Movimiento de Panel Táctil Apagado</value>
+    <value>Movimiento del Panel Táctil Apagado</value>
   </data>
   <data name="TouchpadMovementOn" xml:space="preserve">
-    <value>Movimiento de Panel Táctil Encendido</value>
+    <value>Movimiento del Panel Táctil Encendido</value>
   </data>
   <data name="TypeNewName" xml:space="preserve">
     <value>escriba nuevo nombre aquí</value>
@@ -367,13 +367,13 @@
     <value>Actualizado</value>
   </data>
   <data name="UseControllerForMapping" xml:space="preserve">
-    <value>También puedes utilizar tu controlador para cambiar controles</value>
+    <value>También puedes utilizar tu control para cambiar controles</value>
   </data>
   <data name="UsingExclusive" xml:space="preserve">
     <value>Usando Modo Exclusivo</value>
   </data>
   <data name="UsingProfile" xml:space="preserve">
-    <value>Controlador *number* está usando perfil "*Profile name*"</value>
+    <value>Control *number* está usando el perfil "*Profile name*"</value>
   </data>
   <data name="UsingShared" xml:space="preserve">
     <value>Usando Modo Compartido</value>
@@ -403,7 +403,7 @@
     <value>Cerrar DS4Windows?</value>
   </data>
   <data name="CloseMinimize" xml:space="preserve">
-    <value>Cierra DS4Windows vía el icono de notificación</value>
+    <value>Cierra DS4Windows por medio del icono de notificación</value>
   </data>
   <data name="DimByBattery" xml:space="preserve">
     <value>Atenuar al % de la batería</value>
@@ -451,10 +451,10 @@
     <value>Utiliza Sixaxis para ayudar a calcular el movimiento del Panel Táctil</value>
   </data>
   <data name="LatencyNotOverTen" xml:space="preserve">
-    <value>Controlador *number* tiene menos de 10ms de latencia</value>
+    <value>El control *number* tiene menos de 10ms de latencia</value>
   </data>
   <data name="LatencyOverTen" xml:space="preserve">
-    <value>Controlador *number* tiene más de 10ms de latencia</value>
+    <value>El control *number* tiene más de 10ms de latencia</value>
   </data>
   <data name="LaunchProgram" xml:space="preserve">
     <value>Abrir *program*</value>
@@ -469,7 +469,7 @@
     <value>Macro</value>
   </data>
   <data name="NotUsingProfile" xml:space="preserve">
-    <value>Controlador *number* no está utilizando un perfil</value>
+    <value>El control *number* no está utilizando un perfil</value>
   </data>
   <data name="OtherFileLocation" xml:space="preserve">
     <value>, otros archivos de localización serán eliminados</value>
@@ -520,10 +520,10 @@
     <value>Inclinacion Abajo</value>
   </data>
   <data name="TouchpadOffTip" xml:space="preserve">
-    <value>Rehabilita pulsando PS+Panel Táctil</value>
+    <value>Rehabilita pulsando PS + Panel Táctil</value>
   </data>
   <data name="TwoFingerSwipe" xml:space="preserve">
-    <value>2 dedos en el Panel Táctil desliza derecha o izquierda</value>
+    <value>Dos dedos en el Panel Táctil: desliza derecha o izquierda</value>
   </data>
   <data name="UsingTPSwipes" xml:space="preserve">
     <value>Esto desactiva el panel táctil como un ratón</value>
@@ -544,6 +544,6 @@
     <value>Test</value>
   </data>
   <data name="XinputPorts" xml:space="preserve">
-    <value>Utiliza puertos más altos si tienes conflictos en otros programas de emulación X360, como la herramienta SCP</value>
+    <value>Utiliza puertos más altos si tienes conflictos en otros programas emuladores de Xbox 360, como la herramienta SCP</value>
   </data>
 </root>

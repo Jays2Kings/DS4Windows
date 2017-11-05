@@ -76,6 +76,8 @@
             this.nUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.pnlTPMouse = new System.Windows.Forms.Panel();
+            this.touchpadDisInvertButton = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.touchpadInvertComboBox = new System.Windows.Forms.ComboBox();
             this.cbStartTouchpadOff = new System.Windows.Forms.CheckBox();
@@ -361,6 +363,26 @@
             this.shareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cMTouchDisableInvert = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.crossTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.circleTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.squareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.triangleTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.l1TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.l2TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.r1TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.r2TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.upTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.leftTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.l3TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.r3TouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oneFingerTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.twoFingerTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -453,6 +475,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
+            this.cMTouchDisableInvert.SuspendLayout();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -649,8 +672,6 @@
             // cBTouchpadJitterCompensation
             // 
             resources.ApplyResources(this.cBTouchpadJitterCompensation, "cBTouchpadJitterCompensation");
-            this.cBTouchpadJitterCompensation.Checked = true;
-            this.cBTouchpadJitterCompensation.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBTouchpadJitterCompensation.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.cBTouchpadJitterCompensation.Name = "cBTouchpadJitterCompensation";
             this.cBTouchpadJitterCompensation.UseVisualStyleBackColor = true;
@@ -911,6 +932,8 @@
             // 
             // pnlTPMouse
             // 
+            this.pnlTPMouse.Controls.Add(this.touchpadDisInvertButton);
+            this.pnlTPMouse.Controls.Add(this.label25);
             this.pnlTPMouse.Controls.Add(this.label15);
             this.pnlTPMouse.Controls.Add(this.touchpadInvertComboBox);
             this.pnlTPMouse.Controls.Add(this.nUDScroll);
@@ -925,6 +948,19 @@
             this.pnlTPMouse.Controls.Add(this.cbStartTouchpadOff);
             resources.ApplyResources(this.pnlTPMouse, "pnlTPMouse");
             this.pnlTPMouse.Name = "pnlTPMouse";
+            // 
+            // touchpadDisInvertButton
+            // 
+            this.touchpadDisInvertButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.touchpadDisInvertButton, "touchpadDisInvertButton");
+            this.touchpadDisInvertButton.Name = "touchpadDisInvertButton";
+            this.touchpadDisInvertButton.UseVisualStyleBackColor = true;
+            this.touchpadDisInvertButton.Click += new System.EventHandler(this.touchpadDisInvertButton_Click);
+            // 
+            // label25
+            // 
+            resources.ApplyResources(this.label25, "label25");
+            this.label25.Name = "label25";
             // 
             // label15
             // 
@@ -3875,6 +3911,166 @@
             resources.ApplyResources(this.alwaysOnToolStripMenuItem, "alwaysOnToolStripMenuItem");
             this.alwaysOnToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SATrigger_CheckedChanged);
             // 
+            // cMTouchDisableInvert
+            // 
+            this.cMTouchDisableInvert.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.crossTouchInvStripMenuItem,
+            this.circleTouchInvStripMenuItem,
+            this.squareTouchInvStripMenuItem,
+            this.triangleTouchInvStripMenuItem,
+            this.l1TouchInvStripMenuItem,
+            this.l2TouchInvStripMenuItem,
+            this.r1TouchInvStripMenuItem,
+            this.r2TouchInvStripMenuItem,
+            this.upTouchInvStripMenuItem,
+            this.downTouchInvStripMenuItem,
+            this.leftTouchInvStripMenuItem,
+            this.rightTouchInvStripMenuItem,
+            this.l3TouchInvStripMenuItem,
+            this.r3TouchInvStripMenuItem,
+            this.oneFingerTouchInvStripMenuItem,
+            this.twoFingerTouchInvStripMenuItem,
+            this.optionsTouchInvStripMenuItem,
+            this.shareTouchInvStripMenuItem,
+            this.psTouchInvStripMenuItem});
+            this.cMTouchDisableInvert.Name = "cMTouchDisableInvert";
+            this.cMTouchDisableInvert.ShowCheckMargin = true;
+            this.cMTouchDisableInvert.ShowImageMargin = false;
+            resources.ApplyResources(this.cMTouchDisableInvert, "cMTouchDisableInvert");
+            // 
+            // crossTouchInvStripMenuItem
+            // 
+            this.crossTouchInvStripMenuItem.CheckOnClick = true;
+            this.crossTouchInvStripMenuItem.Name = "crossTouchInvStripMenuItem";
+            resources.ApplyResources(this.crossTouchInvStripMenuItem, "crossTouchInvStripMenuItem");
+            this.crossTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // circleTouchInvStripMenuItem
+            // 
+            this.circleTouchInvStripMenuItem.CheckOnClick = true;
+            this.circleTouchInvStripMenuItem.Name = "circleTouchInvStripMenuItem";
+            resources.ApplyResources(this.circleTouchInvStripMenuItem, "circleTouchInvStripMenuItem");
+            this.circleTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // squareTouchInvStripMenuItem
+            // 
+            this.squareTouchInvStripMenuItem.CheckOnClick = true;
+            this.squareTouchInvStripMenuItem.Name = "squareTouchInvStripMenuItem";
+            resources.ApplyResources(this.squareTouchInvStripMenuItem, "squareTouchInvStripMenuItem");
+            this.squareTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // triangleTouchInvStripMenuItem
+            // 
+            this.triangleTouchInvStripMenuItem.CheckOnClick = true;
+            this.triangleTouchInvStripMenuItem.Name = "triangleTouchInvStripMenuItem";
+            resources.ApplyResources(this.triangleTouchInvStripMenuItem, "triangleTouchInvStripMenuItem");
+            this.triangleTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // l1TouchInvStripMenuItem
+            // 
+            this.l1TouchInvStripMenuItem.CheckOnClick = true;
+            this.l1TouchInvStripMenuItem.Name = "l1TouchInvStripMenuItem";
+            resources.ApplyResources(this.l1TouchInvStripMenuItem, "l1TouchInvStripMenuItem");
+            this.l1TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // l2TouchInvStripMenuItem
+            // 
+            this.l2TouchInvStripMenuItem.CheckOnClick = true;
+            this.l2TouchInvStripMenuItem.Name = "l2TouchInvStripMenuItem";
+            resources.ApplyResources(this.l2TouchInvStripMenuItem, "l2TouchInvStripMenuItem");
+            this.l2TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // r1TouchInvStripMenuItem
+            // 
+            this.r1TouchInvStripMenuItem.CheckOnClick = true;
+            this.r1TouchInvStripMenuItem.Name = "r1TouchInvStripMenuItem";
+            resources.ApplyResources(this.r1TouchInvStripMenuItem, "r1TouchInvStripMenuItem");
+            this.r1TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // r2TouchInvStripMenuItem
+            // 
+            this.r2TouchInvStripMenuItem.CheckOnClick = true;
+            this.r2TouchInvStripMenuItem.Name = "r2TouchInvStripMenuItem";
+            resources.ApplyResources(this.r2TouchInvStripMenuItem, "r2TouchInvStripMenuItem");
+            this.r2TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // upTouchInvStripMenuItem
+            // 
+            this.upTouchInvStripMenuItem.CheckOnClick = true;
+            this.upTouchInvStripMenuItem.Name = "upTouchInvStripMenuItem";
+            resources.ApplyResources(this.upTouchInvStripMenuItem, "upTouchInvStripMenuItem");
+            this.upTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // downTouchInvStripMenuItem
+            // 
+            this.downTouchInvStripMenuItem.CheckOnClick = true;
+            this.downTouchInvStripMenuItem.Name = "downTouchInvStripMenuItem";
+            resources.ApplyResources(this.downTouchInvStripMenuItem, "downTouchInvStripMenuItem");
+            this.downTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // leftTouchInvStripMenuItem
+            // 
+            this.leftTouchInvStripMenuItem.CheckOnClick = true;
+            this.leftTouchInvStripMenuItem.Name = "leftTouchInvStripMenuItem";
+            resources.ApplyResources(this.leftTouchInvStripMenuItem, "leftTouchInvStripMenuItem");
+            this.leftTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // rightTouchInvStripMenuItem
+            // 
+            this.rightTouchInvStripMenuItem.CheckOnClick = true;
+            this.rightTouchInvStripMenuItem.Name = "rightTouchInvStripMenuItem";
+            resources.ApplyResources(this.rightTouchInvStripMenuItem, "rightTouchInvStripMenuItem");
+            this.rightTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // l3TouchInvStripMenuItem
+            // 
+            this.l3TouchInvStripMenuItem.CheckOnClick = true;
+            this.l3TouchInvStripMenuItem.Name = "l3TouchInvStripMenuItem";
+            resources.ApplyResources(this.l3TouchInvStripMenuItem, "l3TouchInvStripMenuItem");
+            this.l3TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // r3TouchInvStripMenuItem
+            // 
+            this.r3TouchInvStripMenuItem.CheckOnClick = true;
+            this.r3TouchInvStripMenuItem.Name = "r3TouchInvStripMenuItem";
+            resources.ApplyResources(this.r3TouchInvStripMenuItem, "r3TouchInvStripMenuItem");
+            this.r3TouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // oneFingerTouchInvStripMenuItem
+            // 
+            this.oneFingerTouchInvStripMenuItem.CheckOnClick = true;
+            this.oneFingerTouchInvStripMenuItem.Name = "oneFingerTouchInvStripMenuItem";
+            resources.ApplyResources(this.oneFingerTouchInvStripMenuItem, "oneFingerTouchInvStripMenuItem");
+            this.oneFingerTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // twoFingerTouchInvStripMenuItem
+            // 
+            this.twoFingerTouchInvStripMenuItem.CheckOnClick = true;
+            this.twoFingerTouchInvStripMenuItem.Name = "twoFingerTouchInvStripMenuItem";
+            resources.ApplyResources(this.twoFingerTouchInvStripMenuItem, "twoFingerTouchInvStripMenuItem");
+            this.twoFingerTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // optionsTouchInvStripMenuItem
+            // 
+            this.optionsTouchInvStripMenuItem.CheckOnClick = true;
+            this.optionsTouchInvStripMenuItem.Name = "optionsTouchInvStripMenuItem";
+            resources.ApplyResources(this.optionsTouchInvStripMenuItem, "optionsTouchInvStripMenuItem");
+            this.optionsTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // shareTouchInvStripMenuItem
+            // 
+            this.shareTouchInvStripMenuItem.CheckOnClick = true;
+            this.shareTouchInvStripMenuItem.Name = "shareTouchInvStripMenuItem";
+            resources.ApplyResources(this.shareTouchInvStripMenuItem, "shareTouchInvStripMenuItem");
+            this.shareTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
+            // psTouchInvStripMenuItem
+            // 
+            this.psTouchInvStripMenuItem.CheckOnClick = true;
+            this.psTouchInvStripMenuItem.Name = "psTouchInvStripMenuItem";
+            resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
+            this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -3996,6 +4192,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSXS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
+            this.cMTouchDisableInvert.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -4336,5 +4533,27 @@
         private System.Windows.Forms.ComboBox cBSixaxisXOutputCurve;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ContextMenuStrip cMTouchDisableInvert;
+        private System.Windows.Forms.ToolStripMenuItem crossTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem circleTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem squareTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem triangleTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem l1TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem l2TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem r1TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem r2TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem upTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem downTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem leftTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rightTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem l3TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem r3TouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oneFingerTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem twoFingerTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem shareTouchInvStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem psTouchInvStripMenuItem;
+        private System.Windows.Forms.Button touchpadDisInvertButton;
+        private System.Windows.Forms.Label label25;
     }
 }

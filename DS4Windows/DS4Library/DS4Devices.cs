@@ -7,13 +7,37 @@ using System.Security.Principal;
 
 namespace DS4Windows
 {
+    public class VidPidInfo
+    {
+        public readonly int vid;
+        public readonly int pid;
+        internal VidPidInfo(int vid, int pid)
+        {
+            this.vid = vid;
+            this.pid = pid;
+        }
+    }
+
     public class DS4Devices
     {
+        // (HID device path, DS4Device)
         private static Dictionary<string, DS4Device> Devices = new Dictionary<string, DS4Device>();
+        private static HashSet<string> deviceSerials = new HashSet<string>();
         private static HashSet<string> DevicePaths = new HashSet<string>();
         // Keep instance of opened exclusive mode devices not in use (Charging while using BT connection)
         private static List<HidDevice> DisabledDevices = new List<HidDevice>();
+        private static Stopwatch sw = new Stopwatch();
         public static bool isExclusiveMode = false;
+        internal const int SONY_VID = 0x054C;
+        internal const int RAZER_VID = 0x1532;
+        internal const int NACON_VID = 0x146B;
+
+        private static VidPidInfo[] knownDevices =
+        {
+            new VidPidInfo(SONY_VID, 0xBA0), new VidPidInfo(SONY_VID, 0x5C4),
+            new VidPidInfo(SONY_VID, 0x09CC), new VidPidInfo(RAZER_VID, 0x1000),
+            new VidPidInfo(NACON_VID, 0x0D01)
+        };
 
         private static string devicePathToInstanceId(string devicePath)
         {
@@ -34,9 +58,7 @@ namespace DS4Windows
         {
             lock (Devices)
             {
-                int[] vid = { 0x054C, 0x146B };
-                int[] pid = { 0xBA0, 0x5C4, 0x09CC, 0x0D01 };
-                IEnumerable<HidDevice> hDevices = HidDevices.Enumerate(vid, pid);
+                IEnumerable<HidDevice> hDevices = HidDevices.EnumerateDS4(knownDevices);
                 // Sort Bluetooth first in case USB is also connected on the same controller.
                 hDevices = hDevices.OrderBy<HidDevice, ConnectionType>((HidDevice d) => { return DS4Device.HidConnectionType(d); });
 
@@ -47,7 +69,7 @@ namespace DS4Windows
                 string devicePlural = "device" + (devCount == 0 || devCount > 1 ? "s" : "");
                 //Log.LogToGui("Found " + devCount + " possible " + devicePlural + ". Examining " + devicePlural + ".", false);
 
-                for (int i = 0;  i < devCount; i++)
+                for (int i = 0; i < devCount; i++)
                 //foreach (HidDevice hDevice in hDevices)
                 {
                     HidDevice hDevice = tempList[i];
@@ -103,7 +125,7 @@ namespace DS4Windows
                     {
                         string serial = hDevice.readSerial();
                         bool validSerial = !serial.Equals(DS4Device.blankSerial);
-                        if (Devices.ContainsKey(serial))
+                        if (validSerial && deviceSerials.Contains(serial))
                         {
                             // happens when the BT endpoint already is open and the USB is plugged into the same host
                             if (isExclusiveMode && hDevice.IsExclusive &&
@@ -121,27 +143,12 @@ namespace DS4Windows
                         {
                             DS4Device ds4Device = new DS4Device(hDevice);
                             //ds4Device.Removal += On_Removal;
-                            Devices.Add(ds4Device.MacAddress, ds4Device);
+                            Devices.Add(hDevice.DevicePath, ds4Device);
                             DevicePaths.Add(hDevice.DevicePath);
+                            deviceSerials.Add(serial);
                         }
                     }
                 }
-            }
-        }
-
-        //allows to get DS4Device by specifying unique MAC address
-        //format for MAC address is XX:XX:XX:XX:XX:XX
-        public static DS4Device getDS4Controller(string mac)
-        {
-            lock (Devices)
-            {
-                DS4Device device = null;
-                try
-                {
-                    Devices.TryGetValue(mac, out device);
-                }
-                catch (ArgumentNullException) { }
-                return device;
             }
         }
         
@@ -172,6 +179,7 @@ namespace DS4Windows
 
                 Devices.Clear();
                 DevicePaths.Clear();
+                deviceSerials.Clear();
                 DisabledDevices.Clear();
             }
         }
@@ -185,8 +193,9 @@ namespace DS4Windows
                 if (device != null)
                 {
                     device.HidDevice.CloseDevice();
-                    Devices.Remove(device.MacAddress);
+                    Devices.Remove(device.HidDevice.DevicePath);
                     DevicePaths.Remove(device.HidDevice.DevicePath);
+                    deviceSerials.Remove(device.MacAddress);
                     //purgeHiddenExclusiveDevices();
                 }
             }
@@ -199,13 +208,19 @@ namespace DS4Windows
                 DS4Device device = (DS4Device)sender;
                 if (device != null)
                 {
+                    string devPath = device.HidDevice.DevicePath;
                     string serial = device.getMacAddress();
-                    if (Devices.ContainsKey(serial))
+                    if (Devices.ContainsKey(devPath))
                     {
-                        Devices.Remove(serial);
+                        deviceSerials.Remove(serial);
                         device.updateSerial();
                         serial = device.getMacAddress();
-                        Devices.Add(serial, device);
+                        if (DS4Device.isValidSerial(serial))
+                        {
+                            deviceSerials.Add(serial);
+                        }
+
+                        device.refreshCalibration();
                     }
                 }
             }
@@ -252,7 +267,6 @@ namespace DS4Windows
 
         public static void reEnableDevice(string deviceInstanceId)
         {
-            Stopwatch sw = new Stopwatch();
             bool success;
             Guid hidGuid = new Guid();
             NativeMethods.HidD_GetHidGuid(ref hidGuid);
@@ -287,7 +301,8 @@ namespace DS4Windows
                 throw new Exception("Error disabling device, error code = " + Marshal.GetLastWin32Error());
             }
 
-            sw.Start();
+            //System.Threading.Thread.Sleep(50);
+            sw.Restart();
             while (sw.ElapsedMilliseconds < 50)
             {
                 // Use SpinWait to keep control of current thread. Using Sleep could potentially

@@ -236,7 +236,7 @@ namespace DS4Windows
             // New settings
             this.Width = FormWidth;
             this.Height = FormHeight;
-            this.Location = new Point(FormLocationX, FormLocationY);
+            Location = new Point(FormLocationX, FormLocationY);
             startMinimizedCheckBox.CheckedChanged -= startMinimizedCheckBox_CheckedChanged;
             startMinimizedCheckBox.Checked = StartMinimized;
             startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
@@ -2181,8 +2181,8 @@ namespace DS4Windows
                 FormHeight = oldsize.Height;
             }
 
-            FormLocationX = this.Location.X;
-            FormLocationY = this.Location.Y;
+            FormLocationX = Location.X;
+            FormLocationY = Location.Y;
 
             if (!string.IsNullOrEmpty(appdatapath))
             {

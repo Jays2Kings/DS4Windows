@@ -186,6 +186,8 @@ namespace DS4Windows
                 case VK_NUMLOCK:
                 case VK_RCONTROL:
                 case VK_RMENU:
+                case VK_MEDIA_NEXT_TRACK:
+                case VK_MEDIA_PREV_TRACK:
                 {
                     scancode |= (ushort)EXTENDED_FLAG; // set extended bit
                     break;
@@ -269,7 +271,8 @@ namespace DS4Windows
 
         internal const uint VK_PAUSE = 0x13, VK_LEFT = 0x25, VK_UP = 0x26, VK_RIGHT = 0x27, VK_DOWN = 0x28,
             VK_PRIOR = 0x21, VK_NEXT = 0x22, VK_END = 0x23, VK_HOME = 0x24, VK_INSERT = 0x2D, VK_DELETE = 0x2E,
-            VK_DIVIDE = 0x6F, VK_NUMLOCK = 0x90, VK_RCONTROL = 0xAE, VK_RMENU = 0xA5;
+            VK_DIVIDE = 0x6F, VK_NUMLOCK = 0x90, VK_RCONTROL = 0xAE, VK_RMENU = 0xA5, VK_MEDIA_NEXT_TRACK = 0xB0,
+            VK_MEDIA_PREV_TRACK = 0xB1;
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern uint SendInput(uint numberOfInputs, INPUT[] inputs, int sizeOfInputs);

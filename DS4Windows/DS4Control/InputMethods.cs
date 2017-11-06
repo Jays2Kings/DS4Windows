@@ -191,6 +191,12 @@ namespace DS4Windows
                 case VK_VOLUME_UP:
                 case VK_MEDIA_NEXT_TRACK:
                 case VK_MEDIA_PREV_TRACK:
+                case VK_LAUNCH_MEDIA_SELECT:
+                case VK_BROWSER_HOME:
+                case VK_LAUNCH_MAIL:
+                case VK_LAUNCH_APP1:
+                case VK_LAUNCH_APP2:
+                case VK_APPS:
                 {
                     scancode |= (ushort)EXTENDED_FLAG; // set extended bit
                     break;
@@ -273,10 +279,11 @@ namespace DS4Windows
             KEYEVENTF_SCANCODE = 0x0008, MAPVK_VK_TO_VSC = 0, KEYEVENTF_UNICODE = 0x0004, EXTENDED_FLAG = 0x100;
 
         internal const uint VK_PAUSE = 0x13, VK_LEFT = 0x25, VK_UP = 0x26, VK_RIGHT = 0x27, VK_DOWN = 0x28,
-            VK_PRIOR = 0x21, VK_NEXT = 0x22, VK_END = 0x23, VK_HOME = 0x24, VK_INSERT = 0x2D, VK_DELETE = 0x2E,
-            VK_DIVIDE = 0x6F, VK_NUMLOCK = 0x90, VK_RCONTROL = 0xA3, VK_RMENU = 0xA5,
+            VK_PRIOR = 0x21, VK_NEXT = 0x22, VK_END = 0x23, VK_HOME = 0x24, VK_INSERT = 0x2D, VK_DELETE = 0x2E, VK_APPS = 0x5D,
+            VK_DIVIDE = 0x6F, VK_NUMLOCK = 0x90, VK_RCONTROL = 0xA3, VK_RMENU = 0xA5, VK_BROWSER_HOME = 0xAC,
             VK_VOLUME_MUTE = 0xAD, VK_VOLUME_DOWN = 0xAE, VK_VOLUME_UP = 0xAF,
-            VK_MEDIA_NEXT_TRACK = 0xB0, VK_MEDIA_PREV_TRACK = 0xB1, VK_MEDIA_STOP = 0xB2, VK_MEDIA_PLAY_PAUSE = 0xB3;
+            VK_MEDIA_NEXT_TRACK = 0xB0, VK_MEDIA_PREV_TRACK = 0xB1, VK_MEDIA_STOP = 0xB2, VK_MEDIA_PLAY_PAUSE = 0xB3,
+            VK_LAUNCH_MAIL = 0xB4, VK_LAUNCH_MEDIA_SELECT = 0xB5, VK_LAUNCH_APP1 = 0xB6, VK_LAUNCH_APP2 = 0xB7;
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern uint SendInput(uint numberOfInputs, INPUT[] inputs, int sizeOfInputs);

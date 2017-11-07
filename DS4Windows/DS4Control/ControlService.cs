@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Process = System.Diagnostics.Process;
 
 using System.Media;
 using System.Threading.Tasks;
@@ -82,7 +81,7 @@ namespace DS4Windows
         {
             try
             {
-                Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + Process.GetCurrentProcess().Id);
+                Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + System.Diagnostics.Process.GetCurrentProcess().Id);
             }
             catch { }
         }
@@ -91,7 +90,7 @@ namespace DS4Windows
         {
             try
             {
-                Registry.LocalMachine.DeleteSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + Process.GetCurrentProcess().Id);
+                Registry.LocalMachine.DeleteSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist\" + System.Diagnostics.Process.GetCurrentProcess().Id);
             }
             catch { }
         }
@@ -396,7 +395,7 @@ namespace DS4Windows
             string programPath = LaunchProgram[ind];
             if (programPath != string.Empty)
             {
-                Process[] localAll = Process.GetProcesses();
+                System.Diagnostics.Process[] localAll = System.Diagnostics.Process.GetProcesses();
                 bool procFound = false;
                 for (int procInd = 0, procsLen = localAll.Length; !procFound && procInd < procsLen; procInd++)
                 {
@@ -417,7 +416,7 @@ namespace DS4Windows
                 {
                     Task processTask = new Task(() =>
                     {
-                        Process tempProcess = new Process();
+                        System.Diagnostics.Process tempProcess = new System.Diagnostics.Process();
                         tempProcess.StartInfo.FileName = programPath;
                         tempProcess.StartInfo.WorkingDirectory = new FileInfo(programPath).Directory.ToString();
                         //tempProcess.StartInfo.UseShellExecute = false;

@@ -2252,8 +2252,8 @@ namespace DS4Windows
                 oldxiport = (int)Math.Round(nUDXIPorts.Value, 0);
                 FirstXinputPort = oldxiport;
                 Program.rootHub.x360Bus.FirstController = oldxiport;
-                btnStartStop_Click(sender, e);
-                btnStartStop_Click(sender, e);
+                btnStartStop_Clicked(false);
+                finishHideDS4Check();
             }
         }
 

@@ -1647,7 +1647,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Searching for controllers….
+        ///   Looks up a localized string similar to Searching for controllers....
         /// </summary>
         internal static string SearchingController {
             get {

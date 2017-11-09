@@ -401,7 +401,7 @@
     <value>Save Recorded Macro?</value>
   </data>
   <data name="SearchingController" xml:space="preserve">
-    <value>Searching for controllers…</value>
+    <value>Searching for controllers...</value>
   </data>
   <data name="SelectActionTitle" xml:space="preserve">
     <value>Select an action for *action*</value>

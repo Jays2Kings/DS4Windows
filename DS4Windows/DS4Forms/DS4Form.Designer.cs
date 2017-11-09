@@ -38,7 +38,6 @@
             this.lbTest = new System.Windows.Forms.Label();
             this.btnStartStop = new System.Windows.Forms.Button();
             this.lbLastMessage = new System.Windows.Forms.Label();
-            this.btnClear = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.cMTaskbar = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editProfileForController1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -156,6 +155,9 @@
             this.linkSetup = new System.Windows.Forms.LinkLabel();
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
             this.tabLog = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.exportLogTxtBtn = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.saveProfiles = new System.Windows.Forms.SaveFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cMCustomLed = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -188,6 +190,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDXIPorts)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabLog.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.cMCustomLed.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -247,13 +250,6 @@
             this.lbLastMessage.ForeColor = System.Drawing.SystemColors.GrayText;
             this.lbLastMessage.Name = "lbLastMessage";
             this.lbLastMessage.MouseHover += new System.EventHandler(this.lbLastMessage_MouseHover);
-            // 
-            // btnClear
-            // 
-            resources.ApplyResources(this.btnClear, "btnClear");
-            this.btnClear.Name = "btnClear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // notifyIcon1
             // 
@@ -1210,10 +1206,30 @@
             // tabLog
             // 
             this.tabLog.Controls.Add(this.lvDebug);
-            this.tabLog.Controls.Add(this.btnClear);
+            this.tabLog.Controls.Add(this.panel3);
             resources.ApplyResources(this.tabLog, "tabLog");
             this.tabLog.Name = "tabLog";
             this.tabLog.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.exportLogTxtBtn);
+            this.panel3.Controls.Add(this.btnClear);
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
+            // 
+            // exportLogTxtBtn
+            // 
+            resources.ApplyResources(this.exportLogTxtBtn, "exportLogTxtBtn");
+            this.exportLogTxtBtn.Name = "exportLogTxtBtn";
+            this.exportLogTxtBtn.UseVisualStyleBackColor = true;
+            this.exportLogTxtBtn.Click += new System.EventHandler(this.exportLogTxtBtn_Click);
+            // 
+            // btnClear
+            // 
+            resources.ApplyResources(this.btnClear, "btnClear");
+            this.btnClear.Name = "btnClear";
+            this.btnClear.UseVisualStyleBackColor = true;
             // 
             // saveProfiles
             // 
@@ -1296,6 +1312,7 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.tabLog.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.cMCustomLed.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1308,7 +1325,6 @@
         private System.Windows.Forms.ColumnHeader chData;
         private System.Windows.Forms.Panel pnlButton;
         private System.Windows.Forms.Button btnStartStop;
-        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip cMTaskbar;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
@@ -1435,6 +1451,9 @@
         private System.Windows.Forms.CheckBox linkCB2;
         private System.Windows.Forms.CheckBox linkCB3;
         private System.Windows.Forms.CheckBox linkCB4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button exportLogTxtBtn;
+        private System.Windows.Forms.Button btnClear;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

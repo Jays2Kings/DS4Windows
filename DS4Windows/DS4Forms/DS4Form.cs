@@ -2461,6 +2461,40 @@ namespace DS4Windows
             }
         }
 
+        private void exportLogTxtBtn_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.AddExtension = true;
+            dialog.DefaultExt = ".txt";
+            dialog.Filter = "Text Documents (*.txt)|*.txt";
+            dialog.Title = "Select Export File";
+            dialog.InitialDirectory = Global.appdatapath;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string outputFile = dialog.FileName;
+                List < string > outputLines = new List<string>();
+                ListViewItem item = null;
+                for (int i = 0, len = lvDebug.Items.Count; i < len; i++)
+                {
+                    item = lvDebug.Items[i];
+                    outputLines.Add(item.SubItems[0].Text + ": " + item.SubItems[1].Text);
+                }
+
+                try
+                {
+                    StreamWriter stream = new StreamWriter(outputFile);
+                    string line = string.Empty;
+                    for (int i = 0, len = outputLines.Count; i < len; i++)
+                    {
+                        line = outputLines[i];
+                        stream.WriteLine(line);
+                    }
+                    stream.Close();
+                }
+                catch { }
+            }
+        }
+
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)
         {
             FlashWhenLate = cBFlashWhenLate.Checked;

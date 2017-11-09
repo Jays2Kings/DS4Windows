@@ -335,6 +335,9 @@ namespace DS4Windows
                 hotkeysTimer.Start();
             }
 
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+            string version = fvi.FileVersion;
+            Log.LogToGui("DS4Windows version "  + version, false);
             if (btnStartStop.Enabled && start)
                 btnStartStop_Clicked();
 

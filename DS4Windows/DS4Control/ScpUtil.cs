@@ -8,6 +8,7 @@ using System.Xml;
 using System.Drawing;
 
 using System.Security.Principal;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DS4Windows
@@ -2324,7 +2325,7 @@ namespace DS4Windows
                     {
                         Task processTask = new Task(() =>
                         {
-                            Task.Delay(5000).Wait();
+                            Thread.Sleep(5000);
                             System.Diagnostics.Process tempProcess = new System.Diagnostics.Process();
                             tempProcess.StartInfo.FileName = programPath;
                             tempProcess.StartInfo.WorkingDirectory = new FileInfo(programPath).Directory.ToString();

@@ -30,11 +30,13 @@ namespace DS4Windows
         public static bool isExclusiveMode = false;
         internal const int SONY_VID = 0x054C;
         internal const int RAZER_VID = 0x1532;
+        internal const int NACON_VID = 0x146B;
 
         private static VidPidInfo[] knownDevices =
         {
             new VidPidInfo(SONY_VID, 0xBA0), new VidPidInfo(SONY_VID, 0x5C4),
-            new VidPidInfo(SONY_VID, 0x09CC), new VidPidInfo(RAZER_VID, 0x1000)
+            new VidPidInfo(SONY_VID, 0x09CC), new VidPidInfo(RAZER_VID, 0x1000),
+            new VidPidInfo(NACON_VID, 0x0D01)
         };
 
         private static string devicePathToInstanceId(string devicePath)
@@ -71,7 +73,9 @@ namespace DS4Windows
                 //foreach (HidDevice hDevice in hDevices)
                 {
                     HidDevice hDevice = tempList[i];
-                    if (DevicePaths.Contains(hDevice.DevicePath))
+                    if (hDevice.Description == "HID-compliant vendor-defined device")
+                        continue; // ignore the Nacon Revolution Pro programming interface
+                    else if (DevicePaths.Contains(hDevice.DevicePath))
                         continue; // BT/USB endpoint already open once
 
                     if (!hDevice.IsOpen)

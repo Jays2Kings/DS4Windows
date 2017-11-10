@@ -68,6 +68,7 @@ namespace DS4Windows
 
         internal const string UPDATER_VERSION = "1.1.404.0";
         internal static int WM_QUERYENDSESSION = 0x11;
+        internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -747,14 +748,14 @@ namespace DS4Windows
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))
                     {
-                        Uri url2 = new Uri("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
+                        Uri url2 = new Uri($"http://23.239.26.40/ds4windows/files/{updaterExe}");
                         WebClient wc2 = new WebClient();
                         if (appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
-                            Process.Start("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
+                            Process.Start($"http://23.239.26.40/ds4windows/files/{updaterExe}");
                         }
                     }
 
@@ -2060,14 +2061,14 @@ namespace DS4Windows
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                          && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) == -1)))
                     {
-                        Uri url2 = new Uri("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
+                        Uri url2 = new Uri($"http://23.239.26.40/ds4windows/files/{updaterExe}");
                         WebClient wc2 = new WebClient();
                         if (appdatapath == exepath)
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
                             MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
-                            Process.Start("http://23.239.26.40/ds4windows/files/DS4Updater.exe");
+                            Process.Start($"http://23.239.26.40/ds4windows/files/{updaterExe}");
                         }
                     }
 

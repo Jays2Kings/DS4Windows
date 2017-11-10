@@ -2324,6 +2324,7 @@ namespace DS4Windows
                     {
                         Task processTask = new Task(() =>
                         {
+                            Task.Delay(5000).Wait();
                             System.Diagnostics.Process tempProcess = new System.Diagnostics.Process();
                             tempProcess.StartInfo.FileName = programPath;
                             tempProcess.StartInfo.WorkingDirectory = new FileInfo(programPath).Directory.ToString();

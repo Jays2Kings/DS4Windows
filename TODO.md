@@ -1,4 +1,6 @@
 # TODO
 
-~~* Check why flashing LED code consumes one CPU core~~
+* Integrate HidGuardian
+* Experiment with ViGEm driver
+* Remove button for older exclusive mode workaround
 

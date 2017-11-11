@@ -2230,22 +2230,12 @@ namespace DS4Windows
             toolTip1.Hide(lbLastMessage);
         }
 
-        private void pnlXIPorts_MouseEnter(object sender, EventArgs e)
-        {
-            //oldxiport = (int)Math.Round(nUDXIPorts.Value,0);
-        }
-
-        int oldxiport;
-        private void pnlXIPorts_MouseLeave(object sender, EventArgs e)
-        {
-
-        }
-
         private void nUDXIPorts_ValueChanged(object sender, EventArgs e)
         {
             lbLastXIPort.Text = "- " + ((int)Math.Round(nUDXIPorts.Value, 0) + 3);
         }
 
+        private int oldxiport;
         private void nUDXIPorts_Leave(object sender, EventArgs e)
         {
             if (oldxiport != (int)Math.Round(nUDXIPorts.Value, 0))

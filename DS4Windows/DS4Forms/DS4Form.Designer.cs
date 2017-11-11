@@ -1122,8 +1122,6 @@
             this.pnlXIPorts.Controls.Add(this.lbLastXIPort);
             resources.ApplyResources(this.pnlXIPorts, "pnlXIPorts");
             this.pnlXIPorts.Name = "pnlXIPorts";
-            this.pnlXIPorts.MouseEnter += new System.EventHandler(this.pnlXIPorts_MouseEnter);
-            this.pnlXIPorts.MouseLeave += new System.EventHandler(this.pnlXIPorts_MouseLeave);
             // 
             // lbUseXIPorts
             // 

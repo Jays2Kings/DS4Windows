@@ -1126,6 +1126,9 @@ namespace DS4Windows
         {
             if (Mac != null)
             {
+                // Wait for output report to be written
+                StopOutputUpdate();
+
                 Console.WriteLine("Trying to disconnect BT device " + Mac);
                 IntPtr btHandle = IntPtr.Zero;
                 int IOCTL_BTH_DISCONNECT_DEVICE = 0x41000c;
@@ -1141,34 +1144,30 @@ namespace DS4Windows
                 long lbtAddr = BitConverter.ToInt64(btAddr, 0);
 
                 bool success = false;
-                // Wait for output report to be written
-                lock (outputReport)
+
+                NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS p = new NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS();
+                p.dwSize = Marshal.SizeOf(typeof(NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS));
+                IntPtr searchHandle = NativeMethods.BluetoothFindFirstRadio(ref p, ref btHandle);
+                int bytesReturned = 0;
+
+                while (!success && btHandle != IntPtr.Zero)
                 {
-                    NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS p = new NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS();
-                    p.dwSize = Marshal.SizeOf(typeof(NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS));
-                    IntPtr searchHandle = NativeMethods.BluetoothFindFirstRadio(ref p, ref btHandle);
-                    int bytesReturned = 0;
-
-                    while (!success && btHandle != IntPtr.Zero)
+                    success = NativeMethods.DeviceIoControl(btHandle, IOCTL_BTH_DISCONNECT_DEVICE, ref lbtAddr, 8, IntPtr.Zero, 0, ref bytesReturned, IntPtr.Zero);
+                    NativeMethods.CloseHandle(btHandle);
+                    if (!success)
                     {
-                        success = NativeMethods.DeviceIoControl(btHandle, IOCTL_BTH_DISCONNECT_DEVICE, ref lbtAddr, 8, IntPtr.Zero, 0, ref bytesReturned, IntPtr.Zero);
-                        NativeMethods.CloseHandle(btHandle);
-                        if (!success)
-                        {
-                            if (!NativeMethods.BluetoothFindNextRadio(searchHandle, ref btHandle))
-                                btHandle = IntPtr.Zero;
-                        }
+                        if (!NativeMethods.BluetoothFindNextRadio(searchHandle, ref btHandle))
+                            btHandle = IntPtr.Zero;
                     }
-
-                    NativeMethods.BluetoothFindRadioClose(searchHandle);
-                    Console.WriteLine("Disconnect successful: " + success);
                 }
+
+                NativeMethods.BluetoothFindRadioClose(searchHandle);
+                Console.WriteLine("Disconnect successful: " + success);
 
                 success = true; // XXX return value indicates failure, but it still works?
                 if (success)
                 {
                     IsDisconnecting = true;
-                    StopOutputUpdate();
 
                     if (callRemoval)
                     {
@@ -1195,15 +1194,14 @@ namespace DS4Windows
             disconnectReport[1] = 0x02;
             Array.Clear(disconnectReport, 2, 63);
 
-            lock (outputReport)
-            {
-                result = hDevice.WriteFeatureReport(disconnectReport);
-            }
+            if (remove)
+                StopOutputUpdate();
+
+            result = hDevice.WriteFeatureReport(disconnectReport);
 
             if (result && remove)
             {
                 isDisconnecting = true;
-                StopOutputUpdate();
 
                 uiContext.Send(new SendOrPostCallback(delegate (object state4)
                 {

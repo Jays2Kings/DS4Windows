@@ -1082,13 +1082,13 @@ namespace DS4Windows
                 }
                 else
                 {
-                    bool output = outputPendCount > 0;
-                    for (int i = 0, arlen = outputReport.Length; !output && i < arlen; i++)
-                        output = outputReport[i] != outputReportBuffer[i];
+                    bool output = outputPendCount > 0, change = false;
+                    for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
+                        change = outputReport[i] != outputReportBuffer[i];
 
-                    if (output)
+                    if (output || change)
                     {
-                        if (outputPendCount == 0)
+                        if (outputPendCount == 0 || change)
                             outputPendCount = 3;
 
                         outputRumble = true;

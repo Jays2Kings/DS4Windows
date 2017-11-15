@@ -548,12 +548,6 @@ namespace DS4Windows
                     try
                     {
                         exitOutputThread = true;
-                        /*lock (outputReport)
-                        {
-                            Monitor.PulseAll(outputReport);
-                        }
-                        */
-
                         ds4Output.Interrupt();
                         ds4Output.Join();
                     }
@@ -574,7 +568,6 @@ namespace DS4Windows
             else
             {
                 return hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
-                //return hDevice.WriteAsyncOutputReportViaInterrupt(outputReport);
             }
         }
 
@@ -584,7 +577,6 @@ namespace DS4Windows
             try
             {
                 int lastError = 0;
-                outputPendCount = 3;
                 while (!exitOutputThread)
                 {
                     bool result = false;
@@ -594,11 +586,14 @@ namespace DS4Windows
                         lock (outputReportBuffer)
                         {
                             outputReportBuffer.CopyTo(outputReport, 0);
-                            outputRumble = false;
                             outputPendCount--;
+                            outputRumble = false;
                         }
 
-                        result = writeOutput();
+                        lock(outputReport)
+                        {
+                            result = writeOutput();
+                        }
 
                         if (!result)
                         {
@@ -617,21 +612,11 @@ namespace DS4Windows
                     {
                         lastError = 0;
                         lock (outputReportBuffer)
-                        {
                             Monitor.Wait(outputReportBuffer);
-                        }
-
-                        /*if (testRumble.IsRumbleSet()) // repeat test rumbles periodically; rumble has auto-shut-off in the DS4 firmware
-                            Monitor.Wait(outputReport, 10000); // DS4 firmware stops it after 5 seconds, so let the motors rest for that long, too.
-                        else
-                            Monitor.Wait(outputReport);
-                        */
                     }
                 }
             }
-            catch (ThreadInterruptedException)
-            {
-            }
+            catch (ThreadInterruptedException) { }
         }
 
         /** Is the device alive and receiving valid sensor input reports? */
@@ -1043,8 +1028,6 @@ namespace DS4Windows
                 if (conType == ConnectionType.BT)
                 {
                     outputReportBuffer[0] = 0x11;
-                    //outputReportBuffer[1] = 0x80;
-                    //outputReportBuffer[1] = 0x84;
                     outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
                     // enable rumble (0x01), lightbar (0x02), flash (0x04)
                     outputReportBuffer[3] = 0xf7;
@@ -1080,22 +1063,22 @@ namespace DS4Windows
 
                 if (synchronous)
                 {
-                    outputRumble = false;
                     outputReportBuffer.CopyTo(outputReport, 0);
+                    outputRumble = false;
+                    outputPendCount = outputPendCount > 0 ? outputPendCount-- : (byte)0;
+
                     try
                     {
-                        if (!writeOutput())
+                        lock (outputReport)
                         {
-                            int winError = Marshal.GetLastWin32Error();
-                            Console.WriteLine(Mac.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> encountered synchronous write failure: " + winError);
-                            //Log.LogToGui(Mac.ToString() + " encountered synchronous write failure: " + winError, true);
-                            quitOutputThread = true;
+                            if (!writeOutput())
+                            {
+                                int winError = Marshal.GetLastWin32Error();
+                                quitOutputThread = true;
+                            }
                         }
                     }
-                    catch
-                    {
-                        // If it's dead already, don't worry about it.
-                    }
+                    catch { } // If it's dead already, don't worry about it.
                 }
                 else
                 {
@@ -1106,9 +1089,7 @@ namespace DS4Windows
                     if (output)
                     {
                         if (outputPendCount == 0)
-                        {
                             outputPendCount = 3;
-                        }
 
                         outputRumble = true;
                         Monitor.Pulse(outputReportBuffer);
@@ -1128,7 +1109,6 @@ namespace DS4Windows
             {
                 // Wait for output report to be written
                 StopOutputUpdate();
-
                 Console.WriteLine("Trying to disconnect BT device " + Mac);
                 IntPtr btHandle = IntPtr.Zero;
                 int IOCTL_BTH_DISCONNECT_DEVICE = 0x41000c;
@@ -1145,24 +1125,27 @@ namespace DS4Windows
 
                 bool success = false;
 
-                NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS p = new NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS();
-                p.dwSize = Marshal.SizeOf(typeof(NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS));
-                IntPtr searchHandle = NativeMethods.BluetoothFindFirstRadio(ref p, ref btHandle);
-                int bytesReturned = 0;
-
-                while (!success && btHandle != IntPtr.Zero)
+                lock (outputReport)
                 {
-                    success = NativeMethods.DeviceIoControl(btHandle, IOCTL_BTH_DISCONNECT_DEVICE, ref lbtAddr, 8, IntPtr.Zero, 0, ref bytesReturned, IntPtr.Zero);
-                    NativeMethods.CloseHandle(btHandle);
-                    if (!success)
-                    {
-                        if (!NativeMethods.BluetoothFindNextRadio(searchHandle, ref btHandle))
-                            btHandle = IntPtr.Zero;
-                    }
-                }
+                    NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS p = new NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS();
+                    p.dwSize = Marshal.SizeOf(typeof(NativeMethods.BLUETOOTH_FIND_RADIO_PARAMS));
+                    IntPtr searchHandle = NativeMethods.BluetoothFindFirstRadio(ref p, ref btHandle);
+                    int bytesReturned = 0;
 
-                NativeMethods.BluetoothFindRadioClose(searchHandle);
-                Console.WriteLine("Disconnect successful: " + success);
+                    while (!success && btHandle != IntPtr.Zero)
+                    {
+                        success = NativeMethods.DeviceIoControl(btHandle, IOCTL_BTH_DISCONNECT_DEVICE, ref lbtAddr, 8, IntPtr.Zero, 0, ref bytesReturned, IntPtr.Zero);
+                        NativeMethods.CloseHandle(btHandle);
+                        if (!success)
+                        {
+                            if (!NativeMethods.BluetoothFindNextRadio(searchHandle, ref btHandle))
+                                btHandle = IntPtr.Zero;
+                        }
+                    }
+
+                    NativeMethods.BluetoothFindRadioClose(searchHandle);
+                    Console.WriteLine("Disconnect successful: " + success);
+                }
 
                 success = true; // XXX return value indicates failure, but it still works?
                 if (success)
@@ -1197,7 +1180,10 @@ namespace DS4Windows
             if (remove)
                 StopOutputUpdate();
 
-            result = hDevice.WriteFeatureReport(disconnectReport);
+            lock (outputReport)
+            {
+                result = hDevice.WriteFeatureReport(disconnectReport);
+            }
 
             if (result && remove)
             {

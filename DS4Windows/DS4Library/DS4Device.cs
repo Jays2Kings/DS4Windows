@@ -163,7 +163,6 @@ namespace DS4Windows
         public event EventHandler<EventArgs> Removal = null;
         public event EventHandler<EventArgs> SyncChange = null;
         public event EventHandler<EventArgs> SerialChange = null;
-        //public event EventHandler<EventArgs> PublishRemoval = null;
 
         public HidDevice HidDevice => hDevice;
         public bool IsExclusive => HidDevice.IsExclusive;
@@ -579,25 +578,20 @@ namespace DS4Windows
                 int lastError = 0;
                 while (!exitOutputThread)
                 {
-                    bool result = false;
+                    bool result = false, currentRumble = false;
 
-                    if (outputRumble)
+                    if (currentRumble)
                     {
-                        lock (outputReportBuffer)
-                        {
-                            outputReportBuffer.CopyTo(outputReport, 0);
-                            outputPendCount--;
-                            outputRumble = false;
-                        }
-
                         lock(outputReport)
                         {
                             result = writeOutput();
                         }
 
+                        currentRumble = false;
                         if (!result)
                         {
-                            outputRumble = true;
+                            currentRumble = true;
+                            exitOutputThread = true;
                             int thisError = Marshal.GetLastWin32Error();
                             if (lastError != thisError)
                             {
@@ -608,11 +602,18 @@ namespace DS4Windows
                         }
                     }
 
-                    if (!outputRumble)
+                    if (!currentRumble)
                     {
                         lastError = 0;
                         lock (outputReportBuffer)
+                        {
                             Monitor.Wait(outputReportBuffer);
+                            outputReportBuffer.CopyTo(outputReport, 0);
+                            outputPendCount--;
+                            outputRumble = false;
+                        }
+
+                        currentRumble = true;
                     }
                 }
             }

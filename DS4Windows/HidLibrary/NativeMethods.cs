@@ -391,7 +391,12 @@ namespace DS4Windows
 	    [DllImport("hid.dll")]
 	    static internal extern int HidP_GetValueCaps(short reportType, ref byte valueCaps, ref short valueCapsLength, IntPtr preparsedData);
 
+#if PLATFORM_X64
         [DllImport("hid.dll")]
         static internal extern bool HidD_GetSerialNumberString(IntPtr HidDeviceObject, byte[] Buffer, ulong BufferLength);
+#else
+        [DllImport("hid.dll")]
+        static internal extern bool HidD_GetSerialNumberString(IntPtr HidDeviceObject, byte[] Buffer, uint BufferLength);
+#endif
     }
 }

@@ -72,6 +72,11 @@ namespace DS4Windows
             new DS4StateFieldMapping(), new DS4StateFieldMapping(), new DS4StateFieldMapping(),
             new DS4StateFieldMapping()
         };
+        public static DS4StateFieldMapping[] previousFieldMappings = new DS4StateFieldMapping[4]
+        {
+            new DS4StateFieldMapping(), new DS4StateFieldMapping(), new DS4StateFieldMapping(),
+            new DS4StateFieldMapping()
+        };
 
         // TODO When we disconnect, process a null/dead state to release any keys or buttons.
         public static DateTime oldnow = DateTime.UtcNow;
@@ -2008,7 +2013,9 @@ namespace DS4Windows
                                 // button is assigned
                                 if (previousFieldMapping == null)
                                 {
-                                    previousFieldMapping = new DS4StateFieldMapping(tempPrevState, eState, tp, true);
+                                    previousFieldMapping = previousFieldMappings[device];
+                                    previousFieldMapping.populateFieldMapping(tempPrevState, eState, tp, true);
+                                    //previousFieldMapping = new DS4StateFieldMapping(tempPrevState, eState, tp, true);
                                 }
 
                                 bool activeCur = getBoolMapping2(device, action.trigger[0], cState, eState, tp, fieldMapping);

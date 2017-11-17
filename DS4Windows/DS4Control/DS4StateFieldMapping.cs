@@ -3,7 +3,7 @@ namespace DS4Windows
 {
     public class DS4StateFieldMapping
     {
-        public enum ControlType { Unknown = 0, Button, AxisDir, Trigger, Touch, GyroDir, SwipeDir }
+        public enum ControlType: int { Unknown = 0, Button, AxisDir, Trigger, Touch, GyroDir, SwipeDir }
 
         public bool[] buttons = new bool[(int)DS4Controls.SwipeDown + 1];
         public byte[] axisdirs = new byte[(int)DS4Controls.SwipeDown + 1];
@@ -52,7 +52,16 @@ namespace DS4Windows
             ControlType.SwipeDir, // DS4Controls.SwipeDown
         };
 
+        public DS4StateFieldMapping()
+        {
+        }
+
         public DS4StateFieldMapping(DS4State cState, DS4StateExposed exposeState, Mouse tp, bool priorMouse=false)
+        {
+            populateFieldMapping(cState, exposeState, tp, priorMouse);
+        }
+
+        public void populateFieldMapping(DS4State cState, DS4StateExposed exposeState, Mouse tp, bool priorMouse = false)
         {
             axisdirs[(int)DS4Controls.LXNeg] = cState.LX;
             axisdirs[(int)DS4Controls.LXPos] = cState.LX;
@@ -98,7 +107,7 @@ namespace DS4Windows
             gryodirs[(int)DS4Controls.GyroZPos] = sixAxisZ > 0 ? sixAxisZ : 0;
             gryodirs[(int)DS4Controls.GyroZNeg] = sixAxisZ < 0 ? sixAxisZ : 0;
 
-            swipedirs[(int)DS4Controls.SwipeLeft] = tp != null ? (!priorMouse ? tp.swipeLeftB : tp.priorSwipeLeftB): (byte)0;
+            swipedirs[(int)DS4Controls.SwipeLeft] = tp != null ? (!priorMouse ? tp.swipeLeftB : tp.priorSwipeLeftB) : (byte)0;
             swipedirs[(int)DS4Controls.SwipeRight] = tp != null ? (!priorMouse ? tp.swipeRightB : tp.priorSwipeRightB) : (byte)0;
             swipedirs[(int)DS4Controls.SwipeUp] = tp != null ? (!priorMouse ? tp.swipeUpB : tp.priorSwipeUpB) : (byte)0;
             swipedirs[(int)DS4Controls.SwipeDown] = tp != null ? (!priorMouse ? tp.swipeDownB : tp.priorSwipeDownB) : (byte)0;

@@ -22,7 +22,6 @@ namespace DS4Windows
     public class DS4ControlSettings
     {
         public DS4Controls control;
-        //public string extras = "0,0,0,0,0,0,0,0";
         public string extras = null;
         public DS4KeyType keyType = DS4KeyType.None;
         public enum ActionType : byte { Default, Key, Button, Macro };
@@ -31,7 +30,6 @@ namespace DS4Windows
         public ActionType shiftActionType = ActionType.Default;
         public object shiftAction = null;
         public int shiftTrigger = 0;
-        //public string shiftExtras = "0,0,0,0,0,0,0,0";
         public string shiftExtras = null;
         public DS4KeyType shiftKeyType = DS4KeyType.None;
 
@@ -42,7 +40,6 @@ namespace DS4Windows
 
         public void Reset()
         {
-            //extras = "0,0,0,0,0,0,0,0";
             extras = null;
             keyType = DS4KeyType.None;
             actionType = ActionType.Default;
@@ -50,7 +47,6 @@ namespace DS4Windows
             shiftActionType = ActionType.Default;
             shiftAction = null;
             shiftTrigger = 0;
-            //shiftExtras = "0,0,0,0,0,0,0,0";
             shiftExtras = null;
             shiftKeyType = DS4KeyType.None;
         }
@@ -94,16 +90,16 @@ namespace DS4Windows
     public class DebugEventArgs : EventArgs
     {
         protected DateTime m_Time = DateTime.Now;
-        protected String m_Data = String.Empty;
+        protected string m_Data = string.Empty;
         protected bool warning = false;
-        public DebugEventArgs(String Data, bool warn)
+        public DebugEventArgs(string Data, bool warn)
         {
             m_Data = Data;
             warning = warn;
         }
 
         public DateTime Time => m_Time;
-        public String Data => m_Data;
+        public string Data => m_Data;
         public bool Warning => warning;
     }
 
@@ -122,7 +118,7 @@ namespace DS4Windows
     public class ReportEventArgs : EventArgs
     {
         protected Ds3PadId m_Pad = Ds3PadId.None;
-        protected Byte[] m_Report = new Byte[64];
+        protected byte[] m_Report = new byte[64];
 
         public ReportEventArgs()
         {
@@ -2519,13 +2515,17 @@ namespace DS4Windows
                 {
                     XmlNode ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Button");
                     if (ParentItem != null)
+                    {
                         foreach (XmlNode item in ParentItem.ChildNodes)
                         {
                             UpdateDS4CSetting(device, item.Name, false, getX360ControlsByName(item.InnerText), "", DS4KeyType.None, 0);
                             customMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
                         }
+                    }
+
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Macro");
                     if (ParentItem != null)
+                    {
                         foreach (XmlNode item in ParentItem.ChildNodes)
                         {
                             customMapMacros.Add(getDS4ControlsByName(item.Name), item.InnerText);
@@ -2541,21 +2541,32 @@ namespace DS4Windows
                                 skeys = new string[0];
                                 keys = new int[0];
                             }
-                            for (int i = 0; i < keys.Length; i++)
+
+                            for (int i = 0, keylen = keys.Length; i < keylen; i++)
                                 keys[i] = int.Parse(skeys[i]);
+
                             UpdateDS4CSetting(device, item.Name, false, keys, "", DS4KeyType.None, 0);
                         }
+                    }
+
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Key");
                     if (ParentItem != null)
+                    {
                         foreach (XmlNode item in ParentItem.ChildNodes)
+                        {
                             if (ushort.TryParse(item.InnerText, out wvk))
                             {
                                 UpdateDS4CSetting(device, item.Name, false, wvk, "", DS4KeyType.None, 0);
                                 customMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
                             }
+                        }
+                    }
+
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/Extras");
                     if (ParentItem != null)
+                    {
                         foreach (XmlNode item in ParentItem.ChildNodes)
+                        {
                             if (item.InnerText != string.Empty)
                             {
                                 UpdateDS4CExtra(device, item.Name, false, item.InnerText);
@@ -2563,9 +2574,14 @@ namespace DS4Windows
                             }
                             else
                                 ParentItem.RemoveChild(item);
+                        }
+                    }
+
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/Control/KeyType");
                     if (ParentItem != null)
+                    {
                         foreach (XmlNode item in ParentItem.ChildNodes)
+                        {
                             if (item != null)
                             {
                                 keyType = DS4KeyType.None;
@@ -2585,9 +2601,12 @@ namespace DS4Windows
                                     customMapKeyTypes.Add(getDS4ControlsByName(item.Name), keyType);
                                 }
                             }
+                        }
+                    }
 
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Button");
                     if (ParentItem != null)
+                    {
                         foreach (XmlElement item in ParentItem.ChildNodes)
                         {
                             int shiftT = shiftM;
@@ -2596,8 +2615,11 @@ namespace DS4Windows
                             UpdateDS4CSetting(device, item.Name, true, getX360ControlsByName(item.InnerText), "", DS4KeyType.None, shiftT);
                             shiftCustomMapButtons.Add(getDS4ControlsByName(item.Name), getX360ControlsByName(item.InnerText));
                         }
+                    }
+
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Macro");
                     if (ParentItem != null)
+                    {
                         foreach (XmlElement item in ParentItem.ChildNodes)
                         {
                             shiftCustomMapMacros.Add(getDS4ControlsByName(item.Name), item.InnerText);
@@ -2613,16 +2635,22 @@ namespace DS4Windows
                                 skeys = new string[0];
                                 keys = new int[0];
                             }
-                            for (int i = 0; i < keys.Length; i++)
+
+                            for (int i = 0, keylen = keys.Length; i < keylen; i++)
                                 keys[i] = int.Parse(skeys[i]);
+
                             int shiftT = shiftM;
                             if (item.HasAttribute("Trigger"))
                                 int.TryParse(item.Attributes["Trigger"].Value, out shiftT);
                             UpdateDS4CSetting(device, item.Name, true, keys, "", DS4KeyType.None, shiftT);
                         }
+                    }
+
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Key");
                     if (ParentItem != null)
+                    {
                         foreach (XmlElement item in ParentItem.ChildNodes)
+                        {
                             if (ushort.TryParse(item.InnerText, out wvk))
                             {
                                 int shiftT = shiftM;
@@ -2631,9 +2659,14 @@ namespace DS4Windows
                                 UpdateDS4CSetting(device, item.Name, true, wvk, "", DS4KeyType.None, shiftT);
                                 shiftCustomMapKeys.Add(getDS4ControlsByName(item.Name), wvk);
                             }
+                        }
+                    }
+
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/Extras");
                     if (ParentItem != null)
+                    {
                         foreach (XmlElement item in ParentItem.ChildNodes)
+                        {
                             if (item.InnerText != string.Empty)
                             {
                                 UpdateDS4CExtra(device, item.Name, true, item.InnerText);
@@ -2641,9 +2674,14 @@ namespace DS4Windows
                             }
                             else
                                 ParentItem.RemoveChild(item);
+                        }
+                    }
+
                     ParentItem = m_Xdoc.SelectSingleNode("/" + rootname + "/ShiftControl/KeyType");
                     if (ParentItem != null)
+                    {
                         foreach (XmlElement item in ParentItem.ChildNodes)
+                        {
                             if (item != null)
                             {
                                 keyType = DS4KeyType.None;
@@ -2663,25 +2701,10 @@ namespace DS4Windows
                                     shiftCustomMapKeyTypes.Add(getDS4ControlsByName(item.Name), keyType);
                                 }
                             }
-                    //LoadButtons(buttons, "Control", customMapKeyTypes, customMapKeys, customMapButtons, customMapMacros, customMapExtras);
-                    //LoadButtons(shiftbuttons, "ShiftControl", shiftCustomMapKeyTypes, shiftCustomMapKeys, shiftCustomMapButtons, shiftCustomMapMacros, shiftCustomMapExtras);                    
+                        }
+                    }
                 }
             }
-            //catch { Loaded = false; }
-            /*if (Loaded)
-            {
-                this.customMapButtons[device] = customMapButtons;
-                this.customMapKeys[device] = customMapKeys;
-                this.customMapKeyTypes[device] = customMapKeyTypes;
-                this.customMapMacros[device] = customMapMacros;
-                this.customMapExtras[device] = customMapExtras;
-
-                this.shiftCustomMapButtons[device] = shiftCustomMapButtons;
-                this.shiftCustomMapKeys[device] = shiftCustomMapKeys;
-                this.shiftCustomMapKeyTypes[device] = shiftCustomMapKeyTypes;
-                this.shiftCustomMapMacros[device] = shiftCustomMapMacros;
-                this.shiftCustomMapExtras[device] = shiftCustomMapExtras;
-            }*/
 
             // Only add missing settings if the actual load was graceful
             if (missingSetting && Loaded)// && buttons != null)
@@ -2774,10 +2797,12 @@ namespace DS4Windows
                         olderProfilePath[3] = profilePath[3];
                     }
                     catch { profilePath[3] = olderProfilePath[3] = string.Empty; distanceProfiles[3] = false; missingSetting = true; }
+
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/LastChecked"); DateTime.TryParse(Item.InnerText, out lastChecked); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CheckWhen"); Int32.TryParse(Item.InnerText, out CheckWhen); }
                     catch { missingSetting = true; }
+
                     try
                     {
                         Item = m_Xdoc.SelectSingleNode("/Profile/Notifications");
@@ -2785,6 +2810,7 @@ namespace DS4Windows
                             notifications = (Boolean.Parse(Item.InnerText) ? 2 : 0);
                     }
                     catch { missingSetting = true; }
+
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/DisconnectBTAtStop"); Boolean.TryParse(Item.InnerText, out disconnectBTAtStop); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/SwipeProfiles"); Boolean.TryParse(Item.InnerText, out swipeProfiles); }
@@ -2805,6 +2831,7 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/WhiteIcon"); Boolean.TryParse(Item.InnerText, out useWhiteIcon); }
                     catch { missingSetting = true; }
+
                     for (int i = 0; i < 4; i++)
                     {
                         try
@@ -2877,9 +2904,6 @@ namespace DS4Windows
                 xmlCustomLed.InnerText = useCustomLeds[i] + ":" + m_CustomLeds[i].red + "," + m_CustomLeds[i].green + "," + m_CustomLeds[i].blue;
                 Node.AppendChild(xmlCustomLed);
             }
-            /* XmlNode xmlCustomLed2 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed2", null); xmlCustomLed2.InnerText = profilePath[1]; Node.AppendChild(xmlCustomLed2);
-             XmlNode xmlCustomLed3 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed3", null); xmlCustomLed3.InnerText = profilePath[2]; Node.AppendChild(xmlCustomLed3);
-             XmlNode xmlCustomLed4 = m_Xdoc.CreateNode(XmlNodeType.Element, "CustomLed4", null); xmlCustomLed4.InnerText = profilePath[3]; Node.AppendChild(xmlCustomLed4);*/
 
             m_Xdoc.AppendChild(Node);
 
@@ -3196,7 +3220,6 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
             List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
@@ -3217,7 +3240,6 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
             List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
@@ -3242,7 +3264,6 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
             List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
@@ -3267,7 +3288,6 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
             List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
@@ -3312,7 +3332,6 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
             List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
@@ -3337,7 +3356,6 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
             List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
@@ -3362,7 +3380,6 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
             List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
@@ -3395,7 +3412,6 @@ namespace DS4Windows
             else
                 dc = (DS4Controls)Enum.Parse(typeof(DS4Controls), buttonName, true);
 
-            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
             List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
@@ -3422,7 +3438,6 @@ namespace DS4Windows
 
         public bool HasCustomActions(int deviceNum)
         {
-            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
             List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {
@@ -3437,7 +3452,6 @@ namespace DS4Windows
 
         public bool HasCustomExtras(int deviceNum)
         {
-            //foreach (DS4ControlSettings dcs in ds4settings[deviceNum])
             List<DS4ControlSettings> ds4settingsList = ds4settings[deviceNum];
             for (int i = 0, settingsLen = ds4settingsList.Count; i < settingsLen; i++)
             {

@@ -63,6 +63,16 @@ namespace DS4Windows
             { new SyntheticState(), new SyntheticState(), new SyntheticState(),
               new SyntheticState() };
 
+        public static DS4StateFieldMapping[] fieldMappings = new DS4StateFieldMapping[4] {
+            new DS4StateFieldMapping(), new DS4StateFieldMapping(), new DS4StateFieldMapping(),
+            new DS4StateFieldMapping()
+        };
+        public static DS4StateFieldMapping[] outputFieldMappings = new DS4StateFieldMapping[4]
+        {
+            new DS4StateFieldMapping(), new DS4StateFieldMapping(), new DS4StateFieldMapping(),
+            new DS4StateFieldMapping()
+        };
+
         // TODO When we disconnect, process a null/dead state to release any keys or buttons.
         public static DateTime oldnow = DateTime.UtcNow;
         private static bool pressagain = false;
@@ -1097,8 +1107,12 @@ namespace DS4Windows
             int mouseDeltaY = 0;
 
             cState.calculateStickAngles();
-            DS4StateFieldMapping fieldMapping = new DS4StateFieldMapping(cState, eState, tp);
-            DS4StateFieldMapping outputfieldMapping = new DS4StateFieldMapping(cState, eState, tp);
+            DS4StateFieldMapping fieldMapping = fieldMappings[device];
+            fieldMapping.populateFieldMapping(cState, eState, tp);
+            DS4StateFieldMapping outputfieldMapping = outputFieldMappings[device];
+            outputfieldMapping.populateFieldMapping(cState, eState, tp);
+            //DS4StateFieldMapping fieldMapping = new DS4StateFieldMapping(cState, eState, tp);
+            //DS4StateFieldMapping outputfieldMapping = new DS4StateFieldMapping(cState, eState, tp);
 
             SyntheticState deviceState = Mapping.deviceState[device];
             if (getProfileActionCount(device) > 0 || !string.IsNullOrEmpty(tempprofilename[device]))

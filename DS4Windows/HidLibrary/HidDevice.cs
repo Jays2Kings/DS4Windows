@@ -492,7 +492,7 @@ namespace DS4Windows
             else
             {
                 byte[] buffer = new byte[126];
-#if PLATFORM_X64
+#if WIN64
                 ulong bufferLen = 126;
 #else
                 uint bufferLen = 126;

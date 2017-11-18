@@ -576,10 +576,9 @@ namespace DS4Windows
             try
             {
                 int lastError = 0;
+                bool result = false, currentRumble = false;
                 while (!exitOutputThread)
                 {
-                    bool result = false, currentRumble = false;
-
                     if (currentRumble)
                     {
                         lock(outputReport)
@@ -1089,7 +1088,7 @@ namespace DS4Windows
 
                     if (output || change)
                     {
-                        if (outputPendCount == 0 || change)
+                        if (change)
                             outputPendCount = 3;
 
                         outputRumble = true;

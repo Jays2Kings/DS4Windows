@@ -190,9 +190,6 @@
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Ohjaimet</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Liitä vain DS4-ohjain (exclusive mode) (kokeellinen)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1074, 94</value>
   </data>

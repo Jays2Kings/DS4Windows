@@ -190,9 +190,6 @@
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Kontrolery</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Podłącz kontroler DS4 na wyłączność (eksperymentalne)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1085, 94</value>
   </data>

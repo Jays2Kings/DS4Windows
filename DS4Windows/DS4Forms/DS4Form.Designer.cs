@@ -52,7 +52,6 @@
             this.openProfiles = new System.Windows.Forms.OpenFileDialog();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabControllers = new System.Windows.Forms.TabPage();
-            this.btnConnectDS4Win10 = new System.Windows.Forms.Button();
             this.tLPControllers = new System.Windows.Forms.TableLayoutPanel();
             this.bnLight3 = new System.Windows.Forms.Button();
             this.pBStatus1 = new System.Windows.Forms.PictureBox();
@@ -351,19 +350,11 @@
             // 
             // tabControllers
             // 
-            this.tabControllers.Controls.Add(this.btnConnectDS4Win10);
             this.tabControllers.Controls.Add(this.tLPControllers);
             this.tabControllers.Controls.Add(this.lbNoControllers);
             resources.ApplyResources(this.tabControllers, "tabControllers");
             this.tabControllers.Name = "tabControllers";
             this.tabControllers.UseVisualStyleBackColor = true;
-            // 
-            // btnConnectDS4Win10
-            // 
-            resources.ApplyResources(this.btnConnectDS4Win10, "btnConnectDS4Win10");
-            this.btnConnectDS4Win10.Name = "btnConnectDS4Win10";
-            this.btnConnectDS4Win10.UseVisualStyleBackColor = true;
-            this.btnConnectDS4Win10.Click += new System.EventHandler(this.btnConnectDS4Win10_Click);
             // 
             // tLPControllers
             // 
@@ -1277,7 +1268,6 @@
             this.cMTaskbar.ResumeLayout(false);
             this.tabMain.ResumeLayout(false);
             this.tabControllers.ResumeLayout(false);
-            this.tabControllers.PerformLayout();
             this.tLPControllers.ResumeLayout(false);
             this.tLPControllers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBStatus1)).EndInit();
@@ -1429,7 +1419,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.NumericUpDown nUDLatency;
         private System.Windows.Forms.Label lbMsLatency;
-        private System.Windows.Forms.Button btnConnectDS4Win10;
         private System.Windows.Forms.Button bnLight3;
         private System.Windows.Forms.Button bnLight1;
         private System.Windows.Forms.Button bnLight2;

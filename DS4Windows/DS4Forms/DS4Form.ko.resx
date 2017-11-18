@@ -144,9 +144,6 @@
   <data name="btnClear.Text" xml:space="preserve">
     <value>삭제</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>DS4 만 연결하기 ( 실험버전 )</value>
-  </data>
   <data name="btnStartStop.Text" xml:space="preserve">
     <value>시작</value>
   </data>

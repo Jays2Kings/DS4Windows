@@ -181,9 +181,6 @@
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Vezérlők</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>DS4 exkluzív csatlakoztatása (kísérleti)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1077, 94</value>
   </data>

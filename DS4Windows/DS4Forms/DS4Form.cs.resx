@@ -184,9 +184,6 @@
   <data name="tabControllers.Text" xml:space="preserve">
     <value>Ovladače</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Připojit výhradně k DS4 (experimentální funkce)</value>
-  </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
     <value>1072, 94</value>
   </data>

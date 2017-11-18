@@ -6764,9 +6764,6 @@
   <data name="tabLog.Text" xml:space="preserve">
     <value>日志</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>仅连接DS4 （实验性功能）</value>
-  </data>
   <data name="cBoxNotifications.Items" xml:space="preserve">
     <value>不显示</value>
   </data>

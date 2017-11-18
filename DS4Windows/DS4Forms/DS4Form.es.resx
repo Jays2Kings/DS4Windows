@@ -628,9 +628,6 @@
   <data name="cMCustomLed.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 56</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Conectar DS4 exclusivamente (experimental)</value>
-  </data>
   <data name="cBoxNotifications.Items" xml:space="preserve">
     <value>Ninguna</value>
   </data>

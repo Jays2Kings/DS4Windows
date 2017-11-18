@@ -221,14 +221,6 @@ namespace DS4Windows
             hideDS4CheckBox.CheckedChanged -= hideDS4CheckBox_CheckedChanged;
             hideDS4CheckBox.Checked = UseExclusiveMode;
             hideDS4CheckBox.CheckedChanged += hideDS4CheckBox_CheckedChanged;
-            if (Environment.OSVersion.Version.Major >= 10 && Environment.OSVersion.Version.Build < 10586)
-            {
-                toolTip1.SetToolTip(hideDS4CheckBox, "For Windows 10, use button on the main tab to connect exclusivly");
-                btnConnectDS4Win10.Visible = hideDS4CheckBox.Checked;
-                toolTip1.SetToolTip(btnConnectDS4Win10, "This will temporarily kill the taskbar until you connect a controller");
-            }
-            else
-                btnConnectDS4Win10.Visible = false;
 
             cBDisconnectBT.Checked = DCBTatStop;
             cBQuickCharge.Checked = QuickCharge;
@@ -1596,8 +1588,6 @@ namespace DS4Windows
 
             bool exclusiveMode = hideDS4CheckBox.Checked;
             UseExclusiveMode = exclusiveMode;
-            if (Environment.OSVersion.Version.Major >= 10 && Environment.OSVersion.Version.Build < 10586)
-                btnConnectDS4Win10.Visible = exclusiveMode;
 
             hideDS4CheckBox.Enabled = false;
             Save();
@@ -2277,21 +2267,6 @@ namespace DS4Windows
         }
 
         Process bat;
-        private void btnConnectDS4Win10_Click(object sender, EventArgs e)
-        {
-            if (!runningBat)
-            {
-                StreamWriter w = new StreamWriter(exepath + "\\ConnectDS4.bat");
-                w.WriteLine("@echo off"); // Turn off echo
-                w.WriteLine("taskkill /IM explorer.exe /f");
-                w.WriteLine("echo Connect your DS4 controller"); //
-                w.WriteLine("pause");
-                w.WriteLine("start explorer.exe");
-                w.Close();
-                runningBat = true;
-                bat = Process.Start(exepath + "\\ConnectDS4.bat");
-            }
-        }
 
         int currentCustomLed;
         private void EditCustomLed(object sender, EventArgs e)

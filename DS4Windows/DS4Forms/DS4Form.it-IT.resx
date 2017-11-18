@@ -604,9 +604,6 @@
   <data name="tabLog.Text" xml:space="preserve">
     <value>Registro</value>
   </data>
-  <data name="btnConnectDS4Win10.Text" xml:space="preserve">
-    <value>Connetti Solo DS4 (sperimentale)</value>
-  </data>
   <data name="cBoxNotifications.Items" xml:space="preserve">
     <value>Nessuno</value>
   </data>

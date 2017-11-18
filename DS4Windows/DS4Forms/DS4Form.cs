@@ -248,8 +248,11 @@ namespace DS4Windows
                 try
                 {
                     string[] profiles = Directory.GetFiles(appdatapath + @"\Profiles\");
-                    foreach (string s in profiles)
+                    string s = string.Empty;
+                    //foreach (string s in profiles)
+                    for (int i = 0, proflen = profiles.Length; i < proflen; i++)
                     {
+                        s = profiles[i];
                         if (Path.GetExtension(s) == ".xml")
                         {
                             xDoc.Load(s);

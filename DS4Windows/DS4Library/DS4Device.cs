@@ -1065,7 +1065,7 @@ namespace DS4Windows
                 {
                     outputReportBuffer.CopyTo(outputReport, 0);
                     outputRumble = false;
-                    outputPendCount = outputPendCount > 0 ? outputPendCount-- : (byte)3;
+                    outputPendCount = 3;
 
                     try
                     {

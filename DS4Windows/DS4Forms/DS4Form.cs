@@ -2179,8 +2179,8 @@ namespace DS4Windows
                 FormHeight = oldsize.Height;
             }
 
-            FormLocationX = Location.X;
-            FormLocationY = Location.Y;
+            FormLocationX = Location.X > 0 ? Location.X : 0;
+            FormLocationY = Location.Y > 0 ? Location.Y : 0;
 
             if (!string.IsNullOrEmpty(appdatapath))
             {

@@ -2752,9 +2752,18 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/formHeight"); Int32.TryParse(Item.InnerText, out formHeight); }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/formLocationX"); Int32.TryParse(Item.InnerText, out formLocationX); }
+                    try {
+                        int temp = 0;
+                        Item = m_Xdoc.SelectSingleNode("/Profile/formLocationX"); Int32.TryParse(Item.InnerText, out temp);
+                        formLocationX = Math.Max(temp, 0);
+                    }
                     catch { missingSetting = true; }
-                    try { Item = m_Xdoc.SelectSingleNode("/Profile/formLocationY"); Int32.TryParse(Item.InnerText, out formLocationY); }
+
+                    try {
+                        int temp = 0;
+                        Item = m_Xdoc.SelectSingleNode("/Profile/formLocationY"); Int32.TryParse(Item.InnerText, out temp);
+                        formLocationY = Math.Max(temp, 0);
+                    }
                     catch { missingSetting = true; }
 
                     try {

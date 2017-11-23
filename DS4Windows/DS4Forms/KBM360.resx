@@ -121,18 +121,20 @@
   <data name="btnLT.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 53</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="bnTest.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="&gt;&gt;cBLightbar.Name" xml:space="preserve">
     <value>cBLightbar</value>
+  </data>
+  <data name="&gt;&gt;bnMacro.Name" xml:space="preserve">
+    <value>bnMacro</value>
   </data>
   <data name="&gt;&gt;lbRumble.Parent" xml:space="preserve">
     <value>gBExtras</value>
   </data>
   <data name="btnBButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>621, 98</value>
+  </data>
+  <data name="&gt;&gt;btnNUMMINUS.ZOrder" xml:space="preserve">
+    <value>104</value>
   </data>
   <data name="&gt;&gt;lbHeavy.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -152,6 +154,7 @@
   <data name="&gt;&gt;btnLALT.ZOrder" xml:space="preserve">
     <value>118</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnF6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -183,9 +186,6 @@
   <data name="&gt;&gt;btnPREVTRACK.Name" xml:space="preserve">
     <value>btnPREVTRACK</value>
   </data>
-  <data name="btnNUM3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
-  </data>
   <data name="&gt;&gt;btnBACKSPACE.Name" xml:space="preserve">
     <value>btnBACKSPACE</value>
   </data>
@@ -207,6 +207,9 @@
   <data name="btnA.Text" xml:space="preserve">
     <value>A</value>
   </data>
+  <data name="&gt;&gt;btnT.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="btnINS.TabIndex" type="System.Int32, mscorlib">
     <value>265</value>
   </data>
@@ -215,9 +218,6 @@
   </data>
   <data name="btnNUM7.Location" type="System.Drawing.Point, System.Drawing">
     <value>729, 106</value>
-  </data>
-  <data name="btn9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
   </data>
   <data name="&gt;&gt;btnSLASH.Parent" xml:space="preserve">
     <value>$this</value>
@@ -233,6 +233,9 @@
   </data>
   <data name="btnNUM7.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
+  </data>
+  <data name="btnLSUp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnMOUSEDOWN.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
@@ -261,9 +264,6 @@
   <data name="&gt;&gt;cBScanCode.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnVolUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>879, 32</value>
-  </data>
   <data name="btnG.TabIndex" type="System.Int32, mscorlib">
     <value>195</value>
   </data>
@@ -275,9 +275,6 @@
   </data>
   <data name="&gt;&gt;btnNUMPLUS.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnNUMDOT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnBACKSPACE.TabIndex" type="System.Int32, mscorlib">
     <value>234</value>
@@ -291,11 +288,11 @@
   <data name="pBHighlight.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
   </data>
-  <data name="btnDpadDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 26</value>
-  </data>
   <data name="btnCAPS.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 30</value>
+  </data>
+  <data name="&gt;&gt;btnPGDN.Name" xml:space="preserve">
+    <value>btnPGDN</value>
   </data>
   <data name="&gt;&gt;tBGreenBar.Name" xml:space="preserve">
     <value>tBGreenBar</value>
@@ -351,12 +348,6 @@
   <data name="btnS.Text" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="&gt;&gt;btnNUM0.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDLight.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
   <data name="lBTip.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -372,8 +363,8 @@
   <data name="btnY.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;btn6.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnNUM4.Text" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="btnSCL.TabIndex" type="System.Int32, mscorlib">
     <value>247</value>
@@ -384,20 +375,20 @@
   <data name="rBShiftModifer.TabIndex" type="System.Int32, mscorlib">
     <value>326</value>
   </data>
+  <data name="&gt;&gt;btnF11.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="btn3.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
   <data name="btnLEFTMOUSE.Text" xml:space="preserve">
     <value>L</value>
   </data>
-  <data name="btnOPENBRACKET.TabIndex" type="System.Int32, mscorlib">
-    <value>187</value>
+  <data name="&gt;&gt;tBBlueBar.ZOrder" xml:space="preserve">
+    <value>17</value>
   </data>
   <data name="btnH.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
-  </data>
-  <data name="bnTest.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;bnColor.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -429,9 +420,6 @@
   <data name="&gt;&gt;cBShiftButton.Name" xml:space="preserve">
     <value>cBShiftButton</value>
   </data>
-  <data name="btnF4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 30</value>
-  </data>
   <data name="btnHOME.Location" type="System.Drawing.Point, System.Drawing">
     <value>625, 69</value>
   </data>
@@ -447,8 +435,8 @@
   <data name="btn3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnESC.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="bnColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;button35.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -471,9 +459,6 @@
   <data name="&gt;&gt;btnEQUALS.ZOrder" xml:space="preserve">
     <value>31</value>
   </data>
-  <data name="lbBlue.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="btnW.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
@@ -483,17 +468,8 @@
   <data name="btnS.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 144</value>
   </data>
-  <data name="nUDLightFlash.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cBShiftButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="btnT.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
-  </data>
-  <data name="btnF8.TabIndex" type="System.Int32, mscorlib">
-    <value>256</value>
   </data>
   <data name="btnF1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -552,14 +528,11 @@
   <data name="btnBACKSPACE.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 30</value>
   </data>
-  <data name="btnU.Text" xml:space="preserve">
-    <value>U</value>
+  <data name="&gt;&gt;btn0.Name" xml:space="preserve">
+    <value>btn0</value>
   </data>
   <data name="&gt;&gt;btnW.ZOrder" xml:space="preserve">
     <value>35</value>
-  </data>
-  <data name="nUDMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 22</value>
   </data>
   <data name="&gt;&gt;rBShiftModifer.Parent" xml:space="preserve">
     <value>$this</value>
@@ -567,11 +540,14 @@
   <data name="btnF6.TabIndex" type="System.Int32, mscorlib">
     <value>258</value>
   </data>
+  <data name="btnMOUSEDOWN.Location" type="System.Drawing.Point, System.Drawing">
+    <value>995, 212</value>
+  </data>
+  <data name="btnLSHIFT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="cBLightbar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
-  </data>
-  <data name="btnX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 181</value>
   </data>
   <data name="&gt;&gt;btnPERIOD.ZOrder" xml:space="preserve">
     <value>78</value>
@@ -588,20 +564,11 @@
   <data name="&gt;&gt;advColorDialog.Name" xml:space="preserve">
     <value>advColorDialog</value>
   </data>
-  <data name="&gt;&gt;btnF12.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="btnMINUS.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;btn6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnINS.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnB.TabIndex" type="System.Int32, mscorlib">
-    <value>214</value>
   </data>
   <data name="&gt;&gt;btnF7.Parent" xml:space="preserve">
     <value>$this</value>
@@ -621,23 +588,17 @@
   <data name="&gt;&gt;btnR.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pBHighlight.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;btnDpadLeft.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lbRedV.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 17</value>
+  <data name="btnRALT.Text" xml:space="preserve">
+    <value>RAlt</value>
   </data>
   <data name="btnAPOSTROPHE.Text" xml:space="preserve">
     <value>'</value>
   </data>
   <data name="&gt;&gt;btnCAPS.ZOrder" xml:space="preserve">
     <value>130</value>
-  </data>
-  <data name="btnSLASH.TabIndex" type="System.Int32, mscorlib">
-    <value>219</value>
   </data>
   <data name="btnMINUS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -660,8 +621,8 @@
   <data name="btnBACKSLASH.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnF12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="button6.Text" xml:space="preserve">
+    <value>↓Down</value>
   </data>
   <data name="bnMacro.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 29</value>
@@ -671,9 +632,6 @@
   </data>
   <data name="&gt;&gt;btnRT.ZOrder" xml:space="preserve">
     <value>7</value>
-  </data>
-  <data name="btnMIDDLEMOUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
   </data>
   <data name="&gt;&gt;btnLSClick.ZOrder" xml:space="preserve">
     <value>24</value>
@@ -693,8 +651,8 @@
   <data name="&gt;&gt;btnDpadLeft.Name" xml:space="preserve">
     <value>btnDpadLeft</value>
   </data>
-  <data name="button39.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="btnLSUp.TabIndex" type="System.Int32, mscorlib">
+    <value>300</value>
   </data>
   <data name="btnF2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -726,8 +684,8 @@
   <data name="btnYButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="&gt;&gt;btn1.Name" xml:space="preserve">
-    <value>btn1</value>
+  <data name="btnW.TabIndex" type="System.Int32, mscorlib">
+    <value>177</value>
   </data>
   <data name="&gt;&gt;btnM.Parent" xml:space="preserve">
     <value>$this</value>
@@ -756,9 +714,6 @@
   <data name="&gt;&gt;btnK.ZOrder" xml:space="preserve">
     <value>113</value>
   </data>
-  <data name="&gt;&gt;btnYButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;btnH.Name" xml:space="preserve">
     <value>btnH</value>
   </data>
@@ -777,11 +732,17 @@
   <data name="btnJ.Text" xml:space="preserve">
     <value>J</value>
   </data>
+  <data name="btnMOUSELEFT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
+  </data>
   <data name="&gt;&gt;bTNRIGHTMOUSE.Name" xml:space="preserve">
     <value>bTNRIGHTMOUSE</value>
   </data>
   <data name="&gt;&gt;btn4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOPENBRACKET.ZOrder" xml:space="preserve">
+    <value>76</value>
   </data>
   <data name="lbGreen.TabIndex" type="System.Int32, mscorlib">
     <value>165</value>
@@ -800,6 +761,9 @@
   </data>
   <data name="&gt;&gt;btnJ.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="button36.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="btnE.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -825,17 +789,20 @@
   <data name="&gt;&gt;btnI.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;btnXButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="cBToggle.TabIndex" type="System.Int32, mscorlib">
     <value>287</value>
   </data>
   <data name="btn3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnPGUP.TabIndex" type="System.Int32, mscorlib">
-    <value>238</value>
-  </data>
   <data name="&gt;&gt;btnH.ZOrder" xml:space="preserve">
     <value>105</value>
+  </data>
+  <data name="btnDpadRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>347, 194</value>
   </data>
   <data name="&gt;&gt;btnBACKSPACE.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -861,9 +828,6 @@
   <data name="&gt;&gt;btnStart.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;btnLCTRL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;rBRegular.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -882,11 +846,11 @@
   <data name="&gt;&gt;tBGreenBar.Parent" xml:space="preserve">
     <value>gBExtras</value>
   </data>
-  <data name="btnF11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="btnU.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;btn1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnNUMENTER.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 68</value>
@@ -906,8 +870,8 @@
   <data name="&gt;&gt;btnDpadLeft.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
   </data>
-  <data name="btnG.Text" xml:space="preserve">
-    <value>G</value>
+  <data name="&gt;&gt;bnMacro.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnDpadLeft.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 38</value>
@@ -915,11 +879,14 @@
   <data name="&gt;&gt;btnF.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="cBShiftButton.TabIndex" type="System.Int32, mscorlib">
-    <value>327</value>
+  <data name="btnF12.TabIndex" type="System.Int32, mscorlib">
+    <value>239</value>
   </data>
   <data name="rBShiftModifer.Location" type="System.Drawing.Point, System.Drawing">
     <value>117, 261</value>
+  </data>
+  <data name="rBShiftModifer.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="lbBlueV.Text" xml:space="preserve">
     <value>255</value>
@@ -929,9 +896,6 @@
   </data>
   <data name="&gt;&gt;btnR.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="btnV.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
   </data>
   <data name="btnStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -957,8 +921,8 @@
   <data name="&gt;&gt;btnNUMLOCK.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gBExtras.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;lbRed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnI.Location" type="System.Drawing.Point, System.Drawing">
     <value>329, 106</value>
@@ -999,6 +963,9 @@
   <data name="btnC.TabIndex" type="System.Int32, mscorlib">
     <value>212</value>
   </data>
+  <data name="lbRedV.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="btnOPENBRACKET.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -1011,14 +978,14 @@
   <data name="&gt;&gt;lbLight.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnZ.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
   <data name="&gt;&gt;btnSLASH.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnXButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;btnXButton.ZOrder" xml:space="preserve">
+    <value>15</value>
   </data>
   <data name="cBLightbar.Text" xml:space="preserve">
     <value>Change Light</value>
@@ -1026,8 +993,8 @@
   <data name="btnSLASH.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;btnNUMSLASH.Name" xml:space="preserve">
-    <value>btnNUMSLASH</value>
+  <data name="btn4THMOUSE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;btnP.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1044,8 +1011,8 @@
   <data name="btnXButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="btnPGDN.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="cBShiftButton.Items14" xml:space="preserve">
+    <value>L2</value>
   </data>
   <data name="btnNUMPLUS.Location" type="System.Drawing.Point, System.Drawing">
     <value>841, 106</value>
@@ -1071,11 +1038,14 @@
   <data name="btnDpadUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 26</value>
   </data>
-  <data name="btnF12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 30</value>
+  <data name="btnNUMLOCK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>729, 69</value>
   </data>
   <data name="button36.Location" type="System.Drawing.Point, System.Drawing">
     <value>381, 219</value>
+  </data>
+  <data name="lbRedV.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="btnTAB.TabIndex" type="System.Int32, mscorlib">
     <value>189</value>
@@ -1085,6 +1055,9 @@
   </data>
   <data name="&gt;&gt;btnF8.Name" xml:space="preserve">
     <value>btnF8</value>
+  </data>
+  <data name="&gt;&gt;KBMlabel.ZOrder" xml:space="preserve">
+    <value>50</value>
   </data>
   <data name="btnF11.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 30</value>
@@ -1107,17 +1080,17 @@
   <data name="&gt;&gt;btnESC.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lBTip.Name" xml:space="preserve">
-    <value>lBTip</value>
+  <data name="&gt;&gt;btnESC.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="btnLEFTMOUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btn7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
-  </data>
   <data name="&gt;&gt;pnl360Controls.Name" xml:space="preserve">
     <value>pnl360Controls</value>
+  </data>
+  <data name="&gt;&gt;btnCOMMA.ZOrder" xml:space="preserve">
+    <value>81</value>
   </data>
   <data name="btnNUMSLASH.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1131,11 +1104,17 @@
   <data name="btnY.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
+  <data name="rBRegular.Text" xml:space="preserve">
+    <value>Regular</value>
+  </data>
   <data name="&gt;&gt;btnRALT.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnYButton.Name" xml:space="preserve">
     <value>btnYButton</value>
+  </data>
+  <data name="btnNUM1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>729, 181</value>
   </data>
   <data name="btnW.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1152,14 +1131,14 @@
   <data name="btnQ.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
+  <data name="cBShiftButton.TabIndex" type="System.Int32, mscorlib">
+    <value>327</value>
+  </data>
   <data name="tBGreenBar.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="btnYButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>569, 57</value>
-  </data>
-  <data name="btnNUM2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;button35.Name" xml:space="preserve">
     <value>button35</value>
@@ -1188,9 +1167,6 @@
   <data name="&gt;&gt;btnNEXTTRACK.Name" xml:space="preserve">
     <value>btnNEXTTRACK</value>
   </data>
-  <data name="&gt;&gt;btn0.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;X360Label.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
   </data>
@@ -1203,14 +1179,14 @@
   <data name="btnMOUSELEFT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
+  <data name="btnRSHIFT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnRALT.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 30</value>
   </data>
   <data name="btnMINUS.Text" xml:space="preserve">
     <value>-</value>
-  </data>
-  <data name="btnAButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
   </data>
   <data name="btnP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1222,9 +1198,6 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnMOUSELEFT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnNUM7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;btnPLAYPAUSE.Parent" xml:space="preserve">
@@ -1241,6 +1214,9 @@
   </data>
   <data name="btnINS.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 30</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Keybaord</value>
   </data>
   <data name="btnLSDown.TabIndex" type="System.Int32, mscorlib">
     <value>308</value>
@@ -1263,20 +1239,14 @@
   <data name="btnNUM6.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
-  <data name="btn7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>272, 69</value>
-  </data>
-  <data name="btnSTOP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
   <data name="btnBButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;btnTILDE.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnF2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="lbBlueV.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 228</value>
   </data>
   <data name="btnN.Text" xml:space="preserve">
     <value>N</value>
@@ -1308,6 +1278,9 @@
   <data name="btnNUM2.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
+  <data name="btnLALT.TabIndex" type="System.Int32, mscorlib">
+    <value>203</value>
+  </data>
   <data name="btnM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1317,14 +1290,17 @@
   <data name="&gt;&gt;lb360Tip.Name" xml:space="preserve">
     <value>lb360Tip</value>
   </data>
-  <data name="btn7.Text" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="btnSCL.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
+  <data name="btnLSHIFT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 181</value>
+  </data>
   <data name="&gt;&gt;lbBlueV.Name" xml:space="preserve">
     <value>lbBlueV</value>
+  </data>
+  <data name="&gt;&gt;btnPERIOD.Name" xml:space="preserve">
+    <value>btnPERIOD</value>
   </data>
   <data name="btnRCTRL.Text" xml:space="preserve">
     <value>RCtrl</value>
@@ -1356,8 +1332,11 @@
   <data name="&gt;&gt;pBHighlight.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnOPENBRACKET.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnPGDN.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbRedV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
   </data>
   <data name="btnPERIOD.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
@@ -1389,17 +1368,14 @@
   <data name="&gt;&gt;rBShiftModifer.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="nUDMouse.TabIndex" type="System.Int32, mscorlib">
-    <value>242</value>
-  </data>
   <data name="btnA.Location" type="System.Drawing.Point, System.Drawing">
     <value>85, 144</value>
   </data>
   <data name="cBLightbar.TabIndex" type="System.Int32, mscorlib">
     <value>243</value>
   </data>
-  <data name="btnEND.Text" xml:space="preserve">
-    <value>end</value>
+  <data name="btnBACKSPACE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnCAPS.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 144</value>
@@ -1407,8 +1383,8 @@
   <data name="btnOPENBRACKET.Location" type="System.Drawing.Point, System.Drawing">
     <value>441, 106</value>
   </data>
-  <data name="&gt;&gt;btnF5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lBTip.Name" xml:space="preserve">
+    <value>lBTip</value>
   </data>
   <data name="btnLSHIFT.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 30</value>
@@ -1425,14 +1401,17 @@
   <data name="&gt;&gt;btnMIDDLEMOUSE.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lbFlashRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 265</value>
+  <data name="&gt;&gt;btn0.ZOrder" xml:space="preserve">
+    <value>37</value>
   </data>
   <data name="lbRed.TabIndex" type="System.Int32, mscorlib">
     <value>164</value>
   </data>
   <data name="lbRed.Size" type="System.Drawing.Size, System.Drawing">
     <value>18, 17</value>
+  </data>
+  <data name="&gt;&gt;btnF10.ZOrder" xml:space="preserve">
+    <value>74</value>
   </data>
   <data name="btnF.Text" xml:space="preserve">
     <value>F</value>
@@ -1445,9 +1424,6 @@
   </data>
   <data name="btn2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="btnNUMSTAR.TabIndex" type="System.Int32, mscorlib">
-    <value>274</value>
   </data>
   <data name="btnSPACE.Location" type="System.Drawing.Point, System.Drawing">
     <value>201, 219</value>
@@ -1463,9 +1439,6 @@
   </data>
   <data name="btnX.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
-  </data>
-  <data name="btn3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnF5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -1494,9 +1467,6 @@
   <data name="btnZ.TabIndex" type="System.Int32, mscorlib">
     <value>210</value>
   </data>
-  <data name="&gt;&gt;btnMINUS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="btnSLASH.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -1506,11 +1476,11 @@
   <data name="&gt;&gt;btnAButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="nUDHeavy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 22</value>
+  </data>
   <data name="btnPGUP.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="btnF9.Text" xml:space="preserve">
-    <value>F9</value>
   </data>
   <data name="btnCLOSEBRACKET.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1539,7 +1509,7 @@
   <data name="&gt;&gt;pBHighlight.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="btnZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tBRedBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnNUM3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -1551,17 +1521,14 @@
   <data name="btnMIDDLEMOUSE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnF12.TabIndex" type="System.Int32, mscorlib">
-    <value>239</value>
-  </data>
   <data name="&gt;&gt;btnF1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnPERIOD.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnPERIOD.Name" xml:space="preserve">
-    <value>btnPERIOD</value>
+  <data name="btnDpadDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 26</value>
   </data>
   <data name="btnM.Text" xml:space="preserve">
     <value>M</value>
@@ -1586,9 +1553,6 @@
   </data>
   <data name="btnR.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
-  </data>
-  <data name="cBScanCode.TabIndex" type="System.Int32, mscorlib">
-    <value>288</value>
   </data>
   <data name="&gt;&gt;tBBlueBar.Name" xml:space="preserve">
     <value>tBBlueBar</value>
@@ -1623,17 +1587,11 @@
   <data name="btnEQUALS.TabIndex" type="System.Int32, mscorlib">
     <value>233</value>
   </data>
-  <data name="btnMINUS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
-  </data>
   <data name="btnRSHIFT.Location" type="System.Drawing.Point, System.Drawing">
     <value>479, 181</value>
   </data>
   <data name="btnBACKSPACE.Text" xml:space="preserve">
     <value>Backspace</value>
-  </data>
-  <data name="&gt;&gt;btnNUM6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbLight.Parent" xml:space="preserve">
     <value>gBExtras</value>
@@ -1657,9 +1615,6 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="button5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="btnF4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="btnLSDown.Location" type="System.Drawing.Point, System.Drawing">
@@ -1688,6 +1643,9 @@
   </data>
   <data name="btnSEMICOLON.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
+  </data>
+  <data name="&gt;&gt;btnCLOSEBRACKET.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnT.Text" xml:space="preserve">
     <value>T</value>
@@ -1725,9 +1683,6 @@
   <data name="&gt;&gt;btnF3.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btn4.ZOrder" xml:space="preserve">
-    <value>57</value>
-  </data>
   <data name="btnLB.TabIndex" type="System.Int32, mscorlib">
     <value>299</value>
   </data>
@@ -1743,9 +1698,6 @@
   <data name="btnSEMICOLON.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lbBlueV.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="btnE.Text" xml:space="preserve">
     <value>E</value>
   </data>
@@ -1758,9 +1710,6 @@
   <data name="btnNUMENTER.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnPERIOD.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="btnDpadDown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -1769,6 +1718,12 @@
   </data>
   <data name="&gt;&gt;lbRed.Parent" xml:space="preserve">
     <value>gBExtras</value>
+  </data>
+  <data name="lBMacroOn.Text" xml:space="preserve">
+    <value>Macro On, Choose a key to disable, else close this window to save</value>
+  </data>
+  <data name="&gt;&gt;btnLSDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lBTip.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
@@ -1851,9 +1806,6 @@
   <data name="btnL.Text" xml:space="preserve">
     <value>L</value>
   </data>
-  <data name="&gt;&gt;btnNUM8.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="btnPLAYPAUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -1872,23 +1824,29 @@
   <data name="&gt;&gt;btnDpadUp.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
   </data>
+  <data name="&gt;&gt;btnEQUALS.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bnColor.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <data name="&gt;&gt;btnRALT.Name" xml:space="preserve">
     <value>btnRALT</value>
   </data>
   <data name="button5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnRALT.Text" xml:space="preserve">
-    <value>RAlt</value>
+  <data name="btnTILDE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="button4.Text" xml:space="preserve">
     <value>←Left</value>
   </data>
+  <data name="rBShiftModifer.Text" xml:space="preserve">
+    <value>Shift Modifier</value>
+  </data>
   <data name="btnLSClick.Location" type="System.Drawing.Point, System.Drawing">
     <value>228, 124</value>
-  </data>
-  <data name="button4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
   </data>
   <data name="btnRSHIFT.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 30</value>
@@ -1904,6 +1862,9 @@
   </data>
   <data name="btnGuide.TabIndex" type="System.Int32, mscorlib">
     <value>291</value>
+  </data>
+  <data name="&gt;&gt;btnBButton.ZOrder" xml:space="preserve">
+    <value>12</value>
   </data>
   <data name="btnXButton.TabIndex" type="System.Int32, mscorlib">
     <value>296</value>
@@ -1986,6 +1947,9 @@
   <data name="&gt;&gt;btnNUMPLUS.ZOrder" xml:space="preserve">
     <value>108</value>
   </data>
+  <data name="bnWHEELUP.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="&gt;&gt;btnLEFTMOUSE.Name" xml:space="preserve">
     <value>btnLEFTMOUSE</value>
   </data>
@@ -2007,11 +1971,11 @@
   <data name="gBExtras.TabIndex" type="System.Int32, mscorlib">
     <value>324</value>
   </data>
-  <data name="btnINS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>584, 69</value>
-  </data>
   <data name="&gt;&gt;rBShiftModifer.Name" xml:space="preserve">
     <value>rBShiftModifer</value>
+  </data>
+  <data name="&gt;&gt;btnVolUp.ZOrder" xml:space="preserve">
+    <value>59</value>
   </data>
   <data name="&gt;&gt;btn5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2037,11 +2001,11 @@
   <data name="btnLSLeft.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;btnQ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pBHighlight.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;lbGreen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lbFlashRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 265</value>
   </data>
   <data name="&gt;&gt;button6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2070,9 +2034,6 @@
   <data name="button35.Text" xml:space="preserve">
     <value>ØVol</value>
   </data>
-  <data name="&gt;&gt;btnGuide.Name" xml:space="preserve">
-    <value>btnGuide</value>
-  </data>
   <data name="button33.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
@@ -2093,6 +2054,9 @@
   </data>
   <data name="btnRSHIFT.Text" xml:space="preserve">
     <value>RShift</value>
+  </data>
+  <data name="nUDHeavy.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnRSClick.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 24</value>
@@ -2160,8 +2124,11 @@
   <data name="&gt;&gt;lbRedV.Parent" xml:space="preserve">
     <value>gBExtras</value>
   </data>
-  <data name="&gt;&gt;btnPGUP.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnNUM5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="X360Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 17</value>
   </data>
   <data name="lbFlashRate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2193,9 +2160,6 @@
   <data name="btnEND.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnNUM4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
   <data name="btnS.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -2210,9 +2174,6 @@
   </data>
   <data name="cBScanCode.Text" xml:space="preserve">
     <value>Scan Code</value>
-  </data>
-  <data name="&gt;&gt;btnLSUp.Name" xml:space="preserve">
-    <value>btnLSUp</value>
   </data>
   <data name="btnH.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2232,8 +2193,8 @@
   <data name="btnLSLeft.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 118</value>
   </data>
-  <data name="btnY.Text" xml:space="preserve">
-    <value>Y</value>
+  <data name="rBRegular.TabIndex" type="System.Int32, mscorlib">
+    <value>325</value>
   </data>
   <data name="btnNUM9.Text" xml:space="preserve">
     <value>9</value>
@@ -2286,8 +2247,11 @@
   <data name="&gt;&gt;btnRSClick.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="btnW.TabIndex" type="System.Int32, mscorlib">
-    <value>177</value>
+  <data name="button39.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="btnSTOP.TabIndex" type="System.Int32, mscorlib">
+    <value>246</value>
   </data>
   <data name="btnPLAYPAUSE.Text" xml:space="preserve">
     <value>4</value>
@@ -2334,6 +2298,9 @@
   <data name="&gt;&gt;button34.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;button34.ZOrder" xml:space="preserve">
+    <value>42</value>
+  </data>
   <data name="btnRALT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
@@ -2342,6 +2309,9 @@
   </data>
   <data name="&gt;&gt;btnEND.ZOrder" xml:space="preserve">
     <value>33</value>
+  </data>
+  <data name="button7.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="button35.TabIndex" type="System.Int32, mscorlib">
     <value>248</value>
@@ -2385,14 +2355,17 @@
   <data name="btnNUMLOCK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="&gt;&gt;bnMacro.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btn2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="lbGreenV.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="btnLB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 63</value>
+  <data name="btnX.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="btnV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="btnF.Location" type="System.Drawing.Point, System.Drawing">
     <value>198, 144</value>
@@ -2408,6 +2381,9 @@
   </data>
   <data name="&gt;&gt;btnNUMENTER.ZOrder" xml:space="preserve">
     <value>112</value>
+  </data>
+  <data name="tBRedBar.TabIndex" type="System.Int32, mscorlib">
+    <value>161</value>
   </data>
   <data name="btnQ.Location" type="System.Drawing.Point, System.Drawing">
     <value>66, 106</value>
@@ -2448,11 +2424,17 @@
   <data name="btnPLAYPAUSE.TabIndex" type="System.Int32, mscorlib">
     <value>245</value>
   </data>
+  <data name="&gt;&gt;lbGreen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="bTNRIGHTMOUSE.TabIndex" type="System.Int32, mscorlib">
     <value>178</value>
   </data>
   <data name="button5.TabIndex" type="System.Int32, mscorlib">
     <value>285</value>
+  </data>
+  <data name="&gt;&gt;cBToggle.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btn9.ZOrder" xml:space="preserve">
     <value>40</value>
@@ -2471,9 +2453,6 @@
   </data>
   <data name="button6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
-  </data>
-  <data name="&gt;&gt;btnG.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnNUM9.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2520,6 +2499,9 @@
   <data name="&gt;&gt;btn9.Name" xml:space="preserve">
     <value>btn9</value>
   </data>
+  <data name="cBShiftButton.Items2" xml:space="preserve">
+    <value>Circle</value>
+  </data>
   <data name="btnNUM8.Location" type="System.Drawing.Point, System.Drawing">
     <value>766, 106</value>
   </data>
@@ -2550,6 +2532,9 @@
   <data name="cBScanCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 21</value>
   </data>
+  <data name="&gt;&gt;btnOPENBRACKET.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;btn5.ZOrder" xml:space="preserve">
     <value>54</value>
   </data>
@@ -2567,12 +2552,6 @@
   </data>
   <data name="btnLT.TabIndex" type="System.Int32, mscorlib">
     <value>313</value>
-  </data>
-  <data name="lbHeavy.Text" xml:space="preserve">
-    <value>Heavy</value>
-  </data>
-  <data name="&gt;&gt;btnNEXTTRACK.ZOrder" xml:space="preserve">
-    <value>53</value>
   </data>
   <data name="btnStart.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -2592,8 +2571,8 @@
   <data name="btnSPACE.TabIndex" type="System.Int32, mscorlib">
     <value>222</value>
   </data>
-  <data name="&gt;&gt;btnNUMDOT.Name" xml:space="preserve">
-    <value>btnNUMDOT</value>
+  <data name="btnG.Text" xml:space="preserve">
+    <value>G</value>
   </data>
   <data name="btnH.TabIndex" type="System.Int32, mscorlib">
     <value>196</value>
@@ -2609,6 +2588,9 @@
   </data>
   <data name="cBShiftButton.Items1" xml:space="preserve">
     <value>Cross</value>
+  </data>
+  <data name="bnTest.Text" xml:space="preserve">
+    <value>Test</value>
   </data>
   <data name="btnBButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 38</value>
@@ -2628,14 +2610,14 @@
   <data name="btnESC.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 30</value>
   </data>
-  <data name="tBBlueBar.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="btnU.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
   <data name="&gt;&gt;lBMacroOn.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnRB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 38</value>
   </data>
   <data name="btnUNBOUND.Text" xml:space="preserve">
     <value>Unbound</value>
@@ -2670,9 +2652,6 @@
   <data name="btnN.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="&gt;&gt;btnF7.Name" xml:space="preserve">
-    <value>btnF7</value>
-  </data>
   <data name="&gt;&gt;lbBlue.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -2684,6 +2663,9 @@
   </data>
   <data name="&gt;&gt;btn5.Name" xml:space="preserve">
     <value>btn5</value>
+  </data>
+  <data name="&gt;&gt;btnQ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnRSClick.Name" xml:space="preserve">
     <value>btnRSClick</value>
@@ -2705,9 +2687,6 @@
   </data>
   <data name="btnVolUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="btnDpadUp.TabIndex" type="System.Int32, mscorlib">
-    <value>305</value>
   </data>
   <data name="btnF1.TabIndex" type="System.Int32, mscorlib">
     <value>263</value>
@@ -2739,11 +2718,17 @@
   <data name="&gt;&gt;btnBack.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbGreenV.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;gBExtras.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="bnWHEELUP.TabIndex" type="System.Int32, mscorlib">
+    <value>174</value>
   </data>
   <data name="&gt;&gt;bTNRIGHTMOUSE.ZOrder" xml:space="preserve">
     <value>52</value>
+  </data>
+  <data name="btn3.TabIndex" type="System.Int32, mscorlib">
+    <value>224</value>
   </data>
   <data name="btnX.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -2756,9 +2741,6 @@
   </data>
   <data name="btnGuide.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
-  </data>
-  <data name="lbRed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
   </data>
   <data name="btnNUMMINUS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -2787,7 +2769,7 @@
   <data name="bnMacro.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;btnSPACE.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnNUM9.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lBMacroOn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -2822,9 +2804,6 @@
   </data>
   <data name="&gt;&gt;btnF6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btn4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 69</value>
   </data>
   <data name="lbGreen.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -2865,14 +2844,17 @@
   <data name="btnLB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="btnHOME.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 30</value>
+  </data>
   <data name="btnMIDDLEMOUSE.TabIndex" type="System.Int32, mscorlib">
     <value>176</value>
   </data>
   <data name="&gt;&gt;tBGreenBar.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="&gt;&gt;btnEQUALS.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="bnWHEELDOWN.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;btnNUMLOCK.Name" xml:space="preserve">
     <value>btnNUMLOCK</value>
@@ -2882,9 +2864,6 @@
   </data>
   <data name="&gt;&gt;btnMIDDLEMOUSE.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnJ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnD.TabIndex" type="System.Int32, mscorlib">
     <value>193</value>
@@ -2919,9 +2898,6 @@
   <data name="btnNUMPLUS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnLSClick.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
   <data name="btnE.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
@@ -2940,14 +2916,8 @@
   <data name="btnDpadRight.TabIndex" type="System.Int32, mscorlib">
     <value>304</value>
   </data>
-  <data name="btnNUM5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
   <data name="btnLSLeft.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 38</value>
-  </data>
-  <data name="btnV.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="btnNUM4.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
@@ -2957,6 +2927,9 @@
   </data>
   <data name="btnSPACE.Text" xml:space="preserve">
     <value>Space</value>
+  </data>
+  <data name="cBScanCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>829, 10</value>
   </data>
   <data name="btnAPOSTROPHE.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
@@ -2991,9 +2964,6 @@
   <data name="&gt;&gt;btnF12.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;button4.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="nUDLight.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -3008,9 +2978,6 @@
   </data>
   <data name="&gt;&gt;btnDpadDown.ZOrder" xml:space="preserve">
     <value>26</value>
-  </data>
-  <data name="&gt;&gt;btnH.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCAPS.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3027,6 +2994,9 @@
   <data name="rBRegular.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="btnPERIOD.TabIndex" type="System.Int32, mscorlib">
+    <value>218</value>
+  </data>
   <data name="&gt;&gt;btnRCTRL.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -3042,14 +3012,8 @@
   <data name="btn8.TabIndex" type="System.Int32, mscorlib">
     <value>229</value>
   </data>
-  <data name="btn7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="btnB.Location" type="System.Drawing.Point, System.Drawing">
     <value>254, 181</value>
-  </data>
-  <data name="&gt;&gt;pBMouse.ZOrder" xml:space="preserve">
-    <value>132</value>
   </data>
   <data name="&gt;&gt;btnF4.ZOrder" xml:space="preserve">
     <value>13</value>
@@ -3069,8 +3033,8 @@
   <data name="&gt;&gt;btnV.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnXButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>525, 98</value>
+  <data name="btnSCL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 30</value>
   </data>
   <data name="&gt;&gt;cBShiftButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3102,8 +3066,8 @@
   <data name="cBShiftButton.Items15" xml:space="preserve">
     <value>R2</value>
   </data>
-  <data name="cBShiftButton.Items14" xml:space="preserve">
-    <value>L2</value>
+  <data name="btnRB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>704, 69</value>
   </data>
   <data name="cBShiftButton.Items13" xml:space="preserve">
     <value>R1</value>
@@ -3116,9 +3080,6 @@
   </data>
   <data name="cBShiftButton.Items10" xml:space="preserve">
     <value>Right</value>
-  </data>
-  <data name="cBMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 46</value>
   </data>
   <data name="&gt;&gt;pnl360Controls.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3135,14 +3096,14 @@
   <data name="btnU.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
+  <data name="&gt;&gt;btnNUMMINUS.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;btnRB.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="button5.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 30</value>
-  </data>
-  <data name="btn2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
   </data>
   <data name="tBBlueBar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3150,14 +3111,8 @@
   <data name="&gt;&gt;btnGuide.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;btnNUMSLASH.ZOrder" xml:space="preserve">
-    <value>90</value>
-  </data>
   <data name="button39.Location" type="System.Drawing.Point, System.Drawing">
     <value>879, 69</value>
-  </data>
-  <data name="btnHOME.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
   </data>
   <data name="btnY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3166,6 +3121,9 @@
     <value>NoControl</value>
   </data>
   <data name="btnD.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="btnN.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;btnDefault.ZOrder" xml:space="preserve">
@@ -3180,8 +3138,8 @@
   <data name="&gt;&gt;btnESC.Name" xml:space="preserve">
     <value>btnESC</value>
   </data>
-  <data name="&gt;&gt;btnESC.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;btnT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnDpadRight.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -3206,6 +3164,9 @@
   </data>
   <data name="btnBACKSLASH.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
+  </data>
+  <data name="btnF1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 31</value>
   </data>
   <data name="btnLSRight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3273,8 +3234,8 @@
   <data name="btnT.TabIndex" type="System.Int32, mscorlib">
     <value>181</value>
   </data>
-  <data name="btnWINDOWS.Text" xml:space="preserve">
-    <value>LWin</value>
+  <data name="&gt;&gt;btnV.Name" xml:space="preserve">
+    <value>btnV</value>
   </data>
   <data name="bTNRIGHTMOUSE.Text" xml:space="preserve">
     <value>R</value>
@@ -3285,11 +3246,11 @@
   <data name="&gt;&gt;btnRSLeft.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
   </data>
-  <data name="btnAButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 41</value>
-  </data>
   <data name="btnLSClick.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="btnF3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 30</value>
   </data>
   <data name="btnX.TabIndex" type="System.Int32, mscorlib">
     <value>211</value>
@@ -3315,6 +3276,9 @@
   <data name="&gt;&gt;btnDpadLeft.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
+  <data name="tBGreenBar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="btnNUM2.Text" xml:space="preserve">
     <value>2</value>
   </data>
@@ -3323,12 +3287,6 @@
   </data>
   <data name="lBMacroOn.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 11</value>
-  </data>
-  <data name="bnWHEELUP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 28</value>
-  </data>
-  <data name="lbBlue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 228</value>
   </data>
   <data name="&gt;&gt;pBHighlight.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
@@ -3396,12 +3354,6 @@
   <data name="btnOPENBRACKET.Text" xml:space="preserve">
     <value>[</value>
   </data>
-  <data name="btnF6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnDEL.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="btnNUM0.Text" xml:space="preserve">
     <value>0</value>
   </data>
@@ -3411,17 +3363,17 @@
   <data name="btnQ.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="btnN.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="btn7.Text" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="btnF7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;btnU.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;btn6.Name" xml:space="preserve">
     <value>btn6</value>
+  </data>
+  <data name="btn6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;btn8.Name" xml:space="preserve">
     <value>btn8</value>
@@ -3438,11 +3390,14 @@
   <data name="btnNUM6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
+  <data name="&gt;&gt;pnl360Controls.ZOrder" xml:space="preserve">
+    <value>133</value>
+  </data>
   <data name="btnNUMSLASH.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;btn0.Name" xml:space="preserve">
-    <value>btn0</value>
+  <data name="btnPERIOD.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;btn4.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3510,6 +3465,9 @@
   <data name="tBBlueBar.TabIndex" type="System.Int32, mscorlib">
     <value>163</value>
   </data>
+  <data name="btn1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
+  </data>
   <data name="btnNUM6.Text" xml:space="preserve">
     <value>6</value>
   </data>
@@ -3539,6 +3497,9 @@
   </data>
   <data name="btnPGUP.Location" type="System.Drawing.Point, System.Drawing">
     <value>666, 69</value>
+  </data>
+  <data name="btnTILDE.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="&gt;&gt;bTNRIGHTMOUSE.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3609,9 +3570,6 @@
   <data name="cBMouse.TabIndex" type="System.Int32, mscorlib">
     <value>243</value>
   </data>
-  <data name="bnMacro.Text" xml:space="preserve">
-    <value>Record a macro</value>
-  </data>
   <data name="btnCAPS.Text" xml:space="preserve">
     <value>Caps</value>
   </data>
@@ -3621,8 +3579,8 @@
   <data name="btnESC.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="btnRB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>704, 69</value>
+  <data name="btnMOUSEUP.Text" xml:space="preserve">
+    <value>↑</value>
   </data>
   <data name="&gt;&gt;btnMINUS.Name" xml:space="preserve">
     <value>btnMINUS</value>
@@ -3651,8 +3609,8 @@
   <data name="&gt;&gt;btnRSLeft.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="&gt;&gt;btnG.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnPLAYPAUSE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3660,8 +3618,8 @@
   <data name="&gt;&gt;btnNUM3.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnSTOP.TabIndex" type="System.Int32, mscorlib">
-    <value>246</value>
+  <data name="btn5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;btnHOME.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3693,8 +3651,14 @@
   <data name="btnCOMMA.Text" xml:space="preserve">
     <value>,</value>
   </data>
+  <data name="btnOPENBRACKET.TabIndex" type="System.Int32, mscorlib">
+    <value>187</value>
+  </data>
   <data name="rBRegular.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 21</value>
+  </data>
+  <data name="&gt;&gt;nUDLightFlash.Parent" xml:space="preserve">
+    <value>gBExtras</value>
   </data>
   <data name="&gt;&gt;btnG.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3705,9 +3669,6 @@
   <data name="&gt;&gt;btnA.Name" xml:space="preserve">
     <value>btnA</value>
   </data>
-  <data name="&gt;&gt;bnWHEELUP.Name" xml:space="preserve">
-    <value>bnWHEELUP</value>
-  </data>
   <data name="&gt;&gt;btnNUM0.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -3716,6 +3677,9 @@
   </data>
   <data name="btnCOMMA.Location" type="System.Drawing.Point, System.Drawing">
     <value>366, 181</value>
+  </data>
+  <data name="&gt;&gt;btnZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnF6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -3768,6 +3732,9 @@
   <data name="&gt;&gt;btnNUM1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="btnF.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
   <data name="btnRSDown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -3785,6 +3752,9 @@
   </data>
   <data name="&gt;&gt;btnNUM2.ZOrder" xml:space="preserve">
     <value>127</value>
+  </data>
+  <data name="&gt;&gt;lbGreenV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnVolUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 30</value>
@@ -3810,10 +3780,7 @@
   <data name="btnRB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="btnNUMSTAR.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="nUDHeavy.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="btnF4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="btnMINUS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -3825,11 +3792,14 @@
   <data name="btn3.Text" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="btnEQUALS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;btnDpadUp.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnF1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 31</value>
+  <data name="&gt;&gt;btnNUMSLASH.ZOrder" xml:space="preserve">
+    <value>90</value>
   </data>
   <data name="&gt;&gt;btnJ.ZOrder" xml:space="preserve">
     <value>109</value>
@@ -3846,11 +3816,17 @@
   <data name="btnESC.Text" xml:space="preserve">
     <value>Escape</value>
   </data>
+  <data name="btnRSRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 38</value>
+  </data>
   <data name="&gt;&gt;bTNRIGHTMOUSE.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnI.ZOrder" xml:space="preserve">
     <value>67</value>
+  </data>
+  <data name="&gt;&gt;btnLCTRL.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnLEFTMOUSE.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
@@ -3879,8 +3855,8 @@
   <data name="&gt;&gt;btnNUM7.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;tBBlueBar.ZOrder" xml:space="preserve">
-    <value>17</value>
+  <data name="btnNUM0.TabIndex" type="System.Int32, mscorlib">
+    <value>280</value>
   </data>
   <data name="btnDpadLeft.TabIndex" type="System.Int32, mscorlib">
     <value>307</value>
@@ -3909,6 +3885,9 @@
   <data name="&gt;&gt;btnBButton.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
   </data>
+  <data name="lbRumble.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 17</value>
+  </data>
   <data name="btnLEFTMOUSE.Location" type="System.Drawing.Point, System.Drawing">
     <value>958, 106</value>
   </data>
@@ -3924,10 +3903,10 @@
   <data name="btnNUMDOT.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
-  <data name="&gt;&gt;btnNUM6.Name" xml:space="preserve">
-    <value>btnNUM6</value>
-  </data>
   <data name="&gt;&gt;btnNUM4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn4THMOUSE.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="btnF2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -3957,14 +3936,11 @@
   <data name="&gt;&gt;btnNUM9.ZOrder" xml:space="preserve">
     <value>100</value>
   </data>
-  <data name="&gt;&gt;btnMOUSELEFT.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
   <data name="button6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="&gt;&gt;lbRed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnBACKSLASH.TabIndex" type="System.Int32, mscorlib">
+    <value>190</value>
   </data>
   <data name="btnNEXTTRACK.TabIndex" type="System.Int32, mscorlib">
     <value>244</value>
@@ -3999,9 +3975,6 @@
   <data name="&gt;&gt;rBRegular.Name" xml:space="preserve">
     <value>rBRegular</value>
   </data>
-  <data name="btnNUM1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="&gt;&gt;btnCAPS.Name" xml:space="preserve">
     <value>btnCAPS</value>
   </data>
@@ -4026,14 +3999,8 @@
   <data name="btnMOUSEDOWN.Text" xml:space="preserve">
     <value>↓</value>
   </data>
-  <data name="&gt;&gt;btnSCL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="btnN.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="btnF5.Text" xml:space="preserve">
-    <value>F5</value>
   </data>
   <data name="&gt;&gt;btnNUM2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -4047,26 +4014,29 @@
   <data name="btnCLOSEBRACKET.Text" xml:space="preserve">
     <value>]</value>
   </data>
-  <data name="btnNUM0.TabIndex" type="System.Int32, mscorlib">
-    <value>280</value>
+  <data name="&gt;&gt;btnMOUSELEFT.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;button7.ZOrder" xml:space="preserve">
     <value>103</value>
   </data>
-  <data name="btnLSUp.TabIndex" type="System.Int32, mscorlib">
-    <value>300</value>
-  </data>
   <data name="btnTAB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="btnSTOP.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;btnTILDE.Name" xml:space="preserve">
+    <value>btnTILDE</value>
   </data>
   <data name="lb360Tip.Text" xml:space="preserve">
     <value>A</value>
   </data>
   <data name="btnY.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
-  </data>
-  <data name="&gt;&gt;btnP.ZOrder" xml:space="preserve">
-    <value>73</value>
   </data>
   <data name="btnF7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4128,6 +4098,9 @@
   <data name="&gt;&gt;btnRSLeft.Name" xml:space="preserve">
     <value>btnRSLeft</value>
   </data>
+  <data name="btnB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
   <data name="btnG.Location" type="System.Drawing.Point, System.Drawing">
     <value>235, 144</value>
   </data>
@@ -4149,11 +4122,8 @@
   <data name="btnRSRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnLSHIFT.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 181</value>
-  </data>
-  <data name="rBShiftModifer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 21</value>
+  <data name="&gt;&gt;btn0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnRALT.Location" type="System.Drawing.Point, System.Drawing">
     <value>441, 219</value>
@@ -4164,23 +4134,14 @@
   <data name="&gt;&gt;bnWHEELDOWN.ZOrder" xml:space="preserve">
     <value>45</value>
   </data>
-  <data name="btnBACKSLASH.TabIndex" type="System.Int32, mscorlib">
-    <value>190</value>
-  </data>
   <data name="pnl360Controls.Size" type="System.Drawing.Size, System.Drawing">
     <value>835, 309</value>
   </data>
   <data name="&gt;&gt;cBScanCode.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnRSLeft.TabIndex" type="System.Int32, mscorlib">
-    <value>311</value>
-  </data>
-  <data name="&gt;&gt;btnRSRight.Name" xml:space="preserve">
-    <value>btnRSRight</value>
-  </data>
-  <data name="bnWHEELDOWN.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="btnVolUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>879, 32</value>
   </data>
   <data name="lbRumble.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -4200,14 +4161,17 @@
   <data name="cBMouse.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
-  <data name="&gt;&gt;btnBButton.ZOrder" xml:space="preserve">
-    <value>12</value>
+  <data name="btnDEL.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btn9.Text" xml:space="preserve">
     <value>9</value>
   </data>
   <data name="&gt;&gt;btnNUM6.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lbFlashRate.Parent" xml:space="preserve">
+    <value>gBExtras</value>
   </data>
   <data name="&gt;&gt;btnBREAK.Name" xml:space="preserve">
     <value>btnBREAK</value>
@@ -4220,9 +4184,6 @@
   </data>
   <data name="&gt;&gt;btnPREVTRACK.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pBHighlight.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="btn9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -4239,6 +4200,9 @@
   <data name="btnSLASH.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
+  <data name="btnY.TabIndex" type="System.Int32, mscorlib">
+    <value>182</value>
+  </data>
   <data name="&gt;&gt;btnU.Name" xml:space="preserve">
     <value>btnU</value>
   </data>
@@ -4254,11 +4218,11 @@
   <data name="&gt;&gt;btnF11.ZOrder" xml:space="preserve">
     <value>77</value>
   </data>
-  <data name="&gt;&gt;btnLSDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnXButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>525, 98</value>
   </data>
-  <data name="cBShiftButton.Items2" xml:space="preserve">
-    <value>Circle</value>
+  <data name="lbHeavy.Text" xml:space="preserve">
+    <value>Heavy</value>
   </data>
   <data name="btnBREAK.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 30</value>
@@ -4275,14 +4239,11 @@
   <data name="btnPGUP.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 30</value>
   </data>
-  <data name="btnSCL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 30</value>
+  <data name="tBBlueBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pBHighlight.TabIndex" type="System.Int32, mscorlib">
     <value>322</value>
-  </data>
-  <data name="&gt;&gt;btnDEL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="rBRegular.Location" type="System.Drawing.Point, System.Drawing">
     <value>28, 261</value>
@@ -4290,8 +4251,8 @@
   <data name="btnNEXTTRACK.Font" type="System.Drawing.Font, System.Drawing">
     <value>Webdings, 8.25pt</value>
   </data>
-  <data name="tBRedBar.TabIndex" type="System.Int32, mscorlib">
-    <value>161</value>
+  <data name="&gt;&gt;nUDLight.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="btn2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4311,9 +4272,6 @@
   <data name="btnNUM7.TabIndex" type="System.Int32, mscorlib">
     <value>272</value>
   </data>
-  <data name="btnL.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="btnBACKSLASH.Text" xml:space="preserve">
     <value>\</value>
   </data>
@@ -4326,29 +4284,29 @@
   <data name="&gt;&gt;btnAButton.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
   </data>
-  <data name="btnPERIOD.TabIndex" type="System.Int32, mscorlib">
-    <value>218</value>
+  <data name="btnLB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 63</value>
   </data>
-  <data name="lbRedV.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="bnMacro.Text" xml:space="preserve">
+    <value>Record a macro</value>
   </data>
   <data name="&gt;&gt;btnRSUp.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="btnD.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnBACKSPACE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;btnNUMDOT.Name" xml:space="preserve">
+    <value>btnNUMDOT</value>
   </data>
   <data name="btnNUMMINUS.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
+  <data name="btnLSRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnSTOP.Text" xml:space="preserve">
     <value>&lt;</value>
   </data>
-  <data name="btnLSUp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="btnF5.Text" xml:space="preserve">
+    <value>F5</value>
   </data>
   <data name="btnF9.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4359,8 +4317,8 @@
   <data name="btnA.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="&gt;&gt;btnG.Name" xml:space="preserve">
-    <value>btnG</value>
+  <data name="lbRedV.Text" xml:space="preserve">
+    <value>255</value>
   </data>
   <data name="&gt;&gt;nUDMouse.Parent" xml:space="preserve">
     <value>gBExtras</value>
@@ -4382,9 +4340,6 @@
   </data>
   <data name="&gt;&gt;button33.Name" xml:space="preserve">
     <value>button33</value>
-  </data>
-  <data name="&gt;&gt;pBMouse.Name" xml:space="preserve">
-    <value>pBMouse</value>
   </data>
   <data name="btnEND.Location" type="System.Drawing.Point, System.Drawing">
     <value>625, 106</value>
@@ -4410,8 +4365,8 @@
   <data name="&gt;&gt;btnAPOSTROPHE.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btn6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="btnPGDN.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="btnS.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -4436,6 +4391,9 @@
   </data>
   <data name="btnPGUP.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
+  </data>
+  <data name="btn4.Text" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;btnBack.Name" xml:space="preserve">
     <value>btnBack</value>
@@ -4467,11 +4425,14 @@
   <data name="btnAButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="button4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="btnSEMICOLON.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 144</value>
+  </data>
   <data name="cBMouse.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 306</value>
-  </data>
-  <data name="&gt;&gt;cBScanCode.Name" xml:space="preserve">
-    <value>cBScanCode</value>
   </data>
   <data name="btnLT.Location" type="System.Drawing.Point, System.Drawing">
     <value>75, 12</value>
@@ -4479,11 +4440,14 @@
   <data name="btnNUM4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;btnT.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="nUDMouse.TabIndex" type="System.Int32, mscorlib">
+    <value>242</value>
   </data>
   <data name="btnTILDE.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
+  </data>
+  <data name="KBMlabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btn2.TabIndex" type="System.Int32, mscorlib">
     <value>223</value>
@@ -4500,8 +4464,8 @@
   <data name="btnPLAYPAUSE.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
-  <data name="&gt;&gt;bnMacro.Name" xml:space="preserve">
-    <value>bnMacro</value>
+  <data name="&gt;&gt;btnSCL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnB.Name" xml:space="preserve">
     <value>btnB</value>
@@ -4545,8 +4509,8 @@
   <data name="btnDpadUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>314, 173</value>
   </data>
-  <data name="lbRumble.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 17</value>
+  <data name="btnESC.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;nUDLightFlash.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -4563,8 +4527,8 @@
   <data name="btnF8.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btn4.Text" xml:space="preserve">
-    <value>4</value>
+  <data name="lbBlue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 228</value>
   </data>
   <data name="lbGreenV.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 17</value>
@@ -4584,8 +4548,11 @@
   <data name="&gt;&gt;btnMOUSEDOWN.Name" xml:space="preserve">
     <value>btnMOUSEDOWN</value>
   </data>
-  <data name="nUDHeavy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 22</value>
+  <data name="&gt;&gt;btnU.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="bTNRIGHTMOUSE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnLB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4608,14 +4575,14 @@
   <data name="btnO.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnSEMICOLON.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 144</value>
+  <data name="&gt;&gt;btnF12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnM.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="btnLSHIFT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="btnSCL.Text" xml:space="preserve">
+    <value>scl</value>
   </data>
   <data name="&gt;&gt;nUDMouse.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -4638,6 +4605,9 @@
   <data name="btnRT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="btnG.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="tBGreenBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>41, 191</value>
   </data>
@@ -4647,8 +4617,8 @@
   <data name="btnF7.Text" xml:space="preserve">
     <value>F7</value>
   </data>
-  <data name="lbRedV.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="btn7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>272, 69</value>
   </data>
   <data name="btnRSLeft.Size" type="System.Drawing.Size, System.Drawing">
     <value>19, 38</value>
@@ -4668,20 +4638,23 @@
   <data name="btn2.Text" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btnEND.Text" xml:space="preserve">
+    <value>end</value>
   </data>
   <data name="&gt;&gt;btnRSUp.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
   </data>
-  <data name="btnLALT.Text" xml:space="preserve">
-    <value>LAlt</value>
+  <data name="&gt;&gt;btnDEL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnF6.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 30</value>
   </data>
   <data name="&gt;&gt;btnF2.Name" xml:space="preserve">
     <value>btnF2</value>
+  </data>
+  <data name="btnRALT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="btnRB.TabIndex" type="System.Int32, mscorlib">
     <value>298</value>
@@ -4716,7 +4689,7 @@
   <data name="btnG.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnEQUALS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="bnTest.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnF5.Size" type="System.Drawing.Size, System.Drawing">
@@ -4731,8 +4704,8 @@
   <data name="btnS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lbBlueV.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 228</value>
+  <data name="btnF6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnTILDE.TabIndex" type="System.Int32, mscorlib">
     <value>236</value>
@@ -4761,20 +4734,20 @@
   <data name="&gt;&gt;btnWINDOWS.Name" xml:space="preserve">
     <value>btnWINDOWS</value>
   </data>
-  <data name="&gt;&gt;btnRALT.ZOrder" xml:space="preserve">
-    <value>106</value>
+  <data name="btnF4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 30</value>
   </data>
-  <data name="&gt;&gt;lbGreenV.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnMOUSEUP.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="btnHOME.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 30</value>
+  <data name="btnWINDOWS.Text" xml:space="preserve">
+    <value>LWin</value>
   </data>
   <data name="btn1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btn4THMOUSE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="lbRed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="btnLSUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -4782,11 +4755,14 @@
   <data name="btnNUM8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;btnCOMMA.ZOrder" xml:space="preserve">
-    <value>81</value>
+  <data name="&gt;&gt;cBScanCode.Name" xml:space="preserve">
+    <value>cBScanCode</value>
   </data>
   <data name="&gt;&gt;btnLSDown.Name" xml:space="preserve">
     <value>btnLSDown</value>
+  </data>
+  <data name="KBMlabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 17</value>
   </data>
   <data name="btnF3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4797,8 +4773,8 @@
   <data name="&gt;&gt;lbHeavy.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnRSHIFT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btn3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnF4.Location" type="System.Drawing.Point, System.Drawing">
     <value>198, 31</value>
@@ -4836,11 +4812,11 @@
   <data name="&gt;&gt;cBToggle.Name" xml:space="preserve">
     <value>cBToggle</value>
   </data>
-  <data name="&gt;&gt;btn0.ZOrder" xml:space="preserve">
-    <value>37</value>
+  <data name="btnD.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="btnG.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="btnB.TabIndex" type="System.Int32, mscorlib">
+    <value>214</value>
   </data>
   <data name="btnUNBOUND.Location" type="System.Drawing.Point, System.Drawing">
     <value>28, 456</value>
@@ -4881,6 +4857,9 @@
   <data name="&gt;&gt;lbHeavy.Parent" xml:space="preserve">
     <value>gBExtras</value>
   </data>
+  <data name="btnLSClick.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 27</value>
+  </data>
   <data name="btn0.Location" type="System.Drawing.Point, System.Drawing">
     <value>385, 69</value>
   </data>
@@ -4896,8 +4875,8 @@
   <data name="&gt;&gt;btn9.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnTILDE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="pBHighlight.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;bnWHEELDOWN.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -4914,23 +4893,23 @@
   <data name="lbBlueV.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="btnF.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="btnF11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnF1.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 30</value>
   </data>
-  <data name="&gt;&gt;btnNUMMINUS.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;btnNUMSLASH.Name" xml:space="preserve">
+    <value>btnNUMSLASH</value>
   </data>
-  <data name="btnNUM1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>729, 181</value>
+  <data name="btnF9.Text" xml:space="preserve">
+    <value>F9</value>
   </data>
   <data name="btnAPOSTROPHE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="bTNRIGHTMOUSE.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btnNUMDOT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnRSClick.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -4938,14 +4917,11 @@
   <data name="&gt;&gt;button6.Name" xml:space="preserve">
     <value>button6</value>
   </data>
-  <data name="btnNUMSLASH.Location" type="System.Drawing.Point, System.Drawing">
-    <value>766, 69</value>
-  </data>
   <data name="&gt;&gt;btnLEFTMOUSE.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
-  <data name="&gt;&gt;btnMOUSEDOWN.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnN.TabIndex" type="System.Int32, mscorlib">
     <value>215</value>
@@ -4956,8 +4932,8 @@
   <data name="&gt;&gt;btnMOUSERIGHT.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnOPENBRACKET.ZOrder" xml:space="preserve">
-    <value>76</value>
+  <data name="btn7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="btnBREAK.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -4965,8 +4941,8 @@
   <data name="btnYButton.TabIndex" type="System.Int32, mscorlib">
     <value>297</value>
   </data>
-  <data name="X360Label.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 17</value>
+  <data name="btnMINUS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="lbHeavy.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 59</value>
@@ -4982,9 +4958,6 @@
   </data>
   <data name="btnPREVTRACK.Font" type="System.Drawing.Font, System.Drawing">
     <value>Webdings, 8.25pt</value>
-  </data>
-  <data name="&gt;&gt;btnNUM1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnF1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -5031,29 +5004,26 @@
   <data name="&gt;&gt;cBToggle.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnPGDN.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btn7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnDpadUp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;btnV.Name" xml:space="preserve">
-    <value>btnV</value>
+  <data name="btnNUMSLASH.Location" type="System.Drawing.Point, System.Drawing">
+    <value>766, 69</value>
   </data>
   <data name="button35.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="&gt;&gt;button5.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="button4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 30</value>
+  <data name="btnNUM9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="btnBack.TabIndex" type="System.Int32, mscorlib">
     <value>292</value>
   </data>
-  <data name="&gt;&gt;btnXButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnSLASH.TabIndex" type="System.Int32, mscorlib">
+    <value>219</value>
   </data>
   <data name="&gt;&gt;btnEND.Parent" xml:space="preserve">
     <value>$this</value>
@@ -5061,8 +5031,8 @@
   <data name="pnl360Controls.Location" type="System.Drawing.Point, System.Drawing">
     <value>254, 253</value>
   </data>
-  <data name="rBRegular.Text" xml:space="preserve">
-    <value>Regular</value>
+  <data name="&gt;&gt;btn1.Name" xml:space="preserve">
+    <value>btn1</value>
   </data>
   <data name="&gt;&gt;btnMOUSEUP.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5094,6 +5064,9 @@
   <data name="lb360Tip.Size" type="System.Drawing.Size, System.Drawing">
     <value>17, 17</value>
   </data>
+  <data name="button35.Location" type="System.Drawing.Point, System.Drawing">
+    <value>879, 106</value>
+  </data>
   <data name="cBMouse.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
@@ -5112,11 +5085,11 @@
   <data name="&gt;&gt;btnL.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnNUMMINUS.ZOrder" xml:space="preserve">
-    <value>104</value>
+  <data name="btnF8.TabIndex" type="System.Int32, mscorlib">
+    <value>256</value>
   </data>
-  <data name="button4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="btnAButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="btnNUMDOT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5133,14 +5106,17 @@
   <data name="&gt;&gt;lbGreen.Parent" xml:space="preserve">
     <value>gBExtras</value>
   </data>
-  <data name="btnLALT.TabIndex" type="System.Int32, mscorlib">
-    <value>203</value>
+  <data name="btnNUM7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnBButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;tBRedBar.Parent" xml:space="preserve">
     <value>gBExtras</value>
+  </data>
+  <data name="lbLight.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;button36.Parent" xml:space="preserve">
     <value>$this</value>
@@ -5169,8 +5145,8 @@
   <data name="btn6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnF3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 30</value>
+  <data name="btnZ.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5178,14 +5154,17 @@
   <data name="&gt;&gt;btnNUMPLUS.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="btnF12.Text" xml:space="preserve">
+    <value>F12</value>
+  </data>
   <data name="btnLT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="btnRSClick.TabIndex" type="System.Int32, mscorlib">
     <value>303</value>
   </data>
-  <data name="&gt;&gt;lbFlashRate.Parent" xml:space="preserve">
-    <value>gBExtras</value>
+  <data name="&gt;&gt;btnGuide.Name" xml:space="preserve">
+    <value>btnGuide</value>
   </data>
   <data name="btn1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -5241,8 +5220,8 @@
   <data name="cBMouse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="button7.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="&gt;&gt;btnH.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="X360Label.TabIndex" type="System.Int32, mscorlib">
     <value>318</value>
@@ -5282,7 +5261,7 @@ a key by typing it</value>
     <value>422, 31</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.401.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.100.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="button39.TabIndex" type="System.Int32, mscorlib">
     <value>249</value>
@@ -5290,17 +5269,17 @@ a key by typing it</value>
   <data name="&gt;&gt;lb360Tip.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="btnF.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="&gt;&gt;btnDefault.Name" xml:space="preserve">
     <value>btnDefault</value>
   </data>
-  <data name="tBBlueBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="nUDLightFlash.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="btn5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="&gt;&gt;btnJ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSLASH.ZOrder" xml:space="preserve">
+    <value>75</value>
   </data>
   <data name="&gt;&gt;btnD.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5311,8 +5290,8 @@ a key by typing it</value>
   <data name="btnNEXTTRACK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnNUMLOCK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>729, 69</value>
+  <data name="btnNUM4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;btnNUMDOT.ZOrder" xml:space="preserve">
     <value>119</value>
@@ -5323,9 +5302,6 @@ a key by typing it</value>
   <data name="&gt;&gt;lBMacroOn.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnMOUSERIGHT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="&gt;&gt;btnOPENBRACKET.Name" xml:space="preserve">
     <value>btnOPENBRACKET</value>
   </data>
@@ -5335,8 +5311,11 @@ a key by typing it</value>
   <data name="btnR.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="KBMlabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 17</value>
+  <data name="bnWHEELDOWN.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="&gt;&gt;button4.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnBACKSLASH.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 30</value>
@@ -5353,8 +5332,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnLB.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="tBGreenBar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="&gt;&gt;lbGreenV.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;KBMlabel.Name" xml:space="preserve">
     <value>KBMlabel</value>
@@ -5368,8 +5347,8 @@ a key by typing it</value>
   <data name="btn2.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
-  <data name="&gt;&gt;btnXButton.ZOrder" xml:space="preserve">
-    <value>15</value>
+  <data name="&gt;&gt;btnYButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnEND.TabIndex" type="System.Int32, mscorlib">
     <value>251</value>
@@ -5383,17 +5362,23 @@ a key by typing it</value>
   <data name="&gt;&gt;btn8.ZOrder" xml:space="preserve">
     <value>44</value>
   </data>
-  <data name="&gt;&gt;btnF10.ZOrder" xml:space="preserve">
-    <value>74</value>
+  <data name="btnRT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="&gt;&gt;btnPGDN.Name" xml:space="preserve">
-    <value>btnPGDN</value>
+  <data name="&gt;&gt;button5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnF5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbRedV.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;bnColor.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="btn5.Text" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnNUMSTAR.TabIndex" type="System.Int32, mscorlib">
+    <value>274</value>
   </data>
   <data name="btnZ.Text" xml:space="preserve">
     <value>Z</value>
@@ -5416,8 +5401,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF8.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="lBMacroOn.Text" xml:space="preserve">
-    <value>Macro On, Choose a key to disable, else close this window to save</value>
+  <data name="btnINS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>584, 69</value>
   </data>
   <data name="&gt;&gt;cBMouse.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -5440,14 +5425,14 @@ a key by typing it</value>
   <data name="&gt;&gt;button6.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="bnTest.Text" xml:space="preserve">
-    <value>Test</value>
+  <data name="&gt;&gt;btn6.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btnZ.ZOrder" xml:space="preserve">
     <value>102</value>
   </data>
-  <data name="rBShiftModifer.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="btnMIDDLEMOUSE.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;lbBlueV.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -5467,8 +5452,11 @@ a key by typing it</value>
   <data name="&gt;&gt;btnNUM3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btn5.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;btnMOUSEDOWN.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bnWHEELUP.ZOrder" xml:space="preserve">
+    <value>41</value>
   </data>
   <data name="&gt;&gt;btnRSRight.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
@@ -5479,8 +5467,8 @@ a key by typing it</value>
   <data name="btnRSUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 16</value>
   </data>
-  <data name="&gt;&gt;button34.ZOrder" xml:space="preserve">
-    <value>42</value>
+  <data name="btnAButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 41</value>
   </data>
   <data name="btnNUM3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5503,8 +5491,8 @@ a key by typing it</value>
   <data name="btnRB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnY.TabIndex" type="System.Int32, mscorlib">
-    <value>182</value>
+  <data name="btn9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
   <data name="btnINS.Text" xml:space="preserve">
     <value>ins</value>
@@ -5512,8 +5500,8 @@ a key by typing it</value>
   <data name="&gt;&gt;button7.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btn3.TabIndex" type="System.Int32, mscorlib">
-    <value>224</value>
+  <data name="&gt;&gt;btn4.ZOrder" xml:space="preserve">
+    <value>57</value>
   </data>
   <data name="&gt;&gt;btnLB.Name" xml:space="preserve">
     <value>btnLB</value>
@@ -5524,11 +5512,14 @@ a key by typing it</value>
   <data name="&gt;&gt;btnNUMENTER.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="btnB.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="button4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
   </data>
-  <data name="btnSCL.Text" xml:space="preserve">
-    <value>scl</value>
+  <data name="&gt;&gt;btnNUM0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnQ.Text" xml:space="preserve">
+    <value>Q</value>
   </data>
   <data name="btnD.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 144</value>
@@ -5536,8 +5527,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btn3.ZOrder" xml:space="preserve">
     <value>60</value>
   </data>
-  <data name="btnLSClick.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 27</value>
+  <data name="&gt;&gt;btnSPACE.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cBShiftButton.Items6" xml:space="preserve">
     <value>Share</value>
@@ -5554,14 +5545,14 @@ a key by typing it</value>
   <data name="&gt;&gt;btnLSClick.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnSLASH.ZOrder" xml:space="preserve">
-    <value>75</value>
+  <data name="tBBlueBar.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;btnF12.Name" xml:space="preserve">
     <value>btnF12</value>
   </data>
-  <data name="bnWHEELDOWN.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 26</value>
+  <data name="lbBlueV.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="btnZ.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -5575,20 +5566,17 @@ a key by typing it</value>
   <data name="btnDefault.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 29</value>
   </data>
-  <data name="btnWINDOWS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 219</value>
-  </data>
   <data name="btnP.TabIndex" type="System.Int32, mscorlib">
     <value>186</value>
   </data>
-  <data name="lbLight.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;btnNUM1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button33.ZOrder" xml:space="preserve">
-    <value>32</value>
+  <data name="rBShiftModifer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 21</value>
   </data>
-  <data name="cBScanCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>829, 10</value>
+  <data name="&gt;&gt;pBMouse.ZOrder" xml:space="preserve">
+    <value>132</value>
   </data>
   <data name="&gt;&gt;nUDLightFlash.ZOrder" xml:space="preserve">
     <value>14</value>
@@ -5605,8 +5593,8 @@ a key by typing it</value>
   <data name="btnCLOSEBRACKET.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
-  <data name="&gt;&gt;pnl360Controls.ZOrder" xml:space="preserve">
-    <value>133</value>
+  <data name="&gt;&gt;btnF7.Name" xml:space="preserve">
+    <value>btnF7</value>
   </data>
   <data name="&gt;&gt;btnNUM3.ZOrder" xml:space="preserve">
     <value>123</value>
@@ -5623,8 +5611,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnO.Name" xml:space="preserve">
     <value>btnO</value>
   </data>
-  <data name="btnNUM4.Text" xml:space="preserve">
-    <value>4</value>
+  <data name="btnF2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnW.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -5641,14 +5629,17 @@ a key by typing it</value>
   <data name="btnRCTRL.Location" type="System.Drawing.Point, System.Drawing">
     <value>498, 219</value>
   </data>
+  <data name="btnGuide.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;btnF4.Name" xml:space="preserve">
     <value>btnF4</value>
   </data>
   <data name="btnP.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 30</value>
   </data>
-  <data name="&gt;&gt;btn4THMOUSE.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="cBMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 46</value>
   </data>
   <data name="&gt;&gt;button34.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5668,8 +5659,11 @@ a key by typing it</value>
   <data name="btnLCTRL.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="btnNUM9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
+  <data name="lbBlue.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnU.Text" xml:space="preserve">
+    <value>U</value>
   </data>
   <data name="btnBack.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -5683,7 +5677,7 @@ a key by typing it</value>
   <data name="btnEQUALS.Location" type="System.Drawing.Point, System.Drawing">
     <value>460, 69</value>
   </data>
-  <data name="&gt;&gt;cBToggle.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnINS.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn1.Type" xml:space="preserve">
@@ -5698,11 +5692,11 @@ a key by typing it</value>
   <data name="btn6.Text" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="btn1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
+  <data name="cBScanCode.TabIndex" type="System.Int32, mscorlib">
+    <value>288</value>
   </data>
-  <data name="button6.Text" xml:space="preserve">
-    <value>↓Down</value>
+  <data name="btnV.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -5713,8 +5707,8 @@ a key by typing it</value>
   <data name="&gt;&gt;cBLightbar.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;btnTILDE.Name" xml:space="preserve">
-    <value>btnTILDE</value>
+  <data name="btnDpadUp.TabIndex" type="System.Int32, mscorlib">
+    <value>305</value>
   </data>
   <data name="btnESC.TabIndex" type="System.Int32, mscorlib">
     <value>235</value>
@@ -5731,14 +5725,17 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF5.Name" xml:space="preserve">
     <value>btnF5</value>
   </data>
-  <data name="btnMOUSEDOWN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>995, 212</value>
+  <data name="btnY.Text" xml:space="preserve">
+    <value>Y</value>
   </data>
   <data name="btnPREVTRACK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lbBlue.TabIndex" type="System.Int32, mscorlib">
     <value>166</value>
+  </data>
+  <data name="lbHeavy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnJ.TabIndex" type="System.Int32, mscorlib">
     <value>197</value>
@@ -5761,11 +5758,11 @@ a key by typing it</value>
   <data name="&gt;&gt;btnQ.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;btnMOUSEUP.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnLSHIFT.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;nUDLightFlash.Parent" xml:space="preserve">
-    <value>gBExtras</value>
+  <data name="&gt;&gt;btnMINUS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnNUM8.Text" xml:space="preserve">
     <value>8</value>
@@ -5773,8 +5770,8 @@ a key by typing it</value>
   <data name="lbGreenV.Text" xml:space="preserve">
     <value>255</value>
   </data>
-  <data name="btnSTOP.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;btnRALT.ZOrder" xml:space="preserve">
+    <value>106</value>
   </data>
   <data name="btnNEXTTRACK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5809,8 +5806,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnPREVTRACK.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnNUM5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnWINDOWS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 219</value>
   </data>
   <data name="tBRedBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>41, 159</value>
@@ -5824,13 +5821,13 @@ a key by typing it</value>
   <data name="btnXButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 42</value>
   </data>
-  <data name="&gt;&gt;btnCLOSEBRACKET.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="button4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 30</value>
   </data>
   <data name="cBShiftButton.Items7" xml:space="preserve">
     <value>Up</value>
   </data>
-  <data name="btnGuide.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnNUM2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;btnLSUp.ZOrder" xml:space="preserve">
@@ -5842,8 +5839,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF6.Name" xml:space="preserve">
     <value>btnF6</value>
   </data>
-  <data name="bnWHEELUP.TabIndex" type="System.Int32, mscorlib">
-    <value>174</value>
+  <data name="btnPGUP.TabIndex" type="System.Int32, mscorlib">
+    <value>238</value>
   </data>
   <data name="btn3.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 69</value>
@@ -5851,8 +5848,8 @@ a key by typing it</value>
   <data name="btnRETURN.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="KBMlabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btnLALT.Text" xml:space="preserve">
+    <value>LAlt</value>
   </data>
   <data name="btnNUMDOT.TabIndex" type="System.Int32, mscorlib">
     <value>275</value>
@@ -5863,11 +5860,11 @@ a key by typing it</value>
   <data name="btnO.TabIndex" type="System.Int32, mscorlib">
     <value>185</value>
   </data>
-  <data name="&gt;&gt;btnLCTRL.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnHOME.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
-  <data name="&gt;&gt;btnF11.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="nUDMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 22</value>
   </data>
   <data name="btnRSHIFT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -5896,14 +5893,14 @@ a key by typing it</value>
   <data name="&gt;&gt;btnBACKSLASH.Name" xml:space="preserve">
     <value>btnBACKSLASH</value>
   </data>
-  <data name="btnTILDE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
+  <data name="&gt;&gt;btnLSUp.Name" xml:space="preserve">
+    <value>btnLSUp</value>
   </data>
-  <data name="&gt;&gt;btn1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnLSHIFT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnL.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="btnNUM1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;btnRCTRL.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5914,11 +5911,11 @@ a key by typing it</value>
   <data name="gBExtras.Location" type="System.Drawing.Point, System.Drawing">
     <value>1089, 0</value>
   </data>
-  <data name="bnWHEELUP.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="btnMOUSERIGHT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="btnQ.Text" xml:space="preserve">
-    <value>Q</value>
+  <data name="btnRSLeft.TabIndex" type="System.Int32, mscorlib">
+    <value>311</value>
   </data>
   <data name="&gt;&gt;btnPGDN.Parent" xml:space="preserve">
     <value>$this</value>
@@ -5932,8 +5929,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnB.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnLSRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btnF.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="KBMlabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>576, 11</value>
@@ -5941,8 +5938,8 @@ a key by typing it</value>
   <data name="btnT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnMOUSELEFT.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 30</value>
+  <data name="&gt;&gt;btnNUM6.Name" xml:space="preserve">
+    <value>btnNUM6</value>
   </data>
   <data name="button39.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5965,17 +5962,17 @@ a key by typing it</value>
   <data name="bnTest.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="btnRSRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>17, 38</value>
+  <data name="&gt;&gt;bnWHEELUP.Name" xml:space="preserve">
+    <value>bnWHEELUP</value>
   </data>
-  <data name="btnRB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 38</value>
+  <data name="btn4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 69</value>
   </data>
-  <data name="rBShiftModifer.Text" xml:space="preserve">
-    <value>Shift Modifier</value>
+  <data name="btnLSClick.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="&gt;&gt;btnVolUp.ZOrder" xml:space="preserve">
-    <value>59</value>
+  <data name="&gt;&gt;btn5.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="nUDHeavy.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -5983,8 +5980,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnNUM8.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Keybaord</value>
+  <data name="bnWHEELUP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 28</value>
   </data>
   <data name="btnLSClick.TabIndex" type="System.Int32, mscorlib">
     <value>301</value>
@@ -5992,8 +5989,11 @@ a key by typing it</value>
   <data name="&gt;&gt;btnF2.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="btn5.Text" xml:space="preserve">
-    <value>5</value>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="&gt;&gt;btnP.ZOrder" xml:space="preserve">
+    <value>73</value>
   </data>
   <data name="btnMOUSERIGHT.TabIndex" type="System.Int32, mscorlib">
     <value>171</value>
@@ -6010,14 +6010,14 @@ a key by typing it</value>
   <data name="btnF3.TabIndex" type="System.Int32, mscorlib">
     <value>261</value>
   </data>
-  <data name="btnRT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="&gt;&gt;btnPGUP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnF11.Name" xml:space="preserve">
     <value>btnF11</value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="&gt;&gt;cBShiftButton.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="btnM.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Popup</value>
@@ -6028,14 +6028,14 @@ a key by typing it</value>
   <data name="&gt;&gt;btnLSLeft.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnNUM9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnG.Name" xml:space="preserve">
+    <value>btnG</value>
   </data>
-  <data name="button35.Location" type="System.Drawing.Point, System.Drawing">
-    <value>879, 106</value>
+  <data name="&gt;&gt;button33.ZOrder" xml:space="preserve">
+    <value>32</value>
   </data>
-  <data name="btnX.Text" xml:space="preserve">
-    <value>X</value>
+  <data name="btnX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 181</value>
   </data>
   <data name="&gt;&gt;button5.Name" xml:space="preserve">
     <value>button5</value>
@@ -6055,8 +6055,8 @@ a key by typing it</value>
   <data name="lbBlue.Size" type="System.Drawing.Size, System.Drawing">
     <value>17, 17</value>
   </data>
-  <data name="button36.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="&gt;&gt;btnNUM8.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;btnMOUSERIGHT.Name" xml:space="preserve">
     <value>btnMOUSERIGHT</value>
@@ -6067,11 +6067,11 @@ a key by typing it</value>
   <data name="&gt;&gt;bnTest.Name" xml:space="preserve">
     <value>bnTest</value>
   </data>
-  <data name="lbRedV.Text" xml:space="preserve">
-    <value>255</value>
+  <data name="&gt;&gt;btnLCTRL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnRALT.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
+  <data name="&gt;&gt;btnRSRight.Name" xml:space="preserve">
+    <value>btnRSRight</value>
   </data>
   <data name="btnF1.Text" xml:space="preserve">
     <value>F1</value>
@@ -6079,8 +6079,8 @@ a key by typing it</value>
   <data name="&gt;&gt;lbBlue.Name" xml:space="preserve">
     <value>lbBlue</value>
   </data>
-  <data name="btnF12.Text" xml:space="preserve">
-    <value>F12</value>
+  <data name="&gt;&gt;btnNUM6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnSEMICOLON.ZOrder" xml:space="preserve">
     <value>121</value>
@@ -6097,14 +6097,14 @@ a key by typing it</value>
   <data name="button36.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="btnMOUSEUP.Text" xml:space="preserve">
-    <value>↑</value>
+  <data name="&gt;&gt;pBMouse.Name" xml:space="preserve">
+    <value>pBMouse</value>
   </data>
-  <data name="&gt;&gt;KBMlabel.ZOrder" xml:space="preserve">
-    <value>50</value>
+  <data name="btnNUM3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 30</value>
   </data>
-  <data name="btnDpadRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>347, 194</value>
+  <data name="btnNUM5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;btnLB.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
@@ -6112,8 +6112,8 @@ a key by typing it</value>
   <data name="btnRSUp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="tBRedBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btnNUMSTAR.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="&gt;&gt;btnNUMENTER.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -6121,20 +6121,20 @@ a key by typing it</value>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>KBM360</value>
   </data>
-  <data name="lbHeavy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnF12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 30</value>
+  </data>
+  <data name="bnTest.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="btnF12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;btnZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bnWHEELUP.ZOrder" xml:space="preserve">
-    <value>41</value>
   </data>
   <data name="gBExtras.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;btnT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnNEXTTRACK.ZOrder" xml:space="preserve">
+    <value>53</value>
   </data>
   <data name="&gt;&gt;btnRSLeft.ZOrder" xml:space="preserve">
     <value>20</value>
@@ -6148,8 +6148,8 @@ a key by typing it</value>
   <data name="&gt;&gt;btnUNBOUND.Name" xml:space="preserve">
     <value>btnUNBOUND</value>
   </data>
-  <data name="rBRegular.TabIndex" type="System.Int32, mscorlib">
-    <value>325</value>
+  <data name="btnSTOP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="&gt;&gt;btnXButton.Parent" xml:space="preserve">
     <value>pnl360Controls</value>
@@ -6180,9 +6180,6 @@ a key by typing it</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>uk</value>
   </metadata>
   <metadata name="advColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

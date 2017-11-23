@@ -117,35 +117,78 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>206, 89</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 69</value>
+  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>如果使用安装包安装，配置文件将保存至 %appdata%/ds4tool</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 89</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 69</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>请注意：如果在UAC保护的文件夹内运行本程序，这个选项不会生效。</value>
   </data>
+  <data name="bnAppdataFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 63</value>
+  </data>
+  <data name="bnAppdataFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 23</value>
+  </data>
   <data name="bnAppdataFolder.Text" xml:space="preserve">
     <value>系统文件夹</value>
+  </data>
+  <data name="bnPrgmFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 63</value>
+  </data>
+  <data name="bnPrgmFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 23</value>
   </data>
   <data name="bnPrgmFolder.Text" xml:space="preserve">
     <value>程序所在文件夹</value>
   </data>
+  <data name="lbPickWhere.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 33</value>
+  </data>
+  <data name="lbPickWhere.Size" type="System.Drawing.Size, System.Drawing">
+    <value>386, 27</value>
+  </data>
   <data name="lbPickWhere.Text" xml:space="preserve">
     <value>选择将要保存配置文件的位置。</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lbMultiSaves.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 8</value>
+  </data>
   <data name="lbMultiSaves.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 17</value>
+    <value>147, 13</value>
   </data>
   <data name="lbMultiSaves.Text" xml:space="preserve">
     <value>检测到多个配置文件目录。</value>
   </data>
   <data name="cBDeleteOther.Location" type="System.Drawing.Point, System.Drawing">
-    <value>349, 6</value>
+    <value>262, 5</value>
   </data>
   <data name="cBDeleteOther.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 21</value>
+    <value>166, 17</value>
   </data>
   <data name="cBDeleteOther.Text" xml:space="preserve">
     <value>目前请不要删除其它设置。</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>389, 136</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
 </root>

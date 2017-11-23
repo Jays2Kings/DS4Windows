@@ -127,19 +127,25 @@
   <data name="&gt;&gt;linkBluetoothSettings.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="labelBluetooth.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="&gt;&gt;labelBluetooth2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bnFinish.Location" type="System.Drawing.Point, System.Drawing">
     <value>146, 544</value>
   </data>
+  <data name="labelUSB.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
   <data name="labelBluetooth2.Size" type="System.Drawing.Size, System.Drawing">
     <value>390, 80</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="linkBluetoothSettings.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
+  </data>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -147,35 +153,32 @@
   <data name="bnFinish.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>394, 579</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
   <data name="&gt;&gt;labelUSB.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="&gt;&gt;labelBluetooth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="labelBluetooth2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="bnFinish.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
   </data>
   <data name="pictureBox1.InitialImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Step 2: If on Windows 7 or below, Install 360 Driver</value>
-  </data>
-  <data name="&gt;&gt;bnFinish.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="bnStep1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>324, 29</value>
+  <data name="&gt;&gt;linkBluetoothSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="bnStep1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="&gt;&gt;labelBluetooth2.Name" xml:space="preserve">
     <value>labelBluetooth2</value>
@@ -186,13 +189,8 @@
   <data name="&gt;&gt;button2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="labelBluetooth.Text" xml:space="preserve">
-    <value>To set up bluetooth (optional):
-Hold the PS Button and Share for 3 seconds
-The lightbar will begin to double flash</value>
-  </data>
-  <data name="labelBluetooth.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>120, 120</value>
   </data>
   <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
     <value>pictureBox1</value>
@@ -200,23 +198,23 @@ The lightbar will begin to double flash</value>
   <data name="labelUSB.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="&gt;&gt;labelBluetooth2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;bnStep1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="labelUSB.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="labelUSB.Size" type="System.Drawing.Size, System.Drawing">
     <value>391, 49</value>
   </data>
-  <data name="labelBluetooth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 49</value>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
+  <data name="&gt;&gt;bnFinish.Name" xml:space="preserve">
+    <value>bnFinish</value>
   </data>
-  <data name="labelBluetooth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 223</value>
+  <data name="linkBluetoothSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -224,8 +222,8 @@ The lightbar will begin to double flash</value>
   <data name="&gt;&gt;bnFinish.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="bnFinish.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
+  <data name="&gt;&gt;linkBluetoothSettings.Name" xml:space="preserve">
+    <value>linkBluetoothSettings</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -239,8 +237,8 @@ The lightbar will begin to double flash</value>
   <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
   </data>
-  <data name="&gt;&gt;bnFinish.Name" xml:space="preserve">
-    <value>bnFinish</value>
+  <data name="&gt;&gt;bnStep1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="bnFinish.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -248,17 +246,14 @@ The lightbar will begin to double flash</value>
   <data name="button2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="labelBluetooth.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 40</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>120, 120</value>
+  <data name="&gt;&gt;labelUSB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>45, 298</value>
@@ -275,35 +270,32 @@ The lightbar will begin to double flash</value>
   <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;linkBluetoothSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
+  <data name="&gt;&gt;bnFinish.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="&gt;&gt;bnFinish.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="bnStep1.Text" xml:space="preserve">
+    <value>Step 1: Install the DS4 Driver</value>
+  </data>
   <data name="bnFinish.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 29</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 132</value>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
-  <data name="labelUSB.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="&gt;&gt;bnStep1.Name" xml:space="preserve">
+    <value>bnStep1</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
   </data>
   <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="linkBluetoothSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 466</value>
-  </data>
   <data name="labelBluetooth2.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 466</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;bnStep1.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -314,17 +306,14 @@ The lightbar will begin to double flash</value>
   <data name="linkBluetoothSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>WelcomeDialog</value>
-  </data>
-  <data name="&gt;&gt;labelBluetooth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="labelBluetooth.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>306, 165</value>
   </data>
-  <data name="&gt;&gt;labelUSB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
   </data>
   <data name="&gt;&gt;button2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -338,35 +327,32 @@ The lightbar will begin to double flash</value>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="bnStep1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 29</value>
   </data>
-  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="&gt;&gt;labelUSB.Name" xml:space="preserve">
+    <value>labelUSB</value>
   </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>36, 101</value>
   </data>
-  <data name="&gt;&gt;linkBluetoothSettings.Name" xml:space="preserve">
-    <value>linkBluetoothSettings</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
   <data name="labelBluetooth2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="linkBluetoothSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;labelBluetooth.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
   </data>
-  <data name="&gt;&gt;bnStep1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="labelBluetooth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 49</value>
+  </data>
+  <data name="labelBluetooth2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>392, 57</value>
@@ -374,14 +360,14 @@ The lightbar will begin to double flash</value>
   <data name="linkBluetoothSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 17</value>
   </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>WelcomeDialog</value>
+  </data>
+  <data name="labelBluetooth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 223</value>
+  </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="bnStep1.Text" xml:space="preserve">
-    <value>Step 1: Install the DS4 Driver</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 40</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Welcome to DS4Windows</value>
@@ -398,31 +384,33 @@ Once paired, you're ready. Have fun!</value>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>394, 28</value>
   </data>
-  <data name="&gt;&gt;bnStep1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="labelBluetooth.Text" xml:space="preserve">
+    <value>To set up bluetooth (optional):
+Hold the PS Button and Share for 3 seconds
+The lightbar will begin to double flash</value>
   </data>
   <data name="linkBluetoothSettings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 132</value>
   </data>
   <data name="&gt;&gt;button2.Name" xml:space="preserve">
     <value>button2</value>
   </data>
-  <data name="labelBluetooth2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
+  <data name="labelBluetooth.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;bnStep1.Name" xml:space="preserve">
-    <value>bnStep1</value>
+  <data name="linkBluetoothSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>211, 466</value>
   </data>
   <data name="labelUSB.Text" xml:space="preserve">
     <value>Step 3: Connecting the DualShock 4 controller
 To set up wired/usb:
 Simply plug a micro usb into your PC and DualShock 4</value>
   </data>
-  <data name="labelUSB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Step 2: If on Windows 7 or below, Install 360 Driver</value>
   </data>
   <data name="&gt;&gt;linkBluetoothSettings.Parent" xml:space="preserve">
     <value>$this</value>
@@ -436,26 +424,38 @@ Simply plug a micro usb into your PC and DualShock 4</value>
   <data name="labelUSB.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 162</value>
   </data>
+  <data name="labelUSB.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
   <data name="button2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;labelUSB.Name" xml:space="preserve">
-    <value>labelUSB</value>
+  <data name="&gt;&gt;labelBluetooth.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>394, 579</value>
   </data>
   <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
     <value>324, 29</value>
   </data>
-  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="labelBluetooth.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="labelBluetooth.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="labelBluetooth2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopCenter</value>
+  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelUSB.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="linkBluetoothSettings.Text" xml:space="preserve">
     <value>Bluetooth Settings</value>
@@ -465,8 +465,5 @@ Simply plug a micro usb into your PC and DualShock 4</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>uk</value>
   </metadata>
 </root>

@@ -144,8 +144,11 @@
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="lbMultiSaves.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="&gt;&gt;lbMultiSaves.Name" xml:space="preserve">
+    <value>lbMultiSaves</value>
+  </data>
+  <data name="lbMultiSaves.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="bnAppdataFolder.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 28</value>
@@ -165,9 +168,8 @@
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
   </data>
-  <data name="cBDeleteOther.Text" xml:space="preserve">
-    <value>Don't Delete the
-other settings yet</value>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
   </data>
   <data name="&gt;&gt;lbMultiSaves.Parent" xml:space="preserve">
     <value>$this</value>
@@ -207,6 +209,10 @@ other settings yet</value>
   </data>
   <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
+  </data>
+  <data name="cBDeleteOther.Text" xml:space="preserve">
+    <value>Don't Delete the
+other settings yet</value>
   </data>
   <data name="&gt;&gt;bnAppdataFolder.Parent" xml:space="preserve">
     <value>$this</value>
@@ -250,9 +256,6 @@ other settings yet</value>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="bnPrgmFolder.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
   <data name="cBDeleteOther.Location" type="System.Drawing.Point, System.Drawing">
     <value>375, 0</value>
   </data>
@@ -274,21 +277,15 @@ other settings yet</value>
   <data name="lbPickWhere.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bnAppdataFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 78</value>
-  </data>
-  <data name="lbMultiSaves.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>SaveWhere</value>
+  <data name="bnPrgmFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>DS4Windows</value>
-  <comment>@Invariant</comment></data>
+  </data>
   <data name="bnAppdataFolder.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
@@ -296,6 +293,9 @@ other settings yet</value>
     <value>lbPickWhere</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="lbMultiSaves.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
@@ -313,8 +313,8 @@ other settings yet</value>
   <data name="bnAppdataFolder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="lbMultiSaves.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="bnAppdataFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>296, 78</value>
   </data>
   <data name="&gt;&gt;lbPickWhere.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -328,8 +328,8 @@ other settings yet</value>
   <data name="&gt;&gt;bnAppdataFolder.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbMultiSaves.Name" xml:space="preserve">
-    <value>lbMultiSaves</value>
+  <data name="lbMultiSaves.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>519, 167</value>
@@ -337,8 +337,8 @@ other settings yet</value>
   <data name="lbMultiSaves.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SaveWhere</value>
   </data>
   <data name="lbPickWhere.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 41</value>
@@ -360,8 +360,5 @@ other settings yet</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>zh-Hans</value>
   </metadata>
 </root>

@@ -115,7 +115,6 @@ namespace DS4Windows
                 b.MouseLeave += button_MouseLeave;
             }
 
-            advColorDialog.OnUpdateColor += advColorDialog_OnUpdateColor;
             inputtimer.Tick += InputDS4;
             sixaxisTimer.Tick += ControllerReadout_Tick;
             sixaxisTimer.Interval = 1000 / 60;
@@ -1361,6 +1360,10 @@ namespace DS4Windows
 
         private void btnLightbar_Click(object sender, EventArgs e)
         {
+            AdvancedColorDialog.ColorUpdateHandler tempDel =
+                new AdvancedColorDialog.ColorUpdateHandler(advColorDialog_OnUpdateColor);
+
+            advColorDialog.OnUpdateColor += tempDel;
             advColorDialog.Color = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
             advColorDialog_OnUpdateColor(main, e);
             if (advColorDialog.ShowDialog() == DialogResult.OK)
@@ -1376,6 +1379,7 @@ namespace DS4Windows
                 tBBlueBar.Value = advColorDialog.Color.B;
             }
 
+            advColorDialog.OnUpdateColor -= tempDel;
             if (device < 4)
                 DS4LightBar.forcelight[device] = false;
         }

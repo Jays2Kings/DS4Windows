@@ -2292,6 +2292,10 @@ namespace DS4Windows
         private void useCustomColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             advColorDialog.Color = CustomColor[currentCustomLed].ToColor;
+            AdvancedColorDialog.ColorUpdateHandler tempDel =
+                new AdvancedColorDialog.ColorUpdateHandler(advColor_CustomColorUpdate);
+
+            advColorDialog.OnUpdateColor += tempDel;
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
                 lights[currentCustomLed].BackColor = new DS4Color(advColorDialog.Color).ToColorA;
@@ -2300,8 +2304,21 @@ namespace DS4Windows
                 Global.Save();
             }
 
+            advColorDialog.OnUpdateColor -= tempDel;
             DS4LightBar.forcedFlash[currentCustomLed] = 0;
             DS4LightBar.forcelight[currentCustomLed] = false;
+        }
+
+        private void advColor_CustomColorUpdate(object sender, EventArgs e)
+        {
+            if (sender is Color && currentCustomLed < 4)
+            {
+                Color color = (Color)sender;
+                DS4Color dcolor = new DS4Color { red = color.R, green = color.G, blue = color.B };
+                DS4LightBar.forcedColor[currentCustomLed] = dcolor;
+                DS4LightBar.forcedFlash[currentCustomLed] = 0;
+                DS4LightBar.forcelight[currentCustomLed] = true;
+            }
         }
 
         private void cBUseWhiteIcon_CheckedChanged(object sender, EventArgs e)

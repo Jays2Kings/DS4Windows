@@ -1297,11 +1297,11 @@ namespace DS4Windows
         public bool[] useCustomLeds = new bool[5] { false, false, false, false, false };
         public DS4Color[] m_CustomLeds = new DS4Color[5]
         {
-            new DS4Color(Color.Black),
-            new DS4Color(Color.Black),
-            new DS4Color(Color.Black),
-            new DS4Color(Color.Black),
-            new DS4Color(Color.Black)
+            new DS4Color(Color.Blue),
+            new DS4Color(Color.Blue),
+            new DS4Color(Color.Blue),
+            new DS4Color(Color.Blue),
+            new DS4Color(Color.Blue)
         };
 
         public int[] chargingType = new int[5] { 0, 0, 0, 0, 0 };
@@ -2850,7 +2850,7 @@ namespace DS4Windows
                             bool.TryParse(ss[0], out useCustomLeds[i]);
                             DS4Color.TryParse(ss[1], ref m_CustomLeds[i]);
                         }
-                        catch { useCustomLeds[i] = false; m_CustomLeds[i] = new DS4Color(Color.Black); missingSetting = true; }
+                        catch { useCustomLeds[i] = false; m_CustomLeds[i] = new DS4Color(Color.Blue); missingSetting = true; }
                     }
                 }
             }
@@ -3524,7 +3524,7 @@ namespace DS4Windows
             m_ChargingLeds[device] = new DS4Color(Color.Black);
             m_FlashLeds[device] = new DS4Color(Color.Black);
             useCustomLeds[device] = false;
-            m_CustomLeds[device] = new DS4Color(Color.Black);
+            m_CustomLeds[device] = new DS4Color(Color.Blue);
 
             chargingType[device] = 0;
             launchProgram[device] = string.Empty;

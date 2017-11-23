@@ -86,6 +86,7 @@ namespace DS4Windows
         //mapcustom
         public static bool[] pressedonce = new bool[261], macrodone = new bool[34];
         static bool[] macroControl = new bool[25];
+        static uint macroCount = 0;
 
         //actions
         public static int[] fadetimer = new int[4] { 0, 0, 0, 0 };
@@ -1436,31 +1437,34 @@ namespace DS4Windows
 
             outputfieldMapping.populateState(MappedState);
 
-            if (macroControl[00]) MappedState.Cross = true;
-            if (macroControl[01]) MappedState.Circle = true;
-            if (macroControl[02]) MappedState.Square = true;
-            if (macroControl[03]) MappedState.Triangle = true;
-            if (macroControl[04]) MappedState.Options = true;
-            if (macroControl[05]) MappedState.Share = true;
-            if (macroControl[06]) MappedState.DpadUp = true;
-            if (macroControl[07]) MappedState.DpadDown = true;
-            if (macroControl[08]) MappedState.DpadLeft = true;
-            if (macroControl[09]) MappedState.DpadRight = true;
-            if (macroControl[10]) MappedState.PS = true;
-            if (macroControl[11]) MappedState.L1 = true;
-            if (macroControl[12]) MappedState.R1 = true;
-            if (macroControl[13]) MappedState.L2 = 255;
-            if (macroControl[14]) MappedState.R2 = 255;
-            if (macroControl[15]) MappedState.L3 = true;
-            if (macroControl[16]) MappedState.R3 = true;
-            if (macroControl[17]) MappedState.LX = 255;
-            if (macroControl[18]) MappedState.LX = 0;
-            if (macroControl[19]) MappedState.LY = 255;
-            if (macroControl[20]) MappedState.LY = 0;
-            if (macroControl[21]) MappedState.RX = 255;
-            if (macroControl[22]) MappedState.RX = 0;
-            if (macroControl[23]) MappedState.RY = 255;
-            if (macroControl[24]) MappedState.RY = 0;
+            if (macroCount > 0)
+            {
+                if (macroControl[00]) MappedState.Cross = true;
+                if (macroControl[01]) MappedState.Circle = true;
+                if (macroControl[02]) MappedState.Square = true;
+                if (macroControl[03]) MappedState.Triangle = true;
+                if (macroControl[04]) MappedState.Options = true;
+                if (macroControl[05]) MappedState.Share = true;
+                if (macroControl[06]) MappedState.DpadUp = true;
+                if (macroControl[07]) MappedState.DpadDown = true;
+                if (macroControl[08]) MappedState.DpadLeft = true;
+                if (macroControl[09]) MappedState.DpadRight = true;
+                if (macroControl[10]) MappedState.PS = true;
+                if (macroControl[11]) MappedState.L1 = true;
+                if (macroControl[12]) MappedState.R1 = true;
+                if (macroControl[13]) MappedState.L2 = 255;
+                if (macroControl[14]) MappedState.R2 = 255;
+                if (macroControl[15]) MappedState.L3 = true;
+                if (macroControl[16]) MappedState.R3 = true;
+                if (macroControl[17]) MappedState.LX = 255;
+                if (macroControl[18]) MappedState.LX = 0;
+                if (macroControl[19]) MappedState.LY = 255;
+                if (macroControl[20]) MappedState.LY = 0;
+                if (macroControl[21]) MappedState.RX = 255;
+                if (macroControl[22]) MappedState.RX = 0;
+                if (macroControl[23]) MappedState.RY = 255;
+                if (macroControl[24]) MappedState.RY = 0;
+            }
 
             if (IfAxisIsNotModified(device, ShiftTrigger2(GetDS4STrigger(device, DS4Controls.LXNeg), device, cState, eState, tp, fieldMapping), DS4Controls.LXNeg))
                 tempControlDict[DS4Controls.LXNeg] = DS4Controls.LXNeg;
@@ -2277,31 +2281,31 @@ namespace DS4Windows
                             else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEDOWN);
                             else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 1);
                             else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONDOWN, 2);
-                            else if (i == 261) macroControl[0] = true;
-                            else if (i == 262) macroControl[1] = true;
-                            else if (i == 263) macroControl[2] = true;
-                            else if (i == 264) macroControl[3] = true;
-                            else if (i == 265) macroControl[4] = true;
-                            else if (i == 266) macroControl[5] = true;
-                            else if (i == 267) macroControl[6] = true;
-                            else if (i == 268) macroControl[7] = true;
-                            else if (i == 269) macroControl[8] = true;
-                            else if (i == 270) macroControl[9] = true;
-                            else if (i == 271) macroControl[10] = true;
-                            else if (i == 272) macroControl[11] = true;
-                            else if (i == 273) macroControl[12] = true;
-                            else if (i == 274) macroControl[13] = true;
-                            else if (i == 275) macroControl[14] = true;
-                            else if (i == 276) macroControl[15] = true;
-                            else if (i == 277) macroControl[16] = true;
-                            else if (i == 278) macroControl[17] = true;
-                            else if (i == 279) macroControl[18] = true;
-                            else if (i == 280) macroControl[19] = true;
-                            else if (i == 281) macroControl[20] = true;
-                            else if (i == 282) macroControl[21] = true;
-                            else if (i == 283) macroControl[22] = true;
-                            else if (i == 284) macroControl[23] = true;
-                            else if (i == 285) macroControl[24] = true;
+                            else if (i == 261) { macroControl[0] = true; macroCount++; }
+                            else if (i == 262) { macroControl[1] = true; macroCount++; }
+                            else if (i == 263) { macroControl[2] = true; macroCount++; }
+                            else if (i == 264) { macroControl[3] = true; macroCount++; }
+                            else if (i == 265) { macroControl[4] = true; macroCount++; }
+                            else if (i == 266) { macroControl[5] = true; macroCount++; }
+                            else if (i == 267) { macroControl[6] = true; macroCount++; }
+                            else if (i == 268) { macroControl[7] = true; macroCount++; }
+                            else if (i == 269) { macroControl[8] = true; macroCount++; }
+                            else if (i == 270) { macroControl[9] = true; macroCount++; }
+                            else if (i == 271) { macroControl[10] = true; macroCount++; }
+                            else if (i == 272) { macroControl[11] = true; macroCount++; }
+                            else if (i == 273) { macroControl[12] = true; macroCount++; }
+                            else if (i == 274) { macroControl[13] = true; macroCount++; }
+                            else if (i == 275) { macroControl[14] = true; macroCount++; }
+                            else if (i == 276) { macroControl[15] = true; macroCount++; }
+                            else if (i == 277) { macroControl[16] = true; macroCount++; }
+                            else if (i == 278) { macroControl[17] = true; macroCount++; }
+                            else if (i == 279) { macroControl[18] = true; macroCount++; }
+                            else if (i == 280) { macroControl[19] = true; macroCount++; }
+                            else if (i == 281) { macroControl[20] = true; macroCount++; }
+                            else if (i == 282) { macroControl[21] = true; macroCount++; }
+                            else if (i == 283) { macroControl[22] = true; macroCount++; }
+                            else if (i == 284) { macroControl[23] = true;macroCount++; }
+                            else if (i == 285) { macroControl[24] = true; macroCount++; }
                             else if (keyType.HasFlag(DS4KeyType.ScanCode))
                                 InputMethods.performSCKeyPress((ushort)i);
                             else
@@ -2315,31 +2319,31 @@ namespace DS4Windows
                             else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
                             else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
                             else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
-                            else if (i == 261) macroControl[0] = false;
-                            else if (i == 262) macroControl[1] = false;
-                            else if (i == 263) macroControl[2] = false;
-                            else if (i == 264) macroControl[3] = false;
-                            else if (i == 265) macroControl[4] = false;
-                            else if (i == 266) macroControl[5] = false;
-                            else if (i == 267) macroControl[6] = false;
-                            else if (i == 268) macroControl[7] = false;
-                            else if (i == 269) macroControl[8] = false;
-                            else if (i == 270) macroControl[9] = false;
-                            else if (i == 271) macroControl[10] = false;
-                            else if (i == 272) macroControl[11] = false;
-                            else if (i == 273) macroControl[12] = false;
-                            else if (i == 274) macroControl[13] = false;
-                            else if (i == 275) macroControl[14] = false;
-                            else if (i == 276) macroControl[15] = false;
-                            else if (i == 277) macroControl[16] = false;
-                            else if (i == 278) macroControl[17] = false;
-                            else if (i == 279) macroControl[18] = false;
-                            else if (i == 280) macroControl[19] = false;
-                            else if (i == 281) macroControl[20] = false;
-                            else if (i == 282) macroControl[21] = false;
-                            else if (i == 283) macroControl[22] = false;
-                            else if (i == 284) macroControl[23] = false;
-                            else if (i == 285) macroControl[24] = false;
+                            else if (i == 261) { macroControl[0] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 262) { macroControl[1] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 263) { macroControl[2] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 264) { macroControl[3] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 265) { macroControl[4] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 266) { macroControl[5] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 267) { macroControl[6] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 268) { macroControl[7] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 269) { macroControl[8] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 270) { macroControl[9] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 271) { macroControl[10] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 272) { macroControl[11] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 273) { macroControl[12] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 274) { macroControl[13] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 275) { macroControl[14] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 276) { macroControl[15] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 277) { macroControl[16] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 278) { macroControl[17] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 279) { macroControl[18] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 280) { macroControl[19] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 281) { macroControl[20] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 282) { macroControl[21] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 283) { macroControl[22] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 284) { macroControl[23] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 285) { macroControl[24] = false; if (macroCount > 0) macroCount--; }
                             else if (keyType.HasFlag(DS4KeyType.ScanCode))
                                 InputMethods.performSCKeyRelease((ushort)i);
                             else
@@ -2356,31 +2360,31 @@ namespace DS4Windows
                             else if (i == 258) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_MIDDLEUP);
                             else if (i == 259) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 1);
                             else if (i == 260) InputMethods.MouseEvent(InputMethods.MOUSEEVENTF_XBUTTONUP, 2);
-                            else if (i == 261) macroControl[0] = false;
-                            else if (i == 262) macroControl[1] = false;
-                            else if (i == 263) macroControl[2] = false;
-                            else if (i == 264) macroControl[3] = false;
-                            else if (i == 265) macroControl[4] = false;
-                            else if (i == 266) macroControl[5] = false;
-                            else if (i == 267) macroControl[6] = false;
-                            else if (i == 268) macroControl[7] = false;
-                            else if (i == 269) macroControl[8] = false;
-                            else if (i == 270) macroControl[9] = false;
-                            else if (i == 271) macroControl[10] = false;
-                            else if (i == 272) macroControl[11] = false;
-                            else if (i == 273) macroControl[12] = false;
-                            else if (i == 274) macroControl[13] = false;
-                            else if (i == 275) macroControl[14] = false;
-                            else if (i == 276) macroControl[15] = false;
-                            else if (i == 277) macroControl[16] = false;
-                            else if (i == 278) macroControl[17] = false;
-                            else if (i == 279) macroControl[18] = false;
-                            else if (i == 280) macroControl[19] = false;
-                            else if (i == 281) macroControl[20] = false;
-                            else if (i == 282) macroControl[21] = false;
-                            else if (i == 283) macroControl[22] = false;
-                            else if (i == 284) macroControl[23] = false;
-                            else if (i == 285) macroControl[24] = false;
+                            else if (i == 261) { macroControl[0] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 262) { macroControl[1] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 263) { macroControl[2] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 264) { macroControl[3] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 265) { macroControl[4] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 266) { macroControl[5] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 267) { macroControl[6] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 268) { macroControl[7] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 269) { macroControl[8] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 270) { macroControl[9] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 271) { macroControl[10] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 272) { macroControl[11] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 273) { macroControl[12] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 274) { macroControl[13] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 275) { macroControl[14] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 276) { macroControl[15] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 277) { macroControl[16] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 278) { macroControl[17] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 279) { macroControl[18] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 280) { macroControl[19] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 281) { macroControl[20] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 282) { macroControl[21] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 283) { macroControl[22] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 284) { macroControl[23] = false; if (macroCount > 0) macroCount--; }
+                            else if (i == 285) { macroControl[24] = false; if (macroCount > 0) macroCount--; }
                             else if (keyType.HasFlag(DS4KeyType.ScanCode))
                                 InputMethods.performSCKeyRelease((ushort)i);
                             else

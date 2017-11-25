@@ -161,7 +161,7 @@ namespace DS4Windows
         public static int mouseaccel = 0;
         public static int prevmouseaccel = 0;
         private static double horizontalRemainder = 0.0, verticalRemainder = 0.0;
-        private const int MOUSESPEEDFACTOR = 30;
+        private const int MOUSESPEEDFACTOR = 48;
         private const double MOUSESTICKOFFSET = 0.032;
 
         public static void Commit(int device)
@@ -2469,7 +2469,7 @@ namespace DS4Windows
                 deadzoneR = 0;
 
             double value = 0.0;
-            int speed = ButtonMouseSensitivity[device] + 15;
+            int speed = ButtonMouseSensitivity[device];
             double root = 1.002;
             double divide = 10000d;
             //DateTime now = mousenow[mnum];

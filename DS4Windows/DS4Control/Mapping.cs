@@ -84,7 +84,7 @@ namespace DS4Windows
         private static int wheel = 0, keyshelddown = 0;
 
         //mapcustom
-        public static bool[] pressedonce = new bool[261], macrodone = new bool[34];
+        public static bool[] pressedonce = new bool[261], macrodone = new bool[38];
         static bool[] macroControl = new bool[25];
         static uint macroCount = 0;
 
@@ -107,7 +107,7 @@ namespace DS4Windows
             DS4Controls.TouchRight, DS4Controls.GyroZNeg, DS4Controls.GyroZPos, DS4Controls.GyroXPos, DS4Controls.GyroXNeg,
         };
 
-        private static int[] ds4ControlMapping = new int[34] { 0, // DS4Control.None
+        private static int[] ds4ControlMapping = new int[38] { 0, // DS4Control.None
             16, // DS4Controls.LXNeg
             20, // DS4Controls.LXPos
             17, // DS4Controls.LYNeg
@@ -140,7 +140,11 @@ namespace DS4Windows
             31, // DS4Controls.GyroXPos
             30, // DS4Controls.GyroXNeg
             33, // DS4Controls.GyroZPos
-            32  // DS4Controls.GyroZNeg
+            32, // DS4Controls.GyroZNeg
+            34, // DS4Controls.SwipeLeft
+            35, // DS4Controls.SwipeRight
+            36, // DS4Controls.SwipeUp
+            37  // DS4Controls.SwipeDown
         };
 
         // Define here to save some time processing.
@@ -401,7 +405,7 @@ namespace DS4Windows
         public static int DS4ControltoInt(DS4Controls ctrl)
         {
             int result = 0;
-            if (ctrl >= DS4Controls.None && ctrl <= DS4Controls.GyroZNeg)
+            if (ctrl >= DS4Controls.None && ctrl <= DS4Controls.SwipeDown)
             {
                 result = ds4ControlMapping[(int)ctrl];
             }

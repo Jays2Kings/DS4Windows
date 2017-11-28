@@ -23,10 +23,14 @@ namespace DS4Windows
         private Color reg, full;
         int bgc = 240; // Color of the form background, If greyscale color
         private bool extraChanged;
+        private Bitmap pnl360BgImage;
 
         public KBM360(int deviceNum, Options ooo, Button buton)
         {
             InitializeComponent();
+            pnl360BgImage = (Bitmap)Properties.Resources._360_map.Clone();
+            pnl360Controls.BackgroundImage = null;
+            pnl360Controls.BackgroundImageLayout = ImageLayout.None;
             device = deviceNum;
             ops = ooo;
             button = buton;
@@ -731,6 +735,11 @@ namespace DS4Windows
         private void ExtraChanged(object sender, EventArgs e)
         {
             extraChanged = true;
+        }
+
+        private void pnl360Controls_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(pnl360BgImage, new Rectangle(0, 13, Convert.ToInt32(pnl360Controls.Width), Convert.ToInt32(pnl360Controls.Height - 26)), new Rectangle(0, 0, Convert.ToInt32(pnl360BgImage.Width), Convert.ToInt32(pnl360BgImage.Height)), GraphicsUnit.Pixel);
         }
 
         private void nUD_ValueChanged(object sender, EventArgs e)

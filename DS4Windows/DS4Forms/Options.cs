@@ -31,12 +31,16 @@ namespace DS4Windows
         private Dictionary<Control, Bitmap> hoverImageDict = new Dictionary<Control, Bitmap>();
         private Dictionary<Control, Label> hoverLabelDict = new Dictionary<Control, Label>();
         private int[] touchpadInvertToValue = new int[4] { 0, 2, 1, 3 };
+        private Bitmap pnlControllerBgImg;
 
         int tempInt = 0;
 
         public Options(DS4Form rt)
         {
             InitializeComponent();
+            pnlControllerBgImg = (Bitmap)Properties.Resources.DS4_Config.Clone();
+            pnlController.BackgroundImage = null;
+            pnlController.BackgroundImageLayout = ImageLayout.None;
             mSize = MaximumSize;
             settingsSize = fLPSettings.Size;
             MaximumSize = new Size(0, 0);
@@ -2943,6 +2947,11 @@ namespace DS4Windows
         {
             Control button = (Control)sender;
             cMTouchDisableInvert.Show(button, new Point(0, button.Height));
+        }
+
+        private void pnlController_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(pnlControllerBgImg, 0, 0, Convert.ToInt32(pnlController.Width), Convert.ToInt32(pnlController.Height - 1));
         }
 
         private void Options_Resize(object sender, EventArgs e)

@@ -2,8 +2,8 @@
 
 * Integrate HidGuardian
 * Experiment with ViGEm driver
-* Replace BackgroundImage for panel controls to use PictureBox (high contrast)
-* Further tweak analog stick mouse mode
+* ~~Replace BackgroundImage for panel controls to use PictureBox (high contrast)~~
+* ~~Further tweak analog stick mouse mode~~
 * Attempt to work out BT disconnect issues by looking at older versions
 * Attempt to remove reliance on the main thread when disconnecting a device.
 Currently used to delay hotplug routine

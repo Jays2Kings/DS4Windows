@@ -838,28 +838,34 @@ namespace DS4Windows
 
                     if (absX <= 0.4)
                     {
-                        outputX = 0.38 * absX;
+                        //outputX = 0.38 * absX;
+                        outputX = 0.385 * absX;
                     }
                     else if (absX <= 0.75)
                     {
-                        outputX = absX - 0.248;
+                        //outputX = absX - 0.248;
+                        outputX = absX - 0.246;
                     }
                     else if (absX > 0.75)
                     {
-                        outputX = (absX * 1.992) - 0.992;
+                        //outputX = (absX * 1.992) - 0.992;
+                        outputX = (absX * 1.984) - 0.984;
                     }
 
                     if (absY <= 0.4)
                     {
-                        outputY = 0.38 * absY;
+                        //outputY = 0.38 * absY;
+                        outputY = 0.385 * absY;
                     }
                     else if (absY <= 0.75)
                     {
-                        outputY = absY - 0.248;
+                        //outputY = absY - 0.248;
+                        outputY = absY - 0.246;
                     }
                     else if (absY > 0.75)
                     {
-                        outputY = (absY * 1.992) - 0.992;
+                        //outputY = (absY * 1.992) - 0.992;
+                        outputY = (absY * 1.984) - 0.984;
                     }
 
                     dState.RX = (byte)(outputX * signX * 127.5 + 127.5);

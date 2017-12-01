@@ -1951,7 +1951,7 @@
             // 
             // pnlController
             // 
-            this.pnlController.BackColor = System.Drawing.Color.Transparent;
+            this.pnlController.BackColor = System.Drawing.Color.DimGray;
             this.pnlController.BackgroundImage = global::DS4Windows.Properties.Resources.DS4_Config;
             resources.ApplyResources(this.pnlController, "pnlController");
             this.pnlController.Controls.Add(this.pBHoveredButton);
@@ -2577,6 +2577,7 @@
             this.btnLightbar.Name = "btnLightbar";
             this.btnLightbar.UseVisualStyleBackColor = false;
             this.btnLightbar.Click += new System.EventHandler(this.btnLightbar_Click);
+            this.btnLightbar.Paint += new System.Windows.Forms.PaintEventHandler(this.btnLightbar_Paint);
             this.btnLightbar.MouseHover += new System.EventHandler(this.btnLightbar_MouseHover);
             // 
             // bnPS

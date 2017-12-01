@@ -32,6 +32,8 @@ namespace DS4Windows
         private Dictionary<Control, Label> hoverLabelDict = new Dictionary<Control, Label>();
         private int[] touchpadInvertToValue = new int[4] { 0, 2, 1, 3 };
         private Bitmap pnlControllerBgImg;
+        private Bitmap btnLightBgImg;
+        private Bitmap btnLightBg;
 
         int tempInt = 0;
 
@@ -39,6 +41,7 @@ namespace DS4Windows
         {
             InitializeComponent();
             pnlControllerBgImg = (Bitmap)Properties.Resources.DS4_Config.Clone();
+            btnLightBg = (Bitmap)Properties.Resources.DS4_lightbar.Clone();
             pnlController.BackgroundImage = null;
             pnlController.BackgroundImageLayout = ImageLayout.None;
             mSize = MaximumSize;
@@ -130,6 +133,8 @@ namespace DS4Windows
             bnSwipeDown.Text = Properties.Resources.SwipeDown;
             bnSwipeLeft.Text = Properties.Resources.SwipeLeft;
             bnSwipeRight.Text = Properties.Resources.SwipeRight;
+            btnLightbar.BackgroundImage = null;
+            btnLightbar.BackgroundImageLayout = ImageLayout.None;
 
             populateHoverIndexDict();
             populateHoverImageDict();
@@ -304,7 +309,9 @@ namespace DS4Windows
                 reg = Color.FromArgb(color.red, color.green, color.blue);
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 main = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-                btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
+                
+                btnLightBgImg = RecolorImage(btnLightBg, main);
+                btnLightbar.Refresh();
 
                 cBLightbyBattery.Checked = LedAsBatteryIndicator[device];
                 nUDflashLED.Value = FlashAt[device];
@@ -1373,7 +1380,8 @@ namespace DS4Windows
             if (advColorDialog.ShowDialog() == DialogResult.OK)
             {
                 main = advColorDialog.Color;
-                btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
+                btnLightBgImg = RecolorImage(btnLightBg, main);
+                btnLightbar.Refresh();
                 if (FlashColor[device].Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
                     btnFlashColor.BackColor = main;
 
@@ -1449,7 +1457,8 @@ namespace DS4Windows
                 reg = Color.FromArgb(tBRedBar.Value, tBGreenBar.Value, tBBlueBar.Value);
                 full = HuetoRGB(reg.GetHue(), reg.GetBrightness(), reg);
                 main = Color.FromArgb((alphacolor > 205 ? 255 : (alphacolor + 50)), full);
-                btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
+                btnLightBgImg = RecolorImage(btnLightBg, main);
+                btnLightbar.Refresh();
                 if (FlashColor[device].Equals(new DS4Color { red = 0, green = 0, blue = 0 }))
                     btnFlashColor.BackColor = main;
                 btnFlashColor.BackgroundImage = nUDRainbow.Enabled ? rainbowImg : null;
@@ -1873,13 +1882,15 @@ namespace DS4Windows
             nUDRainbow.Enabled = on;
             if (on)
             {
-                btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
+                btnLightBgImg = RecolorImage(btnLightBg, main);
+                btnLightbar.Refresh();
                 cBLightbyBattery.Text = Properties.Resources.DimByBattery.Replace("*nl*", "\n");
             }
             else
             {
                 pnlLowBattery.Enabled = cBLightbyBattery.Checked;
-                btnLightbar.BackgroundImage = RecolorImage((Bitmap)btnLightbar.BackgroundImage, main);
+                btnLightBgImg = RecolorImage(btnLightBg, main);
+                btnLightbar.Refresh();
                 cBLightbyBattery.Text = Properties.Resources.ColorByBattery.Replace("*nl*", "\n");
             }
 
@@ -1913,14 +1924,15 @@ namespace DS4Windows
 
         private Bitmap RecolorImage(Bitmap image, Color color)
         {
-            Bitmap c = Properties.Resources.DS4_lightbar;
+            Bitmap c = image;
             Bitmap d = new Bitmap(c.Width, c.Height);
+            bool rainEnabled = nUDRainbow.Enabled;
 
             for (int i = 0, bitwidth = c.Width; i < bitwidth; i++)
             {
                 for (int x = 0, bitheight = c.Height; x < bitheight; x++)
                 {
-                    if (!nUDRainbow.Enabled)
+                    if (!rainEnabled)
                     {
                         Color col = c.GetPixel(i, x);
                         col = Color.FromArgb((int)(col.A * (color.A / 255f)), color.R, color.G, color.B);
@@ -1928,7 +1940,7 @@ namespace DS4Windows
                     }
                     else
                     {
-                        Color col = HuetoRGB((i / (float)c.Width) * 360, .5f, Color.Red);
+                        Color col = HuetoRGB((i / (float)bitwidth) * 360, .5f, Color.Red);
                         d.SetPixel(i, x, Color.FromArgb(c.GetPixel(i, x).A, col));
                     }
                 }
@@ -2952,6 +2964,11 @@ namespace DS4Windows
         private void pnlController_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawImage(pnlControllerBgImg, 0, 0, Convert.ToInt32(pnlController.Width), Convert.ToInt32(pnlController.Height - 1));
+        }
+
+        private void btnLightbar_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(btnLightBgImg, new Rectangle(0, -1, Convert.ToInt32(btnLightbar.Width), Convert.ToInt32(btnLightbar.Height - 2)));
         }
 
         private void Options_Resize(object sender, EventArgs e)

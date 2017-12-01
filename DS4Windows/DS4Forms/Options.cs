@@ -887,7 +887,7 @@ namespace DS4Windows
                 EnableReadings(false);
                 lbInputDelay.Text = Properties.Resources.InputDelay.Replace("*number*", Properties.Resources.NA);
                 lbInputDelay.BackColor = Color.Transparent;
-                lbInputDelay.ForeColor = Color.Black;
+                lbInputDelay.ForeColor = SystemColors.ControlText;
             }
             else
             {
@@ -1050,7 +1050,7 @@ namespace DS4Windows
                 else
                 {
                     lbInputDelay.BackColor = Color.Transparent;
-                    lbInputDelay.ForeColor = Color.Black;
+                    lbInputDelay.ForeColor = SystemColors.ControlText;
                 }
             }
         }

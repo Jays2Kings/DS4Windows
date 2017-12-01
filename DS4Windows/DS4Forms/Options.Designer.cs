@@ -568,7 +568,7 @@
             resources.ApplyResources(this.cBDoubleTap, "cBDoubleTap");
             this.cBDoubleTap.Checked = true;
             this.cBDoubleTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBDoubleTap.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBDoubleTap.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBDoubleTap.Name = "cBDoubleTap";
             this.cBDoubleTap.UseVisualStyleBackColor = true;
             this.cBDoubleTap.CheckedChanged += new System.EventHandler(this.cBDoubleTap_CheckedChanged);
@@ -578,7 +578,7 @@
             resources.ApplyResources(this.cBTap, "cBTap");
             this.cBTap.Checked = true;
             this.cBTap.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBTap.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBTap.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBTap.Name = "cBTap";
             this.cBTap.UseVisualStyleBackColor = true;
             this.cBTap.CheckedChanged += new System.EventHandler(this.cBTap_CheckedChanged);
@@ -604,7 +604,7 @@
             resources.ApplyResources(this.cBScroll, "cBScroll");
             this.cBScroll.Checked = true;
             this.cBScroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBScroll.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBScroll.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBScroll.Name = "cBScroll";
             this.cBScroll.UseVisualStyleBackColor = true;
             this.cBScroll.CheckedChanged += new System.EventHandler(this.cBScroll_CheckedChanged);
@@ -614,7 +614,7 @@
             resources.ApplyResources(this.cBSlide, "cBSlide");
             this.cBSlide.Checked = true;
             this.cBSlide.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSlide.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBSlide.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBSlide.Name = "cBSlide";
             this.cBSlide.UseVisualStyleBackColor = true;
             this.cBSlide.CheckedChanged += new System.EventHandler(this.cBSlide_CheckedChanged);
@@ -664,7 +664,7 @@
             // cBlowerRCOn
             // 
             resources.ApplyResources(this.cBlowerRCOn, "cBlowerRCOn");
-            this.cBlowerRCOn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBlowerRCOn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBlowerRCOn.Name = "cBlowerRCOn";
             this.cBlowerRCOn.UseVisualStyleBackColor = true;
             this.cBlowerRCOn.CheckedChanged += new System.EventHandler(this.lowerRCOffCheckBox_CheckedChanged);
@@ -672,7 +672,7 @@
             // cBTouchpadJitterCompensation
             // 
             resources.ApplyResources(this.cBTouchpadJitterCompensation, "cBTouchpadJitterCompensation");
-            this.cBTouchpadJitterCompensation.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cBTouchpadJitterCompensation.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cBTouchpadJitterCompensation.Name = "cBTouchpadJitterCompensation";
             this.cBTouchpadJitterCompensation.UseVisualStyleBackColor = true;
             this.cBTouchpadJitterCompensation.CheckedChanged += new System.EventHandler(this.touchpadJitterCompensation_CheckedChanged);
@@ -920,12 +920,12 @@
             // 
             // gBTouchpad
             // 
-            this.gBTouchpad.BackColor = System.Drawing.Color.Transparent;
+            this.gBTouchpad.BackColor = System.Drawing.SystemColors.Control;
             this.gBTouchpad.Controls.Add(this.pnlTPMouse);
             this.gBTouchpad.Controls.Add(this.rBTPControls);
             this.gBTouchpad.Controls.Add(this.rBTPMouse);
             this.gBTouchpad.Controls.Add(this.fLPTouchSwipe);
-            this.gBTouchpad.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gBTouchpad.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.gBTouchpad, "gBTouchpad");
             this.gBTouchpad.Name = "gBTouchpad";
             this.gBTouchpad.TabStop = false;
@@ -960,11 +960,13 @@
             // label25
             // 
             resources.ApplyResources(this.label25, "label25");
+            this.label25.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label25.Name = "label25";
             // 
             // label15
             // 
             resources.ApplyResources(this.label15, "label15");
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label15.Name = "label15";
             // 
             // touchpadInvertComboBox
@@ -983,7 +985,7 @@
             // cbStartTouchpadOff
             // 
             resources.ApplyResources(this.cbStartTouchpadOff, "cbStartTouchpadOff");
-            this.cbStartTouchpadOff.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cbStartTouchpadOff.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cbStartTouchpadOff.Name = "cbStartTouchpadOff";
             this.cbStartTouchpadOff.UseVisualStyleBackColor = true;
             this.cbStartTouchpadOff.CheckedChanged += new System.EventHandler(this.cbStartTouchpadOff_CheckedChanged);
@@ -991,7 +993,7 @@
             // rBTPControls
             // 
             resources.ApplyResources(this.rBTPControls, "rBTPControls");
-            this.rBTPControls.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rBTPControls.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rBTPControls.Name = "rBTPControls";
             this.rBTPControls.TabStop = true;
             this.rBTPControls.UseVisualStyleBackColor = true;
@@ -1000,7 +1002,7 @@
             // rBTPMouse
             // 
             resources.ApplyResources(this.rBTPMouse, "rBTPMouse");
-            this.rBTPMouse.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rBTPMouse.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rBTPMouse.Name = "rBTPMouse";
             this.rBTPMouse.TabStop = true;
             this.rBTPMouse.UseVisualStyleBackColor = true;
@@ -1267,7 +1269,7 @@
             // 
             // gBOther
             // 
-            this.gBOther.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBOther.BackColor = System.Drawing.SystemColors.Control;
             this.gBOther.Controls.Add(this.btPollRateLabel);
             this.gBOther.Controls.Add(this.btPollRateComboBox);
             this.gBOther.Controls.Add(this.enableTouchToggleCheckbox);
@@ -1407,7 +1409,7 @@
             // 
             // gBLightbar
             // 
-            this.gBLightbar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBLightbar.BackColor = System.Drawing.SystemColors.Control;
             this.gBLightbar.Controls.Add(this.btnRainbow);
             this.gBLightbar.Controls.Add(this.lbRainbowB);
             this.gBLightbar.Controls.Add(this.nUDRainbowB);
@@ -1519,7 +1521,7 @@
             // 
             // gBRumble
             // 
-            this.gBRumble.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBRumble.BackColor = System.Drawing.SystemColors.Control;
             this.gBRumble.Controls.Add(this.lbPercentRumble);
             this.gBRumble.Controls.Add(this.btnRumbleLightTest);
             this.gBRumble.Controls.Add(this.btnRumbleHeavyTest);
@@ -1596,6 +1598,7 @@
             // 
             // lbL2TrackS
             // 
+            this.lbL2TrackS.BackColor = System.Drawing.Color.Transparent;
             this.lbL2TrackS.Controls.Add(this.pnlSATrack);
             this.lbL2TrackS.Controls.Add(this.lbL2Track);
             this.lbL2TrackS.Controls.Add(this.lbRSTip);
@@ -1610,7 +1613,6 @@
             this.lbL2TrackS.Controls.Add(this.pnlRSTrack);
             resources.ApplyResources(this.lbL2TrackS, "lbL2TrackS");
             this.lbL2TrackS.Name = "lbL2TrackS";
-            this.lbL2TrackS.UseVisualStyleBackColor = true;
             // 
             // pnlSATrack
             // 
@@ -1703,7 +1705,7 @@
             // tBsixaxisAccelX
             // 
             resources.ApplyResources(this.tBsixaxisAccelX, "tBsixaxisAccelX");
-            this.tBsixaxisAccelX.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisAccelX.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisAccelX.Maximum = 100;
             this.tBsixaxisAccelX.Minimum = -100;
             this.tBsixaxisAccelX.Name = "tBsixaxisAccelX";
@@ -1717,7 +1719,7 @@
             // tBsixaxisGyroX
             // 
             resources.ApplyResources(this.tBsixaxisGyroX, "tBsixaxisGyroX");
-            this.tBsixaxisGyroX.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisGyroX.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisGyroX.Maximum = 127;
             this.tBsixaxisGyroX.Minimum = -127;
             this.tBsixaxisGyroX.Name = "tBsixaxisGyroX";
@@ -1731,7 +1733,7 @@
             // tBsixaxisGyroY
             // 
             resources.ApplyResources(this.tBsixaxisGyroY, "tBsixaxisGyroY");
-            this.tBsixaxisGyroY.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisGyroY.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisGyroY.Maximum = 127;
             this.tBsixaxisGyroY.Minimum = -127;
             this.tBsixaxisGyroY.Name = "tBsixaxisGyroY";
@@ -1740,7 +1742,7 @@
             // tBsixaxisGyroZ
             // 
             resources.ApplyResources(this.tBsixaxisGyroZ, "tBsixaxisGyroZ");
-            this.tBsixaxisGyroZ.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisGyroZ.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisGyroZ.Maximum = 127;
             this.tBsixaxisGyroZ.Minimum = -127;
             this.tBsixaxisGyroZ.Name = "tBsixaxisGyroZ";
@@ -1749,7 +1751,7 @@
             // tBsixaxisAccelY
             // 
             resources.ApplyResources(this.tBsixaxisAccelY, "tBsixaxisAccelY");
-            this.tBsixaxisAccelY.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisAccelY.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisAccelY.Maximum = 100;
             this.tBsixaxisAccelY.Minimum = -100;
             this.tBsixaxisAccelY.Name = "tBsixaxisAccelY";
@@ -1758,7 +1760,7 @@
             // tBsixaxisAccelZ
             // 
             resources.ApplyResources(this.tBsixaxisAccelZ, "tBsixaxisAccelZ");
-            this.tBsixaxisAccelZ.BackColor = System.Drawing.Color.White;
+            this.tBsixaxisAccelZ.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tBsixaxisAccelZ.Maximum = 100;
             this.tBsixaxisAccelZ.Minimum = -100;
             this.tBsixaxisAccelZ.Name = "tBsixaxisAccelZ";
@@ -1890,7 +1892,7 @@
             // tPControls
             // 
             resources.ApplyResources(this.tPControls, "tPControls");
-            this.tPControls.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.tPControls.BackColor = System.Drawing.Color.DimGray;
             this.tPControls.Controls.Add(this.lBControls);
             this.tPControls.Controls.Add(this.gBTouchpad);
             this.tPControls.Controls.Add(this.lbControlTip);
@@ -2729,7 +2731,7 @@
             // 
             // tPDeadzone
             // 
-            this.tPDeadzone.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tPDeadzone.BackColor = System.Drawing.SystemColors.Control;
             this.tPDeadzone.Controls.Add(this.lbL2);
             this.tPDeadzone.Controls.Add(this.nUDL2);
             this.tPDeadzone.Controls.Add(this.nUDLS);
@@ -2747,6 +2749,7 @@
             // 
             // antiDeadzoneTabPage
             // 
+            this.antiDeadzoneTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.antiDeadzoneTabPage.Controls.Add(this.nUDSixaxisZAntiDead);
             this.antiDeadzoneTabPage.Controls.Add(this.nUDSixaxisXAntiDead);
             this.antiDeadzoneTabPage.Controls.Add(this.label20);
@@ -2761,7 +2764,6 @@
             this.antiDeadzoneTabPage.Controls.Add(this.label1);
             resources.ApplyResources(this.antiDeadzoneTabPage, "antiDeadzoneTabPage");
             this.antiDeadzoneTabPage.Name = "antiDeadzoneTabPage";
-            this.antiDeadzoneTabPage.UseVisualStyleBackColor = true;
             // 
             // nUDSixaxisZAntiDead
             // 
@@ -2897,6 +2899,7 @@
             // 
             // maxZoneTabPage
             // 
+            this.maxZoneTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.maxZoneTabPage.Controls.Add(this.nUDSixAxisZMaxZone);
             this.maxZoneTabPage.Controls.Add(this.nUDSixAxisXMaxZone);
             this.maxZoneTabPage.Controls.Add(this.label18);
@@ -2911,7 +2914,6 @@
             this.maxZoneTabPage.Controls.Add(this.label5);
             resources.ApplyResources(this.maxZoneTabPage, "maxZoneTabPage");
             this.maxZoneTabPage.Name = "maxZoneTabPage";
-            this.maxZoneTabPage.UseVisualStyleBackColor = true;
             // 
             // nUDSixAxisZMaxZone
             // 
@@ -3077,6 +3079,7 @@
             // 
             // tPOutCurve
             // 
+            this.tPOutCurve.BackColor = System.Drawing.SystemColors.Control;
             this.tPOutCurve.Controls.Add(this.cBSixaxisZOutputCurve);
             this.tPOutCurve.Controls.Add(this.cBSixaxisXOutputCurve);
             this.tPOutCurve.Controls.Add(this.label24);
@@ -3091,7 +3094,6 @@
             this.tPOutCurve.Controls.Add(this.label9);
             resources.ApplyResources(this.tPOutCurve, "tPOutCurve");
             this.tPOutCurve.Name = "tPOutCurve";
-            this.tPOutCurve.UseVisualStyleBackColor = true;
             // 
             // cBSixaxisZOutputCurve
             // 
@@ -3205,7 +3207,7 @@
             // 
             // tPCurve
             // 
-            this.tPCurve.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tPCurve.BackColor = System.Drawing.SystemColors.Control;
             this.tPCurve.Controls.Add(this.nUDLSCurve);
             this.tPCurve.Controls.Add(this.nUDRSCurve);
             this.tPCurve.Controls.Add(this.lbRSCurve);
@@ -3259,13 +3261,13 @@
             // 
             // tpRotation
             // 
+            this.tpRotation.BackColor = System.Drawing.SystemColors.Control;
             this.tpRotation.Controls.Add(this.nUDRSRotation);
             this.tpRotation.Controls.Add(this.label14);
             this.tpRotation.Controls.Add(this.nUDLSRotation);
             this.tpRotation.Controls.Add(this.label13);
             resources.ApplyResources(this.tpRotation, "tpRotation");
             this.tpRotation.Name = "tpRotation";
-            this.tpRotation.UseVisualStyleBackColor = true;
             // 
             // nUDRSRotation
             // 
@@ -3312,7 +3314,7 @@
             // fLPSettings
             // 
             resources.ApplyResources(this.fLPSettings, "fLPSettings");
-            this.fLPSettings.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.fLPSettings.BackColor = System.Drawing.SystemColors.Control;
             this.fLPSettings.Controls.Add(this.gBLightbar);
             this.fLPSettings.Controls.Add(this.gBGyro);
             this.fLPSettings.Controls.Add(this.gBRumble);
@@ -3323,7 +3325,7 @@
             // 
             // gBGyro
             // 
-            this.gBGyro.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBGyro.BackColor = System.Drawing.SystemColors.Control;
             this.gBGyro.Controls.Add(this.rBSAControls);
             this.gBGyro.Controls.Add(this.rBSAMouse);
             this.gBGyro.Controls.Add(this.fLPTiltControls);
@@ -3514,7 +3516,7 @@
             // 
             // gBSensitivity
             // 
-            this.gBSensitivity.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBSensitivity.BackColor = System.Drawing.SystemColors.Control;
             this.gBSensitivity.Controls.Add(this.lbL2S);
             this.gBSensitivity.Controls.Add(this.nUDL2S);
             this.gBSensitivity.Controls.Add(this.nUDLSS);
@@ -4076,7 +4078,7 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.Controls.Add(this.fLPSettings);
             this.Controls.Add(this.tCControls);
             this.MaximizeBox = false;

@@ -438,7 +438,7 @@ namespace DS4Windows
             else
             {
                 btInputReport = new byte[BT_INPUT_REPORT_LENGTH];
-                inputReport = new byte[btInputReport.Length - 2];
+                inputReport = new byte[BT_INPUT_REPORT_LENGTH - 2];
                 outputReport = new byte[BT_OUTPUT_REPORT_LENGTH];
                 outputReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
                 warnInterval = WARN_INTERVAL_BT;
@@ -680,6 +680,7 @@ namespace DS4Windows
             uint tempStamp = 0;
             double elapsedDeltaTime = 0.0;
             uint tempDelta = 0;
+            byte tempByte = 0;
 
             while (!exitInputThread)
             {
@@ -794,14 +795,15 @@ namespace DS4Windows
                 cState.L2 = inputReport[8];
                 cState.R2 = inputReport[9];
 
-                cState.Triangle = (inputReport[5] & (1 << 7)) != 0;
-                cState.Circle = (inputReport[5] & (1 << 6)) != 0;
-                cState.Cross = (inputReport[5] & (1 << 5)) != 0;
-                cState.Square = (inputReport[5] & (1 << 4)) != 0;
+                tempByte = inputReport[5];
+                cState.Triangle = (tempByte & (1 << 7)) != 0;
+                cState.Circle = (tempByte & (1 << 6)) != 0;
+                cState.Cross = (tempByte & (1 << 5)) != 0;
+                cState.Square = (tempByte & (1 << 4)) != 0;
 
                 // First 4 bits denote dpad state. Clock representation
                 // with 8 meaning centered and 0 meaning DpadUp.
-                byte dpad_state = (byte)(inputReport[5] & 0x0F);
+                byte dpad_state = (byte)(tempByte & 0x0F);
 
                 switch (dpad_state)
                 {
@@ -817,26 +819,29 @@ namespace DS4Windows
                     default: cState.DpadUp = false; cState.DpadDown = false; cState.DpadLeft = false; cState.DpadRight = false; break;
                 }
 
-                cState.R3 = (inputReport[6] & (1 << 7)) != 0;
-                cState.L3 = (inputReport[6] & (1 << 6)) != 0;
-                cState.Options = (inputReport[6] & (1 << 5)) != 0;
-                cState.Share = (inputReport[6] & (1 << 4)) != 0;
-                cState.R1 = (inputReport[6] & (1 << 1)) != 0;
-                cState.L1 = (inputReport[6] & (1 << 0)) != 0;
+                tempByte = inputReport[6];
+                cState.R3 = (tempByte & (1 << 7)) != 0;
+                cState.L3 = (tempByte & (1 << 6)) != 0;
+                cState.Options = (tempByte & (1 << 5)) != 0;
+                cState.Share = (tempByte & (1 << 4)) != 0;
+                cState.R1 = (tempByte & (1 << 1)) != 0;
+                cState.L1 = (tempByte & (1 << 0)) != 0;
 
-                cState.PS = (inputReport[7] & (1 << 0)) != 0;
-                cState.TouchButton = (inputReport[7] & 0x02) != 0;
-                cState.FrameCounter = (byte)(inputReport[7] >> 2);
+                tempByte = inputReport[7];
+                cState.PS = (tempByte & (1 << 0)) != 0;
+                cState.TouchButton = (tempByte & 0x02) != 0;
+                cState.FrameCounter = (byte)(tempByte >> 2);
 
-                charging = (inputReport[30] & 0x10) != 0;
+                tempByte = inputReport[30];
+                charging = (tempByte & 0x10) != 0;
                 maxBatteryValue = charging ? BATTERY_MAX_USB : BATTERY_MAX;
-                tempBattery = (inputReport[30] & 0x0f) * 100 / maxBatteryValue;
+                tempBattery = (tempByte & 0x0f) * 100 / maxBatteryValue;
                 battery = Math.Min((byte)tempBattery, (byte)100);
                 cState.Battery = (byte)battery;
                 //System.Diagnostics.Debug.WriteLine("CURRENT BATTERY: " + (inputReport[30] & 0x0f) + " | " + tempBattery + " | " + battery);
-                if (inputReport[30] != priorInputReport30)
+                if (tempByte != priorInputReport30)
                 {
-                    priorInputReport30 = inputReport[30];
+                    priorInputReport30 = tempByte;
                     //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
                 }
 

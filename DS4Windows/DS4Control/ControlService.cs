@@ -21,6 +21,7 @@ namespace DS4Windows
         private DS4State[] MappedState = new DS4State[DS4_CONTROLLER_COUNT];
         private DS4State[] CurrentState = new DS4State[DS4_CONTROLLER_COUNT];
         private DS4State[] PreviousState = new DS4State[DS4_CONTROLLER_COUNT];
+        private DS4State[] TempState = new DS4State[DS4_CONTROLLER_COUNT];
         public DS4StateExposed[] ExposedState = new DS4StateExposed[DS4_CONTROLLER_COUNT];
         public bool recordingMacro = false;
         public event EventHandler<DebugEventArgs> Debug = null;
@@ -61,6 +62,7 @@ namespace DS4Windows
                 processingData[i] = new X360Data();
                 MappedState[i] = new DS4State();
                 CurrentState[i] = new DS4State();
+                TempState[i] = new DS4State();
                 PreviousState[i] = new DS4State();
                 ExposedState[i] = new DS4StateExposed(CurrentState[i]);
             }
@@ -789,7 +791,7 @@ namespace DS4Windows
                 if (getEnableTouchToggle(ind))
                     CheckForTouchToggle(ind, cState, pState);
 
-                cState = Mapping.SetCurveAndDeadzone(ind, cState);
+                cState = Mapping.SetCurveAndDeadzone(ind, cState, TempState[ind]);
 
                 if (!recordingMacro && (!string.IsNullOrEmpty(tempprofilename[ind]) ||
                     containsCustomAction(ind) || containsCustomExtras(ind) ||

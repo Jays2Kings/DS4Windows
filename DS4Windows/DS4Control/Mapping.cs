@@ -424,7 +424,7 @@ namespace DS4Windows
             return (value < min) ? min : (value > max) ? max : value;
         }
 
-        public static DS4State SetCurveAndDeadzone(int device, DS4State cState)
+        public static DS4State SetCurveAndDeadzone(int device, DS4State cState, DS4State dState)
         {
             double rotation = tempDoubleArray[device] = getLSRotation(device);
             if (rotation > 0.0 || rotation < 0.0)
@@ -434,7 +434,8 @@ namespace DS4Windows
             if (rotationRS > 0.0 || rotationRS < 0.0)
                 cState.rotateRSCoordinates(rotationRS);
 
-            DS4State dState = new DS4State(cState);
+            cState.CopyTo(dState);
+            //DS4State dState = new DS4State(cState);
             int x;
             int y;
             int curve;

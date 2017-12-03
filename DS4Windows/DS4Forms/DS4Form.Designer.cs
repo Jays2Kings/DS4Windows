@@ -137,7 +137,6 @@
             this.cBCloseMini = new System.Windows.Forms.CheckBox();
             this.cBQuickCharge = new System.Windows.Forms.CheckBox();
             this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
-            this.cBDownloadLangauge = new System.Windows.Forms.CheckBox();
             this.cBUpdate = new System.Windows.Forms.CheckBox();
             this.pNUpdate = new System.Windows.Forms.Panel();
             this.cBUpdateTime = new System.Windows.Forms.ComboBox();
@@ -890,7 +889,6 @@
             this.fLPSettings.Controls.Add(this.cBCloseMini);
             this.fLPSettings.Controls.Add(this.cBQuickCharge);
             this.fLPSettings.Controls.Add(this.cBUseWhiteIcon);
-            this.fLPSettings.Controls.Add(this.cBDownloadLangauge);
             this.fLPSettings.Controls.Add(this.cBUpdate);
             this.fLPSettings.Controls.Add(this.pNUpdate);
             this.fLPSettings.Controls.Add(this.pnlXIPorts);
@@ -1054,15 +1052,6 @@
             this.cBUseWhiteIcon.Name = "cBUseWhiteIcon";
             this.cBUseWhiteIcon.UseVisualStyleBackColor = true;
             this.cBUseWhiteIcon.CheckedChanged += new System.EventHandler(this.cBUseWhiteIcon_CheckedChanged);
-            // 
-            // cBDownloadLangauge
-            // 
-            resources.ApplyResources(this.cBDownloadLangauge, "cBDownloadLangauge");
-            this.cBDownloadLangauge.Checked = true;
-            this.cBDownloadLangauge.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBDownloadLangauge.Name = "cBDownloadLangauge";
-            this.cBDownloadLangauge.UseVisualStyleBackColor = true;
-            this.cBDownloadLangauge.CheckedChanged += new System.EventHandler(this.cBDownloadLangauge_CheckedChanged);
             // 
             // cBUpdate
             // 
@@ -1411,7 +1400,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label lbNoControllers;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.CheckBox cBDownloadLangauge;
         private System.Windows.Forms.CheckBox cBFlashWhenLate;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbNotifications;

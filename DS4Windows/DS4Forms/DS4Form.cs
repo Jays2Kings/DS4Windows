@@ -234,11 +234,7 @@ namespace DS4Windows
             startMinimizedCheckBox.Checked = StartMinimized;
             startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
             cBCloseMini.Checked = CloseMini;
-            string lang = CultureInfo.CurrentCulture.ToString();
-            if (lang.StartsWith("en"))
-                cBDownloadLangauge.Visible = false;
 
-            cBDownloadLangauge.Checked = DownloadLang;
             cBFlashWhenLate.Checked = FlashWhenLate;
             nUDLatency.Value = FlashWhenLateAt;
 
@@ -756,8 +752,7 @@ namespace DS4Windows
 
                     Process p = new Process();
                     p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                    if (!cBDownloadLangauge.Checked)
-                        p.StartInfo.Arguments = "-skipLang";
+                    p.StartInfo.Arguments = "-skipLang";
                     if (AdminNeeded())
                         p.StartInfo.Verb = "runas";
 
@@ -2067,9 +2062,7 @@ namespace DS4Windows
 
                     Process p = new Process();
                     p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                    if (!cBDownloadLangauge.Checked)
-                        p.StartInfo.Arguments = "-skipLang";
-
+                    p.StartInfo.Arguments = "-skipLang";
                     if (AdminNeeded())
                         p.StartInfo.Verb = "runas";
 
@@ -2413,11 +2406,6 @@ namespace DS4Windows
                     }
                 }
             }
-        }
-
-        private void cBDownloadLangauge_CheckedChanged(object sender, EventArgs e)
-        {
-            DownloadLang = cBDownloadLangauge.Checked;
         }
 
         private void linkCB_CheckedChanged(object sender, EventArgs e)

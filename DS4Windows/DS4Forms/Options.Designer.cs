@@ -1456,7 +1456,6 @@
             0,
             0,
             0});
-            this.nUDRainbowB.ValueChanged += new System.EventHandler(this.nUDRainbowB_ValueChanged);
             // 
             // cBFlashType
             // 

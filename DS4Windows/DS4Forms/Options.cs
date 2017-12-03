@@ -3047,10 +3047,5 @@ namespace DS4Windows
         {
             FlashType[device] = (byte)cBFlashType.SelectedIndex;
         }
-
-        private void nUDRainbowB_ValueChanged(object sender, EventArgs e)
-        {
-            //
-        }
     }
 }

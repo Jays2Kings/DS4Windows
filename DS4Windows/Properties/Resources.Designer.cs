@@ -1464,7 +1464,7 @@ namespace DS4Windows.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXPERIMENTAL: Auto-Disable BT when conencting to USB.
+        ///   Looks up a localized string similar to EXPERIMENTAL: Auto-Disable BT when connecting to USB.
         /// </summary>
         internal static string QuickCharge {
             get {

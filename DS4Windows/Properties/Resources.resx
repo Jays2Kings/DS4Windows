@@ -548,7 +548,7 @@
     <value>Test Light</value>
   </data>
   <data name="QuickCharge" xml:space="preserve">
-    <value>EXPERIMENTAL: Auto-Disable BT when conencting to USB</value>
+    <value>EXPERIMENTAL: Auto-Disable BT when connecting to USB</value>
   </data>
   <data name="TestText" xml:space="preserve">
     <value>Test</value>

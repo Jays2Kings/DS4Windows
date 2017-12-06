@@ -125,6 +125,7 @@ namespace DS4Windows
             inputtimer.Tick += InputDS4;
             sixaxisTimer.Tick += ControllerReadout_Tick;
             sixaxisTimer.Interval = 1000 / 60;
+
             bnGyroZN.Text = Properties.Resources.TiltUp;
             bnGyroZP.Text = Properties.Resources.TiltDown;
             bnGyroXP.Text = Properties.Resources.TiltLeft;

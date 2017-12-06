@@ -52,6 +52,7 @@ namespace DS4Windows
         private bool systemShutdown = false;
         private bool wasrunning = false;
         Options opt;
+        private bool optPop;
         public Size oldsize;
         public bool mAllowVisible;
         bool contextclose;
@@ -297,12 +298,13 @@ namespace DS4Windows
 
             Form_Resize(null, null);
             RefreshProfiles();
-            opt = new Options(this);
+            /*opt = new Options(this);
             opt.Icon = this.Icon;
             opt.TopLevel = false;
-            opt.Dock = DockStyle.Fill;
+            opt.Dock = DockStyle.None;
             opt.FormBorderStyle = FormBorderStyle.None;
-            tabProfiles.Controls.Add(opt);
+            */
+            //tabProfiles.Controls.Add(opt);
 
             autoProfilesTimer.Elapsed += CheckAutoProfiles;
             autoProfilesTimer.Interval = 1000;
@@ -1361,7 +1363,7 @@ namespace DS4Windows
 
         private void lBProfiles_KeyDown(object sender, KeyEventArgs e)
         {
-            if (lBProfiles.SelectedIndex >= 0 && !opt.Visible)
+            if (lBProfiles.SelectedIndex >= 0 && optPop && !opt.Visible)
             {
                 if (e.KeyValue == 13)
                     ShowOptions(4, lBProfiles.SelectedItem.ToString());
@@ -1488,8 +1490,16 @@ namespace DS4Windows
             else
                 tSTBProfile.Text = "<" + Properties.Resources.TypeProfileName + ">";
 
-            lBProfiles.SendToBack();
-            toolStrip1.SendToBack();
+            opt = new Options(this);
+            opt.Icon = this.Icon;
+            opt.TopLevel = false;
+            opt.Dock = DockStyle.Fill;
+            opt.FormBorderStyle = FormBorderStyle.None;
+            tabProfiles.Controls.Add(opt);
+            optPop = true;
+            //opt.Dock = DockStyle.Fill;
+            //lBProfiles.SendToBack();
+            //toolStrip1.SendToBack();
             tSOptions.SendToBack();
             opt.BringToFront();
             oldsize = Size;
@@ -1531,6 +1541,10 @@ namespace DS4Windows
 
             opt.inputtimer.Stop();
             opt.sixaxisTimer.Stop();
+            opt.Dock = DockStyle.None;
+            tabProfiles.Controls.Remove(opt);
+            opt.Dispose();
+            optPop = false;
 
             lBProfiles.Visible = true;
         }
@@ -1930,13 +1944,13 @@ namespace DS4Windows
 
         private void tSBCancel_Click(object sender, EventArgs e)
         {
-            if (opt.Visible)
+            if (optPop && opt.Visible)
                 opt.Close();
         }
 
         private void tSBSaveProfile_Click(object sender, EventArgs e)
         {
-            if (opt.Visible)
+            if (optPop && opt.Visible)
             {
                 opt.saving = true;
                 opt.Set();
@@ -2115,7 +2129,7 @@ namespace DS4Windows
         bool tempBool = false;
         protected void ScpForm_Closing(object sender, FormClosingEventArgs e)
         {
-            if (opt.Visible)
+            if (opt != null && opt.Visible)
             {
                 opt.Close();
                 e.Cancel = true;

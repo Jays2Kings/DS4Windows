@@ -854,7 +854,7 @@ namespace DS4Windows
 
         protected void LogDebug(DateTime Time, String Data, bool warning)
         {
-            if (lvDebug.InvokeRequired)
+            if (this.InvokeRequired)
             {
                 LogDebugDelegate d = new LogDebugDelegate(LogDebug);
                 try
@@ -1152,7 +1152,7 @@ namespace DS4Windows
 
         protected void DeviceSerialChanged(object sender, SerialChangeArgs args)
         {
-            if (InvokeRequired)
+            if (this.InvokeRequired)
             {
                 DeviceSerialChangedDelegate d = new DeviceSerialChangedDelegate(DeviceSerialChanged);
                 this.BeginInvoke(d, new object[] { sender, args });

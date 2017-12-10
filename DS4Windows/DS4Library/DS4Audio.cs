@@ -4,7 +4,7 @@ using DS4Windows.DS4Library.CoreAudio;
 
 namespace DS4Windows.DS4Library
 {
-    public class DS4Audio
+    public class DS4Audio : IAudioEndpointVolumeCallback
     {
         private IAudioEndpointVolume endpointVolume;
     
@@ -12,27 +12,32 @@ namespace DS4Windows.DS4Library
         private static readonly PropertyKey PKEY_Device_FriendlyName =
             new PropertyKey(new Guid(unchecked((int)0xa45c254e), unchecked((short)0xdf1c), 0x4efd, 0x80, 0x20, 0x67, 0xd1, 0x46, 0xa8, 0x50, 0xe0), 14);
 
+        public uint vol;
         public uint Volume
         {
             get
             {
-                float pfLevel = 0;
-
-                if (endpointVolume != null)
-                    endpointVolume.GetMasterVolumeLevelScalar(out pfLevel);
-
-                return Convert.ToUInt32(pfLevel * 100);
+                return vol;
             }
         }
 
         public uint getVolume()
         {
+            return vol;
+        }
+
+        public void RefreshVolume()
+        {
             float pfLevel = 0;
 
             if (endpointVolume != null)
                 endpointVolume.GetMasterVolumeLevelScalar(out pfLevel);
+            vol = Convert.ToUInt32(pfLevel * 100);
+        }
 
-            return Convert.ToUInt32(pfLevel * 100);
+        public void OnNotify(IntPtr pNotify)
+        {
+            RefreshVolume();
         }
 
         public DS4Audio(DataFlow audioFlags = DataFlow.Render)
@@ -55,20 +60,24 @@ namespace DS4Windows.DS4Library
                     object interfacePointer;
                     Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
                     endpointVolume = interfacePointer as IAudioEndpointVolume;
+                    endpointVolume.RegisterControlChangeNotify(this);
                 }
                 else if (deviceName.Contains("Headset Earphone (Wireless Controller)"))
                 {
                     object interfacePointer;
                     Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
                     endpointVolume = interfacePointer as IAudioEndpointVolume;
+                    endpointVolume.RegisterControlChangeNotify(this);
                 }
                 else if (deviceName.Contains("Headset Microphone (Wireless Controller)"))
                 {
                     object interfacePointer;
                     Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
                     endpointVolume = interfacePointer as IAudioEndpointVolume;
+                    endpointVolume.RegisterControlChangeNotify(this);
                 }
 
+                RefreshVolume();
                 Marshal.ReleaseComObject(audioDevice);
             }
 
@@ -80,6 +89,7 @@ namespace DS4Windows.DS4Library
         {
             if (endpointVolume != null)
             {
+                endpointVolume.UnregisterControlChangeNotify(this);
                 Marshal.ReleaseComObject(endpointVolume);
                 endpointVolume = null;
             }

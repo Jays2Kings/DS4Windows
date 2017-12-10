@@ -1028,80 +1028,82 @@ namespace DS4Windows
             setHapticState();
 
             bool quitOutputThread = false;
-            lock (outputReportBuffer)
+            bool usingBT = conType == ConnectionType.BT;
+            if (usingBT)
             {
-                if (conType == ConnectionType.BT)
+                Monitor.Enter(outputReportBuffer);
+                outputReportBuffer[0] = 0x11;
+                outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
+                // enable rumble (0x01), lightbar (0x02), flash (0x04)
+                outputReportBuffer[3] = 0xf7;
+                outputReportBuffer[6] = rightLightFastRumble; // fast motor
+                outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
+                outputReportBuffer[8] = ligtBarColor.red; // red
+                outputReportBuffer[9] = ligtBarColor.green; // green
+                outputReportBuffer[10] = ligtBarColor.blue; // blue
+                outputReportBuffer[11] = ledFlashOn; // flash on duration
+                outputReportBuffer[12] = ledFlashOff; // flash off duration
+            }
+            else
+            {
+                outputReportBuffer[0] = 0x05;
+                // enable rumble (0x01), lightbar (0x02), flash (0x04)
+                outputReportBuffer[1] = 0xf7;
+                outputReportBuffer[4] = rightLightFastRumble; // fast motor
+                outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor
+                outputReportBuffer[6] = ligtBarColor.red; // red
+                outputReportBuffer[7] = ligtBarColor.green; // green
+                outputReportBuffer[8] = ligtBarColor.blue; // blue
+                outputReportBuffer[9] = ledFlashOn; // flash on duration
+                outputReportBuffer[10] = ledFlashOff; // flash off duration
+                if (audio != null)
                 {
-                    outputReportBuffer[0] = 0x11;
-                    outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
-                    // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                    outputReportBuffer[3] = 0xf7;
-                    outputReportBuffer[6] = rightLightFastRumble; // fast motor
-                    outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
-                    outputReportBuffer[8] = ligtBarColor.red; // red
-                    outputReportBuffer[9] = ligtBarColor.green; // green
-                    outputReportBuffer[10] = ligtBarColor.blue; // blue
-                    outputReportBuffer[11] = ledFlashOn; // flash on duration
-                    outputReportBuffer[12] = ledFlashOff; // flash off duration
-                }
-                else
-                {
-                    outputReportBuffer[0] = 0x05;
-                    // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                    outputReportBuffer[1] = 0xf7;
-                    outputReportBuffer[4] = rightLightFastRumble; // fast motor
-                    outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor
-                    outputReportBuffer[6] = ligtBarColor.red; // red
-                    outputReportBuffer[7] = ligtBarColor.green; // green
-                    outputReportBuffer[8] = ligtBarColor.blue; // blue
-                    outputReportBuffer[9] = ledFlashOn; // flash on duration
-                    outputReportBuffer[10] = ledFlashOff; // flash off duration
-                    if (audio != null)
-                    {
-                        // Headphone volume levels
-                        outputReportBuffer[19] = outputReportBuffer[20] =
-                            Convert.ToByte(audio.getVolume());
-                        // Microphone volume level
-                        outputReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
-                    }
-                }
-
-                if (synchronous)
-                {
-                    outputReportBuffer.CopyTo(outputReport, 0);
-                    outputRumble = false;
-                    outputPendCount = 3;
-
-                    try
-                    {
-                        lock (outputReport)
-                        {
-                            if (!writeOutput())
-                            {
-                                int winError = Marshal.GetLastWin32Error();
-                                quitOutputThread = true;
-                            }
-                        }
-                    }
-                    catch { } // If it's dead already, don't worry about it.
-                }
-                else
-                {
-                    bool output = outputPendCount > 0, change = false;
-                    for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
-                        change = outputReport[i] != outputReportBuffer[i];
-
-                    if (output || change)
-                    {
-                        if (change)
-                            outputPendCount = 3;
-
-                        outputRumble = true;
-                        Monitor.Pulse(outputReportBuffer);
-                    }
+                    // Headphone volume levels
+                    outputReportBuffer[19] = outputReportBuffer[20] =
+                        Convert.ToByte(audio.getVolume());
+                    // Microphone volume level
+                    outputReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
                 }
             }
 
+            if (synchronous)
+            {
+                outputReportBuffer.CopyTo(outputReport, 0);
+                outputRumble = false;
+                outputPendCount = 3;
+
+                if (usingBT) { Monitor.Enter(outputReport); }
+                try
+                {
+                    if (!writeOutput())
+                    {
+                        int winError = Marshal.GetLastWin32Error();
+                        quitOutputThread = true;
+                    }
+                }
+                catch { } // If it's dead already, don't worry about it.
+
+                if (usingBT) { Monitor.Exit(outputReport); }
+            }
+            else
+            {
+                bool output = outputPendCount > 0, change = false;
+                for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
+                    change = outputReport[i] != outputReportBuffer[i];
+
+                if (output || change)
+                {
+                    if (change)
+                    {
+                        outputPendCount = 3;
+                    }
+
+                    outputRumble = true;
+                    Monitor.Pulse(outputReportBuffer);
+                }
+            }
+
+            if (usingBT) { Monitor.Exit(outputReportBuffer); }
             if (quitOutputThread)
             {
                 StopOutputUpdate();

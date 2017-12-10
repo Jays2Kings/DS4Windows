@@ -134,7 +134,7 @@ namespace DS4Windows
         private byte[] gyro = new byte[6];
         private byte[] inputReport;
         private byte[] btInputReport = null;
-        private byte[] outputReportBuffer, outputReport;
+        private byte[] outReportBuffer, outputReport;
         private readonly DS4Touchpad touchpad = null;
         private readonly DS4SixAxis sixAxis = null;
         private byte rightLightFastRumble;
@@ -414,7 +414,7 @@ namespace DS4Windows
             {
                 inputReport = new byte[64];
                 outputReport = new byte[hDevice.Capabilities.OutputReportByteLength];
-                outputReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength];
+                outReportBuffer = new byte[hDevice.Capabilities.OutputReportByteLength];
                 if (conType == ConnectionType.USB)
                 {
                     warnInterval = WARN_INTERVAL_USB;
@@ -440,7 +440,7 @@ namespace DS4Windows
                 btInputReport = new byte[BT_INPUT_REPORT_LENGTH];
                 inputReport = new byte[BT_INPUT_REPORT_LENGTH - 2];
                 outputReport = new byte[BT_OUTPUT_REPORT_LENGTH];
-                outputReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
+                outReportBuffer = new byte[BT_OUTPUT_REPORT_LENGTH];
                 warnInterval = WARN_INTERVAL_BT;
                 synced = isValidSerial();
             }
@@ -566,7 +566,7 @@ namespace DS4Windows
             }
             else
             {
-                return hDevice.WriteOutputReportViaInterrupt(outputReport, READ_STREAM_TIMEOUT);
+                return hDevice.WriteOutputReportViaInterrupt(outReportBuffer, READ_STREAM_TIMEOUT);
             }
         }
 
@@ -604,10 +604,10 @@ namespace DS4Windows
                     if (!currentRumble)
                     {
                         lastError = 0;
-                        lock (outputReportBuffer)
+                        lock (outReportBuffer)
                         {
-                            Monitor.Wait(outputReportBuffer);
-                            outputReportBuffer.CopyTo(outputReport, 0);
+                            Monitor.Wait(outReportBuffer);
+                            outReportBuffer.CopyTo(outputReport, 0);
                             outputPendCount--;
                             outputRumble = false;
                         }
@@ -1031,48 +1031,52 @@ namespace DS4Windows
             bool usingBT = conType == ConnectionType.BT;
             if (usingBT)
             {
-                Monitor.Enter(outputReportBuffer);
-                outputReportBuffer[0] = 0x11;
-                outputReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
+                Monitor.Enter(outReportBuffer);
+                outReportBuffer[0] = 0x11;
+                outReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
                 // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                outputReportBuffer[3] = 0xf7;
-                outputReportBuffer[6] = rightLightFastRumble; // fast motor
-                outputReportBuffer[7] = leftHeavySlowRumble; // slow motor
-                outputReportBuffer[8] = ligtBarColor.red; // red
-                outputReportBuffer[9] = ligtBarColor.green; // green
-                outputReportBuffer[10] = ligtBarColor.blue; // blue
-                outputReportBuffer[11] = ledFlashOn; // flash on duration
-                outputReportBuffer[12] = ledFlashOff; // flash off duration
+                outReportBuffer[3] = 0xf7;
+                outReportBuffer[6] = rightLightFastRumble; // fast motor
+                outReportBuffer[7] = leftHeavySlowRumble; // slow motor
+                outReportBuffer[8] = ligtBarColor.red; // red
+                outReportBuffer[9] = ligtBarColor.green; // green
+                outReportBuffer[10] = ligtBarColor.blue; // blue
+                outReportBuffer[11] = ledFlashOn; // flash on duration
+                outReportBuffer[12] = ledFlashOff; // flash off duration
             }
             else
             {
-                outputReportBuffer[0] = 0x05;
+                outReportBuffer[0] = 0x05;
                 // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                outputReportBuffer[1] = 0xf7;
-                outputReportBuffer[4] = rightLightFastRumble; // fast motor
-                outputReportBuffer[5] = leftHeavySlowRumble; // slow  motor
-                outputReportBuffer[6] = ligtBarColor.red; // red
-                outputReportBuffer[7] = ligtBarColor.green; // green
-                outputReportBuffer[8] = ligtBarColor.blue; // blue
-                outputReportBuffer[9] = ledFlashOn; // flash on duration
-                outputReportBuffer[10] = ledFlashOff; // flash off duration
+                outReportBuffer[1] = 0xf7;
+                outReportBuffer[4] = rightLightFastRumble; // fast motor
+                outReportBuffer[5] = leftHeavySlowRumble; // slow  motor
+                outReportBuffer[6] = ligtBarColor.red; // red
+                outReportBuffer[7] = ligtBarColor.green; // green
+                outReportBuffer[8] = ligtBarColor.blue; // blue
+                outReportBuffer[9] = ledFlashOn; // flash on duration
+                outReportBuffer[10] = ledFlashOff; // flash off duration
                 if (audio != null)
                 {
                     // Headphone volume levels
-                    outputReportBuffer[19] = outputReportBuffer[20] =
+                    outReportBuffer[19] = outReportBuffer[20] =
                         Convert.ToByte(audio.getVolume());
                     // Microphone volume level
-                    outputReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
+                    outReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
                 }
             }
 
             if (synchronous)
             {
-                outputReportBuffer.CopyTo(outputReport, 0);
                 outputRumble = false;
                 outputPendCount = 3;
 
-                if (usingBT) { Monitor.Enter(outputReport); }
+                if (usingBT)
+                {
+                    Monitor.Enter(outputReport);
+                    outReportBuffer.CopyTo(outputReport, 0);
+                }
+
                 try
                 {
                     if (!writeOutput())
@@ -1089,7 +1093,7 @@ namespace DS4Windows
             {
                 bool output = outputPendCount > 0, change = false;
                 for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
-                    change = outputReport[i] != outputReportBuffer[i];
+                    change = outputReport[i] != outReportBuffer[i];
 
                 if (output || change)
                 {
@@ -1099,11 +1103,11 @@ namespace DS4Windows
                     }
 
                     outputRumble = true;
-                    Monitor.Pulse(outputReportBuffer);
+                    Monitor.Pulse(outReportBuffer);
                 }
             }
 
-            if (usingBT) { Monitor.Exit(outputReportBuffer); }
+            if (usingBT) { Monitor.Exit(outReportBuffer); }
             if (quitOutputThread)
             {
                 StopOutputUpdate();

@@ -1029,85 +1029,87 @@ namespace DS4Windows
 
             bool quitOutputThread = false;
             bool usingBT = conType == ConnectionType.BT;
-            if (usingBT)
-            {
-                Monitor.Enter(outReportBuffer);
-                outReportBuffer[0] = 0x11;
-                outReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
-                // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                outReportBuffer[3] = 0xf7;
-                outReportBuffer[6] = rightLightFastRumble; // fast motor
-                outReportBuffer[7] = leftHeavySlowRumble; // slow motor
-                outReportBuffer[8] = ligtBarColor.red; // red
-                outReportBuffer[9] = ligtBarColor.green; // green
-                outReportBuffer[10] = ligtBarColor.blue; // blue
-                outReportBuffer[11] = ledFlashOn; // flash on duration
-                outReportBuffer[12] = ledFlashOff; // flash off duration
-            }
-            else
-            {
-                outReportBuffer[0] = 0x05;
-                // enable rumble (0x01), lightbar (0x02), flash (0x04)
-                outReportBuffer[1] = 0xf7;
-                outReportBuffer[4] = rightLightFastRumble; // fast motor
-                outReportBuffer[5] = leftHeavySlowRumble; // slow  motor
-                outReportBuffer[6] = ligtBarColor.red; // red
-                outReportBuffer[7] = ligtBarColor.green; // green
-                outReportBuffer[8] = ligtBarColor.blue; // blue
-                outReportBuffer[9] = ledFlashOn; // flash on duration
-                outReportBuffer[10] = ledFlashOff; // flash off duration
-                if (audio != null)
-                {
-                    // Headphone volume levels
-                    outReportBuffer[19] = outReportBuffer[20] =
-                        Convert.ToByte(audio.getVolume());
-                    // Microphone volume level
-                    outReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
-                }
-            }
 
-            if (synchronous)
+            lock (outReportBuffer)
             {
-                outputRumble = false;
-                outputPendCount = 3;
-
                 if (usingBT)
                 {
-                    Monitor.Enter(outputReport);
-                    outReportBuffer.CopyTo(outputReport, 0);
+                    outReportBuffer[0] = 0x11;
+                    outReportBuffer[1] = (byte)(0x80 | btPollRate); // input report rate
+                    // enable rumble (0x01), lightbar (0x02), flash (0x04)
+                    outReportBuffer[3] = 0xf7;
+                    outReportBuffer[6] = rightLightFastRumble; // fast motor
+                    outReportBuffer[7] = leftHeavySlowRumble; // slow motor
+                    outReportBuffer[8] = ligtBarColor.red; // red
+                    outReportBuffer[9] = ligtBarColor.green; // green
+                    outReportBuffer[10] = ligtBarColor.blue; // blue
+                    outReportBuffer[11] = ledFlashOn; // flash on duration
+                    outReportBuffer[12] = ledFlashOff; // flash off duration
                 }
-
-                try
+                else
                 {
-                    if (!writeOutput())
+                    outReportBuffer[0] = 0x05;
+                    // enable rumble (0x01), lightbar (0x02), flash (0x04)
+                    outReportBuffer[1] = 0xf7;
+                    outReportBuffer[4] = rightLightFastRumble; // fast motor
+                    outReportBuffer[5] = leftHeavySlowRumble; // slow  motor
+                    outReportBuffer[6] = ligtBarColor.red; // red
+                    outReportBuffer[7] = ligtBarColor.green; // green
+                    outReportBuffer[8] = ligtBarColor.blue; // blue
+                    outReportBuffer[9] = ledFlashOn; // flash on duration
+                    outReportBuffer[10] = ledFlashOff; // flash off duration
+                    if (audio != null)
                     {
-                        int winError = Marshal.GetLastWin32Error();
-                        quitOutputThread = true;
+                        // Headphone volume levels
+                        outReportBuffer[19] = outReportBuffer[20] =
+                            Convert.ToByte(audio.getVolume());
+                        // Microphone volume level
+                        outReportBuffer[21] = Convert.ToByte(micAudio.getVolume());
                     }
                 }
-                catch { } // If it's dead already, don't worry about it.
 
-                if (usingBT) { Monitor.Exit(outputReport); }
-            }
-            else
-            {
-                bool output = outputPendCount > 0, change = false;
-                for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
-                    change = outputReport[i] != outReportBuffer[i];
-
-                if (output || change)
+                if (synchronous)
                 {
-                    if (change)
+                    outputRumble = false;
+                    outputPendCount = 3;
+
+                    if (usingBT)
                     {
-                        outputPendCount = 3;
+                        Monitor.Enter(outputReport);
+                        outReportBuffer.CopyTo(outputReport, 0);
                     }
 
-                    outputRumble = true;
-                    Monitor.Pulse(outReportBuffer);
+                    try
+                    {
+                        if (!writeOutput())
+                        {
+                            int winError = Marshal.GetLastWin32Error();
+                            quitOutputThread = true;
+                        }
+                    }
+                    catch { } // If it's dead already, don't worry about it.
+
+                    if (usingBT) { Monitor.Exit(outputReport); }
+                }
+                else
+                {
+                    bool output = outputPendCount > 0, change = false;
+                    for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
+                        change = outputReport[i] != outReportBuffer[i];
+
+                    if (output || change)
+                    {
+                        if (change)
+                        {
+                            outputPendCount = 3;
+                        }
+
+                        outputRumble = true;
+                        Monitor.Pulse(outReportBuffer);
+                    }
                 }
             }
 
-            if (usingBT) { Monitor.Exit(outReportBuffer); }
             if (quitOutputThread)
             {
                 StopOutputUpdate();

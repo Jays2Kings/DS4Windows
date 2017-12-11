@@ -300,7 +300,7 @@ namespace DS4Windows
             if (tempLightBarOnDuration != haptics.LightBarFlashDurationOn && tempLightBarOnDuration != 1 && haptics.LightBarFlashDurationOn == 0)
                 haptics.LightBarFlashDurationOff = haptics.LightBarFlashDurationOn = 1;
 
-            device.pushHapticState(haptics);
+            device.pushHapticState(ref haptics);
         }
 
         public static bool defaultLight = false, shuttingdown = false;

@@ -1231,7 +1231,7 @@ namespace DS4Windows
         {
             if (testRumble.IsRumbleSet())
             {
-                pushHapticState(testRumble);
+                pushHapticState(ref testRumble);
                 if (testRumble.RumbleMotorsExplicitlyOff)
                     testRumble.RumbleMotorsExplicitlyOff = false;
             }
@@ -1295,42 +1295,43 @@ namespace DS4Windows
             hapticStackIndex = 0;
         }
 
+        delegate void HapticItem(ref DS4HapticState haptic);
+
         // Use the "most recently set" haptic state for each of light bar/motor.
         private void setHapticState()
         {
-            DS4Color lightBarColor = ligtBarColor;
             byte lightBarFlashDurationOn = ledFlashOn, lightBarFlashDurationOff = ledFlashOff;
             byte rumbleMotorStrengthLeftHeavySlow = leftHeavySlowRumble,
                 rumbleMotorStrengthRightLightFast = rightLightFastRumble;
             int hapticLen = hapticState.Length;
             for (int i=0; i < hapticLen; i++)
             {
-                DS4HapticState haptic = hapticState[i];
                 if (i == hapticStackIndex)
                     break; // rest haven't been used this time
 
-                if (haptic.IsLightBarSet())
-                {
-                    lightBarColor = haptic.LightBarColor;
-                    lightBarFlashDurationOn = haptic.LightBarFlashDurationOn;
-                    lightBarFlashDurationOff = haptic.LightBarFlashDurationOff;
-                }
+                ((HapticItem)((ref DS4HapticState haptic) => {
+                    if (haptic.IsLightBarSet())
+                    {
+                        ligtBarColor = haptic.LightBarColor;
+                        lightBarFlashDurationOn = haptic.LightBarFlashDurationOn;
+                        lightBarFlashDurationOff = haptic.LightBarFlashDurationOff;
+                    }
 
-                if (haptic.IsRumbleSet())
-                {
-                    rumbleMotorStrengthLeftHeavySlow = haptic.RumbleMotorStrengthLeftHeavySlow;
-                    rumbleMotorStrengthRightLightFast = haptic.RumbleMotorStrengthRightLightFast;
-                }
+                    if (haptic.IsRumbleSet())
+                    {
+                        rumbleMotorStrengthLeftHeavySlow = haptic.RumbleMotorStrengthLeftHeavySlow;
+                        rumbleMotorStrengthRightLightFast = haptic.RumbleMotorStrengthRightLightFast;
+                    }
+                }))(ref hapticState[i]);
             }
 
-            ligtBarColor = lightBarColor;
             ledFlashOn = lightBarFlashDurationOn;
             ledFlashOff = lightBarFlashDurationOff;
             leftHeavySlowRumble = rumbleMotorStrengthLeftHeavySlow;
             rightLightFastRumble = rumbleMotorStrengthRightLightFast;
         }
 
-        public void pushHapticState(DS4HapticState hs)
+        public void pushHapticState(ref DS4HapticState hs)
         {
             int hapsLen = hapticState.Length;
             if (hapticStackIndex == hapsLen)

@@ -120,6 +120,18 @@ namespace DS4Windows
             threadComEvent.Close();
         }
 
+        public static void SetCulture(string culture)
+        {
+            foreach (Thread t in new Thread[] { Thread.CurrentThread, controlThread })
+            {
+                if (t != null && !t.CurrentUICulture.Equals(culture))
+                {
+                    try { t.CurrentUICulture = CultureInfo.GetCultureInfo(culture); }
+                    catch { /* Skip setting culture that we cannot set */ }
+                }
+            }
+        }
+
         private static void createControlService()
         {
             controlThread = new Thread(() => { rootHub = new ControlService(); });

@@ -88,6 +88,9 @@ namespace DS4Windows
 
         public DS4Form(string[] args)
         {
+            Global.Load();
+            Program.SetCulture(UseLang);
+
             InitializeComponent();
             ThemeUtil.SetTheme(lvDebug);
 
@@ -181,7 +184,6 @@ namespace DS4Windows
             Log.TrayIconLog += ShowNotification;
 
             Directory.CreateDirectory(appdatapath);
-            Global.Load();
             if (!Save()) //if can't write to file
             {
                 if (MessageBox.Show("Cannot write at current location\nCopy Settings to appdata?", "DS4Windows",
@@ -2485,6 +2487,13 @@ namespace DS4Windows
                 }
                 catch { }
             }
+        }
+
+        private void languagePackComboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            UseLang = ((DS4Forms.LanguagePackComboBox)sender).SelectedValue.ToString();
+            Save();
+            MessageBox.Show("DS4Windows must be restarted in order to have an effect.");
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

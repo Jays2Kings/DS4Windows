@@ -164,6 +164,12 @@
     <Compile Include="DS4Control\X360Device.designer.cs">
       <DependentUpon>X360Device.cs</DependentUpon>
     </Compile>
+    <Compile Include="DS4Forms\LanguagePackComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DS4Forms\LanguagePackComboBox.Designer.cs">
+      <DependentUpon>LanguagePackComboBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="DS4Library\DS4Audio.cs" />
     <Compile Include="DS4Library\DS4Device.cs" />
     <Compile Include="DS4Library\DS4Devices.cs" />
@@ -593,6 +599,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\KBM360.zh-Hant.resx">
       <DependentUpon>KBM360.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DS4Forms\LanguagePackComboBox.resx">
+      <DependentUpon>LanguagePackComboBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\Options.ar.resx">
       <DependentUpon>Options.cs</DependentUpon>

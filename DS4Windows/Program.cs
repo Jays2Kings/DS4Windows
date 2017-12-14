@@ -122,14 +122,12 @@ namespace DS4Windows
 
         public static void SetCulture(string culture)
         {
-            foreach (Thread t in new Thread[] { Thread.CurrentThread, controlThread })
+            try
             {
-                if (t != null && !t.CurrentUICulture.Equals(culture))
-                {
-                    try { t.CurrentUICulture = CultureInfo.GetCultureInfo(culture); }
-                    catch { /* Skip setting culture that we cannot set */ }
-                }
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(culture);
             }
+            catch { /* Skip setting culture that we cannot set */ }
         }
 
         private static void createControlService()

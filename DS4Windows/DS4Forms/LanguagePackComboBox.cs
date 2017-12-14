@@ -33,18 +33,21 @@ namespace DS4Windows.DS4Forms
             set { label1.Text = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int SelectedIndex
         {
             get { return cbCulture.SelectedIndex; }
             set { cbCulture.SelectedIndex = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string SelectedText
         {
             get { return cbCulture.SelectedText; }
             set { cbCulture.SelectedText = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object SelectedValue
         {
             get { return cbCulture.SelectedValue; }

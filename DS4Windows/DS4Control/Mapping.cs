@@ -3085,10 +3085,10 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
-                    case DS4Controls.GyroXNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
-                    case DS4Controls.GyroZPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
-                    case DS4Controls.GyroZNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroXPos: safeTest = fieldMap.gryodirs[controlNum] > 0; break;
+                    case DS4Controls.GyroXNeg: safeTest = fieldMap.gryodirs[controlNum] < -0; break;
+                    case DS4Controls.GyroZPos: safeTest = fieldMap.gryodirs[controlNum] > 0; break;
+                    case DS4Controls.GyroZNeg: safeTest = fieldMap.gryodirs[controlNum] < -0; break;
                     default: break;
                 }
 
@@ -3247,10 +3247,10 @@ namespace DS4Windows
 
                 switch (control)
                 {
-                    case DS4Controls.GyroXPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
-                    case DS4Controls.GyroXNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
-                    case DS4Controls.GyroZPos: safeTest = fieldMap.gryodirs[controlNum] > 67; break;
-                    case DS4Controls.GyroZNeg: safeTest = fieldMap.gryodirs[controlNum] < -67; break;
+                    case DS4Controls.GyroXPos: safeTest = fieldMap.gryodirs[controlNum] > 0; break;
+                    case DS4Controls.GyroXNeg: safeTest = fieldMap.gryodirs[controlNum] < 0; break;
+                    case DS4Controls.GyroZPos: safeTest = fieldMap.gryodirs[controlNum] > 0; break;
+                    case DS4Controls.GyroZNeg: safeTest = fieldMap.gryodirs[controlNum] < 0; break;
                     default: break;
                 }
 

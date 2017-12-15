@@ -213,7 +213,7 @@ namespace DS4Windows
         public virtual void touchUnchanged(object sender, EventArgs unused)
         {
             s = dev.getCurrentStateRef();
-            synthesizeMouseButtons();
+            //synthesizeMouseButtons();
         }
 
         private DS4State remapped = new DS4State();

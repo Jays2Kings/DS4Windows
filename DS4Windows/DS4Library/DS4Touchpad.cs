@@ -67,7 +67,7 @@ namespace DS4Windows
         private bool PacketChanged(byte[] data, int touchPacketOffset)
         {
             bool changed = false;
-            for (int i = 0, arLen = previousPacket.Length; i < arLen; i++)
+            for (int i = 0, arLen = previousPacket.Length; !changed && i < arLen; i++)
             {
                 byte oldValue = previousPacket[i];
                 previousPacket[i] = data[i + TOUCHPAD_DATA_OFFSET + touchPacketOffset];

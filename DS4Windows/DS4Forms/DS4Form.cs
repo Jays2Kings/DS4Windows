@@ -89,7 +89,7 @@ namespace DS4Windows
         public DS4Form(string[] args)
         {
             Global.Load();
-            Program.SetCulture(UseLang);
+            this.setCulture(UseLang);
 
             InitializeComponent();
             ThemeUtil.SetTheme(lvDebug);
@@ -428,6 +428,16 @@ namespace DS4Windows
 
                 control.MouseHover += Items_MouseHover;
             }
+        }
+
+        private void setCulture(string culture)
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(culture);
+            }
+            catch { /* Skip setting culture that we cannot set */ }
         }
 
         private void populateHoverTextDict()

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DS4Windows.DS4Forms
@@ -76,14 +77,19 @@ namespace DS4Windows.DS4Forms
         public LanguagePackComboBox()
         {
             InitializeComponent();
+            cbCulture.Enabled = false;
 
-            // Find available language assemblies and bind the list to the combo box.
-            cbCulture.DataSource = this.CreateLanguageAssembliesBindingSource();
-            cbCulture.SelectedValue = Thread.CurrentThread.CurrentUICulture.Name;
+            Task.Run(() => {
+                // Find available language assemblies and bind the list to the combo box.
+                cbCulture.DataSource = this.CreateLanguageAssembliesBindingSource();
+                cbCulture.SelectedValue = Thread.CurrentThread.CurrentUICulture.Name;
 
-            // This must be set here instead of Designer or event would fire at initial selected value setting above.
-            cbCulture.SelectedIndexChanged += new EventHandler(CbCulture_SelectedIndexChanged);
-            cbCulture.SelectedValueChanged += new EventHandler(CbCulture_SelectedValueChanged);
+                // This must be set here instead of Designer or event would fire at initial selected value setting above.
+                cbCulture.SelectedIndexChanged += new EventHandler(CbCulture_SelectedIndexChanged);
+                cbCulture.SelectedValueChanged += new EventHandler(CbCulture_SelectedValueChanged);
+
+                cbCulture.Enabled = true;
+            });
         }
 
         private BindingSource CreateLanguageAssembliesBindingSource()

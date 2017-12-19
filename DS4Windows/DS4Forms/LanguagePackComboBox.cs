@@ -12,6 +12,8 @@ namespace DS4Windows.DS4Forms
 {
     public partial class LanguagePackComboBox : UserControl
     {
+        private string _probingPath = "";
+
         [Category("Action")]
         [Description("Fires when the combo box selected index is changed.")]
         public event EventHandler SelectedIndexChanged;
@@ -31,6 +33,14 @@ namespace DS4Windows.DS4Forms
         public string LabelText {
             get { return label1.Text; }
             set { label1.Text = value; }
+        }
+
+        [Category("Data")]
+        [Description("If probing path has been changed in App.config, add the same string here.")]
+        public string ProbingPath
+        {
+            get { return this._probingPath; }
+            set { this._probingPath = value; }
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -58,20 +68,38 @@ namespace DS4Windows.DS4Forms
         {
             InitializeComponent();
 
-            // Find the location where application installed.
-            string exeLocation = Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path));
-
-            // Get all culture for which satellite folder found with culture code.
-            Dictionary<string, string> cultures = CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .Where(c => Directory.Exists(Path.Combine(exeLocation, c.Name)))
-                .ToDictionary(c => c.Name, c => c.Equals(CultureInfo.InvariantCulture) ? this.InvariantCultureText : c.NativeName);
-
-            cbCulture.DataSource = new BindingSource(cultures, null);
+            // Find available language assemblies and bind the list to the combo box.
+            cbCulture.DataSource = this.CreateLanguageAssembliesBindingSource();
             cbCulture.SelectedValue = Thread.CurrentThread.CurrentUICulture.Name;
 
             // This must be set here instead of Designer or event would fire at initial selected value setting above.
             cbCulture.SelectedIndexChanged += new EventHandler(CbCulture_SelectedIndexChanged);
             cbCulture.SelectedValueChanged += new EventHandler(CbCulture_SelectedValueChanged);
+        }
+
+        private BindingSource CreateLanguageAssembliesBindingSource()
+        {
+            // Find the location where application installed.
+            string exeLocation = Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path));
+            List<string> lookupPaths = this.ProbingPath.Split(';')
+                .Select(path => Path.Combine(exeLocation, path))
+                .Where(path => path != exeLocation)
+                .ToList();
+            lookupPaths.Insert(0, exeLocation);
+
+            // Get all culture for which satellite folder found with culture code.
+            Dictionary<string, string> cultures = CultureInfo.GetCultures(CultureTypes.AllCultures)
+                .Where(c => this.IsLanguageAssemblyAvailable(lookupPaths, c))
+                .ToDictionary(c => c.Name, c => c.Equals(CultureInfo.InvariantCulture) ? this.InvariantCultureText : c.NativeName);
+
+            return new BindingSource(cultures, null);
+        }
+
+        private bool IsLanguageAssemblyAvailable(List<string> lookupPaths, CultureInfo culture)
+        {
+            return lookupPaths.Select(path => Path.Combine(path, culture.Name))
+                .Where(path => Directory.Exists(path))
+                .Count() > 0;
         }
 
         private void LanguagePackComboBox_SizeChanged(object sender, EventArgs e)

@@ -119,9 +119,7 @@ namespace DS4Windows.DS4Forms
 
         private void CbCulture_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             this.SelectedIndexChanged?.Invoke(this, e);
-            
         }
 
         private void CbCulture_SelectedValueChanged(object sender, EventArgs e)

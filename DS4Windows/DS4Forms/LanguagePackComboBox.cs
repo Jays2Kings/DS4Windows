@@ -13,8 +13,10 @@ namespace DS4Windows.DS4Forms
 {
     public partial class LanguagePackComboBox : UserControl
     {
+        private string _invariantCultureText = "No (English UI)";
         private string _probingPath = "";
         private string _languageAssemblyName = "DS4Windows.resources.dll";
+        private TaskCompletionSource<bool> _languageListInitialized = new TaskCompletionSource<bool>();
 
         [Category("Action")]
         [Description("Fires when the combo box selected index is changed.")]
@@ -27,7 +29,15 @@ namespace DS4Windows.DS4Forms
         [Category("Data")]
         [Description("Text used for invariant culture name in the combo box.")]
         [Localizable(true)]
-        public string InvariantCultureText { get; set; }
+        public string InvariantCultureText
+        {
+            get { return _invariantCultureText; }
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("InvariantCultureText_Changed call will complete when ready, no need for a warning", "CS4014:Await.Warning")]
+            set {
+                _invariantCultureText = value;
+                InvariantCultureText_Changed(value);
+            }
+        }
 
         [Category("Data")]
         [Description("Text for label before the combo box.")]
@@ -89,6 +99,7 @@ namespace DS4Windows.DS4Forms
                 cbCulture.SelectedValueChanged += new EventHandler(CbCulture_SelectedValueChanged);
 
                 cbCulture.Enabled = true;
+                _languageListInitialized.SetResult(true);
             });
         }
 
@@ -102,10 +113,12 @@ namespace DS4Windows.DS4Forms
                 .ToList();
             lookupPaths.Insert(0, exeLocation);
 
-            // Get all culture for which satellite folder found with culture code.
-            Dictionary<string, string> cultures = CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .Where(c => c.Equals(CultureInfo.InvariantCulture) || this.IsLanguageAssemblyAvailable(lookupPaths, c))
-                .ToDictionary(c => c.Name, c => c.Equals(CultureInfo.InvariantCulture) ? this.InvariantCultureText : c.NativeName);
+            // Get all culture for which satellite folder found with culture code, then insert invariant culture at the beginning.
+            List<KeyValuePair<string, string>> cultures = CultureInfo.GetCultures(CultureTypes.AllCultures)
+                .Where(c => this.IsLanguageAssemblyAvailable(lookupPaths, c))
+                .Select(c => new KeyValuePair<string, string>(c.Name, c.NativeName))
+                .ToList();
+            cultures.Insert(0, new KeyValuePair<string, string>("", this.InvariantCultureText));
 
             return new BindingSource(cultures, null);
         }
@@ -115,6 +128,14 @@ namespace DS4Windows.DS4Forms
             return lookupPaths.Select(path => Path.Combine(path, culture.Name, this.LanguageAssemblyName))
                 .Where(path => File.Exists(path))
                 .Count() > 0;
+        }
+
+        private async Task InvariantCultureText_Changed(string value)
+        {
+            // Normally the completion flag will be long set by the time this method is called.
+            await _languageListInitialized.Task;
+            BindingSource dataSource = ((BindingSource)cbCulture.DataSource);
+            dataSource[0] = new KeyValuePair<string, string>("", value);
         }
 
         private void LanguagePackComboBox_SizeChanged(object sender, EventArgs e)

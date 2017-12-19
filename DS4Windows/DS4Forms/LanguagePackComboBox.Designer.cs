@@ -28,42 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LanguagePackComboBox));
             this.cbCulture = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cbCulture
             // 
-            this.cbCulture.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            resources.ApplyResources(this.cbCulture, "cbCulture");
             this.cbCulture.DisplayMember = "Value";
             this.cbCulture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCulture.FormattingEnabled = true;
-            this.cbCulture.Location = new System.Drawing.Point(112, 3);
             this.cbCulture.Name = "cbCulture";
-            this.cbCulture.Size = new System.Drawing.Size(145, 21);
-            this.cbCulture.TabIndex = 61;
             this.cbCulture.ValueMember = "Key";
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 6);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
-            this.label1.TabIndex = 62;
-            this.label1.Text = "Use language pack";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.SizeChanged += new System.EventHandler(this.LanguagePackComboBox_SizeChanged);
             // 
             // LanguagePackComboBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cbCulture);
             this.Controls.Add(this.label1);
             this.Name = "LanguagePackComboBox";
-            this.Size = new System.Drawing.Size(260, 27);
             this.SizeChanged += new System.EventHandler(this.LanguagePackComboBox_SizeChanged);
             this.Resize += new System.EventHandler(this.LanguagePackComboBox_SizeChanged);
             this.ResumeLayout(false);

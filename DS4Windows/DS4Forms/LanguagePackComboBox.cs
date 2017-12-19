@@ -13,6 +13,7 @@ namespace DS4Windows.DS4Forms
     public partial class LanguagePackComboBox : UserControl
     {
         private string _probingPath = "";
+        private string _languageAssemblyName = "DS4Windows.resources.dll";
 
         [Category("Action")]
         [Description("Fires when the combo box selected index is changed.")]
@@ -41,6 +42,14 @@ namespace DS4Windows.DS4Forms
         {
             get { return this._probingPath; }
             set { this._probingPath = value; }
+        }
+
+        [Category("Data")]
+        [Description("Filter language assembly file names in order to ont include irrelevant assemblies to the combo box.")]
+        public string LanguageAssemblyName
+        {
+            get { return this._languageAssemblyName; }
+            set { this._languageAssemblyName = value; }
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -89,7 +98,7 @@ namespace DS4Windows.DS4Forms
 
             // Get all culture for which satellite folder found with culture code.
             Dictionary<string, string> cultures = CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .Where(c => this.IsLanguageAssemblyAvailable(lookupPaths, c))
+                .Where(c => c.Equals(CultureInfo.InvariantCulture) || this.IsLanguageAssemblyAvailable(lookupPaths, c))
                 .ToDictionary(c => c.Name, c => c.Equals(CultureInfo.InvariantCulture) ? this.InvariantCultureText : c.NativeName);
 
             return new BindingSource(cultures, null);
@@ -97,8 +106,8 @@ namespace DS4Windows.DS4Forms
 
         private bool IsLanguageAssemblyAvailable(List<string> lookupPaths, CultureInfo culture)
         {
-            return lookupPaths.Select(path => Path.Combine(path, culture.Name))
-                .Where(path => Directory.Exists(path))
+            return lookupPaths.Select(path => Path.Combine(path, culture.Name, this.LanguageAssemblyName))
+                .Where(path => File.Exists(path))
                 .Count() > 0;
         }
 

@@ -2501,9 +2501,13 @@ namespace DS4Windows
 
         private void languagePackComboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            UseLang = ((DS4Forms.LanguagePackComboBox)sender).SelectedValue.ToString();
-            Save();
-            MessageBox.Show("DS4Windows must be restarted in order to have an effect.");
+            string newValue = ((DS4Forms.LanguagePackComboBox)sender).SelectedValue.ToString();
+            if (newValue != UseLang)
+            {
+                UseLang = newValue;
+                Save();
+                MessageBox.Show(Properties.Resources.LanguagePackApplyRestartRequired, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

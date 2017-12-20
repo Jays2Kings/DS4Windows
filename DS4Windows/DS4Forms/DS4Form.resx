@@ -454,7 +454,7 @@
     <value>0</value>
   </data>
   <data name="tLPControllers.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="bnLight3" Row="3" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbPad1" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC3" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC4" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lbPad3" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad4" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cBController1" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC2" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="cBController2" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController3" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC1" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="cBController4" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbSelectedProfile" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbStatus" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbBattery" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt1" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt2" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt3" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt4" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus4" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="bnLight1" Row="1" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="bnLight2" Row="2" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="bnLight4" Row="4" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="lbLinkProfile" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB1" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB2" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB3" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB4" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,62.29144,Percent,20.02225,Percent,17.68632,Absolute,80,AutoSize,0,AutoSize,0,Absolute,83" /&gt;&lt;Rows Styles="AutoSize,0,Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="bnLight3" Row="3" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbPad1" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC3" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC4" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lbPad3" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad4" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cBController1" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC2" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="cBController2" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController3" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC1" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="cBController4" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbSelectedProfile" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbStatus" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbBattery" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt1" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt2" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt3" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt4" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus4" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="bnLight1" Row="1" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="bnLight2" Row="2" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="bnLight4" Row="4" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="lbLinkProfile" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB1" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB2" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB3" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB4" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,62,29144,Percent,20,02225,Percent,17,68632,Absolute,80,AutoSize,0,AutoSize,0,Absolute,90" /&gt;&lt;Rows Styles="AutoSize,0,Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="&gt;&gt;lbNoControllers.Name" xml:space="preserve">
     <value>lbNoControllers</value>
@@ -1062,24 +1062,6 @@
   <data name="&gt;&gt;cBUpdate.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="cBUpdateTime.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="cBUpdateTime.Items" xml:space="preserve">
-    <value>hours</value>
-  </data>
-  <data name="cBUpdateTime.Items1" xml:space="preserve">
-    <value>days</value>
-  </data>
-  <data name="cBUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 0</value>
-  </data>
-  <data name="cBUpdateTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 21</value>
-  </data>
-  <data name="cBUpdateTime.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
   <data name="&gt;&gt;cBUpdateTime.Name" xml:space="preserve">
     <value>cBUpdateTime</value>
   </data>
@@ -1092,27 +1074,6 @@
   <data name="&gt;&gt;cBUpdateTime.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="lbCheckEvery.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="lbCheckEvery.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbCheckEvery.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbCheckEvery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="lbCheckEvery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
-  </data>
-  <data name="lbCheckEvery.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lbCheckEvery.Text" xml:space="preserve">
-    <value>Check every</value>
-  </data>
   <data name="&gt;&gt;lbCheckEvery.Name" xml:space="preserve">
     <value>lbCheckEvery</value>
   </data>
@@ -1124,18 +1085,6 @@
   </data>
   <data name="&gt;&gt;lbCheckEvery.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="nUDUpdateTime.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="nUDUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 1</value>
-  </data>
-  <data name="nUDUpdateTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="nUDUpdateTime.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
   </data>
   <data name="&gt;&gt;nUDUpdateTime.Name" xml:space="preserve">
     <value>nUDUpdateTime</value>
@@ -1173,27 +1122,6 @@
   <data name="&gt;&gt;pNUpdate.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="lbUseXIPorts.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="lbUseXIPorts.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbUseXIPorts.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbUseXIPorts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="lbUseXIPorts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 13</value>
-  </data>
-  <data name="lbUseXIPorts.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lbUseXIPorts.Text" xml:space="preserve">
-    <value>Use Xinput Ports</value>
-  </data>
   <data name="&gt;&gt;lbUseXIPorts.Name" xml:space="preserve">
     <value>lbUseXIPorts</value>
   </data>
@@ -1206,18 +1134,6 @@
   <data name="&gt;&gt;lbUseXIPorts.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="nUDXIPorts.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="nUDXIPorts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 1</value>
-  </data>
-  <data name="nUDXIPorts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="nUDXIPorts.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
   <data name="&gt;&gt;nUDXIPorts.Name" xml:space="preserve">
     <value>nUDXIPorts</value>
   </data>
@@ -1229,27 +1145,6 @@
   </data>
   <data name="&gt;&gt;nUDXIPorts.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="lbLastXIPort.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="lbLastXIPort.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbLastXIPort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbLastXIPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 3</value>
-  </data>
-  <data name="lbLastXIPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 13</value>
-  </data>
-  <data name="lbLastXIPort.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lbLastXIPort.Text" xml:space="preserve">
-    <value>- 4</value>
   </data>
   <data name="&gt;&gt;lbLastXIPort.Name" xml:space="preserve">
     <value>lbLastXIPort</value>
@@ -1284,26 +1179,38 @@
   <data name="&gt;&gt;pnlXIPorts.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
+  <data name="languagePackComboBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="languagePackComboBox1.InvariantCultureText" xml:space="preserve">
+    <value>No (English UI)</value>
+  </data>
+  <data name="languagePackComboBox1.LabelText" xml:space="preserve">
+    <value>Use language pack</value>
+  </data>
+  <data name="languagePackComboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>274, 89</value>
+  </data>
+  <data name="languagePackComboBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 27</value>
+  </data>
+  <data name="languagePackComboBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="&gt;&gt;languagePackComboBox1.Name" xml:space="preserve">
+    <value>languagePackComboBox1</value>
+  </data>
+  <data name="&gt;&gt;languagePackComboBox1.Type" xml:space="preserve">
+    <value>DS4Windows.DS4Forms.LanguagePackComboBox, DS4Windows, Version=1.4.106.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;languagePackComboBox1.Parent" xml:space="preserve">
+    <value>fLPSettings</value>
+  </data>
+  <data name="&gt;&gt;languagePackComboBox1.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
   <data name="flowLayoutPanel1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="linkProfiles.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkProfiles.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkProfiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
-  </data>
-  <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
-  </data>
-  <data name="linkProfiles.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="linkProfiles.Text" xml:space="preserve">
-    <value>Profile folder</value>
   </data>
   <data name="&gt;&gt;linkProfiles.Name" xml:space="preserve">
     <value>linkProfiles</value>
@@ -1317,24 +1224,6 @@
   <data name="&gt;&gt;linkProfiles.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="lnkControllers.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lnkControllers.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lnkControllers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 13</value>
-  </data>
-  <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
-  </data>
-  <data name="lnkControllers.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="lnkControllers.Text" xml:space="preserve">
-    <value>Control Panel</value>
-  </data>
   <data name="&gt;&gt;lnkControllers.Name" xml:space="preserve">
     <value>lnkControllers</value>
   </data>
@@ -1346,27 +1235,6 @@
   </data>
   <data name="&gt;&gt;lnkControllers.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="linkUninstall.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkUninstall.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkUninstall.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 26</value>
-  </data>
-  <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 13</value>
-  </data>
-  <data name="linkUninstall.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="linkUninstall.Text" xml:space="preserve">
-    <value>Uninstall VBus Driver</value>
-  </data>
-  <data name="linkUninstall.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;linkUninstall.Name" xml:space="preserve">
     <value>linkUninstall</value>
@@ -1380,24 +1248,6 @@
   <data name="&gt;&gt;linkUninstall.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="linkSetup.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkSetup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkSetup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 39</value>
-  </data>
-  <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 13</value>
-  </data>
-  <data name="linkSetup.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
-  </data>
-  <data name="linkSetup.Text" xml:space="preserve">
-    <value>Controller/Driver Setup</value>
-  </data>
   <data name="&gt;&gt;linkSetup.Name" xml:space="preserve">
     <value>linkSetup</value>
   </data>
@@ -1409,27 +1259,6 @@
   </data>
   <data name="&gt;&gt;linkSetup.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="lLBUpdate.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lLBUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lLBUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 52</value>
-  </data>
-  <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 13</value>
-  </data>
-  <data name="lLBUpdate.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="lLBUpdate.Text" xml:space="preserve">
-    <value>Check for Update Now</value>
-  </data>
-  <data name="lLBUpdate.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;lLBUpdate.Name" xml:space="preserve">
     <value>lLBUpdate</value>
@@ -1447,7 +1276,7 @@
     <value>TopDown</value>
   </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 89</value>
+    <value>274, 122</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 65</value>
@@ -1465,7 +1294,7 @@
     <value>fLPSettings</value>
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="fLPSettings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2014,7 +1843,7 @@
     <value>0</value>
   </data>
   <data name="tLPControllers.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="bnLight3" Row="3" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbPad1" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC3" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC4" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lbPad3" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad4" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cBController1" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC2" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="cBController2" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController3" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC1" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="cBController4" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbSelectedProfile" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbStatus" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbBattery" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt1" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt2" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt3" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt4" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus4" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="bnLight1" Row="1" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="bnLight2" Row="2" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="bnLight4" Row="4" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="lbLinkProfile" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB1" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB2" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB3" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB4" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,62.29144,Percent,20.02225,Percent,17.68632,Absolute,80,AutoSize,0,AutoSize,0,Absolute,83" /&gt;&lt;Rows Styles="AutoSize,0,Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="bnLight3" Row="3" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus1" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbPad1" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad2" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC3" Row="3" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC4" Row="4" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="lbPad3" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPad4" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cBController1" Row="1" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC2" Row="2" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="cBController2" Row="2" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="cBController3" Row="3" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="bnEditC1" Row="1" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="cBController4" Row="4" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbSelectedProfile" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="lbID" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbStatus" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbBattery" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt1" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt2" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt3" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="lbBatt4" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus2" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus3" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pBStatus4" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="bnLight1" Row="1" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="bnLight2" Row="2" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="bnLight4" Row="4" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="lbLinkProfile" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB1" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB2" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB3" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="linkCB4" Row="4" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,62,29144,Percent,20,02225,Percent,17,68632,Absolute,80,AutoSize,0,AutoSize,0,Absolute,90" /&gt;&lt;Rows Styles="AutoSize,0,Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="bnLight3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2026,10 +1855,10 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>814, 89</value>
+    <value>807, 89</value>
   </data>
   <data name="bnLight3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 22</value>
+    <value>86, 22</value>
   </data>
   <data name="bnLight3.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -2053,7 +1882,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>396, 34</value>
+    <value>391, 34</value>
   </data>
   <data name="pBStatus1.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -2155,7 +1984,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>774, 89</value>
+    <value>767, 89</value>
   </data>
   <data name="bnEditC3.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 22</value>
@@ -2185,7 +2014,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>774, 117</value>
+    <value>767, 117</value>
   </data>
   <data name="bnEditC4.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 22</value>
@@ -2284,7 +2113,7 @@
     <value>None</value>
   </data>
   <data name="cBController1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>657, 33</value>
+    <value>650, 33</value>
   </data>
   <data name="cBController1.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -2311,7 +2140,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>774, 61</value>
+    <value>767, 61</value>
   </data>
   <data name="bnEditC2.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 22</value>
@@ -2338,7 +2167,7 @@
     <value>None</value>
   </data>
   <data name="cBController2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>657, 61</value>
+    <value>650, 61</value>
   </data>
   <data name="cBController2.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -2362,7 +2191,7 @@
     <value>None</value>
   </data>
   <data name="cBController3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>657, 89</value>
+    <value>650, 89</value>
   </data>
   <data name="cBController3.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -2389,7 +2218,7 @@
     <value>NoControl</value>
   </data>
   <data name="bnEditC1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>774, 33</value>
+    <value>767, 33</value>
   </data>
   <data name="bnEditC1.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 22</value>
@@ -2416,7 +2245,7 @@
     <value>None</value>
   </data>
   <data name="cBController4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>657, 117</value>
+    <value>650, 117</value>
   </data>
   <data name="cBController4.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 21</value>
@@ -2449,7 +2278,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>658, 7</value>
+    <value>651, 7</value>
   </data>
   <data name="lbSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 15</value>
@@ -2521,7 +2350,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 7</value>
+    <value>387, 7</value>
   </data>
   <data name="lbStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 15</value>
@@ -2557,7 +2386,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBattery.Location" type="System.Drawing.Point, System.Drawing">
-    <value>498, 7</value>
+    <value>491, 7</value>
   </data>
   <data name="lbBattery.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 15</value>
@@ -2593,7 +2422,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>504, 36</value>
+    <value>497, 36</value>
   </data>
   <data name="lbBatt1.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -2629,7 +2458,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>504, 64</value>
+    <value>497, 64</value>
   </data>
   <data name="lbBatt2.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -2665,7 +2494,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>504, 92</value>
+    <value>497, 92</value>
   </data>
   <data name="lbBatt3.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -2701,7 +2530,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbBatt4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>504, 120</value>
+    <value>497, 120</value>
   </data>
   <data name="lbBatt4.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 15</value>
@@ -2731,7 +2560,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>396, 62</value>
+    <value>391, 62</value>
   </data>
   <data name="pBStatus2.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -2761,7 +2590,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>396, 90</value>
+    <value>391, 90</value>
   </data>
   <data name="pBStatus3.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -2791,7 +2620,7 @@
     <value>NoControl</value>
   </data>
   <data name="pBStatus4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>396, 118</value>
+    <value>391, 118</value>
   </data>
   <data name="pBStatus4.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -2824,10 +2653,10 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>814, 33</value>
+    <value>807, 33</value>
   </data>
   <data name="bnLight1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 22</value>
+    <value>86, 22</value>
   </data>
   <data name="bnLight1.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -2854,10 +2683,10 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>814, 61</value>
+    <value>807, 61</value>
   </data>
   <data name="bnLight2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 22</value>
+    <value>86, 22</value>
   </data>
   <data name="bnLight2.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
@@ -2884,10 +2713,10 @@
     <value>NoControl</value>
   </data>
   <data name="bnLight4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>814, 117</value>
+    <value>807, 117</value>
   </data>
   <data name="bnLight4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 22</value>
+    <value>86, 22</value>
   </data>
   <data name="bnLight4.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
@@ -2917,7 +2746,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbLinkProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>580, 0</value>
+    <value>573, 0</value>
   </data>
   <data name="lbLinkProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 30</value>
@@ -2956,7 +2785,7 @@
     <value>NoControl</value>
   </data>
   <data name="linkCB1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>606, 37</value>
+    <value>599, 37</value>
   </data>
   <data name="linkCB1.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 14</value>
@@ -2989,7 +2818,7 @@
     <value>NoControl</value>
   </data>
   <data name="linkCB2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>606, 65</value>
+    <value>599, 65</value>
   </data>
   <data name="linkCB2.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 14</value>
@@ -3022,7 +2851,7 @@
     <value>NoControl</value>
   </data>
   <data name="linkCB3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>606, 93</value>
+    <value>599, 93</value>
   </data>
   <data name="linkCB3.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 14</value>
@@ -3055,7 +2884,7 @@
     <value>NoControl</value>
   </data>
   <data name="linkCB4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>606, 121</value>
+    <value>599, 121</value>
   </data>
   <data name="linkCB4.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 14</value>
@@ -3663,6 +3492,339 @@
   <data name="&gt;&gt;cBFlashWhenLate.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="cBUpdateTime.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="cBUpdateTime.Items" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="cBUpdateTime.Items1" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="cBUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 0</value>
+  </data>
+  <data name="cBUpdateTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 21</value>
+  </data>
+  <data name="cBUpdateTime.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="&gt;&gt;cBUpdateTime.Name" xml:space="preserve">
+    <value>cBUpdateTime</value>
+  </data>
+  <data name="&gt;&gt;cBUpdateTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBUpdateTime.Parent" xml:space="preserve">
+    <value>pNUpdate</value>
+  </data>
+  <data name="&gt;&gt;cBUpdateTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lbCheckEvery.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="lbCheckEvery.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbCheckEvery.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbCheckEvery.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="lbCheckEvery.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
+  </data>
+  <data name="lbCheckEvery.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lbCheckEvery.Text" xml:space="preserve">
+    <value>Check every</value>
+  </data>
+  <data name="&gt;&gt;lbCheckEvery.Name" xml:space="preserve">
+    <value>lbCheckEvery</value>
+  </data>
+  <data name="&gt;&gt;lbCheckEvery.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbCheckEvery.Parent" xml:space="preserve">
+    <value>pNUpdate</value>
+  </data>
+  <data name="&gt;&gt;lbCheckEvery.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="nUDUpdateTime.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="nUDUpdateTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>76, 1</value>
+  </data>
+  <data name="nUDUpdateTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="nUDUpdateTime.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;nUDUpdateTime.Name" xml:space="preserve">
+    <value>nUDUpdateTime</value>
+  </data>
+  <data name="&gt;&gt;nUDUpdateTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDUpdateTime.Parent" xml:space="preserve">
+    <value>pNUpdate</value>
+  </data>
+  <data name="&gt;&gt;nUDUpdateTime.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbUseXIPorts.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="lbUseXIPorts.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbUseXIPorts.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbUseXIPorts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="lbUseXIPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="lbUseXIPorts.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lbUseXIPorts.Text" xml:space="preserve">
+    <value>Use Xinput Ports</value>
+  </data>
+  <data name="&gt;&gt;lbUseXIPorts.Name" xml:space="preserve">
+    <value>lbUseXIPorts</value>
+  </data>
+  <data name="&gt;&gt;lbUseXIPorts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbUseXIPorts.Parent" xml:space="preserve">
+    <value>pnlXIPorts</value>
+  </data>
+  <data name="&gt;&gt;lbUseXIPorts.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="nUDXIPorts.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="nUDXIPorts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 1</value>
+  </data>
+  <data name="nUDXIPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="nUDXIPorts.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;nUDXIPorts.Name" xml:space="preserve">
+    <value>nUDXIPorts</value>
+  </data>
+  <data name="&gt;&gt;nUDXIPorts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDXIPorts.Parent" xml:space="preserve">
+    <value>pnlXIPorts</value>
+  </data>
+  <data name="&gt;&gt;nUDXIPorts.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lbLastXIPort.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="lbLastXIPort.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbLastXIPort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbLastXIPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 3</value>
+  </data>
+  <data name="lbLastXIPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 13</value>
+  </data>
+  <data name="lbLastXIPort.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lbLastXIPort.Text" xml:space="preserve">
+    <value>- 4</value>
+  </data>
+  <data name="&gt;&gt;lbLastXIPort.Name" xml:space="preserve">
+    <value>lbLastXIPort</value>
+  </data>
+  <data name="&gt;&gt;lbLastXIPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbLastXIPort.Parent" xml:space="preserve">
+    <value>pnlXIPorts</value>
+  </data>
+  <data name="&gt;&gt;lbLastXIPort.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="linkProfiles.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkProfiles.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="linkProfiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="linkProfiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
+  </data>
+  <data name="linkProfiles.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="linkProfiles.Text" xml:space="preserve">
+    <value>Profile folder</value>
+  </data>
+  <data name="&gt;&gt;linkProfiles.Name" xml:space="preserve">
+    <value>linkProfiles</value>
+  </data>
+  <data name="&gt;&gt;linkProfiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkProfiles.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;linkProfiles.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lnkControllers.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lnkControllers.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lnkControllers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 13</value>
+  </data>
+  <data name="lnkControllers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="lnkControllers.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="lnkControllers.Text" xml:space="preserve">
+    <value>Control Panel</value>
+  </data>
+  <data name="&gt;&gt;lnkControllers.Name" xml:space="preserve">
+    <value>lnkControllers</value>
+  </data>
+  <data name="&gt;&gt;lnkControllers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lnkControllers.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lnkControllers.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="linkUninstall.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkUninstall.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="linkUninstall.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 26</value>
+  </data>
+  <data name="linkUninstall.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 13</value>
+  </data>
+  <data name="linkUninstall.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="linkUninstall.Text" xml:space="preserve">
+    <value>Uninstall VBus Driver</value>
+  </data>
+  <data name="linkUninstall.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;linkUninstall.Name" xml:space="preserve">
+    <value>linkUninstall</value>
+  </data>
+  <data name="&gt;&gt;linkUninstall.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkUninstall.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;linkUninstall.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="linkSetup.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkSetup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="linkSetup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 39</value>
+  </data>
+  <data name="linkSetup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 13</value>
+  </data>
+  <data name="linkSetup.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="linkSetup.Text" xml:space="preserve">
+    <value>Controller/Driver Setup</value>
+  </data>
+  <data name="&gt;&gt;linkSetup.Name" xml:space="preserve">
+    <value>linkSetup</value>
+  </data>
+  <data name="&gt;&gt;linkSetup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkSetup.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;linkSetup.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lLBUpdate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lLBUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lLBUpdate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 52</value>
+  </data>
+  <data name="lLBUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 13</value>
+  </data>
+  <data name="lLBUpdate.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="lLBUpdate.Text" xml:space="preserve">
+    <value>Check for Update Now</value>
+  </data>
+  <data name="lLBUpdate.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lLBUpdate.Name" xml:space="preserve">
+    <value>lLBUpdate</value>
+  </data>
+  <data name="&gt;&gt;lLBUpdate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lLBUpdate.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lLBUpdate.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="&gt;&gt;exportLogTxtBtn.Name" xml:space="preserve">
     <value>exportLogTxtBtn</value>
   </data>
@@ -4063,7 +4225,7 @@
     <value>advColorDialog</value>
   </data>
   <data name="&gt;&gt;advColorDialog.Type" xml:space="preserve">
-    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.101.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DS4Windows.AdvancedColorDialog, DS4Windows, Version=1.4.106.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>DS4Form</value>

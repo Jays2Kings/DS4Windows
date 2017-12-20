@@ -13,10 +13,8 @@ namespace DS4Windows.DS4Forms
 {
     public partial class LanguagePackComboBox : UserControl
     {
-        private string _invariantCultureText = "No (English UI)";
-        private string _languageAssemblyName = "DS4Windows.resources.dll";
-        private TaskCompletionSource<bool> _languageListInitialized = new TaskCompletionSource<bool>();
-        private string _probingPath = "";
+        private string InvariantCultureTextValue = "No (English UI)";
+        private TaskCompletionSource<bool> LanguageListInitialized = new TaskCompletionSource<bool>();
 
         [Category("Action")]
         [Description("Fires when the combo box selected index is changed.")]
@@ -31,10 +29,10 @@ namespace DS4Windows.DS4Forms
         [Localizable(true)]
         public string InvariantCultureText
         {
-            get { return _invariantCultureText; }
+            get { return InvariantCultureTextValue; }
             [System.Diagnostics.CodeAnalysis.SuppressMessage("InvariantCultureText_Changed call will complete when ready, no need for a warning", "CS4014:Await.Warning")]
             set {
-                _invariantCultureText = value;
+                InvariantCultureTextValue = value;
                 InvariantCultureText_Changed(value);
             }
         }
@@ -49,19 +47,11 @@ namespace DS4Windows.DS4Forms
 
         [Category("Data")]
         [Description("If probing path has been changed in App.config, add the same string here.")]
-        public string ProbingPath
-        {
-            get { return _probingPath; }
-            set { _probingPath = value; }
-        }
+        public string ProbingPath { get; set; } = "";
 
         [Category("Data")]
         [Description("Filter language assembly file names in order to ont include irrelevant assemblies to the combo box.")]
-        public string LanguageAssemblyName
-        {
-            get { return _languageAssemblyName; }
-            set { _languageAssemblyName = value; }
-        }
+        public string LanguageAssemblyName { get; set; } = "DS4Windows.resources.dll";
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int SelectedIndex
@@ -99,7 +89,7 @@ namespace DS4Windows.DS4Forms
                 cbCulture.SelectedValueChanged += new EventHandler(CbCulture_SelectedValueChanged);
 
                 cbCulture.Enabled = true;
-                _languageListInitialized.SetResult(true);
+                LanguageListInitialized.SetResult(true);
             });
         }
 
@@ -133,7 +123,7 @@ namespace DS4Windows.DS4Forms
         private async Task InvariantCultureText_Changed(string value)
         {
             // Normally the completion flag will be long set by the time this method is called.
-            await _languageListInitialized.Task;
+            await LanguageListInitialized.Task;
             BindingSource dataSource = ((BindingSource)cbCulture.DataSource);
             dataSource[0] = new KeyValuePair<string, string>("", value);
         }

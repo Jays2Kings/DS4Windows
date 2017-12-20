@@ -144,8 +144,14 @@
   <data name="Browse" xml:space="preserve">
     <value>Обзор…</value>
   </data>
+  <data name="CannotMoveFiles" xml:space="preserve">
+    <value>Невозможно переместить файлы в новое место. Пожалуйста переименуйте папку с DS4Tool в "DS4Windows"</value>
+  </data>
   <data name="CannotWriteHere" xml:space="preserve">
     <value>Невозможно записать в текущее местоположение. Скопировать настройки в AppData?</value>
+  </data>
+  <data name="ChargeController" xml:space="preserve">
+    <value>Зарядите батарею</value>
   </data>
   <data name="Charged" xml:space="preserve">
     <value>Заряжено</value>
@@ -231,6 +237,9 @@
   <data name="FallBack" xml:space="preserve">
     <value>Вернуть</value>
   </data>
+  <data name="FallBackTo" xml:space="preserve">
+    <value>Вернуть на *button*</value>
+  </data>
   <data name="FifthMouseDown" xml:space="preserve">
     <value>5-я кнопка мыши Вниз</value>
   </data>
@@ -291,6 +300,9 @@
   <data name="InstallDriver" xml:space="preserve">
     <value>Установите этот драйвер</value>
   </data>
+  <data name="InstallFailed" xml:space="preserve">
+    <value>Установка не удалась. Пожалуйста повторите</value>
+  </data>
   <data name="Installing" xml:space="preserve">
     <value>Установка...</value>
   </data>
@@ -299,6 +311,9 @@
   </data>
   <data name="KeepThisSize" xml:space="preserve">
     <value>Запоминать размер окна после закрытия</value>
+  </data>
+  <data name="LanguagePackApplyRestartRequired" xml:space="preserve">
+    <value>Выбранный языковой пакет будет применен после перезапуска приложения DS4Windows.</value>
   </data>
   <data name="LatencyNotOverTen" xml:space="preserve">
     <value>Задержка *number*-го контроллера сейчас меньше 10 мс</value>
@@ -426,6 +441,9 @@
   <data name="StopLText" xml:space="preserve">
     <value>Ост. лёгкий</value>
   </data>
+  <data name="StoppedDS4Tool" xml:space="preserve">
+    <value>Остановлена работа DS4Windows</value>
+  </data>
   <data name="StoppedDS4Windows" xml:space="preserve">
     <value>Остановлена работа DS4Windows</value>
   </data>
@@ -462,6 +480,12 @@
   <data name="TestLText" xml:space="preserve">
     <value>Тест. лёгкого</value>
   </data>
+  <data name="TestText" xml:space="preserve">
+    <value>Проверка</value>
+  </data>
+  <data name="TextDocs" xml:space="preserve">
+    <value>Текстовый документ (*.txt)</value>
+  </data>
   <data name="TiltDown" xml:space="preserve">
     <value>Накл. вниз</value>
   </data>
@@ -491,6 +515,9 @@
   </data>
   <data name="TypeProfileName" xml:space="preserve">
     <value>введите сюда имя профиля</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>Не назначено</value>
   </data>
   <data name="UpText" xml:space="preserve">
     <value>Вверх</value>
@@ -525,31 +552,7 @@
   <data name="XinputPorts" xml:space="preserve">
     <value>Используйте иной порт, если у вас возникла проблема с другой программой эмулятора контроллера X360, такой как SCP's tool</value>
   </data>
-  <data name="StoppedDS4Tool" xml:space="preserve">
-    <value>Остановлена работа DS4Windows</value>
-  </data>
-  <data name="TextDocs" xml:space="preserve">
-    <value>Текстовый документ (*.txt)</value>
-  </data>
-  <data name="CannotMoveFiles" xml:space="preserve">
-    <value>Невозможно переместить файлы в новое место. Пожалуйста переименуйте папку с DS4Tool в "DS4Windows"</value>
-  </data>
-  <data name="ChargeController" xml:space="preserve">
-    <value>Зарядите батарею</value>
-  </data>
-  <data name="FallBackTo" xml:space="preserve">
-    <value>Вернуть на *button*</value>
-  </data>
-  <data name="InstallFailed" xml:space="preserve">
-    <value>Установка не удалась. Пожалуйста повторите</value>
-  </data>
-  <data name="Unassigned" xml:space="preserve">
-    <value>Не назначено</value>
-  </data>
   <data name="XMLFiles" xml:space="preserve">
     <value>XML-файлы (*.xml)</value>
-  </data>
-  <data name="TestText" xml:space="preserve">
-    <value>Проверка</value>
   </data>
 </root>

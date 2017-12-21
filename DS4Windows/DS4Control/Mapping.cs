@@ -917,8 +917,8 @@ namespace DS4Windows
             bool sOff = tempBool = isUsingSAforMouse(device);
             if (sOff == false)
             {
-                int SXD = (int)(10d * getSXDeadzone(device));
-                int SZD = (int)(10d * getSZDeadzone(device));
+                int SXD = (int)(128d * getSXDeadzone(device));
+                int SZD = (int)(128d * getSZDeadzone(device));
                 double SXMax = getSXMaxzone(device);
                 double SZMax = getSZMaxzone(device);
                 double sxAntiDead = getSXAntiDeadzone(device);

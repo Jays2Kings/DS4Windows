@@ -12,8 +12,8 @@ Currently used to delay hotplug routine
 * Attempt to remove more unused components
 * ~~Tweak layout of some forms~~
 * Look into updating HidLibrary
-* Trim code execution for touchpad data. Remove unneeded new calls for Touch
-instances. Make permanent instances and reuse those instances.
+* ~~Trim code execution for touchpad data. Remove unneeded new calls for Touch
+instances. Make permanent instances and reuse those instances.~~
 * Tweak SixAxis code to attempt to improve steering wheel performance
 for racing games. It is already a better experience than what the Steam
 Controller offers though.

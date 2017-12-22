@@ -18,6 +18,6 @@ instances. Make permanent instances and reuse those instances.
 for racing games. It is already a better experience than what the Steam
 Controller offers though.
 * Possibly lower Enhanced Precision sensitivity by a notch
-* Look into updating Task Scheduler to latest version
+* ~~Look into updating Task Scheduler to latest version~~
 * Look into trackball emulation methods and attempt to implement it
 

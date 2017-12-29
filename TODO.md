@@ -4,8 +4,8 @@
 workaround, write template AffectedDevices file
 * Perform some final cleanup and release version 1.5. Unfortunately,
 it won't happen in 2017. Maybe version 1.5 will be ready by January 2018.
-* Experiment with ViGEm driver. This would be easier to test on my old
-C++ test application before attempting to work it into DS4Windows.
+* ~~Experiment with ViGEm driver. This would be easier to test on my old
+C++ test application before attempting to work it into DS4Windows.~~
 * Attempt to work out BT disconnect issues by looking at older versions
 * Attempt to remove reliance on the main thread when disconnecting a device.
 Currently used to delay hotplug routine

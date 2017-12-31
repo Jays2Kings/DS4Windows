@@ -326,14 +326,14 @@ namespace DS4Windows
                             device.SerialChange += this.On_SerialChange;
                             if (device.isValidSerial() && containsLinkedProfile(device.getMacAddress()))
                             {
-                                ProfilePath[i] = getLinkedProfile(device.getMacAddress());
+                                ProfilePath[Index] = getLinkedProfile(device.getMacAddress());
                             }
                             else
                             {
-                                ProfilePath[i] = OlderProfilePath[i];
+                                ProfilePath[Index] = OlderProfilePath[Index];
                             }
 
-                            LoadProfile(i, false, this, false, false);
+                            LoadProfile(Index, false, this, false, false);
                             touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = getMainColor(Index);
                             device.Report += this.On_Report;

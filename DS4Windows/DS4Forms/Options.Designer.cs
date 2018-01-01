@@ -383,6 +383,9 @@
             this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trackballCk = new System.Windows.Forms.CheckBox();
+            this.trackFrictionNUD = new System.Windows.Forms.NumericUpDown();
+            this.trackFrictionLb = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -476,6 +479,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
             this.cMTouchDisableInvert.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackFrictionNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -932,6 +936,9 @@
             // 
             // pnlTPMouse
             // 
+            this.pnlTPMouse.Controls.Add(this.trackFrictionLb);
+            this.pnlTPMouse.Controls.Add(this.trackFrictionNUD);
+            this.pnlTPMouse.Controls.Add(this.trackballCk);
             this.pnlTPMouse.Controls.Add(this.touchpadDisInvertButton);
             this.pnlTPMouse.Controls.Add(this.label25);
             this.pnlTPMouse.Controls.Add(this.label15);
@@ -4074,6 +4081,30 @@
             resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
             this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
             // 
+            // trackballCk
+            // 
+            resources.ApplyResources(this.trackballCk, "trackballCk");
+            this.trackballCk.Name = "trackballCk";
+            this.trackballCk.UseVisualStyleBackColor = true;
+            this.trackballCk.CheckedChanged += new System.EventHandler(this.trackballCk_CheckedChanged);
+            // 
+            // trackFrictionNUD
+            // 
+            this.trackFrictionNUD.DecimalPlaces = 1;
+            resources.ApplyResources(this.trackFrictionNUD, "trackFrictionNUD");
+            this.trackFrictionNUD.Name = "trackFrictionNUD";
+            this.trackFrictionNUD.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.trackFrictionNUD.ValueChanged += new System.EventHandler(this.trackFrictionNUD_ValueChanged);
+            // 
+            // trackFrictionLb
+            // 
+            resources.ApplyResources(this.trackFrictionLb, "trackFrictionLb");
+            this.trackFrictionLb.Name = "trackFrictionLb";
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -4196,6 +4227,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
             this.cMTouchDisableInvert.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackFrictionNUD)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4558,5 +4590,8 @@
         private System.Windows.Forms.ToolStripMenuItem psTouchInvStripMenuItem;
         private System.Windows.Forms.Button touchpadDisInvertButton;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label trackFrictionLb;
+        private System.Windows.Forms.NumericUpDown trackFrictionNUD;
+        private System.Windows.Forms.CheckBox trackballCk;
     }
 }

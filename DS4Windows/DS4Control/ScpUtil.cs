@@ -543,7 +543,7 @@ namespace DS4Windows
             return m_Config.chargingType[index];
         }
 
-        public static bool[] DinputOnly => m_Config.dinputOnly; 
+        public static bool[] DinputOnly => m_Config.dinputOnly;
         public static bool getDInputOnly(int index)
         {
             return m_Config.dinputOnly[index];
@@ -654,7 +654,16 @@ namespace DS4Windows
         }
 
         public static byte[] TapSensitivity => m_Config.tapSensitivity;
+        public static byte getTapSensitivity(int index)
+        {
+            return m_Config.tapSensitivity[index];
+        }
+
         public static bool[] DoubleTap => m_Config.doubleTap;
+        public static bool getDoubleTap(int index)
+        {
+            return m_Config.doubleTap[index];
+        }
 
         public static int[] ScrollSensitivity => m_Config.scrollSensitivity;
         public static int[] getScrollSensitivity()
@@ -893,6 +902,18 @@ namespace DS4Windows
         public static int getSZOutCurveMode(int index)
         {
             return m_Config.szOutCurveMode[index];
+        }
+
+        public static bool[] TrackballMode => m_Config.trackballMode;
+        public static bool getTrackballMode(int index)
+        {
+            return m_Config.trackballMode[index];
+        }
+
+        public static double[] TrackballFriction => m_Config.trackballFriction;
+        public static double getTrackballFriction(int index)
+        {
+            return m_Config.trackballFriction[index];
         }
 
         public static string[] LaunchProgram => m_Config.launchProgram;
@@ -1362,6 +1383,8 @@ namespace DS4Windows
         public bool[] gyroSmoothing = new bool[5] { false, false, false, false, false };
         public double[] gyroSmoothWeight = new double[5] { 0.5, 0.5, 0.5, 0.5, 0.5 };
         public int[] gyroMouseHorizontalAxis = new int[5] { 0, 0, 0, 0, 0 };
+        public bool[] trackballMode = new bool[5] { false, false, false, false, false };
+        public double[] trackballFriction = new double[5] { 10.0, 10.0, 10.0, 10.0, 10.0 };
 
         bool tempBool = false;
 
@@ -1551,6 +1574,9 @@ namespace DS4Windows
 
                 XmlNode xmlSXOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "SXOutputCurveMode", null); xmlSXOutputCurveMode.InnerText = axisOutputCurveString(sxOutCurveMode[device]); Node.AppendChild(xmlSXOutputCurveMode);
                 XmlNode xmlSZOutputCurveMode = m_Xdoc.CreateNode(XmlNodeType.Element, "SZOutputCurveMode", null); xmlSZOutputCurveMode.InnerText = axisOutputCurveString(szOutCurveMode[device]); Node.AppendChild(xmlSZOutputCurveMode);
+
+                XmlNode xmlTrackBallMode = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballMode", null); xmlTrackBallMode.InnerText = trackballMode[device].ToString(); Node.AppendChild(xmlTrackBallMode);
+                XmlNode xmlTrackBallFriction = m_Xdoc.CreateNode(XmlNodeType.Element, "TrackballFriction", null); xmlTrackBallFriction.InnerText = trackballFriction[device].ToString(); Node.AppendChild(xmlTrackBallFriction);
 
                 XmlNode NodeControl = m_Xdoc.CreateNode(XmlNodeType.Element, "Control", null);
                 XmlNode Key = m_Xdoc.CreateNode(XmlNodeType.Element, "Key", null);
@@ -2476,6 +2502,12 @@ namespace DS4Windows
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZOutputCurveMode"); szOutCurveMode[device] = axisOutputCurveId(Item.InnerText); }
                 catch { szOutCurveMode[device] = 0; missingSetting = true; }
 
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TrackballMode"); bool.TryParse(Item.InnerText, out trackballMode[device]); }
+                catch { trackballMode[device] = false; missingSetting = true; }
+
+                try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/TrackballFriction"); double.TryParse(Item.InnerText, out trackballFriction[device]); }
+                catch { trackballFriction[device] = 10.0; missingSetting = true; }
+
                 try
                 {
                     Item = m_Xdoc.SelectSingleNode("/" + rootname + "/ProfileActions");
@@ -2725,6 +2757,8 @@ namespace DS4Windows
                         tempDev.setIdleTimeout(idleDisconnectTimeout[device]);
                         tempDev.setBTPollRate(btPollRate[device]);
                     });
+
+                    Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);
                 }
             }
 
@@ -3547,6 +3581,8 @@ namespace DS4Windows
             l2OutCurveMode[device] = 0;
             r2OutCurveMode[device] = 0;
             sxOutCurveMode[device] = szOutCurveMode[device] = 0;
+            trackballMode[device] = false;
+            trackballFriction[device] = 10.0;
         }
     }
 

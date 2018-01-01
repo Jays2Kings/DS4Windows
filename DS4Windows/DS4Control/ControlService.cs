@@ -385,6 +385,7 @@ namespace DS4Windows
         {
             device.setIdleTimeout(getIdleDisconnectTimeout(ind));
             device.setBTPollRate(getBTPollRate(ind));
+            touchPad[ind].ResetTrackAccel((int)getTrackballFriction(ind));
 
             if (!startUp)
             {

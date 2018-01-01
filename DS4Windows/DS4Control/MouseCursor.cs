@@ -31,6 +31,8 @@ namespace DS4Windows
         private double[] ySmoothBuffer = new double[SMOOTH_BUFFER_LEN];
         private int smoothBufferTail = 0;
 
+        
+
         double coefficient = 0.0;
         double verticalScale = 0.0;
         bool gyroSmooth = false;
@@ -194,6 +196,7 @@ namespace DS4Windows
             {
                 horizontalRemainder = verticalRemainder = 0.0;
                 horizontalDirection = verticalDirection = Direction.Neutral;
+
             }
         }
 
@@ -226,19 +229,24 @@ namespace DS4Windows
                 }
             }
 
-            double tempAngle = Math.Atan2(-deltaY, deltaX);
+            TouchMoveCursor(deltaX, deltaY, disableInvert);
+        }
+
+        public void TouchMoveCursor(int dx, int dy, bool disableInvert = false)
+        {
+            double tempAngle = Math.Atan2(-dy, dx);
             double normX = Math.Abs(Math.Cos(tempAngle));
             double normY = Math.Abs(Math.Sin(tempAngle));
-            int signX = Math.Sign(deltaX);
-            int signY = Math.Sign(deltaY);
+            int signX = Math.Sign(dx);
+            int signY = Math.Sign(dy);
             double coefficient = Global.getTouchSensitivity(deviceNumber) * 0.01;
             bool jitterCompenstation = Global.getTouchpadJitterCompensation(deviceNumber);
 
-            double xMotion = deltaX != 0 ?
-                coefficient * deltaX + (normX * (TOUCHPAD_MOUSE_OFFSET * signX)) : 0.0;
+            double xMotion = dx != 0 ?
+                coefficient * dx + (normX * (TOUCHPAD_MOUSE_OFFSET * signX)) : 0.0;
 
-            double yMotion = deltaY != 0 ?
-                coefficient * deltaY + (normY * (TOUCHPAD_MOUSE_OFFSET * signY)) : 0.0;
+            double yMotion = dy != 0 ?
+                coefficient * dy + (normY * (TOUCHPAD_MOUSE_OFFSET * signY)) : 0.0;
 
             if (jitterCompenstation)
             {

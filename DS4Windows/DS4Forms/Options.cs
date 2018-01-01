@@ -624,6 +624,12 @@ namespace DS4Windows
                 nUDLSCurve.Value = LSCurve[device];
                 nUDRSCurve.Value = RSCurve[device];
                 cBControllerInput.Checked = DS4Mapping;
+                trackballCk.Checked = TrackballMode[device];
+                trackFrictionNUD.Value = (decimal)TrackballFriction[device];
+                if (device < 4)
+                {
+                    Program.rootHub.touchPad[device]?.ResetTrackAccel(TrackballFriction[device]);
+                }
 
                 for (int i = 0, arlen = cMGyroTriggers.Items.Count; i < arlen; i++)
                 {
@@ -785,6 +791,12 @@ namespace DS4Windows
                 nUDLSCurve.Value = 0;
                 nUDRSCurve.Value = 0;
                 cBControllerInput.Checked = DS4Mapping;
+                trackballCk.Checked = false;
+                trackFrictionNUD.Value = 10.0m;
+                if (device < 4)
+                {
+                    Program.rootHub.touchPad[device]?.ResetTrackAccel(10.0);
+                }
 
                 for (int i = 0, arlen = cMGyroTriggers.Items.Count - 1; i < arlen; i++)
                 {
@@ -1290,6 +1302,12 @@ namespace DS4Windows
             pnlSAMouse.Visible = rBSAMouse.Checked;
             fLPTiltControls.Visible = rBSAControls.Checked;
             fLPTouchSwipe.Visible = rBTPControls.Checked;
+            TrackballMode[device] = trackballCk.Checked;
+            TrackballFriction[device] = (double)trackFrictionNUD.Value;
+            if (device < 4)
+            {
+                Program.rootHub.touchPad[device]?.ResetTrackAccel(TrackballFriction[device]);
+            }
 
             GyroSensitivity[device] = (int)Math.Round(nUDGyroSensitivity.Value, 0);
             GyroTriggerTurns[device] = gyroTriggerBehavior.Checked;
@@ -2965,6 +2983,26 @@ namespace DS4Windows
         private void pnlController_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawImage(pnlControllerBgImg, 0, 0, Convert.ToInt32(pnlController.Width), Convert.ToInt32(pnlController.Height - 1));
+        }
+
+        private void trackballCk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                TrackballMode[device] = trackballCk.Checked;
+            }
+        }
+
+        private void trackFrictionNUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (loading == false)
+            {
+                TrackballFriction[device] = (double)trackFrictionNUD.Value;
+                if (device < 4)
+                {
+                    Program.rootHub.touchPad[device]?.ResetTrackAccel(TrackballFriction[device]);
+                }
+            }
         }
 
         private void btnLightbar_Paint(object sender, PaintEventArgs e)

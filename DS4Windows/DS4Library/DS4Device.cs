@@ -845,6 +845,27 @@ namespace DS4Windows
                     //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> power subsystem octet: 0x" + inputReport[30].ToString("x02"));
                 }
 
+                tempStamp = (uint)((ushort)(inputReport[11] << 8) | inputReport[10]);
+                if (timeStampInit == false)
+                {
+                    timeStampInit = true;
+                    deltaTimeCurrent = tempStamp * 16u / 3u;
+                }
+                else if (timeStampPrevious > tempStamp)
+                {
+                    tempDelta = ushort.MaxValue - timeStampPrevious + tempStamp + 1u;
+                    deltaTimeCurrent = tempDelta * 16u / 3u;
+                }
+                else
+                {
+                    tempDelta = tempStamp - timeStampPrevious;
+                    deltaTimeCurrent = tempDelta * 16u / 3u;
+                }
+
+                timeStampPrevious = tempStamp;
+                elapsedDeltaTime = 0.000001 * deltaTimeCurrent; // Convert from microseconds to seconds
+                cState.elapsedTime = elapsedDeltaTime;
+
                 // XXX DS4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
                 try
                 {
@@ -868,27 +889,6 @@ namespace DS4Windows
                     }
                 }
                 catch { currerror = "Index out of bounds: touchpad"; }
-
-                tempStamp = (uint)((ushort)(inputReport[11] << 8) | inputReport[10]);
-                if (timeStampInit == false)
-                {
-                    timeStampInit = true;
-                    deltaTimeCurrent = tempStamp * 16u / 3u;
-                }
-                else if (timeStampPrevious > tempStamp)
-                {
-                    tempDelta = ushort.MaxValue - timeStampPrevious + tempStamp + 1u;
-                    deltaTimeCurrent = tempDelta * 16u / 3u;
-                }
-                else
-                {
-                    tempDelta = tempStamp - timeStampPrevious;
-                    deltaTimeCurrent = tempDelta * 16u / 3u;
-                }
-
-                cState.elapsedMicroSec = deltaTimeCurrent;
-                timeStampPrevious = tempStamp;
-                elapsedDeltaTime = 0.000001 * deltaTimeCurrent; // Convert from microseconds to seconds
 
                 // Store Gyro and Accel values
                 Array.Copy(inputReport, 13, gyro, 0, 6);

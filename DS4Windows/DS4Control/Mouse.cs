@@ -141,8 +141,8 @@ namespace DS4Windows
                 if (Global.getTrackballMode(deviceNum))
                 {
                     int iIndex = trackballBufferTail;
-                    trackballXBuffer[iIndex] = (arg.touches[0].deltaX * TRACKBALL_SCALE) / dev.getCurrentStateRef().Motion.elapsed;
-                    trackballYBuffer[iIndex] = (arg.touches[0].deltaY * TRACKBALL_SCALE) / dev.getCurrentStateRef().Motion.elapsed;
+                    trackballXBuffer[iIndex] = (arg.touches[0].deltaX * TRACKBALL_SCALE) / dev.getCurrentStateRef().elapsedTime;
+                    trackballYBuffer[iIndex] = (arg.touches[0].deltaY * TRACKBALL_SCALE) / dev.getCurrentStateRef().elapsedTime;
                     trackballBufferTail = (iIndex + 1) % TRACKBALL_BUFFER_LEN;
                     if (trackballBufferHead == trackballBufferTail)
                         trackballBufferHead = (trackballBufferHead + 1) % TRACKBALL_BUFFER_LEN;
@@ -284,12 +284,12 @@ namespace DS4Windows
                         int signX = Math.Sign(trackballXVel);
                         int signY = Math.Sign(trackballYVel);
                         
-                        double trackXvDecay = Math.Min(Math.Abs(trackballXVel), trackballAccel * s.Motion.elapsed * normX);
-                        double trackYvDecay = Math.Min(Math.Abs(trackballYVel), trackballAccel * s.Motion.elapsed * normY);
+                        double trackXvDecay = Math.Min(Math.Abs(trackballXVel), trackballAccel * s.elapsedTime * normX);
+                        double trackYvDecay = Math.Min(Math.Abs(trackballYVel), trackballAccel * s.elapsedTime * normY);
                         double xVNew = trackballXVel - (trackXvDecay * signX);
                         double yVNew = trackballYVel - (trackYvDecay * signY);
-                        double xMotion = (xVNew * s.Motion.elapsed) / TRACKBALL_SCALE;
-                        double yMotion = (yVNew * s.Motion.elapsed) / TRACKBALL_SCALE;
+                        double xMotion = (xVNew * s.elapsedTime) / TRACKBALL_SCALE;
+                        double yMotion = (yVNew * s.elapsedTime) / TRACKBALL_SCALE;
                         if (xMotion != 0.0)
                         {
                             xMotion += trackballDXRemain;
@@ -363,12 +363,12 @@ namespace DS4Windows
                     double normY = Math.Abs(Math.Sin(tempAngle));
                     int signX = Math.Sign(trackballXVel);
                     int signY = Math.Sign(trackballYVel);
-                    double trackXvDecay = Math.Min(Math.Abs(trackballXVel), trackballAccel * s.Motion.elapsed * normX);
-                    double trackYvDecay = Math.Min(Math.Abs(trackballYVel), trackballAccel * s.Motion.elapsed * normY);
+                    double trackXvDecay = Math.Min(Math.Abs(trackballXVel), trackballAccel * s.elapsedTime * normX);
+                    double trackYvDecay = Math.Min(Math.Abs(trackballYVel), trackballAccel * s.elapsedTime * normY);
                     double xVNew = trackballXVel - (trackXvDecay * signX);
                     double yVNew = trackballYVel - (trackYvDecay * signY);
-                    double xMotion = (xVNew * s.Motion.elapsed) / TRACKBALL_SCALE;
-                    double yMotion = (yVNew * s.Motion.elapsed) / TRACKBALL_SCALE;
+                    double xMotion = (xVNew * s.elapsedTime) / TRACKBALL_SCALE;
+                    double yMotion = (yVNew * s.elapsedTime) / TRACKBALL_SCALE;
                     if (xMotion != 0.0)
                     {
                         xMotion += trackballDXRemain;

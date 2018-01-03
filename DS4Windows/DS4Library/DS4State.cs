@@ -23,7 +23,7 @@ namespace DS4Windows
         public double LYUnit;
         public double RXUnit;
         public double RYUnit;
-        public uint elapsedMicroSec = 0;
+        public double elapsedTime = 0.0;
         public SixAxis Motion = null;
         public static readonly int DEFAULT_AXISDIR_VALUE = 127;
 
@@ -47,7 +47,7 @@ namespace DS4Windows
             LYUnit = 0.0;
             RXUnit = 0.0;
             RYUnit = 0.0;
-            elapsedMicroSec = 0;
+            elapsedTime = 0.0;
             Motion = new SixAxis(0, 0, 0, 0, 0, 0, 0.0);
         }
 
@@ -95,7 +95,7 @@ namespace DS4Windows
             LYUnit = state.LYUnit;
             RXUnit = state.RXUnit;
             RYUnit = state.RYUnit;
-            elapsedMicroSec = state.elapsedMicroSec;
+            elapsedTime = state.elapsedTime;
             Motion = state.Motion;
         }
 
@@ -148,7 +148,7 @@ namespace DS4Windows
             state.LYUnit = LYUnit;
             state.RXUnit = RXUnit;
             state.RYUnit = RYUnit;
-            state.elapsedMicroSec = elapsedMicroSec;
+            state.elapsedTime = elapsedTime;
             state.Motion = Motion;
         }
 

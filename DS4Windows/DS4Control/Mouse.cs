@@ -25,13 +25,12 @@ namespace DS4Windows
         protected Mapping.Click clicked = Mapping.Click.None;
 
         internal const int TRACKBALL_INIT_FICTION = 10;
-        internal const int TRACKBALL_MASS = 80;
+        internal const int TRACKBALL_MASS = 45;
         internal const double TRACKBALL_RADIUS = 0.0245;
-        internal const double TRACKBALL_DEGREE = 40.0;
 
         private double TRACKBALL_INERTIA = 2.0 * (TRACKBALL_MASS * TRACKBALL_RADIUS * TRACKBALL_RADIUS) / 5.0;
         private double TRACKBALL_SCALE = 0.004;
-        private const int TRACKBALL_BUFFER_LEN = 6;
+        private const int TRACKBALL_BUFFER_LEN = 8;
         private double[] trackballXBuffer = new double[TRACKBALL_BUFFER_LEN];
         private double[] trackballYBuffer = new double[TRACKBALL_BUFFER_LEN];
         private int trackballBufferTail = 0;

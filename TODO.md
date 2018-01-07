@@ -14,9 +14,9 @@ Currently used to delay hotplug routine
 * Look into updating HidLibrary
 * ~~Trim code execution for touchpad data. Remove unneeded new calls for Touch
 instances. Make permanent instances and reuse those instances.~~
-* Tweak SixAxis code to attempt to improve steering wheel performance
+* ~~Tweak SixAxis code to attempt to improve steering wheel performance
 for racing games. It is already a better experience than what the Steam
-Controller offers though.
+Controller offers though.~~
 * Possibly lower Enhanced Precision sensitivity by a notch
 * ~~Look into updating Task Scheduler to latest version~~
 * Look into trackball emulation methods and attempt to implement it
@@ -24,4 +24,6 @@ Controller offers though.
 rather than using a lot of getters to obtain properties each poll.
 It will complicate the architecture a little bit but hopefully
 any speed difference will make up for it.
+* Remove old welcome dialog and make new driver installer executable.
+Use newer standards (WPF) and bundle app with DS4Windows
 

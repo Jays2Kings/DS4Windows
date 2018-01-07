@@ -2031,6 +2031,9 @@ namespace DS4Windows
             else
                 profilepath = propath;
 
+            bool xinputPlug = false;
+            bool xinputStatus = false;
+
             if (File.Exists(profilepath))
             {
                 XmlNode Item;
@@ -2385,25 +2388,17 @@ namespace DS4Windows
                         {
                             if (dinputOnly[device] == true)
                             {
-                                bool xinputResult = control.x360Bus.Unplug(device);
-                                if (xinputResult)
-                                {
-                                    int xinputIndex = control.x360Bus.FirstController + device;
-                                    Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
-                                    Global.useDInputOnly[device] = true;
-                                }
+                                Global.useDInputOnly[device] = true;
+                                xinputPlug = false;
+                                xinputStatus = true;
 
                                 //changed = true;
                             }
                             else if (synced && isAlive)
                             {
-                                bool xinputResult = control.x360Bus.Plugin(device);
-                                if (xinputResult)
-                                {
-                                    int xinputIndex = control.x360Bus.FirstController + device;
-                                    Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
-                                    Global.useDInputOnly[device] = false;
-                                }
+                                Global.useDInputOnly[device] = false;
+                                xinputPlug = true;
+                                xinputStatus = true;
 
                                 //changed = true;
                             }
@@ -2756,6 +2751,24 @@ namespace DS4Windows
                     {
                         tempDev.setIdleTimeout(idleDisconnectTimeout[device]);
                         tempDev.setBTPollRate(btPollRate[device]);
+                        if (xinputStatus && xinputPlug)
+                        {
+                            bool xinputResult = control.x360Bus.Plugin(device);
+                            if (xinputResult)
+                            {
+                                int xinputIndex = control.x360Bus.FirstController + device;
+                                Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
+                            }
+                        }
+                        else if (xinputStatus && !xinputPlug)
+                        {
+                            bool xinputResult = control.x360Bus.Unplug(device);
+                            if (xinputResult)
+                            {
+                                int xinputIndex = control.x360Bus.FirstController + device;
+                                Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
+                            }
+                        }
                     });
 
                     Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);

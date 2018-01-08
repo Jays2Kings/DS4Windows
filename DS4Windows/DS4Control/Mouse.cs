@@ -405,10 +405,11 @@ namespace DS4Windows
                     }
                 }
             }
-            //synthesizeMouseButtons();
+
+            if (s.TouchButton)
+                synthesizeMouseButtons();
         }
 
-        private DS4State remapped = new DS4State();
         public bool dragging, dragging2;
         private void synthesizeMouseButtons()
         {
@@ -453,8 +454,6 @@ namespace DS4Windows
                     dragging = false;
                 }
             }
-
-            s = remapped;
         }
 
         public virtual void touchButtonUp(object sender, TouchpadEventArgs arg)

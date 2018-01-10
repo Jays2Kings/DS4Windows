@@ -296,10 +296,13 @@ namespace DS4Windows
                 throw new Exception("Error setting class install params, error code = " + Marshal.GetLastWin32Error());
             }
             success = NativeMethods.SetupDiCallClassInstaller(NativeMethods.DIF_PROPERTYCHANGE, deviceInfoSet, ref deviceInfoData);
-            if (!success)
+            // TEST: If previous SetupDiCallClassInstaller fails, just continue
+            // otherwise device will likely get permanently disabled.
+            /*if (!success)
             {
                 throw new Exception("Error disabling device, error code = " + Marshal.GetLastWin32Error());
             }
+            */
 
             //System.Threading.Thread.Sleep(50);
             sw.Restart();

@@ -49,6 +49,7 @@ namespace DS4Windows
             cursor = new MouseCursor(deviceNum);
             wheel = new MouseWheel(deviceNum);
             trackballAccel = TRACKBALL_RADIUS * TRACKBALL_INIT_FICTION / TRACKBALL_INERTIA;
+            firstTouch = new Touch(0, 0, 0, null);
         }
 
         public void ResetTrackAccel(double friction)
@@ -196,7 +197,8 @@ namespace DS4Windows
             }
 
             pastTime = arg.timeStamp;
-            firstTouch = arg.touches[0];
+            firstTouch.populate(arg.touches[0].hwX, arg.touches[0].hwY, arg.touches[0].touchID,
+                arg.touches[0].previousTouch);
 
             if (Global.getDoubleTap(deviceNum))
             {

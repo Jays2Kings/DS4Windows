@@ -19,7 +19,7 @@ for racing games. It is already a better experience than what the Steam
 Controller offers though.~~
 * Possibly lower Enhanced Precision sensitivity by a notch
 * ~~Look into updating Task Scheduler to latest version~~
-* Look into trackball emulation methods and attempt to implement it
+* ~~Look into trackball emulation methods and attempt to implement it~~
 * Look into distributing profile properties around various objects
 rather than using a lot of getters to obtain properties each poll.
 It will complicate the architecture a little bit but hopefully

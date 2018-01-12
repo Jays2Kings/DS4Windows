@@ -11,7 +11,7 @@ C++ test application before attempting to work it into DS4Windows.~~
 Currently used to delay hotplug routine
 * Attempt to remove more unused components
 * ~~Tweak layout of some forms~~
-* Look into updating HidLibrary
+* ~~Look into updating HidLibrary~~
 * ~~Trim code execution for touchpad data. Remove unneeded new calls for Touch
 instances. Make permanent instances and reuse those instances.~~
 * ~~Tweak SixAxis code to attempt to improve steering wheel performance

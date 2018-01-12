@@ -448,21 +448,15 @@ namespace DS4Windows
         {
             SafeFileHandle hidHandle;
 
-            try
+            if (isExclusive)
             {
-                if (isExclusive)
-                {
-                    hidHandle = NativeMethods.CreateFile(devicePathName, NativeMethods.GENERIC_READ | NativeMethods.GENERIC_WRITE, 0, IntPtr.Zero, NativeMethods.OpenExisting, 0x20000000 | 0x80000000 | NativeMethods.FILE_FLAG_OVERLAPPED, 0);
-                }
-                else
-                {
-                    hidHandle = NativeMethods.CreateFile(devicePathName, NativeMethods.GENERIC_READ | NativeMethods.GENERIC_WRITE, NativeMethods.FILE_SHARE_READ | NativeMethods.FILE_SHARE_WRITE, IntPtr.Zero, NativeMethods.OpenExisting, 0x20000000 | 0x80000000 | NativeMethods.FILE_FLAG_OVERLAPPED, 0);
-                }
+                hidHandle = NativeMethods.CreateFile(devicePathName, NativeMethods.GENERIC_READ | NativeMethods.GENERIC_WRITE, 0, IntPtr.Zero, NativeMethods.OpenExisting, 0x20000000 | 0x80000000 | NativeMethods.FILE_FLAG_OVERLAPPED, 0);
             }
-            catch (Exception)
+            else
             {
-                throw;
+                hidHandle = NativeMethods.CreateFile(devicePathName, NativeMethods.GENERIC_READ | NativeMethods.GENERIC_WRITE, NativeMethods.FILE_SHARE_READ | NativeMethods.FILE_SHARE_WRITE, IntPtr.Zero, NativeMethods.OpenExisting, 0x20000000 | 0x80000000 | NativeMethods.FILE_FLAG_OVERLAPPED, 0);
             }
+
             return hidHandle;
         }
 

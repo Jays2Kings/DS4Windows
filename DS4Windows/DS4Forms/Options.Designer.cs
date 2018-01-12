@@ -76,6 +76,9 @@
             this.nUDL2 = new System.Windows.Forms.NumericUpDown();
             this.gBTouchpad = new System.Windows.Forms.GroupBox();
             this.pnlTPMouse = new System.Windows.Forms.Panel();
+            this.trackFrictionLb = new System.Windows.Forms.Label();
+            this.trackFrictionNUD = new System.Windows.Forms.NumericUpDown();
+            this.trackballCk = new System.Windows.Forms.CheckBox();
             this.touchpadDisInvertButton = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -383,9 +386,6 @@
             this.optionsTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psTouchInvStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trackballCk = new System.Windows.Forms.CheckBox();
-            this.trackFrictionNUD = new System.Windows.Forms.NumericUpDown();
-            this.trackFrictionLb = new System.Windows.Forms.Label();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRainbow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBBlueBar)).BeginInit();
@@ -408,6 +408,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDL2)).BeginInit();
             this.gBTouchpad.SuspendLayout();
             this.pnlTPMouse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackFrictionNUD)).BeginInit();
             this.fLPTouchSwipe.SuspendLayout();
             this.cMSPresets.SuspendLayout();
             this.gBOther.SuspendLayout();
@@ -479,7 +480,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).BeginInit();
             this.cMGyroTriggers.SuspendLayout();
             this.cMTouchDisableInvert.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackFrictionNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // lowColorChooserButton
@@ -956,6 +956,30 @@
             resources.ApplyResources(this.pnlTPMouse, "pnlTPMouse");
             this.pnlTPMouse.Name = "pnlTPMouse";
             // 
+            // trackFrictionLb
+            // 
+            resources.ApplyResources(this.trackFrictionLb, "trackFrictionLb");
+            this.trackFrictionLb.Name = "trackFrictionLb";
+            // 
+            // trackFrictionNUD
+            // 
+            this.trackFrictionNUD.DecimalPlaces = 1;
+            resources.ApplyResources(this.trackFrictionNUD, "trackFrictionNUD");
+            this.trackFrictionNUD.Name = "trackFrictionNUD";
+            this.trackFrictionNUD.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.trackFrictionNUD.ValueChanged += new System.EventHandler(this.trackFrictionNUD_ValueChanged);
+            // 
+            // trackballCk
+            // 
+            resources.ApplyResources(this.trackballCk, "trackballCk");
+            this.trackballCk.Name = "trackballCk";
+            this.trackballCk.UseVisualStyleBackColor = true;
+            this.trackballCk.CheckedChanged += new System.EventHandler(this.trackballCk_CheckedChanged);
+            // 
             // touchpadDisInvertButton
             // 
             this.touchpadDisInvertButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -1222,7 +1246,7 @@
             // 
             // lbSwipeUp
             // 
-            this.lbSwipeUp.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbSwipeUp.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.lbSwipeUp, "lbSwipeUp");
             this.lbSwipeUp.Name = "lbSwipeUp";
             // 
@@ -1238,7 +1262,7 @@
             // 
             // lbSwipeDown
             // 
-            this.lbSwipeDown.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbSwipeDown.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.lbSwipeDown, "lbSwipeDown");
             this.lbSwipeDown.Name = "lbSwipeDown";
             // 
@@ -1254,7 +1278,7 @@
             // 
             // lbSwipeLeft
             // 
-            this.lbSwipeLeft.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbSwipeLeft.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.lbSwipeLeft, "lbSwipeLeft");
             this.lbSwipeLeft.Name = "lbSwipeLeft";
             // 
@@ -1270,7 +1294,7 @@
             // 
             // lbSwipeRight
             // 
-            this.lbSwipeRight.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbSwipeRight.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.lbSwipeRight, "lbSwipeRight");
             this.lbSwipeRight.Name = "lbSwipeRight";
             // 
@@ -4081,30 +4105,6 @@
             resources.ApplyResources(this.psTouchInvStripMenuItem, "psTouchInvStripMenuItem");
             this.psTouchInvStripMenuItem.CheckedChanged += new System.EventHandler(this.TouchDisableInvert_CheckedChanged);
             // 
-            // trackballCk
-            // 
-            resources.ApplyResources(this.trackballCk, "trackballCk");
-            this.trackballCk.Name = "trackballCk";
-            this.trackballCk.UseVisualStyleBackColor = true;
-            this.trackballCk.CheckedChanged += new System.EventHandler(this.trackballCk_CheckedChanged);
-            // 
-            // trackFrictionNUD
-            // 
-            this.trackFrictionNUD.DecimalPlaces = 1;
-            resources.ApplyResources(this.trackFrictionNUD, "trackFrictionNUD");
-            this.trackFrictionNUD.Name = "trackFrictionNUD";
-            this.trackFrictionNUD.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.trackFrictionNUD.ValueChanged += new System.EventHandler(this.trackFrictionNUD_ValueChanged);
-            // 
-            // trackFrictionLb
-            // 
-            resources.ApplyResources(this.trackFrictionLb, "trackFrictionLb");
-            this.trackFrictionLb.Name = "trackFrictionLb";
-            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -4142,6 +4142,7 @@
             this.gBTouchpad.PerformLayout();
             this.pnlTPMouse.ResumeLayout(false);
             this.pnlTPMouse.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackFrictionNUD)).EndInit();
             this.fLPTouchSwipe.ResumeLayout(false);
             this.cMSPresets.ResumeLayout(false);
             this.gBOther.ResumeLayout(false);
@@ -4227,7 +4228,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDSZS)).EndInit();
             this.cMGyroTriggers.ResumeLayout(false);
             this.cMTouchDisableInvert.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackFrictionNUD)).EndInit();
             this.ResumeLayout(false);
 
         }

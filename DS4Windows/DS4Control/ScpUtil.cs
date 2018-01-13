@@ -1260,7 +1260,7 @@ namespace DS4Windows
         public int[] l2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 }, r2AntiDeadzone = new int[5] { 0, 0, 0, 0, 0 };
         public int[] l2Maxzone = new int[5] { 100, 100, 100, 100, 100 }, r2Maxzone = new int[5] { 100, 100, 100, 100, 100 };
         public double[] LSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 }, RSRotation = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 };
-        public double[] SXDeadzone = new double[5] { 0.25, 0.25, 0.25, 0.25, 0.25 }, SZDeadzone = new double[5] { 0.25, 0.25, 0.25, 0.25, 0.25 };
+        public double[] SXDeadzone = new double[5] { 0.02, 0.02, 0.02, 0.02, 0.02 }, SZDeadzone = new double[5] { 0.02, 0.02, 0.02, 0.02, 0.02 };
         public double[] SXMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 },
             SZMaxzone = new double[5] { 1.0, 1.0, 1.0, 1.0, 1.0 };
         public double[] SXAntiDeadzone = new double[5] { 0.0, 0.0, 0.0, 0.0, 0.0 },
@@ -2257,9 +2257,9 @@ namespace DS4Windows
                 catch { RSMaxzone[device] = 100; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXDeadZone"); double.TryParse(Item.InnerText, out SXDeadzone[device]); }
-                catch { SXDeadzone[device] = 0.25; missingSetting = true; }
+                catch { SXDeadzone[device] = 0.02; missingSetting = true; }
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SZDeadZone"); double.TryParse(Item.InnerText, out SZDeadzone[device]); }
-                catch { SZDeadzone[device] = 0.25; missingSetting = true; }
+                catch { SZDeadzone[device] = 0.02; missingSetting = true; }
 
                 try { Item = m_Xdoc.SelectSingleNode("/" + rootname + "/SXMaxZone");
                     int temp = 0;
@@ -3539,7 +3539,7 @@ namespace DS4Windows
             l2Maxzone[device] = r2Maxzone[device] = 100;
             LSRotation[device] = 0.0;
             RSRotation[device] = 0.0;
-            SXDeadzone[device] = SZDeadzone[device] = 0.25;
+            SXDeadzone[device] = SZDeadzone[device] = 0.02;
             SXMaxzone[device] = SZMaxzone[device] = 1.0;
             SXAntiDeadzone[device] = SZAntiDeadzone[device] = 0.0;
             l2Sens[device] = r2Sens[device] = 1;

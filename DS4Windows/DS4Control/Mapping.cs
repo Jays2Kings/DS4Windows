@@ -154,7 +154,6 @@ namespace DS4Windows
         static bool tempBool = false;
         private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
         private static int[] tempIntArray = new int[4] { 0, 0, 0, 0 };
-        private static int tempInt = 0;
 
         // Special macros
         static bool altTabDone = true;
@@ -926,6 +925,7 @@ namespace DS4Windows
                 double szAntiDead = getSZAntiDeadzone(device);
                 double sxsens = getSXSens(device);
                 double szsens = getSZSens(device);
+                int result = 0;
 
                 int gyroX = cState.Motion.accelX, gyroZ = cState.Motion.accelZ;
                 int absx = Math.Abs(gyroX), absz = Math.Abs(gyroZ);
@@ -978,12 +978,14 @@ namespace DS4Windows
                     if (sxOutCurveMode == 1)
                     {
                         double output = temp * temp;
-                        dState.Motion.outputAccelX = tempInt = (int)(output * sign * 128.0);
+                        result = (int)(output * sign * 128.0);
+                        dState.Motion.outputAccelX = result;
                     }
                     else if (sxOutCurveMode == 2)
                     {
                         double output = temp * temp * temp;
-                        dState.Motion.outputAccelX = tempInt = (int)(output * 128.0);
+                        result = (int)(output * 128.0);
+                        dState.Motion.outputAccelX = result;
                     }
                 }
 
@@ -995,12 +997,14 @@ namespace DS4Windows
                     if (szOutCurveMode == 1)
                     {
                         double output = temp * temp;
-                        dState.Motion.outputAccelZ = tempInt = (int)(output * sign * 128.0);
+                        result = (int)(output * sign * 128.0);
+                        dState.Motion.outputAccelZ = result;
                     }
                     else if (szOutCurveMode == 2)
                     {
                         double output = temp * temp * temp;
-                        dState.Motion.outputAccelZ = tempInt = (int)(output * 128.0);
+                        result = (int)(output * 128.0);
+                        dState.Motion.outputAccelZ = result;
                     }
                 }
             }

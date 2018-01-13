@@ -154,6 +154,7 @@ namespace DS4Windows
         static bool tempBool = false;
         private static double[] tempDoubleArray = new double[4] { 0.0, 0.0, 0.0, 0.0 };
         private static int[] tempIntArray = new int[4] { 0, 0, 0, 0 };
+        private static int tempInt = 0;
 
         // Special macros
         static bool altTabDone = true;
@@ -977,12 +978,12 @@ namespace DS4Windows
                     if (sxOutCurveMode == 1)
                     {
                         double output = temp * temp;
-                        dState.Motion.outputAccelX = (int)(output * sign * 128.0);
+                        dState.Motion.outputAccelX = tempInt = (int)(output * sign * 128.0);
                     }
                     else if (sxOutCurveMode == 2)
                     {
                         double output = temp * temp * temp;
-                        dState.Motion.outputAccelX = (int)(output * 128.0);
+                        dState.Motion.outputAccelX = tempInt = (int)(output * 128.0);
                     }
                 }
 
@@ -994,12 +995,12 @@ namespace DS4Windows
                     if (szOutCurveMode == 1)
                     {
                         double output = temp * temp;
-                        dState.Motion.outputAccelZ = (int)(output * sign * 128.0);
+                        dState.Motion.outputAccelZ = tempInt = (int)(output * sign * 128.0);
                     }
                     else if (szOutCurveMode == 2)
                     {
                         double output = temp * temp * temp;
-                        dState.Motion.outputAccelZ = (int)(output * 128.0);
+                        dState.Motion.outputAccelZ = tempInt = (int)(output * 128.0);
                     }
                 }
             }

@@ -62,14 +62,7 @@ namespace DS4Windows.DS4Library
                     endpointVolume = interfacePointer as IAudioEndpointVolume;
                     endpointVolume.RegisterControlChangeNotify(this);
                 }
-                else if (deviceName.Contains("Headset Earphone (Wireless Controller)"))
-                {
-                    object interfacePointer;
-                    Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));
-                    endpointVolume = interfacePointer as IAudioEndpointVolume;
-                    endpointVolume.RegisterControlChangeNotify(this);
-                }
-                else if (deviceName.Contains("Headset Microphone (Wireless Controller)"))
+                else if (deviceName.Contains("(Wireless Controller)"))
                 {
                     object interfacePointer;
                     Marshal.ThrowExceptionForHR(audioDevice.Activate(ref IID_IAudioEndpointVolume, ClsCtx.ALL, IntPtr.Zero, out interfacePointer));

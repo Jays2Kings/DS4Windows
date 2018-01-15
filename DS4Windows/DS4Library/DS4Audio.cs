@@ -32,7 +32,7 @@ namespace DS4Windows.DS4Library
 
             if (endpointVolume != null)
                 endpointVolume.GetMasterVolumeLevelScalar(out pfLevel);
-            vol = Convert.ToUInt32(pfLevel > 0 ? (75 - 20) * (--pfLevel * pfLevel * pfLevel + 1) + 20 : 0);
+            vol = Convert.ToUInt32((75 - 20) * (--pfLevel * pfLevel * pfLevel + 1) + 20);
         }
 
         public void OnNotify(IntPtr pNotify)

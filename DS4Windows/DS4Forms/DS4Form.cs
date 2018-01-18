@@ -88,6 +88,9 @@ namespace DS4Windows
 
         public DS4Form(string[] args)
         {
+            Global.Load();
+            this.setCulture(UseLang);
+
             InitializeComponent();
             ThemeUtil.SetTheme(lvDebug);
 
@@ -181,7 +184,6 @@ namespace DS4Windows
             Log.TrayIconLog += ShowNotification;
 
             Directory.CreateDirectory(appdatapath);
-            Global.Load();
             if (!Save()) //if can't write to file
             {
                 if (MessageBox.Show("Cannot write at current location\nCopy Settings to appdata?", "DS4Windows",
@@ -426,6 +428,16 @@ namespace DS4Windows
 
                 control.MouseHover += Items_MouseHover;
             }
+        }
+
+        private void setCulture(string culture)
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(culture);
+            }
+            catch { /* Skip setting culture that we cannot set */ }
         }
 
         private void populateHoverTextDict()
@@ -2484,6 +2496,17 @@ namespace DS4Windows
                     stream.Close();
                 }
                 catch { }
+            }
+        }
+
+        private void languagePackComboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string newValue = ((DS4Forms.LanguagePackComboBox)sender).SelectedValue.ToString();
+            if (newValue != UseLang)
+            {
+                UseLang = newValue;
+                Save();
+                MessageBox.Show(Properties.Resources.LanguagePackApplyRestartRequired, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

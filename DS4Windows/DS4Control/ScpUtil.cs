@@ -441,6 +441,12 @@ namespace DS4Windows
             get { return m_Config.formLocationY; }
         }
 
+        public static string UseLang
+        {
+            set { m_Config.useLang = value; }
+            get { return m_Config.useLang; }
+        }
+
         public static bool DownloadLang
         {
             set { m_Config.downloadLang = value; }
@@ -1366,6 +1372,7 @@ namespace DS4Windows
             { new Dictionary<string, int>(), new Dictionary<string, int>(), new Dictionary<string, int>(),
               new Dictionary<string, int>(), new Dictionary<string, int>() };
 
+        public string useLang = "";
         public bool downloadLang = true;
         public bool useWhiteIcon;
         public bool flashWhenLate = true;
@@ -2879,6 +2886,8 @@ namespace DS4Windows
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/CloseMinimizes"); Boolean.TryParse(Item.InnerText, out closeMini); }
                     catch { missingSetting = true; }
+                    try { Item = m_Xdoc.SelectSingleNode("/Profile/UseLang"); useLang = Item.InnerText; }
+                    catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/DownloadLang"); Boolean.TryParse(Item.InnerText, out downloadLang); }
                     catch { missingSetting = true; }
                     try { Item = m_Xdoc.SelectSingleNode("/Profile/FlashWhenLate"); Boolean.TryParse(Item.InnerText, out flashWhenLate); }
@@ -2949,6 +2958,7 @@ namespace DS4Windows
             XmlNode xmlQuickCharge = m_Xdoc.CreateNode(XmlNodeType.Element, "QuickCharge", null); xmlQuickCharge.InnerText = quickCharge.ToString(); Node.AppendChild(xmlQuickCharge);
             XmlNode xmlFirstXinputPort = m_Xdoc.CreateNode(XmlNodeType.Element, "FirstXinputPort", null); xmlFirstXinputPort.InnerText = firstXinputPort.ToString(); Node.AppendChild(xmlFirstXinputPort);
             XmlNode xmlCloseMini = m_Xdoc.CreateNode(XmlNodeType.Element, "CloseMinimizes", null); xmlCloseMini.InnerText = closeMini.ToString(); Node.AppendChild(xmlCloseMini);
+            XmlNode xmlUseLang = m_Xdoc.CreateNode(XmlNodeType.Element, "UseLang", null); xmlUseLang.InnerText = useLang.ToString(); Node.AppendChild(xmlUseLang);
             XmlNode xmlDownloadLang = m_Xdoc.CreateNode(XmlNodeType.Element, "DownloadLang", null); xmlDownloadLang.InnerText = downloadLang.ToString(); Node.AppendChild(xmlDownloadLang);
             XmlNode xmlFlashWhenLate = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLate", null); xmlFlashWhenLate.InnerText = flashWhenLate.ToString(); Node.AppendChild(xmlFlashWhenLate);
             XmlNode xmlFlashWhenLateAt = m_Xdoc.CreateNode(XmlNodeType.Element, "FlashWhenLateAt", null); xmlFlashWhenLateAt.InnerText = flashWhenLateAt.ToString(); Node.AppendChild(xmlFlashWhenLateAt);

@@ -146,6 +146,7 @@
             this.lbUseXIPorts = new System.Windows.Forms.Label();
             this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
             this.lbLastXIPort = new System.Windows.Forms.Label();
+            this.languagePackComboBox1 = new DS4Windows.DS4Forms.LanguagePackComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
@@ -892,6 +893,7 @@
             this.fLPSettings.Controls.Add(this.cBUpdate);
             this.fLPSettings.Controls.Add(this.pNUpdate);
             this.fLPSettings.Controls.Add(this.pnlXIPorts);
+            this.fLPSettings.Controls.Add(this.languagePackComboBox1);
             this.fLPSettings.Controls.Add(this.flowLayoutPanel1);
             this.fLPSettings.Name = "fLPSettings";
             // 
@@ -1135,6 +1137,14 @@
             // 
             resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
             this.lbLastXIPort.Name = "lbLastXIPort";
+            // 
+            // languagePackComboBox1
+            // 
+            resources.ApplyResources(this.languagePackComboBox1, "languagePackComboBox1");
+            this.languagePackComboBox1.LanguageAssemblyName = "DS4Windows.resources.dll";
+            this.languagePackComboBox1.Name = "languagePackComboBox1";
+            this.languagePackComboBox1.ProbingPath = "Lang";
+            this.languagePackComboBox1.SelectedValueChanged += new System.EventHandler(this.languagePackComboBox1_SelectedValueChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -1430,6 +1440,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button exportLogTxtBtn;
         private System.Windows.Forms.Button btnClear;
+        private DS4Forms.LanguagePackComboBox languagePackComboBox1;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

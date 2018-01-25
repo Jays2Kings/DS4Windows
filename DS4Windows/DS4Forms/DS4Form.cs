@@ -382,6 +382,7 @@ namespace DS4Windows
                 new ToolTip().SetToolTip(uacPictureBox, Properties.Resources.UACTask);
                 runStartTaskRadio.Enabled = false;
                 hidGuardWhiteList.Visible = false;
+                clrHidGuardWlistLinkLabel.Visible = false;
             }
             else
             {
@@ -2496,6 +2497,16 @@ namespace DS4Windows
                 RegistryKey key = Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters");
                 key.SetValue("AffectedDevices", Program.rootHub.affectedDevs.ToArray(), RegistryValueKind.MultiString);
                 Log.LogToGui("Wrote HidGuardian Device List to Registry", false);
+            }
+            catch { }
+        }
+
+        private void ClrHidGuardWlistLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Registry.LocalMachine.DeleteSubKeyTree(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
+                Log.LogToGui("Cleared HidGuardian Whitelist", false);
             }
             catch { }
         }

@@ -2507,6 +2507,7 @@ namespace DS4Windows
             {
                 Registry.LocalMachine.DeleteSubKeyTree(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
                 Log.LogToGui("Cleared HidGuardian Whitelist", false);
+                Program.rootHub.createHidGuardKey();
             }
             catch { }
         }

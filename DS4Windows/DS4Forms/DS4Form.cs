@@ -381,6 +381,7 @@ namespace DS4Windows
                 uacPictureBox.Visible = true;
                 new ToolTip().SetToolTip(uacPictureBox, Properties.Resources.UACTask);
                 runStartTaskRadio.Enabled = false;
+                hidGuardWhiteList.Visible = false;
             }
             else
             {
@@ -1115,20 +1116,6 @@ namespace DS4Windows
             }
 
             populateNotifyText();
-
-            /*string tooltip = "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
-            for (int i = 0; i < ControlService.DS4_CONTROLLER_COUNT; i++)
-            {
-                string temp = Program.rootHub.getShortDS4ControllerInfo(i);
-                if (temp != Properties.Resources.NoneText)
-                    tooltip += "\n" + (i + 1) + ": " + temp; // Carefully stay under the 63 character limit.
-            }
-
-            if (tooltip.Length > 63)
-                notifyIcon1.Text = tooltip.Substring(0, 63);
-            else
-                notifyIcon1.Text = tooltip;
-            */
         }
 
         protected void generateDeviceNotifyText(int index)
@@ -1289,17 +1276,10 @@ namespace DS4Windows
 
                     generateDeviceNotifyText(Index);
                     populateNotifyText();
-                    //if (Program.rootHub.getShortDS4ControllerInfo(Index) != Properties.Resources.NoneText)
-                    //    tooltip += "\n" + (Index + 1) + ": " + Program.rootHub.getShortDS4ControllerInfo(Index); // Carefully stay under the 63 character limit.
                 }
 
                 lbNoControllers.Visible = nocontrollers;
                 tLPControllers.Visible = !nocontrollers;
-                /*if (tooltip.Length > 63)
-                    notifyIcon1.Text = tooltip.Substring(0, 63);
-                else
-                    notifyIcon1.Text = tooltip;
-                */
             }
         }
 
@@ -1364,7 +1344,6 @@ namespace DS4Windows
         {
             LogDebug(e.Time, e.Data, e.Warning);
         }
-
 
         private void lBProfiles_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -2508,6 +2487,17 @@ namespace DS4Windows
                 Save();
                 MessageBox.Show(Properties.Resources.LanguagePackApplyRestartRequired, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void HidGuardWhiteList_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                RegistryKey key = Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters");
+                key.SetValue("AffectedDevices", Program.rootHub.affectedDevs.ToArray(), RegistryValueKind.MultiString);
+                Log.LogToGui("Wrote HidGuardian Device List to Registry", false);
+            }
+            catch { }
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

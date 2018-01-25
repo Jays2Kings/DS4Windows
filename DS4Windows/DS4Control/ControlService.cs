@@ -29,6 +29,13 @@ namespace DS4Windows
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
         Thread tempThread;
+        public List<string> affectedDevs = new List<string>()
+        {
+            @"HID\VID_054C&PID_05C4",
+            @"HID\VID_054C&PID_09CC&MI_03",
+            @"HID\{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054c_PID&05c4",
+            @"HID\{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054c_PID&09cc",
+        };
         //SoundPlayer sp = new SoundPlayer();
 
         private class X360Data
@@ -43,11 +50,6 @@ namespace DS4Windows
         {
             //sp.Stream = Properties.Resources.EE;
             // Cause thread affinity to not be tied to main GUI thread
-            /*Task x360task = new Task(() => { Thread.CurrentThread.Priority = ThreadPriority.AboveNormal; x360Bus = new X360Device(); });
-            x360task.Start();
-            while (!x360task.IsCompleted)
-                Thread.SpinWait(500);
-            */
             tempThread = new Thread(() => { x360Bus = new X360Device(); });
             tempThread.Priority = ThreadPriority.AboveNormal;
             tempThread.IsBackground = true;

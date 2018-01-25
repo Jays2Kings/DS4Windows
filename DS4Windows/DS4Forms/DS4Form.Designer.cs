@@ -163,6 +163,7 @@
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
+            this.hidGuardWhiteList = new System.Windows.Forms.LinkLabel();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -1152,6 +1153,7 @@
             this.flowLayoutPanel1.Controls.Add(this.linkProfiles);
             this.flowLayoutPanel1.Controls.Add(this.lnkControllers);
             this.flowLayoutPanel1.Controls.Add(this.linkUninstall);
+            this.flowLayoutPanel1.Controls.Add(this.hidGuardWhiteList);
             this.flowLayoutPanel1.Controls.Add(this.linkSetup);
             this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -1248,6 +1250,13 @@
             this.useCustomColorToolStripMenuItem.Name = "useCustomColorToolStripMenuItem";
             resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
+            // 
+            // hidGuardWhiteList
+            // 
+            resources.ApplyResources(this.hidGuardWhiteList, "hidGuardWhiteList");
+            this.hidGuardWhiteList.Name = "hidGuardWhiteList";
+            this.hidGuardWhiteList.TabStop = true;
+            this.hidGuardWhiteList.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.HidGuardWhiteList_LinkClicked);
             // 
             // DS4Form
             // 
@@ -1441,6 +1450,7 @@
         private System.Windows.Forms.Button exportLogTxtBtn;
         private System.Windows.Forms.Button btnClear;
         private DS4Forms.LanguagePackComboBox languagePackComboBox1;
+        private System.Windows.Forms.LinkLabel hidGuardWhiteList;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

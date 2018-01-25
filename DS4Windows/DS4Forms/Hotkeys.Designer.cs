@@ -86,6 +86,8 @@
             this.lbTranslators = new System.Windows.Forms.Label();
             this.linkSourceCode = new System.Windows.Forms.LinkLabel();
             this.lbLinkText = new System.Windows.Forms.Label();
+            this.btcTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
@@ -455,10 +457,24 @@
             resources.ApplyResources(this.lbLinkText, "lbLinkText");
             this.lbLinkText.Name = "lbLinkText";
             // 
+            // btcTextBox
+            // 
+            this.btcTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.btcTextBox, "btcTextBox");
+            this.btcTextBox.Name = "btcTextBox";
+            this.btcTextBox.ReadOnly = true;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
             // Hotkeys
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btcTextBox);
             this.Controls.Add(this.linkDonate);
             this.Controls.Add(this.lLChangelog);
             this.Controls.Add(this.tCAbout);
@@ -536,5 +552,7 @@
         private System.Windows.Forms.Label lbpt;
         private System.Windows.Forms.Label lbPortugueseT;
         private System.Windows.Forms.LinkLabel linkTeokp;
+        private System.Windows.Forms.TextBox btcTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }

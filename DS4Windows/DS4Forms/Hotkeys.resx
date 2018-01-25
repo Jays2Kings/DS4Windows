@@ -184,7 +184,7 @@
     <value>0, 0</value>
   </data>
   <data name="lbAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>567, 36</value>
+    <value>567, 50</value>
   </data>
   <data name="lbAbout.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -205,7 +205,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbAbout.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="linkInhexSTER.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -286,13 +286,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lLChangelog.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="linkDonate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="linkDonate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>385, 15</value>
+    <value>382, 15</value>
   </data>
   <data name="linkDonate.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 14</value>
@@ -316,10 +316,44 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;linkDonate.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="tPHotkeys.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lbHotkeys.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="lbHotkeys.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbHotkeys.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>536, 464</value>
+  </data>
+  <data name="lbHotkeys.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="lbHotkeys.Text" xml:space="preserve">
+    <value>Hide DS4 Controller: Hides the DS4's regular input (Dinput) from other programs, check if you are getting double input in games or R2 pauses games
+Click left side of touchpad: Left Touch
+Click right side of touchpad: Right Touch
+Click touchpad with 2 fingers: Multitouch
+Click upper part of touchpad: Upper Touch
+PS + Options or hold PS for 10 secs: Disconnect Controller (Only on Bluetooth)
+Touch Touchpad + PS: Turn off touchpad movement (clicking still works)
+Pad click on lower right: Right click (Best used when right side is used as a mouse button)
+Two fingers up/down on touchpad*: Scroll Up/Down
+Tap then hold touchpad*: Left mouse drag
+2 finger touchpad swipe left or right: Cycle through profiles
+Shift Modifer: Hold an action to use another set of controls
+When mapping keyboard and mouse:
+Toggle: The key will remain in a "held down" state until pressed again
+Macro: Assign multiple keys to one input
+Scan Code: Keys are interpreted differently. May be needed for certain games
+*If enabled</value>
   </data>
   <data name="&gt;&gt;lbHotkeys.Name" xml:space="preserve">
     <value>lbHotkeys</value>
@@ -340,7 +374,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tPHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>559, 447</value>
+    <value>559, 451</value>
   </data>
   <data name="tPHotkeys.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1687,7 +1721,7 @@
     <value>Bottom</value>
   </data>
   <data name="tLPTranslators.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 130</value>
+    <value>3, 134</value>
   </data>
   <data name="tLPTranslators.RowCount" type="System.Int32, mscorlib">
     <value>19</value>
@@ -1723,7 +1757,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbTranslators.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 114</value>
+    <value>4, 113</value>
   </data>
   <data name="lbTranslators.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
@@ -1786,7 +1820,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbLinkText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 431</value>
+    <value>3, 435</value>
   </data>
   <data name="lbLinkText.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 13</value>
@@ -1816,7 +1850,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tPCredits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>559, 447</value>
+    <value>559, 451</value>
   </data>
   <data name="tPCredits.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1840,10 +1874,10 @@
     <value>Fill</value>
   </data>
   <data name="tCAbout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 36</value>
+    <value>0, 50</value>
   </data>
   <data name="tCAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>567, 473</value>
+    <value>567, 477</value>
   </data>
   <data name="tCAbout.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -1858,52 +1892,57 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tCAbout.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
-  <data name="lbHotkeys.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
+  <data name="btcTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>328, 32</value>
   </data>
-  <data name="lbHotkeys.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btcTextBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="lbHotkeys.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="btcTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 18</value>
   </data>
-  <data name="lbHotkeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>536, 454</value>
+  <data name="btcTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
   </data>
-  <data name="lbHotkeys.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="btcTextBox.Text" xml:space="preserve">
+    <value>1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9</value>
   </data>
-  <data name="lbHotkeys.Text" xml:space="preserve">
-    <value>Hide DS4 Controller: Hides the DS4's regular input (Dinput) from other programs, check if you are getting double input in games or R2 pauses games
-Click left side of touchpad: Left Touch
-Click right side of touchpad: Right Touch
-Click touchpad with 2 fingers: Multitouch
-Click upper part of touchpad: Upper Touch
-PS + Options or hold PS for 10 secs: Disconnect Controller (Only on Bluetooth)
-Touch Touchpad + PS: Turn off touchpad movement (clicking still works)
-Pad click on lower right: Right click (Best used when right side is used as a mouse button)
-Two fingers up/down on touchpad*: Scroll Up/Down
-Tap then hold touchpad*: Left mouse drag
-2 finger touchpad swipe left or right: Cycle through profiles
-Shift Modifer: Hold an action to use another set of controls
-When mapping keyboard and mouse:
-Toggle: The key will remain in a "held down" state until pressed again
-Macro: Assign multiple keys to one input
-Scan Code: Keys are interpreted differently. May be needed for certain games
-*If enabled</value>
+  <data name="&gt;&gt;btcTextBox.Name" xml:space="preserve">
+    <value>btcTextBox</value>
   </data>
-  <data name="&gt;&gt;lbHotkeys.Name" xml:space="preserve">
-    <value>lbHotkeys</value>
+  <data name="&gt;&gt;btcTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbHotkeys.Type" xml:space="preserve">
+  <data name="&gt;&gt;btcTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btcTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>291, 32</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>BTC:</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbHotkeys.Parent" xml:space="preserve">
-    <value>tPHotkeys</value>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;lbHotkeys.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1913,7 +1952,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>567, 509</value>
+    <value>567, 527</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>506, 427</value>

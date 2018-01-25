@@ -1,7 +1,7 @@
 # TODO
 
-* Integrate HidGuardian. Whitelist cleanup, remove old exclusive mode
-workaround, write template AffectedDevices file
+* ~~Integrate HidGuardian. Whitelist cleanup, remove old exclusive mode
+workaround, write template AffectedDevices file~~
 * Perform some final cleanup and release version 1.5. Unfortunately,
 it won't happen in 2017. Maybe version 1.5 will be ready by January 2018.
 * ~~Experiment with ViGEm driver. This would be easier to test on my old

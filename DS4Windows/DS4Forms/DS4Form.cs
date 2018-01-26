@@ -383,6 +383,8 @@ namespace DS4Windows
                 runStartTaskRadio.Enabled = false;
                 hidGuardWhiteList.Visible = false;
                 clrHidGuardWlistLinkLabel.Visible = false;
+                hidGuardRegLinkLabel.Visible = false;
+                linkSplitLabel.Visible = false;
             }
             else
             {
@@ -2508,6 +2510,19 @@ namespace DS4Windows
                 Registry.LocalMachine.DeleteSubKeyTree(@"SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters\Whitelist");
                 Log.LogToGui("Cleared HidGuardian Whitelist", false);
                 Program.rootHub.createHidGuardKey();
+            }
+            catch { }
+        }
+
+        private void HidGuardRegLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Applets\Regedit");
+                key.SetValue("LastKey", @"Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HidGuardian\Parameters", RegistryValueKind.String);
+                Process temp = new Process();
+                temp.StartInfo.FileName = "regedit";
+                temp.Start();
             }
             catch { }
         }

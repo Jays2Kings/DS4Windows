@@ -151,8 +151,10 @@
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
             this.linkUninstall = new System.Windows.Forms.LinkLabel();
-            this.hidGuardWhiteList = new System.Windows.Forms.LinkLabel();
             this.linkSetup = new System.Windows.Forms.LinkLabel();
+            this.hidGuardWhiteList = new System.Windows.Forms.LinkLabel();
+            this.clrHidGuardWlistLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.hidGuardRegLinkLabel = new System.Windows.Forms.LinkLabel();
             this.lLBUpdate = new System.Windows.Forms.LinkLabel();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -164,7 +166,7 @@
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
-            this.clrHidGuardWlistLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.linkSplitLabel = new System.Windows.Forms.Label();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -1151,13 +1153,17 @@
             // flowLayoutPanel1
             // 
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Controls.Add(this.linkProfiles);
             this.flowLayoutPanel1.Controls.Add(this.lnkControllers);
             this.flowLayoutPanel1.Controls.Add(this.linkUninstall);
             this.flowLayoutPanel1.Controls.Add(this.linkSetup);
+            this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
+            this.flowLayoutPanel1.Controls.Add(this.linkSplitLabel);
             this.flowLayoutPanel1.Controls.Add(this.hidGuardWhiteList);
             this.flowLayoutPanel1.Controls.Add(this.clrHidGuardWlistLinkLabel);
-            this.flowLayoutPanel1.Controls.Add(this.lLBUpdate);
+            this.flowLayoutPanel1.Controls.Add(this.hidGuardRegLinkLabel);
+            this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // linkProfiles
@@ -1181,6 +1187,13 @@
             this.linkUninstall.TabStop = true;
             this.linkUninstall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkUninstall_LinkClicked);
             // 
+            // linkSetup
+            // 
+            resources.ApplyResources(this.linkSetup, "linkSetup");
+            this.linkSetup.Name = "linkSetup";
+            this.linkSetup.TabStop = true;
+            this.linkSetup.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLSetup_LinkClicked);
+            // 
             // hidGuardWhiteList
             // 
             resources.ApplyResources(this.hidGuardWhiteList, "hidGuardWhiteList");
@@ -1188,12 +1201,19 @@
             this.hidGuardWhiteList.TabStop = true;
             this.hidGuardWhiteList.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.HidGuardWhiteList_LinkClicked);
             // 
-            // linkSetup
+            // clrHidGuardWlistLinkLabel
             // 
-            resources.ApplyResources(this.linkSetup, "linkSetup");
-            this.linkSetup.Name = "linkSetup";
-            this.linkSetup.TabStop = true;
-            this.linkSetup.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLSetup_LinkClicked);
+            resources.ApplyResources(this.clrHidGuardWlistLinkLabel, "clrHidGuardWlistLinkLabel");
+            this.clrHidGuardWlistLinkLabel.Name = "clrHidGuardWlistLinkLabel";
+            this.clrHidGuardWlistLinkLabel.TabStop = true;
+            this.clrHidGuardWlistLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClrHidGuardWlistLinkLabel_LinkClicked);
+            // 
+            // hidGuardRegLinkLabel
+            // 
+            resources.ApplyResources(this.hidGuardRegLinkLabel, "hidGuardRegLinkLabel");
+            this.hidGuardRegLinkLabel.Name = "hidGuardRegLinkLabel";
+            this.hidGuardRegLinkLabel.TabStop = true;
+            this.hidGuardRegLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.HidGuardRegLinkLabel_LinkClicked);
             // 
             // lLBUpdate
             // 
@@ -1260,12 +1280,13 @@
             resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
             // 
-            // clrHidGuardWlistLinkLabel
+            // linkSplitLabel
             // 
-            resources.ApplyResources(this.clrHidGuardWlistLinkLabel, "clrHidGuardWlistLinkLabel");
-            this.clrHidGuardWlistLinkLabel.Name = "clrHidGuardWlistLinkLabel";
-            this.clrHidGuardWlistLinkLabel.TabStop = true;
-            this.clrHidGuardWlistLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClrHidGuardWlistLinkLabel_LinkClicked);
+            resources.ApplyResources(this.linkSplitLabel, "linkSplitLabel");
+            this.linkSplitLabel.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.linkSplitLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.linkSplitLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.linkSplitLabel.Name = "linkSplitLabel";
             // 
             // DS4Form
             // 
@@ -1461,6 +1482,8 @@
         private DS4Forms.LanguagePackComboBox languagePackComboBox1;
         private System.Windows.Forms.LinkLabel hidGuardWhiteList;
         private System.Windows.Forms.LinkLabel clrHidGuardWlistLinkLabel;
+        private System.Windows.Forms.LinkLabel hidGuardRegLinkLabel;
+        private System.Windows.Forms.Label linkSplitLabel;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

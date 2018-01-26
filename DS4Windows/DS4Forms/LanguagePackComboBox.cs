@@ -47,7 +47,7 @@ namespace DS4Windows.DS4Forms
 
         [Category("Data")]
         [Description("If probing path has been changed in App.config, add the same string here.")]
-        public string ProbingPath { get; set; } = "";
+        public string ProbingPath { get; set; } = "Lang";
 
         [Category("Data")]
         [Description("Filter language assembly file names in order to ont include irrelevant assemblies to the combo box.")]

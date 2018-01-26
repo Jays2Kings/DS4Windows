@@ -2527,6 +2527,15 @@ namespace DS4Windows
             catch { }
         }
 
+        private void OpenProgramFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process temp = new Process();
+            temp.StartInfo.FileName = "explorer.exe";
+            temp.StartInfo.Arguments = @"/select, " + Assembly.GetExecutingAssembly().Location;
+            try { temp.Start(); }
+            catch { }
+        }
+
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)
         {
             FlashWhenLate = cBFlashWhenLate.Checked;

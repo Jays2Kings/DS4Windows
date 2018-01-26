@@ -476,15 +476,12 @@ namespace DS4Windows
 
         public static string ResolveShortcut(string filePath)
         {
-            // IWshRuntimeLibrary is in the COM library "Windows Script Host Object Model"
-            //IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShell();
             Type t = Type.GetTypeFromCLSID(new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8")); // Windows Script Host Shell Object
             dynamic shell = Activator.CreateInstance(t);
             string result;
 
             try
             {
-                //IWshRuntimeLibrary.IWshShortcut shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(filePath);
                 var shortcut = shell.CreateShortcut(filePath);
                 result = shortcut.TargetPath;
                 Marshal.FinalReleaseComObject(shortcut);
@@ -504,15 +501,12 @@ namespace DS4Windows
 
         public static string ResolveShortcutAndArgument(string filePath)
         {
-            // IWshRuntimeLibrary is in the COM library "Windows Script Host Object Model"
-            //IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShell();
             Type t = Type.GetTypeFromCLSID(new Guid("72C24DD5-D70A-438B-8A42-98424B88AFB8")); // Windows Script Host Shell Object
             dynamic shell = Activator.CreateInstance(t);
             string result;
 
             try
             {
-                //IWshRuntimeLibrary.IWshShortcut shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(filePath);
                 var shortcut = shell.CreateShortcut(filePath);
                 result = shortcut.TargetPath + " " + shortcut.Arguments;
                 Marshal.FinalReleaseComObject(shortcut);
@@ -526,7 +520,7 @@ namespace DS4Windows
             {
                 Marshal.FinalReleaseComObject(shell);
             }
-            
+
             return result;
         }
 

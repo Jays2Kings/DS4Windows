@@ -33,6 +33,7 @@ namespace DS4Windows
         {
             @"HID\VID_054C&PID_05C4",
             @"HID\VID_054C&PID_09CC&MI_03",
+            @"HID\VID_054C&PID_0BA0&MI_03",
             @"HID\{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054c_PID&05c4",
             @"HID\{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054c_PID&09cc",
         };

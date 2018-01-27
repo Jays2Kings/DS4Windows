@@ -88,6 +88,7 @@
             this.lbLinkText = new System.Windows.Forms.Label();
             this.btcTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.makerSupportLinkLabel = new System.Windows.Forms.LinkLabel();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
@@ -469,10 +470,18 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
+            // makerSupportLinkLabel
+            // 
+            resources.ApplyResources(this.makerSupportLinkLabel, "makerSupportLinkLabel");
+            this.makerSupportLinkLabel.Name = "makerSupportLinkLabel";
+            this.makerSupportLinkLabel.TabStop = true;
+            this.makerSupportLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakerSupportLinkLabel_LinkClicked);
+            // 
             // Hotkeys
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.makerSupportLinkLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btcTextBox);
             this.Controls.Add(this.linkDonate);
@@ -554,5 +563,6 @@
         private System.Windows.Forms.LinkLabel linkTeokp;
         private System.Windows.Forms.TextBox btcTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel makerSupportLinkLabel;
     }
 }

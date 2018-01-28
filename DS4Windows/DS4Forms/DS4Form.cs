@@ -5,7 +5,6 @@ using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Net;
-using System.Management;
 using System.Drawing;
 using Microsoft.Win32;
 using System.Diagnostics;
@@ -707,42 +706,15 @@ namespace DS4Windows
         {
             originalsettingstext = tabSettings.Text;
             bool deriverinstalled = false;
-            try
+            deriverinstalled = Global.IsScpVBusInstalled();
+            if (!deriverinstalled)
             {
-                deriverinstalled = Global.IsScpVBusInstalled();
-                /*ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPSignedDriver");
-
-                foreach (ManagementObject obj in searcher.Get())
-                {
-                    try
-                    {
-                        if (obj.GetPropertyValue("DeviceName").ToString() == "Scp Virtual Bus Driver")
-                        {
-                            deriverinstalled = true;
-                            break;
-                        }
-                    }
-                    catch { }
-                }
-                */
-
-                if (!deriverinstalled)
-                {
-                    Process p = new Process();
-                    p.StartInfo.FileName = Assembly.GetExecutingAssembly().Location;
-                    p.StartInfo.Arguments = "driverinstall";
-                    p.StartInfo.Verb = "runas";
-                    try { p.Start(); }
-                    catch { }
-                }
-            }
-            catch
-            {
-                if (!File.Exists(exepath + "\\Auto Profiles.xml") && !File.Exists(appDataPpath + "\\Auto Profiles.xml"))
-                {
-                    linkSetup.LinkColor = Color.Green;
-                    tabSettings.Text += " (" + Properties.Resources.InstallDriver + ")";
-                }
+                Process p = new Process();
+                p.StartInfo.FileName = Assembly.GetExecutingAssembly().Location;
+                p.StartInfo.Arguments = "driverinstall";
+                p.StartInfo.Verb = "runas";
+                try { p.Start(); }
+                catch { }
             }
         }
 

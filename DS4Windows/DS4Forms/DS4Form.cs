@@ -709,7 +709,8 @@ namespace DS4Windows
             bool deriverinstalled = false;
             try
             {
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPSignedDriver");
+                deriverinstalled = Global.IsScpVBusInstalled();
+                /*ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPSignedDriver");
 
                 foreach (ManagementObject obj in searcher.Get())
                 {
@@ -723,6 +724,7 @@ namespace DS4Windows
                     }
                     catch { }
                 }
+                */
 
                 if (!deriverinstalled)
                 {

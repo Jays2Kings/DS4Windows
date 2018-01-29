@@ -165,7 +165,7 @@ namespace DS4Windows
         {
             lodsf.Clear();
             lodsf.AddRange(Directory.GetFiles(path, "*.lnk", SearchOption.AllDirectories));
-            lodsf.AddRange(Directory.GetFiles(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs", "*.lnk", SearchOption.AllDirectories));
+            lodsf.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu) + "\\Programs", "*.lnk", SearchOption.AllDirectories));
             for (int i = 0; i < lodsf.Count; i++)
                 lodsf[i] = GetTargetPath(lodsf[i]);
 

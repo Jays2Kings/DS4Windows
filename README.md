@@ -11,12 +11,36 @@ website at [ds4windows.com](http://ds4windows.com).
 
 ## Requirements
 
+- Windows 7 or newer
 - [Microsoft .NET 4.5.2 or higher (needed to unzip the driver and for macros to work properly)](http://www.microsoft.com/en-us/download/details.aspx?id=42642)
 - SCP Virtual Bus Driver (Downloaded & Installed with DS4Windows)
 - Microsoft 360 Driver (link inside DS4Windows, already installed on Windows 7 SP1 and higher or if you've used a 360 controller before)
 - Sony DualShock 4 (This should be obvious)
 - Micro USB cable
-- (Optional)Bluetooth 2.1+, via adapter or built in pc [(My recommendation)](http://www.amazon.com/gp/product/B004LNXO28/ref=oh_aui_search_detailpage?ie=UTF8&psc=1) (Toshiba's bluetooth & Bluetooth adapters using CSR currently does not work)
+- (Optional)Bluetooth 2.1+, via adapter or built in pc [(My recommendation)](https://www.newegg.com/Product/Product.aspx?Item=N82E16833166126) (Toshiba's bluetooth & Bluetooth adapters using CSR currently does not work)
+
+## Device Detection Issue
+
+If your DS4 is not detected by DS4Windows and the lightbar continues to
+flash yellow, there is a chance that Exclusive Mode has permanently
+disabled your DS4 in Windows. The easiest way to test if this has happened is
+for you to plug in the controller into a different USB port and see if it
+works then. Although this problem mainly affected versions of
+DS4Windows prior to 1.4.109 when using some applications, other mapping
+programs can cause the same problem to occur.
+
+
+If you suspect that your DS4 has been disabled, open the Device Manager
+(Control Panel\Hardware and Sound\Device Manager) and look for devices listed
+under the path "Human Interface Devices\HID-compliant game controller".
+
+![Disabled Device Example](https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/disabled_device_example_small.png)
+
+If the icon shown for a device has a down arrow icon then you should
+check the device's device instance path and see if the device is a
+DualShock 4 device. Right click the device item and select "Enable device"
+from the menu. That will re-enable the device and be seen by applications
+again.
 
 ## Pull Requests
 

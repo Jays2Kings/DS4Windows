@@ -302,7 +302,7 @@ namespace DS4Windows
             var dataBuffer = new byte[4096];
             ulong propertyType = 0;
             var requiredSize = 0;
-            IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref sysGuid, "", 0, NativeMethods.DIGCF_PRESENT | NativeMethods.DIGCF_DEVICEINTERFACE | NativeMethods.DIGCF_ALLCLASSES);
+            IntPtr deviceInfoSet = NativeMethods.SetupDiGetClassDevs(ref sysGuid, "", 0, NativeMethods.DIGCF_DEVICEINTERFACE | NativeMethods.DIGCF_ALLCLASSES);
             for (int i = 0; !result && NativeMethods.SetupDiEnumDeviceInfo(deviceInfoSet, i, ref deviceInfoData); i++)
             {
                 if (NativeMethods.SetupDiGetDeviceProperty(deviceInfoSet, ref deviceInfoData, ref NativeMethods.DEVPKEY_Device_HardwareIds, ref propertyType,
@@ -2807,6 +2807,8 @@ namespace DS4Windows
                                 Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
                             }
                         }
+
+                        tempDev.setRumble(0, 0);
                     });
 
                     Program.rootHub.touchPad[device]?.ResetTrackAccel(trackballFriction[device]);

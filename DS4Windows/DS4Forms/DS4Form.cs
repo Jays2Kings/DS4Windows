@@ -87,38 +87,6 @@ namespace DS4Windows
 
         public DS4Form(string[] args)
         {
-            Global.Load();
-            this.setCulture(UseLang);
-
-            InitializeComponent();
-            ThemeUtil.SetTheme(lvDebug);
-
-            bnEditC1.Tag = 0;
-            bnEditC2.Tag = 1;
-            bnEditC3.Tag = 2;
-            bnEditC4.Tag = 3;
-
-            StartWindowsCheckBox.CheckedChanged -= StartWindowsCheckBox_CheckedChanged;
-
-            saveProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
-            openProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
-            cmdArguments = args;
-
-            Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
-            Batteries = new Label[4] { lbBatt1, lbBatt2, lbBatt3, lbBatt4 };
-            cbs = new ComboBox[4] { cBController1, cBController2, cBController3, cBController4 };
-            ebns = new Button[4] { bnEditC1, bnEditC2, bnEditC3, bnEditC4 };
-            lights = new Button[4] { bnLight1, bnLight2, bnLight3, bnLight4 };
-            statPB = new PictureBox[4] { pBStatus1, pBStatus2, pBStatus3, pBStatus4 };
-            shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[0],
-                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
-                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
-                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
-
-            linkedProfileCB = new CheckBox[4] { linkCB1, linkCB2, linkCB3, linkCB4 };
-
-            SystemEvents.PowerModeChanged += OnPowerChange;
-            tSOptions.Visible = false;
             bool firstrun = false;
 
             if (File.Exists(exepath + "\\Auto Profiles.xml")
@@ -154,6 +122,39 @@ namespace DS4Windows
                 firstrun = true;
                 new SaveWhere(false).ShowDialog();
             }
+
+            Global.Load();
+            this.setCulture(UseLang);
+
+            InitializeComponent();
+            ThemeUtil.SetTheme(lvDebug);
+
+            bnEditC1.Tag = 0;
+            bnEditC2.Tag = 1;
+            bnEditC3.Tag = 2;
+            bnEditC4.Tag = 3;
+
+            StartWindowsCheckBox.CheckedChanged -= StartWindowsCheckBox_CheckedChanged;
+
+            saveProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
+            openProfiles.Filter = Properties.Resources.XMLFiles + "|*.xml";
+            cmdArguments = args;
+
+            Pads = new Label[4] { lbPad1, lbPad2, lbPad3, lbPad4 };
+            Batteries = new Label[4] { lbBatt1, lbBatt2, lbBatt3, lbBatt4 };
+            cbs = new ComboBox[4] { cBController1, cBController2, cBController3, cBController4 };
+            ebns = new Button[4] { bnEditC1, bnEditC2, bnEditC3, bnEditC4 };
+            lights = new Button[4] { bnLight1, bnLight2, bnLight3, bnLight4 };
+            statPB = new PictureBox[4] { pBStatus1, pBStatus2, pBStatus3, pBStatus4 };
+            shortcuts = new ToolStripMenuItem[4] { (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[0],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
+                (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
+
+            linkedProfileCB = new CheckBox[4] { linkCB1, linkCB2, linkCB3, linkCB4 };
+
+            SystemEvents.PowerModeChanged += OnPowerChange;
+            tSOptions.Visible = false;
 
             TaskRunner.Run(() => CheckDrivers());
 

@@ -39,7 +39,7 @@ namespace DS4Windows
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new WelcomeDialog());
+                    Application.Run(new WelcomeDialog(true));
                     return;
                 }
                 else if (s == "re-enabledevice" || s == "-re-enabledevice")

@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace DS4Windows
 {
@@ -226,8 +227,13 @@ namespace DS4Windows
     {
         protected static BackingStore m_Config = new BackingStore();
         protected static Int32 m_IdleTimeout = 600000;
-        static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+        public static string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         public static string appdatapath;
+        public static bool firstRun = false;
+        public static bool multisavespots = false;
+        public static bool oldappdatafail = false;
+        public static string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
+        public static string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
         public static bool runHotPlug = false;
         public const int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
@@ -323,6 +329,52 @@ namespace DS4Windows
 
             return result;
         }
+
+        public static void FindConfigLocation()
+        {
+            if (File.Exists(exepath + "\\Auto Profiles.xml")
+                && File.Exists(appDataPpath + "\\Auto Profiles.xml"))
+            {
+                Global.firstRun = true;
+                Global.multisavespots = true;
+            }
+            else if (File.Exists(exepath + "\\Auto Profiles.xml"))
+                SaveWhere(exepath);
+            else if (File.Exists(appDataPpath + "\\Auto Profiles.xml"))
+                SaveWhere(appDataPpath);
+            else if (File.Exists(oldappdatapath + "\\Auto Profiles.xml"))
+            {
+                try
+                {
+                    if (Directory.Exists(appDataPpath))
+                        Directory.Move(appDataPpath, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows Old");
+                    Directory.Move(oldappdatapath, appDataPpath);
+                    SaveWhere(appDataPpath);
+                }
+                catch
+                {
+                    Global.oldappdatafail = true;
+                }
+            }
+            else if (!File.Exists(exepath + "\\Auto Profiles.xml")
+                && !File.Exists(appDataPpath + "\\Auto Profiles.xml"))
+            {
+                Global.firstRun = true;
+                Global.multisavespots = false;
+            }
+        }
+
+        public static void SetCulture(string culture)
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(culture);
+            }
+            catch { /* Skip setting culture that we cannot set */ }
+        }
+
+
 
         public static event EventHandler<EventArgs> ControllerStatusChange; // called when a controller is added/removed/battery or touchpad mode changes/etc.
         public static void ControllerStatusChanged(object sender)

@@ -1,30 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Net;
 
 using System.IO;
 using System.IO.Compression;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Security.Principal;
-using System.Security.Permissions;
-using System.Reflection;
+using NonFormTimer = System.Threading.Timer;
+using System.Threading.Tasks;
+using static DS4Windows.Global;
 
 namespace DS4Windows
 {
     public partial class WelcomeDialog : Form
     {
-        public WelcomeDialog()
+        public WelcomeDialog(bool loadConfig=false)
         {
             InitializeComponent();
             Icon = Properties.Resources.DS4;
-            
+            if (loadConfig)
+            {
+                Global.FindConfigLocation();
+                Global.Load();
+                Global.SetCulture(Global.UseLang);
+            }
         }
 
         private void bnFinish_Click(object sender, EventArgs e)
@@ -54,7 +53,6 @@ namespace DS4Windows
             bnStep1.Text = Properties.Resources.Downloading.Replace("*number*", e.ProgressPercentage.ToString());
         }
 
-        string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
         private void wb_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             bnStep1.Text = Properties.Resources.OpeningInstaller;

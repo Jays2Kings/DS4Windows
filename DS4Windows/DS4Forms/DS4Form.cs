@@ -10,7 +10,6 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using System.Xml;
 using System.Text;
-using System.Globalization;
 using Microsoft.Win32.TaskScheduler;
 using System.Security.Principal;
 using System.Threading;
@@ -38,9 +37,6 @@ namespace DS4Windows
         WebClient wc = new WebClient();
         NonFormTimer hotkeysTimer = new NonFormTimer();
         NonFormTimer autoProfilesTimer = new NonFormTimer();
-        string exepath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
-        string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
-        string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
         string tempProfileProgram = string.Empty;
         double dpix, dpiy;
         List<string> profilenames = new List<string>();
@@ -87,44 +83,22 @@ namespace DS4Windows
 
         public DS4Form(string[] args)
         {
-            bool firstrun = false;
+            Global.FindConfigLocation();
 
-            if (File.Exists(exepath + "\\Auto Profiles.xml")
-                && File.Exists(appDataPpath + "\\Auto Profiles.xml"))
+            if (Global.firstRun)
             {
-                firstrun = true;
-                new SaveWhere(true).ShowDialog();
+                new SaveWhere(Global.multisavespots).ShowDialog();
             }
-            else if (File.Exists(exepath + "\\Auto Profiles.xml"))
-                SaveWhere(exepath);
-            else if (File.Exists(appDataPpath + "\\Auto Profiles.xml"))
-                SaveWhere(appDataPpath);
-            else if (File.Exists(oldappdatapath + "\\Auto Profiles.xml"))
+            else if (Global.oldappdatafail)
             {
-                try
-                {
-                    if (Directory.Exists(appDataPpath))
-                        Directory.Move(appDataPpath, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows Old");
-                    Directory.Move(oldappdatapath, appDataPpath);
-                    SaveWhere(appDataPpath);
-                }
-                catch
-                {
-                    MessageBox.Show(Properties.Resources.CannotMoveFiles, "DS4Windows");
-                    Process.Start("explorer.exe", @"/select, " + appDataPpath);
-                    Close();
-                    return;
-                }
-            }
-            else if (!File.Exists(exepath + "\\Auto Profiles.xml")
-                && !File.Exists(appDataPpath + "\\Auto Profiles.xml"))
-            {
-                firstrun = true;
-                new SaveWhere(false).ShowDialog();
+                MessageBox.Show(Properties.Resources.CannotMoveFiles, "DS4Windows");
+                Process.Start("explorer.exe", @"/select, " + appDataPpath);
+                Close();
+                return;
             }
 
             Global.Load();
-            this.setCulture(UseLang);
+            Global.SetCulture(UseLang);
 
             InitializeComponent();
             ThemeUtil.SetTheme(lvDebug);
@@ -432,16 +406,6 @@ namespace DS4Windows
 
                 control.MouseHover += Items_MouseHover;
             }
-        }
-
-        private void setCulture(string culture)
-        {
-            try
-            {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
-                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo(culture);
-            }
-            catch { /* Skip setting culture that we cannot set */ }
         }
 
         private void populateHoverTextDict()

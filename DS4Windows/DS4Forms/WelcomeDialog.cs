@@ -6,7 +6,8 @@ using System.Net;
 using System.IO;
 using System.IO.Compression;
 using System.Diagnostics;
-using NonFormTimer = System.Threading.Timer;
+//using NonFormTimer = System.Threading.Timer;
+using NonFormTimer = System.Timers.Timer;
 using System.Threading.Tasks;
 using static DS4Windows.Global;
 
@@ -78,10 +79,15 @@ namespace DS4Windows
                 }
                 catch { Process.Start(exepath + "\\Virtual Bus Driver"); }
 
-            Timer timer = new Timer();
+            /*Timer timer = new Timer();
             timer.Start();
             timer.Tick += timer_Tick;
+            */
+            NonFormTimer timer = new NonFormTimer();
+            timer.Elapsed += timer_Tick;
+            timer.Start();
         }
+
         bool waitForFile;
         DateTime waitFileCheck;
         private void timer_Tick(object sender, EventArgs e)
@@ -95,24 +101,27 @@ namespace DS4Windows
                     waitFileCheck = DateTime.UtcNow;
                     return;
                 }
+
                 if (waitForFile && waitFileCheck + TimeSpan.FromMinutes(2) < DateTime.UtcNow)
                 {
-                    bnStep1.Text = Properties.Resources.InstallFailed;
                     Process.Start(exepath + "\\Virtual Bus Driver");
                     File.Delete(exepath + "\\VBus.zip");
                     ((Timer)sender).Stop();
+                    this.BeginInvoke((Action)(() => { bnStep1.Text = Properties.Resources.InstallFailed; }), null);
                     return;
                 }
                 else if (waitForFile)
                     return;
+
                 string log = File.ReadAllText(exepath + "\\ScpDriver.log");
                 if (log.Contains("Install Succeeded"))
-                    bnStep1.Text = Properties.Resources.InstallComplete;
+                    this.BeginInvoke((Action)(() => { bnStep1.Text = Properties.Resources.InstallComplete; }));
                 else
                 {
-                    bnStep1.Text = Properties.Resources.InstallFailed;
+                    this.BeginInvoke((Action)(() => { bnStep1.Text = Properties.Resources.InstallFailed; }));
                     Process.Start(exepath + "\\Virtual Bus Driver");
                 }
+
                 try
                 {
                     File.Delete(exepath + "\\ScpDriver.exe");
@@ -121,11 +130,11 @@ namespace DS4Windows
                     Directory.Delete(exepath + "\\DIFxAPI", true);
                 }
                 catch { }
+
                 File.Delete(exepath + "\\VBus.zip");
                 ((Timer)sender).Stop();
             }
         }
-
 
         private void button2_Click(object sender, EventArgs e)
         {

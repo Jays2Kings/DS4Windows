@@ -106,7 +106,7 @@ namespace DS4Windows
                 {
                     Process.Start(exepath + "\\Virtual Bus Driver");
                     File.Delete(exepath + "\\VBus.zip");
-                    ((Timer)sender).Stop();
+                    ((NonFormTimer)sender).Stop();
                     this.BeginInvoke((Action)(() => { bnStep1.Text = Properties.Resources.InstallFailed; }), null);
                     return;
                 }
@@ -132,7 +132,7 @@ namespace DS4Windows
                 catch { }
 
                 File.Delete(exepath + "\\VBus.zip");
-                ((Timer)sender).Stop();
+                ((NonFormTimer)sender).Stop();
             }
         }
 

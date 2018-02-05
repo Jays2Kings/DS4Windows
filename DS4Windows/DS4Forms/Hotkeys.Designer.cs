@@ -86,13 +86,23 @@
             this.lbTranslators = new System.Windows.Forms.Label();
             this.linkSourceCode = new System.Windows.Forms.LinkLabel();
             this.lbLinkText = new System.Windows.Forms.Label();
+            this.makerSupportLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.coinTP = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btcTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.makerSupportLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.ltcTextBox = new System.Windows.Forms.TextBox();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
             this.tLPTranslators.SuspendLayout();
+            this.coinTP.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // linkElectro
@@ -146,6 +156,7 @@
             // 
             this.tCAbout.Controls.Add(this.tPHotkeys);
             this.tCAbout.Controls.Add(this.tPCredits);
+            this.tCAbout.Controls.Add(this.coinTP);
             resources.ApplyResources(this.tCAbout, "tCAbout");
             this.tCAbout.Name = "tCAbout";
             this.tCAbout.SelectedIndex = 0;
@@ -458,6 +469,41 @@
             resources.ApplyResources(this.lbLinkText, "lbLinkText");
             this.lbLinkText.Name = "lbLinkText";
             // 
+            // makerSupportLinkLabel
+            // 
+            resources.ApplyResources(this.makerSupportLinkLabel, "makerSupportLinkLabel");
+            this.makerSupportLinkLabel.Name = "makerSupportLinkLabel";
+            this.makerSupportLinkLabel.TabStop = true;
+            this.makerSupportLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakerSupportLinkLabel_LinkClicked);
+            // 
+            // coinTP
+            // 
+            this.coinTP.Controls.Add(this.flowLayoutPanel1);
+            resources.ApplyResources(this.coinTP, "coinTP");
+            this.coinTP.Name = "coinTP";
+            this.coinTP.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // flowLayoutPanel1
+            // 
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Controls.Add(this.panel1);
+            this.flowLayoutPanel1.Controls.Add(this.panel2);
+            this.flowLayoutPanel1.Controls.Add(this.linkDonate);
+            this.flowLayoutPanel1.Controls.Add(this.makerSupportLinkLabel);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btcTextBox);
+            this.panel1.Controls.Add(this.label1);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
+            // 
             // btcTextBox
             // 
             this.btcTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -470,21 +516,24 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // makerSupportLinkLabel
+            // panel2
             // 
-            resources.ApplyResources(this.makerSupportLinkLabel, "makerSupportLinkLabel");
-            this.makerSupportLinkLabel.Name = "makerSupportLinkLabel";
-            this.makerSupportLinkLabel.TabStop = true;
-            this.makerSupportLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakerSupportLinkLabel_LinkClicked);
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Controls.Add(this.ltcTextBox);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Name = "panel2";
+            // 
+            // ltcTextBox
+            // 
+            this.ltcTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.ltcTextBox, "ltcTextBox");
+            this.ltcTextBox.Name = "ltcTextBox";
+            this.ltcTextBox.ReadOnly = true;
             // 
             // Hotkeys
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.makerSupportLinkLabel);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btcTextBox);
-            this.Controls.Add(this.linkDonate);
             this.Controls.Add(this.lLChangelog);
             this.Controls.Add(this.tCAbout);
             this.Controls.Add(this.lbAbout);
@@ -497,8 +546,14 @@
             this.tPCredits.PerformLayout();
             this.tLPTranslators.ResumeLayout(false);
             this.tLPTranslators.PerformLayout();
+            this.coinTP.ResumeLayout(false);
+            this.coinTP.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -561,8 +616,14 @@
         private System.Windows.Forms.Label lbpt;
         private System.Windows.Forms.Label lbPortugueseT;
         private System.Windows.Forms.LinkLabel linkTeokp;
+        private System.Windows.Forms.LinkLabel makerSupportLinkLabel;
+        private System.Windows.Forms.TabPage coinTP;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox btcTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel makerSupportLinkLabel;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox ltcTextBox;
+        private System.Windows.Forms.Label label2;
     }
 }

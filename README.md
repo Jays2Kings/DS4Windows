@@ -57,6 +57,7 @@ If you would like to send some coin my way, here are some means by
 which to do so.
 
 BTC Address: 1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9  
+LTC Address: La5mniW7SFMH2RhqDgUty3RwkBSYbjbnJ6  
 MakerSupport: https://www.makersupport.com/Ryochan7  
 PayPal: https://paypal.me/ryochan7
 

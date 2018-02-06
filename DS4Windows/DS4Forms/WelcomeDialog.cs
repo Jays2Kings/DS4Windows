@@ -17,14 +17,15 @@ namespace DS4Windows
     {
         public WelcomeDialog(bool loadConfig=false)
         {
-            InitializeComponent();
-            Icon = Properties.Resources.DS4;
             if (loadConfig)
             {
                 Global.FindConfigLocation();
                 Global.Load();
                 Global.SetCulture(Global.UseLang);
             }
+
+            InitializeComponent();
+            Icon = Properties.Resources.DS4;
         }
 
         private void bnFinish_Click(object sender, EventArgs e)

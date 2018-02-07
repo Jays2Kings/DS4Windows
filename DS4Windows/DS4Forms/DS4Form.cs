@@ -1944,18 +1944,22 @@ namespace DS4Windows
             if (nUDUpdateTime.Value == 1)
             {
                 int index = currentIndex;
+                cBUpdateTime.BeginUpdate();
                 cBUpdateTime.Items.Clear();
                 cBUpdateTime.Items.Add(Properties.Resources.Hour);
                 cBUpdateTime.Items.Add(Properties.Resources.Day);
                 cBUpdateTime.SelectedIndex = index;
+                cBUpdateTime.EndUpdate();
             }
             else if (cBUpdateTime.Items[0].ToString() == Properties.Resources.Hour)
             {
                 int index = currentIndex;
+                cBUpdateTime.BeginUpdate();
                 cBUpdateTime.Items.Clear();
                 cBUpdateTime.Items.Add(Properties.Resources.Hours);
                 cBUpdateTime.Items.Add(Properties.Resources.Days);
                 cBUpdateTime.SelectedIndex = index;
+                cBUpdateTime.EndUpdate();
             }
         }
 

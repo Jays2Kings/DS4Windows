@@ -953,7 +953,7 @@
             resources.ApplyResources(this.runStartTaskRadio, "runStartTaskRadio");
             this.runStartTaskRadio.Name = "runStartTaskRadio";
             this.runStartTaskRadio.TabStop = true;
-            this.runStartTaskRadio.UseVisualStyleBackColor = true;
+            this.runStartTaskRadio.UseVisualStyleBackColor = false;
             this.runStartTaskRadio.Click += new System.EventHandler(this.runStartTaskRadio_Click);
             // 
             // label1
@@ -967,7 +967,7 @@
             this.runStartProgRadio.Checked = true;
             this.runStartProgRadio.Name = "runStartProgRadio";
             this.runStartProgRadio.TabStop = true;
-            this.runStartProgRadio.UseVisualStyleBackColor = true;
+            this.runStartProgRadio.UseVisualStyleBackColor = false;
             this.runStartProgRadio.Click += new System.EventHandler(this.runStartProgRadio_Click);
             // 
             // startMinimizedCheckBox

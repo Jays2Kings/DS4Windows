@@ -913,7 +913,7 @@
             // 
             resources.ApplyResources(this.hideDS4CheckBox, "hideDS4CheckBox");
             this.hideDS4CheckBox.Name = "hideDS4CheckBox";
-            this.hideDS4CheckBox.UseVisualStyleBackColor = true;
+            this.hideDS4CheckBox.UseVisualStyleBackColor = false;
             this.hideDS4CheckBox.CheckedChanged += new System.EventHandler(this.hideDS4CheckBox_CheckedChanged);
             // 
             // cBSwipeProfiles
@@ -922,7 +922,7 @@
             this.cBSwipeProfiles.Checked = true;
             this.cBSwipeProfiles.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBSwipeProfiles.Name = "cBSwipeProfiles";
-            this.cBSwipeProfiles.UseVisualStyleBackColor = true;
+            this.cBSwipeProfiles.UseVisualStyleBackColor = false;
             this.cBSwipeProfiles.CheckedChanged += new System.EventHandler(this.cBSwipeProfiles_CheckedChanged);
             // 
             // StartWindowsCheckBox
@@ -1043,7 +1043,7 @@
             this.cBFlashWhenLate.Checked = true;
             this.cBFlashWhenLate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBFlashWhenLate.Name = "cBFlashWhenLate";
-            this.cBFlashWhenLate.UseVisualStyleBackColor = true;
+            this.cBFlashWhenLate.UseVisualStyleBackColor = false;
             this.cBFlashWhenLate.CheckedChanged += new System.EventHandler(this.cBFlashWhenLate_CheckedChanged);
             // 
             // cBCloseMini

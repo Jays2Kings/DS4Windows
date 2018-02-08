@@ -333,7 +333,7 @@ namespace DS4Windows
             if (checkwhen > 0 && DateTime.Now >= LastChecked + TimeSpan.FromHours(checkwhen))
             {
                 wc.DownloadFileAsync(url, appdatapath + "\\version.txt");
-                wc.DownloadFileCompleted += Check_Version;
+                wc.DownloadFileCompleted += (sender, e) => { TaskRunner.Run(() => Check_Version(sender, e)); };
                 LastChecked = DateTime.Now;
             }
 
@@ -690,8 +690,9 @@ namespace DS4Windows
             string newversion = File.ReadAllText(appdatapath + "\\version.txt").Trim();
             if (version.Replace(',', '.').CompareTo(newversion) == -1)
             {
-                if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
-                    Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if ((DialogResult)this.Invoke(new Func<DialogResult>(() => {
+                    return MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion),
+Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question); })) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                         && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo("1.1.0.0") == -1)))

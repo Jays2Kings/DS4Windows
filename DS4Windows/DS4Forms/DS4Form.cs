@@ -1979,7 +1979,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             Uri url = new Uri("http://23.239.26.40/ds4windows/files/builds/newest.txt");
             WebClient wct = new WebClient();
             wct.DownloadFileAsync(url, appdatapath + "\\version.txt");
-            wct.DownloadFileCompleted += wct_DownloadFileCompleted;
+            wct.DownloadFileCompleted += (sender2, e2) => TaskRunner.Run(() => wct_DownloadFileCompleted(sender2, e2));
         }
 
         private void cBDisconnectBT_CheckedChanged(object sender, EventArgs e)
@@ -1995,8 +1995,11 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             string newversion2 = File.ReadAllText(appdatapath + "\\version.txt").Trim();
             if (version2.Replace(',', '.').CompareTo(newversion2) == -1)
             {
-                if (MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2),
-                    Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if ((DialogResult)this.Invoke(new Func<DialogResult>(() =>
+                {
+                    return MessageBox.Show(Properties.Resources.DownloadVersion.Replace("*number*", newversion2),
+                    Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                })) == DialogResult.Yes)
                 {
                     if (!File.Exists(exepath + "\\DS4Updater.exe") || (File.Exists(exepath + "\\DS4Updater.exe")
                          && (FileVersionInfo.GetVersionInfo(exepath + "\\DS4Updater.exe").FileVersion.CompareTo(UPDATER_VERSION) == -1)))
@@ -2007,7 +2010,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
-                            MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
+                            this.BeginInvoke((System.Action)(() => MessageBox.Show(Properties.Resources.PleaseDownloadUpdater)));
                             Process.Start($"http://23.239.26.40/ds4windows/files/{updaterExe}");
                         }
                     }
@@ -2027,7 +2030,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             else
             {
                 File.Delete(appdatapath + "\\version.txt");
-                MessageBox.Show(Properties.Resources.UpToDate, "DS4Windows Updater");
+                this.BeginInvoke((System.Action)(() => MessageBox.Show(Properties.Resources.UpToDate, "DS4Windows Updater")));
             }
         }
 

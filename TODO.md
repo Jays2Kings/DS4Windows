@@ -8,8 +8,6 @@ C++ test application before attempting to work it into DS4Windows.~~
 * Attempt to work out BT disconnect issues by looking at older versions
 * Attempt to remove reliance on the main thread when disconnecting a device.
 Currently used to delay hotplug routine
-* ~~Attempt to remove more unused components~~
-* ~~Tweak layout of some forms~~
 * Possibly lower Enhanced Precision sensitivity by a notch
 * Look into distributing profile properties around various objects
 rather than using a lot of getters to obtain properties each poll.

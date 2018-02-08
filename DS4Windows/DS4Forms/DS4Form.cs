@@ -703,7 +703,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                             wc2.DownloadFile(url2, exepath + "\\DS4Updater.exe");
                         else
                         {
-                            MessageBox.Show(Properties.Resources.PleaseDownloadUpdater);
+                            this.BeginInvoke((System.Action)(() => MessageBox.Show(Properties.Resources.PleaseDownloadUpdater)));
                             Process.Start($"http://23.239.26.40/ds4windows/files/{updaterExe}");
                         }
                     }

@@ -55,6 +55,7 @@
             this.Controls.Add(this.cbCulture);
             this.Controls.Add(this.label1);
             this.Name = "LanguagePackComboBox";
+            this.Load += new System.EventHandler(this.LanguagePackComboBox_Load);
             this.SizeChanged += new System.EventHandler(this.LanguagePackComboBox_SizeChanged);
             this.Resize += new System.EventHandler(this.LanguagePackComboBox_SizeChanged);
             this.ResumeLayout(false);

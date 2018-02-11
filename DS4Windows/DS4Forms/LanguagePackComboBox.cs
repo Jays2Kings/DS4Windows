@@ -16,6 +16,12 @@ namespace DS4Windows.DS4Forms
         private string InvariantCultureTextValue = "No (English UI)";
         private TaskCompletionSource<bool> LanguageListInitialized = new TaskCompletionSource<bool>();
 
+        // If probing path has been changed in App.config, add the same string here.
+        public string ProbingPath = "Lang";
+
+        // Filter language assembly file names in order to ont include irrelevant assemblies to the combo box.
+        public string LanguageAssemblyName = "DS4Windows.resources.dll";
+
         [Category("Action")]
         [Description("Fires when the combo box selected index is changed.")]
         public event EventHandler SelectedIndexChanged;
@@ -44,14 +50,6 @@ namespace DS4Windows.DS4Forms
             get { return label1.Text; }
             set { label1.Text = value; }
         }
-
-        [Category("Data")]
-        [Description("If probing path has been changed in App.config, add the same string here.")]
-        public string ProbingPath { get; set; } = "Lang";
-
-        [Category("Data")]
-        [Description("Filter language assembly file names in order to ont include irrelevant assemblies to the combo box.")]
-        public string LanguageAssemblyName { get; set; } = "DS4Windows.resources.dll";
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int SelectedIndex

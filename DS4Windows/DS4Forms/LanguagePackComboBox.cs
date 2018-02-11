@@ -16,6 +16,12 @@ namespace DS4Windows.DS4Forms
         private string InvariantCultureTextValue = "No (English UI)";
         private TaskCompletionSource<bool> LanguageListInitialized = new TaskCompletionSource<bool>();
 
+        // If probing path has been changed in App.config, add the same string here.
+        public string ProbingPath = "Lang";
+
+        // Filter language assembly file names in order to ont include irrelevant assemblies to the combo box.
+        public string LanguageAssemblyName = "DS4Windows.resources.dll";
+
         [Category("Action")]
         [Description("Fires when the combo box selected index is changed.")]
         public event EventHandler SelectedIndexChanged;
@@ -45,14 +51,6 @@ namespace DS4Windows.DS4Forms
             set { label1.Text = value; }
         }
 
-        [Category("Data")]
-        [Description("If probing path has been changed in App.config, add the same string here.")]
-        public string ProbingPath { get; set; } = "Lang";
-
-        [Category("Data")]
-        [Description("Filter language assembly file names in order to ont include irrelevant assemblies to the combo box.")]
-        public string LanguageAssemblyName { get; set; } = "DS4Windows.resources.dll";
-
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int SelectedIndex
         {
@@ -78,6 +76,19 @@ namespace DS4Windows.DS4Forms
         {
             InitializeComponent();
             cbCulture.Enabled = false;
+
+            Task.Run(() => {
+                // Find available language assemblies and bind the list to the combo box.
+                cbCulture.DataSource = CreateLanguageAssembliesBindingSource();
+                cbCulture.SelectedValue = Thread.CurrentThread.CurrentUICulture.Name;
+
+                // This must be set here instead of Designer or event would fire at initial selected value setting above.
+                cbCulture.SelectedIndexChanged += new EventHandler(CbCulture_SelectedIndexChanged);
+                cbCulture.SelectedValueChanged += new EventHandler(CbCulture_SelectedValueChanged);
+
+                cbCulture.Enabled = true;
+                LanguageListInitialized.SetResult(true);
+            });
         }
 
         private BindingSource CreateLanguageAssembliesBindingSource()
@@ -129,22 +140,6 @@ namespace DS4Windows.DS4Forms
         private void CbCulture_SelectedValueChanged(object sender, EventArgs e)
         {
             SelectedValueChanged?.Invoke(this, e);
-        }
-
-        private void LanguagePackComboBox_Load(object sender, EventArgs e)
-        {
-            Invoke(new Action(() => {
-                // Find available language assemblies and bind the list to the combo box.
-                cbCulture.DataSource = CreateLanguageAssembliesBindingSource();
-                cbCulture.SelectedValue = Thread.CurrentThread.CurrentUICulture.Name;
-
-                // This must be set here instead of Designer or event would fire at initial selected value setting above.
-                cbCulture.SelectedIndexChanged += new EventHandler(CbCulture_SelectedIndexChanged);
-                cbCulture.SelectedValueChanged += new EventHandler(CbCulture_SelectedValueChanged);
-
-                cbCulture.Enabled = true;
-                LanguageListInitialized.SetResult(true);
-            }));
         }
     }
 }

@@ -1153,9 +1153,7 @@
             // languagePackComboBox1
             // 
             resources.ApplyResources(this.languagePackComboBox1, "languagePackComboBox1");
-            this.languagePackComboBox1.LanguageAssemblyName = "DS4Windows.resources.dll";
             this.languagePackComboBox1.Name = "languagePackComboBox1";
-            this.languagePackComboBox1.ProbingPath = "Lang";
             this.languagePackComboBox1.SelectedValueChanged += new System.EventHandler(this.languagePackComboBox1_SelectedValueChanged);
             // 
             // flowLayoutPanel1

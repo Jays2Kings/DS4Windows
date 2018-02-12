@@ -17,10 +17,10 @@ namespace DS4Windows.DS4Forms
         private TaskCompletionSource<bool> LanguageListInitialized = new TaskCompletionSource<bool>();
 
         // If probing path has been changed in App.config, add the same string here.
-        public string ProbingPath = "Lang";
+        private string ProbingPath = "Lang";
 
         // Filter language assembly file names in order to ont include irrelevant assemblies to the combo box.
-        public string LanguageAssemblyName = "DS4Windows.resources.dll";
+        private string LanguageAssemblyName = "DS4Windows.resources.dll";
 
         [Category("Action")]
         [Description("Fires when the combo box selected index is changed.")]

@@ -710,7 +710,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
                     Process p = new Process();
                     p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                    p.StartInfo.Arguments = "-skipLang";
+                    p.StartInfo.Arguments = "-autolaunch";
                     if (AdminNeeded())
                         p.StartInfo.Verb = "runas";
 
@@ -2017,7 +2017,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
                     Process p = new Process();
                     p.StartInfo.FileName = exepath + "\\DS4Updater.exe";
-                    p.StartInfo.Arguments = "-skipLang";
+                    p.StartInfo.Arguments = "-autolaunch";
                     if (AdminNeeded())
                         p.StartInfo.Verb = "runas";
 

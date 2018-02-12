@@ -1,10 +1,6 @@
 # TODO
 
-* ~~Integrate HidGuardian. Whitelist cleanup, remove old exclusive mode
-workaround, write template AffectedDevices file~~
 * Perform some final cleanup and release version 1.5
-* ~~Experiment with ViGEm driver. This would be easier to test on my old
-C++ test application before attempting to work it into DS4Windows.~~
 * Attempt to work out BT disconnect issues by looking at older versions
 * Attempt to remove reliance on the main thread when disconnecting a device.
 Currently used to delay hotplug routine

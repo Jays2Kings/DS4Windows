@@ -2,7 +2,7 @@
 
 Like those other ds4tools, but sexier.
 
-DS4Windows is a portable program that allows you to get the best DualShock 4 experience on your PC. By emulating a Xbox 360 controller, many more games are accessible.
+DS4Windows is an extract anywhere program that allows you to get the best DualShock 4 experience on your PC. By emulating a Xbox 360 controller, many more games are accessible.
 
 You can find the latest and older versions [here](https://github.com/Ryochan7/DS4Windows/releases).
 
@@ -17,7 +17,7 @@ website at [ds4windows.com](http://ds4windows.com).
 - Microsoft 360 Driver (link inside DS4Windows, already installed on Windows 7 SP1 and higher or if you've used a 360 controller before)
 - Sony DualShock 4 (This should be obvious)
 - Micro USB cable
-- (Optional)Bluetooth 2.1+, via adapter or built in pc [(My recommendation)](https://www.newegg.com/Product/Product.aspx?Item=N82E16833166126) (Toshiba's bluetooth & Bluetooth adapters using CSR currently does not work)
+- (Optional)Bluetooth 2.1+, via adapter or built in pc [(My recommendation)](https://www.newegg.com/Product/Product.aspx?Item=N82E16833166126) (Toshiba's bluetooth adapters currently do not work)
 
 ## Device Detection Issue
 
@@ -56,8 +56,9 @@ rejected if no reasonable solution can be found to incorporate code changes.
 If you would like to send some coin my way, here are some means by
 which to do so.
 
-BTC Address: 1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9  
-LTC Address: La5mniW7SFMH2RhqDgUty3RwkBSYbjbnJ6  
+Bitcoin: 1DnMJwjdd7JRfHJap2mmTmADYm38SzR2z9  
+Litecoin: La5mniW7SFMH2RhqDgUty3RwkBSYbjbnJ6  
+Monero: 49RvRMiMewaeez1Y2auxHmfMaAUYfhUpBem4ohzRJd9b5acPcxzh1icjnhZfjnYd1S7NQ57reQ7cP1swGre3rpfzUgJhEB7  
 MakerSupport: https://www.makersupport.com/Ryochan7  
 PayPal: https://paypal.me/ryochan7
 

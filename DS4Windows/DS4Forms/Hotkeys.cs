@@ -61,7 +61,7 @@ namespace DS4Windows
             }
         }
 
-        private void linkJays2Kings_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkJays2Kings_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/Jays2Kings/");
         }
@@ -81,12 +81,12 @@ namespace DS4Windows
             Process.Start("http://dsdcs.com/index.php/portfolio/software-development/4-ds4windows");
         }
 
-        private void lLChangelog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LLChangelog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://docs.google.com/document/d/1CovpH08fbPSXrC6TmEprzgPwCe0tTjQ_HTFfDotpmxk/edit?usp=sharing");
         }
 
-        private void linkDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://paypal.me/ryochan7");
         }

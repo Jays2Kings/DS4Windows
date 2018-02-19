@@ -86,23 +86,16 @@
             this.lbTranslators = new System.Windows.Forms.Label();
             this.linkSourceCode = new System.Windows.Forms.LinkLabel();
             this.lbLinkText = new System.Windows.Forms.Label();
-            this.makerSupportLinkLabel = new System.Windows.Forms.LinkLabel();
             this.coinTP = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btcTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.ltcTextBox = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.makerSupportLinkLabel = new System.Windows.Forms.LinkLabel();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
             this.tLPTranslators.SuspendLayout();
             this.coinTP.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // linkElectro
@@ -117,7 +110,7 @@
             resources.ApplyResources(this.linkJays2Kings, "linkJays2Kings");
             this.linkJays2Kings.Name = "linkJays2Kings";
             this.linkJays2Kings.TabStop = true;
-            this.linkJays2Kings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkJays2Kings_LinkClicked);
+            this.linkJays2Kings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkJays2Kings_LinkClicked);
             // 
             // lbAbout
             // 
@@ -143,14 +136,14 @@
             resources.ApplyResources(this.lLChangelog, "lLChangelog");
             this.lLChangelog.Name = "lLChangelog";
             this.lLChangelog.TabStop = true;
-            this.lLChangelog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLChangelog_LinkClicked);
+            this.lLChangelog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LLChangelog_LinkClicked);
             // 
             // linkDonate
             // 
             resources.ApplyResources(this.linkDonate, "linkDonate");
             this.linkDonate.Name = "linkDonate";
             this.linkDonate.TabStop = true;
-            this.linkDonate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkDonate_LinkClicked);
+            this.linkDonate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkDonate_LinkClicked);
             // 
             // tCAbout
             // 
@@ -469,13 +462,6 @@
             resources.ApplyResources(this.lbLinkText, "lbLinkText");
             this.lbLinkText.Name = "lbLinkText";
             // 
-            // makerSupportLinkLabel
-            // 
-            resources.ApplyResources(this.makerSupportLinkLabel, "makerSupportLinkLabel");
-            this.makerSupportLinkLabel.Name = "makerSupportLinkLabel";
-            this.makerSupportLinkLabel.TabStop = true;
-            this.makerSupportLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakerSupportLinkLabel_LinkClicked);
-            // 
             // coinTP
             // 
             this.coinTP.Controls.Add(this.flowLayoutPanel1);
@@ -483,52 +469,26 @@
             this.coinTP.Name = "coinTP";
             this.coinTP.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
             // flowLayoutPanel1
             // 
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
-            this.flowLayoutPanel1.Controls.Add(this.panel1);
-            this.flowLayoutPanel1.Controls.Add(this.panel2);
+            this.flowLayoutPanel1.Controls.Add(this.textBox2);
             this.flowLayoutPanel1.Controls.Add(this.linkDonate);
             this.flowLayoutPanel1.Controls.Add(this.makerSupportLinkLabel);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
-            // panel1
+            // textBox2
             // 
-            this.panel1.Controls.Add(this.btcTextBox);
-            this.panel1.Controls.Add(this.label1);
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Name = "panel1";
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.textBox2, "textBox2");
+            this.textBox2.Name = "textBox2";
             // 
-            // btcTextBox
+            // makerSupportLinkLabel
             // 
-            this.btcTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.btcTextBox, "btcTextBox");
-            this.btcTextBox.Name = "btcTextBox";
-            this.btcTextBox.ReadOnly = true;
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // panel2
-            // 
-            resources.ApplyResources(this.panel2, "panel2");
-            this.panel2.Controls.Add(this.ltcTextBox);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Name = "panel2";
-            // 
-            // ltcTextBox
-            // 
-            this.ltcTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.ltcTextBox, "ltcTextBox");
-            this.ltcTextBox.Name = "ltcTextBox";
-            this.ltcTextBox.ReadOnly = true;
+            resources.ApplyResources(this.makerSupportLinkLabel, "makerSupportLinkLabel");
+            this.makerSupportLinkLabel.Name = "makerSupportLinkLabel";
+            this.makerSupportLinkLabel.TabStop = true;
+            this.makerSupportLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakerSupportLinkLabel_LinkClicked);
             // 
             // Hotkeys
             // 
@@ -549,10 +509,7 @@
             this.coinTP.ResumeLayout(false);
             this.coinTP.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -619,11 +576,6 @@
         private System.Windows.Forms.LinkLabel makerSupportLinkLabel;
         private System.Windows.Forms.TabPage coinTP;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox btcTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox ltcTextBox;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

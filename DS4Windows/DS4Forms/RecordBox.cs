@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using NonFormTimer = System.Timers.Timer;
 
 using System.IO;
 using System.Reflection;
@@ -13,7 +14,8 @@ namespace DS4Windows
     public partial class RecordBox : Form
     {
         Stopwatch sw = new Stopwatch();
-        Timer ds4 = new Timer();
+        //Timer ds4 = new Timer();
+        NonFormTimer ds4 = new NonFormTimer();
         public List<int> macros = new List<int>(), macrosAfter = new List<int>();
         public List<string> macronames = new List<string>();
         SpecActions sA;
@@ -38,7 +40,8 @@ namespace DS4Windows
             }
 
             AddtoDS4List();
-            ds4.Tick += ds4_Tick;
+            //ds4.Tick += ds4_Tick;
+            ds4.Elapsed += ds4_Tick;
             ds4.Interval = 1;
             if (kbm.macrostag.Count > 0)
             {
@@ -61,7 +64,8 @@ namespace DS4Windows
             if (button > -1)
                 sAButton = button;
 
-            ds4.Tick += ds4_Tick;
+            //ds4.Tick += ds4_Tick;
+            ds4.Elapsed += ds4_Tick;
             ds4.Interval = 1;
             lbRecordTip.Visible = false;
             cBStyle.Visible = false;
@@ -122,81 +126,44 @@ namespace DS4Windows
 
         bool[] pTP = new bool[4];
 
-        void ds4_Tick(object sender, EventArgs e)
+        //void ds4_Tick(object sender, EventArgs e)
+        private void ds4_Tick(object sender, System.Timers.ElapsedEventArgs e)
         {
             if (Program.rootHub.DS4Controllers[0] != null)
             {
                 cState = Program.rootHub.getDS4State(0);
-                if (btnRecord.Text == Properties.Resources.StopText)
+                this.BeginInvoke((Action)(() =>
                 {
-                    if (cBRecordDelays.Checked)
+                    if (btnRecord.Text == Properties.Resources.StopText)
                     {
-                        Mouse tP = Program.rootHub.touchPad[0];
-                        if (tP.leftDown && !pTP[0])
-                            if (!btnRumble.Text.Contains("Stop"))
-                                btnRumble_Click(sender, e);
-                        else if (!tP.leftDown && pTP[0])
-                            if (btnRumble.Text.Contains("Stop"))
-                                btnRumble_Click(sender, e);
-                        if (tP.rightDown && !pTP[1])
-                            if (!btnLightbar.Text.Contains("Reset"))
-                                btnLightbar_Click(sender, e);
-                        else if (!tP.rightDown && pTP[1])
-                            if (btnLightbar.Text.Contains("Reset"))
-                                btnLightbar_Click(sender, e);
-                        pTP[0] = tP.leftDown;
-                        pTP[1] = tP.rightDown;
-                    }
-
-                    //foreach (DS4Controls dc in dcs)
-                    for (int controlIndex = 0, dcsLen = dcs.Count; controlIndex < dcsLen; controlIndex++)
-                    {
-                        DS4Controls dc = dcs[controlIndex];
-                        if (Mapping.getBoolMapping(0, dc, cState, null, null))
+                        if (cBRecordDelays.Checked)
                         {
-                            int value = DS4ControltoInt(dc);
-                            int count = 0;
-                            int macroLen = macros.Count;
-                            //foreach (int i in macros)
-                            for (int macroIndex = 0; macroIndex < macroLen; macroIndex++)
-                            {
-                                int i = macros[macroIndex];
-                                if (i == value)
-                                    count++;
-                            }
-
-                            if (macroLen == 0)
-                            {
-                                AddMacroValue(value);
-                                lVMacros.Items.Add(DS4ControltoX360(dc), 0);
-                                if (cBRecordDelays.Checked)
-                                {
-                                    sw.Reset();
-                                    sw.Start();
-                                }
-                            }
-                            else if (count % 2 == 0)
-                            {
-                                if (cBRecordDelays.Checked)
-                                {
-                                    AddMacroValue((int)sw.ElapsedMilliseconds + 300);
-                                    lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
-                                    sw.Reset();
-                                    sw.Start();
-                                }
-                                AddMacroValue(value);
-                                lVMacros.Items.Add(DS4ControltoX360(dc), 0);
-                            }
-
-                            lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
+                            Mouse tP = Program.rootHub.touchPad[0];
+                            if (tP.leftDown && !pTP[0])
+                                if (!btnRumble.Text.Contains("Stop"))
+                                    btnRumble_Click(sender, e);
+                                else if (!tP.leftDown && pTP[0])
+                                    if (btnRumble.Text.Contains("Stop"))
+                                        btnRumble_Click(sender, e);
+                            if (tP.rightDown && !pTP[1])
+                                if (!btnLightbar.Text.Contains("Reset"))
+                                    btnLightbar_Click(sender, e);
+                                else if (!tP.rightDown && pTP[1])
+                                    if (btnLightbar.Text.Contains("Reset"))
+                                        btnLightbar_Click(sender, e);
+                            pTP[0] = tP.leftDown;
+                            pTP[1] = tP.rightDown;
                         }
-                        else if (!Mapping.getBoolMapping(0, dc, cState, null, null))
+
+                        //foreach (DS4Controls dc in dcs)
+                        for (int controlIndex = 0, dcsLen = dcs.Count; controlIndex < dcsLen; controlIndex++)
                         {
-                            int macroLen = macros.Count;
-                            if (macroLen != 0)
+                            DS4Controls dc = dcs[controlIndex];
+                            if (Mapping.getBoolMapping(0, dc, cState, null, null))
                             {
                                 int value = DS4ControltoInt(dc);
                                 int count = 0;
+                                int macroLen = macros.Count;
                                 //foreach (int i in macros)
                                 for (int macroIndex = 0; macroIndex < macroLen; macroIndex++)
                                 {
@@ -205,11 +172,17 @@ namespace DS4Windows
                                         count++;
                                 }
 
-                                /*for (int i = macros.Count - 1; i >= 0; i--)
-                                    if (macros.Count == 261)
-                                        count++;*/
-
-                                if (count % 2 == 1)
+                                if (macroLen == 0)
+                                {
+                                    AddMacroValue(value);
+                                    lVMacros.Items.Add(DS4ControltoX360(dc), 0);
+                                    if (cBRecordDelays.Checked)
+                                    {
+                                        sw.Reset();
+                                        sw.Start();
+                                    }
+                                }
+                                else if (count % 2 == 0)
                                 {
                                     if (cBRecordDelays.Checked)
                                     {
@@ -218,15 +191,50 @@ namespace DS4Windows
                                         sw.Reset();
                                         sw.Start();
                                     }
-
                                     AddMacroValue(value);
-                                    lVMacros.Items.Add(DS4ControltoX360(dc), 1);
-                                    lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
+                                    lVMacros.Items.Add(DS4ControltoX360(dc), 0);
+                                }
+
+                                lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
+                            }
+                            else if (!Mapping.getBoolMapping(0, dc, cState, null, null))
+                            {
+                                int macroLen = macros.Count;
+                                if (macroLen != 0)
+                                {
+                                    int value = DS4ControltoInt(dc);
+                                    int count = 0;
+                                    //foreach (int i in macros)
+                                    for (int macroIndex = 0; macroIndex < macroLen; macroIndex++)
+                                    {
+                                        int i = macros[macroIndex];
+                                        if (i == value)
+                                            count++;
+                                    }
+
+                                    /*for (int i = macros.Count - 1; i >= 0; i--)
+                                        if (macros.Count == 261)
+                                            count++;*/
+
+                                    if (count % 2 == 1)
+                                    {
+                                        if (cBRecordDelays.Checked)
+                                        {
+                                            AddMacroValue((int)sw.ElapsedMilliseconds + 300);
+                                            lVMacros.Items.Add(Properties.Resources.WaitMS.Replace("*number*", sw.ElapsedMilliseconds.ToString()).Replace("*ms*", "ms"), 2);
+                                            sw.Reset();
+                                            sw.Start();
+                                        }
+
+                                        AddMacroValue(value);
+                                        lVMacros.Items.Add(DS4ControltoX360(dc), 1);
+                                        lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
+                                    }
                                 }
                             }
                         }
                     }
-                }
+                }));
             }
         }
         

@@ -41,7 +41,7 @@ namespace DS4Windows
 
             AddtoDS4List();
             //ds4.Tick += ds4_Tick;
-            ds4.Elapsed += ds4_Tick;
+            ds4.Elapsed += Ds4_Tick;
             ds4.Interval = 1;
             if (kbm.macrostag.Count > 0)
             {
@@ -65,7 +65,7 @@ namespace DS4Windows
                 sAButton = button;
 
             //ds4.Tick += ds4_Tick;
-            ds4.Elapsed += ds4_Tick;
+            ds4.Elapsed += Ds4_Tick;
             ds4.Interval = 1;
             lbRecordTip.Visible = false;
             cBStyle.Visible = false;
@@ -126,8 +126,7 @@ namespace DS4Windows
 
         bool[] pTP = new bool[4];
 
-        //void ds4_Tick(object sender, EventArgs e)
-        private void ds4_Tick(object sender, System.Timers.ElapsedEventArgs e)
+        private void Ds4_Tick(object sender, System.Timers.ElapsedEventArgs e)
         {
             if (Program.rootHub.DS4Controllers[0] != null)
             {

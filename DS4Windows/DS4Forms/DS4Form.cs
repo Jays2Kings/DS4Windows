@@ -741,7 +741,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 if (lBProfiles.Items.Count == 0)
                 {
                     SaveProfile(0, "Default");
-                    ProfilePath[0] = "Default";
+                    ProfilePath[0] = OlderProfilePath[0] = "Default";
                     RefreshProfiles();
                     return;
                 }
@@ -759,7 +759,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         {
                             cbs[i].SelectedIndex = j;
                             ((ToolStripMenuItem)shortcuts[i].DropDownItems[j]).Checked = true;
-                            ProfilePath[i] = cbs[i].Text;
+                            ProfilePath[i] = OlderProfilePath[i] = cbs[i].Text;
                             shortcuts[i].Text = Properties.Resources.ContextEdit.Replace("*number*", (i + 1).ToString());
                             ebns[i].Text = Properties.Resources.EditProfile;
                             break;
@@ -777,7 +777,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             {
                 Directory.CreateDirectory(appdatapath + @"\Profiles\");
                 SaveProfile(0, "Default");
-                ProfilePath[0] = "Default";
+                ProfilePath[0] = OlderProfilePath[0] = "Default";
                 RefreshProfiles();
                 return;
             }

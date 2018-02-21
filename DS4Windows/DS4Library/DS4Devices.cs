@@ -187,9 +187,14 @@ namespace DS4Windows
         // Called when devices is diconnected, timed out or has input reading failure
         public static void On_Removal(object sender, EventArgs e)
         {
+            DS4Device device = (DS4Device)sender;
+            RemoveDevice(device);
+        }
+
+        public static void RemoveDevice(DS4Device device)
+        {
             lock (Devices)
             {
-                DS4Device device = (DS4Device)sender;
                 if (device != null)
                 {
                     device.HidDevice.CloseDevice();

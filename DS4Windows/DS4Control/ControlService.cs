@@ -253,6 +253,7 @@ namespace DS4Windows
                             DS4LightBar.updateLightBar(DS4Controllers[i], i);
                             tempDevice.IsRemoved = true;
                             tempDevice.StopUpdate();
+                            DS4Devices.RemoveDevice(tempDevice);
                             Thread.Sleep(50);
                         }
 

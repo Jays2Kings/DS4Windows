@@ -246,7 +246,7 @@
             resources.ApplyResources(this.btnStartStop, "btnStartStop");
             this.btnStartStop.Name = "btnStartStop";
             this.btnStartStop.UseVisualStyleBackColor = true;
-            this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
+            this.btnStartStop.Click += new System.EventHandler(this.BtnStartStop_Click);
             // 
             // lbLastMessage
             // 

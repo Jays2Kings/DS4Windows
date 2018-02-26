@@ -886,12 +886,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             chData.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        protected void btnStartStop_Click(object sender, EventArgs e)
+        private void BtnStartStop_Click(object sender, EventArgs e)
         {
             BtnStartStop_Clicked();
         }
 
-        private void serviceStartup(bool log)
+        private void ServiceStartup(bool log)
         {
             var uiContext = SynchronizationContext.Current;
             changingService = true;
@@ -899,12 +899,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             {
                 //Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
                 Program.rootHub.Start(uiContext, log);
-                Invoke((System.Action)(() => { serviceStartupFinish(); }));
+                Invoke((System.Action)(() => { ServiceStartupFinish(); }));
                 changingService = false;
             });
         }
 
-        private void serviceStartupFinish()
+        private void ServiceStartupFinish()
         {
             if (SwipeProfiles && !hotkeysTimer.Enabled)
             {
@@ -925,12 +925,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             TaskRunner.Run(() =>
             {
                 Program.rootHub.Stop(log, suspend);
-                Invoke((System.Action)(() => { serviceShutdownFinish(); }));
+                Invoke((System.Action)(() => { ServiceShutdownFinish(); }));
                 changingService = false;
             });
         }
 
-        private void serviceShutdownFinish()
+        private void ServiceShutdownFinish()
         {
             hotkeysTimer.Stop();
             autoProfilesTimer.Stop();
@@ -943,7 +943,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         {
             if (btnStartStop.Text == Properties.Resources.StartText)
             {
-                serviceStartup(log);
+                ServiceStartup(log);
             }
             else if (btnStartStop.Text == Properties.Resources.StopText)
             {

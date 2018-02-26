@@ -1639,7 +1639,7 @@ namespace DS4Windows
 
             if (olddinputcheck != cBDinput.Checked)
             {
-                root.btnStartStop_Clicked(false);
+                root.BtnStartStop_Clicked(false);
                 finishDInputChange();
             }
 
@@ -2166,7 +2166,7 @@ namespace DS4Windows
             DinputOnly[device] = cBDinput.Checked;
             if (!loading && device < 4)
             {
-                root.btnStartStop_Clicked(false);
+                root.BtnStartStop_Clicked(false);
                 finishDInputChange();
             }
         }
@@ -2181,7 +2181,7 @@ namespace DS4Windows
                 }
             });
 
-            root.btnStartStop_Clicked(false);
+            root.BtnStartStop_Clicked(false);
         }
 
         private void cbStartTouchpadOff_CheckedChanged(object sender, EventArgs e)

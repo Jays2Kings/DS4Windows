@@ -310,7 +310,7 @@ namespace DS4Windows
             }
 
             if (btnStartStop.Enabled && start)
-                btnStartStop_Clicked();
+                BtnStartStop_Clicked();
 
             startToolStripMenuItem.Text = btnStartStop.Text;
             cBoxNotifications.SelectedIndex = Notifications;
@@ -507,7 +507,7 @@ namespace DS4Windows
                     {
                         DS4LightBar.shuttingdown = false;
                         wasrunning = false;
-                        btnStartStop_Clicked();
+                        BtnStartStop_Clicked();
                     }
                     break;
                 }
@@ -516,7 +516,7 @@ namespace DS4Windows
                     if (btnStartStop.Text == Properties.Resources.StopText)
                     {
                         DS4LightBar.shuttingdown = true;
-                        btnStartStop_Clicked();
+                        BtnStartStop_Clicked(true, true);
                         wasrunning = true;
                     }
                     break;
@@ -586,7 +586,7 @@ namespace DS4Windows
                             turnOffTemp = true;
                             if (btnStartStop.Text == Properties.Resources.StopText)
                             {
-                                btnStartStop_Clicked();
+                                BtnStartStop_Clicked();
                                 hotkeysTimer.Start();
                                 autoProfilesTimer.Start();
                                 btnStartStop.Text = Properties.Resources.StartText;
@@ -612,7 +612,7 @@ namespace DS4Windows
                         turnOffTemp = false;
                         if (btnStartStop.Text == Properties.Resources.StartText)
                         {
-                            btnStartStop_Clicked();
+                            BtnStartStop_Clicked();
                             btnStartStop.Text = Properties.Resources.StopText;
                         }
                     }
@@ -888,7 +888,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         protected void btnStartStop_Click(object sender, EventArgs e)
         {
-            btnStartStop_Clicked();
+            BtnStartStop_Clicked();
         }
 
         private void serviceStartup(bool log)
@@ -919,12 +919,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             startToolStripMenuItem.Text = btnStartStop.Text = Properties.Resources.StopText;
         }
 
-        private void serviceShutdown(bool log)
+        private void ServiceShutdown(bool log, bool suspend = false)
         {
             changingService = true;
             TaskRunner.Run(() =>
             {
-                Program.rootHub.Stop(log);
+                Program.rootHub.Stop(log, suspend);
                 Invoke((System.Action)(() => { serviceShutdownFinish(); }));
                 changingService = false;
             });
@@ -939,7 +939,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             populateFullNotifyText();
         }
 
-        public void btnStartStop_Clicked(bool log = true)
+        public void BtnStartStop_Clicked(bool log = true, bool suspend = false)
         {
             if (btnStartStop.Text == Properties.Resources.StartText)
             {
@@ -948,11 +948,11 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             else if (btnStartStop.Text == Properties.Resources.StopText)
             {
                 blankControllerTab();
-                serviceShutdown(log);
+                ServiceShutdown(log, suspend);
             }
         }
 
-        protected void btnClear_Click(object sender, EventArgs e)
+        protected void BtnClear_Click(object sender, EventArgs e)
         {
             lvDebug.Items.Clear();
             lbLastMessage.Text = string.Empty;
@@ -1537,7 +1537,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
             hideDS4CheckBox.Enabled = false;
             Save();
-            btnStartStop_Clicked(false);
+            BtnStartStop_Clicked(false);
             finishHideDS4Check();
         }
 
@@ -1551,7 +1551,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 }
             });
 
-            btnStartStop_Clicked(false);
+            BtnStartStop_Clicked(false);
 
             await TaskRunner.Factory.StartNew(() =>
             {
@@ -1655,7 +1655,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            btnStartStop_Clicked();
+            BtnStartStop_Clicked();
         }
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
@@ -2184,7 +2184,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                 oldxiport = (int)Math.Round(nUDXIPorts.Value, 0);
                 FirstXinputPort = oldxiport;
                 Program.rootHub.x360Bus.FirstController = oldxiport;
-                btnStartStop_Clicked(false);
+                BtnStartStop_Clicked(false);
                 finishHideDS4Check();
             }
         }

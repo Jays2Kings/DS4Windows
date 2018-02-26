@@ -214,7 +214,7 @@ namespace DS4Windows
             return true;
         }
 
-        public bool Stop(bool showlog = true)
+        public bool Stop(bool showlog = true, bool suspend = false)
         {
             if (running)
             {
@@ -232,7 +232,7 @@ namespace DS4Windows
                     DS4Device tempDevice = DS4Controllers[i];
                     if (tempDevice != null)
                     {
-                        if (DCBTatStop && !tempDevice.isCharging())
+                        if ((DCBTatStop && !tempDevice.isCharging()) || suspend)
                         {
                             if (tempDevice.getConnectionType() == ConnectionType.BT)
                             {

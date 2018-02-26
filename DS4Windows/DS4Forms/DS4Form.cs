@@ -507,6 +507,7 @@ namespace DS4Windows
                     {
                         DS4LightBar.shuttingdown = false;
                         wasrunning = false;
+                        Program.rootHub.suspending = false;
                         BtnStartStop_Clicked();
                     }
                     break;
@@ -516,7 +517,8 @@ namespace DS4Windows
                     if (btnStartStop.Text == Properties.Resources.StopText)
                     {
                         DS4LightBar.shuttingdown = true;
-                        BtnStartStop_Clicked(true, true);
+                        Program.rootHub.suspending = true;
+                        BtnStartStop_Clicked();
                         wasrunning = true;
                     }
                     break;
@@ -919,12 +921,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             startToolStripMenuItem.Text = btnStartStop.Text = Properties.Resources.StopText;
         }
 
-        private void ServiceShutdown(bool log, bool suspend = false)
+        private void ServiceShutdown(bool log)
         {
             changingService = true;
             TaskRunner.Run(() =>
             {
-                Program.rootHub.Stop(log, suspend);
+                Program.rootHub.Stop(log);
                 Invoke((System.Action)(() => { ServiceShutdownFinish(); }));
                 changingService = false;
             });
@@ -939,7 +941,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             populateFullNotifyText();
         }
 
-        public void BtnStartStop_Clicked(bool log = true, bool suspend = false)
+        public void BtnStartStop_Clicked(bool log = true)
         {
             if (btnStartStop.Text == Properties.Resources.StartText)
             {
@@ -948,7 +950,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             else if (btnStartStop.Text == Properties.Resources.StopText)
             {
                 blankControllerTab();
-                ServiceShutdown(log, suspend);
+                ServiceShutdown(log);
             }
         }
 

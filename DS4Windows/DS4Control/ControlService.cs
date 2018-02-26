@@ -37,6 +37,7 @@ namespace DS4Windows
             @"HID\{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054c_PID&05c4",
             @"HID\{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054c_PID&09cc",
         };
+        public bool suspending;
         //SoundPlayer sp = new SoundPlayer();
 
         private class X360Data
@@ -214,7 +215,7 @@ namespace DS4Windows
             return true;
         }
 
-        public bool Stop(bool showlog = true, bool suspend = false)
+        public bool Stop(bool showlog = true)
         {
             if (running)
             {
@@ -232,7 +233,7 @@ namespace DS4Windows
                     DS4Device tempDevice = DS4Controllers[i];
                     if (tempDevice != null)
                     {
-                        if ((DCBTatStop && !tempDevice.isCharging()) || suspend)
+                        if ((DCBTatStop && !tempDevice.isCharging()) || suspending)
                         {
                             if (tempDevice.getConnectionType() == ConnectionType.BT)
                             {

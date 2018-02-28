@@ -309,16 +309,6 @@ namespace DS4Windows
             }
             */
 
-            //System.Threading.Thread.Sleep(50);
-            sw.Restart();
-            while (sw.ElapsedMilliseconds < 50)
-            {
-                // Use SpinWait to keep control of current thread. Using Sleep could potentially
-                // cause other events to get run out of order
-                System.Threading.Thread.SpinWait(100);
-            }
-            sw.Stop();
-
             propChangeParams.stateChange = NativeMethods.DICS_ENABLE;
             success = NativeMethods.SetupDiSetClassInstallParams(deviceInfoSet, ref deviceInfoData, ref propChangeParams, Marshal.SizeOf(propChangeParams));
             if (!success)
@@ -330,6 +320,16 @@ namespace DS4Windows
             {
                 throw new Exception("Error enabling device, error code = " + Marshal.GetLastWin32Error());
             }
+
+            //System.Threading.Thread.Sleep(50);
+            sw.Restart();
+            while (sw.ElapsedMilliseconds < 50)
+            {
+                // Use SpinWait to keep control of current thread. Using Sleep could potentially
+                // cause other events to get run out of order
+                System.Threading.Thread.SpinWait(100);
+            }
+            sw.Stop();
 
             NativeMethods.SetupDiDestroyDeviceInfoList(deviceInfoSet);
         }

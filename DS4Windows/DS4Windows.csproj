@@ -91,6 +91,7 @@
     <DefineConstants>WIN64</DefineConstants>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
     <LangVersion>6</LangVersion>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -165,6 +166,7 @@
     <Compile Include="DS4Forms\LanguagePackComboBox.Designer.cs">
       <DependentUpon>LanguagePackComboBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="DS4Library\Crc32.cs" />
     <Compile Include="DS4Library\DS4Audio.cs" />
     <Compile Include="DS4Library\DS4Device.cs" />
     <Compile Include="DS4Library\DS4Devices.cs" />

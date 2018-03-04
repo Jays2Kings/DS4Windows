@@ -659,6 +659,11 @@ namespace DS4Windows
         uint timeStampPrevious = 0;
         uint deltaTimeCurrent = 0;
 
+
+        const int BT_INPUT_REPORT_CRC32_POS = BT_OUTPUT_REPORT_LENGTH - 4; //last 4 bytes of the 78-sized input report are crc32
+        const uint DefaultPolynomial = 0xedb88320u;
+        uint HamSeed = 2351727372;
+
         private void performDs4Input()
         {
             firstActive = DateTime.UtcNow;
@@ -681,6 +686,12 @@ namespace DS4Windows
             double elapsedDeltaTime = 0.0;
             uint tempDelta = 0;
             byte tempByte = 0;
+            int CRC32_POS_1 = BT_INPUT_REPORT_CRC32_POS + 1,
+                CRC32_POS_2 = BT_INPUT_REPORT_CRC32_POS + 2,
+                CRC32_POS_3 = BT_INPUT_REPORT_CRC32_POS + 3;
+            int crcpos = BT_INPUT_REPORT_CRC32_POS;
+            int crcoffset = 0;
+            Crc32Algorithm.InitializeTable(DefaultPolynomial);
 
             while (!exitInputThread)
             {
@@ -707,6 +718,23 @@ namespace DS4Windows
                     if (res == HidDevice.ReadStatus.Success)
                     {
                         Array.Copy(btInputReport, 2, inputReport, 0, inputReport.Length);
+
+                        //uint recvCrc32 = BitConverter.ToUInt32(btInputReport, BT_INPUT_REPORT_CRC32_POS);
+                        uint recvCrc32 = btInputReport[BT_INPUT_REPORT_CRC32_POS] |
+                            (uint)(btInputReport[CRC32_POS_1] << 8) |
+                            (uint)(btInputReport[CRC32_POS_2] << 16) |
+                            (uint)(btInputReport[CRC32_POS_3] << 24);
+
+                        uint calcCrc32 = ~Crc32Algorithm.CalculateHash(ref HamSeed, ref btInputReport, ref crcoffset, ref crcpos);
+                        if (recvCrc32 != calcCrc32)
+                        {
+                            Log.LogToGui("Check failed", true);
+                            //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "" +
+                            //                    "> invalid CRC32 in BT input report: 0x" + recvCrc32.ToString("X8") + " expected: 0x" + calcCrc32.ToString("X8"));
+
+                            //cState.PacketCounter = pState.PacketCounter + 1; //still increase so we know there were lost packets
+                            continue;
+                        }
                     }
                     else
                     {

@@ -327,39 +327,39 @@ namespace DS4Windows
                 bufsize -= 16;
             }
 
-            while (bufsize >= 8)
+            //while (bufsize >= 8)
             //if (bufsize >= 8)
-            {
-                uint one = (buffer[i++] |
-                            (uint)(buffer[i++] << 8) |
-                            (uint)(buffer[i++] << 16) |
-                            (uint)(buffer[i++] << 24)) ^ crc;
-                uint two = buffer[i++] |
-                            (uint)(buffer[i++] << 8) |
-                            (uint)(buffer[i++] << 16) |
-                            (uint)(buffer[i++] << 24);
-                crc = secondLook[7, one & 0xFF] ^
-                    secondLook[6, (one >> 8) & 0xFF] ^
-                    secondLook[5, (one >> 16) & 0xFF] ^
-                    secondLook[4, one >> 24] ^
-                    secondLook[3, two & 0xFF] ^
-                    secondLook[2, (two >> 8) & 0xFF] ^
-                    secondLook[1, (two >> 16) & 0xFF] ^
-                    defaultTable[two >> 24];
 
-                bufsize -= 8;
-                /*crc ^= buffer[i++] |
-                            (uint)(buffer[i++] << 8) |
-                            (uint)(buffer[i++] << 16) |
-                            (uint)(buffer[i++] << 24);// i = i + 4;
-                //crc ^= buffer[i];
-                crc = secondLook[3, (crc & 0xFF)] ^
-                    secondLook[2, ((crc >> 8) & 0xFF)] ^
-                    secondLook[1, ((crc >> 16) & 0xFF)] ^
-                    defaultTable[crc >> 24];
-                bufsize -= 4;
-                */
-            }
+            uint one8 = (buffer[i++] |
+                        (uint)(buffer[i++] << 8) |
+                        (uint)(buffer[i++] << 16) |
+                        (uint)(buffer[i++] << 24)) ^ crc;
+            uint two8 = buffer[i++] |
+                        (uint)(buffer[i++] << 8) |
+                        (uint)(buffer[i++] << 16) |
+                        (uint)(buffer[i++] << 24);
+            crc = secondLook[7, one8 & 0xFF] ^
+                secondLook[6, (one8 >> 8) & 0xFF] ^
+                secondLook[5, (one8 >> 16) & 0xFF] ^
+                secondLook[4, one8 >> 24] ^
+                secondLook[3, two8 & 0xFF] ^
+                secondLook[2, (two8 >> 8) & 0xFF] ^
+                secondLook[1, (two8 >> 16) & 0xFF] ^
+                defaultTable[two8 >> 24];
+
+            bufsize -= 8;
+            /*crc ^= buffer[i++] |
+                        (uint)(buffer[i++] << 8) |
+                        (uint)(buffer[i++] << 16) |
+                        (uint)(buffer[i++] << 24);// i = i + 4;
+            //crc ^= buffer[i];
+            crc = secondLook[3, (crc & 0xFF)] ^
+                secondLook[2, ((crc >> 8) & 0xFF)] ^
+                secondLook[1, ((crc >> 16) & 0xFF)] ^
+                defaultTable[crc >> 24];
+            bufsize -= 4;
+            */
+
 
             while (--bufsize >= 0)
             {

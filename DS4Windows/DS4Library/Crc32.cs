@@ -276,7 +276,7 @@ namespace DS4Windows
             return crc;
         }
 
-        public static uint CalculateFasterBTHash(ref uint seed, ref byte[] buffer, ref int start, ref int size)
+        public static unsafe uint CalculateFasterBTHash(ref uint seed, ref byte[] buffer, ref int start, ref int size)
         {
             /*uint crc = seed;
             for (int i = start; i < size + start; i++)
@@ -288,84 +288,87 @@ namespace DS4Windows
             int i = start;
             int bufsize = size;
             //while (bufsize >= 16)
-            for (int j = 0; j < 4; j++)
+            fixed (byte* byteP = buffer)
             {
-                uint one = (buffer[i++] |
-                            (uint)(buffer[i++] << 8) |
-                            (uint)(buffer[i++] << 16) |
-                            (uint)(buffer[i++] << 24)) ^ crc;
-                uint two = buffer[i++] |
-                            (uint)(buffer[i++] << 8) |
-                            (uint)(buffer[i++] << 16) |
-                            (uint)(buffer[i++] << 24);
-                uint three = (buffer[i++] |
-                            (uint)(buffer[i++] << 8) |
-                            (uint)(buffer[i++] << 16) |
-                            (uint)(buffer[i++] << 24));
-                uint four = buffer[i++] |
-                            (uint)(buffer[i++] << 8) |
-                            (uint)(buffer[i++] << 16) |
-                            (uint)(buffer[i++] << 24);
+                for (int j = 0; j < 4; j++)
+                {
+                    uint one = (byteP[i++] |
+                                (uint)(byteP[i++] << 8) |
+                                (uint)(byteP[i++] << 16) |
+                                (uint)(byteP[i++] << 24)) ^ crc;
+                    uint two = byteP[i++] |
+                                (uint)(byteP[i++] << 8) |
+                                (uint)(byteP[i++] << 16) |
+                                (uint)(byteP[i++] << 24);
+                    uint three = (byteP[i++] |
+                                (uint)(byteP[i++] << 8) |
+                                (uint)(byteP[i++] << 16) |
+                                (uint)(byteP[i++] << 24));
+                    uint four = byteP[i++] |
+                                (uint)(byteP[i++] << 8) |
+                                (uint)(byteP[i++] << 16) |
+                                (uint)(byteP[i++] << 24);
 
-                crc = secondLook[15, one & 0xFF] ^
-                    secondLook[14, (one >> 8) & 0xFF] ^
-                    secondLook[13, (one >> 16) & 0xFF] ^
-                    secondLook[12, (one >> 24) & 0xFF] ^
-                    secondLook[11, two & 0xFF] ^
-                    secondLook[10, (two >> 8) & 0xFF] ^
-                    secondLook[9, (two >> 16) & 0xFF] ^
-                    secondLook[8, (two >> 24) & 0xFF] ^
-                    secondLook[7, three & 0xFF] ^
-                    secondLook[6, (three >> 8) & 0xFF] ^
-                    secondLook[5, (three >> 16) & 0xFF] ^
-                    secondLook[4, (three >> 24) & 0xFF] ^
-                    secondLook[3, four & 0xFF] ^
-                    secondLook[2, (four >> 8) & 0xFF] ^
-                    secondLook[1, (four >> 16) & 0xFF] ^
-                    defaultTable[(four >> 24) & 0xFF];
+                    crc = secondLook[15, one & 0xFF] ^
+                        secondLook[14, (one >> 8) & 0xFF] ^
+                        secondLook[13, (one >> 16) & 0xFF] ^
+                        secondLook[12, (one >> 24) & 0xFF] ^
+                        secondLook[11, two & 0xFF] ^
+                        secondLook[10, (two >> 8) & 0xFF] ^
+                        secondLook[9, (two >> 16) & 0xFF] ^
+                        secondLook[8, (two >> 24) & 0xFF] ^
+                        secondLook[7, three & 0xFF] ^
+                        secondLook[6, (three >> 8) & 0xFF] ^
+                        secondLook[5, (three >> 16) & 0xFF] ^
+                        secondLook[4, (three >> 24) & 0xFF] ^
+                        secondLook[3, four & 0xFF] ^
+                        secondLook[2, (four >> 8) & 0xFF] ^
+                        secondLook[1, (four >> 16) & 0xFF] ^
+                        defaultTable[(four >> 24) & 0xFF];
 
-                bufsize -= 16;
+                    bufsize -= 16;
+                }
+
+                //while (bufsize >= 8)
+                //if (bufsize >= 8)
+
+                uint one8 = (byteP[i++] |
+                            (uint)(byteP[i++] << 8) |
+                            (uint)(byteP[i++] << 16) |
+                            (uint)(byteP[i++] << 24)) ^ crc;
+                uint two8 = byteP[i++] |
+                            (uint)(byteP[i++] << 8) |
+                            (uint)(byteP[i++] << 16) |
+                            (uint)(byteP[i++] << 24);
+                crc = secondLook[7, one8 & 0xFF] ^
+                    secondLook[6, (one8 >> 8) & 0xFF] ^
+                    secondLook[5, (one8 >> 16) & 0xFF] ^
+                    secondLook[4, one8 >> 24] ^
+                    secondLook[3, two8 & 0xFF] ^
+                    secondLook[2, (two8 >> 8) & 0xFF] ^
+                    secondLook[1, (two8 >> 16) & 0xFF] ^
+                    defaultTable[two8 >> 24];
+
+                bufsize -= 8;
+                /*crc ^= buffer[i++] |
+                            (uint)(buffer[i++] << 8) |
+                            (uint)(buffer[i++] << 16) |
+                            (uint)(buffer[i++] << 24);// i = i + 4;
+                //crc ^= buffer[i];
+                crc = secondLook[3, (crc & 0xFF)] ^
+                    secondLook[2, ((crc >> 8) & 0xFF)] ^
+                    secondLook[1, ((crc >> 16) & 0xFF)] ^
+                    defaultTable[crc >> 24];
+                bufsize -= 4;
+                */
+
+
+                //while (--bufsize >= 0)
+                //{
+                crc = (crc >> 8) ^ defaultTable[(crc & 0xFF) ^ byteP[i++]];// i++;
+                crc = (crc >> 8) ^ defaultTable[(crc & 0xFF) ^ byteP[i++]];// i++;
+                                                                            //}
             }
-
-            //while (bufsize >= 8)
-            //if (bufsize >= 8)
-
-            uint one8 = (buffer[i++] |
-                        (uint)(buffer[i++] << 8) |
-                        (uint)(buffer[i++] << 16) |
-                        (uint)(buffer[i++] << 24)) ^ crc;
-            uint two8 = buffer[i++] |
-                        (uint)(buffer[i++] << 8) |
-                        (uint)(buffer[i++] << 16) |
-                        (uint)(buffer[i++] << 24);
-            crc = secondLook[7, one8 & 0xFF] ^
-                secondLook[6, (one8 >> 8) & 0xFF] ^
-                secondLook[5, (one8 >> 16) & 0xFF] ^
-                secondLook[4, one8 >> 24] ^
-                secondLook[3, two8 & 0xFF] ^
-                secondLook[2, (two8 >> 8) & 0xFF] ^
-                secondLook[1, (two8 >> 16) & 0xFF] ^
-                defaultTable[two8 >> 24];
-
-            bufsize -= 8;
-            /*crc ^= buffer[i++] |
-                        (uint)(buffer[i++] << 8) |
-                        (uint)(buffer[i++] << 16) |
-                        (uint)(buffer[i++] << 24);// i = i + 4;
-            //crc ^= buffer[i];
-            crc = secondLook[3, (crc & 0xFF)] ^
-                secondLook[2, ((crc >> 8) & 0xFF)] ^
-                secondLook[1, ((crc >> 16) & 0xFF)] ^
-                defaultTable[crc >> 24];
-            bufsize -= 4;
-            */
-
-
-            //while (--bufsize >= 0)
-            //{
-                crc = (crc >> 8) ^ defaultTable[(crc & 0xFF) ^ buffer[i++]];// i++;
-                crc = (crc >> 8) ^ defaultTable[(crc & 0xFF) ^ buffer[i++]];// i++;
-            //}
 
             return crc;
         }

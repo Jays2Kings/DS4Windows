@@ -697,7 +697,7 @@ namespace DS4Windows
         const uint DefaultPolynomial = 0xedb88320u;
         uint HamSeed = 2351727372;
 
-        private void performDs4Input()
+        private unsafe void performDs4Input()
         {
             firstActive = DateTime.UtcNow;
             NativeMethods.HidD_SetNumInputBuffers(hDevice.safeReadHandle.DangerousGetHandle(), 2);
@@ -749,7 +749,18 @@ namespace DS4Windows
                     timeoutEvent = false;
                     if (res == HidDevice.ReadStatus.Success)
                     {
-                        Array.Copy(btInputReport, 2, inputReport, 0, inputReport.Length);
+                        //Array.Copy(btInputReport, 2, inputReport, 0, inputReport.Length);
+                        fixed (byte* byteP = &btInputReport[2], imp = inputReport)
+                        {
+                            byte* btImp = byteP;
+                            byte* finImp = imp;
+                            for (int j = 0; j < BT_INPUT_REPORT_LENGTH-2;j++)
+                            {
+                                finImp[j] = btImp[j];
+                                //*finImp = *btImp;
+                                //btImp++; finImp++;
+                            }
+                        }
 
                         //uint recvCrc32 = BitConverter.ToUInt32(btInputReport, BT_INPUT_REPORT_CRC32_POS);
                         uint recvCrc32 = btInputReport[BT_INPUT_REPORT_CRC32_POS] |

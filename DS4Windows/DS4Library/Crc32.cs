@@ -97,6 +97,7 @@ namespace DS4Windows
         };
 
         private static uint[,] secondLook = new uint[16, 256];
+        private static uint[] testLook = new uint[16 * 256];
         private static bool secondTablePop = false;
 
         private readonly uint _seed;
@@ -156,24 +157,24 @@ namespace DS4Windows
                 {
                     for (int i = 0; i <= 0xFF; i++)
                     {
-                        secondLook[1, i] = (defaultTable[i] >> 8) ^ defaultTable[defaultTable[i] & 0xFF];
-                        secondLook[2, i] = (secondLook[1, i] >> 8) ^ defaultTable[secondLook[1, i] & 0xFF];
-                        secondLook[3, i] = (secondLook[2, i] >> 8) ^ defaultTable[secondLook[2, i] & 0xFF];
+                        secondLook[1, i] = testLook[256+i] = (defaultTable[i] >> 8) ^ defaultTable[defaultTable[i] & 0xFF];
+                        secondLook[2, i] = testLook[512 + i] = (secondLook[1, i] >> 8) ^ defaultTable[secondLook[1, i] & 0xFF];
+                        secondLook[3, i] = testLook[768 + i] = (secondLook[2, i] >> 8) ^ defaultTable[secondLook[2, i] & 0xFF];
 
-                        secondLook[4, i] = (secondLook[3, i] >> 8) ^ defaultTable[secondLook[3, i] & 0xFF];
-                        secondLook[5, i] = (secondLook[4, i] >> 8) ^ defaultTable[secondLook[4, i] & 0xFF];
-                        secondLook[6, i] = (secondLook[5, i] >> 8) ^ defaultTable[secondLook[5, i] & 0xFF];
-                        secondLook[7, i] = (secondLook[6, i] >> 8) ^ defaultTable[secondLook[6, i] & 0xFF];
+                        secondLook[4, i] = testLook[1024 + i] = (secondLook[3, i] >> 8) ^ defaultTable[secondLook[3, i] & 0xFF];
+                        secondLook[5, i] = testLook[1280 + i] = (secondLook[4, i] >> 8) ^ defaultTable[secondLook[4, i] & 0xFF];
+                        secondLook[6, i] = testLook[1536 + i] = (secondLook[5, i] >> 8) ^ defaultTable[secondLook[5, i] & 0xFF];
+                        secondLook[7, i] = testLook[1792 + i] = (secondLook[6, i] >> 8) ^ defaultTable[secondLook[6, i] & 0xFF];
 
-                        secondLook[8, i] = (secondLook[7, i] >> 8) ^ defaultTable[secondLook[7, i] & 0xFF];
-                        secondLook[9, i] = (secondLook[8, i] >> 8) ^ defaultTable[secondLook[8, i] & 0xFF];
-                        secondLook[10, i] = (secondLook[9, i] >> 8) ^ defaultTable[secondLook[9, i] & 0xFF];
-                        secondLook[11, i] = (secondLook[10, i] >> 8) ^ defaultTable[secondLook[10, i] & 0xFF];
+                        secondLook[8, i] = testLook[2048 + i] = (secondLook[7, i] >> 8) ^ defaultTable[secondLook[7, i] & 0xFF];
+                        secondLook[9, i] = testLook[2304 + i] = (secondLook[8, i] >> 8) ^ defaultTable[secondLook[8, i] & 0xFF];
+                        secondLook[10, i] = testLook[2560 + i] = (secondLook[9, i] >> 8) ^ defaultTable[secondLook[9, i] & 0xFF];
+                        secondLook[11, i] = testLook[2816 + i] = (secondLook[10, i] >> 8) ^ defaultTable[secondLook[10, i] & 0xFF];
 
-                        secondLook[12, i] = (secondLook[11, i] >> 8) ^ defaultTable[secondLook[11, i] & 0xFF];
-                        secondLook[13, i] = (secondLook[12, i] >> 8) ^ defaultTable[secondLook[12, i] & 0xFF];
-                        secondLook[14, i] = (secondLook[13, i] >> 8) ^ defaultTable[secondLook[13, i] & 0xFF];
-                        secondLook[15, i] = (secondLook[14, i] >> 8) ^ defaultTable[secondLook[14, i] & 0xFF];
+                        secondLook[12, i] = testLook[3072 + i] = (secondLook[11, i] >> 8) ^ defaultTable[secondLook[11, i] & 0xFF];
+                        secondLook[13, i] = testLook[3328 + i] = (secondLook[12, i] >> 8) ^ defaultTable[secondLook[12, i] & 0xFF];
+                        secondLook[14, i] = testLook[3584 + i] = (secondLook[13, i] >> 8) ^ defaultTable[secondLook[13, i] & 0xFF];
+                        secondLook[15, i] = testLook[3840 + i] = (secondLook[14, i] >> 8) ^ defaultTable[secondLook[14, i] & 0xFF];
                     }
 
                     secondTablePop = true;
@@ -289,6 +290,7 @@ namespace DS4Windows
             int bufsize = size;
             //while (bufsize >= 16)
             fixed (byte* byteP = buffer)
+            fixed (uint* byteT = testLook)
             {
                 for (int j = 0; j < 4; j++)
                 {
@@ -309,21 +311,21 @@ namespace DS4Windows
                                 (uint)(byteP[i++] << 16) |
                                 (uint)(byteP[i++] << 24);
 
-                    crc = secondLook[15, one & 0xFF] ^
-                        secondLook[14, (one >> 8) & 0xFF] ^
-                        secondLook[13, (one >> 16) & 0xFF] ^
-                        secondLook[12, (one >> 24) & 0xFF] ^
-                        secondLook[11, two & 0xFF] ^
-                        secondLook[10, (two >> 8) & 0xFF] ^
-                        secondLook[9, (two >> 16) & 0xFF] ^
-                        secondLook[8, (two >> 24) & 0xFF] ^
-                        secondLook[7, three & 0xFF] ^
-                        secondLook[6, (three >> 8) & 0xFF] ^
-                        secondLook[5, (three >> 16) & 0xFF] ^
-                        secondLook[4, (three >> 24) & 0xFF] ^
-                        secondLook[3, four & 0xFF] ^
-                        secondLook[2, (four >> 8) & 0xFF] ^
-                        secondLook[1, (four >> 16) & 0xFF] ^
+                    crc = byteT[3840+(one & 0xFF)] ^
+                        byteT[3584+((one >> 8) & 0xFF)] ^
+                        byteT[3328+((one >> 16) & 0xFF)] ^
+                        byteT[3072+((one >> 24) & 0xFF)] ^
+                        byteT[2816+(two & 0xFF)] ^
+                        byteT[2560+((two >> 8) & 0xFF)] ^
+                        byteT[2304+((two >> 16) & 0xFF)] ^
+                        byteT[2048+((two >> 24) & 0xFF)] ^
+                        byteT[1792+(three & 0xFF)] ^
+                        byteT[1536+((three >> 8) & 0xFF)] ^
+                        byteT[1280+((three >> 16) & 0xFF)] ^
+                        byteT[1024+((three >> 24) & 0xFF)] ^
+                        byteT[768+(four & 0xFF)] ^
+                        byteT[512+((four >> 8) & 0xFF)] ^
+                        byteT[256+((four >> 16) & 0xFF)] ^
                         defaultTable[(four >> 24) & 0xFF];
 
                     bufsize -= 16;
@@ -340,13 +342,13 @@ namespace DS4Windows
                             (uint)(byteP[i++] << 8) |
                             (uint)(byteP[i++] << 16) |
                             (uint)(byteP[i++] << 24);
-                crc = secondLook[7, one8 & 0xFF] ^
-                    secondLook[6, (one8 >> 8) & 0xFF] ^
-                    secondLook[5, (one8 >> 16) & 0xFF] ^
-                    secondLook[4, one8 >> 24] ^
-                    secondLook[3, two8 & 0xFF] ^
-                    secondLook[2, (two8 >> 8) & 0xFF] ^
-                    secondLook[1, (two8 >> 16) & 0xFF] ^
+                crc = byteT[1792+(one8 & 0xFF)] ^
+                    byteT[1536+((one8 >> 8) & 0xFF)] ^
+                    byteT[1280+((one8 >> 16) & 0xFF)] ^
+                    byteT[1024+(one8 >> 24)] ^
+                    byteT[768+(two8 & 0xFF)] ^
+                    byteT[512+((two8 >> 8) & 0xFF)] ^
+                    byteT[256+((two8 >> 16) & 0xFF)] ^
                     defaultTable[two8 >> 24];
 
                 bufsize -= 8;

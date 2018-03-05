@@ -203,7 +203,80 @@ namespace DS4Windows
             return crc;
         }
 
-        public static uint CalculateHash(ref uint seed, ref byte[] buffer, ref int start, ref int size)
+        public static uint CalculateBasicHash(ref uint seed, ref byte[] buffer, int offset, int size)
+        {
+            uint crc = seed;
+            int i = offset;
+            while (size >= 16)
+            {
+                uint one = (buffer[i++] |
+                            (uint)(buffer[i++] << 8) |
+                            (uint)(buffer[i++] << 16) |
+                            (uint)(buffer[i++] << 24)) ^ crc;
+                uint two = buffer[i++] |
+                            (uint)(buffer[i++] << 8) |
+                            (uint)(buffer[i++] << 16) |
+                            (uint)(buffer[i++] << 24);
+                uint three = (buffer[i++] |
+                            (uint)(buffer[i++] << 8) |
+                            (uint)(buffer[i++] << 16) |
+                            (uint)(buffer[i++] << 24));
+                uint four = buffer[i++] |
+                            (uint)(buffer[i++] << 8) |
+                            (uint)(buffer[i++] << 16) |
+                            (uint)(buffer[i++] << 24);
+
+                crc = secondLook[15, one & 0xFF] ^
+                    secondLook[14, (one >> 8) & 0xFF] ^
+                    secondLook[13, (one >> 16) & 0xFF] ^
+                    secondLook[12, (one >> 24) & 0xFF] ^
+                    secondLook[11, two & 0xFF] ^
+                    secondLook[10, (two >> 8) & 0xFF] ^
+                    secondLook[9, (two >> 16) & 0xFF] ^
+                    secondLook[8, (two >> 24) & 0xFF] ^
+                    secondLook[7, three & 0xFF] ^
+                    secondLook[6, (three >> 8) & 0xFF] ^
+                    secondLook[5, (three >> 16) & 0xFF] ^
+                    secondLook[4, (three >> 24) & 0xFF] ^
+                    secondLook[3, four & 0xFF] ^
+                    secondLook[2, (four >> 8) & 0xFF] ^
+                    secondLook[1, (four >> 16) & 0xFF] ^
+                    defaultTable[(four >> 24) & 0xFF];
+
+                size -= 16;
+            }
+
+            while (size >= 8)
+            {
+                uint one = (buffer[i++] |
+                            (uint)(buffer[i++] << 8) |
+                            (uint)(buffer[i++] << 16) |
+                            (uint)(buffer[i++] << 24)) ^ crc;
+                uint two = buffer[i++] |
+                            (uint)(buffer[i++] << 8) |
+                            (uint)(buffer[i++] << 16) |
+                            (uint)(buffer[i++] << 24);
+                crc = secondLook[7, one & 0xFF] ^
+                    secondLook[6, (one >> 8) & 0xFF] ^
+                    secondLook[5, (one >> 16) & 0xFF] ^
+                    secondLook[4, one >> 24] ^
+                    secondLook[3, two & 0xFF] ^
+                    secondLook[2, (two >> 8) & 0xFF] ^
+                    secondLook[1, (two >> 16) & 0xFF] ^
+                    defaultTable[two >> 24];
+
+                size -= 8;
+            }
+
+            while (--size >= 0)
+            {
+                crc = (crc >> 8) ^ defaultTable[(crc & 0xFF) ^ buffer[i++]];// i++;
+            }
+
+            return crc;
+        }
+
+        public static uint CalculateFasterBTHash(ref uint seed, ref byte[] buffer, ref int start, ref int size)
         {
             /*uint crc = seed;
             for (int i = start; i < size + start; i++)

@@ -447,7 +447,7 @@ namespace DS4Windows
 
             touchpad = new DS4Touchpad();
             sixAxis = new DS4SixAxis();
-
+            Crc32Algorithm.InitializeTable(DefaultPolynomial);
             refreshCalibration();
         }
 
@@ -468,12 +468,45 @@ namespace DS4Windows
             }
         }
 
+        const int DS4_FEATURE_REPORT_5_LEN = 41;
+        const int DS4_FEATURE_REPORT_5_CRC32_POS = DS4_FEATURE_REPORT_5_LEN - 4;
         public void refreshCalibration()
         {
             byte[] calibration = new byte[41];
             calibration[0] = conType == ConnectionType.BT ? (byte)0x05 : (byte)0x02;
-            hDevice.readFeatureData(calibration);
-            sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
+
+            if (conType == ConnectionType.BT)
+            {
+                bool found = false;
+                for (int tries = 0; !found && tries < 5; tries++)
+                {
+                    hDevice.readFeatureData(calibration);
+                    uint recvCrc32 = calibration[DS4_FEATURE_REPORT_5_CRC32_POS] |
+                                (uint)(calibration[DS4_FEATURE_REPORT_5_CRC32_POS + 1] << 8) |
+                                (uint)(calibration[DS4_FEATURE_REPORT_5_CRC32_POS + 2] << 16) |
+                                (uint)(calibration[DS4_FEATURE_REPORT_5_CRC32_POS + 3] << 24);
+
+                    uint calcCrc32 = ~Crc32Algorithm.Compute(new byte[] { 0xA3 });
+                    calcCrc32 = ~Crc32Algorithm.CalculateBasicHash(ref calcCrc32, ref calibration, 0, DS4_FEATURE_REPORT_5_LEN - 4);
+                    bool validCrc = recvCrc32 == calcCrc32;
+                    if (!validCrc && tries >= 5)
+                    {
+                        Log.LogToGui("Gyro Calibration Failed", true);
+                        continue;
+                    }
+                    else if (validCrc)
+                    {
+                        found = true;
+                    }
+                }
+
+                sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
+            }
+            else
+            {
+                hDevice.readFeatureData(calibration);
+                sixAxis.setCalibrationData(ref calibration, conType == ConnectionType.USB);
+            }
         }
 
         public void StartUpdate()
@@ -691,7 +724,6 @@ namespace DS4Windows
                 CRC32_POS_3 = BT_INPUT_REPORT_CRC32_POS + 3;
             int crcpos = BT_INPUT_REPORT_CRC32_POS;
             int crcoffset = 0;
-            Crc32Algorithm.InitializeTable(DefaultPolynomial);
 
             while (!exitInputThread)
             {
@@ -725,10 +757,10 @@ namespace DS4Windows
                             (uint)(btInputReport[CRC32_POS_2] << 16) |
                             (uint)(btInputReport[CRC32_POS_3] << 24);
 
-                        uint calcCrc32 = ~Crc32Algorithm.CalculateHash(ref HamSeed, ref btInputReport, ref crcoffset, ref crcpos);
+                        uint calcCrc32 = ~Crc32Algorithm.CalculateFasterBTHash(ref HamSeed, ref btInputReport, ref crcoffset, ref crcpos);
                         if (recvCrc32 != calcCrc32)
                         {
-                            Log.LogToGui("Check failed", true);
+                            Log.LogToGui("Crc check failed", true);
                             //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "" +
                             //                    "> invalid CRC32 in BT input report: 0x" + recvCrc32.ToString("X8") + " expected: 0x" + calcCrc32.ToString("X8"));
 

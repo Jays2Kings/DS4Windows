@@ -361,10 +361,11 @@ namespace DS4Windows
             */
 
 
-            while (--bufsize >= 0)
-            {
+            //while (--bufsize >= 0)
+            //{
                 crc = (crc >> 8) ^ defaultTable[(crc & 0xFF) ^ buffer[i++]];// i++;
-            }
+                crc = (crc >> 8) ^ defaultTable[(crc & 0xFF) ^ buffer[i++]];// i++;
+            //}
 
             return crc;
         }

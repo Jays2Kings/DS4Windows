@@ -752,13 +752,9 @@ namespace DS4Windows
                         //Array.Copy(btInputReport, 2, inputReport, 0, inputReport.Length);
                         fixed (byte* byteP = &btInputReport[2], imp = inputReport)
                         {
-                            byte* btImp = byteP;
-                            byte* finImp = imp;
                             for (int j = 0; j < BT_INPUT_REPORT_LENGTH-2;j++)
                             {
-                                finImp[j] = btImp[j];
-                                //*finImp = *btImp;
-                                //btImp++; finImp++;
+                                imp[j] = byteP[j];
                             }
                         }
 

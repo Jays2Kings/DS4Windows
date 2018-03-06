@@ -521,7 +521,7 @@ namespace DS4Windows
                 //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> start");
                 sendOutputReport(true); // initialize the output report
 
-                if (conType == ConnectionType.BT)
+                //if (conType == ConnectionType.BT)
                 {
                     // Only use the output thread for Bluetooth connections.
                     // USB will utilize overlapped IO instead.
@@ -1066,7 +1066,7 @@ namespace DS4Windows
                 {
                     syncWriteReport = false;
                 }
-                sendOutputReport(syncWriteReport);
+                sendOutputReport(false);
 
                 if (!string.IsNullOrEmpty(currerror))
                     error = currerror;

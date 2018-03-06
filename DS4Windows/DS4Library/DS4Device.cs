@@ -1089,7 +1089,7 @@ namespace DS4Windows
             hDevice.flush_Queue();
         }
 
-        private void sendOutputReport(bool synchronous)
+        private unsafe void sendOutputReport(bool synchronous)
         {
             setTestRumble();
             setHapticState();
@@ -1161,8 +1161,14 @@ namespace DS4Windows
                 else
                 {
                     bool output = outputPendCount > 0, change = false;
-                    for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
-                        change = outputReport[i] != outReportBuffer[i];
+                    fixed (byte* byteR = outputReport, byteB = outReportBuffer)
+                    {
+                        for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
+                            change = byteR[i] != byteB[i];
+                    }
+
+                    //for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
+                    //    change = outputReport[i] != outReportBuffer[i];
 
                     if (output || change)
                     {

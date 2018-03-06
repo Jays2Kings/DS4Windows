@@ -604,7 +604,7 @@ namespace DS4Windows
         }
 
         private byte outputPendCount = 0;
-        private void performDs4Output()
+        private unsafe void performDs4Output()
         {
             try
             {
@@ -640,7 +640,12 @@ namespace DS4Windows
                         lock (outReportBuffer)
                         {
                             Monitor.Wait(outReportBuffer);
-                            outReportBuffer.CopyTo(outputReport, 0);
+                            fixed (byte* byteR = outputReport, byteB = outReportBuffer)
+                            {
+                                for (int i = 0, arlen = outputReport.Length; i < arlen; i++)
+                                    byteR[i] = byteB[i];
+                            }
+                            //outReportBuffer.CopyTo(outputReport, 0);
                             outputPendCount--;
                             outputRumble = false;
                         }

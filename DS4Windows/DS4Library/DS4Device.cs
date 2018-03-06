@@ -771,7 +771,7 @@ namespace DS4Windows
                         uint calcCrc32 = ~Crc32Algorithm.CalculateFasterBTHash(ref HamSeed, ref btInputReport, ref crcoffset, ref crcpos);
                         if (recvCrc32 != calcCrc32)
                         {
-                            Log.LogToGui("Crc check failed", true);
+                            //Log.LogToGui("Crc check failed", true);
                             //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "" +
                             //                    "> invalid CRC32 in BT input report: 0x" + recvCrc32.ToString("X8") + " expected: 0x" + calcCrc32.ToString("X8"));
 

@@ -521,22 +521,17 @@ namespace DS4Windows
                 //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> start");
                 sendOutputReport(true); // initialize the output report
 
-                //if (conType == ConnectionType.BT)
-                {
-                    // Only use the output thread for Bluetooth connections.
-                    // USB will utilize overlapped IO instead.
-                    ds4Output = new Thread(performDs4Output);
-                    ds4Output.Priority = ThreadPriority.AboveNormal;
-                    ds4Output.Name = "DS4 Output thread: " + Mac;
-                    ds4Output.IsBackground = true;
-                    ds4Output.Start();
+                ds4Output = new Thread(performDs4Output);
+                ds4Output.Priority = ThreadPriority.AboveNormal;
+                ds4Output.Name = "DS4 Output thread: " + Mac;
+                ds4Output.IsBackground = true;
+                ds4Output.Start();
 
-                    timeoutCheckThread = new Thread(timeoutTestThread);
-                    timeoutCheckThread.Priority = ThreadPriority.BelowNormal;
-                    timeoutCheckThread.Name = "DS4 Timeout thread: " + Mac;
-                    timeoutCheckThread.IsBackground = true;
-                    timeoutCheckThread.Start();
-                }
+                timeoutCheckThread = new Thread(timeoutTestThread);
+                timeoutCheckThread.Priority = ThreadPriority.BelowNormal;
+                timeoutCheckThread.Name = "DS4 Timeout thread: " + Mac;
+                timeoutCheckThread.IsBackground = true;
+                timeoutCheckThread.Start();
 
                 ds4Input = new Thread(performDs4Input);
                 ds4Input.Priority = ThreadPriority.AboveNormal;
@@ -1062,10 +1057,6 @@ namespace DS4Windows
                 if (Report != null)
                     Report(this, EventArgs.Empty);
 
-                if (conType == ConnectionType.BT)
-                {
-                    syncWriteReport = false;
-                }
                 sendOutputReport(false);
 
                 if (!string.IsNullOrEmpty(currerror))

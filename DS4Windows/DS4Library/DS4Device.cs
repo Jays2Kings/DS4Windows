@@ -960,7 +960,7 @@ namespace DS4Windows
                 // Store Gyro and Accel values
                 //Array.Copy(inputReport, 13, gyro, 0, 6);
                 //Array.Copy(inputReport, 19, accel, 0, 6);
-                fixed (byte* pbInput = inputReport, pbGyro = gyro, pbAccel = accel)
+                fixed (byte* pbInput = &inputReport[13], pbGyro = gyro, pbAccel = accel)
                 {
                     for (int i = 0; i < 6; i++)
                     {

@@ -958,8 +958,20 @@ namespace DS4Windows
                 catch { currerror = "Index out of bounds: touchpad"; }
 
                 // Store Gyro and Accel values
-                Array.Copy(inputReport, 13, gyro, 0, 6);
-                Array.Copy(inputReport, 19, accel, 0, 6);
+                //Array.Copy(inputReport, 13, gyro, 0, 6);
+                //Array.Copy(inputReport, 19, accel, 0, 6);
+                fixed (byte* pbInput = inputReport, pbGyro = gyro, pbAccel = accel)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        pbGyro[i] = pbInput[i];
+                    }
+
+                    for (int i = 6; i < 12; i++)
+                    {
+                        pbAccel[i] = pbInput[i];
+                    }
+                }
                 sixAxis.handleSixaxis(gyro, accel, cState, elapsedDeltaTime);
 
                 /* Debug output of incoming HID data:

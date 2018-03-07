@@ -969,7 +969,7 @@ namespace DS4Windows
 
                     for (int i = 6; i < 12; i++)
                     {
-                        pbAccel[i] = pbInput[i];
+                        pbAccel[i-6] = pbInput[i];
                     }
                 }
                 sixAxis.handleSixaxis(gyro, accel, cState, elapsedDeltaTime);

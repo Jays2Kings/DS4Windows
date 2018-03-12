@@ -62,7 +62,7 @@ namespace DS4Windows
             { "DS4Windows v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
             string.Empty, string.Empty, string.Empty, string.Empty };
 
-        internal const string UPDATER_VERSION = "1.2.7.0";
+        internal const string UPDATER_VERSION = "1.2.8.0";
         internal static int WM_QUERYENDSESSION = 0x11;
         internal string updaterExe = Environment.Is64BitProcess ? "DS4Updater.exe" : "DS4Updater_x86.exe";
 

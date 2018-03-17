@@ -991,6 +991,7 @@ namespace DS4Windows
                     {
                         synced = controllerSynced;
                         SyncChange?.Invoke(this, EventArgs.Empty);
+                        sendOutputReport(true);
                     }
                 }
 

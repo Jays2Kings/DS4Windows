@@ -4,7 +4,7 @@
 * Attempt to work out BT disconnect issues by looking at older versions
 * Attempt to remove reliance on the main thread when disconnecting a device.
 Currently used to delay hotplug routine
-* Possibly lower Enhanced Precision sensitivity by a notch
+* ~~Possibly lower Enhanced Precision sensitivity by a notch~~
 * Look into distributing profile properties around various objects
 rather than using a lot of getters to obtain properties each poll.
 It will complicate the architecture a little bit but hopefully

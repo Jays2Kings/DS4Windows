@@ -51,7 +51,7 @@ be made during code review to try to tweak the changes in order to improve
 application performance. However, there is a chance that a pull request will be
 rejected if no reasonable solution can be found to incorporate code changes.
 
-## Sending Coin
+## Tip Jar
 
 If you would like to send some coin my way, here are some means by
 which to do so.

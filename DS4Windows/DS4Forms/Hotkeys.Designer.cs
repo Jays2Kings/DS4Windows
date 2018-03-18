@@ -482,6 +482,7 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             resources.ApplyResources(this.textBox2, "textBox2");
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             // 
             // makerSupportLinkLabel
             // 

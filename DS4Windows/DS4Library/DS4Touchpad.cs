@@ -83,9 +83,9 @@ namespace DS4Windows
             bool changed = false;
             for (int i = 0, arLen = previousPacket.Length; !changed && i < arLen; i++)
             {
-                byte oldValue = previousPacket[i];
-                previousPacket[i] = data[i + TOUCHPAD_DATA_OFFSET + touchPacketOffset];
-                if (previousPacket[i] != oldValue)
+                //byte oldValue = previousPacket[i];
+                //previousPacket[i] = data[i + TOUCHPAD_DATA_OFFSET + touchPacketOffset];
+                if (previousPacket[i] != data[i + TOUCHPAD_DATA_OFFSET + touchPacketOffset])
                     changed = true;
             }
 
@@ -104,6 +104,7 @@ namespace DS4Windows
                 return;
             }
 
+            Array.Copy(data, TOUCHPAD_DATA_OFFSET + touchPacketOffset, previousPacket, 0, 8);
             byte touchID1 = (byte)(data[0 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x7F);
             byte touchID2 = (byte)(data[4 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x7F);
             int currentX1 = ((data[2 + TOUCHPAD_DATA_OFFSET + touchPacketOffset] & 0x0F) << 8) | data[1 + TOUCHPAD_DATA_OFFSET + touchPacketOffset];

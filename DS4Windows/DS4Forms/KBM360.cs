@@ -175,8 +175,14 @@ namespace DS4Windows
                     keytag = bn.Tag;
 
                 lBMacroOn.Visible = false;
-                string extras = GetExtras();
+                string extras = null;
+                if (IsUsingExtras())
+                {
+                    extras = GetExtras();
+                }
+
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(keytag, extras);
+
                 newaction = true;
                 int value;
                 bool tagisint = keytag != null && int.TryParse(keytag.ToString(), out value);
@@ -208,6 +214,22 @@ namespace DS4Windows
             return t;
         }
 
+        private bool IsUsingExtras()
+        {
+            bool result = false;
+            result = result || (nUDHeavy.Value != 0);
+            result = result || (nUDLight.Value != 0);
+            result = result || (cBLightbar.Checked);
+            result = result ||
+                (tBRedBar.Value != 255 && tBGreenBar.Value != 255 &&
+                tBBlueBar.Value != 255);
+
+            result = result || (nUDLightFlash.Value != 0);
+            result = result || (cBMouse.Checked);
+            result = result || (nUDMouse.Value != 25);
+            return result;
+        }
+
         private void finalMeasure(object sender, FormClosedEventArgs e)
         {
             if (ops != null)
@@ -220,13 +242,23 @@ namespace DS4Windows
                 }
                 if (lBMacroOn.Visible)
                 {
-                    string extras = GetExtras();
+                    string extras = null;
+                    if (IsUsingExtras())
+                    {
+                        extras = GetExtras();
+                    }
+
                     KeyValuePair<object, string> tag = new KeyValuePair<object, string>(macrostag.ToArray(), extras);
                     ops.ChangeButtonText(button, rBShiftModifer.Checked, tag, cBScanCode.Checked, false, lBMacroOn.Visible, macrorepeat, cBShiftButton.SelectedIndex);
                 }
                 else if (!newaction)
                 {
-                    string extras = GetExtras();
+                    string extras = null;
+                    if (IsUsingExtras())
+                    {
+                        extras = GetExtras();
+                    }
+
                     int value;
                     object tt = Global.GetDS4Action(device, button.Name, rBShiftModifer.Checked);
                     bool tagisint = tt != null
@@ -262,7 +294,12 @@ namespace DS4Windows
             if (rb == null && !(ActiveControl is NumericUpDown) && !(ActiveControl is TrackBar))
             {
                 lBMacroOn.Visible = false;
-                string extras = GetExtras();
+                string extras = null;
+                if (IsUsingExtras())
+                {
+                    extras = GetExtras();
+                }
+
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(e.KeyValue, extras);
                 newaction = true;
                 if (ops != null)
@@ -286,7 +323,12 @@ namespace DS4Windows
             if (rb == null && !(ActiveControl is NumericUpDown) && !(ActiveControl is TrackBar))
             {
                 lBMacroOn.Visible = false;
-                string extras = GetExtras();
+                string extras = null;
+                if (IsUsingExtras())
+                {
+                    extras = GetExtras();
+                }
+
                 KeyValuePair<object, string> tag = new KeyValuePair<object, string>(e.KeyValue, extras);
                 newaction = true;
                 if (ops != null)
@@ -466,7 +508,15 @@ namespace DS4Windows
         private void rBShift_CheckedChanged(object sender, EventArgs e)
         {
             if (!loading && extraChanged)
-                Global.UpdateDS4Extra(device, button.Name, !rBShiftModifer.Checked, GetExtras());
+            {
+                string strextras = null;
+                if (IsUsingExtras())
+                {
+                    strextras = GetExtras();
+                }
+
+                Global.UpdateDS4Extra(device, button.Name, !rBShiftModifer.Checked, strextras);
+            }
 
             object tagO = Global.GetDS4Action(device, button.Name, rBShiftModifer.Checked);
             if (rBShiftModifer.Checked)

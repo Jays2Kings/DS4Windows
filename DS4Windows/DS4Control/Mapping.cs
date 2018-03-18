@@ -1211,8 +1211,12 @@ namespace DS4Windows
                     {
                         DS4LightBar.forcelight[device] = false;
                         DS4LightBar.forcedFlash[device] = 0;
-                        ButtonMouseSensitivity[device] = oldmouse[device];
-                        oldmouse[device] = -1;
+                        if (oldmouse[device] != -1)
+                        {
+                            ButtonMouseSensitivity[device] = oldmouse[device];
+                            oldmouse[device] = -1;
+                        }
+
                         ctrl.setRumble(0, 0, device);
                         held[device] = false;
                         usingExtra = DS4Controls.None;

@@ -1637,13 +1637,6 @@ namespace DS4Windows
             for (int i = 0; i < 4; i++)
                 LoadProfile(i, false, Program.rootHub); // Refreshes all profiles in case other controllers are using the same profile
 
-            /*if (olddinputcheck != cBDinput.Checked)
-            {
-                root.BtnStartStop_Clicked(false);
-                finishDInputChange();
-            }
-            */
-
             if (btnRumbleHeavyTest.Text == Properties.Resources.StopText)
                 Program.rootHub.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
 
@@ -1663,18 +1656,6 @@ namespace DS4Windows
                             if (btCurrentIndex >= 0)
                             {
                                 tempDev.setBTPollRate(btCurrentIndex);
-                            }
-
-                            if (olddinputcheck != cBDinput.Checked)
-                            {
-                                if (cBDinput.Checked)
-                                {
-                                    Program.rootHub.UnplugXInputController(device);
-                                }
-                                else
-                                {
-                                    Program.rootHub.PlugXInputController(device);
-                                }
                             }
                         });
                     }

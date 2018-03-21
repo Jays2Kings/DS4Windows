@@ -2180,19 +2180,6 @@ namespace DS4Windows
             DinputOnly[device] = cBDinput.Checked;
         }
 
-        private async void finishDInputChange()
-        {
-            await System.Threading.Tasks.Task.Factory.StartNew(() =>
-            {
-                while (root.ChangingService)
-                {
-                    System.Threading.Thread.Sleep(10);
-                }
-            });
-
-            root.BtnStartStop_Clicked(false);
-        }
-
         private void cbStartTouchpadOff_CheckedChanged(object sender, EventArgs e)
         {
             StartTouchpadOff[device] = cbStartTouchpadOff.Checked;

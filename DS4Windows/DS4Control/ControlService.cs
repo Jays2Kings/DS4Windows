@@ -704,8 +704,8 @@ namespace DS4Windows
                     lag[ind] = false;
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = true;
-                    System.Threading.Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                     OnControllerRemoved(this, ind);
+                    Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 }
             }
         }

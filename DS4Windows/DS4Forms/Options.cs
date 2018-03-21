@@ -1637,11 +1637,12 @@ namespace DS4Windows
             for (int i = 0; i < 4; i++)
                 LoadProfile(i, false, Program.rootHub); // Refreshes all profiles in case other controllers are using the same profile
 
-            if (olddinputcheck != cBDinput.Checked)
+            /*if (olddinputcheck != cBDinput.Checked)
             {
                 root.BtnStartStop_Clicked(false);
                 finishDInputChange();
             }
+            */
 
             if (btnRumbleHeavyTest.Text == Properties.Resources.StopText)
                 Program.rootHub.setRumble(0, 0, (int)nUDSixaxis.Value - 1);
@@ -1655,12 +1656,25 @@ namespace DS4Windows
                     {
                         int discon = getIdleDisconnectTimeout(device);
                         int btCurrentIndex = btPollRateComboBox.SelectedIndex;
+
                         tempDev.queueEvent(() =>
                         {
                             tempDev.setIdleTimeout(discon);
                             if (btCurrentIndex >= 0)
                             {
                                 tempDev.setBTPollRate(btCurrentIndex);
+                            }
+
+                            if (olddinputcheck != cBDinput.Checked)
+                            {
+                                if (cBDinput.Checked)
+                                {
+                                    Program.rootHub.UnplugXInputController(device);
+                                }
+                                else
+                                {
+                                    Program.rootHub.PlugXInputController(device);
+                                }
                             }
                         });
                     }
@@ -2161,14 +2175,9 @@ namespace DS4Windows
             }
         }
 
-        private void cBDinput_CheckedChanged(object sender, EventArgs e)
+        private void CBDinput_CheckedChanged(object sender, EventArgs e)
         {
             DinputOnly[device] = cBDinput.Checked;
-            if (!loading && device < 4)
-            {
-                root.BtnStartStop_Clicked(false);
-                finishDInputChange();
-            }
         }
 
         private async void finishDInputChange()

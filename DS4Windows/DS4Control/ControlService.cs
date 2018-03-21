@@ -101,6 +101,27 @@ namespace DS4Windows
             catch { }
         }
 
+        public bool PlugXInputController(int index)
+        {
+            int xinputIndex = x360Bus.FirstController + index;
+            LogDebug("Plugging in X360 Controller #" + xinputIndex);
+            bool xinputResult = x360Bus.Plugin(index);
+            useDInputOnly[index] = false;
+            LogDebug("X360 Controller # " + xinputIndex + " connected");
+
+            return xinputResult;
+        }
+
+        public bool UnplugXInputController(int index)
+        {
+            bool unplugResult = x360Bus.Unplug(index);
+            int xinputIndex = x360Bus.FirstController + index;
+            useDInputOnly[index] = true;
+            LogDebug("X360 Controller # " + xinputIndex + " unplugged");
+
+            return unplugResult;
+        }
+
         public bool Start(object tempui, bool showlog = true)
         {
             if (x360Bus.Open() && x360Bus.Start())

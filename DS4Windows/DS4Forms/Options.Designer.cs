@@ -1366,7 +1366,7 @@
             resources.ApplyResources(this.cBDinput, "cBDinput");
             this.cBDinput.Name = "cBDinput";
             this.cBDinput.UseVisualStyleBackColor = true;
-            this.cBDinput.CheckedChanged += new System.EventHandler(this.cBDinput_CheckedChanged);
+            this.cBDinput.CheckedChanged += new System.EventHandler(this.CBDinput_CheckedChanged);
             // 
             // pBProgram
             // 

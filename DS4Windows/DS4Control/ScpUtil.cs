@@ -2844,20 +2844,14 @@ namespace DS4Windows
                         if (xinputStatus && xinputPlug)
                         {
                             bool xinputResult = control.x360Bus.Plugin(device);
-                            if (xinputResult)
-                            {
-                                int xinputIndex = control.x360Bus.FirstController + device;
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
-                            }
+                            int xinputIndex = control.x360Bus.FirstController + device;
+                            Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
                         }
                         else if (xinputStatus && !xinputPlug)
                         {
                             bool xinputResult = control.x360Bus.Unplug(device);
-                            if (xinputResult)
-                            {
-                                int xinputIndex = control.x360Bus.FirstController + device;
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
-                            }
+                            int xinputIndex = control.x360Bus.FirstController + device;
+                            Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
                         }
 
                         tempDev.setRumble(0, 0);

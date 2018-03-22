@@ -52,6 +52,7 @@ namespace DS4Windows
                 case "linkElectro": lbLinkText.Text = "https://code.google.com/r/brianfundakowskifeldman-ds4windows/"; break;
                 case "linkInhexSTER": lbLinkText.Text = "https://code.google.com/p/ds4-tool/"; break;
                 case "linkJhebbel": lbLinkText.Text = "http://dsdcs.com/index.php/portfolio/software-development/4-ds4windows"; break;
+                case "linkCurrentSite": lbLinkText.Text = "https://ryochan7.github.io/ds4windows-site/"; break;
                 case "linkSourceCode": lbLinkText.Text = "https://github.com/Ryochan7/DS4Windows"; break;
                 case "linkBoganhobo": lbLinkText.Text = "https://github.com/boganhobo"; break;
                 case "linkChamilsaan": lbLinkText.Text = "https://github.com/Chamilsaan"; break;
@@ -91,7 +92,7 @@ namespace DS4Windows
             Process.Start("https://paypal.me/ryochan7");
         }
 
-        private void linkSourceCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkSourceCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/Ryochan7/DS4Windows");
         }
@@ -119,6 +120,11 @@ namespace DS4Windows
         private void MakerSupportLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://www.makersupport.com/Ryochan7");
+        }
+
+        private void LinkCurrentSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://ryochan7.github.io/ds4windows-site/");
         }
     }
 }

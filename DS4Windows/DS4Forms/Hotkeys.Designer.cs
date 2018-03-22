@@ -90,6 +90,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.makerSupportLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.linkCurrentSite = new System.Windows.Forms.LinkLabel();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
@@ -168,6 +169,7 @@
             // 
             // tPCredits
             // 
+            this.tPCredits.Controls.Add(this.linkCurrentSite);
             this.tPCredits.Controls.Add(this.linkTeokp);
             this.tPCredits.Controls.Add(this.linkKiliansch);
             this.tPCredits.Controls.Add(this.linkChamilsaan);
@@ -455,7 +457,7 @@
             resources.ApplyResources(this.linkSourceCode, "linkSourceCode");
             this.linkSourceCode.Name = "linkSourceCode";
             this.linkSourceCode.TabStop = true;
-            this.linkSourceCode.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSourceCode_LinkClicked);
+            this.linkSourceCode.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkSourceCode_LinkClicked);
             // 
             // lbLinkText
             // 
@@ -490,6 +492,13 @@
             this.makerSupportLinkLabel.Name = "makerSupportLinkLabel";
             this.makerSupportLinkLabel.TabStop = true;
             this.makerSupportLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakerSupportLinkLabel_LinkClicked);
+            // 
+            // linkCurrentSite
+            // 
+            resources.ApplyResources(this.linkCurrentSite, "linkCurrentSite");
+            this.linkCurrentSite.Name = "linkCurrentSite";
+            this.linkCurrentSite.TabStop = true;
+            this.linkCurrentSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkCurrentSite_LinkClicked);
             // 
             // Hotkeys
             // 
@@ -578,5 +587,6 @@
         private System.Windows.Forms.TabPage coinTP;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.LinkLabel linkCurrentSite;
     }
 }

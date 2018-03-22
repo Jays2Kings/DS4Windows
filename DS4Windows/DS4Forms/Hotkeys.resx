@@ -144,13 +144,13 @@
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;linkElectro.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="linkJays2Kings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="linkJays2Kings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 3</value>
+    <value>8, 25</value>
   </data>
   <data name="linkJays2Kings.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 13</value>
@@ -171,7 +171,7 @@
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;linkJays2Kings.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lbAbout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -211,7 +211,7 @@
     <value>True</value>
   </data>
   <data name="linkInhexSTER.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 25</value>
+    <value>74, 25</value>
   </data>
   <data name="linkInhexSTER.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 13</value>
@@ -232,7 +232,7 @@
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;linkInhexSTER.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="linkJhebbel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -259,7 +259,7 @@
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;linkJhebbel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="lLChangelog.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 20</value>
@@ -391,6 +391,33 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
   <data name="&gt;&gt;tPHotkeys.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="linkCurrentSite.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkCurrentSite.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 3</value>
+  </data>
+  <data name="linkCurrentSite.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="linkCurrentSite.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="linkCurrentSite.Text" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="&gt;&gt;linkCurrentSite.Name" xml:space="preserve">
+    <value>linkCurrentSite</value>
+  </data>
+  <data name="&gt;&gt;linkCurrentSite.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkCurrentSite.Parent" xml:space="preserve">
+    <value>tPCredits</value>
+  </data>
+  <data name="&gt;&gt;linkCurrentSite.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="linkTeokp.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -419,7 +446,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;linkTeokp.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="linkKiliansch.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -449,7 +476,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;linkKiliansch.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="linkChamilsaan.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -479,7 +506,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;linkChamilsaan.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="linkBoganhobo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -509,7 +536,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;linkBoganhobo.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="tLPTranslators.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1739,7 +1766,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;tLPTranslators.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="tLPTranslators.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lbuk" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbUkrainianT" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbid" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbIndonesianT" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbhu" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbHungarianT" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbel" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbGreekT" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbfi" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFinnishT" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbcs" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbCzechT" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbpt" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPortugueseT" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbes" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbSpanishT" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbpl" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbPolishT" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbde" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbGermanT" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbItalianT" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbitIT" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbruRU" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRussianT" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbroRO" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbRomanianT" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbtr" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbTurkishT" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbzhHans" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseST" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbzhHant" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbChineseTT" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbar" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbArabicT" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbhe" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbHebrewT" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lbfrFR" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lbFrenchT" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Percent,8.333333,Absolute,16,Absolute,16,Absolute,16,Absolute,16,Absolute,16,Absolute,16,Absolute,16" /&gt;&lt;/TableLayoutSettings&gt;</value>
@@ -1775,7 +1802,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;lbTranslators.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="linkSourceCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1784,7 +1811,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>NoControl</value>
   </data>
   <data name="linkSourceCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 3</value>
+    <value>39, 3</value>
   </data>
   <data name="linkSourceCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 13</value>
@@ -1805,7 +1832,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;linkSourceCode.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="lbLinkText.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1838,7 +1865,7 @@ Scan Code: Keys are interpreted differently. May be needed for certain games
     <value>tPCredits</value>
   </data>
   <data name="&gt;&gt;lbLinkText.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="tPCredits.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

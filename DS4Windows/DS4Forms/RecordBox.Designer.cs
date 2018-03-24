@@ -69,7 +69,7 @@
             this.btnRecord.UseVisualStyleBackColor = true;
             this.btnRecord.Click += new System.EventHandler(this.btnRecord_Click);
             this.btnRecord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
-            this.btnRecord.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
+            this.btnRecord.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AnyKeyUp);
             // 
             // cBRecordDelays
             // 
@@ -78,7 +78,7 @@
             this.cBRecordDelays.TabStop = false;
             this.cBRecordDelays.UseVisualStyleBackColor = true;
             this.cBRecordDelays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
-            this.cBRecordDelays.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
+            this.cBRecordDelays.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AnyKeyUp);
             this.cBRecordDelays.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
             this.cBRecordDelays.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
             // 
@@ -97,7 +97,7 @@
             this.lVMacros.View = System.Windows.Forms.View.Details;
             this.lVMacros.SelectedIndexChanged += new System.EventHandler(this.lVMacros_SelectedIndexChanged);
             this.lVMacros.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
-            this.lVMacros.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
+            this.lVMacros.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AnyKeyUp);
             this.lVMacros.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lVMacros_MouseDoubleClick);
             this.lVMacros.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
             this.lVMacros.MouseHover += new System.EventHandler(this.lVMacros_MouseHover);
@@ -185,7 +185,7 @@
             this.btnLightbar.UseVisualStyleBackColor = true;
             this.btnLightbar.Click += new System.EventHandler(this.btnLightbar_Click);
             this.btnLightbar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
-            this.btnLightbar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
+            this.btnLightbar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AnyKeyUp);
             // 
             // btnRumble
             // 
@@ -194,7 +194,7 @@
             this.btnRumble.UseVisualStyleBackColor = true;
             this.btnRumble.Click += new System.EventHandler(this.btnRumble_Click);
             this.btnRumble.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
-            this.btnRumble.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
+            this.btnRumble.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AnyKeyUp);
             // 
             // btn5th
             // 
@@ -203,7 +203,7 @@
             this.btn5th.UseVisualStyleBackColor = true;
             this.btn5th.Click += new System.EventHandler(this.btn5th_Click);
             this.btn5th.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
-            this.btn5th.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
+            this.btn5th.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AnyKeyUp);
             // 
             // btn4th
             // 
@@ -212,7 +212,7 @@
             this.btn4th.UseVisualStyleBackColor = true;
             this.btn4th.Click += new System.EventHandler(this.btn4th_Click);
             this.btn4th.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
-            this.btn4th.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
+            this.btn4th.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AnyKeyUp);
             // 
             // btnLoadP
             // 
@@ -286,7 +286,7 @@
             this.ShowInTaskbar = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RecordBox_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.anyKeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.anyKeyUp);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AnyKeyUp);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.anyMouseDown);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.anyMouseUp);
             this.Resize += new System.EventHandler(this.RecordBox_Resize);

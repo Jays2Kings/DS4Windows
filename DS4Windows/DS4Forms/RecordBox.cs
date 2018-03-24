@@ -548,7 +548,7 @@ namespace DS4Windows
             return e.KeyValue;
         }
 
-        private void anyKeyUp(object sender, KeyEventArgs e)
+        private void AnyKeyUp(object sender, KeyEventArgs e)
         {
             if (btnRecord.Text == Properties.Resources.StopText && (macros.Count != 0 || (recordAfter && macrosAfter.Count != 0)))
             {

@@ -552,6 +552,7 @@ namespace DS4Windows
         {
             if (btnRecord.Text == Properties.Resources.StopText && (macros.Count != 0 || (recordAfter && macrosAfter.Count != 0)))
             {
+                lVMacros.BeginUpdate();
                 int value = WhichKey(e, 1);
                 if (cBRecordDelays.Checked)
                 {
@@ -561,9 +562,18 @@ namespace DS4Windows
                     sw.Start();
                 }
 
+                if (e.KeyCode == Keys.PrintScreen)
+                {
+                    int tempvalue = WhichKey(e, 0);
+                    AddMacroValue(tempvalue);
+                    lVMacros.Items.Add(((Keys)value).ToString(), 0);
+                    lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
+                }
+
                 AddMacroValue(value);
                 lVMacros.Items.Add(((Keys)value).ToString(), 1);
                 lVMacros.Items[lVMacros.Items.Count - 1].EnsureVisible();
+                lVMacros.EndUpdate();
             }
         }
         private void anyMouseDown(object sender, MouseEventArgs e)

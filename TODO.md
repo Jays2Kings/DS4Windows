@@ -12,3 +12,4 @@ any speed difference will make up for it.
 Use newer standards (WPF) and bundle app with DS4Windows
 * ~~Attempt to no longer disable service when changing dinput only option
 in profiles
+* Update Task Scheduler to latest version

@@ -981,7 +981,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                         if (!inHotPlug)
                         {
                             inHotPlug = true;
-                            TaskRunner.Run(() => { Thread.Sleep(500); InnerHotplug2(uiContext); });
+                            TaskRunner.Run(() => { Thread.Sleep(1500);  InnerHotplug2(uiContext); });
                         }
                     }
                 }

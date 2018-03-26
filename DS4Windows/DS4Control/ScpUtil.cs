@@ -235,7 +235,7 @@ namespace DS4Windows
         public static string appDataPpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Windows";
         public static string oldappdatapath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DS4Tool";
         public static bool runHotPlug = false;
-        public const int XINPUT_UNPLUG_SETTLE_TIME = 500; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
+        public const int XINPUT_UNPLUG_SETTLE_TIME = 250; // Inhibit races that occur with the asynchronous teardown of ScpVBus -> X360 driver instance.
         public static string[] tempprofilename = new string[5] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
         public static bool[] tempprofileDistance = new bool[5] { false, false, false, false, false };
         public static bool[] useDInputOnly = new bool[5] { true, true, true, true, true };

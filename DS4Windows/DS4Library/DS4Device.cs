@@ -156,6 +156,7 @@ namespace DS4Windows
         }
 
         private bool exitOutputThread = false;
+        public bool ExitOutputThread => exitOutputThread;
         private bool exitInputThread = false;
         private object exitLocker = new object();
 
@@ -449,6 +450,13 @@ namespace DS4Windows
             sixAxis = new DS4SixAxis();
             Crc32Algorithm.InitializeTable(DefaultPolynomial);
             refreshCalibration();
+
+            if (!hDevice.IsFileStreamOpen())
+            {
+                hDevice.OpenFileStream(inputReport.Length);
+            }
+
+            sendOutputReport(true); // initialize the output report
         }
 
         private void timeoutTestThread()
@@ -513,14 +521,6 @@ namespace DS4Windows
         {
             if (ds4Input == null)
             {
-                if (!hDevice.IsFileStreamOpen())
-                {
-                    hDevice.OpenFileStream(inputReport.Length);
-                }
-
-                //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "> start");
-                sendOutputReport(true); // initialize the output report
-
                 ds4Output = new Thread(performDs4Output);
                 ds4Output.Priority = ThreadPriority.AboveNormal;
                 ds4Output.Name = "DS4 Output thread: " + Mac;
@@ -1195,6 +1195,7 @@ namespace DS4Windows
             if (quitOutputThread)
             {
                 StopOutputUpdate();
+                exitOutputThread = true;
             }
         }
 

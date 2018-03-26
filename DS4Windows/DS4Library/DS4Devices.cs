@@ -143,9 +143,12 @@ namespace DS4Windows
                         {
                             DS4Device ds4Device = new DS4Device(hDevice);
                             //ds4Device.Removal += On_Removal;
-                            Devices.Add(hDevice.DevicePath, ds4Device);
-                            DevicePaths.Add(hDevice.DevicePath);
-                            deviceSerials.Add(serial);
+                            if (!ds4Device.ExitOutputThread)
+                            {
+                                Devices.Add(hDevice.DevicePath, ds4Device);
+                                DevicePaths.Add(hDevice.DevicePath);
+                                deviceSerials.Add(serial);
+                            }
                         }
                     }
                 }

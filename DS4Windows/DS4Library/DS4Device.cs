@@ -1149,11 +1149,8 @@ namespace DS4Windows
                     outputRumble = false;
                     outputPendCount = 3;
 
-                    if (usingBT)
-                    {
-                        Monitor.Enter(outputReport);
-                        outReportBuffer.CopyTo(outputReport, 0);
-                    }
+                    Monitor.Enter(outputReport);
+                    outReportBuffer.CopyTo(outputReport, 0);
 
                     try
                     {
@@ -1165,7 +1162,7 @@ namespace DS4Windows
                     }
                     catch { } // If it's dead already, don't worry about it.
 
-                    if (usingBT) { Monitor.Exit(outputReport); }
+                    Monitor.Exit(outputReport);
                 }
                 else
                 {

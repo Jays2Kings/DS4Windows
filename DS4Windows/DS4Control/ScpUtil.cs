@@ -2845,13 +2845,30 @@ namespace DS4Windows
                         {
                             bool xinputResult = control.x360Bus.Plugin(device);
                             int xinputIndex = control.x360Bus.FirstController + device;
-                            Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
+                            if (xinputResult)
+                            {
+                                dinputOnly[device] = false;
+                                Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
+                            }
+                            else
+                            {
+                                dinputOnly[device] = true;
+                                Log.LogToGui("X360 Controller # " + xinputIndex + " failed. Using DInput only mode", true);
+                            }
                         }
                         else if (xinputStatus && !xinputPlug)
                         {
                             bool xinputResult = control.x360Bus.Unplug(device);
                             int xinputIndex = control.x360Bus.FirstController + device;
-                            Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
+                            if (xinputResult)
+                            {
+                                dinputOnly[device] = true;
+                                Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
+                            }
+                            else
+                            {
+                                Log.LogToGui("X360 Controller # " + xinputIndex + " failed to unplug", true);
+                            }
                         }
 
                         tempDev.setRumble(0, 0);

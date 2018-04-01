@@ -106,8 +106,16 @@ namespace DS4Windows
             int xinputIndex = x360Bus.FirstController + index;
             LogDebug("Plugging in X360 Controller #" + xinputIndex);
             bool xinputResult = x360Bus.Plugin(index);
-            useDInputOnly[index] = false;
-            LogDebug("X360 Controller # " + xinputIndex + " connected");
+            if (xinputResult)
+            {
+                useDInputOnly[index] = false;
+                LogDebug("X360 Controller # " + xinputIndex + " connected");
+            }
+            else
+            {
+                useDInputOnly[index] = true;
+                LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
+            }
 
             return xinputResult;
         }
@@ -116,8 +124,15 @@ namespace DS4Windows
         {
             bool unplugResult = x360Bus.Unplug(index);
             int xinputIndex = x360Bus.FirstController + index;
-            useDInputOnly[index] = true;
-            LogDebug("X360 Controller # " + xinputIndex + " unplugged");
+            if (unplugResult)
+            {
+                useDInputOnly[index] = true;
+                LogDebug("X360 Controller # " + xinputIndex + " unplugged");
+            }
+            else
+            {
+                LogDebug("X360 Controller # " + xinputIndex + " failed to unplug");
+            }
 
             return unplugResult;
         }
@@ -179,8 +194,16 @@ namespace DS4Windows
                             int xinputIndex = x360Bus.FirstController + i;
                             LogDebug("Plugging in X360 Controller #" + xinputIndex);
                             bool xinputResult = x360Bus.Plugin(i);
-                            LogDebug("X360 Controller # " + xinputIndex + " connected");
-                            useDInputOnly[i] = false;
+                            if (xinputResult)
+                            {
+                                useDInputOnly[i] = false;
+                                LogDebug("X360 Controller # " + xinputIndex + " connected");
+                            }
+                            else
+                            {
+                                useDInputOnly[i] = true;
+                                LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
+                            }
                         }
 
                         device.Report += this.On_Report;
@@ -361,8 +384,16 @@ namespace DS4Windows
                                 int xinputIndex = x360Bus.FirstController + Index;
                                 LogDebug("Plugging in X360 Controller #" + xinputIndex);
                                 bool xinputResult = x360Bus.Plugin(Index);
-                                LogDebug("X360 Controller # " + xinputIndex + " connected");
-                                useDInputOnly[Index] = false;
+                                if (xinputResult)
+                                {
+                                    useDInputOnly[Index] = false;
+                                    LogDebug("X360 Controller # " + xinputIndex + " connected");
+                                }
+                                else
+                                {
+                                    useDInputOnly[Index] = true;
+                                    LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
+                                }
                             }
 
                             TouchPadOn(Index, device);
@@ -609,8 +640,15 @@ namespace DS4Windows
                     {
                         bool unplugResult = x360Bus.Unplug(ind);
                         int xinputIndex = x360Bus.FirstController + ind;
-                        LogDebug("X360 Controller # " + xinputIndex + " unplugged");
-                        useDInputOnly[ind] = true;
+                        if (unplugResult)
+                        {
+                            useDInputOnly[ind] = true;
+                            LogDebug("X360 Controller # " + xinputIndex + " unplugged");
+                        }
+                        else
+                        {
+                            LogDebug("X360 Controller # " + xinputIndex + " failed to unplug");
+                        }
                     }
                 }
                 else
@@ -620,8 +658,16 @@ namespace DS4Windows
                         int xinputIndex = x360Bus.FirstController + ind;
                         LogDebug("Plugging in X360 Controller #" + xinputIndex);
                         bool xinputResult = x360Bus.Plugin(ind);
-                        LogDebug("X360 Controller # " + xinputIndex + " connected");
-                        useDInputOnly[ind] = false;
+                        if (xinputResult)
+                        {
+                            useDInputOnly[ind] = false;
+                            LogDebug("X360 Controller # " + xinputIndex + " connected");
+                        }
+                        else
+                        {
+                            useDInputOnly[ind] = true;
+                            LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
+                        }
                     }
                 }
             }

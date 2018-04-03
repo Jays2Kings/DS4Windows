@@ -36,7 +36,7 @@ namespace DS4Windows
         internal const int PULSE_FLASH_DURATION = 2000;
         internal const double PULSE_FLASH_SEGMENTS = PULSE_FLASH_DURATION / 40;
         internal const int PULSE_CHARGING_DURATION = 4000;
-        internal const double PULSE_CHARGING_SEGMENTS = PULSE_CHARGING_DURATION / 40;
+        internal const double PULSE_CHARGING_SEGMENTS = (PULSE_CHARGING_DURATION / 40) - 2;
 
         public static void updateLightBar(DS4Device device, int deviceNum)
         {
@@ -190,6 +190,8 @@ namespace DS4Windows
                                     if (elapsed < PULSE_CHARGING_DURATION)
                                     {
                                         elapsed = elapsed / 40;
+                                        if (elapsed > PULSE_CHARGING_SEGMENTS)
+                                            elapsed = (long)PULSE_CHARGING_SEGMENTS;
                                         ratio = 100.0 * (elapsed / PULSE_CHARGING_SEGMENTS);
                                     }
                                     else
@@ -203,6 +205,8 @@ namespace DS4Windows
                                     if (elapsed < PULSE_CHARGING_DURATION)
                                     {
                                         elapsed = elapsed / 40;
+                                        if (elapsed > PULSE_CHARGING_SEGMENTS)
+                                            elapsed = (long)PULSE_CHARGING_SEGMENTS;
                                         ratio = (0 - 100.0) * (elapsed / PULSE_CHARGING_SEGMENTS) + 100.0;
                                     }
                                     else

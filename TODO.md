@@ -1,7 +1,7 @@
 # TODO
 
 * Perform some final cleanup and release version 1.5
-* Attempt to work out BT disconnect issues by looking at older versions
+* ~~Attempt to work out BT disconnect issues by looking at older versions~~
 * Attempt to remove reliance on the main thread when disconnecting a device.
 Currently used to delay hotplug routine
 * Look into distributing profile properties around various objects
@@ -12,4 +12,4 @@ any speed difference will make up for it.
 Use newer standards (WPF) and bundle app with DS4Windows
 * ~~Attempt to no longer disable service when changing dinput only option
 in profiles
-* Update Task Scheduler to latest version
+* ~~Update Task Scheduler to latest version~~

@@ -206,7 +206,11 @@ namespace DS4Windows
                             }
                         }
 
-                        device.Report += this.On_Report;
+                        int tempIdx = i;
+                        device.Report += (sender, e) =>
+                        {
+                            this.On_Report(sender, e, tempIdx);
+                        };
                         TouchPadOn(i, device);
                         CheckProfileOptions(i, device, true);
                         device.StartUpdate();
@@ -378,7 +382,12 @@ namespace DS4Windows
                             LoadProfile(Index, false, this, false, false);
                             touchPad[Index] = new Mouse(Index, device);
                             device.LightBarColor = getMainColor(Index);
-                            device.Report += this.On_Report;
+                            //device.Report += this.On_Report;
+                            int tempIdx = Index;
+                            device.Report += (sender, e) =>
+                            {
+                                this.On_Report(sender, e, tempIdx);
+                            };
                             if (!getDInputOnly(Index) && device.isSynced())
                             {
                                 int xinputIndex = x360Bus.FirstController + Index;
@@ -746,17 +755,18 @@ namespace DS4Windows
         private string[] tempStrings = new string[4] { string.Empty, string.Empty, string.Empty, string.Empty };
 
         // Called every time a new input report has arrived
-        protected virtual void On_Report(object sender, EventArgs e)
+        protected virtual void On_Report(object sender, EventArgs e, int ind)
         {
             DS4Device device = (DS4Device)sender;
 
-            int ind = -1;
+            /*int ind = -1;
             for (int i = 0, arlength = DS4_CONTROLLER_COUNT; ind == -1 && i < arlength; i++)
             {
                 DS4Device tempDev = DS4Controllers[i];
                 if (tempDev != null && device == tempDev)
                     ind = i;
             }
+            */
 
             if (ind != -1)
             {

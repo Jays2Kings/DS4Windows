@@ -521,17 +521,20 @@ namespace DS4Windows
         {
             if (ds4Input == null)
             {
-                ds4Output = new Thread(performDs4Output);
-                ds4Output.Priority = ThreadPriority.AboveNormal;
-                ds4Output.Name = "DS4 Output thread: " + Mac;
-                ds4Output.IsBackground = true;
-                ds4Output.Start();
+                if (conType == ConnectionType.BT)
+                {
+                    ds4Output = new Thread(performDs4Output);
+                    ds4Output.Priority = ThreadPriority.AboveNormal;
+                    ds4Output.Name = "DS4 Output thread: " + Mac;
+                    ds4Output.IsBackground = true;
+                    ds4Output.Start();
 
-                timeoutCheckThread = new Thread(timeoutTestThread);
-                timeoutCheckThread.Priority = ThreadPriority.BelowNormal;
-                timeoutCheckThread.Name = "DS4 Timeout thread: " + Mac;
-                timeoutCheckThread.IsBackground = true;
-                timeoutCheckThread.Start();
+                    timeoutCheckThread = new Thread(timeoutTestThread);
+                    timeoutCheckThread.Priority = ThreadPriority.BelowNormal;
+                    timeoutCheckThread.Name = "DS4 Timeout thread: " + Mac;
+                    timeoutCheckThread.IsBackground = true;
+                    timeoutCheckThread.Start();
+                }
 
                 ds4Input = new Thread(performDs4Input);
                 ds4Input.Priority = ThreadPriority.AboveNormal;
@@ -711,7 +714,7 @@ namespace DS4Windows
             timeoutEvent = false;
             ds4InactiveFrame = true;
             idleInput = true;
-            bool syncWriteReport = true;
+            bool syncWriteReport = conType == ConnectionType.USB;
 
             int maxBatteryValue = 0;
             int tempBattery = 0;
@@ -1074,7 +1077,7 @@ namespace DS4Windows
                 if (Report != null)
                     Report(this, EventArgs.Empty);
 
-                sendOutputReport(false);
+                sendOutputReport(syncWriteReport);
 
                 if (!string.IsNullOrEmpty(currerror))
                     error = currerror;
@@ -1153,8 +1156,11 @@ namespace DS4Windows
                     outputRumble = false;
                     outputPendCount = 3;
 
-                    Monitor.Enter(outputReport);
-                    outReportBuffer.CopyTo(outputReport, 0);
+                    if (usingBT)
+                    {
+                        Monitor.Enter(outputReport);
+                        outReportBuffer.CopyTo(outputReport, 0);
+                    }
 
                     try
                     {
@@ -1166,7 +1172,10 @@ namespace DS4Windows
                     }
                     catch { } // If it's dead already, don't worry about it.
 
-                    Monitor.Exit(outputReport);
+                    if (usingBT)
+                    {
+                        Monitor.Exit(outputReport);
+                    }
                 }
                 else
                 {

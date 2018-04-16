@@ -714,7 +714,7 @@ namespace DS4Windows
             timeoutEvent = false;
             ds4InactiveFrame = true;
             idleInput = true;
-            bool syncWriteReport = conType == ConnectionType.USB;
+            bool syncWriteReport = conType != ConnectionType.BT;
 
             int maxBatteryValue = 0;
             int tempBattery = 0;

@@ -1115,6 +1115,8 @@ namespace DS4Windows
 
             lock (outReportBuffer)
             {
+                bool output = outputPendCount > 0, change = false;
+
                 if (usingBT)
                 {
                     outReportBuffer[0] = 0x11;
@@ -1128,6 +1130,12 @@ namespace DS4Windows
                     outReportBuffer[10] = ligtBarColor.blue; // blue
                     outReportBuffer[11] = ledFlashOn; // flash on duration
                     outReportBuffer[12] = ledFlashOff; // flash off duration
+
+                    fixed (byte* byteR = outputReport, byteB = outReportBuffer)
+                    {
+                        for (int i = 0, arlen = 13; !change && i < arlen; i++)
+                            change = byteR[i] != byteB[i];
+                    }
                 }
                 else
                 {
@@ -1141,7 +1149,14 @@ namespace DS4Windows
                     outReportBuffer[8] = ligtBarColor.blue; // blue
                     outReportBuffer[9] = ledFlashOn; // flash on duration
                     outReportBuffer[10] = ledFlashOff; // flash off duration
-                    if (audio != null)
+
+                    fixed (byte* byteR = outputReport, byteB = outReportBuffer)
+                    {
+                        for (int i = 0, arlen = 11; !change && i < arlen; i++)
+                            change = byteR[i] != byteB[i];
+                    }
+
+                    if (change && audio != null)
                     {
                         // Headphone volume levels
                         outReportBuffer[19] = outReportBuffer[20] =
@@ -1156,36 +1171,32 @@ namespace DS4Windows
                     outputRumble = false;
                     outputPendCount = 3;
 
-                    if (usingBT)
+                    if (change)
                     {
-                        Monitor.Enter(outputReport);
-                        outReportBuffer.CopyTo(outputReport, 0);
-                    }
-
-                    try
-                    {
-                        if (!writeOutput())
+                        if (usingBT)
                         {
-                            int winError = Marshal.GetLastWin32Error();
-                            quitOutputThread = true;
+                            Monitor.Enter(outputReport);
+                            outReportBuffer.CopyTo(outputReport, 0);
                         }
-                    }
-                    catch { } // If it's dead already, don't worry about it.
 
-                    if (usingBT)
-                    {
-                        Monitor.Exit(outputReport);
+                        try
+                        {
+                            if (!writeOutput())
+                            {
+                                int winError = Marshal.GetLastWin32Error();
+                                quitOutputThread = true;
+                            }
+                        }
+                        catch { } // If it's dead already, don't worry about it.
+
+                        if (usingBT)
+                        {
+                            Monitor.Exit(outputReport);
+                        }
                     }
                 }
                 else
                 {
-                    bool output = outputPendCount > 0, change = false;
-                    fixed (byte* byteR = outputReport, byteB = outReportBuffer)
-                    {
-                        for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
-                            change = byteR[i] != byteB[i];
-                    }
-
                     //for (int i = 0, arlen = outputReport.Length; !change && i < arlen; i++)
                     //    change = outputReport[i] != outReportBuffer[i];
 

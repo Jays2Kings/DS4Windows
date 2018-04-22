@@ -996,10 +996,6 @@ namespace DS4Windows
                         SyncChange?.Invoke(this, EventArgs.Empty);
                         sendOutputReport(true);
                     }
-                    else if (oldCharging != charging)
-                    {
-                        sendOutputReport(true);
-                    }
                 }
 
                 ds4InactiveFrame = cState.FrameCounter == pState.FrameCounter;

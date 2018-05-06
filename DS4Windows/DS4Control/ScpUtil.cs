@@ -315,9 +315,9 @@ namespace DS4Windows
                     dataBuffer, dataBuffer.Length, ref requiredSize, 0))
                 {
                     string hardwareId = dataBuffer.ToUTF16String();
-                    //if (hardwareIds.Contains("Scp Virtual Bus Driver"))
+                    //if (hardwareIds.Contains("Virtual Gamepad Emulation Bus"))
                     //    result = true;
-                    if (hardwareId.Equals(@"root\ScpVBus"))
+                    if (hardwareId.Equals(@"Root\ViGEmBus"))
                         result = true;
                 }
             }
@@ -2843,32 +2843,15 @@ namespace DS4Windows
                         tempDev.setBTPollRate(btPollRate[device]);
                         if (xinputStatus && xinputPlug)
                         {
-                            bool xinputResult = control.x360Bus.Plugin(device);
-                            int xinputIndex = control.x360Bus.FirstController + device;
-                            if (xinputResult)
-                            {
-                                dinputOnly[device] = false;
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " connected", false);
-                            }
-                            else
-                            {
-                                dinputOnly[device] = true;
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " failed. Using DInput only mode", true);
-                            }
+                            control.x360controls[device] = new Nefarius.ViGEm.Client.Targets.Xbox360Controller(control.vigemTestClient);
+                            control.x360controls[device].Connect();
+                            Log.LogToGui("X360 Controller # " + (device + 1) + " connected", false);
                         }
                         else if (xinputStatus && !xinputPlug)
                         {
-                            bool xinputResult = control.x360Bus.Unplug(device);
-                            int xinputIndex = control.x360Bus.FirstController + device;
-                            if (xinputResult)
-                            {
-                                dinputOnly[device] = true;
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " unplugged", false);
-                            }
-                            else
-                            {
-                                Log.LogToGui("X360 Controller # " + xinputIndex + " failed to unplug", true);
-                            }
+                            control.x360controls[device].Disconnect();
+                            control.x360controls[device] = null;
+                            Log.LogToGui("X360 Controller # " + (device + 1) + " unplugged", false);
                         }
 
                         tempDev.setRumble(0, 0);

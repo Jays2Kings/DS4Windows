@@ -123,6 +123,9 @@
     <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.8.0.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL">
       <HintPath>..\packages\TaskScheduler.2.8.0\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
+    <Reference Include="Nefarius.ViGEmClient">
+      <HintPath>..\bin\Nefarius.ViGEmClient\Nefarius.ViGEmClient.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -158,6 +161,7 @@
       <DependentUpon>ScpHub.cs</DependentUpon>
     </Compile>
     <Compile Include="DS4Control\ScpUtil.cs" />
+    <Compile Include="DS4Control\UdpServer.cs" />
     <Compile Include="DS4Control\X360Device.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -202,7 +202,7 @@ namespace DS4Windows
             cBDisconnectBT.Checked = DCBTatStop;
             cBQuickCharge.Checked = QuickCharge;
             nUDXIPorts.Value = FirstXinputPort;
-            Program.rootHub.x360Bus.FirstController = FirstXinputPort;
+            //Program.rootHub.x360Bus.FirstController = FirstXinputPort;
             // New settings
             this.Width = FormWidth;
             this.Height = FormHeight;
@@ -2185,7 +2185,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             {
                 oldxiport = (int)Math.Round(nUDXIPorts.Value, 0);
                 FirstXinputPort = oldxiport;
-                Program.rootHub.x360Bus.FirstController = oldxiport;
+                //Program.rootHub.x360Bus.FirstController = oldxiport;
                 BtnStartStop_Clicked(false);
                 finishHideDS4Check();
             }

@@ -7,6 +7,9 @@ using System.Media;
 using System.Threading.Tasks;
 using static DS4Windows.Global;
 using System.Threading;
+using Nefarius.ViGEm.Client;
+using Nefarius.ViGEm.Client.Targets;
+using Nefarius.ViGEm.Client.Targets.Xbox360;
 using Registry = Microsoft.Win32.Registry;
 
 namespace DS4Windows
@@ -14,6 +17,10 @@ namespace DS4Windows
     public class ControlService
     {
         public X360Device x360Bus = null;
+        public ViGEmClient vigemTestClient = null;
+        private const int inputResolution = 127 - (-128);
+        private const float reciprocalInputResolution = 1 / (float)inputResolution;
+        private const int outputResolution = 32767 - (-32768);
         public const int DS4_CONTROLLER_COUNT = 4;
         public DS4Device[] DS4Controllers = new DS4Device[DS4_CONTROLLER_COUNT];
         public Mouse[] touchPad = new Mouse[DS4_CONTROLLER_COUNT];
@@ -28,6 +35,10 @@ namespace DS4Windows
         bool[] buttonsdown = new bool[4] { false, false, false, false };
         bool[] held = new bool[DS4_CONTROLLER_COUNT];
         int[] oldmouse = new int[DS4_CONTROLLER_COUNT] { -1, -1, -1, -1 };
+        public Xbox360Controller[] x360controls = new Xbox360Controller[4] { null, null, null, null };
+        private Xbox360Report[] x360reports = new Xbox360Report[4] { new Xbox360Report(), new Xbox360Report(),
+            new Xbox360Report(), new Xbox360Report()
+        };
         Thread tempThread;
         public List<string> affectedDevs = new List<string>()
         {
@@ -39,6 +50,7 @@ namespace DS4Windows
         };
         public bool suspending;
         //SoundPlayer sp = new SoundPlayer();
+        private UdpServer _udpServer;
 
         private class X360Data
         {
@@ -47,6 +59,75 @@ namespace DS4Windows
         }
 
         private X360Data[] processingData = new X360Data[4];
+
+        void GetPadDetailForIdx(int padIdx, ref DualShockPadMeta meta)
+        {
+            //meta = new DualShockPadMeta();
+            meta.PadId = (byte) padIdx;
+            meta.Model = DsModel.DS4;
+
+            var d = DS4Controllers[padIdx];
+            if (d == null)
+            {
+                meta.PadMacAddress = null;
+                meta.PadState = DsState.Disconnected;
+                meta.ConnectionType = DsConnection.None;
+                meta.Model = DsModel.None;
+                meta.BatteryStatus = 0;
+                meta.IsActive = false;
+
+                //return meta;
+            }
+
+            bool isValidSerial = false;
+            //if (d.isValidSerial())
+            //{
+                string stringMac = d.getMacAddress();
+                if (!string.IsNullOrEmpty(stringMac))
+                {
+                    stringMac = string.Join("", stringMac.Split(':'));
+                    //stringMac = stringMac.Replace(":", "").Trim();
+                    meta.PadMacAddress = System.Net.NetworkInformation.PhysicalAddress.Parse(stringMac);
+                    isValidSerial = d.isValidSerial();
+                }
+            //}
+
+            if (!isValidSerial)
+            {
+                //meta.PadMacAddress = null;
+                meta.PadState = DsState.Disconnected;
+            }
+            else
+            {
+                if (d.isSynced() || d.IsAlive())
+                    meta.PadState = DsState.Connected;
+                else
+                    meta.PadState = DsState.Reserved;
+            }
+
+            meta.ConnectionType = (d.getConnectionType() == ConnectionType.USB) ? DsConnection.Usb : DsConnection.Bluetooth;
+            meta.IsActive = !d.isDS4Idle();
+
+            if (d.isCharging() && d.getBattery() >= 100)
+                meta.BatteryStatus = DsBattery.Charged;
+            else
+            {
+                if (d.getBattery() >= 95)
+                    meta.BatteryStatus = DsBattery.Full;
+                else if (d.getBattery() >= 70)
+                    meta.BatteryStatus = DsBattery.High;
+                else if (d.getBattery() >= 50)
+                    meta.BatteryStatus = DsBattery.Medium;
+                else if (d.getBattery() >= 20)
+                    meta.BatteryStatus = DsBattery.Low;
+                else if (d.getBattery() >= 5)
+                    meta.BatteryStatus = DsBattery.Dying;
+                else
+                    meta.BatteryStatus = DsBattery.None;
+            }
+
+            //return meta;
+        }
 
         public ControlService()
         {
@@ -70,6 +151,8 @@ namespace DS4Windows
                 PreviousState[i] = new DS4State();
                 ExposedState[i] = new DS4StateExposed(CurrentState[i]);
             }
+
+            _udpServer = new UdpServer(GetPadDetailForIdx);
         }
 
         private void WarnExclusiveModeFailure(DS4Device device)
@@ -137,14 +220,44 @@ namespace DS4Windows
             return unplugResult;
         }
 
+        private void startViGEm()
+        {
+            tempThread = new Thread(() => { try { vigemTestClient = new ViGEmClient(); } catch { } });
+            tempThread.Priority = ThreadPriority.AboveNormal;
+            tempThread.IsBackground = true;
+            tempThread.Start();
+            while (tempThread.IsAlive)
+            {
+                Thread.SpinWait(500);
+            }
+        }
+
+        private void stopViGEm()
+        {
+            if (tempThread != null)
+            {
+                tempThread.Interrupt();
+                tempThread.Join();
+                tempThread = null;
+            }
+
+            if (vigemTestClient != null)
+            {
+                vigemTestClient.Dispose();
+                vigemTestClient = null;
+            }
+        }
+
         public bool Start(object tempui, bool showlog = true)
         {
-            if (x360Bus.Open() && x360Bus.Start())
+            startViGEm();
+            if (vigemTestClient != null)
+            //if (x360Bus.Open() && x360Bus.Start())
             {
                 if (showlog)
                     LogDebug(Properties.Resources.Starting);
 
-                LogDebug("Connection to Scp Virtual Bus established");
+                LogDebug("Connection to ViGEm established");
 
                 DS4Devices.isExclusiveMode = getUseExclusiveMode();
                 if (showlog)
@@ -191,19 +304,17 @@ namespace DS4Windows
 
                         if (!getDInputOnly(i) && device.isSynced())
                         {
-                            int xinputIndex = x360Bus.FirstController + i;
-                            LogDebug("Plugging in X360 Controller #" + xinputIndex);
-                            bool xinputResult = x360Bus.Plugin(i);
-                            if (xinputResult)
+                            //int xinputIndex = x360Bus.FirstController + i;
+                            LogDebug("Plugging in X360 Controller #" + (i + 1));
+                            useDInputOnly[i] = false;
+                            x360controls[i] = new Xbox360Controller(vigemTestClient);
+                            x360controls[i].Connect();
+                            int devIndex = i;
+                            x360controls[i].FeedbackReceived += (sender, args) =>
                             {
-                                useDInputOnly[i] = false;
-                                LogDebug("X360 Controller # " + xinputIndex + " connected");
-                            }
-                            else
-                            {
-                                useDInputOnly[i] = true;
-                                LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
-                            }
+                                setRumble(args.SmallMotor, args.LargeMotor, devIndex);
+                            };
+                            LogDebug("X360 Controller # " + (i + 1) + " connected");
                         }
 
                         int tempIdx = i;
@@ -211,6 +322,20 @@ namespace DS4Windows
                         {
                             this.On_Report(sender, e, tempIdx);
                         };
+
+                        if (_udpServer != null)
+                        {
+                            EventHandler<EventArgs> tempEvnt = (sender, args) =>
+                            {
+                                DualShockPadMeta padDetail = new DualShockPadMeta();
+                                GetPadDetailForIdx(tempIdx, ref padDetail);
+                                _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx]);
+                            };
+
+                            device.Report += tempEvnt;
+                            device.MotionEvent = tempEvnt;
+                        }
+
                         TouchPadOn(i, device);
                         CheckProfileOptions(i, device, true);
                         device.StartUpdate();
@@ -243,10 +368,28 @@ namespace DS4Windows
                 }
 
                 running = true;
+
+                if (_udpServer != null)
+                {
+                    var UDP_SERVER_PORT = 26760;
+
+                    try
+                    {
+                        _udpServer.Start(UDP_SERVER_PORT);
+                        LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
+                    }
+                    catch (System.Net.Sockets.SocketException ex)
+                    {
+                        var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
+
+                        LogDebug(errMsg, true);
+                        Log.LogToTray(errMsg, true, true);
+                    }
+                }
             }
             else
             {
-                string logMessage = "Could not connect to Scp Virtual Bus Driver. Please check the status of the System device in Device Manager";
+                string logMessage = "Could not connect to ViGEm. Please check the status of the System device in Device Manager";
                 LogDebug(logMessage);
                 Log.LogToTray(logMessage);
             }
@@ -265,9 +408,8 @@ namespace DS4Windows
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingX360);
 
-                LogDebug("Closing connection to Scp Virtual Bus");
+                LogDebug("Closing connection to ViGEm");
 
-                bool anyUnplugged = false;                
                 for (int i = 0, arlength = DS4Controllers.Length; i < arlength; i++)
                 {
                     DS4Device tempDevice = DS4Controllers[i];
@@ -299,9 +441,9 @@ namespace DS4Windows
                         }
 
                         CurrentState[i].Battery = PreviousState[i].Battery = 0; // Reset for the next connection's initial status change.
-                        x360Bus.Unplug(i);
+                        x360controls[i]?.Disconnect();
+                        x360controls[i] = null;
                         useDInputOnly[i] = true;
-                        anyUnplugged = true;
                         DS4Controllers[i] = null;
                         touchPad[i] = null;
                         lag[i] = false;
@@ -309,18 +451,18 @@ namespace DS4Windows
                     }
                 }
 
-                if (anyUnplugged)
-                    Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
-
-                x360Bus.UnplugAll();
-                x360Bus.Stop();
-
                 if (showlog)
                     LogDebug(Properties.Resources.StoppingDS4);
 
                 DS4Devices.stopControllers();
+
+                if (_udpServer != null)
+                    _udpServer.Stop();
+
                 if (showlog)
                     LogDebug(Properties.Resources.StoppedDS4Windows);
+
+                stopViGEm();
             }
 
             runHotPlug = false;
@@ -388,21 +530,33 @@ namespace DS4Windows
                             {
                                 this.On_Report(sender, e, tempIdx);
                             };
+
+                            if (_udpServer != null)
+                            {
+                                EventHandler<EventArgs> tempEvnt = (sender, args) =>
+                                {
+                                    DualShockPadMeta padDetail = new DualShockPadMeta();
+                                    GetPadDetailForIdx(tempIdx, ref padDetail);
+                                    _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx]);
+                                };
+
+                                device.Report += tempEvnt;
+                                device.MotionEvent = tempEvnt;
+                            }
+                            
                             if (!getDInputOnly(Index) && device.isSynced())
                             {
-                                int xinputIndex = x360Bus.FirstController + Index;
-                                LogDebug("Plugging in X360 Controller #" + xinputIndex);
-                                bool xinputResult = x360Bus.Plugin(Index);
-                                if (xinputResult)
+                                //int xinputIndex = x360Bus.FirstController + Index;
+                                LogDebug("Plugging in X360 Controller #" + (Index + 1));
+                                useDInputOnly[Index] = false;
+                                x360controls[Index] = new Xbox360Controller(vigemTestClient);
+                                x360controls[Index].Connect();
+                                int devIndex = Index;
+                                x360controls[Index].FeedbackReceived += (sender, args) =>
                                 {
-                                    useDInputOnly[Index] = false;
-                                    LogDebug("X360 Controller # " + xinputIndex + " connected");
-                                }
-                                else
-                                {
-                                    useDInputOnly[Index] = true;
-                                    LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
-                                }
+                                    setRumble(args.SmallMotor, args.LargeMotor, devIndex);
+                                };
+                                LogDebug("X360 Controller # " + (Index + 1) + " connected");
                             }
 
                             TouchPadOn(Index, device);
@@ -430,6 +584,49 @@ namespace DS4Windows
             }
 
             return true;
+        }
+
+        private void testNewReport(ref Xbox360Report xboxreport, DS4State state)
+        {
+            Xbox360Buttons tempButtons = 0;
+
+            if (state.Share) tempButtons |= Xbox360Buttons.Back;
+            if (state.L3) tempButtons |= Xbox360Buttons.LeftThumb;
+            if (state.R3) tempButtons |= Xbox360Buttons.RightThumb;
+            if (state.Options) tempButtons |= Xbox360Buttons.Start;
+
+            if (state.DpadUp) tempButtons |= Xbox360Buttons.Up;
+            if (state.DpadRight) tempButtons |= Xbox360Buttons.Right;
+            if (state.DpadDown) tempButtons |= Xbox360Buttons.Down;
+            if (state.DpadLeft) tempButtons |= Xbox360Buttons.Left;
+
+            if (state.L1) tempButtons |= Xbox360Buttons.LeftShoulder;
+            if (state.R1) tempButtons |= Xbox360Buttons.RightShoulder;
+
+            if (state.Triangle) tempButtons |= Xbox360Buttons.Y;
+            if (state.Circle) tempButtons |= Xbox360Buttons.B;
+            if (state.Cross) tempButtons |= Xbox360Buttons.A;
+            if (state.Square) tempButtons |= Xbox360Buttons.X;
+            if (state.PS) tempButtons |= Xbox360Buttons.Guide;
+            xboxreport.SetButtons(tempButtons);
+            
+            xboxreport.LeftTrigger = state.L2;
+            xboxreport.RightTrigger = state.R2;
+            xboxreport.LeftThumbX = AxisScale(state.LX, false);
+            xboxreport.LeftThumbY = AxisScale(state.LY, true);
+            xboxreport.RightThumbX = AxisScale(state.RX, false);
+            xboxreport.RightThumbY = AxisScale(state.RY, true);
+        }
+
+        private short AxisScale(Int32 Value, Boolean Flip)
+        {
+            Value -= 0x80;
+
+            //float temp = (Value - (-128)) / (float)inputResolution;
+            float temp = (Value - (-128)) * reciprocalInputResolution;
+            if (Flip) temp = (temp - 0.5f) * -1.0f + 0.5f;
+
+            return (short) (temp* outputResolution + (-32768));
         }
 
         private void CheckProfileOptions(int ind, DS4Device device, bool startUp=false)
@@ -647,36 +844,25 @@ namespace DS4Windows
                 {
                     if (!useDInputOnly[ind])
                     {
-                        bool unplugResult = x360Bus.Unplug(ind);
-                        int xinputIndex = x360Bus.FirstController + ind;
-                        if (unplugResult)
-                        {
-                            useDInputOnly[ind] = true;
-                            LogDebug("X360 Controller # " + xinputIndex + " unplugged");
-                        }
-                        else
-                        {
-                            LogDebug("X360 Controller # " + xinputIndex + " failed to unplug");
-                        }
+                        x360controls[ind].Disconnect();
+                        x360controls[ind] = null;
+                        useDInputOnly[ind] = true;
+                        LogDebug("X360 Controller # " + (ind + 1) + " unplugged");
                     }
                 }
                 else
                 {
                     if (!getDInputOnly(ind))
                     {
-                        int xinputIndex = x360Bus.FirstController + ind;
-                        LogDebug("Plugging in X360 Controller #" + xinputIndex);
-                        bool xinputResult = x360Bus.Plugin(ind);
-                        if (xinputResult)
+                        LogDebug("Plugging in X360 Controller #" + (ind + 1));
+                        x360controls[ind] = new Xbox360Controller(vigemTestClient);
+                        x360controls[ind].Connect();
+                        x360controls[ind].FeedbackReceived += (eventsender, args) =>
                         {
-                            useDInputOnly[ind] = false;
-                            LogDebug("X360 Controller # " + xinputIndex + " connected");
-                        }
-                        else
-                        {
-                            useDInputOnly[ind] = true;
-                            LogDebug("X360 Controller # " + xinputIndex + " failed. Using DInput only mode");
-                        }
+                            setRumble(args.SmallMotor, args.LargeMotor, ind);
+                        };
+                        useDInputOnly[ind] = false;
+                        LogDebug("X360 Controller # " + (ind + 1) + " connected");
                     }
                 }
             }
@@ -710,9 +896,9 @@ namespace DS4Windows
                     CurrentState[ind].Battery = PreviousState[ind].Battery = 0; // Reset for the next connection's initial status change.
                     if (!useDInputOnly[ind])
                     {
-                        bool unplugResult = x360Bus.Unplug(ind);
-                        int xinputIndex = x360Bus.FirstController + ind;
-                        LogDebug("X360 Controller # " + xinputIndex + " unplugged");
+                        x360controls[ind].Disconnect();
+                        x360controls[ind] = null;
+                        LogDebug("X360 Controller # " + (ind + 1) + " unplugged");
                     }
 
                     string removed = Properties.Resources.ControllerWasRemoved.Replace("*Mac address*", (ind + 1).ToString());
@@ -743,7 +929,6 @@ namespace DS4Windows
                     inWarnMonitor[ind] = false;
                     useDInputOnly[ind] = true;
                     OnControllerRemoved(this, ind);
-                    Thread.Sleep(XINPUT_UNPLUG_SETTLE_TIME);
                 }
             }
         }
@@ -840,10 +1025,12 @@ namespace DS4Windows
 
                 if (!useDInputOnly[ind])
                 {
-                    x360Bus.Parse(cState, processingData[ind].Report, ind);
+                    testNewReport(ref x360reports[ind], cState);
+                    x360controls[ind]?.SendReport(x360reports[ind]);
+                    //x360Bus.Parse(cState, processingData[ind].Report, ind);
                     // We push the translated Xinput state, and simultaneously we
                     // pull back any possible rumble data coming from Xinput consumers.
-                    if (x360Bus.Report(processingData[ind].Report, processingData[ind].Rumble))
+                    /*if (x360Bus.Report(processingData[ind].Report, processingData[ind].Rumble))
                     {
                         byte Big = processingData[ind].Rumble[3];
                         byte Small = processingData[ind].Rumble[4];
@@ -853,6 +1040,7 @@ namespace DS4Windows
                             setRumble(Big, Small, ind);
                         }
                     }
+                    */
                 }
 
                 // Output any synthetic events.

@@ -456,7 +456,7 @@ namespace DS4Windows
                 hDevice.OpenFileStream(inputReport.Length);
             }
 
-            sendOutputReport(true); // initialize the output report
+            sendOutputReport(true, true); // initialize the output report
         }
 
         private void timeoutTestThread()
@@ -466,7 +466,7 @@ namespace DS4Windows
                 if (timeoutEvent)
                 {
                     timeoutExecuted = true;
-                    this.sendOutputReport(true); // Kick Windows into noticing the disconnection.
+                    this.sendOutputReport(true, true); // Kick Windows into noticing the disconnection.
                 }
                 else
                 {
@@ -791,7 +791,7 @@ namespace DS4Windows
                             //Log.LogToGui(Mac.ToString() + " disconnected due to read failure: " + winError, true);
                         }
 
-                        sendOutputReport(true); // Kick Windows into noticing the disconnection.
+                        sendOutputReport(true, true); // Kick Windows into noticing the disconnection.
                         StopOutputUpdate();
                         isDisconnecting = true;
                         uiContext.Send(new SendOrPostCallback(delegate (object state4)
@@ -994,7 +994,7 @@ namespace DS4Windows
                     {
                         synced = controllerSynced;
                         SyncChange?.Invoke(this, EventArgs.Empty);
-                        sendOutputReport(true);
+                        sendOutputReport(true, true);
                     }
                 }
 
@@ -1101,7 +1101,7 @@ namespace DS4Windows
             hDevice.flush_Queue();
         }
 
-        private unsafe void sendOutputReport(bool synchronous)
+        private unsafe void sendOutputReport(bool synchronous, bool force = false)
         {
             setTestRumble();
             setHapticState();
@@ -1111,7 +1111,7 @@ namespace DS4Windows
 
             lock (outReportBuffer)
             {
-                bool output = outputPendCount > 0, change = false;
+                bool output = outputPendCount > 0, change = force;
 
                 if (usingBT)
                 {

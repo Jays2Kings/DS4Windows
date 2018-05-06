@@ -164,6 +164,7 @@ namespace DS4Windows
         public event EventHandler<EventArgs> Removal = null;
         public event EventHandler<EventArgs> SyncChange = null;
         public event EventHandler<EventArgs> SerialChange = null;
+        public EventHandler<EventArgs> MotionEvent = null;
 
         public HidDevice HidDevice => hDevice;
         public bool IsExclusive => HidDevice.IsExclusive;
@@ -774,7 +775,7 @@ namespace DS4Windows
                             //Console.WriteLine(MacAddress.ToString() + " " + System.DateTime.UtcNow.ToString("o") + "" +
                             //                    "> invalid CRC32 in BT input report: 0x" + recvCrc32.ToString("X8") + " expected: 0x" + calcCrc32.ToString("X8"));
 
-                            //cState.PacketCounter = pState.PacketCounter + 1; //still increase so we know there were lost packets
+                            cState.PacketCounter = pState.PacketCounter + 1; //still increase so we know there were lost packets
                             continue;
                         }
                     }
@@ -857,6 +858,7 @@ namespace DS4Windows
 
                 utcNow = DateTime.UtcNow; // timestamp with UTC in case system time zone changes
                 resetHapticState();
+                cState.PacketCounter = pState.PacketCounter + 1;
                 cState.ReportTimeStamp = utcNow;
                 cState.LX = inputReport[1];
                 cState.LY = inputReport[2];
@@ -894,6 +896,8 @@ namespace DS4Windows
                 cState.L3 = (tempByte & (1 << 6)) != 0;
                 cState.Options = (tempByte & (1 << 5)) != 0;
                 cState.Share = (tempByte & (1 << 4)) != 0;
+                cState.R2Btn = (inputReport[6] & (1 << 3)) != 0;
+                cState.L2Btn = (inputReport[6] & (1 << 2)) != 0;
                 cState.R1 = (tempByte & (1 << 1)) != 0;
                 cState.L1 = (tempByte & (1 << 0)) != 0;
 
@@ -935,6 +939,18 @@ namespace DS4Windows
                 timeStampPrevious = tempStamp;
                 elapsedDeltaTime = 0.000001 * deltaTimeCurrent; // Convert from microseconds to seconds
                 cState.elapsedTime = elapsedDeltaTime;
+                cState.totalMicroSec = pState.totalMicroSec + deltaTimeCurrent;
+
+                //Simpler touch storing
+                cState.TrackPadTouch0.Id = (byte)(inputReport[35] & 0x7f);
+                cState.TrackPadTouch0.IsActive = (inputReport[35] & 0x80) == 0;
+                cState.TrackPadTouch0.X = (short)(((ushort)(inputReport[37] & 0x0f) << 8) | (ushort)(inputReport[36]));
+                cState.TrackPadTouch0.Y = (short)(((ushort)(inputReport[38]) << 4) | ((ushort)(inputReport[37] & 0xf0) >> 4));
+
+                cState.TrackPadTouch1.Id = (byte)(inputReport[39] & 0x7f);
+                cState.TrackPadTouch1.IsActive = (inputReport[39] & 0x80) == 0;
+                cState.TrackPadTouch1.X = (short)(((ushort)(inputReport[41] & 0x0f) << 8) | (ushort)(inputReport[40]));
+                cState.TrackPadTouch1.Y = (short)(((ushort)(inputReport[42]) << 4) | ((ushort)(inputReport[41] & 0xf0) >> 4));
 
                 // XXX DS4State mapping needs fixup, turn touches into an array[4] of structs.  And include the touchpad details there instead.
                 try
@@ -1367,7 +1383,7 @@ namespace DS4Windows
             return pState;
         }
 
-        private bool isDS4Idle()
+        public bool isDS4Idle()
         {
             if (cState.Square || cState.Cross || cState.Circle || cState.Triangle)
                 return false;

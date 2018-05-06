@@ -4,10 +4,11 @@ namespace DS4Windows
 {
     public class DS4State
     {
+        public uint PacketCounter;
         public DateTime ReportTimeStamp;
         public bool Square, Triangle, Circle, Cross;
         public bool DpadUp, DpadDown, DpadLeft, DpadRight;
-        public bool L1, L3, R1, R3;
+        public bool L1, L2Btn, L3, R1, R2Btn, R3;
         public bool Share, Options, PS, Touch1, Touch2, TouchButton, TouchRight,
             TouchLeft, Touch1Finger, Touch2Fingers;
         public byte Touch1Identifier, Touch2Identifier;
@@ -24,14 +25,27 @@ namespace DS4Windows
         public double RXUnit;
         public double RYUnit;
         public double elapsedTime = 0.0;
+        public ulong totalMicroSec = 0;
         public SixAxis Motion = null;
         public static readonly int DEFAULT_AXISDIR_VALUE = 127;
 
+        public struct TrackPadTouch
+        {
+            public bool IsActive;
+            public byte Id;
+            public short X;
+            public short Y;
+        }
+
+        public TrackPadTouch TrackPadTouch0;
+        public TrackPadTouch TrackPadTouch1;
+
         public DS4State()
         {
+            PacketCounter = 0;
             Square = Triangle = Circle = Cross = false;
             DpadUp = DpadDown = DpadLeft = DpadRight = false;
-            L1 = L3 = R1 = R3 = false;
+            L1 = L2Btn = L3 = R1 = R2Btn = R3 = false;
             Share = Options = PS = Touch1 = Touch2 = TouchButton = TouchRight = TouchLeft = false;
             Touch1Finger = Touch2Fingers = false;
             LX = RX = LY = RY = 127;
@@ -48,11 +62,15 @@ namespace DS4Windows
             RXUnit = 0.0;
             RYUnit = 0.0;
             elapsedTime = 0.0;
+            totalMicroSec = 0;
             Motion = new SixAxis(0, 0, 0, 0, 0, 0, 0.0);
+            TrackPadTouch0.IsActive = false;
+            TrackPadTouch1.IsActive = false;
         }
 
         public DS4State(DS4State state)
         {
+            PacketCounter = state.PacketCounter;
             ReportTimeStamp = state.ReportTimeStamp;
             Square = state.Square;
             Triangle = state.Triangle;
@@ -64,9 +82,11 @@ namespace DS4Windows
             DpadRight = state.DpadRight;
             L1 = state.L1;
             L2 = state.L2;
+            L2Btn = state.L2Btn;
             L3 = state.L3;
             R1 = state.R1;
             R2 = state.R2;
+            R2Btn = state.R2Btn;
             R3 = state.R3;
             Share = state.Share;
             Options = state.Options;
@@ -96,7 +116,10 @@ namespace DS4Windows
             RXUnit = state.RXUnit;
             RYUnit = state.RYUnit;
             elapsedTime = state.elapsedTime;
+            totalMicroSec = state.totalMicroSec;
             Motion = state.Motion;
+            TrackPadTouch0 = state.TrackPadTouch0;
+            TrackPadTouch1 = state.TrackPadTouch1;
         }
 
         public DS4State Clone()
@@ -106,6 +129,7 @@ namespace DS4Windows
 
         public void CopyTo(DS4State state)
         {
+            state.PacketCounter = PacketCounter;
             state.ReportTimeStamp = ReportTimeStamp;
             state.Square = Square;
             state.Triangle = Triangle;
@@ -117,9 +141,11 @@ namespace DS4Windows
             state.DpadRight = DpadRight;
             state.L1 = L1;
             state.L2 = L2;
+            state.L2Btn = L2Btn;
             state.L3 = L3;
             state.R1 = R1;
             state.R2 = R2;
+            state.R2Btn = R2Btn;
             state.R3 = R3;
             state.Share = Share;
             state.Options = Options;
@@ -149,7 +175,10 @@ namespace DS4Windows
             state.RXUnit = RXUnit;
             state.RYUnit = RYUnit;
             state.elapsedTime = elapsedTime;
+            state.totalMicroSec = totalMicroSec;
             state.Motion = Motion;
+            state.TrackPadTouch0 = TrackPadTouch0;
+            state.TrackPadTouch1 = TrackPadTouch1;
         }
 
         public void calculateStickAngles()

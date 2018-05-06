@@ -39,6 +39,7 @@ namespace DS4Windows
         };
         public bool suspending;
         //SoundPlayer sp = new SoundPlayer();
+        private UdpServer _udpServer;
 
         private class X360Data
         {
@@ -47,6 +48,75 @@ namespace DS4Windows
         }
 
         private X360Data[] processingData = new X360Data[4];
+
+        void GetPadDetailForIdx(int padIdx, ref DualShockPadMeta meta)
+        {
+            //meta = new DualShockPadMeta();
+            meta.PadId = (byte) padIdx;
+            meta.Model = DsModel.DS4;
+
+            var d = DS4Controllers[padIdx];
+            if (d == null)
+            {
+                meta.PadMacAddress = null;
+                meta.PadState = DsState.Disconnected;
+                meta.ConnectionType = DsConnection.None;
+                meta.Model = DsModel.None;
+                meta.BatteryStatus = 0;
+                meta.IsActive = false;
+
+                //return meta;
+            }
+
+            bool isValidSerial = false;
+            //if (d.isValidSerial())
+            //{
+                string stringMac = d.getMacAddress();
+                if (!string.IsNullOrEmpty(stringMac))
+                {
+                    stringMac = string.Join("", stringMac.Split(':'));
+                    //stringMac = stringMac.Replace(":", "").Trim();
+                    meta.PadMacAddress = System.Net.NetworkInformation.PhysicalAddress.Parse(stringMac);
+                    isValidSerial = d.isValidSerial();
+                }
+            //}
+
+            if (!isValidSerial)
+            {
+                //meta.PadMacAddress = null;
+                meta.PadState = DsState.Disconnected;
+            }
+            else
+            {
+                if (d.isSynced() || d.IsAlive())
+                    meta.PadState = DsState.Connected;
+                else
+                    meta.PadState = DsState.Reserved;
+            }
+
+            meta.ConnectionType = (d.getConnectionType() == ConnectionType.USB) ? DsConnection.Usb : DsConnection.Bluetooth;
+            meta.IsActive = !d.isDS4Idle();
+
+            if (d.isCharging() && d.getBattery() >= 100)
+                meta.BatteryStatus = DsBattery.Charged;
+            else
+            {
+                if (d.getBattery() >= 95)
+                    meta.BatteryStatus = DsBattery.Full;
+                else if (d.getBattery() >= 70)
+                    meta.BatteryStatus = DsBattery.High;
+                else if (d.getBattery() >= 50)
+                    meta.BatteryStatus = DsBattery.Medium;
+                else if (d.getBattery() >= 20)
+                    meta.BatteryStatus = DsBattery.Low;
+                else if (d.getBattery() >= 5)
+                    meta.BatteryStatus = DsBattery.Dying;
+                else
+                    meta.BatteryStatus = DsBattery.None;
+            }
+
+            //return meta;
+        }
 
         public ControlService()
         {
@@ -70,6 +140,8 @@ namespace DS4Windows
                 PreviousState[i] = new DS4State();
                 ExposedState[i] = new DS4StateExposed(CurrentState[i]);
             }
+
+            _udpServer = new UdpServer(GetPadDetailForIdx);
         }
 
         private void WarnExclusiveModeFailure(DS4Device device)
@@ -211,6 +283,20 @@ namespace DS4Windows
                         {
                             this.On_Report(sender, e, tempIdx);
                         };
+
+                        if (_udpServer != null)
+                        {
+                            EventHandler<EventArgs> tempEvnt = (sender, args) =>
+                            {
+                                DualShockPadMeta padDetail = new DualShockPadMeta();
+                                GetPadDetailForIdx(tempIdx, ref padDetail);
+                                _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx]);
+                            };
+
+                            device.Report += tempEvnt;
+                            device.MotionEvent = tempEvnt;
+                        }
+
                         TouchPadOn(i, device);
                         CheckProfileOptions(i, device, true);
                         device.StartUpdate();
@@ -243,6 +329,24 @@ namespace DS4Windows
                 }
 
                 running = true;
+
+                if (_udpServer != null)
+                {
+                    var UDP_SERVER_PORT = 26760;
+
+                    try
+                    {
+                        _udpServer.Start(UDP_SERVER_PORT);
+                        LogDebug("UDP server listening on port " + UDP_SERVER_PORT);
+                    }
+                    catch (System.Net.Sockets.SocketException ex)
+                    {
+                        var errMsg = String.Format("Couldn't start UDP server on port {0}, outside applications won't be able to access pad data ({1})", UDP_SERVER_PORT, ex.SocketErrorCode);
+
+                        LogDebug(errMsg, true);
+                        Log.LogToTray(errMsg, true, true);
+                    }
+                }
             }
             else
             {
@@ -319,6 +423,10 @@ namespace DS4Windows
                     LogDebug(Properties.Resources.StoppingDS4);
 
                 DS4Devices.stopControllers();
+
+                if (_udpServer != null)
+                    _udpServer.Stop();
+
                 if (showlog)
                     LogDebug(Properties.Resources.StoppedDS4Windows);
             }
@@ -388,6 +496,20 @@ namespace DS4Windows
                             {
                                 this.On_Report(sender, e, tempIdx);
                             };
+                            
+                            if (_udpServer != null)
+                            {
+                                EventHandler<EventArgs> tempEvnt = (sender, args) =>
+                                {
+                                    DualShockPadMeta padDetail = new DualShockPadMeta();
+                                    GetPadDetailForIdx(tempIdx, ref padDetail);
+                                    _udpServer.NewReportIncoming(ref padDetail, CurrentState[tempIdx]);
+                                };
+
+                                device.Report += tempEvnt;
+                                device.MotionEvent = tempEvnt;
+                            }
+
                             if (!getDInputOnly(Index) && device.isSynced())
                             {
                                 int xinputIndex = x360Bus.FirstController + Index;
@@ -854,6 +976,14 @@ namespace DS4Windows
                         }
                     }
                 }
+
+                /*if (_udpServer != null)
+                {
+                    DualShockPadMeta padDetail = new DualShockPadMeta();
+                    GetPadDetailForIdx(ind, ref padDetail);
+                    _udpServer.NewReportIncoming(ref padDetail, CurrentState[ind]);
+                }
+                */
 
                 // Output any synthetic events.
                 Mapping.Commit(ind);

@@ -31,12 +31,16 @@ namespace DS4Windows
         internal const int SONY_VID = 0x054C;
         internal const int RAZER_VID = 0x1532;
         internal const int NACON_VID = 0x146B;
+        internal const int HORI_VID = 0x0F0D;
 
         private static VidPidInfo[] knownDevices =
         {
-            new VidPidInfo(SONY_VID, 0xBA0), new VidPidInfo(SONY_VID, 0x5C4),
-            new VidPidInfo(SONY_VID, 0x09CC), new VidPidInfo(RAZER_VID, 0x1000),
-            new VidPidInfo(NACON_VID, 0x0D01)
+            new VidPidInfo(SONY_VID, 0xBA0),
+            new VidPidInfo(SONY_VID, 0x5C4),
+            new VidPidInfo(SONY_VID, 0x09CC),
+            new VidPidInfo(RAZER_VID, 0x1000),
+            new VidPidInfo(NACON_VID, 0x0D01),
+            new VidPidInfo(HORI_VID, 0x00EE)    // Hori PS4 Mini Wired Gamepad
         };
 
         private static string devicePathToInstanceId(string devicePath)

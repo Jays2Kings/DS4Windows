@@ -792,6 +792,7 @@ namespace DS4Windows
                         }
 
                         sendOutputReport(true, true); // Kick Windows into noticing the disconnection.
+                        StopOutputUpdate();
                         isDisconnecting = true;
                         uiContext.Send(new SendOrPostCallback(delegate (object state4)
                         {

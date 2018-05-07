@@ -117,11 +117,6 @@ namespace DS4Windows
             Process.Start("https://github.com/teokp");
         }
 
-        private void MakerSupportLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://www.makersupport.com/Ryochan7");
-        }
-
         private void LinkCurrentSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://ryochan7.github.io/ds4windows-site/");

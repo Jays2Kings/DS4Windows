@@ -800,9 +800,6 @@ namespace DS4Windows
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
 
-                        //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
-                        //Removal?.Invoke(this, EventArgs.Empty);
-
                         timeoutExecuted = true;
                         return;
                     }
@@ -832,9 +829,6 @@ namespace DS4Windows
                         {
                             Removal?.Invoke(this, EventArgs.Empty);
                         }), null);
-
-                        //System.Threading.Tasks.Task.Factory.StartNew(() => { Removal?.Invoke(this, EventArgs.Empty); });
-                        //Removal?.Invoke(this, EventArgs.Empty);
 
                         timeoutExecuted = true;
                         return;

@@ -40,6 +40,7 @@
             this.tPHotkeys = new System.Windows.Forms.TabPage();
             this.lbHotkeys = new System.Windows.Forms.Label();
             this.tPCredits = new System.Windows.Forms.TabPage();
+            this.linkCurrentSite = new System.Windows.Forms.LinkLabel();
             this.linkTeokp = new System.Windows.Forms.LinkLabel();
             this.linkKiliansch = new System.Windows.Forms.LinkLabel();
             this.linkChamilsaan = new System.Windows.Forms.LinkLabel();
@@ -89,8 +90,6 @@
             this.coinTP = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.makerSupportLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.linkCurrentSite = new System.Windows.Forms.LinkLabel();
             this.tCAbout.SuspendLayout();
             this.tPHotkeys.SuspendLayout();
             this.tPCredits.SuspendLayout();
@@ -185,6 +184,13 @@
             resources.ApplyResources(this.tPCredits, "tPCredits");
             this.tPCredits.Name = "tPCredits";
             this.tPCredits.UseVisualStyleBackColor = true;
+            // 
+            // linkCurrentSite
+            // 
+            resources.ApplyResources(this.linkCurrentSite, "linkCurrentSite");
+            this.linkCurrentSite.Name = "linkCurrentSite";
+            this.linkCurrentSite.TabStop = true;
+            this.linkCurrentSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkCurrentSite_LinkClicked);
             // 
             // linkTeokp
             // 
@@ -476,7 +482,6 @@
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Controls.Add(this.textBox2);
             this.flowLayoutPanel1.Controls.Add(this.linkDonate);
-            this.flowLayoutPanel1.Controls.Add(this.makerSupportLinkLabel);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // textBox2
@@ -485,20 +490,6 @@
             resources.ApplyResources(this.textBox2, "textBox2");
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            // 
-            // makerSupportLinkLabel
-            // 
-            resources.ApplyResources(this.makerSupportLinkLabel, "makerSupportLinkLabel");
-            this.makerSupportLinkLabel.Name = "makerSupportLinkLabel";
-            this.makerSupportLinkLabel.TabStop = true;
-            this.makerSupportLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.MakerSupportLinkLabel_LinkClicked);
-            // 
-            // linkCurrentSite
-            // 
-            resources.ApplyResources(this.linkCurrentSite, "linkCurrentSite");
-            this.linkCurrentSite.Name = "linkCurrentSite";
-            this.linkCurrentSite.TabStop = true;
-            this.linkCurrentSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkCurrentSite_LinkClicked);
             // 
             // Hotkeys
             // 
@@ -583,7 +574,6 @@
         private System.Windows.Forms.Label lbpt;
         private System.Windows.Forms.Label lbPortugueseT;
         private System.Windows.Forms.LinkLabel linkTeokp;
-        private System.Windows.Forms.LinkLabel makerSupportLinkLabel;
         private System.Windows.Forms.TabPage coinTP;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TextBox textBox2;

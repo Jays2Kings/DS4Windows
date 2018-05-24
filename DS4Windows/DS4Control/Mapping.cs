@@ -3124,114 +3124,50 @@ namespace DS4Windows
                 {
                     case DS4Controls.LXNeg:
                     {
-                        if (!analog)
-                        {
-                            double angle = cState.LSAngle;
-                            result = cState.LX < 127 && (angle >= 210 && angle <= 330);
-                        }
-                        else
-                        {
-                            result = cState.LX < 127;
-                        }
-
+                        double angle = cState.LSAngle;
+                        result = cState.LX < 127 && (angle >= 210 && angle <= 330);
                         break;
                     }
                     case DS4Controls.LYNeg:
                     {
-                        if (!analog)
-                        {
-                            double angle = cState.LSAngle;
-                            result = cState.LY < 127 && (angle >= 300 || angle <= 60);
-                        }
-                        else
-                        {
-                            result = cState.LY < 127;
-                        }
-
+                        double angle = cState.LSAngle;
+                        result = cState.LY < 127 && (angle >= 300 || angle <= 60);
                         break;
                     }
                     case DS4Controls.RXNeg:
                     {
-                        if (!analog)
-                        {
-                            double angle = cState.RSAngle;
-                            result = cState.RX < 127 && (angle >= 210 && angle <= 330);
-                        }
-                        else
-                        {
-                            result = cState.RX < 127;
-                        }
-
+                        double angle = cState.RSAngle;
+                        result = cState.RX < 127 && (angle >= 210 && angle <= 330);
                         break;
                     }
                     case DS4Controls.RYNeg:
                     {
-                        if (!analog)
-                        {
-                            double angle = cState.RSAngle;
-                            result = cState.RY < 127 && (angle >= 300 || angle <= 60);
-                        }
-                        else
-                        {
-                            result = cState.RY < 127;
-                        }
-
+                        double angle = cState.RSAngle;
+                        result = cState.RY < 127 && (angle >= 300 || angle <= 60);
                         break;
                     }
                     case DS4Controls.LXPos:
                     {
-                        if (!analog)
-                        {
-                            double angle = cState.LSAngle;
-                            result = cState.LX > 127 && (angle >= 30 && angle <= 150);
-                        }
-                        else
-                        {
-                            result = cState.LX > 127;
-                        }
-
+                        double angle = cState.LSAngle;
+                        result = cState.LX > 127 && (angle >= 30 && angle <= 150);
                         break;
                     }
                     case DS4Controls.LYPos:
                     {
-                        if (!analog)
-                        {
-                            double angle = cState.LSAngle;
-                            result = cState.LY > 127 && (angle >= 120 && angle <= 240);
-                        }
-                        else
-                        {
-                            result = cState.LY > 127;
-                        }
-
+                        double angle = cState.LSAngle;
+                        result = cState.LY > 127 && (angle >= 120 && angle <= 240);
                         break;
                     }
                     case DS4Controls.RXPos:
                     {
-                        if (!analog)
-                        {
-                            double angle = cState.RSAngle;
-                            result = cState.RX > 127 && (angle >= 30 && angle <= 150);
-                        }
-                        else
-                        {
-                            result = cState.RX > 127;
-                        }
-
+                        double angle = cState.RSAngle;
+                        result = cState.RX > 127 && (angle >= 30 && angle <= 150);
                         break;
                     }
                     case DS4Controls.RYPos:
                     {
-                        if (!analog)
-                        {
-                            double angle = cState.RSAngle;
-                            result = cState.RY > 127 && (angle >= 120 && angle <= 240);
-                        }
-                        else
-                        {
-                            result = cState.RY > 127;
-                        }
-
+                        double angle = cState.RSAngle;
+                        result = cState.RY > 127 && (angle >= 120 && angle <= 240);
                         break;
                     }
                     default: break;

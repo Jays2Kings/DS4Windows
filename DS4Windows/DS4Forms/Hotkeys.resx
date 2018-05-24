@@ -1930,33 +1930,6 @@ Monero: 49RvRMiMewaeez1Y2auxHmfMaAUYfhUpBem4ohzRJd9b5acPcxzh1icjnhZfjnYd1S7NQ57r
   <data name="&gt;&gt;textBox2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="makerSupportLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 108</value>
-  </data>
-  <data name="makerSupportLinkLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 3, 3</value>
-  </data>
-  <data name="makerSupportLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 14</value>
-  </data>
-  <data name="makerSupportLinkLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="makerSupportLinkLabel.Text" xml:space="preserve">
-    <value>MakerSupport</value>
-  </data>
-  <data name="&gt;&gt;makerSupportLinkLabel.Name" xml:space="preserve">
-    <value>makerSupportLinkLabel</value>
-  </data>
-  <data name="&gt;&gt;makerSupportLinkLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;makerSupportLinkLabel.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;makerSupportLinkLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="flowLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>

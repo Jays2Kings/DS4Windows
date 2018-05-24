@@ -2835,7 +2835,7 @@ namespace DS4Windows
             if (postLoad && device < 4)
             {
                 DS4Device tempDev = control.DS4Controllers[device];
-                if (tempDev != null)
+                if (tempDev != null && tempDev.isSynced())
                 {
                     tempDev.queueEvent(() =>
                     {

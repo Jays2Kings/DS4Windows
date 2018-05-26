@@ -44,6 +44,12 @@
             this.editProfileForController2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.disconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon1toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -147,7 +153,6 @@
             this.lbUseXIPorts = new System.Windows.Forms.Label();
             this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
             this.lbLastXIPort = new System.Windows.Forms.Label();
-            this.languagePackComboBox1 = new DS4Windows.DS4Forms.LanguagePackComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
@@ -167,6 +172,7 @@
             this.cMCustomLed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languagePackComboBox1 = new DS4Windows.DS4Forms.LanguagePackComboBox();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
@@ -272,6 +278,8 @@
             this.editProfileForController2ToolStripMenuItem,
             this.editProfileForController3ToolStripMenuItem,
             this.editProfileForController4ToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.disconToolStripMenuItem,
             this.toolStripSeparator1,
             this.startToolStripMenuItem,
             this.openToolStripMenuItem,
@@ -308,6 +316,49 @@
             resources.ApplyResources(this.editProfileForController4ToolStripMenuItem, "editProfileForController4ToolStripMenuItem");
             this.editProfileForController4ToolStripMenuItem.Tag = "4";
             this.editProfileForController4ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
+            // 
+            // disconToolStripMenuItem
+            // 
+            this.disconToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.discon1toolStripMenuItem,
+            this.discon2ToolStripMenuItem,
+            this.discon3ToolStripMenuItem,
+            this.discon4ToolStripMenuItem});
+            this.disconToolStripMenuItem.Name = "disconToolStripMenuItem";
+            resources.ApplyResources(this.disconToolStripMenuItem, "disconToolStripMenuItem");
+            // 
+            // discon1toolStripMenuItem
+            // 
+            this.discon1toolStripMenuItem.Name = "discon1toolStripMenuItem";
+            resources.ApplyResources(this.discon1toolStripMenuItem, "discon1toolStripMenuItem");
+            this.discon1toolStripMenuItem.Tag = "0";
+            this.discon1toolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
+            // 
+            // discon2ToolStripMenuItem
+            // 
+            this.discon2ToolStripMenuItem.Name = "discon2ToolStripMenuItem";
+            resources.ApplyResources(this.discon2ToolStripMenuItem, "discon2ToolStripMenuItem");
+            this.discon2ToolStripMenuItem.Tag = "1";
+            this.discon2ToolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
+            // 
+            // discon3ToolStripMenuItem
+            // 
+            this.discon3ToolStripMenuItem.Name = "discon3ToolStripMenuItem";
+            resources.ApplyResources(this.discon3ToolStripMenuItem, "discon3ToolStripMenuItem");
+            this.discon3ToolStripMenuItem.Tag = "2";
+            this.discon3ToolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
+            // 
+            // discon4ToolStripMenuItem
+            // 
+            this.discon4ToolStripMenuItem.Name = "discon4ToolStripMenuItem";
+            resources.ApplyResources(this.discon4ToolStripMenuItem, "discon4ToolStripMenuItem");
+            this.discon4ToolStripMenuItem.Tag = "3";
+            this.discon4ToolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1150,12 +1201,6 @@
             resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
             this.lbLastXIPort.Name = "lbLastXIPort";
             // 
-            // languagePackComboBox1
-            // 
-            resources.ApplyResources(this.languagePackComboBox1, "languagePackComboBox1");
-            this.languagePackComboBox1.Name = "languagePackComboBox1";
-            this.languagePackComboBox1.SelectedValueChanged += new System.EventHandler(this.languagePackComboBox1_SelectedValueChanged);
-            // 
             // flowLayoutPanel1
             // 
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
@@ -1293,6 +1338,12 @@
             this.useCustomColorToolStripMenuItem.Name = "useCustomColorToolStripMenuItem";
             resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
+            // 
+            // languagePackComboBox1
+            // 
+            resources.ApplyResources(this.languagePackComboBox1, "languagePackComboBox1");
+            this.languagePackComboBox1.Name = "languagePackComboBox1";
+            this.languagePackComboBox1.SelectedValueChanged += new System.EventHandler(this.languagePackComboBox1_SelectedValueChanged);
             // 
             // DS4Form
             // 
@@ -1491,6 +1542,12 @@
         private System.Windows.Forms.LinkLabel hidGuardRegLinkLabel;
         private System.Windows.Forms.Label linkSplitLabel;
         private System.Windows.Forms.ToolStripMenuItem openProgramFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem disconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon1toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon4ToolStripMenuItem;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

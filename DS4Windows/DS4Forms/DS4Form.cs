@@ -33,6 +33,7 @@ namespace DS4Windows
         private Button[] lights;
         private PictureBox[] statPB;
         private ToolStripMenuItem[] shortcuts;
+        private ToolStripMenuItem[] disconnectShortcuts;
         protected CheckBox[] linkedProfileCB;
         WebClient wc = new WebClient();
         NonFormTimer hotkeysTimer = new NonFormTimer();
@@ -55,7 +56,6 @@ namespace DS4Windows
         bool turnOffTemp;
         bool runningBat;
         private bool changingService;
-        public bool ChangingService => changingService;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
         string[] notifyText = new string[5]
@@ -124,6 +124,11 @@ namespace DS4Windows
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
+            disconnectShortcuts = new ToolStripMenuItem[4]
+            {
+                discon1toolStripMenuItem, discon2ToolStripMenuItem,
+                discon3ToolStripMenuItem, discon4ToolStripMenuItem
+            };
 
             linkedProfileCB = new CheckBox[4] { linkCB1, linkCB2, linkCB3, linkCB4 };
 
@@ -1283,6 +1288,8 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             shortcuts[device].Visible = on;
             Batteries[device].Visible = on;
             linkedProfileCB[device].Visible = on;
+            disconnectShortcuts[device].Visible = on &&
+                Program.rootHub.DS4Controllers[device].ConnectionType != ConnectionType.USB;
         }
 
         protected void On_Debug(object sender, DebugEventArgs e)
@@ -2483,6 +2490,24 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             temp.StartInfo.Arguments = @"/select, " + Assembly.GetExecutingAssembly().Location;
             try { temp.Start(); }
             catch { }
+        }
+
+        private void DiscontoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            int i = Convert.ToInt32(item.Tag);
+            DS4Device d = Program.rootHub.DS4Controllers[i];
+            if (d != null)
+            {
+                if (d.ConnectionType == ConnectionType.BT && !d.Charging)
+                {
+                    d.DisconnectBT();
+                }
+                else if (d.ConnectionType == ConnectionType.SONYWA && !d.Charging)
+                {
+                    d.DisconnectDongle();
+                }
+            }
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

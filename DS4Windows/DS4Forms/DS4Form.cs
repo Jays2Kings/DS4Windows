@@ -101,7 +101,6 @@ namespace DS4Windows
             Global.SetCulture(UseLang);
 
             InitializeComponent();
-            //ThemeUtil.SetTheme(lvDebug);
 
             bnEditC1.Tag = 0;
             bnEditC2.Tag = 1;
@@ -2520,30 +2519,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private void nUDLatency_ValueChanged(object sender, EventArgs e)
         {
             FlashWhenLateAt = (int)Math.Round(nUDLatency.Value);
-        }
-    }
-
-    public class ThemeUtil
-    {
-        [DllImport("UxTheme", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        private static extern int SetWindowTheme(IntPtr hWnd, String appName, String partList);
-
-        public static void SetTheme(ListView lv)
-        {
-            try
-            {
-                SetWindowTheme(lv.Handle, "Explorer", null);
-            }
-            catch { }
-        }
-
-        public static void SetTheme(TreeView tv)
-        {
-            try
-            {
-                SetWindowTheme(tv.Handle, "Explorer", null);
-            }
-            catch { }
         }
     }
 }

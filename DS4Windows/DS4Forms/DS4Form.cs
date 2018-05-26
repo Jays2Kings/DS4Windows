@@ -101,7 +101,7 @@ namespace DS4Windows
             Global.SetCulture(UseLang);
 
             InitializeComponent();
-            ThemeUtil.SetTheme(lvDebug);
+            //ThemeUtil.SetTheme(lvDebug);
 
             bnEditC1.Tag = 0;
             bnEditC2.Tag = 1;

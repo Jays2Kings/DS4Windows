@@ -640,7 +640,7 @@ namespace DS4Windows
                             Monitor.Wait(outReportBuffer);
                             fixed (byte* byteR = outputReport, byteB = outReportBuffer)
                             {
-                                for (int i = 0, arlen = outputReport.Length; i < arlen; i++)
+                                for (int i = 0, arlen = 13; i < arlen; i++)
                                     byteR[i] = byteB[i];
                             }
                             //outReportBuffer.CopyTo(outputReport, 0);
@@ -1166,8 +1166,9 @@ namespace DS4Windows
                         if (usingBT)
                         {
                             Monitor.Enter(outputReport);
-                            outReportBuffer.CopyTo(outputReport, 0);
                         }
+
+                        outReportBuffer.CopyTo(outputReport, 0);
 
                         try
                         {

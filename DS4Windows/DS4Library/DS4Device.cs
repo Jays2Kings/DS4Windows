@@ -114,6 +114,8 @@ namespace DS4Windows
     {
         internal const int BT_OUTPUT_REPORT_LENGTH = 78;
         internal const int BT_INPUT_REPORT_LENGTH = 547;
+        internal const int BT_OUTPUT_CHANGE_LENGTH = 13;
+        internal const int USB_OUTPUT_CHANGE_LENGTH = 11;
         // Use large value for worst case scenario
         internal const int READ_STREAM_TIMEOUT = 3000;
         // Isolated BT report can have latency as high as 15 ms
@@ -640,7 +642,7 @@ namespace DS4Windows
                             Monitor.Wait(outReportBuffer);
                             fixed (byte* byteR = outputReport, byteB = outReportBuffer)
                             {
-                                for (int i = 0, arlen = 13; i < arlen; i++)
+                                for (int i = 0, arlen = BT_OUTPUT_CHANGE_LENGTH; i < arlen; i++)
                                     byteR[i] = byteB[i];
                             }
                             //outReportBuffer.CopyTo(outputReport, 0);
@@ -1123,7 +1125,7 @@ namespace DS4Windows
 
                     fixed (byte* byteR = outputReport, byteB = outReportBuffer)
                     {
-                        for (int i = 0, arlen = 13; !change && i < arlen; i++)
+                        for (int i = 0, arlen = BT_OUTPUT_CHANGE_LENGTH; !change && i < arlen; i++)
                             change = byteR[i] != byteB[i];
                     }
                 }
@@ -1142,7 +1144,7 @@ namespace DS4Windows
 
                     fixed (byte* byteR = outputReport, byteB = outReportBuffer)
                     {
-                        for (int i = 0, arlen = 11; !change && i < arlen; i++)
+                        for (int i = 0, arlen = USB_OUTPUT_CHANGE_LENGTH; !change && i < arlen; i++)
                             change = byteR[i] != byteB[i];
                     }
 

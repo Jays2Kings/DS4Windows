@@ -52,7 +52,6 @@ namespace DS4Windows
         public Size oldsize;
         public bool mAllowVisible;
         bool contextclose;
-        string logFile = appdatapath + @"\DS4Service.log";
         bool turnOffTemp;
         bool runningBat;
         private bool changingService;
@@ -158,7 +157,6 @@ namespace DS4Windows
             Program.rootHub.Debug += On_Debug;
 
             Log.GuiLog += On_Debug;
-            logFile = appdatapath + "\\DS4Windows.log";
             Log.TrayIconLog += ShowNotification;
 
             Directory.CreateDirectory(appdatapath);

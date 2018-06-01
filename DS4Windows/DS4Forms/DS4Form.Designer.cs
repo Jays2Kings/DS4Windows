@@ -132,7 +132,6 @@
             this.runStartTaskRadio = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.runStartProgRadio = new System.Windows.Forms.RadioButton();
-            this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbNotifications = new System.Windows.Forms.Label();
             this.cBoxNotifications = new System.Windows.Forms.ComboBox();
@@ -141,6 +140,8 @@
             this.nUDLatency = new System.Windows.Forms.NumericUpDown();
             this.lbMsLatency = new System.Windows.Forms.Label();
             this.cBFlashWhenLate = new System.Windows.Forms.CheckBox();
+            this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
+            this.mintoTaskCheckBox = new System.Windows.Forms.CheckBox();
             this.cBCloseMini = new System.Windows.Forms.CheckBox();
             this.cBQuickCharge = new System.Windows.Forms.CheckBox();
             this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
@@ -153,6 +154,7 @@
             this.lbUseXIPorts = new System.Windows.Forms.Label();
             this.nUDXIPorts = new System.Windows.Forms.NumericUpDown();
             this.lbLastXIPort = new System.Windows.Forms.Label();
+            this.languagePackComboBox1 = new DS4Windows.DS4Forms.LanguagePackComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.linkProfiles = new System.Windows.Forms.LinkLabel();
             this.lnkControllers = new System.Windows.Forms.LinkLabel();
@@ -172,7 +174,6 @@
             this.cMCustomLed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.useProfileColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCustomColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.languagePackComboBox1 = new DS4Windows.DS4Forms.LanguagePackComboBox();
             this.advColorDialog = new DS4Windows.AdvancedColorDialog();
             this.pnlButton.SuspendLayout();
             this.cMTaskbar.SuspendLayout();
@@ -946,10 +947,11 @@
             this.fLPSettings.Controls.Add(this.cBSwipeProfiles);
             this.fLPSettings.Controls.Add(this.StartWindowsCheckBox);
             this.fLPSettings.Controls.Add(this.runStartupPanel);
-            this.fLPSettings.Controls.Add(this.startMinimizedCheckBox);
             this.fLPSettings.Controls.Add(this.panel1);
             this.fLPSettings.Controls.Add(this.cBDisconnectBT);
             this.fLPSettings.Controls.Add(this.panel2);
+            this.fLPSettings.Controls.Add(this.startMinimizedCheckBox);
+            this.fLPSettings.Controls.Add(this.mintoTaskCheckBox);
             this.fLPSettings.Controls.Add(this.cBCloseMini);
             this.fLPSettings.Controls.Add(this.cBQuickCharge);
             this.fLPSettings.Controls.Add(this.cBUseWhiteIcon);
@@ -1021,13 +1023,6 @@
             this.runStartProgRadio.UseVisualStyleBackColor = false;
             this.runStartProgRadio.Click += new System.EventHandler(this.runStartProgRadio_Click);
             // 
-            // startMinimizedCheckBox
-            // 
-            resources.ApplyResources(this.startMinimizedCheckBox, "startMinimizedCheckBox");
-            this.startMinimizedCheckBox.Name = "startMinimizedCheckBox";
-            this.startMinimizedCheckBox.UseVisualStyleBackColor = true;
-            this.startMinimizedCheckBox.CheckedChanged += new System.EventHandler(this.startMinimizedCheckBox_CheckedChanged);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.lbNotifications);
@@ -1096,6 +1091,19 @@
             this.cBFlashWhenLate.Name = "cBFlashWhenLate";
             this.cBFlashWhenLate.UseVisualStyleBackColor = false;
             this.cBFlashWhenLate.CheckedChanged += new System.EventHandler(this.cBFlashWhenLate_CheckedChanged);
+            // 
+            // startMinimizedCheckBox
+            // 
+            resources.ApplyResources(this.startMinimizedCheckBox, "startMinimizedCheckBox");
+            this.startMinimizedCheckBox.Name = "startMinimizedCheckBox";
+            this.startMinimizedCheckBox.UseVisualStyleBackColor = true;
+            this.startMinimizedCheckBox.CheckedChanged += new System.EventHandler(this.startMinimizedCheckBox_CheckedChanged);
+            // 
+            // mintoTaskCheckBox
+            // 
+            resources.ApplyResources(this.mintoTaskCheckBox, "mintoTaskCheckBox");
+            this.mintoTaskCheckBox.Name = "mintoTaskCheckBox";
+            this.mintoTaskCheckBox.UseVisualStyleBackColor = true;
             // 
             // cBCloseMini
             // 
@@ -1200,6 +1208,12 @@
             // 
             resources.ApplyResources(this.lbLastXIPort, "lbLastXIPort");
             this.lbLastXIPort.Name = "lbLastXIPort";
+            // 
+            // languagePackComboBox1
+            // 
+            resources.ApplyResources(this.languagePackComboBox1, "languagePackComboBox1");
+            this.languagePackComboBox1.Name = "languagePackComboBox1";
+            this.languagePackComboBox1.SelectedValueChanged += new System.EventHandler(this.languagePackComboBox1_SelectedValueChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -1338,12 +1352,6 @@
             this.useCustomColorToolStripMenuItem.Name = "useCustomColorToolStripMenuItem";
             resources.ApplyResources(this.useCustomColorToolStripMenuItem, "useCustomColorToolStripMenuItem");
             this.useCustomColorToolStripMenuItem.Click += new System.EventHandler(this.useCustomColorToolStripMenuItem_Click);
-            // 
-            // languagePackComboBox1
-            // 
-            resources.ApplyResources(this.languagePackComboBox1, "languagePackComboBox1");
-            this.languagePackComboBox1.Name = "languagePackComboBox1";
-            this.languagePackComboBox1.SelectedValueChanged += new System.EventHandler(this.languagePackComboBox1_SelectedValueChanged);
             // 
             // DS4Form
             // 
@@ -1548,6 +1556,7 @@
         private System.Windows.Forms.ToolStripMenuItem discon2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discon3ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discon4ToolStripMenuItem;
+        private System.Windows.Forms.CheckBox mintoTaskCheckBox;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

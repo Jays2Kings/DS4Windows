@@ -212,6 +212,10 @@ namespace DS4Windows
             startMinimizedCheckBox.CheckedChanged -= startMinimizedCheckBox_CheckedChanged;
             startMinimizedCheckBox.Checked = StartMinimized;
             startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
+
+            mintoTaskCheckBox.Checked = Global.MinToTaskbar;
+            mintoTaskCheckBox.CheckedChanged += MintoTaskCheckBox_CheckedChanged;
+
             cBCloseMini.Checked = CloseMini;
 
             cBFlashWhenLate.Checked = FlashWhenLate;
@@ -872,14 +876,14 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         protected void Form_Resize(object sender, EventArgs e)
         {
-            if (FormWindowState.Minimized == WindowState)
+            if (FormWindowState.Minimized == WindowState && !MinToTaskbar)
             {
                 Hide();
                 ShowInTaskbar = false;
                 FormBorderStyle = FormBorderStyle.None;
             }
 
-            else if (FormWindowState.Normal == WindowState)
+            else if (FormWindowState.Normal == WindowState && !MinToTaskbar)
             {
                 //mAllowVisible = true;
                 Show();
@@ -2505,6 +2509,12 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
                     d.DisconnectDongle();
                 }
             }
+        }
+
+        private void MintoTaskCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            MinToTaskbar = mintoTaskCheckBox.Checked;
+            Save();
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

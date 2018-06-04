@@ -1444,7 +1444,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             //opt.Dock = DockStyle.Fill;
             //lBProfiles.SendToBack();
             //toolStrip1.SendToBack();
-            tSOptions.SendToBack();
+            //tSOptions.SendToBack();
             opt.BringToFront();
             oldsize = Size;
             {

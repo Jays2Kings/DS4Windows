@@ -38,7 +38,6 @@ namespace DS4Windows
                 if (s == "driverinstall" || s == "-driverinstall")
                 {
                     Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new WelcomeDialog(true));
                     return;
                 }
@@ -107,7 +106,6 @@ namespace DS4Windows
                 rootHub.createHidGuardKey();
                 //rootHub = new ControlService();
                 Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new DS4Form(args));
                 rootHub.removeHidGuardKey();
             //mutex.ReleaseMutex();

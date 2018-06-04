@@ -33,6 +33,7 @@ namespace DS4Windows
         private Button[] lights;
         private PictureBox[] statPB;
         private ToolStripMenuItem[] shortcuts;
+        private ToolStripMenuItem[] disconnectShortcuts;
         protected CheckBox[] linkedProfileCB;
         WebClient wc = new WebClient();
         NonFormTimer hotkeysTimer = new NonFormTimer();
@@ -51,11 +52,9 @@ namespace DS4Windows
         public Size oldsize;
         public bool mAllowVisible;
         bool contextclose;
-        string logFile = appdatapath + @"\DS4Service.log";
         bool turnOffTemp;
         bool runningBat;
         private bool changingService;
-        public bool ChangingService => changingService;
         Dictionary<Control, string> hoverTextDict = new Dictionary<Control, string>();
         // 0 index is used for application version text. 1 - 4 indices are used for controller status
         string[] notifyText = new string[5]
@@ -101,7 +100,6 @@ namespace DS4Windows
             Global.SetCulture(UseLang);
 
             InitializeComponent();
-            ThemeUtil.SetTheme(lvDebug);
 
             bnEditC1.Tag = 0;
             bnEditC2.Tag = 1;
@@ -124,6 +122,11 @@ namespace DS4Windows
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[1],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[2],
                 (ToolStripMenuItem)notifyIcon1.ContextMenuStrip.Items[3] };
+            disconnectShortcuts = new ToolStripMenuItem[4]
+            {
+                discon1toolStripMenuItem, discon2ToolStripMenuItem,
+                discon3ToolStripMenuItem, discon4ToolStripMenuItem
+            };
 
             linkedProfileCB = new CheckBox[4] { linkCB1, linkCB2, linkCB3, linkCB4 };
 
@@ -154,7 +157,6 @@ namespace DS4Windows
             Program.rootHub.Debug += On_Debug;
 
             Log.GuiLog += On_Debug;
-            logFile = appdatapath + "\\DS4Windows.log";
             Log.TrayIconLog += ShowNotification;
 
             Directory.CreateDirectory(appdatapath);
@@ -210,6 +212,10 @@ namespace DS4Windows
             startMinimizedCheckBox.CheckedChanged -= startMinimizedCheckBox_CheckedChanged;
             startMinimizedCheckBox.Checked = StartMinimized;
             startMinimizedCheckBox.CheckedChanged += startMinimizedCheckBox_CheckedChanged;
+
+            mintoTaskCheckBox.Checked = Global.MinToTaskbar;
+            mintoTaskCheckBox.CheckedChanged += MintoTaskCheckBox_CheckedChanged;
+
             cBCloseMini.Checked = CloseMini;
 
             cBFlashWhenLate.Checked = FlashWhenLate;
@@ -870,14 +876,14 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
 
         protected void Form_Resize(object sender, EventArgs e)
         {
-            if (FormWindowState.Minimized == WindowState)
+            if (FormWindowState.Minimized == WindowState && !MinToTaskbar)
             {
                 Hide();
                 ShowInTaskbar = false;
                 FormBorderStyle = FormBorderStyle.None;
             }
 
-            else if (FormWindowState.Normal == WindowState)
+            else if (FormWindowState.Normal == WindowState && !MinToTaskbar)
             {
                 //mAllowVisible = true;
                 Show();
@@ -1283,6 +1289,8 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             shortcuts[device].Visible = on;
             Batteries[device].Visible = on;
             linkedProfileCB[device].Visible = on;
+            disconnectShortcuts[device].Visible = on &&
+                Program.rootHub.DS4Controllers[device].ConnectionType != ConnectionType.USB;
         }
 
         protected void On_Debug(object sender, DebugEventArgs e)
@@ -1436,7 +1444,7 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             //opt.Dock = DockStyle.Fill;
             //lBProfiles.SendToBack();
             //toolStrip1.SendToBack();
-            tSOptions.SendToBack();
+            //tSOptions.SendToBack();
             opt.BringToFront();
             oldsize = Size;
             {
@@ -2485,6 +2493,30 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             catch { }
         }
 
+        private void DiscontoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            int i = Convert.ToInt32(item.Tag);
+            DS4Device d = Program.rootHub.DS4Controllers[i];
+            if (d != null)
+            {
+                if (d.ConnectionType == ConnectionType.BT && !d.Charging)
+                {
+                    d.DisconnectBT();
+                }
+                else if (d.ConnectionType == ConnectionType.SONYWA && !d.Charging)
+                {
+                    d.DisconnectDongle();
+                }
+            }
+        }
+
+        private void MintoTaskCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            MinToTaskbar = mintoTaskCheckBox.Checked;
+            Save();
+        }
+
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)
         {
             FlashWhenLate = cBFlashWhenLate.Checked;
@@ -2495,30 +2527,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         private void nUDLatency_ValueChanged(object sender, EventArgs e)
         {
             FlashWhenLateAt = (int)Math.Round(nUDLatency.Value);
-        }
-    }
-
-    public class ThemeUtil
-    {
-        [DllImport("UxTheme", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        private static extern int SetWindowTheme(IntPtr hWnd, String appName, String partList);
-
-        public static void SetTheme(ListView lv)
-        {
-            try
-            {
-                SetWindowTheme(lv.Handle, "Explorer", null);
-            }
-            catch { }
-        }
-
-        public static void SetTheme(TreeView tv)
-        {
-            try
-            {
-                SetWindowTheme(tv.Handle, "Explorer", null);
-            }
-            catch { }
         }
     }
 }

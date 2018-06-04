@@ -3580,10 +3580,10 @@
             65536});
             resources.ApplyResources(this.nUDL2S, "nUDL2S");
             this.nUDL2S.Maximum = new decimal(new int[] {
-            50,
+            10,
             0,
             0,
-            65536});
+            0});
             this.nUDL2S.Minimum = new decimal(new int[] {
             1,
             0,
@@ -3607,10 +3607,10 @@
             65536});
             resources.ApplyResources(this.nUDLSS, "nUDLSS");
             this.nUDLSS.Maximum = new decimal(new int[] {
-            15,
+            5,
             0,
             0,
-            65536});
+            0});
             this.nUDLSS.Minimum = new decimal(new int[] {
             5,
             0,
@@ -3639,10 +3639,10 @@
             65536});
             resources.ApplyResources(this.nUDR2S, "nUDR2S");
             this.nUDR2S.Maximum = new decimal(new int[] {
-            50,
+            10,
             0,
             0,
-            65536});
+            0});
             this.nUDR2S.Minimum = new decimal(new int[] {
             1,
             0,
@@ -3671,10 +3671,10 @@
             65536});
             resources.ApplyResources(this.nUDRSS, "nUDRSS");
             this.nUDRSS.Maximum = new decimal(new int[] {
-            15,
+            5,
             0,
             0,
-            65536});
+            0});
             this.nUDRSS.Minimum = new decimal(new int[] {
             5,
             0,
@@ -3703,10 +3703,10 @@
             65536});
             resources.ApplyResources(this.nUDSXS, "nUDSXS");
             this.nUDSXS.Maximum = new decimal(new int[] {
-            15,
+            5,
             0,
             0,
-            65536});
+            0});
             this.nUDSXS.Minimum = new decimal(new int[] {
             5,
             0,
@@ -3740,10 +3740,10 @@
             65536});
             resources.ApplyResources(this.nUDSZS, "nUDSZS");
             this.nUDSZS.Maximum = new decimal(new int[] {
-            15,
+            5,
             0,
             0,
-            65536});
+            0});
             this.nUDSZS.Minimum = new decimal(new int[] {
             5,
             0,

@@ -44,6 +44,12 @@
             this.editProfileForController2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editProfileForController4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.disconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon1toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.discon4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,7 +132,6 @@
             this.runStartTaskRadio = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.runStartProgRadio = new System.Windows.Forms.RadioButton();
-            this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbNotifications = new System.Windows.Forms.Label();
             this.cBoxNotifications = new System.Windows.Forms.ComboBox();
@@ -135,6 +140,8 @@
             this.nUDLatency = new System.Windows.Forms.NumericUpDown();
             this.lbMsLatency = new System.Windows.Forms.Label();
             this.cBFlashWhenLate = new System.Windows.Forms.CheckBox();
+            this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
+            this.mintoTaskCheckBox = new System.Windows.Forms.CheckBox();
             this.cBCloseMini = new System.Windows.Forms.CheckBox();
             this.cBQuickCharge = new System.Windows.Forms.CheckBox();
             this.cBUseWhiteIcon = new System.Windows.Forms.CheckBox();
@@ -272,6 +279,8 @@
             this.editProfileForController2ToolStripMenuItem,
             this.editProfileForController3ToolStripMenuItem,
             this.editProfileForController4ToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.disconToolStripMenuItem,
             this.toolStripSeparator1,
             this.startToolStripMenuItem,
             this.openToolStripMenuItem,
@@ -308,6 +317,49 @@
             resources.ApplyResources(this.editProfileForController4ToolStripMenuItem, "editProfileForController4ToolStripMenuItem");
             this.editProfileForController4ToolStripMenuItem.Tag = "4";
             this.editProfileForController4ToolStripMenuItem.Click += new System.EventHandler(this.editMenu_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
+            // 
+            // disconToolStripMenuItem
+            // 
+            this.disconToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.discon1toolStripMenuItem,
+            this.discon2ToolStripMenuItem,
+            this.discon3ToolStripMenuItem,
+            this.discon4ToolStripMenuItem});
+            this.disconToolStripMenuItem.Name = "disconToolStripMenuItem";
+            resources.ApplyResources(this.disconToolStripMenuItem, "disconToolStripMenuItem");
+            // 
+            // discon1toolStripMenuItem
+            // 
+            this.discon1toolStripMenuItem.Name = "discon1toolStripMenuItem";
+            resources.ApplyResources(this.discon1toolStripMenuItem, "discon1toolStripMenuItem");
+            this.discon1toolStripMenuItem.Tag = "0";
+            this.discon1toolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
+            // 
+            // discon2ToolStripMenuItem
+            // 
+            this.discon2ToolStripMenuItem.Name = "discon2ToolStripMenuItem";
+            resources.ApplyResources(this.discon2ToolStripMenuItem, "discon2ToolStripMenuItem");
+            this.discon2ToolStripMenuItem.Tag = "1";
+            this.discon2ToolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
+            // 
+            // discon3ToolStripMenuItem
+            // 
+            this.discon3ToolStripMenuItem.Name = "discon3ToolStripMenuItem";
+            resources.ApplyResources(this.discon3ToolStripMenuItem, "discon3ToolStripMenuItem");
+            this.discon3ToolStripMenuItem.Tag = "2";
+            this.discon3ToolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
+            // 
+            // discon4ToolStripMenuItem
+            // 
+            this.discon4ToolStripMenuItem.Name = "discon4ToolStripMenuItem";
+            resources.ApplyResources(this.discon4ToolStripMenuItem, "discon4ToolStripMenuItem");
+            this.discon4ToolStripMenuItem.Tag = "3";
+            this.discon4ToolStripMenuItem.Click += new System.EventHandler(this.DiscontoolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -895,10 +947,11 @@
             this.fLPSettings.Controls.Add(this.cBSwipeProfiles);
             this.fLPSettings.Controls.Add(this.StartWindowsCheckBox);
             this.fLPSettings.Controls.Add(this.runStartupPanel);
-            this.fLPSettings.Controls.Add(this.startMinimizedCheckBox);
             this.fLPSettings.Controls.Add(this.panel1);
             this.fLPSettings.Controls.Add(this.cBDisconnectBT);
             this.fLPSettings.Controls.Add(this.panel2);
+            this.fLPSettings.Controls.Add(this.startMinimizedCheckBox);
+            this.fLPSettings.Controls.Add(this.mintoTaskCheckBox);
             this.fLPSettings.Controls.Add(this.cBCloseMini);
             this.fLPSettings.Controls.Add(this.cBQuickCharge);
             this.fLPSettings.Controls.Add(this.cBUseWhiteIcon);
@@ -970,13 +1023,6 @@
             this.runStartProgRadio.UseVisualStyleBackColor = false;
             this.runStartProgRadio.Click += new System.EventHandler(this.runStartProgRadio_Click);
             // 
-            // startMinimizedCheckBox
-            // 
-            resources.ApplyResources(this.startMinimizedCheckBox, "startMinimizedCheckBox");
-            this.startMinimizedCheckBox.Name = "startMinimizedCheckBox";
-            this.startMinimizedCheckBox.UseVisualStyleBackColor = true;
-            this.startMinimizedCheckBox.CheckedChanged += new System.EventHandler(this.startMinimizedCheckBox_CheckedChanged);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.lbNotifications);
@@ -1045,6 +1091,19 @@
             this.cBFlashWhenLate.Name = "cBFlashWhenLate";
             this.cBFlashWhenLate.UseVisualStyleBackColor = false;
             this.cBFlashWhenLate.CheckedChanged += new System.EventHandler(this.cBFlashWhenLate_CheckedChanged);
+            // 
+            // startMinimizedCheckBox
+            // 
+            resources.ApplyResources(this.startMinimizedCheckBox, "startMinimizedCheckBox");
+            this.startMinimizedCheckBox.Name = "startMinimizedCheckBox";
+            this.startMinimizedCheckBox.UseVisualStyleBackColor = true;
+            this.startMinimizedCheckBox.CheckedChanged += new System.EventHandler(this.startMinimizedCheckBox_CheckedChanged);
+            // 
+            // mintoTaskCheckBox
+            // 
+            resources.ApplyResources(this.mintoTaskCheckBox, "mintoTaskCheckBox");
+            this.mintoTaskCheckBox.Name = "mintoTaskCheckBox";
+            this.mintoTaskCheckBox.UseVisualStyleBackColor = true;
             // 
             // cBCloseMini
             // 
@@ -1491,6 +1550,13 @@
         private System.Windows.Forms.LinkLabel hidGuardRegLinkLabel;
         private System.Windows.Forms.Label linkSplitLabel;
         private System.Windows.Forms.ToolStripMenuItem openProgramFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem disconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon1toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem discon4ToolStripMenuItem;
+        private System.Windows.Forms.CheckBox mintoTaskCheckBox;
         //private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

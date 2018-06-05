@@ -166,7 +166,7 @@ namespace DS4Windows
             rsangle = (rsangle >= 0 ? rsangle : (2 * Math.PI + rsangle)) * 180 / Math.PI;
             RSAngle = rsangle;
             RXUnit = Math.Abs(Math.Cos(RSAngleRad));
-            RYUnit = Math.Abs(Math.Sin(LSAngleRad));
+            RYUnit = Math.Abs(Math.Sin(RSAngleRad));
         }
 
         public void rotateLSCoordinates(double rotation)

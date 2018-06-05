@@ -783,7 +783,7 @@ namespace DS4Windows
                     }
                     else if (absX <= 0.75)
                     {
-                        outputX = absX - 0.24;
+                        outputX = absX - 0.2344;
                     }
                     else if (absX > 0.75)
                     {
@@ -796,7 +796,7 @@ namespace DS4Windows
                     }
                     else if (absY <= 0.75)
                     {
-                        outputY = absY - 0.24;
+                        outputY = absY - 0.2344;
                     }
                     else if (absY > 0.75)
                     {

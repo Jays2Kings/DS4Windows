@@ -2475,12 +2475,12 @@ namespace DS4Windows
         {
             int controlnum = DS4ControltoInt(control);
 
-            int deadzoneL = 3;
-            int deadzoneR = 3;
-            if (getLSDeadzone(device) >= 3)
-                deadzoneL = 0;
-            if (getRSDeadzone(device) >= 3)
-                deadzoneR = 0;
+            int deadzoneL = 0;
+            int deadzoneR = 0;
+            if (getLSDeadzone(device) == 0)
+                deadzoneL = 3;
+            if (getRSDeadzone(device) == 0)
+                deadzoneR = 3;
 
             double value = 0.0;
             int speed = ButtonMouseSensitivity[device];

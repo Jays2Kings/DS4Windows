@@ -40,7 +40,8 @@ namespace DS4Windows
             new VidPidInfo(SONY_VID, 0x09CC),
             new VidPidInfo(RAZER_VID, 0x1000),
             new VidPidInfo(NACON_VID, 0x0D01),
-            new VidPidInfo(HORI_VID, 0x00EE)    // Hori PS4 Mini Wired Gamepad
+            new VidPidInfo(HORI_VID, 0x00EE),    // Hori PS4 Mini Wired Gamepad
+            new VidPidInfo(0x7545, 0x0104)
         };
 
         private static string devicePathToInstanceId(string devicePath)

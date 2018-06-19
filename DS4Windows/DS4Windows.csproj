@@ -180,12 +180,6 @@
     <Compile Include="DS4Library\DS4Touchpad.cs" />
     <Compile Include="DS4Forms\AdvancedColorDialog.cs" />
     <Compile Include="DS4Forms\AdvancedComboBox.cs" />
-    <Compile Include="DS4Forms\Alreadyrunning.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DS4Forms\Alreadyrunning.Designer.cs">
-      <DependentUpon>Alreadyrunning.cs</DependentUpon>
-    </Compile>
     <Compile Include="DS4Forms\DS4Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,9 +255,6 @@
     <Compile Include="HidLibrary\HidDevices.cs" />
     <Compile Include="HidLibrary\NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DS4Forms\Alreadyrunning.resx">
-      <DependentUpon>Alreadyrunning.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DS4Forms\DS4Form.ar.resx">
       <DependentUpon>DS4Form.cs</DependentUpon>
       <SubType>Designer</SubType>

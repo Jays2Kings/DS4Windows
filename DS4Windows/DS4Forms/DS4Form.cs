@@ -402,6 +402,11 @@ namespace DS4Windows
 
             populateHoverTextDict();
 
+            cBController1.KeyPress += CBController_KeyPress;
+            cBController2.KeyPress += CBController_KeyPress;
+            cBController3.KeyPress += CBController_KeyPress;
+            cBController4.KeyPress += CBController_KeyPress;
+
             foreach (Control control in fLPSettings.Controls)
             {
                 if (control.HasChildren)
@@ -2532,6 +2537,11 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
         {
             MinToTaskbar = mintoTaskCheckBox.Checked;
             Save();
+        }
+
+        private void CBController_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
 
         private void cBFlashWhenLate_CheckedChanged(object sender, EventArgs e)

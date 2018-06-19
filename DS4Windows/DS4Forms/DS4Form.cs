@@ -449,7 +449,8 @@ namespace DS4Windows
             {
                 if (Index < ControlService.DS4_CONTROLLER_COUNT)
                 {
-                    statPB[Index].Visible = false; toolTip1.SetToolTip(statPB[Index], "");
+                    statPB[Index].Visible = false;
+                    toolTip1.SetToolTip(statPB[Index], "");
                     Batteries[Index].Text = Properties.Resources.NA;
                     Pads[Index].Text = Properties.Resources.Disconnected;
                     Enable_Controls(Index, false);
@@ -594,10 +595,24 @@ namespace DS4Windows
                             turnOffTemp = true;
                             if (btnStartStop.Text == Properties.Resources.StopText)
                             {
-                                BtnStartStop_Clicked();
-                                hotkeysTimer.Start();
-                                autoProfilesTimer.Start();
-                                btnStartStop.Text = Properties.Resources.StartText;
+                                autoProfilesTimer.Stop();
+                                hotkeysTimer.Stop();
+
+                                this.Invoke((System.Action)(() => {
+                                    this.changingService = true;
+                                    BtnStartStop_Clicked();
+                                }));
+
+                                while (this.changingService)
+                                {
+                                    Thread.SpinWait(500);
+                                }
+
+                                this.Invoke((System.Action)(() =>
+                                {
+                                    hotkeysTimer.Start();
+                                    autoProfilesTimer.Start();
+                                }));
                             }
                         }
 
@@ -620,8 +635,10 @@ namespace DS4Windows
                         turnOffTemp = false;
                         if (btnStartStop.Text == Properties.Resources.StartText)
                         {
-                            BtnStartStop_Clicked();
-                            btnStartStop.Text = Properties.Resources.StopText;
+                            this.BeginInvoke((System.Action)(() =>
+                            {
+                                BtnStartStop_Clicked();
+                            }));
                         }
                     }
                 }

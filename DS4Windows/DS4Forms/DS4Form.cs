@@ -1858,31 +1858,6 @@ Properties.Resources.DS4Update, MessageBoxButtons.YesNo, MessageBoxIcon.Question
             }
         }
 
-        private void ScpForm_DragDrop(object sender, DragEventArgs e)
-        {
-            bool therewasanxml = false;
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            for (int i = 0; i < files.Length; i++)
-            {
-                if (files[i].EndsWith(".xml"))
-                {
-                    File.Copy(files[i], appdatapath + "\\Profiles\\" + Path.GetFileName(files[i]), true);
-                    therewasanxml = true;
-                }
-            }
-
-            if (therewasanxml)
-                RefreshProfiles();
-        }
-
-        private void ScpForm_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-                e.Effect = DragDropEffects.Copy; // Okay
-            else
-                e.Effect = DragDropEffects.None; // Unknown data, ignore it
-        }
-
         private void tBProfile_TextChanged(object sender, EventArgs e)
         {
             if (tSTBProfile.Text != null && tSTBProfile.Text != "" &&
